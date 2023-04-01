@@ -1,0 +1,17 @@
+{
+  "name": "models",
+  "version": "1.0.0",
+  "description": "",
+  "main": "generator.ts",
+  "scripts": {
+    "generate": "node generator.ts",
+    "generate4Hub": "npm run generate && cp generated/java/* ../src/main/java/com/hubsante/message/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@asyncapi/modelina": "^1.3.1",
+    "js-yaml": "^4.1.0"
+  }
+}
