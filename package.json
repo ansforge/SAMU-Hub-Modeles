@@ -5,7 +5,7 @@
   "main": "generator.ts",
   "scripts": {
     "generate": "node generator.ts",
-    "generate4Hub": "npm run generate && cp generated/java/* ../src/main/java/com/hubsante/message/"
+    "generate4Hub": "npm run generate && cp generated/java/* ../dispatcher/src/main/java/com/hubsante/message/"
   },
   "keywords": [],
   "author": "",
