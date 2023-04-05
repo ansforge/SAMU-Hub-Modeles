@@ -1,0 +1,189 @@
+asyncapi: '2.5.0'
+info:
+  title: Hub Sante AMQP API
+  version: '0.4'
+  description: |
+    L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  local:
+    url: localhost:5671
+    protocol: amqps
+    protocolVersion: '0.9.1'
+    description: Instance locale du Hub Sante portée par `docker-compose` dans le repo du Hub
+    security:
+      - tlsAuth: []
+defaultContentType: application/json
+channels:
+  "{clientId}.in.message":
+    description: File spécifique à chaque client pour la réception de messages
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Message fonctionnel
+      operationId: receiveMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/basicMessage'
+          - $ref: '#/components/messages/cisuMessage'
+
+  "{clientId}.out.message":
+    description: File spécifique à chaque client pour l'envoi de messages
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Message fonctionnel
+      operationId: publishMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/basicMessage'
+          - $ref: '#/components/messages/cisuMessage'
+
+  "{clientId}.in.ack":
+    description: File spécifique à chaque client pour la réception des acquittements fonctionnels
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Acquittement fonctionnel
+      operationId: receiveAck
+      message:
+        $ref: '#/components/messages/ack'
+
+  "{clientId}.out.ack":
+    description: File spécifique à chaque client pour l'envoi des acquittements fonctionnels
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Acquittement fonctionnel
+      operationId: publishAck
+      message:
+        $ref: '#/components/messages/ack'
+
+  "{clientId}.in.info":
+    description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Informations complémentaires
+      operationId: receiveInfo
+      message:
+        $ref: '#/components/messages/info'
+
+  "{clientId}.out.info":
+    description: File spécifique à chaque client pour l'envoi des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Informations complémentaires
+      operationId: publishInfo
+      message:
+        $ref: '#/components/messages/info'
+
+components:
+  messages:
+    messageEnvelope:
+      title: Enveloppe qui doit être implémentée par tous les messages échangées sur le Hub
+      summary: Enveloppe des messages transportables par le Hub
+      payload:
+        $ref: '#/components/schemas/messageEnvelope'
+    basicMessage:
+      title: Message basique
+      summary: Message basique transportable par le Hub
+      payload:
+        $ref: '#/components/schemas/basicMessage'
+    cisuMessage:
+      title: Message CISU
+      summary: Message CISU transportable par le Hub dans le cadre des échanges inter-forces.
+      payload:
+        $ref: '#/components/schemas/cisuMessage'
+    ack:
+      title: Acquittement fonctionnel
+      payload:
+        $ref: '#/components/schemas/basicMessage'
+    info:
+      title: Information complémentaire
+      payload:
+        $ref: '#/components/schemas/basicMessage'
+
+  schemas:
+    messageEnvelope:
+      type: object
+      properties:
+        to:
+          type: string
+          description: 'ID du destinataire'
+        senderId:
+          type: string
+          description: "ID de l'émetteur"
+        distributionId:
+          type: string
+          description: 'ID du message'
+        content:
+          type: object
+          description: 'Contenu du message'
+      additionalProperties: false
+      required:
+        - to
+        - senderId
+        - distributionId
+        - content
+    basicMessage:
+      type: object
+      properties:
+        to:
+          type: string
+          description: 'ID du destinataire'
+        senderId:
+          type: string
+          description: "ID de l'émetteur"
+        distributionId:
+          type: string
+          description: 'ID du message'
+        content:
+          type: object
+          description: 'Contenu du message'
+      additionalProperties: false
+      required:
+        - to
+        - senderId
+        - distributionId
+        - content
+    cisuMessage:
+      type: object
+      properties:
+        to:
+          type: string
+          description: 'ID du destinataire'
+        senderId:
+          type: string
+          description: "ID de l'émetteur"
+        distributionId:
+          type: string
+          description: 'ID du message'
+        content:
+          type: object
+          $ref: './cisu.json#/Message'
+          description: 'Objet libre de contenu du message'
+      additionalProperties: false
+      required:
+        - to
+        - senderId
+        - distributionId
+        - content
+  securitySchemes:
+    tlsAuth:
+      type: X509
+      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification TLS
+  parameters:
+    clientId:
+      description: L'identifiant du client
+      schema:
+        type: string

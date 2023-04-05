@@ -9,7 +9,7 @@ const JAVA_JACKSON_PRESET = require('@asyncapi/modelina').JAVA_JACKSON_PRESET;
 const ENVELOPE_CLASS = "MessageEnvelope";
 
 const asyncApiSchema = yaml.load(
-    fs.readFileSync('../dispatcher/src/main/resources/hubsante.asyncapi.yaml', 'utf8')
+    fs.readFileSync('../hubsante.asyncapi.yaml', 'utf8')
 );
 
 // ToDo(bbo): see if it is really needed.
