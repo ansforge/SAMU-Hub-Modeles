@@ -1,11 +1,13 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
 public class CisuMessage extends MessageEnvelope {
+  @JsonProperty("content")
+  @NotNull
+  private Object content;
   @JsonProperty("to")
   @NotNull
   private String to;
@@ -15,21 +17,21 @@ public class CisuMessage extends MessageEnvelope {
   @JsonProperty("distributionId")
   @NotNull
   private String distributionId;
-  @JsonProperty("content")
-  @NotNull
-  private Map<String, Object> content;
 
   public CisuMessage(){
   }
 
   public CisuMessage(
-    String to, String senderId, String distributionId, Map<String, Object> content
+    Object content, String to, String senderId, String distributionId
   ) {
+  	this.content = content;
   	this.to = to;
   	this.senderId = senderId;
   	this.distributionId = distributionId;
-  	this.content = content;
   }
+
+  public Object getContent() { return this.content; }
+  public void setContent(Object content) { this.content = content; }
 
   /**
    * ID du destinataire
@@ -49,9 +51,6 @@ public class CisuMessage extends MessageEnvelope {
   public String getDistributionId() { return this.distributionId; }
   public void setDistributionId(String distributionId) { this.distributionId = distributionId; }
 
-  public Map<String, Object> getContent() { return this.content; }
-  public void setContent(Map<String, Object> content) { this.content = content; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -62,24 +61,24 @@ public class CisuMessage extends MessageEnvelope {
     }
     CisuMessage self = (CisuMessage) o;
       return 
+        Objects.equals(this.content, self.content) &&
         Objects.equals(this.to, self.to) &&
         Objects.equals(this.senderId, self.senderId) &&
-        Objects.equals(this.distributionId, self.distributionId) &&
-        Objects.equals(this.content, self.content);
+        Objects.equals(this.distributionId, self.distributionId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)to, (Object)senderId, (Object)distributionId, (Object)content);
+    return Objects.hash((Object)content, (Object)to, (Object)senderId, (Object)distributionId);
   }
 
   @Override
   public String toString() {
     return "class CisuMessage {\n" +   
+      "    content: " + toIndentedString(content) + "\n" +
       "    to: " + toIndentedString(to) + "\n" +
       "    senderId: " + toIndentedString(senderId) + "\n" +
       "    distributionId: " + toIndentedString(distributionId) + "\n" +
-      "    content: " + toIndentedString(content) + "\n" +
     "}";
   }
 
