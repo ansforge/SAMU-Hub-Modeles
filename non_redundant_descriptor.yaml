@@ -28,8 +28,10 @@ channels:
       message:
         oneOf:
           - $ref: '#/components/messages/ackMessageEnvelope'
-          - $ref: '#/components/messages/cisuMessageEnvelope'
-          - $ref: '#/components/messages/basicMessageEnvelope'
+          - $ref: '#/components/messages/ackEventEnvelope'
+          - $ref: '#/components/messages/createEventEnvelope'
+          - $ref: '#/components/messages/updateEventEnvelope'
+          - $ref: '#/components/messages/cancelEventEnvelope'
 
   "{clientId}.out.message":
     description: File spécifique à chaque client pour l'envoi de messages
@@ -42,8 +44,10 @@ channels:
       message:
         oneOf:
           - $ref: '#/components/messages/ackMessageEnvelope'
-          - $ref: '#/components/messages/cisuMessageEnvelope'
-          - $ref: '#/components/messages/basicMessageEnvelope'
+          - $ref: '#/components/messages/ackEventEnvelope'
+          - $ref: '#/components/messages/createEventEnvelope'
+          - $ref: '#/components/messages/updateEventEnvelope'
+          - $ref: '#/components/messages/cancelEventEnvelope'
 
   "{clientId}.in.ack":
     description: File spécifique à chaque client pour la réception des acquittements fonctionnels
@@ -103,15 +107,29 @@ components:
       payload:
         $ref: '#/components/schemas/AckMessage'
 
-    cisuMessageEnvelope:
-      title: Enveloppe d'un message CISU
+    createEventEnvelope:
+      title: Envelope d'un message CISU
       summary: Message CISU transportable par le Hub dans le cadre des échanges inter-forces.
       payload:
-        oneOf:
-          - $ref: '#/components/schemas/CreateEventMessage'
-          - $ref: '#/components/schemas/UpdateEventMessage'
-          - $ref: '#/components/schemas/CancelEventMessage'
-          - $ref: '#/components/schemas/AckEventMessage'
+        $ref: '#/components/schemas/CreateEventMessage'
+
+    updateEventEnvelope:
+      title: ee
+      summary: ee
+      payload:
+        $ref: '#/components/schemas/UpdateEventMessage'
+
+    cancelEventEnvelope:
+      title: ez
+      summary: po
+      payload:
+        $ref: '#/components/schemas/CancelEventMessage'
+
+    ackEventEnvelope:
+      title: lp
+      summary: ij
+      payload:
+        $ref: '#/components/schemas/AckEventMessage'
 
   schemas:
     BasicMessage:
@@ -790,130 +808,40 @@ components:
         recipients:
           $ref: '#/components/schemas/Recipients'
     CreateEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        createEvent:
-          $ref: '#/components/schemas/CreateEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - createEvent
+      allOf:
+        - ref: '#/components/schemas/Message'
+          createEvent:
+            - $ref: '#/components/schemas/CreateEvent'
+          required:
+            - createEvent
     UpdateEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        updateEvent:
-          $ref: '#/components/schemas/UpdateEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - updateEvent
+      allOf:
+        - ref: '#/components/schemas/Message'
+          updateEvent:
+            - $ref: '#/components/schemas/UpdateEvent'
+          required:
+            - updateEvent
     CancelEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        cancelEvent:
-          $ref: '#/components/schemas/CancelEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - cancelEvent
+      allOf:
+        - ref: '#/components/schemas/Message'
+          cancelEvent:
+            - $ref: '#/components/schemas/CancelEvent'
+          required:
+            - cancelEvent
     AckEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        ackEvent:
-          $ref: '#/components/schemas/AckEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - ackEvent
+      allOf:
+        - ref: '#/components/schemas/Message'
+          ackEvent:
+            - $ref: '#/components/schemas/AckEvent'
+          required:
+            - ackEvent
     AckMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        ackMessage:
-          $ref: '#/components/schemas/AckMessageId'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - ackMessage
+      allOf:
+        - ref: '#/components/schemas/Message'
+          ackMessage:
+            - $ref: '#/components/schemas/AckMessageId'
+          required:
+            - ackMessage
     count:
       type: string
       enum:
