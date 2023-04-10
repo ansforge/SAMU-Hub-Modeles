@@ -140,6 +140,7 @@ components:
           type: string
         calltakerURI:
           type: string
+      additionalProperties: false
     Bank:
       type: object
       properties: { }
@@ -163,6 +164,7 @@ components:
           $ref: '#/components/schemas/mainVictim'
         comment:
           type: string
+      additionalProperties: false
     ShoppingArea:
       type: object
       properties: { }
@@ -186,6 +188,7 @@ components:
         uri:
           type: string
           format: uri
+      additionalProperties: false
     CoordType:
       type: object
       required:
@@ -198,6 +201,7 @@ components:
           type: number
         height:
           type: number
+      additionalProperties: false
     Aircraft:
       type: object
       properties: { }
@@ -388,6 +392,7 @@ components:
           $ref: '#/components/schemas/Water'
         watercraft:
           $ref: '#/components/schemas/Watercraft'
+      additionalProperties: false
     CivicAddressType:
       type: object
       properties:
@@ -453,6 +458,7 @@ components:
           type: string
         pom:
           type: string
+      additionalProperties: false
     LocationType:
       type: object
       properties:
@@ -480,6 +486,7 @@ components:
           type: string
         civicAddress:
           $ref: '#/components/schemas/CivicAddressType'
+      additionalProperties: false
     Call:
       type: object
       required:
@@ -489,6 +496,7 @@ components:
           type: string
         dialledURI:
           type: string
+      additionalProperties: false
     Caller:
       type: object
       required:
@@ -504,6 +512,7 @@ components:
           type: string
         callerName:
           type: string
+      additionalProperties: false
     OptionalAttributeType:
       type: object
       required:
@@ -516,6 +525,7 @@ components:
           type: string
         comment:
           type: string
+      additionalProperties: false
     OtherAlertCode:
       type: object
       required:
@@ -539,6 +549,7 @@ components:
           $ref: '#/components/schemas/OptionalAttributeType'
         victims:
           $ref: '#/components/schemas/Victims'
+      additionalProperties: false
     ResourceType:
       type: object
       required:
@@ -558,6 +569,7 @@ components:
           type: string
         digest:
           type: string
+      additionalProperties: false
     OtherAlert:
       type: object
       required:
@@ -593,6 +605,7 @@ components:
           items:
             $ref: '#/components/schemas/ResourceType'
           minItems: 0
+      additionalProperties: false
     UpdateEvent:
       type: object
       required:
@@ -613,6 +626,7 @@ components:
           $ref: '#/components/schemas/LocationType'
         otherAlert:
           $ref: '#/components/schemas/OtherAlert'
+      additionalProperties: false
     Recipients:
       type: object
       required:
@@ -623,6 +637,7 @@ components:
           items:
             $ref: '#/components/schemas/AddresseeType'
           minItems: 1
+      additionalProperties: false
     Alert:
       type: object
       required:
@@ -630,6 +645,7 @@ components:
       properties:
         alertId:
           type: string
+      additionalProperties: false
     AckEvent:
       type: object
       required:
@@ -642,6 +658,7 @@ components:
           items:
             $ref: '#/components/schemas/Alert'
           minItems: 0
+      additionalProperties: false
     AttributeType:
       type: object
       required:
@@ -654,6 +671,7 @@ components:
           type: string
         comment:
           type: string
+      additionalProperties: false
     AlertCode:
       type: object
       required:
@@ -677,6 +695,7 @@ components:
           $ref: '#/components/schemas/AttributeType'
         victims:
           $ref: '#/components/schemas/Victims'
+      additionalProperties: false
     PrimaryAlert:
       type: object
       required:
@@ -713,6 +732,7 @@ components:
           items:
             $ref: '#/components/schemas/ResourceType'
           minItems: 0
+      additionalProperties: false
     CancelEvent:
       type: object
       required:
@@ -734,6 +754,7 @@ components:
           $ref: '#/components/schemas/LocationType'
         otherAlert:
           $ref: '#/components/schemas/OtherAlert'
+      additionalProperties: false
     AckMessageId:
       type: object
       required:
@@ -741,6 +762,7 @@ components:
       properties:
         ackMessageId:
           type: string
+      additionalProperties: false
     CreateEvent:
       type: object
       required:
@@ -766,6 +788,7 @@ components:
           items:
             $ref: '#/components/schemas/OtherAlert'
           minItems: 0
+      additionalProperties: false
     Message:
       type: object
       required:
@@ -789,6 +812,7 @@ components:
           $ref: '#/components/schemas/status'
         recipients:
           $ref: '#/components/schemas/Recipients'
+      additionalProperties: false
     CreateEventMessage:
       properties:
         messageId:
@@ -814,6 +838,7 @@ components:
         - status
         - recipients
         - createEvent
+      additionalProperties: false
     UpdateEventMessage:
       properties:
         messageId:
@@ -839,6 +864,7 @@ components:
         - status
         - recipients
         - updateEvent
+      additionalProperties: false
     CancelEventMessage:
       properties:
         messageId:
@@ -864,6 +890,7 @@ components:
         - status
         - recipients
         - cancelEvent
+      additionalProperties: false
     AckEventMessage:
       properties:
         messageId:
@@ -881,6 +908,7 @@ components:
           $ref: '#/components/schemas/Recipients'
         ackEvent:
           $ref: '#/components/schemas/AckEvent'
+      additionalProperties: false
       required:
         - messageId
         - sender
@@ -906,6 +934,7 @@ components:
           $ref: '#/components/schemas/Recipients'
         ackMessage:
           $ref: '#/components/schemas/AckMessageId'
+      additionalProperties: false
       required:
         - messageId
         - sender

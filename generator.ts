@@ -71,7 +71,7 @@ const generator = new JavaGenerator({
         JAVA_JACKSON_PRESET,
         JAVA_DESCRIPTION_PRESET,
         constructorBuilder,
-        interfaceBuilder,
+        // interfaceBuilder,
     ]
 });
 
