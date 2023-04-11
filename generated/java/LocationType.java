@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -26,13 +25,12 @@ public class LocationType {
   private String commune;
   @JsonProperty("civicAddress")
   private CivicAddressType civicAddress;
-  private Map<String, Object> additionalProperties;
 
   public LocationType(){
   }
 
   public LocationType(
-    String locId, String name, Type type, String coordsys, HeightRole heightRole, Object[] coord, Object[] address, String commune, CivicAddressType civicAddress, Map<String, Object> additionalProperties
+    String locId, String name, Type type, String coordsys, HeightRole heightRole, Object[] coord, Object[] address, String commune, CivicAddressType civicAddress
   ) {
   	this.locId = locId;
   	this.name = name;
@@ -43,7 +41,6 @@ public class LocationType {
   	this.address = address;
   	this.commune = commune;
   	this.civicAddress = civicAddress;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getLocId() { return this.locId; }
@@ -73,9 +70,6 @@ public class LocationType {
   public CivicAddressType getCivicAddress() { return this.civicAddress; }
   public void setCivicAddress(CivicAddressType civicAddress) { this.civicAddress = civicAddress; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -94,13 +88,12 @@ public class LocationType {
         Objects.equals(this.coord, self.coord) &&
         Objects.equals(this.address, self.address) &&
         Objects.equals(this.commune, self.commune) &&
-        Objects.equals(this.civicAddress, self.civicAddress) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.civicAddress, self.civicAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)locId, (Object)name, (Object)type, (Object)coordsys, (Object)heightRole, (Object)coord, (Object)address, (Object)commune, (Object)civicAddress, (Object)additionalProperties);
+    return Objects.hash((Object)locId, (Object)name, (Object)type, (Object)coordsys, (Object)heightRole, (Object)coord, (Object)address, (Object)commune, (Object)civicAddress);
   }
 
   @Override
@@ -115,7 +108,6 @@ public class LocationType {
       "    address: " + toIndentedString(address) + "\n" +
       "    commune: " + toIndentedString(commune) + "\n" +
       "    civicAddress: " + toIndentedString(civicAddress) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

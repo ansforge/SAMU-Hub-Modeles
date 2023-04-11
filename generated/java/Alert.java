@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -9,23 +8,18 @@ public class Alert {
   @JsonProperty("alertId")
   @NotNull
   private String alertId;
-  private Map<String, Object> additionalProperties;
 
   public Alert(){
   }
 
   public Alert(
-    String alertId, Map<String, Object> additionalProperties
+    String alertId
   ) {
   	this.alertId = alertId;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getAlertId() { return this.alertId; }
   public void setAlertId(String alertId) { this.alertId = alertId; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -37,20 +31,18 @@ public class Alert {
     }
     Alert self = (Alert) o;
       return 
-        Objects.equals(this.alertId, self.alertId) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.alertId, self.alertId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)alertId, (Object)additionalProperties);
+    return Objects.hash((Object)alertId);
   }
 
   @Override
   public String toString() {
     return "class Alert {\n" +   
       "    alertId: " + toIndentedString(alertId) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -24,13 +23,12 @@ public class CreateEvent {
   @JsonProperty("otherAlert")
   @Size(min=0)
   private Object[] otherAlert;
-  private Map<String, Object> additionalProperties;
 
   public CreateEvent(){
   }
 
   public CreateEvent(
-    String eventId, java.time.OffsetDateTime createdAt, Severity severity, LocationType eventLocation, PrimaryAlert primaryAlert, Object[] otherAlert, Map<String, Object> additionalProperties
+    String eventId, java.time.OffsetDateTime createdAt, Severity severity, LocationType eventLocation, PrimaryAlert primaryAlert, Object[] otherAlert
   ) {
   	this.eventId = eventId;
   	this.createdAt = createdAt;
@@ -38,7 +36,6 @@ public class CreateEvent {
   	this.eventLocation = eventLocation;
   	this.primaryAlert = primaryAlert;
   	this.otherAlert = otherAlert;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getEventId() { return this.eventId; }
@@ -59,9 +56,6 @@ public class CreateEvent {
   public Object[] getOtherAlert() { return this.otherAlert; }
   public void setOtherAlert(Object[] otherAlert) { this.otherAlert = otherAlert; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -77,13 +71,12 @@ public class CreateEvent {
         Objects.equals(this.severity, self.severity) &&
         Objects.equals(this.eventLocation, self.eventLocation) &&
         Objects.equals(this.primaryAlert, self.primaryAlert) &&
-        Objects.equals(this.otherAlert, self.otherAlert) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.otherAlert, self.otherAlert);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)eventId, (Object)createdAt, (Object)severity, (Object)eventLocation, (Object)primaryAlert, (Object)otherAlert, (Object)additionalProperties);
+    return Objects.hash((Object)eventId, (Object)createdAt, (Object)severity, (Object)eventLocation, (Object)primaryAlert, (Object)otherAlert);
   }
 
   @Override
@@ -95,7 +88,6 @@ public class CreateEvent {
       "    eventLocation: " + toIndentedString(eventLocation) + "\n" +
       "    primaryAlert: " + toIndentedString(primaryAlert) + "\n" +
       "    otherAlert: " + toIndentedString(otherAlert) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -14,18 +13,16 @@ public class CoordType {
   private Double lon;
   @JsonProperty("height")
   private Double height;
-  private Map<String, Object> additionalProperties;
 
   public CoordType(){
   }
 
   public CoordType(
-    Double lat, Double lon, Double height, Map<String, Object> additionalProperties
+    Double lat, Double lon, Double height
   ) {
   	this.lat = lat;
   	this.lon = lon;
   	this.height = height;
-  	this.additionalProperties = additionalProperties;
   }
 
   public Double getLat() { return this.lat; }
@@ -36,9 +33,6 @@ public class CoordType {
 
   public Double getHeight() { return this.height; }
   public void setHeight(Double height) { this.height = height; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -52,13 +46,12 @@ public class CoordType {
       return 
         Objects.equals(this.lat, self.lat) &&
         Objects.equals(this.lon, self.lon) &&
-        Objects.equals(this.height, self.height) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.height, self.height);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)lat, (Object)lon, (Object)height, (Object)additionalProperties);
+    return Objects.hash((Object)lat, (Object)lon, (Object)height);
   }
 
   @Override
@@ -67,7 +60,6 @@ public class CoordType {
       "    lat: " + toIndentedString(lat) + "\n" +
       "    lon: " + toIndentedString(lon) + "\n" +
       "    height: " + toIndentedString(height) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

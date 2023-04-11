@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -20,13 +19,12 @@ public class ResourceType {
   private String derefUri;
   @JsonProperty("digest")
   private String digest;
-  private Map<String, Object> additionalProperties;
 
   public ResourceType(){
   }
 
   public ResourceType(
-    String resourceDesc, String mimeType, Integer size, String uri, String derefUri, String digest, Map<String, Object> additionalProperties
+    String resourceDesc, String mimeType, Integer size, String uri, String derefUri, String digest
   ) {
   	this.resourceDesc = resourceDesc;
   	this.mimeType = mimeType;
@@ -34,7 +32,6 @@ public class ResourceType {
   	this.uri = uri;
   	this.derefUri = derefUri;
   	this.digest = digest;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getResourceDesc() { return this.resourceDesc; }
@@ -55,9 +52,6 @@ public class ResourceType {
   public String getDigest() { return this.digest; }
   public void setDigest(String digest) { this.digest = digest; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -73,13 +67,12 @@ public class ResourceType {
         Objects.equals(this.size, self.size) &&
         Objects.equals(this.uri, self.uri) &&
         Objects.equals(this.derefUri, self.derefUri) &&
-        Objects.equals(this.digest, self.digest) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.digest, self.digest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)resourceDesc, (Object)mimeType, (Object)size, (Object)uri, (Object)derefUri, (Object)digest, (Object)additionalProperties);
+    return Objects.hash((Object)resourceDesc, (Object)mimeType, (Object)size, (Object)uri, (Object)derefUri, (Object)digest);
   }
 
   @Override
@@ -91,7 +84,6 @@ public class ResourceType {
       "    uri: " + toIndentedString(uri) + "\n" +
       "    derefUri: " + toIndentedString(derefUri) + "\n" +
       "    digest: " + toIndentedString(digest) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

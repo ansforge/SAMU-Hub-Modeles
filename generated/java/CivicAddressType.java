@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -68,13 +67,12 @@ public class CivicAddressType {
   private String prm;
   @JsonProperty("pom")
   private String pom;
-  private Map<String, Object> additionalProperties;
 
   public CivicAddressType(){
   }
 
   public CivicAddressType(
-    String country, String a1, String a2, String a3, String a4, String a5, String a6, String prd, String pod, String sts, String hno, String hns, String lmk, String loc, String nam, String pc, String bld, String unit, String flr, String room, LocationType2 plc, String pcn, String pobox, String addcode, String seat, String rd, String rdsec, String rdbr, String rdsubbr, String prm, String pom, Map<String, Object> additionalProperties
+    String country, String a1, String a2, String a3, String a4, String a5, String a6, String prd, String pod, String sts, String hno, String hns, String lmk, String loc, String nam, String pc, String bld, String unit, String flr, String room, LocationType2 plc, String pcn, String pobox, String addcode, String seat, String rd, String rdsec, String rdbr, String rdsubbr, String prm, String pom
   ) {
   	this.country = country;
   	this.a1 = a1;
@@ -107,7 +105,6 @@ public class CivicAddressType {
   	this.rdsubbr = rdsubbr;
   	this.prm = prm;
   	this.pom = pom;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getCountry() { return this.country; }
@@ -203,9 +200,6 @@ public class CivicAddressType {
   public String getPom() { return this.pom; }
   public void setPom(String pom) { this.pom = pom; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -246,13 +240,12 @@ public class CivicAddressType {
         Objects.equals(this.rdbr, self.rdbr) &&
         Objects.equals(this.rdsubbr, self.rdsubbr) &&
         Objects.equals(this.prm, self.prm) &&
-        Objects.equals(this.pom, self.pom) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.pom, self.pom);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)country, (Object)a1, (Object)a2, (Object)a3, (Object)a4, (Object)a5, (Object)a6, (Object)prd, (Object)pod, (Object)sts, (Object)hno, (Object)hns, (Object)lmk, (Object)loc, (Object)nam, (Object)pc, (Object)bld, (Object)unit, (Object)flr, (Object)room, (Object)plc, (Object)pcn, (Object)pobox, (Object)addcode, (Object)seat, (Object)rd, (Object)rdsec, (Object)rdbr, (Object)rdsubbr, (Object)prm, (Object)pom, (Object)additionalProperties);
+    return Objects.hash((Object)country, (Object)a1, (Object)a2, (Object)a3, (Object)a4, (Object)a5, (Object)a6, (Object)prd, (Object)pod, (Object)sts, (Object)hno, (Object)hns, (Object)lmk, (Object)loc, (Object)nam, (Object)pc, (Object)bld, (Object)unit, (Object)flr, (Object)room, (Object)plc, (Object)pcn, (Object)pobox, (Object)addcode, (Object)seat, (Object)rd, (Object)rdsec, (Object)rdbr, (Object)rdsubbr, (Object)prm, (Object)pom);
   }
 
   @Override
@@ -289,7 +282,6 @@ public class CivicAddressType {
       "    rdsubbr: " + toIndentedString(rdsubbr) + "\n" +
       "    prm: " + toIndentedString(prm) + "\n" +
       "    pom: " + toIndentedString(pom) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

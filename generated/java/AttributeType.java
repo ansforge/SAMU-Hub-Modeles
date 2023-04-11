@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -14,18 +13,16 @@ public class AttributeType {
   private String label;
   @JsonProperty("comment")
   private String comment;
-  private Map<String, Object> additionalProperties;
 
   public AttributeType(){
   }
 
   public AttributeType(
-    String code, String label, String comment, Map<String, Object> additionalProperties
+    String code, String label, String comment
   ) {
   	this.code = code;
   	this.label = label;
   	this.comment = comment;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getCode() { return this.code; }
@@ -36,9 +33,6 @@ public class AttributeType {
 
   public String getComment() { return this.comment; }
   public void setComment(String comment) { this.comment = comment; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -52,13 +46,12 @@ public class AttributeType {
       return 
         Objects.equals(this.code, self.code) &&
         Objects.equals(this.label, self.label) &&
-        Objects.equals(this.comment, self.comment) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.comment, self.comment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)code, (Object)label, (Object)comment, (Object)additionalProperties);
+    return Objects.hash((Object)code, (Object)label, (Object)comment);
   }
 
   @Override
@@ -67,7 +60,6 @@ public class AttributeType {
       "    code: " + toIndentedString(code) + "\n" +
       "    label: " + toIndentedString(label) + "\n" +
       "    comment: " + toIndentedString(comment) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

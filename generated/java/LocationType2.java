@@ -94,13 +94,12 @@ public class LocationType2 {
   private Map<String, Object> water;
   @JsonProperty("watercraft")
   private Map<String, Object> watercraft;
-  private Map<String, Object> additionalProperties;
 
   public LocationType2(){
   }
 
   public LocationType2(
-    Map<String, Object> aircraft, Map<String, Object> airport, Map<String, Object> arena, Map<String, Object> automobile, Map<String, Object> bank, Map<String, Object> bar, Map<String, Object> bicyle, Map<String, Object> bus, Map<String, Object> busStation, Map<String, Object> cafe, Map<String, Object> classroom, Map<String, Object> club, Map<String, Object> construction, Map<String, Object> conventionCenter, Map<String, Object> government, Map<String, Object> hospital, Map<String, Object> hotel, Map<String, Object> industrial, Map<String, Object> library, Map<String, Object> motorcycle, Map<String, Object> office, String other, Map<String, Object> outdoors, Map<String, Object> parking, Map<String, Object> placeOfWorship, Map<String, Object> prison, Map<String, Object> public, Map<String, Object> publicTransport, Map<String, Object> residence, Map<String, Object> restaurant, Map<String, Object> school, Map<String, Object> shoppingArea, Map<String, Object> stadium, Map<String, Object> store, Map<String, Object> street, Map<String, Object> theater, Map<String, Object> train, Map<String, Object> trainStation, Map<String, Object> truck, Map<String, Object> underway, Map<String, Object> unknown, Map<String, Object> warehouse, Map<String, Object> water, Map<String, Object> watercraft, Map<String, Object> additionalProperties
+    Map<String, Object> aircraft, Map<String, Object> airport, Map<String, Object> arena, Map<String, Object> automobile, Map<String, Object> bank, Map<String, Object> bar, Map<String, Object> bicyle, Map<String, Object> bus, Map<String, Object> busStation, Map<String, Object> cafe, Map<String, Object> classroom, Map<String, Object> club, Map<String, Object> construction, Map<String, Object> conventionCenter, Map<String, Object> government, Map<String, Object> hospital, Map<String, Object> hotel, Map<String, Object> industrial, Map<String, Object> library, Map<String, Object> motorcycle, Map<String, Object> office, String other, Map<String, Object> outdoors, Map<String, Object> parking, Map<String, Object> placeOfWorship, Map<String, Object> prison, Map<String, Object> public, Map<String, Object> publicTransport, Map<String, Object> residence, Map<String, Object> restaurant, Map<String, Object> school, Map<String, Object> shoppingArea, Map<String, Object> stadium, Map<String, Object> store, Map<String, Object> street, Map<String, Object> theater, Map<String, Object> train, Map<String, Object> trainStation, Map<String, Object> truck, Map<String, Object> underway, Map<String, Object> unknown, Map<String, Object> warehouse, Map<String, Object> water, Map<String, Object> watercraft
   ) {
   	this.aircraft = aircraft;
   	this.airport = airport;
@@ -146,7 +145,6 @@ public class LocationType2 {
   	this.warehouse = warehouse;
   	this.water = water;
   	this.watercraft = watercraft;
-  	this.additionalProperties = additionalProperties;
   }
 
   public Map<String, Object> getAircraft() { return this.aircraft; }
@@ -281,9 +279,6 @@ public class LocationType2 {
   public Map<String, Object> getWatercraft() { return this.watercraft; }
   public void setWatercraft(Map<String, Object> watercraft) { this.watercraft = watercraft; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -337,13 +332,12 @@ public class LocationType2 {
         Objects.equals(this.unknown, self.unknown) &&
         Objects.equals(this.warehouse, self.warehouse) &&
         Objects.equals(this.water, self.water) &&
-        Objects.equals(this.watercraft, self.watercraft) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.watercraft, self.watercraft);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)aircraft, (Object)airport, (Object)arena, (Object)automobile, (Object)bank, (Object)bar, (Object)bicyle, (Object)bus, (Object)busStation, (Object)cafe, (Object)classroom, (Object)club, (Object)construction, (Object)conventionCenter, (Object)government, (Object)hospital, (Object)hotel, (Object)industrial, (Object)library, (Object)motorcycle, (Object)office, (Object)other, (Object)outdoors, (Object)parking, (Object)placeOfWorship, (Object)prison, (Object)public, (Object)publicTransport, (Object)residence, (Object)restaurant, (Object)school, (Object)shoppingArea, (Object)stadium, (Object)store, (Object)street, (Object)theater, (Object)train, (Object)trainStation, (Object)truck, (Object)underway, (Object)unknown, (Object)warehouse, (Object)water, (Object)watercraft, (Object)additionalProperties);
+    return Objects.hash((Object)aircraft, (Object)airport, (Object)arena, (Object)automobile, (Object)bank, (Object)bar, (Object)bicyle, (Object)bus, (Object)busStation, (Object)cafe, (Object)classroom, (Object)club, (Object)construction, (Object)conventionCenter, (Object)government, (Object)hospital, (Object)hotel, (Object)industrial, (Object)library, (Object)motorcycle, (Object)office, (Object)other, (Object)outdoors, (Object)parking, (Object)placeOfWorship, (Object)prison, (Object)public, (Object)publicTransport, (Object)residence, (Object)restaurant, (Object)school, (Object)shoppingArea, (Object)stadium, (Object)store, (Object)street, (Object)theater, (Object)train, (Object)trainStation, (Object)truck, (Object)underway, (Object)unknown, (Object)warehouse, (Object)water, (Object)watercraft);
   }
 
   @Override
@@ -393,7 +387,6 @@ public class LocationType2 {
       "    warehouse: " + toIndentedString(warehouse) + "\n" +
       "    water: " + toIndentedString(water) + "\n" +
       "    watercraft: " + toIndentedString(watercraft) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

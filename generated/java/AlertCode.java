@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -23,13 +22,12 @@ public class AlertCode {
   private AttributeType healthMotive;
   @JsonProperty("victims")
   private Victims victims;
-  private Map<String, Object> additionalProperties;
 
   public AlertCode(){
   }
 
   public AlertCode(
-    String version, AttributeType whatsHappen, AttributeType locationKind, Object[] riskThreat, AttributeType healthMotive, Victims victims, Map<String, Object> additionalProperties
+    String version, AttributeType whatsHappen, AttributeType locationKind, Object[] riskThreat, AttributeType healthMotive, Victims victims
   ) {
   	this.version = version;
   	this.whatsHappen = whatsHappen;
@@ -37,7 +35,6 @@ public class AlertCode {
   	this.riskThreat = riskThreat;
   	this.healthMotive = healthMotive;
   	this.victims = victims;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getVersion() { return this.version; }
@@ -58,9 +55,6 @@ public class AlertCode {
   public Victims getVictims() { return this.victims; }
   public void setVictims(Victims victims) { this.victims = victims; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -76,13 +70,12 @@ public class AlertCode {
         Objects.equals(this.locationKind, self.locationKind) &&
         Objects.equals(this.riskThreat, self.riskThreat) &&
         Objects.equals(this.healthMotive, self.healthMotive) &&
-        Objects.equals(this.victims, self.victims) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.victims, self.victims);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)version, (Object)whatsHappen, (Object)locationKind, (Object)riskThreat, (Object)healthMotive, (Object)victims, (Object)additionalProperties);
+    return Objects.hash((Object)version, (Object)whatsHappen, (Object)locationKind, (Object)riskThreat, (Object)healthMotive, (Object)victims);
   }
 
   @Override
@@ -94,7 +87,6 @@ public class AlertCode {
       "    riskThreat: " + toIndentedString(riskThreat) + "\n" +
       "    healthMotive: " + toIndentedString(healthMotive) + "\n" +
       "    victims: " + toIndentedString(victims) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

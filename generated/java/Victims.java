@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -13,18 +12,16 @@ public class Victims {
   private MainVictim mainVictim;
   @JsonProperty("comment")
   private String comment;
-  private Map<String, Object> additionalProperties;
 
   public Victims(){
   }
 
   public Victims(
-    Count count, MainVictim mainVictim, String comment, Map<String, Object> additionalProperties
+    Count count, MainVictim mainVictim, String comment
   ) {
   	this.count = count;
   	this.mainVictim = mainVictim;
   	this.comment = comment;
-  	this.additionalProperties = additionalProperties;
   }
 
   public Count getCount() { return this.count; }
@@ -35,9 +32,6 @@ public class Victims {
 
   public String getComment() { return this.comment; }
   public void setComment(String comment) { this.comment = comment; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -51,13 +45,12 @@ public class Victims {
       return 
         Objects.equals(this.count, self.count) &&
         Objects.equals(this.mainVictim, self.mainVictim) &&
-        Objects.equals(this.comment, self.comment) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.comment, self.comment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)count, (Object)mainVictim, (Object)comment, (Object)additionalProperties);
+    return Objects.hash((Object)count, (Object)mainVictim, (Object)comment);
   }
 
   @Override
@@ -66,7 +59,6 @@ public class Victims {
       "    count: " + toIndentedString(count) + "\n" +
       "    mainVictim: " + toIndentedString(mainVictim) + "\n" +
       "    comment: " + toIndentedString(comment) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

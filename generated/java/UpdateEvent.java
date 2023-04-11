@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -21,20 +20,18 @@ public class UpdateEvent {
   @JsonProperty("otherAlert")
   @NotNull
   private OtherAlert otherAlert;
-  private Map<String, Object> additionalProperties;
 
   public UpdateEvent(){
   }
 
   public UpdateEvent(
-    String eventId, java.time.OffsetDateTime createdAt, Severity severity, LocationType eventLocation, OtherAlert otherAlert, Map<String, Object> additionalProperties
+    String eventId, java.time.OffsetDateTime createdAt, Severity severity, LocationType eventLocation, OtherAlert otherAlert
   ) {
   	this.eventId = eventId;
   	this.createdAt = createdAt;
   	this.severity = severity;
   	this.eventLocation = eventLocation;
   	this.otherAlert = otherAlert;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getEventId() { return this.eventId; }
@@ -52,9 +49,6 @@ public class UpdateEvent {
   public OtherAlert getOtherAlert() { return this.otherAlert; }
   public void setOtherAlert(OtherAlert otherAlert) { this.otherAlert = otherAlert; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -69,13 +63,12 @@ public class UpdateEvent {
         Objects.equals(this.createdAt, self.createdAt) &&
         Objects.equals(this.severity, self.severity) &&
         Objects.equals(this.eventLocation, self.eventLocation) &&
-        Objects.equals(this.otherAlert, self.otherAlert) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.otherAlert, self.otherAlert);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)eventId, (Object)createdAt, (Object)severity, (Object)eventLocation, (Object)otherAlert, (Object)additionalProperties);
+    return Objects.hash((Object)eventId, (Object)createdAt, (Object)severity, (Object)eventLocation, (Object)otherAlert);
   }
 
   @Override
@@ -86,7 +79,6 @@ public class UpdateEvent {
       "    severity: " + toIndentedString(severity) + "\n" +
       "    eventLocation: " + toIndentedString(eventLocation) + "\n" +
       "    otherAlert: " + toIndentedString(otherAlert) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -35,13 +34,12 @@ public class PrimaryAlert {
   @JsonProperty("resource")
   @Size(min=0)
   private Object[] resource;
-  private Map<String, Object> additionalProperties;
 
   public PrimaryAlert(){
   }
 
   public PrimaryAlert(
-    String alertId, java.time.OffsetDateTime receivedAt, Reporting reporting, String alertInformation, LocationType alertLocation, Call call, Caller caller, CallTaker callTaker, AlertCode alertCode, Object[] resource, Map<String, Object> additionalProperties
+    String alertId, java.time.OffsetDateTime receivedAt, Reporting reporting, String alertInformation, LocationType alertLocation, Call call, Caller caller, CallTaker callTaker, AlertCode alertCode, Object[] resource
   ) {
   	this.alertId = alertId;
   	this.receivedAt = receivedAt;
@@ -53,7 +51,6 @@ public class PrimaryAlert {
   	this.callTaker = callTaker;
   	this.alertCode = alertCode;
   	this.resource = resource;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getAlertId() { return this.alertId; }
@@ -86,9 +83,6 @@ public class PrimaryAlert {
   public Object[] getResource() { return this.resource; }
   public void setResource(Object[] resource) { this.resource = resource; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -108,13 +102,12 @@ public class PrimaryAlert {
         Objects.equals(this.caller, self.caller) &&
         Objects.equals(this.callTaker, self.callTaker) &&
         Objects.equals(this.alertCode, self.alertCode) &&
-        Objects.equals(this.resource, self.resource) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.resource, self.resource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)alertId, (Object)receivedAt, (Object)reporting, (Object)alertInformation, (Object)alertLocation, (Object)call, (Object)caller, (Object)callTaker, (Object)alertCode, (Object)resource, (Object)additionalProperties);
+    return Objects.hash((Object)alertId, (Object)receivedAt, (Object)reporting, (Object)alertInformation, (Object)alertLocation, (Object)call, (Object)caller, (Object)callTaker, (Object)alertCode, (Object)resource);
   }
 
   @Override
@@ -130,7 +123,6 @@ public class PrimaryAlert {
       "    callTaker: " + toIndentedString(callTaker) + "\n" +
       "    alertCode: " + toIndentedString(alertCode) + "\n" +
       "    resource: " + toIndentedString(resource) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

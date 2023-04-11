@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -17,20 +16,18 @@ public class Caller {
   private String callerInformation;
   @JsonProperty("callerName")
   private String callerName;
-  private Map<String, Object> additionalProperties;
 
   public Caller(){
   }
 
   public Caller(
-    String callerUri, String callbackUri, String spokenLanguage, String callerInformation, String callerName, Map<String, Object> additionalProperties
+    String callerUri, String callbackUri, String spokenLanguage, String callerInformation, String callerName
   ) {
   	this.callerUri = callerUri;
   	this.callbackUri = callbackUri;
   	this.spokenLanguage = spokenLanguage;
   	this.callerInformation = callerInformation;
   	this.callerName = callerName;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getCallerUri() { return this.callerUri; }
@@ -48,9 +45,6 @@ public class Caller {
   public String getCallerName() { return this.callerName; }
   public void setCallerName(String callerName) { this.callerName = callerName; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -65,13 +59,12 @@ public class Caller {
         Objects.equals(this.callbackUri, self.callbackUri) &&
         Objects.equals(this.spokenLanguage, self.spokenLanguage) &&
         Objects.equals(this.callerInformation, self.callerInformation) &&
-        Objects.equals(this.callerName, self.callerName) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.callerName, self.callerName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)callerUri, (Object)callbackUri, (Object)spokenLanguage, (Object)callerInformation, (Object)callerName, (Object)additionalProperties);
+    return Objects.hash((Object)callerUri, (Object)callbackUri, (Object)spokenLanguage, (Object)callerInformation, (Object)callerName);
   }
 
   @Override
@@ -82,7 +75,6 @@ public class Caller {
       "    spokenLanguage: " + toIndentedString(spokenLanguage) + "\n" +
       "    callerInformation: " + toIndentedString(callerInformation) + "\n" +
       "    callerName: " + toIndentedString(callerName) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

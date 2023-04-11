@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -12,18 +11,16 @@ public class CallTaker {
   private String controlRoom;
   @JsonProperty("calltakerURI")
   private String calltakerUri;
-  private Map<String, Object> additionalProperties;
 
   public CallTaker(){
   }
 
   public CallTaker(
-    String organization, String controlRoom, String calltakerUri, Map<String, Object> additionalProperties
+    String organization, String controlRoom, String calltakerUri
   ) {
   	this.organization = organization;
   	this.controlRoom = controlRoom;
   	this.calltakerUri = calltakerUri;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getOrganization() { return this.organization; }
@@ -34,9 +31,6 @@ public class CallTaker {
 
   public String getCalltakerUri() { return this.calltakerUri; }
   public void setCalltakerUri(String calltakerUri) { this.calltakerUri = calltakerUri; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -50,13 +44,12 @@ public class CallTaker {
       return 
         Objects.equals(this.organization, self.organization) &&
         Objects.equals(this.controlRoom, self.controlRoom) &&
-        Objects.equals(this.calltakerUri, self.calltakerUri) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.calltakerUri, self.calltakerUri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)organization, (Object)controlRoom, (Object)calltakerUri, (Object)additionalProperties);
+    return Objects.hash((Object)organization, (Object)controlRoom, (Object)calltakerUri);
   }
 
   @Override
@@ -65,7 +58,6 @@ public class CallTaker {
       "    organization: " + toIndentedString(organization) + "\n" +
       "    controlRoom: " + toIndentedString(controlRoom) + "\n" +
       "    calltakerUri: " + toIndentedString(calltakerUri) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

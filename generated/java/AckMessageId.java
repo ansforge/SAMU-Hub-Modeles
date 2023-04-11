@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -9,23 +8,18 @@ public class AckMessageId {
   @JsonProperty("ackMessageId")
   @NotNull
   private String ackMessageId;
-  private Map<String, Object> additionalProperties;
 
   public AckMessageId(){
   }
 
   public AckMessageId(
-    String ackMessageId, Map<String, Object> additionalProperties
+    String ackMessageId
   ) {
   	this.ackMessageId = ackMessageId;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getAckMessageId() { return this.ackMessageId; }
   public void setAckMessageId(String ackMessageId) { this.ackMessageId = ackMessageId; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -37,20 +31,18 @@ public class AckMessageId {
     }
     AckMessageId self = (AckMessageId) o;
       return 
-        Objects.equals(this.ackMessageId, self.ackMessageId) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.ackMessageId, self.ackMessageId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)ackMessageId, (Object)additionalProperties);
+    return Objects.hash((Object)ackMessageId);
   }
 
   @Override
   public String toString() {
     return "class AckMessageId {\n" +   
       "    ackMessageId: " + toIndentedString(ackMessageId) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -23,13 +22,12 @@ public class OtherAlertCode {
   private OptionalAttributeType healthMotive;
   @JsonProperty("victims")
   private Victims victims;
-  private Map<String, Object> additionalProperties;
 
   public OtherAlertCode(){
   }
 
   public OtherAlertCode(
-    String version, OptionalAttributeType whatsHappen, OptionalAttributeType locationKind, Object[] otherRiskThreat, OptionalAttributeType healthMotive, Victims victims, Map<String, Object> additionalProperties
+    String version, OptionalAttributeType whatsHappen, OptionalAttributeType locationKind, Object[] otherRiskThreat, OptionalAttributeType healthMotive, Victims victims
   ) {
   	this.version = version;
   	this.whatsHappen = whatsHappen;
@@ -37,7 +35,6 @@ public class OtherAlertCode {
   	this.otherRiskThreat = otherRiskThreat;
   	this.healthMotive = healthMotive;
   	this.victims = victims;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getVersion() { return this.version; }
@@ -58,9 +55,6 @@ public class OtherAlertCode {
   public Victims getVictims() { return this.victims; }
   public void setVictims(Victims victims) { this.victims = victims; }
 
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -76,13 +70,12 @@ public class OtherAlertCode {
         Objects.equals(this.locationKind, self.locationKind) &&
         Objects.equals(this.otherRiskThreat, self.otherRiskThreat) &&
         Objects.equals(this.healthMotive, self.healthMotive) &&
-        Objects.equals(this.victims, self.victims) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.victims, self.victims);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)version, (Object)whatsHappen, (Object)locationKind, (Object)otherRiskThreat, (Object)healthMotive, (Object)victims, (Object)additionalProperties);
+    return Objects.hash((Object)version, (Object)whatsHappen, (Object)locationKind, (Object)otherRiskThreat, (Object)healthMotive, (Object)victims);
   }
 
   @Override
@@ -94,7 +87,6 @@ public class OtherAlertCode {
       "    otherRiskThreat: " + toIndentedString(otherRiskThreat) + "\n" +
       "    healthMotive: " + toIndentedString(healthMotive) + "\n" +
       "    victims: " + toIndentedString(victims) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

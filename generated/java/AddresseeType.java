@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -12,17 +11,15 @@ public class AddresseeType {
   @JsonProperty("uri")
   @NotNull
   private String uri;
-  private Map<String, Object> additionalProperties;
 
   public AddresseeType(){
   }
 
   public AddresseeType(
-    String name, String uri, Map<String, Object> additionalProperties
+    String name, String uri
   ) {
   	this.name = name;
   	this.uri = uri;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getName() { return this.name; }
@@ -30,9 +27,6 @@ public class AddresseeType {
 
   public String getUri() { return this.uri; }
   public void setUri(String uri) { this.uri = uri; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -45,13 +39,12 @@ public class AddresseeType {
     AddresseeType self = (AddresseeType) o;
       return 
         Objects.equals(this.name, self.name) &&
-        Objects.equals(this.uri, self.uri) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.uri, self.uri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)name, (Object)uri, (Object)additionalProperties);
+    return Objects.hash((Object)name, (Object)uri);
   }
 
   @Override
@@ -59,7 +52,6 @@ public class AddresseeType {
     return "class AddresseeType {\n" +   
       "    name: " + toIndentedString(name) + "\n" +
       "    uri: " + toIndentedString(uri) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

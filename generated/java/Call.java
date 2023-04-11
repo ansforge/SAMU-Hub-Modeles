@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -11,17 +10,15 @@ public class Call {
   private String source;
   @JsonProperty("dialledURI")
   private String dialledUri;
-  private Map<String, Object> additionalProperties;
 
   public Call(){
   }
 
   public Call(
-    String source, String dialledUri, Map<String, Object> additionalProperties
+    String source, String dialledUri
   ) {
   	this.source = source;
   	this.dialledUri = dialledUri;
-  	this.additionalProperties = additionalProperties;
   }
 
   public String getSource() { return this.source; }
@@ -29,9 +26,6 @@ public class Call {
 
   public String getDialledUri() { return this.dialledUri; }
   public void setDialledUri(String dialledUri) { this.dialledUri = dialledUri; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -44,13 +38,12 @@ public class Call {
     Call self = (Call) o;
       return 
         Objects.equals(this.source, self.source) &&
-        Objects.equals(this.dialledUri, self.dialledUri) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.dialledUri, self.dialledUri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)source, (Object)dialledUri, (Object)additionalProperties);
+    return Objects.hash((Object)source, (Object)dialledUri);
   }
 
   @Override
@@ -58,7 +51,6 @@ public class Call {
     return "class Call {\n" +   
       "    source: " + toIndentedString(source) + "\n" +
       "    dialledUri: " + toIndentedString(dialledUri) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 

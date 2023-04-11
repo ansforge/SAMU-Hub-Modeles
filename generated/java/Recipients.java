@@ -1,7 +1,6 @@
 package com.hubsante.message;
               
 import java.util.Objects;
-import java.util.Map;
 import javax.validation.constraints.*;
 import com.fasterxml.jackson.annotation.*;
               
@@ -10,23 +9,18 @@ public class Recipients {
   @NotNull
   @Size(min=1)
   private Object[] recipient;
-  private Map<String, Object> additionalProperties;
 
   public Recipients(){
   }
 
   public Recipients(
-    Object[] recipient, Map<String, Object> additionalProperties
+    Object[] recipient
   ) {
   	this.recipient = recipient;
-  	this.additionalProperties = additionalProperties;
   }
 
   public Object[] getRecipient() { return this.recipient; }
   public void setRecipient(Object[] recipient) { this.recipient = recipient; }
-
-  public Map<String, Object> getAdditionalProperties() { return this.additionalProperties; }
-  public void setAdditionalProperties(Map<String, Object> additionalProperties) { this.additionalProperties = additionalProperties; }
 
   @Override
   public boolean equals(Object o) {
@@ -38,20 +32,18 @@ public class Recipients {
     }
     Recipients self = (Recipients) o;
       return 
-        Objects.equals(this.recipient, self.recipient) &&
-        Objects.equals(this.additionalProperties, self.additionalProperties);
+        Objects.equals(this.recipient, self.recipient);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash((Object)recipient, (Object)additionalProperties);
+    return Objects.hash((Object)recipient);
   }
 
   @Override
   public String toString() {
     return "class Recipients {\n" +   
       "    recipient: " + toIndentedString(recipient) + "\n" +
-      "    additionalProperties: " + toIndentedString(additionalProperties) + "\n" +
     "}";
   }
 
