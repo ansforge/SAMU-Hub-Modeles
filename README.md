@@ -27,6 +27,12 @@
 ## Model generation
 Based on [AsyncAPI's Modelina](https://github.com/asyncapi/modelina), this generates the data class based on the AsyncAPI schemas.
 
+We first use the Oxygen XML Editor *XSD to JSON Schema Converter* to generate a json-schema [cisu.json](./cisu.json).
+
+Then we embed it in the *components/schemas* section of the AsyncAPI descriptor [hubsante.asyncapi.yaml](./hubsante.asyncapi.yaml).
+
+The npm script below will use the AsyncAPI descriptor as a source for the *Modelina* generator.
+
 ### Install
 Once in this folder, run `npm i`
 
