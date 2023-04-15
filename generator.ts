@@ -1,5 +1,5 @@
 const yaml = require('js-yaml');
-const fs = require('fs')
+const fs = require('fs');
 const JavaGenerator = require('@asyncapi/modelina').JavaGenerator;
 const JAVA_DESCRIPTION_PRESET = require('@asyncapi/modelina').JAVA_DESCRIPTION_PRESET;
 const JAVA_COMMON_PRESET = require('@asyncapi/modelina').JAVA_COMMON_PRESET;
@@ -7,9 +7,11 @@ const JAVA_CONSTRAINTS_PRESET = require('@asyncapi/modelina').JAVA_CONSTRAINTS_P
 const JAVA_JACKSON_PRESET = require('@asyncapi/modelina').JAVA_JACKSON_PRESET;
 
 const ENVELOPE_CLASS = "MessageEnvelope";
+const CISU_MESSAGE_CLASS = "CisuMessage";
+const BASIC_MESSAGE_CLASS = "BasicMessage"
 
 const asyncApiSchema = yaml.load(
-    fs.readFileSync('../src/main/resources/hubsante.asyncapi.yaml', 'utf8')
+    fs.readFileSync('./hubsante.asyncapi.yaml', 'utf8')
 );
 
 // ToDo(bbo): see if it is really needed.
@@ -43,7 +45,7 @@ ${Object.keys(properties).map(prop => `\tthis.${prop} = ${prop};`).join("\n")}
 const interfaceBuilder = {
     class: {
         self({content, model}) {
-            if (model.name === ENVELOPE_CLASS) {
+            if (model.name !== CISU_MESSAGE_CLASS && model.name !== BASIC_MESSAGE_CLASS) {
                 return content;
             }
             return content.replace(
@@ -69,7 +71,7 @@ const generator = new JavaGenerator({
         JAVA_JACKSON_PRESET,
         JAVA_DESCRIPTION_PRESET,
         constructorBuilder,
-        interfaceBuilder,
+        // interfaceBuilder,
     ]
 });
 

@@ -1,0 +1,1020 @@
+asyncapi: '2.5.0'
+info:
+  title: Hub Sante AMQP API
+  version: '0.5'
+  description: |
+    L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  local:
+    url: localhost:5671
+    protocol: amqps
+    protocolVersion: '0.9.1'
+    description: Instance locale du Hub Sante portée par `docker-compose` dans le repo du Hub
+    security:
+      - tlsAuth: [ ]
+defaultContentType: application/json
+channels:
+  "{clientId}.in.message":
+    description: File spécifique à chaque client pour la réception de messages
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Message fonctionnel
+      operationId: receiveMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ackMessageEnvelope'
+          - $ref: '#/components/messages/cisuMessageEnvelope'
+          - $ref: '#/components/messages/basicMessageEnvelope'
+
+  "{clientId}.out.message":
+    description: File spécifique à chaque client pour l'envoi de messages
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Message fonctionnel
+      operationId: publishMessage
+      message:
+        oneOf:
+          - $ref: '#/components/messages/ackMessageEnvelope'
+          - $ref: '#/components/messages/cisuMessageEnvelope'
+          - $ref: '#/components/messages/basicMessageEnvelope'
+
+  "{clientId}.in.ack":
+    description: File spécifique à chaque client pour la réception des acquittements fonctionnels
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Acquittement fonctionnel
+      operationId: receiveAck
+      message:
+        $ref: '#/components/messages/ackMessageEnvelope'
+
+  "{clientId}.out.ack":
+    description: File spécifique à chaque client pour l'envoi des acquittements fonctionnels
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Acquittement fonctionnel
+      operationId: publishAck
+      message:
+        $ref: '#/components/messages/ackMessageEnvelope'
+
+  "{clientId}.in.info":
+    description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Informations complémentaires
+      operationId: receiveInfo
+      message:
+        $ref: '#/components/messages/basicMessageEnvelope'
+
+  "{clientId}.out.info":
+    description: File spécifique à chaque client pour l'envoi des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Informations complémentaires
+      operationId: publishInfo
+      message:
+        $ref: '#/components/messages/basicMessageEnvelope'
+
+components:
+  messages:
+    basicMessageEnvelope:
+      title: Enveloppe d'un message basique
+      summary: Message basique transportable par le Hub (maintenu pour la testabilité)
+      payload:
+        $ref: '#/components/schemas/BasicMessage'
+
+    ackMessageEnvelope:
+      title: Enveloppe d'un accusé de réception
+      summary: Accusé de réception d'un message CISU relatif à un événement.
+      payload:
+        $ref: '#/components/schemas/AckMessage'
+
+    cisuMessageEnvelope:
+      title: Enveloppe d'un message CISU
+      summary: Message CISU transportable par le Hub dans le cadre des échanges inter-forces.
+      payload:
+        oneOf:
+          - $ref: '#/components/schemas/CreateEventMessage'
+          - $ref: '#/components/schemas/UpdateEventMessage'
+          - $ref: '#/components/schemas/CancelEventMessage'
+          - $ref: '#/components/schemas/AckEventMessage'
+
+  schemas:
+    BasicMessage:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/Message'
+      properties:
+        content:
+          type: object
+          description: 'Contenu du message'
+      additionalProperties: false
+      required:
+        - content
+    Parking:
+      type: object
+      properties: { }
+    Bicyle:
+      type: object
+      properties: { }
+    CallTaker:
+      type: object
+      properties:
+        organization:
+          type: string
+        controlRoom:
+          type: string
+        calltakerURI:
+          type: string
+      additionalProperties: false
+    Bank:
+      type: object
+      properties: { }
+    Bar:
+      type: object
+      properties: { }
+    Stadium:
+      type: object
+      properties: { }
+    Prison:
+      type: object
+      properties: { }
+    Victims:
+      type: object
+      required:
+        - count
+      properties:
+        count:
+          $ref: '#/components/schemas/count'
+        mainVictim:
+          $ref: '#/components/schemas/mainVictim'
+        comment:
+          type: string
+      additionalProperties: false
+    ShoppingArea:
+      type: object
+      properties: { }
+    Classroom:
+      type: object
+      properties: { }
+    Warehouse:
+      type: object
+      properties: { }
+    Airport:
+      type: object
+      properties: { }
+    AddresseeType:
+      type: object
+      required:
+        - name
+        - uri
+      properties:
+        name:
+          type: string
+        uri:
+          type: string
+          format: uri
+      additionalProperties: false
+    CoordType:
+      type: object
+      required:
+        - lat
+        - lon
+      properties:
+        lat:
+          type: number
+        lon:
+          type: number
+        height:
+          type: number
+      additionalProperties: false
+    Aircraft:
+      type: object
+      properties: { }
+    Arena:
+      type: object
+      properties: { }
+    Automobile:
+      type: object
+      properties: { }
+    Bus:
+      type: object
+      properties: { }
+    BusStation:
+      type: object
+      properties: { }
+    Cafe:
+      type: object
+      properties: { }
+    Club:
+      type: object
+      properties: { }
+    Construction:
+      type: object
+      properties: { }
+    ConventionCenter:
+      type: object
+      properties: { }
+    Government:
+      type: object
+      properties: { }
+    Hospital:
+      type: object
+      properties: { }
+    Hotel:
+      type: object
+      properties: { }
+    Industrial:
+      type: object
+      properties: { }
+    Library:
+      type: object
+      properties: { }
+    Motorcycle:
+      type: object
+      properties: { }
+    Office:
+      type: object
+      properties: { }
+    Outdoors:
+      type: object
+      properties: { }
+    PlaceOfWorship:
+      type: object
+      properties: { }
+    Public:
+      type: object
+      properties: { }
+    PublicTransport:
+      type: object
+      properties: { }
+    Residence:
+      type: object
+      properties: { }
+    Restaurant:
+      type: object
+      properties: { }
+    School:
+      type: object
+      properties: { }
+    Store:
+      type: object
+      properties: { }
+    Street:
+      type: object
+      properties: { }
+    Theater:
+      type: object
+      properties: { }
+    Train:
+      type: object
+      properties: { }
+    TrainStation:
+      type: object
+      properties: { }
+    Truck:
+      type: object
+      properties: { }
+    Underway:
+      type: object
+      properties: { }
+    Unknown:
+      type: object
+      properties: { }
+    Water:
+      type: object
+      properties: { }
+    Watercraft:
+      type: object
+      properties: { }
+    LocationType2:
+      type: object
+      properties:
+        aircraft:
+          $ref: '#/components/schemas/Aircraft'
+        airport:
+          $ref: '#/components/schemas/Airport'
+        arena:
+          $ref: '#/components/schemas/Arena'
+        automobile:
+          $ref: '#/components/schemas/Automobile'
+        bank:
+          $ref: '#/components/schemas/Bank'
+        bar:
+          $ref: '#/components/schemas/Bar'
+        bicyle:
+          $ref: '#/components/schemas/Bicyle'
+        bus:
+          $ref: '#/components/schemas/Bus'
+        busStation:
+          $ref: '#/components/schemas/BusStation'
+        cafe:
+          $ref: '#/components/schemas/Cafe'
+        classroom:
+          $ref: '#/components/schemas/Classroom'
+        club:
+          $ref: '#/components/schemas/Club'
+        construction:
+          $ref: '#/components/schemas/Construction'
+        conventionCenter:
+          $ref: '#/components/schemas/ConventionCenter'
+        government:
+          $ref: '#/components/schemas/Government'
+        hospital:
+          $ref: '#/components/schemas/Hospital'
+        hotel:
+          $ref: '#/components/schemas/Hotel'
+        industrial:
+          $ref: '#/components/schemas/Industrial'
+        library:
+          $ref: '#/components/schemas/Library'
+        motorcycle:
+          $ref: '#/components/schemas/Motorcycle'
+        office:
+          $ref: '#/components/schemas/Office'
+        other:
+          type: string
+        outdoors:
+          $ref: '#/components/schemas/Outdoors'
+        parking:
+          $ref: '#/components/schemas/Parking'
+        placeOfWorship:
+          $ref: '#/components/schemas/PlaceOfWorship'
+        prison:
+          $ref: '#/components/schemas/Prison'
+        _public:
+          $ref: '#/components/schemas/Public'
+        publicTransport:
+          $ref: '#/components/schemas/PublicTransport'
+        residence:
+          $ref: '#/components/schemas/Residence'
+        restaurant:
+          $ref: '#/components/schemas/Restaurant'
+        school:
+          $ref: '#/components/schemas/School'
+        shoppingArea:
+          $ref: '#/components/schemas/ShoppingArea'
+        stadium:
+          $ref: '#/components/schemas/Stadium'
+        store:
+          $ref: '#/components/schemas/Store'
+        street:
+          $ref: '#/components/schemas/Street'
+        theater:
+          $ref: '#/components/schemas/Theater'
+        train:
+          $ref: '#/components/schemas/Train'
+        trainStation:
+          $ref: '#/components/schemas/TrainStation'
+        truck:
+          $ref: '#/components/schemas/Truck'
+        underway:
+          $ref: '#/components/schemas/Underway'
+        unknown:
+          $ref: '#/components/schemas/Unknown'
+        warehouse:
+          $ref: '#/components/schemas/Warehouse'
+        water:
+          $ref: '#/components/schemas/Water'
+        watercraft:
+          $ref: '#/components/schemas/Watercraft'
+      additionalProperties: false
+    CivicAddressType:
+      type: object
+      properties:
+        country:
+          type: string
+        a1:
+          type: string
+        a2:
+          type: string
+        a3:
+          type: string
+        a4:
+          type: string
+        a5:
+          type: string
+        a6:
+          type: string
+        prd:
+          type: string
+        pod:
+          type: string
+        sts:
+          type: string
+        hno:
+          type: string
+        hns:
+          type: string
+        lmk:
+          type: string
+        loc:
+          type: string
+        nam:
+          type: string
+        pc:
+          type: string
+        bld:
+          type: string
+        unit:
+          type: string
+        flr:
+          type: string
+        room:
+          type: string
+        plc:
+          $ref: '#/components/schemas/LocationType2'
+        pcn:
+          type: string
+        pobox:
+          type: string
+        addcode:
+          type: string
+        seat:
+          type: string
+        rd:
+          type: string
+        rdsec:
+          type: string
+        rdbr:
+          type: string
+        rdsubbr:
+          type: string
+        prm:
+          type: string
+        pom:
+          type: string
+      additionalProperties: false
+    LocationType:
+      type: object
+      properties:
+        locId:
+          type: string
+        name:
+          type: string
+        type:
+          $ref: '#/components/schemas/type'
+        coordsys:
+          type: string
+        heightRole:
+          $ref: '#/components/schemas/heightRole'
+        coord:
+          type: array
+          items:
+            $ref: '#/components/schemas/CoordType'
+          minItems: 0
+        address:
+          type: array
+          items:
+            type: string
+          minItems: 0
+        commune:
+          type: string
+        civicAddress:
+          $ref: '#/components/schemas/CivicAddressType'
+      additionalProperties: false
+    Call:
+      type: object
+      required:
+        - source
+      properties:
+        source:
+          type: string
+        dialledURI:
+          type: string
+      additionalProperties: false
+    Caller:
+      type: object
+      required:
+        - callerURI
+      properties:
+        callerURI:
+          type: string
+        callbackURI:
+          type: string
+        spokenLanguage:
+          type: string
+        callerInformation:
+          type: string
+        callerName:
+          type: string
+      additionalProperties: false
+    OptionalAttributeType:
+      type: object
+      required:
+        - code
+        - label
+      properties:
+        code:
+          type: string
+        label:
+          type: string
+        comment:
+          type: string
+      additionalProperties: false
+    OtherAlertCode:
+      type: object
+      required:
+        - version
+        - whatsHappen
+        - locationKind
+        - healthMotive
+      properties:
+        version:
+          type: string
+        whatsHappen:
+          $ref: '#/components/schemas/OptionalAttributeType'
+        locationKind:
+          $ref: '#/components/schemas/OptionalAttributeType'
+        otherRiskThreat:
+          type: array
+          items:
+            $ref: '#/components/schemas/OptionalAttributeType'
+          minItems: 0
+        healthMotive:
+          $ref: '#/components/schemas/OptionalAttributeType'
+        victims:
+          $ref: '#/components/schemas/Victims'
+      additionalProperties: false
+    ResourceType:
+      type: object
+      required:
+        - resourceDesc
+        - mimeType
+      properties:
+        resourceDesc:
+          type: string
+        mimeType:
+          type: string
+        size:
+          type: integer
+        uri:
+          type: string
+          format: uri
+        derefURI:
+          type: string
+        digest:
+          type: string
+      additionalProperties: false
+    OtherAlert:
+      type: object
+      required:
+        - alertId
+        - receivedAt
+        - reporting
+        - call
+        - caller
+        - callTaker
+        - otherAlertCode
+      properties:
+        alertId:
+          type: string
+        receivedAt:
+          type: string
+          format: date-time
+        reporting:
+          $ref: '#/components/schemas/reporting'
+        alertInformation:
+          type: string
+        alertLocation:
+          $ref: '#/components/schemas/LocationType'
+        call:
+          $ref: '#/components/schemas/Call'
+        caller:
+          $ref: '#/components/schemas/Caller'
+        callTaker:
+          $ref: '#/components/schemas/CallTaker'
+        otherAlertCode:
+          $ref: '#/components/schemas/OtherAlertCode'
+        resource:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+          minItems: 0
+      additionalProperties: false
+    UpdateEvent:
+      type: object
+      required:
+        - eventId
+        - createdAt
+        - severity
+        - eventLocation
+        - otherAlert
+      properties:
+        eventId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        severity:
+          $ref: '#/components/schemas/severity'
+        eventLocation:
+          $ref: '#/components/schemas/LocationType'
+        otherAlert:
+          $ref: '#/components/schemas/OtherAlert'
+      additionalProperties: false
+    Recipients:
+      type: object
+      required:
+        - recipient
+      properties:
+        recipient:
+          type: array
+          items:
+            $ref: '#/components/schemas/AddresseeType'
+          minItems: 1
+      additionalProperties: false
+    Alert:
+      type: object
+      required:
+        - alertId
+      properties:
+        alertId:
+          type: string
+      additionalProperties: false
+    AckEvent:
+      type: object
+      required:
+        - eventId
+      properties:
+        eventId:
+          type: string
+        alert:
+          type: array
+          items:
+            $ref: '#/components/schemas/Alert'
+          minItems: 0
+      additionalProperties: false
+    AttributeType:
+      type: object
+      required:
+        - code
+        - label
+      properties:
+        code:
+          type: string
+        label:
+          type: string
+        comment:
+          type: string
+      additionalProperties: false
+    AlertCode:
+      type: object
+      required:
+        - version
+        - whatsHappen
+        - locationKind
+        - healthMotive
+      properties:
+        version:
+          type: string
+        whatsHappen:
+          $ref: '#/components/schemas/AttributeType'
+        locationKind:
+          $ref: '#/components/schemas/AttributeType'
+        riskThreat:
+          type: array
+          items:
+            $ref: '#/components/schemas/AttributeType'
+          minItems: 0
+        healthMotive:
+          $ref: '#/components/schemas/AttributeType'
+        victims:
+          $ref: '#/components/schemas/Victims'
+      additionalProperties: false
+    PrimaryAlert:
+      type: object
+      required:
+        - alertId
+        - receivedAt
+        - reporting
+        - alertLocation
+        - call
+        - caller
+        - callTaker
+        - alertCode
+      properties:
+        alertId:
+          type: string
+        receivedAt:
+          type: string
+          format: date-time
+        reporting:
+          $ref: '#/components/schemas/reporting'
+        alertInformation:
+          type: string
+        alertLocation:
+          $ref: '#/components/schemas/LocationType'
+        call:
+          $ref: '#/components/schemas/Call'
+        caller:
+          $ref: '#/components/schemas/Caller'
+        callTaker:
+          $ref: '#/components/schemas/CallTaker'
+        alertCode:
+          $ref: '#/components/schemas/AlertCode'
+        resource:
+          type: array
+          items:
+            $ref: '#/components/schemas/ResourceType'
+          minItems: 0
+      additionalProperties: false
+    CancelEvent:
+      type: object
+      required:
+        - eventId
+        - cancelReason
+      properties:
+        eventId:
+          type: string
+        cancelReason:
+          $ref: '#/components/schemas/cancelReason'
+        cancelInformation:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        severity:
+          $ref: '#/components/schemas/severity'
+        eventLocation:
+          $ref: '#/components/schemas/LocationType'
+        otherAlert:
+          $ref: '#/components/schemas/OtherAlert'
+      additionalProperties: false
+    AckMessageId:
+      type: object
+      required:
+        - ackMessageId
+      properties:
+        ackMessageId:
+          type: string
+      additionalProperties: false
+    CreateEvent:
+      type: object
+      required:
+        - eventId
+        - createdAt
+        - severity
+        - eventLocation
+        - primaryAlert
+      properties:
+        eventId:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        severity:
+          $ref: '#/components/schemas/severity'
+        eventLocation:
+          $ref: '#/components/schemas/LocationType'
+        primaryAlert:
+          $ref: '#/components/schemas/PrimaryAlert'
+        otherAlert:
+          type: array
+          items:
+            $ref: '#/components/schemas/OtherAlert'
+          minItems: 0
+      additionalProperties: false
+    Message:
+      type: object
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+      additionalProperties: false
+    CreateEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        createEvent:
+          $ref: '#/components/schemas/CreateEvent'
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - createEvent
+      additionalProperties: false
+    UpdateEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        updateEvent:
+          $ref: '#/components/schemas/UpdateEvent'
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - updateEvent
+      additionalProperties: false
+    CancelEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        cancelEvent:
+          $ref: '#/components/schemas/CancelEvent'
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - cancelEvent
+      additionalProperties: false
+    AckEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        ackEvent:
+          $ref: '#/components/schemas/AckEvent'
+      additionalProperties: false
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - ackEvent
+    AckMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        ackMessage:
+          $ref: '#/components/schemas/AckMessageId'
+      additionalProperties: false
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - ackMessage
+    count:
+      type: string
+      enum:
+        - '0'
+        - '1'
+        - SEVERAL
+        - MANY
+        - UNKNOWN
+    mainVictim:
+      type: string
+      enum:
+        - INFANT
+        - CHILD
+        - ADULT
+        - PREGNANT
+        - SENIOR
+    type:
+      type: string
+      enum:
+        - POINT
+        - CIRCLE
+        - LINE
+        - SURFACE
+        - GRID
+        - POLYGON
+        - ELLIPSE
+    heightRole:
+      type: string
+      enum:
+        - MIN
+        - MAX
+        - AVE
+    reporting:
+      type: string
+      enum:
+        - STANDARD
+        - ATTENTION
+    severity:
+      type: string
+      enum:
+        - EXTREME
+        - SEVERE
+        - MODERATE
+        - MINOR
+        - UNKNOWN
+    cancelReason:
+      type: string
+      enum:
+        - ERROR
+        - MALEVOLENCE
+        - OTHER
+    msgType:
+      type: string
+      enum:
+        - ALERT
+        - ACK
+        - UPDATE
+        - CANCEL
+    status:
+      type: string
+      enum:
+        - ACTUAL
+        - EXERCISE
+        - TEST
+        - DRAFT
+        - SYSTEM
+  securitySchemes:
+    tlsAuth:
+      type: X509
+      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification TLS
+  parameters:
+    clientId:
+      description: L'identifiant du client
+      schema:
+        type: string
