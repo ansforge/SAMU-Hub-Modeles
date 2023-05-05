@@ -12,7 +12,7 @@ servers:
     url: localhost:5671
     protocol: amqps
     protocolVersion: '0.9.1'
-    description: Instance locale du Hub Sante portée par `docker-compose` dans le repo du Hub
+    description: Instance locale du Hub Sante portée par `minikube` dans le repo du Hub
     security:
       - tlsAuth: [ ]
 defaultContentType: application/json
