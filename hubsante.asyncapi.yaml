@@ -1,13 +1,20 @@
 asyncapi: '2.5.0'
 info:
   title: Hub Sante AMQP API
-  version: '0.5'
+  version: '0.7'
   description: |
     L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
+  remote:
+    url: hubsante.esante.gouv.fr:5671
+    protocol: amqps
+    protocolVersion: '0.9.1'
+    description: Instance "bac à sable" du Hub Sante déployée dans le Cloud.
+    security:
+      - tlsAuth: [ ]
   local:
     url: localhost:5671
     protocol: amqps
@@ -26,10 +33,7 @@ channels:
       summary: Message fonctionnel
       operationId: receiveMessage
       message:
-        oneOf:
-          - $ref: '#/components/messages/ackMessageEnvelope'
-          - $ref: '#/components/messages/cisuMessageEnvelope'
-          - $ref: '#/components/messages/basicMessageEnvelope'
+        $ref: '#/components/messages/edxlMessage'
 
   "{clientId}.out.message":
     description: File spécifique à chaque client pour l'envoi de messages
@@ -40,10 +44,8 @@ channels:
       summary: Message fonctionnel
       operationId: publishMessage
       message:
-        oneOf:
-          - $ref: '#/components/messages/ackMessageEnvelope'
-          - $ref: '#/components/messages/cisuMessageEnvelope'
-          - $ref: '#/components/messages/basicMessageEnvelope'
+        $ref: '#/components/messages/edxlMessage'
+
 
   "{clientId}.in.ack":
     description: File spécifique à chaque client pour la réception des acquittements fonctionnels
@@ -54,7 +56,8 @@ channels:
       summary: Acquittement fonctionnel
       operationId: receiveAck
       message:
-        $ref: '#/components/messages/ackMessageEnvelope'
+        $ref: '#/components/messages/edxlMessage'
+
 
   "{clientId}.out.ack":
     description: File spécifique à chaque client pour l'envoi des acquittements fonctionnels
@@ -65,7 +68,7 @@ channels:
       summary: Acquittement fonctionnel
       operationId: publishAck
       message:
-        $ref: '#/components/messages/ackMessageEnvelope'
+        $ref: '#/components/messages/edxlMessage'
 
   "{clientId}.in.info":
     description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
@@ -76,7 +79,7 @@ channels:
       summary: Informations complémentaires
       operationId: receiveInfo
       message:
-        $ref: '#/components/messages/basicMessageEnvelope'
+        $ref: '#/components/messages/edxlMessage'
 
   "{clientId}.out.info":
     description: File spécifique à chaque client pour l'envoi des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
@@ -87,33 +90,256 @@ channels:
       summary: Informations complémentaires
       operationId: publishInfo
       message:
-        $ref: '#/components/messages/basicMessageEnvelope'
+        $ref: '#/components/messages/edxlMessage'
 
 components:
   messages:
-    basicMessageEnvelope:
-      title: Enveloppe d'un message basique
-      summary: Message basique transportable par le Hub (maintenu pour la testabilité)
+    edxlMessage:
+      title: Message au standard EDXL
+      summary: Message au standard EDXL transportable par le Hub, comportant une partie adressage et une partie contenu. La partie contenu peut respecter différentes spécifications fonctionnelles.
       payload:
-        $ref: '#/components/schemas/BasicMessage'
-
-    ackMessageEnvelope:
-      title: Enveloppe d'un accusé de réception
-      summary: Accusé de réception d'un message CISU relatif à un événement.
-      payload:
-        $ref: '#/components/schemas/AckMessage'
-
-    cisuMessageEnvelope:
-      title: Enveloppe d'un message CISU
-      summary: Message CISU transportable par le Hub dans le cadre des échanges inter-forces.
-      payload:
-        oneOf:
-          - $ref: '#/components/schemas/CreateEventMessage'
-          - $ref: '#/components/schemas/UpdateEventMessage'
-          - $ref: '#/components/schemas/CancelEventMessage'
-          - $ref: '#/components/schemas/AckEventMessage'
-
+        $ref: '#/components/schemas/EdxlMessage'
   schemas:
+    EdxlMessage:
+      properties:
+        distributionID:
+          type: string
+        senderID:
+          type: string
+        dateTimeSent:
+          type: string
+          format: date-time
+        dateTimeExpires:
+          type: string
+          format: date-time
+        distributionStatus:
+          $ref: '#/components/schemas/DistributionStatus'
+        distributionKind:
+          $ref: '#/components/schemas/DistributionKind'
+        descriptor:
+          $ref: '#/components/schemas/Descriptor'
+        content:
+          $ref: '#/components/schemas/Content'
+      additionalProperties: false
+      required:
+        - distributionID
+        - senderID
+        - dateTimeSent
+        - dateTimeExpires
+        - distributionStatus
+        - distributionKind
+        - descriptor
+        - content
+    Content:
+      properties:
+        contentObject:
+          $ref: '#/components/schemas/ContentObject'
+      additionalProperties: false
+      required:
+        - contentObject
+    ContentObject:
+      oneOf:
+        - $ref: '#/components/schemas/JsonContent'
+        - $ref: '#/components/schemas/ContentXML'
+    JsonContent:
+      properties:
+        JsonContent:
+          $ref: '#/components/schemas/EmbeddedJsonContent'
+    ContentXML:
+      properties:
+        contentXML:
+          $ref: '#/components/schemas/EmbeddedXMLContent'
+    EmbeddedJsonContent:
+      oneOf:
+        - $ref: '#/components/schemas/CreateEventMessage'
+        - $ref: '#/components/schemas/GenericAckMessage'
+    EmbeddedXMLContent:
+      oneOf:
+        - $ref: '#/components/schemas/CreateEventMessage'
+        - $ref: '#/components/schemas/GenericAckMessage'
+    Descriptor:
+      properties:
+        language:
+          type: string
+        explicitAddress:
+          $ref: '#/components/schemas/ExplicitAddress'
+      additionalProperties: false
+      required:
+        - language
+        - explicitAddress
+    ExplicitAddress:
+      properties:
+        explicitAddressScheme:
+          type: string
+        explicitAddressValue:
+          type: string
+      additionalProperties: false
+      required:
+        - explicitAddressScheme
+        - explicitAddressValue
+    DistributionKind:
+      type: string
+      enum:
+        - Report
+        - Update
+        - Cancel
+        - Request
+        - Response
+        - Dispatch
+        - Ack
+        - Error
+        - SensorConfiguration
+        - SensorControl
+        - SensorStatus
+        - SensorDetection
+        - Unknown
+        - NoAppropriateDefault
+    DistributionStatus:
+      type: string
+      enum:
+        - Actual
+        - Exercise
+        - System
+        - Test
+        - Unknown
+        - NoAppropriateDefault
+    CreateEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        createEvent:
+          $ref: '#/components/schemas/CreateEvent'
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - createEvent
+      additionalProperties: false
+    UpdateEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        updateEvent:
+          $ref: '#/components/schemas/UpdateEvent'
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - updateEvent
+      additionalProperties: false
+    CancelEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        cancelEvent:
+          $ref: '#/components/schemas/CancelEvent'
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - cancelEvent
+      additionalProperties: false
+    AckEventMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        ackEvent:
+          $ref: '#/components/schemas/AckEvent'
+      additionalProperties: false
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - ackEvent
+    AckMessage:
+      properties:
+        messageId:
+          type: string
+        sender:
+          $ref: '#/components/schemas/AddresseeType'
+        sentAt:
+          type: string
+          format: date-time
+        msgType:
+          $ref: '#/components/schemas/msgType'
+        status:
+          $ref: '#/components/schemas/status'
+        recipients:
+          $ref: '#/components/schemas/Recipients'
+        ackMessage:
+          $ref: '#/components/schemas/AckMessageId'
+      additionalProperties: false
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - msgType
+        - status
+        - recipients
+        - ackMessage
+    GenericAckMessage:
+      properties:
+        ackDistributionId:
+          type: string
+      additionalProperties: false
+      required:
+        - ackDistributionId
     BasicMessage:
       type: object
       allOf:
@@ -813,136 +1039,6 @@ components:
         recipients:
           $ref: '#/components/schemas/Recipients'
       additionalProperties: false
-    CreateEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        createEvent:
-          $ref: '#/components/schemas/CreateEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - createEvent
-      additionalProperties: false
-    UpdateEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        updateEvent:
-          $ref: '#/components/schemas/UpdateEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - updateEvent
-      additionalProperties: false
-    CancelEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        cancelEvent:
-          $ref: '#/components/schemas/CancelEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - cancelEvent
-      additionalProperties: false
-    AckEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        ackEvent:
-          $ref: '#/components/schemas/AckEvent'
-      additionalProperties: false
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - ackEvent
-    AckMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        ackMessage:
-          $ref: '#/components/schemas/AckMessageId'
-      additionalProperties: false
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - ackMessage
     count:
       type: string
       enum:
@@ -1012,7 +1108,7 @@ components:
   securitySchemes:
     tlsAuth:
       type: X509
-      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification TLS
+      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification mTLS
   parameters:
     clientId:
       description: L'identifiant du client
