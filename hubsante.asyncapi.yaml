@@ -11,14 +11,14 @@ servers:
   remote:
     url: hubsante.esante.gouv.fr:5671
     protocol: amqps
-    protocolVersion: '0.9.1'
+    protocolVersion: '0-9-1'
     description: Instance "bac à sable" du Hub Sante déployée dans le Cloud.
     security:
       - tlsAuth: [ ]
   local:
     url: localhost:5671
     protocol: amqps
-    protocolVersion: '0.9.1'
+    protocolVersion: '0-9-1'
     description: Instance locale du Hub Sante portée par `minikube` dans le repo du Hub
     security:
       - tlsAuth: [ ]
