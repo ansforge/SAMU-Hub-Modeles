@@ -8,50 +8,20 @@ import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EmbeddedContent {
-
-    // TODO bbo : replace by CisuMessage with JsonSubType mapping depending on content ?
-    private CreateEventMessage message;
-    private Emsi emsi;
-
-    private GenericAckMessage genericAckMessage;
-
+    private EdxlInnerMessage innerMessage;
     public EmbeddedContent() {
     }
 
-    public EmbeddedContent(CreateEventMessage message) {
-        this.message = message;
+    public EmbeddedContent(EdxlInnerMessage innerMessage) {
+        this.innerMessage = innerMessage;
     }
 
-    public EmbeddedContent(Emsi emsi) {
-        this.emsi = emsi;
+    public <T extends EdxlInnerMessage> T getMessage() {
+        return (T) innerMessage;
     }
 
-    public EmbeddedContent(GenericAckMessage genericAckMessage) {
-        this.genericAckMessage = genericAckMessage;
-    }
-
-    public CreateEventMessage getMessage() {
-        return message;
-    }
-
-    public void setMessage(CreateEventMessage message) {
-        this.message = message;
-    }
-
-    public Emsi getEmsi() {
-        return emsi;
-    }
-
-    public void setEmsi(Emsi emsi) {
-        this.emsi = emsi;
-    }
-
-    public GenericAckMessage getGenericAckMessage() {
-        return genericAckMessage;
-    }
-
-    public void setGenericAckMessage(GenericAckMessage genericAckMessage) {
-        this.genericAckMessage = genericAckMessage;
+    public <T extends EdxlInnerMessage> void setMessage(T message) {
+        this.innerMessage = message;
     }
 
     @Override
@@ -59,12 +29,12 @@ public class EmbeddedContent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmbeddedContent that = (EmbeddedContent) o;
-        return Objects.equals(message, that.message) && Objects.equals(emsi, that.emsi) && Objects.equals(genericAckMessage, that.genericAckMessage);
+        return Objects.equals(innerMessage, that.innerMessage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(message, emsi, genericAckMessage);
+        return Objects.hash(innerMessage);
     }
 
 
@@ -74,9 +44,7 @@ public class EmbeddedContent {
     @Override
     public String toString() {
         String embeddedContent = new StringBuilder()
-                .append(message != null ? "message=" + message.toString() : "")
-                .append(emsi !=null ? "emsi=" + emsi.toString() : "")
-                .append(genericAckMessage != null ? "ackMessage=" + genericAckMessage.toString() : "")
+                .append(innerMessage != null ? "inner message=" + innerMessage.toString() : "")
                 .toString();
 
         return "EmbeddedContent{" +

@@ -3,9 +3,10 @@ package com.hubsante.model.emsi;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.hubsante.model.edxl.EdxlInnerMessage;
 
 @JacksonXmlRootElement(localName = "emsi")
-public class Emsi {
+public class Emsi extends EdxlInnerMessage {
 
     @JacksonXmlProperty(isAttribute = true)
     private String xmlns = "http://emsi";

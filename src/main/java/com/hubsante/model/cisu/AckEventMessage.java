@@ -1,11 +1,12 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hubsante.model.edxl.EdxlInnerMessage;
 
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
               
-public class AckEventMessage implements CisuMessage {
+public class AckEventMessage extends EdxlInnerMessage {
   @JsonProperty("messageId")
   @NotNull
   private String messageId;

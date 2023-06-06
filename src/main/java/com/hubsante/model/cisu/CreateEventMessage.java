@@ -4,13 +4,14 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.hubsante.model.edxl.EdxlInnerMessage;
 
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @JacksonXmlRootElement(localName = "message")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class CreateEventMessage implements CisuMessage {
+public class CreateEventMessage extends EdxlInnerMessage {
 
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";

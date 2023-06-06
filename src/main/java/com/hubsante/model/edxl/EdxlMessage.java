@@ -1,7 +1,9 @@
 package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.hubsante.model.cisu.AckMessage;
 
+import java.time.OffsetDateTime;
 import java.util.Objects;
 
 public class EdxlMessage extends EdxlEnvelope {
@@ -9,12 +11,27 @@ public class EdxlMessage extends EdxlEnvelope {
     @JsonProperty(value = "content", required = true)
     private Content content;
 
+    public EdxlMessage() {
+        super();
+    }
+
+    public EdxlMessage(String distributionID, String senderID, OffsetDateTime dateTimeSent, OffsetDateTime dateTimeExpires,
+                       DistributionStatus distributionStatus, DistributionKind distributionKind, Descriptor descriptor,
+                       EdxlInnerMessage innerMessage) {
+        super(distributionID, senderID, dateTimeSent, dateTimeExpires, distributionStatus, distributionKind, descriptor);
+        this.setContentFrom(innerMessage);
+    }
+
     public Content getContent() {
         return content;
     }
 
     public void setContent(Content content) {
         this.content = content;
+    }
+
+    public <T extends EdxlInnerMessage> void setContentFrom(T embeddedContent) {
+        this.setContent(new Content(new ContentObject(new ContentWrapper(new EmbeddedContent(embeddedContent)))));
     }
 
     @Override
