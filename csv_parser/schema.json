@@ -20,6 +20,21 @@
                 },
                 "alertInformation": {
                     "type": "string"
+                },
+                "caller": {
+                    "$ref": "#/definitions/caller"
+                },
+                "alertCode": {
+                    "$ref": "#/definitions/alertCode"
+                },
+                "source": {
+                    "$ref": "#/definitions/source"
+                },
+                "callTaker": {
+                    "$ref": "#/definitions/callTaker"
+                },
+                "resource": {
+                    "$ref": "#/definitions/resource"
                 }
             }
         },
@@ -56,6 +71,12 @@
             "properties": {
                 "cisuVersion": {
                     "type": "string"
+                },
+                "whatsHappen": {
+                    "$ref": "#/definitions/whatsHappen"
+                },
+                "victims": {
+                    "$ref": "#/definitions/victims"
                 }
             }
         },
@@ -162,6 +183,21 @@
                 "concatenatedAddress": {
                     "type": "string"
                 },
+                "address": {
+                    "$ref": "#/definitions/address"
+                },
+                "city": {
+                    "$ref": "#/definitions/city"
+                },
+                "access": {
+                    "$ref": "#/definitions/access"
+                },
+                "geometry": {
+                    "$ref": "#/definitions/geometry"
+                },
+                "source": {
+                    "$ref": "#/definitions/source"
+                },
                 "neighbourhood": {
                     "type": "string"
                 },
@@ -242,12 +278,22 @@
         "geometry": {
             "type": "object",
             "required": [],
-            "properties": {}
+            "properties": {
+                "point": {
+                    "$ref": "#/definitions/point"
+                },
+                "sketch": {
+                    "$ref": "#/definitions/sketch"
+                }
+            }
         },
         "point": {
             "type": "object",
             "required": [],
             "properties": {
+                "coord": {
+                    "$ref": "#/definitions/coord"
+                },
                 "coordsys": {
                     "type": "string"
                 }
@@ -281,15 +327,6 @@
             "type": "object",
             "required": [],
             "properties": {}
-        },
-        "NaN": {
-            "type": "object",
-            "required": [],
-            "properties": {
-                "NaN": {
-                    "type": "string"
-                }
-            }
         }
     },
     "properties": {
@@ -310,9 +347,6 @@
         },
         "severity": {
             "type": "string"
-        },
-        "NaN": {
-            "$ref": "#/definitions/nan"
         }
     }
 }

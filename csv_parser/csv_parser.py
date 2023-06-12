@@ -3,7 +3,7 @@ import json
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_csv('model.csv', skiprows=7, sep=";", nrows=105)
+df = pd.read_csv('model.csv', skiprows=7, sep=";", nrows=91)
 # Dropping useless columns
 df = df.iloc[:, :29]
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -87,19 +87,19 @@ def use_elem(elem):
         return
     parentName = df.loc[elem['parent']]['name']
     if elem['Objet'] == 'X':
-        if elem['level_shift'] == 1:
-            json_schema['properties'][elem['name']] = {
-                '$ref': '#/definitions/' + str(elem['name'])
-            }
-
         json_schema['definitions'][elem['name']] = {
             'type': 'object',
             'required': [],
             'properties': {}
         }
-        json_schema['definitions'][parentName]['properties'][elem['name']] = {
-            '$ref': '#/definitions/' + str(elem['name'])
-        }
+        if elem['level_shift'] == 1:
+            json_schema['properties'][elem['name']] = {
+                '$ref': '#/definitions/' + str(elem['name'])
+            }
+        else:
+            json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                '$ref': '#/definitions/' + str(elem['name'])
+            }
     else:
         if elem['level_shift'] == 1:
             json_schema['properties'][elem['name']] = {
