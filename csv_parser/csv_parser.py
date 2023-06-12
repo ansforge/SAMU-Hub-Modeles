@@ -18,7 +18,8 @@ df['level_shift'] = -1
 for i in range(1, 6):
     df[f"level_{i}"] = df[f"Donnée (Niveau {i})"].notnull().cumsum()
     df[f"previous_level_{i}"] = df[f"level_{i}"].shift(periods=1, fill_value=0)
-    df["level_shift"] = df.apply(lambda row: i if row[f"level_{i}"] != row[f"previous_level_{i}"] else row['level_shift'], axis=1)
+    df["level_shift"] = df.apply(
+        lambda row: i if row[f"level_{i}"] != row[f"previous_level_{i}"] else row['level_shift'], axis=1)
 
 
 # Get IDs, parent and build data hierarchy tree structure
@@ -54,26 +55,58 @@ for i in range(5, 0, -1):
     previous_children = children
     children_df = df[df['level_shift'] == i]
     children_ids = children_df.groupby('parent')['id'].apply(list)
-    children = {parent_id: list(map(lambda child_id: get_element_with_its_children(previous_children, child_id), children_ids)) for (parent_id, children_ids) in children_ids.items()}
+    children = {
+        parent_id: list(map(lambda child_id: get_element_with_its_children(previous_children, child_id), children_ids))
+        for (parent_id, children_ids) in children_ids.items()}
 rootObject = {
     'id': '1',
     'level_shift': 0,
+    'Objet': 'X',
     'children': children['1']
 }
 
 # DATA USAGE
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
-    'placeholder_list': []
+    '$schema': 'http://json-schema.org/draft-07/schema#',
+    '$id': 'https://json-schema.org/draft-07/schema#',
+    'definitions': {},
+    'properties': {}
 }
+
+
 def use_elem_naive(elem):
     print(elem['id'])
 
+
 def use_elem(elem):
+    print(elem)
     # ToDo: update and use this method to build the expected JSON schema
     # By building a python dict or using https://jsonschema-builder.readthedocs.io/en/latest/
-    json_schema['placeholder_list'].append(elem['id'])
-
+    if elem['level_shift'] == 0:
+        return
+    if elem['Objet'] == 'X':
+        if elem['level_shift'] == 1:
+            json_schema['properties'][elem['name']] = {
+                '$ref': '#/definitions/' + str(elem['name'])
+            }
+        json_schema['definitions'][elem['name']] = {
+            'type': 'object',
+            'required': [],
+            'properties': {}
+        }
+    else:
+        if elem['level_shift'] == 1:
+            json_schema['properties'][elem['name']] = {
+                'type': 'string'
+            }
+        else:
+            # directly write in parent object's properties
+            parentName = df.loc[elem['parent']]['name']
+            json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                'type': 'string'
+            }
+            
 
 # 1. Flat linear data
 flat_data = df.to_dict('records')
@@ -81,6 +114,8 @@ flat_data = df.to_dict('records')
 print('\n\tLIST\n')
 for elem in flat_data:
     use_elem_naive(elem)
+
+
 # Explored like a tree
 # Depth first search (DFS) example
 def DFS(root):
@@ -88,6 +123,7 @@ def DFS(root):
     if 'children' in root:
         for child in root['children']:
             DFS(child)
+    print(root['id'])
 
 
 # Breadth-first search (BFS) example
