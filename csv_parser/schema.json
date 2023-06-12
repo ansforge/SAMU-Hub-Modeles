@@ -4,7 +4,14 @@
     "definitions": {
         "initialAlert": {
             "type": "object",
-            "required": [],
+            "required": [
+                "alertId",
+                "receivedAt",
+                "reporting",
+                "caller",
+                "alertCode",
+                "callTaker"
+            ],
             "properties": {
                 "alertId": {
                     "type": "string"
@@ -34,7 +41,10 @@
                     "$ref": "#/definitions/callTaker"
                 },
                 "resource": {
-                    "$ref": "#/definitions/resource"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/resource"
+                    }
                 }
             }
         },
@@ -67,7 +77,9 @@
         },
         "alertCode": {
             "type": "object",
-            "required": [],
+            "required": [
+                "cisuVersion"
+            ],
             "properties": {
                 "cisuVersion": {
                     "type": "string"
@@ -82,7 +94,11 @@
         },
         "whatsHappen": {
             "type": "object",
-            "required": [],
+            "required": [
+                "code",
+                "label",
+                "comment"
+            ],
             "properties": {
                 "code": {
                     "type": "string"
@@ -97,7 +113,9 @@
         },
         "victims": {
             "type": "object",
-            "required": [],
+            "required": [
+                "count"
+            ],
             "properties": {
                 "count": {
                     "type": "string"
@@ -112,7 +130,11 @@
         },
         "source": {
             "type": "object",
-            "required": [],
+            "required": [
+                "system",
+                "type",
+                "id"
+            ],
             "properties": {
                 "system": {
                     "type": "string"
@@ -145,7 +167,10 @@
         },
         "resource": {
             "type": "object",
-            "required": [],
+            "required": [
+                "resourceDesc",
+                "mimeType"
+            ],
             "properties": {
                 "resourceDesc": {
                     "type": "string"
@@ -169,7 +194,16 @@
         },
         "caseLocation": {
             "type": "object",
-            "required": [],
+            "required": [
+                "locID",
+                "locLabel",
+                "name",
+                "concatenatedAddress",
+                "geometry",
+                "neighbourhood",
+                "country",
+                "comment"
+            ],
             "properties": {
                 "locID": {
                     "type": "string"
@@ -196,7 +230,10 @@
                     "$ref": "#/definitions/geometry"
                 },
                 "source": {
-                    "$ref": "#/definitions/source"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/source"
+                    }
                 },
                 "neighbourhood": {
                     "type": "string"
@@ -205,7 +242,10 @@
                     "type": "string"
                 },
                 "NaN": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "comment": {
                     "type": "string"
@@ -214,7 +254,9 @@
         },
         "address": {
             "type": "object",
-            "required": [],
+            "required": [
+                "complete"
+            ],
             "properties": {
                 "complete": {
                     "type": "string"
@@ -259,7 +301,10 @@
                     "type": "string"
                 },
                 "accessCode": {
-                    "type": "string"
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
                 },
                 "elevator": {
                     "type": "string"
@@ -277,7 +322,10 @@
         },
         "geometry": {
             "type": "object",
-            "required": [],
+            "required": [
+                "point",
+                "sketch"
+            ],
             "properties": {
                 "point": {
                     "$ref": "#/definitions/point"
@@ -289,7 +337,9 @@
         },
         "point": {
             "type": "object",
-            "required": [],
+            "required": [
+                "coord"
+            ],
             "properties": {
                 "coord": {
                     "$ref": "#/definitions/coord"
@@ -301,7 +351,11 @@
         },
         "coord": {
             "type": "object",
-            "required": [],
+            "required": [
+                "lat",
+                "lon",
+                "time"
+            ],
             "properties": {
                 "lat": {
                     "type": "string"
@@ -327,6 +381,18 @@
             "type": "object",
             "required": [],
             "properties": {}
+        },
+        "NaN": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "NaN": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/nan"
+                    }
+                }
+            }
         }
     },
     "properties": {
@@ -347,6 +413,9 @@
         },
         "severity": {
             "type": "string"
+        },
+        "NaN": {
+            "$ref": "#/definitions/nan"
         }
     }
 }

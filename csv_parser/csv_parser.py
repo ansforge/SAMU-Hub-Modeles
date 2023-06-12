@@ -97,9 +97,19 @@ def use_elem(elem):
                 '$ref': '#/definitions/' + str(elem['name'])
             }
         else:
-            json_schema['definitions'][parentName]['properties'][elem['name']] = {
-                '$ref': '#/definitions/' + str(elem['name'])
-            }
+            if str(elem['Cardinalité']).endswith('n'):
+                json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                    'type': 'array',
+                    'items': {
+                        '$ref': '#/definitions/' + str(elem['name'])
+                    }
+                }
+            else:
+                json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                    '$ref': '#/definitions/' + str(elem['name'])
+                }
+            if str(elem['Cardinalité']).startswith('1'):
+                json_schema['definitions'][parentName]['required'] += [elem['name']]
     else:
         if elem['level_shift'] == 1:
             json_schema['properties'][elem['name']] = {
@@ -107,10 +117,20 @@ def use_elem(elem):
             }
         else:
             # directly write in parent object's properties
-            json_schema['definitions'][parentName]['properties'][elem['name']] = {
-                'type': 'string'
-            }
-            
+            if str(elem['Cardinalité']).endswith('n'):
+                json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                    'type': 'array',
+                    'items': {
+                        'type': 'string'
+                    }
+                }
+            else:
+                json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                    'type': 'string'
+                }
+            if str(elem['Cardinalité']).startswith('1'):
+                json_schema['definitions'][parentName]['required'] += [elem['name']]
+
 
 # 1. Flat linear data
 flat_data = df.to_dict('records')
