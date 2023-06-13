@@ -70,13 +70,9 @@ rootObject = {
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     '$id': 'https://json-schema.org/draft-07/schema#',
-    'definitions': {},
-    'properties': {}
+    'properties': {},
+    'definitions': {}
 }
-
-
-def use_elem_naive(elem):
-    print(elem['id'])
 
 def isSharedObject(elem):
     isObject = elem['Objet'] == 'X'
@@ -84,7 +80,6 @@ def isSharedObject(elem):
     return isObject & isShared
 
 def use_elem(elem):
-    # ToDo: update and use this method to build the expected JSON schema
     # By building a python dict or using https://jsonschema-builder.readthedocs.io/en/latest/
 
     parentPropertyName = None
@@ -97,13 +92,9 @@ def use_elem(elem):
         parentDefinitionName = df.loc[elem['parent']]['Format (ou type)'] if isSharedObject(df.loc[elem['parent']]) else df.loc[elem['parent']]['name']
         parentPropertyName = df.loc[elem['parent']]['name']
 
-    elemIsObject = elem['Objet'] == 'X'
-    elemIsShared = str(elem['Format (ou type)']) != 'nan' # does not work : instead check if not NaN
-    defName = elem['Format (ou type)'] if (elemIsObject & elemIsShared) else elem['name']
+    defName = elem['Format (ou type)'] if (isSharedObject(elem)) else elem['name']
 
     if elem['Objet'] == 'X':
-        print(json_schema['definitions']['alert']['properties']) if elem['name'] == 'caseLocation' else None
-        print(json_schema['definitions']['alert']['properties']) if elem['name'] == 'additionalInformation' else None
         if defName not in json_schema['definitions']:
             json_schema['definitions'][defName] = {
                 'type': 'object',
@@ -149,38 +140,15 @@ def use_elem(elem):
             if str(elem['Cardinalité']).startswith('1'):
                 json_schema['definitions'][parentDefinitionName]['required'].append(defName)
 
-# 1. Flat linear data
-flat_data = df.to_dict('records')
-# Explored as a list
-#print('\n\tLIST\n')
-#for elem in flat_data:
-#    use_elem_naive(elem)
-
-
-# Explored like a tree
-# Depth first search (DFS) example
 def DFS(root):
     use_elem(root)
     if 'children' in root:
         for child in root['children']:
             DFS(child)
-#    print(root['id'])
 
-
-# Breadth-first search (BFS) example
-def BFS(root):
-    queue = [root]
-    while len(queue) > 0:
-        elem = queue.pop(0)
-        use_elem_naive(elem)
-        if 'children' in elem:
-            queue.extend(elem['children'])
-
-
-print('\n\tDFS\n')
+print('Generating JSON schema...')
 DFS(rootObject)
-#print('\n\tBFS\n')
-#BFS(rootObject)
+print('JSON schema generated.')
 
 with open('schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)

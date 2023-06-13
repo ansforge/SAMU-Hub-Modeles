@@ -1,6 +1,32 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://json-schema.org/draft-07/schema#",
+    "properties": {
+        "caseId": {
+            "type": "string"
+        },
+        "senderCaseId": {
+            "type": "string"
+        },
+        "createdAt": {
+            "type": "string"
+        },
+        "initialAlert": {
+            "$ref": "#/definitions/alert"
+        },
+        "caseLocation": {
+            "$ref": "#/definitions/locationType"
+        },
+        "newAlert": {
+            "$ref": "#/definitions/alert"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "additionalInformation": {
+            "$ref": "#/definitions/additionalInformation"
+        }
+    },
     "definitions": {
         "alert": {
             "type": "object",
@@ -409,32 +435,6 @@
                     "type": "string"
                 }
             }
-        }
-    },
-    "properties": {
-        "caseId": {
-            "type": "string"
-        },
-        "senderCaseId": {
-            "type": "string"
-        },
-        "createdAt": {
-            "type": "string"
-        },
-        "initialAlert": {
-            "$ref": "#/definitions/alert"
-        },
-        "caseLocation": {
-            "$ref": "#/definitions/locationType"
-        },
-        "newAlert": {
-            "$ref": "#/definitions/alert"
-        },
-        "severity": {
-            "type": "string"
-        },
-        "additionalInformation": {
-            "$ref": "#/definitions/additionalInformation"
         }
     }
 }
