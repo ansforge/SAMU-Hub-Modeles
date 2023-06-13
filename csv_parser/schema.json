@@ -2,52 +2,10 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "https://json-schema.org/draft-07/schema#",
     "definitions": {
-        "initialAlert": {
+        "alert": {
             "type": "object",
-            "required": [
-                "alertId",
-                "receivedAt",
-                "reporting",
-                "caller",
-                "alertLocation",
-                "alertCode",
-                "callTaker"
-            ],
-            "properties": {
-                "alertId": {
-                    "type": "string"
-                },
-                "receivedAt": {
-                    "type": "string"
-                },
-                "reporting": {
-                    "type": "string"
-                },
-                "alertInformation": {
-                    "type": "string"
-                },
-                "caller": {
-                    "$ref": "#/definitions/caller"
-                },
-                "alertLocation": {
-                    "$ref": "#/definitions/alertLocation"
-                },
-                "alertCode": {
-                    "$ref": "#/definitions/alertCode"
-                },
-                "source": {
-                    "$ref": "#/definitions/source"
-                },
-                "callTaker": {
-                    "$ref": "#/definitions/callTaker"
-                },
-                "resource": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/resource"
-                    }
-                }
-            }
+            "required": [],
+            "properties": {}
         },
         "caller": {
             "type": "object",
@@ -76,10 +34,51 @@
                 }
             }
         },
-        "alertLocation": {
+        "locationType": {
             "type": "object",
-            "required": [],
-            "properties": {}
+            "required": [
+                "locID",
+                "locLabel",
+                "name",
+                "geometry",
+                "country",
+                "comment"
+            ],
+            "properties": {
+                "locID": {
+                    "type": "string"
+                },
+                "locLabel": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "address": {
+                    "$ref": "#/definitions/address"
+                },
+                "city": {
+                    "$ref": "#/definitions/city"
+                },
+                "access": {
+                    "$ref": "#/definitions/access"
+                },
+                "geometry": {
+                    "$ref": "#/definitions/geometry"
+                },
+                "source": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/source"
+                    }
+                },
+                "country": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            }
         },
         "alertCode": {
             "type": "object",
@@ -91,54 +90,26 @@
                     "type": "string"
                 },
                 "whatsHappen": {
-                    "$ref": "#/definitions/whatsHappen"
+                    "$ref": "#/definitions/attributeType"
                 },
                 "locationKind": {
-                    "$ref": "#/definitions/locationKind"
+                    "$ref": "#/definitions/attributeType"
                 },
                 "riskThreat": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/riskThreat"
+                        "$ref": "#/definitions/attributeType"
                     }
                 },
                 "healthMotive": {
-                    "$ref": "#/definitions/healthMotive"
+                    "$ref": "#/definitions/attributeType"
                 },
                 "victims": {
                     "$ref": "#/definitions/victims"
                 }
             }
         },
-        "whatsHappen": {
-            "type": "object",
-            "required": [
-                "code",
-                "label"
-            ],
-            "properties": {
-                "code": {
-                    "type": "string"
-                },
-                "label": {
-                    "type": "string"
-                },
-                "comment": {
-                    "type": "string"
-                }
-            }
-        },
-        "locationKind": {
-            "type": "object",
-            "required": [],
-            "properties": {}
-        },
-        "riskThreat": {
-            "type": "object",
-            "required": [],
-            "properties": {}
-        },
-        "healthMotive": {
+        "attributeType": {
             "type": "object",
             "required": [],
             "properties": {}
@@ -198,7 +169,7 @@
                 }
             }
         },
-        "resource": {
+        "resourceType": {
             "type": "object",
             "required": [
                 "resourceDesc",
@@ -221,52 +192,6 @@
                     "type": "string"
                 },
                 "digest": {
-                    "type": "string"
-                }
-            }
-        },
-        "caseLocation": {
-            "type": "object",
-            "required": [
-                "locID",
-                "locLabel",
-                "name",
-                "geometry",
-                "country",
-                "comment"
-            ],
-            "properties": {
-                "locID": {
-                    "type": "string"
-                },
-                "locLabel": {
-                    "type": "string"
-                },
-                "name": {
-                    "type": "string"
-                },
-                "address": {
-                    "$ref": "#/definitions/address"
-                },
-                "city": {
-                    "$ref": "#/definitions/city"
-                },
-                "access": {
-                    "$ref": "#/definitions/access"
-                },
-                "geometry": {
-                    "$ref": "#/definitions/geometry"
-                },
-                "source": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/source"
-                    }
-                },
-                "country": {
-                    "type": "string"
-                },
-                "comment": {
                     "type": "string"
                 }
             }
@@ -394,11 +319,6 @@
             "required": [],
             "properties": {}
         },
-        "newAlert": {
-            "type": "object",
-            "required": [],
-            "properties": {}
-        },
         "additionalInformation": {
             "type": "object",
             "required": [],
@@ -441,13 +361,13 @@
             "type": "string"
         },
         "initialAlert": {
-            "$ref": "#/definitions/initialAlert"
+            "$ref": "#/definitions/alert"
         },
         "caseLocation": {
-            "$ref": "#/definitions/caseLocation"
+            "$ref": "#/definitions/locationType"
         },
         "newAlert": {
-            "$ref": "#/definitions/newAlert"
+            "$ref": "#/definitions/alert"
         },
         "severity": {
             "type": "string"

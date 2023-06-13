@@ -78,40 +78,56 @@ json_schema = {
 def use_elem_naive(elem):
     print(elem['id'])
 
+def isSharedObject(elem):
+    isObject = elem['Objet'] == 'X'
+    isShared = str(elem['Format (ou type)']) != 'nan'
+    return isObject & isShared
 
 def use_elem(elem):
-#    print(elem)
     # ToDo: update and use this method to build the expected JSON schema
     # By building a python dict or using https://jsonschema-builder.readthedocs.io/en/latest/
+
+    parentPropertyName = None
+    parentDefinitionName = None
+
     if elem['level_shift'] == 0:
         return
-    parentName = None
+
+    print(elem['name'])
+
     if elem['level_shift'] > 1:
-        parentName = df.loc[elem['parent']]['name']
+        parentDefinitionName = df.loc[elem['parent']]['Format (ou type)'] if isSharedObject(df.loc[elem['parent']]) else df.loc[elem['parent']]['name']
+        parentPropertyName = df.loc[elem['parent']]['name']
+
+    elemIsObject = elem['Objet'] == 'X'
+    elemIsShared = str(elem['Format (ou type)']) != 'nan' # does not work : instead check if not NaN
+    defName = elem['Format (ou type)'] if (elemIsObject & elemIsShared) else elem['name']
+
     if elem['Objet'] == 'X':
-        json_schema['definitions'][elem['name']] = {
+        json_schema['definitions'][defName] = {
             'type': 'object',
             'required': [],
             'properties': {}
         }
         if elem['level_shift'] == 1:
+
             json_schema['properties'][elem['name']] = {
-                '$ref': '#/definitions/' + str(elem['name'])
+                '$ref': '#/definitions/' + str(defName)
             }
         else:
             if str(elem['Cardinalité']).endswith('n'):
-                json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
                     'type': 'array',
                     'items': {
-                        '$ref': '#/definitions/' + str(elem['name'])
+                        '$ref': '#/definitions/' + str(defName)
                     }
                 }
             else:
-                json_schema['definitions'][parentName]['properties'][elem['name']] = {
-                    '$ref': '#/definitions/' + str(elem['name'])
+                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
+                    '$ref': '#/definitions/' + str(defName)
                 }
             if str(elem['Cardinalité']).startswith('1'):
-                json_schema['definitions'][parentName]['required'] += [elem['name']]
+                json_schema['definitions'][parentDefinitionName]['required'].append(defName)
     else:
         if elem['level_shift'] == 1:
             json_schema['properties'][elem['name']] = {
@@ -120,19 +136,18 @@ def use_elem(elem):
         else:
             # directly write in parent object's properties
             if str(elem['Cardinalité']).endswith('n'):
-                json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
                     'type': 'array',
                     'items': {
                         'type': 'string'
                     }
                 }
             else:
-                json_schema['definitions'][parentName]['properties'][elem['name']] = {
+                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
                     'type': 'string'
                 }
             if str(elem['Cardinalité']).startswith('1'):
-                json_schema['definitions'][parentName]['required'] += [elem['name']]
-
+                json_schema['definitions'][parentDefinitionName]['required'].append(defName)
 
 # 1. Flat linear data
 flat_data = df.to_dict('records')
