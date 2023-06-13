@@ -149,7 +149,7 @@ def DFS(root):
     if 'children' in root:
         for child in root['children']:
             DFS(child)
-    print(root['id'])
+#    print(root['id'])
 
 
 # Breadth-first search (BFS) example
