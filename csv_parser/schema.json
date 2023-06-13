@@ -23,9 +23,6 @@
                 "reporting": {
                     "type": "string"
                 },
-                "transferCause": {
-                    "type": "string"
-                },
                 "alertInformation": {
                     "type": "string"
                 },
@@ -117,8 +114,7 @@
             "type": "object",
             "required": [
                 "code",
-                "label",
-                "comment"
+                "label"
             ],
             "properties": {
                 "code": {
@@ -149,9 +145,7 @@
         },
         "victims": {
             "type": "object",
-            "required": [
-                "count"
-            ],
+            "required": [],
             "properties": {
                 "count": {
                     "type": "string"
@@ -185,7 +179,10 @@
         },
         "callTaker": {
             "type": "object",
-            "required": [],
+            "required": [
+                "organization",
+                "controlRoom"
+            ],
             "properties": {
                 "organization": {
                     "type": "string"
@@ -234,9 +231,7 @@
                 "locID",
                 "locLabel",
                 "name",
-                "concatenatedAddress",
                 "geometry",
-                "neighbourhood",
                 "country",
                 "comment"
             ],
@@ -248,9 +243,6 @@
                     "type": "string"
                 },
                 "name": {
-                    "type": "string"
-                },
-                "concatenatedAddress": {
                     "type": "string"
                 },
                 "address": {
@@ -271,17 +263,8 @@
                         "$ref": "#/definitions/source"
                     }
                 },
-                "neighbourhood": {
-                    "type": "string"
-                },
                 "country": {
                     "type": "string"
-                },
-                "additionalKeyValues": {
-                    "type": "array",
-                    "items": {
-                        "type": "string"
-                    }
                 },
                 "comment": {
                     "type": "string"
@@ -313,12 +296,6 @@
                     "type": "string"
                 },
                 "inseeCode": {
-                    "type": "string"
-                },
-                "formerName": {
-                    "type": "string"
-                },
-                "formerInseeCode": {
                     "type": "string"
                 }
             }
@@ -359,8 +336,7 @@
         "geometry": {
             "type": "object",
             "required": [
-                "point",
-                "sketch"
+                "point"
             ],
             "properties": {
                 "point": {
@@ -422,6 +398,36 @@
             "type": "object",
             "required": [],
             "properties": {}
+        },
+        "additionalInformation": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "customMap": {
+                    "$ref": "#/definitions/customMap"
+                }
+            }
+        },
+        "customMap": {
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ],
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "string"
+                }
+            }
         }
     },
     "properties": {
@@ -445,6 +451,9 @@
         },
         "severity": {
             "type": "string"
+        },
+        "additionalInformation": {
+            "$ref": "#/definitions/additionalInformation"
         }
     }
 }

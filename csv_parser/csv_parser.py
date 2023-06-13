@@ -85,7 +85,9 @@ def use_elem(elem):
     # By building a python dict or using https://jsonschema-builder.readthedocs.io/en/latest/
     if elem['level_shift'] == 0:
         return
-    parentName = df.loc[elem['parent']]['name']
+    parentName = None
+    if elem['level_shift'] > 1:
+        parentName = df.loc[elem['parent']]['name']
     if elem['Objet'] == 'X':
         json_schema['definitions'][elem['name']] = {
             'type': 'object',
