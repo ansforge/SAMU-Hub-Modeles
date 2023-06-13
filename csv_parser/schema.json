@@ -9,6 +9,7 @@
                 "receivedAt",
                 "reporting",
                 "caller",
+                "alertLocation",
                 "alertCode",
                 "callTaker"
             ],
@@ -22,7 +23,7 @@
                 "reporting": {
                     "type": "string"
                 },
-                "NaN": {
+                "transferCause": {
                     "type": "string"
                 },
                 "alertInformation": {
@@ -30,6 +31,9 @@
                 },
                 "caller": {
                     "$ref": "#/definitions/caller"
+                },
+                "alertLocation": {
+                    "$ref": "#/definitions/alertLocation"
                 },
                 "alertCode": {
                     "$ref": "#/definitions/alertCode"
@@ -75,6 +79,11 @@
                 }
             }
         },
+        "alertLocation": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+        },
         "alertCode": {
             "type": "object",
             "required": [
@@ -86,6 +95,18 @@
                 },
                 "whatsHappen": {
                     "$ref": "#/definitions/whatsHappen"
+                },
+                "locationKind": {
+                    "$ref": "#/definitions/locationKind"
+                },
+                "riskThreat": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/riskThreat"
+                    }
+                },
+                "healthMotive": {
+                    "$ref": "#/definitions/healthMotive"
                 },
                 "victims": {
                     "$ref": "#/definitions/victims"
@@ -110,6 +131,21 @@
                     "type": "string"
                 }
             }
+        },
+        "locationKind": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+        },
+        "riskThreat": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+        },
+        "healthMotive": {
+            "type": "object",
+            "required": [],
+            "properties": {}
         },
         "victims": {
             "type": "object",
@@ -241,7 +277,7 @@
                 "country": {
                     "type": "string"
                 },
-                "NaN": {
+                "additionalKeyValues": {
                     "type": "array",
                     "items": {
                         "type": "string"
@@ -382,17 +418,10 @@
             "required": [],
             "properties": {}
         },
-        "NaN": {
+        "newAlert": {
             "type": "object",
             "required": [],
-            "properties": {
-                "NaN": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/nan"
-                    }
-                }
-            }
+            "properties": {}
         }
     },
     "properties": {
@@ -411,11 +440,11 @@
         "caseLocation": {
             "$ref": "#/definitions/caseLocation"
         },
+        "newAlert": {
+            "$ref": "#/definitions/newAlert"
+        },
         "severity": {
             "type": "string"
-        },
-        "NaN": {
-            "$ref": "#/definitions/nan"
         }
     }
 }
