@@ -93,8 +93,6 @@ def use_elem(elem):
     if elem['level_shift'] == 0:
         return
 
-    print(elem['name'])
-
     if elem['level_shift'] > 1:
         parentDefinitionName = df.loc[elem['parent']]['Format (ou type)'] if isSharedObject(df.loc[elem['parent']]) else df.loc[elem['parent']]['name']
         parentPropertyName = df.loc[elem['parent']]['name']
@@ -104,13 +102,15 @@ def use_elem(elem):
     defName = elem['Format (ou type)'] if (elemIsObject & elemIsShared) else elem['name']
 
     if elem['Objet'] == 'X':
-        json_schema['definitions'][defName] = {
-            'type': 'object',
-            'required': [],
-            'properties': {}
-        }
+        print(json_schema['definitions']['alert']['properties']) if elem['name'] == 'caseLocation' else None
+        print(json_schema['definitions']['alert']['properties']) if elem['name'] == 'additionalInformation' else None
+        if defName not in json_schema['definitions']:
+            json_schema['definitions'][defName] = {
+                'type': 'object',
+                'required': [],
+                'properties': {}
+            }
         if elem['level_shift'] == 1:
-
             json_schema['properties'][elem['name']] = {
                 '$ref': '#/definitions/' + str(defName)
             }

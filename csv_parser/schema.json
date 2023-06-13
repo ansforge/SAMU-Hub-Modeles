@@ -4,8 +4,50 @@
     "definitions": {
         "alert": {
             "type": "object",
-            "required": [],
-            "properties": {}
+            "required": [
+                "alertId",
+                "receivedAt",
+                "reporting",
+                "caller",
+                "locationType",
+                "alertCode",
+                "callTaker"
+            ],
+            "properties": {
+                "alertId": {
+                    "type": "string"
+                },
+                "receivedAt": {
+                    "type": "string"
+                },
+                "reporting": {
+                    "type": "string"
+                },
+                "alertInformation": {
+                    "type": "string"
+                },
+                "caller": {
+                    "$ref": "#/definitions/caller"
+                },
+                "alertLocation": {
+                    "$ref": "#/definitions/locationType"
+                },
+                "alertCode": {
+                    "$ref": "#/definitions/alertCode"
+                },
+                "source": {
+                    "$ref": "#/definitions/source"
+                },
+                "callTaker": {
+                    "$ref": "#/definitions/callTaker"
+                },
+                "resource": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/resourceType"
+                    }
+                }
+            }
         },
         "caller": {
             "type": "object",
@@ -111,8 +153,21 @@
         },
         "attributeType": {
             "type": "object",
-            "required": [],
-            "properties": {}
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            }
         },
         "victims": {
             "type": "object",
@@ -137,6 +192,12 @@
                 "id"
             ],
             "properties": {
+                "channel": {
+                    "type": "string"
+                },
+                "dialledURI": {
+                    "type": "string"
+                },
                 "system": {
                     "type": "string"
                 },
