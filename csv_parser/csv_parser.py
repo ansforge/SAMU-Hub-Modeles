@@ -3,7 +3,7 @@ import json
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_csv('model.csv', skiprows=7, sep=";", nrows=91)
+df = pd.read_csv('model_v2.csv', skiprows=7, sep=";", nrows=91)
 # Dropping useless columns
 df = df.iloc[:, :29]
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -80,7 +80,7 @@ def use_elem_naive(elem):
 
 
 def use_elem(elem):
-    print(elem)
+#    print(elem)
     # ToDo: update and use this method to build the expected JSON schema
     # By building a python dict or using https://jsonschema-builder.readthedocs.io/en/latest/
     if elem['level_shift'] == 0:
@@ -135,9 +135,9 @@ def use_elem(elem):
 # 1. Flat linear data
 flat_data = df.to_dict('records')
 # Explored as a list
-print('\n\tLIST\n')
-for elem in flat_data:
-    use_elem_naive(elem)
+#print('\n\tLIST\n')
+#for elem in flat_data:
+#    use_elem_naive(elem)
 
 
 # Explored like a tree
@@ -162,8 +162,8 @@ def BFS(root):
 
 print('\n\tDFS\n')
 DFS(rootObject)
-print('\n\tBFS\n')
-BFS(rootObject)
+#print('\n\tBFS\n')
+#BFS(rootObject)
 
 with open('schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
