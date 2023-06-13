@@ -3,7 +3,7 @@ import json
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_csv('model_v2.csv', skiprows=7, sep=";", nrows=91)
+df = pd.read_csv('model.csv', skiprows=7, sep=";", nrows=91)
 # Dropping useless columns
 df = df.iloc[:, :29]
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
