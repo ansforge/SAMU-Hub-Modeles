@@ -4,7 +4,7 @@ plugins {
 
 group = 'com.hubsante'
 archivesBaseName = 'hubsante-model'
-version = '0.8-SNAPSHOT'
+version = '0.1-SNAPSHOT'
 
 java {
     toolchain {
