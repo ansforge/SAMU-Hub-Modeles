@@ -1,0 +1,440 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "https://json-schema.org/draft-07/schema#",
+    "properties": {
+        "caseId": {
+            "type": "string"
+        },
+        "senderCaseId": {
+            "type": "string"
+        },
+        "createdAt": {
+            "type": "string"
+        },
+        "initialAlert": {
+            "$ref": "#/definitions/alert"
+        },
+        "caseLocation": {
+            "$ref": "#/definitions/locationType"
+        },
+        "newAlert": {
+            "$ref": "#/definitions/alert"
+        },
+        "severity": {
+            "type": "string"
+        },
+        "additionalInformation": {
+            "$ref": "#/definitions/additionalInformation"
+        }
+    },
+    "definitions": {
+        "alert": {
+            "type": "object",
+            "required": [
+                "alertId",
+                "receivedAt",
+                "reporting",
+                "caller",
+                "locationType",
+                "alertCode",
+                "callTaker"
+            ],
+            "properties": {
+                "alertId": {
+                    "type": "string"
+                },
+                "receivedAt": {
+                    "type": "string"
+                },
+                "reporting": {
+                    "type": "string"
+                },
+                "alertInformation": {
+                    "type": "string"
+                },
+                "caller": {
+                    "$ref": "#/definitions/caller"
+                },
+                "alertLocation": {
+                    "$ref": "#/definitions/locationType"
+                },
+                "alertCode": {
+                    "$ref": "#/definitions/alertCode"
+                },
+                "source": {
+                    "$ref": "#/definitions/source"
+                },
+                "callTaker": {
+                    "$ref": "#/definitions/callTaker"
+                },
+                "resource": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/resourceType"
+                    }
+                }
+            }
+        },
+        "caller": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "callerURI": {
+                    "type": "string"
+                },
+                "callbackURI": {
+                    "type": "string"
+                },
+                "spokenLanguage": {
+                    "type": "string"
+                },
+                "callerInformation": {
+                    "type": "string"
+                },
+                "callerName": {
+                    "type": "string"
+                },
+                "callerLastName": {
+                    "type": "string"
+                },
+                "callerFirstName": {
+                    "type": "string"
+                }
+            }
+        },
+        "locationType": {
+            "type": "object",
+            "required": [
+                "locID",
+                "locLabel",
+                "name",
+                "geometry",
+                "country",
+                "comment"
+            ],
+            "properties": {
+                "locID": {
+                    "type": "string"
+                },
+                "locLabel": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "address": {
+                    "$ref": "#/definitions/address"
+                },
+                "city": {
+                    "$ref": "#/definitions/city"
+                },
+                "access": {
+                    "$ref": "#/definitions/access"
+                },
+                "geometry": {
+                    "$ref": "#/definitions/geometry"
+                },
+                "source": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/source"
+                    }
+                },
+                "country": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            }
+        },
+        "alertCode": {
+            "type": "object",
+            "required": [
+                "cisuVersion"
+            ],
+            "properties": {
+                "cisuVersion": {
+                    "type": "string"
+                },
+                "whatsHappen": {
+                    "$ref": "#/definitions/attributeType"
+                },
+                "locationKind": {
+                    "$ref": "#/definitions/attributeType"
+                },
+                "riskThreat": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/attributeType"
+                    }
+                },
+                "healthMotive": {
+                    "$ref": "#/definitions/attributeType"
+                },
+                "victims": {
+                    "$ref": "#/definitions/victims"
+                }
+            }
+        },
+        "attributeType": {
+            "type": "object",
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            }
+        },
+        "victims": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "count": {
+                    "type": "string"
+                },
+                "mainVictim": {
+                    "type": "string"
+                },
+                "comment": {
+                    "type": "string"
+                }
+            }
+        },
+        "source": {
+            "type": "object",
+            "required": [
+                "system",
+                "type",
+                "id"
+            ],
+            "properties": {
+                "channel": {
+                    "type": "string"
+                },
+                "dialledURI": {
+                    "type": "string"
+                },
+                "system": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                }
+            }
+        },
+        "callTaker": {
+            "type": "object",
+            "required": [
+                "organization",
+                "controlRoom"
+            ],
+            "properties": {
+                "organization": {
+                    "type": "string"
+                },
+                "controlRoom": {
+                    "type": "string"
+                },
+                "calltakerURI": {
+                    "type": "string"
+                },
+                "calltakerId": {
+                    "type": "string"
+                }
+            }
+        },
+        "resourceType": {
+            "type": "object",
+            "required": [
+                "resourceDesc",
+                "mimeType"
+            ],
+            "properties": {
+                "resourceDesc": {
+                    "type": "string"
+                },
+                "mimeType": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "URI": {
+                    "type": "string"
+                },
+                "derefURI": {
+                    "type": "string"
+                },
+                "digest": {
+                    "type": "string"
+                }
+            }
+        },
+        "address": {
+            "type": "object",
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string"
+                },
+                "number": {
+                    "type": "string"
+                },
+                "wayName": {
+                    "type": "string"
+                }
+            }
+        },
+        "city": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "name": {
+                    "type": "string"
+                },
+                "inseeCode": {
+                    "type": "string"
+                }
+            }
+        },
+        "access": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "floor": {
+                    "type": "string"
+                },
+                "roomNumber": {
+                    "type": "string"
+                },
+                "interphone": {
+                    "type": "string"
+                },
+                "accessCode": {
+                    "type": "array",
+                    "items": {
+                        "type": "string"
+                    }
+                },
+                "elevator": {
+                    "type": "string"
+                },
+                "buildingName": {
+                    "type": "string"
+                },
+                "entrance": {
+                    "type": "string"
+                },
+                "service/department/entity": {
+                    "type": "string"
+                }
+            }
+        },
+        "geometry": {
+            "type": "object",
+            "required": [
+                "point"
+            ],
+            "properties": {
+                "point": {
+                    "$ref": "#/definitions/point"
+                },
+                "sketch": {
+                    "$ref": "#/definitions/sketch"
+                }
+            }
+        },
+        "point": {
+            "type": "object",
+            "required": [
+                "coord"
+            ],
+            "properties": {
+                "coord": {
+                    "$ref": "#/definitions/coord"
+                },
+                "coordsys": {
+                    "type": "string"
+                }
+            }
+        },
+        "coord": {
+            "type": "object",
+            "required": [
+                "lat",
+                "lon",
+                "time"
+            ],
+            "properties": {
+                "lat": {
+                    "type": "string"
+                },
+                "lon": {
+                    "type": "string"
+                },
+                "height": {
+                    "type": "string"
+                },
+                "heading": {
+                    "type": "string"
+                },
+                "speed": {
+                    "type": "string"
+                },
+                "time": {
+                    "type": "string"
+                }
+            }
+        },
+        "sketch": {
+            "type": "object",
+            "required": [],
+            "properties": {}
+        },
+        "additionalInformation": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "customMap": {
+                    "$ref": "#/definitions/customMap"
+                }
+            }
+        },
+        "customMap": {
+            "type": "object",
+            "required": [
+                "key",
+                "value"
+            ],
+            "properties": {
+                "key": {
+                    "type": "string"
+                },
+                "label": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                },
+                "details": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
