@@ -1,8 +1,6 @@
 package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.hubsante.model.cisu.CreateEventMessage;
-import com.hubsante.model.emsi.Emsi;
 
 import java.util.Objects;
 

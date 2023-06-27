@@ -1,7 +1,6 @@
 package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hubsante.model.cisu.AckMessage;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
