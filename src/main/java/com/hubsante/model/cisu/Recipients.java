@@ -6,7 +6,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
               
 public class Recipients {
@@ -14,20 +16,24 @@ public class Recipients {
   @JacksonXmlProperty(localName = "recipient")
   @JacksonXmlElementWrapper(useWrapping = false)
   @NotNull
-  @Size(min=1)
-  private AddresseeType[] recipient;
+  @Size(min=0)
+  private List<AddresseeType> recipient;
 
   public Recipients(){
   }
 
   public Recipients(
-    AddresseeType[] recipient
+    List<AddresseeType> recipient
   ) {
   	this.recipient = recipient;
   }
 
-  public AddresseeType[] getRecipient() { return this.recipient; }
-  public void setRecipient(AddresseeType[] recipient) { this.recipient = recipient; }
+  public List<AddresseeType> getRecipient() { return this.recipient; }
+  public void setRecipient(List<AddresseeType> recipient) {
+    if (this.recipient == null) {
+      this.recipient = new ArrayList<>();
+    }
+    this.recipient.addAll(recipient); }
 
   @Override
   public boolean equals(Object o) {
@@ -38,7 +44,7 @@ public class Recipients {
       return false;
     }
     Recipients self = (Recipients) o;
-      return Arrays.equals(this.recipient, self.recipient);
+      return Objects.equals(this.recipient, self.recipient);
   }
 
   @Override
