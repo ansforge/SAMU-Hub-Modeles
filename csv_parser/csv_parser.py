@@ -71,6 +71,7 @@ json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     'id': 'schema.json#',
     'version': '0.4.9',
+    'example': 'example.json#',
     'required': [],
     'properties': {},
     'definitions': {}
@@ -110,11 +111,19 @@ def type_matching(child):
             return typeName, None
 
 
-def add_field_child_property(properties, child):
-    """Update properties by adding the child information for a field child"""
+def get_parent_example_path(parent):
+    if parent['level_shift'] == 0:
+        return json_schema['example']
+    return json_schema['definitions'][get_object_type(parent)]['example']
+
+
+def add_field_child_property(parent, child, properties):
+    """Update parent properties by adding the child information for a field child"""
     typeName, pattern = type_matching(child)
+    parentExamplePath = get_parent_example_path(parent)
     childDetails = {
         'type': typeName,
+        'example': parentExamplePath + '/' + child['name']
     }
     if str(child['Description']) != 'nan':
         childDetails['description'] = child['Description']
@@ -131,28 +140,45 @@ def add_field_child_property(properties, child):
         properties[child['name']] = childDetails
 
 
-def add_object_child_property(properties, child):
-    """Update properties by adding the child information for an object child"""
+def add_object_child_definition(parent, child, definitions):
+    """
+    Update parent definitions (required and properties) by adding the child information for an object child
+    Creates definitions for the child object if it does not exist yet
+    """
     childTypeName = get_object_type(child)
+    parentExamplePath = get_parent_example_path(parent)
+    typeName = get_object_type(child)
+    if typeName not in json_schema['definitions']:
+        json_schema['definitions'][typeName] = {
+            'type': 'object',
+            'required': [],
+            'properties': {},
+            'example': parentExamplePath + '/' + child['name']
+        }
+    if child['Cardinalité'].startswith('1'):
+        definitions['required'].append(child['name'])
+    properties = definitions['properties']
     if str(child['Cardinalité']).endswith('n'):
         properties[child['name']] = {
             'type': 'array',
             'items': {
-                '$ref': '#/definitions/' + childTypeName
+                '$ref': '#/definitions/' + childTypeName,
+                'example': parentExamplePath + '/' + child['name']
             }
         }
     else:
         properties[child['name']] = {
-            '$ref': '#/definitions/' + childTypeName
+            '$ref': '#/definitions/' + childTypeName,
+            'example': parentExamplePath + '/' + child['name']
         }
 
 
-def add_child_property(properties, child):
-    """Update properties by adding the child information"""
+def add_child(parent, child, definitions):
+    """Update parent definitions by adding the child information"""
     if child['Objet'] != 'X':
-        add_field_child_property(properties, child)
+        add_field_child_property(parent, child, definitions['properties'])
     else:
-        add_object_child_property(properties, child)
+        add_object_child_definition(parent, child, definitions)
 
 
 def fill_object_definition(elem, root=False):
@@ -163,21 +189,13 @@ def fill_object_definition(elem, root=False):
     if root:
         definition = json_schema
     else:
-        typeName = get_object_type(elem)
-        if typeName not in json_schema['definitions']:
-            json_schema['definitions'][typeName] = {
-                'type': 'object',
-                'required': [],
-                'properties': {}
-            }
         if 'children' not in elem:
             return
+        typeName = get_object_type(elem)
         definition = json_schema['definitions'][typeName]
-    # Fill the required and properties based on the children
+    # Fill the elem definitions based on the children
     for child in elem['children']:
-        if child['Cardinalité'].startswith('1'):
-            definition['required'].append(child['name'])
-        add_child_property(definition['properties'], child)
+        add_child(elem, child, definition)
 
 
 def use_elem_new(elem):
@@ -200,7 +218,26 @@ def DFS(root):
 
 print('Generating JSON schema...')
 DFS(rootObject)
-print('JSON schema generated.')
-
 with open('schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
+print('JSON schema generated.')
+
+
+# Recursively build a json example
+def build_example(elem):
+    if elem['Objet'] != 'X':
+        if str(elem['Exemples']) == 'nan':
+            return 'None'
+        return elem['Exemples']
+    elif 'children' not in elem:
+        return {}
+    else:
+        children = {}
+        for child in elem['children']:
+            children[child['name']] = build_example(child)
+        return children
+
+
+with open('example.json', 'w') as outfile:
+    json.dump(build_example(rootObject), outfile, indent=4)
+
