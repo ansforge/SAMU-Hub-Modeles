@@ -71,81 +71,105 @@ json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     'id': 'schema.json#',
     'version': '0.4.9',
+    'required': [],
     'properties': {},
     'definitions': {}
 }
 
-def isSharedObject(elem):
+
+def is_typed_object(elem):
+    """Is elem an object and using a specific reusable type?"""
     isObject = elem['Objet'] == 'X'
-    isShared = str(elem['Format (ou type)']) != 'nan'
-    return isObject & isShared
+    isTyped = str(elem['Format (ou type)']) != 'nan'
+    return isObject & isTyped
 
-def use_elem(elem):
-    # By building a python dict or using https://jsonschema-builder.readthedocs.io/en/latest/
 
-    parentPropertyName = None
-    parentDefinitionName = None
+def get_object_type(elem):
+    """Get the type of elem (defaults to its name if there is no type specified)"""
+    return elem['Format (ou type)'] if is_typed_object(elem) else elem['name']
 
-    if elem['level_shift'] == 0:
-        return
 
-    if elem['level_shift'] > 1:
-        parentDefinitionName = df.loc[elem['parent']]['Format (ou type)'] if isSharedObject(df.loc[elem['parent']]) else df.loc[elem['parent']]['name']
-        parentPropertyName = df.loc[elem['parent']]['name']
+def add_field_child_property(properties, child):
+    """Update properties by adding the child information for a field child"""
+    if str(child['Cardinalité']).endswith('n'):
+        properties[child['name']] = {
+            'type': 'array',
+            'items': {
+                'type': 'string'
+            }
+        }
+    else:
+        properties[child['name']] = {
+            'type': 'string'
+        }
 
-    defName = elem['Format (ou type)'] if (isSharedObject(elem)) else elem['name']
 
-    if elem['Objet'] == 'X':
-        if defName not in json_schema['definitions']:
-            json_schema['definitions'][defName] = {
+def add_object_child_property(properties, child):
+    """Update properties by adding the child information for an object child"""
+    childTypeName = get_object_type(child)
+    if str(child['Cardinalité']).endswith('n'):
+        properties[child['name']] = {
+            'type': 'array',
+            'items': {
+                '$ref': '#/definitions/' + childTypeName
+            }
+        }
+    else:
+        properties[child['name']] = {
+            '$ref': '#/definitions/' + childTypeName
+        }
+
+
+def add_child_property(properties, child):
+    """Update properties by adding the child information"""
+    if child['Objet'] != 'X':
+        add_field_child_property(properties, child)
+    else:
+        add_object_child_property(properties, child)
+
+
+def fill_object_definition(elem, root=False):
+    """
+    Update the definition (required and properties) of the type of elem by traversing its direct children
+    if root, write it on the top level of the schema and not in definitions
+    """
+    if root:
+        definition = json_schema
+    else:
+        typeName = get_object_type(elem)
+        if typeName not in json_schema['definitions']:
+            json_schema['definitions'][typeName] = {
                 'type': 'object',
                 'required': [],
                 'properties': {}
             }
-        if elem['level_shift'] == 1:
-            json_schema['properties'][elem['name']] = {
-                '$ref': '#/definitions/' + str(defName)
-            }
-        else:
-            if str(elem['Cardinalité']).endswith('n'):
-                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
-                    'type': 'array',
-                    'items': {
-                        '$ref': '#/definitions/' + str(defName)
-                    }
-                }
-            else:
-                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
-                    '$ref': '#/definitions/' + str(defName)
-                }
-            if str(elem['Cardinalité']).startswith('1'):
-                json_schema['definitions'][parentDefinitionName]['required'].append(defName)
-    else:
-        if elem['level_shift'] == 1:
-            json_schema['properties'][elem['name']] = {
-                'type': 'string'
-            }
-        else:
-            # directly write in parent object's properties
-            if str(elem['Cardinalité']).endswith('n'):
-                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
-                    'type': 'array',
-                    'items': {
-                        'type': 'string'
-                    }
-                }
-            else:
-                json_schema['definitions'][parentDefinitionName]['properties'][elem['name']] = {
-                    'type': 'string'
-                }
-            if str(elem['Cardinalité']).startswith('1'):
-                json_schema['definitions'][parentDefinitionName]['required'].append(defName)
+        if 'children' not in elem:
+            return
+        definition = json_schema['definitions'][typeName]
+    # Fill the required and properties based on the children
+    for child in elem['children']:
+        if child['Cardinalité'].startswith('1'):
+            definition['required'].append(child['name'])
+        add_child_property(definition['properties'], child)
+
+
+def use_elem_new(elem):
+    # Root element: write it on the top level of the schema and not in definitions
+    if elem['level_shift'] == 0:
+        fill_object_definition(elem, root=True)
+
+    # Lower objects: it's a definition
+    # -> update the type in definitions by traversing the direct children
+    elif elem['level_shift'] > 0 and elem['Objet'] == 'X':
+        fill_object_definition(elem)
+
 
 def DFS(root):
-    use_elem(root)
+    use_elem_new(root)
     if 'children' in root:
         for child in root['children']:
             DFS(child)
+
 
 print('Generating JSON schema...')
 DFS(rootObject)

@@ -2,6 +2,11 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "id": "schema.json#",
     "version": "0.4.9",
+    "required": [
+        "caseId",
+        "createdAt",
+        "caseLocation"
+    ],
     "properties": {
         "caseId": {
             "type": "string"
@@ -19,7 +24,10 @@
             "$ref": "#/definitions/locationType"
         },
         "newAlert": {
-            "$ref": "#/definitions/alert"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/alert"
+            }
         },
         "severity": {
             "type": "string"
@@ -36,7 +44,7 @@
                 "receivedAt",
                 "reporting",
                 "caller",
-                "locationType",
+                "alertLocation",
                 "alertCode",
                 "callTaker"
             ],
