@@ -41,7 +41,14 @@
         },
         "severity": {
             "type": "string",
-            "description": "[Non utilis\u00e9 dans une premi\u00e8re version car la d\u00e9finition et l'usage restent \u00e0 d\u00e9finir]\nPr\u00e9cise l'urgence m\u00e9dicale :\n        EXTREME : Menace extr\u00eame pour la vie\n        SEVERE : Menace importante pour la vie\n        MODERATE - Menace possible pour la vie\n        MINOR : Peu ou pas de menace connue pour la vie\n        UNKNOWN : Niveau de menace inconnu\nCe niveau de gravit\u00e9 est li\u00e9 au Motif de Recours Medico-Secouriste associ\u00e9 \u00e0 l'appel."
+            "description": "[Non utilis\u00e9 dans une premi\u00e8re version car la d\u00e9finition et l'usage restent \u00e0 d\u00e9finir]\nPr\u00e9cise l'urgence m\u00e9dicale :\n        EXTREME : Menace extr\u00eame pour la vie\n        SEVERE : Menace importante pour la vie\n        MODERATE - Menace possible pour la vie\n        MINOR : Peu ou pas de menace connue pour la vie\n        UNKNOWN : Niveau de menace inconnu\nCe niveau de gravit\u00e9 est li\u00e9 au Motif de Recours Medico-Secouriste associ\u00e9 \u00e0 l'appel.",
+            "enum": [
+                "EXTREME",
+                "SEVERE",
+                "MODERATE",
+                "MINOR",
+                "UNKNOWN"
+            ]
         },
         "additionalInformation": {
             "$ref": "#/definitions/additionalInformation"
@@ -71,7 +78,11 @@
                 },
                 "reporting": {
                     "type": "string",
-                    "description": "Permet d'attirer l'attention des forces partenaires sur une affaire.  \nEventuellement automatis\u00e9 en fonction des crit\u00e8res saisis et de leur param\u00e9trage, ou renseign\u00e9 par l'op\u00e9rateur. \nPrend les valeurs d\u00e9finies dans la nomenclature CISU. \nPour les syst\u00e8mes multi-alertes mais g\u00e9rant ce champs au niveau de l'affaire, ils prennent le niveau d'alerte le plus \u00e9lev\u00e9 (peut \u00eatre compl\u00e9t\u00e9 par \"Raison du transfert\")"
+                    "description": "Permet d'attirer l'attention des forces partenaires sur une affaire.  \nEventuellement automatis\u00e9 en fonction des crit\u00e8res saisis et de leur param\u00e9trage, ou renseign\u00e9 par l'op\u00e9rateur. \nPrend les valeurs d\u00e9finies dans la nomenclature CISU. \nPour les syst\u00e8mes multi-alertes mais g\u00e9rant ce champs au niveau de l'affaire, ils prennent le niveau d'alerte le plus \u00e9lev\u00e9 (peut \u00eatre compl\u00e9t\u00e9 par \"Raison du transfert\")",
+                    "enum": [
+                        "STANDARD",
+                        "ATTENTION"
+                    ]
                 },
                 "alertInformation": {
                     "type": "string",
@@ -188,7 +199,11 @@
                     }
                 },
                 "country": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "France",
+                        "\u2026"
+                    ]
                 },
                 "comment": {
                     "type": "string",
@@ -253,11 +268,25 @@
                 },
                 "count": {
                     "type": "string",
-                    "description": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU"
+                    "description": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU",
+                    "enum": [
+                        "0",
+                        "1",
+                        "SEVERAL",
+                        "MANY",
+                        "UNKNOWN"
+                    ]
                 },
                 "mainVictim": {
                     "type": "string",
-                    "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS."
+                    "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS.",
+                    "enum": [
+                        "INFANT",
+                        "CHILD",
+                        "ADULT",
+                        "PREGNANT",
+                        "SENIOR"
+                    ]
                 }
             }
         },
@@ -494,7 +523,12 @@
                 },
                 "precision": {
                     "type": "string",
-                    "description": "Niveau de pr\u00e9cision et de confiance dans les coordonn\u00e9es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie) d\u00e9termin\u00e9e de fa\u00e7on automatique par le syst\u00e8me en fonction des informations disponibles lors de son \u00e9laboration (n\u00b0, voie et commune) et du matching fait dans son syst\u00e8me de localisation."
+                    "description": "Niveau de pr\u00e9cision et de confiance dans les coordonn\u00e9es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie) d\u00e9termin\u00e9e de fa\u00e7on automatique par le syst\u00e8me en fonction des informations disponibles lors de son \u00e9laboration (n\u00b0, voie et commune) et du matching fait dans son syst\u00e8me de localisation.",
+                    "enum": [
+                        "CITY",
+                        "STREET",
+                        "ADDRESS"
+                    ]
                 }
             }
         },
@@ -513,7 +547,12 @@
             "properties": {
                 "source": {
                     "type": "string",
-                    "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)"
+                    "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
+                    "enum": [
+                        "BAN",
+                        "IGN",
+                        "NexSIS"
+                    ]
                 },
                 "type": {
                     "type": "string",
@@ -549,7 +588,13 @@
                     "type": "string"
                 },
                 "sex": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "F",
+                        "M",
+                        "O",
+                        "U"
+                    ]
                 },
                 "birthDate": {
                     "type": "string",
@@ -581,7 +626,13 @@
             ],
             "properties": {
                 "source": {
-                    "type": "string"
+                    "type": "string",
+                    "enum": [
+                        "NIR",
+                        "SINUS",
+                        "SI-VIC",
+                        "\u2026"
+                    ]
                 },
                 "value": {
                     "type": "string"

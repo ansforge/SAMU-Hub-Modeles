@@ -89,6 +89,11 @@ def get_object_type(elem):
     return elem['Format (ou type)'] if is_typed_object(elem) else elem['name']
 
 
+def has_format_details(elem, details):
+    """Does elem have a format details starting with details?"""
+    return str(elem['Détails de format']) != 'nan' and elem['Détails de format'].startswith(details)
+
+
 def type_matching(child):
     """Get the matching type for a given type name"""
     typeName = child['Format (ou type)']
@@ -99,7 +104,7 @@ def type_matching(child):
     elif typeName == 'phoneNumber':
         return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}'
     else:
-        if str(child['Détails de format']) != 'nan' and child['Détails de format'].startswith('REGEX: '):
+        if has_format_details(child, 'REGEX: '):
             return typeName, child['Détails de format'][7:]
         else:
             return typeName, None
@@ -115,6 +120,8 @@ def add_field_child_property(properties, child):
         childDetails['description'] = child['Description']
     if pattern is not None:
         childDetails['pattern'] = pattern
+    if has_format_details(child, 'ENUM: '):
+        childDetails['enum'] = child['Détails de format'][6:].split(', ')
     if str(child['Cardinalité']).endswith('n'):
         properties[child['name']] = {
             'type': 'array',
