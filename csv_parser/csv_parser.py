@@ -69,7 +69,8 @@ rootObject = {
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
-    'id': 'schema.json#'
+    'id': 'schema.json#',
+    'version': '0.4.9',
     'properties': {},
     'definitions': {}
 }
