@@ -3,7 +3,7 @@ import json
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_csv('model.csv', skiprows=7, sep=";", nrows=91)
+df = pd.read_excel('model.xlsx', sheet_name="partageAffaire", skiprows=7, nrows=109)
 # Dropping useless columns
 df = df.iloc[:, :29]
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -89,19 +89,39 @@ def get_object_type(elem):
     return elem['Format (ou type)'] if is_typed_object(elem) else elem['name']
 
 
+def type_matching(child):
+    """Get the matching type for a given type name"""
+    typeName = child['Format (ou type)']
+    if typeName == 'date':
+        return 'string', r'\d{4}-\d{2}-\d{2}'
+    elif typeName == 'datetime':
+        return 'string', r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}'
+    elif typeName == 'phoneNumber':
+        return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}'
+    else:
+        if str(child['Détails de format']) != 'nan' and child['Détails de format'].startswith('REGEX: '):
+            return typeName, child['Détails de format'][7:]
+        else:
+            return typeName, None
+
+
 def add_field_child_property(properties, child):
     """Update properties by adding the child information for a field child"""
+    typeName, pattern = type_matching(child)
+    childDetails = {
+        'type': typeName,
+    }
+    if str(child['Description']) != 'nan':
+        childDetails['description'] = child['Description']
+    if pattern is not None:
+        childDetails['pattern'] = pattern
     if str(child['Cardinalité']).endswith('n'):
         properties[child['name']] = {
             'type': 'array',
-            'items': {
-                'type': 'string'
-            }
+            'items': childDetails
         }
     else:
-        properties[child['name']] = {
-            'type': 'string'
-        }
+        properties[child['name']] = childDetails
 
 
 def add_object_child_property(properties, child):

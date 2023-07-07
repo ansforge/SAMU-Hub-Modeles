@@ -9,19 +9,29 @@
     ],
     "properties": {
         "caseId": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifiant fonctionnel unique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par la force r\u00e9ceptrice de la primo-demande de secours et contient un identifiant de la source.\nFormat propos\u00e9 : {Syst\u00e8meEmetteur}-{Date}-AL|AF{Sequence}\nFormat NF399 : pays + CTA + date + # unique\nFormat NexSIS : SC-20211105-077-cga-AF18 (SC-AAAAMMJJ-{codeCGA}-AL|AF{SEQUENCE}) (toutes les alertes cr\u00e9ent pas des affaires, affaires peuvent avoir plusieurs alertes)"
         },
         "senderCaseId": {
-            "type": "string"
+            "type": "string",
+            "description": "Identifiant de l'affaire dans le SI de l'\u00e9metteur du message"
         },
         "createdAt": {
-            "type": "string"
+            "type": "string",
+            "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). Il doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation  de la premi\u00e8re alerte. Lors de l'ajout d'alerte \u00e0 une affaire ce champ ne doit pas \u00eatre modifi\u00e9.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9. Le fuseau horaire pour UTC doit \u00eatre repr\u00e9sent\u00e9 par '-00:00'",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
         },
         "initialAlert": {
             "$ref": "#/definitions/alert"
         },
         "caseLocation": {
-            "$ref": "#/definitions/locationType"
+            "$ref": "#/definitions/location"
+        },
+        "casualties": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/casualties"
+            }
         },
         "newAlert": {
             "type": "array",
@@ -30,7 +40,8 @@
             }
         },
         "severity": {
-            "type": "string"
+            "type": "string",
+            "description": "[Non utilis\u00e9 dans une premi\u00e8re version car la d\u00e9finition et l'usage restent \u00e0 d\u00e9finir]\nPr\u00e9cise l'urgence m\u00e9dicale :\n        EXTREME : Menace extr\u00eame pour la vie\n        SEVERE : Menace importante pour la vie\n        MODERATE - Menace possible pour la vie\n        MINOR : Peu ou pas de menace connue pour la vie\n        UNKNOWN : Niveau de menace inconnu\nCe niveau de gravit\u00e9 est li\u00e9 au Motif de Recours Medico-Secouriste associ\u00e9 \u00e0 l'appel."
         },
         "additionalInformation": {
             "$ref": "#/definitions/additionalInformation"
@@ -50,28 +61,33 @@
             ],
             "properties": {
                 "alertId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Identifiant technique unique de l'alerte. Il doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 automatiquement par le syst\u00e8me \u00e9metteur et ne doit pas avoir de signification / utilisation particuli\u00e8re par les diff\u00e9rents syst\u00e8mes pour garantir leur d\u00e9couplage.\nVoir la description de l'identifiant de l'affaire pour voir le format."
                 },
                 "receivedAt": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Groupe date heure de r\u00e9ception de l'alerte",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
                 },
                 "reporting": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Permet d'attirer l'attention des forces partenaires sur une affaire.  \nEventuellement automatis\u00e9 en fonction des crit\u00e8res saisis et de leur param\u00e9trage, ou renseign\u00e9 par l'op\u00e9rateur. \nPrend les valeurs d\u00e9finies dans la nomenclature CISU. \nPour les syst\u00e8mes multi-alertes mais g\u00e9rant ce champs au niveau de l'affaire, ils prennent le niveau d'alerte le plus \u00e9lev\u00e9 (peut \u00eatre compl\u00e9t\u00e9 par \"Raison du transfert\")"
                 },
                 "alertInformation": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte"
                 },
                 "caller": {
                     "$ref": "#/definitions/caller"
                 },
                 "alertLocation": {
-                    "$ref": "#/definitions/locationType"
+                    "$ref": "#/definitions/location"
                 },
                 "alertCode": {
                     "$ref": "#/definitions/alertCode"
                 },
-                "source": {
-                    "$ref": "#/definitions/source"
+                "alertSource": {
+                    "$ref": "#/definitions/alertSource"
                 },
                 "callTaker": {
                     "$ref": "#/definitions/callTaker"
@@ -79,7 +95,7 @@
                 "resource": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/resourceType"
+                        "$ref": "#/definitions/resource"
                     }
                 }
             }
@@ -89,47 +105,69 @@
             "required": [],
             "properties": {
                 "callerURI": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type de l'URI utilis\u00e9e par le r\u00e9qu\u00e9rant et valeur. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le num\u00e9ro de t\u00e9l\u00e9phone doit \u00eatre renseign\u00e9 en priorit\u00e9, \u00e0 d\u00e9faut, renseigner un autre type d'URI. Si ce num\u00e9ro est renseign\u00e9, il devient prioritaire par rapport au num\u00e9ro d'appel.",
+                    "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 },
                 "callbackURI": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requ\u00e9rant, de la victime ou d'un t\u00e9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le num\u00e9ro de t\u00e9l\u00e9phone doit \u00eatre renseign\u00e9 en priorit\u00e9, \u00e0 d\u00e9faut, renseigner un autre type d'URI. Si le num\u00e9ro de contre-appel est renseign\u00e9, il doit \u00eatre utilis\u00e9 en priorit\u00e9 sur le num\u00e9ro r\u00e9qu\u00e9rant.",
+                    "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 },
                 "spokenLanguage": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Langue parl\u00e9e par le requ\u00e9rant. Permet de mettre en place des traducteurs si besoin."
                 },
                 "callerInformation": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Information sur le requ\u00e9rant : malentendant, impliqu\u00e9 dans l'accident, \u2026"
                 },
                 "callerName": {
-                    "type": "string"
-                },
-                "callerLastName": {
-                    "type": "string"
-                },
-                "callerFirstName": {
-                    "type": "string"
+                    "$ref": "#/definitions/callerName"
                 }
             }
         },
-        "locationType": {
+        "callerName": {
+            "type": "object",
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nNexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s"
+                },
+                "callerLastName": {
+                    "type": "string",
+                    "description": "Nom du requ\u00e9rant"
+                },
+                "callerFirstName": {
+                    "type": "string",
+                    "description": "Pr\u00e9nom du r\u00e9qu\u00e9rant"
+                }
+            }
+        },
+        "location": {
             "type": "object",
             "required": [
                 "locID",
                 "locLabel",
                 "name",
-                "geometry",
                 "country",
                 "comment"
             ],
             "properties": {
                 "locID": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "ID technique et provisoire permettant d'identifier le lieu dans le cadre des \u00e9changes de cette affaire."
                 },
                 "locLabel": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Correspond \u00e0 l'\u00e9tiquette associ\u00e9e \u00e0 la localisation (plut\u00f4t \u00e0 destination des humains).\nElle va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse."
                 },
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Indique le nom de lieu : nom commercial, lieu-dit, lac, for\u00eat, nom de quartier (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
                 },
                 "address": {
                     "$ref": "#/definitions/address"
@@ -143,50 +181,57 @@
                 "geometry": {
                     "$ref": "#/definitions/geometry"
                 },
-                "source": {
+                "link": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/source"
+                        "$ref": "#/definitions/link"
                     }
                 },
                 "country": {
                     "type": "string"
                 },
                 "comment": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Champ libre pour compl\u00e9ter les informations de localisation"
                 }
             }
         },
         "alertCode": {
             "type": "object",
             "required": [
-                "cisuVersion"
+                "cisuVersion",
+                "whatsHappen"
             ],
             "properties": {
                 "cisuVersion": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Indique le num\u00e9ro de version du r\u00e9f\u00e9rentiel des nomenclatures des codes transmis. Cela permet de s'assurer que les syst\u00e8mes op\u00e9rationnels soient en capacit\u00e9 de les  traiter correctement."
                 },
                 "whatsHappen": {
-                    "$ref": "#/definitions/attributeType"
+                    "$ref": "#/definitions/nomenclature"
                 },
                 "locationKind": {
-                    "$ref": "#/definitions/attributeType"
+                    "$ref": "#/definitions/nomenclature"
                 },
                 "riskThreat": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/attributeType"
+                        "$ref": "#/definitions/nomenclature"
                     }
                 },
                 "healthMotive": {
-                    "$ref": "#/definitions/attributeType"
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "gravity": {
+                    "type": "string",
+                    "description": "Score de gravit\u00e9 fournit par NexSIS"
                 },
                 "victims": {
-                    "$ref": "#/definitions/victims"
+                    "$ref": "#/definitions/nomenclature"
                 }
             }
         },
-        "attributeType": {
+        "nomenclature": {
             "type": "object",
             "required": [
                 "code",
@@ -194,53 +239,40 @@
             ],
             "properties": {
                 "code": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "D\u00e9crit le code des NF, TL, RMS et MR. Les diff\u00e9rents niveaux doivent \u00eatre s\u00e9par\u00e9s par un point. R\u00e9f\u00e9rentiel : nomenclature CISU",
+                    "pattern": "([CLMR](([0-9][0-9])|(([0-9][0-9])(\\.[0-9][0-9]){1,2})))"
                 },
                 "label": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Pr\u00e9sente les diff\u00e9rents libell\u00e9s des circonstances. R\u00e9f\u00e9rentiel : nomenclature CISU. Les libell\u00e9s des diff\u00e9rents niveaux doivent \u00eatre concat\u00e9n\u00e9s. Le point-virgule est utilis\u00e9 comme s\u00e9parateur. Exemple pour C01.01.01 : \"Accident de la circulation; Accident routier; V\u00e9hicule l\u00e9ger, fourgon\". "
                 },
                 "comment": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Permet de compl\u00e9menter en commentaire libre la(les) victime(s)"
+                },
+                "count": {
+                    "type": "string",
+                    "description": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU"
+                },
+                "mainVictim": {
+                    "type": "string",
+                    "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS."
                 }
             }
         },
-        "victims": {
+        "alertSource": {
             "type": "object",
             "required": [],
             "properties": {
-                "count": {
-                    "type": "string"
-                },
-                "mainVictim": {
-                    "type": "string"
-                },
-                "comment": {
-                    "type": "string"
-                }
-            }
-        },
-        "source": {
-            "type": "object",
-            "required": [
-                "system",
-                "type",
-                "id"
-            ],
-            "properties": {
                 "channel": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Permet d'indiquer l'origine de la communication : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
                 },
                 "dialledURI": {
-                    "type": "string"
-                },
-                "system": {
-                    "type": "string"
-                },
-                "type": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Indique le type de l'URI compos\u00e9e par le r\u00e9qu\u00e9rant et la valeur de l'URI, concat\u00e9n\u00e9es et s\u00e9par\u00e9es par \":\". Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI peut \u00eatre renseign\u00e9e.",
+                    "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 }
             }
         },
@@ -252,43 +284,53 @@
             ],
             "properties": {
                 "organization": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Organisation d'appartenance de l'op\u00e9rateur ayant trait\u00e9 l'alerte"
                 },
                 "controlRoom": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Salle op\u00e9rationnelle de l'op\u00e9rateur de traitement"
                 },
                 "calltakerURI": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Num\u00e9ro de ligne directe permettant de recontacter l'op\u00e9rateur de traitement"
                 },
                 "calltakerId": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Identifiant unique de l'op\u00e9rataur ayant trait\u00e9 l'alerte"
                 }
             }
         },
-        "resourceType": {
+        "resource": {
             "type": "object",
             "required": [
-                "resourceDesc",
-                "mimeType"
+                "URI"
             ],
             "properties": {
                 "resourceDesc": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "D\u00e9crit la ressource en pr\u00e9cisant le type et le contenu, tels que \u00abcarte\u00bb ou \u00abphoto\u00bb"
                 },
                 "mimeType": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "L'identifiant du type MIME de contenu et sous-type d\u00e9crivant la ressource"
                 },
                 "size": {
-                    "type": "string"
+                    "type": "integer",
+                    "description": "Taille approximative de la ressource en kO"
                 },
                 "URI": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Une URI, g\u00e9n\u00e9ralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un r\u00e9seau priv\u00e9",
+                    "pattern": "(https?|ftp|file):\\/\\/([\\w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
                 },
                 "derefURI": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Peut \u00eatre utilis\u00e9 \u00e0 la place de l'\u00e9l\u00e9ment 'URI' pour envoyer la ressource encod\u00e9e en base64 pour \u00e9viter des probl\u00e8mes de transcodage (sur des double quotes qui casseraient le message, \u2026)"
                 },
                 "digest": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Hash de la ressource pour confirmer la r\u00e9ception de la bonne ressource"
                 }
             }
         },
@@ -299,12 +341,32 @@
             ],
             "properties": {
                 "complete": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Num\u00e9ro, type et nom de la voie. \nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\nObligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
                 },
                 "number": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
                 },
                 "wayName": {
+                    "$ref": "#/definitions/wayName"
+                }
+            }
+        },
+        "wayName": {
+            "type": "object",
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "description": "Type et nom de la voie (venant d'un r\u00e9f\u00e9rentiel ou non)"
+                },
+                "type": {
+                    "type": "string"
+                },
+                "name": {
                     "type": "string"
                 }
             }
@@ -314,10 +376,17 @@
             "required": [],
             "properties": {
                 "name": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Nom officiel de la commune actuelle"
                 },
                 "inseeCode": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.",
+                    "pattern": "[0-9]{5}"
+                },
+                "details": {
+                    "type": "string",
+                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur"
                 }
             }
         },
@@ -326,39 +395,44 @@
             "required": [],
             "properties": {
                 "floor": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Etage "
                 },
                 "roomNumber": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Sp\u00e9cifie num\u00e9ro d'appartement, de chambre, de bureau"
                 },
                 "interphone": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Indique les informations n\u00e9cessaires  \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
                 },
                 "accessCode": {
                     "type": "array",
                     "items": {
-                        "type": "string"
+                        "type": "string",
+                        "description": "Indique le ou les digicodes dans l'ordre de progression dans le b\u00e2timent"
                     }
                 },
                 "elevator": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Indique l'ascenseur ou la cage d'escalier "
                 },
                 "buildingName": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Nom du b\u00e2timent"
                 },
                 "entrance": {
                     "type": "string"
                 },
                 "service/department/entity": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement"
                 }
             }
         },
         "geometry": {
             "type": "object",
-            "required": [
-                "point"
-            ],
+            "required": [],
             "properties": {
                 "point": {
                     "$ref": "#/definitions/point"
@@ -378,7 +452,9 @@
                     "$ref": "#/definitions/coord"
                 },
                 "coordsys": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00abEPSG-4326\u00bb.",
+                    "pattern": "[0-9]{0,10}"
                 }
             }
         },
@@ -387,26 +463,38 @@
             "required": [
                 "lat",
                 "lon",
-                "time"
+                "time",
+                "precision"
             ],
             "properties": {
                 "lat": {
-                    "type": "string"
+                    "type": "number",
+                    "description": "Latitude du point cl\u00e9 de la localisation"
                 },
                 "lon": {
-                    "type": "string"
+                    "type": "number",
+                    "description": "Longitude du point cl\u00e9 de la localisation"
                 },
                 "height": {
-                    "type": "string"
+                    "type": "number",
+                    "description": "Altitude du point cl\u00e9 de la localisation, ignor\u00e9 c\u00f4t\u00e9 NexSIS."
                 },
                 "heading": {
-                    "type": "string"
+                    "type": "number",
+                    "description": "En degr\u00e9"
                 },
                 "speed": {
-                    "type": "string"
+                    "type": "number",
+                    "description": "Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, \u2026"
                 },
                 "time": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. Permet de conna\u00eetre la fra\u00eecheur et donc pertinence des informations pour intervenir.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}"
+                },
+                "precision": {
+                    "type": "string",
+                    "description": "Niveau de pr\u00e9cision et de confiance dans les coordonn\u00e9es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie) d\u00e9termin\u00e9e de fa\u00e7on automatique par le syst\u00e8me en fonction des informations disponibles lors de son \u00e9laboration (n\u00b0, voie et commune) et du matching fait dans son syst\u00e8me de localisation."
                 }
             }
         },
@@ -414,6 +502,91 @@
             "type": "object",
             "required": [],
             "properties": {}
+        },
+        "link": {
+            "type": "object",
+            "required": [
+                "source",
+                "type",
+                "id"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)"
+                },
+                "type": {
+                    "type": "string",
+                    "description": "D\u00e9finition du type d'objet dans le syst\u00e8me\nEx : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es"
+                },
+                "id": {
+                    "type": "string",
+                    "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
+                }
+            }
+        },
+        "casualties": {
+            "type": "object",
+            "required": [],
+            "properties": {
+                "identifier": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/identifier"
+                    }
+                },
+                "phoneNumber": {
+                    "type": "string",
+                    "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "birthName": {
+                    "type": "string"
+                },
+                "firstName": {
+                    "type": "string"
+                },
+                "sex": {
+                    "type": "string"
+                },
+                "birthDate": {
+                    "type": "string",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
+                },
+                "age": {
+                    "type": "string",
+                    "description": "Age du patient au format 'dur\u00e9e' ISO-8601 : 'P' suivi de la dur\u00e9e, suivi du type (Y : ann\u00e9es, M : mois, D : jours)",
+                    "pattern": "P([0-9]{1,3}Y|[0-9]{1,2}M|[0-9]{1,2}D)"
+                },
+                "weight": {
+                    "type": "integer",
+                    "description": "Poids en kilogrammes"
+                },
+                "height": {
+                    "type": "integer",
+                    "description": "Taille en centim\u00e8tres"
+                },
+                "details": {
+                    "type": "string"
+                }
+            }
+        },
+        "identifier": {
+            "type": "object",
+            "required": [
+                "source",
+                "value"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string"
+                },
+                "value": {
+                    "type": "string"
+                }
+            }
         },
         "additionalInformation": {
             "type": "object",
@@ -427,21 +600,16 @@
         "customMap": {
             "type": "object",
             "required": [
-                "key",
-                "value"
+                "key"
             ],
             "properties": {
                 "key": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Nom de la balise"
                 },
                 "label": {
-                    "type": "string"
-                },
-                "value": {
-                    "type": "string"
-                },
-                "details": {
-                    "type": "string"
+                    "type": "string",
+                    "description": "Libell\u00e9 correspondant"
                 }
             }
         }
