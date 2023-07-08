@@ -1,0 +1,221 @@
+asyncapi: '2.5.0'
+info:
+  title: Hub Sante AMQP API
+  version: '0.7'
+  description: |
+    L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  remote:
+    url: hubsante.esante.gouv.fr:5671
+    protocol: amqps
+    protocolVersion: '0-9-1'
+    description: Instance "bac à sable" du Hub Sante déployée dans le Cloud.
+    security:
+      - tlsAuth: [ ]
+  local:
+    url: localhost:5671
+    protocol: amqps
+    protocolVersion: '0-9-1'
+    description: Instance locale du Hub Sante portée par `minikube` dans le repo du Hub
+    security:
+      - tlsAuth: [ ]
+defaultContentType: application/json
+channels:
+  "{clientId}.in.message":
+    description: File spécifique à chaque client pour la réception de messages
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Message fonctionnel
+      operationId: receiveMessage
+      message:
+        $ref: '#/components/messages/edxlMessage'
+
+  "{clientId}.out.message":
+    description: File spécifique à chaque client pour l'envoi de messages
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Message fonctionnel
+      operationId: publishMessage
+      message:
+        $ref: '#/components/messages/edxlMessage'
+
+
+  "{clientId}.in.ack":
+    description: File spécifique à chaque client pour la réception des acquittements fonctionnels
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Acquittement fonctionnel
+      operationId: receiveAck
+      message:
+        $ref: '#/components/messages/edxlMessage'
+
+
+  "{clientId}.out.ack":
+    description: File spécifique à chaque client pour l'envoi des acquittements fonctionnels
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Acquittement fonctionnel
+      operationId: publishAck
+      message:
+        $ref: '#/components/messages/edxlMessage'
+
+  "{clientId}.in.info":
+    description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Informations complémentaires
+      operationId: receiveInfo
+      message:
+        $ref: '#/components/messages/edxlMessage'
+
+  "{clientId}.out.info":
+    description: File spécifique à chaque client pour l'envoi des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    publish:
+      summary: Informations complémentaires
+      operationId: publishInfo
+      message:
+        $ref: '#/components/messages/edxlMessage'
+
+components:
+  securitySchemes:
+    tlsAuth:
+      type: X509
+      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification mTLS
+  parameters:
+    clientId:
+      description: L'identifiant du client
+      schema:
+        type: string
+  messages:
+    edxlMessage:
+      title: Message au standard EDXL
+      summary: Message au standard EDXL transportable par le Hub, comportant une partie adressage et une partie contenu. La partie contenu peut respecter différentes spécifications fonctionnelles.
+      payload:
+        $ref: '#/components/schemas/EdxlMessage'
+  schemas:
+    EdxlMessage:
+      properties:
+        distributionID:
+          type: string
+        senderID:
+          type: string
+        dateTimeSent:
+          type: string
+          format: date-time
+        dateTimeExpires:
+          type: string
+          format: date-time
+        distributionStatus:
+          $ref: '#/components/schemas/DistributionStatus'
+        distributionKind:
+          $ref: '#/components/schemas/DistributionKind'
+        descriptor:
+          $ref: '#/components/schemas/Descriptor'
+        content:
+          $ref: '#/components/schemas/Content'
+      additionalProperties: false
+      required:
+        - distributionID
+        - senderID
+        - dateTimeSent
+        - dateTimeExpires
+        - distributionStatus
+        - distributionKind
+        - descriptor
+        - content
+    Content:
+      properties:
+        contentObject:
+          $ref: '#/components/schemas/ContentObject'
+      additionalProperties: false
+      required:
+        - contentObject
+    ContentObject:
+      oneOf:
+        - $ref: '#/components/schemas/JsonContent'
+        - $ref: '#/components/schemas/ContentXML'
+    JsonContent:
+      properties:
+        JsonContent:
+          $ref: '#/components/schemas/EmbeddedJsonContent'
+    ContentXML:
+      properties:
+        contentXML:
+          $ref: '#/components/schemas/EmbeddedXMLContent'
+    EmbeddedJsonContent:
+      oneOf:
+        - $ref: '#/components/schemas/CreateCaseMessage'
+        - $ref: '#/components/schemas/GenericAckMessage'
+    EmbeddedXMLContent:
+      oneOf:
+        - $ref: '#/components/schemas/CreateCaseMessage'
+        - $ref: '#/components/schemas/GenericAckMessage'
+    Descriptor:
+      properties:
+        language:
+          type: string
+        explicitAddress:
+          $ref: '#/components/schemas/ExplicitAddress'
+      additionalProperties: false
+      required:
+        - language
+        - explicitAddress
+    ExplicitAddress:
+      properties:
+        explicitAddressScheme:
+          type: string
+        explicitAddressValue:
+          type: string
+      additionalProperties: false
+      required:
+        - explicitAddressScheme
+        - explicitAddressValue
+    DistributionKind:
+      type: string
+      enum:
+        - Report
+        - Update
+        - Cancel
+        - Request
+        - Response
+        - Dispatch
+        - Ack
+        - Error
+        - SensorConfiguration
+        - SensorControl
+        - SensorStatus
+        - SensorDetection
+        - Unknown
+        - NoAppropriateDefault
+    DistributionStatus:
+      type: string
+      enum:
+        - Actual
+        - Exercise
+        - System
+        - Test
+        - Unknown
+        - NoAppropriateDefault
+    GenericAckMessage:
+      properties:
+        ackDistributionId:
+          type: string
+      additionalProperties: false
+      required:
+        - ackDistributionId

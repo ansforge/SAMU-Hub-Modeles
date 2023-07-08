@@ -27,7 +27,9 @@
                 "comment": "None"
             },
             "locationKind": {},
-            "riskThreat": {},
+            "riskThreat": [
+                {}
+            ],
             "healthMotive": {},
             "gravity": 6,
             "victims": {
@@ -46,14 +48,16 @@
             "calltakerURI": "0303030303",
             "calltakerId": "id1234, carte CPx (Sant\u00e9), id d'affectation, \u2026"
         },
-        "resource": {
-            "resourceDesc": "photo, carte, \u2026",
-            "mimeType": "PDF, XML, JPEG, \u2026",
-            "size": "1235, 35, \u2026",
-            "URI": "None",
-            "derefURI": "None",
-            "digest": "None"
-        }
+        "resource": [
+            {
+                "resourceDesc": "photo, carte, \u2026",
+                "mimeType": "PDF, XML, JPEG, \u2026",
+                "size": "1235, 35, \u2026",
+                "URI": "None",
+                "derefURI": "None",
+                "digest": "None"
+            }
+        ]
     },
     "caseLocation": {
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
@@ -77,11 +81,13 @@
             "floor": "RDC, 1, 2, \u2026",
             "roomNumber": "A16, 37, 104, \u2026",
             "interphone": "Dupont",
-            "accessCode": "['1234A', '4321B']",
+            "accessCode": [
+                "['1234A', '4321B']"
+            ],
             "elevator": "C3",
             "buildingName": "Batiment B, Batiment Maunoury",
             "entrance": "Zone Sud, Porte 1, \u2026",
-            "service/department/entity": "Infirmerie, service finance, service cardiologie, \u2026"
+            "service": "Infirmerie, service finance, service cardiologie, \u2026"
         },
         "geometry": {
             "point": {
@@ -98,32 +104,40 @@
             },
             "sketch": {}
         },
-        "link": {
-            "source": "NexSIS, BAN, IGN, \u2026",
-            "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
-            "id": "id987"
-        },
+        "link": [
+            {
+                "source": "NexSIS, BAN, IGN, \u2026",
+                "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
+                "id": "id987"
+            }
+        ],
         "country": "France",
         "comment": "Cl\u00e9 derri\u00e8re le pot de fleur"
     },
-    "casualties": {
-        "identifier": {
-            "source": "NIR, SINUS, SI-VIC, \u2026",
-            "value": "id1234"
-        },
-        "phoneNumber": "tel:0606060606",
-        "name": "Dupont",
-        "birthName": "Dupont",
-        "firstName": "Jeanne",
-        "sex": "F",
-        "birthDate": "2017-06-21",
-        "age": "6Y",
-        "weight": 31,
-        "height": 109,
-        "details": "None"
-    },
-    "newAlert": {},
-    "severity": "None",
+    "casualties": [
+        {
+            "identifier": [
+                {
+                    "source": "NIR, SINUS, SI-VIC, \u2026",
+                    "value": "id1234"
+                }
+            ],
+            "phoneNumber": "tel:0606060606",
+            "name": "Dupont",
+            "birthName": "Dupont",
+            "firstName": "Jeanne",
+            "sex": "F",
+            "birthDate": "2017-06-21",
+            "age": "6Y",
+            "weight": 31,
+            "height": 109,
+            "details": "None"
+        }
+    ],
+    "newAlert": [
+        {}
+    ],
+    "severity": "EXTREME",
     "additionalInformation": {
         "customMap": {
             "key": "neighborhood",

@@ -1,5 +1,8 @@
 import pandas as pd
 import json
+from jsonpath_ng import parse
+import yaml
+
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
@@ -61,11 +64,41 @@ for i in range(5, 0, -1):
 rootObject = {
     'id': '1',
     'level_shift': 0,
+    'name': 'CreateCaseMessage',
     'Objet': 'X',
     'children': children['1']
 }
 
+
 # DATA USAGE
+def is_array(elem):
+    """Is elem an array?"""
+    return elem['Cardinalité'].endswith('n')
+
+
+# Recursively build a json example
+def build_example(elem):
+    if elem['Objet'] != 'X':
+        if str(elem['Exemples']) == 'nan':
+            return 'None'
+        return elem['Exemples']
+    elif 'children' not in elem:
+        print(elem['name'])
+        return {}
+    else:
+        children = {}
+        for child in elem['children']:
+            if is_array(child):
+                children[child['name']] = [build_example(child)]
+            else:
+                children[child['name']] = build_example(child)
+        return children
+
+
+json_example = build_example(rootObject)
+with open('example.json', 'w') as outfile:
+    json.dump(json_example, outfile, indent=4)
+
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
@@ -123,7 +156,7 @@ def add_field_child_property(parent, child, properties):
     parentExamplePath = get_parent_example_path(parent)
     childDetails = {
         'type': typeName,
-        'example': parentExamplePath + '/' + child['name']
+        'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
     }
     if str(child['Description']) != 'nan':
         childDetails['description'] = child['Description']
@@ -131,7 +164,7 @@ def add_field_child_property(parent, child, properties):
         childDetails['pattern'] = pattern
     if has_format_details(child, 'ENUM: '):
         childDetails['enum'] = child['Détails de format'][6:].split(', ')
-    if str(child['Cardinalité']).endswith('n'):
+    if is_array(child):
         properties[child['name']] = {
             'type': 'array',
             'items': childDetails
@@ -153,23 +186,23 @@ def add_object_child_definition(parent, child, definitions):
             'type': 'object',
             'required': [],
             'properties': {},
-            'example': parentExamplePath + '/' + child['name']
+            'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
         }
     if child['Cardinalité'].startswith('1'):
         definitions['required'].append(child['name'])
     properties = definitions['properties']
-    if str(child['Cardinalité']).endswith('n'):
+    if is_array(child):
         properties[child['name']] = {
             'type': 'array',
             'items': {
                 '$ref': '#/definitions/' + childTypeName,
-                'example': parentExamplePath + '/' + child['name']
+                'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         }
     else:
         properties[child['name']] = {
             '$ref': '#/definitions/' + childTypeName,
-            'example': parentExamplePath + '/' + child['name']
+            'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
         }
 
 
@@ -190,27 +223,54 @@ def fill_object_definition(elem, root=False):
         definition = json_schema
     else:
         if 'children' not in elem:
-            return
+            assert elem['Format (ou type)'] in json_schema['definitions'], \
+                f"The type of the object {elem['name']} is not defined"
+            return json_schema['definitions'][elem['Format (ou type)']]
         typeName = get_object_type(elem)
         definition = json_schema['definitions'][typeName]
     # Fill the elem definitions based on the children
     for child in elem['children']:
         add_child(elem, child, definition)
+    return definition
 
 
-def use_elem_new(elem):
-    # Root element: write it on the top level of the schema and not in definitions
-    if elem['level_shift'] == 0:
-        fill_object_definition(elem, root=True)
+def depth(x):
+    """Get the depth of a dictionary"""
+    if type(x) is dict and x:
+        return 1 + max(depth(x[a]) for a in x)
+    if type(x) is list and x:
+        return 1 + max(depth(a) for a in x)
+    return 0
 
-    # Lower objects: it's a definition
-    # -> update the type in definitions by traversing the direct children
-    elif elem['level_shift'] > 0 and elem['Objet'] == 'X':
-        fill_object_definition(elem)
+
+def get_examples_with_json_example(definition):
+    """Collect example in the json_example if it is not too deep"""
+    json_schema_path = "$" + definition['example'].split('#')[1]
+    path_with_arrays = json_schema_path.replace('/0', '[0]')
+    path = path_with_arrays.replace('/', '.')
+    example = parse(path).find(json_example)[0].value
+    if depth(example) < 2:
+        definition['examples'] = [example]
+    # Do it as well for all its children properties
+    if 'properties' in definition:
+        for prop in definition['properties']:
+            propDef = definition['properties'][prop]
+            if 'items' in propDef:
+                get_examples_with_json_example(propDef['items'])
+            else:
+                get_examples_with_json_example(propDef)
+
+
+def use_elem(elem):
+    # BUILD JSON SCHEMA
+    if elem['Objet'] == 'X':
+        # Root element: write it on the top level of the schema and not in definitions
+        # Lower objects: in definitions -> update the type in definitions by traversing the direct children
+        fill_object_definition(elem, root=elem['level_shift'] == 0)
 
 
 def DFS(root):
-    use_elem_new(root)
+    use_elem(root)
     if 'children' in root:
         for child in root['children']:
             DFS(child)
@@ -223,21 +283,33 @@ with open('schema.json', 'w') as outfile:
 print('JSON schema generated.')
 
 
-# Recursively build a json example
-def build_example(elem):
-    if elem['Objet'] != 'X':
-        if str(elem['Exemples']) == 'nan':
-            return 'None'
-        return elem['Exemples']
-    elif 'children' not in elem:
-        return {}
-    else:
-        children = {}
-        for child in elem['children']:
-            children[child['name']] = build_example(child)
-        return children
+# BUILD AsyncAPI SCHEMA
+def build_asyncapi_schema():
+    asyncapi_schema = {}
+    definitions = json_schema['definitions']
+    # Add root object to definitions so it is treated as a normal object
+    # Dropping useless root infos
+    root_definition = {key: json_schema[key] for key in json_schema if key not in [
+        '$schema', 'definitions', 'version', 'id'
+    ]}
+    definitions = {
+        **{rootObject['name']: root_definition},
+        **definitions
+    }
+    # Simply collect all objects (and root properties)
+    for elem_name, definition in definitions.items():
+        get_examples_with_json_example(definition)
+        asyncapi_schema[elem_name] = definition
+    return asyncapi_schema
 
 
-with open('example.json', 'w') as outfile:
-    json.dump(build_example(rootObject), outfile, indent=4)
-
+print('Generating AsyncAPI schema...')
+with open('template.asyncapi.yaml') as f:
+    full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
+full_yaml['components']['schemas'] = {
+    **full_yaml['components']['schemas'],
+    **build_asyncapi_schema()
+}
+with open('hubsante.asyncapi.yaml', 'w') as file:
+    documents = yaml.dump(full_yaml, file)
+print('AsyncAPI schema generated.')
