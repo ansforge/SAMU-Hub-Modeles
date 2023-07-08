@@ -135,6 +135,8 @@ json_schema = {
     'id': 'schema.json#',
     'version': '0.4.9',
     'example': 'example.json#',
+    'type': 'object',
+    'title': MODEL_NAME,
     'required': [],
     'properties': {},
     'definitions': {}

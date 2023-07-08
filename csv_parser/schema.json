@@ -3,6 +3,8 @@
     "id": "schema.json#",
     "version": "0.4.9",
     "example": "example.json#",
+    "type": "object",
+    "title": "CreateCaseMessage",
     "required": [
         "caseLocation"
     ],
