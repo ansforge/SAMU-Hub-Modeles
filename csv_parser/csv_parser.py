@@ -2,11 +2,13 @@ import pandas as pd
 import json
 from jsonpath_ng import parse
 import yaml
+import docx
 
+MODEL_NAME = 'CreateCaseMessage'
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name="partageAffaire", skiprows=7, nrows=109)
+df = pd.read_excel('model.xlsx', sheet_name="partageAffaire", skiprows=7, nrows=111)
 # Dropping useless columns
 df = df.iloc[:, :29]
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -33,6 +35,26 @@ def get_parent(row):
     return parent
 
 
+def is_typed_object(row):
+    """Is elem an object and using a specific reusable type?"""
+    isObject = row['Objet'] == 'X'
+    isTyped = str(row['Format (ou type)']) != 'nan'
+    return isObject & isTyped
+
+
+def get_true_type(row):
+    """Get the type of elem (defaults to its name if there is no type specified)"""
+    if row["Objet"] != "X" or row['is_typed_object']:
+        return row["Format (ou type)"]
+    return row['name']
+
+
+def get_parent_type(row):
+    if row['level_shift'] == 1:
+        return MODEL_NAME
+    return df.loc[row['parent']]['true_type']
+
+
 def build_id(row):
     id = '1'
     for i in range(1, row['level_shift'] + 1):
@@ -40,8 +62,17 @@ def build_id(row):
     return id
 
 
+def build_full_name(row):
+    return row[f"Donnée (Niveau {row['level_shift']})"]
+
+
+df['is_typed_object'] = df.apply(is_typed_object, axis=1)
+df['true_type'] = df.apply(get_true_type, axis=1)
 df['id'] = df.apply(build_id, axis=1)
+df = df.set_index('id', drop=False)
 df['parent'] = df.apply(get_parent, axis=1)
+df['parent_type'] = df.apply(get_parent_type, axis=1)
+df['full_name'] = df.apply(build_full_name, axis=1)
 
 
 # 2. Recursive data (children in their parent, to be explored like a tree)
@@ -52,7 +83,6 @@ def get_element_with_its_children(previous_children, elem_id):
     return elem
 
 
-df = df.set_index('id', drop=False)
 children = {}
 for i in range(5, 0, -1):
     previous_children = children
@@ -64,7 +94,7 @@ for i in range(5, 0, -1):
 rootObject = {
     'id': '1',
     'level_shift': 0,
-    'name': 'CreateCaseMessage',
+    'name': MODEL_NAME,
     'Objet': 'X',
     'children': children['1']
 }
@@ -111,18 +141,6 @@ json_schema = {
 }
 
 
-def is_typed_object(elem):
-    """Is elem an object and using a specific reusable type?"""
-    isObject = elem['Objet'] == 'X'
-    isTyped = str(elem['Format (ou type)']) != 'nan'
-    return isObject & isTyped
-
-
-def get_object_type(elem):
-    """Get the type of elem (defaults to its name if there is no type specified)"""
-    return elem['Format (ou type)'] if is_typed_object(elem) else elem['name']
-
-
 def has_format_details(elem, details):
     """Does elem have a format details starting with details?"""
     return str(elem['Détails de format']) != 'nan' and elem['Détails de format'].startswith(details)
@@ -147,7 +165,7 @@ def type_matching(child):
 def get_parent_example_path(parent):
     if parent['level_shift'] == 0:
         return json_schema['example']
-    return json_schema['definitions'][get_object_type(parent)]['example']
+    return json_schema['definitions'][parent['true_type']]['example']
 
 
 def add_field_child_property(parent, child, properties):
@@ -178,9 +196,9 @@ def add_object_child_definition(parent, child, definitions):
     Update parent definitions (required and properties) by adding the child information for an object child
     Creates definitions for the child object if it does not exist yet
     """
-    childTypeName = get_object_type(child)
+    childTypeName = child['true_type']
     parentExamplePath = get_parent_example_path(parent)
-    typeName = get_object_type(child)
+    typeName = child['true_type']
     if typeName not in json_schema['definitions']:
         json_schema['definitions'][typeName] = {
             'type': 'object',
@@ -226,7 +244,7 @@ def fill_object_definition(elem, root=False):
             assert elem['Format (ou type)'] in json_schema['definitions'], \
                 f"The type of the object {elem['name']} is not defined"
             return json_schema['definitions'][elem['Format (ou type)']]
-        typeName = get_object_type(elem)
+        typeName = elem['true_type']
         definition = json_schema['definitions'][typeName]
     # Fill the elem definitions based on the children
     for child in elem['children']:
@@ -261,7 +279,7 @@ def get_examples_with_json_example(definition):
                 get_examples_with_json_example(propDef)
 
 
-def use_elem(elem):
+def build_json_schema(elem):
     # BUILD JSON SCHEMA
     if elem['Objet'] == 'X':
         # Root element: write it on the top level of the schema and not in definitions
@@ -269,15 +287,15 @@ def use_elem(elem):
         fill_object_definition(elem, root=elem['level_shift'] == 0)
 
 
-def DFS(root):
+def DFS(root, use_elem):
     use_elem(root)
     if 'children' in root:
         for child in root['children']:
-            DFS(child)
+            DFS(child, use_elem)
 
 
 print('Generating JSON schema...')
-DFS(rootObject)
+DFS(rootObject, build_json_schema)
 with open('schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
@@ -293,7 +311,7 @@ def build_asyncapi_schema():
         '$schema', 'definitions', 'version', 'id'
     ]}
     definitions = {
-        **{rootObject['name']: root_definition},
+        **{MODEL_NAME: root_definition},
         **definitions
     }
     # Simply collect all objects (and root properties)
@@ -313,3 +331,187 @@ full_yaml['components']['schemas'] = {
 with open('hubsante.asyncapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, file)
 print('AsyncAPI schema generated.')
+
+
+named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
+
+
+def get_excel_line(parent_type, name):
+    return named_df.loc[(parent_type, name)].to_dict()
+
+
+def set_col_widths(table, widths):
+    for row in table.rows:
+        for idx, width in enumerate(widths):
+            row.cells[idx].width = docx.shared.Cm(width)
+
+
+def def_to_table(name, definition, title='', doc=None, style='Medium Shading 1 Accent 1'):
+    if doc is None:
+        doc = docx.Document()
+
+    # Add title
+    doc.add_heading(title, level=1)
+
+    # Add paragraph
+    # doc.add_paragraph('This table represents the fields and types defined in the JSON schema.')
+
+    table = doc.add_table(rows=1, cols=6, style=style)
+
+    # Add table header
+    header_cells = table.rows[0].cells
+    header_cells[0].text = 'Nom de balise'
+    header_cells[1].text = 'Champ correspondant'
+    header_cells[2].text = 'Format'
+    header_cells[3].text = 'Cardinalité'
+    header_cells[4].text = 'Description'
+    header_cells[5].text = 'Exemple'
+
+    # Iterate through each property in the JSON schema
+    for field, properties in definition['properties'].items():
+        field_data = get_excel_line(name, field)
+        row_cells = table.add_row().cells
+        row_cells[0].text = field
+        row_cells[1].text = field_data['full_name']
+        typeInfo = field_data['true_type']
+        if field_data['Objet'] == 'X':
+            typeInfo = 'cf. type ' + typeInfo
+        if field_data['Détails de format'] != '':
+            typeInfo += "\n(" + field_data['Détails de format'] + ")"
+        row_cells[2].text = typeInfo
+        row_cells[3].text = field_data['Cardinalité']
+        row_cells[4].text = field_data['Description']
+        row_cells[5].text = str(field_data['Exemples'])
+
+    # Specify the column widths (has to be on cells for Word) | Ref.: https://stackoverflow.com/a/43053996
+    table.autofit = False
+    table.allow_autofit = False
+    column_widths = (3, 3.5, 2, 2.5, 8, 3)  # Widths in centimeters
+    set_col_widths(table, column_widths)
+
+    return doc
+
+
+print('Generating Docx tables...')
+doc = docx.Document()
+# Set the page orientation to landscape
+section = doc.sections[0]
+new_width, new_height = section.page_height, section.page_width
+section.orientation = docx.enum.section.WD_ORIENT.LANDSCAPE
+section.page_width = new_width
+section.page_height = new_height
+# Json Schema rootObject makes the object table
+def_to_table(MODEL_NAME, json_schema, title=f"Objet {MODEL_NAME}", doc=doc)
+# Then all Json Schema definitions are types tables
+for elem_name, definition in json_schema['definitions'].items():
+    def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
+doc.save('schema.docx')
+
+print('Docx tables generated.')
+
+# Build styles comparison
+for style in [
+    # 'Table Normal',
+    'Colorful Grid',
+    'Colorful Grid Accent 1',
+    'Colorful Grid Accent 2',
+    'Colorful Grid Accent 3',
+    'Colorful Grid Accent 4',
+    'Colorful Grid Accent 5',
+    'Colorful Grid Accent 6',
+    'Colorful List',
+    'Colorful List Accent 1',
+    'Colorful List Accent 2',
+    'Colorful List Accent 3',
+    'Colorful List Accent 4',
+    'Colorful List Accent 5',
+    'Colorful List Accent 6',
+    'Colorful Shading',
+    'Colorful Shading Accent 1',
+    'Colorful Shading Accent 2',
+    'Colorful Shading Accent 3',
+    'Colorful Shading Accent 4',
+    'Colorful Shading Accent 5',
+    'Colorful Shading Accent 6',
+    'Dark List',
+    'Dark List Accent 1',
+    'Dark List Accent 2',
+    'Dark List Accent 3',
+    'Dark List Accent 4',
+    'Dark List Accent 5',
+    'Dark List Accent 6',
+    'Light Grid',
+    'Light Grid Accent 1',
+    'Light Grid Accent 2',
+    'Light Grid Accent 3',
+    'Light Grid Accent 4',
+    'Light Grid Accent 5',
+    'Light Grid Accent 6',
+    'Light List',
+    'Light List Accent 1',
+    'Light List Accent 2',
+    'Light List Accent 3',
+    'Light List Accent 4',
+    'Light List Accent 5',
+    'Light List Accent 6',
+    'Light Shading',
+    'Light Shading Accent 1',
+    'Light Shading Accent 2',
+    'Light Shading Accent 3',
+    'Light Shading Accent 4',
+    'Light Shading Accent 5',
+    'Light Shading Accent 6',
+    'Medium Grid 1',
+    'Medium Grid 1 Accent 1',
+    'Medium Grid 1 Accent 2',
+    'Medium Grid 1 Accent 3',
+    'Medium Grid 1 Accent 4',
+    'Medium Grid 1 Accent 5',
+    'Medium Grid 1 Accent 6',
+    'Medium Grid 2',
+    'Medium Grid 2 Accent 1',
+    'Medium Grid 2 Accent 2',
+    'Medium Grid 2 Accent 3',
+    'Medium Grid 2 Accent 4',
+    'Medium Grid 2 Accent 5',
+    'Medium Grid 2 Accent 6',
+    'Medium Grid 3',
+    'Medium Grid 3 Accent 1',
+    'Medium Grid 3 Accent 2',
+    'Medium Grid 3 Accent 3',
+    'Medium Grid 3 Accent 4',
+    'Medium Grid 3 Accent 5',
+    'Medium Grid 3 Accent 6',
+    'Medium List 1',
+    'Medium List 1 Accent 1',
+    'Medium List 1 Accent 2',
+    'Medium List 1 Accent 3',
+    'Medium List 1 Accent 4',
+    'Medium List 1 Accent 5',
+    'Medium List 1 Accent 6',
+    'Medium List 2',
+    'Medium List 2 Accent 1',
+    'Medium List 2 Accent 2',
+    'Medium List 2 Accent 3',
+    'Medium List 2 Accent 4',
+    'Medium List 2 Accent 5',
+    'Medium List 2 Accent 6',
+    'Medium Shading 1',
+    'Medium Shading 1 Accent 1',
+    'Medium Shading 1 Accent 2',
+    'Medium Shading 1 Accent 3',
+    'Medium Shading 1 Accent 4',
+    'Medium Shading 1 Accent 5',
+    'Medium Shading 1 Accent 6',
+    'Medium Shading 2',
+    'Medium Shading 2 Accent 1',
+    'Medium Shading 2 Accent 2',
+    'Medium Shading 2 Accent 3',
+    'Medium Shading 2 Accent 4',
+    'Medium Shading 2 Accent 5',
+    'Medium Shading 2 Accent 6',
+]:
+    if 'Accent 1' in style:
+        def_to_table(MODEL_NAME, json_schema, style=style).save(f'docx-styles/schema-{style}.docx')
+    else:
+        def_to_table(MODEL_NAME, json_schema, style=style).save(f'docx-styles/others/schema-{style}.docx')

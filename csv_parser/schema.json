@@ -589,7 +589,7 @@
                 "service": {
                     "type": "string",
                     "example": "example.json#/caseLocation/access/service",
-                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement"
+                    "description": "Nom du service/d\u00e9partement/entit\u00e9 concern\u00e9 au sein de l'\u00e9tablissement"
                 }
             },
             "example": "example.json#/caseLocation/access"
@@ -763,6 +763,16 @@
                     "type": "string",
                     "example": "example.json#/additionalInformation/customMap/label",
                     "description": "Libell\u00e9 correspondant"
+                },
+                "value": {
+                    "type": "string",
+                    "example": "example.json#/additionalInformation/customMap/value",
+                    "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
+                },
+                "details": {
+                    "type": "string",
+                    "example": "example.json#/additionalInformation/customMap/details",
+                    "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
                 }
             },
             "example": "example.json#/additionalInformation/customMap"

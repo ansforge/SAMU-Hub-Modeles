@@ -299,7 +299,8 @@ components:
           - "A16, 37, 104, \u2026"
           type: string
         service:
-          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
+          description: "Nom du service/d\xE9partement/entit\xE9 concern\xE9 au sein\
+            \ de l'\xE9tablissement"
           examples:
           - "Infirmerie, service finance, service cardiologie, \u2026"
           type: string
@@ -311,8 +312,10 @@ components:
           $ref: '#/components/schemas/customMap'
           examples:
           - &id004
+            details: "Pr\xE9cision sur le quartier d'intervention"
             key: neighborhood
             label: Quartier
+            value: SECT.QUARTIER HISTORIQUE
       required: []
       type: object
     address:
@@ -739,6 +742,12 @@ components:
       examples:
       - *id004
       properties:
+        details:
+          description: "Informations compl\xE9mentaires sur le contexte / utilisation\
+            \ de ce matching additionnel"
+          examples:
+          - "Pr\xE9cision sur le quartier d'intervention"
+          type: string
         key:
           description: Nom de la balise
           examples:
@@ -748,6 +757,11 @@ components:
           description: "Libell\xE9 correspondant"
           examples:
           - Quartier
+          type: string
+        value:
+          description: "Valeur associ\xE9e \xE0 la cl\xE9"
+          examples:
+          - SECT.QUARTIER HISTORIQUE
           type: string
       required: []
       type: object

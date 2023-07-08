@@ -141,7 +141,9 @@
     "additionalInformation": {
         "customMap": {
             "key": "neighborhood",
-            "label": "Quartier"
+            "label": "Quartier",
+            "value": "SECT.QUARTIER HISTORIQUE",
+            "details": "Pr\u00e9cision sur le quartier d'intervention"
         }
     }
 }
