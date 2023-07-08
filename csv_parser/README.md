@@ -13,3 +13,11 @@ awk '!/example: /' hubsante.asyncapi.yaml > tmpfile && mv tmpfile hubsante.async
 awk '{sub("#/definitions/","#/components/schemas/")} {print}' hubsante.asyncapi.yaml > tmpfile && mv tmpfile hubsante.asyncapi.yaml
 ag hubsante.asyncapi.yaml @asyncapi/html-template -o asyncapi --force-write
 ```
+
+## Deploy
+```bash
+docker buildx build --platform linux/amd64 -t romainfd/hub-specs:latest .
+docker push romainfd/hub-specs:latest
+# Make sure you are on correct Kubernetes context
+kubectl replace --force -f ../../hub/infra/web/specs.yaml
+```
