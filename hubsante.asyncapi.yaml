@@ -1,7 +1,7 @@
 asyncapi: '2.5.0'
 info:
   title: Hub Sante AMQP API
-  version: '0.7'
+  version: '0.9'
   description: |
     L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
   license:
@@ -9,7 +9,7 @@ info:
     url: https://www.apache.org/licenses/LICENSE-2.0
 servers:
   remote:
-    url: hubsante.esante.gouv.fr:5671
+    url: messaging.hub.esante.gouv.fr:5671
     protocol: amqps
     protocolVersion: '0-9-1'
     description: Instance "bac à sable" du Hub Sante déployée dans le Cloud.
@@ -24,7 +24,8 @@ servers:
       - tlsAuth: [ ]
 defaultContentType: application/json
 channels:
-  "{clientId}.in.message":
+
+  "{clientId}.message":
     description: File spécifique à chaque client pour la réception de messages
     parameters:
       clientId:
@@ -34,21 +35,23 @@ channels:
       operationId: receiveMessage
       message:
         $ref: '#/components/messages/edxlMessage'
-
-  "{clientId}.out.message":
-    description: File spécifique à chaque client pour l'envoi de messages
-    parameters:
-      clientId:
-        $ref: '#/components/parameters/clientId'
     publish:
       summary: Message fonctionnel
       operationId: publishMessage
       message:
         $ref: '#/components/messages/edxlMessage'
+    bindings:
+      amqp:
+        is: routingKey
+        exchange:
+          name: hubsante
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
 
-
-  "{clientId}.in.ack":
-    description: File spécifique à chaque client pour la réception des acquittements fonctionnels
+  "{clientId}.ack":
+    description: File spécifique à chaque client pour la réception des acquittements de bonne réception
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -57,20 +60,22 @@ channels:
       operationId: receiveAck
       message:
         $ref: '#/components/messages/edxlMessage'
-
-
-  "{clientId}.out.ack":
-    description: File spécifique à chaque client pour l'envoi des acquittements fonctionnels
-    parameters:
-      clientId:
-        $ref: '#/components/parameters/clientId'
     publish:
-      summary: Acquittement fonctionnel
+      summary: Acquittements de bonne réception
       operationId: publishAck
       message:
         $ref: '#/components/messages/edxlMessage'
+    bindings:
+      amqp:
+        is: routingKey
+        exchange:
+          name: hubsante
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
 
-  "{clientId}.in.info":
+  "{clientId}.info":
     description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
     parameters:
       clientId:
@@ -80,17 +85,20 @@ channels:
       operationId: receiveInfo
       message:
         $ref: '#/components/messages/edxlMessage'
-
-  "{clientId}.out.info":
-    description: File spécifique à chaque client pour l'envoi des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
-    parameters:
-      clientId:
-        $ref: '#/components/parameters/clientId'
     publish:
       summary: Informations complémentaires
       operationId: publishInfo
       message:
         $ref: '#/components/messages/edxlMessage'
+    bindings:
+      amqp:
+        is: routingKey
+        exchange:
+          name: hubsante
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
 
 components:
   messages:
