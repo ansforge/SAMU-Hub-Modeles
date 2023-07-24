@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum DistributionStatus {
-    ACTUAL("Actual"), EXERCISE("Exercise"), SYSTEM("System"), TEST("Test"), UNKOWN("Unknown"), NO_APPROPRIATE_DEFAULT("NoAppropriateDefault");
+    ACTUAL("Actual"), EXERCISE("Exercise");
 
     private String value;
     DistributionStatus(String value) { this.value = value; }
