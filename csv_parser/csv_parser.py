@@ -329,7 +329,7 @@ full_yaml['components']['schemas'] = {
     **build_asyncapi_schema()
 }
 with open('hubsante.asyncapi.yaml', 'w') as file:
-    documents = yaml.dump(full_yaml, file)
+    documents = yaml.dump(full_yaml, file, sort_keys=False)
 print('AsyncAPI schema generated.')
 
 
