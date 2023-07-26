@@ -191,26 +191,13 @@ components:
         - Report
         - Update
         - Cancel
-        - Request
-        - Response
-        - Dispatch
         - Ack
         - Error
-        - SensorConfiguration
-        - SensorControl
-        - SensorStatus
-        - SensorDetection
-        - Unknown
-        - NoAppropriateDefault
     DistributionStatus:
       type: string
       enum:
         - Actual
         - Exercise
-        - System
-        - Test
-        - Unknown
-        - NoAppropriateDefault
     CreateEventMessage:
       properties:
         messageId:
