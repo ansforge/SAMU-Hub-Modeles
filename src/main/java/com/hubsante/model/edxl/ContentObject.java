@@ -17,7 +17,7 @@ public class ContentObject {
         return "resource";
     }
 
-    @JsonProperty(value = "JsonContent", required = true)
+    @JsonProperty(value = "jsonContent", required = true)
     @JacksonXmlProperty(localName = "contentXML")
     private ContentWrapper contentWrapper;
 
