@@ -201,7 +201,6 @@ components:
           example: example.json#/caseLocation/country
           enum:
             - France
-            - "\u2026"
           examples:
             - France
         freetext:
@@ -847,7 +846,7 @@ components:
           examples:
             - '2022-09-27T08:23:34+02:00'
         precision:
-          type: number
+          type: string
           example: example.json#/caseLocation/geometry/point/coord/precision
           description: "Niveau de pr\xE9cision et de confiance dans les coordonn\xE9\
             es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie)\
@@ -874,7 +873,6 @@ components:
             - NIR
             - SINUS
             - SI-VIC
-            - "\u2026"
           examples:
             - "NIR, SINUS, SI-VIC, \u2026"
         value:
