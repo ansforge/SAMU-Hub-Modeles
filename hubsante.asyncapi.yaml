@@ -1,9 +1,9 @@
-asyncapi: '2.5.0'
+asyncapi: 2.5.0
 info:
   title: Hub Sante AMQP API
   version: '0.9'
-  description: |
-    L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
+  description: "L'API Hub Sante AMQP permet le partage d'informations entre acteurs\
+    \ du monde de la sant\xC3\xA9.\n"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -11,22 +11,24 @@ servers:
   remote:
     url: messaging.hub.esante.gouv.fr:5671
     protocol: amqps
-    protocolVersion: '0-9-1'
-    description: Instance "bac à sable" du Hub Sante déployée dans le Cloud.
+    protocolVersion: 0-9-1
+    description: "Instance \"bac \xC3\_ sable\" du Hub Sante d\xC3\xA9ploy\xC3\xA9\
+      e dans le Cloud."
     security:
-      - tlsAuth: [ ]
+      - tlsAuth: []
   local:
     url: localhost:5671
     protocol: amqps
-    protocolVersion: '0-9-1'
-    description: Instance locale du Hub Sante portée par `minikube` dans le repo du Hub
+    protocolVersion: 0-9-1
+    description: "Instance locale du Hub Sante port\xC3\xA9e par `minikube` dans le\
+      \ repo du Hub"
     security:
-      - tlsAuth: [ ]
+      - tlsAuth: []
 defaultContentType: application/json
 channels:
-
-  "{clientId}.message":
-    description: File spécifique à chaque client pour la réception de messages
+  '{clientId}.message':
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ de messages"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -49,9 +51,9 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-
-  "{clientId}.ack":
-    description: File spécifique à chaque client pour la réception des acquittements de bonne réception
+  '{clientId}.ack':
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ des acquittements de bonne r\xC3\xA9ception"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -61,7 +63,7 @@ channels:
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: Acquittements de bonne réception
+      summary: "Acquittements de bonne r\xC3\xA9ception"
       operationId: publishAck
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -74,19 +76,20 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-
-  "{clientId}.info":
-    description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
+  '{clientId}.info':
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ des informations compl\xC3\xA9mentaires li\xC3\xA9es au fonctionnement et\
+      \ aux \xC3\xA9changes port\xC3\xA9s par le Hub Sant\xC3\xA9"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
     subscribe:
-      summary: Informations complémentaires
+      summary: "Informations compl\xC3\xA9mentaires"
       operationId: receiveInfo
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: Informations complémentaires
+      summary: "Informations compl\xC3\xA9mentaires"
       operationId: publishInfo
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -99,12 +102,23 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-
 components:
+  securitySchemes:
+    tlsAuth:
+      type: X509
+      description: "Un certificat issu d'une AC valid\xC3\xA9e par le Hub est n\xC3\
+        \xA9cessaire pour l'authentification mTLS"
+  parameters:
+    clientId:
+      description: L'identifiant du client
+      schema:
+        type: string
   messages:
     edxlMessage:
       title: Message au standard EDXL
-      summary: Message au standard EDXL transportable par le Hub, comportant une partie adressage et une partie contenu. La partie contenu peut respecter différentes spécifications fonctionnelles.
+      summary: "Message au standard EDXL transportable par le Hub, comportant une\
+        \ partie adressage et une partie contenu. La partie contenu peut respecter\
+        \ diff\xC3\xA9rentes sp\xC3\xA9cifications fonctionnelles."
       payload:
         $ref: '#/components/schemas/EdxlMessage'
   schemas:
@@ -159,11 +173,11 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateEventMessage'
+        - $ref: '#/components/schemas/CreateCaseMessage'
         - $ref: '#/components/schemas/GenericAckMessage'
     EmbeddedXMLContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateEventMessage'
+        - $ref: '#/components/schemas/CreateCaseMessage'
         - $ref: '#/components/schemas/GenericAckMessage'
     Descriptor:
       properties:
@@ -191,143 +205,26 @@ components:
         - Report
         - Update
         - Cancel
+        - Request
+        - Response
+        - Dispatch
         - Ack
         - Error
+        - SensorConfiguration
+        - SensorControl
+        - SensorStatus
+        - SensorDetection
+        - Unknown
+        - NoAppropriateDefault
     DistributionStatus:
       type: string
       enum:
         - Actual
         - Exercise
-    CreateEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        createEvent:
-          $ref: '#/components/schemas/CreateEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - createEvent
-      additionalProperties: false
-    UpdateEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        updateEvent:
-          $ref: '#/components/schemas/UpdateEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - updateEvent
-      additionalProperties: false
-    CancelEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        cancelEvent:
-          $ref: '#/components/schemas/CancelEvent'
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - cancelEvent
-      additionalProperties: false
-    AckEventMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        ackEvent:
-          $ref: '#/components/schemas/AckEvent'
-      additionalProperties: false
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - ackEvent
-    AckMessage:
-      properties:
-        messageId:
-          type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
-          type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-        ackMessage:
-          $ref: '#/components/schemas/AckMessageId'
-      additionalProperties: false
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-        - ackMessage
+        - System
+        - Test
+        - Unknown
+        - NoAppropriateDefault
     GenericAckMessage:
       properties:
         ackDistributionId:
@@ -335,777 +232,848 @@ components:
       additionalProperties: false
       required:
         - ackDistributionId
-    BasicMessage:
-      type: object
-      allOf:
-        - $ref: '#/components/schemas/Message'
-      properties:
-        content:
-          type: object
-          description: 'Contenu du message'
-      additionalProperties: false
+    CreateCaseMessage:
+      $id: http://json-schema.org/draft-07/schema#
       required:
-        - content
-    Parking:
-      type: object
-      properties: { }
-    Bicyle:
-      type: object
-      properties: { }
-    CallTaker:
-      type: object
+        - caseLocation
       properties:
-        organization:
+        caseId:
           type: string
-        controlRoom:
+          description: "Identifiant fonctionnel unique de l'affaire et partag\xE9\
+            \ entre tous les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9\
+            \ de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune\
+            \ ambigu\xEFt\xE9. Il est g\xE9n\xE9r\xE9 par la force r\xE9ceptrice de\
+            \ la primo-demande de secours et contient un identifiant de la source.\n\
+            Format propos\xE9 : {Syst\xE8meEmetteur}-{Date}-AL|AF{Sequence}\nFormat\
+            \ NF399 : pays + CTA + date + # unique\nFormat NexSIS : SC-20211105-077-cga-AF18\
+            \ (SC-AAAAMMJJ-{codeCGA}-AL|AF{SEQUENCE}) (toutes les alertes cr\xE9ent\
+            \ pas des affaires, affaires peuvent avoir plusieurs alertes)"
+          examples:
+            - SAMU050-20230605-AF1234
+        senderCaseId:
           type: string
-        calltakerURI:
+          description: "Identifiant de l'affaire dans le SI de l'\xE9metteur du message"
+          examples:
+            - id123
+        createdAt:
           type: string
-      additionalProperties: false
-    Bank:
-      type: object
-      properties: { }
-    Bar:
-      type: object
-      properties: { }
-    Stadium:
-      type: object
-      properties: { }
-    Prison:
-      type: object
-      properties: { }
-    Victims:
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
+            ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
+            tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
+            re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
+            \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
+            \ \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre repr\xE9\
+            sent\xE9 par '-00:00'"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:23:34+02:00'
+        initialAlert:
+          $ref: '#/components/schemas/alert'
+        caseLocation:
+          $ref: '#/components/schemas/location'
+        casualties:
+          type: array
+          items:
+            $ref: '#/components/schemas/casualties'
+        newAlert:
+          type: array
+          items:
+            $ref: '#/components/schemas/alert'
+            examples:
+              - {}
+        severity:
+          type: string
+          description: "[Non utilis\xE9 dans une premi\xE8re version car la d\xE9\
+            finition et l'usage restent \xE0 d\xE9finir]\nPr\xE9cise l'urgence m\xE9\
+            dicale :\n        EXTREME : Menace extr\xEAme pour la vie\n        SEVERE\
+            \ : Menace importante pour la vie\n        MODERATE - Menace possible\
+            \ pour la vie\n        MINOR : Peu ou pas de menace connue pour la vie\n\
+            \        UNKNOWN : Niveau de menace inconnu\nCe niveau de gravit\xE9 est\
+            \ li\xE9 au Motif de Recours Medico-Secouriste associ\xE9 \xE0 l'appel."
+          enum:
+            - EXTREME
+            - SEVERE
+            - MODERATE
+            - MINOR
+            - UNKNOWN
+          examples:
+            - None
+        additionalInformation:
+          $ref: '#/components/schemas/additionalInformation'
+        freetext:
+          type: string
+          description: "Texte libre permettant de donner des informations suppl\xE9\
+            mentaires concernant l'affaire"
+          examples:
+            - None
+    alert:
       type: object
       required:
-        - count
+        - caller
+        - alertLocation
+        - alertCode
+        - callTaker
       properties:
-        count:
-          $ref: '#/components/schemas/count'
-        mainVictim:
-          $ref: '#/components/schemas/mainVictim'
-        comment:
+        alertId:
           type: string
-      additionalProperties: false
-    ShoppingArea:
+          description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
+            \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
+            \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
+            \ par les diff\xE9rents syst\xE8mes pour garantir leur d\xE9couplage.\n\
+            Voir la description de l'identifiant de l'affaire pour voir le format."
+          examples:
+            - SAMU050-20230605-AL0123
+        receivedAt:
+          type: string
+          description: "Groupe date heure de r\xE9ception de l'alerte"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:21:06+02:00'
+        reporting:
+          type: string
+          description: "Permet d'attirer l'attention des forces partenaires sur une\
+            \ affaire.  \nEventuellement automatis\xE9 en fonction des crit\xE8res\
+            \ saisis et de leur param\xE9trage, ou renseign\xE9 par l'op\xE9rateur.\
+            \ \nPrend les valeurs d\xE9finies dans la nomenclature CISU. \nPour les\
+            \ syst\xE8mes multi-alertes mais g\xE9rant ce champs au niveau de l'affaire,\
+            \ ils prennent le niveau d'alerte le plus \xE9lev\xE9 (peut \xEAtre compl\xE9\
+            t\xE9 par \"Raison du transfert\")"
+          enum:
+            - STANDARD
+            - ATTENTION
+          examples:
+            - STANDARD
+        alertInformation:
+          type: string
+          description: "Texte libre permettant de donner des informations suppl\xE9\
+            mentaires concernant l'alerte"
+          examples:
+            - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
+        caller:
+          $ref: '#/components/schemas/caller'
+        alertLocation:
+          $ref: '#/components/schemas/location'
+          examples:
+            - {}
+        alertCode:
+          $ref: '#/components/schemas/alertCode'
+        contact:
+          $ref: '#/components/schemas/contact'
+          examples:
+            - &id001
+              type: Person
+              detail: tel:18
+        callTaker:
+          $ref: '#/components/schemas/callTaker'
+          examples:
+            - &id002
+              organization: "SDIS, SAMU, \u2026"
+              controlRoom: CGA, CGO 21, CRRA 44, ...
+              calltakerURI: '0303030303'
+              calltakerId: "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
+        resource:
+          type: array
+          items:
+            $ref: '#/components/schemas/resource'
+            examples:
+              - &id003
+                resourceDesc: "photo, carte, \u2026"
+                mimeType: "PDF, XML, JPEG, \u2026"
+                size: "1235, 35, \u2026"
+                URI: None
+                derefURI: None
+                digest: None
+    location:
       type: object
-      properties: { }
-    Classroom:
-      type: object
-      properties: { }
-    Warehouse:
-      type: object
-      properties: { }
-    Airport:
-      type: object
-      properties: { }
-    AddresseeType:
-      type: object
-      required:
-        - name
-        - uri
+      required: []
       properties:
+        locID:
+          type: string
+          description: "ID technique et provisoire permettant d'identifier le lieu\
+            \ dans le cadre des \xE9changes de cette affaire."
+          examples:
+            - 111fb03a-6fd9-41e0-8e81-990c45188887
+        locLabel:
+          type: string
+          description: "Correspond \xE0 l'\xE9tiquette associ\xE9e \xE0 la localisation\
+            \ (plut\xF4t \xE0 destination des humains).\nElle va souvent correspondre\
+            \ \xE0 la concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9\
+            rentes informations, dont le \"name\" (toponyme) et l'adresse."
+          examples:
+            - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
+            e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
         name:
           type: string
-        uri:
-          type: string
-          format: uri
-      additionalProperties: false
-    CoordType:
-      type: object
-      required:
-        - lat
-        - lon
-      properties:
-        lat:
-          type: number
-        lon:
-          type: number
-        height:
-          type: number
-      additionalProperties: false
-    Aircraft:
-      type: object
-      properties: { }
-    Arena:
-      type: object
-      properties: { }
-    Automobile:
-      type: object
-      properties: { }
-    Bus:
-      type: object
-      properties: { }
-    BusStation:
-      type: object
-      properties: { }
-    Cafe:
-      type: object
-      properties: { }
-    Club:
-      type: object
-      properties: { }
-    Construction:
-      type: object
-      properties: { }
-    ConventionCenter:
-      type: object
-      properties: { }
-    Government:
-      type: object
-      properties: { }
-    Hospital:
-      type: object
-      properties: { }
-    Hotel:
-      type: object
-      properties: { }
-    Industrial:
-      type: object
-      properties: { }
-    Library:
-      type: object
-      properties: { }
-    Motorcycle:
-      type: object
-      properties: { }
-    Office:
-      type: object
-      properties: { }
-    Outdoors:
-      type: object
-      properties: { }
-    PlaceOfWorship:
-      type: object
-      properties: { }
-    Public:
-      type: object
-      properties: { }
-    PublicTransport:
-      type: object
-      properties: { }
-    Residence:
-      type: object
-      properties: { }
-    Restaurant:
-      type: object
-      properties: { }
-    School:
-      type: object
-      properties: { }
-    Store:
-      type: object
-      properties: { }
-    Street:
-      type: object
-      properties: { }
-    Theater:
-      type: object
-      properties: { }
-    Train:
-      type: object
-      properties: { }
-    TrainStation:
-      type: object
-      properties: { }
-    Truck:
-      type: object
-      properties: { }
-    Underway:
-      type: object
-      properties: { }
-    Unknown:
-      type: object
-      properties: { }
-    Water:
-      type: object
-      properties: { }
-    Watercraft:
-      type: object
-      properties: { }
-    LocationType2:
-      type: object
-      properties:
-        aircraft:
-          $ref: '#/components/schemas/Aircraft'
-        airport:
-          $ref: '#/components/schemas/Airport'
-        arena:
-          $ref: '#/components/schemas/Arena'
-        automobile:
-          $ref: '#/components/schemas/Automobile'
-        bank:
-          $ref: '#/components/schemas/Bank'
-        bar:
-          $ref: '#/components/schemas/Bar'
-        bicyle:
-          $ref: '#/components/schemas/Bicyle'
-        bus:
-          $ref: '#/components/schemas/Bus'
-        busStation:
-          $ref: '#/components/schemas/BusStation'
-        cafe:
-          $ref: '#/components/schemas/Cafe'
-        classroom:
-          $ref: '#/components/schemas/Classroom'
-        club:
-          $ref: '#/components/schemas/Club'
-        construction:
-          $ref: '#/components/schemas/Construction'
-        conventionCenter:
-          $ref: '#/components/schemas/ConventionCenter'
-        government:
-          $ref: '#/components/schemas/Government'
-        hospital:
-          $ref: '#/components/schemas/Hospital'
-        hotel:
-          $ref: '#/components/schemas/Hotel'
-        industrial:
-          $ref: '#/components/schemas/Industrial'
-        library:
-          $ref: '#/components/schemas/Library'
-        motorcycle:
-          $ref: '#/components/schemas/Motorcycle'
-        office:
-          $ref: '#/components/schemas/Office'
-        other:
-          type: string
-        outdoors:
-          $ref: '#/components/schemas/Outdoors'
-        parking:
-          $ref: '#/components/schemas/Parking'
-        placeOfWorship:
-          $ref: '#/components/schemas/PlaceOfWorship'
-        prison:
-          $ref: '#/components/schemas/Prison'
-        _public:
-          $ref: '#/components/schemas/Public'
-        publicTransport:
-          $ref: '#/components/schemas/PublicTransport'
-        residence:
-          $ref: '#/components/schemas/Residence'
-        restaurant:
-          $ref: '#/components/schemas/Restaurant'
-        school:
-          $ref: '#/components/schemas/School'
-        shoppingArea:
-          $ref: '#/components/schemas/ShoppingArea'
-        stadium:
-          $ref: '#/components/schemas/Stadium'
-        store:
-          $ref: '#/components/schemas/Store'
-        street:
-          $ref: '#/components/schemas/Street'
-        theater:
-          $ref: '#/components/schemas/Theater'
-        train:
-          $ref: '#/components/schemas/Train'
-        trainStation:
-          $ref: '#/components/schemas/TrainStation'
-        truck:
-          $ref: '#/components/schemas/Truck'
-        underway:
-          $ref: '#/components/schemas/Underway'
-        unknown:
-          $ref: '#/components/schemas/Unknown'
-        warehouse:
-          $ref: '#/components/schemas/Warehouse'
-        water:
-          $ref: '#/components/schemas/Water'
-        watercraft:
-          $ref: '#/components/schemas/Watercraft'
-      additionalProperties: false
-    CivicAddressType:
-      type: object
-      properties:
+          description: "Indique le nom de lieu : nom commercial, lieu-dit, lac, for\xEA\
+            t, nom de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
+          examples:
+            - "Carrefour Toison d'Or, EPHAD Belle Fontaine, Quartier Melun Nord, Disneyland,\
+            \ \u2026"
+        address:
+          $ref: '#/components/schemas/address'
+        city:
+          $ref: '#/components/schemas/city'
+          examples:
+            - &id007
+              name: Lille
+              inseeCode: 59350
+              detail: "Quartie Melun Nord, Lhomme, \u2026"
+        access:
+          $ref: '#/components/schemas/access'
+        geometry:
+          $ref: '#/components/schemas/geometry'
+        link:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+            examples:
+              - &id008
+                source: "NexSIS, BAN, IGN, \u2026"
+                type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle),\
+                \ \u2026"
+                id: id987
         country:
           type: string
-        a1:
+          enum:
+            - France
+            - Allemagne
+            - Espagne
+            - Italie
+            - Suisse
+            - Luxembourg
+            - Belgique
+          examples:
+            - France
+        freetext:
           type: string
-        a2:
-          type: string
-        a3:
-          type: string
-        a4:
-          type: string
-        a5:
-          type: string
-        a6:
-          type: string
-        prd:
-          type: string
-        pod:
-          type: string
-        sts:
-          type: string
-        hno:
-          type: string
-        hns:
-          type: string
-        lmk:
-          type: string
-        loc:
-          type: string
-        nam:
-          type: string
-        pc:
-          type: string
-        bld:
-          type: string
-        unit:
-          type: string
-        flr:
-          type: string
-        room:
-          type: string
-        plc:
-          $ref: '#/components/schemas/LocationType2'
-        pcn:
-          type: string
-        pobox:
-          type: string
-        addcode:
-          type: string
-        seat:
-          type: string
-        rd:
-          type: string
-        rdsec:
-          type: string
-        rdbr:
-          type: string
-        rdsubbr:
-          type: string
-        prm:
-          type: string
-        pom:
-          type: string
-      additionalProperties: false
-    LocationType:
+          description: "Champ libre pour compl\xE9ter les informations de localisation"
+          examples:
+            - "Cl\xE9 derri\xE8re le pot de fleur"
+    casualties:
       type: object
+      required: []
       properties:
-        locId:
+        identifier:
+          type: array
+          items:
+            $ref: '#/components/schemas/identifier'
+            examples:
+              - &id011
+                source: "NIR, SINUS, SI-VIC, \u2026"
+                value: id1234
+        phoneNumber:
           type: string
+          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
+          examples:
+            - tel:0606060606
         name:
           type: string
-        type:
-          $ref: '#/components/schemas/type'
-        coordsys:
+          examples:
+            - Dupont
+        birthName:
           type: string
-        heightRole:
-          $ref: '#/components/schemas/heightRole'
-        coord:
-          type: array
-          items:
-            $ref: '#/components/schemas/CoordType'
-          minItems: 0
-        address:
-          type: array
-          items:
-            type: string
-          minItems: 0
-        commune:
+          examples:
+            - Dupont
+        firstName:
           type: string
-        civicAddress:
-          $ref: '#/components/schemas/CivicAddressType'
-      additionalProperties: false
-    Call:
+          examples:
+            - Jeanne
+        sex:
+          type: string
+          enum:
+            - F
+            - M
+            - O
+            - U
+          examples:
+            - F
+        birthDate:
+          type: string
+          pattern: \d{4}-\d{2}-\d{2}
+          examples:
+            - None
+        age:
+          type: string
+          pattern: ''
+          examples:
+            - 6Y
+        weight:
+          type: integer
+          description: Poids en kilogrammes
+          examples:
+            - 31
+        height:
+          type: integer
+          description: "Taille en centim\xE8tres"
+          examples:
+            - 109
+        freetext:
+          type: string
+          examples:
+            - None
+    additionalInformation:
       type: object
-      required:
-        - source
+      required: []
       properties:
-        source:
-          type: string
-        dialledURI:
-          type: string
-      additionalProperties: false
-    Caller:
+        customMap:
+          $ref: '#/components/schemas/customMap'
+          examples:
+            - &id012
+              key: neighborhood
+              label: Quartier
+              value: SECT.QUARTIER HISTORIQUE
+              freetext: "Pr\xE9cision sur le quartier d'intervention"
+    caller:
       type: object
-      required:
-        - callerURI
+      required: []
       properties:
         callerURI:
           type: string
+          description: "Type de l'URI utilis\xE9e par le r\xE9qu\xE9rant et valeur.\
+            \ Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org.\
+            \ Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9 en priorit\xE9\
+            , \xE0 d\xE9faut, renseigner un autre type d'URI. Si ce num\xE9ro est\
+            \ renseign\xE9, il devient prioritaire par rapport au num\xE9ro d'appel."
+          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
+          examples:
+            - tel:0606060606
         callbackURI:
           type: string
+          description: "Type et valeur de l'URI permettant un rappel pour avoir plus\
+            \ d'informations : il peut s'agit du requ\xE9rant, de la victime ou d'un\
+            \ t\xE9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU\
+            \ sip:top@domain.org. Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9\
+            \ en priorit\xE9, \xE0 d\xE9faut, renseigner un autre type d'URI. Si le\
+            \ num\xE9ro de contre-appel est renseign\xE9, il doit \xEAtre utilis\xE9\
+            \ en priorit\xE9 sur le num\xE9ro r\xE9qu\xE9rant."
+          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
+          examples:
+            - tel:0707070707
         spokenLanguage:
           type: string
+          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
+            \ place des traducteurs si besoin."
+          examples:
+            - "Fran\xE7ais"
         callerInformation:
           type: string
+          description: "Information sur le requ\xE9rant : malentendant, impliqu\xE9\
+            \ dans l'accident, \u2026"
+          examples:
+            - "P\xE8re"
         callerName:
-          type: string
-      additionalProperties: false
-    OptionalAttributeType:
+          $ref: '#/components/schemas/callerName'
+          examples:
+            - &id004
+              complete: Jean Dupont
+              callerLastName: Dupont
+              callerFirstName: Jean
+    alertCode:
       type: object
       required:
-        - code
-        - label
-      properties:
-        code:
-          type: string
-        label:
-          type: string
-        comment:
-          type: string
-      additionalProperties: false
-    OtherAlertCode:
-      type: object
-      required:
-        - version
         - whatsHappen
-        - locationKind
-        - healthMotive
       properties:
-        version:
+        cisuVersion:
           type: string
+          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
+            \ des codes transmis. Cela permet de s'assurer que les syst\xE8mes op\xE9\
+            rationnels soient en capacit\xE9 de les  traiter correctement."
+          examples:
+            - '1.19'
         whatsHappen:
-          $ref: '#/components/schemas/OptionalAttributeType'
+          $ref: '#/components/schemas/nomenclature'
+          examples:
+            - &id005
+              code: C07.13.02
+              label: "Rod\xE9o automobile"
+              freetext: None
         locationKind:
-          $ref: '#/components/schemas/OptionalAttributeType'
-        otherRiskThreat:
-          type: array
-          items:
-            $ref: '#/components/schemas/OptionalAttributeType'
-          minItems: 0
-        healthMotive:
-          $ref: '#/components/schemas/OptionalAttributeType'
-        victims:
-          $ref: '#/components/schemas/Victims'
-      additionalProperties: false
-    ResourceType:
-      type: object
-      required:
-        - resourceDesc
-        - mimeType
-      properties:
-        resourceDesc:
-          type: string
-        mimeType:
-          type: string
-        size:
-          type: integer
-        uri:
-          type: string
-          format: uri
-        derefURI:
-          type: string
-        digest:
-          type: string
-      additionalProperties: false
-    OtherAlert:
-      type: object
-      required:
-        - alertId
-        - receivedAt
-        - reporting
-        - call
-        - caller
-        - callTaker
-        - otherAlertCode
-      properties:
-        alertId:
-          type: string
-        receivedAt:
-          type: string
-          format: date-time
-        reporting:
-          $ref: '#/components/schemas/reporting'
-        alertInformation:
-          type: string
-        alertLocation:
-          $ref: '#/components/schemas/LocationType'
-        call:
-          $ref: '#/components/schemas/Call'
-        caller:
-          $ref: '#/components/schemas/Caller'
-        callTaker:
-          $ref: '#/components/schemas/CallTaker'
-        otherAlertCode:
-          $ref: '#/components/schemas/OtherAlertCode'
-        resource:
-          type: array
-          items:
-            $ref: '#/components/schemas/ResourceType'
-          minItems: 0
-      additionalProperties: false
-    UpdateEvent:
-      type: object
-      required:
-        - eventId
-        - createdAt
-        - severity
-        - eventLocation
-        - otherAlert
-      properties:
-        eventId:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        severity:
-          $ref: '#/components/schemas/severity'
-        eventLocation:
-          $ref: '#/components/schemas/LocationType'
-        otherAlert:
-          $ref: '#/components/schemas/OtherAlert'
-      additionalProperties: false
-    Recipients:
-      type: object
-      required:
-        - recipient
-      properties:
-        recipient:
-          type: array
-          items:
-            $ref: '#/components/schemas/AddresseeType'
-          minItems: 1
-      additionalProperties: false
-    Alert:
-      type: object
-      required:
-        - alertId
-      properties:
-        alertId:
-          type: string
-      additionalProperties: false
-    AckEvent:
-      type: object
-      required:
-        - eventId
-      properties:
-        eventId:
-          type: string
-        alert:
-          type: array
-          items:
-            $ref: '#/components/schemas/Alert'
-          minItems: 0
-      additionalProperties: false
-    AttributeType:
-      type: object
-      required:
-        - code
-        - label
-      properties:
-        code:
-          type: string
-        label:
-          type: string
-        comment:
-          type: string
-      additionalProperties: false
-    AlertCode:
-      type: object
-      required:
-        - version
-        - whatsHappen
-        - locationKind
-        - healthMotive
-      properties:
-        version:
-          type: string
-        whatsHappen:
-          $ref: '#/components/schemas/AttributeType'
-        locationKind:
-          $ref: '#/components/schemas/AttributeType'
+          $ref: '#/components/schemas/nomenclature'
+          examples:
+            - code: None
+              label: None
+              freetext: None
         riskThreat:
           type: array
           items:
-            $ref: '#/components/schemas/AttributeType'
-          minItems: 0
+            $ref: '#/components/schemas/nomenclature'
+            examples:
+              - code: None
+                label: None
+                freetext: None
         healthMotive:
-          $ref: '#/components/schemas/AttributeType'
+          $ref: '#/components/schemas/nomenclature'
+          examples:
+            - code: None
+              label: None
+              freetext: None
+        gravity:
+          type: string
+          description: "Score de gravit\xE9 fournit par NexSIS"
+          examples:
+            - 6
         victims:
-          $ref: '#/components/schemas/Victims'
-      additionalProperties: false
-    PrimaryAlert:
+          $ref: '#/components/schemas/victims'
+          examples:
+            - &id006
+              count: SEVERAL
+              mainVictim: CHILD
+              comment: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+    contact:
       type: object
-      required:
-        - alertId
-        - receivedAt
-        - reporting
-        - alertLocation
-        - call
-        - caller
-        - callTaker
-        - alertCode
+      required: []
       properties:
-        alertId:
+        type:
           type: string
-        receivedAt:
+          description: "Permet d'indiquer l'origine de la communication : Personne,\
+            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
+          examples:
+            - Person
+        detail:
           type: string
-          format: date-time
-        reporting:
-          $ref: '#/components/schemas/reporting'
-        alertInformation:
+          description: "Indique le type de l'URI compos\xE9e par le r\xE9qu\xE9rant\
+            \ et la valeur de l'URI, concat\xE9n\xE9es et s\xE9par\xE9es par \":\"\
+            . Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI\
+            \ peut \xEAtre renseign\xE9e."
+          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
+          examples:
+            - tel:18
+      examples:
+        - *id001
+    callTaker:
+      type: object
+      required: []
+      properties:
+        organization:
           type: string
-        alertLocation:
-          $ref: '#/components/schemas/LocationType'
-        call:
-          $ref: '#/components/schemas/Call'
-        caller:
-          $ref: '#/components/schemas/Caller'
-        callTaker:
-          $ref: '#/components/schemas/CallTaker'
-        alertCode:
-          $ref: '#/components/schemas/AlertCode'
-        resource:
+          description: "Organisation d'appartenance de l'op\xE9rateur ayant trait\xE9\
+            \ l'alerte"
+          examples:
+            - "SDIS, SAMU, \u2026"
+        controlRoom:
+          type: string
+          description: "Salle op\xE9rationnelle de l'op\xE9rateur de traitement"
+          examples:
+            - CGA, CGO 21, CRRA 44, ...
+        calltakerURI:
+          type: string
+          description: "Num\xE9ro de ligne directe permettant de recontacter l'op\xE9\
+            rateur de traitement"
+          examples:
+            - '0303030303'
+        calltakerId:
+          type: string
+          description: "Identifiant unique de l'op\xE9rataur ayant trait\xE9 l'alerte"
+          examples:
+            - "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
+      examples:
+        - *id002
+    resource:
+      type: object
+      required: []
+      properties:
+        resourceDesc:
+          type: string
+          description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
+            \ tels que \xABcarte\xBB ou \xABphoto\xBB"
+          examples:
+            - "photo, carte, \u2026"
+        mimeType:
+          type: string
+          description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
+            \ la ressource"
+          examples:
+            - "PDF, XML, JPEG, \u2026"
+        size:
+          type: integer
+          description: Taille approximative de la ressource en kO
+          examples:
+            - "1235, 35, \u2026"
+        URI:
+          type: string
+          description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
+            \ la ressource sur Internet ou sur un r\xE9seau priv\xE9"
+          pattern: (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?
+          examples:
+            - None
+        derefURI:
+          type: string
+          description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
+            \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
+            mes de transcodage (sur des double quotes qui casseraient le message,\
+            \ \u2026)"
+          examples:
+            - None
+        digest:
+          type: string
+          description: "Hash de la ressource pour confirmer la r\xE9ception de la\
+            \ bonne ressource"
+          examples:
+            - None
+      examples:
+        - *id003
+    callerName:
+      type: object
+      required: []
+      properties:
+        complete:
+          type: string
+          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nNexSIS ne dispose\
+            \ que de ces informations (concat\xE9n\xE9es) et pas de deux champs s\xE9\
+            par\xE9s"
+          examples:
+            - Jean Dupont
+        callerLastName:
+          type: string
+          description: "Nom du requ\xE9rant"
+          examples:
+            - Dupont
+        callerFirstName:
+          type: string
+          description: "Pr\xE9nom du r\xE9qu\xE9rant"
+          examples:
+            - Jean
+      examples:
+        - *id004
+    nomenclature:
+      type: object
+      required: []
+      properties:
+        code:
+          type: string
+          description: "D\xE9crit le code de motif de recours m\xE9dical"
+          examples:
+            - C07.13.02
+        label:
+          type: string
+          description: "Libell\xE9 du motif"
+          examples:
+            - "Rod\xE9o automobile"
+        freetext:
+          type: string
+          examples:
+            - None
+      examples:
+        - *id005
+    victims:
+      type: object
+      required: []
+      properties:
+        count:
+          type: string
+          description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
+            f\xE9rentiel CISU"
+          enum:
+            - '0'
+            - '1'
+            - SEVERAL
+            - MANY
+            - UNKNOWN
+          examples:
+            - SEVERAL
+        mainVictim:
+          type: string
+          description: "Identifie le type de la principale victime (celle dont l'\xE9\
+            tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
+            \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
+            \ des partenaires impliqu\xE9s par NexSIS."
+          enum:
+            - INFANT
+            - CHILD
+            - ADULT
+            - PREGNANT
+            - SENIOR
+          examples:
+            - CHILD
+        comment:
+          type: string
+          description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
+          examples:
+            - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+      examples:
+        - *id006
+    address:
+      type: object
+      required: []
+      properties:
+        complete:
+          type: string
+          description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
+            \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
+            \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
+            \ NexSIS."
+          examples:
+            - 9 Bd du Montparnasse
+        number:
+          type: string
+          description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
+            \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
+            p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
+          examples:
+            - "9, 4bis, PK10, \u2026"
+        wayName:
+          $ref: '#/components/schemas/wayName'
+          examples:
+            - &id009
+              complete: A1 direction Paris, Bd du Montparnasse
+              type: Boulevard
+              name: du Montparnasse
+    city:
+      type: object
+      required: []
+      properties:
+        name:
+          type: string
+          description: Nom officiel de la commune actuelle
+          examples:
+            - Lille
+        inseeCode:
+          type: string
+          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
+            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
+            \ renseign\xE9."
+          pattern: '[0-9]{5}'
+          examples:
+            - 59350
+        detail:
+          type: string
+          description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
+            \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
+            \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
+            \ fusionn\xE9es pour le syst\xE8me \xE9metteur"
+          examples:
+            - "Quartie Melun Nord, Lhomme, \u2026"
+      examples:
+        - *id007
+    access:
+      type: object
+      required: []
+      properties:
+        floor:
+          type: string
+          description: 'Etage '
+          examples:
+            - "RDC, 1, 2, \u2026"
+        roomNumber:
+          type: string
+          description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
+          examples:
+            - "A16, 37, 104, \u2026"
+        interphone:
+          type: string
+          description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
+            \ de l'interphone (num\xE9ro, nom)"
+          examples:
+            - Dupont
+        accessCode:
           type: array
           items:
-            $ref: '#/components/schemas/ResourceType'
-          minItems: 0
-      additionalProperties: false
-    CancelEvent:
+            type: string
+            description: "Indique le ou les digicodes dans l'ordre de progression\
+              \ dans le b\xE2timent"
+            examples:
+              - '[''1234A'', ''4321B'']'
+        elevator:
+          type: string
+          description: 'Indique l''ascenseur ou la cage d''escalier '
+          examples:
+            - C3
+        buildingName:
+          type: string
+          description: "Nom du b\xE2timent"
+          examples:
+            - Batiment B, Batiment Maunoury
+        entrance:
+          type: string
+          examples:
+            - "Zone Sud, Porte 1, \u2026"
+        entity:
+          type: string
+          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
+          examples:
+            - "Infirmerie, service finance, service cardiologie, \u2026"
+    geometry:
+      type: object
+      required: []
+      properties:
+        point:
+          $ref: '#/components/schemas/point'
+        sketch:
+          type: string
+          examples:
+            - None
+    link:
+      type: object
+      required: []
+      properties:
+        source:
+          type: string
+          description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
+            \ (BAN, IGN, ...)"
+          enum:
+            - BAN
+            - IGN
+            - NexSIS
+          examples:
+            - "NexSIS, BAN, IGN, \u2026"
+        type:
+          type: string
+          description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
+            \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
+            \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
+            \ Aussi table dans une base de donn\xE9es"
+          examples:
+            - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
+        id:
+          type: string
+          description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
+          examples:
+            - id987
+      examples:
+        - *id008
+    wayName:
+      type: object
+      required: []
+      properties:
+        complete:
+          type: string
+          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)"
+          examples:
+            - A1 direction Paris, Bd du Montparnasse
+        type:
+          type: string
+          examples:
+            - Boulevard
+        name:
+          type: string
+          examples:
+            - du Montparnasse
+      examples:
+        - *id009
+    point:
       type: object
       required:
-        - eventId
-        - cancelReason
+        - coord
       properties:
-        eventId:
+        coord:
+          $ref: '#/components/schemas/coord'
+          examples:
+            - &id010
+              lat: '48.866667'
+              lon: '2.333333'
+              height: 120
+              heading: 96
+              speed: 34
+              time: '2022-09-27T08:23:34+02:00'
+              precision: Adresse
+        coordsys:
           type: string
-        cancelReason:
-          $ref: '#/components/schemas/cancelReason'
-        cancelInformation:
+          description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
+            \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
+            \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
+            \ valeur par d\xE9faut est \xABEPSG-4326\xBB."
+          pattern: '[0-9]{0,10}'
+          examples:
+            - EPSG-4326
+    coord:
+      type: object
+      required: []
+      properties:
+        lat:
+          type: number
+          description: "Latitude du point cl\xE9 de la localisation"
+          examples:
+            - '48.866667'
+        lon:
+          type: number
+          description: "Longitude du point cl\xE9 de la localisation"
+          examples:
+            - '2.333333'
+        height:
+          type: number
+          description: "Altitude du point cl\xE9 de la localisation, ignor\xE9 c\xF4\
+            t\xE9 NexSIS."
+          examples:
+            - 120
+        heading:
+          type: number
+          description: "En degr\xE9"
+          examples:
+            - 96
+        speed:
+          type: number
+          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
+            \ AML, \u2026"
+          examples:
+            - 34
+        time:
           type: string
-        createdAt:
-          type: string
+          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
+            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
+            \ donc pertinence des informations pour intervenir."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
-        severity:
-          $ref: '#/components/schemas/severity'
-        eventLocation:
-          $ref: '#/components/schemas/LocationType'
-        otherAlert:
-          $ref: '#/components/schemas/OtherAlert'
-      additionalProperties: false
-    AckMessageId:
+          examples:
+            - '2022-09-27T08:23:34+02:00'
+        precision:
+          type: string
+          description: "Niveau de pr\xE9cision et de confiance dans les coordonn\xE9\
+            es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie)\
+            \ d\xE9termin\xE9e de fa\xE7on automatique par le syst\xE8me en fonction\
+            \ des informations disponibles lors de son \xE9laboration (n\xB0, voie\
+            \ et commune) et du matching fait dans son syst\xE8me de localisation."
+          enum:
+            - CITY
+            - STREET
+            - ADDRESS
+          examples:
+            - Adresse
+      examples:
+        - *id010
+    identifier:
       type: object
-      required:
-        - ackMessageId
+      required: []
       properties:
-        ackMessageId:
+        source:
           type: string
-      additionalProperties: false
-    CreateEvent:
+          enum:
+            - NIR
+            - SINUS
+            - SI-VIC
+          examples:
+            - "NIR, SINUS, SI-VIC, \u2026"
+        value:
+          type: string
+          examples:
+            - id1234
+      examples:
+        - *id011
+    customMap:
       type: object
-      required:
-        - eventId
-        - createdAt
-        - severity
-        - eventLocation
-        - primaryAlert
+      required: []
       properties:
-        eventId:
+        key:
           type: string
-        createdAt:
+          description: Nom de la balise
+          examples:
+            - neighborhood
+        label:
           type: string
-          format: date-time
-        severity:
-          $ref: '#/components/schemas/severity'
-        eventLocation:
-          $ref: '#/components/schemas/LocationType'
-        primaryAlert:
-          $ref: '#/components/schemas/PrimaryAlert'
-        otherAlert:
-          type: array
-          items:
-            $ref: '#/components/schemas/OtherAlert'
-          minItems: 0
-      additionalProperties: false
-    Message:
-      type: object
-      required:
-        - messageId
-        - sender
-        - sentAt
-        - msgType
-        - status
-        - recipients
-      properties:
-        messageId:
+          description: "Libell\xE9 correspondant"
+          examples:
+            - Quartier
+        value:
           type: string
-        sender:
-          $ref: '#/components/schemas/AddresseeType'
-        sentAt:
+          description: "Valeur associ\xE9e \xE0 la cl\xE9"
+          examples:
+            - SECT.QUARTIER HISTORIQUE
+        freetext:
           type: string
-          format: date-time
-        msgType:
-          $ref: '#/components/schemas/msgType'
-        status:
-          $ref: '#/components/schemas/status'
-        recipients:
-          $ref: '#/components/schemas/Recipients'
-      additionalProperties: false
-    count:
-      type: string
-      enum:
-        - '0'
-        - '1'
-        - SEVERAL
-        - MANY
-        - UNKNOWN
-    mainVictim:
-      type: string
-      enum:
-        - INFANT
-        - CHILD
-        - ADULT
-        - PREGNANT
-        - SENIOR
-    type:
-      type: string
-      enum:
-        - POINT
-        - CIRCLE
-        - LINE
-        - SURFACE
-        - GRID
-        - POLYGON
-        - ELLIPSE
-    heightRole:
-      type: string
-      enum:
-        - MIN
-        - MAX
-        - AVE
-    reporting:
-      type: string
-      enum:
-        - STANDARD
-        - ATTENTION
-    severity:
-      type: string
-      enum:
-        - EXTREME
-        - SEVERE
-        - MODERATE
-        - MINOR
-        - UNKNOWN
-    cancelReason:
-      type: string
-      enum:
-        - ERROR
-        - MALEVOLENCE
-        - OTHER
-    msgType:
-      type: string
-      enum:
-        - ALERT
-        - ACK
-        - UPDATE
-        - CANCEL
-    status:
-      type: string
-      enum:
-        - ACTUAL
-        - EXERCISE
-        - TEST
-        - DRAFT
-        - SYSTEM
-  securitySchemes:
-    tlsAuth:
-      type: X509
-      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification mTLS
-  parameters:
-    clientId:
-      description: L'identifiant du client
-      schema:
-        type: string
+          description: "Informations compl\xE9mentaires sur le contexte / utilisation\
+            \ de ce matching additionnel"
+          examples:
+            - "Pr\xE9cision sur le quartier d'intervention"
+      examples:
+        - *id012
