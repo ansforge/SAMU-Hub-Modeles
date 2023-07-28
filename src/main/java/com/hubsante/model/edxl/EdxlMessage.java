@@ -16,7 +16,7 @@ public class EdxlMessage extends EdxlEnvelope {
 
     public EdxlMessage(String distributionID, String senderID, OffsetDateTime dateTimeSent, OffsetDateTime dateTimeExpires,
                        DistributionStatus distributionStatus, DistributionKind distributionKind, Descriptor descriptor,
-                       EdxlInnerMessage innerMessage) {
+                       UseCaseMessage innerMessage) {
         super(distributionID, senderID, dateTimeSent, dateTimeExpires, distributionStatus, distributionKind, descriptor);
         this.setContentFrom(innerMessage);
     }
@@ -29,7 +29,7 @@ public class EdxlMessage extends EdxlEnvelope {
         this.content = content;
     }
 
-    public <T extends EdxlInnerMessage> void setContentFrom(T embeddedContent) {
+    public <T extends UseCaseMessage> void setContentFrom(T embeddedContent) {
         this.setContent(new Content(new ContentObject(new ContentWrapper(new EmbeddedContent(embeddedContent)))));
     }
 

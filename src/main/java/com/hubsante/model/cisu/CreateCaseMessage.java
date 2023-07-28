@@ -14,25 +14,18 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.AdditionalInformation;
-import com.hubsante.model.cisu.Alert;
-import com.hubsante.model.cisu.Casualties;
-import com.hubsante.model.cisu.Location;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hubsante.model.edxl.EdxlInnerMessage;
+import com.hubsante.model.edxl.UseCaseMessage;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateCaseMessage
@@ -52,7 +45,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
 
-public class CreateCaseMessage extends EdxlInnerMessage {
+public class CreateCaseMessage extends UseCaseMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
     public static final String JSON_PROPERTY_CASE_ID = "caseId";
