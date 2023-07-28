@@ -132,7 +132,7 @@ with open('example.json', 'w') as outfile:
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
-    'id': 'schema.json#',
+    '$id': 'http://json-schema.org/draft-07/schema#',
     'version': '0.4.9',
     'example': 'example.json#',
     'required': [],
