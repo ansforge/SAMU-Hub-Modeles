@@ -14,18 +14,26 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
+import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.hubsante.model.cisu.AdditionalInformation;
+import com.hubsante.model.cisu.Alert;
+import com.hubsante.model.cisu.Casualties;
+import com.hubsante.model.cisu.Location;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.hubsante.model.edxl.UseCaseMessage;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateCaseMessage
@@ -55,7 +63,7 @@ public class CreateCaseMessage extends UseCaseMessage {
     private String senderCaseId;
 
     public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
-    private String createdAt;
+    private OffsetDateTime createdAt;
 
     public static final String JSON_PROPERTY_INITIAL_ALERT = "initialAlert";
     private Alert initialAlert;
@@ -174,7 +182,7 @@ public class CreateCaseMessage extends UseCaseMessage {
     }
 
 
-    public CreateCaseMessage createdAt(String createdAt) {
+    public CreateCaseMessage createdAt(OffsetDateTime createdAt) {
 
         this.createdAt = createdAt;
         return this;
@@ -188,14 +196,14 @@ public class CreateCaseMessage extends UseCaseMessage {
     @JsonProperty(JSON_PROPERTY_CREATED_AT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCreatedAt() {
+    public OffsetDateTime getCreatedAt() {
         return createdAt;
     }
 
 
     @JsonProperty(JSON_PROPERTY_CREATED_AT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCreatedAt(String createdAt) {
+    public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }
 

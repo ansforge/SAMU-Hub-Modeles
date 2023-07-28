@@ -23,6 +23,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -60,7 +61,7 @@ public class Coord {
     private BigDecimal speed;
 
     public static final String JSON_PROPERTY_TIME = "time";
-    private String time;
+    private OffsetDateTime time;
 
     /**
      * Niveau de précision et de confiance dans les coordonnées (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie) déterminée de façon automatique par le système en fonction des informations disponibles lors de son élaboration (n°, voie et commune) et du matching fait dans son système de localisation.
@@ -235,7 +236,7 @@ public class Coord {
     }
 
 
-    public Coord time(String time) {
+    public Coord time(OffsetDateTime time) {
 
         this.time = time;
         return this;
@@ -249,14 +250,14 @@ public class Coord {
     @JsonProperty(JSON_PROPERTY_TIME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getTime() {
+    public OffsetDateTime getTime() {
         return time;
     }
 
 
     @JsonProperty(JSON_PROPERTY_TIME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setTime(String time) {
+    public void setTime(OffsetDateTime time) {
         this.time = time;
     }
 

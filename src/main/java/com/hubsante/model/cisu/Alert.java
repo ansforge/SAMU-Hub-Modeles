@@ -28,6 +28,7 @@ import com.hubsante.model.cisu.Contact;
 import com.hubsante.model.cisu.Location;
 import com.hubsante.model.cisu.Resource;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,7 +59,7 @@ public class Alert {
     private String alertId;
 
     public static final String JSON_PROPERTY_RECEIVED_AT = "receivedAt";
-    private String receivedAt;
+    private OffsetDateTime receivedAt;
 
     /**
      * Permet d&#39;attirer l&#39;attention des forces partenaires sur une affaire.   Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l&#39;opérateur.  Prend les valeurs définies dans la nomenclature CISU.  Pour les systèmes multi-alertes mais gérant ce champs au niveau de l&#39;affaire, ils prennent le niveau d&#39;alerte le plus élevé (peut être complété par \&quot;Raison du transfert\&quot;)
@@ -148,7 +149,7 @@ public class Alert {
     }
 
 
-    public Alert receivedAt(String receivedAt) {
+    public Alert receivedAt(OffsetDateTime receivedAt) {
 
         this.receivedAt = receivedAt;
         return this;
@@ -162,14 +163,14 @@ public class Alert {
     @JsonProperty(JSON_PROPERTY_RECEIVED_AT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getReceivedAt() {
+    public OffsetDateTime getReceivedAt() {
         return receivedAt;
     }
 
 
     @JsonProperty(JSON_PROPERTY_RECEIVED_AT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setReceivedAt(String receivedAt) {
+    public void setReceivedAt(OffsetDateTime receivedAt) {
         this.receivedAt = receivedAt;
     }
 
