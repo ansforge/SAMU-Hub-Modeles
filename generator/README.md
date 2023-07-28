@@ -44,9 +44,9 @@ String xmlns = "urn:emergency:cisu:2.0";
 Comme on ne peut passer dans la conf que la liste des classes à traiter, sans pouvoir gérer d'exclusion, on applique la génération en deux temps en appliquant les commandes suivantes :
 
 ```bash
-npx @openapitools/openapi-generator-cli generate -c .\cisu-generator-config.json
+npx @openapitools/openapi-generator-cli generate -c .\cisu-generator-config.json --skip-validate-spec
 
-npx @openapitools/openapi-generator-cli generate -c .\cisu-root-messages-config.json
+npx @openapitools/openapi-generator-cli generate -c .\cisu-root-messages-config.json --skip-validate-spec
 ```
 
 Le premier appel applique le template principal à toutes les classes, le second écrase les classes XmlRootElement en appliquant le second template. Il est donc crucial de s'assurer d'appliquer les appels au générateur dans le bon ordre.

@@ -8,7 +8,7 @@ MODEL_NAME = 'CreateCaseMessage'
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name="createCase", skiprows=7, nrows=111)
+df = pd.read_excel('model.xlsx', sheet_name="createCase", skiprows=7, nrows=121)
 # Dropping useless columns
 df = df.iloc[:, :29]
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns

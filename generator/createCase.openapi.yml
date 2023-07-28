@@ -3,13 +3,11 @@ openapi: '3.0.0'
 components:
   schemas:
     CreateCaseMessage:
-      example: example.json#
       required:
         - caseLocation
       properties:
         caseId:
           type: string
-          example: example.json#/caseId
           description: "Identifiant fonctionnel unique de l'affaire et partag\xE9\
             \ entre tous les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9\
             \ de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune\
@@ -23,13 +21,11 @@ components:
             - SAMU050-20230605-AF1234
         senderCaseId:
           type: string
-          example: example.json#/senderCaseId
           description: "Identifiant de l'affaire dans le SI de l'\xE9metteur du message"
           examples:
             - id123
         createdAt:
           type: string
-          example: example.json#/createdAt
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
             ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
             tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
@@ -41,16 +37,44 @@ components:
           examples:
             - '2022-09-27T08:23:34+02:00'
         initialAlert:
-          $ref: '#/definitions/alert'
-          example: example.json#/initialAlert
+          $ref: '#/components/schemas/alert'
         caseLocation:
-          $ref: '#/definitions/location'
-          example: example.json#/caseLocation
+          $ref: '#/components/schemas/location'
         casualties:
           type: array
           items:
-            $ref: '#/definitions/casualties'
-            example: example.json#/casualties/0
+            $ref: '#/components/schemas/casualties'
+        newAlert:
+          type: array
+          items:
+            $ref: '#/components/schemas/alert'
+            examples:
+              - {}
+        severity:
+          type: string
+          description: "[Non utilis\xE9 dans une premi\xE8re version car la d\xE9\
+            finition et l'usage restent \xE0 d\xE9finir]\nPr\xE9cise l'urgence m\xE9\
+            dicale :\n        EXTREME : Menace extr\xEAme pour la vie\n        SEVERE\
+            \ : Menace importante pour la vie\n        MODERATE - Menace possible\
+            \ pour la vie\n        MINOR : Peu ou pas de menace connue pour la vie\n\
+            \        UNKNOWN : Niveau de menace inconnu\nCe niveau de gravit\xE9 est\
+            \ li\xE9 au Motif de Recours Medico-Secouriste associ\xE9 \xE0 l'appel."
+          enum:
+            - EXTREME
+            - SEVERE
+            - MODERATE
+            - MINOR
+            - UNKNOWN
+          examples:
+            - None
+        additionalInformation:
+          $ref: '#/components/schemas/additionalInformation'
+        freetext:
+          type: string
+          description: "Texte libre permettant de donner des informations suppl\xE9\
+            mentaires concernant l'affaire"
+          examples:
+            - None
     alert:
       type: object
       required:
@@ -61,7 +85,6 @@ components:
       properties:
         alertId:
           type: string
-          example: example.json#/initialAlert/alertId
           description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
             \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
             \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
@@ -71,14 +94,12 @@ components:
             - SAMU050-20230605-AL0123
         receivedAt:
           type: string
-          example: example.json#/initialAlert/receivedAt
           description: "Groupe date heure de r\xE9ception de l'alerte"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}
           examples:
             - '2022-09-27T08:21:06+02:00'
         reporting:
           type: string
-          example: example.json#/initialAlert/reporting
           description: "Permet d'attirer l'attention des forces partenaires sur une\
             \ affaire.  \nEventuellement automatis\xE9 en fonction des crit\xE8res\
             \ saisis et de leur param\xE9trage, ou renseign\xE9 par l'op\xE9rateur.\
@@ -93,32 +114,26 @@ components:
             - STANDARD
         alertInformation:
           type: string
-          example: example.json#/initialAlert/alertInformation
           description: "Texte libre permettant de donner des informations suppl\xE9\
             mentaires concernant l'alerte"
           examples:
             - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
         caller:
-          $ref: '#/definitions/caller'
-          example: example.json#/initialAlert/caller
+          $ref: '#/components/schemas/caller'
         alertLocation:
-          $ref: '#/definitions/location'
-          example: example.json#/initialAlert/alertLocation
+          $ref: '#/components/schemas/location'
           examples:
             - {}
         alertCode:
-          $ref: '#/definitions/alertCode'
-          example: example.json#/initialAlert/alertCode
+          $ref: '#/components/schemas/alertCode'
         contact:
-          $ref: '#/definitions/contact'
-          example: example.json#/initialAlert/contact
+          $ref: '#/components/schemas/contact'
           examples:
             - &id001
               type: Person
               detail: tel:18
         callTaker:
-          $ref: '#/definitions/callTaker'
-          example: example.json#/initialAlert/callTaker
+          $ref: '#/components/schemas/callTaker'
           examples:
             - &id002
               organization: "SDIS, SAMU, \u2026"
@@ -128,8 +143,7 @@ components:
         resource:
           type: array
           items:
-            $ref: '#/definitions/resource'
-            example: example.json#/initialAlert/resource/0
+            $ref: '#/components/schemas/resource'
             examples:
               - &id003
                 resourceDesc: "photo, carte, \u2026"
@@ -138,21 +152,18 @@ components:
                 URI: None
                 derefURI: None
                 digest: None
-      example: example.json#/initialAlert
     location:
       type: object
       required: []
       properties:
         locID:
           type: string
-          example: example.json#/caseLocation/locID
           description: "ID technique et provisoire permettant d'identifier le lieu\
             \ dans le cadre des \xE9changes de cette affaire."
           examples:
             - 111fb03a-6fd9-41e0-8e81-990c45188887
         locLabel:
           type: string
-          example: example.json#/caseLocation/locLabel
           description: "Correspond \xE0 l'\xE9tiquette associ\xE9e \xE0 la localisation\
             \ (plut\xF4t \xE0 destination des humains).\nElle va souvent correspondre\
             \ \xE0 la concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9\
@@ -162,34 +173,28 @@ components:
             e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
         name:
           type: string
-          example: example.json#/caseLocation/name
           description: "Indique le nom de lieu : nom commercial, lieu-dit, lac, for\xEA\
             t, nom de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
           examples:
             - "Carrefour Toison d'Or, EPHAD Belle Fontaine, Quartier Melun Nord, Disneyland,\
             \ \u2026"
         address:
-          $ref: '#/definitions/address'
-          example: example.json#/caseLocation/address
+          $ref: '#/components/schemas/address'
         city:
-          $ref: '#/definitions/city'
-          example: example.json#/caseLocation/city
+          $ref: '#/components/schemas/city'
           examples:
             - &id007
               name: Lille
               inseeCode: 59350
               detail: "Quartie Melun Nord, Lhomme, \u2026"
         access:
-          $ref: '#/definitions/access'
-          example: example.json#/caseLocation/access
+          $ref: '#/components/schemas/access'
         geometry:
-          $ref: '#/definitions/geometry'
-          example: example.json#/caseLocation/geometry
+          $ref: '#/components/schemas/geometry'
         link:
           type: array
           items:
-            $ref: '#/definitions/link'
-            example: example.json#/caseLocation/link/0
+            $ref: '#/components/schemas/link'
             examples:
               - &id008
                 source: "NexSIS, BAN, IGN, \u2026"
@@ -198,18 +203,21 @@ components:
                 id: id987
         country:
           type: string
-          example: example.json#/caseLocation/country
           enum:
             - France
+            - Allemagne
+            - Espagne
+            - Italie
+            - Suisse
+            - Luxembourg
+            - Belgique
           examples:
             - France
         freetext:
           type: string
-          example: example.json#/caseLocation/freetext
           description: "Champ libre pour compl\xE9ter les informations de localisation"
           examples:
             - "Cl\xE9 derri\xE8re le pot de fleur"
-      example: example.json#/caseLocation
     casualties:
       type: object
       required: []
@@ -217,36 +225,30 @@ components:
         identifier:
           type: array
           items:
-            $ref: '#/definitions/identifier'
-            example: example.json#/casualties/0/identifier/0
+            $ref: '#/components/schemas/identifier'
             examples:
               - &id011
                 source: "NIR, SINUS, SI-VIC, \u2026"
                 value: id1234
         phoneNumber:
           type: string
-          example: example.json#/casualties/0/phoneNumber
           pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
           examples:
             - tel:0606060606
         name:
           type: string
-          example: example.json#/casualties/0/name
           examples:
             - Dupont
         birthName:
           type: string
-          example: example.json#/casualties/0/birthName
           examples:
             - Dupont
         firstName:
           type: string
-          example: example.json#/casualties/0/firstName
           examples:
             - Jeanne
         sex:
           type: string
-          example: example.json#/casualties/0/sex
           enum:
             - F
             - M
@@ -256,36 +258,46 @@ components:
             - F
         birthDate:
           type: string
-          example: example.json#/casualties/0/birthDate
           pattern: \d{4}-\d{2}-\d{2}
           examples:
             - None
         age:
           type: string
-          example: example.json#/casualties/0/age
           pattern: ''
           examples:
             - 6Y
         weight:
-          type: number
-          example: example.json#/casualties/0/weight
+          type: integer
           description: Poids en kilogrammes
           examples:
             - 31
         height:
-          type: number
-          example: example.json#/casualties/0/height
+          type: integer
           description: "Taille en centim\xE8tres"
           examples:
             - 109
-      example: example.json#/casualties/0
+        freetext:
+          type: string
+          examples:
+            - None
+    additionalInformation:
+      type: object
+      required: []
+      properties:
+        customMap:
+          $ref: '#/components/schemas/customMap'
+          examples:
+            - &id012
+              key: neighborhood
+              label: Quartier
+              value: SECT.QUARTIER HISTORIQUE
+              freetext: "Pr\xE9cision sur le quartier d'intervention"
     caller:
       type: object
       required: []
       properties:
         callerURI:
           type: string
-          example: example.json#/initialAlert/caller/callerURI
           description: "Type de l'URI utilis\xE9e par le r\xE9qu\xE9rant et valeur.\
             \ Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org.\
             \ Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9 en priorit\xE9\
@@ -296,7 +308,6 @@ components:
             - tel:0606060606
         callbackURI:
           type: string
-          example: example.json#/initialAlert/caller/callbackURI
           description: "Type et valeur de l'URI permettant un rappel pour avoir plus\
             \ d'informations : il peut s'agit du requ\xE9rant, de la victime ou d'un\
             \ t\xE9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU\
@@ -309,49 +320,44 @@ components:
             - tel:0707070707
         spokenLanguage:
           type: string
-          example: example.json#/initialAlert/caller/spokenLanguage
           description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
             \ place des traducteurs si besoin."
           examples:
             - "Fran\xE7ais"
         callerInformation:
           type: string
-          example: example.json#/initialAlert/caller/callerInformation
           description: "Information sur le requ\xE9rant : malentendant, impliqu\xE9\
             \ dans l'accident, \u2026"
           examples:
             - "P\xE8re"
         callerName:
-          $ref: '#/definitions/callerName'
-          example: example.json#/initialAlert/caller/callerName
+          $ref: '#/components/schemas/callerName'
           examples:
             - &id004
               complete: Jean Dupont
               callerLastName: Dupont
               callerFirstName: Jean
-      example: example.json#/initialAlert/caller
     alertCode:
       type: object
       required:
-        - cisuVersion
         - whatsHappen
       properties:
         cisuVersion:
-          $ref: '#/definitions/resource'
-          example: example.json#/initialAlert/alertCode/cisuVersion
+          type: string
+          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
+            \ des codes transmis. Cela permet de s'assurer que les syst\xE8mes op\xE9\
+            rationnels soient en capacit\xE9 de les  traiter correctement."
           examples:
-            - {}
+            - '1.19'
         whatsHappen:
-          $ref: '#/definitions/nomenclature'
-          example: example.json#/initialAlert/alertCode/whatsHappen
+          $ref: '#/components/schemas/nomenclature'
           examples:
             - &id005
               code: C07.13.02
               label: "Rod\xE9o automobile"
               freetext: None
         locationKind:
-          $ref: '#/definitions/nomenclature'
-          example: example.json#/initialAlert/alertCode/locationKind
+          $ref: '#/components/schemas/nomenclature'
           examples:
             - code: None
               label: None
@@ -359,48 +365,41 @@ components:
         riskThreat:
           type: array
           items:
-            $ref: '#/definitions/nomenclature'
-            example: example.json#/initialAlert/alertCode/riskThreat/0
+            $ref: '#/components/schemas/nomenclature'
             examples:
               - code: None
                 label: None
                 freetext: None
         healthMotive:
-          $ref: '#/definitions/nomenclature'
-          example: example.json#/initialAlert/alertCode/healthMotive
+          $ref: '#/components/schemas/nomenclature'
           examples:
             - code: None
               label: None
               freetext: None
         gravity:
           type: string
-          example: example.json#/initialAlert/alertCode/gravity
           description: "Score de gravit\xE9 fournit par NexSIS"
           examples:
             - 6
         victims:
-          $ref: '#/definitions/victims'
-          example: example.json#/initialAlert/alertCode/victims
+          $ref: '#/components/schemas/victims'
           examples:
             - &id006
               count: SEVERAL
               mainVictim: CHILD
               comment: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
-      example: example.json#/initialAlert/alertCode
     contact:
       type: object
       required: []
       properties:
         type:
           type: string
-          example: example.json#/initialAlert/contact/type
           description: "Permet d'indiquer l'origine de la communication : Personne,\
             \ application, DAU, BAU, d\xE9fibrillateur, ecall"
           examples:
             - Person
         detail:
           type: string
-          example: example.json#/initialAlert/contact/detail
           description: "Indique le type de l'URI compos\xE9e par le r\xE9qu\xE9rant\
             \ et la valeur de l'URI, concat\xE9n\xE9es et s\xE9par\xE9es par \":\"\
             . Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI\
@@ -408,7 +407,6 @@ components:
           pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
           examples:
             - tel:18
-      example: example.json#/initialAlert/contact
       examples:
         - *id001
     callTaker:
@@ -417,31 +415,26 @@ components:
       properties:
         organization:
           type: string
-          example: example.json#/initialAlert/callTaker/organization
           description: "Organisation d'appartenance de l'op\xE9rateur ayant trait\xE9\
             \ l'alerte"
           examples:
             - "SDIS, SAMU, \u2026"
         controlRoom:
           type: string
-          example: example.json#/initialAlert/callTaker/controlRoom
           description: "Salle op\xE9rationnelle de l'op\xE9rateur de traitement"
           examples:
             - CGA, CGO 21, CRRA 44, ...
         calltakerURI:
           type: string
-          example: example.json#/initialAlert/callTaker/calltakerURI
           description: "Num\xE9ro de ligne directe permettant de recontacter l'op\xE9\
             rateur de traitement"
           examples:
             - '0303030303'
         calltakerId:
           type: string
-          example: example.json#/initialAlert/callTaker/calltakerId
           description: "Identifiant unique de l'op\xE9rataur ayant trait\xE9 l'alerte"
           examples:
             - "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
-      example: example.json#/initialAlert/callTaker
       examples:
         - *id002
     resource:
@@ -450,27 +443,23 @@ components:
       properties:
         resourceDesc:
           type: string
-          example: example.json#/initialAlert/resource/0/resourceDesc
           description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
             \ tels que \xABcarte\xBB ou \xABphoto\xBB"
           examples:
             - "photo, carte, \u2026"
         mimeType:
           type: string
-          example: example.json#/initialAlert/resource/0/mimeType
           description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
             \ la ressource"
           examples:
             - "PDF, XML, JPEG, \u2026"
         size:
           type: integer
-          example: example.json#/initialAlert/resource/0/size
           description: Taille approximative de la ressource en kO
           examples:
             - "1235, 35, \u2026"
         URI:
           type: string
-          example: example.json#/initialAlert/resource/0/URI
           description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
             \ la ressource sur Internet ou sur un r\xE9seau priv\xE9"
           pattern: (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?
@@ -478,7 +467,6 @@ components:
             - None
         derefURI:
           type: string
-          example: example.json#/initialAlert/resource/0/derefURI
           description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
             \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
             mes de transcodage (sur des double quotes qui casseraient le message,\
@@ -487,12 +475,10 @@ components:
             - None
         digest:
           type: string
-          example: example.json#/initialAlert/resource/0/digest
           description: "Hash de la ressource pour confirmer la r\xE9ception de la\
             \ bonne ressource"
           examples:
             - None
-      example: example.json#/initialAlert/resource/0
       examples:
         - *id003
     callerName:
@@ -501,7 +487,6 @@ components:
       properties:
         complete:
           type: string
-          example: example.json#/initialAlert/caller/callerName/complete
           description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nNexSIS ne dispose\
             \ que de ces informations (concat\xE9n\xE9es) et pas de deux champs s\xE9\
             par\xE9s"
@@ -509,17 +494,14 @@ components:
             - Jean Dupont
         callerLastName:
           type: string
-          example: example.json#/initialAlert/caller/callerName/callerLastName
           description: "Nom du requ\xE9rant"
           examples:
             - Dupont
         callerFirstName:
           type: string
-          example: example.json#/initialAlert/caller/callerName/callerFirstName
           description: "Pr\xE9nom du r\xE9qu\xE9rant"
           examples:
             - Jean
-      example: example.json#/initialAlert/caller/callerName
       examples:
         - *id004
     nomenclature:
@@ -528,22 +510,18 @@ components:
       properties:
         code:
           type: string
-          example: example.json#/initialAlert/alertCode/whatsHappen/code
           description: "D\xE9crit le code de motif de recours m\xE9dical"
           examples:
             - C07.13.02
         label:
           type: string
-          example: example.json#/initialAlert/alertCode/whatsHappen/label
           description: "Libell\xE9 du motif"
           examples:
             - "Rod\xE9o automobile"
         freetext:
           type: string
-          example: example.json#/initialAlert/alertCode/whatsHappen/freetext
           examples:
             - None
-      example: example.json#/initialAlert/alertCode/whatsHappen
       examples:
         - *id005
     victims:
@@ -552,7 +530,6 @@ components:
       properties:
         count:
           type: string
-          example: example.json#/initialAlert/alertCode/victims/count
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
             f\xE9rentiel CISU"
           enum:
@@ -565,7 +542,6 @@ components:
             - SEVERAL
         mainVictim:
           type: string
-          example: example.json#/initialAlert/alertCode/victims/mainVictim
           description: "Identifie le type de la principale victime (celle dont l'\xE9\
             tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
@@ -580,11 +556,9 @@ components:
             - CHILD
         comment:
           type: string
-          example: example.json#/initialAlert/alertCode/victims/comment
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
           examples:
             - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
-      example: example.json#/initialAlert/alertCode/victims
       examples:
         - *id006
     address:
@@ -593,7 +567,6 @@ components:
       properties:
         complete:
           type: string
-          example: example.json#/caseLocation/address/complete
           description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
             \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
             \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
@@ -602,34 +575,29 @@ components:
             - 9 Bd du Montparnasse
         number:
           type: string
-          example: example.json#/caseLocation/address/number
           description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
             \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
             p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
           examples:
             - "9, 4bis, PK10, \u2026"
         wayName:
-          $ref: '#/definitions/wayName'
-          example: example.json#/caseLocation/address/wayName
+          $ref: '#/components/schemas/wayName'
           examples:
             - &id009
               complete: A1 direction Paris, Bd du Montparnasse
               type: Boulevard
               name: du Montparnasse
-      example: example.json#/caseLocation/address
     city:
       type: object
       required: []
       properties:
         name:
           type: string
-          example: example.json#/caseLocation/city/name
           description: Nom officiel de la commune actuelle
           examples:
             - Lille
         inseeCode:
           type: string
-          example: example.json#/caseLocation/city/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9."
@@ -638,14 +606,12 @@ components:
             - 59350
         detail:
           type: string
-          example: example.json#/caseLocation/city/detail
           description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
             \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
             \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
             \ fusionn\xE9es pour le syst\xE8me \xE9metteur"
           examples:
             - "Quartie Melun Nord, Lhomme, \u2026"
-      example: example.json#/caseLocation/city
       examples:
         - *id007
     access:
@@ -654,19 +620,16 @@ components:
       properties:
         floor:
           type: string
-          example: example.json#/caseLocation/access/floor
           description: 'Etage '
           examples:
             - "RDC, 1, 2, \u2026"
         roomNumber:
           type: string
-          example: example.json#/caseLocation/access/roomNumber
           description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
           examples:
             - "A16, 37, 104, \u2026"
         interphone:
           type: string
-          example: example.json#/caseLocation/access/interphone
           description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
             \ de l'interphone (num\xE9ro, nom)"
           examples:
@@ -675,55 +638,45 @@ components:
           type: array
           items:
             type: string
-            example: example.json#/caseLocation/access/accessCode/0
             description: "Indique le ou les digicodes dans l'ordre de progression\
               \ dans le b\xE2timent"
             examples:
               - '[''1234A'', ''4321B'']'
         elevator:
           type: string
-          example: example.json#/caseLocation/access/elevator
           description: 'Indique l''ascenseur ou la cage d''escalier '
           examples:
             - C3
         buildingName:
           type: string
-          example: example.json#/caseLocation/access/buildingName
           description: "Nom du b\xE2timent"
           examples:
             - Batiment B, Batiment Maunoury
         entrance:
           type: string
-          example: example.json#/caseLocation/access/entrance
           examples:
             - "Zone Sud, Porte 1, \u2026"
         entity:
           type: string
-          example: example.json#/caseLocation/access/entity
           description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
           examples:
             - "Infirmerie, service finance, service cardiologie, \u2026"
-      example: example.json#/caseLocation/access
     geometry:
       type: object
       required: []
       properties:
         point:
-          $ref: '#/definitions/point'
-          example: example.json#/caseLocation/geometry/point
+          $ref: '#/components/schemas/point'
         sketch:
           type: string
-          example: example.json#/caseLocation/geometry/sketch
           examples:
             - None
-      example: example.json#/caseLocation/geometry
     link:
       type: object
       required: []
       properties:
         source:
           type: string
-          example: example.json#/caseLocation/link/0/source
           description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
             \ (BAN, IGN, ...)"
           enum:
@@ -734,7 +687,6 @@ components:
             - "NexSIS, BAN, IGN, \u2026"
         type:
           type: string
-          example: example.json#/caseLocation/link/0/type
           description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
             \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
             \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
@@ -743,11 +695,9 @@ components:
             - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
         id:
           type: string
-          example: example.json#/caseLocation/link/0/id
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
           examples:
             - id987
-      example: example.json#/caseLocation/link/0
       examples:
         - *id008
     wayName:
@@ -756,21 +706,17 @@ components:
       properties:
         complete:
           type: string
-          example: example.json#/caseLocation/address/wayName/complete
           description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)"
           examples:
             - A1 direction Paris, Bd du Montparnasse
         type:
           type: string
-          example: example.json#/caseLocation/address/wayName/type
           examples:
             - Boulevard
         name:
           type: string
-          example: example.json#/caseLocation/address/wayName/name
           examples:
             - du Montparnasse
-      example: example.json#/caseLocation/address/wayName
       examples:
         - *id009
     point:
@@ -779,8 +725,7 @@ components:
         - coord
       properties:
         coord:
-          $ref: '#/definitions/coord'
-          example: example.json#/caseLocation/geometry/point/coord
+          $ref: '#/components/schemas/coord'
           examples:
             - &id010
               lat: '48.866667'
@@ -792,7 +737,6 @@ components:
               precision: Adresse
         coordsys:
           type: string
-          example: example.json#/caseLocation/geometry/point/coordsys
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
             \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
             \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
@@ -800,54 +744,47 @@ components:
           pattern: '[0-9]{0,10}'
           examples:
             - EPSG-4326
-      example: example.json#/caseLocation/geometry/point
     coord:
       type: object
       required: []
       properties:
         lat:
           type: number
-          example: example.json#/caseLocation/geometry/point/coord/lat
           description: "Latitude du point cl\xE9 de la localisation"
           examples:
             - '48.866667'
         lon:
           type: number
-          example: example.json#/caseLocation/geometry/point/coord/lon
           description: "Longitude du point cl\xE9 de la localisation"
           examples:
             - '2.333333'
         height:
           type: number
-          example: example.json#/caseLocation/geometry/point/coord/height
           description: "Altitude du point cl\xE9 de la localisation, ignor\xE9 c\xF4\
             t\xE9 NexSIS."
           examples:
             - 120
         heading:
           type: number
-          example: example.json#/caseLocation/geometry/point/coord/heading
           description: "En degr\xE9"
           examples:
             - 96
         speed:
           type: number
-          example: example.json#/caseLocation/geometry/point/coord/speed
           description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
             \ AML, \u2026"
           examples:
             - 34
         time:
-          type: number
-          example: example.json#/caseLocation/geometry/point/coord/time
+          type: string
           description: "Groupe date heure de renseignement des coordonn\xE9es du point\
             \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
             \ donc pertinence des informations pour intervenir."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}
           examples:
             - '2022-09-27T08:23:34+02:00'
         precision:
           type: string
-          example: example.json#/caseLocation/geometry/point/coord/precision
           description: "Niveau de pr\xE9cision et de confiance dans les coordonn\xE9\
             es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie)\
             \ d\xE9termin\xE9e de fa\xE7on automatique par le syst\xE8me en fonction\
@@ -859,7 +796,6 @@ components:
             - ADDRESS
           examples:
             - Adresse
-      example: example.json#/caseLocation/geometry/point/coord
       examples:
         - *id010
     identifier:
@@ -868,7 +804,6 @@ components:
       properties:
         source:
           type: string
-          example: example.json#/casualties/0/identifier/0/source
           enum:
             - NIR
             - SINUS
@@ -877,9 +812,34 @@ components:
             - "NIR, SINUS, SI-VIC, \u2026"
         value:
           type: string
-          example: example.json#/casualties/0/identifier/0/value
           examples:
             - id1234
-      example: example.json#/casualties/0/identifier/0
       examples:
         - *id011
+    customMap:
+      type: object
+      required: []
+      properties:
+        key:
+          type: string
+          description: Nom de la balise
+          examples:
+            - neighborhood
+        label:
+          type: string
+          description: "Libell\xE9 correspondant"
+          examples:
+            - Quartier
+        value:
+          type: string
+          description: "Valeur associ\xE9e \xE0 la cl\xE9"
+          examples:
+            - SECT.QUARTIER HISTORIQUE
+        freetext:
+          type: string
+          description: "Informations compl\xE9mentaires sur le contexte / utilisation\
+            \ de ce matching additionnel"
+          examples:
+            - "Pr\xE9cision sur le quartier d'intervention"
+      examples:
+        - *id012

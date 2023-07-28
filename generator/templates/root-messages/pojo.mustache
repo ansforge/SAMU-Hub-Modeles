@@ -258,7 +258,16 @@ public {{classname}}() {
             this.{{name}} = JsonNullable.<{{{datatypeWithEnum}}}>of({{name}});
         {{/vendorExtensions.x-is-jackson-optional-nullable}}
         {{^vendorExtensions.x-is-jackson-optional-nullable}}
-            this.{{name}} = {{name}};
+            {{#isArray}}
+                if ({{name}} == null) { return; }
+                if (this.{{name}} == null) {
+                this.{{name}} = new ArrayList<>();
+                }
+                this.{{name}}.addAll({{name}});
+            {{/isArray}}
+            {{^isArray}}
+                this.{{name}} = {{name}};
+            {{/isArray}}
         {{/vendorExtensions.x-is-jackson-optional-nullable}}
         }
     {{/isReadOnly}}

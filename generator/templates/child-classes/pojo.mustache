@@ -252,6 +252,7 @@ public {{classname}}() {
         {{/vendorExtensions.x-is-jackson-optional-nullable}}
         {{^vendorExtensions.x-is-jackson-optional-nullable}}
             {{#isArray}}
+                if ({{name}} == null) { return; }
                 if (this.{{name}} == null) {
                 this.{{name}} = new ArrayList<>();
                 }
