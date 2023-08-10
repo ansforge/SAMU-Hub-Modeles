@@ -24,13 +24,25 @@
             "whatsHappen": {
                 "code": "C07.13.02",
                 "label": "Rod\u00e9o automobile",
-                "comment": "None"
+                "freetext": "None"
             },
-            "locationKind": {},
+            "locationKind": {
+                "code": "None",
+                "label": "None",
+                "freetext": "None"
+            },
             "riskThreat": [
-                {}
+                {
+                    "code": "None",
+                    "label": "None",
+                    "freetext": "None"
+                }
             ],
-            "healthMotive": {},
+            "healthMotive": {
+                "code": "None",
+                "label": "None",
+                "freetext": "None"
+            },
             "gravity": 6,
             "victims": {
                 "count": "SEVERAL",
@@ -38,9 +50,9 @@
                 "comment": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
             }
         },
-        "alertSource": {
-            "channel": "Person",
-            "dialledURI": "tel:18"
+        "contact": {
+            "type": "Person",
+            "detail": "tel:18"
         },
         "callTaker": {
             "organization": "SDIS, SAMU, \u2026",
@@ -75,7 +87,7 @@
         "city": {
             "name": "Lille",
             "inseeCode": 59350,
-            "details": "Quartie Melun Nord, Lhomme, \u2026"
+            "detail": "Quartie Melun Nord, Lhomme, \u2026"
         },
         "access": {
             "floor": "RDC, 1, 2, \u2026",
@@ -87,7 +99,7 @@
             "elevator": "C3",
             "buildingName": "Batiment B, Batiment Maunoury",
             "entrance": "Zone Sud, Porte 1, \u2026",
-            "service": "Infirmerie, service finance, service cardiologie, \u2026"
+            "entity": "Infirmerie, service finance, service cardiologie, \u2026"
         },
         "geometry": {
             "point": {
@@ -102,7 +114,7 @@
                 },
                 "coordsys": "EPSG-4326"
             },
-            "sketch": {}
+            "sketch": "None"
         },
         "link": [
             {
@@ -112,7 +124,7 @@
             }
         ],
         "country": "France",
-        "comment": "Cl\u00e9 derri\u00e8re le pot de fleur"
+        "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
     },
     "casualties": [
         {
@@ -127,23 +139,24 @@
             "birthName": "Dupont",
             "firstName": "Jeanne",
             "sex": "F",
-            "birthDate": "2017-06-21",
+            "birthDate": "None",
             "age": "6Y",
             "weight": 31,
             "height": 109,
-            "details": "None"
+            "freetext": "None"
         }
     ],
     "newAlert": [
         {}
     ],
-    "severity": "EXTREME",
+    "severity": "None",
     "additionalInformation": {
         "customMap": {
             "key": "neighborhood",
             "label": "Quartier",
             "value": "SECT.QUARTIER HISTORIQUE",
-            "details": "Pr\u00e9cision sur le quartier d'intervention"
+            "freetext": "Pr\u00e9cision sur le quartier d'intervention"
         }
-    }
+    },
+    "freetext": "None"
 }

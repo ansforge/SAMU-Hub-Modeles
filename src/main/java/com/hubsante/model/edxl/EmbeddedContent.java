@@ -6,20 +6,20 @@ import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EmbeddedContent {
-    private EdxlInnerMessage innerMessage;
+    private UseCaseMessage useCaseMessage;
     public EmbeddedContent() {
     }
 
-    public EmbeddedContent(EdxlInnerMessage innerMessage) {
-        this.innerMessage = innerMessage;
+    public EmbeddedContent(UseCaseMessage useCaseMessage) {
+        this.useCaseMessage = useCaseMessage;
     }
 
-    public <T extends EdxlInnerMessage> T getMessage() {
-        return (T) innerMessage;
+    public <T extends UseCaseMessage> T getMessage() {
+        return (T) useCaseMessage;
     }
 
-    public <T extends EdxlInnerMessage> void setMessage(T message) {
-        this.innerMessage = message;
+    public <T extends UseCaseMessage> void setMessage(T message) {
+        this.useCaseMessage = message;
     }
 
     @Override
@@ -27,12 +27,12 @@ public class EmbeddedContent {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EmbeddedContent that = (EmbeddedContent) o;
-        return Objects.equals(innerMessage, that.innerMessage);
+        return Objects.equals(useCaseMessage, that.useCaseMessage);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(innerMessage);
+        return Objects.hash(useCaseMessage);
     }
 
 
@@ -42,7 +42,7 @@ public class EmbeddedContent {
     @Override
     public String toString() {
         String embeddedContent = new StringBuilder()
-                .append(innerMessage != null ? "inner message=" + innerMessage.toString() : "")
+                .append(useCaseMessage != null ? "inner message=" + useCaseMessage.toString() : "")
                 .toString();
 
         return "EmbeddedContent{" +
