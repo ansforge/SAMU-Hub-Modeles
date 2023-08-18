@@ -135,6 +135,7 @@ with open('example.json', 'w') as outfile:
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     '$id': 'http://json-schema.org/draft-07/schema#',
+    'x-id': 'schema.json#',  # required by JSV to find the schema file locally
     'version': '0.4.9',
     'example': 'example.json#',
     'type': 'object',

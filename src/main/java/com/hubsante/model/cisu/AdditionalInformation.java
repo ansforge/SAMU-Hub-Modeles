@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("additionalInformation")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
 public class AdditionalInformation {
     public static final String JSON_PROPERTY_CUSTOM_MAP = "customMap";
     private CustomMap customMap;

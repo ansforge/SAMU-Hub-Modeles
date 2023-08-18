@@ -52,7 +52,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:48:07.973+02:00[Europe/Paris]")
 public class CreateCaseMessage extends UseCaseMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";

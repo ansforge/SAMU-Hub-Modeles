@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
 public class Resource {
     public static final String JSON_PROPERTY_RESOURCE_DESC = "resourceDesc";
     private String resourceDesc;
