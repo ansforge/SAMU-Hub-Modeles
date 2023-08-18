@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("nomenclature")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
 public class Nomenclature {
     public static final String JSON_PROPERTY_CODE = "code";
     private String code;
