@@ -40,6 +40,11 @@ pour coller au nommage du xsd
 String xmlns = "urn:emergency:cisu:2.0";
 ```
 
+Les templates model.mustache, qui prennent en charge la génération des imports en tête de fichier, ont été surchargés pour intégrer la ligne suivante :
+```java
+import com.fasterxml.jackson.dataformat.xml.annotation.*;
+```
+pour pouvoir utiliser les annotations JacksonXmlRootElement et JacksonXmlProperty ajoutées ci-dessus.
 
 Comme on ne peut passer dans la conf que la liste des classes à traiter, sans pouvoir gérer d'exclusion, on applique la génération en deux temps en appliquant les commandes suivantes :
 
