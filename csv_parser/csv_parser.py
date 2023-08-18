@@ -8,7 +8,7 @@ MODEL_NAME = 'CreateCaseMessage'
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name="partageAffaire", skiprows=7, nrows=111)
+df = pd.read_excel('model.xlsx', sheet_name="createCase", skiprows=7, nrows=121)
 # Dropping useless columns
 df = df.iloc[:, :29]
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -132,7 +132,8 @@ with open('example.json', 'w') as outfile:
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
-    'id': 'schema.json#',
+    '$id': 'http://json-schema.org/draft-07/schema#',
+    'x-id': 'schema.json#',  # required by JSV to find the schema file locally
     'version': '0.4.9',
     'example': 'example.json#',
     'required': [],
@@ -150,16 +151,16 @@ def type_matching(child):
     """Get the matching type for a given type name"""
     typeName = child['Format (ou type)']
     if typeName == 'date':
-        return 'string', r'\d{4}-\d{2}-\d{2}'
+        return 'string', r'\d{4}-\d{2}-\d{2}', None
     elif typeName == 'datetime':
-        return 'string', r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}'
+        return 'string', r'\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}', 'date-time'
     elif typeName == 'phoneNumber':
-        return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}'
+        return 'string', r'tel:([#\+\*]|37000|00+)?[0-9]{2,15}', None
     else:
         if has_format_details(child, 'REGEX: '):
-            return typeName, child['Détails de format'][7:]
+            return typeName, child['Détails de format'][7:], None
         else:
-            return typeName, None
+            return typeName, None, None
 
 
 def get_parent_example_path(parent):
@@ -170,7 +171,7 @@ def get_parent_example_path(parent):
 
 def add_field_child_property(parent, child, properties):
     """Update parent properties by adding the child information for a field child"""
-    typeName, pattern = type_matching(child)
+    typeName, pattern, format = type_matching(child)
     parentExamplePath = get_parent_example_path(parent)
     childDetails = {
         'type': typeName,
@@ -180,6 +181,8 @@ def add_field_child_property(parent, child, properties):
         childDetails['description'] = child['Description']
     if pattern is not None:
         childDetails['pattern'] = pattern
+    if format is not None:
+        childDetails['format'] = format
     if has_format_details(child, 'ENUM: '):
         childDetails['enum'] = child['Détails de format'][6:].split(', ')
     if is_array(child):
@@ -329,7 +332,7 @@ full_yaml['components']['schemas'] = {
     **build_asyncapi_schema()
 }
 with open('hubsante.asyncapi.yaml', 'w') as file:
-    documents = yaml.dump(full_yaml, file)
+    documents = yaml.dump(full_yaml, file, sort_keys=False)
 print('AsyncAPI schema generated.')
 
 

@@ -8,17 +8,8 @@ public enum DistributionKind {
     REPORT("Report"),
     UPDATE("Update"),
     CANCEL("Cancel"),
-    REQUEST("Request"),
-    RESPONSE("Response"),
-    DISPATCH("Dispatch"),
     ACK("Ack"),
-    ERROR("Error"),
-    SENSOR_CONFIGURATION("SensorConfiguration"),
-    SENSOR_CONTROL("SensorControl"),
-    SENSOR_STATUS("SensorStatus"),
-    SENSOR_DETECTION("SensorDetection"),
-    UNKOWN("Unknown"),
-    NO_APPROPRIATE_DEFAULT("NoAppropriateDefault");
+    ERROR("Error");
 
     private String value;
     DistributionKind(String value) { this.value = value; }

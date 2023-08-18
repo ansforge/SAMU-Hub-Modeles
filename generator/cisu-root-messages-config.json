@@ -1,0 +1,21 @@
+{
+  "inputSpec": "./createCase.openapi.yml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/root-messages/",
+  "globalProperties": {
+    "models": "CreateCaseMessage",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.cisu",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false
+  }
+}
