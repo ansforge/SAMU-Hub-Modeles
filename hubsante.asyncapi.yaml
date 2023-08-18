@@ -2,8 +2,8 @@ asyncapi: 2.5.0
 info:
   title: Hub Sante AMQP API
   version: '0.9'
-  description: "L'API Hub Sante AMQP permet le partage d'informations entre acteurs\
-    \ du monde de la sant\xC3\xA9.\n"
+  description: |
+    L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -26,9 +26,8 @@ servers:
       - tlsAuth: []
 defaultContentType: application/json
 channels:
-  '{clientId}.message':
-    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
-      \ de messages"
+  "{clientId}.message":
+    description: File spécifique à chaque client pour la réception de messages
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -51,9 +50,8 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-  '{clientId}.ack':
-    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
-      \ des acquittements de bonne r\xC3\xA9ception"
+  "{clientId}.ack":
+    description: File spécifique à chaque client pour la réception des acquittements de bonne réception
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -63,7 +61,7 @@ channels:
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: "Acquittements de bonne r\xC3\xA9ception"
+      summary: Acquittements de bonne réception
       operationId: publishAck
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -76,10 +74,8 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
-  '{clientId}.info':
-    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
-      \ des informations compl\xC3\xA9mentaires li\xC3\xA9es au fonctionnement et\
-      \ aux \xC3\xA9changes port\xC3\xA9s par le Hub Sant\xC3\xA9"
+  "{clientId}.info":
+    description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
