@@ -8,9 +8,11 @@ MODEL_NAME = 'CreateCaseMessage'
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name="createCase", skiprows=7, nrows=121)
+df = pd.read_excel('model.xlsx', sheet_name="createCase", skiprows=7, nrows=135)
 # Dropping useless columns
-df = df.iloc[:, :29]
+df = df.iloc[:, :35]
+# Keeping only 15-NexSIS fields
+df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:6] = df.iloc[:, 1:6].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
 # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
@@ -136,6 +138,8 @@ json_schema = {
     'x-id': 'schema.json#',  # required by JSV to find the schema file locally
     'version': '0.4.9',
     'example': 'example.json#',
+    'type': 'object',
+    'title': MODEL_NAME,
     'required': [],
     'properties': {},
     'definitions': {}
@@ -175,6 +179,8 @@ def add_field_child_property(parent, child, properties):
     parentExamplePath = get_parent_example_path(parent)
     childDetails = {
         'type': typeName,
+        'title': child['full_name'],
+        'x-cols': 6,
         'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
     }
     if str(child['Description']) != 'nan':
@@ -205,6 +211,8 @@ def add_object_child_definition(parent, child, definitions):
     if typeName not in json_schema['definitions']:
         json_schema['definitions'][typeName] = {
             'type': 'object',
+            'title': child['full_name'],
+            'x-display': 'expansion-panels',
             'required': [],
             'properties': {},
             'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
@@ -217,13 +225,11 @@ def add_object_child_definition(parent, child, definitions):
             'type': 'array',
             'items': {
                 '$ref': '#/definitions/' + childTypeName,
-                'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         }
     else:
         properties[child['name']] = {
             '$ref': '#/definitions/' + childTypeName,
-            'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
         }
 
 
@@ -275,11 +281,19 @@ def get_examples_with_json_example(definition):
     # Do it as well for all its children properties
     if 'properties' in definition:
         for prop in definition['properties']:
-            propDef = definition['properties'][prop]
-            if 'items' in propDef:
-                get_examples_with_json_example(propDef['items'])
+            propDetails = definition['properties'][prop]
+            if 'items' in propDetails:
+                get_examples_with_json_example(get_definition_from_prop(propDetails['items']))
             else:
-                get_examples_with_json_example(propDef)
+                get_examples_with_json_example(get_definition_from_prop(propDetails))
+
+
+def get_definition_from_prop(prop):
+    """Gives the definition of a property"""
+    if '$ref' in prop:
+        return json_schema['definitions'][prop['$ref'].split('/')[-1]]
+    else:
+        return prop
 
 
 def build_json_schema(elem):
@@ -340,7 +354,8 @@ named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
 
 
 def get_excel_line(parent_type, name):
-    return named_df.loc[(parent_type, name)].to_dict()
+    # iloc[0] necessary even if there is only one line per name as it returns a DataFrame
+    return named_df.loc[(parent_type, name)].iloc[0].to_dict()
 
 
 def set_col_widths(table, widths):

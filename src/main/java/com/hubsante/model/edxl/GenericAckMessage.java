@@ -3,7 +3,7 @@ package com.hubsante.model.edxl;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
-@JsonRootName(value = "ackMessage")
+@JsonRootName(value = "message")
 public class GenericAckMessage extends UseCaseMessage {
 
     @JsonProperty(value = "ackDistributionId", required = true)
