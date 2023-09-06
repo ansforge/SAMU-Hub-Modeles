@@ -14,26 +14,19 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.AdditionalInformation;
-import com.hubsante.model.cisu.Alert;
-import com.hubsante.model.cisu.Casualties;
-import com.hubsante.model.cisu.Location;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hubsante.model.edxl.UseCaseMessage;
+import com.hubsante.model.edxl.ContentMessage;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * CreateCaseMessage
@@ -53,7 +46,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:48:07.973+02:00[Europe/Paris]")
-public class CreateCaseMessage extends UseCaseMessage {
+public class CreateCaseMessage extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
     public static final String JSON_PROPERTY_CASE_ID = "caseId";

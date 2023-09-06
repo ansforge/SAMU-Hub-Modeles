@@ -15,5 +15,5 @@ import com.hubsante.model.report.ErrorReport;
         @JsonSubTypes.Type(ErrorReport.class),
         @JsonSubTypes.Type(CustomMessage.class)
 })
-public class UseCaseMessage {
+public class ContentMessage {
 }

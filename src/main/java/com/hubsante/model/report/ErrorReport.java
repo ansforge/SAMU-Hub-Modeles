@@ -2,9 +2,9 @@ package com.hubsante.model.report;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hubsante.model.edxl.UseCaseMessage;
+import com.hubsante.model.edxl.ContentMessage;
 
-public class ErrorReport extends UseCaseMessage {
+public class ErrorReport extends ContentMessage {
 
     private final String JSON_PROPERTY_ERROR_CODE = "errorCode";
     private ErrorCode errorCode;

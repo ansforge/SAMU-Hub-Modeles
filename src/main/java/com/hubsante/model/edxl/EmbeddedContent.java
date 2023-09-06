@@ -6,19 +6,19 @@ import java.util.Objects;
 
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EmbeddedContent {
-    private UseCaseMessage useCaseMessage;
+    private ContentMessage useCaseMessage;
     public EmbeddedContent() {
     }
 
-    public EmbeddedContent(UseCaseMessage useCaseMessage) {
+    public EmbeddedContent(ContentMessage useCaseMessage) {
         this.useCaseMessage = useCaseMessage;
     }
 
-    public <T extends UseCaseMessage> T getMessage() {
+    public <T extends ContentMessage> T getMessage() {
         return (T) useCaseMessage;
     }
 
-    public <T extends UseCaseMessage> void setMessage(T message) {
+    public <T extends ContentMessage> void setMessage(T message) {
         this.useCaseMessage = message;
     }
 
