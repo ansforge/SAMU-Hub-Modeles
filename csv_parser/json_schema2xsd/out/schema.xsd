@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:x="https://hub.esante.gouv.fr/createCase.xsd" elementFormDefault="qualified"
+        targetNamespace="https://hub.esante.gouv.fr/createCase.xsd" xmlns="http://www.w3.org/2001/XMLSchema">
+    <complexType name="createCase">
+        <sequence>
+            <element minOccurs="0" name="caseId" type="string">
+                <annotation>
+                    <documentation>Identifiant fonctionnel unique de l'affaire et partagé entre tous les intervenants.
+                        Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté.
+                        Il est généré par la force réceptrice de la primo-demande de secours et contient un identifiant
+                        de la source.
+                        Format proposé : {SystèmeEmetteur}-{Date}-AL|AF{Sequence}
+                        Format NF399 : pays + CTA + date + # unique
+                        Format NexSIS : SC-20211105-077-cga-AF18 (SC-AAAAMMJJ-{codeCGA}-AL|AF{SEQUENCE}) (toutes les
+                        alertes créent pas des affaires, affaires peuvent avoir plusieurs alertes)
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="senderCaseId" type="string">
+                <annotation>
+                    <documentation>Identifiant de l'affaire dans le SI de l'émetteur du message</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="createdAt" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de début de partage lié à la création de l'affaire (et donc de
+                        génération du caseId). Il doit être renseigné à la fin du processus de la création de la
+                        première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.
+                        L'indicateur de fuseau horaire Z ne doit pas être utilisé. Le fuseau horaire pour UTC doit être
+                        représenté par '-00:00'
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="initialAlert" type="x:alert"/>
+            <element name="caseLocation" type="x:location"/>
+            <element minOccurs="0" name="casualties">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="casualties" type="x:casualties"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="newAlert">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="alert" type="x:alert"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="severity">
+                <annotation>
+                    <documentation>[Non utilisé dans une première version car la définition et l'usage restent à
+                        définir]
+                        Précise l'urgence médicale :
+                        EXTREME : Menace extrême pour la vie
+                        SEVERE : Menace importante pour la vie
+                        MODERATE - Menace possible pour la vie
+                        MINOR : Peu ou pas de menace connue pour la vie
+                        UNKNOWN : Niveau de menace inconnu
+                        Ce niveau de gravité est lié au Motif de Recours Medico-Secouriste associé à l'appel.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="EXTREME"/>
+                        <enumeration value="SEVERE"/>
+                        <enumeration value="MODERATE"/>
+                        <enumeration value="MINOR"/>
+                        <enumeration value="UNKNOWN"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant
+                        l'affaire
+                    </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="alert">
+        <sequence>
+            <element minOccurs="0" name="alertId" type="string">
+                <annotation>
+                    <documentation>Identifiant technique unique de l'alerte. Il doit pouvoir être généré automatiquement
+                        par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les
+                        différents systèmes pour garantir leur découplage.
+                        Voir la description de l'identifiant de l'affaire pour voir le format.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="receivedAt" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de réception de l'alerte</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="reporting">
+                <annotation>
+                    <documentation>Permet d'attirer l'attention des forces partenaires sur une affaire.
+                        Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné
+                        par l'opérateur.
+                        Prend les valeurs définies dans la nomenclature CISU.
+                        Pour les systèmes multi-alertes mais gérant ce champs au niveau de l'affaire, ils prennent le
+                        niveau d'alerte le plus élevé (peut être complété par "Raison du transfert")
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="STANDARD"/>
+                        <enumeration value="ATTENTION"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="alertInformation" type="string">
+                <annotation>
+                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant
+                        l'alerte
+                    </documentation>
+                </annotation>
+            </element>
+            <element name="caller" type="x:caller"/>
+            <element name="alertLocation" type="x:location"/>
+            <element name="alertCode" type="x:alertCode"/>
+            <element minOccurs="0" name="contact" type="x:contact"/>
+            <element name="callTaker" type="x:callTaker"/>
+            <element minOccurs="0" name="resource">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="resource" type="x:resource"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="location">
+        <sequence>
+            <element minOccurs="0" name="locID" type="string">
+                <annotation>
+                    <documentation>ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges
+                        de cette affaire.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="locLabel" type="string">
+                <annotation>
+                    <documentation>Correspond à l'étiquette associée à la localisation (plutôt à destination des
+                        humains).
+                        Elle va souvent correspondre à la concaténation suivant des règles métiers de différentes
+                        informations, dont le "name" (toponyme) et l'adresse.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Indique le nom de lieu : nom commercial, lieu-dit, lac, forêt, nom de quartier
+                        (plutôt à destination des systèmes).
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="address" type="x:address"/>
+            <element minOccurs="0" name="city" type="x:city"/>
+            <element minOccurs="0" name="access" type="x:access"/>
+            <element minOccurs="0" name="geometry" type="x:geometry"/>
+            <element minOccurs="0" name="link">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="link" type="x:link"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="country">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="France"/>
+                        <enumeration value="Allemagne"/>
+                        <enumeration value="Espagne"/>
+                        <enumeration value="Italie"/>
+                        <enumeration value="Suisse"/>
+                        <enumeration value="Luxembourg"/>
+                        <enumeration value="Belgique"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Champ libre pour compléter les informations de localisation</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="casualties">
+        <sequence>
+            <element minOccurs="0" name="identifier">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="identifier" type="x:identifier"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="phoneNumber">
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="tel:([#\+\*]|37000|00+)?[0-9]{2,15}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="name" type="string"/>
+            <element minOccurs="0" name="birthName" type="string"/>
+            <element minOccurs="0" name="firstName" type="string">
+                <annotation>
+                    <documentation>Prénom usuel du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="sex">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="F"/>
+                        <enumeration value="M"/>
+                        <enumeration value="O"/>
+                        <enumeration value="U"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="birthDate">
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\d{4}-\d{2}-\d{2}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="age">
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value=""/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="weight" type="int">
+                <annotation>
+                    <documentation>Poids en kilogrammes</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="height" type="int">
+                <annotation>
+                    <documentation>Taille en centimètres</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="additionalInformation">
+        <sequence>
+            <element minOccurs="0" name="customMap" type="x:customMap"/>
+        </sequence>
+    </complexType>
+    <complexType name="caller">
+        <sequence>
+            <element minOccurs="0" name="callerURI">
+                <annotation>
+                    <documentation>Type de l'URI utilisée par le réquérant et valeur. Ne peut contenir qu'une
+                        URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le numéro de téléphone doit être renseigné
+                        en priorité, à défaut, renseigner un autre type d'URI. Si ce numéro est renseigné, il devient
+                        prioritaire par rapport au numéro d'appel.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="tel:([#\+\*]|37000|00+)?[0-9]{2,15}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="callbackURI">
+                <annotation>
+                    <documentation>Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut
+                        s'agit du requérant, de la victime ou d'un témoin. Ne peut contenir qu'une URI.Exemple :
+                        tel:+33611223344 OU sip:top@domain.org. Le numéro de téléphone doit être renseigné en priorité,
+                        à défaut, renseigner un autre type d'URI. Si le numéro de contre-appel est renseigné, il doit
+                        être utilisé en priorité sur le numéro réquérant.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="tel:([#\+\*]|37000|00+)?[0-9]{2,15}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="spokenLanguage" type="string">
+                <annotation>
+                    <documentation>Langue parlée par le requérant. Permet de mettre en place des traducteurs si
+                        besoin.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="callerInformation" type="string">
+                <annotation>
+                    <documentation>Information sur le requérant : malentendant, impliqué dans l'accident, …
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="callerName" type="x:callerName"/>
+        </sequence>
+    </complexType>
+    <complexType name="alertCode">
+        <sequence>
+            <element minOccurs="0" name="cisuVersion" type="string">
+                <annotation>
+                    <documentation>Indique le numéro de version du référentiel des nomenclatures des codes transmis.
+                        Cela permet de s'assurer que les systèmes opérationnels soient en capacité de les traiter
+                        correctement.
+                    </documentation>
+                </annotation>
+            </element>
+            <element name="whatsHappen" type="x:nomenclature"/>
+            <element minOccurs="0" name="locationKind" type="x:nomenclature"/>
+            <element minOccurs="0" name="riskThreat">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="nomenclature" type="x:nomenclature"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element minOccurs="0" name="gravity" type="string">
+                <annotation>
+                    <documentation>Score de gravité fournit par NexSIS</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="victims" type="x:victims"/>
+        </sequence>
+    </complexType>
+    <complexType name="contact">
+        <sequence>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Permet d'indiquer l'origine de la communication : Personne, application, DAU, BAU,
+                        défibrillateur, ecall
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="detail">
+                <annotation>
+                    <documentation>Indique le type de l'URI composée par le réquérant et la valeur de l'URI, concaténées
+                        et séparées par ":". Exemples : tel:112, tel:18, sip:sos@nexsis.fr, … Une seule URI peut être
+                        renseignée.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="tel:([#\+\*]|37000|00+)?[0-9]{2,15}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="callTaker">
+        <sequence>
+            <element minOccurs="0" name="organization" type="string">
+                <annotation>
+                    <documentation>Organisation d'appartenance de l'opérateur ayant traité l'alerte</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="controlRoom" type="string">
+                <annotation>
+                    <documentation>Salle opérationnelle de l'opérateur de traitement</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="calltakerURI" type="string">
+                <annotation>
+                    <documentation>Numéro de ligne directe permettant de recontacter l'opérateur de traitement
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="calltakerId" type="string">
+                <annotation>
+                    <documentation>Identifiant unique de l'opérateur ayant traité l'alerte</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="resource">
+        <sequence>
+            <element minOccurs="0" name="resourceDesc" type="string">
+                <annotation>
+                    <documentation>Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="mimeType" type="string">
+                <annotation>
+                    <documentation>L'identifiant du type MIME de contenu et sous-type décrivant la ressource
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="size" type="int">
+                <annotation>
+                    <documentation>Taille approximative de la ressource en kO</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="URI">
+                <annotation>
+                    <documentation>Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou
+                        sur un réseau privé
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="(https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="derefURI" type="string">
+                <annotation>
+                    <documentation>Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en
+                        base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le
+                        message, …)
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="digest" type="string">
+                <annotation>
+                    <documentation>Hash de la ressource pour confirmer la réception de la bonne ressource
+                    </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="callerName">
+        <sequence>
+            <element minOccurs="0" name="complete" type="string">
+                <annotation>
+                    <documentation>Prénom et nom usuel du requérant.
+                        NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="callerLastName" type="string">
+                <annotation>
+                    <documentation>Nom du requérant</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="callerFirstName" type="string">
+                <annotation>
+                    <documentation>Prénom du réquérant</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="nomenclature">
+        <sequence>
+            <element minOccurs="0" name="code" type="string">
+                <annotation>
+                    <documentation>Décrit le code de motif de recours médical</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="label" type="string">
+                <annotation>
+                    <documentation>Libellé du motif</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="victims">
+        <sequence>
+            <element minOccurs="0" name="count">
+                <annotation>
+                    <documentation>Indique le nombre de victimes selon la nomenclature du référentiel CISU
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="0"/>
+                        <enumeration value="1"/>
+                        <enumeration value="SEVERAL"/>
+                        <enumeration value="MANY"/>
+                        <enumeration value="UNKNOWN"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="mainVictim">
+                <annotation>
+                    <documentation>Identifie le type de la principale victime (celle dont l'état de santé provoque le
+                        déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la
+                        détermination des partenaires impliqués par NexSIS.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="INFANT"/>
+                        <enumeration value="CHILD"/>
+                        <enumeration value="ADULT"/>
+                        <enumeration value="PREGNANT"/>
+                        <enumeration value="SENIOR"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="comment" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre la(les) victime(s)</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="address">
+        <sequence>
+            <element minOccurs="0" name="complete" type="string">
+                <annotation>
+                    <documentation>Numéro, type et nom de la voie.
+                        Utilisé pour tout type de voie : autoroute (PK, nom et sens), voie ferrée, voie navigable…
+                        Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="number" type="string">
+                <annotation>
+                    <documentation>Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie
+                        navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="wayName" type="x:wayName"/>
+        </sequence>
+    </complexType>
+    <complexType name="city">
+        <sequence>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom officiel de la commune actuelle</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="inseeCode">
+                <annotation>
+                    <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en
+                        vigueur. Obligatoire si le nom de la commune est renseigné.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="detail" type="string">
+                <annotation>
+                    <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne
+                        commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de
+                        communes fusionnées pour le système émetteur
+                    </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="access">
+        <sequence>
+            <element minOccurs="0" name="floor" type="string">
+                <annotation>
+                    <documentation>Etage</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="roomNumber" type="string">
+                <annotation>
+                    <documentation>Spécifie numéro d'appartement, de chambre, de bureau</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="interphone" type="string">
+                <annotation>
+                    <documentation>Indique les informations nécessaires à l'identification de l'interphone (numéro,
+                        nom)
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="accessCode">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="elevator" type="string">
+                <annotation>
+                    <documentation>Indique l'ascenseur ou la cage d'escalier</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="buildingName" type="string">
+                <annotation>
+                    <documentation>Nom du bâtiment</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="entrance" type="string"/>
+            <element minOccurs="0" name="entity" type="string">
+                <annotation>
+                    <documentation>Nom du service concerné au sein de l'établissement</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="geometry">
+        <sequence>
+            <element minOccurs="0" name="point" type="x:point"/>
+            <element minOccurs="0" name="sketch" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="link">
+        <sequence>
+            <element minOccurs="0" name="source">
+                <annotation>
+                    <documentation>Système fournissant le localisant : NexSiS ou l'ORG_ID (BAN, IGN, ...)
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="BAN"/>
+                        <enumeration value="IGN"/>
+                        <enumeration value="NexSIS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Définition du type d'objet dans le système
+                        Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon
+                        de route, …) pour faciliter le filtre | Aussi table dans une base de données
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>Identifiant unique dans le type. Exemple : UUID d'un ega</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="wayName">
+        <sequence>
+            <element minOccurs="0" name="complete" type="string">
+                <annotation>
+                    <documentation>Type et nom de la voie (venant d'un référentiel ou non)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="type" type="string"/>
+            <element minOccurs="0" name="name" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="point">
+        <sequence>
+            <element name="coord" type="x:coord"/>
+            <element minOccurs="0" name="coordsys">
+                <annotation>
+                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est
+                        «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère
+                        que la valeur par défaut est «EPSG-4326».
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{0,10}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="coord">
+        <sequence>
+            <element minOccurs="0" name="lat" type="decimal">
+                <annotation>
+                    <documentation>Latitude du point clé de la localisation</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="lon" type="decimal">
+                <annotation>
+                    <documentation>Longitude du point clé de la localisation</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="height" type="decimal">
+                <annotation>
+                    <documentation>Altitude du point clé de la localisation, ignoré côté NexSIS.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="heading" type="decimal">
+                <annotation>
+                    <documentation>En degré</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="speed" type="decimal">
+                <annotation>
+                    <documentation>Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="time" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de renseignement des coordonnées du point clé de la localisation.
+                        Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="precision">
+                <annotation>
+                    <documentation>Niveau de précision et de confiance dans les coordonnées (au niveau de la
+                        commune/lieu-dit, voie/rue ou adresse/point de voie) déterminée de façon automatique par le
+                        système en fonction des informations disponibles lors de son élaboration (n°, voie et commune)
+                        et du matching fait dans son système de localisation.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="CITY"/>
+                        <enumeration value="STREET"/>
+                        <enumeration value="ADDRESS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="identifier">
+        <sequence>
+            <element minOccurs="0" name="source">
+                <annotation>
+                    <documentation>idem autre type d'identifiant + identifiant ?</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="NIR"/>
+                        <enumeration value="SINUS"/>
+                        <enumeration value="SI-VIC"/>
+                        <enumeration value="…"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="value" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="customMap">
+        <sequence>
+            <element minOccurs="0" name="key" type="string">
+                <annotation>
+                    <documentation>Nom de la balise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="label" type="string">
+                <annotation>
+                    <documentation>Libellé correspondant</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="value" type="string">
+                <annotation>
+                    <documentation>Valeur associée à la clé</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Informations complémentaires sur le contexte / utilisation de ce matching
+                        additionnel
+                    </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>
