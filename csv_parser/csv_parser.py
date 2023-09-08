@@ -5,6 +5,7 @@ import yaml
 import docx
 
 MODEL_NAME = 'CreateCaseMessage'
+DATA_DEPTH = 6  # nombre de niveaux de données
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
@@ -14,7 +15,7 @@ df = df.iloc[:, :35]
 # Keeping only 15-NexSIS fields
 df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
-df.iloc[:, 1:6] = df.iloc[:, 1:6].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
+df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
 # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
 df['name'] = df['Balise NexSIS']
 df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
@@ -22,7 +23,7 @@ df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
 # DATA ENRICHMENT
 # Get level in data hierarchy
 df['level_shift'] = -1
-for i in range(1, 6):
+for i in range(1, 1 + DATA_DEPTH):
     df[f"level_{i}"] = df[f"Donnée (Niveau {i})"].notnull().cumsum()
     df[f"previous_level_{i}"] = df[f"level_{i}"].shift(periods=1, fill_value=0)
     df["level_shift"] = df.apply(
