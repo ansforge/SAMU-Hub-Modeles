@@ -33,6 +33,10 @@ public class EdxlMessage extends EdxlEnvelope {
         this.setContent(new Content(new ContentObject(new ContentWrapper(new EmbeddedContent(embeddedContent)))));
     }
 
+    public ContentMessage getContentMessage() {
+        return this.getContent().getContentObject().getContentWrapper().getEmbeddedContent().getMessage();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

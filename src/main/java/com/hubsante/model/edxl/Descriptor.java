@@ -23,6 +23,14 @@ public class Descriptor {
     @JsonProperty(value = "explicitAddress", required = true)
     private ExplicitAddress explicitAddress;
 
+    public Descriptor() {
+    }
+
+    public Descriptor(String language, ExplicitAddress explicitAddress) {
+        this.language = language;
+        this.explicitAddress = explicitAddress;
+    }
+
     public String getLanguage() {
         return language;
     }
