@@ -12,6 +12,14 @@ public class ExplicitAddress {
     @JsonProperty(value = "explicitAddressValue", required = true)
     private String explicitAddressValue;
 
+    public ExplicitAddress() {
+    }
+
+    public ExplicitAddress(String explicitAddressScheme, String explicitAddressValue) {
+        this.explicitAddressScheme = explicitAddressScheme;
+        this.explicitAddressValue = explicitAddressValue;
+    }
+
     public String getExplicitAddressScheme() {
         return explicitAddressScheme;
     }
