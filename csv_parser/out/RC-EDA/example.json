@@ -126,26 +126,6 @@
         "country": "France",
         "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
     },
-    "casualties": [
-        {
-            "identifier": [
-                {
-                    "source": "NIR, SINUS, SI-VIC, \u2026",
-                    "value": "id1234"
-                }
-            ],
-            "phoneNumber": "tel:0606060606",
-            "name": "Dupont",
-            "birthName": "Dupont",
-            "firstName": "Jeanne",
-            "sex": "F",
-            "birthDate": "None",
-            "age": "6Y",
-            "weight": 31,
-            "height": 109,
-            "freetext": "None"
-        }
-    ],
     "newAlert": [
         {}
     ],

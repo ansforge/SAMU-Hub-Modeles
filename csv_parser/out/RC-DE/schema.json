@@ -1,0 +1,128 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://json-schema.org/draft-07/schema#",
+    "x-id": "schema.json#",
+    "version": "0.4.9",
+    "example": "example.json#",
+    "type": "object",
+    "title": "DistributionElement",
+    "required": [
+        "sender",
+        "recipients"
+    ],
+    "properties": {
+        "messageId": {
+            "type": "string",
+            "title": "messageId",
+            "x-cols": 6,
+            "example": "example.json#/messageId",
+            "description": "Identifiant technique permettant d'identifier le message envoy\u00e9. Cet identifiant est utilis\u00e9 par NexSIS pour assurer le routage des messages\nPr\u00e9conisation : r\u00e9employer le contenu de la balise <distributionId> de l'enveloppe EDXL (cf. DST)"
+        },
+        "sender": {
+            "$ref": "#/definitions/sender"
+        },
+        "sentAt": {
+            "type": "string",
+            "title": "Horodatage envoi message",
+            "x-cols": 6,
+            "example": "example.json#/sentAt",
+            "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 l'envoi du message. Il doit  \u00eatre coh\u00e9rent avec le champ <dateTimeSent> de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9. Le fuseau horaire pour UTC doit \u00eatre repr\u00e9sent\u00e9 par '-00:00'",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "format": "date-time"
+        },
+        "kind": {
+            "type": "string",
+            "title": "Type de message NexSIS",
+            "x-cols": 6,
+            "example": "example.json#/kind",
+            "description": "Prend la valeur <distributionKind de l'enveloppe EDXL (voir DST)",
+            "enum": [
+                "Report",
+                "Update",
+                "Cancel",
+                "Ack",
+                "Error"
+            ]
+        },
+        "status": {
+            "type": "string",
+            "title": "Status du message",
+            "x-cols": 6,
+            "example": "example.json#/status",
+            "description": "Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir DST)",
+            "enum": [
+                "Actual",
+                "Exercise",
+                "System"
+            ]
+        },
+        "recipients": {
+            "$ref": "#/definitions/recipients"
+        }
+    },
+    "definitions": {
+        "sender": {
+            "type": "object",
+            "title": "Syst\u00e8me \u00e9metteur",
+            "x-display": "expansion-panels",
+            "required": [],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Identifiant technique du syst\u00e8me emetteur",
+                    "x-cols": 6,
+                    "example": "example.json#/sender/name",
+                    "description": "Identifiant technique du syst\u00e8me emetteur\nFormat : \n=> Pour les SAMU : {cl\u00e9 de routage}-{nom solution LRM}\no\u00f9 cl\u00e9 de routage d\u00e9signe le nom de la cl\u00e9 de routage utilis\u00e9e par le LRM pour les \u00e9changes et {nom solution LRM} est le nom donn\u00e9 par l'\u00e9diteur \u00e0 sa solution (libre)\n=> Pour NeXSIS : \u00e0 d\u00e9finir {sga|sgo}-nexsis"
+                },
+                "URI": {
+                    "type": "string",
+                    "title": "uri",
+                    "x-cols": 6,
+                    "example": "example.json#/sender/URI",
+                    "description": "uri du syst\u00e8me. Permet d'identifier le vecteur utilis\u00e9 par les \u00e9changes\nFormat :\n=> Pour les LRM : sge:{sender:name}\n=> Pour NexSIS : sge:{sender:name}"
+                }
+            },
+            "example": "example.json#/sender"
+        },
+        "recipients": {
+            "type": "object",
+            "title": "Syst\u00e8mes destinataires",
+            "x-display": "expansion-panels",
+            "required": [
+                "recipient"
+            ],
+            "properties": {
+                "recipient": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/recipient"
+                    }
+                }
+            },
+            "example": "example.json#/recipients"
+        },
+        "recipient": {
+            "type": "object",
+            "title": "Syst\u00e8me destinataire",
+            "x-display": "expansion-panels",
+            "required": [],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Identifiant technique du syst\u00e8me destinataire",
+                    "x-cols": 6,
+                    "example": "example.json#/recipients/recipient/0/name",
+                    "description": "Identifiant technique du syst\u00e8me emetteur\nFormat : \n=> Pour les SAMU : {cl\u00e9 de routage}-{nom solution LRM}\no\u00f9 cl\u00e9 de routage d\u00e9signe le nom de la cl\u00e9 de routage utilis\u00e9e par le LRM pour les \u00e9changes et {nom solution LRM} est le nom donn\u00e9 par l'\u00e9diteur \u00e0 sa solution (libre)\n=> Pour NeXSIS : \u00e0 d\u00e9finir {sga|sgo}-nexsis"
+                },
+                "URI": {
+                    "type": "string",
+                    "title": "uri",
+                    "x-cols": 6,
+                    "example": "example.json#/recipients/recipient/0/URI",
+                    "description": "uri du syst\u00e8me. Permet d'identifier le vecteur utilis\u00e9 par les \u00e9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n=> Pour NexSIS : sge:{recipient:name}"
+                }
+            },
+            "example": "example.json#/recipients/recipient/0"
+        }
+    }
+}

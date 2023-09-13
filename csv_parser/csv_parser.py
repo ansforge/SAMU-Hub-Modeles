@@ -4,14 +4,32 @@ from jsonpath_ng import parse
 import yaml
 import docx
 
-MODEL_NAME = 'CreateCaseMessage'
 DATA_DEPTH = 6  # nombre de niveaux de données
+
+SHEET = ['RC-DE', 'RC-EDA'][1]
+
+params = {
+    'RC-DE': {
+        'modelName': 'DistributionElement',
+        'cols': 35,
+        'rows': 11
+    },
+    'RC-EDA': {
+        'modelName': 'CreateCaseMessage',
+        'cols': 35,
+        'rows': 137
+    }
+}
+# ToDo(RFO) : compute automatically for each sheet
+MODEL_NAME = params[SHEET]['modelName']
+NB_ROWS = params[SHEET]['rows']
+NB_COLS = params[SHEET]['cols']
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name="createCase", skiprows=7, nrows=135)
+df = pd.read_excel('model.xlsx', sheet_name=SHEET, skiprows=7, nrows=NB_ROWS)
 # Dropping useless columns
-df = df.iloc[:, :35]
+df = df.iloc[:, :NB_COLS]
 # Keeping only 15-NexSIS fields
 df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -129,7 +147,7 @@ def build_example(elem):
 
 
 json_example = build_example(rootObject)
-with open('example.json', 'w') as outfile:
+with open(f'out/{SHEET}/example.json', 'w') as outfile:
     json.dump(json_example, outfile, indent=4)
 
 # Go through data (list or tree) and use it to build the expected JSON schema
@@ -314,7 +332,7 @@ def DFS(root, use_elem):
 
 print('Generating JSON schema...')
 DFS(rootObject, build_json_schema)
-with open('schema.json', 'w') as outfile:
+with open(f'out/{SHEET}/schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -346,7 +364,7 @@ full_yaml['components']['schemas'] = {
     **full_yaml['components']['schemas'],
     **build_asyncapi_schema()
 }
-with open('hubsante.asyncapi.yaml', 'w') as file:
+with open(f'out/{SHEET}/hubsante.asyncapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, file, sort_keys=False)
 print('AsyncAPI schema generated.')
 
@@ -355,8 +373,11 @@ named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
 
 
 def get_excel_line(parent_type, name):
-    # iloc[0] necessary even if there is only one line per name as it returns a DataFrame
-    return named_df.loc[(parent_type, name)].iloc[0].to_dict()
+    try:
+        # iloc[0] necessary even if there is only one line per name as it returns a DataFrame
+        return named_df.loc[(parent_type, name)].iloc[0].to_dict()
+    except AttributeError:
+        return named_df.loc[(parent_type, name)].to_dict()
 
 
 def set_col_widths(table, widths):
@@ -424,7 +445,7 @@ def_to_table(MODEL_NAME, json_schema, title=f"Objet {MODEL_NAME}", doc=doc)
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-doc.save('schema.docx')
+doc.save(f'out/{SHEET}/schema.docx')
 
 print('Docx tables generated.')
 
