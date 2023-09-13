@@ -15,7 +15,7 @@
             "title": "Identifiant affaire",
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant fonctionnel unique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par la force r\u00e9ceptrice de la primo-demande de secours et contient un identifiant de la source.\nFormat propos\u00e9 : {Syst\u00e8meEmetteur}-{Date}-AL|AF{Sequence}\nFormat NF399 : pays + CTA + date + # unique\nFormat NexSIS : SC-20211105-077-cga-AF18 (SC-AAAAMMJJ-{codeCGA}-AL|AF{SEQUENCE}) (toutes les alertes cr\u00e9ent pas des affaires, affaires peuvent avoir plusieurs alertes)"
+            "description": "Identifiant fonctionnel unique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par la force r\u00e9ceptrice de la primo-demande de secours et contient un identifiant de la source.\nFormat : {Syst\u00e8meEmetteur}-{Date}-AF{Sequence} o\u00f9 :\n- {Syst\u00e8meEmetteur} est la cl\u00e9 de routage utilis\u00e9e en majuscule (se r\u00e9f\u00e9rer au DST)\n- {Date} est la date du jour au format AAAMMJJ\n- {Sequence} sur 4 digits est choisie par le syst\u00e8me \u00e9metteur de fa\u00e7on \u00e0 rendre les affaires emises uniques\n- AF pour d\u00e9signer \u00e0 NexSIS que l'on \u00e9change une affaire"
         },
         "senderCaseId": {
             "type": "string",
@@ -38,12 +38,6 @@
         },
         "caseLocation": {
             "$ref": "#/definitions/location"
-        },
-        "casualties": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/casualties"
-            }
         },
         "newAlert": {
             "type": "array",
@@ -93,7 +87,7 @@
                     "title": "Identifiant alerte",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/alertId",
-                    "description": "Identifiant technique unique de l'alerte. Il doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 automatiquement par le syst\u00e8me \u00e9metteur et ne doit pas avoir de signification / utilisation particuli\u00e8re par les diff\u00e9rents syst\u00e8mes pour garantir leur d\u00e9couplage.\nVoir la description de l'identifiant de l'affaire pour voir le format."
+                    "description": "Identifiant technique unique de l'alerte. Il doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 automatiquement par le syst\u00e8me \u00e9metteur et ne doit pas avoir de signification / utilisation particuli\u00e8re par les diff\u00e9rents syst\u00e8mes pour garantir leur d\u00e9couplage.\nVoir la description de l'identifiant de l'affaire pour voir le format.\nLorsqu\u2019une alerte est g\u00e9n\u00e9r\u00e9e dans NexSIS et cr\u00e9e une affaire, elle est qualifi\u00e9e d\u2019Alerte Initiale.\na)\tSi cette derni\u00e8re concerne un partenaire (caract\u00e8re m\u00e9dical pour la Sant\u00e9 par exemple), elle est relay\u00e9e seule dans le message. Il y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\u00e9e \u00e0 la m\u00eame affaire peut \u00eatre d\u00e9clar\u00e9e ult\u00e9rieurement, concernant cette fois le partenaire. Lorsqu\u2019elle est d\u00e9clar\u00e9e cette Nouvelle Alerte est relay\u00e9e avec l\u2019Alerte Initiale pour partager un contexte commun. Dans le message de cr\u00e9ation d\u2019affaire il y\u2019a deux objets alerte : initialAlert et newAlert."
                 },
                 "receivedAt": {
                     "type": "string",
@@ -216,93 +210,6 @@
             },
             "example": "example.json#/caseLocation"
         },
-        "casualties": {
-            "type": "object",
-            "title": "Patients / victimes",
-            "x-display": "expansion-panels",
-            "required": [],
-            "properties": {
-                "identifier": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/identifier"
-                    }
-                },
-                "phoneNumber": {
-                    "type": "string",
-                    "title": "Num\u00e9ro de t\u00e9l\u00e9phone",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/phoneNumber",
-                    "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
-                },
-                "name": {
-                    "type": "string",
-                    "title": "Nom usuel ",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/name"
-                },
-                "birthName": {
-                    "type": "string",
-                    "title": "Nom de naissance",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/birthName"
-                },
-                "firstName": {
-                    "type": "string",
-                    "title": "Pr\u00e9nom usuel",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/firstName",
-                    "description": "Pr\u00e9nom usuel du patient"
-                },
-                "sex": {
-                    "type": "string",
-                    "title": "Sexe ",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/sex",
-                    "enum": [
-                        "F",
-                        "M",
-                        "O",
-                        "U"
-                    ]
-                },
-                "birthDate": {
-                    "type": "string",
-                    "title": "Date de naissance",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/birthDate",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
-                },
-                "age": {
-                    "type": "string",
-                    "title": "Age",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/age",
-                    "pattern": ""
-                },
-                "weight": {
-                    "type": "integer",
-                    "title": "Poids",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/weight",
-                    "description": "Poids en kilogrammes"
-                },
-                "height": {
-                    "type": "integer",
-                    "title": "Taille",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/height",
-                    "description": "Taille en centim\u00e8tres"
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Informations compl\u00e9mentaires",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/freetext"
-                }
-            },
-            "example": "example.json#/casualties/0"
-        },
         "additionalInformation": {
             "type": "object",
             "title": "Informations compl\u00e9mentaires",
@@ -392,7 +299,7 @@
                     "title": "Score de gravit\u00e9",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/alertCode/gravity",
-                    "description": "Score de gravit\u00e9 fournit par NexSIS"
+                    "description": "Score de gravit\u00e9 fourni par NexSIS"
                 },
                 "victims": {
                     "$ref": "#/definitions/victims"
@@ -524,7 +431,7 @@
                     "title": "Pr\u00e9nom et nom",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerName/complete",
-                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nNexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s"
+                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nSi les champs callerLastName et callerFirstName sont renseign\u00e9s, le champ callerName doit contenir la cha\u00eene de caract\u00e8re suivante : \"{callerFirstName} {callerLastName}\".\nNote : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
                 },
                 "callerLastName": {
                     "type": "string",
@@ -865,7 +772,7 @@
                 },
                 "height": {
                     "type": "number",
-                    "title": "Altitude",
+                    "title": "Altitude ",
                     "x-cols": 6,
                     "example": "example.json#/caseLocation/geometry/point/coord/height",
                     "description": "Altitude du point cl\u00e9 de la localisation, ignor\u00e9 c\u00f4t\u00e9 NexSIS."
@@ -907,34 +814,6 @@
                 }
             },
             "example": "example.json#/caseLocation/geometry/point/coord"
-        },
-        "identifier": {
-            "type": "object",
-            "title": "Identifiant",
-            "x-display": "expansion-panels",
-            "required": [],
-            "properties": {
-                "source": {
-                    "type": "string",
-                    "title": "Source de l'identifiant / Autre type d'identifiant",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/identifier/0/source",
-                    "description": "idem autre type d'identifiant + identifiant ?",
-                    "enum": [
-                        "NIR",
-                        "SINUS",
-                        "SI-VIC",
-                        "\u2026"
-                    ]
-                },
-                "value": {
-                    "type": "string",
-                    "title": "Identifiant",
-                    "x-cols": 6,
-                    "example": "example.json#/casualties/0/identifier/0/value"
-                }
-            },
-            "example": "example.json#/casualties/0/identifier/0"
         },
         "customMap": {
             "type": "object",

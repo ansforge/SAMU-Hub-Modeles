@@ -1,0 +1,378 @@
+asyncapi: 2.5.0
+info:
+  title: Hub Sante AMQP API
+  version: '0.9'
+  description: "L'API Hub Sante AMQP permet le partage d'informations entre acteurs\
+    \ du monde de la sant\xE9.\n"
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  remote:
+    url: messaging.hub.esante.gouv.fr:5671
+    protocol: amqps
+    protocolVersion: 0-9-1
+    description: "Instance \"bac \xE0 sable\" du Hub Sante d\xE9ploy\xE9e dans le\
+      \ Cloud."
+    security:
+    - tlsAuth: []
+  local:
+    url: localhost:5671
+    protocol: amqps
+    protocolVersion: 0-9-1
+    description: "Instance locale du Hub Sante port\xE9e par `minikube` dans le repo\
+      \ du Hub"
+    security:
+    - tlsAuth: []
+defaultContentType: application/json
+channels:
+  '{clientId}.message':
+    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception de messages"
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Message fonctionnel
+      operationId: receiveMessage
+      message:
+        $ref: '#/components/messages/edxlMessage'
+    publish:
+      summary: Message fonctionnel
+      operationId: publishMessage
+      message:
+        $ref: '#/components/messages/edxlMessage'
+    bindings:
+      amqp:
+        is: routingKey
+        exchange:
+          name: hubsante
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+  '{clientId}.ack':
+    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des acquittements\
+      \ de bonne r\xE9ception"
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: Acquittement fonctionnel
+      operationId: receiveAck
+      message:
+        $ref: '#/components/messages/edxlMessage'
+    publish:
+      summary: "Acquittements de bonne r\xE9ception"
+      operationId: publishAck
+      message:
+        $ref: '#/components/messages/edxlMessage'
+    bindings:
+      amqp:
+        is: routingKey
+        exchange:
+          name: hubsante
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+  '{clientId}.info':
+    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des informations\
+      \ compl\xE9mentaires li\xE9es au fonctionnement et aux \xE9changes port\xE9\
+      s par le Hub Sant\xE9"
+    parameters:
+      clientId:
+        $ref: '#/components/parameters/clientId'
+    subscribe:
+      summary: "Informations compl\xE9mentaires"
+      operationId: receiveInfo
+      message:
+        $ref: '#/components/messages/edxlMessage'
+    publish:
+      summary: "Informations compl\xE9mentaires"
+      operationId: publishInfo
+      message:
+        $ref: '#/components/messages/edxlMessage'
+    bindings:
+      amqp:
+        is: routingKey
+        exchange:
+          name: hubsante
+          type: topic
+          durable: true
+          autoDelete: false
+          vhost: /
+components:
+  securitySchemes:
+    tlsAuth:
+      type: X509
+      description: "Un certificat issu d'une AC valid\xE9e par le Hub est n\xE9cessaire\
+        \ pour l'authentification mTLS"
+  parameters:
+    clientId:
+      description: L'identifiant du client
+      schema:
+        type: string
+  messages:
+    edxlMessage:
+      title: Message au standard EDXL
+      summary: "Message au standard EDXL transportable par le Hub, comportant une\
+        \ partie adressage et une partie contenu. La partie contenu peut respecter\
+        \ diff\xE9rentes sp\xE9cifications fonctionnelles."
+      payload:
+        $ref: '#/components/schemas/EdxlMessage'
+  schemas:
+    EdxlMessage:
+      properties:
+        distributionID:
+          type: string
+        senderID:
+          type: string
+        dateTimeSent:
+          type: string
+          format: date-time
+        dateTimeExpires:
+          type: string
+          format: date-time
+        distributionStatus:
+          $ref: '#/components/schemas/DistributionStatus'
+        distributionKind:
+          $ref: '#/components/schemas/DistributionKind'
+        descriptor:
+          $ref: '#/components/schemas/Descriptor'
+        content:
+          $ref: '#/components/schemas/Content'
+      additionalProperties: false
+      required:
+      - distributionID
+      - senderID
+      - dateTimeSent
+      - dateTimeExpires
+      - distributionStatus
+      - distributionKind
+      - descriptor
+      - content
+    Content:
+      properties:
+        contentObject:
+          $ref: '#/components/schemas/ContentObject'
+      additionalProperties: false
+      required:
+      - contentObject
+    ContentObject:
+      oneOf:
+      - $ref: '#/components/schemas/JsonContent'
+      - $ref: '#/components/schemas/ContentXML'
+    JsonContent:
+      properties:
+        JsonContent:
+          $ref: '#/components/schemas/EmbeddedJsonContent'
+    ContentXML:
+      properties:
+        contentXML:
+          $ref: '#/components/schemas/EmbeddedXMLContent'
+    EmbeddedJsonContent:
+      oneOf:
+      - $ref: '#/components/schemas/CreateCaseMessage'
+      - $ref: '#/components/schemas/GenericAckMessage'
+    EmbeddedXMLContent:
+      oneOf:
+      - $ref: '#/components/schemas/CreateCaseMessage'
+      - $ref: '#/components/schemas/GenericAckMessage'
+    Descriptor:
+      properties:
+        language:
+          type: string
+        explicitAddress:
+          $ref: '#/components/schemas/ExplicitAddress'
+      additionalProperties: false
+      required:
+      - language
+      - explicitAddress
+    ExplicitAddress:
+      properties:
+        explicitAddressScheme:
+          type: string
+        explicitAddressValue:
+          type: string
+      additionalProperties: false
+      required:
+      - explicitAddressScheme
+      - explicitAddressValue
+    DistributionKind:
+      type: string
+      enum:
+      - Report
+      - Update
+      - Cancel
+      - Request
+      - Response
+      - Dispatch
+      - Ack
+      - Error
+      - SensorConfiguration
+      - SensorControl
+      - SensorStatus
+      - SensorDetection
+      - Unknown
+      - NoAppropriateDefault
+    DistributionStatus:
+      type: string
+      enum:
+      - Actual
+      - Exercise
+      - System
+      - Test
+      - Unknown
+      - NoAppropriateDefault
+    GenericAckMessage:
+      properties:
+        ackDistributionId:
+          type: string
+      additionalProperties: false
+      required:
+      - ackDistributionId
+    DistributionElement:
+      $id: http://json-schema.org/draft-07/schema#
+      x-id: schema.json#
+      example: example.json#
+      type: object
+      title: DistributionElement
+      required:
+      - sender
+      - recipients
+      properties:
+        messageId:
+          type: string
+          title: messageId
+          x-cols: 6
+          example: example.json#/messageId
+          description: "Identifiant technique permettant d'identifier le message envoy\xE9\
+            . Cet identifiant est utilis\xE9 par NexSIS pour assurer le routage des\
+            \ messages\nPr\xE9conisation : r\xE9employer le contenu de la balise <distributionId>\
+            \ de l'enveloppe EDXL (cf. DST)"
+          examples:
+          - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        sender:
+          $ref: '#/definitions/sender'
+        sentAt:
+          type: string
+          title: Horodatage envoi message
+          x-cols: 6
+          example: example.json#/sentAt
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
+            \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
+            \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre\
+            \ repr\xE9sent\xE9 par '-00:00'"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        kind:
+          type: string
+          title: Type de message NexSIS
+          x-cols: 6
+          example: example.json#/kind
+          description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
+            DST)
+          enum:
+          - Report
+          - Update
+          - Cancel
+          - Ack
+          - Error
+          examples:
+          - ALERT
+        status:
+          type: string
+          title: Status du message
+          x-cols: 6
+          example: example.json#/status
+          description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
+            DST)
+          enum:
+          - Actual
+          - Exercise
+          - System
+          examples:
+          - ACTUAL
+        recipients:
+          $ref: '#/definitions/recipients'
+    sender:
+      type: object
+      title: "Syst\xE8me \xE9metteur"
+      x-display: expansion-panels
+      required: []
+      properties:
+        name:
+          type: string
+          title: "Identifiant technique du syst\xE8me emetteur"
+          x-cols: 6
+          example: example.json#/sender/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+          - sga-nexsis
+        URI:
+          type: string
+          title: uri
+          x-cols: 6
+          example: example.json#/sender/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{sender:name}\n\
+            => Pour NexSIS : sge:{sender:name}"
+          examples:
+          - sge:sga-nexsis
+      example: example.json#/sender
+      examples:
+      - name: sga-nexsis
+        URI: sge:sga-nexsis
+    recipients:
+      type: object
+      title: "Syst\xE8mes destinataires"
+      x-display: expansion-panels
+      required:
+      - recipient
+      properties:
+        recipient:
+          type: array
+          items:
+            $ref: '#/definitions/recipient'
+      example: example.json#/recipients
+    recipient:
+      type: object
+      title: "Syst\xE8me destinataire"
+      x-display: expansion-panels
+      required: []
+      properties:
+        name:
+          type: string
+          title: "Identifiant technique du syst\xE8me destinataire"
+          x-cols: 6
+          example: example.json#/recipients/recipient/0/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+          - samu-77
+        URI:
+          type: string
+          title: uri
+          x-cols: 6
+          example: example.json#/recipients/recipient/0/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n\
+            => Pour NexSIS : sge:{recipient:name}"
+          examples:
+          - sge:samu-77
+      example: example.json#/recipients/recipient/0
+      examples:
+      - name: samu-77
+        URI: sge:samu-77

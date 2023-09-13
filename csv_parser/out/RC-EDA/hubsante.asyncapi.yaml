@@ -250,10 +250,12 @@ components:
             \ de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune\
             \ ambigu\xEFt\xE9. Il est g\xE9n\xE9r\xE9 par la force r\xE9ceptrice de\
             \ la primo-demande de secours et contient un identifiant de la source.\n\
-            Format propos\xE9 : {Syst\xE8meEmetteur}-{Date}-AL|AF{Sequence}\nFormat\
-            \ NF399 : pays + CTA + date + # unique\nFormat NexSIS : SC-20211105-077-cga-AF18\
-            \ (SC-AAAAMMJJ-{codeCGA}-AL|AF{SEQUENCE}) (toutes les alertes cr\xE9ent\
-            \ pas des affaires, affaires peuvent avoir plusieurs alertes)"
+            Format : {Syst\xE8meEmetteur}-{Date}-AF{Sequence} o\xF9 :\n- {Syst\xE8\
+            meEmetteur} est la cl\xE9 de routage utilis\xE9e en majuscule (se r\xE9\
+            f\xE9rer au DST)\n- {Date} est la date du jour au format AAAMMJJ\n- {Sequence}\
+            \ sur 4 digits est choisie par le syst\xE8me \xE9metteur de fa\xE7on \xE0\
+            \ rendre les affaires emises uniques\n- AF pour d\xE9signer \xE0 NexSIS\
+            \ que l'on \xE9change une affaire"
           examples:
           - SAMU050-20230605-AF1234
         senderCaseId:
@@ -284,10 +286,6 @@ components:
           $ref: '#/definitions/alert'
         caseLocation:
           $ref: '#/definitions/location'
-        casualties:
-          type: array
-          items:
-            $ref: '#/definitions/casualties'
         newAlert:
           type: array
           items:
@@ -342,7 +340,17 @@ components:
             \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
             \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
             \ par les diff\xE9rents syst\xE8mes pour garantir leur d\xE9couplage.\n\
-            Voir la description de l'identifiant de l'affaire pour voir le format."
+            Voir la description de l'identifiant de l'affaire pour voir le format.\n\
+            Lorsqu\u2019une alerte est g\xE9n\xE9r\xE9e dans NexSIS et cr\xE9e une\
+            \ affaire, elle est qualifi\xE9e d\u2019Alerte Initiale.\na)\tSi cette\
+            \ derni\xE8re concerne un partenaire (caract\xE8re m\xE9dical pour la\
+            \ Sant\xE9 par exemple), elle est relay\xE9e seule dans le message. Il\
+            \ y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\xE9\
+            e \xE0 la m\xEAme affaire peut \xEAtre d\xE9clar\xE9e ult\xE9rieurement,\
+            \ concernant cette fois le partenaire. Lorsqu\u2019elle est d\xE9clar\xE9\
+            e cette Nouvelle Alerte est relay\xE9e avec l\u2019Alerte Initiale pour\
+            \ partager un contexte commun. Dans le message de cr\xE9ation d\u2019\
+            affaire il y\u2019a deux objets alerte : initialAlert et newAlert."
           examples:
           - SAMU050-20230605-AL0123
         receivedAt:
@@ -469,98 +477,6 @@ components:
           examples:
           - "Cl\xE9 derri\xE8re le pot de fleur"
       example: example.json#/caseLocation
-    casualties:
-      type: object
-      title: Patients / victimes
-      x-display: expansion-panels
-      required: []
-      properties:
-        identifier:
-          type: array
-          items:
-            $ref: '#/definitions/identifier'
-        phoneNumber:
-          type: string
-          title: "Num\xE9ro de t\xE9l\xE9phone"
-          x-cols: 6
-          example: example.json#/casualties/0/phoneNumber
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-          - tel:0606060606
-        name:
-          type: string
-          title: 'Nom usuel '
-          x-cols: 6
-          example: example.json#/casualties/0/name
-          examples:
-          - Dupont
-        birthName:
-          type: string
-          title: Nom de naissance
-          x-cols: 6
-          example: example.json#/casualties/0/birthName
-          examples:
-          - Dupont
-        firstName:
-          type: string
-          title: "Pr\xE9nom usuel"
-          x-cols: 6
-          example: example.json#/casualties/0/firstName
-          description: "Pr\xE9nom usuel du patient"
-          examples:
-          - Jeanne
-        sex:
-          type: string
-          title: 'Sexe '
-          x-cols: 6
-          example: example.json#/casualties/0/sex
-          enum:
-          - F
-          - M
-          - O
-          - U
-          examples:
-          - F
-        birthDate:
-          type: string
-          title: Date de naissance
-          x-cols: 6
-          example: example.json#/casualties/0/birthDate
-          pattern: \d{4}-\d{2}-\d{2}
-          examples:
-          - None
-        age:
-          type: string
-          title: Age
-          x-cols: 6
-          example: example.json#/casualties/0/age
-          pattern: ''
-          examples:
-          - 6Y
-        weight:
-          type: integer
-          title: Poids
-          x-cols: 6
-          example: example.json#/casualties/0/weight
-          description: Poids en kilogrammes
-          examples:
-          - 31
-        height:
-          type: integer
-          title: Taille
-          x-cols: 6
-          example: example.json#/casualties/0/height
-          description: "Taille en centim\xE8tres"
-          examples:
-          - 109
-        freetext:
-          type: string
-          title: "Informations compl\xE9mentaires"
-          x-cols: 6
-          example: example.json#/casualties/0/freetext
-          examples:
-          - None
-      example: example.json#/casualties/0
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -657,7 +573,7 @@ components:
           title: "Score de gravit\xE9"
           x-cols: 6
           example: example.json#/initialAlert/alertCode/gravity
-          description: "Score de gravit\xE9 fournit par NexSIS"
+          description: "Score de gravit\xE9 fourni par NexSIS"
           examples:
           - 6
         victims:
@@ -821,9 +737,11 @@ components:
           title: "Pr\xE9nom et nom"
           x-cols: 6
           example: example.json#/initialAlert/caller/callerName/complete
-          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nNexSIS ne dispose\
-            \ que de ces informations (concat\xE9n\xE9es) et pas de deux champs s\xE9\
-            par\xE9s"
+          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
+            \ et callerFirstName sont renseign\xE9s, le champ callerName doit contenir\
+            \ la cha\xEEne de caract\xE8re suivante : \"{callerFirstName} {callerLastName}\"\
+            .\nNote : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es)\
+            \ et pas de deux champs s\xE9par\xE9s."
           examples:
           - Jean Dupont
         callerLastName:
@@ -1215,7 +1133,7 @@ components:
           - '2.333333'
         height:
           type: number
-          title: Altitude
+          title: 'Altitude '
           x-cols: 6
           example: example.json#/caseLocation/geometry/point/coord/height
           description: "Altitude du point cl\xE9 de la localisation, ignor\xE9 c\xF4\
@@ -1276,36 +1194,6 @@ components:
         speed: 34
         time: '2022-09-27T08:23:34+02:00'
         precision: Adresse
-    identifier:
-      type: object
-      title: Identifiant
-      x-display: expansion-panels
-      required: []
-      properties:
-        source:
-          type: string
-          title: Source de l'identifiant / Autre type d'identifiant
-          x-cols: 6
-          example: example.json#/casualties/0/identifier/0/source
-          description: idem autre type d'identifiant + identifiant ?
-          enum:
-          - NIR
-          - SINUS
-          - SI-VIC
-          - "\u2026"
-          examples:
-          - "NIR, SINUS, SI-VIC, \u2026"
-        value:
-          type: string
-          title: Identifiant
-          x-cols: 6
-          example: example.json#/casualties/0/identifier/0/value
-          examples:
-          - id1234
-      example: example.json#/casualties/0/identifier/0
-      examples:
-      - source: "NIR, SINUS, SI-VIC, \u2026"
-        value: id1234
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"
