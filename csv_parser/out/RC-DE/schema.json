@@ -7,13 +7,17 @@
     "type": "object",
     "title": "DistributionElement",
     "required": [
+        "messageId",
         "sender",
+        "sentAt",
+        "kind",
+        "status",
         "recipients"
     ],
     "properties": {
         "messageId": {
             "type": "string",
-            "title": "messageId",
+            "title": "Identifiant du message",
             "x-cols": 6,
             "example": "example.json#/messageId",
             "description": "Identifiant technique permettant d'identifier le message envoy\u00e9. Cet identifiant est utilis\u00e9 par NexSIS pour assurer le routage des messages\nPr\u00e9conisation : r\u00e9employer le contenu de la balise <distributionId> de l'enveloppe EDXL (cf. DST)"
@@ -32,7 +36,7 @@
         },
         "kind": {
             "type": "string",
-            "title": "Type de message NexSIS",
+            "title": "Type de message",
             "x-cols": 6,
             "example": "example.json#/kind",
             "description": "Prend la valeur <distributionKind de l'enveloppe EDXL (voir DST)",
@@ -46,7 +50,7 @@
         },
         "status": {
             "type": "string",
-            "title": "Status du message",
+            "title": "Statut du message",
             "x-cols": 6,
             "example": "example.json#/status",
             "description": "Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir DST)",
@@ -65,18 +69,21 @@
             "type": "object",
             "title": "Syst\u00e8me \u00e9metteur",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "name",
+                "URI"
+            ],
             "properties": {
                 "name": {
                     "type": "string",
-                    "title": "Identifiant technique du syst\u00e8me emetteur",
+                    "title": "Nom du syst\u00e8me emetteur",
                     "x-cols": 6,
                     "example": "example.json#/sender/name",
                     "description": "Identifiant technique du syst\u00e8me emetteur\nFormat : \n=> Pour les SAMU : {cl\u00e9 de routage}-{nom solution LRM}\no\u00f9 cl\u00e9 de routage d\u00e9signe le nom de la cl\u00e9 de routage utilis\u00e9e par le LRM pour les \u00e9changes et {nom solution LRM} est le nom donn\u00e9 par l'\u00e9diteur \u00e0 sa solution (libre)\n=> Pour NeXSIS : \u00e0 d\u00e9finir {sga|sgo}-nexsis"
                 },
                 "URI": {
                     "type": "string",
-                    "title": "uri",
+                    "title": "URI (identifiant technique)",
                     "x-cols": 6,
                     "example": "example.json#/sender/URI",
                     "description": "uri du syst\u00e8me. Permet d'identifier le vecteur utilis\u00e9 par les \u00e9changes\nFormat :\n=> Pour les LRM : sge:{sender:name}\n=> Pour NexSIS : sge:{sender:name}"
@@ -105,7 +112,10 @@
             "type": "object",
             "title": "Syst\u00e8me destinataire",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "name",
+                "URI"
+            ],
             "properties": {
                 "name": {
                     "type": "string",
@@ -116,7 +126,7 @@
                 },
                 "URI": {
                     "type": "string",
-                    "title": "uri",
+                    "title": "URI (identifiant technique)",
                     "x-cols": 6,
                     "example": "example.json#/recipients/recipient/0/URI",
                     "description": "uri du syst\u00e8me. Permet d'identifier le vecteur utilis\u00e9 par les \u00e9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n=> Pour NexSIS : sge:{recipient:name}"
