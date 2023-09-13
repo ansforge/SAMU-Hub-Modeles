@@ -2,9 +2,10 @@ package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
+import com.hubsante.model.cisu.DistributionElement;
 
 @JsonRootName(value = "message")
-public class GenericAckMessage extends ContentMessage {
+public class GenericAckMessage extends DistributionElement {
 
     @JsonProperty(value = "ackDistributionId", required = true)
     private String ackDistributionId;

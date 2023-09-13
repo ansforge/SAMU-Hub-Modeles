@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("callerName")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
 public class CallerName {
     public static final String JSON_PROPERTY_COMPLETE = "complete";
     private String complete;
@@ -56,12 +56,12 @@ public class CallerName {
     }
 
     /**
-     * Prénom et nom usuel du requérant. NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés
+     * Prénom et nom usuel du requérant. Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit contenir la chaîne de caractère suivante : \&quot;{callerFirstName} {callerLastName}\&quot;. Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.
      *
      * @return complete
      **/
     @JsonProperty(JSON_PROPERTY_COMPLETE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getComplete() {
         return complete;
@@ -69,7 +69,7 @@ public class CallerName {
 
 
     @JsonProperty(JSON_PROPERTY_COMPLETE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setComplete(String complete) {
         this.complete = complete;
     }

@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("nomenclature")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
 public class Nomenclature {
     public static final String JSON_PROPERTY_CODE = "code";
     private String code;
@@ -61,7 +61,7 @@ public class Nomenclature {
      * @return code
      **/
     @JsonProperty(JSON_PROPERTY_CODE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getCode() {
         return code;
@@ -69,7 +69,7 @@ public class Nomenclature {
 
 
     @JsonProperty(JSON_PROPERTY_CODE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setCode(String code) {
         this.code = code;
     }
@@ -87,7 +87,7 @@ public class Nomenclature {
      * @return label
      **/
     @JsonProperty(JSON_PROPERTY_LABEL)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getLabel() {
         return label;
@@ -95,7 +95,7 @@ public class Nomenclature {
 
 
     @JsonProperty(JSON_PROPERTY_LABEL)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setLabel(String label) {
         this.label = label;
     }

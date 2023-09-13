@@ -51,7 +51,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
 public class Location {
     public static final String JSON_PROPERTY_LOC_I_D = "locID";
     private String locID;
@@ -143,7 +143,7 @@ public class Location {
      * @return locID
      **/
     @JsonProperty(JSON_PROPERTY_LOC_I_D)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getLocID() {
         return locID;
@@ -151,7 +151,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_LOC_I_D)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setLocID(String locID) {
         this.locID = locID;
     }
@@ -169,7 +169,7 @@ public class Location {
      * @return locLabel
      **/
     @JsonProperty(JSON_PROPERTY_LOC_LABEL)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getLocLabel() {
         return locLabel;
@@ -177,7 +177,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_LOC_LABEL)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setLocLabel(String locLabel) {
         this.locLabel = locLabel;
     }
@@ -195,7 +195,7 @@ public class Location {
      * @return name
      **/
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getName() {
         return name;
@@ -203,7 +203,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setName(String name) {
         this.name = name;
     }
@@ -366,7 +366,7 @@ public class Location {
      * @return country
      **/
     @JsonProperty(JSON_PROPERTY_COUNTRY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public CountryEnum getCountry() {
         return country;
@@ -374,7 +374,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_COUNTRY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setCountry(CountryEnum country) {
         this.country = country;
     }
@@ -392,7 +392,7 @@ public class Location {
      * @return freetext
      **/
     @JsonProperty(JSON_PROPERTY_FREETEXT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getFreetext() {
         return freetext;
@@ -400,7 +400,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_FREETEXT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setFreetext(String freetext) {
         this.freetext = freetext;
     }

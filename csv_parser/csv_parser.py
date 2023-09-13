@@ -15,7 +15,7 @@ params = {
         'rows': 11
     },
     'RC-EDA': {
-        'modelName': 'CreateCaseMessage',
+        'modelName': 'CreateCaseEvent',
         'cols': 35,
         'rows': 137
     }

@@ -21,80 +21,69 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.Point;
+import com.hubsante.model.cisu.Recipient;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Geometry
+ * Recipients
  */
 @JsonPropertyOrder({
-        Geometry.JSON_PROPERTY_POINT,
-        Geometry.JSON_PROPERTY_SKETCH
+        Recipients.JSON_PROPERTY_RECIPIENT
 })
-@JsonTypeName("geometry")
+@JsonTypeName("recipients")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
-public class Geometry {
-    public static final String JSON_PROPERTY_POINT = "point";
-    private Point point;
+public class Recipients {
+    public static final String JSON_PROPERTY_RECIPIENT = "recipient";
+    private List<Recipient> recipient = new ArrayList<>();
 
-    public static final String JSON_PROPERTY_SKETCH = "sketch";
-    private String sketch;
-
-    public Geometry() {
+    public Recipients() {
     }
 
-    public Geometry point(Point point) {
+    public Recipients recipient(List<Recipient> recipient) {
 
-        this.point = point;
+        this.recipient = recipient;
+        return this;
+    }
+
+    public Recipients addRecipientItem(Recipient recipientItem) {
+        if (this.recipient == null) {
+            this.recipient = new ArrayList<>();
+        }
+        this.recipient.add(recipientItem);
         return this;
     }
 
     /**
-     * Get point
+     * Get recipient
      *
-     * @return point
+     * @return recipient
      **/
-    @JsonProperty(JSON_PROPERTY_POINT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonProperty(JSON_PROPERTY_RECIPIENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public Point getPoint() {
-        return point;
+    public List<Recipient> getRecipient() {
+        return recipient;
     }
 
+    @JacksonXmlElementWrapper(useWrapping = false)
 
-    @JsonProperty(JSON_PROPERTY_POINT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setPoint(Point point) {
-        this.point = point;
-    }
-
-
-    public Geometry sketch(String sketch) {
-
-        this.sketch = sketch;
-        return this;
-    }
-
-    /**
-     * Get sketch
-     *
-     * @return sketch
-     **/
-    @JsonProperty(JSON_PROPERTY_SKETCH)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-    public String getSketch() {
-        return sketch;
-    }
-
-
-    @JsonProperty(JSON_PROPERTY_SKETCH)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setSketch(String sketch) {
-        this.sketch = sketch;
+    @JsonProperty(JSON_PROPERTY_RECIPIENT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setRecipient(List<Recipient> recipient) {
+        if (recipient == null) {
+            return;
+        }
+        if (this.recipient == null) {
+            this.recipient = new ArrayList<>();
+        }
+        this.recipient.addAll(recipient);
     }
 
     @Override
@@ -105,23 +94,20 @@ public class Geometry {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Geometry geometry = (Geometry) o;
-        return Objects.equals(this.point, geometry.point) &&
-                Objects.equals(this.sketch, geometry.sketch);
+        Recipients recipients = (Recipients) o;
+        return Objects.equals(this.recipient, recipients.recipient);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point
-                , sketch);
+        return Objects.hash(recipient);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class Geometry {\n");
-        sb.append("    point: ").append(toIndentedString(point)).append("\n");
-        sb.append("    sketch: ").append(toIndentedString(sketch)).append("\n");
+        sb.append("class Recipients {\n");
+        sb.append("    recipient: ").append(toIndentedString(recipient)).append("\n");
         sb.append("}");
         return sb.toString();
     }

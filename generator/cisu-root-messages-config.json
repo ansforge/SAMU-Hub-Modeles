@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./createCase.openapi.yml",
+  "inputSpec": "./RC-DE.openapi.yml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/root-messages/",
   "globalProperties": {
-    "models": "CreateCaseMessage",
+    "models": "DistributionElement",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,

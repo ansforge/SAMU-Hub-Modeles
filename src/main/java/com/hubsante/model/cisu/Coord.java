@@ -43,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("coord")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
 public class Coord {
     public static final String JSON_PROPERTY_LAT = "lat";
     private BigDecimal lat;
@@ -118,7 +118,7 @@ public class Coord {
      * @return lat
      **/
     @JsonProperty(JSON_PROPERTY_LAT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public BigDecimal getLat() {
         return lat;
@@ -126,7 +126,7 @@ public class Coord {
 
 
     @JsonProperty(JSON_PROPERTY_LAT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setLat(BigDecimal lat) {
         this.lat = lat;
     }
@@ -144,7 +144,7 @@ public class Coord {
      * @return lon
      **/
     @JsonProperty(JSON_PROPERTY_LON)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public BigDecimal getLon() {
         return lon;
@@ -152,7 +152,7 @@ public class Coord {
 
 
     @JsonProperty(JSON_PROPERTY_LON)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setLon(BigDecimal lon) {
         this.lon = lon;
     }
@@ -248,7 +248,7 @@ public class Coord {
      * @return time
      **/
     @JsonProperty(JSON_PROPERTY_TIME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public OffsetDateTime getTime() {
         return time;
@@ -256,7 +256,7 @@ public class Coord {
 
 
     @JsonProperty(JSON_PROPERTY_TIME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setTime(OffsetDateTime time) {
         this.time = time;
     }
@@ -274,7 +274,7 @@ public class Coord {
      * @return precision
      **/
     @JsonProperty(JSON_PROPERTY_PRECISION)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public PrecisionEnum getPrecision() {
         return precision;
@@ -282,7 +282,7 @@ public class Coord {
 
 
     @JsonProperty(JSON_PROPERTY_PRECISION)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setPrecision(PrecisionEnum precision) {
         this.precision = precision;
     }

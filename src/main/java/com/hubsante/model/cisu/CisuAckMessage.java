@@ -21,52 +21,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.CreateCaseEvent;
+import com.hubsante.model.cisu.Reference;
 import com.hubsante.model.cisu.DistributionElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * CreateCaseMessage
+ * CisuAckMessage
  */
 @JsonPropertyOrder({
-        CreateCaseMessage.JSON_PROPERTY_CREATE_CASE_EVENT
+        CisuAckMessage.JSON_PROPERTY_REFERENCE
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:53:04.803+02:00[Europe/Paris]")
-public class CreateCaseMessage extends DistributionElement {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:53:23.006+02:00[Europe/Paris]")
+public class CisuAckMessage extends DistributionElement {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
-    public static final String JSON_PROPERTY_CREATE_CASE_EVENT = "createCaseEvent";
-    private CreateCaseEvent createCaseEvent;
+    public static final String JSON_PROPERTY_REFERENCE = "reference";
+    private Reference reference;
 
-    public CreateCaseMessage() {
+    public CisuAckMessage() {
     }
 
-    public CreateCaseMessage createCaseEvent(CreateCaseEvent createCaseEvent) {
+    public CisuAckMessage reference(Reference reference) {
 
-        this.createCaseEvent = createCaseEvent;
+        this.reference = reference;
         return this;
     }
 
     /**
-     * Get createCaseEvent
+     * Get reference
      *
-     * @return createCaseEvent
+     * @return reference
      **/
-    @JsonProperty(JSON_PROPERTY_CREATE_CASE_EVENT)
+    @JsonProperty(JSON_PROPERTY_REFERENCE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public CreateCaseEvent getCreateCaseEvent() {
-        return createCaseEvent;
+    public Reference getReference() {
+        return reference;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CREATE_CASE_EVENT)
+    @JsonProperty(JSON_PROPERTY_REFERENCE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setCreateCaseEvent(CreateCaseEvent createCaseEvent) {
-        this.createCaseEvent = createCaseEvent;
+    public void setReference(Reference reference) {
+        this.reference = reference;
     }
 
     @Override
@@ -77,20 +77,20 @@ public class CreateCaseMessage extends DistributionElement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateCaseMessage createCaseMessage = (CreateCaseMessage) o;
-        return Objects.equals(this.createCaseEvent, createCaseMessage.createCaseEvent);
+        CisuAckMessage cisuAckMessage = (CisuAckMessage) o;
+        return Objects.equals(this.reference, cisuAckMessage.reference);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(createCaseEvent);
+        return Objects.hash(reference);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CreateCaseMessage {\n");
-        sb.append("    createCaseEvent: ").append(toIndentedString(createCaseEvent)).append("\n");
+        sb.append("class CisuAckMessage {\n");
+        sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
         sb.append("}");
         return sb.toString();
     }

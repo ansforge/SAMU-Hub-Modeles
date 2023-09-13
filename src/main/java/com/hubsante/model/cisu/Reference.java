@@ -21,52 +21,48 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.CreateCaseEvent;
-import com.hubsante.model.cisu.DistributionElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * CreateCaseMessage
+ * Reference
  */
 @JsonPropertyOrder({
-        CreateCaseMessage.JSON_PROPERTY_CREATE_CASE_EVENT
+        Reference.JSON_PROPERTY_DISTRIBUTION_ID
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:53:04.803+02:00[Europe/Paris]")
-public class CreateCaseMessage extends DistributionElement {
-    @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
-    public static final String JSON_PROPERTY_CREATE_CASE_EVENT = "createCaseEvent";
-    private CreateCaseEvent createCaseEvent;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
+public class Reference {
+    public static final String JSON_PROPERTY_DISTRIBUTION_ID = "distributionId";
+    private String distributionId;
 
-    public CreateCaseMessage() {
+    public Reference() {
     }
 
-    public CreateCaseMessage createCaseEvent(CreateCaseEvent createCaseEvent) {
+    public Reference distributionId(String distributionId) {
 
-        this.createCaseEvent = createCaseEvent;
+        this.distributionId = distributionId;
         return this;
     }
 
     /**
-     * Get createCaseEvent
+     * Get distributionId
      *
-     * @return createCaseEvent
+     * @return distributionId
      **/
-    @JsonProperty(JSON_PROPERTY_CREATE_CASE_EVENT)
+    @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public CreateCaseEvent getCreateCaseEvent() {
-        return createCaseEvent;
+    public String getDistributionId() {
+        return distributionId;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CREATE_CASE_EVENT)
+    @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setCreateCaseEvent(CreateCaseEvent createCaseEvent) {
-        this.createCaseEvent = createCaseEvent;
+    public void setDistributionId(String distributionId) {
+        this.distributionId = distributionId;
     }
 
     @Override
@@ -77,20 +73,20 @@ public class CreateCaseMessage extends DistributionElement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateCaseMessage createCaseMessage = (CreateCaseMessage) o;
-        return Objects.equals(this.createCaseEvent, createCaseMessage.createCaseEvent);
+        Reference reference = (Reference) o;
+        return Objects.equals(this.distributionId, reference.distributionId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(createCaseEvent);
+        return Objects.hash(distributionId);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CreateCaseMessage {\n");
-        sb.append("    createCaseEvent: ").append(toIndentedString(createCaseEvent)).append("\n");
+        sb.append("class Reference {\n");
+        sb.append("    distributionId: ").append(toIndentedString(distributionId)).append("\n");
         sb.append("}");
         return sb.toString();
     }
