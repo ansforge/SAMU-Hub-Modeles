@@ -7,6 +7,8 @@
     "type": "object",
     "title": "CreateCaseMessage",
     "required": [
+        "caseId",
+        "createdAt",
         "caseLocation"
     ],
     "properties": {
@@ -76,6 +78,9 @@
             "title": "Alerte initiale",
             "x-display": "expansion-panels",
             "required": [
+                "alertId",
+                "receivedAt",
+                "reporting",
                 "caller",
                 "alertLocation",
                 "alertCode",
@@ -144,7 +149,13 @@
             "type": "object",
             "title": "Localisation de l'affaire",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "locID",
+                "locLabel",
+                "name",
+                "country",
+                "freetext"
+            ],
             "properties": {
                 "locID": {
                     "type": "string",
@@ -269,6 +280,7 @@
             "title": "Qualification",
             "x-display": "expansion-panels",
             "required": [
+                "cisuVersion",
                 "whatsHappen"
             ],
             "properties": {
@@ -335,7 +347,10 @@
             "type": "object",
             "title": "Agent",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "organization",
+                "controlRoom"
+            ],
             "properties": {
                 "organization": {
                     "type": "string",
@@ -372,7 +387,9 @@
             "type": "object",
             "title": "Pi\u00e8ces jointes",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "URI"
+            ],
             "properties": {
                 "resourceDesc": {
                     "type": "string",
@@ -424,7 +441,9 @@
             "type": "object",
             "title": "Pr\u00e9nom & nom usuel du requ\u00e9rant",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "complete"
+            ],
             "properties": {
                 "complete": {
                     "type": "string",
@@ -454,7 +473,16 @@
             "type": "object",
             "title": "Nature de fait",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "code",
+                "label",
+                "code",
+                "label",
+                "code",
+                "label",
+                "code",
+                "label"
+            ],
             "properties": {
                 "code": {
                     "type": "string",
@@ -527,7 +555,9 @@
             "type": "object",
             "title": "D\u00e9tails de l'adresse",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "complete"
+            ],
             "properties": {
                 "complete": {
                     "type": "string",
@@ -669,7 +699,11 @@
             "type": "object",
             "title": "Liens aux syst\u00e8mes externes",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "source",
+                "type",
+                "id"
+            ],
             "properties": {
                 "source": {
                     "type": "string",
@@ -704,7 +738,9 @@
             "type": "object",
             "title": "Type et nom de voie",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "complete"
+            ],
             "properties": {
                 "complete": {
                     "type": "string",
@@ -754,7 +790,12 @@
             "type": "object",
             "title": "Coordonn\u00e9es",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "lat",
+                "lon",
+                "time",
+                "precision"
+            ],
             "properties": {
                 "lat": {
                     "type": "number",
@@ -819,7 +860,10 @@
             "type": "object",
             "title": "Cl\u00e9 valeur adaptable",
             "x-display": "expansion-panels",
-            "required": [],
+            "required": [
+                "key",
+                "value"
+            ],
             "properties": {
                 "key": {
                     "type": "string",

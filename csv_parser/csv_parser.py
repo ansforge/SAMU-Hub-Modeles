@@ -192,8 +192,10 @@ def get_parent_example_path(parent):
     return json_schema['definitions'][parent['true_type']]['example']
 
 
-def add_field_child_property(parent, child, properties):
-    """Update parent properties by adding the child information for a field child"""
+def add_field_child_property(parent, child, definitions):
+    """Update parent definitions (required and properties) by adding the child information for a field child"""
+    if child['Cardinalité'].startswith('1'):
+        definitions['required'].append(child['name'])
     typeName, pattern, format = type_matching(child)
     parentExamplePath = get_parent_example_path(parent)
     childDetails = {
@@ -210,6 +212,7 @@ def add_field_child_property(parent, child, properties):
         childDetails['format'] = format
     if has_format_details(child, 'ENUM: '):
         childDetails['enum'] = child['Détails de format'][6:].split(', ')
+    properties = definitions['properties']
     if is_array(child):
         properties[child['name']] = {
             'type': 'array',
@@ -255,7 +258,7 @@ def add_object_child_definition(parent, child, definitions):
 def add_child(parent, child, definitions):
     """Update parent definitions by adding the child information"""
     if child['Objet'] != 'X':
-        add_field_child_property(parent, child, definitions['properties'])
+        add_field_child_property(parent, child, definitions)
     else:
         add_object_child_definition(parent, child, definitions)
 
