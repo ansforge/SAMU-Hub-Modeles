@@ -61,7 +61,7 @@ public class WayName {
      * @return complete
      **/
     @JsonProperty(JSON_PROPERTY_COMPLETE)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public String getComplete() {
         return complete;
@@ -69,7 +69,7 @@ public class WayName {
 
 
     @JsonProperty(JSON_PROPERTY_COMPLETE)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setComplete(String complete) {
         this.complete = complete;
     }

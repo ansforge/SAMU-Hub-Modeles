@@ -16,11 +16,7 @@ package com.hubsante.model.cisu;
 import java.util.Objects;
 import java.util.Arrays;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.*;
 import com.hubsante.model.cisu.AdditionalInformation;
 import com.hubsante.model.cisu.Alert;
 import com.hubsante.model.cisu.Location;
@@ -30,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
@@ -48,6 +43,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         CreateCaseEvent.JSON_PROPERTY_FREETEXT
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
 public class CreateCaseEvent {
     public static final String JSON_PROPERTY_CASE_ID = "caseId";
@@ -185,7 +181,7 @@ public class CreateCaseEvent {
      * @return createdAt
      **/
     @JsonProperty(JSON_PROPERTY_CREATED_AT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public OffsetDateTime getCreatedAt() {
         return createdAt;
@@ -193,7 +189,7 @@ public class CreateCaseEvent {
 
 
     @JsonProperty(JSON_PROPERTY_CREATED_AT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
     }

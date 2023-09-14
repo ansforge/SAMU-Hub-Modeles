@@ -124,7 +124,7 @@ public class Link {
      * @return type
      **/
     @JsonProperty(JSON_PROPERTY_TYPE)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public String getType() {
         return type;
@@ -132,7 +132,7 @@ public class Link {
 
 
     @JsonProperty(JSON_PROPERTY_TYPE)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setType(String type) {
         this.type = type;
     }

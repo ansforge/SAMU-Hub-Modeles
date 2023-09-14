@@ -143,7 +143,7 @@ public class Location {
      * @return locID
      **/
     @JsonProperty(JSON_PROPERTY_LOC_I_D)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public String getLocID() {
         return locID;
@@ -151,7 +151,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_LOC_I_D)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setLocID(String locID) {
         this.locID = locID;
     }
@@ -169,7 +169,7 @@ public class Location {
      * @return locLabel
      **/
     @JsonProperty(JSON_PROPERTY_LOC_LABEL)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public String getLocLabel() {
         return locLabel;
@@ -177,7 +177,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_LOC_LABEL)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setLocLabel(String locLabel) {
         this.locLabel = locLabel;
     }
@@ -195,7 +195,7 @@ public class Location {
      * @return name
      **/
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public String getName() {
         return name;
@@ -203,7 +203,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setName(String name) {
         this.name = name;
     }
@@ -366,7 +366,7 @@ public class Location {
      * @return country
      **/
     @JsonProperty(JSON_PROPERTY_COUNTRY)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public CountryEnum getCountry() {
         return country;
@@ -374,7 +374,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_COUNTRY)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setCountry(CountryEnum country) {
         this.country = country;
     }
@@ -392,7 +392,7 @@ public class Location {
      * @return freetext
      **/
     @JsonProperty(JSON_PROPERTY_FREETEXT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
     public String getFreetext() {
         return freetext;
@@ -400,7 +400,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_FREETEXT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setFreetext(String freetext) {
         this.freetext = freetext;
     }
