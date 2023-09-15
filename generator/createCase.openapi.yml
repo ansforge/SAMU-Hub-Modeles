@@ -2,31 +2,207 @@ openapi: '3.0.0'
 
 components:
   schemas:
-    CreateCaseMessage:
+    DistributionElement:
       $id: http://json-schema.org/draft-07/schema#
+      x-id: schema.json#
+      type: object
+      title: DistributionElement
       required:
+        - messageId
+        - sender
+        - sentAt
+        - kind
+        - status
+        - recipients
+      properties:
+        messageId:
+          type: string
+          title: Identifiant du message
+          x-cols: 6
+          description: "Identifiant technique permettant d'identifier le message envoy\xE9\
+            . Cet identifiant est utilis\xE9 par NexSIS pour assurer le routage des\
+            \ messages\nPr\xE9conisation : r\xE9employer le contenu de la balise <distributionId>\
+            \ de l'enveloppe EDXL (cf. DST)"
+          examples:
+            - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        sender:
+          $ref: '#/components/schemas/sender'
+        sentAt:
+          type: string
+          title: Horodatage envoi message
+          x-cols: 6
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
+            \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
+            \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre\
+            \ repr\xE9sent\xE9 par '-00:00'"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - None
+        kind:
+          type: string
+          title: Type de message
+          x-cols: 6
+          description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
+            DST)
+          enum:
+            - Report
+            - Update
+            - Cancel
+            - Ack
+            - Error
+          examples:
+            - ALERT
+        status:
+          type: string
+          title: Statut du message
+          x-cols: 6
+          description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
+            DST)
+          enum:
+            - Actual
+            - Exercise
+            - System
+          examples:
+            - ACTUAL
+        recipients:
+          $ref: '#/components/schemas/recipients'
+    sender:
+      type: object
+      title: "Syst\xE8me \xE9metteur"
+      x-display: expansion-panels
+      required:
+        - name
+        - URI
+      properties:
+        name:
+          type: string
+          title: "Nom du syst\xE8me emetteur"
+          x-cols: 6
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+            - sga-nexsis
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-cols: 6
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{sender:name}\n\
+            => Pour NexSIS : sge:{sender:name}"
+          examples:
+            - sge:sga-nexsis
+      examples:
+        - name: sga-nexsis
+          URI: sge:sga-nexsis
+    recipients:
+      type: object
+      title: "Syst\xE8mes destinataires"
+      x-display: expansion-panels
+      required:
+        - recipient
+      properties:
+        recipient:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipient'
+    recipient:
+      type: object
+      title: "Syst\xE8me destinataire"
+      x-display: expansion-panels
+      required:
+        - name
+        - URI
+      properties:
+        name:
+          type: string
+          title: "Identifiant technique du syst\xE8me destinataire"
+          x-cols: 6
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+            - samu-77
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-cols: 6
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n\
+            => Pour NexSIS : sge:{recipient:name}"
+          examples:
+            - sge:samu-77
+      examples:
+        - name: samu-77
+          URI: sge:samu-77
+    ReferenceMessage:
+      type: object
+      required:
+        - reference
+      properties:
+        reference:
+          $ref: '#/components/schemas/Reference'
+    CreateCaseMessage:
+      type: object
+      required:
+        - createEvent
+      properties:
+        createCase:
+          $ref: '#/components/schemas/CreateCase'
+    Reference:
+      type: object
+      title: Reference
+      required:
+        - distributionId
+      properties:
+        distributionID:
+          type: string
+    CreateCase:
+      $id: http://json-schema.org/draft-07/schema#
+      x-id: schema.json#
+      type: object
+      title: CreateCase
+      required:
+        - caseId
+        - createdAt
         - caseLocation
       properties:
         caseId:
           type: string
+          title: Identifiant affaire
+          x-cols: 6
           description: "Identifiant fonctionnel unique de l'affaire et partag\xE9\
             \ entre tous les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9\
             \ de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune\
             \ ambigu\xEFt\xE9. Il est g\xE9n\xE9r\xE9 par la force r\xE9ceptrice de\
             \ la primo-demande de secours et contient un identifiant de la source.\n\
-            Format propos\xE9 : {Syst\xE8meEmetteur}-{Date}-AL|AF{Sequence}\nFormat\
-            \ NF399 : pays + CTA + date + # unique\nFormat NexSIS : SC-20211105-077-cga-AF18\
-            \ (SC-AAAAMMJJ-{codeCGA}-AL|AF{SEQUENCE}) (toutes les alertes cr\xE9ent\
-            \ pas des affaires, affaires peuvent avoir plusieurs alertes)"
+            Format : {Syst\xE8meEmetteur}-{Date}-AF{Sequence} o\xF9 :\n- {Syst\xE8\
+            meEmetteur} est la cl\xE9 de routage utilis\xE9e en majuscule (se r\xE9\
+            f\xE9rer au DST)\n- {Date} est la date du jour au format AAAMMJJ\n- {Sequence}\
+            \ sur 4 digits est choisie par le syst\xE8me \xE9metteur de fa\xE7on \xE0\
+            \ rendre les affaires emises uniques\n- AF pour d\xE9signer \xE0 NexSIS\
+            \ que l'on \xE9change une affaire"
           examples:
             - SAMU050-20230605-AF1234
         senderCaseId:
           type: string
+          title: Identifiant local de l'affaire
+          x-cols: 6
           description: "Identifiant de l'affaire dans le SI de l'\xE9metteur du message"
           examples:
             - id123
         createdAt:
           type: string
+          title: "Date Heure de cr\xE9ation de l'affaire"
+          x-cols: 6
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
             ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
             tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
@@ -42,18 +218,14 @@ components:
           $ref: '#/components/schemas/alert'
         caseLocation:
           $ref: '#/components/schemas/location'
-        casualties:
-          type: array
-          items:
-            $ref: '#/components/schemas/casualties'
         newAlert:
           type: array
           items:
             $ref: '#/components/schemas/alert'
-            examples:
-              - {}
         severity:
           type: string
+          title: "Niveau d'urgence m\xE9dicale"
+          x-cols: 6
           description: "[Non utilis\xE9 dans une premi\xE8re version car la d\xE9\
             finition et l'usage restent \xE0 d\xE9finir]\nPr\xE9cise l'urgence m\xE9\
             dicale :\n        EXTREME : Menace extr\xEAme pour la vie\n        SEVERE\
@@ -73,13 +245,20 @@ components:
           $ref: '#/components/schemas/additionalInformation'
         freetext:
           type: string
+          title: Description de l'affaire
+          x-cols: 6
           description: "Texte libre permettant de donner des informations suppl\xE9\
             mentaires concernant l'affaire"
           examples:
             - None
     alert:
       type: object
+      title: Alerte initiale
+      x-display: expansion-panels
       required:
+        - alertId
+        - receivedAt
+        - reporting
         - caller
         - alertLocation
         - alertCode
@@ -87,15 +266,29 @@ components:
       properties:
         alertId:
           type: string
+          title: Identifiant alerte
+          x-cols: 6
           description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
             \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
             \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
             \ par les diff\xE9rents syst\xE8mes pour garantir leur d\xE9couplage.\n\
-            Voir la description de l'identifiant de l'affaire pour voir le format."
+            Voir la description de l'identifiant de l'affaire pour voir le format.\n\
+            Lorsqu\u2019une alerte est g\xE9n\xE9r\xE9e dans NexSIS et cr\xE9e une\
+            \ affaire, elle est qualifi\xE9e d\u2019Alerte Initiale.\na)\tSi cette\
+            \ derni\xE8re concerne un partenaire (caract\xE8re m\xE9dical pour la\
+            \ Sant\xE9 par exemple), elle est relay\xE9e seule dans le message. Il\
+            \ y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\xE9\
+            e \xE0 la m\xEAme affaire peut \xEAtre d\xE9clar\xE9e ult\xE9rieurement,\
+            \ concernant cette fois le partenaire. Lorsqu\u2019elle est d\xE9clar\xE9\
+            e cette Nouvelle Alerte est relay\xE9e avec l\u2019Alerte Initiale pour\
+            \ partager un contexte commun. Dans le message de cr\xE9ation d\u2019\
+            affaire il y\u2019a deux objets alerte : initialAlert et newAlert."
           examples:
             - SAMU050-20230605-AL0123
         receivedAt:
           type: string
+          title: "Date de r\xE9ception de l'alerte"
+          x-cols: 6
           description: "Groupe date heure de r\xE9ception de l'alerte"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -103,6 +296,8 @@ components:
             - '2022-09-27T08:21:06+02:00'
         reporting:
           type: string
+          title: Signalement
+          x-cols: 6
           description: "Permet d'attirer l'attention des forces partenaires sur une\
             \ affaire.  \nEventuellement automatis\xE9 en fonction des crit\xE8res\
             \ saisis et de leur param\xE9trage, ou renseign\xE9 par l'op\xE9rateur.\
@@ -117,6 +312,8 @@ components:
             - STANDARD
         alertInformation:
           type: string
+          title: "Informations compl\xE9mentaires sur l'alerte"
+          x-cols: 6
           description: "Texte libre permettant de donner des informations suppl\xE9\
             mentaires concernant l'alerte"
           examples:
@@ -125,48 +322,39 @@ components:
           $ref: '#/components/schemas/caller'
         alertLocation:
           $ref: '#/components/schemas/location'
-          examples:
-            - {}
         alertCode:
           $ref: '#/components/schemas/alertCode'
         contact:
           $ref: '#/components/schemas/contact'
-          examples:
-            - &id001
-              type: Person
-              detail: tel:18
         callTaker:
           $ref: '#/components/schemas/callTaker'
-          examples:
-            - &id002
-              organization: "SDIS, SAMU, \u2026"
-              controlRoom: CGA, CGO 21, CRRA 44, ...
-              calltakerURI: '0303030303'
-              calltakerId: "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
         resource:
           type: array
           items:
             $ref: '#/components/schemas/resource'
-            examples:
-              - &id003
-                resourceDesc: "photo, carte, \u2026"
-                mimeType: "PDF, XML, JPEG, \u2026"
-                size: "1235, 35, \u2026"
-                URI: None
-                derefURI: None
-                digest: None
     location:
       type: object
-      required: []
+      title: Localisation de l'affaire
+      x-display: expansion-panels
+      required:
+        - locID
+        - locLabel
+        - name
+        - country
+        - freetext
       properties:
         locID:
           type: string
+          title: Identifiant technique de localisation
+          x-cols: 6
           description: "ID technique et provisoire permettant d'identifier le lieu\
             \ dans le cadre des \xE9changes de cette affaire."
           examples:
             - 111fb03a-6fd9-41e0-8e81-990c45188887
         locLabel:
           type: string
+          title: "R\xE9sum\xE9 de la localisation"
+          x-cols: 6
           description: "Correspond \xE0 l'\xE9tiquette associ\xE9e \xE0 la localisation\
             \ (plut\xF4t \xE0 destination des humains).\nElle va souvent correspondre\
             \ \xE0 la concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9\
@@ -176,6 +364,8 @@ components:
             e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
         name:
           type: string
+          title: Nom du lieu
+          x-cols: 6
           description: "Indique le nom de lieu : nom commercial, lieu-dit, lac, for\xEA\
             t, nom de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
           examples:
@@ -185,11 +375,6 @@ components:
           $ref: '#/components/schemas/address'
         city:
           $ref: '#/components/schemas/city'
-          examples:
-            - &id007
-              name: Lille
-              inseeCode: 59350
-              detail: "Quartie Melun Nord, Lhomme, \u2026"
         access:
           $ref: '#/components/schemas/access'
         geometry:
@@ -198,14 +383,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
-            examples:
-              - &id008
-                source: "NexSIS, BAN, IGN, \u2026"
-                type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle),\
-                \ \u2026"
-                id: id987
         country:
           type: string
+          title: Pays
+          x-cols: 6
           enum:
             - France
             - Allemagne
@@ -218,89 +399,29 @@ components:
             - France
         freetext:
           type: string
+          title: Commentaire
+          x-cols: 6
           description: "Champ libre pour compl\xE9ter les informations de localisation"
           examples:
             - "Cl\xE9 derri\xE8re le pot de fleur"
-    casualties:
-      type: object
-      required: []
-      properties:
-        identifier:
-          type: array
-          items:
-            $ref: '#/components/schemas/identifier'
-            examples:
-              - &id011
-                source: "NIR, SINUS, SI-VIC, \u2026"
-                value: id1234
-        phoneNumber:
-          type: string
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-            - tel:0606060606
-        name:
-          type: string
-          examples:
-            - Dupont
-        birthName:
-          type: string
-          examples:
-            - Dupont
-        firstName:
-          type: string
-          examples:
-            - Jeanne
-        sex:
-          type: string
-          enum:
-            - F
-            - M
-            - O
-            - U
-          examples:
-            - F
-        birthDate:
-          type: string
-          pattern: \d{4}-\d{2}-\d{2}
-          examples:
-            - None
-        age:
-          type: string
-          pattern: ''
-          examples:
-            - 6Y
-        weight:
-          type: integer
-          description: Poids en kilogrammes
-          examples:
-            - 31
-        height:
-          type: integer
-          description: "Taille en centim\xE8tres"
-          examples:
-            - 109
-        freetext:
-          type: string
-          examples:
-            - None
     additionalInformation:
       type: object
-      required: []
+      title: "Informations compl\xE9mentaires"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         customMap:
           $ref: '#/components/schemas/customMap'
-          examples:
-            - &id012
-              key: neighborhood
-              label: Quartier
-              value: SECT.QUARTIER HISTORIQUE
-              freetext: "Pr\xE9cision sur le quartier d'intervention"
     caller:
       type: object
-      required: []
+      title: "Requ\xE9rant"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         callerURI:
           type: string
+          title: "Num\xE9ro requ\xE9rant"
+          x-cols: 6
           description: "Type de l'URI utilis\xE9e par le r\xE9qu\xE9rant et valeur.\
             \ Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org.\
             \ Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9 en priorit\xE9\
@@ -311,6 +432,8 @@ components:
             - tel:0606060606
         callbackURI:
           type: string
+          title: "Num\xE9ro de contre-appel"
+          x-cols: 6
           description: "Type et valeur de l'URI permettant un rappel pour avoir plus\
             \ d'informations : il peut s'agit du requ\xE9rant, de la victime ou d'un\
             \ t\xE9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU\
@@ -323,30 +446,34 @@ components:
             - tel:0707070707
         spokenLanguage:
           type: string
+          title: "Langue parl\xE9e"
+          x-cols: 6
           description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
             \ place des traducteurs si besoin."
           examples:
             - "Fran\xE7ais"
         callerInformation:
           type: string
+          title: "Informations sur le requ\xE9rant"
+          x-cols: 6
           description: "Information sur le requ\xE9rant : malentendant, impliqu\xE9\
             \ dans l'accident, \u2026"
           examples:
             - "P\xE8re"
         callerName:
           $ref: '#/components/schemas/callerName'
-          examples:
-            - &id004
-              complete: Jean Dupont
-              callerLastName: Dupont
-              callerFirstName: Jean
     alertCode:
       type: object
+      title: Qualification
+      x-display: expansion-panels
       required:
+        - cisuVersion
         - whatsHappen
       properties:
         cisuVersion:
           type: string
+          title: "Version du r\xE9f\xE9rentiel nomenclature CISU"
+          x-cols: 6
           description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
             \ des codes transmis. Cela permet de s'assurer que les syst\xE8mes op\xE9\
             rationnels soient en capacit\xE9 de les  traiter correctement."
@@ -354,55 +481,41 @@ components:
             - '1.19'
         whatsHappen:
           $ref: '#/components/schemas/nomenclature'
-          examples:
-            - &id005
-              code: C07.13.02
-              label: "Rod\xE9o automobile"
-              freetext: None
         locationKind:
           $ref: '#/components/schemas/nomenclature'
-          examples:
-            - code: None
-              label: None
-              freetext: None
         riskThreat:
           type: array
           items:
             $ref: '#/components/schemas/nomenclature'
-            examples:
-              - code: None
-                label: None
-                freetext: None
         healthMotive:
           $ref: '#/components/schemas/nomenclature'
-          examples:
-            - code: None
-              label: None
-              freetext: None
         gravity:
           type: string
-          description: "Score de gravit\xE9 fournit par NexSIS"
+          title: "Score de gravit\xE9"
+          x-cols: 6
+          description: "Score de gravit\xE9 fourni par NexSIS"
           examples:
             - 6
         victims:
           $ref: '#/components/schemas/victims'
-          examples:
-            - &id006
-              count: SEVERAL
-              mainVictim: CHILD
-              comment: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
     contact:
       type: object
-      required: []
+      title: Source
+      x-display: expansion-panels
+      required: [ ]
       properties:
         type:
           type: string
+          title: Canal
+          x-cols: 6
           description: "Permet d'indiquer l'origine de la communication : Personne,\
             \ application, DAU, BAU, d\xE9fibrillateur, ecall"
           examples:
             - Person
         detail:
           type: string
+          title: "Flux utilis\xE9"
+          x-cols: 6
           description: "Indique le type de l'URI compos\xE9e par le r\xE9qu\xE9rant\
             \ et la valeur de l'URI, concat\xE9n\xE9es et s\xE9par\xE9es par \":\"\
             . Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI\
@@ -411,58 +524,85 @@ components:
           examples:
             - tel:18
       examples:
-        - *id001
+        - type: Person
+          detail: tel:18
     callTaker:
       type: object
-      required: []
+      title: Agent
+      x-display: expansion-panels
+      required:
+        - organization
+        - controlRoom
       properties:
         organization:
           type: string
+          title: Service d'urgence
+          x-cols: 6
           description: "Organisation d'appartenance de l'op\xE9rateur ayant trait\xE9\
             \ l'alerte"
           examples:
             - "SDIS, SAMU, \u2026"
         controlRoom:
           type: string
+          title: Centre d'appels
+          x-cols: 6
           description: "Salle op\xE9rationnelle de l'op\xE9rateur de traitement"
           examples:
             - CGA, CGO 21, CRRA 44, ...
         calltakerURI:
           type: string
+          title: "Num\xE9ro du poste de l'agent"
+          x-cols: 6
           description: "Num\xE9ro de ligne directe permettant de recontacter l'op\xE9\
             rateur de traitement"
           examples:
             - '0303030303'
         calltakerId:
           type: string
-          description: "Identifiant unique de l'op\xE9rataur ayant trait\xE9 l'alerte"
+          title: ID de l'agent
+          x-cols: 6
+          description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte"
           examples:
             - "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
       examples:
-        - *id002
+        - organization: "SDIS, SAMU, \u2026"
+          controlRoom: CGA, CGO 21, CRRA 44, ...
+          calltakerURI: '0303030303'
+          calltakerId: "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
     resource:
       type: object
-      required: []
+      title: "Pi\xE8ces jointes"
+      x-display: expansion-panels
+      required:
+        - URI
       properties:
         resourceDesc:
           type: string
+          title: Type ou description de la ressource
+          x-cols: 6
           description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
             \ tels que \xABcarte\xBB ou \xABphoto\xBB"
           examples:
             - "photo, carte, \u2026"
         mimeType:
           type: string
+          title: Type MIME
+          x-cols: 6
           description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
             \ la ressource"
           examples:
             - "PDF, XML, JPEG, \u2026"
         size:
           type: integer
+          title: Taille approximative
+          x-cols: 6
           description: Taille approximative de la ressource en kO
           examples:
             - "1235, 35, \u2026"
         URI:
           type: string
+          title: URI
+          x-cols: 6
           description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
             \ la ressource sur Internet ou sur un r\xE9seau priv\xE9"
           pattern: (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?
@@ -470,6 +610,8 @@ components:
             - None
         derefURI:
           type: string
+          title: URI base 64
+          x-cols: 6
           description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
             \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
             mes de transcodage (sur des double quotes qui casseraient le message,\
@@ -478,61 +620,97 @@ components:
             - None
         digest:
           type: string
+          title: Hash
+          x-cols: 6
           description: "Hash de la ressource pour confirmer la r\xE9ception de la\
             \ bonne ressource"
           examples:
             - None
       examples:
-        - *id003
+        - resourceDesc: "photo, carte, \u2026"
+          mimeType: "PDF, XML, JPEG, \u2026"
+          size: "1235, 35, \u2026"
+          URI: None
+          derefURI: None
+          digest: None
     callerName:
       type: object
-      required: []
+      title: "Pr\xE9nom & nom usuel du requ\xE9rant"
+      x-display: expansion-panels
+      required:
+        - complete
       properties:
         complete:
           type: string
-          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nNexSIS ne dispose\
-            \ que de ces informations (concat\xE9n\xE9es) et pas de deux champs s\xE9\
-            par\xE9s"
+          title: "Pr\xE9nom et nom"
+          x-cols: 6
+          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
+            \ et callerFirstName sont renseign\xE9s, le champ callerName doit contenir\
+            \ la cha\xEEne de caract\xE8re suivante : \"{callerFirstName} {callerLastName}\"\
+            .\nNote : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es)\
+            \ et pas de deux champs s\xE9par\xE9s."
           examples:
             - Jean Dupont
         callerLastName:
           type: string
+          title: Nom
+          x-cols: 6
           description: "Nom du requ\xE9rant"
           examples:
             - Dupont
         callerFirstName:
           type: string
+          title: "Pr\xE9nom"
+          x-cols: 6
           description: "Pr\xE9nom du r\xE9qu\xE9rant"
           examples:
             - Jean
       examples:
-        - *id004
+        - complete: Jean Dupont
+          callerLastName: Dupont
+          callerFirstName: Jean
     nomenclature:
       type: object
-      required: []
+      title: Nature de fait
+      x-display: expansion-panels
+      required:
+        - code
+        - label
       properties:
         code:
           type: string
+          title: Code
+          x-cols: 6
           description: "D\xE9crit le code de motif de recours m\xE9dical"
           examples:
             - C07.13.02
         label:
           type: string
+          title: "Libell\xE9"
+          x-cols: 6
           description: "Libell\xE9 du motif"
           examples:
             - "Rod\xE9o automobile"
         freetext:
           type: string
+          title: Commentaire
+          x-cols: 6
           examples:
             - None
       examples:
-        - *id005
+        - code: C07.13.02
+          label: "Rod\xE9o automobile"
+          freetext: None
     victims:
       type: object
-      required: []
+      title: Patients/Victimes
+      x-display: expansion-panels
+      required: [ ]
       properties:
         count:
           type: string
+          title: Nombre de patients-victimes
+          x-cols: 6
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
             f\xE9rentiel CISU"
           enum:
@@ -545,6 +723,8 @@ components:
             - SEVERAL
         mainVictim:
           type: string
+          title: Type du patient-victime principal
+          x-cols: 6
           description: "Identifie le type de la principale victime (celle dont l'\xE9\
             tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
@@ -559,17 +739,26 @@ components:
             - CHILD
         comment:
           type: string
+          title: "Informations compl\xE9mentaires sur les patients-victimes"
+          x-cols: 6
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
           examples:
             - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
       examples:
-        - *id006
+        - count: SEVERAL
+          mainVictim: CHILD
+          comment: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
     address:
       type: object
-      required: []
+      title: "D\xE9tails de l'adresse"
+      x-display: expansion-panels
+      required:
+        - complete
       properties:
         complete:
           type: string
+          title: "Num\xE9ro, type et nom de voie"
+          x-cols: 6
           description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
             \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
             \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
@@ -578,6 +767,8 @@ components:
             - 9 Bd du Montparnasse
         number:
           type: string
+          title: "Num\xE9ro dans la voie"
+          x-cols: 6
           description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
             \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
             p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
@@ -585,22 +776,23 @@ components:
             - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/components/schemas/wayName'
-          examples:
-            - &id009
-              complete: A1 direction Paris, Bd du Montparnasse
-              type: Boulevard
-              name: du Montparnasse
     city:
       type: object
-      required: []
+      title: "D\xE9tails de la commune"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         name:
           type: string
+          title: Nom de la commune
+          x-cols: 6
           description: Nom officiel de la commune actuelle
           examples:
             - Lille
         inseeCode:
           type: string
+          title: Code INSEE de la commune
+          x-cols: 6
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9."
@@ -609,6 +801,8 @@ components:
             - 59350
         detail:
           type: string
+          title: "Compl\xE9ment de commune"
+          x-cols: 6
           description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
             \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
             \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
@@ -616,23 +810,33 @@ components:
           examples:
             - "Quartie Melun Nord, Lhomme, \u2026"
       examples:
-        - *id007
+        - name: Lille
+          inseeCode: 59350
+          detail: "Quartie Melun Nord, Lhomme, \u2026"
     access:
       type: object
-      required: []
+      title: "D\xE9tails d'acc\xE8s"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         floor:
           type: string
+          title: Etage
+          x-cols: 6
           description: 'Etage '
           examples:
             - "RDC, 1, 2, \u2026"
         roomNumber:
           type: string
+          title: "Num\xE9ro de porte"
+          x-cols: 6
           description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
           examples:
             - "A16, 37, 104, \u2026"
         interphone:
           type: string
+          title: Interphone
+          x-cols: 6
           description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
             \ de l'interphone (num\xE9ro, nom)"
           examples:
@@ -641,45 +845,66 @@ components:
           type: array
           items:
             type: string
+            title: Digicode
+            x-cols: 6
             description: "Indique le ou les digicodes dans l'ordre de progression\
               \ dans le b\xE2timent"
             examples:
               - '[''1234A'', ''4321B'']'
         elevator:
           type: string
+          title: Ascenseur/escalier
+          x-cols: 6
           description: 'Indique l''ascenseur ou la cage d''escalier '
           examples:
             - C3
         buildingName:
           type: string
+          title: "B\xE2timent"
+          x-cols: 6
           description: "Nom du b\xE2timent"
           examples:
             - Batiment B, Batiment Maunoury
         entrance:
           type: string
+          title: "Entr\xE9e"
+          x-cols: 6
           examples:
             - "Zone Sud, Porte 1, \u2026"
         entity:
           type: string
+          title: Service
+          x-cols: 6
           description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
           examples:
             - "Infirmerie, service finance, service cardiologie, \u2026"
     geometry:
       type: object
-      required: []
+      title: "G\xE9ometrie associ\xE9e"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         point:
           $ref: '#/components/schemas/point'
         sketch:
           type: string
+          title: "Formes g\xE9om\xE9triques"
+          x-cols: 6
           examples:
             - None
     link:
       type: object
-      required: []
+      title: "Liens aux syst\xE8mes externes"
+      x-display: expansion-panels
+      required:
+        - source
+        - type
+        - id
       properties:
         source:
           type: string
+          title: Source
+          x-cols: 6
           description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
             \ (BAN, IGN, ...)"
           enum:
@@ -690,6 +915,8 @@ components:
             - "NexSIS, BAN, IGN, \u2026"
         type:
           type: string
+          title: 'Type '
+          x-cols: 6
           description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
             \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
             \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
@@ -698,48 +925,58 @@ components:
             - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
         id:
           type: string
+          title: Identifiant
+          x-cols: 6
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
           examples:
             - id987
       examples:
-        - *id008
+        - source: "NexSIS, BAN, IGN, \u2026"
+          type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
+          id: id987
     wayName:
       type: object
-      required: []
+      title: Type et nom de voie
+      x-display: expansion-panels
+      required:
+        - complete
       properties:
         complete:
           type: string
+          title: Type et nom
+          x-cols: 6
           description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)"
           examples:
             - A1 direction Paris, Bd du Montparnasse
         type:
           type: string
+          title: Type
+          x-cols: 6
           examples:
             - Boulevard
         name:
           type: string
+          title: Nom
+          x-cols: 6
           examples:
             - du Montparnasse
       examples:
-        - *id009
+        - complete: A1 direction Paris, Bd du Montparnasse
+          type: Boulevard
+          name: du Montparnasse
     point:
       type: object
+      title: 'Point '
+      x-display: expansion-panels
       required:
         - coord
       properties:
         coord:
           $ref: '#/components/schemas/coord'
-          examples:
-            - &id010
-              lat: '48.866667'
-              lon: '2.333333'
-              height: 120
-              heading: 96
-              speed: 34
-              time: '2022-09-27T08:23:34+02:00'
-              precision: Adresse
         coordsys:
           type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-cols: 6
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
             \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
             \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
@@ -749,37 +986,55 @@ components:
             - EPSG-4326
     coord:
       type: object
-      required: []
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      required:
+        - lat
+        - lon
+        - time
+        - precision
       properties:
         lat:
           type: number
+          title: Latitude
+          x-cols: 6
           description: "Latitude du point cl\xE9 de la localisation"
           examples:
             - '48.866667'
         lon:
           type: number
+          title: Longitude
+          x-cols: 6
           description: "Longitude du point cl\xE9 de la localisation"
           examples:
             - '2.333333'
         height:
           type: number
+          title: 'Altitude '
+          x-cols: 6
           description: "Altitude du point cl\xE9 de la localisation, ignor\xE9 c\xF4\
             t\xE9 NexSIS."
           examples:
             - 120
         heading:
           type: number
+          title: Cap
+          x-cols: 6
           description: "En degr\xE9"
           examples:
             - 96
         speed:
           type: number
+          title: Vitesse
+          x-cols: 6
           description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
             \ AML, \u2026"
           examples:
             - 34
         time:
           type: string
+          title: Temps
+          x-cols: 6
           description: "Groupe date heure de renseignement des coordonn\xE9es du point\
             \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
             \ donc pertinence des informations pour intervenir."
@@ -789,6 +1044,8 @@ components:
             - '2022-09-27T08:23:34+02:00'
         precision:
           type: string
+          title: "Pr\xE9cision"
+          x-cols: 6
           description: "Niveau de pr\xE9cision et de confiance dans les coordonn\xE9\
             es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie)\
             \ d\xE9termin\xE9e de fa\xE7on automatique par le syst\xE8me en fonction\
@@ -801,49 +1058,52 @@ components:
           examples:
             - Adresse
       examples:
-        - *id010
-    identifier:
-      type: object
-      required: []
-      properties:
-        source:
-          type: string
-          enum:
-            - NIR
-            - SINUS
-            - SI-VIC
-          examples:
-            - "NIR, SINUS, SI-VIC, \u2026"
-        value:
-          type: string
-          examples:
-            - id1234
-      examples:
-        - *id011
+        - lat: '48.866667'
+          lon: '2.333333'
+          height: 120
+          heading: 96
+          speed: 34
+          time: '2022-09-27T08:23:34+02:00'
+          precision: Adresse
     customMap:
       type: object
-      required: []
+      title: "Cl\xE9 valeur adaptable"
+      x-display: expansion-panels
+      required:
+        - key
+        - value
       properties:
         key:
           type: string
+          title: "Cl\xE9"
+          x-cols: 6
           description: Nom de la balise
           examples:
             - neighborhood
         label:
           type: string
+          title: "Libell\xE9"
+          x-cols: 6
           description: "Libell\xE9 correspondant"
           examples:
             - Quartier
         value:
           type: string
+          title: Valeur
+          x-cols: 6
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
           examples:
             - SECT.QUARTIER HISTORIQUE
         freetext:
           type: string
+          title: "D\xE9tails"
+          x-cols: 6
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
             \ de ce matching additionnel"
           examples:
             - "Pr\xE9cision sur le quartier d'intervention"
       examples:
-        - *id012
+        - key: neighborhood
+          label: Quartier
+          value: SECT.QUARTIER HISTORIQUE
+          freetext: "Pr\xE9cision sur le quartier d'intervention"

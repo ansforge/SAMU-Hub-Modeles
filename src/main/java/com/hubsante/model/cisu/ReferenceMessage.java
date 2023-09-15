@@ -21,50 +21,52 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.CustomMap;
+import com.hubsante.model.cisu.Reference;
+import com.hubsante.model.cisu.DistributionElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * AdditionalInformation
+ * ReferenceMessage
  */
 @JsonPropertyOrder({
-        AdditionalInformation.JSON_PROPERTY_CUSTOM_MAP
+        ReferenceMessage.JSON_PROPERTY_REFERENCE
 })
-@JsonTypeName("additionalInformation")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
-public class AdditionalInformation {
-    public static final String JSON_PROPERTY_CUSTOM_MAP = "customMap";
-    private CustomMap customMap;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:46:46.250+02:00[Europe/Paris]")
+public class ReferenceMessage extends DistributionElement {
+    @JacksonXmlProperty(isAttribute = true)
+    String xmlns = "urn:emergency:cisu:2.0";
+    public static final String JSON_PROPERTY_REFERENCE = "reference";
+    private Reference reference;
 
-    public AdditionalInformation() {
+    public ReferenceMessage() {
     }
 
-    public AdditionalInformation customMap(CustomMap customMap) {
+    public ReferenceMessage reference(Reference reference) {
 
-        this.customMap = customMap;
+        this.reference = reference;
         return this;
     }
 
     /**
-     * Get customMap
+     * Get reference
      *
-     * @return customMap
+     * @return reference
      **/
-    @JsonProperty(JSON_PROPERTY_CUSTOM_MAP)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonProperty(JSON_PROPERTY_REFERENCE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public CustomMap getCustomMap() {
-        return customMap;
+    public Reference getReference() {
+        return reference;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CUSTOM_MAP)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCustomMap(CustomMap customMap) {
-        this.customMap = customMap;
+    @JsonProperty(JSON_PROPERTY_REFERENCE)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setReference(Reference reference) {
+        this.reference = reference;
     }
 
     @Override
@@ -75,20 +77,20 @@ public class AdditionalInformation {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        AdditionalInformation additionalInformation = (AdditionalInformation) o;
-        return Objects.equals(this.customMap, additionalInformation.customMap);
+        ReferenceMessage referenceMessage = (ReferenceMessage) o;
+        return Objects.equals(this.reference, referenceMessage.reference);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(customMap);
+        return Objects.hash(reference);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class AdditionalInformation {\n");
-        sb.append("    customMap: ").append(toIndentedString(customMap)).append("\n");
+        sb.append("class ReferenceMessage {\n");
+        sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
         sb.append("}");
         return sb.toString();
     }

@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("link")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class Link {
     /**
      * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
@@ -98,7 +98,7 @@ public class Link {
      * @return source
      **/
     @JsonProperty(JSON_PROPERTY_SOURCE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public SourceEnum getSource() {
         return source;
@@ -106,7 +106,7 @@ public class Link {
 
 
     @JsonProperty(JSON_PROPERTY_SOURCE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setSource(SourceEnum source) {
         this.source = source;
     }
@@ -150,7 +150,7 @@ public class Link {
      * @return id
      **/
     @JsonProperty(JSON_PROPERTY_ID)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getId() {
         return id;
@@ -158,7 +158,7 @@ public class Link {
 
 
     @JsonProperty(JSON_PROPERTY_ID)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setId(String id) {
         this.id = id;
     }

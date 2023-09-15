@@ -3,7 +3,7 @@ info:
   title: Hub Sante AMQP API
   version: '0.9'
   description: "L'API Hub Sante AMQP permet le partage d'informations entre acteurs\
-    \ du monde de la sant\xE9.\n"
+    \ du monde de la sant\xC3\xA9.\n"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -12,22 +12,23 @@ servers:
     url: messaging.hub.esante.gouv.fr:5671
     protocol: amqps
     protocolVersion: 0-9-1
-    description: "Instance \"bac \xE0 sable\" du Hub Sante d\xE9ploy\xE9e dans le\
-      \ Cloud."
+    description: "Instance \"bac \xC3\_ sable\" du Hub Sante d\xC3\xA9ploy\xC3\xA9\
+      e dans le Cloud."
     security:
     - tlsAuth: []
   local:
     url: localhost:5671
     protocol: amqps
     protocolVersion: 0-9-1
-    description: "Instance locale du Hub Sante port\xE9e par `minikube` dans le repo\
-      \ du Hub"
+    description: "Instance locale du Hub Sante port\xC3\xA9e par `minikube` dans le\
+      \ repo du Hub"
     security:
     - tlsAuth: []
 defaultContentType: application/json
 channels:
   '{clientId}.message':
-    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception de messages"
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ de messages"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -51,8 +52,8 @@ channels:
           autoDelete: false
           vhost: /
   '{clientId}.ack':
-    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des acquittements\
-      \ de bonne r\xE9ception"
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ des acquittements de bonne r\xC3\xA9ception"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -62,7 +63,7 @@ channels:
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: "Acquittements de bonne r\xE9ception"
+      summary: "Acquittements de bonne r\xC3\xA9ception"
       operationId: publishAck
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -76,19 +77,19 @@ channels:
           autoDelete: false
           vhost: /
   '{clientId}.info':
-    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des informations\
-      \ compl\xE9mentaires li\xE9es au fonctionnement et aux \xE9changes port\xE9\
-      s par le Hub Sant\xE9"
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ des informations compl\xC3\xA9mentaires li\xC3\xA9es au fonctionnement et\
+      \ aux \xC3\xA9changes port\xC3\xA9s par le Hub Sant\xC3\xA9"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
     subscribe:
-      summary: "Informations compl\xE9mentaires"
+      summary: "Informations compl\xC3\xA9mentaires"
       operationId: receiveInfo
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: "Informations compl\xE9mentaires"
+      summary: "Informations compl\xC3\xA9mentaires"
       operationId: publishInfo
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -105,8 +106,8 @@ components:
   securitySchemes:
     tlsAuth:
       type: X509
-      description: "Un certificat issu d'une AC valid\xE9e par le Hub est n\xE9cessaire\
-        \ pour l'authentification mTLS"
+      description: "Un certificat issu d'une AC valid\xC3\xA9e par le Hub est n\xC3\
+        \xA9cessaire pour l'authentification mTLS"
   parameters:
     clientId:
       description: L'identifiant du client
@@ -117,7 +118,7 @@ components:
       title: Message au standard EDXL
       summary: "Message au standard EDXL transportable par le Hub, comportant une\
         \ partie adressage et une partie contenu. La partie contenu peut respecter\
-        \ diff\xE9rentes sp\xE9cifications fonctionnelles."
+        \ diff\xC3\xA9rentes sp\xC3\xA9cifications fonctionnelles."
       payload:
         $ref: '#/components/schemas/EdxlMessage'
   schemas:
@@ -238,12 +239,16 @@ components:
       type: object
       title: DistributionElement
       required:
+      - messageId
       - sender
+      - sentAt
+      - kind
+      - status
       - recipients
       properties:
         messageId:
           type: string
-          title: messageId
+          title: Identifiant du message
           x-cols: 6
           example: example.json#/messageId
           description: "Identifiant technique permettant d'identifier le message envoy\xE9\
@@ -270,7 +275,7 @@ components:
           - None
         kind:
           type: string
-          title: Type de message NexSIS
+          title: Type de message
           x-cols: 6
           example: example.json#/kind
           description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
@@ -285,7 +290,7 @@ components:
           - ALERT
         status:
           type: string
-          title: Status du message
+          title: Statut du message
           x-cols: 6
           example: example.json#/status
           description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
@@ -302,11 +307,13 @@ components:
       type: object
       title: "Syst\xE8me \xE9metteur"
       x-display: expansion-panels
-      required: []
+      required:
+      - name
+      - URI
       properties:
         name:
           type: string
-          title: "Identifiant technique du syst\xE8me emetteur"
+          title: "Nom du syst\xE8me emetteur"
           x-cols: 6
           example: example.json#/sender/name
           description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
@@ -319,7 +326,7 @@ components:
           - sga-nexsis
         URI:
           type: string
-          title: uri
+          title: URI (identifiant technique)
           x-cols: 6
           example: example.json#/sender/URI
           description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
@@ -347,7 +354,9 @@ components:
       type: object
       title: "Syst\xE8me destinataire"
       x-display: expansion-panels
-      required: []
+      required:
+      - name
+      - URI
       properties:
         name:
           type: string
@@ -364,7 +373,7 @@ components:
           - samu-77
         URI:
           type: string
-          title: uri
+          title: URI (identifiant technique)
           x-cols: 6
           example: example.json#/recipients/recipient/0/URI
           description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\

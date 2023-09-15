@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("callTaker")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class CallTaker {
     public static final String JSON_PROPERTY_ORGANIZATION = "organization";
     private String organization;
@@ -65,7 +65,7 @@ public class CallTaker {
      * @return organization
      **/
     @JsonProperty(JSON_PROPERTY_ORGANIZATION)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getOrganization() {
         return organization;
@@ -73,7 +73,7 @@ public class CallTaker {
 
 
     @JsonProperty(JSON_PROPERTY_ORGANIZATION)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setOrganization(String organization) {
         this.organization = organization;
     }
@@ -91,7 +91,7 @@ public class CallTaker {
      * @return controlRoom
      **/
     @JsonProperty(JSON_PROPERTY_CONTROL_ROOM)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getControlRoom() {
         return controlRoom;
@@ -99,7 +99,7 @@ public class CallTaker {
 
 
     @JsonProperty(JSON_PROPERTY_CONTROL_ROOM)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setControlRoom(String controlRoom) {
         this.controlRoom = controlRoom;
     }
@@ -138,7 +138,7 @@ public class CallTaker {
     }
 
     /**
-     * Identifiant unique de l&#39;opérataur ayant traité l&#39;alerte
+     * Identifiant unique de l&#39;opérateur ayant traité l&#39;alerte
      *
      * @return calltakerId
      **/

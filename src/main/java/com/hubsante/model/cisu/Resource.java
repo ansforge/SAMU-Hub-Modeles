@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class Resource {
     public static final String JSON_PROPERTY_RESOURCE_DESC = "resourceDesc";
     private String resourceDesc;
@@ -151,7 +151,7 @@ public class Resource {
      * @return URI
      **/
     @JsonProperty(JSON_PROPERTY_U_R_I)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getURI() {
         return URI;
@@ -159,7 +159,7 @@ public class Resource {
 
 
     @JsonProperty(JSON_PROPERTY_U_R_I)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setURI(String URI) {
         this.URI = URI;
     }

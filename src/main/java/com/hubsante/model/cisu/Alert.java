@@ -53,7 +53,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("alert")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-08-18T10:47:59.409+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class Alert {
     public static final String JSON_PROPERTY_ALERT_ID = "alertId";
     private String alertId;
@@ -130,12 +130,12 @@ public class Alert {
     }
 
     /**
-     * Identifiant technique unique de l&#39;alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage. Voir la description de l&#39;identifiant de l&#39;affaire pour voir le format.
+     * Identifiant technique unique de l&#39;alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage. Voir la description de l&#39;identifiant de l&#39;affaire pour voir le format. Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale. a) Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert. b) Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
      *
      * @return alertId
      **/
     @JsonProperty(JSON_PROPERTY_ALERT_ID)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getAlertId() {
         return alertId;
@@ -143,7 +143,7 @@ public class Alert {
 
 
     @JsonProperty(JSON_PROPERTY_ALERT_ID)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setAlertId(String alertId) {
         this.alertId = alertId;
     }
@@ -161,7 +161,7 @@ public class Alert {
      * @return receivedAt
      **/
     @JsonProperty(JSON_PROPERTY_RECEIVED_AT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public OffsetDateTime getReceivedAt() {
         return receivedAt;
@@ -169,7 +169,7 @@ public class Alert {
 
 
     @JsonProperty(JSON_PROPERTY_RECEIVED_AT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setReceivedAt(OffsetDateTime receivedAt) {
         this.receivedAt = receivedAt;
     }
@@ -187,7 +187,7 @@ public class Alert {
      * @return reporting
      **/
     @JsonProperty(JSON_PROPERTY_REPORTING)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public ReportingEnum getReporting() {
         return reporting;
@@ -195,7 +195,7 @@ public class Alert {
 
 
     @JsonProperty(JSON_PROPERTY_REPORTING)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setReporting(ReportingEnum reporting) {
         this.reporting = reporting;
     }
