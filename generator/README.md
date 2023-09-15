@@ -51,6 +51,8 @@ Comme on ne peut passer dans la conf que la liste des classes à traiter, sans p
 ```bash
 npx @openapitools/openapi-generator-cli generate -c .\cisu-generator-config.json --skip-validate-spec
 
+npx @openapitools/openapi-generator-cli generate -c .\cisu-use-case-messages-config.json --skip-validate-spec
+
 npx @openapitools/openapi-generator-cli generate -c .\cisu-root-messages-config.json --skip-validate-spec
 ```
 

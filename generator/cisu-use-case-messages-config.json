@@ -2,9 +2,9 @@
   "inputSpec": "./createCase.openapi.yml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/root-messages/",
+  "templateDir": "templates/use-case-messages/",
   "globalProperties": {
-    "models": "DistributionElement",
+    "models": "CreateCaseMessage:ReferenceMessage",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,

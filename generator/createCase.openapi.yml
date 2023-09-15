@@ -143,7 +143,7 @@ components:
       examples:
         - name: samu-77
           URI: sge:samu-77
-    CisuAckMessage:
+    ReferenceMessage:
       type: object
       required:
         - reference
@@ -153,10 +153,10 @@ components:
     CreateCaseMessage:
       type: object
       required:
-        - createCaseEvent
+        - createEvent
       properties:
-        createCaseEvent:
-          $ref: '#/components/schemas/CreateCaseEvent'
+        createCase:
+          $ref: '#/components/schemas/CreateCase'
     Reference:
       type: object
       title: Reference
@@ -165,11 +165,11 @@ components:
       properties:
         distributionId:
           type: string
-    CreateCaseEvent:
+    CreateCase:
       $id: http://json-schema.org/draft-07/schema#
       x-id: schema.json#
       type: object
-      title: CreateCaseMessage
+      title: CreateCase
       required:
         - caseId
         - createdAt
