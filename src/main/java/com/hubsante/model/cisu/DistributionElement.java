@@ -45,7 +45,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:53:43.059+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:47:09.130+02:00[Europe/Paris]")
 public class DistributionElement extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";

@@ -29,23 +29,23 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * CreateCaseEvent
+ * CreateCase
  */
 @JsonPropertyOrder({
-        CreateCaseEvent.JSON_PROPERTY_CASE_ID,
-        CreateCaseEvent.JSON_PROPERTY_SENDER_CASE_ID,
-        CreateCaseEvent.JSON_PROPERTY_CREATED_AT,
-        CreateCaseEvent.JSON_PROPERTY_INITIAL_ALERT,
-        CreateCaseEvent.JSON_PROPERTY_CASE_LOCATION,
-        CreateCaseEvent.JSON_PROPERTY_NEW_ALERT,
-        CreateCaseEvent.JSON_PROPERTY_SEVERITY,
-        CreateCaseEvent.JSON_PROPERTY_ADDITIONAL_INFORMATION,
-        CreateCaseEvent.JSON_PROPERTY_FREETEXT
+        CreateCase.JSON_PROPERTY_CASE_ID,
+        CreateCase.JSON_PROPERTY_SENDER_CASE_ID,
+        CreateCase.JSON_PROPERTY_CREATED_AT,
+        CreateCase.JSON_PROPERTY_INITIAL_ALERT,
+        CreateCase.JSON_PROPERTY_CASE_LOCATION,
+        CreateCase.JSON_PROPERTY_NEW_ALERT,
+        CreateCase.JSON_PROPERTY_SEVERITY,
+        CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
+        CreateCase.JSON_PROPERTY_FREETEXT
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
-public class CreateCaseEvent {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+public class CreateCase {
     public static final String JSON_PROPERTY_CASE_ID = "caseId";
     private String caseId;
 
@@ -114,10 +114,10 @@ public class CreateCaseEvent {
     public static final String JSON_PROPERTY_FREETEXT = "freetext";
     private String freetext;
 
-    public CreateCaseEvent() {
+    public CreateCase() {
     }
 
-    public CreateCaseEvent caseId(String caseId) {
+    public CreateCase caseId(String caseId) {
 
         this.caseId = caseId;
         return this;
@@ -143,7 +143,7 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent senderCaseId(String senderCaseId) {
+    public CreateCase senderCaseId(String senderCaseId) {
 
         this.senderCaseId = senderCaseId;
         return this;
@@ -169,7 +169,7 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent createdAt(OffsetDateTime createdAt) {
+    public CreateCase createdAt(OffsetDateTime createdAt) {
 
         this.createdAt = createdAt;
         return this;
@@ -195,7 +195,7 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent initialAlert(Alert initialAlert) {
+    public CreateCase initialAlert(Alert initialAlert) {
 
         this.initialAlert = initialAlert;
         return this;
@@ -221,7 +221,7 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent caseLocation(Location caseLocation) {
+    public CreateCase caseLocation(Location caseLocation) {
 
         this.caseLocation = caseLocation;
         return this;
@@ -247,13 +247,13 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent newAlert(List<Alert> newAlert) {
+    public CreateCase newAlert(List<Alert> newAlert) {
 
         this.newAlert = newAlert;
         return this;
     }
 
-    public CreateCaseEvent addNewAlertItem(Alert newAlertItem) {
+    public CreateCase addNewAlertItem(Alert newAlertItem) {
         if (this.newAlert == null) {
             this.newAlert = new ArrayList<>();
         }
@@ -288,7 +288,7 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent severity(SeverityEnum severity) {
+    public CreateCase severity(SeverityEnum severity) {
 
         this.severity = severity;
         return this;
@@ -314,7 +314,7 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent additionalInformation(AdditionalInformation additionalInformation) {
+    public CreateCase additionalInformation(AdditionalInformation additionalInformation) {
 
         this.additionalInformation = additionalInformation;
         return this;
@@ -340,7 +340,7 @@ public class CreateCaseEvent {
     }
 
 
-    public CreateCaseEvent freetext(String freetext) {
+    public CreateCase freetext(String freetext) {
 
         this.freetext = freetext;
         return this;
@@ -373,16 +373,16 @@ public class CreateCaseEvent {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateCaseEvent createCaseEvent = (CreateCaseEvent) o;
-        return Objects.equals(this.caseId, createCaseEvent.caseId) &&
-                Objects.equals(this.senderCaseId, createCaseEvent.senderCaseId) &&
-                Objects.equals(this.createdAt, createCaseEvent.createdAt) &&
-                Objects.equals(this.initialAlert, createCaseEvent.initialAlert) &&
-                Objects.equals(this.caseLocation, createCaseEvent.caseLocation) &&
-                Objects.equals(this.newAlert, createCaseEvent.newAlert) &&
-                Objects.equals(this.severity, createCaseEvent.severity) &&
-                Objects.equals(this.additionalInformation, createCaseEvent.additionalInformation) &&
-                Objects.equals(this.freetext, createCaseEvent.freetext);
+        CreateCase createCase = (CreateCase) o;
+        return Objects.equals(this.caseId, createCase.caseId) &&
+                Objects.equals(this.senderCaseId, createCase.senderCaseId) &&
+                Objects.equals(this.createdAt, createCase.createdAt) &&
+                Objects.equals(this.initialAlert, createCase.initialAlert) &&
+                Objects.equals(this.caseLocation, createCase.caseLocation) &&
+                Objects.equals(this.newAlert, createCase.newAlert) &&
+                Objects.equals(this.severity, createCase.severity) &&
+                Objects.equals(this.additionalInformation, createCase.additionalInformation) &&
+                Objects.equals(this.freetext, createCase.freetext);
     }
 
     @Override
@@ -401,7 +401,7 @@ public class CreateCaseEvent {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CreateCaseEvent {\n");
+        sb.append("class CreateCase {\n");
         sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
         sb.append("    senderCaseId: ").append(toIndentedString(senderCaseId)).append("\n");
         sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");

@@ -28,23 +28,23 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * CisuAckMessage
+ * ReferenceMessage
  */
 @JsonPropertyOrder({
-        CisuAckMessage.JSON_PROPERTY_REFERENCE
+        ReferenceMessage.JSON_PROPERTY_REFERENCE
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:53:23.006+02:00[Europe/Paris]")
-public class CisuAckMessage extends DistributionElement {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:46:46.250+02:00[Europe/Paris]")
+public class ReferenceMessage extends DistributionElement {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
     public static final String JSON_PROPERTY_REFERENCE = "reference";
     private Reference reference;
 
-    public CisuAckMessage() {
+    public ReferenceMessage() {
     }
 
-    public CisuAckMessage reference(Reference reference) {
+    public ReferenceMessage reference(Reference reference) {
 
         this.reference = reference;
         return this;
@@ -77,8 +77,8 @@ public class CisuAckMessage extends DistributionElement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CisuAckMessage cisuAckMessage = (CisuAckMessage) o;
-        return Objects.equals(this.reference, cisuAckMessage.reference);
+        ReferenceMessage referenceMessage = (ReferenceMessage) o;
+        return Objects.equals(this.reference, referenceMessage.reference);
     }
 
     @Override
@@ -89,7 +89,7 @@ public class CisuAckMessage extends DistributionElement {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CisuAckMessage {\n");
+        sb.append("class ReferenceMessage {\n");
         sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
         sb.append("}");
         return sb.toString();

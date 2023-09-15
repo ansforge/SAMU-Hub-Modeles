@@ -38,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("recipients")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:52:00.660+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class Recipients {
     public static final String JSON_PROPERTY_RECIPIENT = "recipient";
     private List<Recipient> recipient = new ArrayList<>();
@@ -72,7 +72,7 @@ public class Recipients {
         return recipient;
     }
 
-    @JacksonXmlElementWrapper(useWrapping = false)
+
 
     @JsonProperty(JSON_PROPERTY_RECIPIENT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)

@@ -21,7 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.CreateCaseEvent;
+import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.DistributionElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -31,42 +31,42 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * CreateCaseMessage
  */
 @JsonPropertyOrder({
-        CreateCaseMessage.JSON_PROPERTY_CREATE_CASE_EVENT
+        CreateCaseMessage.JSON_PROPERTY_CREATE_CASE
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-13T17:53:04.803+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:46:27.551+02:00[Europe/Paris]")
 public class CreateCaseMessage extends DistributionElement {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
-    public static final String JSON_PROPERTY_CREATE_CASE_EVENT = "createCaseEvent";
-    private CreateCaseEvent createCaseEvent;
+    public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
+    private CreateCase createCase;
 
     public CreateCaseMessage() {
     }
 
-    public CreateCaseMessage createCaseEvent(CreateCaseEvent createCaseEvent) {
+    public CreateCaseMessage createCase(CreateCase createCase) {
 
-        this.createCaseEvent = createCaseEvent;
+        this.createCase = createCase;
         return this;
     }
 
     /**
-     * Get createCaseEvent
+     * Get createCase
      *
-     * @return createCaseEvent
+     * @return createCase
      **/
-    @JsonProperty(JSON_PROPERTY_CREATE_CASE_EVENT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public CreateCaseEvent getCreateCaseEvent() {
-        return createCaseEvent;
+    public CreateCase getCreateCase() {
+        return createCase;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CREATE_CASE_EVENT)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setCreateCaseEvent(CreateCaseEvent createCaseEvent) {
-        this.createCaseEvent = createCaseEvent;
+    @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setCreateCase(CreateCase createCase) {
+        this.createCase = createCase;
     }
 
     @Override
@@ -78,19 +78,19 @@ public class CreateCaseMessage extends DistributionElement {
             return false;
         }
         CreateCaseMessage createCaseMessage = (CreateCaseMessage) o;
-        return Objects.equals(this.createCaseEvent, createCaseMessage.createCaseEvent);
+        return Objects.equals(this.createCase, createCaseMessage.createCase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(createCaseEvent);
+        return Objects.hash(createCase);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateCaseMessage {\n");
-        sb.append("    createCaseEvent: ").append(toIndentedString(createCaseEvent)).append("\n");
+        sb.append("    createCase: ").append(toIndentedString(createCase)).append("\n");
         sb.append("}");
         return sb.toString();
     }
