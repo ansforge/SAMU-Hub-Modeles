@@ -43,7 +43,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         CreateCase.JSON_PROPERTY_FREETEXT
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonIgnoreProperties(ignoreUnknown = true)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class CreateCase {
     public static final String JSON_PROPERTY_CASE_ID = "caseId";

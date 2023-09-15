@@ -14,16 +14,10 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Reference
@@ -35,14 +29,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class Reference {
     public static final String JSON_PROPERTY_DISTRIBUTION_ID = "distributionId";
-    private String distributionId;
+    private String distributionID;
 
     public Reference() {
     }
 
-    public Reference distributionId(String distributionId) {
+    public Reference distributionId(String distributionID) {
 
-        this.distributionId = distributionId;
+        this.distributionID = distributionID;
         return this;
     }
 
@@ -54,15 +48,15 @@ public class Reference {
     @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public String getDistributionId() {
-        return distributionId;
+    public String getDistributionID() {
+        return distributionID;
     }
 
 
     @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setDistributionId(String distributionId) {
-        this.distributionId = distributionId;
+    public void setDistributionID(String distributionID) {
+        this.distributionID = distributionID;
     }
 
     @Override
@@ -74,19 +68,19 @@ public class Reference {
             return false;
         }
         Reference reference = (Reference) o;
-        return Objects.equals(this.distributionId, reference.distributionId);
+        return Objects.equals(this.distributionID, reference.distributionID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(distributionId);
+        return Objects.hash(distributionID);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class Reference {\n");
-        sb.append("    distributionId: ").append(toIndentedString(distributionId)).append("\n");
+        sb.append("    distributionId: ").append(toIndentedString(distributionID)).append("\n");
         sb.append("}");
         return sb.toString();
     }
