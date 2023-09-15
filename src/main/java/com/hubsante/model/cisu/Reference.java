@@ -28,22 +28,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
 public class Reference {
-    public static final String JSON_PROPERTY_DISTRIBUTION_ID = "distributionId";
+    public static final String JSON_PROPERTY_DISTRIBUTION_ID = "distributionID";
     private String distributionID;
 
     public Reference() {
     }
 
-    public Reference distributionId(String distributionID) {
+    public Reference distributionID(String distributionID) {
 
         this.distributionID = distributionID;
         return this;
     }
 
     /**
-     * Get distributionId
+     * Get distributionID
      *
-     * @return distributionId
+     * @return distributionID
      **/
     @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
@@ -80,7 +80,7 @@ public class Reference {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class Reference {\n");
-        sb.append("    distributionId: ").append(toIndentedString(distributionID)).append("\n");
+        sb.append("    distributionID: ").append(toIndentedString(distributionID)).append("\n");
         sb.append("}");
         return sb.toString();
     }

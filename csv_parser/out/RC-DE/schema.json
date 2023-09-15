@@ -20,7 +20,7 @@
             "title": "Identifiant du message",
             "x-cols": 6,
             "example": "example.json#/messageId",
-            "description": "Identifiant technique permettant d'identifier le message envoy\u00e9. Cet identifiant est utilis\u00e9 par NexSIS pour assurer le routage des messages\nPr\u00e9conisation : r\u00e9employer le contenu de la balise <distributionId> de l'enveloppe EDXL (cf. DST)"
+            "description": "Identifiant technique permettant d'identifier le message envoy\u00e9. Cet identifiant est utilis\u00e9 par NexSIS pour assurer le routage des messages\nPr\u00e9conisation : r\u00e9employer le contenu de la balise <distributionID> de l'enveloppe EDXL (cf. DST)"
         },
         "sender": {
             "$ref": "#/definitions/sender"

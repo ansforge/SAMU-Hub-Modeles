@@ -155,7 +155,7 @@ public class DistributionElement extends ContentMessage {
     }
 
     /**
-     * Identifiant technique permettant d&#39;identifier le message envoyé. Cet identifiant est utilisé par NexSIS pour assurer le routage des messages Préconisation : réemployer le contenu de la balise &lt;distributionId&gt; de l&#39;enveloppe EDXL (cf. DST)
+     * Identifiant technique permettant d&#39;identifier le message envoyé. Cet identifiant est utilisé par NexSIS pour assurer le routage des messages Préconisation : réemployer le contenu de la balise &lt;distributionID&gt; de l&#39;enveloppe EDXL (cf. DST)
      *
      * @return messageId
      **/
