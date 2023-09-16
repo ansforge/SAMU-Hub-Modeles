@@ -167,12 +167,12 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCaseMessage'
-        - $ref: '#/components/schemas/GenericAckMessage'
+        - $ref: '#/components/schemas/CreateCase'
+        - $ref: '#/components/schemas/Reference'
     EmbeddedXMLContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCaseMessage'
-        - $ref: '#/components/schemas/GenericAckMessage'
+        - $ref: '#/components/schemas/CreateCase'
+        - $ref: '#/components/schemas/Reference'
     Descriptor:
       properties:
         language:
@@ -219,10 +219,9 @@ components:
         - Test
         - Unknown
         - NoAppropriateDefault
-    GenericAckMessage:
+    Reference:
       properties:
-        ackDistributionId:
+        distributionID:
           type: string
-      additionalProperties: false
       required:
-        - ackDistributionId
+        - distributionID

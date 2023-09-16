@@ -235,7 +235,6 @@ components:
     DistributionElement:
       $id: http://json-schema.org/draft-07/schema#
       x-id: schema.json#
-      example: example.json#
       type: object
       title: DistributionElement
       required:
@@ -250,7 +249,6 @@ components:
           type: string
           title: Identifiant du message
           x-cols: 6
-          example: example.json#/messageId
           description: "Identifiant technique permettant d'identifier le message envoy\xE9\
             . Cet identifiant est utilis\xE9 par NexSIS pour assurer le routage des\
             \ messages\nPr\xE9conisation : r\xE9employer le contenu de la balise <distributionID>\
@@ -258,12 +256,11 @@ components:
           examples:
           - d350c9d2-9d76-4568-b0b7-a747ffadc949
         sender:
-          $ref: '#/definitions/sender'
+          $ref: '#/components/schemas/sender'
         sentAt:
           type: string
           title: Horodatage envoi message
           x-cols: 6
-          example: example.json#/sentAt
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
             \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
             \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
@@ -277,7 +274,6 @@ components:
           type: string
           title: Type de message
           x-cols: 6
-          example: example.json#/kind
           description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
             DST)
           enum:
@@ -292,7 +288,6 @@ components:
           type: string
           title: Statut du message
           x-cols: 6
-          example: example.json#/status
           description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
             DST)
           enum:
@@ -302,7 +297,7 @@ components:
           examples:
           - ACTUAL
         recipients:
-          $ref: '#/definitions/recipients'
+          $ref: '#/components/schemas/recipients'
     sender:
       type: object
       title: "Syst\xE8me \xE9metteur"
@@ -315,7 +310,6 @@ components:
           type: string
           title: "Nom du syst\xE8me emetteur"
           x-cols: 6
-          example: example.json#/sender/name
           description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
             => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
             \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
@@ -328,13 +322,11 @@ components:
           type: string
           title: URI (identifiant technique)
           x-cols: 6
-          example: example.json#/sender/URI
           description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
             \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{sender:name}\n\
             => Pour NexSIS : sge:{sender:name}"
           examples:
           - sge:sga-nexsis
-      example: example.json#/sender
       examples:
       - name: sga-nexsis
         URI: sge:sga-nexsis
@@ -348,8 +340,7 @@ components:
         recipient:
           type: array
           items:
-            $ref: '#/definitions/recipient'
-      example: example.json#/recipients
+            $ref: '#/components/schemas/recipient'
     recipient:
       type: object
       title: "Syst\xE8me destinataire"
@@ -362,7 +353,6 @@ components:
           type: string
           title: "Identifiant technique du syst\xE8me destinataire"
           x-cols: 6
-          example: example.json#/recipients/recipient/0/name
           description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
             => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
             \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
@@ -375,13 +365,11 @@ components:
           type: string
           title: URI (identifiant technique)
           x-cols: 6
-          example: example.json#/recipients/recipient/0/URI
           description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
             \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n\
             => Pour NexSIS : sge:{recipient:name}"
           examples:
           - sge:samu-77
-      example: example.json#/recipients/recipient/0
       examples:
       - name: samu-77
         URI: sge:samu-77

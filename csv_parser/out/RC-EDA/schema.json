@@ -5,7 +5,7 @@
     "version": "0.4.9",
     "example": "example.json#",
     "type": "object",
-    "title": "CreateCaseEvent",
+    "title": "CreateCase",
     "required": [
         "caseId",
         "createdAt",
