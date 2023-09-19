@@ -7,7 +7,8 @@ public enum ErrorCode {
     SENDER_INCONSISTENCY(200, "SENDER_INCONSISTENCY"),
     INVALID_MESSAGE(300, "INVALID_MESSAGE"),
     EXPIRED_MESSAGE_BEFORE_ROUTING(400, "EXPIRED_MESSAGE_BEFORE_ROUTING"),
-    DEAD_LETTER_QUEUED(500, "DEAD_LETTER_QUEUED");
+    DEAD_LETTER_QUEUED(500, "DEAD_LETTER_QUEUED"),
+    UNROUTABLE_MESSAGE(501, "UNROUTABLE_MESSAGE");
 
     ErrorCode(int statusCode, String statusString) {
     }
@@ -29,4 +30,6 @@ public enum ErrorCode {
     public boolean isExpired() {
         return this.statusCode >= 400 && this.statusCode < 500;
     }
+
+    public boolean isUndelivered() { return this.statusCode >= 500;}
 }
