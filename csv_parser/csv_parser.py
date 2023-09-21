@@ -8,24 +8,36 @@ RUN_DOCX_OUTPUT_EXAMPLES = False
 
 DATA_DEPTH = 6  # nombre de niveaux de données
 
-SHEET = ['RC-DE', 'RC-EDA'][1]
+SHEET = ['RC-DE', 'RC-EDA'][0]
 
-params = {
-    'RC-DE': {
-        'modelName': 'DistributionElement',
-        'cols': 35,
-        'rows': 11
-    },
-    'RC-EDA': {
-        'modelName': 'CreateCase',
-        'cols': 35,
-        'rows': 137
+
+def get_params_from_sheet(sheet):
+    """ Automatically get the number of rows and columns to use for this sheet. """
+    full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
+    # Getting modelName from cell A1
+    modelName = full_df.iloc[0, 0]
+    # Computing number of rows in table
+    # rows = df.iloc[7:, 0]
+    # Simply remove initial rows & total row
+    rows = full_df.shape[0] - 8 - 1
+    # Compute number of columns in table
+    try:
+        # By finding the CUT column
+        cols = full_df.iloc[7, :].tolist().index('CUT')
+    except ValueError:
+        # Simply by removing the 6 last editor feedback columns
+        cols = full_df.shape[1] - 6
+    return {
+        'modelName': modelName,
+        'cols': cols,
+        'rows': rows
     }
-}
-# ToDo(RFO) : compute automatically for each sheet
-MODEL_NAME = params[SHEET]['modelName']
-NB_ROWS = params[SHEET]['rows']
-NB_COLS = params[SHEET]['cols']
+
+
+params = get_params_from_sheet(SHEET)
+MODEL_NAME = params['modelName']
+NB_ROWS = params['rows']
+NB_COLS = params['cols']
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
