@@ -20,7 +20,7 @@
             "title": "Identifiant du message",
             "x-cols": 6,
             "example": "example.json#/messageId",
-            "description": "Identifiant technique permettant d'identifier le message envoy\u00e9. Cet identifiant est utilis\u00e9 par NexSIS pour assurer le routage des messages\nPr\u00e9conisation : r\u00e9employer le contenu de la balise <distributionId> de l'enveloppe EDXL (cf. DST)"
+            "description": "Identifiant technique permettant d'identifier le message envoy\u00e9. Cet identifiant est utilis\u00e9 par NexSIS pour assurer le routage des messages\nPr\u00e9conisation : r\u00e9employer le contenu de la balise <distributionID> de l'enveloppe EDXL (cf. DST)"
         },
         "sender": {
             "$ref": "#/definitions/sender"
@@ -79,14 +79,14 @@
                     "title": "Nom du syst\u00e8me emetteur",
                     "x-cols": 6,
                     "example": "example.json#/sender/name",
-                    "description": "Identifiant technique du syst\u00e8me emetteur\nFormat : \n=> Pour les SAMU : {nom solution LRM}-{cl\u00e9 de routage}\no\u00f9 cl\u00e9 de routage d\u00e9signe le nom de la cl\u00e9 de routage utilis\u00e9e par le LRM pour les \u00e9changes et {nom solution LRM} est le nom donn\u00e9 par l'\u00e9diteur \u00e0 sa solution (libre)\n=> Pour NeXSIS : \u00e0 d\u00e9finir {sga|sgo}-nexsis"
+                    "description": "Identifiant technique du syst\u00e8me emetteur\nFormat : \n=> Pour les SAMU : {cl\u00e9 de routage}-{nom solution LRM}\no\u00f9 cl\u00e9 de routage d\u00e9signe le nom de la cl\u00e9 de routage utilis\u00e9e par le LRM pour les \u00e9changes et {nom solution LRM} est le nom donn\u00e9 par l'\u00e9diteur \u00e0 sa solution (libre)\n=> Pour NeXSIS : \u00e0 d\u00e9finir {sga|sgo}-nexsis"
                 },
                 "URI": {
                     "type": "string",
                     "title": "URI (identifiant technique)",
                     "x-cols": 6,
                     "example": "example.json#/sender/URI",
-                    "description": "uri du syst\u00e8me. Permet d'identifier le vecteur utilis\u00e9 par les \u00e9changes\nFormat :\n=> Pour les LRM : {nom \u00e9diteur}:{sender:name}\n=> Pour NexSIS : sge:{sender:name}"
+                    "description": "uri du syst\u00e8me. Permet d'identifier le vecteur utilis\u00e9 par les \u00e9changes\nFormat :\n=> Pour les LRM : sge:{sender:name}\n=> Pour NexSIS : sge:{sender:name}"
                 }
             },
             "example": "example.json#/sender"

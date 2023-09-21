@@ -12,6 +12,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.dom.DOMSource;
 import java.io.InputStream;
+import java.util.Arrays;
 
 public class App {
     public String getGreeting() {
@@ -21,35 +22,38 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
-        // Specify the path to your JSON schema file
-        String jsonSchemaResourcePath = "/schema.json";
+        for (String schema : Arrays.asList("EDXL-DE", "RC-DE", "RC-EDA")) {
+            // Specify the path to your JSON schema file
+            String jsonSchemaResourcePath = "/" + schema + "_schema.json";
 
-        // Specify the path to save the generated XSD file
-        String xsdFilePath = "out" + jsonSchemaResourcePath.replace(".json", ".xsd");
+            // Specify the path to save the generated XSD file
+            String xsdFilePath = "out" + jsonSchemaResourcePath.replace(".json", ".xsd");
 
-        // Create a Config object to customize the conversion
-        Config config = new Config.Builder()
-                .targetNamespace("https://hub.esante.gouv.fr/createCase.xsd")
-                .name("createCase")
-                .build();
+            // Create a Config object to customize the conversion
+            Config config = new Config.Builder()
+                    .targetNamespace("https://hub.esante.gouv.fr/" + schema + ".xsd")
+                    .name(schema)
+                    .build();
 
-        try {
-            // Read the JSON schema from the classpath resources
-            InputStream jsonSchemaStream = App.class.getResourceAsStream(jsonSchemaResourcePath);
+            try {
+                System.out.println(jsonSchemaResourcePath);
+                // Read the JSON schema from the classpath resources
+                InputStream jsonSchemaStream = App.class.getResourceAsStream(jsonSchemaResourcePath);
 
-            // Create a Reader from the InputStream
-            InputStreamReader reader = new InputStreamReader(jsonSchemaStream);
+                // Create a Reader from the InputStream
+                InputStreamReader reader = new InputStreamReader(jsonSchemaStream);
 
-            // Convert the JSON schema to an XML schema
-            Document xmlSchemaDoc = Jsons2Xsd.convert(reader, config);
+                // Convert the JSON schema to an XML schema
+                Document xmlSchemaDoc = Jsons2Xsd.convert(reader, config);
 
-            // Convert the Document to a String
-            String xmlSchema = documentToString(xmlSchemaDoc);
+                // Convert the Document to a String
+                String xmlSchema = documentToString(xmlSchemaDoc);
 
-            // Write the generated XML schema to a file
-            writeDocumentToFile(xmlSchemaDoc, xsdFilePath);
-        } catch (Exception e) {
-            e.printStackTrace();
+                // Write the generated XML schema to a file
+                writeDocumentToFile(xmlSchemaDoc, xsdFilePath);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 

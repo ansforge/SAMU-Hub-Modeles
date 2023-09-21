@@ -1,0 +1,193 @@
+,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Fichier XSD,Balise EMSI,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
+0,1,Identifiant affaire,,,,,,"Identifiant fonctionnel unique de l'affaire et partagé entre tous les intervenants.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par la force réceptrice de la primo-demande de secours et contient un identifiant de la source.
+Valorisation : ",SAMU050-20230605-AF1234,Alert,,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X
+1,2,Identifiant local de l'affaire,,,,,,"Valoriser avec l'identifiant de l'affaire dans le SI de l'émetteur du message
+Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS",id123,,,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X
+2,3,Date Heure de création de l'affaire,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,Alert,,createdAt,,,,,,1.0,1..1,,datetime,,,X,X
+3,4,Alerte initiale,,,,,,"L'objet alerte correspond à la transcription d'une communication d'urgence. Une alerte est une photo d'une situation donnée et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte.
+La première alerte est la premiere alerte concernant cette situation d'urgence et conduisant à la création d'une affaire.
+Le système destinataire reçoit une affaire lorsqu'une alerte le concerne. S'il ne gère pas les affaires multi-alertes, il doit donc créer une affaire seulement sur l'alerte le concernant : pour une création d'affaire, sur l'alerte initiale et pour une mise à jour d'affaire, sur la nouvelle alerte (en récupérant éventuellement des informations de l'alerte initiale en historique).
+Pour répondre sur une alerte, l'alerte initiale n'est pas obligatoire car pas forcément stockée dans le système (notamment pour ceux avec des affaires mono-alertes). Les matchings entre les messages doivent donc s'appuyer sur les caseId et non les initialAlertId qui peuvent varier d'un système à l'autre.",,CISU > Alert,,primaryAlert,initialAlert,,,,,,0..1,X,alert,,,X,X
+4,5,,Identifiant alerte,,,,,"Identifiant technique unique de l'alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage.
+Voir la description de l'identifiant de l'affaire pour voir le format.
+Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
+a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
+b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.",SAMU050-20230605-AL0123,Alert,,alertId,,,,,,1.0,1..1,,string,,,X,X
+5,6,,Date de réception de l'alerte,,,,,Groupe date heure de réception de l'alerte,2022-09-27T08:21:06+02:00,Alert,,receivedAt,,HA ,		Date et heure de prise d'appel   (format DD/MM/YYYY HH24:MI:SS),,,,1..1,,datetime,,,X,X
+6,7,,Signalement,,,,,"Permet d'attirer l'attention des forces partenaires sur une affaire.  
+Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. 
+Prend les valeurs définies dans la nomenclature CISU. 
+Pour les systèmes multi-alertes mais gérant ce champs au niveau de l'affaire, ils prennent le niveau d'alerte le plus élevé (peut être complété par ""Raison du transfert"")",STANDARD,Alert,,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION",X,X
+7,8,,Informations complémentaires sur l'alerte,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'alerte,"Déclenchement téléalarme, voisine sur les liens",Alert,,freetext,,OG,Observations générales (texte libre),,,1.0,0..1,,string,,,X,X
+8,9,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,Alert,,caller,,,,,,,1..1,X,caller,,,X,X
+9,10,,,Numéro requérant,,,,"Type de l'URI utilisée par le réquérant et valeur. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le numéro de téléphone doit être renseigné en priorité, à défaut, renseigner un autre type d'URI. Si ce numéro est renseigné, il devient prioritaire par rapport au numéro d'appel.
+Le champ doit être renseigné selon l'expression régulière suivante :
+{canalUri}:{uri}
+où 
+- canalUri désigne le canal par lequel est obtenu le numéro de contre-appel (dans le cas d'un appel téléphonique prend la valeur ""tel"" par exemple)
+- uri désigne la valeur de l'uri (dans le cas d'un appel téléphonique il s'agira du numéro par exemple)",tel:0606060606,Alert,,callerURI,,AT,N° de téléphone,,,1.0,0..1,,string,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",X,X
+10,11,,,Numéro de contre-appel,,,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requérant, de la victime ou d'un témoin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le numéro de téléphone doit être renseigné en priorité, à défaut, renseigner un autre type d'URI. Si le numéro de contre-appel est renseigné, il doit être utilisé en priorité sur le numéro réquérant.
+Le champ doit être renseigné selon l'expression régulière suivante :
+{canalUri}:{uri}
+où 
+- canalUri désigne le canal par lequel est obtenu le numéro de contre-appel (dans le cas d'un appel téléphonique prend la valeur ""tel"" par exemple)
+- uri désigne la valeur de l'uri (dans le cas d'un appel téléphonique il s'agira du numéro par exemple)",tel:0707070707,Alert,,callbackURI,,LT,N° de téléphone sur les lieux,,,1.0,0..1,,string,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",X,X
+11,12,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin.,Français,Alert,,spokenLanguage,,,,,,,0..1,,string,,,X,X
+12,13,,,Informations sur le requérant,,,,"Information sur le requérant : malentendant, impliqué dans l'accident, …
+Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif",Père,Alert,,callerInformation,,CH,Profil appelant,,,1.0,0..1,,string,,,X,X
+13,14,,,Prénom & nom usuel du requérant,,,,,,,,callerName,,,,,,,0..1,X,callerName,,,X,X
+14,15,,,,Prénom et nom,,,"Prénom et nom usuel du requérant.
+Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : ""{callerFirstName} {callerLastName}"".
+Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.",Jean Dupont,Alert,,,complete,AN/AP,"Nom
+Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName},X,X
+15,16,,,,Nom,,,Nom du requérant,Dupont,,,,callerLastName,,,,,,0..1,,string,,,X,X
+16,17,,,,Prénom,,,Prénom du réquérant,Jean,,,,callerFirstName,,,,,,0..1,,string,,,X,X
+17,18,,Localisation de l'alerte,# Voir eventLocation (type location),,,,Cet élément peut représenter la localisation du requérant si celle-ci diffère de celle de l'événement ou pointer vers la localisation d'accès à l'affaire si elle est confondue avec celle de l'alerte.,,Alert,,alertLocation,,AB/AV/AC/AZ,"Particule et nom de voie, nom/code commune",,,,1..1,X,location,,,X,X
+18,19,,Qualification,,,,,,,Alert,,alertCode,,,,,,,1..1,X,alertCode,,,X,X
+19,20,,,Version du référentiel nomenclature CISU,,,,Indique le numéro de version du référentiel des nomenclatures des codes transmis. Cela permet de s'assurer que les systèmes opérationnels soient en capacité de les  traiter correctement.,1.19,Alert,,cisuVersion,,,,,,1.0,1..1,,string,,,X,X
+20,21,,,Nature de fait,,,,Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU,,Alert,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,nomenclature,,,X,X
+21,22,,,,Code,,,"Décrit le code des NF, TL, RMS et MR. Les différents niveaux doivent être séparés par un point. Référentiel : nomenclature CISU",C07.13.02,Alert,,code,,,,,,1.0,1..1,,string,X,"REGEX: ([CLMR](([0-9][0-9])|(([0-9][0-9])(\.[0-9][0-9]){1,2})))",X,X
+22,23,,,,Libellé,,,"Présente les différents libellés des circonstances. Référentiel : nomenclature CISU. Les libellés des différents niveaux doivent être concaténés. Le point-virgule est utilisé comme séparateur. Exemple pour C01.01.01 : ""Accident de la circulation; Accident routier; Véhicule léger, fourgon"". ",Rodéo automobile,Alert,,label,,,,,,1.0,1..1,,string,,,X,X
+23,24,,,,Commentaire,,,"Permet de complémenter en commentaire libre le choix des circonstances. Dans l'idéal un commentaire pour chaque type de qualification mais peut contenir des commentaires sur le type de lieu, risque menace et sensibilité et motif de recours médicosecouriste.",,Alert,,freetext,,,,,,,0..1,,string,,,X,X
+24,25,,,Type de lieu,# Voir whatsHappen (type nomenclature),,,Décrit le type de lieu (TL). Référentiel : nomenclature CISU,,Alert,,locationKind,,CI,Type de lieu d'intervention,,,1.0,0..1,X,nomenclature,,,X,X
+25,26,,,,Code,,,Décrit le code  type de lieu,,,,code,,,,,,,1..1,,string,X,,X,X
+26,27,,,,Libellé,,,Libellé pour les types de lieu,,,,label,,,,,,,1..1,,string,,,X,X
+27,28,,,,Commentaire,,,Commentaire pour les types de lieu,,,,freetext,,,,,,,0..1,,string,,,X,X
+28,29,,,"Risque, menace et sensibilité",# Voir whatsHappen (type nomenclature),,,"Décrit les risques, menaces et sensibilités (RMS). Référentiel : nomenclature CISU.",,Alert,,riskThreat,,,,,,1.0,0..n,X,nomenclature,,,X,X
+29,30,,,,Code,,,Décrit le code de risque,,,,code,,,,,,,1..1,,string,X,,X,X
+30,31,,,,Libellé,,,Libellé du risque,,,,label,,,,,,,1..1,,string,,,X,X
+31,32,,,,Commentaire,,,,,,,freetext,,,,,,,0..1,,string,,,X,X
+32,33,,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,Décrit le motif de recours médico-secouriste (MR). Référentiel : nomenclature CISU.,,Alert,,healthMotive,,,,,,1.0,0..1,X,nomenclature,,,X,X
+33,34,,,,Code,,,Décrit le code de motif de recours médical,,,,code,,,,,,,1..1,,string,X,,X,X
+34,35,,,,Libellé,,,Libellé du motif,,,,label,,,,,,,1..1,,string,,,X,X
+35,36,,,,Commentaire,,,,,,,freetext,,,,,,,0..1,,string,,,X,X
+36,37,,,Score de gravité,,,,Score de gravité fourni par NexSIS,6,,,gravity,,,,,,,0..1,,string,,,X,X
+37,38,,,Patients/Victimes,,,,,,Alert,,victims,,,,,,,0..1,X,victims,,,X,X
+38,39,,,,Nombre de patients-victimes,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,Alert,,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
+39,40,,,,Type du patient-victime principal,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,Alert,,mainVictim,,,,,,,0..1,,string,,"ENUM: INFANT, CHILD, ADULT, PREGNANT, SENIOR",X,X
+40,41,,,,Informations complémentaires sur les patients-victimes,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",Alert,,comment,,,,,,,0..1,,string,,,X,X
+41,42,,Source,,,,,Permet de savoir comment le réquérent est entré en contact avec le service de secours,,Alert,,controlRoom,contact,,,,,,0..1,X,contact,,,X,X
+42,43,,,Canal,,,,"Permet d'indiquer l'origine de la communication : Personne, application, DAU, BAU, défibrillateur, ecall",Person,Alert,,channel,type,CG,Type d'appel,,,1.0,0..1,,string,,,X,X
+43,44,,,Flux utilisé,,,,"Indique le type de l'URI composée par le réquérant et la valeur de l'URI, concaténées et séparées par "":"". Exemples : tel:112, tel:18, sip:sos@nexsis.fr, … Une seule URI peut être renseignée.
+Le champ doit être renseigné selon l'expression régulière suivante :
+{canalUri}:{uri}
+où 
+- canalUri désigne le canal par lequel est obtenu le numéro de contre-appel (dans le cas d'un appel téléphonique prend la valeur ""tel"" par exemple)
+- uri désigne la valeur de l'uri (dans le cas d'un appel téléphonique il s'agira du numéro par exemple)",tel:18,Alert,,dialledURI,detail,,,,,1.0,0..1,,string,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",X,X
+44,45,,Agent,,,,,Objet permettant d'identifer et recontacter l'opérateur ayant traité l'alerte,,Alert,,callTaker,,,,,,,1..1,X,callTaker,,,X,X
+45,46,,,Service d'urgence,,,,Organisation d'appartenance de l'opérateur ayant traité l'alerte,"SDIS, SAMU, …",Alert,,organization,,,,,,,1..1,,string,,,X,X
+46,47,,,Centre d'appels,,,,Salle opérationnelle de l'opérateur de traitement,"CGA, CGO 21, CRRA 44, ...",Alert,,controlRoom,,,,,,,1..1,,string,,,X,X
+47,48,,,Numéro du poste de l'agent,,,,Numéro de ligne directe permettant de recontacter l'opérateur de traitement,0303030303,Alert,,calltakerURI,,,,,,,0..1,,string,,,X,X
+48,49,,,ID de l'agent,,,,Identifiant unique de l'opérateur ayant traité l'alerte,"id1234, carte CPx (Santé), id d'affectation, …",create-message.handlebars,,calltakerId,,O1,Code de l'opérateur ayant pris l'appel,,,,0..1,,string,,,X,X
+49,50,,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
+Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
+
+",,Alert,,resource,,,,,,,0..n,X,resource,,,X,X
+50,51,,,Type ou description de la ressource,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",Alert,,resourceDesc,,,,,,,0..1,,string,X,,X,X
+51,52,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",Alert,,mimeType,,,,,,,0..1,,string,,,X,X
+52,53,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",Alert,,size,,,,,,,0..1,,integer,,,X,X
+53,54,,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé",,Alert,,URI,,,,,,,1..1,,string,,REGEX: (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?,X,X
+54,55,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,Alert,,derefURI,,,,,,,0..1,,string,,,X,X
+55,56,,,Hash,,,,Hash de la ressource pour confirmer la réception de la bonne ressource,,Alert,,digest,,,,,,,0..1,,string,,,X,X
+56,57,Localisation de l'affaire,,,,,,,,,,eventLocation,caseLocation,,,,,,1..1,X,location,,,X,X
+57,58,,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,,,locID,,,,,,,1..1,,string,,,X,X
+58,59,,Résumé de la localisation,,,,,"Correspond à l'étiquette associée à la localisation (plutôt à destination des humains).
+Elle va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",,,locLabel,,,,,,,1..1,,string,,,X,X
+59,60,,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, lieu-dit, lac, forêt, nom de quartier (plutôt à destination des systèmes).","Carrefour Toison d'Or, EPHAD Belle Fontaine, Quartier Melun Nord, Disneyland, …",,,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,1..1,,string,,,X,X
+60,61,,Détails de l'adresse,,,,,,,,,,address,,,,,,0..1,X,address,,,X,X
+61,62,,,"Numéro, type et nom de voie",,,,"Numéro, type et nom de la voie. 
+Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.",9 Bd du Montparnasse,,,address,complete,,,,,,1..1,,string,,TEMPLATE: {number} {wayName},X,X
+62,63,,,Numéro dans la voie,,,,"Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).","9, 4bis, PK10, …",,,,number,LO,N° dans la voie,,,,0..1,,string,,,X,X
+63,64,,,Type et nom de voie,,,,,,,,,wayName,LY/LB/LV,"Type, particule, nom de voie",,,,0..1,X,wayName,,,X,X
+64,65,,,,Type et nom,,,Type et nom de la voie (venant d'un référentiel ou non),"A1 direction Paris, Bd du Montparnasse",,,,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name},X,X
+65,66,,,,Type,,,,Boulevard,,,,type,,,,,,0..1,,string,,,X,X
+66,67,,,,Nom,,,,du Montparnasse,,,,name,,,,,,0..1,,string,,,X,X
+67,68,,Détails de la commune,,,,,,,,,,city,,,,,,0..1,X,city,,,X,X
+68,69,,,Nom de la commune,,,,Nom officiel de la commune actuelle,Lille,,,city,name,LC,Nom de la commune,,,,0..1,,string,,,X,X
+69,70,,,Code INSEE de la commune,,,,Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.,59350,,,citycode,inseeCode,LZ,Code INSEE de la commune,,,,0..1,,string,,REGEX: [0-9]{5},X,X
+70,71,,,Complément de commune,,,,"Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur","Quartie Melun Nord, Lhomme, …",,,,detail,,,,,,0..1,,string,,,X,X
+71,72,,Détails d'accès,,,,,Non gérés par NexSIS : ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre,,,,,access,,,,,,0..1,X,access,,,X,X
+72,73,,,Etage,,,,Etage ,"RDC, 1, 2, …",,,,floor,LG,Etage,,,,0..1,,string,,,X,X
+73,74,,,Numéro de porte,,,,"Spécifie numéro d'appartement, de chambre, de bureau","A16, 37, 104, …",,,,roomNumber,LP,Porte,,,,0..1,,string,,,X,X
+74,75,,,Interphone,,,,"Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)",Dupont,,,,interphone,,,,,,0..1,,string,,,X,X
+75,76,,,Digicode,,,,Indique le ou les digicodes dans l'ordre de progression dans le bâtiment,"['1234A', '4321B']",,,,accessCode,LD,Digicode,,,,0..n,,string,,,X,X
+76,77,,,Ascenseur/escalier,,,,Indique l'ascenseur ou la cage d'escalier ,C3,,,,elevator,,,,,,0..1,,string,,,X,X
+77,78,,,Bâtiment,,,,Nom du bâtiment,"Batiment B, Batiment Maunoury",,,,buildingName,,,,,,0..1,,string,,,X,X
+78,79,,,Entrée,,,,,"Zone Sud, Porte 1, …",,,,entrance,,,,,,0..1,,string,,,X,X
+79,80,,,Service,,,,Nom du service concerné au sein de l'établissement,"Infirmerie, service finance, service cardiologie, …",,,,entity,,,,,,0..1,,string,,,X,X
+80,81,,Géometrie associée,,,,,,,,,objectGeometry,geometry,,,,,,0..1,X,geometry,,,X,X
+81,82,,,Point ,,,,"Fournir au maximum même s'il est imprécis (et adapter le champs ""Précision"" en fonction). 
+Par exemple, sans adresse, il est possible de fournir le point GPS de la commune et d'adapter et préciser l'adresse en cours d'intervention.
+Sera toujours fourni par NexSIS.",,,,point,,,,,,,0..1,X,point,,,X,X
+82,83,,,,Coordonnées,,,"Le SGO ne fonctionne toujours sur des coordonnées X/Y ainsi qu'une adresse indicative associée. 
+NexSIS dispose donc toujours d'un point GPS utilisé pour le temps de trajet, la détermination de l'intervenant le plus proche, ...
+L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,,,coord,,,,,,,1..1,X,coord,,,X,X
+83,84,,,,,Latitude,,Latitude du point clé de la localisation,48.866667,,,lat,,,,,,,1..1,,number,,,X,X
+84,85,,,,,Longitude,,Longitude du point clé de la localisation,2.333333,,,lon,,,,,,,1..1,,number,,,X,X
+85,86,,,,,Altitude ,,"Altitude du point clé de la localisation, ignoré côté NexSIS.",120,,,,height,,,,,,0..1,,number,,,X,X
+86,87,,,,,Cap,,En degré,96,,,,heading,,,,,,0..1,,number,,,X,X
+87,88,,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,,,speed,,,,,,0..1,,number,,,X,X
+88,89,,,,,Temps,,Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.,2022-09-27T08:23:34+02:00,,,,time,,,,,,1..1,,datetime,,,X,X
+89,90,,,,,Précision,,"Niveau de précision et de confiance dans les coordonnées (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie ou exacte/issue d'un GPS) déterminée de façon automatique par le système en fonction des informations disponibles lors de son élaboration (n°, voie et commune) et du matching fait dans son système de localisation.",Adresse,,,,precision,,,,,,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN",X,X
+90,91,,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «EPSG-4326».",EPSG-4326,,,coordsys,,,,,,1.0,0..1,,string,,"REGEX: [0-9]{0,10}",X,X
+91,92,,,Formes géométriques,,,,,,,,sketch,,,,,,,0..1,,string,,,X,X
+92,93,,Liens aux systèmes externes,,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation.
+L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,,,objectSource,link,,,,,,0..n,X,link,,,X,X
+93,94,,,Source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",,,source,,,,,,,1..1,,string,,"ENUM: BAN, IGN, NexSIS",X,X
+94,95,,,Type ,,,,"Définition du type d'objet dans le système
+Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",,,type,,,,,,,1..1,,string,,,X,X
+95,96,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,,,id,,,,,,,1..1,,string,,,X,X
+96,97,,Pays,,,,,,France,,,country,,,,,,,1..1,,string,,"ENUM: France, Allemagne, Espagne, Italie, Suisse, Luxembourg, Belgique",X,X
+97,98,,Commentaire,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,,,freetext,,LI,Itinéraire (texte libre),,,,1..1,,string,,,X,X
+98,99,CRRA référent,,,,,,Grand principe de la maitrise du dossier : définie par la doctrine actuelle. Les dossiers = Samu qui s'occupent du lieu d'intervention.," CRRA 44, ...",,,,,,,,,,1..1,,string,,"idem ligne 47 - centre d'appel -
+référentiel PSAP - GT 399",,X
+99,100,Patients / victimes,,,,,,Identification des patients / victimes,,,,,casualties,,,,,,0..n,X,casualties,,,,X
+100,101,,Identifiant,,,,,,,,,,identifier,,,,,,0..n,X,identifier,,,,X
+101,102,,,Matricule INS,,,,n° NIR OU n° NIA (OID) qualifié,NIR ou NIA,,,,,,,,,,0..1,,string,,,,X
+102,103,,,Source de l'identifiant / Autre type d'identifiant,,,,idem autre type d'identifiant + identifiant ?,"NIR, SINUS, SI-VIC, …",,,,source,,,,,,0..n,,string,,"ENUM: NIR, SINUS, SI-VIC, …",,X
+103,104,,,Identifiant,,,,,id1234,,,,value,,,,,,0..n,,string,,,,X
+104,105,,,Numéro de téléphone,,,,,tel:0606060606,,,,phoneNumber,,,,,,0..1,,string,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
+105,106,,,Nom usuel ,,,,,Dupont,,,,name,Vn,		Nom de la première victime,,,,0..1,,string,,,,X
+106,107,,,Nom de naissance,,,,,Dupont,,,,birthName,,,,,,0..1,,string,,,,X
+107,108,,,Prénom,,,,Prénom usuel du patient,Jeanne,,,,firstName,Vp,		Prénom de la première victime,,,,0..1,,string,,,,X
+108,109,,,Sexe ,,,,,F,,,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",,X
+109,110,,,Date de naissance,,,,,,,,,birthDate,,,,,,0..1,,date,,,,X
+110,111,,,Age,,,,,6Y,,,,age,,,,,,0..1,,string,,REGEX: ,,X
+111,112,,,Poids,,,,Poids en kilogrammes,31,,,,weight,,,,,,0..1,,integer,,,,X
+112,113,,,Taille,,,,Taille en centimètres,109,,,,height,,,,,,0..1,,integer,,,,X
+113,114,,,Informations complémentaires,,,,,,,,,freetext,,,,,,0..1,,string,,,,X
+114,115,,Dossier médical,,,,,,,,,,medicalfile,,,,,,0..1,X,medicalfile,,,,X
+115,116,,,Médecin traitant ,,,,Nom prénom du médecin traitant du patient si connu,,,,,personalGP,,,,,,0..1,,string,,,,X
+116,117,,,Antécédents,,,,Antécédents médicaux ,,,,,medicalhistory,,,,,,0..n,,string,,,,X
+117,118,,,Traitement(s),,,,Traitements médicaux en cours pour le patient,,,,,treatment,,,,,,0..n,,string,,,,X
+118,119,,,Commentaires,,,,Champ libre pour compléter les informations du dossier médical (notes médicales),,,,,freetext,,,,,,0..n,,string,,,,X
+119,120,,Devenir patient,,,,,,,,,,patientPathway,,,,,,0..1,X,patientPathway,,,,X
+120,121,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,,,orientation,,,,,,0..n,,string,,,,X
+121,122,,,Vecteur de transport,,,,Vecteur(s) de transport engagés pour la prise en charge du patient,,,,,rtypeTransport,,,,,,0..n,,string,,,,X
+122,123,,,Niveau de soin,,,,RX,R1,,,,levelOfCare,,,,,,0..1,,string,,R[X],,X
+123,124,,,Destination,,,,,,,,,,,,,,,0..1,X,,,,,X
+124,125,,,,Etablissement,,,,,,,,,,,,,,0..1,,,,,,X
+125,126,,,,Service,,,,,,,,,,,,,,0..1,,,,,,X
+126,127,,,,Autre,,,,,,,,,,,,,,0..1,,,,,,X
+127,128,,Bilan patient/victime,,,,,identifiant du bilan patient transmis par l'effecteur,,,,,,,,,,,0..1,,string,,,,X
+128,129,Nouvelle alerte,# Voir initialAlert (alertLocation devient facultatif),,,,,"Lorsque plusieurs alertes correspondent à une même affaire, la première alerte reçue est ""Première alerte"", la seconde et le suivantes sont des objets ""Nouvelle alerte"".
+Nouvelle alerte = raison pour laquelle l'affaire est transmise
+Alerte initiale = pour comprendre ce qui se passe, ce qui a déclenché l'affaire
+Alertes intermédiaires ne concernent pas le destinataire (ou sinon elles ont été transmises avant). De plus, fournir l'historique complet nécessite le développement du Event Hub côté NexSIS.",,CISU > Alert,,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
+129,130,Niveau d'urgence médicale,,,,,,"[Non utilisé dans une première version car la définition et l'usage restent à définir]
+Précise l'urgence médicale :
+        EXTREME : Menace extrême pour la vie
+        SEVERE : Menace importante pour la vie
+        MODERATE - Menace possible pour la vie
+        MINOR : Peu ou pas de menace connue pour la vie
+        UNKNOWN : Niveau de menace inconnu
+Ce niveau de gravité est lié au Motif de Recours Medico-Secouriste associé à l'appel.",,CISU > Event,,severity,,,,,,,0..1,,string,,"ENUM: EXTREME, SEVERE, MODERATE, MINOR, UNKNOWN",X,X
+130,131,Informations complémentaires,,,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+131,132,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,,,customMap,,,,,,0..3,X,customMap,,,X,X
+132,133,,,Clé,,,,Nom de la balise,neighborhood,,,,key,,,,,,1..1,,string,,,X,X
+133,134,,,Libellé,,,,Libellé correspondant,Quartier,,,,label,,,,,,0..1,,string,,,X,X
+134,135,,,Valeur,,,,Valeur associée à la clé,SECT.QUARTIER HISTORIQUE,,,,value,,,,,,1..1,,string,,,X,X
+135,136,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,,,freetext,,,,,,0..1,,string,,,X,X
+136,137,Description de l'affaire,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,,,freetext,,,,,,0..1,,string,,,X,X
