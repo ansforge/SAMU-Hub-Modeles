@@ -3,12 +3,37 @@ import json
 from jsonpath_ng import parse
 import yaml
 import docx
+import argparse
+from datetime import date
+import warnings
+
+# Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
+warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
+
+parser = argparse.ArgumentParser(
+    prog='Model Parser',
+    description='Parses and converts the Excel model to the other needed formats',
+)
+parser.add_argument('-v', '--version', help='the version number to be used in model. Defaults to today.')
+parser.add_argument('-s', '--sheet', default="RC-EDA", help='the Excel sheet to be parsed.')
+args = parser.parse_args()
+
+
+class Color:
+    PURPLE = '\033[95m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+
+
+args.version = args.version or date.today().strftime("%y.%m.%d")
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building version {args.version} of {args.sheet} sheet...{Color.END}')
 
 RUN_DOCX_OUTPUT_EXAMPLES = False
 
 DATA_DEPTH = 6  # nombre de niveaux de données
 
-SHEET = ['RC-DE', 'RC-EDA'][0]
+SHEET = ['RC-DE', 'RC-EDA'][1]
 
 
 def get_params_from_sheet(sheet):
@@ -44,6 +69,8 @@ NB_COLS = params['cols']
 df = pd.read_excel('model.xlsx', sheet_name=SHEET, skiprows=7, nrows=NB_ROWS)
 # Dropping useless columns
 df = df.iloc[:, :NB_COLS]
+# Storing input data in a file to track versions
+df.to_csv(f'out/{SHEET}/input.csv')
 # Keeping only 15-NexSIS fields
 df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -148,7 +175,6 @@ def build_example(elem):
             return 'None'
         return elem['Exemples']
     elif 'children' not in elem:
-        print(elem['name'])
         return {}
     else:
         children = {}
@@ -169,7 +195,7 @@ json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     '$id': 'http://json-schema.org/draft-07/schema#',
     'x-id': 'schema.json#',  # required by JSV to find the schema file locally
-    'version': '0.4.9',
+    'version': args.version,
     'example': 'example.json#',
     'type': 'object',
     'title': MODEL_NAME,
@@ -384,7 +410,6 @@ full_yaml['components']['schemas'] = {
 with open(f'out/{SHEET}/hubsante.asyncapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, file, sort_keys=False)
 print('AsyncAPI schema generated.')
-
 
 named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
 
