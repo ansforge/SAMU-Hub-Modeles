@@ -1,0 +1,5 @@
+*.ipynb
+#internal dev
+ressources/
+.vscode/
+__pycache__
