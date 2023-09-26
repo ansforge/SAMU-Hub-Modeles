@@ -2,10 +2,14 @@ package com.hubsante.model.report;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.hubsante.model.edxl.ContentMessage;
 
+@JacksonXmlRootElement(localName = "message")
 public class ErrorReport extends ContentMessage {
-
+    @JacksonXmlProperty(isAttribute = true)
+    String xmlns = "urn:emergency:cisu:2.0";
     private final String JSON_PROPERTY_ERROR_CODE = "errorCode";
     private ErrorCode errorCode;
     private final String JSON_PROPERTY_ERROR_CAUSE = "errorCause";
