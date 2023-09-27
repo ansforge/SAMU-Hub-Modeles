@@ -33,9 +33,6 @@ RUN_DOCX_OUTPUT_EXAMPLES = False
 
 DATA_DEPTH = 6  # nombre de niveaux de données
 
-SHEET = ['RC-DE', 'RC-EDA'][1]
-
-
 def get_params_from_sheet(sheet):
     """ Automatically get the number of rows and columns to use for this sheet. """
     full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
@@ -58,19 +55,18 @@ def get_params_from_sheet(sheet):
         'rows': rows
     }
 
-
-params = get_params_from_sheet(SHEET)
+params = get_params_from_sheet(args.sheet)
 MODEL_NAME = params['modelName']
 NB_ROWS = params['rows']
 NB_COLS = params['cols']
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name=SHEET, skiprows=7, nrows=NB_ROWS)
+df = pd.read_excel('model.xlsx', sheet_name=args.sheet, skiprows=7, nrows=NB_ROWS)
 # Dropping useless columns
 df = df.iloc[:, :NB_COLS]
 # Storing input data in a file to track versions
-df.to_csv(f'out/{SHEET}/input.csv')
+df.to_csv(f'out/{args.sheet}/input.csv')
 # Keeping only 15-NexSIS fields
 df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -187,7 +183,7 @@ def build_example(elem):
 
 
 json_example = build_example(rootObject)
-with open(f'out/{SHEET}/example.json', 'w') as outfile:
+with open(f'out/{args.sheet}/example.json', 'w') as outfile:
     json.dump(json_example, outfile, indent=4)
 
 # Go through data (list or tree) and use it to build the expected JSON schema
@@ -375,7 +371,7 @@ def DFS(root, use_elem):
 
 print('Generating JSON schema...')
 DFS(rootObject, build_json_schema)
-with open(f'out/{SHEET}/schema.json', 'w') as outfile:
+with open(f'out/{args.sheet}/schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -407,7 +403,7 @@ full_yaml['components']['schemas'] = {
     **full_yaml['components']['schemas'],
     **build_asyncapi_schema()
 }
-with open(f'out/{SHEET}/hubsante.asyncapi.yaml', 'w') as file:
+with open(f'out/{args.sheet}/hubsante.asyncapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, file, sort_keys=False)
 print('AsyncAPI schema generated.')
 
@@ -487,7 +483,7 @@ def_to_table(MODEL_NAME, json_schema, title=f"Objet {MODEL_NAME}", doc=doc)
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-doc.save(f'out/{SHEET}/schema.docx')
+doc.save(f'out/{args.sheet}/schema.docx')
 
 print('Docx tables generated.')
 
