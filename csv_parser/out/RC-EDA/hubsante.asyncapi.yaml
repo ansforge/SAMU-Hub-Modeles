@@ -3,7 +3,7 @@ info:
   title: Hub Sante AMQP API
   version: '0.9'
   description: "L'API Hub Sante AMQP permet le partage d'informations entre acteurs\
-    \ du monde de la sant\xE9.\n"
+    \ du monde de la sant\xC3\xA9.\n"
   license:
     name: Apache 2.0
     url: https://www.apache.org/licenses/LICENSE-2.0
@@ -12,22 +12,23 @@ servers:
     url: messaging.hub.esante.gouv.fr:5671
     protocol: amqps
     protocolVersion: 0-9-1
-    description: "Instance \"bac \xE0 sable\" du Hub Sante d\xE9ploy\xE9e dans le\
-      \ Cloud."
+    description: "Instance \"bac \xC3\_ sable\" du Hub Sante d\xC3\xA9ploy\xC3\xA9\
+      e dans le Cloud."
     security:
     - tlsAuth: []
   local:
     url: localhost:5671
     protocol: amqps
     protocolVersion: 0-9-1
-    description: "Instance locale du Hub Sante port\xE9e par `minikube` dans le repo\
-      \ du Hub"
+    description: "Instance locale du Hub Sante port\xC3\xA9e par `minikube` dans le\
+      \ repo du Hub"
     security:
     - tlsAuth: []
 defaultContentType: application/json
 channels:
   '{clientId}.message':
-    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception de messages"
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ de messages"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -51,8 +52,8 @@ channels:
           autoDelete: false
           vhost: /
   '{clientId}.ack':
-    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des acquittements\
-      \ de bonne r\xE9ception"
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ des acquittements de bonne r\xC3\xA9ception"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
@@ -62,7 +63,7 @@ channels:
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: "Acquittements de bonne r\xE9ception"
+      summary: "Acquittements de bonne r\xC3\xA9ception"
       operationId: publishAck
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -76,19 +77,19 @@ channels:
           autoDelete: false
           vhost: /
   '{clientId}.info':
-    description: "File sp\xE9cifique \xE0 chaque client pour la r\xE9ception des informations\
-      \ compl\xE9mentaires li\xE9es au fonctionnement et aux \xE9changes port\xE9\
-      s par le Hub Sant\xE9"
+    description: "File sp\xC3\xA9cifique \xC3\_ chaque client pour la r\xC3\xA9ception\
+      \ des informations compl\xC3\xA9mentaires li\xC3\xA9es au fonctionnement et\
+      \ aux \xC3\xA9changes port\xC3\xA9s par le Hub Sant\xC3\xA9"
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
     subscribe:
-      summary: "Informations compl\xE9mentaires"
+      summary: "Informations compl\xC3\xA9mentaires"
       operationId: receiveInfo
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: "Informations compl\xE9mentaires"
+      summary: "Informations compl\xC3\xA9mentaires"
       operationId: publishInfo
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -105,8 +106,8 @@ components:
   securitySchemes:
     tlsAuth:
       type: X509
-      description: "Un certificat issu d'une AC valid\xE9e par le Hub est n\xE9cessaire\
-        \ pour l'authentification mTLS"
+      description: "Un certificat issu d'une AC valid\xC3\xA9e par le Hub est n\xC3\
+        \xA9cessaire pour l'authentification mTLS"
   parameters:
     clientId:
       description: L'identifiant du client
@@ -117,7 +118,7 @@ components:
       title: Message au standard EDXL
       summary: "Message au standard EDXL transportable par le Hub, comportant une\
         \ partie adressage et une partie contenu. La partie contenu peut respecter\
-        \ diff\xE9rentes sp\xE9cifications fonctionnelles."
+        \ diff\xC3\xA9rentes sp\xC3\xA9cifications fonctionnelles."
       payload:
         $ref: '#/components/schemas/EdxlMessage'
   schemas:
@@ -238,22 +239,28 @@ components:
       title: CreateCase
       required:
       - caseId
-      - createdAt
-      - caseLocation
+      - creation
+      - referenceVersion
+      - qualification
+      - location
       properties:
         caseId:
           type: string
           title: Identifiant affaire
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant fonctionnel unique de l'affaire et partag\xE9\
-            \ entre tous les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9\
-            \ de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune\
-            \ ambigu\xEFt\xE9. Il est g\xE9n\xE9r\xE9 par la force r\xE9ceptrice de\
-            \ la primo-demande de secours et contient un identifiant de la source.\n\
-            Valorisation : "
+          description: "Identifiant technique de l'affaire et partag\xE9 entre tous\
+            \ les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7\
+            on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune ambigu\xEF\
+            t\xE9. Il est g\xE9n\xE9r\xE9 par les syst\xE8mes du partenaire r\xE9\
+            cepteur de la primo-demande de secours et contient une cl\xE9 conventionnelle\
+            \ permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\n\
+            o\xF9 cleConventionnelle est la cl\xE9 utilis\xE9e par le partenaire emetteur\
+            \ et cleUnique l'identifiant locale d'affaire dans le syst\xE8me du partenaire\
+            \ emetteur.\ncleUnique est une cha\xEEne de caract\xE8re (string) comprise\
+            \ entre 4 et 22 caract\xE8res alphanum\xE9riques."
           examples:
-          - SAMU050-20230605-AF1234
+          - samuA:CA126B445579GD4A67AV
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire
@@ -261,14 +268,16 @@ components:
           example: example.json#/senderCaseId
           description: "Valoriser avec l'identifiant de l'affaire dans le SI de l'\xE9\
             metteur du message\nCe champ est facultatif, il ne sera notamment pas\
-            \ transmis par NexSIS"
+            \ transmis par NexSIS\nDans le cas o\xF9 deux op\xE9rateurs ont besoin\
+            \ d'identifier une affaire, ils peuvent utiliser les derniers caract\xE8\
+            res de l'identifiant local de leur partenaire."
           examples:
-          - id123
-        createdAt:
+          - CA126B445579GD4A67AV
+        creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'affaire"
           x-cols: 6
-          example: example.json#/createdAt
+          example: example.json#/creation
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
             ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
             tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
@@ -279,10 +288,23 @@ components:
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
+        referenceVersion:
+          type: string
+          title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
+          x-cols: 6
+          example: example.json#/referenceVersion
+          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
+            \ des codes transmis. \nCela permet aux diff\xE9rents syst\xE8mes de s'assurer\
+            \ qu'ils utilisent la m\xEAme version des codes de nomenclature que leurs\
+            \ partenaires."
+          examples:
+          - '1.2'
+        qualification:
+          $ref: '#/definitions/qualification'
+        location:
+          $ref: '#/definitions/location'
         initialAlert:
           $ref: '#/definitions/alert'
-        caseLocation:
-          $ref: '#/definitions/location'
         newAlert:
           type: array
           items:
@@ -318,24 +340,122 @@ components:
             mentaires concernant l'affaire"
           examples:
           - None
+    qualification:
+      type: object
+      title: Qualification de l'affaire
+      x-display: expansion-panels
+      required:
+      - whatsHappen
+      properties:
+        whatsHappen:
+          $ref: '#/definitions/nomenclature'
+        locationKind:
+          $ref: '#/definitions/nomenclature'
+        riskThreat:
+          type: array
+          items:
+            $ref: '#/definitions/nomenclature'
+        healthMotive:
+          $ref: '#/definitions/nomenclature'
+        victims:
+          $ref: '#/definitions/victims'
+      example: example.json#/qualification
+    location:
+      type: object
+      title: Localisation de l'affaire
+      x-display: expansion-panels
+      required:
+      - locID
+      - locLabel
+      - name
+      - country
+      properties:
+        locID:
+          type: string
+          title: Identifiant technique de localisation
+          x-cols: 6
+          example: example.json#/location/locID
+          description: "ID technique et provisoire permettant d'identifier le lieu\
+            \ dans le cadre des \xE9changes de cette affaire."
+          examples:
+          - 111fb03a-6fd9-41e0-8e81-990c45188887
+        locLabel:
+          type: string
+          title: "R\xE9sum\xE9 de la localisation"
+          x-cols: 6
+          example: example.json#/location/locLabel
+          description: "Correspond \xE0 l'\xE9tiquette associ\xE9e \xE0 la localisation\
+            \ (plut\xF4t \xE0 destination des humains).\nElle va souvent correspondre\
+            \ \xE0 la concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9\
+            rentes informations, dont le \"name\" (toponyme) et l'adresse."
+          examples:
+          - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
+            e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
+        name:
+          type: string
+          title: Nom du lieu
+          x-cols: 6
+          example: example.json#/location/name
+          description: "Indique le nom de lieu : nom commercial, lieu-dit, lac, for\xEA\
+            t, nom de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
+          examples:
+          - "Carrefour Toison d'Or, EPHAD Belle Fontaine, Quartier Melun Nord, Disneyland,\
+            \ \u2026"
+        addressDetailed:
+          $ref: '#/definitions/address'
+        city:
+          $ref: '#/definitions/city'
+        access:
+          $ref: '#/definitions/access'
+        geometry:
+          $ref: '#/definitions/geometry'
+        externalInfo:
+          type: array
+          items:
+            $ref: '#/definitions/externalInfo'
+        country:
+          type: string
+          title: Pays
+          x-cols: 6
+          example: example.json#/location/country
+          enum:
+          - France
+          - Allemagne
+          - Espagne
+          - Italie
+          - Suisse
+          - Luxembourg
+          - Belgique
+          examples:
+          - France
+        freetext:
+          type: string
+          title: Commentaire
+          x-cols: 6
+          example: example.json#/location/freetext
+          description: "Champ libre pour compl\xE9ter les informations de localisation"
+          examples:
+          - "Cl\xE9 derri\xE8re le pot de fleur"
+      example: example.json#/location
     alert:
       type: object
       title: Alerte initiale
       x-display: expansion-panels
       required:
-      - alertId
-      - receivedAt
+      - id
+      - reception
       - reporting
       - caller
-      - alertLocation
-      - alertCode
+      - sourceContact
+      - location
+      - qualification
       - callTaker
       properties:
-        alertId:
+        id:
           type: string
           title: Identifiant alerte
           x-cols: 6
-          example: example.json#/initialAlert/alertId
+          example: example.json#/initialAlert/id
           description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
             \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
             \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
@@ -350,14 +470,16 @@ components:
             \ concernant cette fois le partenaire. Lorsqu\u2019elle est d\xE9clar\xE9\
             e cette Nouvelle Alerte est relay\xE9e avec l\u2019Alerte Initiale pour\
             \ partager un contexte commun. Dans le message de cr\xE9ation d\u2019\
-            affaire il y\u2019a deux objets alerte : initialAlert et newAlert."
+            affaire il y\u2019a deux objets alerte : initialAlert et newAlert.\nLe\
+            \ rattachement des messages \xE0 une affaire doivent s'appuyer sur les\
+            \ caseId et non les alertId qui peuvent varier d'un syst\xE8me \xE0 l'autre."
           examples:
           - SAMU050-20230605-AL0123
-        receivedAt:
+        reception:
           type: string
           title: "Date de r\xE9ception de l'alerte"
           x-cols: 6
-          example: example.json#/initialAlert/receivedAt
+          example: example.json#/initialAlert/reception
           description: "Groupe date heure de r\xE9ception de l'alerte"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -369,12 +491,12 @@ components:
           x-cols: 6
           example: example.json#/initialAlert/reporting
           description: "Permet d'attirer l'attention des forces partenaires sur une\
-            \ affaire.  \nEventuellement automatis\xE9 en fonction des crit\xE8res\
-            \ saisis et de leur param\xE9trage, ou renseign\xE9 par l'op\xE9rateur.\
-            \ \nPrend les valeurs d\xE9finies dans la nomenclature CISU. \nPour les\
-            \ syst\xE8mes multi-alertes mais g\xE9rant ce champs au niveau de l'affaire,\
-            \ ils prennent le niveau d'alerte le plus \xE9lev\xE9 (peut \xEAtre compl\xE9\
-            t\xE9 par \"Raison du transfert\")"
+            \ affaire pour le faire sortir du lot.\nEventuellement automatis\xE9 en\
+            \ fonction des crit\xE8res saisis et de leur param\xE9trage, ou renseign\xE9\
+            \ par l'op\xE9rateur. \nPrend les valeurs d\xE9finies dans la nomenclature\
+            \ CISU :\n- standard : STANDARD\n- signal\xE9 : ATTENTION\nLes syst\xE8\
+            mes peuvent proposer des fonctionnalit\xE9s faisant ressortir les dossiers\
+            \ avec le libell\xE9 ATTENTION"
           enum:
           - STANDARD
           - ATTENTION
@@ -391,97 +513,19 @@ components:
           - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
         caller:
           $ref: '#/definitions/caller'
-        alertLocation:
-          $ref: '#/definitions/location'
-        alertCode:
-          $ref: '#/definitions/alertCode'
-        contact:
+        sourceContact:
           $ref: '#/definitions/contact'
+        location:
+          $ref: '#/definitions/location'
+        qualification:
+          $ref: '#/definitions/qualification'
         callTaker:
           $ref: '#/definitions/callTaker'
-        resource:
+        attachment:
           type: array
           items:
-            $ref: '#/definitions/resource'
+            $ref: '#/definitions/attachment'
       example: example.json#/initialAlert
-    location:
-      type: object
-      title: Localisation de l'affaire
-      x-display: expansion-panels
-      required:
-      - locID
-      - locLabel
-      - name
-      - country
-      - freetext
-      properties:
-        locID:
-          type: string
-          title: Identifiant technique de localisation
-          x-cols: 6
-          example: example.json#/caseLocation/locID
-          description: "ID technique et provisoire permettant d'identifier le lieu\
-            \ dans le cadre des \xE9changes de cette affaire."
-          examples:
-          - 111fb03a-6fd9-41e0-8e81-990c45188887
-        locLabel:
-          type: string
-          title: "R\xE9sum\xE9 de la localisation"
-          x-cols: 6
-          example: example.json#/caseLocation/locLabel
-          description: "Correspond \xE0 l'\xE9tiquette associ\xE9e \xE0 la localisation\
-            \ (plut\xF4t \xE0 destination des humains).\nElle va souvent correspondre\
-            \ \xE0 la concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9\
-            rentes informations, dont le \"name\" (toponyme) et l'adresse."
-          examples:
-          - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
-            e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
-        name:
-          type: string
-          title: Nom du lieu
-          x-cols: 6
-          example: example.json#/caseLocation/name
-          description: "Indique le nom de lieu : nom commercial, lieu-dit, lac, for\xEA\
-            t, nom de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
-          examples:
-          - "Carrefour Toison d'Or, EPHAD Belle Fontaine, Quartier Melun Nord, Disneyland,\
-            \ \u2026"
-        address:
-          $ref: '#/definitions/address'
-        city:
-          $ref: '#/definitions/city'
-        access:
-          $ref: '#/definitions/access'
-        geometry:
-          $ref: '#/definitions/geometry'
-        link:
-          type: array
-          items:
-            $ref: '#/definitions/link'
-        country:
-          type: string
-          title: Pays
-          x-cols: 6
-          example: example.json#/caseLocation/country
-          enum:
-          - France
-          - Allemagne
-          - Espagne
-          - Italie
-          - Suisse
-          - Luxembourg
-          - Belgique
-          examples:
-          - France
-        freetext:
-          type: string
-          title: Commentaire
-          x-cols: 6
-          example: example.json#/caseLocation/freetext
-          description: "Champ libre pour compl\xE9ter les informations de localisation"
-          examples:
-          - "Cl\xE9 derri\xE8re le pot de fleur"
-      example: example.json#/caseLocation
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -491,307 +535,6 @@ components:
         customMap:
           $ref: '#/definitions/customMap'
       example: example.json#/additionalInformation
-    caller:
-      type: object
-      title: "Requ\xE9rant"
-      x-display: expansion-panels
-      required: []
-      properties:
-        callerURI:
-          type: string
-          title: "Num\xE9ro requ\xE9rant"
-          x-cols: 6
-          example: example.json#/initialAlert/caller/callerURI
-          description: "Type de l'URI utilis\xE9e par le r\xE9qu\xE9rant et valeur.\
-            \ Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org.\
-            \ Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9 en priorit\xE9\
-            , \xE0 d\xE9faut, renseigner un autre type d'URI. Si ce num\xE9ro est\
-            \ renseign\xE9, il devient prioritaire par rapport au num\xE9ro d'appel.\n\
-            Le champ doit \xEAtre renseign\xE9 selon l'expression r\xE9guli\xE8re\
-            \ suivante :\n{canalUri}:{uri}\no\xF9 \n- canalUri d\xE9signe le canal\
-            \ par lequel est obtenu le num\xE9ro de contre-appel (dans le cas d'un\
-            \ appel t\xE9l\xE9phonique prend la valeur \"tel\" par exemple)\n- uri\
-            \ d\xE9signe la valeur de l'uri (dans le cas d'un appel t\xE9l\xE9phonique\
-            \ il s'agira du num\xE9ro par exemple)"
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-          - tel:0606060606
-        callbackURI:
-          type: string
-          title: "Num\xE9ro de contre-appel"
-          x-cols: 6
-          example: example.json#/initialAlert/caller/callbackURI
-          description: "Type et valeur de l'URI permettant un rappel pour avoir plus\
-            \ d'informations : il peut s'agit du requ\xE9rant, de la victime ou d'un\
-            \ t\xE9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU\
-            \ sip:top@domain.org. Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9\
-            \ en priorit\xE9, \xE0 d\xE9faut, renseigner un autre type d'URI. Si le\
-            \ num\xE9ro de contre-appel est renseign\xE9, il doit \xEAtre utilis\xE9\
-            \ en priorit\xE9 sur le num\xE9ro r\xE9qu\xE9rant.\nLe champ doit \xEA\
-            tre renseign\xE9 selon l'expression r\xE9guli\xE8re suivante :\n{canalUri}:{uri}\n\
-            o\xF9 \n- canalUri d\xE9signe le canal par lequel est obtenu le num\xE9\
-            ro de contre-appel (dans le cas d'un appel t\xE9l\xE9phonique prend la\
-            \ valeur \"tel\" par exemple)\n- uri d\xE9signe la valeur de l'uri (dans\
-            \ le cas d'un appel t\xE9l\xE9phonique il s'agira du num\xE9ro par exemple)"
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-          - tel:0707070707
-        spokenLanguage:
-          type: string
-          title: "Langue parl\xE9e"
-          x-cols: 6
-          example: example.json#/initialAlert/caller/spokenLanguage
-          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
-            \ place des traducteurs si besoin."
-          examples:
-          - "Fran\xE7ais"
-        callerInformation:
-          type: string
-          title: "Informations sur le requ\xE9rant"
-          x-cols: 6
-          example: example.json#/initialAlert/caller/callerInformation
-          description: "Information sur le requ\xE9rant : malentendant, impliqu\xE9\
-            \ dans l'accident, \u2026\nLes informations peuvent \xEAtre pass\xE9es\
-            \ sous forme de texte libre ou via une liste d'adjectif"
-          examples:
-          - "P\xE8re"
-        callerName:
-          $ref: '#/definitions/callerName'
-      example: example.json#/initialAlert/caller
-    alertCode:
-      type: object
-      title: Qualification
-      x-display: expansion-panels
-      required:
-      - cisuVersion
-      - whatsHappen
-      properties:
-        cisuVersion:
-          type: string
-          title: "Version du r\xE9f\xE9rentiel nomenclature CISU"
-          x-cols: 6
-          example: example.json#/initialAlert/alertCode/cisuVersion
-          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
-            \ des codes transmis. Cela permet de s'assurer que les syst\xE8mes op\xE9\
-            rationnels soient en capacit\xE9 de les  traiter correctement."
-          examples:
-          - '1.19'
-        whatsHappen:
-          $ref: '#/definitions/nomenclature'
-        locationKind:
-          $ref: '#/definitions/nomenclature'
-        riskThreat:
-          type: array
-          items:
-            $ref: '#/definitions/nomenclature'
-        healthMotive:
-          $ref: '#/definitions/nomenclature'
-        gravity:
-          type: string
-          title: "Score de gravit\xE9"
-          x-cols: 6
-          example: example.json#/initialAlert/alertCode/gravity
-          description: "Score de gravit\xE9 fourni par NexSIS"
-          examples:
-          - 6
-        victims:
-          $ref: '#/definitions/victims'
-      example: example.json#/initialAlert/alertCode
-    contact:
-      type: object
-      title: Source
-      x-display: expansion-panels
-      required: []
-      properties:
-        type:
-          type: string
-          title: Canal
-          x-cols: 6
-          example: example.json#/initialAlert/contact/type
-          description: "Permet d'indiquer l'origine de la communication : Personne,\
-            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
-          examples:
-          - Person
-        detail:
-          type: string
-          title: "Flux utilis\xE9"
-          x-cols: 6
-          example: example.json#/initialAlert/contact/detail
-          description: "Indique le type de l'URI compos\xE9e par le r\xE9qu\xE9rant\
-            \ et la valeur de l'URI, concat\xE9n\xE9es et s\xE9par\xE9es par \":\"\
-            . Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI\
-            \ peut \xEAtre renseign\xE9e.\nLe champ doit \xEAtre renseign\xE9 selon\
-            \ l'expression r\xE9guli\xE8re suivante :\n{canalUri}:{uri}\no\xF9 \n\
-            - canalUri d\xE9signe le canal par lequel est obtenu le num\xE9ro de contre-appel\
-            \ (dans le cas d'un appel t\xE9l\xE9phonique prend la valeur \"tel\" par\
-            \ exemple)\n- uri d\xE9signe la valeur de l'uri (dans le cas d'un appel\
-            \ t\xE9l\xE9phonique il s'agira du num\xE9ro par exemple)"
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-          - tel:18
-      example: example.json#/initialAlert/contact
-      examples:
-      - type: Person
-        detail: tel:18
-    callTaker:
-      type: object
-      title: Agent
-      x-display: expansion-panels
-      required:
-      - organization
-      - controlRoom
-      properties:
-        organization:
-          type: string
-          title: Service d'urgence
-          x-cols: 6
-          example: example.json#/initialAlert/callTaker/organization
-          description: "Organisation d'appartenance de l'op\xE9rateur ayant trait\xE9\
-            \ l'alerte"
-          examples:
-          - "SDIS, SAMU, \u2026"
-        controlRoom:
-          type: string
-          title: Centre d'appels
-          x-cols: 6
-          example: example.json#/initialAlert/callTaker/controlRoom
-          description: "Salle op\xE9rationnelle de l'op\xE9rateur de traitement"
-          examples:
-          - CGA, CGO 21, CRRA 44, ...
-        calltakerURI:
-          type: string
-          title: "Num\xE9ro du poste de l'agent"
-          x-cols: 6
-          example: example.json#/initialAlert/callTaker/calltakerURI
-          description: "Num\xE9ro de ligne directe permettant de recontacter l'op\xE9\
-            rateur de traitement"
-          examples:
-          - '0303030303'
-        calltakerId:
-          type: string
-          title: ID de l'agent
-          x-cols: 6
-          example: example.json#/initialAlert/callTaker/calltakerId
-          description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte"
-          examples:
-          - "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
-      example: example.json#/initialAlert/callTaker
-      examples:
-      - organization: "SDIS, SAMU, \u2026"
-        controlRoom: CGA, CGO 21, CRRA 44, ...
-        calltakerURI: '0303030303'
-        calltakerId: "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
-    resource:
-      type: object
-      title: "Pi\xE8ces jointes"
-      x-display: expansion-panels
-      required:
-      - URI
-      properties:
-        resourceDesc:
-          type: string
-          title: Type ou description de la ressource
-          x-cols: 6
-          example: example.json#/initialAlert/resource/0/resourceDesc
-          description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
-            \ tels que \xABcarte\xBB ou \xABphoto\xBB"
-          examples:
-          - "photo, carte, \u2026"
-        mimeType:
-          type: string
-          title: Type MIME
-          x-cols: 6
-          example: example.json#/initialAlert/resource/0/mimeType
-          description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
-            \ la ressource"
-          examples:
-          - "PDF, XML, JPEG, \u2026"
-        size:
-          type: integer
-          title: Taille approximative
-          x-cols: 6
-          example: example.json#/initialAlert/resource/0/size
-          description: Taille approximative de la ressource en kO
-          examples:
-          - "1235, 35, \u2026"
-        URI:
-          type: string
-          title: URI
-          x-cols: 6
-          example: example.json#/initialAlert/resource/0/URI
-          description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
-            \ la ressource sur Internet ou sur un r\xE9seau priv\xE9"
-          pattern: (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?
-          examples:
-          - None
-        derefURI:
-          type: string
-          title: URI base 64
-          x-cols: 6
-          example: example.json#/initialAlert/resource/0/derefURI
-          description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
-            \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
-            mes de transcodage (sur des double quotes qui casseraient le message,\
-            \ \u2026)"
-          examples:
-          - None
-        digest:
-          type: string
-          title: Hash
-          x-cols: 6
-          example: example.json#/initialAlert/resource/0/digest
-          description: "Hash de la ressource pour confirmer la r\xE9ception de la\
-            \ bonne ressource"
-          examples:
-          - None
-      example: example.json#/initialAlert/resource/0
-      examples:
-      - resourceDesc: "photo, carte, \u2026"
-        mimeType: "PDF, XML, JPEG, \u2026"
-        size: "1235, 35, \u2026"
-        URI: None
-        derefURI: None
-        digest: None
-    callerName:
-      type: object
-      title: "Pr\xE9nom & nom usuel du requ\xE9rant"
-      x-display: expansion-panels
-      required:
-      - complete
-      properties:
-        complete:
-          type: string
-          title: "Pr\xE9nom et nom"
-          x-cols: 6
-          example: example.json#/initialAlert/caller/callerName/complete
-          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
-            \ et callerFirstName sont renseign\xE9s, le champ callerName doit \xEA\
-            tre valoris\xE9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote\
-            \ : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et pas\
-            \ de deux champs s\xE9par\xE9s."
-          examples:
-          - Jean Dupont
-        callerLastName:
-          type: string
-          title: Nom
-          x-cols: 6
-          example: example.json#/initialAlert/caller/callerName/callerLastName
-          description: "Nom du requ\xE9rant"
-          examples:
-          - Dupont
-        callerFirstName:
-          type: string
-          title: "Pr\xE9nom"
-          x-cols: 6
-          example: example.json#/initialAlert/caller/callerName/callerFirstName
-          description: "Pr\xE9nom du r\xE9qu\xE9rant"
-          examples:
-          - Jean
-      example: example.json#/initialAlert/caller/callerName
-      examples:
-      - complete: Jean Dupont
-        callerLastName: Dupont
-        callerFirstName: Jean
     nomenclature:
       type: object
       title: Nature de fait
@@ -799,37 +542,36 @@ components:
       required:
       - code
       - label
-      - code
-      - label
-      - code
-      - label
-      - code
-      - label
       properties:
         code:
           type: string
           title: Code
           x-cols: 6
-          example: example.json#/initialAlert/alertCode/whatsHappen/code
-          description: "D\xE9crit le code de motif de recours m\xE9dical"
+          example: example.json#/qualification/whatsHappen/code
+          description: "A valoriser avec un code la nomenclature associ\xE9e"
           examples:
           - C07.13.02
         label:
           type: string
           title: "Libell\xE9"
           x-cols: 6
-          example: example.json#/initialAlert/alertCode/whatsHappen/label
-          description: "Libell\xE9 du motif"
+          example: example.json#/qualification/whatsHappen/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
+            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
+            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
         freetext:
           type: string
           title: Commentaire
           x-cols: 6
-          example: example.json#/initialAlert/alertCode/whatsHappen/freetext
+          example: example.json#/qualification/whatsHappen/freetext
+          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
+            \ permettant de qualifier l'\xE9v\xE9nement."
           examples:
           - None
-      example: example.json#/initialAlert/alertCode/whatsHappen
+      example: example.json#/qualification/whatsHappen
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
@@ -844,7 +586,7 @@ components:
           type: string
           title: Nombre de patients-victimes
           x-cols: 6
-          example: example.json#/initialAlert/alertCode/victims/count
+          example: example.json#/qualification/victims/count
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
             f\xE9rentiel CISU"
           enum:
@@ -852,14 +594,14 @@ components:
           - '1'
           - SEVERAL
           - MANY
-          - UNKNOWN
+          - UNKNOWN (voir Nomenclature CISU XX)
           examples:
           - SEVERAL
         mainVictim:
           type: string
           title: Type du patient-victime principal
           x-cols: 6
-          example: example.json#/initialAlert/alertCode/victims/mainVictim
+          example: example.json#/qualification/victims/mainVictim
           description: "Identifie le type de la principale victime (celle dont l'\xE9\
             tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
@@ -869,22 +611,22 @@ components:
           - CHILD
           - ADULT
           - PREGNANT
-          - SENIOR
+          - SENIOR (voir Nomenclature CISU XX)
           examples:
           - CHILD
-        comment:
+        freetext:
           type: string
           title: "Informations compl\xE9mentaires sur les patients-victimes"
           x-cols: 6
-          example: example.json#/initialAlert/alertCode/victims/comment
+          example: example.json#/qualification/victims/freetext
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
           examples:
           - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
-      example: example.json#/initialAlert/alertCode/victims
+      example: example.json#/qualification/victims
       examples:
       - count: SEVERAL
         mainVictim: CHILD
-        comment: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+        freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
     address:
       type: object
       title: "D\xE9tails de l'adresse"
@@ -896,7 +638,7 @@ components:
           type: string
           title: "Num\xE9ro, type et nom de voie"
           x-cols: 6
-          example: example.json#/caseLocation/address/complete
+          example: example.json#/location/addressDetailed/complete
           description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
             \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
             \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
@@ -907,7 +649,7 @@ components:
           type: string
           title: "Num\xE9ro dans la voie"
           x-cols: 6
-          example: example.json#/caseLocation/address/number
+          example: example.json#/location/addressDetailed/number
           description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
             \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
             p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
@@ -915,7 +657,7 @@ components:
           - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/definitions/wayName'
-      example: example.json#/caseLocation/address
+      example: example.json#/location/addressDetailed
     city:
       type: object
       title: "D\xE9tails de la commune"
@@ -926,7 +668,7 @@ components:
           type: string
           title: Nom de la commune
           x-cols: 6
-          example: example.json#/caseLocation/city/name
+          example: example.json#/location/city/name
           description: Nom officiel de la commune actuelle
           examples:
           - Lille
@@ -934,7 +676,7 @@ components:
           type: string
           title: Code INSEE de la commune
           x-cols: 6
-          example: example.json#/caseLocation/city/inseeCode
+          example: example.json#/location/city/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9."
@@ -945,14 +687,16 @@ components:
           type: string
           title: "Compl\xE9ment de commune"
           x-cols: 6
-          example: example.json#/caseLocation/city/detail
+          example: example.json#/location/city/detail
           description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
             \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
             \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
-            \ fusionn\xE9es pour le syst\xE8me \xE9metteur"
+            \ fusionn\xE9es pour le syst\xE8me \xE9metteur\nNB : dans tous les cas,\
+            \ la localisation GPS de la commune doit \xEAtre fournie afin d'\xE9viter\
+            \ une trop forte ambigu\xEFt\xE9"
           examples:
           - "Quartie Melun Nord, Lhomme, \u2026"
-      example: example.json#/caseLocation/city
+      example: example.json#/location/city
       examples:
       - name: Lille
         inseeCode: 59350
@@ -967,7 +711,7 @@ components:
           type: string
           title: Etage
           x-cols: 6
-          example: example.json#/caseLocation/access/floor
+          example: example.json#/location/access/floor
           description: 'Etage '
           examples:
           - "RDC, 1, 2, \u2026"
@@ -975,7 +719,7 @@ components:
           type: string
           title: "Num\xE9ro de porte"
           x-cols: 6
-          example: example.json#/caseLocation/access/roomNumber
+          example: example.json#/location/access/roomNumber
           description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
           examples:
           - "A16, 37, 104, \u2026"
@@ -983,7 +727,7 @@ components:
           type: string
           title: Interphone
           x-cols: 6
-          example: example.json#/caseLocation/access/interphone
+          example: example.json#/location/access/interphone
           description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
             \ de l'interphone (num\xE9ro, nom)"
           examples:
@@ -994,7 +738,7 @@ components:
             type: string
             title: Digicode
             x-cols: 6
-            example: example.json#/caseLocation/access/accessCode/0
+            example: example.json#/location/access/accessCode/0
             description: "Indique le ou les digicodes dans l'ordre de progression\
               \ dans le b\xE2timent"
             examples:
@@ -1003,7 +747,7 @@ components:
           type: string
           title: Ascenseur/escalier
           x-cols: 6
-          example: example.json#/caseLocation/access/elevator
+          example: example.json#/location/access/elevator
           description: 'Indique l''ascenseur ou la cage d''escalier '
           examples:
           - C3
@@ -1011,7 +755,7 @@ components:
           type: string
           title: "B\xE2timent"
           x-cols: 6
-          example: example.json#/caseLocation/access/buildingName
+          example: example.json#/location/access/buildingName
           description: "Nom du b\xE2timent"
           examples:
           - Batiment B, Batiment Maunoury
@@ -1019,18 +763,18 @@ components:
           type: string
           title: "Entr\xE9e"
           x-cols: 6
-          example: example.json#/caseLocation/access/entrance
+          example: example.json#/location/access/entrance
           examples:
           - "Zone Sud, Porte 1, \u2026"
         entity:
           type: string
           title: Service
           x-cols: 6
-          example: example.json#/caseLocation/access/entity
+          example: example.json#/location/access/entity
           description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
           examples:
           - "Infirmerie, service finance, service cardiologie, \u2026"
-      example: example.json#/caseLocation/access
+      example: example.json#/location/access
     geometry:
       type: object
       title: "G\xE9ometrie associ\xE9e"
@@ -1043,24 +787,24 @@ components:
           type: string
           title: "Formes g\xE9om\xE9triques"
           x-cols: 6
-          example: example.json#/caseLocation/geometry/sketch
+          example: example.json#/location/geometry/sketch
           examples:
           - None
-      example: example.json#/caseLocation/geometry
-    link:
+      example: example.json#/location/geometry
+    externalInfo:
       type: object
       title: "Liens aux syst\xE8mes externes"
       x-display: expansion-panels
       required:
-      - source
+      - freetext
       - type
-      - id
+      - uri
       properties:
-        source:
+        freetext:
           type: string
-          title: Source
+          title: Nom de la source
           x-cols: 6
-          example: example.json#/caseLocation/link/0/source
+          example: example.json#/location/externalInfo/0/freetext
           description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
             \ (BAN, IGN, ...)"
           enum:
@@ -1073,26 +817,26 @@ components:
           type: string
           title: 'Type '
           x-cols: 6
-          example: example.json#/caseLocation/link/0/type
+          example: example.json#/location/externalInfo/0/type
           description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
             \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
             \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
             \ Aussi table dans une base de donn\xE9es"
           examples:
           - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
-        id:
+        uri:
           type: string
           title: Identifiant
           x-cols: 6
-          example: example.json#/caseLocation/link/0/id
+          example: example.json#/location/externalInfo/0/uri
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
           examples:
           - id987
-      example: example.json#/caseLocation/link/0
+      example: example.json#/location/externalInfo/0
       examples:
-      - source: "NexSIS, BAN, IGN, \u2026"
+      - freetext: "NexSIS, BAN, IGN, \u2026"
         type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
-        id: id987
+        uri: id987
     wayName:
       type: object
       title: Type et nom de voie
@@ -1104,27 +848,29 @@ components:
           type: string
           title: Type et nom
           x-cols: 6
-          example: example.json#/caseLocation/address/wayName/complete
-          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)"
+          example: example.json#/location/addressDetailed/wayName/complete
+          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
+            Si les champs type et name sont renseign\xE9s, le champ callerName doit\
+            \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
           examples:
-          - A1 direction Paris, Bd du Montparnasse
+          - Boulevard du Montparnasse
         type:
           type: string
           title: Type
           x-cols: 6
-          example: example.json#/caseLocation/address/wayName/type
+          example: example.json#/location/addressDetailed/wayName/type
           examples:
           - Boulevard
         name:
           type: string
           title: Nom
           x-cols: 6
-          example: example.json#/caseLocation/address/wayName/name
+          example: example.json#/location/addressDetailed/wayName/name
           examples:
           - du Montparnasse
-      example: example.json#/caseLocation/address/wayName
+      example: example.json#/location/addressDetailed/wayName
       examples:
-      - complete: A1 direction Paris, Bd du Montparnasse
+      - complete: Boulevard du Montparnasse
         type: Boulevard
         name: du Montparnasse
     point:
@@ -1136,19 +882,18 @@ components:
       properties:
         coord:
           $ref: '#/definitions/coord'
-        coordsys:
+        sysCoord:
           type: string
           title: "Syst\xE8me de coordonn\xE9es"
           x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coordsys
+          example: example.json#/location/geometry/point/sysCoord
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
             \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
             \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
             \ valeur par d\xE9faut est \xABEPSG-4326\xBB."
-          pattern: '[0-9]{0,10}'
           examples:
           - EPSG-4326
-      example: example.json#/caseLocation/geometry/point
+      example: example.json#/location/geometry/point
     coord:
       type: object
       title: "Coordonn\xE9es"
@@ -1156,14 +901,13 @@ components:
       required:
       - lat
       - lon
-      - time
       - precision
       properties:
         lat:
           type: number
           title: Latitude
           x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coord/lat
+          example: example.json#/location/geometry/point/coord/lat
           description: "Latitude du point cl\xE9 de la localisation"
           examples:
           - '48.866667'
@@ -1171,7 +915,7 @@ components:
           type: number
           title: Longitude
           x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coord/lon
+          example: example.json#/location/geometry/point/coord/lon
           description: "Longitude du point cl\xE9 de la localisation"
           examples:
           - '2.333333'
@@ -1179,16 +923,16 @@ components:
           type: number
           title: 'Altitude '
           x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coord/height
-          description: "Altitude du point cl\xE9 de la localisation, ignor\xE9 c\xF4\
-            t\xE9 NexSIS."
+          example: example.json#/location/geometry/point/coord/height
+          description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
+            \ ignor\xE9 c\xF4t\xE9 NexSIS."
           examples:
           - 120
         heading:
           type: number
           title: Cap
           x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coord/heading
+          example: example.json#/location/geometry/point/coord/heading
           description: "En degr\xE9"
           examples:
           - 96
@@ -1196,34 +940,22 @@ components:
           type: number
           title: Vitesse
           x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coord/speed
+          example: example.json#/location/geometry/point/coord/speed
           description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
             \ AML, \u2026"
           examples:
           - 34
-        time:
-          type: string
-          title: Temps
-          x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coord/time
-          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
-            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
-            \ donc pertinence des informations pour intervenir."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
         precision:
           type: string
           title: "Pr\xE9cision"
           x-cols: 6
-          example: example.json#/caseLocation/geometry/point/coord/precision
-          description: "Niveau de pr\xE9cision et de confiance dans les coordonn\xE9\
-            es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie\
-            \ ou exacte/issue d'un GPS) d\xE9termin\xE9e de fa\xE7on automatique par\
-            \ le syst\xE8me en fonction des informations disponibles lors de son \xE9\
-            laboration (n\xB0, voie et commune) et du matching fait dans son syst\xE8\
-            me de localisation."
+          example: example.json#/location/geometry/point/coord/precision
+          description: "Indique via une nomenclature le niveau de pr\xE9cision des\
+            \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
+            \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
+            \ de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9e GPS\
+            \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
+            \ l'\xE9metteur"
           enum:
           - CITY
           - STREET
@@ -1231,16 +963,243 @@ components:
           - EXACT
           - UNKNOWN
           examples:
-          - Adresse
-      example: example.json#/caseLocation/geometry/point/coord
+          - ADDRESS
+      example: example.json#/location/geometry/point/coord
       examples:
       - lat: '48.866667'
         lon: '2.333333'
         height: 120
         heading: 96
         speed: 34
-        time: '2022-09-27T08:23:34+02:00'
-        precision: Adresse
+        precision: ADDRESS
+    caller:
+      type: object
+      title: "Requ\xE9rant"
+      x-display: expansion-panels
+      required: []
+      properties:
+        callerContact:
+          $ref: '#/definitions/contact'
+        callbackContact:
+          $ref: '#/definitions/contact'
+        language:
+          type: string
+          title: "Langue parl\xE9e"
+          x-cols: 6
+          example: example.json#/initialAlert/caller/language
+          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
+            \ place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU."
+          examples:
+          - FR
+        freetext:
+          type: string
+          title: "Informations sur le requ\xE9rant"
+          x-cols: 6
+          example: example.json#/initialAlert/caller/freetext
+          description: "Information sur le requ\xE9rant : malentendant, impliqu\xE9\
+            \ dans l'accident, \u2026\nLes informations peuvent \xEAtre pass\xE9es\
+            \ sous forme de texte libre ou via une liste d'adjectif"
+          examples:
+          - "P\xE8re"
+        detailedName:
+          $ref: '#/definitions/detailedName'
+      example: example.json#/initialAlert/caller
+    contact:
+      type: object
+      title: Source de contact
+      x-display: expansion-panels
+      required:
+      - type
+      - detail
+      - type
+      - detail
+      properties:
+        type:
+          type: string
+          title: Type de contact de la source
+          x-cols: 6
+          example: example.json#/initialAlert/sourceContact/type
+          description: "Type de l'URI utilis\xE9e par la source, cf. nomenclature\
+            \ EMSI"
+          enum:
+          - PSTADD
+          - EMLADD
+          - IPADD
+          - FTPADD
+          - WWWADD
+          - PHNADD
+          - FAXADD
+          - PMRADD
+          examples:
+          - PHNADD
+        detail:
+          type: string
+          title: URI de contact de la source
+          x-cols: 6
+          example: example.json#/initialAlert/sourceContact/detail
+          description: "Valeur de l'URI utilis\xE9e par la source"
+          examples:
+          - 0671830530
+      example: example.json#/initialAlert/sourceContact
+      examples:
+      - type: PHNADD
+        detail: 0671830530
+    callTaker:
+      type: object
+      title: Agent
+      x-display: expansion-panels
+      required:
+      - organization
+      - controlRoom
+      properties:
+        organization:
+          type: string
+          title: Service d'urgence
+          x-cols: 6
+          example: example.json#/initialAlert/callTaker/organization
+          description: "D\xE9crit la structure ou le service \xE0 laquelle est rattach\xE9\
+            e l'agent (en fonction du niveau de pr\xE9cision disponible).\nSe r\xE9\
+            f\xE9rer au DSF pour la structure norm\xE9e du champ \"organization\""
+          examples:
+          - samu44:chuNantes:crra:regulationN3
+        controlRoom:
+          type: string
+          title: Centre d'appels
+          x-cols: 6
+          example: example.json#/initialAlert/callTaker/controlRoom
+          description: "D\xE9crit le centre d'appel auquel est rattach\xE9 l'agent"
+          examples:
+          - CGA, CGO 21, CRRA 44, ...
+        calltakerURI:
+          $ref: '#/definitions/contact'
+        calltakerId:
+          type: string
+          title: ID de l'agent
+          x-cols: 6
+          example: example.json#/initialAlert/callTaker/calltakerId
+          description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte"
+          examples:
+          - "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
+      example: example.json#/initialAlert/callTaker
+      examples:
+      - organization: samu44:chuNantes:crra:regulationN3
+        controlRoom: CGA, CGO 21, CRRA 44, ...
+        calltakerURI: {}
+        calltakerId: "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
+    attachment:
+      type: object
+      title: "Pi\xE8ces jointes"
+      x-display: expansion-panels
+      required:
+      - URI
+      properties:
+        description:
+          type: string
+          title: Type ou description de la ressource
+          x-cols: 6
+          example: example.json#/initialAlert/attachment/0/description
+          description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
+            \ tels que \xABcarte\xBB ou \xABphoto\xBB"
+          examples:
+          - "photo, carte, \u2026"
+        mimeType:
+          type: string
+          title: Type MIME
+          x-cols: 6
+          example: example.json#/initialAlert/attachment/0/mimeType
+          description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
+            \ la ressource"
+          examples:
+          - "PDF, XML, JPEG, \u2026"
+        size:
+          type: integer
+          title: Taille approximative
+          x-cols: 6
+          example: example.json#/initialAlert/attachment/0/size
+          description: Taille approximative de la ressource en kO
+          examples:
+          - "1235, 35, \u2026"
+        URI:
+          type: string
+          title: URI
+          x-cols: 6
+          example: example.json#/initialAlert/attachment/0/URI
+          description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
+            \ la ressource sur Internet ou sur un r\xE9seau priv\xE9"
+          pattern: (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?
+          examples:
+          - https://hub.esante.gouv.fr/resourceExample
+        derefURI:
+          type: string
+          title: URI base 64
+          x-cols: 6
+          example: example.json#/initialAlert/attachment/0/derefURI
+          description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
+            \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
+            mes de transcodage (sur des double quotes qui casseraient le message,\
+            \ \u2026)"
+          examples:
+          - None
+        digest:
+          type: string
+          title: Hash
+          x-cols: 6
+          example: example.json#/initialAlert/attachment/0/digest
+          description: "Hash de la ressource pour confirmer la r\xE9ception de la\
+            \ bonne ressource\nA VALIDER : la ressource est hash\xE9e avec le protocole\
+            \ SHA-256"
+          examples:
+          - None
+      example: example.json#/initialAlert/attachment/0
+      examples:
+      - description: "photo, carte, \u2026"
+        mimeType: "PDF, XML, JPEG, \u2026"
+        size: "1235, 35, \u2026"
+        URI: https://hub.esante.gouv.fr/resourceExample
+        derefURI: None
+        digest: None
+    detailedName:
+      type: object
+      title: "Pr\xE9nom & nom usuel du requ\xE9rant"
+      x-display: expansion-panels
+      required:
+      - completeName
+      properties:
+        completeName:
+          type: string
+          title: "Pr\xE9nom et nom"
+          x-cols: 6
+          example: example.json#/initialAlert/caller/detailedName/completeName
+          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
+            \ et callerFirstName sont renseign\xE9s, le champ callerName doit \xEA\
+            tre valoris\xE9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote\
+            \ : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et pas\
+            \ de deux champs s\xE9par\xE9s."
+          examples:
+          - Jean Dupont
+        lastName:
+          type: string
+          title: Nom
+          x-cols: 6
+          example: example.json#/initialAlert/caller/detailedName/lastName
+          description: "Nom du requ\xE9rant"
+          examples:
+          - Dupont
+        firstName:
+          type: string
+          title: "Pr\xE9nom"
+          x-cols: 6
+          example: example.json#/initialAlert/caller/detailedName/firstName
+          description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
+            \ compos\xE9s doivent pr\xE9f\xE9rablement \xEAtre s\xE9par\xE9s par le\
+            \ caract\xE8re \"-\""
+          examples:
+          - Jean
+      example: example.json#/initialAlert/caller/detailedName
+      examples:
+      - completeName: Jean Dupont
+        lastName: Dupont
+        firstName: Jean
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"

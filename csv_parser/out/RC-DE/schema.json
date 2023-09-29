@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://json-schema.org/draft-07/schema#",
     "x-id": "schema.json#",
-    "version": "0.4.9",
+    "version": "1.2",
     "example": "example.json#",
     "type": "object",
     "title": "DistributionElement",
@@ -61,7 +61,10 @@
             ]
         },
         "recipients": {
-            "$ref": "#/definitions/recipients"
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/recipient"
+            }
         }
     },
     "definitions": {
@@ -91,26 +94,9 @@
             },
             "example": "example.json#/sender"
         },
-        "recipients": {
-            "type": "object",
-            "title": "Syst\u00e8mes destinataires",
-            "x-display": "expansion-panels",
-            "required": [
-                "recipient"
-            ],
-            "properties": {
-                "recipient": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/recipient"
-                    }
-                }
-            },
-            "example": "example.json#/recipients"
-        },
         "recipient": {
             "type": "object",
-            "title": "Syst\u00e8me destinataire",
+            "title": "Syst\u00e8mes destinataires",
             "x-display": "expansion-panels",
             "required": [
                 "name",
@@ -121,18 +107,18 @@
                     "type": "string",
                     "title": "Identifiant technique du syst\u00e8me destinataire",
                     "x-cols": 6,
-                    "example": "example.json#/recipients/recipient/0/name",
+                    "example": "example.json#/recipients/0/name",
                     "description": "Identifiant technique du syst\u00e8me emetteur\nFormat : \n=> Pour les SAMU : {cl\u00e9 de routage}-{nom solution LRM}\no\u00f9 cl\u00e9 de routage d\u00e9signe le nom de la cl\u00e9 de routage utilis\u00e9e par le LRM pour les \u00e9changes et {nom solution LRM} est le nom donn\u00e9 par l'\u00e9diteur \u00e0 sa solution (libre)\n=> Pour NeXSIS : \u00e0 d\u00e9finir {sga|sgo}-nexsis"
                 },
                 "URI": {
                     "type": "string",
                     "title": "URI (identifiant technique)",
                     "x-cols": 6,
-                    "example": "example.json#/recipients/recipient/0/URI",
+                    "example": "example.json#/recipients/0/URI",
                     "description": "uri du syst\u00e8me. Permet d'identifier le vecteur utilis\u00e9 par les \u00e9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n=> Pour NexSIS : sge:{recipient:name}"
                 }
             },
-            "example": "example.json#/recipients/recipient/0"
+            "example": "example.json#/recipients/0"
         }
     }
 }

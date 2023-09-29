@@ -1,85 +1,34 @@
 {
-    "caseId": "SAMU050-20230605-AF1234",
-    "senderCaseId": "id123",
-    "createdAt": "2022-09-27T08:23:34+02:00",
-    "initialAlert": {
-        "alertId": "SAMU050-20230605-AL0123",
-        "receivedAt": "2022-09-27T08:21:06+02:00",
-        "reporting": "STANDARD",
-        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
-        "caller": {
-            "callerURI": "tel:0606060606",
-            "callbackURI": "tel:0707070707",
-            "spokenLanguage": "Fran\u00e7ais",
-            "callerInformation": "P\u00e8re",
-            "callerName": {
-                "complete": "Jean Dupont",
-                "callerLastName": "Dupont",
-                "callerFirstName": "Jean"
-            }
+    "caseId": "samuA:CA126B445579GD4A67AV",
+    "senderCaseId": "CA126B445579GD4A67AV",
+    "creation": "2022-09-27T08:23:34+02:00",
+    "referenceVersion": "1.2",
+    "qualification": {
+        "whatsHappen": {
+            "code": "C07.13.02",
+            "label": "Rod\u00e9o automobile",
+            "freetext": "None"
         },
-        "alertLocation": {},
-        "alertCode": {
-            "cisuVersion": "1.19",
-            "whatsHappen": {
-                "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
-            },
-            "locationKind": {
-                "code": "None",
-                "label": "None",
-                "freetext": "None"
-            },
-            "riskThreat": [
-                {
-                    "code": "None",
-                    "label": "None",
-                    "freetext": "None"
-                }
-            ],
-            "healthMotive": {
-                "code": "None",
-                "label": "None",
-                "freetext": "None"
-            },
-            "gravity": 6,
-            "victims": {
-                "count": "SEVERAL",
-                "mainVictim": "CHILD",
-                "comment": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
-            }
-        },
-        "contact": {
-            "type": "Person",
-            "detail": "tel:18"
-        },
-        "callTaker": {
-            "organization": "SDIS, SAMU, \u2026",
-            "controlRoom": "CGA, CGO 21, CRRA 44, ...",
-            "calltakerURI": "0303030303",
-            "calltakerId": "id1234, carte CPx (Sant\u00e9), id d'affectation, \u2026"
-        },
-        "resource": [
-            {
-                "resourceDesc": "photo, carte, \u2026",
-                "mimeType": "PDF, XML, JPEG, \u2026",
-                "size": "1235, 35, \u2026",
-                "URI": "None",
-                "derefURI": "None",
-                "digest": "None"
-            }
-        ]
+        "locationKind": {},
+        "riskThreat": [
+            {}
+        ],
+        "healthMotive": {},
+        "victims": {
+            "count": "SEVERAL",
+            "mainVictim": "CHILD",
+            "freetext": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
+        }
     },
-    "caseLocation": {
+    "location": {
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
         "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
         "name": "Carrefour Toison d'Or, EPHAD Belle Fontaine, Quartier Melun Nord, Disneyland, \u2026",
-        "address": {
+        "addressDetailed": {
             "complete": "9 Bd du Montparnasse",
             "number": "9, 4bis, PK10, \u2026",
             "wayName": {
-                "complete": "A1 direction Paris, Bd du Montparnasse",
+                "complete": "Boulevard du Montparnasse",
                 "type": "Boulevard",
                 "name": "du Montparnasse"
             }
@@ -109,22 +58,63 @@
                     "height": 120,
                     "heading": 96,
                     "speed": 34,
-                    "time": "2022-09-27T08:23:34+02:00",
-                    "precision": "Adresse"
+                    "precision": "ADDRESS"
                 },
-                "coordsys": "EPSG-4326"
+                "sysCoord": "EPSG-4326"
             },
             "sketch": "None"
         },
-        "link": [
+        "externalInfo": [
             {
-                "source": "NexSIS, BAN, IGN, \u2026",
+                "freetext": "NexSIS, BAN, IGN, \u2026",
                 "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
-                "id": "id987"
+                "uri": "id987"
             }
         ],
         "country": "France",
         "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+    },
+    "initialAlert": {
+        "id": "SAMU050-20230605-AL0123",
+        "reception": "2022-09-27T08:21:06+02:00",
+        "reporting": "STANDARD",
+        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
+        "caller": {
+            "callerContact": {
+                "type": "PHNADD",
+                "detail": "0671830530"
+            },
+            "callbackContact": {},
+            "language": "FR",
+            "freetext": "P\u00e8re",
+            "detailedName": {
+                "completeName": "Jean Dupont",
+                "lastName": "Dupont",
+                "firstName": "Jean"
+            }
+        },
+        "sourceContact": {
+            "type": "PHNADD",
+            "detail": "0671830530"
+        },
+        "location": {},
+        "qualification": {},
+        "callTaker": {
+            "organization": "samu44:chuNantes:crra:regulationN3",
+            "controlRoom": "CGA, CGO 21, CRRA 44, ...",
+            "calltakerURI": {},
+            "calltakerId": "id1234, carte CPx (Sant\u00e9), id d'affectation, \u2026"
+        },
+        "attachment": [
+            {
+                "description": "photo, carte, \u2026",
+                "mimeType": "PDF, XML, JPEG, \u2026",
+                "size": "1235, 35, \u2026",
+                "URI": "https://hub.esante.gouv.fr/resourceExample",
+                "derefURI": "None",
+                "digest": "None"
+            }
+        ]
     },
     "newAlert": [
         {}
