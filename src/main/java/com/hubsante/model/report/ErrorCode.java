@@ -10,6 +10,8 @@ public enum ErrorCode {
     DEAD_LETTER_QUEUED(500, "DEAD_LETTER_QUEUED");
 
     ErrorCode(int statusCode, String statusString) {
+        this.statusCode = statusCode;
+        this.statusString = statusString;
     }
 
     private int statusCode;
