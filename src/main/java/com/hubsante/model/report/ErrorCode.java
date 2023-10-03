@@ -15,7 +15,8 @@ public enum ErrorCode {
     }
 
     private int statusCode;
-
+    private String statusString;
+    
     public boolean isSetupError() {
         return this.statusCode <200;
     }
