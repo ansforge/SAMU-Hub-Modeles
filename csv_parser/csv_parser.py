@@ -3,35 +3,70 @@ import json
 from jsonpath_ng import parse
 import yaml
 import docx
+import argparse
+from datetime import date
+import warnings
+
+# Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
+warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
+
+parser = argparse.ArgumentParser(
+    prog='Model Parser',
+    description='Parses and converts the Excel model to the other needed formats',
+)
+parser.add_argument('-v', '--version', help='the version number to be used in model. Defaults to today.')
+parser.add_argument('-s', '--sheet', default="RC-EDA", help='the Excel sheet to be parsed.')
+args = parser.parse_args()
+
+
+class Color:
+    PURPLE = '\033[95m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+
+
+args.version = args.version or date.today().strftime("%y.%m.%d")
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building version {args.version} of {args.sheet} sheet...{Color.END}')
 
 RUN_DOCX_OUTPUT_EXAMPLES = False
 
 DATA_DEPTH = 6  # nombre de niveaux de données
 
-SHEET = ['RC-DE', 'RC-EDA'][1]
-
-params = {
-    'RC-DE': {
-        'modelName': 'DistributionElement',
-        'cols': 35,
-        'rows': 11
-    },
-    'RC-EDA': {
-        'modelName': 'CreateCase',
-        'cols': 35,
-        'rows': 137
+def get_params_from_sheet(sheet):
+    """ Automatically get the number of rows and columns to use for this sheet. """
+    full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
+    # Getting modelName from cell A1
+    modelName = full_df.iloc[0, 0]
+    # Computing number of rows in table
+    # rows = df.iloc[7:, 0]
+    # Simply remove initial rows & total row
+    rows = full_df.shape[0] - 8 - 1
+    # Compute number of columns in table
+    try:
+        # By finding the CUT column
+        cols = full_df.iloc[7, :].tolist().index('CUT')
+    except ValueError:
+        # Simply by removing the 6 last editor feedback columns
+        cols = full_df.shape[1] - 6
+    return {
+        'modelName': modelName,
+        'cols': cols,
+        'rows': rows
     }
-}
-# ToDo(RFO) : compute automatically for each sheet
-MODEL_NAME = params[SHEET]['modelName']
-NB_ROWS = params[SHEET]['rows']
-NB_COLS = params[SHEET]['cols']
+
+params = get_params_from_sheet(args.sheet)
+MODEL_NAME = params['modelName']
+NB_ROWS = params['rows']
+NB_COLS = params['cols']
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name=SHEET, skiprows=7, nrows=NB_ROWS)
+df = pd.read_excel('model.xlsx', sheet_name=args.sheet, skiprows=7, nrows=NB_ROWS)
 # Dropping useless columns
 df = df.iloc[:, :NB_COLS]
+# Storing input data in a file to track versions
+df.to_csv(f'out/{args.sheet}/input.csv')
 # Keeping only 15-NexSIS fields
 df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
@@ -136,7 +171,6 @@ def build_example(elem):
             return 'None'
         return elem['Exemples']
     elif 'children' not in elem:
-        print(elem['name'])
         return {}
     else:
         children = {}
@@ -149,7 +183,7 @@ def build_example(elem):
 
 
 json_example = build_example(rootObject)
-with open(f'out/{SHEET}/example.json', 'w') as outfile:
+with open(f'out/{args.sheet}/example.json', 'w') as outfile:
     json.dump(json_example, outfile, indent=4)
 
 # Go through data (list or tree) and use it to build the expected JSON schema
@@ -157,7 +191,7 @@ json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     '$id': 'http://json-schema.org/draft-07/schema#',
     'x-id': 'schema.json#',  # required by JSV to find the schema file locally
-    'version': '0.4.9',
+    'version': args.version,
     'example': 'example.json#',
     'type': 'object',
     'title': MODEL_NAME,
@@ -337,7 +371,7 @@ def DFS(root, use_elem):
 
 print('Generating JSON schema...')
 DFS(rootObject, build_json_schema)
-with open(f'out/{SHEET}/schema.json', 'w') as outfile:
+with open(f'out/{args.sheet}/schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -369,10 +403,9 @@ full_yaml['components']['schemas'] = {
     **full_yaml['components']['schemas'],
     **build_asyncapi_schema()
 }
-with open(f'out/{SHEET}/hubsante.asyncapi.yaml', 'w') as file:
+with open(f'out/{args.sheet}/hubsante.asyncapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, file, sort_keys=False)
 print('AsyncAPI schema generated.')
-
 
 named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
 
@@ -450,7 +483,7 @@ def_to_table(MODEL_NAME, json_schema, title=f"Objet {MODEL_NAME}", doc=doc)
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-doc.save(f'out/{SHEET}/schema.docx')
+doc.save(f'out/{args.sheet}/schema.docx')
 
 print('Docx tables generated.')
 

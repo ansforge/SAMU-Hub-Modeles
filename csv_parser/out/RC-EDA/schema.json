@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "http://json-schema.org/draft-07/schema#",
     "x-id": "schema.json#",
-    "version": "0.4.9",
+    "version": "23.09.21",
     "example": "example.json#",
     "type": "object",
     "title": "CreateCase",
@@ -17,21 +17,21 @@
             "title": "Identifiant affaire",
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant fonctionnel unique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par la force r\u00e9ceptrice de la primo-demande de secours et contient un identifiant de la source.\nFormat : {Syst\u00e8meEmetteur}-{Date}-AF{Sequence} o\u00f9 :\n- {Syst\u00e8meEmetteur} est la cl\u00e9 de routage utilis\u00e9e en majuscule (se r\u00e9f\u00e9rer au DST)\n- {Date} est la date du jour au format AAAMMJJ\n- {Sequence} sur 4 digits est choisie par le syst\u00e8me \u00e9metteur de fa\u00e7on \u00e0 rendre les affaires emises uniques\n- AF pour d\u00e9signer \u00e0 NexSIS que l'on \u00e9change une affaire"
+            "description": "Identifiant fonctionnel unique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par la force r\u00e9ceptrice de la primo-demande de secours et contient un identifiant de la source.\nValorisation : "
         },
         "senderCaseId": {
             "type": "string",
             "title": "Identifiant local de l'affaire",
             "x-cols": 6,
             "example": "example.json#/senderCaseId",
-            "description": "Identifiant de l'affaire dans le SI de l'\u00e9metteur du message"
+            "description": "Valoriser avec l'identifiant de l'affaire dans le SI de l'\u00e9metteur du message\nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS"
         },
         "createdAt": {
             "type": "string",
             "title": "Date Heure de cr\u00e9ation de l'affaire",
             "x-cols": 6,
             "example": "example.json#/createdAt",
-            "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). Il doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation  de la premi\u00e8re alerte. Lors de l'ajout d'alerte \u00e0 une affaire ce champ ne doit pas \u00eatre modifi\u00e9.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9. Le fuseau horaire pour UTC doit \u00eatre repr\u00e9sent\u00e9 par '-00:00'",
+            "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). Il doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation  de la premi\u00e8re alerte. Lors de l'ajout d'alerte \u00e0 une affaire ce champ ne doit pas \u00eatre modifi\u00e9.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
             "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
             "format": "date-time"
         },
@@ -114,11 +114,11 @@
                         "ATTENTION"
                     ]
                 },
-                "alertInformation": {
+                "freetext": {
                     "type": "string",
                     "title": "Informations compl\u00e9mentaires sur l'alerte",
                     "x-cols": 6,
-                    "example": "example.json#/initialAlert/alertInformation",
+                    "example": "example.json#/initialAlert/freetext",
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte"
                 },
                 "caller": {
@@ -244,7 +244,7 @@
                     "title": "Num\u00e9ro requ\u00e9rant",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerURI",
-                    "description": "Type de l'URI utilis\u00e9e par le r\u00e9qu\u00e9rant et valeur. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le num\u00e9ro de t\u00e9l\u00e9phone doit \u00eatre renseign\u00e9 en priorit\u00e9, \u00e0 d\u00e9faut, renseigner un autre type d'URI. Si ce num\u00e9ro est renseign\u00e9, il devient prioritaire par rapport au num\u00e9ro d'appel.",
+                    "description": "Type de l'URI utilis\u00e9e par le r\u00e9qu\u00e9rant et valeur. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le num\u00e9ro de t\u00e9l\u00e9phone doit \u00eatre renseign\u00e9 en priorit\u00e9, \u00e0 d\u00e9faut, renseigner un autre type d'URI. Si ce num\u00e9ro est renseign\u00e9, il devient prioritaire par rapport au num\u00e9ro d'appel.\nLe champ doit \u00eatre renseign\u00e9 selon l'expression r\u00e9guli\u00e8re suivante :\n{canalUri}:{uri}\no\u00f9 \n- canalUri d\u00e9signe le canal par lequel est obtenu le num\u00e9ro de contre-appel (dans le cas d'un appel t\u00e9l\u00e9phonique prend la valeur \"tel\" par exemple)\n- uri d\u00e9signe la valeur de l'uri (dans le cas d'un appel t\u00e9l\u00e9phonique il s'agira du num\u00e9ro par exemple)",
                     "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 },
                 "callbackURI": {
@@ -252,7 +252,7 @@
                     "title": "Num\u00e9ro de contre-appel",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callbackURI",
-                    "description": "Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requ\u00e9rant, de la victime ou d'un t\u00e9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le num\u00e9ro de t\u00e9l\u00e9phone doit \u00eatre renseign\u00e9 en priorit\u00e9, \u00e0 d\u00e9faut, renseigner un autre type d'URI. Si le num\u00e9ro de contre-appel est renseign\u00e9, il doit \u00eatre utilis\u00e9 en priorit\u00e9 sur le num\u00e9ro r\u00e9qu\u00e9rant.",
+                    "description": "Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requ\u00e9rant, de la victime ou d'un t\u00e9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le num\u00e9ro de t\u00e9l\u00e9phone doit \u00eatre renseign\u00e9 en priorit\u00e9, \u00e0 d\u00e9faut, renseigner un autre type d'URI. Si le num\u00e9ro de contre-appel est renseign\u00e9, il doit \u00eatre utilis\u00e9 en priorit\u00e9 sur le num\u00e9ro r\u00e9qu\u00e9rant.\nLe champ doit \u00eatre renseign\u00e9 selon l'expression r\u00e9guli\u00e8re suivante :\n{canalUri}:{uri}\no\u00f9 \n- canalUri d\u00e9signe le canal par lequel est obtenu le num\u00e9ro de contre-appel (dans le cas d'un appel t\u00e9l\u00e9phonique prend la valeur \"tel\" par exemple)\n- uri d\u00e9signe la valeur de l'uri (dans le cas d'un appel t\u00e9l\u00e9phonique il s'agira du num\u00e9ro par exemple)",
                     "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 },
                 "spokenLanguage": {
@@ -267,7 +267,7 @@
                     "title": "Informations sur le requ\u00e9rant",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerInformation",
-                    "description": "Information sur le requ\u00e9rant : malentendant, impliqu\u00e9 dans l'accident, \u2026"
+                    "description": "Information sur le requ\u00e9rant : malentendant, impliqu\u00e9 dans l'accident, \u2026\nLes informations peuvent \u00eatre pass\u00e9es sous forme de texte libre ou via une liste d'adjectif"
                 },
                 "callerName": {
                     "$ref": "#/definitions/callerName"
@@ -337,7 +337,7 @@
                     "title": "Flux utilis\u00e9",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/contact/detail",
-                    "description": "Indique le type de l'URI compos\u00e9e par le r\u00e9qu\u00e9rant et la valeur de l'URI, concat\u00e9n\u00e9es et s\u00e9par\u00e9es par \":\". Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI peut \u00eatre renseign\u00e9e.",
+                    "description": "Indique le type de l'URI compos\u00e9e par le r\u00e9qu\u00e9rant et la valeur de l'URI, concat\u00e9n\u00e9es et s\u00e9par\u00e9es par \":\". Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI peut \u00eatre renseign\u00e9e.\nLe champ doit \u00eatre renseign\u00e9 selon l'expression r\u00e9guli\u00e8re suivante :\n{canalUri}:{uri}\no\u00f9 \n- canalUri d\u00e9signe le canal par lequel est obtenu le num\u00e9ro de contre-appel (dans le cas d'un appel t\u00e9l\u00e9phonique prend la valeur \"tel\" par exemple)\n- uri d\u00e9signe la valeur de l'uri (dans le cas d'un appel t\u00e9l\u00e9phonique il s'agira du num\u00e9ro par exemple)",
                     "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 }
             },
@@ -450,7 +450,7 @@
                     "title": "Pr\u00e9nom et nom",
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerName/complete",
-                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nSi les champs callerLastName et callerFirstName sont renseign\u00e9s, le champ callerName doit contenir la cha\u00eene de caract\u00e8re suivante : \"{callerFirstName} {callerLastName}\".\nNote : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
+                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nSi les champs callerLastName et callerFirstName sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
                 },
                 "callerLastName": {
                     "type": "string",
@@ -846,11 +846,13 @@
                     "title": "Pr\u00e9cision",
                     "x-cols": 6,
                     "example": "example.json#/caseLocation/geometry/point/coord/precision",
-                    "description": "Niveau de pr\u00e9cision et de confiance dans les coordonn\u00e9es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie) d\u00e9termin\u00e9e de fa\u00e7on automatique par le syst\u00e8me en fonction des informations disponibles lors de son \u00e9laboration (n\u00b0, voie et commune) et du matching fait dans son syst\u00e8me de localisation.",
+                    "description": "Niveau de pr\u00e9cision et de confiance dans les coordonn\u00e9es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie ou exacte/issue d'un GPS) d\u00e9termin\u00e9e de fa\u00e7on automatique par le syst\u00e8me en fonction des informations disponibles lors de son \u00e9laboration (n\u00b0, voie et commune) et du matching fait dans son syst\u00e8me de localisation.",
                     "enum": [
                         "CITY",
                         "STREET",
-                        "ADDRESS"
+                        "ADDRESS",
+                        "EXACT",
+                        "UNKNOWN"
                     ]
                 }
             },

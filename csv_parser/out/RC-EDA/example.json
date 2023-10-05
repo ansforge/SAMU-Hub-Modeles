@@ -6,7 +6,7 @@
         "alertId": "SAMU050-20230605-AL0123",
         "receivedAt": "2022-09-27T08:21:06+02:00",
         "reporting": "STANDARD",
-        "alertInformation": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
+        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
         "caller": {
             "callerURI": "tel:0606060606",
             "callbackURI": "tel:0707070707",
