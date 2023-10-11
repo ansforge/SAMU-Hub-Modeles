@@ -7,10 +7,12 @@
     "sentAt": "None",
     "kind": "ALERT",
     "status": "ACTUAL",
-    "recipients": [
-        {
-            "name": "samu-77",
-            "URI": "sge:samu-77"
-        }
-    ]
+    "recipients": {
+        "recipient": [
+            {
+                "name": "samu-77",
+                "URI": "sge:samu-77"
+            }
+        ]
+    }
 }

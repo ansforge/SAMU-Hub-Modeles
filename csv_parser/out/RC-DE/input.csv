@@ -14,13 +14,14 @@ Format :
 4,5,Horodatage envoi message,,,,,,Groupe date heure de début de partage lié à l'envoi du message. Il doit  être cohérent avec le champ <dateTimeSent> de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne doit pas être utilisé. Le fuseau horaire pour UTC doit être représenté par '-00:00',,,,sentAt,,,,,,,1..1,,datetime,,X,X
 5,6,Type de message,,,,,,Prend la valeur <distributionKind de l'enveloppe EDXL (voir DST),ALERT,,,kind,,,,,,,1..1,,string,"ENUM: Report, Update, Cancel, Ack, Error",X,X
 6,7,Statut du message,,,,,,Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir DST),ACTUAL,,,status,,,,,,,1..1,,string,"ENUM: Actual, Exercise, System",X,X
-7,8,Systèmes destinataires,,,,,,Objet contenant une liste de systèmes destinataires du message.,,,,recipients,,,,,,,1..n,X,recipient,,X,X
-8,10,,Identifiant technique du système destinataire,,,,,"Identifiant technique du système emetteur
+7,8,Systèmes destinataires,,,,,,Objet contenant une liste de systèmes destinataires du message.,,,,recipients,,,,,,,1..1,X,,,X,X
+8,9,,Système destinataire,,,,,Objet contenant un système destinataire du message,,,,recipient,,,,,,,1..n,X,,,X,X
+9,10,,,Identifiant technique du système destinataire,,,,"Identifiant technique du système emetteur
 Format : 
 => Pour les SAMU : {clé de routage}-{nom solution LRM}
 où clé de routage désigne le nom de la clé de routage utilisée par le LRM pour les échanges et {nom solution LRM} est le nom donné par l'éditeur à sa solution (libre)
 => Pour NeXSIS : à définir {sga|sgo}-nexsis",samu-77,,,name,,,,,,,1..1,,string,,X,X
-9,11,,URI (identifiant technique),,,,,"uri du système. Permet d'identifier le vecteur utilisé par les échanges
+10,11,,,URI (identifiant technique),,,,"uri du système. Permet d'identifier le vecteur utilisé par les échanges
 Format :
 => Pour les LRM : sge:{recipient:name}
 => Pour NexSIS : sge:{recipient:name}",sge:samu-77,,,URI,,,,,,,1..1,,string,,X,X
