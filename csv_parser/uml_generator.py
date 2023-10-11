@@ -29,19 +29,13 @@ print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {ar
 # UTILS
 
 dot = graphviz.Digraph(comment='UML MDD Hub Sante',strict=True,node_attr={'shape': 'box'})
-# direction of graph
 dot.attr(rankdir="BT")
-#orthogonal edge
-dot.attr(splines="polyline")
 
 
 def read_json(path_in) :
     json_file = path_in
     # Opening JSON file
-    try :
-        f = open(path_in)
-    except FileNotFoundError:
-        return {}
+    f = open(path_in)
     # returns JSON object as
     # a dictionary
     json_out = json.load(f)
@@ -56,7 +50,7 @@ def get_ref(str_ref_in, dict_definitions_in) :
     # "#/definitions/etype"
     ref_in = str_ref_in[14:]
     if ref_in in dict_definitions_in :
-        #print("Reference" + str_ref_in + " valide")
+        print("Reference" + str_ref_in + " valide")
         return dict_definitions_in[ref_in]
     print("Reference" + str_ref_in + " invalide")
     raise ValueError
@@ -127,8 +121,8 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
         # if is not an array
         # type = id in this case
         if "properties" in child :
-            # print(id_child + " Object")
-            # print(id_parent + " - - >" + id_child)
+            print(id_child + " Object")
+            print(id_parent + " - - >" + id_child)
             buffer_description_node[id_child] = ""
             parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
             add_node(id_parent, id_child, id_child,
@@ -136,22 +130,21 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
         else :
             # if type is indicated consider as a leaf
             if "type" in child :
-                # print(id_child + " Feuille")
-                # print(id_parent + " - - >" + id_child)
+                print(id_child + " Feuille")
+                print(id_parent + " - - >" + id_child)
                 if id_parent in buffer_description_node :
                     #if child is a leaf, description is appended to buffer_description_node for parent
-                    # replacing n by * charachter
-                    child_description = "{} {}: [{}..{}]".format(id_child, child["type"], 
+                    child_description = "{} {}: [{}:{}]".format(id_child, child["type"], 
                                                                 cardinalite_child[0],
-                                                                cardinalite_child[1].replace("n","*"))
+                                                                cardinalite_child[1])
                     buffer_description_node[id_parent] = buffer_description_node[id_parent] + "\n" + child_description
             # else look for ref
             elif "$ref" in child :
-                #print(id_child + " Object Ref")
+                print(id_child + " Object Ref")
                 # getting type child and child with ref
                 type_child = get_id_ref(child["$ref"])
                 child = get_ref(child["$ref"], dict_definitions)
-                # print(id_parent + " - - >" + id_child)
+                print(id_parent + " - - >" + id_child)
                 buffer_description_node[id_child] = ""
                 parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
                 add_node(id_parent, id_child, type_child, 
@@ -163,15 +156,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
 ## RUN
 
 # warning, if folder out/args.model empty, causes failure
-print("Loading schema.json from " + os.path.join("out",args.model) + "...")
 json_in = read_json(os.path.join("out", args.model, "schema.json"))
-if json_in != {} :
-    print("schema.json loaded.")
-    print("Parsing schema.json ...")
-    parse_object(args.obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert"])
-    print("Rendering " + os.path.join("out",args.model,"uml_schema.pdf") + " ...")
-    dot.edge_attr.update(arrowhead='odiamond',arrowtail='none')
-    dot.render(os.path.join("out",args.model,"uml_schema.pdf"))
-    print("Done.")
-else :
-    print(str(args.model) + " not found. No render generated.")
+parse_object(args.obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert"])
+dot.edge_attr.update(arrowhead='odiamond',arrowtail='none')
+dot.render(os.path.join("out",args.model,"uml_schema.pdf"))
