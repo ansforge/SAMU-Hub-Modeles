@@ -14,22 +14,13 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
-import java.util.Arrays;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.Nomenclature;
-import com.hubsante.model.cisu.Victims;
+import com.fasterxml.jackson.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * AlertCode
@@ -56,8 +47,8 @@ public class AlertCode {
     public static final String JSON_PROPERTY_LOCATION_KIND = "locationKind";
     private Nomenclature locationKind;
 
-    public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
-    private List<Nomenclature> riskThreat;
+    public static final String JSON_PROPERTY_RISK_THREAT = "riskThreats";
+    private List<Nomenclature> riskThreats;
 
     public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
     private Nomenclature healthMotive;
@@ -151,15 +142,15 @@ public class AlertCode {
 
     public AlertCode riskThreat(List<Nomenclature> riskThreat) {
 
-        this.riskThreat = riskThreat;
+        this.riskThreats = riskThreat;
         return this;
     }
 
     public AlertCode addRiskThreatItem(Nomenclature riskThreatItem) {
-        if (this.riskThreat == null) {
-            this.riskThreat = new ArrayList<>();
+        if (this.riskThreats == null) {
+            this.riskThreats = new ArrayList<>();
         }
-        this.riskThreat.add(riskThreatItem);
+        this.riskThreats.add(riskThreatItem);
         return this;
     }
 
@@ -168,25 +159,24 @@ public class AlertCode {
      *
      * @return riskThreat
      **/
-    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-    public List<Nomenclature> getRiskThreat() {
-        return riskThreat;
+//    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JacksonXmlProperty(localName = "riskThreat")
+    @JacksonXmlElementWrapper(useWrapping = true, localName = "riskThreats")
+    public List<Nomenclature> getRiskThreats() {
+        return riskThreats;
     }
 
-    @JacksonXmlElementWrapper(useWrapping = false)
-
-    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setRiskThreat(List<Nomenclature> riskThreat) {
-        if (riskThreat == null) {
+//    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+//    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setRiskThreats(List<Nomenclature> riskThreats) {
+        if (riskThreats == null) {
             return;
         }
-        if (this.riskThreat == null) {
-            this.riskThreat = new ArrayList<>();
+        if (this.riskThreats == null) {
+            this.riskThreats = new ArrayList<>();
         }
-        this.riskThreat.addAll(riskThreat);
+        this.riskThreats.addAll(riskThreats);
     }
 
 
@@ -279,7 +269,7 @@ public class AlertCode {
         return Objects.equals(this.cisuVersion, alertCode.cisuVersion) &&
                 Objects.equals(this.whatsHappen, alertCode.whatsHappen) &&
                 Objects.equals(this.locationKind, alertCode.locationKind) &&
-                Objects.equals(this.riskThreat, alertCode.riskThreat) &&
+                Objects.equals(this.riskThreats, alertCode.riskThreats) &&
                 Objects.equals(this.healthMotive, alertCode.healthMotive) &&
                 Objects.equals(this.gravity, alertCode.gravity) &&
                 Objects.equals(this.victims, alertCode.victims);
@@ -290,7 +280,7 @@ public class AlertCode {
         return Objects.hash(cisuVersion
                 , whatsHappen
                 , locationKind
-                , riskThreat
+                , riskThreats
                 , healthMotive
                 , gravity
                 , victims);
@@ -303,7 +293,7 @@ public class AlertCode {
         sb.append("    cisuVersion: ").append(toIndentedString(cisuVersion)).append("\n");
         sb.append("    whatsHappen: ").append(toIndentedString(whatsHappen)).append("\n");
         sb.append("    locationKind: ").append(toIndentedString(locationKind)).append("\n");
-        sb.append("    riskThreat: ").append(toIndentedString(riskThreat)).append("\n");
+        sb.append("    riskThreats: ").append(toIndentedString(riskThreats)).append("\n");
         sb.append("    healthMotive: ").append(toIndentedString(healthMotive)).append("\n");
         sb.append("    gravity: ").append(toIndentedString(gravity)).append("\n");
         sb.append("    victims: ").append(toIndentedString(victims)).append("\n");

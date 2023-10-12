@@ -387,6 +387,7 @@ public class Alert {
 
     @JsonProperty(JSON_PROPERTY_RESOURCE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
     public void setResource(List<Resource> resource) {
         if (resource == null) {
             return;
