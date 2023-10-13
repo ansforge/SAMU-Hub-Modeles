@@ -4,5 +4,4 @@ out/others
 *.ipynb
 *.png
 *.gv
-*.pdf
 *.dot
