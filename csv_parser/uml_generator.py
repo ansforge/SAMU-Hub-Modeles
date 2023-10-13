@@ -5,27 +5,6 @@ import graphviz  # doctest: +NO_EXE
 import json
 import os
 
-parser = argparse.ArgumentParser(
-    prog='UML Generator',
-    description='Generate uml from json-schema',
-)
-
-parser.add_argument('-v', '--version', help='the version number to be used in model. Defaults to today.')
-parser.add_argument('-m', '--model', default="RC-EDA.json", help='the concerned model to parse')
-parser.add_argument('-o','--obj', default="cisu", help='define the head object')
-args = parser.parse_args()
-
-
-class Color:
-    PURPLE = '\033[95m'
-    BOLD = '\033[1m'
-    UNDERLINE = '\033[4m'
-    END = '\033[0m'
-
-
-args.version = args.version or date.today().strftime("%y.%m.%d")
-print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {args.version} of {args.model} ...{Color.END}')
-
 # UTILS
 
 dot = graphviz.Digraph(comment='UML MDD Hub Sante',strict=True,node_attr={'shape': 'box'})
@@ -61,12 +40,11 @@ def set_cardinalite(minimal, max) :
         raise ValueError
     return (minimal, max)
 
-## PARSING
 
-def add_node(id_parent, id_in, type_in, buffer_description, cardinalite=("0","1"), dot_in=dot) :
+## PARSING
+def add_node(id_parent, id_in, type_in, buffer_description, cardinalite):
     # in practice definition uses "title"
-    dot.node(id_in, 
-            str(id_in) + "\n" + "objet " + type_in + buffer_description)
+    dot.node(id_in, str(id_in) + "\n" + "(type " + type_in + ")" + (f"\n-{buffer_description}" if buffer_description != "" else "") )
     if id_parent :
         if cardinalite == ("0","1") :
             dot.edge(id_in, id_parent, 
@@ -93,7 +71,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
     # no parsing of id to ignore
     if id_parent in id_ignore :
         if id_parent in buffer_description_node :
-            buffer_description_node["id_parent"] = "cf. objet du même type"
+            buffer_description_node[id_parent] = "\ncf. objet du même type"
         return
     # buffer_description_node stores descrition of each node to append leaf description
     for id_child, child in dict_in["properties"].items() :
@@ -117,7 +95,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
             buffer_description_node[id_child] = ""
             parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
             add_node(id_parent, id_child, id_child,
-                     buffer_description_node["id_child"], cardinalite=cardinalite_child)
+                     buffer_description_node[id_child], cardinalite=cardinalite_child)
         else :
             # if type is indicated consider as a leaf
             if "type" in child :
@@ -147,14 +125,37 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
 
 
 ## RUN
-# warning, if folder out/args.model empty, causes failure
-print("Loading schema.json from " + os.path.join("out",args.model) + "...")
-with open(os.path.join("out", args.model, "schema.json"), 'r') as file:
-    json_in = json.load(file)
-    print("schema.json loaded.")
-    print("Parsing schema.json ...")
-    parse_object(args.obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert"])
-    print("Rendering " + os.path.join("out", args.model, "uml_schema.pdf") + " ...")
-    dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-    dot.render(os.path.join("out", args.model, "uml_schema"))
-    print("Done.")
+class Color:
+    PURPLE = '\033[95m'
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+    END = '\033[0m'
+
+
+def run(model, obj, version=date.today().strftime("%y.%m.%d")):
+    print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {version} of {model} ...{Color.END}')
+
+    # warning, if folder out/model empty, causes failure
+    print("Loading schema.json from " + os.path.join("out", model) + "...")
+    with open(os.path.join("out", model, "schema.json"), 'r') as file:
+        json_in = json.load(file)
+        print("schema.json loaded.")
+        print("Parsing schema.json ...")
+        parse_object(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
+        print("Rendering " + os.path.join("out", model, "uml_schema.pdf") + " ...")
+        dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
+        dot.render(os.path.join("out", model, "uml_schema"))
+        print("Done.")
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(
+        prog='UML Generator',
+        description='Generate uml from json-schema',
+    )
+    parser.add_argument('-v', '--version', help='the version number to be used in model. Defaults to today.')
+    parser.add_argument('-m', '--model', default="RC-EDA.json", help='the concerned model to parse')
+    parser.add_argument('-o', '--obj', default="cisu", help='define the head object')
+    args = parser.parse_args()
+
+    run(args.model, args.obj, args.version)
