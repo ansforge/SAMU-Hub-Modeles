@@ -34,21 +34,6 @@ dot.attr(rankdir="BT")
 #orthogonal edge
 dot.attr(splines="polyline")
 
-
-def read_json(path_in) :
-    json_file = path_in
-    # Opening JSON file
-    try :
-        f = open(path_in)
-    except FileNotFoundError:
-        return {}
-    # returns JSON object as
-    # a dictionary
-    json_out = json.load(f)
-    # Closing file
-    f.close()
-    return json_out
-
 # get ref dic objet from raw ref label
 def get_ref(str_ref_in, dict_definitions_in) :
     # looking for ref in json
@@ -160,18 +145,16 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                 print("Erreur syntaxe json_schema " + id_parent + "... Generating anyway")
     return
 
-## RUN
 
+## RUN
 # warning, if folder out/args.model empty, causes failure
 print("Loading schema.json from " + os.path.join("out",args.model) + "...")
-json_in = read_json(os.path.join("out", args.model, "schema.json"))
-if json_in != {} :
+with open(os.path.join("out", args.model, "schema.json"), 'r') as file:
+    json_in = json.load(file)
     print("schema.json loaded.")
     print("Parsing schema.json ...")
     parse_object(args.obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert"])
-    print("Rendering " + os.path.join("out",args.model,"uml_schema.pdf") + " ...")
-    dot.edge_attr.update(arrowhead='odiamond',arrowtail='none')
-    dot.render(os.path.join("out",args.model,"uml_schema.pdf"))
+    print("Rendering " + os.path.join("out", args.model, "uml_schema.pdf") + " ...")
+    dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
+    dot.render(os.path.join("out", args.model, "uml_schema"))
     print("Done.")
-else :
-    print(str(args.model) + " not found. No render generated.")

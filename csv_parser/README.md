@@ -27,12 +27,11 @@ ag out/RC-EDA/hubsante.asyncapi.yaml @asyncapi/html-template -o ../../web/specs 
 # JsonSchema to uml
 ## Installation
 
-install graphviz on your execution environnement
+Install graphviz on your execution environnement
 https://graphviz.org/
-
-requirements to udpate
-
-## Usage
+```bash
+pip install -r requirements.txt
+```
 
 ## Usage
 ```bash
