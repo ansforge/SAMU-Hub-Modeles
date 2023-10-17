@@ -7,11 +7,9 @@ import os
 
 # UTILS
 
-dot = graphviz.Digraph(comment='UML MDD Hub Sante',strict=True,node_attr={'shape': 'box'})
+dot = graphviz.Digraph(comment='UML MDD Hub Sante',strict=True,node_attr={'shape': 'none'})
 # direction of graph
 dot.attr(rankdir="BT")
-#orthogonal edge
-dot.attr(splines="polyline")
 
 # get ref dic objet from raw ref label
 def get_ref(str_ref_in, dict_definitions_in) :
@@ -41,11 +39,28 @@ def set_cardinalite(minimal, max) :
     return (minimal, max)
 
 
+
+
 ## PARSING
+
+
 def add_node(id_parent, id_in, type_in, buffer_description, cardinalite):
-    # in practice definition uses "title"
-    dot.node(id_in, str(id_in) + "\n" + "(type " + type_in + ")" + (f"\n-{buffer_description}" if buffer_description != "" else "") )
-    if id_parent :
+    # draw node
+    template_html_node = '''<<TABLE>
+                <TR>
+                <TD><B>{}</B></TD>
+                </TR>
+                <TR>
+                <TD>{}</TD>
+                </TR>
+                </TABLE>>'''
+    str_node = template_html_node.format(str(id_in), "<I>objet " + type_in + "</I>" + buffer_description)
+    #dot.node(id_in, 
+    #        str(id_in) + "\n" + "objet " + type_in + buffer_description)
+    dot.node(id_in, str_node)
+    # draw edges with parents nodes
+    # no edge if pointing itself
+    if id_parent and (id_parent != id_in):
         if cardinalite == ("0","1") :
             dot.edge(id_in, id_parent, 
                      constraint='true',
@@ -104,10 +119,10 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                 if id_parent in buffer_description_node :
                     #if child is a leaf, description is appended to buffer_description_node for parent
                     # replacing n by * charachter
-                    child_description = "{} {}: [{}..{}]".format(id_child, child["type"], 
+                    child_description = "{} <I>{}</I> :  [{}..{}]".format(id_child, child["type"], 
                                                                 cardinalite_child[0],
                                                                 cardinalite_child[1].replace("n","*"))
-                    buffer_description_node[id_parent] = buffer_description_node[id_parent] + "\n" + child_description
+                    buffer_description_node[id_parent] = buffer_description_node[id_parent] + "<BR/>" + child_description
             # else look for ref
             elif "$ref" in child :
                 #print(id_child + " Object Ref")
@@ -123,6 +138,13 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                 print("Erreur syntaxe json_schema " + id_parent + "... Generating anyway")
     return
 
+def parse_root_node(id_main_obj, dict_in, dict_definitions, buffer_description_node, id_ignore=[]) :
+    # recursive function needs to have main node set in place
+    buffer_description_node[id_main_obj] = ""
+    parse_object(id_main_obj, dict_in, dict_definitions, buffer_description_node, id_ignore=id_ignore)
+    add_node(id_main_obj, id_main_obj, id_main_obj,
+             buffer_description_node[id_main_obj], cardinalite=("1","1"))
+    return
 
 ## RUN
 class Color:
@@ -141,7 +163,7 @@ def run(model, obj, version=date.today().strftime("%y.%m.%d")):
         json_in = json.load(file)
         print("schema.json loaded.")
         print("Parsing schema.json ...")
-        parse_object(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
+        parse_root_node(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
         print("Rendering " + os.path.join("out", model, "uml_schema.pdf") + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
         dot.render(os.path.join("out", model, "uml_schema"))
