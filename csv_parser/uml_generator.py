@@ -18,7 +18,6 @@ def get_ref(str_ref_in, dict_definitions_in) :
     # "#/definitions/etype"
     ref_in = str_ref_in[14:]
     if ref_in in dict_definitions_in :
-        #print("Reference" + str_ref_in + " valide")
         return dict_definitions_in[ref_in]
     print("Reference" + str_ref_in + " invalide")
     raise ValueError
@@ -55,8 +54,6 @@ def add_node(id_parent, id_in, type_in, buffer_description, cardinalite):
                 </TR>
                 </TABLE>>'''
     str_node = template_html_node.format(str(id_in), "<I>objet " + type_in + "</I>" + buffer_description)
-    #dot.node(id_in, 
-    #        str(id_in) + "\n" + "objet " + type_in + buffer_description)
     dot.node(id_in, str_node)
     # draw edges with parents nodes
     # no edge if pointing itself
@@ -105,8 +102,6 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
         # if is not an array
         # type = id in this case
         if "properties" in child :
-            # print(id_child + " Object")
-            # print(id_parent + " - - >" + id_child)
             buffer_description_node[id_child] = ""
             parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
             add_node(id_parent, id_child, id_child,
@@ -114,8 +109,9 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
         else :
             # if type is indicated consider as a leaf
             if "type" in child :
-                # print(id_child + " Feuille")
-                # print(id_parent + " - - >" + id_child)
+                # substitute format to type
+                if "format" in child :
+                    child["type"] = child["format"]
                 if id_parent in buffer_description_node :
                     #if child is a leaf, description is appended to buffer_description_node for parent
                     # replacing n by * charachter
@@ -125,7 +121,6 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                     buffer_description_node[id_parent] = buffer_description_node[id_parent] + "<BR/>" + child_description
             # else look for ref
             elif "$ref" in child :
-                #print(id_child + " Object Ref")
                 # getting type child and child with ref
                 type_child = get_id_ref(child["$ref"])
                 child = get_ref(child["$ref"], dict_definitions)
