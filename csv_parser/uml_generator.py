@@ -83,7 +83,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
     # no parsing of id to ignore
     if id_parent in id_ignore :
         if id_parent in buffer_description_node :
-            buffer_description_node[id_parent] = "\ncf. objet du même type"
+            buffer_description_node[id_parent] = "<BR/>cf. objet du même type"
         return
     # buffer_description_node stores descrition of each node to append leaf description
     for id_child, child in dict_in["properties"].items() :
@@ -115,7 +115,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                 if id_parent in buffer_description_node :
                     #if child is a leaf, description is appended to buffer_description_node for parent
                     # replacing n by * charachter
-                    child_description = "{} <I>{}</I> :  [{}..{}]".format(id_child, child["type"], 
+                    child_description = "{} <I>{}</I> : [{}..{}]".format(id_child, child["type"],
                                                                 cardinalite_child[0],
                                                                 cardinalite_child[1].replace("n","*"))
                     buffer_description_node[id_parent] = buffer_description_node[id_parent] + "<BR/>" + child_description
