@@ -47,7 +47,7 @@ public class AlertCode {
     public static final String JSON_PROPERTY_LOCATION_KIND = "locationKind";
     private Nomenclature locationKind;
 
-    public static final String JSON_PROPERTY_RISK_THREAT = "riskThreats";
+    public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
     private List<Nomenclature> riskThreats;
 
     public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
@@ -159,16 +159,21 @@ public class AlertCode {
      *
      * @return riskThreat
      **/
-//    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    @JacksonXmlProperty(localName = "riskThreat")
-    @JacksonXmlElementWrapper(useWrapping = true, localName = "riskThreats")
+    // TODO bbo: set useWrapping to true when deserialization issues fixed
+//    @JacksonXmlProperty(localName = "riskThreat")
+//    @JacksonXmlElementWrapper(useWrapping = true, localName = "riskThreats")
     public List<Nomenclature> getRiskThreats() {
         return riskThreats;
     }
 
-//    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
-//    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JacksonXmlElementWrapper(useWrapping = false)
+    // TODO bbo: fix deserialization issues with xml wrapping
+//    @JacksonXmlElementWrapper(useWrapping = true, localName = "riskThreats")
+//    @JacksonXmlProperty(localName = "riskThreat")
+    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setRiskThreats(List<Nomenclature> riskThreats) {
         if (riskThreats == null) {
             return;
