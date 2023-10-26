@@ -1,9 +1,6 @@
 package com.hubsante.model.edxl;
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 
@@ -20,6 +17,15 @@ import java.util.Objects;
         fieldVisibility = JsonAutoDetect.Visibility.ANY,
         getterVisibility = JsonAutoDetect.Visibility.NONE
 )
+@JsonPropertyOrder({
+        "distributionID",
+        "senderID",
+        "dateTimeSent",
+        "dateTimeExpires",
+        "distributionStatus",
+        "distributionKind",
+        "descriptor"
+})
 @JacksonXmlRootElement(localName = "edxlDistribution")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JsonIgnoreProperties(ignoreUnknown = true)

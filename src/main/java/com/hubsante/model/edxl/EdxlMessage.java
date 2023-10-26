@@ -1,10 +1,20 @@
 package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.time.OffsetDateTime;
 import java.util.Objects;
 
+@JsonPropertyOrder({
+        "distributionID",
+        "senderID",
+        "dateTimeSent",
+        "dateTimeExpires",
+        "distributionStatus",
+        "distributionKind",
+        "descriptor",
+        "content"})
 public class EdxlMessage extends EdxlEnvelope {
 
     @JsonProperty(value = "content", required = true)
