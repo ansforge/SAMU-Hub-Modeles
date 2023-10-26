@@ -7,6 +7,7 @@ pip install -r requirements.txt
 ## Usage
 ```bash
 # Params to specify the sheet and version
+# by default, integrate uml generation process
 python csv_parser.py -s RC-DE -v 0.5  
 python csv_parser.py --sheet RC-DE --version 0.5
 # Defaults to RC-EDA and today (YY.MM.DD)

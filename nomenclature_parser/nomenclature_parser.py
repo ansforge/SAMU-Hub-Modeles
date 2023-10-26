@@ -31,6 +31,11 @@ if args.folder :
     FOLDER = args.folder
 
 def main() :
+    # create output folder
+    if not os.path.isdir("out") :
+        os.mkdir("out")
+    if not os.path.isdir(os.path.join("out","release_" + RELEASE)) :
+        os.mkdir(os.path.join("out","release_" + RELEASE))
     loader.parse_folder(FOLDER, release=RELEASE)
     return
 

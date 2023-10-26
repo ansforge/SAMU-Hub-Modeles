@@ -37,7 +37,8 @@ def export_csv_nomenclature(params_in, df_nomenclature_in, release="v1.1") :
     df_export.rename(columns={"Code": "code", "Description": "description", "Commentaire" : "commentaire"}, inplace=True)
     for level in range(1,params_in["levels"] + 1) :
         df_export.rename(columns={"Libellé niveau " + str(level): "label_n" + str(level)}, inplace=True)
-    file_out = params_in["nomenclature_ref"] + "-" +  params_in["nomenclature_name"] + "-" + release + ".csv"
+    # release is not taken into account for Excel
+    file_out = params_in["nomenclature_ref"] + "-" +  params_in["nomenclature_name"] + ".csv"
     path_out = os.path.join("out","release_" + release)
     # create dir if not exist
     try :
@@ -239,6 +240,7 @@ def parse_excel(filename_in, df_sommaire_in, release="v1.1") :
         df_sommaire_in = pd.concat([df_i,df_sommaire_in.loc[:]]).reset_index(drop=True)
 
         # generate export
+        # for csv version not taken into account in filename
         export_csv_nomenclature(params_i,df_nomenclature_i, release=release)
         export_fonc_nomenclature(params_i,df_nomenclature_i, release=release)
     return df_sommaire_in
@@ -252,9 +254,14 @@ def parse_folder(folder_in, release="v1.1") :
                             "referentiel"],
                     dtype=str)
     for filename in os.listdir(folder_in):
-        print("Processing " + filename + " ...")
-        # processing
-        df_sommaire = parse_excel(os.path.join(folder_in,filename), df_sommaire, release=release)
+        
+        # check extension 
+        if filename.endswith('.xlsx') :
+            print("Processing " + filename + " ...")
+            # processing
+            df_sommaire = parse_excel(os.path.join(folder_in,filename), df_sommaire, release=release)
+        else :
+            print(filename + " is not a valid nomenclature file.")
     print("Processing summary ...")
     export_sommaire(df_sommaire, release=release)
     print("Job done.")
