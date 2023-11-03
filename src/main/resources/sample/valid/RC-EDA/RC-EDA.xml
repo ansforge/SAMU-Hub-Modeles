@@ -1,0 +1,153 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<edxlDistribution xlink:type="extended" xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0">
+    <distributionID>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
+    <senderID>fr.health.samuB</senderID>
+    <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
+    <dateTimeExpires>2072-07-25T10:04:34+01:00</dateTimeExpires>
+    <distributionStatus>Actual</distributionStatus>
+    <distributionKind>Report</distributionKind>
+    <descriptor xlink:type="resource">
+        <language>fr-FR</language>
+        <explicitAddress>
+            <explicitAddressScheme>hubex</explicitAddressScheme>
+            <explicitAddressValue>fr.health.samuA</explicitAddressValue>
+        </explicitAddress>
+    </descriptor>
+    <content xlink:type="resource">
+        <contentObject xlink:type="resource">
+            <contentXML>
+                <embeddedXMLContent>
+                    <message xmlns="urn:emergency:cisu:2.0">
+                        <messageId>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</messageId>
+                        <sender>
+                            <name>samuB</name>
+                            <URI>hubex:fr.health.samuB</URI>
+                        </sender>
+                        <sentAt>2022-07-25T10:04:34+01:00</sentAt>
+                        <kind>Report</kind>
+                        <status>Actual</status>
+                        <recipients>
+                            <recipient>
+                                <name>samuA</name>
+                                <URI>hubex:fr.health.samuA</URI>
+                            </recipient>
+                        </recipients>
+                        <createCase>
+                            <caseId>SAMU069-20230725-AF1234</caseId>
+                            <senderCaseId>SAMU069-20230725-AF1234</senderCaseId>
+                            <createdAt>2022-07-25T10:03:34+01:00</createdAt>
+                            <initialAlert>
+                                <alertId>SAMU069-20230725-AL01234</alertId>
+                                <receivedAt>2022-07-25T10:01:22+01:00</receivedAt>
+                                <reporting>STANDARD</reporting>
+                                <alertInformation>suite collision avec un autre vélo sur piste cyclable, gonflement du genou, grosses égratignures, maux de tête</alertInformation>
+                                <caller>
+                                    <callerURI>tel:+330607080901</callerURI>
+                                    <callbackURI>tel:+330601020304</callbackURI>
+                                    <spokenLanguage>Français</spokenLanguage>
+                                    <callerInformation>Epoux</callerInformation>
+                                    <callerName>
+                                        <complete>Louise Durand</complete>
+                                        <callerLastName>Durand</callerLastName>
+                                        <callerFirstName>Louise</callerFirstName>
+                                    </callerName>
+                                </caller>
+                                <alertLocation/>
+                                <alertCode>
+                                    <cisuVersion>1.19</cisuVersion>
+                                    <whatsHappen>
+                                        <code>C01.01.04</code>
+                                        <label>2-roues</label>
+                                        <freetext>pas d'autres types de véhicules impliqués</freetext>
+                                    </whatsHappen>
+                                    <locationKind>
+                                        <code>L02.01.00</code>
+                                        <label>Voie publique hors voie rapide</label>
+                                        <freetext>Voie vélo le long d'une route </freetext>
+                                    </locationKind>
+                                    <riskThreat>
+                                        <code>R22</code>
+                                        <label>Gêne à la circulation</label>
+                                        <freetext>vélos débordent sur la route, rsique lié aux voitures</freetext>
+                                    </riskThreat>
+                                    <healthMotive>
+                                        <code>M03.11, M02.07</code>
+                                        <label>Céphalée, migraines, Traumatisme sérieux, plaie intermédiaire</label>
+                                        <freetext>Portait un casque de protection</freetext>
+                                    </healthMotive>
+                                    <gravity>faible</gravity>
+                                    <victims>
+                                        <count>MANY</count>
+                                        <mainVictim>ADULT</mainVictim>
+                                        <comment>Deuxième victime présente saignement legers aux mains et genoux</comment>
+                                    </victims>
+                                </alertCode>
+                                <contact>
+                                    <type>Personne</type>
+                                    <detail>tel:+330607080901</detail>
+                                </contact>
+                                <callTaker>
+                                    <organization>SAMU069</organization>
+                                    <controlRoom>Régulation</controlRoom>
+                                </callTaker>
+                                <resource>
+                                    <resourceDesc>DISPMED</resourceDesc>
+                                    <mimeType>pdf</mimeType>
+                                    <size>9</size>
+                                    <URI>https://www.docPatient1.hpLyon.com/share?res=123456</URI>
+                                    <digest>84feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab8684</digest>
+                                </resource>
+                            </initialAlert>
+                            <caseLocation>
+                                <locID>BA-15478-21455789</locID>
+                                <name>Quai des Célestins</name>
+                                <address>
+                                    <complete>8 quai des Célestins</complete>
+                                    <number>8</number>
+                                    <wayName>
+                                        <type>Quai</type>
+                                        <name>des Célestins</name>
+                                    </wayName>
+                                </address>
+                                <city>
+                                    <name>Lyon</name>
+                                    <inseeCode>69002</inseeCode>
+                                    <detail>deuxième arrondissement</detail>
+                                </city>
+                                <access/>
+                                <geometry>
+                                    <point>
+                                        <coord>
+                                            <lat>45.7602368</lat>
+                                            <lon>4.8310551</lon>
+                                            <height>237</height>
+                                            <time>2022-07-25T10:03:34+01:00</time>
+                                            <precision>ADDRESS</precision>
+                                        </coord>
+                                        <coordsys>EPSG-4326</coordsys>
+                                    </point>
+                                </geometry>
+                                <link>
+                                    <source>BAN</source>
+                                    <id>id1234</id>
+                                </link>
+                                <country>France</country>
+                                <freetext>Devant la boulangerie Quai des Célestin</freetext>
+                            </caseLocation>
+                            <severity>MINOR</severity>
+                            <additionalInformation>
+                                <customMap>
+                                    <key>neighborhood</key>
+                                    <label>Quartier</label>
+                                    <value>SECT.QUARTIER HISTORIQUE</value>
+                                    <freetext>Une voix sens unique pour voiture + une voix bus</freetext>
+                                </customMap>
+                            </additionalInformation>
+                            <freetext>choc à la tête mais portait un casque de protection. 2ème victime n'a pas de blessures apparantes.</freetext>
+                        </createCase>
+                    </message>
+                </embeddedXMLContent>
+            </contentXML>
+        </contentObject>
+    </content>
+</edxlDistribution>
