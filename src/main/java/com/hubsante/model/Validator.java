@@ -12,8 +12,6 @@ import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
 import lombok.extern.slf4j.Slf4j;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.stereotype.Service;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -28,10 +26,8 @@ import java.io.StringReader;
 import java.util.Set;
 
 @Slf4j
-//@Service
 public class Validator {
 
-//    @Autowired
     private ObjectMapper jsonMapper;
     private XmlMapper xmlMapper;
 
