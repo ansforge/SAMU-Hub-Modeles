@@ -39,6 +39,24 @@ public class EDXL_DE_Builder {
         return this;
     }
 
+    public EDXL_DE_Builder dateTimeSentNowWithOffsetInSeconds(long offset) {
+        this.dateTimeSent = OffsetDateTime.now();
+        this.dateTimeExpires = this.dateTimeSent.plusDays(offset);
+        return this;
+    }
+
+    public EDXL_DE_Builder dateTimeSentNowWithOffsetInHours(long offset) {
+        this.dateTimeSent = OffsetDateTime.now();
+        this.dateTimeExpires = this.dateTimeSent.plusHours(offset);
+        return this;
+    }
+
+    public EDXL_DE_Builder dateTimeSentNowWithOffsetInDays(long offset) {
+        this.dateTimeSent = OffsetDateTime.now();
+        this.dateTimeExpires = this.dateTimeSent.plusDays(offset);
+        return this;
+    }
+
     public EDXL_DE_Builder dateTimeExpires(OffsetDateTime dateTimeExpires) {
         if (dateTimeExpires.isBefore(this.dateTimeSent)) {
             throw new IllegalArgumentException("dateTimeExpires must be after dateTimeSent");
