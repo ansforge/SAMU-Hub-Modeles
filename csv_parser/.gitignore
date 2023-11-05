@@ -1,0 +1,7 @@
+# VDR : .gitignore to avoid commit of generated output from parser
+out/others
+
+*.ipynb
+*.png
+*.gv
+*.dot

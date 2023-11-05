@@ -4,3 +4,4 @@ pyyaml
 jsonpath-ng
 python-docx
 argparse
+graphviz

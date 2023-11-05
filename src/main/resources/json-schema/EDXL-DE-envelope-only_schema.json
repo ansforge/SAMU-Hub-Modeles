@@ -1,7 +1,7 @@
 {
-  "$schema" : "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://json-schema.org/draft-07/schema#",
-  "definitions" : {
+  "definitions": {
     "EdxlEnvelope": {
       "type": "object",
       "properties": {
@@ -29,7 +29,15 @@
           "$ref": "#/definitions/Descriptor"
         }
       },
-      "required": ["senderID", "distributionID", "dateTimeSent", "dateTimeExpires", "distributionStatus", "distributionKind", "descriptor"]
+      "required": [
+        "senderID",
+        "distributionID",
+        "dateTimeSent",
+        "dateTimeExpires",
+        "distributionStatus",
+        "distributionKind",
+        "descriptor"
+      ]
     },
     "EdxlMessage": {
       "type": "object",
@@ -43,20 +51,22 @@
           "$ref": "#/definitions/Content"
         }
       },
-      "required": ["content"]
+      "required": [
+        "content"
+      ]
     },
     "Content": {
-      "type": "object",
-      "properties": {
-        "contentObject": {
-          "$ref": "#/definitions/ContentObject"
-        }
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentObject"
       },
-      "required": ["contentObject"]
+      "minItems": 1
     },
     "ContentObject": {
       "type": "object",
-      "required": ["jsonContent"],
+      "required": [
+        "jsonContent"
+      ],
       "properties": {
         "jsonContent": {
           "$ref": "#/definitions/JsonContent"
@@ -65,7 +75,9 @@
     },
     "JsonContent": {
       "type": "object",
-      "required": ["embeddedJsonContent"],
+      "required": [
+        "embeddedJsonContent"
+      ],
       "properties": {
         "embeddedJsonContent": {
           "$ref": "#/definitions/EmbeddedJsonContent"
@@ -85,15 +97,27 @@
           "type": "string"
         }
       },
-      "required": ["explicitAddress", "language"]
+      "required": [
+        "explicitAddress",
+        "language"
+      ]
     },
     "DistributionKind": {
-      "type" : "string",
-      "enum" : [ "Report", "Update", "Cancel", "Ack", "Error" ]
+      "type": "string",
+      "enum": [
+        "Report",
+        "Update",
+        "Cancel",
+        "Ack",
+        "Error"
+      ]
     },
     "DistributionStatus": {
-      "type" : "string",
-      "enum" : [ "Actual", "Exercise" ]
+      "type": "string",
+      "enum": [
+        "Actual",
+        "Exercise"
+      ]
     },
     "ExplicitAddress": {
       "type": "object",
@@ -105,10 +129,13 @@
           "type": "string"
         }
       },
-      "required": ["explicitAddressScheme", "explicitAddressValue"]
+      "required": [
+        "explicitAddressScheme",
+        "explicitAddressValue"
+      ]
     }
   },
-  "properties" : {
+  "properties": {
     "edxlMessage": {
       "$ref": "#/definitions/EdxlMessage"
     },
@@ -141,6 +168,13 @@
     }
   },
   "required": [
-    "senderID", "distributionID", "dateTimeSent", "dateTimeExpires", "distributionStatus", "distributionKind", "descriptor", "content"
+    "senderID",
+    "distributionID",
+    "dateTimeSent",
+    "dateTimeExpires",
+    "distributionStatus",
+    "distributionKind",
+    "descriptor",
+    "content"
   ]
 }

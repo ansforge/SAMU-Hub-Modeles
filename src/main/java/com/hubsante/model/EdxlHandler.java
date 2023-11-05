@@ -45,7 +45,7 @@ public class EdxlHandler {
 
     public ContentMessage deserializeJsonContentMessage(String json) throws JsonProcessingException {
         EdxlMessage edxlMessage = deserializeJsonEDXL(json);
-        return edxlMessage.getContent().getContentObject().getContentWrapper()
+        return edxlMessage.getContent().get(0).getContentWrapper()
                 .getEmbeddedContent().getMessage();
     }
 
@@ -55,7 +55,7 @@ public class EdxlHandler {
 
     public ContentMessage deserializeXmlContentMessage(String xml) throws JsonProcessingException {
         EdxlMessage edxlMessage = deserializeXmlEDXL(xml);
-        return edxlMessage.getContent().getContentObject().getContentWrapper()
+        return edxlMessage.getContent().get(0).getContentWrapper()
                 .getEmbeddedContent().getMessage();
     }
 

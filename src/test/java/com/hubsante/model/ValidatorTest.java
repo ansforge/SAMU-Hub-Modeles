@@ -4,10 +4,6 @@ import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.SpringBootConfiguration;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.ContextConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -21,13 +17,9 @@ import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @Slf4j
-//@SpringBootTest
-//@ContextConfiguration(classes = ModelApplication.class)
-//@SpringBootConfiguration
 public class ValidatorTest {
     static ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-//    @Autowired
     private final Validator validator = new Validator();
 
     /*

@@ -314,7 +314,7 @@
         "locationKind": {
           "$ref": "#/definitions/nomenclature"
         },
-        "riskThreat": {
+        "riskThreats": {
           "type": "array",
           "items": {
             "$ref": "#/definitions/nomenclature"

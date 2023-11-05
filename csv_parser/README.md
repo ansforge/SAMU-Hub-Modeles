@@ -23,3 +23,21 @@ awk '{sub("#/definitions/","#/components/schemas/")} {print}' out/RC-EDA/hubsant
 awk '{sub("#/definitions/","#/components/schemas/")} {print}' out/RC-DE/hubsante.asyncapi.yaml > tmpfile && mv tmpfile out/RC-DE/hubsante.asyncapi.yaml
 ag out/RC-EDA/hubsante.asyncapi.yaml @asyncapi/html-template -o ../../web/specs --force-write
 ```
+
+# JsonSchema to uml
+## Installation
+
+Install graphviz on your execution environnement
+https://graphviz.org/
+```bash
+pip install -r requirements.txt
+```
+
+## Usage
+```bash
+# Params to specify model and version
+python uml_generator.py -m RC-EDA -o cisu -v 1.12
+python uml_generator.py --model RC-EDA --obj cisu --version 1.12
+```
+
+

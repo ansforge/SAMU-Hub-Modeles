@@ -56,15 +56,11 @@
       ]
     },
     "Content": {
-      "type": "object",
-      "properties": {
-        "contentObject": {
-          "$ref": "#/definitions/ContentObject"
-        }
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentObject"
       },
-      "required": [
-        "contentObject"
-      ]
+      "minItems": 1
     },
     "ContentObject": {
       "type": "object",

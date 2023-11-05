@@ -12,8 +12,8 @@
       "explicitAddressValue": "fr.fire.nexsis.sdis23"
     }
   },
-  "content": {
-    "contentObject": {
+  "content": [
+    {
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
@@ -63,7 +63,7 @@
                     "label": "Voie publique hors voie rapide",
                     "freetext": "Voie vélo le long d'une route "
                   },
-                  "riskThreat": [
+                  "riskThreats": [
                     {
                       "code": "R22",
                       "label": "Gêne à la circulation",
@@ -172,5 +172,5 @@
         }
       }
     }
-  }
+  ]
 }

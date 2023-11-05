@@ -12,8 +12,8 @@
       "explicitAddressValue": "fr.fire.nexsis.sdis23"
     }
   },
-  "content": {
-    "contentObject": {
+  "content": [
+    {
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
@@ -171,5 +171,5 @@
         }
       }
     }
-  }
+  ]
 }

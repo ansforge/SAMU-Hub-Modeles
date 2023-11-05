@@ -10,8 +10,8 @@
       "explicitAddressScheme": "hubex"
     }
   },
-  "content": {
-    "contentObject": {
+  "content": [
+    {
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
@@ -22,5 +22,5 @@
         }
       }
     }
-  }
+  ]
 }

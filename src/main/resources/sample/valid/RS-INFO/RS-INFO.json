@@ -12,8 +12,8 @@
       "explicitAddressValue": "fr.health.samuA"
     }
   },
-  "content": {
-    "contentObject": {
+  "content": [
+    {
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
@@ -27,5 +27,5 @@
         }
       }
     }
-  }
+  ]
 }

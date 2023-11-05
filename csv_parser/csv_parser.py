@@ -6,6 +6,8 @@ import docx
 import argparse
 from datetime import date
 import warnings
+import uml_generator
+
 
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
@@ -406,6 +408,10 @@ full_yaml['components']['schemas'] = {
 with open(f'out/{args.sheet}/hubsante.asyncapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, file, sort_keys=False)
 print('AsyncAPI schema generated.')
+
+print('Generating UML diagrams...')
+uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
+print('UML diagrams generated.')
 
 named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
 

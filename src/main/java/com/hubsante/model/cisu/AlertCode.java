@@ -159,7 +159,8 @@ public class AlertCode {
      *
      * @return riskThreat
      **/
-    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+    @JsonProperty("riskThreats")
+    @JacksonXmlProperty(localName = "riskThreat")
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     // TODO bbo: set useWrapping to true when deserialization issues fixed
 //    @JacksonXmlProperty(localName = "riskThreat")
@@ -172,7 +173,8 @@ public class AlertCode {
     // TODO bbo: fix deserialization issues with xml wrapping
 //    @JacksonXmlElementWrapper(useWrapping = true, localName = "riskThreats")
 //    @JacksonXmlProperty(localName = "riskThreat")
-    @JsonProperty(JSON_PROPERTY_RISK_THREAT)
+    @JsonProperty("riskThreats")
+    @JacksonXmlProperty(localName = "riskThreat")
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setRiskThreats(List<Nomenclature> riskThreats) {
         if (riskThreats == null) {

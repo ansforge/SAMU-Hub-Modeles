@@ -65,11 +65,16 @@
                                         <label>Voie publique hors voie rapide</label>
                                         <freetext>Voie vélo le long d'une route </freetext>
                                     </locationKind>
-                                    <riskThreat>
-                                        <code>R22</code>
-                                        <label>Gêne à la circulation</label>
-                                        <freetext>vélos débordent sur la route, rsique lié aux voitures</freetext>
-                                    </riskThreat>
+                                        <riskThreat>
+                                            <code>R22</code>
+                                            <label>Gêne à la circulation</label>
+                                            <freetext>vélos débordent sur la route, rsique lié aux voitures</freetext>
+                                        </riskThreat>
+                                        <riskThreat>
+                                            <code>R23</code>
+                                            <label>Obstacle sur la voie</label>
+                                            <freetext>vélos débordent sur la route, rsique lié aux voitures</freetext>
+                                        </riskThreat>
                                     <healthMotive>
                                         <code>M03.11, M02.07</code>
                                         <label>Céphalée, migraines, Traumatisme sérieux, plaie intermédiaire</label>

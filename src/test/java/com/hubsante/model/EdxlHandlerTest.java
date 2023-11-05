@@ -5,10 +5,6 @@ import com.hubsante.model.edxl.EdxlMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.boot.SpringBootConfiguration;
-//import org.springframework.boot.test.context.SpringBootTest;
-//import org.springframework.test.context.ContextConfiguration;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,14 +16,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
-//@SpringBootTest
-//@ContextConfiguration(classes = ModelApplication.class)
-//@SpringBootConfiguration
 public class EdxlHandlerTest {
 
     static ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
 
-//    @Autowired
     private EdxlHandler converter = new EdxlHandler();
 
     @Test
