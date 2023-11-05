@@ -5,6 +5,7 @@ import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.CreateCaseMessage;
 import com.hubsante.model.cisu.DistributionElement;
 import com.hubsante.model.cisu.Recipient;
+import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -52,6 +53,6 @@ public class RC_EDA_BuilderTest {
 
     private CreateCase getCreateCaseMock() throws IOException {
         String json = getMessageString(true, "RC-EDA", false);
-        return  ((CreateCaseMessage) converter.deserializeJsonContentMessage(json)).getCreateCase();
+        return ((CreateCaseMessage) converter.deserializeJsonEDXL(json).getContentMessage()).getCreateCase();
     }
 }
