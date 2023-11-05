@@ -1,7 +1,5 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '2.7.9'
-    id 'io.spring.dependency-management' version '1.1.0'
     id 'maven-publish'
 }
 
@@ -12,10 +10,6 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(8)
     }
-}
-
-bootJar {
-    enabled = false
 }
 
 repositories {
@@ -29,12 +23,13 @@ dependencies {
     implementation 'javax.validation:validation-api:2.0.1.Final'
     implementation 'jakarta.annotation:jakarta.annotation-api:1.3.5'
     implementation 'com.networknt:json-schema-validator:1.0.87'
-    implementation 'org.projectlombok:lombok'
-    implementation 'org.junit.jupiter:junit-jupiter-params'
+    implementation 'org.projectlombok:lombok:1.18.22'
+    implementation 'org.junit.jupiter:junit-jupiter-params:5.8.2'
     implementation 'com.google.guava:guava:32.1.3-jre'
 
+    testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
-    testAnnotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
 tasks.named('test') {
@@ -45,6 +40,16 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
+        }
+    }
+    repositories {
+        maven {
+            name = 'GitHubPackages'
+            url = 'https://maven.pkg.github.com/ansforge/SAMU-Hub-Sante'
+            credentials {
+                username = System.getenv("GITHUB_ACTOR")
+                password = System.getenv("GITHUB_TOKEN")
+            }
         }
     }
 }
