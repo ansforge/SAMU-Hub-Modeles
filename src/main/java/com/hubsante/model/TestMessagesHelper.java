@@ -11,8 +11,8 @@ public class TestMessagesHelper {
      * @param message the name of the message (RC-EDA, RS-INFO, EMSI-DC, etc.)
      * @return the sample message as a Stream of a JSON String
      */
-    public static String getSampleMessageAsStream(String message) throws IOException {
-        return getSampleMessageAsStream(message, false);
+    public static String getSampleMessage(String message) throws IOException {
+        return getSampleMessage(message, false);
     }
 
     /*
@@ -20,7 +20,7 @@ public class TestMessagesHelper {
      * @param isXML whether the message is XML or JSON
      * @return the sample message as a Stream of a JSON or XML String
      */
-    public static String getSampleMessageAsStream(String message, boolean isXML) throws IOException {
+    public static String getSampleMessage(String message, boolean isXML) throws IOException {
         String extension = isXML ? ".xml" : ".json";
         String filepath = message + "/" + message + extension;
         String json;
@@ -31,7 +31,7 @@ public class TestMessagesHelper {
         return json;
     }
 
-    public static String getInvalidMessageAsStream(String messagePath) throws IOException {
+    public static String getInvalidMessage(String messagePath) throws IOException {
         String json;
         try (InputStream is = TestMessagesHelper.class.getClassLoader().getResourceAsStream("sample/failing/" + messagePath)) {
             assert is != null;
