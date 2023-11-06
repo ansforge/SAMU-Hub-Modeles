@@ -15,7 +15,6 @@ import argparse
 import hubsante.loader as loader
 
 FOLDER = "in"
-RELEASE = "v1.1"
 
 parser = argparse.ArgumentParser(
     prog='Nomenclature Parser',
@@ -26,7 +25,7 @@ parser.add_argument('-f', '--folder', default="in", help='the folder to be parse
 args = parser.parse_args()
 
 if args.version :
-    RELEASE = args.version
+    RELEASE = "v" + args.version
 if args.folder :
     FOLDER = args.folder
 
