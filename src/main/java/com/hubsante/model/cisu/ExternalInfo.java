@@ -75,7 +75,7 @@ public class ExternalInfo {
     }
 
     public static final String JSON_PROPERTY_FREETEXT = "freetext";
-    private FreetextEnum freetext;
+    private String freetext;
 
     /**
      * Définition du type d&#39;objet dans le système Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données
@@ -127,7 +127,7 @@ public class ExternalInfo {
     public ExternalInfo() {
     }
 
-    public ExternalInfo freetext(FreetextEnum freetext) {
+    public ExternalInfo freetext(String freetext) {
 
         this.freetext = freetext;
         return this;
@@ -141,14 +141,14 @@ public class ExternalInfo {
     @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public FreetextEnum getFreetext() {
+    public String getFreetext() {
         return freetext;
     }
 
 
     @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setFreetext(FreetextEnum freetext) {
+    public void setFreetext(String freetext) {
         this.freetext = freetext;
     }
 

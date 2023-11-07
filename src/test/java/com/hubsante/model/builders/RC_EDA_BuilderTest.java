@@ -2,10 +2,10 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.CreateCaseMessage;
-import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.RCDE;
+import com.hubsante.model.cisu.RCDE.*;
+import com.hubsante.model.cisu.RCEDA;
 import com.hubsante.model.cisu.Recipient;
-import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -29,13 +29,13 @@ public class RC_EDA_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
+        RCDE rcDe = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
                 .build();
-        CreateCaseMessage createCaseMessage = new RC_EDA_Builder(distributionElement, getCreateCaseMock())
+        RCEDA rcEda = new RC_EDA_Builder(rcDe, getCreateCaseMock())
                 .build();
 
-        assertEquals(MESSAGE_ID, createCaseMessage.getMessageId());
-        assertEquals(getCreateCaseMock(), createCaseMessage.getCreateCase());
+        assertEquals(MESSAGE_ID, rcEda.getMessageId());
+        assertEquals(getCreateCaseMock(), rcEda.getCreateCase());
     }
 
     @Test
@@ -44,15 +44,15 @@ public class RC_EDA_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
-                .kind(DistributionElement.KindEnum.ACK)
+        RCDE rcDe = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
+                .kind(KindEnum.ACK)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new RC_EDA_Builder(distributionElement, getCreateCaseMock()).build());
+        assertThrows(IllegalArgumentException.class, () -> new RC_EDA_Builder(rcDe, getCreateCaseMock()).build());
     }
 
     private CreateCase getCreateCaseMock() throws IOException {
-        String json = getMessageString(true, "RC-EDA", false);
-        return ((CreateCaseMessage) converter.deserializeJsonEDXL(json).getContentMessage()).getCreateCase();
+        String json = getMessageString(true, "new-RC-EDA", false);
+        return ((RCEDA) converter.deserializeJsonEDXL(json).getContentMessage()).getCreateCase();
     }
 }

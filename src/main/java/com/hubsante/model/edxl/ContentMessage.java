@@ -8,8 +8,8 @@ import com.hubsante.model.report.ErrorReport;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
-        @JsonSubTypes.Type(CreateCaseMessage.class),
-        @JsonSubTypes.Type(ReferenceMessage.class),
+        @JsonSubTypes.Type(RCEDA.class),
+        @JsonSubTypes.Type(RCDE.class),
         @JsonSubTypes.Type(ErrorReport.class),
         @JsonSubTypes.Type(CustomMessage.class)
 })

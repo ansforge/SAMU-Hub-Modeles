@@ -50,9 +50,9 @@ public class CallTaker {
      * Décrit le rôle de l&#39;agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)
      */
     public enum RoleEnum {
-        AGENT("AGENT"),
+        AGENT("ARM"),
 
-        SUPERVISOR("SUPERVISOR");
+        SUPERVISOR("MEDECIN");
 
         private String value;
 

@@ -1,8 +1,9 @@
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.RCDE;
+import com.hubsante.model.cisu.RCDE.*;
+import com.hubsante.model.cisu.RCREF;
 import com.hubsante.model.cisu.Recipient;
-import com.hubsante.model.cisu.ReferenceMessage;
 import com.hubsante.model.edxl.DistributionKind;
 import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -32,18 +33,18 @@ public class RC_REF_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
-                .kind(DistributionElement.KindEnum.ACK)
+        RCDE rcDe = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+                .kind(KindEnum.ACK)
                 .build();
-        ReferenceMessage referenceMessage = new RC_REF_Builder(distributionElement, "id-67890")
+        RCREF rcRef = new RC_REF_Builder(rcDe, "id-67890")
                 .build();
 
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
-                .contentMessage(referenceMessage)
+                .contentMessage(rcRef)
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
-        assertEquals("id-67890", ((ReferenceMessage) built.getContentMessage()).getReference().getDistributionID());
+        assertEquals("id-67890", ((RCREF) built.getContentMessage()).getReference().getDistributionID());
     }
 
     @Test
@@ -52,10 +53,10 @@ public class RC_REF_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
-                .kind(DistributionElement.KindEnum.REPORT)
+        RCDE rcDe = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+                .kind(RCDE.KindEnum.REPORT)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new RC_REF_Builder(distributionElement, "id-67890").build());
+        assertThrows(IllegalArgumentException.class, () -> new RC_REF_Builder(rcDe, "id-67890").build());
     }
 }

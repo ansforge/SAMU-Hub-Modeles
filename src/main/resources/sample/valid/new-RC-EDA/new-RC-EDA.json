@@ -1,0 +1,174 @@
+{
+  "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
+  "senderID": "fr.health.samuA",
+  "dateTimeSent": "2022-07-25T10:04:34+01:00",
+  "dateTimeExpires": "2072-07-25T10:04:34+01:00",
+  "distributionStatus": "Actual",
+  "distributionKind": "Report",
+  "descriptor": {
+    "language": "fr-FR",
+    "explicitAddress": {
+      "explicitAddressScheme": "hubex",
+      "explicitAddressValue": "fr.health.samuB"
+    }
+  },
+  "content": [
+    {
+      "jsonContent": {
+        "embeddedJsonContent": {
+          "message": {
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
+            "sender": {
+              "name": "samuA",
+              "URI": "hubex:fr.health.samuA"
+            },
+            "sentAt": "2022-07-25T10:04:34+01:00",
+            "kind": "Report",
+            "status": "Actual",
+            "recipients": [
+              {
+                "name": "samuB",
+                "URI": "hubex:fr.health.samuB"
+              }
+            ],
+            "createCase": {
+              "caseId": "samuA:CA126B445579GD4A67AV",
+              "senderCaseId": "CA126B445579GD4A67AV",
+              "creation": "2022-09-27T08:23:34+02:00",
+              "referenceVersion": "1.2",
+              "qualification": {
+                "whatsHappen": {
+                  "code": "C07.13.02",
+                  "label": "Rod\u00e9o automobile",
+                  "freetext": "None"
+                },
+                "locationKind": {},
+                "riskThreat": [
+                  {}
+                ],
+                "healthMotive": {},
+                "victims": {
+                  "count": "SEVERAL",
+                  "mainVictim": "CHILD",
+                  "freetext": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
+                }
+              },
+              "location": {
+                "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+                "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
+                "name": "Lyc\u00e9e Pierre de Coubertin",
+                "detailedAdress": {
+                  "complete": "9 Bd du Montparnasse",
+                  "number": "9, 4bis, PK10, \u2026",
+                  "wayName": {
+                    "complete": "Boulevard du Montparnasse",
+                    "type": "Boulevard",
+                    "name": "du Montparnasse"
+                  }
+                },
+                "city": {
+                  "name": "Lille",
+                  "inseeCode": 59350,
+                  "detail": "Quartie Melun Nord, Lhomme, \u2026"
+                },
+                "access": {
+                  "floor": "RDC, 1, 2, \u2026",
+                  "roomNumber": "A16, 37, 104, \u2026",
+                  "interphone": "Dupont",
+                  "accessCode": [
+                    "1234A",
+                    "4321B"
+                  ],
+                  "elevator": "C3",
+                  "buildingName": "Batiment B, Batiment Maunoury",
+                  "entrance": "Zone Sud, Porte 1, \u2026",
+                  "entity": "Infirmerie, service finance, service cardiologie, \u2026"
+                },
+                "geometry": {
+                  "obsDatime": "2022-09-27T08:23:34+02:00",
+                  "point": {
+                    "coord": {
+                      "lat": 48.866667,
+                      "lon": 2.333333,
+                      "height": 120,
+                      "heading": 96,
+                      "speed": 34,
+                      "precision": "ADDRESS"
+                    },
+                    "sysCoord": "EPSG-4326"
+                  },
+                  "sketch": "None"
+                },
+                "externalInfo": [
+                  {
+                    "freetext": "BAN",
+                    "type": "MANUAL",
+                    "uri": "id987"
+                  }
+                ],
+                "country": "FR",
+                "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+              },
+              "initialAlert": {
+                "id": "SGO050-20230605-AL0123",
+                "reception": "2022-09-27T08:21:06+02:00",
+                "reporting": "STANDARD",
+                "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
+                "caller": {
+                  "callerContact": {
+                    "type": "PHNADD",
+                    "detail": "0671830530"
+                  },
+                  "callbackContact": {},
+                  "language": "FR",
+                  "freetext": "P\u00e8re",
+                  "detailedName": {
+                    "complete": "Jean Dupont",
+                    "lastName": "Dupont",
+                    "firstName": "Jean"
+                  }
+                },
+                "alertSource": {
+                  "channel": "Personne",
+                  "type": "PHNADD",
+                  "detail": "0671830530"
+                },
+                "location": {},
+                "qualification": {},
+                "callTaker": {
+                  "organization": "FR:Administration:44:samu44:crra:regulationN3",
+                  "controlRoom": "CGA, CGO 21, CRRA 44, ...",
+                  "role": "ARM",
+                  "calltakeContact": {},
+                  "calltakerId": "id1234"
+                },
+                "attachment": [
+                  {
+                    "description": "photo, carte, \u2026",
+                    "mimeType": "PDF, XML, JPEG, \u2026",
+                    "size": 1235,
+                    "URI": "https://hub.esante.gouv.fr/resourceExample",
+                    "derefURI": "None",
+                    "digest": "None"
+                  }
+                ]
+              },
+              "newAlert": [
+                {}
+              ],
+              "additionalInformation": {
+                "customMap": {
+                  "key": "neighborhood",
+                  "label": "Quartier",
+                  "value": "LYON 2e arrondissement",
+                  "freetext": "Pr\u00e9cision sur le quartier d'intervention"
+                }
+              },
+              "freetext": "None"
+            }
+          }
+        }
+      }
+    }
+  ]
+}

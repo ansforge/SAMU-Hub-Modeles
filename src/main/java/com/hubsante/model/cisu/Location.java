@@ -641,7 +641,7 @@ public class Location {
     }
 
     public static final String JSON_PROPERTY_FREETEXT = "freetext";
-    private FreetextEnum freetext;
+    private String freetext;
 
     public Location() {
     }
@@ -895,7 +895,7 @@ public class Location {
     }
 
 
-    public Location freetext(FreetextEnum freetext) {
+    public Location freetext(String freetext) {
 
         this.freetext = freetext;
         return this;
@@ -909,14 +909,14 @@ public class Location {
     @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public FreetextEnum getFreetext() {
+    public String getFreetext() {
         return freetext;
     }
 
 
     @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setFreetext(FreetextEnum freetext) {
+    public void setFreetext(String freetext) {
         this.freetext = freetext;
     }
 
