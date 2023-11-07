@@ -33,20 +33,21 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * DistributionElement
+ * RCDE
  */
 @JsonPropertyOrder({
-        DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-        DistributionElement.JSON_PROPERTY_SENDER,
-        DistributionElement.JSON_PROPERTY_SENT_AT,
-        DistributionElement.JSON_PROPERTY_KIND,
-        DistributionElement.JSON_PROPERTY_STATUS,
-        DistributionElement.JSON_PROPERTY_RECIPIENTS
+        RCDE.JSON_PROPERTY_MESSAGE_ID,
+        RCDE.JSON_PROPERTY_SENDER,
+        RCDE.JSON_PROPERTY_SENT_AT,
+        RCDE.JSON_PROPERTY_KIND,
+        RCDE.JSON_PROPERTY_STATUS,
+        RCDE.JSON_PROPERTY_RECIPIENTS
 })
+@JsonTypeName("RC_DE")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:47:09.130+02:00[Europe/Paris]")
-public class DistributionElement extends ContentMessage {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:56.839+01:00[Europe/Paris]")
+public class RCDE extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
     public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
@@ -145,10 +146,10 @@ public class DistributionElement extends ContentMessage {
     public static final String JSON_PROPERTY_RECIPIENTS = "recipients";
     private List<Recipient> recipients;
 
-    public DistributionElement() {
+    public RCDE() {
     }
 
-    public DistributionElement messageId(String messageId) {
+    public RCDE messageId(String messageId) {
 
         this.messageId = messageId;
         return this;
@@ -174,7 +175,7 @@ public class DistributionElement extends ContentMessage {
     }
 
 
-    public DistributionElement sender(Sender sender) {
+    public RCDE sender(Sender sender) {
 
         this.sender = sender;
         return this;
@@ -200,7 +201,7 @@ public class DistributionElement extends ContentMessage {
     }
 
 
-    public DistributionElement sentAt(OffsetDateTime sentAt) {
+    public RCDE sentAt(OffsetDateTime sentAt) {
 
         this.sentAt = sentAt;
         return this;
@@ -226,7 +227,7 @@ public class DistributionElement extends ContentMessage {
     }
 
 
-    public DistributionElement kind(KindEnum kind) {
+    public RCDE kind(KindEnum kind) {
 
         this.kind = kind;
         return this;
@@ -252,7 +253,7 @@ public class DistributionElement extends ContentMessage {
     }
 
 
-    public DistributionElement status(StatusEnum status) {
+    public RCDE status(StatusEnum status) {
 
         this.status = status;
         return this;
@@ -278,7 +279,7 @@ public class DistributionElement extends ContentMessage {
     }
 
 
-    public DistributionElement recipients(List<Recipient> recipients) {
+    public RCDE recipients(List<Recipient> recipients) {
 
         this.recipients = recipients;
         return this;
@@ -291,15 +292,17 @@ public class DistributionElement extends ContentMessage {
      **/
     @JsonProperty(JSON_PROPERTY_RECIPIENTS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    @JacksonXmlElementWrapper(useWrapping = true)
+    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RECIPIENTS)
+    @JacksonXmlProperty(localName = "recipient")
     public List<Recipient> getRecipients() {
         return recipients;
     }
 
 
     @JsonProperty(JSON_PROPERTY_RECIPIENTS)
+    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RECIPIENTS)
+    @JacksonXmlProperty(localName = "recipient")
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    @JacksonXmlElementWrapper(useWrapping = true)
     public void setRecipients(List<Recipient> recipients) {
         this.recipients = recipients;
     }
@@ -312,13 +315,13 @@ public class DistributionElement extends ContentMessage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DistributionElement distributionElement = (DistributionElement) o;
-        return Objects.equals(this.messageId, distributionElement.messageId) &&
-                Objects.equals(this.sender, distributionElement.sender) &&
-                Objects.equals(this.sentAt, distributionElement.sentAt) &&
-                Objects.equals(this.kind, distributionElement.kind) &&
-                Objects.equals(this.status, distributionElement.status) &&
-                Objects.equals(this.recipients, distributionElement.recipients);
+        RCDE RC_DE = (RCDE) o;
+        return Objects.equals(this.messageId, RC_DE.messageId) &&
+                Objects.equals(this.sender, RC_DE.sender) &&
+                Objects.equals(this.sentAt, RC_DE.sentAt) &&
+                Objects.equals(this.kind, RC_DE.kind) &&
+                Objects.equals(this.status, RC_DE.status) &&
+                Objects.equals(this.recipients, RC_DE.recipients);
     }
 
     @Override
@@ -329,7 +332,7 @@ public class DistributionElement extends ContentMessage {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class DistributionElement {\n");
+        sb.append("class RCDE {\n");
         sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
         sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
         sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");

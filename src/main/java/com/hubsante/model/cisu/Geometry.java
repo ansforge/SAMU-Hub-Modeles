@@ -22,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.hubsante.model.cisu.Point;
+
+import java.time.OffsetDateTime;
+
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -30,13 +33,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * Geometry
  */
 @JsonPropertyOrder({
+        Geometry.JSON_PROPERTY_OBS_DATIME,
         Geometry.JSON_PROPERTY_POINT,
         Geometry.JSON_PROPERTY_SKETCH
 })
 @JsonTypeName("geometry")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Geometry {
+    public static final String JSON_PROPERTY_OBS_DATIME = "obsDatime";
+    private OffsetDateTime obsDatime;
+
     public static final String JSON_PROPERTY_POINT = "point";
     private Point point;
 
@@ -45,6 +52,32 @@ public class Geometry {
 
     public Geometry() {
     }
+
+    public Geometry obsDatime(OffsetDateTime obsDatime) {
+
+        this.obsDatime = obsDatime;
+        return this;
+    }
+
+    /**
+     * Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.
+     *
+     * @return obsDatime
+     **/
+    @JsonProperty(JSON_PROPERTY_OBS_DATIME)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public OffsetDateTime getObsDatime() {
+        return obsDatime;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_OBS_DATIME)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setObsDatime(OffsetDateTime obsDatime) {
+        this.obsDatime = obsDatime;
+    }
+
 
     public Geometry point(Point point) {
 
@@ -79,7 +112,7 @@ public class Geometry {
     }
 
     /**
-     * Get sketch
+     * Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné.  Dans le cas d&#39;une alerte donnée sur une zone géographique non précise (par exemple une section d&#39;autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie. En XML, un objet gml est encapsulé dans une balise &lt;sketch xmlns:gml&#x3D;&#39;http://www.opengis.net/gml&#39; version&#x3D;&#39;1.0&#39; &gt; &lt;/sketch&gt; En JSON, les balises sont reprises depuis le modèle gml Voir http://www.opengis.net/gml pour le format de l&#39;objet sketch
      *
      * @return sketch
      **/
@@ -106,13 +139,15 @@ public class Geometry {
             return false;
         }
         Geometry geometry = (Geometry) o;
-        return Objects.equals(this.point, geometry.point) &&
+        return Objects.equals(this.obsDatime, geometry.obsDatime) &&
+                Objects.equals(this.point, geometry.point) &&
                 Objects.equals(this.sketch, geometry.sketch);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(point
+        return Objects.hash(obsDatime
+                , point
                 , sketch);
     }
 
@@ -120,6 +155,7 @@ public class Geometry {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class Geometry {\n");
+        sb.append("    obsDatime: ").append(toIndentedString(obsDatime)).append("\n");
         sb.append("    point: ").append(toIndentedString(point)).append("\n");
         sb.append("    sketch: ").append(toIndentedString(sketch)).append("\n");
         sb.append("}");

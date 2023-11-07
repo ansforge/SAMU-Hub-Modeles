@@ -16,16 +16,22 @@ package com.hubsante.model.cisu;
 import java.util.Objects;
 import java.util.Arrays;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.hubsante.model.cisu.AdditionalInformation;
 import com.hubsante.model.cisu.Alert;
 import com.hubsante.model.cisu.Location;
+import com.hubsante.model.cisu.Qualification;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
@@ -34,16 +40,18 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
         CreateCase.JSON_PROPERTY_CASE_ID,
         CreateCase.JSON_PROPERTY_SENDER_CASE_ID,
-        CreateCase.JSON_PROPERTY_CREATED_AT,
+        CreateCase.JSON_PROPERTY_CREATION,
+        CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
+        CreateCase.JSON_PROPERTY_QUALIFICATION,
+        CreateCase.JSON_PROPERTY_LOCATION,
         CreateCase.JSON_PROPERTY_INITIAL_ALERT,
-        CreateCase.JSON_PROPERTY_CASE_LOCATION,
         CreateCase.JSON_PROPERTY_NEW_ALERT,
-        CreateCase.JSON_PROPERTY_SEVERITY,
         CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
         CreateCase.JSON_PROPERTY_FREETEXT
 })
+@JsonTypeName("createCase")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class CreateCase {
     public static final String JSON_PROPERTY_CASE_ID = "caseId";
     private String caseId;
@@ -51,61 +59,23 @@ public class CreateCase {
     public static final String JSON_PROPERTY_SENDER_CASE_ID = "senderCaseId";
     private String senderCaseId;
 
-    public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
-    private OffsetDateTime createdAt;
+    public static final String JSON_PROPERTY_CREATION = "creation";
+    private OffsetDateTime creation;
+
+    public static final String JSON_PROPERTY_REFERENCE_VERSION = "referenceVersion";
+    private String referenceVersion;
+
+    public static final String JSON_PROPERTY_QUALIFICATION = "qualification";
+    private Qualification qualification;
+
+    public static final String JSON_PROPERTY_LOCATION = "location";
+    private Location location;
 
     public static final String JSON_PROPERTY_INITIAL_ALERT = "initialAlert";
     private Alert initialAlert;
 
-    public static final String JSON_PROPERTY_CASE_LOCATION = "caseLocation";
-    private Location caseLocation;
-
     public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
     private List<Alert> newAlert;
-
-    /**
-     * [Non utilisé dans une première version car la définition et l&#39;usage restent à définir] Précise l&#39;urgence médicale :         EXTREME : Menace extrême pour la vie         SEVERE : Menace importante pour la vie         MODERATE - Menace possible pour la vie         MINOR : Peu ou pas de menace connue pour la vie         UNKNOWN : Niveau de menace inconnu Ce niveau de gravité est lié au Motif de Recours Medico-Secouriste associé à l&#39;appel.
-     */
-    public enum SeverityEnum {
-        EXTREME("EXTREME"),
-
-        SEVERE("SEVERE"),
-
-        MODERATE("MODERATE"),
-
-        MINOR("MINOR"),
-
-        UNKNOWN("UNKNOWN");
-
-        private String value;
-
-        SeverityEnum(String value) {
-            this.value = value;
-        }
-
-        @JsonValue
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        @JsonCreator
-        public static SeverityEnum fromValue(String value) {
-            for (SeverityEnum b : SeverityEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-    }
-
-    public static final String JSON_PROPERTY_SEVERITY = "severity";
-    private SeverityEnum severity;
 
     public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION = "additionalInformation";
     private AdditionalInformation additionalInformation;
@@ -123,7 +93,7 @@ public class CreateCase {
     }
 
     /**
-     * Identifiant fonctionnel unique de l&#39;affaire et partagé entre tous les intervenants. Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par la force réceptrice de la primo-demande de secours et contient un identifiant de la source. Format : {SystèmeEmetteur}-{Date}-AF{Sequence} où : - {SystèmeEmetteur} est la clé de routage utilisée en majuscule (se référer au DST) - {Date} est la date du jour au format AAAMMJJ - {Sequence} sur 4 digits est choisie par le système émetteur de façon à rendre les affaires emises uniques - AF pour désigner à NexSIS que l&#39;on échange une affaire
+     * Identifiant technique de l&#39;affaire et partagé entre tous les intervenants. Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par les systèmes du partenaire récepteur de la primo-demande de secours et contient une clé conventionnelle permettant d&#39;identifier la source. Valorisation : {cleConventionnelle}:{cleUnique} où cleConventionnelle est la clé utilisée par le partenaire emetteur et cleUnique l&#39;identifiant locale d&#39;affaire dans le système du partenaire emetteur. cleUnique est une chaîne de caractère (string) comprise entre 4 et 22 caractères alphanumériques.
      *
      * @return caseId
      **/
@@ -149,7 +119,7 @@ public class CreateCase {
     }
 
     /**
-     * Identifiant de l&#39;affaire dans le SI de l&#39;émetteur du message
+     * Valoriser avec l&#39;identifiant de l&#39;affaire dans le SI de l&#39;émetteur du message Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS Dans le cas où deux opérateurs ont besoin d&#39;identifier une affaire, ils peuvent utiliser les derniers caractères de l&#39;identifiant local de leur partenaire.
      *
      * @return senderCaseId
      **/
@@ -168,29 +138,107 @@ public class CreateCase {
     }
 
 
-    public CreateCase createdAt(OffsetDateTime createdAt) {
+    public CreateCase creation(OffsetDateTime creation) {
 
-        this.createdAt = createdAt;
+        this.creation = creation;
         return this;
     }
 
     /**
-     * Groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l&#39;ajout d&#39;alerte à une affaire ce champ ne doit pas être modifié.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé. Le fuseau horaire pour UTC doit être représenté par &#39;-00:00&#39;
+     * Groupe date heure de début de partage lié à la création de l&#39;affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l&#39;ajout d&#39;alerte à une affaire ce champ ne doit pas être modifié.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
      *
-     * @return createdAt
+     * @return creation
      **/
-    @JsonProperty(JSON_PROPERTY_CREATED_AT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonProperty(JSON_PROPERTY_CREATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public OffsetDateTime getCreatedAt() {
-        return createdAt;
+    public OffsetDateTime getCreation() {
+        return creation;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CREATED_AT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCreatedAt(OffsetDateTime createdAt) {
-        this.createdAt = createdAt;
+    @JsonProperty(JSON_PROPERTY_CREATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setCreation(OffsetDateTime creation) {
+        this.creation = creation;
+    }
+
+
+    public CreateCase referenceVersion(String referenceVersion) {
+
+        this.referenceVersion = referenceVersion;
+        return this;
+    }
+
+    /**
+     * Indique le numéro de version du référentiel des nomenclatures des codes transmis.  Cela permet aux différents systèmes de s&#39;assurer qu&#39;ils utilisent la même version des codes de nomenclature que leurs partenaires.
+     *
+     * @return referenceVersion
+     **/
+    @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public String getReferenceVersion() {
+        return referenceVersion;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setReferenceVersion(String referenceVersion) {
+        this.referenceVersion = referenceVersion;
+    }
+
+
+    public CreateCase qualification(Qualification qualification) {
+
+        this.qualification = qualification;
+        return this;
+    }
+
+    /**
+     * Get qualification
+     *
+     * @return qualification
+     **/
+    @JsonProperty(JSON_PROPERTY_QUALIFICATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public Qualification getQualification() {
+        return qualification;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_QUALIFICATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setQualification(Qualification qualification) {
+        this.qualification = qualification;
+    }
+
+
+    public CreateCase location(Location location) {
+
+        this.location = location;
+        return this;
+    }
+
+    /**
+     * Get location
+     *
+     * @return location
+     **/
+    @JsonProperty(JSON_PROPERTY_LOCATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+    public Location getLocation() {
+        return location;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_LOCATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
 
@@ -217,32 +265,6 @@ public class CreateCase {
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setInitialAlert(Alert initialAlert) {
         this.initialAlert = initialAlert;
-    }
-
-
-    public CreateCase caseLocation(Location caseLocation) {
-
-        this.caseLocation = caseLocation;
-        return this;
-    }
-
-    /**
-     * Get caseLocation
-     *
-     * @return caseLocation
-     **/
-    @JsonProperty(JSON_PROPERTY_CASE_LOCATION)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-    public Location getCaseLocation() {
-        return caseLocation;
-    }
-
-
-    @JsonProperty(JSON_PROPERTY_CASE_LOCATION)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setCaseLocation(Location caseLocation) {
-        this.caseLocation = caseLocation;
     }
 
 
@@ -284,32 +306,6 @@ public class CreateCase {
             this.newAlert = new ArrayList<>();
         }
         this.newAlert.addAll(newAlert);
-    }
-
-
-    public CreateCase severity(SeverityEnum severity) {
-
-        this.severity = severity;
-        return this;
-    }
-
-    /**
-     * [Non utilisé dans une première version car la définition et l&#39;usage restent à définir] Précise l&#39;urgence médicale :         EXTREME : Menace extrême pour la vie         SEVERE : Menace importante pour la vie         MODERATE - Menace possible pour la vie         MINOR : Peu ou pas de menace connue pour la vie         UNKNOWN : Niveau de menace inconnu Ce niveau de gravité est lié au Motif de Recours Medico-Secouriste associé à l&#39;appel.
-     *
-     * @return severity
-     **/
-    @JsonProperty(JSON_PROPERTY_SEVERITY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-    public SeverityEnum getSeverity() {
-        return severity;
-    }
-
-
-    @JsonProperty(JSON_PROPERTY_SEVERITY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setSeverity(SeverityEnum severity) {
-        this.severity = severity;
     }
 
 
@@ -375,11 +371,12 @@ public class CreateCase {
         CreateCase createCase = (CreateCase) o;
         return Objects.equals(this.caseId, createCase.caseId) &&
                 Objects.equals(this.senderCaseId, createCase.senderCaseId) &&
-                Objects.equals(this.createdAt, createCase.createdAt) &&
+                Objects.equals(this.creation, createCase.creation) &&
+                Objects.equals(this.referenceVersion, createCase.referenceVersion) &&
+                Objects.equals(this.qualification, createCase.qualification) &&
+                Objects.equals(this.location, createCase.location) &&
                 Objects.equals(this.initialAlert, createCase.initialAlert) &&
-                Objects.equals(this.caseLocation, createCase.caseLocation) &&
                 Objects.equals(this.newAlert, createCase.newAlert) &&
-                Objects.equals(this.severity, createCase.severity) &&
                 Objects.equals(this.additionalInformation, createCase.additionalInformation) &&
                 Objects.equals(this.freetext, createCase.freetext);
     }
@@ -388,11 +385,12 @@ public class CreateCase {
     public int hashCode() {
         return Objects.hash(caseId
                 , senderCaseId
-                , createdAt
+                , creation
+                , referenceVersion
+                , qualification
+                , location
                 , initialAlert
-                , caseLocation
                 , newAlert
-                , severity
                 , additionalInformation
                 , freetext);
     }
@@ -403,11 +401,12 @@ public class CreateCase {
         sb.append("class CreateCase {\n");
         sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
         sb.append("    senderCaseId: ").append(toIndentedString(senderCaseId)).append("\n");
-        sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+        sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
+        sb.append("    referenceVersion: ").append(toIndentedString(referenceVersion)).append("\n");
+        sb.append("    qualification: ").append(toIndentedString(qualification)).append("\n");
+        sb.append("    location: ").append(toIndentedString(location)).append("\n");
         sb.append("    initialAlert: ").append(toIndentedString(initialAlert)).append("\n");
-        sb.append("    caseLocation: ").append(toIndentedString(caseLocation)).append("\n");
         sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
-        sb.append("    severity: ").append(toIndentedString(severity)).append("\n");
         sb.append("    additionalInformation: ").append(toIndentedString(additionalInformation)).append("\n");
         sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
         sb.append("}");

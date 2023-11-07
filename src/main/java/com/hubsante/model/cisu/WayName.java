@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("wayName")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class WayName {
     public static final String JSON_PROPERTY_COMPLETE = "complete";
     private String complete;
@@ -56,12 +56,12 @@ public class WayName {
     }
 
     /**
-     * Type et nom de la voie (venant d&#39;un référentiel ou non)
+     * Type et nom de la voie (venant d&#39;un référentiel ou non) Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : \&quot;{type} {nom}\&quot;.
      *
      * @return complete
      **/
     @JsonProperty(JSON_PROPERTY_COMPLETE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getComplete() {
         return complete;
@@ -69,7 +69,7 @@ public class WayName {
 
 
     @JsonProperty(JSON_PROPERTY_COMPLETE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setComplete(String complete) {
         this.complete = complete;
     }

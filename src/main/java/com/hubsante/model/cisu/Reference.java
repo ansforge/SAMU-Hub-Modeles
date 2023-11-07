@@ -14,21 +14,27 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
+import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * Reference
  */
 @JsonPropertyOrder({
-        Reference.JSON_PROPERTY_DISTRIBUTION_ID
+        Reference.JSON_PROPERTY_DISTRIBUTION_I_D
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Reference {
-    public static final String JSON_PROPERTY_DISTRIBUTION_ID = "distributionID";
+    public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
     private String distributionID;
 
     public Reference() {
@@ -45,7 +51,7 @@ public class Reference {
      *
      * @return distributionID
      **/
-    @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ID)
+    @JsonProperty(JSON_PROPERTY_DISTRIBUTION_I_D)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getDistributionID() {
@@ -53,7 +59,7 @@ public class Reference {
     }
 
 
-    @JsonProperty(JSON_PROPERTY_DISTRIBUTION_ID)
+    @JsonProperty(JSON_PROPERTY_DISTRIBUTION_I_D)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setDistributionID(String distributionID) {
         this.distributionID = distributionID;

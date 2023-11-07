@@ -21,12 +21,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.AlertCode;
+import com.hubsante.model.cisu.Attachment;
 import com.hubsante.model.cisu.CallTaker;
 import com.hubsante.model.cisu.Caller;
-import com.hubsante.model.cisu.Contact;
+import com.hubsante.model.cisu.ContactSource;
 import com.hubsante.model.cisu.Location;
-import com.hubsante.model.cisu.Resource;
+import com.hubsante.model.cisu.Qualification;
 
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -40,29 +40,29 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * Alert
  */
 @JsonPropertyOrder({
-        Alert.JSON_PROPERTY_ALERT_ID,
-        Alert.JSON_PROPERTY_RECEIVED_AT,
+        Alert.JSON_PROPERTY_ID,
+        Alert.JSON_PROPERTY_RECEPTION,
         Alert.JSON_PROPERTY_REPORTING,
-        Alert.JSON_PROPERTY_ALERT_INFORMATION,
+        Alert.JSON_PROPERTY_FREETEXT,
         Alert.JSON_PROPERTY_CALLER,
-        Alert.JSON_PROPERTY_ALERT_LOCATION,
-        Alert.JSON_PROPERTY_ALERT_CODE,
-        Alert.JSON_PROPERTY_CONTACT,
+        Alert.JSON_PROPERTY_ALERT_SOURCE,
+        Alert.JSON_PROPERTY_LOCATION,
+        Alert.JSON_PROPERTY_QUALIFICATION,
         Alert.JSON_PROPERTY_CALL_TAKER,
-        Alert.JSON_PROPERTY_RESOURCE
+        Alert.JSON_PROPERTY_ATTACHMENT
 })
 @JsonTypeName("alert")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Alert {
-    public static final String JSON_PROPERTY_ALERT_ID = "alertId";
-    private String alertId;
+    public static final String JSON_PROPERTY_ID = "id";
+    private String id;
 
-    public static final String JSON_PROPERTY_RECEIVED_AT = "receivedAt";
-    private OffsetDateTime receivedAt;
+    public static final String JSON_PROPERTY_RECEPTION = "reception";
+    private OffsetDateTime reception;
 
     /**
-     * Permet d&#39;attirer l&#39;attention des forces partenaires sur une affaire.   Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l&#39;opérateur.  Prend les valeurs définies dans la nomenclature CISU.  Pour les systèmes multi-alertes mais gérant ce champs au niveau de l&#39;affaire, ils prennent le niveau d&#39;alerte le plus élevé (peut être complété par \&quot;Raison du transfert\&quot;)
+     * Permet d&#39;attirer l&#39;attention des forces partenaires sur une affaire pour le faire sortir du lot. Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l&#39;opérateur.  Prend les valeurs définies dans la nomenclature CISU : - standard : STANDARD - signalé : ATTENTION Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION
      */
     public enum ReportingEnum {
         STANDARD("STANDARD"),
@@ -99,79 +99,79 @@ public class Alert {
     public static final String JSON_PROPERTY_REPORTING = "reporting";
     private ReportingEnum reporting;
 
-    public static final String JSON_PROPERTY_ALERT_INFORMATION = "alertInformation";
-    private String alertInformation;
+    public static final String JSON_PROPERTY_FREETEXT = "freetext";
+    private String freetext;
 
     public static final String JSON_PROPERTY_CALLER = "caller";
     private Caller caller;
 
-    public static final String JSON_PROPERTY_ALERT_LOCATION = "alertLocation";
-    private Location alertLocation;
+    public static final String JSON_PROPERTY_ALERT_SOURCE = "alertSource";
+    private ContactSource alertSource;
 
-    public static final String JSON_PROPERTY_ALERT_CODE = "alertCode";
-    private AlertCode alertCode;
+    public static final String JSON_PROPERTY_LOCATION = "location";
+    private Location location;
 
-    public static final String JSON_PROPERTY_CONTACT = "contact";
-    private Contact contact;
+    public static final String JSON_PROPERTY_QUALIFICATION = "qualification";
+    private Qualification qualification;
 
     public static final String JSON_PROPERTY_CALL_TAKER = "callTaker";
     private CallTaker callTaker;
 
-    public static final String JSON_PROPERTY_RESOURCE = "resource";
-    private List<Resource> resource;
+    public static final String JSON_PROPERTY_ATTACHMENT = "attachment";
+    private List<Attachment> attachment;
 
     public Alert() {
     }
 
-    public Alert alertId(String alertId) {
+    public Alert id(String id) {
 
-        this.alertId = alertId;
+        this.id = id;
         return this;
     }
 
     /**
-     * Identifiant technique unique de l&#39;alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage. Voir la description de l&#39;identifiant de l&#39;affaire pour voir le format. Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale. a) Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert. b) Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
+     * Identifiant technique unique de l&#39;alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage. Voir la description de l&#39;identifiant de l&#39;affaire pour voir le format. Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale. a) Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert. b) Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert. Le rattachement des messages à une affaire doivent s&#39;appuyer sur les caseId et non les alertId qui peuvent varier d&#39;un système à l&#39;autre.
      *
-     * @return alertId
+     * @return id
      **/
-    @JsonProperty(JSON_PROPERTY_ALERT_ID)
+    @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public String getAlertId() {
-        return alertId;
+    public String getId() {
+        return id;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_ALERT_ID)
+    @JsonProperty(JSON_PROPERTY_ID)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setAlertId(String alertId) {
-        this.alertId = alertId;
+    public void setId(String id) {
+        this.id = id;
     }
 
 
-    public Alert receivedAt(OffsetDateTime receivedAt) {
+    public Alert reception(OffsetDateTime reception) {
 
-        this.receivedAt = receivedAt;
+        this.reception = reception;
         return this;
     }
 
     /**
      * Groupe date heure de réception de l&#39;alerte
      *
-     * @return receivedAt
+     * @return reception
      **/
-    @JsonProperty(JSON_PROPERTY_RECEIVED_AT)
+    @JsonProperty(JSON_PROPERTY_RECEPTION)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public OffsetDateTime getReceivedAt() {
-        return receivedAt;
+    public OffsetDateTime getReception() {
+        return reception;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_RECEIVED_AT)
+    @JsonProperty(JSON_PROPERTY_RECEPTION)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setReceivedAt(OffsetDateTime receivedAt) {
-        this.receivedAt = receivedAt;
+    public void setReception(OffsetDateTime reception) {
+        this.reception = reception;
     }
 
 
@@ -182,7 +182,7 @@ public class Alert {
     }
 
     /**
-     * Permet d&#39;attirer l&#39;attention des forces partenaires sur une affaire.   Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l&#39;opérateur.  Prend les valeurs définies dans la nomenclature CISU.  Pour les systèmes multi-alertes mais gérant ce champs au niveau de l&#39;affaire, ils prennent le niveau d&#39;alerte le plus élevé (peut être complété par \&quot;Raison du transfert\&quot;)
+     * Permet d&#39;attirer l&#39;attention des forces partenaires sur une affaire pour le faire sortir du lot. Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l&#39;opérateur.  Prend les valeurs définies dans la nomenclature CISU : - standard : STANDARD - signalé : ATTENTION Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION
      *
      * @return reporting
      **/
@@ -201,29 +201,29 @@ public class Alert {
     }
 
 
-    public Alert alertInformation(String alertInformation) {
+    public Alert freetext(String freetext) {
 
-        this.alertInformation = alertInformation;
+        this.freetext = freetext;
         return this;
     }
 
     /**
      * Texte libre permettant de donner des informations supplémentaires concernant l&#39;alerte
      *
-     * @return alertInformation
+     * @return freetext
      **/
-    @JsonProperty(JSON_PROPERTY_ALERT_INFORMATION)
+    @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getAlertInformation() {
-        return alertInformation;
+    public String getFreetext() {
+        return freetext;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_ALERT_INFORMATION)
+    @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setAlertInformation(String alertInformation) {
-        this.alertInformation = alertInformation;
+    public void setFreetext(String freetext) {
+        this.freetext = freetext;
     }
 
 
@@ -253,81 +253,81 @@ public class Alert {
     }
 
 
-    public Alert alertLocation(Location alertLocation) {
+    public Alert alertSource(ContactSource alertSource) {
 
-        this.alertLocation = alertLocation;
+        this.alertSource = alertSource;
         return this;
     }
 
     /**
-     * Get alertLocation
+     * Get alertSource
      *
-     * @return alertLocation
+     * @return alertSource
      **/
-    @JsonProperty(JSON_PROPERTY_ALERT_LOCATION)
+    @JsonProperty(JSON_PROPERTY_ALERT_SOURCE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public Location getAlertLocation() {
-        return alertLocation;
+    public ContactSource getAlertSource() {
+        return alertSource;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_ALERT_LOCATION)
+    @JsonProperty(JSON_PROPERTY_ALERT_SOURCE)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setAlertLocation(Location alertLocation) {
-        this.alertLocation = alertLocation;
+    public void setAlertSource(ContactSource alertSource) {
+        this.alertSource = alertSource;
     }
 
 
-    public Alert alertCode(AlertCode alertCode) {
+    public Alert location(Location location) {
 
-        this.alertCode = alertCode;
+        this.location = location;
         return this;
     }
 
     /**
-     * Get alertCode
+     * Get location
      *
-     * @return alertCode
+     * @return location
      **/
-    @JsonProperty(JSON_PROPERTY_ALERT_CODE)
+    @JsonProperty(JSON_PROPERTY_LOCATION)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public AlertCode getAlertCode() {
-        return alertCode;
+    public Location getLocation() {
+        return location;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_ALERT_CODE)
+    @JsonProperty(JSON_PROPERTY_LOCATION)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setAlertCode(AlertCode alertCode) {
-        this.alertCode = alertCode;
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
 
-    public Alert contact(Contact contact) {
+    public Alert qualification(Qualification qualification) {
 
-        this.contact = contact;
+        this.qualification = qualification;
         return this;
     }
 
     /**
-     * Get contact
+     * Get qualification
      *
-     * @return contact
+     * @return qualification
      **/
-    @JsonProperty(JSON_PROPERTY_CONTACT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonProperty(JSON_PROPERTY_QUALIFICATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public Contact getContact() {
-        return contact;
+    public Qualification getQualification() {
+        return qualification;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CONTACT)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setContact(Contact contact) {
-        this.contact = contact;
+    @JsonProperty(JSON_PROPERTY_QUALIFICATION)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setQualification(Qualification qualification) {
+        this.qualification = qualification;
     }
 
 
@@ -357,44 +357,44 @@ public class Alert {
     }
 
 
-    public Alert resource(List<Resource> resource) {
+    public Alert attachment(List<Attachment> attachment) {
 
-        this.resource = resource;
+        this.attachment = attachment;
         return this;
     }
 
-    public Alert addResourceItem(Resource resourceItem) {
-        if (this.resource == null) {
-            this.resource = new ArrayList<>();
+    public Alert addAttachmentItem(Attachment attachmentItem) {
+        if (this.attachment == null) {
+            this.attachment = new ArrayList<>();
         }
-        this.resource.add(resourceItem);
+        this.attachment.add(attachmentItem);
         return this;
     }
 
     /**
-     * Get resource
+     * Get attachment
      *
-     * @return resource
+     * @return attachment
      **/
-    @JsonProperty(JSON_PROPERTY_RESOURCE)
+    @JsonProperty(JSON_PROPERTY_ATTACHMENT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public List<Resource> getResource() {
-        return resource;
+    public List<Attachment> getAttachment() {
+        return attachment;
     }
 
     @JacksonXmlElementWrapper(useWrapping = false)
 
-    @JsonProperty(JSON_PROPERTY_RESOURCE)
+    @JsonProperty(JSON_PROPERTY_ATTACHMENT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setResource(List<Resource> resource) {
-        if (resource == null) {
+    public void setAttachment(List<Attachment> attachment) {
+        if (attachment == null) {
             return;
         }
-        if (this.resource == null) {
-            this.resource = new ArrayList<>();
+        if (this.attachment == null) {
+            this.attachment = new ArrayList<>();
         }
-        this.resource.addAll(resource);
+        this.attachment.addAll(attachment);
     }
 
     @Override
@@ -406,46 +406,46 @@ public class Alert {
             return false;
         }
         Alert alert = (Alert) o;
-        return Objects.equals(this.alertId, alert.alertId) &&
-                Objects.equals(this.receivedAt, alert.receivedAt) &&
+        return Objects.equals(this.id, alert.id) &&
+                Objects.equals(this.reception, alert.reception) &&
                 Objects.equals(this.reporting, alert.reporting) &&
-                Objects.equals(this.alertInformation, alert.alertInformation) &&
+                Objects.equals(this.freetext, alert.freetext) &&
                 Objects.equals(this.caller, alert.caller) &&
-                Objects.equals(this.alertLocation, alert.alertLocation) &&
-                Objects.equals(this.alertCode, alert.alertCode) &&
-                Objects.equals(this.contact, alert.contact) &&
+                Objects.equals(this.alertSource, alert.alertSource) &&
+                Objects.equals(this.location, alert.location) &&
+                Objects.equals(this.qualification, alert.qualification) &&
                 Objects.equals(this.callTaker, alert.callTaker) &&
-                Objects.equals(this.resource, alert.resource);
+                Objects.equals(this.attachment, alert.attachment);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(alertId
-                , receivedAt
+        return Objects.hash(id
+                , reception
                 , reporting
-                , alertInformation
+                , freetext
                 , caller
-                , alertLocation
-                , alertCode
-                , contact
+                , alertSource
+                , location
+                , qualification
                 , callTaker
-                , resource);
+                , attachment);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class Alert {\n");
-        sb.append("    alertId: ").append(toIndentedString(alertId)).append("\n");
-        sb.append("    receivedAt: ").append(toIndentedString(receivedAt)).append("\n");
+        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    reception: ").append(toIndentedString(reception)).append("\n");
         sb.append("    reporting: ").append(toIndentedString(reporting)).append("\n");
-        sb.append("    alertInformation: ").append(toIndentedString(alertInformation)).append("\n");
+        sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
         sb.append("    caller: ").append(toIndentedString(caller)).append("\n");
-        sb.append("    alertLocation: ").append(toIndentedString(alertLocation)).append("\n");
-        sb.append("    alertCode: ").append(toIndentedString(alertCode)).append("\n");
-        sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
+        sb.append("    alertSource: ").append(toIndentedString(alertSource)).append("\n");
+        sb.append("    location: ").append(toIndentedString(location)).append("\n");
+        sb.append("    qualification: ").append(toIndentedString(qualification)).append("\n");
         sb.append("    callTaker: ").append(toIndentedString(callTaker)).append("\n");
-        sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
+        sb.append("    attachment: ").append(toIndentedString(attachment)).append("\n");
         sb.append("}");
         return sb.toString();
     }

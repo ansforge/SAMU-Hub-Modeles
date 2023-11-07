@@ -1,20 +1,20 @@
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.RCDE;
+import com.hubsante.model.cisu.RCDE.*;
 import com.hubsante.model.cisu.Recipient;
 import com.hubsante.model.cisu.Sender;
 
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RC_DE_Builder {
     private String messageId;
     private Sender sender;
     private OffsetDateTime sentAt;
-    private DistributionElement.KindEnum kind;
-    private DistributionElement.StatusEnum status;
+    private RCDE.KindEnum kind;
+    private RCDE.StatusEnum status;
     private List<Recipient> recipients;
 
     /*
@@ -39,8 +39,8 @@ public class RC_DE_Builder {
         this.messageId = messageId;
         this.sender = new Sender().name(senderId).URI("hubex:" + senderId);
         this.sentAt = OffsetDateTime.now();
-        this.kind = DistributionElement.KindEnum.REPORT;
-        this.status = DistributionElement.StatusEnum.ACTUAL;
+        this.kind = KindEnum.REPORT;
+        this.status = StatusEnum.ACTUAL;
         this.recipients = recipients;
     }
     public RC_DE_Builder sender(Sender sender) {
@@ -53,12 +53,12 @@ public class RC_DE_Builder {
         return this;
     }
 
-    public RC_DE_Builder kind(DistributionElement.KindEnum kind) {
+    public RC_DE_Builder kind(KindEnum kind) {
         this.kind = kind;
         return this;
     }
 
-    public RC_DE_Builder status(DistributionElement.StatusEnum status) {
+    public RC_DE_Builder status(StatusEnum status) {
         this.status = status;
         return this;
     }
@@ -68,8 +68,8 @@ public class RC_DE_Builder {
         return this;
     }
 
-    public DistributionElement build() {
-        DistributionElement distributionElement = new DistributionElement();
+    public RCDE build() {
+        RCDE distributionElement = new RCDE();
 
         distributionElement.setMessageId(messageId);
         distributionElement.setSender(sender);

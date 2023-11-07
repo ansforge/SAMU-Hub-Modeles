@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("city")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class City {
     public static final String JSON_PROPERTY_NAME = "name";
     private String name;
@@ -108,7 +108,7 @@ public class City {
     }
 
     /**
-     * Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l&#39;adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
+     * Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l&#39;adresse et notamment gérer les cas de communes fusionnées pour le système émetteur NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d&#39;éviter une trop forte ambiguïté
      *
      * @return detail
      **/

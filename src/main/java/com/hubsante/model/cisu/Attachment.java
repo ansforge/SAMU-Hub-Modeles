@@ -26,22 +26,22 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Resource
+ * Attachment
  */
 @JsonPropertyOrder({
-        Resource.JSON_PROPERTY_RESOURCE_DESC,
-        Resource.JSON_PROPERTY_MIME_TYPE,
-        Resource.JSON_PROPERTY_SIZE,
-        Resource.JSON_PROPERTY_U_R_I,
-        Resource.JSON_PROPERTY_DEREF_U_R_I,
-        Resource.JSON_PROPERTY_DIGEST
+        Attachment.JSON_PROPERTY_DESCRIPTION,
+        Attachment.JSON_PROPERTY_MIME_TYPE,
+        Attachment.JSON_PROPERTY_SIZE,
+        Attachment.JSON_PROPERTY_U_R_I,
+        Attachment.JSON_PROPERTY_DEREF_U_R_I,
+        Attachment.JSON_PROPERTY_DIGEST
 })
-@JsonTypeName("resource")
+@JsonTypeName("attachment")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
-public class Resource {
-    public static final String JSON_PROPERTY_RESOURCE_DESC = "resourceDesc";
-    private String resourceDesc;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+public class Attachment {
+    public static final String JSON_PROPERTY_DESCRIPTION = "description";
+    private String description;
 
     public static final String JSON_PROPERTY_MIME_TYPE = "mimeType";
     private String mimeType;
@@ -58,36 +58,36 @@ public class Resource {
     public static final String JSON_PROPERTY_DIGEST = "digest";
     private String digest;
 
-    public Resource() {
+    public Attachment() {
     }
 
-    public Resource resourceDesc(String resourceDesc) {
+    public Attachment description(String description) {
 
-        this.resourceDesc = resourceDesc;
+        this.description = description;
         return this;
     }
 
     /**
      * Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»
      *
-     * @return resourceDesc
+     * @return description
      **/
-    @JsonProperty(JSON_PROPERTY_RESOURCE_DESC)
+    @JsonProperty(JSON_PROPERTY_DESCRIPTION)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getResourceDesc() {
-        return resourceDesc;
+    public String getDescription() {
+        return description;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_RESOURCE_DESC)
+    @JsonProperty(JSON_PROPERTY_DESCRIPTION)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setResourceDesc(String resourceDesc) {
-        this.resourceDesc = resourceDesc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
 
-    public Resource mimeType(String mimeType) {
+    public Attachment mimeType(String mimeType) {
 
         this.mimeType = mimeType;
         return this;
@@ -113,7 +113,7 @@ public class Resource {
     }
 
 
-    public Resource size(Integer size) {
+    public Attachment size(Integer size) {
 
         this.size = size;
         return this;
@@ -139,14 +139,14 @@ public class Resource {
     }
 
 
-    public Resource URI(String URI) {
+    public Attachment URI(String URI) {
 
         this.URI = URI;
         return this;
     }
 
     /**
-     * Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé
+     * Une URI, généralement une URL, qui permet d&#39;atteindre la ressource sur Internet ou sur un réseau privé Nous suggérons d&#39;employer le format suivant de regex (https?|ftp|file)://([\\w-]+(\\.[\\w-]+)*)(/[\\w\\-\\.]*)*_/?(\\?[^\\s]*)?
      *
      * @return URI
      **/
@@ -165,7 +165,7 @@ public class Resource {
     }
 
 
-    public Resource derefURI(String derefURI) {
+    public Attachment derefURI(String derefURI) {
 
         this.derefURI = derefURI;
         return this;
@@ -191,14 +191,14 @@ public class Resource {
     }
 
 
-    public Resource digest(String digest) {
+    public Attachment digest(String digest) {
 
         this.digest = digest;
         return this;
     }
 
     /**
-     * Hash de la ressource pour confirmer la réception de la bonne ressource
+     * Hash de la ressource pour confirmer la réception de la bonne ressource La ressource est hashée avec le protocole SHA-256
      *
      * @return digest
      **/
@@ -224,18 +224,18 @@ public class Resource {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Resource resource = (Resource) o;
-        return Objects.equals(this.resourceDesc, resource.resourceDesc) &&
-                Objects.equals(this.mimeType, resource.mimeType) &&
-                Objects.equals(this.size, resource.size) &&
-                Objects.equals(this.URI, resource.URI) &&
-                Objects.equals(this.derefURI, resource.derefURI) &&
-                Objects.equals(this.digest, resource.digest);
+        Attachment attachment = (Attachment) o;
+        return Objects.equals(this.description, attachment.description) &&
+                Objects.equals(this.mimeType, attachment.mimeType) &&
+                Objects.equals(this.size, attachment.size) &&
+                Objects.equals(this.URI, attachment.URI) &&
+                Objects.equals(this.derefURI, attachment.derefURI) &&
+                Objects.equals(this.digest, attachment.digest);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(resourceDesc
+        return Objects.hash(description
                 , mimeType
                 , size
                 , URI
@@ -246,8 +246,8 @@ public class Resource {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class Resource {\n");
-        sb.append("    resourceDesc: ").append(toIndentedString(resourceDesc)).append("\n");
+        sb.append("class Attachment {\n");
+        sb.append("    description: ").append(toIndentedString(description)).append("\n");
         sb.append("    mimeType: ").append(toIndentedString(mimeType)).append("\n");
         sb.append("    size: ").append(toIndentedString(size)).append("\n");
         sb.append("    URI: ").append(toIndentedString(URI)).append("\n");

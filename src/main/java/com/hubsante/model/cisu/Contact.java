@@ -34,10 +34,57 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("contact")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Contact {
+    /**
+     * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
+     */
+    public enum TypeEnum {
+        PSTADD("PSTADD"),
+
+        EMLADD("EMLADD"),
+
+        IPADD("IPADD"),
+
+        FTPADD("FTPADD"),
+
+        WWWADD("WWWADD"),
+
+        PHNADD("PHNADD"),
+
+        FAXADD("FAXADD"),
+
+        PMRADD("PMRADD");
+
+        private String value;
+
+        TypeEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static TypeEnum fromValue(String value) {
+            for (TypeEnum b : TypeEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+
     public static final String JSON_PROPERTY_TYPE = "type";
-    private String type;
+    private TypeEnum type;
 
     public static final String JSON_PROPERTY_DETAIL = "detail";
     private String detail;
@@ -45,28 +92,28 @@ public class Contact {
     public Contact() {
     }
 
-    public Contact type(String type) {
+    public Contact type(TypeEnum type) {
 
         this.type = type;
         return this;
     }
 
     /**
-     * Permet d&#39;indiquer l&#39;origine de la communication : Personne, application, DAU, BAU, défibrillateur, ecall
+     * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
      *
      * @return type
      **/
     @JsonProperty(JSON_PROPERTY_TYPE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public String getType() {
+    public TypeEnum getType() {
         return type;
     }
 
 
     @JsonProperty(JSON_PROPERTY_TYPE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setType(String type) {
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setType(TypeEnum type) {
         this.type = type;
     }
 
@@ -78,12 +125,12 @@ public class Contact {
     }
 
     /**
-     * Indique le type de l&#39;URI composée par le réquérant et la valeur de l&#39;URI, concaténées et séparées par \&quot;:\&quot;. Exemples : tel:112, tel:18, sip:sos@nexsis.fr, … Une seule URI peut être renseignée.
+     * Valeur de l&#39;URI utilisée pour contacter le partenaire
      *
      * @return detail
      **/
     @JsonProperty(JSON_PROPERTY_DETAIL)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getDetail() {
         return detail;
@@ -91,7 +138,7 @@ public class Contact {
 
 
     @JsonProperty(JSON_PROPERTY_DETAIL)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setDetail(String detail) {
         this.detail = detail;
     }

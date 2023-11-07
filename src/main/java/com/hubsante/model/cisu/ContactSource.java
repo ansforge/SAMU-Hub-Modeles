@@ -26,30 +26,43 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Link
+ * ContactSource
  */
 @JsonPropertyOrder({
-        Link.JSON_PROPERTY_SOURCE,
-        Link.JSON_PROPERTY_TYPE,
-        Link.JSON_PROPERTY_ID
+        ContactSource.JSON_PROPERTY_CHANNEL,
+        ContactSource.JSON_PROPERTY_TYPE,
+        ContactSource.JSON_PROPERTY_DETAIL
 })
-@JsonTypeName("link")
+@JsonTypeName("contactSource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
-public class Link {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+public class ContactSource {
+    public static final String JSON_PROPERTY_CHANNEL = "channel";
+    private String channel;
+
     /**
-     * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
+     * Type de l&#39;URI utilisée par la source, cf. nomenclature EMSI
      */
-    public enum SourceEnum {
-        BAN("BAN"),
+    public enum TypeEnum {
+        PSTADD("PSTADD"),
 
-        IGN("IGN"),
+        EMLADD("EMLADD"),
 
-        NEXSIS("NexSIS");
+        IPADD("IPADD"),
+
+        FTPADD("FTPADD"),
+
+        WWWADD("WWWADD"),
+
+        PHNADD("PHNADD"),
+
+        FAXADD("FAXADD"),
+
+        PMRADD("PMRADD");
 
         private String value;
 
-        SourceEnum(String value) {
+        TypeEnum(String value) {
             this.value = value;
         }
 
@@ -64,8 +77,8 @@ public class Link {
         }
 
         @JsonCreator
-        public static SourceEnum fromValue(String value) {
-            for (SourceEnum b : SourceEnum.values()) {
+        public static TypeEnum fromValue(String value) {
+            for (TypeEnum b : TypeEnum.values()) {
                 if (b.value.equals(value)) {
                     return b;
                 }
@@ -74,93 +87,90 @@ public class Link {
         }
     }
 
-    public static final String JSON_PROPERTY_SOURCE = "source";
-    private SourceEnum source;
-
     public static final String JSON_PROPERTY_TYPE = "type";
-    private String type;
+    private TypeEnum type;
 
-    public static final String JSON_PROPERTY_ID = "id";
-    private String id;
+    public static final String JSON_PROPERTY_DETAIL = "detail";
+    private String detail;
 
-    public Link() {
+    public ContactSource() {
     }
 
-    public Link source(SourceEnum source) {
+    public ContactSource channel(String channel) {
 
-        this.source = source;
+        this.channel = channel;
         return this;
     }
 
     /**
-     * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
+     * Permet d&#39;indiquer l&#39;origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall
      *
-     * @return source
+     * @return channel
      **/
-    @JsonProperty(JSON_PROPERTY_SOURCE)
+    @JsonProperty(JSON_PROPERTY_CHANNEL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public SourceEnum getSource() {
-        return source;
+    public String getChannel() {
+        return channel;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_SOURCE)
+    @JsonProperty(JSON_PROPERTY_CHANNEL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setSource(SourceEnum source) {
-        this.source = source;
+    public void setChannel(String channel) {
+        this.channel = channel;
     }
 
 
-    public Link type(String type) {
+    public ContactSource type(TypeEnum type) {
 
         this.type = type;
         return this;
     }
 
     /**
-     * Définition du type d&#39;objet dans le système Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données
+     * Type de l&#39;URI utilisée par la source, cf. nomenclature EMSI
      *
      * @return type
      **/
     @JsonProperty(JSON_PROPERTY_TYPE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public String getType() {
+    public TypeEnum getType() {
         return type;
     }
 
 
     @JsonProperty(JSON_PROPERTY_TYPE)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setType(String type) {
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setType(TypeEnum type) {
         this.type = type;
     }
 
 
-    public Link id(String id) {
+    public ContactSource detail(String detail) {
 
-        this.id = id;
+        this.detail = detail;
         return this;
     }
 
     /**
-     * Identifiant unique dans le type. Exemple : UUID d&#39;un ega
+     * Valeur de l&#39;URI utilisée par la source
      *
-     * @return id
+     * @return detail
      **/
-    @JsonProperty(JSON_PROPERTY_ID)
+    @JsonProperty(JSON_PROPERTY_DETAIL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public String getId() {
-        return id;
+    public String getDetail() {
+        return detail;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_ID)
+    @JsonProperty(JSON_PROPERTY_DETAIL)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setId(String id) {
-        this.id = id;
+    public void setDetail(String detail) {
+        this.detail = detail;
     }
 
     @Override
@@ -171,26 +181,26 @@ public class Link {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Link link = (Link) o;
-        return Objects.equals(this.source, link.source) &&
-                Objects.equals(this.type, link.type) &&
-                Objects.equals(this.id, link.id);
+        ContactSource contactSource = (ContactSource) o;
+        return Objects.equals(this.channel, contactSource.channel) &&
+                Objects.equals(this.type, contactSource.type) &&
+                Objects.equals(this.detail, contactSource.detail);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(source
+        return Objects.hash(channel
                 , type
-                , id);
+                , detail);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class Link {\n");
-        sb.append("    source: ").append(toIndentedString(source)).append("\n");
+        sb.append("class ContactSource {\n");
+        sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
         sb.append("    type: ").append(toIndentedString(type)).append("\n");
-        sb.append("    id: ").append(toIndentedString(id)).append("\n");
+        sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
         sb.append("}");
         return sb.toString();
     }

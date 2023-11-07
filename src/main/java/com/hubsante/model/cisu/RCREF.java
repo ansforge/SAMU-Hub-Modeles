@@ -22,35 +22,27 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.hubsante.model.cisu.Reference;
-import com.hubsante.model.cisu.DistributionElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * ReferenceMessage
+ * RCREF
  */
 @JsonPropertyOrder({
-        DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-        DistributionElement.JSON_PROPERTY_SENDER,
-        DistributionElement.JSON_PROPERTY_SENT_AT,
-        DistributionElement.JSON_PROPERTY_KIND,
-        DistributionElement.JSON_PROPERTY_STATUS,
-        DistributionElement.JSON_PROPERTY_RECIPIENTS,
-        ReferenceMessage.JSON_PROPERTY_REFERENCE
+        RCREF.JSON_PROPERTY_REFERENCE
 })
+@JsonTypeName("RC_REF")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:46:46.250+02:00[Europe/Paris]")
-public class ReferenceMessage extends DistributionElement {
-    @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+public class RCREF extends RCDE {
     public static final String JSON_PROPERTY_REFERENCE = "reference";
     private Reference reference;
 
-    public ReferenceMessage() {
+    public RCREF() {
     }
 
-    public ReferenceMessage reference(Reference reference) {
+    public RCREF reference(Reference reference) {
 
         this.reference = reference;
         return this;
@@ -83,8 +75,8 @@ public class ReferenceMessage extends DistributionElement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        ReferenceMessage referenceMessage = (ReferenceMessage) o;
-        return Objects.equals(this.reference, referenceMessage.reference);
+        RCREF RC_REF = (RCREF) o;
+        return Objects.equals(this.reference, RC_REF.reference);
     }
 
     @Override
@@ -95,7 +87,7 @@ public class ReferenceMessage extends DistributionElement {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class ReferenceMessage {\n");
+        sb.append("class RCREF {\n");
         sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
         sb.append("}");
         return sb.toString();

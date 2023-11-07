@@ -31,11 +31,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
         Victims.JSON_PROPERTY_COUNT,
         Victims.JSON_PROPERTY_MAIN_VICTIM,
-        Victims.JSON_PROPERTY_COMMENT
+        Victims.JSON_PROPERTY_FREETEXT
 })
 @JsonTypeName("victims")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Victims {
     /**
      * Indique le nombre de victimes selon la nomenclature du référentiel CISU
@@ -49,7 +49,7 @@ public class Victims {
 
         MANY("MANY"),
 
-        UNKNOWN("UNKNOWN");
+        UNKNOWN_VOIR_NOMENCLATURE_CISU_XX_("UNKNOWN (voir Nomenclature CISU XX)");
 
         private String value;
 
@@ -93,7 +93,7 @@ public class Victims {
 
         PREGNANT("PREGNANT"),
 
-        SENIOR("SENIOR");
+        SENIOR_VOIR_NOMENCLATURE_CISU_XX_("SENIOR (voir Nomenclature CISU XX)");
 
         private String value;
 
@@ -125,8 +125,8 @@ public class Victims {
     public static final String JSON_PROPERTY_MAIN_VICTIM = "mainVictim";
     private MainVictimEnum mainVictim;
 
-    public static final String JSON_PROPERTY_COMMENT = "comment";
-    private String comment;
+    public static final String JSON_PROPERTY_FREETEXT = "freetext";
+    private String freetext;
 
     public Victims() {
     }
@@ -183,29 +183,29 @@ public class Victims {
     }
 
 
-    public Victims comment(String comment) {
+    public Victims freetext(String freetext) {
 
-        this.comment = comment;
+        this.freetext = freetext;
         return this;
     }
 
     /**
      * Permet de complémenter en commentaire libre la(les) victime(s)
      *
-     * @return comment
+     * @return freetext
      **/
-    @JsonProperty(JSON_PROPERTY_COMMENT)
+    @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getComment() {
-        return comment;
+    public String getFreetext() {
+        return freetext;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_COMMENT)
+    @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setComment(String comment) {
-        this.comment = comment;
+    public void setFreetext(String freetext) {
+        this.freetext = freetext;
     }
 
     @Override
@@ -219,14 +219,14 @@ public class Victims {
         Victims victims = (Victims) o;
         return Objects.equals(this.count, victims.count) &&
                 Objects.equals(this.mainVictim, victims.mainVictim) &&
-                Objects.equals(this.comment, victims.comment);
+                Objects.equals(this.freetext, victims.freetext);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(count
                 , mainVictim
-                , comment);
+                , freetext);
     }
 
     @Override
@@ -235,7 +235,7 @@ public class Victims {
         sb.append("class Victims {\n");
         sb.append("    count: ").append(toIndentedString(count)).append("\n");
         sb.append("    mainVictim: ").append(toIndentedString(mainVictim)).append("\n");
-        sb.append("    comment: ").append(toIndentedString(comment)).append("\n");
+        sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
         sb.append("}");
         return sb.toString();
     }
