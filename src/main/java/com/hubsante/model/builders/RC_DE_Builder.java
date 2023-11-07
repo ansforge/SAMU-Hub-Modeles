@@ -69,21 +69,21 @@ public class RC_DE_Builder {
     }
 
     public RCDE build() {
-        RCDE distributionElement = new RCDE();
+        RCDE rcde = new RCDE();
 
-        distributionElement.setMessageId(messageId);
-        distributionElement.setSender(sender);
+        rcde.setMessageId(messageId);
+        rcde.setSender(sender);
         if (sentAt == null) {
             throw new IllegalArgumentException("sentAt cannot be null");
         }
-        distributionElement.setSentAt(sentAt);
-        distributionElement.setKind(kind);
-        distributionElement.setStatus(status);
+        rcde.setSentAt(sentAt);
+        rcde.setKind(kind);
+        rcde.setStatus(status);
         if (recipients.isEmpty()) {
             throw new IllegalArgumentException("recipients list cannot be empty");
         }
-        distributionElement.setRecipients(recipients);
+        rcde.setRecipients(recipients);
 
-        return distributionElement;
+        return rcde;
     }
 }

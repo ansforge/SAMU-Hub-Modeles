@@ -6,24 +6,24 @@ import com.hubsante.model.cisu.RCEDA;
 
 public class RC_EDA_Builder {
 
-    private RCDE distributionElement;
+    private RCDE rcde;
     private CreateCase createCase;
-    public RC_EDA_Builder(RCDE distributionElement, CreateCase createCase) {
-        this.distributionElement = distributionElement;
+    public RC_EDA_Builder(RCDE rcde, CreateCase createCase) {
+        this.rcde = rcde;
         this.createCase = createCase;
     }
 
     public RCEDA build() {
         RCEDA createCaseMessage = new RCEDA();
-        createCaseMessage.setMessageId(distributionElement.getMessageId());
-        createCaseMessage.setSender(distributionElement.getSender());
-        createCaseMessage.setSentAt(distributionElement.getSentAt());
-        if (!distributionElement.getKind().equals(RCDE.KindEnum.REPORT)) {
+        createCaseMessage.setMessageId(rcde.getMessageId());
+        createCaseMessage.setSender(rcde.getSender());
+        createCaseMessage.setSentAt(rcde.getSentAt());
+        if (!rcde.getKind().equals(RCDE.KindEnum.REPORT)) {
             throw new IllegalArgumentException("RC_EDA must be of kind REPORT");
         }
-        createCaseMessage.setKind(distributionElement.getKind());
-        createCaseMessage.setStatus(distributionElement.getStatus());
-        createCaseMessage.setRecipients(distributionElement.getRecipients());
+        createCaseMessage.setKind(rcde.getKind());
+        createCaseMessage.setStatus(rcde.getStatus());
+        createCaseMessage.setRecipients(rcde.getRecipients());
         createCaseMessage.setCreateCase(createCase);
         return createCaseMessage;
     }

@@ -5,25 +5,25 @@ import com.hubsante.model.cisu.RCREF;
 import com.hubsante.model.cisu.Reference;
 
 public class RC_REF_Builder {
-    private RCDE distributionElement;
+    private RCDE rcde;
     private Reference reference;
 
-    public RC_REF_Builder(RCDE distributionElement, String referencedDistributionId) {
-        this.distributionElement = distributionElement;
+    public RC_REF_Builder(RCDE rcde, String referencedDistributionId) {
+        this.rcde = rcde;
         this.reference = new Reference().distributionID(referencedDistributionId);
     }
 
     public RCREF build() {
         RCREF referenceMessage = new RCREF();
-        referenceMessage.setMessageId(distributionElement.getMessageId());
-        referenceMessage.setSender(distributionElement.getSender());
-        referenceMessage.setSentAt(distributionElement.getSentAt());
-        if (!distributionElement.getKind().equals(RCDE.KindEnum.ACK)) {
+        referenceMessage.setMessageId(rcde.getMessageId());
+        referenceMessage.setSender(rcde.getSender());
+        referenceMessage.setSentAt(rcde.getSentAt());
+        if (!rcde.getKind().equals(RCDE.KindEnum.ACK)) {
             throw new IllegalArgumentException("RC_REF must be of kind ACK");
         }
-        referenceMessage.setKind(distributionElement.getKind());
-        referenceMessage.setStatus(distributionElement.getStatus());
-        referenceMessage.setRecipients(distributionElement.getRecipients());
+        referenceMessage.setKind(rcde.getKind());
+        referenceMessage.setStatus(rcde.getStatus());
+        referenceMessage.setRecipients(rcde.getRecipients());
         referenceMessage.setReference(reference);
         return referenceMessage;
     }
