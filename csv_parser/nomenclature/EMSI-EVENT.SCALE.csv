@@ -1,0 +1,6 @@
+code;label_n1;description;commentaire
+1;Niveau 1;L'événement est géré par les ressources déployées selon la réponse pré-planifiée initiale.;
+2;Niveau 2;L'événement est géré par les ressources déployées uniquement par l'organisation concernée.;
+3;Niveau 3;L'événement est géré par les ressources déployées par l'organisation concernée, avec le soutien d'une aide mutuelle provenant d'organisations voisines selon des accords habituels;
+4;Niveau 4; L'événement est géré par les ressources déployées par l'organisation concernée, soutenue par une assistance mutuelle d'organisations situées n'importe où dans le pays affecté. Cette assistance peut être obtenue par l'utilisation d'un centre de coordination national;
+5;Niveau 5;Ce niveau de réponse couvre la gestion de toute aide entrante pour aider l'organisation à répondre à un événement et sera facilitée par le gouvernement affecté en utilisant les protocoles existants employés par les Nations Unies, l'Union Européenne et l'Organisation du Traité de l'Atlantique Nord (OTAN);
