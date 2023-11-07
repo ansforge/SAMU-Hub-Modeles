@@ -42,11 +42,28 @@
                   "label": "Rod\u00e9o automobile",
                   "freetext": "None"
                 },
-                "locationKind": {},
+                "locationKind": {
+                  "code": "TO_BE_CONTROLLED",
+                  "label": "TO_BE_CONTROLLED",
+                  "freetext": "TO_BE_CONTROLLED"
+                },
                 "riskThreat": [
-                  {}
+                  {
+                    "code": "TO_BE_CONTROLLED",
+                    "label": "TO_BE_CONTROLLED",
+                    "freetext": "TO_BE_CONTROLLED"
+                  },
+                  {
+                    "code": "TO_BE_CONTROLLED",
+                    "label": "TO_BE_CONTROLLED",
+                    "freetext": "TO_BE_CONTROLLED"
+                  }
                 ],
-                "healthMotive": {},
+                "healthMotive": {
+                  "code": "TO_BE_CONTROLLED",
+                  "label": "TO_BE_CONTROLLED",
+                  "freetext": "TO_BE_CONTROLLED"
+                },
                 "victims": {
                   "count": "SEVERAL",
                   "mainVictim": "CHILD",

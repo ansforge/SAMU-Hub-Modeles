@@ -114,7 +114,6 @@ public class Qualification {
         this.locationKind = locationKind;
     }
 
-
     public Qualification riskThreat(List<Nomenclature> riskThreat) {
 
         this.riskThreat = riskThreat;
@@ -136,13 +135,16 @@ public class Qualification {
      **/
     @JsonProperty(JSON_PROPERTY_RISK_THREAT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
+//    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RISK_THREAT)
+    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlProperty(localName = JSON_PROPERTY_RISK_THREAT)
+//    @JacksonXmlProperty(localName = "item")
     public List<Nomenclature> getRiskThreat() {
         return riskThreat;
     }
 
-    @JacksonXmlElementWrapper(useWrapping = false)
-
+//    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RISK_THREAT)
+//    @JacksonXmlProperty(localName = "item")
     @JsonProperty(JSON_PROPERTY_RISK_THREAT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setRiskThreat(List<Nomenclature> riskThreat) {
