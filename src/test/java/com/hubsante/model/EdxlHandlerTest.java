@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -17,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class EdxlHandlerTest {
-
-    static ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
     private EdxlHandler converter = new EdxlHandler();
 
     @Test
@@ -37,11 +31,19 @@ public class EdxlHandlerTest {
     }
 
     @Test
-
+    @DisplayName("should consistently deserialize then serialize JSON EMSI-DC")
     public void end2end_EMSI_DC_JSON() throws IOException {
         String json = getMessageString(true, "EMSI-DC", false);
         endToEndDeserializationCheck(json, false);
     }
+
+    @Test
+    @DisplayName("should consistently deserialize then serialize XML EMSI-DC")
+    public void end2end_EMSI_DC_XML() throws IOException {
+        String xml = getMessageString(true, "EMSI-DC", true);
+        endToEndDeserializationCheck(xml, true);
+    }
+
     @Test
     @DisplayName("should consistently deserialize then serialize JSON RC-REF")
     public void end2end_RC_REF_JSON() throws IOException {

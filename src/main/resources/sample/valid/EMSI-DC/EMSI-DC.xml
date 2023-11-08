@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<edxlDistribution xlink:type="extended" xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0">
+    <distributionID>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
+    <senderID>fr.health.samuB</senderID>
+    <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
+    <dateTimeExpires>2072-07-25T10:04:34+01:00</dateTimeExpires>
+    <distributionStatus>Actual</distributionStatus>
+    <distributionKind>Report</distributionKind>
+    <descriptor xlink:type="resource">
+        <language>fr-FR</language>
+        <explicitAddress>
+            <explicitAddressScheme>hubex</explicitAddressScheme>
+            <explicitAddressValue>fr.health.samuA</explicitAddressValue>
+        </explicitAddress>
+    </descriptor>
+    <content xlink:type="resource">
+        <contentObject xlink:type="resource">
+            <contentXML>
+                <embeddedXMLContent>
+                    <message xmlns="urn:emergency:cisu:2.0">
+                        <CONTEXT>
+                            <ID>d350c9d2-9d76-4568-b0b7-a747ffadc949</ID>
+                            <MODE>ACTUAL</MODE>
+                            <MSGTYPE>UPDATE</MSGTYPE>
+                            <CREATION>2022-09-27T08:25:54+02:00</CREATION>
+                            <LINK>
+                                <ID>samuA:CA126B445579GD4A67AV</ID>
+                                <LINK_ROLE>ADDSTO</LINK_ROLE>
+                            </LINK>
+                            <LEVEL>OPR</LEVEL>
+                            <SECLASS>RESTRC</SECLASS>
+                            <FREETEXT>Contexte de grand incendie à Nantes</FREETEXT>
+                            <ORIGIN>
+                                <ORG_ID>samuA</ORG_ID>
+                                <USER_ID>samuA:crra:poste1234</USER_ID>
+                                <NAME>Samu A</NAME>
+                            </ORIGIN>
+                            <!--                            <EXTERNAL_INFO>-->
+                            <!--                                -->
+                            <!--                            </EXTERNAL_INFO>-->
+                        </CONTEXT>
+                        <EVENT>
+                            <ID>samuA:CA126B445579GD4A67AV</ID>
+                            <NAME>Grand incendie Nantes</NAME>
+                            <MAIN_EVENT_ID>samuA:CA126B445579GD4A67AV</MAIN_EVENT_ID>
+                            <ETYPE>
+                                <CATEGORY>FIR</CATEGORY>
+                                <ACTOR>OTH</ACTOR>
+                                <LOCTYPE>FLAM</LOCTYPE>
+                                <ENV>/CDIS/RIOT</ENV>
+                            </ETYPE>
+                            <SOURCE>COMFOR</SOURCE>
+                            <SCALE>3</SCALE>
+                            <CERTAINTY>95</CERTAINTY>
+                            <DECL_DATETIME>2022-09-27T08:24:50+02:00</DECL_DATETIME>
+                            <OCC_DATETIME>2022-09-27T08:20:50+02:00</OCC_DATETIME>
+                            <OBS_DATETIME>2022-09-27T08:26:00+02:00</OBS_DATETIME>
+                            <STATUS>IPR</STATUS>
+                            <RISK_ASSESMENT>STABLE</RISK_ASSESMENT>
+                            <REFERENCE>
+                                <ORG_ID>samuC</ORG_ID>
+                                <OTHER_EVENT_ID>samuC:DB326B5RC279GD4A67ZY</OTHER_EVENT_ID>
+                            </REFERENCE>
+                            <CASUALTIES>
+                                <CONTEXT>REQ_ACTION</CONTEXT>
+                                <DATIME>2022-09-27T08:00:00+02:00</DATIME>
+                                <DECONT>0</DECONT>
+                                <TRIAGERED>0</TRIAGERED>
+                                <TRIAGEYELLOW>1</TRIAGEYELLOW>
+                                <TRIAGEGREEN>0</TRIAGEGREEN>
+                                <TRIAGEBLACK>0</TRIAGEBLACK>
+                                <MISSING>0</MISSING>
+                            </CASUALTIES>
+                            <EVAC>
+                                <DATIME>2022-09-27T10:00:00+02:00</DATIME>
+                                <DISPLACED>0</DISPLACED>
+                                <EVACUATED>1</EVACUATED>
+                            </EVAC>
+                            <EGEO>
+                                <DATIME>2022-09-27T08:26:00+02:00</DATIME>
+                                <TYPE>FLAME</TYPE>
+                                <WEATHER>/HUM/RAIN</WEATHER>
+                                <FREETEXT>Un peu de pluie vers 8h</FREETEXT>
+                                <POSITION>
+                                    <LOC_ID>111fb03a-6fd9-41e0-8e81-990c45188887</LOC_ID>
+                                    <NAME>Lyc\u00e9e Pierre de Coubertin"</NAME>
+                                    <TYPE>POINT</TYPE>
+                                    <HEIGHT_ROLE>MIN</HEIGHT_ROLE>
+                                    <COORDSYS>EPSG-4326</COORDSYS>
+                                    <COORD>
+                                        <LAT>47.221866</LAT>
+                                        <LONG>-1.575807</LONG>
+                                        <HEIGHT>1</HEIGHT>
+                                    </COORD>
+                                    <ADDRESS>Nantes centre ville</ADDRESS>
+                                </POSITION>
+                            </EGEO>
+                            <CAUSE>ACC</CAUSE>
+                            <FREETEXT>Maison sur le côté droit de la route</FREETEXT>
+                        </EVENT>
+                        <MISSION>
+                            <TYPE>/SAV/ASC</TYPE>
+                            <FREETEXT>Besoin d'un grand véhicule car patients à prendre en charge volumineux. Ne pas
+                                utiliser les gyrophares en approche
+                            </FREETEXT>
+                            <ID>ABC1YU3454</ID>
+                            <ORG_ID>sis44</ORG_ID>
+                            <NAME>#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#</NAME>
+                            <STATUS>IPR</STATUS>
+                            <START_TIME>2022-09-27T08:21:00+02:00</START_TIME>
+                            <END_TIME>2022-09-27T10:21:00+02:00</END_TIME>
+                            <RESOURCE_ID>Non traité</RESOURCE_ID>
+                            <PARENT_MISSION_ID>Non traité</PARENT_MISSION_ID>
+                            <CHILD_MISSION_ID>Non traité</CHILD_MISSION_ID>
+                            <MAIN_MISSION_ID>Non traité</MAIN_MISSION_ID>
+                            <POSITION>
+                                <LOC_ID>abcd-hg6T-HSG5-67AA</LOC_ID>
+                                <NAME>Lycée Pierre de Coubertin</NAME>
+                                <TYPE>POINT</TYPE>
+                                <HEIGHTROLE>MIN</HEIGHTROLE>
+                                <COORDSYS>EPSG-4326</COORDSYS>
+                                <COORD>
+                                    <LAT>47.221866</LAT>
+                                    <LONG>-1.575807</LONG>
+                                    <HEIGHT>1</HEIGHT>
+                                </COORD>
+                                <ADDRESS>None</ADDRESS>
+                            </POSITION>
+                            <PRIORITY>4</PRIORITY>
+                        </MISSION>
+                    </message>
+                </embeddedXMLContent>
+            </contentXML>
+        </contentObject>
+    </content>
+</edxlDistribution>
