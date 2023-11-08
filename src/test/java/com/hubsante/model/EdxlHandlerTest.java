@@ -67,8 +67,7 @@ public class EdxlHandlerTest {
     @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
-        File jsonFile = new File(classLoader.getResource("sample/valid/RC-EDA/RC-EDA.json").getFile());
-        String json = new String(Files.readAllBytes(jsonFile.toPath()), StandardCharsets.UTF_8);
+        String json = getMessageString(true, "RC-EDA", false);
 
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
