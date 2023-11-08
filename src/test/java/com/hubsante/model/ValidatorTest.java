@@ -56,6 +56,15 @@ public class ValidatorTest {
     }
 
     @Test
+    @DisplayName("EMSI-DC validation fails")
+    public void jsonEmsiDcValidationFails() throws IOException {
+        String input = getMessageString(false, "EMSI-DC", false);
+        assertThrows(ValidationException.class, () -> validator.validateJSON(input, EDXL_SCHEMA));
+
+        // TODO bbo: add XML validation
+    }
+
+    @Test
     @DisplayName("RC-REF validation passes")
     public void jsonRcRefValidationPasses() throws IOException {
         String input = getMessageString(true, "RC-REF", false);
