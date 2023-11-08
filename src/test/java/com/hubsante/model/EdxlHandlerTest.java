@@ -37,6 +37,12 @@ public class EdxlHandlerTest {
     }
 
     @Test
+
+    public void end2end_EMSI_DC_JSON() throws IOException {
+        String json = getMessageString(true, "EMSI-DC", false);
+        endToEndDeserializationCheck(json, false);
+    }
+    @Test
     @DisplayName("should consistently deserialize then serialize JSON RC-REF")
     public void end2end_RC_REF_JSON() throws IOException {
         String json = getMessageString(true, "RC-REF", false);

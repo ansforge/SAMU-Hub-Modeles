@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.emsi.Context;
 import com.hubsante.model.emsi.Event;
 import com.hubsante.model.emsi.Mission;
@@ -28,26 +29,21 @@ import com.hubsante.model.emsi.Mission;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.hubsante.model.edxl.ContentMessage;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * EMSIDC
+ * EMSI
  */
 @JsonPropertyOrder({
-        EMSIDC.JSON_PROPERTY_C_O_N_T_E_X_T,
-        EMSIDC.JSON_PROPERTY_E_V_E_N_T,
-        EMSIDC.JSON_PROPERTY_M_I_S_S_I_O_N
+        EMSI.JSON_PROPERTY_C_O_N_T_E_X_T,
+        EMSI.JSON_PROPERTY_E_V_E_N_T,
+        EMSI.JSON_PROPERTY_M_I_S_S_I_O_N
 })
-@JsonTypeName("EMSI_DC")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JacksonXmlRootElement(localName = "message")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:10:56.446+01:00[Europe/Paris]")
-public class EMSIDC extends ContentMessage {
-    @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-08T11:29:35.594+01:00[Europe/Paris]")
+public class EMSI extends ContentMessage  {
     public static final String JSON_PROPERTY_C_O_N_T_E_X_T = "CONTEXT";
     private Context CONTEXT;
 
@@ -57,10 +53,10 @@ public class EMSIDC extends ContentMessage {
     public static final String JSON_PROPERTY_M_I_S_S_I_O_N = "MISSION";
     private List<Mission> MISSION;
 
-    public EMSIDC() {
+    public EMSI() {
     }
 
-    public EMSIDC CONTEXT(Context CONTEXT) {
+    public EMSI CONTEXT(Context CONTEXT) {
 
         this.CONTEXT = CONTEXT;
         return this;
@@ -86,7 +82,7 @@ public class EMSIDC extends ContentMessage {
     }
 
 
-    public EMSIDC EVENT(Event EVENT) {
+    public EMSI EVENT(Event EVENT) {
 
         this.EVENT = EVENT;
         return this;
@@ -112,13 +108,13 @@ public class EMSIDC extends ContentMessage {
     }
 
 
-    public EMSIDC MISSION(List<Mission> MISSION) {
+    public EMSI MISSION(List<Mission> MISSION) {
 
         this.MISSION = MISSION;
         return this;
     }
 
-    public EMSIDC addMISSIONItem(Mission MISSIONItem) {
+    public EMSI addMISSIONItem(Mission MISSIONItem) {
         if (this.MISSION == null) {
             this.MISSION = new ArrayList<>();
         }
@@ -138,6 +134,7 @@ public class EMSIDC extends ContentMessage {
         return MISSION;
     }
 
+    @JacksonXmlElementWrapper(useWrapping = false)
 
     @JsonProperty(JSON_PROPERTY_M_I_S_S_I_O_N)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -159,21 +156,23 @@ public class EMSIDC extends ContentMessage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        EMSIDC EMSI_DC = (EMSIDC) o;
-        return Objects.equals(this.CONTEXT, EMSI_DC.CONTEXT) &&
-                Objects.equals(this.EVENT, EMSI_DC.EVENT) &&
-                Objects.equals(this.MISSION, EMSI_DC.MISSION);
+        EMSI EMSI = (EMSI) o;
+        return Objects.equals(this.CONTEXT, EMSI.CONTEXT) &&
+                Objects.equals(this.EVENT, EMSI.EVENT) &&
+                Objects.equals(this.MISSION, EMSI.MISSION);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(CONTEXT, EVENT, MISSION);
+        return Objects.hash(CONTEXT
+                , EVENT
+                , MISSION);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class EMSIDC {\n");
+        sb.append("class EMSI {\n");
         sb.append("    CONTEXT: ").append(toIndentedString(CONTEXT)).append("\n");
         sb.append("    EVENT: ").append(toIndentedString(EVENT)).append("\n");
         sb.append("    MISSION: ").append(toIndentedString(MISSION)).append("\n");
