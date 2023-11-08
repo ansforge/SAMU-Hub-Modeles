@@ -57,7 +57,7 @@
                 "ENV": "/CDIS/RIOT"
               },
               "SOURCE": "COMFOR",
-              "SCALE": 3,
+              "SCALE": "3",
               "CERTAINTY": 95,
               "DECL_DATIME": "2022-09-27T08:24:50+02:00",
               "OCC_DATIME": "2022-09-27T08:20:50+02:00",
@@ -107,8 +107,8 @@
                     "COORDSYS": "EPSG-4326",
                     "COORD": [
                       {
-                        "LAT": "47.221866",
-                        "LONG": "-1.575807",
+                        "LAT": 47.221866,
+                        "LONG": -1.575807,
                         "HEIGHT": 1
                       }
                     ],
@@ -149,8 +149,8 @@
                   "COORDSYS": "EPSG-4326",
                   "COORD": [
                     {
-                      "LAT": "47.221866",
-                      "LONG": "-1.575807",
+                      "LAT": 47.221866,
+                      "LONG": -1.575807,
                       "HEIGHT": 1
                     }
                   ],
@@ -158,7 +158,7 @@
                     "None"
                   ]
                 },
-                "PRIORITY": 4
+                "PRIORITY": "4"
               }
             ]
           }

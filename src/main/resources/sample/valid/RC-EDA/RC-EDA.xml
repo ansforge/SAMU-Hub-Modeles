@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<edxlDistribution xlink:type="extended" xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0">
+<edxlDistribution xlink:type="extended" xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0">
     <distributionID>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
     <senderID>fr.health.samuB</senderID>
     <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
@@ -33,122 +34,363 @@
                             </recipient>
                         </recipients>
                         <createCase>
-                            <caseId>SAMU069-20230725-AF1234</caseId>
-                            <senderCaseId>SAMU069-20230725-AF1234</senderCaseId>
-                            <createdAt>2022-07-25T10:03:34+01:00</createdAt>
-                            <initialAlert>
-                                <alertId>SAMU069-20230725-AL01234</alertId>
-                                <receivedAt>2022-07-25T10:01:22+01:00</receivedAt>
-                                <reporting>STANDARD</reporting>
-                                <alertInformation>suite collision avec un autre vélo sur piste cyclable, gonflement du genou, grosses égratignures, maux de tête</alertInformation>
-                                <caller>
-                                    <callerURI>tel:+330607080901</callerURI>
-                                    <callbackURI>tel:+330601020304</callbackURI>
-                                    <spokenLanguage>Français</spokenLanguage>
-                                    <callerInformation>Epoux</callerInformation>
-                                    <callerName>
-                                        <complete>Louise Durand</complete>
-                                        <callerLastName>Durand</callerLastName>
-                                        <callerFirstName>Louise</callerFirstName>
-                                    </callerName>
-                                </caller>
-                                <alertLocation/>
-                                <alertCode>
-                                    <cisuVersion>1.19</cisuVersion>
-                                    <whatsHappen>
-                                        <code>C01.01.04</code>
-                                        <label>2-roues</label>
-                                        <freetext>pas d'autres types de véhicules impliqués</freetext>
-                                    </whatsHappen>
-                                    <locationKind>
-                                        <code>L02.01.00</code>
-                                        <label>Voie publique hors voie rapide</label>
-                                        <freetext>Voie vélo le long d'une route </freetext>
-                                    </locationKind>
-                                        <riskThreat>
-                                            <code>R22</code>
-                                            <label>Gêne à la circulation</label>
-                                            <freetext>vélos débordent sur la route, rsique lié aux voitures</freetext>
-                                        </riskThreat>
-                                        <riskThreat>
-                                            <code>R23</code>
-                                            <label>Obstacle sur la voie</label>
-                                            <freetext>vélos débordent sur la route, rsique lié aux voitures</freetext>
-                                        </riskThreat>
-                                    <healthMotive>
-                                        <code>M03.11, M02.07</code>
-                                        <label>Céphalée, migraines, Traumatisme sérieux, plaie intermédiaire</label>
-                                        <freetext>Portait un casque de protection</freetext>
-                                    </healthMotive>
-                                    <gravity>faible</gravity>
-                                    <victims>
-                                        <count>MANY</count>
-                                        <mainVictim>ADULT</mainVictim>
-                                        <comment>Deuxième victime présente saignement legers aux mains et genoux</comment>
-                                    </victims>
-                                </alertCode>
-                                <contact>
-                                    <type>Personne</type>
-                                    <detail>tel:+330607080901</detail>
-                                </contact>
-                                <callTaker>
-                                    <organization>SAMU069</organization>
-                                    <controlRoom>Régulation</controlRoom>
-                                </callTaker>
-                                <resource>
-                                    <resourceDesc>DISPMED</resourceDesc>
-                                    <mimeType>pdf</mimeType>
-                                    <size>9</size>
-                                    <URI>https://www.docPatient1.hpLyon.com/share?res=123456</URI>
-                                    <digest>84feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab8684</digest>
-                                </resource>
-                            </initialAlert>
-                            <caseLocation>
-                                <locID>BA-15478-21455789</locID>
-                                <name>Quai des Célestins</name>
-                                <address>
-                                    <complete>8 quai des Célestins</complete>
-                                    <number>8</number>
+                            <caseId>samuA:CA126B445579GD4A67AV</caseId>
+                            <senderCaseId>CA126B445579GD4A67AV</senderCaseId>
+                            <creation>2022-09-27T08:23:34+02:00</creation>
+                            <referenceVersion>1.2</referenceVersion>
+                            <qualification>
+                                <whatsHappen>
+                                    <code>C07.13.02</code>
+                                    <label>Rodéo automobile</label>
+                                    <freetext>None</freetext>
+                                </whatsHappen>
+                                <locationKind>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
+                                </locationKind>
+                                <riskThreat>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
+                                </riskThreat>
+                                <riskThreat>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
+                                </riskThreat>
+                                <healthMotive>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
+                                </healthMotive>
+                                <victims>
+                                    <count>MANY</count>
+                                    <mainVictim>CHILD</mainVictim>
+                                    <freetext>10 ans</freetext>
+                                </victims>
+                            </qualification>
+                            <location>
+                                <locID>111fb03a-6fd9-41e0-8e81-990c45188887</locID>
+                                <locLabel>Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet -
+                                    Accès 2 - 77048 Saint-Albray
+                                </locLabel>
+                                <name>Lycée Pierre de Coubertin</name>
+                                <detailedAddress>
+                                    <complete>9 Bd du Montparnasse</complete>
+                                    <number>9, 4bis, PK10, …</number>
                                     <wayName>
-                                        <type>Quai</type>
-                                        <name>des Célestins</name>
+                                        <complete>Boulevard du Montparnasse</complete>
+                                        <type>Boulevard</type>
+                                        <wayName>du Montparnasse</wayName>
                                     </wayName>
-                                </address>
+                                </detailedAddress>
                                 <city>
-                                    <name>Lyon</name>
-                                    <inseeCode>69002</inseeCode>
-                                    <detail>deuxième arrondissement</detail>
+                                    <name>Lille</name>
+                                    <inseeCode>59350</inseeCode>
+                                    <detailed>Quartier Melun Nord, Lhomme, …</detailed>
                                 </city>
-                                <access/>
+                                <access>
+                                    <floor>RDC, 1, 2, ...</floor>:
+                                    <roomNumber>A16, 37, 104, ...</roomNumber>
+                                    <interphone>Dupont</interphone>
+                                    <accessCode>1234A</accessCode>
+                                    <accessCode>432B</accessCode>
+                                    <elevator>C3</elevator>
+                                    <buildingName>Batiment B, Batiment Maunoury</buildingName>
+                                    <entrance>Zone Sud, Porte 1, ...</entrance>
+                                    <entity>Infirmerie, service finance, service cardiologie, ...</entity>
+                                </access>
                                 <geometry>
+                                    <obsDatime>2022-09-27T08:23:34+02:00</obsDatime>
                                     <point>
                                         <coord>
-                                            <lat>45.7602368</lat>
-                                            <lon>4.8310551</lon>
-                                            <height>237</height>
-                                            <time>2022-07-25T10:03:34+01:00</time>
+                                            <lat>48.866667</lat>
+                                            <lon>2.333333</lon>
+                                            <height>120</height>
+                                            <heading>96</heading>
+                                            <speed>34</speed>
                                             <precision>ADDRESS</precision>
                                         </coord>
-                                        <coordsys>EPSG-4326</coordsys>
+                                        <sysCoord>EPSG-4326</sysCoord>
                                     </point>
+                                    <sketch>None</sketch>
                                 </geometry>
-                                <link>
-                                    <source>BAN</source>
-                                    <id>id1234</id>
-                                </link>
-                                <country>France</country>
-                                <freetext>Devant la boulangerie Quai des Célestin</freetext>
-                            </caseLocation>
-                            <severity>MINOR</severity>
+                                <externalInfo>
+                                    <freetext>BAN</freetext>
+                                    <type>MANUAL</type>
+                                    <uri>id987</uri>
+                                </externalInfo>
+                                <country>FR</country>
+                                <freetext>Clé derrirèe le pot de fleur</freetext>
+                            </location>
+                            <initialAlert>
+                                <id>SGO050-20230605-AL0123</id>
+                                <reception>2022-09-27T08:21:06+02:00</reception>
+                                <reporting>STANDARD</reporting>
+                                <freetext>Déclenchement téléalarme, voisine sur les liens</freetext>
+                                <caller>
+                                    <callerContact>
+                                        <type>PHNADD</type>
+                                        <detail>0671830530</detail>
+                                    </callerContact>
+                                    <callbackContact>
+                                        <type>PHNADD</type>
+                                        <detail>téléphone du père</detail>
+                                    </callbackContact>
+                                    <language>FR</language>
+                                    <freetext>Père</freetext>
+                                    <detailedName>
+                                        <complete>Jean Dupont</complete>
+                                        <lastName>Dupont</lastName>
+                                        <firstName>Jean</firstName>
+                                    </detailedName>
+                                </caller>
+                                <alertSource>
+                                    <channel>Personne</channel>
+                                    <type>PHNADD</type>
+                                    <detail>0671830530</detail>
+                                </alertSource>
+                                <location>
+                                    <locID>111fb03a-6fd9-41e0-8e81-990c45188887</locID>
+                                    <locLabel>Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet
+                                        - Accès 2 - 77048 Saint-Albray
+                                    </locLabel>
+                                    <name>Lycée Pierre de Coubertin</name>
+                                    <detailedAddress>
+                                        <complete>9 Bd du Montparnasse</complete>
+                                        <number>9, 4bis, PK10, …</number>
+                                        <wayName>
+                                            <complete>Boulevard du Montparnasse</complete>
+                                            <type>Boulevard</type>
+                                            <wayName>du Montparnasse</wayName>
+                                        </wayName>
+                                    </detailedAddress>
+                                    <city>
+                                        <name>Lille</name>
+                                        <inseeCode>59350</inseeCode>
+                                        <detailed>Quartier Melun Nord, Lhomme, …</detailed>
+                                    </city>
+                                    <access>
+                                        <floor>RDC, 1, 2, ...</floor>:
+                                        <roomNumber>A16, 37, 104, ...</roomNumber>
+                                        <interphone>Dupont</interphone>
+                                        <accessCode>1234A</accessCode>
+                                        <accessCode>432B</accessCode>
+                                        <elevator>C3</elevator>
+                                        <buildingName>Batiment B, Batiment Maunoury</buildingName>
+                                        <entrance>Zone Sud, Porte 1, ...</entrance>
+                                        <entity>Infirmerie, service finance, service cardiologie, ...</entity>
+                                    </access>
+                                    <geometry>
+                                        <obsDatime>2022-09-27T08:23:34+02:00</obsDatime>
+                                        <point>
+                                            <coord>
+                                                <lat>48.866667</lat>
+                                                <lon>2.333333</lon>
+                                                <height>120</height>
+                                                <heading>96</heading>
+                                                <speed>34</speed>
+                                                <precision>ADDRESS</precision>
+                                            </coord>
+                                            <sysCoord>EPSG-4326</sysCoord>
+                                        </point>
+                                        <sketch>None</sketch>
+                                    </geometry>
+                                    <externalInfo>
+                                        <freetext>BAN</freetext>
+                                        <type>MANUAL</type>
+                                        <uri>id987</uri>
+                                    </externalInfo>
+                                    <country>FR</country>
+                                    <freetext>Clé derrirèe le pot de fleur</freetext>
+                                </location>
+                                <qualification>
+                                    <whatsHappen>
+                                        <code>C07.13.02</code>
+                                        <label>Rodéo automobile</label>
+                                        <freetext>None</freetext>
+                                    </whatsHappen>
+                                    <locationKind>
+                                        <code>TO_BE_CONTROLLED</code>
+                                        <label>TO_BE_CONTROLLED</label>
+                                        <freetext>TO_BE_CONTROLLED</freetext>
+                                    </locationKind>
+                                    <riskThreat>
+                                        <code>TO_BE_CONTROLLED</code>
+                                        <label>TO_BE_CONTROLLED</label>
+                                        <freetext>TO_BE_CONTROLLED</freetext>
+                                    </riskThreat>
+                                    <healthMotive>
+                                        <code>TO_BE_CONTROLLED</code>
+                                        <label>TO_BE_CONTROLLED</label>
+                                        <freetext>TO_BE_CONTROLLED</freetext>
+                                    </healthMotive>
+                                    <victims>
+                                        <count>MANY</count>
+                                        <mainVictim>CHILD</mainVictim>
+                                        <freetext>10 ans</freetext>
+                                    </victims>
+                                </qualification>
+                                <callTaker>
+                                    <organization>FR:Administration:44:samu44:crra:regulationN3</organization>
+                                    <controlRoom>CGA, CGO 21, CRRA 44, ...</controlRoom>
+                                    <role>ARM</role>
+                                    <calltakeContact>
+                                        <type>PHNADD</type>
+                                        <detail>None</detail>
+                                    </calltakeContact>
+                                    <calltakerId>id1234</calltakerId>
+                                </callTaker>
+                                <attachment>
+                                    <description>photo, carte, …</description>
+                                    <mimeType>PDF, XML, JPEG, …</mimeType>
+                                    <size>1235</size>
+                                    <URI>https://hub.esante.gouv.fr/resourceExample</URI>
+                                    <derefURI>None</derefURI>
+                                    <digest>None</digest>
+                                </attachment>
+                            </initialAlert>
+                            <newAlert>
+                                <id>SGO050-20230605-AL0124</id>
+                                <reception>2022-09-27T08:23:06+02:00</reception>
+                                <reporting>STANDARD</reporting>
+                                <caller>
+                                    <callerContact>
+                                        <type>PHNADD</type>
+                                        <detail>0671830530</detail>
+                                    </callerContact>
+                                    <callbackContact>
+                                        <type>PHNADD</type>
+                                        <detail>téléphone du père</detail>
+                                    </callbackContact>
+                                    <language>FR</language>
+                                    <freetext>Père</freetext>
+                                    <detailedName>
+                                        <complete>Jean Dupont</complete>
+                                        <lastName>Dupont</lastName>
+                                        <firstName>Jean</firstName>
+                                    </detailedName>
+                                </caller>
+                                <alertSource>
+                                    <channel>Personne</channel>
+                                    <type>PHNADD</type>
+                                    <detail>0671830530</detail>
+                                </alertSource>
+                                <location>
+                                    <locID>111fb03a-6fd9-41e0-8e81-990c45188887</locID>
+                                    <locLabel>Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet
+                                        - Accès 2 - 77048 Saint-Albray
+                                    </locLabel>
+                                    <name>Lycée Pierre de Coubertin</name>
+                                    <detailedAddress>
+                                        <complete>9 Bd du Montparnasse</complete>
+                                        <number>9, 4bis, PK10, …</number>
+                                        <wayName>
+                                            <complete>Boulevard du Montparnasse</complete>
+                                            <type>Boulevard</type>
+                                            <wayName>du Montparnasse</wayName>
+                                        </wayName>
+                                    </detailedAddress>
+                                    <city>
+                                        <name>Lille</name>
+                                        <inseeCode>59350</inseeCode>
+                                        <detailed>Quartier Melun Nord, Lhomme, …</detailed>
+                                    </city>
+                                    <access>
+                                        <floor>RDC, 1, 2, ...</floor>:
+                                        <roomNumber>A16, 37, 104, ...</roomNumber>
+                                        <interphone>Dupont</interphone>
+                                        <accessCode>1234A</accessCode>
+                                        <accessCode>432B</accessCode>
+                                        <elevator>C3</elevator>
+                                        <buildingName>Batiment B, Batiment Maunoury</buildingName>
+                                        <entrance>Zone Sud, Porte 1, ...</entrance>
+                                        <entity>Infirmerie, service finance, service cardiologie, ...</entity>
+                                    </access>
+                                    <geometry>
+                                        <obsDatime>2022-09-27T08:23:34+02:00</obsDatime>
+                                        <point>
+                                            <coord>
+                                                <lat>48.866667</lat>
+                                                <lon>2.333333</lon>
+                                                <height>120</height>
+                                                <heading>96</heading>
+                                                <speed>34</speed>
+                                                <precision>ADDRESS</precision>
+                                            </coord>
+                                            <sysCoord>EPSG-4326</sysCoord>
+                                        </point>
+                                        <sketch>None</sketch>
+                                    </geometry>
+                                    <externalInfo>
+                                        <freetext>BAN</freetext>
+                                        <type>MANUAL</type>
+                                        <uri>id987</uri>
+                                    </externalInfo>
+                                    <country>FR</country>
+                                    <freetext>Clé derrirèe le pot de fleur</freetext>
+                                </location>
+                                <qualification>
+                                    <whatsHappen>
+                                        <code>C07.13.02</code>
+                                        <label>Rodéo automobile</label>
+                                        <freetext>None</freetext>
+                                    </whatsHappen>
+                                    <locationKind>
+                                        <code>TO_BE_CONTROLLED</code>
+                                        <label>TO_BE_CONTROLLED</label>
+                                        <freetext>TO_BE_CONTROLLED</freetext>
+                                    </locationKind>
+                                    <riskThreat>
+                                        <code>TO_BE_CONTROLLED</code>
+                                        <label>TO_BE_CONTROLLED</label>
+                                        <freetext>TO_BE_CONTROLLED</freetext>
+                                    </riskThreat>
+                                    <riskThreat>
+                                        <code>TO_BE_CONTROLLED</code>
+                                        <label>TO_BE_CONTROLLED</label>
+                                        <freetext>TO_BE_CONTROLLED</freetext>
+                                    </riskThreat>
+                                    <healthMotive>
+                                        <code>TO_BE_CONTROLLED</code>
+                                        <label>TO_BE_CONTROLLED</label>
+                                        <freetext>TO_BE_CONTROLLED</freetext>
+                                    </healthMotive>
+                                    <victims>
+                                        <count>MANY</count>
+                                        <mainVictim>CHILD</mainVictim>
+                                        <freetext>10 ans</freetext>
+                                    </victims>
+                                </qualification>
+                                <callTaker>
+                                    <organization>FR:Administration:44:samu44:crra:regulationN3</organization>
+                                    <controlRoom>CGA, CGO 21, CRRA 44, ...</controlRoom>
+                                    <role>ARM</role>
+                                    <calltakeContact>
+                                        <type>PHNADD</type>
+                                        <detail>None</detail>
+                                    </calltakeContact>
+                                    <calltakerId>id1234</calltakerId>
+                                </callTaker>
+                                <attachment>
+                                    <description>photo, carte, …</description>
+                                    <mimeType>PDF, XML, JPEG, …</mimeType>
+                                    <size>1235</size>
+                                    <URI>https://hub.esante.gouv.fr/resourceExample</URI>
+                                    <derefURI>None</derefURI>
+                                    <digest>None</digest>
+                                </attachment>
+                            </newAlert>
                             <additionalInformation>
                                 <customMap>
                                     <key>neighborhood</key>
                                     <label>Quartier</label>
-                                    <value>SECT.QUARTIER HISTORIQUE</value>
-                                    <freetext>Une voix sens unique pour voiture + une voix bus</freetext>
+                                    <value>LYON 2e arrondissement</value>
+                                    <freetext>Précision sur le quartier d'intervention</freetext>
                                 </customMap>
                             </additionalInformation>
-                            <freetext>choc à la tête mais portait un casque de protection. 2ème victime n'a pas de blessures apparantes.</freetext>
+                            <freetext>None</freetext>
                         </createCase>
                     </message>
                 </embeddedXMLContent>
