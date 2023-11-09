@@ -40,7 +40,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("etype")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-08T11:29:35.594+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-09T17:02:55.258+01:00[Europe/Paris]")
 public class Etype {
     /**
      * Le champ peut ne pas être interprété ou renseigné avec une valeur comme &#39;UKN&#39; &#x3D; &#39;UNKOWN&#39;
@@ -222,109 +222,313 @@ public class Etype {
      * Dans de futures versions de NexSIS, les demandes de concours seront diffusées à plusieurs partenaires. Seul le système de la force concernée par la demande de concours devra répondre effectivement à la demande. Ce système de la force concernée sera identifié comme le \&quot;concourant\&quot; à la demande de concours.  Le libellé du champ ACTOR permet d&#39;identifier le concourant souhaité dans la demande de concours. Pour les premières implémentations du contrat d&#39;interface 15-18, il n&#39;y a pas de nécessité pour les systèmes récepteurs de filtrer les demandes de concours reçues via le Hub Santé. Le champ MISSION TYPE permet en complément d&#39;identifier l&#39;effet à obtenir souhaité à partir de la combinaison du code ACTOR et du code TYPE. Le transcodage entre ces deux nomenclature est décrit dans l&#39;annexe \&quot;Référentiel Effets à Obtenir - correspondance EMSI\&quot;
      */
     public enum ACTOREnum {
-        COAST("COAST"),
+        ANI("ANI"),
 
-        INW("INW"),
+        BEV("BEV"),
 
-        NAT("NAT"),
+        PPL("PPL"),
 
-        OSEA("OSEA"),
+        VEH("VEH"),
 
-        OTH("OTH"),
+        _ANI_CON("/ANI/CON"),
 
-        RAIL("RAIL"),
+        _ANI_DEA("/ANI/DEA"),
 
-        ROAD("ROAD"),
+        _ANI_DGR("/ANI/DGR"),
 
-        UDGN("UDGN"),
+        _ANI_FRM("/ANI/FRM"),
 
-        URB("URB"),
+        _ANI_HRD("/ANI/HRD"),
 
-        _COAST_BNK("/COAST/BNK"),
+        _ANI_INJ("/ANI/INJ"),
 
-        _COAST_CLF("/COAST/CLF"),
+        _ANI_LIV("/ANI/LIV"),
 
-        _COAST_CSTW("/COAST/CSTW"),
+        _ANI_PET("/ANI/PET"),
 
-        _COAST_EST("/COAST/EST"),
+        _ANI_PRO("/ANI/PRO"),
 
-        _COAST_FEN("/COAST/FEN"),
+        _ANI_SPC("/ANI/SPC"),
 
-        _INW_BOG("/INW/BOG"),
+        _ANI_WLD("/ANI/WLD"),
 
-        _INW_CAN("/INW/CAN"),
+        _BEV_ASR("/BEV/ASR"),
 
-        _INW_ICELK("/INW/ICELK"),
+        _BEV_IND("/BEV/IND"),
 
-        _INW_LKE("/INW/LKE"),
+        _BEV_NRES("/BEV/NRES"),
 
-        _INW_RIV("/INW/RIV"),
+        _BEV_OFF("/BEV/OFF"),
 
-        _NAT_CRP("/NAT/CRP"),
+        _BEV_OTH("/BEV/OTH"),
 
-        _NAT_GRS("/NAT/GRS"),
+        _BEV_RESDW("/BEV/RESDW"),
 
-        _NAT_HFR("/NAT/HFR"),
+        _BEV_RESIN("/BEV/RESIN"),
 
-        _NAT_HLS("/NAT/HLS"),
+        _BEV_RESINT("/BEV/RESINT"),
 
-        _NAT_HMT("/NAT/HMT"),
+        _BEV_RESOTH("/BEV/RESOTH"),
 
-        _NAT_LMT("/NAT/LMT"),
+        _BEV_SHP("/BEV/SHP"),
 
-        _NAT_SSSI("/NAT/SSSI"),
+        _PPL_1("/PPL/1"),
 
-        _OSEA_OFF("/OSEA/OFF"),
+        _PPL_ADU("/PPL/ADU"),
 
-        _OTH_CUT("/OTH/CUT"),
+        _PPL_CHD("/PPL/CHD"),
 
-        _OTH_ELV("/OTH/ELV"),
+        _PPL_CNT("/PPL/CNT"),
 
-        _OTH_EMB("/OTH/EMB"),
+        _PPL_DED("/PPL/DED"),
 
-        _OTH_LFR("/OTH/LFR"),
+        _PPL_EVC("/PPL/EVC"),
 
-        _OTH_SRB("/OTH/SRB"),
+        _PPL_GND("/PPL/GND"),
 
-        _PRIVAT("/PRIVAT"),
+        _PPL_GRP("/PPL/GRP"),
 
-        _RAIL_TRK("/RAIL/TRK"),
+        _PPL_HST("/PPL/HST"),
 
-        _ROAD_1RD("/ROAD/1RD"),
+        _PPL_INT("/PPL/INT"),
 
-        _ROAD_DCA("/ROAD/DCA"),
+        _PPL_OTH("/PPL/OTH"),
 
-        _ROAD_NOR("/ROAD/NOR"),
+        _PPL_PRS("/PPL/PRS"),
 
-        _ROAD_PTH("/ROAD/PTH"),
+        _PPL_SNS("/PPL/SNS"),
 
-        _ROAD_RRD("/ROAD/RRD"),
+        _PPL_VIO("/PPL/VIO"),
 
-        _ROAD_SRD("/ROAD/SRD"),
+        _PPL_VLN("/PPL/VLN"),
 
-        _ROAD_TRK("/ROAD/TRK"),
+        _PPL_WTN("/PPL/WTN"),
 
-        _UDGN_MIN("/UDGN/MIN"),
+        _PPL_CHD_BAB("/PPL/CHD/BAB"),
 
-        _UDGN_TUN("/UDGN/TUN"),
+        _PPL_CHD_CHILD("/PPL/CHD/CHILD"),
 
-        _UDGN_UND("/UDGN/UND"),
+        _PPL_CHD_INF("/PPL/CHD/INF"),
 
-        _URB_ASR("/URB/ASR"),
+        _PPL_CHD_YOUTH("/PPL/CHD/YOUTH"),
 
-        _URB_HOSP("/URB/HOSP"),
+        _PPL_GND_FML("/PPL/GND/FML"),
 
-        _URB_IND("/URB/IND"),
+        _PPL_GND_MAL("/PPL/GND/MAL"),
 
-        _URB_MALL("/URB/MALL"),
+        _PPL_GND_UND("/PPL/GND/UND"),
 
-        _URB_OFF("/URB/OFF"),
+        _PPL_HST_PCF("/PPL/HST/PCF"),
 
-        _URB_PRK("/URB/PRK"),
+        _PPL_HST_SUI("/PPL/HST/SUI"),
 
-        _URB_RES("/URB/RES"),
+        _PPL_HST_THT("/PPL/HST/THT"),
 
-        _URB_STRT("/URB/STRT");
+        _PPL_HST_WPN("/PPL/HST/WPN"),
+
+        _PPL_PRS_CST("/PPL/PRS/CST"),
+
+        _PPL_PRS_ESC("/PPL/PRS/ESC"),
+
+        _PPL_PRS_HGS("/PPL/PRS/HGS"),
+
+        _PPL_SNS_ETH("/PPL/SNS/ETH"),
+
+        _PPL_SNS_FOR("/PPL/SNS/FOR"),
+
+        _PPL_SNS_LAN("/PPL/SNS/LAN"),
+
+        _PPL_SNS_REL("/PPL/SNS/REL"),
+
+        _PPL_SNS_VIP("/PPL/SNS/VIP"),
+
+        _PPL_VLN_BLD("/PPL/VLN/BLD"),
+
+        _PPL_VLN_DEF("/PPL/VLN/DEF"),
+
+        _PPL_VLN_DSB("/PPL/VLN/DSB"),
+
+        _PPL_VLN_ELD("/PPL/VLN/ELD"),
+
+        _PPL_VLN_INJ("/PPL/VLN/INJ"),
+
+        _PPL_VLN_LDF("/PPL/VLN/LDF"),
+
+        _PPL_VLN_OBS("/PPL/VLN/OBS"),
+
+        _PPL_VLN_PAT("/PPL/VLN/PAT"),
+
+        _PPL_VLN_PGN("/PPL/VLN/PGN"),
+
+        _PPL_VLN_SLFPRS("/PPL/VLN/SLFPRS"),
+
+        _PPL_VLN_UNC("/PPL/VLN/UNC"),
+
+        _VEH_AIR("/VEH/AIR"),
+
+        _VEH_ANI("/VEH/ANI"),
+
+        _VEH_BIC("/VEH/BIC"),
+
+        _VEH_CAR("/VEH/CAR"),
+
+        _VEH_EMG("/VEH/EMG"),
+
+        _VEH_MBK("/VEH/MBK"),
+
+        _VEH_MIL("/VEH/MIL"),
+
+        _VEH_OTH("/VEH/OTH"),
+
+        _VEH_TRK("/VEH/TRK"),
+
+        _VEH_TRN("/VEH/TRN"),
+
+        _VEH_VES("/VEH/VES"),
+
+        _VEH_AIR_ARM("/VEH/AIR/ARM"),
+
+        _VEH_AIR_FLBA("/VEH/AIR/FLBA"),
+
+        _VEH_AIR_FRG("/VEH/AIR/FRG"),
+
+        _VEH_AIR_FXBA("/VEH/AIR/FXBA"),
+
+        _VEH_AIR_GLD("/VEH/AIR/GLD"),
+
+        _VEH_AIR_HEL("/VEH/AIR/HEL"),
+
+        _VEH_AIR_HVY("/VEH/AIR/HVY"),
+
+        _VEH_AIR_JET("/VEH/AIR/JET"),
+
+        _VEH_AIR_LGT("/VEH/AIR/LGT"),
+
+        _VEH_AIR_MIL("/VEH/AIR/MIL"),
+
+        _VEH_AIR_ORD("/VEH/AIR/ORD"),
+
+        _VEH_AIR_OTH("/VEH/AIR/OTH"),
+
+        _VEH_AIR_PAS("/VEH/AIR/PAS"),
+
+        _VEH_AIR_PRBA("/VEH/AIR/PRBA"),
+
+        _VEH_AIR_PST("/VEH/AIR/PST"),
+
+        _VEH_AIR_RKT("/VEH/AIR/RKT"),
+
+        _VEH_AIR_SEA("/VEH/AIR/SEA"),
+
+        _VEH_AIR_SNO("/VEH/AIR/SNO"),
+
+        _VEH_AIR_TNK("/VEH/AIR/TNK"),
+
+        _VEH_AIR_UAV("/VEH/AIR/UAV"),
+
+        _VEH_AIR_ULG("/VEH/AIR/ULG"),
+
+        _VEH_OTH_HIL("/VEH/OTH/HIL"),
+
+        _VEH_OTH_SNO("/VEH/OTH/SNO"),
+
+        _VEH_TRK_ART("/VEH/TRK/ART"),
+
+        _VEH_TRK_EXC("/VEH/TRK/EXC"),
+
+        _VEH_TRK_HZD("/VEH/TRK/HZD"),
+
+        _VEH_TRK_NHZ("/VEH/TRK/NHZ"),
+
+        _VEH_TRK_NUK("/VEH/TRK/NUK"),
+
+        _VEH_TRK_REF("/VEH/TRK/REF"),
+
+        _VEH_TRK_UND("/VEH/TRK/UND"),
+
+        _VEH_TRN_3RL("/VEH/TRN/3RL"),
+
+        _VEH_TRN_DSL("/VEH/TRN/DSL"),
+
+        _VEH_TRN_HZD("/VEH/TRN/HZD"),
+
+        _VEH_TRN_LOC("/VEH/TRN/LOC"),
+
+        _VEH_TRN_NHZ("/VEH/TRN/NHZ"),
+
+        _VEH_TRN_NUK("/VEH/TRN/NUK"),
+
+        _VEH_TRN_OVH("/VEH/TRN/OVH"),
+
+        _VEH_TRN_PAS("/VEH/TRN/PAS"),
+
+        _VEH_TRN_REF("/VEH/TRN/REF"),
+
+        _VEH_TRN_STM("/VEH/TRN/STM"),
+
+        _VEH_TRN_TRM("/VEH/TRN/TRM"),
+
+        _VEH_TRN_UDG("/VEH/TRN/UDG"),
+
+        _VEH_TRN_UND("/VEH/TRN/UND"),
+
+        _VEH_TRN_VIP("/VEH/TRN/VIP"),
+
+        _VEH_TRN_VLT("/VEH/TRN/VLT"),
+
+        _VEH_VES_AMB("/VEH/VES/AMB"),
+
+        _VEH_VES_BOT("/VEH/VES/BOT"),
+
+        _VEH_VES_CNO("/VEH/VES/CNO"),
+
+        _VEH_VES_CRG("/VEH/VES/CRG"),
+
+        _VEH_VES_DSL("/VEH/VES/DSL"),
+
+        _VEH_VES_FLO("/VEH/VES/FLO"),
+
+        _VEH_VES_FRY("/VEH/VES/FRY"),
+
+        _VEH_VES_HOV("/VEH/VES/HOV"),
+
+        _VEH_VES_HZD("/VEH/VES/HZD"),
+
+        _VEH_VES_JSK("/VEH/VES/JSK"),
+
+        _VEH_VES_LEI("/VEH/VES/LEI"),
+
+        _VEH_VES_LIS("/VEH/VES/LIS"),
+
+        _VEH_VES_MIL("/VEH/VES/MIL"),
+
+        _VEH_VES_MPW("/VEH/VES/MPW"),
+
+        _VEH_VES_NHZ("/VEH/VES/NHZ"),
+
+        _VEH_VES_NUK("/VEH/VES/NUK"),
+
+        _VEH_VES_PAS("/VEH/VES/PAS"),
+
+        _VEH_VES_POL("/VEH/VES/POL"),
+
+        _VEH_VES_PTL("/VEH/VES/PTL"),
+
+        _VEH_VES_RSC("/VEH/VES/RSC"),
+
+        _VEH_VES_SAI("/VEH/VES/SAI"),
+
+        _VEH_VES_SBM("/VEH/VES/SBM"),
+
+        _VEH_VES_SINK("/VEH/VES/SINK"),
+
+        _VEH_VES_SPC("/VEH/VES/SPC"),
+
+        _VEH_VES_STE("/VEH/VES/STE"),
+
+        _VEH_VES_SUNK("/VEH/VES/SUNK"),
+
+        _VEH_VES_UNM("/VEH/VES/UNM");
 
         private String value;
 
