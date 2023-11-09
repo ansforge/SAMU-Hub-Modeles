@@ -43,7 +43,7 @@ public class RC_REF_BuilderTest {
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
-        assertEquals("id-67890", ((ReferenceMessage) built.getContentMessage()).getReference().getDistributionID());
+        assertEquals("id-67890", ((ReferenceMessage) built.getFirstContentMessage()).getReference().getDistributionID());
     }
 
     @Test

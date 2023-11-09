@@ -65,11 +65,20 @@ public class EdxlHandlerTest {
     }
 
     @Test
+    @DisplayName("should consistently deserialize EDXL with several content objects")
+    public void deserializeEDXLWithSeveralContentObjects() throws IOException {
+        String json = getMessageString(true, "EDXL-DE", false);
+        EdxlMessage message = converter.deserializeJsonEDXL(json);
+
+        assertEquals(2, message.getContent().size());
+        assertEquals(2, message.getAllContentMessages().size());
+        assertEquals(message.getFirstContentMessage(), message.getAllContentMessages().get(0));
+    }
+
+    @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
-        File jsonFile = new File(classLoader.getResource("sample/valid/RC-EDA/RC-EDA.json").getFile());
-        String json = new String(Files.readAllBytes(jsonFile.toPath()), StandardCharsets.UTF_8);
-
+        String json = getMessageString(true, "RC-EDA", false);
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));
