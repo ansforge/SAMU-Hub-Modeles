@@ -32,7 +32,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RC-EDA validation passes")
     public void jsonRcEdaValidationPasses() throws IOException {
-        String input = getMessageString(true, "RC-EDA", false);
+        String input = getMessageString("RC-EDA");
         assertDoesNotThrow(() -> validator.validateJSON(input, EDXL_SCHEMA));
 
         // TODO bbo: add XML validation
@@ -41,7 +41,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RC-EDA validation fails")
     public void jsonRcEdaValidationFails() throws IOException {
-        String input = getMessageString(false, "RC-EDA", false);
+        String input = getMessageString("RC-EDA", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, EDXL_SCHEMA));
 
         // TODO bbo: add XML validation
@@ -50,7 +50,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RC-REF validation passes")
     public void jsonRcRefValidationPasses() throws IOException {
-        String input = getMessageString(true, "RC-REF", false);
+        String input = getMessageString("RC-REF");
         assertDoesNotThrow(() -> validator.validateJSON(input, EDXL_SCHEMA));
 
         // TODO bbo: add XML validation
@@ -59,7 +59,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RC-REF validation fails")
     public void jsonRcRefValidationFails() throws IOException {
-        String input = getMessageString(false, "RC-REF", false);
+        String input = getMessageString( "RC-REF", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, EDXL_SCHEMA));
 
         // TODO bbo: add XML validation
@@ -68,7 +68,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RS-INFO validation passes")
     public void jsonRsInfoValidationPasses() throws IOException {
-        String input = getMessageString(true, "RS-INFO", false);
+        String input = getMessageString("RS-INFO");
         assertDoesNotThrow(() -> validator.validateJSON(input, EDXL_SCHEMA));
 
         // TODO bbo: add XML validation
@@ -77,7 +77,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RS-INFO validation fails")
     public void jsonRsInfoValidationFails() throws IOException {
-        String input = getMessageString(false, "RS-INFO", false);
+        String input = getMessageString( "RS-INFO", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, EDXL_SCHEMA));
 
         // TODO bbo: add XML validation

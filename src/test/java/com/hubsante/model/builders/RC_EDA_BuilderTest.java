@@ -51,7 +51,7 @@ public class RC_EDA_BuilderTest {
     }
 
     private CreateCase getCreateCaseMock() throws IOException {
-        String json = getMessageString(true, "RC-EDA", false);
+        String json = getMessageString("RC-EDA");
         return ((CreateCaseMessage) converter.deserializeJsonEDXL(json).getFirstContentMessage()).getCreateCase();
     }
 }

@@ -7,7 +7,15 @@ import java.nio.file.Files;
 
 public class TestFileUtils {
     static ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-    public static String getMessageString(boolean isValid, String schemaName, boolean isXML) throws IOException {
+
+    public static String getMessageString(String schemaName) throws IOException {
+        return getMessageString(schemaName, false);
+    }
+
+    public static String getMessageString(String schemaName, boolean isXML) throws IOException {
+        return getMessageString(schemaName, isXML, true);
+    }
+    public static String getMessageString(String schemaName, boolean isXML, boolean isValid) throws IOException {
         String resourcePath = getTestFilePath(isValid, schemaName, isXML);
         File file = new File(classLoader.getResource(resourcePath).getFile());
         return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
