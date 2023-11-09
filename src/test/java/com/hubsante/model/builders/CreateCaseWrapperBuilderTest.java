@@ -4,7 +4,7 @@ import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.RCDE;
 import com.hubsante.model.cisu.RCDE.*;
-import com.hubsante.model.cisu.RCEDA;
+import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.cisu.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -18,7 +18,7 @@ import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RC_EDA_BuilderTest {
+public class CreateCaseWrapperBuilderTest {
     private final String MESSAGE_ID = "id-12345";
     private final String SENDER_ID = "sender-x";
     private final String RECIPIENT_ID = "recipient-y";
@@ -31,7 +31,7 @@ public class RC_EDA_BuilderTest {
 
         RCDE rcDe = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
                 .build();
-        RCEDA rcEda = new RC_EDA_Builder(rcDe, getCreateCaseMock())
+        CreateCaseWrapper rcEda = new CreateCaseWrapperBuilder(rcDe, getCreateCaseMock())
                 .build();
 
         assertEquals(MESSAGE_ID, rcEda.getMessageId());
@@ -48,11 +48,11 @@ public class RC_EDA_BuilderTest {
                 .kind(KindEnum.ACK)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new RC_EDA_Builder(rcDe, getCreateCaseMock()).build());
+        assertThrows(IllegalArgumentException.class, () -> new CreateCaseWrapperBuilder(rcDe, getCreateCaseMock()).build());
     }
 
     private CreateCase getCreateCaseMock() throws IOException {
         String json = getMessageString(true, "RC-EDA", false);
-        return ((RCEDA) converter.deserializeJsonEDXL(json).getContentMessage()).getCreateCase();
+        return ((CreateCaseWrapper) converter.deserializeJsonEDXL(json).getContentMessage()).getCreateCase();
     }
 }

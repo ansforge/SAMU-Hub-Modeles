@@ -14,57 +14,51 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.Reference;
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * RCREF
+ * RCEDA
  */
 @JsonPropertyOrder({
-        RCREF.JSON_PROPERTY_REFERENCE
+        CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE
 })
-@JsonTypeName("RC_REF")
+@JsonTypeName("RC_EDA")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
-public class RCREF extends RCDE {
-    public static final String JSON_PROPERTY_REFERENCE = "reference";
-    private Reference reference;
+public class CreateCaseWrapper extends RCDE {
+    public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
+    private CreateCase createCase;
 
-    public RCREF() {
+    public CreateCaseWrapper() {
     }
 
-    public RCREF reference(Reference reference) {
+    public CreateCaseWrapper createCase(CreateCase createCase) {
 
-        this.reference = reference;
+        this.createCase = createCase;
         return this;
     }
 
     /**
-     * Get reference
+     * Get createCase
      *
-     * @return reference
+     * @return createCase
      **/
-    @JsonProperty(JSON_PROPERTY_REFERENCE)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public Reference getReference() {
-        return reference;
+    public CreateCase getCreateCase() {
+        return createCase;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_REFERENCE)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setReference(Reference reference) {
-        this.reference = reference;
+    @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setCreateCase(CreateCase createCase) {
+        this.createCase = createCase;
     }
 
     @Override
@@ -75,20 +69,20 @@ public class RCREF extends RCDE {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        RCREF RC_REF = (RCREF) o;
-        return Objects.equals(this.reference, RC_REF.reference);
+        CreateCaseWrapper RC_EDA = (CreateCaseWrapper) o;
+        return Objects.equals(this.createCase, RC_EDA.createCase);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(reference);
+        return Objects.hash(createCase);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class RCREF {\n");
-        sb.append("    reference: ").append(toIndentedString(reference)).append("\n");
+        sb.append("class RCEDA {\n");
+        sb.append("    createCase: ").append(toIndentedString(createCase)).append("\n");
         sb.append("}");
         return sb.toString();
     }

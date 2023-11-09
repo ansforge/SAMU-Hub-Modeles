@@ -2,19 +2,19 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.RCDE;
-import com.hubsante.model.cisu.RCEDA;
+import com.hubsante.model.cisu.CreateCaseWrapper;
 
-public class RC_EDA_Builder {
+public class CreateCaseWrapperBuilder {
 
     private RCDE rcde;
     private CreateCase createCase;
-    public RC_EDA_Builder(RCDE rcde, CreateCase createCase) {
+    public CreateCaseWrapperBuilder(RCDE rcde, CreateCase createCase) {
         this.rcde = rcde;
         this.createCase = createCase;
     }
 
-    public RCEDA build() {
-        RCEDA createCaseMessage = new RCEDA();
+    public CreateCaseWrapper build() {
+        CreateCaseWrapper createCaseMessage = new CreateCaseWrapper();
         createCaseMessage.setMessageId(rcde.getMessageId());
         createCaseMessage.setSender(rcde.getSender());
         createCaseMessage.setSentAt(rcde.getSentAt());

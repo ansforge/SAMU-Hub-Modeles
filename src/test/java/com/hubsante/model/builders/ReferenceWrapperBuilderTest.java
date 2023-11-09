@@ -2,7 +2,7 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.cisu.RCDE;
 import com.hubsante.model.cisu.RCDE.*;
-import com.hubsante.model.cisu.RCREF;
+import com.hubsante.model.cisu.ReferenceWrapper;
 import com.hubsante.model.cisu.Recipient;
 import com.hubsante.model.edxl.DistributionKind;
 import com.hubsante.model.edxl.EdxlMessage;
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RC_REF_BuilderTest {
+public class ReferenceWrapperBuilderTest {
     private final String DISTRIBUTION_ID = "id-12345";
     private final String SENDER_ID = "sender-x";
     private final String RECIPIENT_ID = "recipient-y";
@@ -36,7 +36,7 @@ public class RC_REF_BuilderTest {
         RCDE rcDe = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
                 .kind(KindEnum.ACK)
                 .build();
-        RCREF rcRef = new RC_REF_Builder(rcDe, "id-67890")
+        ReferenceWrapper rcRef = new ReferenceWrapperBuilder(rcDe, "id-67890")
                 .build();
 
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
@@ -44,7 +44,7 @@ public class RC_REF_BuilderTest {
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
-        assertEquals("id-67890", ((RCREF) built.getContentMessage()).getReference().getDistributionID());
+        assertEquals("id-67890", ((ReferenceWrapper) built.getContentMessage()).getReference().getDistributionID());
     }
 
     @Test
@@ -57,6 +57,6 @@ public class RC_REF_BuilderTest {
                 .kind(RCDE.KindEnum.REPORT)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new RC_REF_Builder(rcDe, "id-67890").build());
+        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(rcDe, "id-67890").build());
     }
 }
