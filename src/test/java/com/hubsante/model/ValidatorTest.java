@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
+import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.EDXL_SCHEMA;
 import static com.hubsante.model.config.Constants.ENVELOPE_SCHEMA;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
@@ -85,8 +86,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("invalid content valid enveloppe")
     public void invalidContentValidEnvelopeTest() throws IOException {
-        File invalidFile = new File(classLoader.getResource("sample/failing/RC-EDA/invalid-RC-EDA-valid-EDXL.json").getFile());
-        String json = new String(Files.readAllBytes(invalidFile.toPath()), StandardCharsets.UTF_8);
+        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.json");
 
         // envelope validation does not throw because envelope is ok
         assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
