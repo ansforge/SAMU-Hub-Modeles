@@ -6,10 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -98,6 +95,10 @@ public class EdxlHandlerTest {
             messageFromOutput = converter.deserializeJsonEDXL(output);
         }
 
+        /*
+        * We prefer compare objects instead of strings to avoid noise such as indentation issues, line breaks, etc.
+        * (basically, our serializer generates one-liners but we prefer to store our commit files with indentation for readability)
+         */
         assertEquals(messageFromInput, messageFromOutput);
     }
 
