@@ -428,13 +428,15 @@ public class Mission {
      * Définit le statut de la demande de concours. La demande de concours étant en cours, le champ doit être valorisé avec le libellé \&quot;IPR\&quot;
      */
     public enum STATUSEnum {
-        _ABO(" ABO"),
+        _ABO(".ABO"),
 
         CANCLD("CANCLD"),
 
         COM("COM"),
 
         IPR("IPR"),
+
+        NST("NST"),
 
         PAU("PAU");
 

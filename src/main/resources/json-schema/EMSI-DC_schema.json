@@ -514,10 +514,11 @@
           "example": "example.json#/MISSION/0/STATUS",
           "description": "D\u00e9finit le statut de la demande de concours. La demande de concours \u00e9tant en cours, le champ doit \u00eatre valoris\u00e9 avec le libell\u00e9 \"IPR\"",
           "enum": [
-            " ABO",
+            "ABO",
             "CANCLD",
             "COM",
             "IPR",
+            "NST",
             "PAU"
           ]
         },
