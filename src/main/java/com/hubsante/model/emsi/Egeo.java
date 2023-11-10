@@ -244,19 +244,19 @@ public class Egeo {
      * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne pas être émis ni interprété. La localisation de l&#39;affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l&#39;intervention est systématiquement reprécisé dans un objet MISSION
      */
     public enum WEATHEREnum {
-        HUM("/HUM"),
+        HUM("HUM"),
 
-        ICY("/ICY"),
+        ICY("ICY"),
 
-        TDS("/TDS"),
+        TDS("TDS"),
 
-        TMP("/TMP"),
+        TMP("TMP"),
 
-        VIS("/VIS"),
+        VIS("VIS"),
 
-        WDDSSS("/Wddsss"),
+        WDDSSS("Wddsss"),
 
-        WIN("/WIN"),
+        WIN("WIN"),
 
         HUM_CORECT("/HUM/CORECT"),
 

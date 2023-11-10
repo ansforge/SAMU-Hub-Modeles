@@ -37,6 +37,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class ExternalInfo {
+    public static final String JSON_PROPERTY_FREETEXT = "freetext";
+
     /**
      * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
      */
@@ -73,8 +75,6 @@ public class ExternalInfo {
             throw new IllegalArgumentException("Unexpected value '" + value + "'");
         }
     }
-
-    public static final String JSON_PROPERTY_FREETEXT = "freetext";
     private String freetext;
 
     /**
