@@ -1,0 +1,188 @@
+{
+  "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
+  "senderID": "fr.health.samuA",
+  "dateTimeSent": "2022-07-25T10:04:34+01:00",
+  "dateTimeExpires": "2072-07-25T10:04:34+01:00",
+  "distributionStatus": "Actual",
+  "distributionKind": "Report",
+  "descriptor": {
+    "language": "fr-FR",
+    "explicitAddress": {
+      "explicitAddressScheme": "hubex",
+      "explicitAddressValue": "fr.health.samuB"
+    }
+  },
+  "content": [
+    {
+      "jsonContent": {
+        "embeddedJsonContent": {
+          "message": {
+            "messageId": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
+            "sender": {
+              "name": "samuA",
+              "URI": "hubex:fr.health.samuA"
+            },
+            "sentAt": "2022-07-25T10:04:34+01:00",
+            "kind": "Report",
+            "status": "Actual",
+            "recipients": [
+              {
+                "name": "samuB",
+                "URI": "hubex:fr.health.samuB"
+              }
+            ],
+            "createCase": {
+              "caseId": "SAMUA-20230725-AF1234",
+              "senderCaseId": "SAMUA-20230725-AF1234",
+              "createdAt": "2022-07-25T10:03:34+01:00",
+              "initialAlert": {
+                "alertId": "SAMUA-20230725-AL01234",
+                "receivedAt": "2022-07-25T10:01:22+01:00",
+                "reporting": "STANDARD",
+                "alertInformation": "suite collision avec un autre vélo sur piste cyclable, gonflement du genou, grosses égratignures, maux de tête",
+                "caller": {
+                  "callerURI": "tel:+330607080901",
+                  "callbackURI": "tel:+330601020304",
+                  "spokenLanguage": "Français",
+                  "callerInformation": "Epoux",
+                  "callerName": {
+                    "complete": "Louise Durand",
+                    "callerLastName": "Durand",
+                    "callerFirstName": "Louise"
+                  }
+                },
+                "alertLocation": {
+                  "locID": "BA-15478-21455789",
+                  "locLabel": "devanture",
+                  "name": "Quai des Célestins",
+                  "country": "France",
+                  "freetext": "Devant la boulangerie Quai des Célestin"
+                },
+                "alertCode": {
+                  "cisuVersion": "1.19",
+                  "whatsHappen": {
+                    "code": "C01.01.04",
+                    "label": "2-roues",
+                    "freetext": "pas d'autres types de véhicules impliqués"
+                  },
+                  "locationKind": {
+                    "code": "L02.01.00",
+                    "label": "Voie publique hors voie rapide",
+                    "freetext": "Voie vélo le long d'une route "
+                  },
+                  "riskThreats": [
+                    {
+                      "code": "R22",
+                      "label": "Gêne à la circulation",
+                      "freetext": "vélos débordent sur la route, rsique lié aux voitures"
+                    },
+                    {
+                      "code": "R23",
+                      "label": "Gêne à la circulation",
+                      "freetext": "vélos débordent sur la route, rsique lié aux voitures"
+                    }
+                  ],
+                  "healthMotive": {
+                    "code": "M03.11, M02.07",
+                    "label": "Céphalée, migraines, Traumatisme sérieux, plaie intermédiaire",
+                    "freetext": "Portait un casque de protection"
+                  },
+                  "gravity": "faible",
+                  "victims": {
+                    "count": "MANY",
+                    "mainVictim": "ADULT",
+                    "comment": "Deuxième victime présente saignement legers aux mains et genoux"
+                  }
+                },
+                "contact": {
+                  "type": "Personne",
+                  "detail": "tel:+330607080901"
+                },
+                "callTaker": {
+                  "organization": "SAMUA",
+                  "controlRoom": "Régulation",
+                  "calltakerURI": null,
+                  "calltakerId": null
+                },
+                "resource": [
+                  {
+                    "resourceDesc": "DISPMED",
+                    "mimeType": "pdf",
+                    "size": 9,
+                    "URI": "https://www.docPatient1.hpLyon.com/share?res=123456",
+                    "derefURI": null,
+                    "digest": "84feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab8684"
+                  }
+                ]
+              },
+              "caseLocation": {
+                "locID": "BA-15478-21455789",
+                "locLabel": "devanture",
+                "name": "Quai des Célestins",
+                "address": {
+                  "complete": "8 quai des Célestins",
+                  "number": "8",
+                  "wayName": {
+                    "complete": "Quai des Célestins",
+                    "type": "Quai",
+                    "name": "des Célestins"
+                  }
+                },
+                "city": {
+                  "name": "Lyon",
+                  "inseeCode": "69002",
+                  "detail": "deuxième arrondissement"
+                },
+                "access": {
+                  "floor": null,
+                  "roomNumber": null,
+                  "interphone": null,
+                  "accessCode": null,
+                  "elevator": null,
+                  "buildingName": null,
+                  "entrance": null,
+                  "entity": null
+                },
+                "geometry": {
+                  "point": {
+                    "coord": {
+                      "lat": 45.7602368,
+                      "lon": 4.8310551,
+                      "height": 237,
+                      "heading": null,
+                      "speed": null,
+                      "time": "2022-07-25T10:03:34+01:00",
+                      "precision": "ADDRESS"
+                    },
+                    "coordsys": "EPSG-4326"
+                  },
+                  "sketch": null
+                },
+                "link": [
+                  {
+                    "source": "BAN",
+                    "type": "check_type",
+                    "id": "id1234"
+                  }
+                ],
+                "country": "France",
+                "freetext": "Devant la boulangerie Quai des Célestin"
+              },
+              "newAlert": null,
+              "severity": "MINOR",
+              "additionalInformation": {
+                "customMap": {
+                  "key": "neighborhood",
+                  "label": "Quartier",
+                  "value": "SECT.QUARTIER HISTORIQUE",
+                  "freetext": "Une voix sens unique pour voiture + une voix bus"
+                }
+              },
+              "freetext": "choc à la tête mais portait un casque de protection. 2ème victime n'a pas de blessures apparantes."
+            }
+          }
+        }
+      }
+    }
+  ]
+}

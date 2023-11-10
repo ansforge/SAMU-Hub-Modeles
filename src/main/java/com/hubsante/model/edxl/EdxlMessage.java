@@ -1,14 +1,29 @@
 package com.hubsante.model.edxl;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
+@JsonPropertyOrder({
+        "distributionID",
+        "senderID",
+        "dateTimeSent",
+        "dateTimeExpires",
+        "distributionStatus",
+        "distributionKind",
+        "descriptor",
+        "content"})
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EdxlMessage extends EdxlEnvelope {
-
-    @JsonProperty(value = "content", required = true)
-    private Content content;
+    private List<ContentObject> content;
 
     public EdxlMessage() {
         super();
@@ -21,20 +36,50 @@ public class EdxlMessage extends EdxlEnvelope {
         this.setContentFrom(innerMessage);
     }
 
-    public Content getContent() {
+    public EdxlMessage content(List<ContentObject> content) {
+        this.content = content;
+        return this;
+    }
+
+    public EdxlMessage addContentObject(ContentObject contentObject) {
+        if (this.content == null) {
+            this.content = new ArrayList<>();
+        }
+        this.content.add(contentObject);
+        return this;
+    }
+
+    @JacksonXmlElementWrapper(useWrapping = true, localName = "content")
+    @JsonProperty(value = "content")
+    @JacksonXmlProperty(localName = "contentObject")
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public List<ContentObject> getContent() {
         return content;
     }
 
-    public void setContent(Content content) {
+    @JacksonXmlElementWrapper(useWrapping = true, localName = "content")
+    @JsonProperty(value = "content")
+    @JacksonXmlProperty(localName = "contentObject")
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setContent(List<ContentObject> content) {
         this.content = content;
     }
 
     public <T extends ContentMessage> void setContentFrom(T embeddedContent) {
-        this.setContent(new Content(new ContentObject(new ContentWrapper(new EmbeddedContent(embeddedContent)))));
+        List<ContentObject> contentObjectList = new ArrayList<>();
+        contentObjectList.add(new ContentObject(new ContentWrapper(new EmbeddedContent(embeddedContent))));
+        this.setContent(contentObjectList);
     }
 
-    public ContentMessage getContentMessage() {
-        return this.getContent().getContentObject().getContentWrapper().getEmbeddedContent().getMessage();
+    public ContentMessage getFirstContentMessage() {
+        return this.getContent().stream().findFirst().orElseThrow(ArrayIndexOutOfBoundsException::new)
+                .getContentWrapper().getEmbeddedContent().getMessage();
+    }
+
+    public List<ContentMessage> getAllContentMessages() {
+        return this.content.stream()
+                .map(contentObject -> ((ContentMessage) contentObject.getContentWrapper().getEmbeddedContent().getMessage()))
+                .collect(Collectors.toList());
     }
 
     @Override

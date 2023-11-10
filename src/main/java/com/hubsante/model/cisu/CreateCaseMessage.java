@@ -31,6 +31,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * CreateCaseMessage
  */
 @JsonPropertyOrder({
+        DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+        DistributionElement.JSON_PROPERTY_SENDER,
+        DistributionElement.JSON_PROPERTY_SENT_AT,
+        DistributionElement.JSON_PROPERTY_KIND,
+        DistributionElement.JSON_PROPERTY_STATUS,
+        DistributionElement.JSON_PROPERTY_RECIPIENTS,
         CreateCaseMessage.JSON_PROPERTY_CREATE_CASE
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)

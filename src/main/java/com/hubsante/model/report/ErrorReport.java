@@ -2,10 +2,14 @@ package com.hubsante.model.report;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.hubsante.model.edxl.ContentMessage;
 
+import java.util.Objects;
+
+@JsonPropertyOrder({"errorCode", "errorCause", "sourceMessage"})
 @JacksonXmlRootElement(localName = "message")
 public class ErrorReport extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
@@ -60,5 +64,18 @@ public class ErrorReport extends ContentMessage {
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
     public void setSourceMessage(String sourceMessage) {
         this.sourceMessage = sourceMessage;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ErrorReport that = (ErrorReport) o;
+        return errorCode == that.errorCode && Objects.equals(errorCause, that.errorCause) && Objects.equals(sourceMessage, that.sourceMessage);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(errorCode, errorCause, sourceMessage);
     }
 }
