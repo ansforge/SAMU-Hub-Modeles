@@ -1,7 +1,7 @@
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.RCDE;
-import com.hubsante.model.cisu.RCDE.*;
+import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
 import com.hubsante.model.cisu.Recipient;
 import com.hubsante.model.cisu.Sender;
 
@@ -9,12 +9,12 @@ import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-public class RC_DE_Builder {
+public class DistributionElementBuilder {
     private String messageId;
     private Sender sender;
     private OffsetDateTime sentAt;
-    private RCDE.KindEnum kind;
-    private RCDE.StatusEnum status;
+    private DistributionElement.KindEnum kind;
+    private DistributionElement.StatusEnum status;
     private List<Recipient> recipients;
 
     /*
@@ -32,7 +32,7 @@ public class RC_DE_Builder {
     *
     * You can override the sentAt value by providing a custom OffsetDateTime, or an offset from now (in seconds, hours or days)
      */
-    public RC_DE_Builder(@NotNull String messageId, @NotNull String senderId, @NotNull List<Recipient> recipients) {
+    public DistributionElementBuilder(@NotNull String messageId, @NotNull String senderId, @NotNull List<Recipient> recipients) {
         if (messageId == null || senderId == null || recipients == null) {
             throw new IllegalArgumentException("messageId, senderId and recipients cannot be null");
         }
@@ -43,47 +43,47 @@ public class RC_DE_Builder {
         this.status = StatusEnum.ACTUAL;
         this.recipients = recipients;
     }
-    public RC_DE_Builder sender(Sender sender) {
+    public DistributionElementBuilder sender(Sender sender) {
         this.sender = sender;
         return this;
     }
 
-    public RC_DE_Builder sentAt(@NotNull OffsetDateTime sentAt) {
+    public DistributionElementBuilder sentAt(@NotNull OffsetDateTime sentAt) {
         this.sentAt = sentAt;
         return this;
     }
 
-    public RC_DE_Builder kind(KindEnum kind) {
+    public DistributionElementBuilder kind(KindEnum kind) {
         this.kind = kind;
         return this;
     }
 
-    public RC_DE_Builder status(StatusEnum status) {
+    public DistributionElementBuilder status(StatusEnum status) {
         this.status = status;
         return this;
     }
 
-    public RC_DE_Builder recipients(List<Recipient> recipients) {
+    public DistributionElementBuilder recipients(List<Recipient> recipients) {
         this.recipients = recipients;
         return this;
     }
 
-    public RCDE build() {
-        RCDE rcde = new RCDE();
+    public DistributionElement build() {
+        DistributionElement distributionElement = new DistributionElement();
 
-        rcde.setMessageId(messageId);
-        rcde.setSender(sender);
+        distributionElement.setMessageId(messageId);
+        distributionElement.setSender(sender);
         if (sentAt == null) {
             throw new IllegalArgumentException("sentAt cannot be null");
         }
-        rcde.setSentAt(sentAt);
-        rcde.setKind(kind);
-        rcde.setStatus(status);
+        distributionElement.setSentAt(sentAt);
+        distributionElement.setKind(kind);
+        distributionElement.setStatus(status);
         if (recipients.isEmpty()) {
             throw new IllegalArgumentException("recipients list cannot be empty");
         }
-        rcde.setRecipients(recipients);
+        distributionElement.setRecipients(recipients);
 
-        return rcde;
+        return distributionElement;
     }
 }

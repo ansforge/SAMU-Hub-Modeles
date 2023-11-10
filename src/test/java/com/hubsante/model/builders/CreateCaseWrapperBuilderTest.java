@@ -2,8 +2,8 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.RCDE;
-import com.hubsante.model.cisu.RCDE.*;
+import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.cisu.Recipient;
 import org.junit.jupiter.api.DisplayName;
@@ -29,7 +29,7 @@ public class CreateCaseWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        RCDE rcDe = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
+        DistributionElement rcDe = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
                 .build();
         CreateCaseWrapper rcEda = new CreateCaseWrapperBuilder(rcDe, getCreateCaseMock())
                 .build();
@@ -44,7 +44,7 @@ public class CreateCaseWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        RCDE rcDe = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
+        DistributionElement rcDe = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
                 .kind(KindEnum.ACK)
                 .build();
 

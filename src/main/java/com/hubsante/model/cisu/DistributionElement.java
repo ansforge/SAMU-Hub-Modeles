@@ -15,39 +15,35 @@ package com.hubsante.model.cisu;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.Recipients;
-import com.hubsante.model.cisu.Sender;
 
 import java.time.OffsetDateTime;
 
 import com.hubsante.model.edxl.ContentMessage;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
  * RCDE
  */
 @JsonPropertyOrder({
-        RCDE.JSON_PROPERTY_MESSAGE_ID,
-        RCDE.JSON_PROPERTY_SENDER,
-        RCDE.JSON_PROPERTY_SENT_AT,
-        RCDE.JSON_PROPERTY_KIND,
-        RCDE.JSON_PROPERTY_STATUS,
-        RCDE.JSON_PROPERTY_RECIPIENTS
+        DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+        DistributionElement.JSON_PROPERTY_SENDER,
+        DistributionElement.JSON_PROPERTY_SENT_AT,
+        DistributionElement.JSON_PROPERTY_KIND,
+        DistributionElement.JSON_PROPERTY_STATUS,
+        DistributionElement.JSON_PROPERTY_RECIPIENTS
 })
 @JsonTypeName("RC_DE")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:56.839+01:00[Europe/Paris]")
-public class RCDE extends ContentMessage {
+public class DistributionElement extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
     public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
@@ -146,10 +142,10 @@ public class RCDE extends ContentMessage {
     public static final String JSON_PROPERTY_RECIPIENTS = "recipients";
     private List<Recipient> recipients;
 
-    public RCDE() {
+    public DistributionElement() {
     }
 
-    public RCDE messageId(String messageId) {
+    public DistributionElement messageId(String messageId) {
 
         this.messageId = messageId;
         return this;
@@ -175,7 +171,7 @@ public class RCDE extends ContentMessage {
     }
 
 
-    public RCDE sender(Sender sender) {
+    public DistributionElement sender(Sender sender) {
 
         this.sender = sender;
         return this;
@@ -201,7 +197,7 @@ public class RCDE extends ContentMessage {
     }
 
 
-    public RCDE sentAt(OffsetDateTime sentAt) {
+    public DistributionElement sentAt(OffsetDateTime sentAt) {
 
         this.sentAt = sentAt;
         return this;
@@ -227,7 +223,7 @@ public class RCDE extends ContentMessage {
     }
 
 
-    public RCDE kind(KindEnum kind) {
+    public DistributionElement kind(KindEnum kind) {
 
         this.kind = kind;
         return this;
@@ -253,7 +249,7 @@ public class RCDE extends ContentMessage {
     }
 
 
-    public RCDE status(StatusEnum status) {
+    public DistributionElement status(StatusEnum status) {
 
         this.status = status;
         return this;
@@ -279,7 +275,7 @@ public class RCDE extends ContentMessage {
     }
 
 
-    public RCDE recipients(List<Recipient> recipients) {
+    public DistributionElement recipients(List<Recipient> recipients) {
 
         this.recipients = recipients;
         return this;
@@ -315,7 +311,7 @@ public class RCDE extends ContentMessage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        RCDE RC_DE = (RCDE) o;
+        DistributionElement RC_DE = (DistributionElement) o;
         return Objects.equals(this.messageId, RC_DE.messageId) &&
                 Objects.equals(this.sender, RC_DE.sender) &&
                 Objects.equals(this.sentAt, RC_DE.sentAt) &&

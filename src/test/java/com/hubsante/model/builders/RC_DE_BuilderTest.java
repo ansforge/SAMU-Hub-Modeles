@@ -1,7 +1,7 @@
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.RCDE;
-import com.hubsante.model.cisu.RCDE.*;
+import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
 import com.hubsante.model.cisu.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -23,7 +23,7 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("Should build a DistributionElement")
     public void shouldBuildRC_DEwithDefaults() {
-        RCDE actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
                 .build();
 
         assertEquals(MESSAGE_ID, actual.getMessageId());
@@ -37,7 +37,7 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("should not build a RC-DE without at least one recipient")
     public void shouldNotBuildRC_DEwithoutRecipient() {
-        RC_DE_Builder builder = new RC_DE_Builder(MESSAGE_ID, "samu-x", new ArrayList<>());
+        DistributionElementBuilder builder = new DistributionElementBuilder(MESSAGE_ID, "samu-x", new ArrayList<>());
 
         assertThrows(IllegalArgumentException.class, builder::build);
     }
@@ -46,7 +46,7 @@ public class RC_DE_BuilderTest {
     @DisplayName("should build a RC-DE with custom expedition date")
     public void shouldBuildRC_DEwithCustomExpeditionDate() {
         OffsetDateTime customDateTime = OffsetDateTime.now().plusHours(2);
-        RCDE actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID,RECIPIENT_LIST)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID,RECIPIENT_LIST)
                 .sentAt(customDateTime)
                 .build();
         assertEquals(customDateTime, actual.getSentAt());
@@ -55,7 +55,7 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("should not build a RC-DE with invalid expedition date")
     public void shouldNotBuildRC_DEwithInvalidExpeditionDate() {
-        RC_DE_Builder builder = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+        DistributionElementBuilder builder = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
                 .sentAt(null);
 
         assertThrows(IllegalArgumentException.class, builder::build);
@@ -64,7 +64,7 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("should build a RC-DE with ack Kind")
     public void shouldBuildRC_DEwithAckKind() {
-        RCDE actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
                 .kind(KindEnum.ACK)
                 .build();
 
@@ -74,7 +74,7 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("should build a RC-DE with error Kind")
     public void shouldBuildRC_DEwithCancelKind() {
-        RCDE actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
                 .kind(KindEnum.ERROR)
                 .build();
 
@@ -87,7 +87,7 @@ public class RC_DE_BuilderTest {
         List<Recipient> providedRecipientList = new ArrayList<>();
         providedRecipientList.add(new Recipient().name("samu-z").URI("hubex:samu-z"));
         providedRecipientList.add(new Recipient().name("samu-y").URI("hubex:samu-y"));
-        RCDE actual = new RC_DE_Builder(MESSAGE_ID, "samu-x", providedRecipientList)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, "samu-x", providedRecipientList)
                 .build();
 
         assertEquals(2, actual.getRecipients().size());

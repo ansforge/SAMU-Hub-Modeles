@@ -29,7 +29,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 @JsonTypeName("RC_EDA")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
-public class CreateCaseWrapper extends RCDE {
+public class CreateCaseWrapper extends DistributionElement {
     public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
     private CreateCase createCase;
 

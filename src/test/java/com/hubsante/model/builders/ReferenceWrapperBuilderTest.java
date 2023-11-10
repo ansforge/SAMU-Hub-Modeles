@@ -1,7 +1,7 @@
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.RCDE;
-import com.hubsante.model.cisu.RCDE.*;
+import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
 import com.hubsante.model.cisu.ReferenceWrapper;
 import com.hubsante.model.cisu.Recipient;
 import com.hubsante.model.edxl.DistributionKind;
@@ -33,7 +33,7 @@ public class ReferenceWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        RCDE rcDe = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+        DistributionElement rcDe = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
                 .kind(KindEnum.ACK)
                 .build();
         ReferenceWrapper rcRef = new ReferenceWrapperBuilder(rcDe, "id-67890")
@@ -53,8 +53,8 @@ public class ReferenceWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        RCDE rcDe = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
-                .kind(RCDE.KindEnum.REPORT)
+        DistributionElement rcDe = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+                .kind(DistributionElement.KindEnum.REPORT)
                 .build();
 
         assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(rcDe, "id-67890").build());

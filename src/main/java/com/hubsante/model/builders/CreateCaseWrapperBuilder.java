@@ -1,14 +1,14 @@
 package com.hubsante.model.builders;
 
 import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.RCDE;
+import com.hubsante.model.cisu.DistributionElement;
 import com.hubsante.model.cisu.CreateCaseWrapper;
 
 public class CreateCaseWrapperBuilder {
 
-    private RCDE rcde;
+    private DistributionElement rcde;
     private CreateCase createCase;
-    public CreateCaseWrapperBuilder(RCDE rcde, CreateCase createCase) {
+    public CreateCaseWrapperBuilder(DistributionElement rcde, CreateCase createCase) {
         this.rcde = rcde;
         this.createCase = createCase;
     }
@@ -18,7 +18,7 @@ public class CreateCaseWrapperBuilder {
         createCaseMessage.setMessageId(rcde.getMessageId());
         createCaseMessage.setSender(rcde.getSender());
         createCaseMessage.setSentAt(rcde.getSentAt());
-        if (!rcde.getKind().equals(RCDE.KindEnum.REPORT)) {
+        if (!rcde.getKind().equals(DistributionElement.KindEnum.REPORT)) {
             throw new IllegalArgumentException("RC_EDA must be of kind REPORT");
         }
         createCaseMessage.setKind(rcde.getKind());
