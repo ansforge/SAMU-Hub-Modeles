@@ -19,28 +19,28 @@ public class EdxlHandlerTest {
     @Test
     @DisplayName("should consistently deserialize then serialize JSON RC-EDA")
     public void end2end_RC_EDA_JSON() throws IOException {
-        String json = getMessageString(true, "RC-EDA", false);
+        String json = getMessageString( "RC-EDA");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize XML RC-EDA")
     public void end2end_RC_EDA_XML() throws IOException {
-        String xml = getMessageString(true, "RC-EDA", true);
+        String xml = getMessageString( "RC-EDA", true);
         endToEndDeserializationCheck(xml, true);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize JSON EMSI-DC")
     public void end2end_EMSI_DC_JSON() throws IOException {
-        String json = getMessageString(true, "EMSI-DC", false);
+        String json = getMessageString("EMSI-DC");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize XML EMSI-DC")
     public void end2end_EMSI_DC_XML() throws IOException {
-        String xml = getMessageString(true, "EMSI-DC", true);
+        String xml = getMessageString("EMSI-DC", true);
         // TODO - fix this test
 //        endToEndDeserializationCheck(xml, true);
     }
@@ -48,36 +48,46 @@ public class EdxlHandlerTest {
     @Test
     @DisplayName("should consistently deserialize then serialize JSON RC-REF")
     public void end2end_RC_REF_JSON() throws IOException {
-        String json = getMessageString(true, "RC-REF", false);
+        String json = getMessageString("RC-REF");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize XML RC-REF")
     public void end2end_RC_REF_XML() throws IOException {
-        String xml = getMessageString(true, "RC-REF", true);
+        String xml = getMessageString("RC-REF", true);
         endToEndDeserializationCheck(xml, true);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize JSON RS-INFO")
     public void end2end_RS_INFO_JSON() throws IOException {
-        String json = getMessageString(true, "RS-INFO", false);
+        String json = getMessageString("RS-INFO");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize XML RS-INFO")
     public void end2end_RS_INFO_XML() throws IOException {
-        String xml = getMessageString(true, "RS-INFO", true);
+        String xml = getMessageString("RS-INFO", true);
         endToEndDeserializationCheck(xml, true);
+    }
+
+    @Test
+    @DisplayName("should consistently deserialize EDXL with several content objects")
+    public void deserializeEDXLWithSeveralContentObjects() throws IOException {
+        String json = getMessageString("EDXL-DE");
+        EdxlMessage message = converter.deserializeJsonEDXL(json);
+
+        assertEquals(2, message.getContent().size());
+        assertEquals(2, message.getAllContentMessages().size());
+        assertEquals(message.getFirstContentMessage(), message.getAllContentMessages().get(0));
     }
 
     @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
-        String json = getMessageString(true, "RC-EDA", false);
-
+        String json = getMessageString("RC-EDA");
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));
@@ -97,6 +107,10 @@ public class EdxlHandlerTest {
             messageFromOutput = converter.deserializeJsonEDXL(output);
         }
 
+        /*
+        * We prefer compare objects instead of strings to avoid noise such as indentation issues, line breaks, etc.
+        * (basically, our serializer generates one-liners but we prefer to store our commit files with indentation for readability)
+         */
         assertEquals(messageFromInput, messageFromOutput);
     }
 

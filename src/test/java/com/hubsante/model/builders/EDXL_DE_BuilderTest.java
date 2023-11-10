@@ -41,7 +41,7 @@ public class EDXL_DE_BuilderTest {
         assertEquals(DistributionStatus.ACTUAL, built.getDistributionStatus());
         assertEquals(DistributionKind.REPORT, built.getDistributionKind());
 
-        assertTrue(built.getContentMessage() instanceof CustomMessage);
+        assertTrue(built.getFirstContentMessage() instanceof CustomMessage);
     }
 
     @Test

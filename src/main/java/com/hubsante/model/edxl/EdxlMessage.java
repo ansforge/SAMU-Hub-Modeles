@@ -3,7 +3,6 @@ package com.hubsante.model.edxl;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
@@ -11,6 +10,7 @@ import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @JsonPropertyOrder({
         "distributionID",
@@ -23,8 +23,6 @@ import java.util.Objects;
         "content"})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EdxlMessage extends EdxlEnvelope {
-
-//    @JsonProperty(value = "content", required = true)
     private List<ContentObject> content;
 
     public EdxlMessage() {
@@ -73,8 +71,15 @@ public class EdxlMessage extends EdxlEnvelope {
         this.setContent(contentObjectList);
     }
 
-    public ContentMessage getContentMessage() {
-        return this.getContent().get(0).getContentWrapper().getEmbeddedContent().getMessage();
+    public ContentMessage getFirstContentMessage() {
+        return this.getContent().stream().findFirst().orElseThrow(ArrayIndexOutOfBoundsException::new)
+                .getContentWrapper().getEmbeddedContent().getMessage();
+    }
+
+    public List<ContentMessage> getAllContentMessages() {
+        return this.content.stream()
+                .map(contentObject -> ((ContentMessage) contentObject.getContentWrapper().getEmbeddedContent().getMessage()))
+                .collect(Collectors.toList());
     }
 
     @Override

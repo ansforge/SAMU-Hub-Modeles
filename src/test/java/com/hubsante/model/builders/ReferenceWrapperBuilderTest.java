@@ -44,7 +44,7 @@ public class ReferenceWrapperBuilderTest {
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
-        assertEquals("id-67890", ((ReferenceWrapper) built.getContentMessage()).getReference().getDistributionID());
+        assertEquals("id-67890", ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
     }
 
     @Test
