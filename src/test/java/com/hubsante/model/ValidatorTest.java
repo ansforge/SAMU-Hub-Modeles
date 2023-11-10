@@ -5,13 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.EDXL_SCHEMA;
+import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.config.Constants.ENVELOPE_SCHEMA;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
@@ -33,7 +30,7 @@ public class ValidatorTest {
     @DisplayName("RC-EDA validation passes")
     public void jsonRcEdaValidationPasses() throws IOException {
         String input = getMessageString("RC-EDA");
-        assertDoesNotThrow(() -> validator.validateJSON(input, EDXL_SCHEMA));
+        assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
     }
@@ -42,7 +39,7 @@ public class ValidatorTest {
     @DisplayName("RC-EDA validation fails")
     public void jsonRcEdaValidationFails() throws IOException {
         String input = getMessageString("RC-EDA", false, false);
-        assertThrows(ValidationException.class, () -> validator.validateJSON(input, EDXL_SCHEMA));
+        assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
     }
@@ -51,7 +48,7 @@ public class ValidatorTest {
     @DisplayName("RC-REF validation passes")
     public void jsonRcRefValidationPasses() throws IOException {
         String input = getMessageString("RC-REF");
-        assertDoesNotThrow(() -> validator.validateJSON(input, EDXL_SCHEMA));
+        assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
     }
@@ -60,7 +57,7 @@ public class ValidatorTest {
     @DisplayName("RC-REF validation fails")
     public void jsonRcRefValidationFails() throws IOException {
         String input = getMessageString( "RC-REF", false, false);
-        assertThrows(ValidationException.class, () -> validator.validateJSON(input, EDXL_SCHEMA));
+        assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
     }
@@ -69,7 +66,7 @@ public class ValidatorTest {
     @DisplayName("RS-INFO validation passes")
     public void jsonRsInfoValidationPasses() throws IOException {
         String input = getMessageString("RS-INFO");
-        assertDoesNotThrow(() -> validator.validateJSON(input, EDXL_SCHEMA));
+        assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
     }
@@ -78,7 +75,7 @@ public class ValidatorTest {
     @DisplayName("RS-INFO validation fails")
     public void jsonRsInfoValidationFails() throws IOException {
         String input = getMessageString( "RS-INFO", false, false);
-        assertThrows(ValidationException.class, () -> validator.validateJSON(input, EDXL_SCHEMA));
+        assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
     }
@@ -90,6 +87,6 @@ public class ValidatorTest {
 
         // envelope validation does not throw because envelope is ok
         assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
-        assertThrows(ValidationException.class, () -> validator.validateJSON(json, EDXL_SCHEMA));
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
     }
 }
