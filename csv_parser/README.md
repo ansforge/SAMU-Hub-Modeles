@@ -21,7 +21,7 @@ awk '!/example: /' out/RC-EDA/hubsante.asyncapi.yaml > tmpfile && mv tmpfile out
 awk '!/example: /' out/RC-DE/hubsante.asyncapi.yaml > tmpfile && mv tmpfile out/RC-DE/hubsante.asyncapi.yaml
 awk '{sub("#/definitions/","#/components/schemas/")} {print}' out/RC-EDA/hubsante.asyncapi.yaml > tmpfile && mv tmpfile out/RC-EDA/hubsante.asyncapi.yaml
 awk '{sub("#/definitions/","#/components/schemas/")} {print}' out/RC-DE/hubsante.asyncapi.yaml > tmpfile && mv tmpfile out/RC-DE/hubsante.asyncapi.yaml
-ag out/RC-EDA/hubsante.asyncapi.yaml @asyncapi/html-template -o ../../web/specs --force-write
+asyncapi generate fromTemplate ../hubsante.asyncapi.yaml  @asyncapi/html-template@0.28.0 -o ../../web/specs --force-write
 ```
 
 # JsonSchema to uml
