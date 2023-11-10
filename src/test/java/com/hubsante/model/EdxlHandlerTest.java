@@ -41,8 +41,7 @@ public class EdxlHandlerTest {
     @DisplayName("should consistently deserialize then serialize XML EMSI-DC")
     public void end2end_EMSI_DC_XML() throws IOException {
         String xml = getMessageString("EMSI-DC", true);
-        // TODO - fix this test
-//        endToEndDeserializationCheck(xml, true);
+        endToEndDeserializationCheck(xml, true);
     }
 
     @Test

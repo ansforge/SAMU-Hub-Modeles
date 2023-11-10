@@ -1,7 +1,7 @@
-asyncapi: 2.5.0
+asyncapi: '2.5.0'
 info:
   title: Hub Sante AMQP API
-  version: '0.9'
+  version: '0.11'
   description: |
     L'API Hub Sante AMQP permet le partage d'informations entre acteurs du monde de la santé.
   license:
@@ -11,19 +11,17 @@ servers:
   remote:
     url: messaging.hub.esante.gouv.fr:5671
     protocol: amqps
-    protocolVersion: 0-9-1
-    description: "Instance \"bac \xC3\_ sable\" du Hub Sante d\xC3\xA9ploy\xC3\xA9\
-      e dans le Cloud."
+    protocolVersion: '0-9-1'
+    description: Instance "bac à sable" du Hub Sante déployée dans le Cloud.
     security:
-      - tlsAuth: []
+      - tlsAuth: [ ]
   local:
     url: localhost:5671
     protocol: amqps
-    protocolVersion: 0-9-1
-    description: "Instance locale du Hub Sante port\xC3\xA9e par `minikube` dans le\
-      \ repo du Hub"
+    protocolVersion: '0-9-1'
+    description: Instance locale du Hub Sante portée par `minikube` dans le repo du Hub
     security:
-      - tlsAuth: []
+      - tlsAuth: [ ]
 defaultContentType: application/json
 channels:
   "{clientId}.message":
@@ -50,6 +48,7 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
+
   "{clientId}.ack":
     description: File spécifique à chaque client pour la réception des acquittements de bonne réception
     parameters:
@@ -74,18 +73,19 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
+
   "{clientId}.info":
     description: File spécifique à chaque client pour la réception des informations complémentaires liées au fonctionnement et aux échanges portés par le Hub Santé
     parameters:
       clientId:
         $ref: '#/components/parameters/clientId'
     subscribe:
-      summary: "Informations compl\xC3\xA9mentaires"
+      summary: Informations complémentaires
       operationId: receiveInfo
       message:
         $ref: '#/components/messages/edxlMessage'
     publish:
-      summary: "Informations compl\xC3\xA9mentaires"
+      summary: Informations complémentaires
       operationId: publishInfo
       message:
         $ref: '#/components/messages/edxlMessage'
@@ -98,12 +98,12 @@ channels:
           durable: true
           autoDelete: false
           vhost: /
+
 components:
   securitySchemes:
     tlsAuth:
       type: X509
-      description: "Un certificat issu d'une AC valid\xC3\xA9e par le Hub est n\xC3\
-        \xA9cessaire pour l'authentification mTLS"
+      description: Un certificat issu d'une AC validée par le Hub est nécessaire pour l'authentification mTLS
   parameters:
     clientId:
       description: L'identifiant du client
@@ -112,9 +112,7 @@ components:
   messages:
     edxlMessage:
       title: Message au standard EDXL
-      summary: "Message au standard EDXL transportable par le Hub, comportant une\
-        \ partie adressage et une partie contenu. La partie contenu peut respecter\
-        \ diff\xC3\xA9rentes sp\xC3\xA9cifications fonctionnelles."
+      summary: Message au standard EDXL transportable par le Hub, comportant une partie adressage et une partie contenu. La partie contenu peut respecter différentes spécifications fonctionnelles.
       payload:
         $ref: '#/components/schemas/EdxlMessage'
   schemas:
@@ -137,7 +135,10 @@ components:
         descriptor:
           $ref: '#/components/schemas/Descriptor'
         content:
-          $ref: '#/components/schemas/Content'
+          type: array
+          items:
+            $ref: '#/components/schemas/ContentObject'
+          minItems: 1
       additionalProperties: false
       required:
         - distributionID
@@ -148,13 +149,6 @@ components:
         - distributionKind
         - descriptor
         - content
-    Content:
-      properties:
-        contentObject:
-          $ref: '#/components/schemas/ContentObject'
-      additionalProperties: false
-      required:
-        - contentObject
     ContentObject:
       oneOf:
         - $ref: '#/components/schemas/JsonContent'
@@ -169,12 +163,14 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCaseMessage'
-        - $ref: '#/components/schemas/GenericAckMessage'
+        - $ref: '#/components/schemas/CreateCaseWrapper'
+        - $ref: '#/components/schemas/ReferenceWrapper'
+        - $ref: '#/components/schemas/EmsiWrapper'
     EmbeddedXMLContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCaseMessage'
-        - $ref: '#/components/schemas/GenericAckMessage'
+        - $ref: '#/components/schemas/CreateCaseWrapper'
+        - $ref: '#/components/schemas/ReferenceWrapper'
+        - $ref: '#/components/schemas/EmsiWrapper'
     Descriptor:
       properties:
         language:
@@ -221,217 +217,591 @@ components:
         - Test
         - Unknown
         - NoAppropriateDefault
-    GenericAckMessage:
-      properties:
-        ackDistributionId:
-          type: string
-      additionalProperties: false
-      required:
-        - ackDistributionId
-    CreateCaseMessage:
+    DistributionElement:
       $id: http://json-schema.org/draft-07/schema#
+      x-id: schema.json#
+      example: example.json#
+      type: object
+      title: DistributionElement
       required:
-        - caseLocation
+        - messageId
+        - sender
+        - sentAt
+        - kind
+        - status
+        - recipients
+      properties:
+        messageId:
+          type: string
+          title: Identifiant du message
+          x-cols: 6
+          example: example.json#/messageId
+          description: "Identifiant technique permettant d'identifier le message envoy\xE9\
+            . Cet identifiant est utilis\xE9 par NexSIS pour assurer le routage des\
+            \ messages\nPr\xE9conisation : r\xE9employer le contenu de la balise <distributionId>\
+            \ de l'enveloppe EDXL (cf. DST)"
+          examples:
+            - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        sender:
+          $ref: '#/components/schemas/sender'
+        sentAt:
+          type: string
+          title: Horodatage envoi message
+          x-cols: 6
+          example: example.json#/sentAt
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
+            \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
+            \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre\
+            \ repr\xE9sent\xE9 par '-00:00'"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - None
+        kind:
+          type: string
+          title: Type de message
+          x-cols: 6
+          example: example.json#/kind
+          description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
+            DST)
+          enum:
+            - Report
+            - Update
+            - Cancel
+            - Ack
+            - Error
+          examples:
+            - ALERT
+        status:
+          type: string
+          title: Statut du message
+          x-cols: 6
+          example: example.json#/status
+          description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
+            DST)
+          enum:
+            - Actual
+            - Exercise
+            - System
+          examples:
+            - ACTUAL
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipient'
+          minItems: 1
+    CreateCaseWrapper:
+      type: object
+      title: Wrapper pour le message de cr\xE9ation d'affaire
+      required:
+        - createCase
+      allOf:
+        - $ref: '#/components/schemas/DistributionElement'
+      properties:
+        createCase:
+          $ref: '#/components/schemas/createCase'
+    ReferenceWrapper:
+      type: object
+      title: Wrapper pour le message de r\xE9f\xE9rence
+      required:
+        - Reference
+      allOf:
+        - $ref: '#/components/schemas/DistributionElement'
+      properties:
+        Reference:
+          $ref: '#/components/schemas/Reference'
+    EmsiWrapper:
+      type: object
+      title: Wrapper pour le message de r\xE9f\xE9rence
+      required:
+        - emsi
+      allOf:
+        - $ref: '#/components/schemas/DistributionElement'
+      properties:
+        emsi:
+          $ref: '#/components/schemas/emsi'
+    sender:
+      type: object
+      title: "Syst\xE8me \xE9metteur"
+      x-display: expansion-panels
+      required:
+        - name
+        - URI
+      properties:
+        name:
+          type: string
+          title: "Nom du syst\xE8me emetteur"
+          x-cols: 6
+          example: example.json#/sender/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {nom solution LRM}-{cl\xE9 de routage}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+            - sga-nexsis
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-cols: 6
+          example: example.json#/sender/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : {nom \xE9diteur}:{sender:name}\n\
+            => Pour NexSIS : sge:{sender:name}"
+          examples:
+            - sge:sga-nexsis
+      example: example.json#/sender
+      examples:
+        - name: sga-nexsis
+          URI: sge:sga-nexsis
+    recipient:
+      type: object
+      title: "Syst\xE8me destinataire"
+      x-display: expansion-panels
+      required:
+        - name
+        - URI
+      properties:
+        name:
+          type: string
+          title: "Identifiant technique du syst\xE8me destinataire"
+          x-cols: 6
+          example: example.json#/recipients/recipient/0/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+            - samu-77
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-cols: 6
+          example: example.json#/recipients/recipient/0/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n\
+            => Pour NexSIS : sge:{recipient:name}"
+          examples:
+            - sge:samu-77
+      example: example.json#/recipients/recipient/0
+      examples:
+        - name: samu-77
+          URI: sge:samu-77
+    Reference:
+      properties:
+        distributionID:
+          type: string
+      required:
+        - distributionID
+    createCase:
+      $id: http://json-schema.org/draft-07/schema#
+      x-id: schema.json#
+      type: object
+      title: createCase
+      required:
+        - caseId
+        - creation
+        - referenceVersion
+        - qualification
+        - location
       properties:
         caseId:
           type: string
-          description: "Identifiant fonctionnel unique de l'affaire et partag\xE9\
-            \ entre tous les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9\
-            \ de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune\
-            \ ambigu\xEFt\xE9. Il est g\xE9n\xE9r\xE9 par la force r\xE9ceptrice de\
-            \ la primo-demande de secours et contient un identifiant de la source.\n\
-            Format propos\xE9 : {Syst\xE8meEmetteur}-{Date}-AL|AF{Sequence}\nFormat\
-            \ NF399 : pays + CTA + date + # unique\nFormat NexSIS : SC-20211105-077-cga-AF18\
-            \ (SC-AAAAMMJJ-{codeCGA}-AL|AF{SEQUENCE}) (toutes les alertes cr\xE9ent\
-            \ pas des affaires, affaires peuvent avoir plusieurs alertes)"
+          title: Identifiant affaire/dossier
+          x-cols: 6
+          description: "Identifiant technique de l'affaire et partag\xE9 entre tous\
+            \ les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7\
+            on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune ambigu\xEF\
+            t\xE9. Il est g\xE9n\xE9r\xE9 par les syst\xE8mes du partenaire r\xE9\
+            cepteur de la primo-demande de secours et contient une cl\xE9 conventionnelle\
+            \ permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\n\
+            o\xF9 cleConventionnelle est la cl\xE9 utilis\xE9e par le partenaire emetteur\
+            \ et cleUnique l'identifiant locale d'affaire dans le syst\xE8me du partenaire\
+            \ emetteur.\ncleUnique est une cha\xEEne de caract\xE8re (string) comprise\
+            \ entre 4 et 22 caract\xE8res alphanum\xE9riques."
           examples:
-            - SAMU050-20230605-AF1234
+            - samuA:CA126B445579GD4A67AV
         senderCaseId:
           type: string
-          description: "Identifiant de l'affaire dans le SI de l'\xE9metteur du message"
+          title: Identifiant local de l'affaire
+          x-cols: 6
+          description: "Valoriser avec l'identifiant de l'affaire dans le SI de l'\xE9\
+            metteur du message\nCe champ est facultatif, il ne sera notamment pas\
+            \ transmis par NexSIS\nDans le cas o\xF9 deux op\xE9rateurs ont besoin\
+            \ d'identifier une affaire, ils peuvent utiliser les derniers caract\xE8\
+            res de l'identifiant local de leur partenaire."
           examples:
-            - id123
-        createdAt:
+            - CA126B445579GD4A67AV
+        creation:
           type: string
+          title: "Date Heure de cr\xE9ation de l'affaire/dossier"
+          x-cols: 6
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
             ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
             tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
             re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
             \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
-            \ \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre repr\xE9\
-            sent\xE9 par '-00:00'"
+            \ \xEAtre utilis\xE9."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
             - '2022-09-27T08:23:34+02:00'
+        referenceVersion:
+          type: string
+          title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
+          x-cols: 6
+          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
+            \ des codes transmis. \nCela permet aux diff\xE9rents syst\xE8mes de s'assurer\
+            \ qu'ils utilisent la m\xEAme version des codes de nomenclature que leurs\
+            \ partenaires."
+          examples:
+            - '1.2'
+        qualification:
+          $ref: '#/components/schemas/qualification'
+        location:
+          $ref: '#/components/schemas/location'
         initialAlert:
           $ref: '#/components/schemas/alert'
-        caseLocation:
-          $ref: '#/components/schemas/location'
-        casualties:
-          type: array
-          items:
-            $ref: '#/components/schemas/casualties'
         newAlert:
           type: array
           items:
             $ref: '#/components/schemas/alert'
-            examples:
-              - {}
-        severity:
-          type: string
-          description: "[Non utilis\xE9 dans une premi\xE8re version car la d\xE9\
-            finition et l'usage restent \xE0 d\xE9finir]\nPr\xE9cise l'urgence m\xE9\
-            dicale :\n        EXTREME : Menace extr\xEAme pour la vie\n        SEVERE\
-            \ : Menace importante pour la vie\n        MODERATE - Menace possible\
-            \ pour la vie\n        MINOR : Peu ou pas de menace connue pour la vie\n\
-            \        UNKNOWN : Niveau de menace inconnu\nCe niveau de gravit\xE9 est\
-            \ li\xE9 au Motif de Recours Medico-Secouriste associ\xE9 \xE0 l'appel."
-          enum:
-            - EXTREME
-            - SEVERE
-            - MODERATE
-            - MINOR
-            - UNKNOWN
-          examples:
-            - None
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
         freetext:
           type: string
+          title: Description de l'affaire/dossier
+          x-cols: 6
           description: "Texte libre permettant de donner des informations suppl\xE9\
             mentaires concernant l'affaire"
           examples:
             - None
-    alert:
+    qualification:
       type: object
+      title: Qualification de l'affaire/dossier
+      x-display: expansion-panels
       required:
-        - caller
-        - alertLocation
-        - alertCode
-        - callTaker
+        - whatsHappen
       properties:
-        alertId:
-          type: string
-          description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
-            \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
-            \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
-            \ par les diff\xE9rents syst\xE8mes pour garantir leur d\xE9couplage.\n\
-            Voir la description de l'identifiant de l'affaire pour voir le format."
-          examples:
-            - SAMU050-20230605-AL0123
-        receivedAt:
-          type: string
-          description: "Groupe date heure de r\xE9ception de l'alerte"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-            - '2022-09-27T08:21:06+02:00'
-        reporting:
-          type: string
-          description: "Permet d'attirer l'attention des forces partenaires sur une\
-            \ affaire.  \nEventuellement automatis\xE9 en fonction des crit\xE8res\
-            \ saisis et de leur param\xE9trage, ou renseign\xE9 par l'op\xE9rateur.\
-            \ \nPrend les valeurs d\xE9finies dans la nomenclature CISU. \nPour les\
-            \ syst\xE8mes multi-alertes mais g\xE9rant ce champs au niveau de l'affaire,\
-            \ ils prennent le niveau d'alerte le plus \xE9lev\xE9 (peut \xEAtre compl\xE9\
-            t\xE9 par \"Raison du transfert\")"
-          enum:
-            - STANDARD
-            - ATTENTION
-          examples:
-            - STANDARD
-        alertInformation:
-          type: string
-          description: "Texte libre permettant de donner des informations suppl\xE9\
-            mentaires concernant l'alerte"
-          examples:
-            - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
-        caller:
-          $ref: '#/components/schemas/caller'
-        alertLocation:
-          $ref: '#/components/schemas/location'
-          examples:
-            - {}
-        alertCode:
-          $ref: '#/components/schemas/alertCode'
-        contact:
-          $ref: '#/components/schemas/contact'
-          examples:
-            - &id001
-              type: Person
-              detail: tel:18
-        callTaker:
-          $ref: '#/components/schemas/callTaker'
-          examples:
-            - &id002
-              organization: "SDIS, SAMU, \u2026"
-              controlRoom: CGA, CGO 21, CRRA 44, ...
-              calltakerURI: '0303030303'
-              calltakerId: "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
-        resource:
+        whatsHappen:
+          $ref: '#/components/schemas/nomenclature'
+        locationKind:
+          $ref: '#/components/schemas/nomenclature'
+        riskThreat:
           type: array
           items:
-            $ref: '#/components/schemas/resource'
-            examples:
-              - &id003
-                resourceDesc: "photo, carte, \u2026"
-                mimeType: "PDF, XML, JPEG, \u2026"
-                size: "1235, 35, \u2026"
-                URI: None
-                derefURI: None
-                digest: None
+            $ref: '#/components/schemas/nomenclature'
+        healthMotive:
+          $ref: '#/components/schemas/nomenclature'
+        victims:
+          $ref: '#/components/schemas/victims'
     location:
       type: object
-      required: []
+      title: Localisation de l'affaire
+      x-display: expansion-panels
+      required:
+        - locID
+        - name
+        - country
       properties:
         locID:
           type: string
+          title: Identifiant technique de localisation
+          x-cols: 6
           description: "ID technique et provisoire permettant d'identifier le lieu\
             \ dans le cadre des \xE9changes de cette affaire."
           examples:
             - 111fb03a-6fd9-41e0-8e81-990c45188887
         locLabel:
           type: string
-          description: "Correspond \xE0 l'\xE9tiquette associ\xE9e \xE0 la localisation\
-            \ (plut\xF4t \xE0 destination des humains).\nElle va souvent correspondre\
-            \ \xE0 la concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9\
-            rentes informations, dont le \"name\" (toponyme) et l'adresse."
+          title: "R\xE9sum\xE9 de la localisation"
+          x-cols: 6
+          description: "Permet d'indiquer des indications auto suffisantes permettant\
+            \ pour un op\xE9rationnel d'acc\xE9der facilement au lieu avec des indications\
+            \ minimales.\nDans les messages NexSIS, va souvent correspondre \xE0 la\
+            \ concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes\
+            \ informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au\
+            \ maximum 255 caract\xE8res"
           examples:
             - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
             e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
         name:
           type: string
-          description: "Indique le nom de lieu : nom commercial, lieu-dit, lac, for\xEA\
-            t, nom de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
+          title: Nom du lieu
+          x-cols: 6
+          description: "Indique le nom de lieu : nom commercial, lac, for\xEAt, nom\
+            \ de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
           examples:
-            - "Carrefour Toison d'Or, EPHAD Belle Fontaine, Quartier Melun Nord, Disneyland,\
-            \ \u2026"
-        address:
-          $ref: '#/components/schemas/address'
+            - "Lyc\xE9e Pierre de Coubertin"
+        detailedAdress:
+          $ref: '#/components/schemas/detailedAdress'
         city:
           $ref: '#/components/schemas/city'
-          examples:
-            - &id007
-              name: Lille
-              inseeCode: 59350
-              detail: "Quartie Melun Nord, Lhomme, \u2026"
         access:
           $ref: '#/components/schemas/access'
         geometry:
           $ref: '#/components/schemas/geometry'
-        link:
+        externalInfo:
           type: array
           items:
-            $ref: '#/components/schemas/link'
-            examples:
-              - &id008
-                source: "NexSIS, BAN, IGN, \u2026"
-                type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle),\
-                \ \u2026"
-                id: id987
+            $ref: '#/components/schemas/externalInfo'
         country:
           type: string
+          title: Pays
+          x-cols: 6
+          enum:
+            - AF
+            - AX
+            - AL
+            - DZ
+            - AS
+            - AD
+            - AO
+            - AI
+            - AQ
+            - AG
+            - AR
+            - AM
+            - AW
+            - AU
+            - AT
+            - AZ
+            - BS
+            - BH
+            - BD
+            - BB
+            - BY
+            - BE
+            - BZ
+            - BJ
+            - BM
+            - BT
+            - BO
+            - BA
+            - BW
+            - BV
+            - BR
+            - IO
+            - BN
+            - BG
+            - BF
+            - BI
+            - CV
+            - KH
+            - CM
+            - CA
+            - KY
+            - CF
+            - TD
+            - CL
+            - CN
+            - CX
+            - CC
+            - CO
+            - KM
+            - CG
+            - CK
+            - CR
+            - CI
+            - HR
+            - CU
+            - CW
+            - CY
+            - CZ
+            - DK
+            - DJ
+            - DM
+            - DO
+            - EC
+            - EG
+            - SV
+            - GQ
+            - ER
+            - EE
+            - SZ
+            - ET
+            - FK
+            - FO
+            - FJ
+            - FI
+            - FR
+            - GF
+            - PF
+            - TF
+            - GA
+            - GM
+            - GE
+            - DE
+            - GH
+            - GI
+            - GR
+            - GL
+            - GD
+            - GP
+            - GU
+            - GT
+            - GG
+            - GN
+            - GW
+            - GY
+            - HT
+            - HM
+            - VA
+            - HN
+            - HK
+            - HU
+            - IS
+            - IN
+            - ID
+            - IR
+            - IQ
+            - IE
+            - IM
+            - IL
+            - IT
+            - JM
+            - JP
+            - JE
+            - JO
+            - KZ
+            - KE
+            - KI
+            - KP
+            - KW
+            - KG
+            - LA
+            - LV
+            - LB
+            - LS
+            - LR
+            - LY
+            - LI
+            - LT
+            - LU
+            - MO
+            - MG
+            - MW
+            - MY
+            - MV
+            - ML
+            - MT
+            - MH
+            - MQ
+            - MR
+            - MU
+            - YT
+            - MX
+            - FM
+            - MC
+            - MN
+            - ME
+            - MS
+            - MA
+            - MZ
+            - MM
+            - .nan
+            - NR
+            - NP
+            - NL
+            - NC
+            - NZ
+            - NI
+            - NE
+            - NG
+            - NU
+            - NF
+            - MK
+            - MP
+            - 'NO'
+            - OM
+            - PK
+            - PW
+            - PA
+            - PG
+            - PY
+            - PE
+            - PH
+            - PN
+            - PL
+            - PT
+            - PR
+            - QA
+            - RE
+            - RO
+            - RU
+            - RW
+            - BL
+            - KN
+            - LC
+            - MF
+            - PM
+            - VC
+            - WS
+            - SM
+            - ST
+            - SA
+            - SN
+            - RS
+            - SC
+            - SL
+            - SG
+            - SX
+            - SK
+            - SI
+            - SB
+            - SO
+            - ZA
+            - GS
+            - SS
+            - ES
+            - LK
+            - SD
+            - SR
+            - SJ
+            - SE
+            - CH
+            - SY
+            - TJ
+            - TH
+            - TL
+            - TG
+            - TK
+            - TO
+            - TT
+            - TN
+            - TR
+            - TM
+            - TC
+            - TV
+            - UG
+            - UA
+            - AE
+            - GB
+            - US
+            - UM
+            - UY
+            - UZ
+            - VU
+            - VE
+            - VN
+            - VG
+            - VI
+            - WF
+            - EH
+            - YE
+            - ZM
+            - ZW
+          examples:
+            - France
+        freetext:
+          type: string
+          title: Commentaire
+          x-cols: 6
+          description: "Champ libre pour compl\xE9ter les informations de localisation"
           enum:
             - France
             - Allemagne
@@ -440,325 +810,148 @@ components:
             - Suisse
             - Luxembourg
             - Belgique
-          examples:
-            - France
-        freetext:
-          type: string
-          description: "Champ libre pour compl\xE9ter les informations de localisation"
+            - "Br\xE9sil"
           examples:
             - "Cl\xE9 derri\xE8re le pot de fleur"
-    casualties:
+    alert:
       type: object
-      required: []
+      title: Alerte initiale
+      x-display: expansion-panels
+      required:
+        - id
+        - reception
+        - reporting
+        - caller
+        - alertSource
+        - location
+        - qualification
+        - callTaker
       properties:
-        identifier:
-          type: array
-          items:
-            $ref: '#/components/schemas/identifier'
-            examples:
-              - &id011
-                source: "NIR, SINUS, SI-VIC, \u2026"
-                value: id1234
-        phoneNumber:
+        id:
           type: string
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
+          title: Identifiant alerte
+          x-cols: 6
+          description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
+            \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
+            \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
+            \ par les diff\xE9rents syst\xE8mes pour garantir leur d\xE9couplage.\n\
+            Voir la description de l'identifiant de l'affaire pour voir le format.\n\
+            Lorsqu\u2019une alerte est g\xE9n\xE9r\xE9e dans NexSIS et cr\xE9e une\
+            \ affaire, elle est qualifi\xE9e d\u2019Alerte Initiale.\na)\tSi cette\
+            \ derni\xE8re concerne un partenaire (caract\xE8re m\xE9dical pour la\
+            \ Sant\xE9 par exemple), elle est relay\xE9e seule dans le message. Il\
+            \ y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\xE9\
+            e \xE0 la m\xEAme affaire peut \xEAtre d\xE9clar\xE9e ult\xE9rieurement,\
+            \ concernant cette fois le partenaire. Lorsqu\u2019elle est d\xE9clar\xE9\
+            e cette Nouvelle Alerte est relay\xE9e avec l\u2019Alerte Initiale pour\
+            \ partager un contexte commun. Dans le message de cr\xE9ation d\u2019\
+            affaire il y\u2019a deux objets alerte : initialAlert et newAlert.\nLe\
+            \ rattachement des messages \xE0 une affaire doivent s'appuyer sur les\
+            \ caseId et non les alertId qui peuvent varier d'un syst\xE8me \xE0 l'autre."
           examples:
-            - tel:0606060606
-        name:
+            - SGO050-20230605-AL0123
+        reception:
           type: string
+          title: "Date de r\xE9ception de l'alerte"
+          x-cols: 6
+          description: "Groupe date heure de r\xE9ception de l'alerte"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
           examples:
-            - Dupont
-        birthName:
+            - '2022-09-27T08:21:06+02:00'
+        reporting:
           type: string
-          examples:
-            - Dupont
-        firstName:
-          type: string
-          examples:
-            - Jeanne
-        sex:
-          type: string
+          title: Signalement
+          x-cols: 6
+          description: "Permet d'attirer l'attention des forces partenaires sur une\
+            \ affaire pour le faire sortir du lot.\nEventuellement automatis\xE9 en\
+            \ fonction des crit\xE8res saisis et de leur param\xE9trage, ou renseign\xE9\
+            \ par l'op\xE9rateur. \nPrend les valeurs d\xE9finies dans la nomenclature\
+            \ CISU :\n- standard : STANDARD\n- signal\xE9 : ATTENTION\nLes syst\xE8\
+            mes peuvent proposer des fonctionnalit\xE9s faisant ressortir les dossiers\
+            \ avec le libell\xE9 ATTENTION"
           enum:
-            - F
-            - M
-            - O
-            - U
+            - STANDARD
+            - ATTENTION
           examples:
-            - F
-        birthDate:
-          type: string
-          pattern: \d{4}-\d{2}-\d{2}
-          examples:
-            - None
-        age:
-          type: string
-          pattern: ''
-          examples:
-            - 6Y
-        weight:
-          type: integer
-          description: Poids en kilogrammes
-          examples:
-            - 31
-        height:
-          type: integer
-          description: "Taille en centim\xE8tres"
-          examples:
-            - 109
+            - STANDARD
         freetext:
           type: string
+          title: "Informations compl\xE9mentaires sur l'alerte"
+          x-cols: 6
+          description: "Texte libre permettant de donner des informations suppl\xE9\
+            mentaires concernant l'alerte"
           examples:
-            - None
+            - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
+        caller:
+          $ref: '#/components/schemas/caller'
+        alertSource:
+          $ref: '#/components/schemas/contactSource'
+        location:
+          $ref: '#/components/schemas/location'
+        qualification:
+          $ref: '#/components/schemas/qualification'
+        callTaker:
+          $ref: '#/components/schemas/callTaker'
+        attachment:
+          type: array
+          items:
+            $ref: '#/components/schemas/attachment'
     additionalInformation:
       type: object
-      required: []
+      title: "Informations compl\xE9mentaires"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         customMap:
           $ref: '#/components/schemas/customMap'
-          examples:
-            - &id012
-              key: neighborhood
-              label: Quartier
-              value: SECT.QUARTIER HISTORIQUE
-              freetext: "Pr\xE9cision sur le quartier d'intervention"
-    caller:
-      type: object
-      required: []
-      properties:
-        callerURI:
-          type: string
-          description: "Type de l'URI utilis\xE9e par le r\xE9qu\xE9rant et valeur.\
-            \ Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU sip:top@domain.org.\
-            \ Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9 en priorit\xE9\
-            , \xE0 d\xE9faut, renseigner un autre type d'URI. Si ce num\xE9ro est\
-            \ renseign\xE9, il devient prioritaire par rapport au num\xE9ro d'appel."
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-            - tel:0606060606
-        callbackURI:
-          type: string
-          description: "Type et valeur de l'URI permettant un rappel pour avoir plus\
-            \ d'informations : il peut s'agit du requ\xE9rant, de la victime ou d'un\
-            \ t\xE9moin. Ne peut contenir qu'une URI.Exemple : tel:+33611223344 OU\
-            \ sip:top@domain.org. Le num\xE9ro de t\xE9l\xE9phone doit \xEAtre renseign\xE9\
-            \ en priorit\xE9, \xE0 d\xE9faut, renseigner un autre type d'URI. Si le\
-            \ num\xE9ro de contre-appel est renseign\xE9, il doit \xEAtre utilis\xE9\
-            \ en priorit\xE9 sur le num\xE9ro r\xE9qu\xE9rant."
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-            - tel:0707070707
-        spokenLanguage:
-          type: string
-          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
-            \ place des traducteurs si besoin."
-          examples:
-            - "Fran\xE7ais"
-        callerInformation:
-          type: string
-          description: "Information sur le requ\xE9rant : malentendant, impliqu\xE9\
-            \ dans l'accident, \u2026"
-          examples:
-            - "P\xE8re"
-        callerName:
-          $ref: '#/components/schemas/callerName'
-          examples:
-            - &id004
-              complete: Jean Dupont
-              callerLastName: Dupont
-              callerFirstName: Jean
-    alertCode:
-      type: object
-      required:
-        - whatsHappen
-      properties:
-        cisuVersion:
-          type: string
-          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
-            \ des codes transmis. Cela permet de s'assurer que les syst\xE8mes op\xE9\
-            rationnels soient en capacit\xE9 de les  traiter correctement."
-          examples:
-            - '1.19'
-        whatsHappen:
-          $ref: '#/components/schemas/nomenclature'
-          examples:
-            - &id005
-              code: C07.13.02
-              label: "Rod\xE9o automobile"
-              freetext: None
-        locationKind:
-          $ref: '#/components/schemas/nomenclature'
-          examples:
-            - code: None
-              label: None
-              freetext: None
-        riskThreat:
-          type: array
-          items:
-            $ref: '#/components/schemas/nomenclature'
-            examples:
-              - code: None
-                label: None
-                freetext: None
-        healthMotive:
-          $ref: '#/components/schemas/nomenclature'
-          examples:
-            - code: None
-              label: None
-              freetext: None
-        gravity:
-          type: string
-          description: "Score de gravit\xE9 fournit par NexSIS"
-          examples:
-            - 6
-        victims:
-          $ref: '#/components/schemas/victims'
-          examples:
-            - &id006
-              count: SEVERAL
-              mainVictim: CHILD
-              comment: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
-    contact:
-      type: object
-      required: []
-      properties:
-        type:
-          type: string
-          description: "Permet d'indiquer l'origine de la communication : Personne,\
-            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
-          examples:
-            - Person
-        detail:
-          type: string
-          description: "Indique le type de l'URI compos\xE9e par le r\xE9qu\xE9rant\
-            \ et la valeur de l'URI, concat\xE9n\xE9es et s\xE9par\xE9es par \":\"\
-            . Exemples : tel:112, tel:18, sip:sos@nexsis.fr, \u2026 Une seule URI\
-            \ peut \xEAtre renseign\xE9e."
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
-          examples:
-            - tel:18
-      examples:
-        - *id001
-    callTaker:
-      type: object
-      required: []
-      properties:
-        organization:
-          type: string
-          description: "Organisation d'appartenance de l'op\xE9rateur ayant trait\xE9\
-            \ l'alerte"
-          examples:
-            - "SDIS, SAMU, \u2026"
-        controlRoom:
-          type: string
-          description: "Salle op\xE9rationnelle de l'op\xE9rateur de traitement"
-          examples:
-            - CGA, CGO 21, CRRA 44, ...
-        calltakerURI:
-          type: string
-          description: "Num\xE9ro de ligne directe permettant de recontacter l'op\xE9\
-            rateur de traitement"
-          examples:
-            - '0303030303'
-        calltakerId:
-          type: string
-          description: "Identifiant unique de l'op\xE9rataur ayant trait\xE9 l'alerte"
-          examples:
-            - "id1234, carte CPx (Sant\xE9), id d'affectation, \u2026"
-      examples:
-        - *id002
-    resource:
-      type: object
-      required: []
-      properties:
-        resourceDesc:
-          type: string
-          description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
-            \ tels que \xABcarte\xBB ou \xABphoto\xBB"
-          examples:
-            - "photo, carte, \u2026"
-        mimeType:
-          type: string
-          description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
-            \ la ressource"
-          examples:
-            - "PDF, XML, JPEG, \u2026"
-        size:
-          type: integer
-          description: Taille approximative de la ressource en kO
-          examples:
-            - "1235, 35, \u2026"
-        URI:
-          type: string
-          description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
-            \ la ressource sur Internet ou sur un r\xE9seau priv\xE9"
-          pattern: (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?
-          examples:
-            - None
-        derefURI:
-          type: string
-          description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
-            \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
-            mes de transcodage (sur des double quotes qui casseraient le message,\
-            \ \u2026)"
-          examples:
-            - None
-        digest:
-          type: string
-          description: "Hash de la ressource pour confirmer la r\xE9ception de la\
-            \ bonne ressource"
-          examples:
-            - None
-      examples:
-        - *id003
-    callerName:
-      type: object
-      required: []
-      properties:
-        complete:
-          type: string
-          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nNexSIS ne dispose\
-            \ que de ces informations (concat\xE9n\xE9es) et pas de deux champs s\xE9\
-            par\xE9s"
-          examples:
-            - Jean Dupont
-        callerLastName:
-          type: string
-          description: "Nom du requ\xE9rant"
-          examples:
-            - Dupont
-        callerFirstName:
-          type: string
-          description: "Pr\xE9nom du r\xE9qu\xE9rant"
-          examples:
-            - Jean
-      examples:
-        - *id004
     nomenclature:
       type: object
-      required: []
+      title: Nature de fait
+      x-display: expansion-panels
+      required:
+        - code
+        - label
       properties:
         code:
           type: string
-          description: "D\xE9crit le code de motif de recours m\xE9dical"
+          title: Code
+          x-cols: 6
+          description: "A valoriser avec un code la nomenclature associ\xE9e"
           examples:
             - C07.13.02
         label:
           type: string
-          description: "Libell\xE9 du motif"
+          title: "Libell\xE9"
+          x-cols: 6
+          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
+            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
+            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            \ fourni avec le code."
           examples:
             - "Rod\xE9o automobile"
         freetext:
           type: string
+          title: Commentaire
+          x-cols: 6
+          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
+            \ permettant de qualifier l'\xE9v\xE9nement."
           examples:
             - None
       examples:
-        - *id005
+        - code: C07.13.02
+          label: "Rod\xE9o automobile"
+          freetext: None
     victims:
       type: object
-      required: []
+      title: Patients/Victimes
+      x-display: expansion-panels
+      required: [ ]
       properties:
         count:
           type: string
+          title: Nombre de patients-victimes
+          x-cols: 6
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
             f\xE9rentiel CISU"
           enum:
@@ -771,6 +964,8 @@ components:
             - SEVERAL
         mainVictim:
           type: string
+          title: Type du patient-victime principal
+          x-cols: 6
           description: "Identifie le type de la principale victime (celle dont l'\xE9\
             tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
@@ -780,22 +975,31 @@ components:
             - CHILD
             - ADULT
             - PREGNANT
-            - SENIOR
+            - SENIOR (voir Nomenclature CISU XX)
           examples:
             - CHILD
-        comment:
+        freetext:
           type: string
+          title: "Informations compl\xE9mentaires sur les patients-victimes"
+          x-cols: 6
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
           examples:
             - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
       examples:
-        - *id006
-    address:
+        - count: SEVERAL
+          mainVictim: CHILD
+          freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+    detailedAdress:
       type: object
-      required: []
+      title: "D\xE9tails de l'adresse"
+      x-display: expansion-panels
+      required:
+        - complete
       properties:
         complete:
           type: string
+          title: "Num\xE9ro, type et nom de voie"
+          x-cols: 6
           description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
             \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
             \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
@@ -804,6 +1008,8 @@ components:
             - 9 Bd du Montparnasse
         number:
           type: string
+          title: "Num\xE9ro dans la voie"
+          x-cols: 6
           description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
             \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
             p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
@@ -811,54 +1017,69 @@ components:
             - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/components/schemas/wayName'
-          examples:
-            - &id009
-              complete: A1 direction Paris, Bd du Montparnasse
-              type: Boulevard
-              name: du Montparnasse
     city:
       type: object
-      required: []
+      title: "D\xE9tails de la commune"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         name:
           type: string
+          title: Nom de la commune
+          x-cols: 6
           description: Nom officiel de la commune actuelle
           examples:
             - Lille
         inseeCode:
           type: string
+          title: Code INSEE de la commune
+          x-cols: 6
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9."
           pattern: '[0-9]{5}'
           examples:
-            - 59350
+            - '59350'
         detail:
           type: string
+          title: "Compl\xE9ment de commune"
+          x-cols: 6
           description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
             \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
             \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
-            \ fusionn\xE9es pour le syst\xE8me \xE9metteur"
+            \ fusionn\xE9es pour le syst\xE8me \xE9metteur\nNB : dans tous les cas,\
+            \ la localisation GPS de la commune doit \xEAtre fournie afin d'\xE9viter\
+            \ une trop forte ambigu\xEFt\xE9"
           examples:
             - "Quartie Melun Nord, Lhomme, \u2026"
       examples:
-        - *id007
+        - name: Lille
+          inseeCode: '59350'
+          detail: "Quartie Melun Nord, Lhomme, \u2026"
     access:
       type: object
-      required: []
+      title: "D\xE9tails d'acc\xE8s"
+      x-display: expansion-panels
+      required: [ ]
       properties:
         floor:
           type: string
+          title: Etage
+          x-cols: 6
           description: 'Etage '
           examples:
             - "RDC, 1, 2, \u2026"
         roomNumber:
           type: string
+          title: "Num\xE9ro de porte"
+          x-cols: 6
           description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
           examples:
             - "A16, 37, 104, \u2026"
         interphone:
           type: string
+          title: Interphone
+          x-cols: 6
           description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
             \ de l'interphone (num\xE9ro, nom)"
           examples:
@@ -867,45 +1088,87 @@ components:
           type: array
           items:
             type: string
+            title: Digicode
+            x-cols: 6
             description: "Indique le ou les digicodes dans l'ordre de progression\
               \ dans le b\xE2timent"
             examples:
               - '[''1234A'', ''4321B'']'
         elevator:
           type: string
+          title: Ascenseur/escalier
+          x-cols: 6
           description: 'Indique l''ascenseur ou la cage d''escalier '
           examples:
             - C3
         buildingName:
           type: string
+          title: "B\xE2timent"
+          x-cols: 6
           description: "Nom du b\xE2timent"
           examples:
             - Batiment B, Batiment Maunoury
         entrance:
           type: string
+          title: "Entr\xE9e"
+          x-cols: 6
           examples:
             - "Zone Sud, Porte 1, \u2026"
         entity:
           type: string
+          title: Service
+          x-cols: 6
           description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
           examples:
             - "Infirmerie, service finance, service cardiologie, \u2026"
     geometry:
       type: object
-      required: []
+      title: "G\xE9ometrie associ\xE9e"
+      x-display: expansion-panels
+      required:
+        - obsDatime
       properties:
+        obsDatime:
+          type: string
+          title: "Heure du dernier relev\xE9"
+          x-cols: 6
+          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
+            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
+            \ donc pertinence des informations pour intervenir."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:23:34+02:00'
         point:
           $ref: '#/components/schemas/point'
         sketch:
           type: string
+          title: "Formes g\xE9om\xE9triques"
+          x-cols: 6
+          description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
+            \ de d\xE9crire une forme dans un syst\xE8me de projection donn\xE9. \n\
+            Dans le cas d'une alerte donn\xE9e sur une zone g\xE9ographique non pr\xE9\
+            cise (par exemple une section d'autoroute ou une zone sur un chemin de\
+            \ randonn\xE9e), une indication sur la zone de recherche peut \xEAtre\
+            \ fournie.\nEn XML, un objet gml est encapsul\xE9 dans une balise <sketch\
+            \ xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn\
+            \ JSON, les balises sont reprises depuis le mod\xE8le gml\nVoir http://www.opengis.net/gml\
+            \ pour le format de l'objet sketch"
           examples:
             - None
-    link:
+    cisu_externalInfo:
       type: object
-      required: []
+      title: "Liens aux syst\xE8mes externes"
+      x-display: expansion-panels
+      required:
+        - freetext
+        - type
+        - uri
       properties:
-        source:
+        freetext:
           type: string
+          title: Nom de la source
+          x-cols: 6
           description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
             \ (BAN, IGN, ...)"
           enum:
@@ -916,160 +1179,2236 @@ components:
             - "NexSIS, BAN, IGN, \u2026"
         type:
           type: string
+          title: 'Type '
+          x-cols: 6
           description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
             \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
             \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
             \ Aussi table dans une base de donn\xE9es"
+          enum:
+            - MANUAL
+            - MAP
+            - OTHER
+            - PHOTO
+            - WEBSIT
           examples:
-            - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
-        id:
+            - "MANUAL"
+        uri:
           type: string
+          title: Identifiant
+          x-cols: 6
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
           examples:
             - id987
       examples:
-        - *id008
+        - freetext: "BAN"
+          type: "MANUAL"
+          uri: id987
     wayName:
       type: object
-      required: []
+      title: Type et nom de voie
+      x-display: expansion-panels
+      required:
+        - complete
       properties:
         complete:
           type: string
-          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)"
+          title: Type et nom
+          x-cols: 6
+          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
+            Si les champs type et name sont renseign\xE9s, le champ callerName doit\
+            \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
           examples:
-            - A1 direction Paris, Bd du Montparnasse
+            - Boulevard du Montparnasse
         type:
           type: string
+          title: Type
+          x-cols: 6
           examples:
             - Boulevard
         name:
           type: string
+          title: Nom
+          x-cols: 6
           examples:
             - du Montparnasse
       examples:
-        - *id009
+        - complete: Boulevard du Montparnasse
+          type: Boulevard
+          name: du Montparnasse
     point:
       type: object
+      title: 'Point '
+      x-display: expansion-panels
       required:
         - coord
       properties:
         coord:
           $ref: '#/components/schemas/coord'
-          examples:
-            - &id010
-              lat: '48.866667'
-              lon: '2.333333'
-              height: 120
-              heading: 96
-              speed: 34
-              time: '2022-09-27T08:23:34+02:00'
-              precision: Adresse
-        coordsys:
+        sysCoord:
           type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-cols: 6
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
             \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
             \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
-            \ valeur par d\xE9faut est \xABEPSG-4326\xBB."
-          pattern: '[0-9]{0,10}'
+            \ valeur par d\xE9faut est \xAB\xBB."
           examples:
             - EPSG-4326
-    coord:
+    cisu_coord:
       type: object
-      required: []
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      required:
+        - lat
+        - lon
+        - precision
       properties:
         lat:
           type: number
+          title: Latitude
+          x-cols: 6
           description: "Latitude du point cl\xE9 de la localisation"
           examples:
-            - '48.866667'
+            - 48.866667
         lon:
           type: number
+          title: Longitude
+          x-cols: 6
           description: "Longitude du point cl\xE9 de la localisation"
           examples:
-            - '2.333333'
+            - 2.333333
         height:
           type: number
-          description: "Altitude du point cl\xE9 de la localisation, ignor\xE9 c\xF4\
-            t\xE9 NexSIS."
+          title: 'Altitude '
+          x-cols: 6
+          description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
+            \ ignor\xE9 c\xF4t\xE9 NexSIS."
           examples:
             - 120
         heading:
           type: number
+          title: Cap
+          x-cols: 6
           description: "En degr\xE9"
           examples:
             - 96
         speed:
           type: number
+          title: Vitesse
+          x-cols: 6
           description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
             \ AML, \u2026"
           examples:
             - 34
-        time:
-          type: string
-          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
-            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
-            \ donc pertinence des informations pour intervenir."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-            - '2022-09-27T08:23:34+02:00'
         precision:
           type: string
-          description: "Niveau de pr\xE9cision et de confiance dans les coordonn\xE9\
-            es (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie)\
-            \ d\xE9termin\xE9e de fa\xE7on automatique par le syst\xE8me en fonction\
-            \ des informations disponibles lors de son \xE9laboration (n\xB0, voie\
-            \ et commune) et du matching fait dans son syst\xE8me de localisation."
+          title: "Pr\xE9cision"
+          x-cols: 6
+          description: "Indique via une nomenclature le niveau de pr\xE9cision des\
+            \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
+            \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
+            \ de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9e GPS\
+            \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
+            \ l'\xE9metteur"
           enum:
             - CITY
             - STREET
             - ADDRESS
+            - EXACT
+            - UNKNOWN
           examples:
-            - Adresse
+            - ADDRESS
       examples:
-        - *id010
-    identifier:
+        - lat: 48.866667
+          lon: 2.333333
+          height: 120
+          heading: 96
+          speed: 34
+          precision: ADDRESS
+    caller:
       type: object
-      required: []
+      title: "Requ\xE9rant"
+      x-display: expansion-panels
+      required: [ ]
       properties:
-        source:
+        callerContact:
+          $ref: '#/components/schemas/contact'
+        callbackContact:
+          $ref: '#/components/schemas/contact'
+        language:
           type: string
+          title: "Langue parl\xE9e"
+          x-cols: 6
+          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
+            \ place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU."
           enum:
-            - NIR
-            - SINUS
-            - SI-VIC
+            - AF
+            - AX
+            - AL
+            - DZ
+            - AS
+            - AD
+            - AO
+            - AI
+            - AQ
+            - AG
+            - AR
+            - AM
+            - AW
+            - AU
+            - AT
+            - AZ
+            - BS
+            - BH
+            - BD
+            - BB
+            - BY
+            - BE
+            - BZ
+            - BJ
+            - BM
+            - BT
+            - BO
+            - BA
+            - BW
+            - BV
+            - BR
+            - IO
+            - BN
+            - BG
+            - BF
+            - BI
+            - CV
+            - KH
+            - CM
+            - CA
+            - KY
+            - CF
+            - TD
+            - CL
+            - CN
+            - CX
+            - CC
+            - CO
+            - KM
+            - CG
+            - CK
+            - CR
+            - CI
+            - HR
+            - CU
+            - CW
+            - CY
+            - CZ
+            - DK
+            - DJ
+            - DM
+            - DO
+            - EC
+            - EG
+            - SV
+            - GQ
+            - ER
+            - EE
+            - SZ
+            - ET
+            - FK
+            - FO
+            - FJ
+            - FI
+            - FR
+            - GF
+            - PF
+            - TF
+            - GA
+            - GM
+            - GE
+            - DE
+            - GH
+            - GI
+            - GR
+            - GL
+            - GD
+            - GP
+            - GU
+            - GT
+            - GG
+            - GN
+            - GW
+            - GY
+            - HT
+            - HM
+            - VA
+            - HN
+            - HK
+            - HU
+            - IS
+            - IN
+            - ID
+            - IR
+            - IQ
+            - IE
+            - IM
+            - IL
+            - IT
+            - JM
+            - JP
+            - JE
+            - JO
+            - KZ
+            - KE
+            - KI
+            - KP
+            - KW
+            - KG
+            - LA
+            - LV
+            - LB
+            - LS
+            - LR
+            - LY
+            - LI
+            - LT
+            - LU
+            - MO
+            - MG
+            - MW
+            - MY
+            - MV
+            - ML
+            - MT
+            - MH
+            - MQ
+            - MR
+            - MU
+            - YT
+            - MX
+            - FM
+            - MC
+            - MN
+            - ME
+            - MS
+            - MA
+            - MZ
+            - MM
+            - .nan
+            - NR
+            - NP
+            - NL
+            - NC
+            - NZ
+            - NI
+            - NE
+            - NG
+            - NU
+            - NF
+            - MK
+            - MP
+            - 'NO'
+            - OM
+            - PK
+            - PW
+            - PA
+            - PG
+            - PY
+            - PE
+            - PH
+            - PN
+            - PL
+            - PT
+            - PR
+            - QA
+            - RE
+            - RO
+            - RU
+            - RW
+            - BL
+            - KN
+            - LC
+            - MF
+            - PM
+            - VC
+            - WS
+            - SM
+            - ST
+            - SA
+            - SN
+            - RS
+            - SC
+            - SL
+            - SG
+            - SX
+            - SK
+            - SI
+            - SB
+            - SO
+            - ZA
+            - GS
+            - SS
+            - ES
+            - LK
+            - SD
+            - SR
+            - SJ
+            - SE
+            - CH
+            - SY
+            - TJ
+            - TH
+            - TL
+            - TG
+            - TK
+            - TO
+            - TT
+            - TN
+            - TR
+            - TM
+            - TC
+            - TV
+            - UG
+            - UA
+            - AE
+            - GB
+            - US
+            - UM
+            - UY
+            - UZ
+            - VU
+            - VE
+            - VN
+            - VG
+            - VI
+            - WF
+            - EH
+            - YE
+            - ZM
+            - ZW
           examples:
-            - "NIR, SINUS, SI-VIC, \u2026"
-        value:
+            - FR
+        freetext:
           type: string
+          title: "Informations sur le requ\xE9rant"
+          x-cols: 6
+          description: "Information sur le requ\xE9rant : malentendant, impliqu\xE9\
+            \ dans l'accident, \u2026\nLes informations peuvent \xEAtre pass\xE9es\
+            \ sous forme de texte libre ou via une liste d'adjectif"
+          examples:
+            - "P\xE8re"
+        detailedName:
+          $ref: '#/components/schemas/detailedName'
+    contactSource:
+      type: object
+      title: Source de l'alerte
+      x-display: expansion-panels
+      required:
+        - channel
+        - type
+        - detail
+      properties:
+        channel:
+          type: string
+          title: Canal
+          x-cols: 6
+          description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
+            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
+          examples:
+            - Personne
+        type:
+          type: string
+          title: Type de contact de la source
+          x-cols: 6
+          description: "Type de l'URI utilis\xE9e par la source, cf. nomenclature\
+            \ EMSI"
+          enum:
+            - PSTADD
+            - EMLADD
+            - IPADD
+            - FTPADD
+            - WWWADD
+            - PHNADD
+            - FAXADD
+            - PMRADD
+          examples:
+            - PHNADD
+        detail:
+          type: string
+          title: URI de contact de la source
+          x-cols: 6
+          description: "Valeur de l'URI utilis\xE9e par la source"
+          examples:
+            - '0671830530'
+      examples:
+        - channel: Personne
+          type: PHNADD
+          detail: '0671830530'
+    callTaker:
+      type: object
+      title: Agent
+      x-display: expansion-panels
+      required:
+        - organization
+        - controlRoom
+      properties:
+        organization:
+          type: string
+          title: Service d'urgence
+          x-cols: 6
+          description: "D\xE9crit la structure ou le service \xE0 laquelle est rattach\xE9\
+            e l'agent (en fonction du niveau de pr\xE9cision disponible).\nSe r\xE9\
+            f\xE9rer au DSF pour la structure norm\xE9e des organisations\nLe format\
+            \ est le suivant {pays}:{domaine}:{code d\xE9partement}:{organisation}:{structure\
+            \ interne}*:{unit\xE9 fonctionnelle}*."
+          examples:
+            - FR:Administration:44:samu44:crra:regulationN3
+        controlRoom:
+          type: string
+          title: Centre d'appels
+          x-cols: 6
+          description: "D\xE9crit le centre d'appel auquel est rattach\xE9 l'agent"
+          examples:
+            - CGA, CGO 21, CRRA 44, ...
+        role:
+          type: string
+          title: "R\xF4le agent"
+          x-cols: 6
+          description: "D\xE9crit le r\xF4le de l'agent au sein du service selon la\
+            \ nomenclature PERSO (nomenclature SI-SAMU)"
+          enum:
+            - ARM
+          examples:
+            - ARM
+        calltakeContact:
+          $ref: '#/components/schemas/contact'
+        calltakerId:
+          type: string
+          title: ID de l'agent
+          x-cols: 6
+          description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte\
+            \ (peut \xEAtre un identifiant technique, un num\xE9ro de carte CPS etc)"
           examples:
             - id1234
       examples:
-        - *id011
+        - organization: FR:Administration:44:samu44:crra:regulationN3
+          controlRoom: CGA, CGO 21, CRRA 44, ...
+          role: ARM
+          calltakeContact:
+            type: PHNADD
+            detail: '0671830530'
+          calltakerId: id1234
+    attachment:
+      type: object
+      title: "Pi\xE8ces jointes"
+      x-display: expansion-panels
+      required:
+        - URI
+      properties:
+        description:
+          type: string
+          title: Type ou description de la ressource
+          x-cols: 6
+          description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
+            \ tels que \xABcarte\xBB ou \xABphoto\xBB"
+          examples:
+            - "photo, carte, \u2026"
+        mimeType:
+          type: string
+          title: Type MIME
+          x-cols: 6
+          description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
+            \ la ressource"
+          examples:
+            - "PDF, XML, JPEG, \u2026"
+        size:
+          type: integer
+          title: Taille approximative
+          x-cols: 6
+          description: Taille approximative de la ressource en kO
+          examples:
+            - 1235
+        URI:
+          type: string
+          title: URI
+          x-cols: 6
+          description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
+            \ la ressource sur Internet ou sur un r\xE9seau priv\xE9\nNous sugg\xE9\
+            rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\\
+            w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
+          examples:
+            - https://hub.esante.gouv.fr/resourceExample
+        derefURI:
+          type: string
+          title: URI base 64
+          x-cols: 6
+          description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
+            \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
+            mes de transcodage (sur des double quotes qui casseraient le message,\
+            \ \u2026)"
+          examples:
+            - None
+        digest:
+          type: string
+          title: Hash
+          x-cols: 6
+          description: "Hash de la ressource pour confirmer la r\xE9ception de la\
+            \ bonne ressource\nLa ressource est hash\xE9e avec le protocole SHA-256"
+          examples:
+            - None
+      examples:
+        - description: "photo, carte, \u2026"
+          mimeType: "PDF, XML, JPEG, \u2026"
+          size: 1235
+          URI: https://hub.esante.gouv.fr/resourceExample
+          derefURI: None
+          digest: None
+    contact:
+      type: object
+      title: "Contact requ\xE9rant"
+      x-display: expansion-panels
+      required:
+        - type
+        - detail
+      properties:
+        type:
+          type: string
+          title: "Type de contact du requ\xE9rant"
+          x-cols: 6
+          description: "Type de l'URI utilis\xE9e par le requ\xE9rant, cf. nomenclature\
+            \ EMSI"
+          enum:
+            - PSTADD
+            - EMLADD
+            - IPADD
+            - FTPADD
+            - WWWADD
+            - PHNADD
+            - FAXADD
+            - PMRADD
+          examples:
+            - PHNADD
+        detail:
+          type: string
+          title: "URI du contact requ\xE9rant"
+          x-cols: 6
+          description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
+          examples:
+            - '0671830530'
+      examples:
+        - type: PHNADD
+          detail: '0671830530'
+    detailedName:
+      type: object
+      title: "Pr\xE9nom & nom usuel du requ\xE9rant"
+      x-display: expansion-panels
+      required:
+        - complete
+      properties:
+        complete:
+          type: string
+          title: "Pr\xE9nom et nom"
+          x-cols: 6
+          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
+            \ et callerFirstName sont renseign\xE9s, le champ callerName doit \xEA\
+            tre valoris\xE9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote\
+            \ : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et pas\
+            \ de deux champs s\xE9par\xE9s."
+          examples:
+            - Jean Dupont
+        lastName:
+          type: string
+          title: Nom
+          x-cols: 6
+          description: "Nom du requ\xE9rant"
+          examples:
+            - Dupont
+        firstName:
+          type: string
+          title: "Pr\xE9nom"
+          x-cols: 6
+          description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
+            \ compos\xE9s doivent pr\xE9f\xE9rablement \xEAtre s\xE9par\xE9s par le\
+            \ caract\xE8re \"-\""
+          examples:
+            - Jean
+      examples:
+        - complete: Jean Dupont
+          lastName: Dupont
+          firstName: Jean
     customMap:
       type: object
-      required: []
+      title: "Cl\xE9 valeur adaptable"
+      x-display: expansion-panels
+      required:
+        - key
+        - value
       properties:
         key:
           type: string
+          title: "Cl\xE9"
+          x-cols: 6
           description: Nom de la balise
           examples:
             - neighborhood
         label:
           type: string
+          title: "Libell\xE9"
+          x-cols: 6
           description: "Libell\xE9 correspondant"
           examples:
             - Quartier
         value:
           type: string
+          title: Valeur
+          x-cols: 6
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
           examples:
-            - SECT.QUARTIER HISTORIQUE
+            - LYON 2e arrondissement
         freetext:
           type: string
+          title: "D\xE9tails"
+          x-cols: 6
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
             \ de ce matching additionnel"
           examples:
             - "Pr\xE9cision sur le quartier d'intervention"
       examples:
-        - *id012
+        - key: neighborhood
+          label: Quartier
+          value: LYON 2e arrondissement
+          freetext: "Pr\xE9cision sur le quartier d'intervention"
+    emsi:
+      $id: http://json-schema.org/draft-07/schema#
+      x-id: schema.json#
+      type: object
+      title: emsi
+      required:
+        - CONTEXT
+        - EVENT
+      properties:
+        CONTEXT:
+          $ref: '#/components/schemas/context'
+        EVENT:
+          $ref: '#/components/schemas/event'
+        MISSION:
+          type: array
+          items:
+            $ref: '#/components/schemas/mission'
+    context:
+      type: object
+      title: Contexte
+      x-display: expansion-panels
+      required:
+        - ID
+        - MODE
+        - MSGTYPE
+        - CREATION
+      properties:
+        ID:
+          type: string
+          title: Identifiant du message
+          x-cols: 6
+          description: "A constituer par le r\xE9dacteur du pr\xE9sent EMSI pour \xEA\
+            tre unique, peut reprendre messageId de l'en t\xEAte RC-DE."
+          examples:
+            - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        MODE:
+          type: string
+          title: Mode
+          x-cols: 6
+          description: "Valeur constante dans le cadre des \xE9changes LRM-NexSIS\
+            \ : ACTUAL"
+          enum:
+            - ACTUAL
+            - EXERCS
+            - SYSTEM
+            - TEST
+          examples:
+            - ACTUAL
+        MSGTYPE:
+          type: string
+          title: Type de message
+          x-cols: 6
+          description: "Valeur constante dans le cadre d'une demande de concours pour\
+            \ des \xE9changes LRM-NexSIS : UPDATE"
+          enum:
+            - ACK
+            - ALERT
+            - CANCEL
+            - ERROR
+            - UPDATE
+          examples:
+            - UPDATE
+        CREATION:
+          type: string
+          title: "Date et heure de cr\xE9ation"
+          x-cols: 6
+          description: "Obligatoire dans le cadre d'une demande de concours, contient\
+            \ la date de cr\xE9ation de la demande de concours dans le syst\xE8me\
+            \ du partenaire requ\xE9rant"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:25:54+02:00'
+        LINK:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        LEVEL:
+          type: string
+          title: Niveau
+          x-cols: 6
+          description: Dans le cadre d'une demande de concours, optionnel
+          enum:
+            - STRTGC
+            - OPR
+            - TACTCL
+          examples:
+            - OPR
+        SECLASS:
+          type: string
+          title: Niveau de classification
+          x-cols: 6
+          description: Dans le cadre d'une demande de concours, optionnel
+          enum:
+            - CONFID
+            - RESTRC
+            - SECRET
+            - TOPSRT
+            - UNCLAS
+            - UNMARK
+          examples:
+            - RESTRC
+        FREETEXT:
+          type: string
+          title: Texte libre
+          x-cols: 6
+          description: 'Texte libre
+
+            Dans le cadre d''une demande de concours, optionnel'
+          examples:
+            - "Contexte de grand incendie \xE0 Nantes"
+        ORIGIN:
+          $ref: '#/components/schemas/origin'
+        EXTERNAL_INFO:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalInfo'
+        URGENCY:
+          type: string
+          title: "Niveau d'urgence de l'\xE9v\xE9nement"
+          x-cols: 6
+          description: "Niveau d'urgence pour la demande de concours trait\xE9e\n\
+            Dans le cadre d'une r\xE9ponse \xE0 une demande de concours, optionnel"
+          enum:
+            - URGENT
+            - NOT_URGENT
+          examples:
+            - URGENT
+    event:
+      type: object
+      title: Evenement
+      x-display: expansion-panels
+      required:
+        - ID
+        - MAIN_EVENT_ID
+      properties:
+        ID:
+          type: string
+          title: Identifiant local de l'affaire
+          x-cols: 6
+          description: "Il peut \xEAtre renseign\xE9 avec l'identifiant local de l'affaire\
+            \ du partenaire requ\xE9rant"
+          examples:
+            - samuA:CA126B445579GD4A67AV
+        NAME:
+          type: string
+          title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - Grand incendie Nantes
+        MAIN_EVENT_ID:
+          type: string
+          title: Identifiant de l'affaire
+          x-cols: 6
+          description: "Identifiant d\u2019affaire partag\xE9 issu du message RC-EDA\
+            \ transmis en amont"
+          examples:
+            - samuA:CA126B445579GD4A67AV
+        ETYPE:
+          $ref: '#/components/schemas/etype'
+        SOURCE:
+          type: string
+          title: Source
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          enum:
+            - COMFOR
+            - HUMDED
+            - HUMOBS
+            - SENSOR
+          examples:
+            - COMFOR
+        SCALE:
+          type: string
+          title: "Echelle de s\xE9v\xE9rit\xE9 de l'environnement"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          enum:
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+          examples:
+            - 3
+        CERTAINTY:
+          type: integer
+          title: "Fiabilit\xE9"
+          x-cols: 6
+          description: "Prend une valeur enti\xE8re entre 0 et 100\nDans le cadre\
+            \ d'une demande de concours, optionnel"
+          examples:
+            - 95
+        DECL_DATIME:
+          type: string
+          title: "Date de d\xE9claration de l'event"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
+            \ avec la date/heure de cr\xE9ation de l'affaire ou de l'op\xE9ration.\
+            \ NexSIS transmettra la date/heure de cr\xE9ation de l'op\xE9ration dans\
+            \ ses syst\xE8mes (qui peut diverger de la date/heure de cr\xE9ation de\
+            \ l'affaire)"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:24:50+02:00'
+        OCC_DATIME:
+          type: string
+          title: "D\xE9crit la date et le lieu de l'\xE9v\xE9nement"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
+            \ avec la date de la premi\xE8re alerte ou la date \xE9valu\xE9e de d\xE9\
+            but de la situation d'urgence.\nPar exemple :\nSi un incendie est d\xE9\
+            clar\xE9 est 9h02, il a pu d\xE9marr\xE9 \xE0 8h55 par exemple."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:20:50+02:00'
+        OBS_DATIME:
+          type: string
+          title: "Date \xE0 laquelle l'observation la plus r\xE9cente a \xE9t\xE9\
+            \ r\xE9alis\xE9e"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, ce champ est id\xE9\
+            alement \xE0 valoriser avec la date/heure \xE0 laquelle l'observation\
+            \ de la situation d'urgence la plus r\xE9cente a \xE9t\xE9 r\xE9alis\xE9\
+            e.\nNexSIS transmettra la date/heure d'envoi de la demande de concours\
+            \ dans son syst\xE8me."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:26:00+02:00'
+        STATUS:
+          type: string
+          title: Status
+          x-cols: 6
+          description: "Permet de d\xE9crire le status de l'affaire en cours.\nCe\
+            \ champ suit une nomenclature EMSI. (COM = event complete, IPR = event\
+            \ in progress, NST = event not started, STOP = STOP = event under control,\
+            \ no need for additional resource)\nDans le cadre d'une demande de concours,\
+            \ syst\xE9matiquement renseign\xE9 \xE0 IPR (In Progress) car l'affaire\
+            \ est en cours de traitement par l'un des partenaires."
+          enum:
+            - COM
+            - IPR
+            - NST
+            - STOP
+          examples:
+            - IPR
+        RISK_ASSESMENT:
+          type: string
+          title: "Pr\xE9diction sur le risque d'\xE9volution de l'event"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          enum:
+            - NCREA
+            - DECREA
+            - STABLE
+          examples:
+            - STABLE
+        REFERENCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/reference'
+        CASUALTIES:
+          type: array
+          items:
+            $ref: '#/components/schemas/casualties'
+        EVAC:
+          type: array
+          items:
+            $ref: '#/components/schemas/evac'
+        EGEO:
+          type: array
+          items:
+            $ref: '#/components/schemas/egeo'
+        CAUSE:
+          type: string
+          title: Cause
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9."
+          enum:
+            - ACC
+            - DEL
+            - NAT
+          examples:
+            - ACC
+        FREETEXT:
+          type: string
+          title: Texte libre
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - "Maison sur le c\xF4t\xE9 droit de la route"
+    mission:
+      type: object
+      title: Missions
+      x-display: expansion-panels
+      required:
+        - TYPE
+        - ID
+        - NAME
+        - START_TIME
+        - POSITION
+      properties:
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          description: "Le champ MISSION TYPE permet d'identifier l'effet \xE0 obtenir\
+            \ souhait\xE9 \xE0 partir de la combinaison du code ACTOR et du code TYPE.\n\
+            => La table de transcodage permettant d'identifier les concourants et\
+            \ les effets \xE0 obtenir \xE0 partir d'un code EMSI est fournie en annexe\
+            \ \"R\xE9f\xE9rentiel Effets \xE0 Obtenir - correspondance EMSI\"."
+          enum:
+            - C2
+            - CBRN
+            - FF
+            - FSTT
+            - GEN
+            - INT
+            - MAC
+            - MIL
+            - NET
+            - OPR
+            - POL
+            - REC
+            - RSC
+            - SAV
+            - SCS
+            - SOC
+            - /C2/DEBRIF
+            - /C2/DNRSKA
+            - /C2/INASSM
+            - /C2/OIC
+            - /C2/POA
+            - /C2/THRTAS
+            - /CBRN/CBRNCH
+            - /CBRN/CBRNDC
+            - /CBRN/NTRCH
+            - /CBRN/NUCWS
+            - /FF/IN
+            - /FF/OA
+            - /FF/SALVAG
+            - /FF/STR
+            - /FF/TRP
+            - /FSTT/DI
+            - /FSTT/RRHAZ
+            - /FSTT/TA
+            - /GEN/AIRLAU
+            - /GEN/ASSMBL
+            - /GEN/CRWDCT
+            - /GEN/DEMO
+            - /GEN/DEPLOY
+            - /GEN/DSTRBT
+            - /GEN/FINANC
+            - /GEN/MARKNG
+            - /GEN/MOVE
+            - /GEN/RECVRN
+            - /GEN/RECVRY
+            - /GEN/REDPLN
+            - /GEN/REORGN
+            - /GEN/REPAIR
+            - /GEN/RESPLN
+            - /GEN/RESTNG
+            - /GEN/RETIRE
+            - /GEN/RLFPLC
+            - /GEN/RNDZVS
+            - /GEN/SCNMNG
+            - /GEN/SECRNG
+            - /GEN/STNGUP
+            - /GEN/SUPRTN
+            - /GEN/TRNSPN
+            - /INT/BIOSMP
+            - /INT/CHMSMP
+            - /INT/IDENT
+            - /INT/ILLUMN
+            - /INT/LOCTNG
+            - /INT/NUCSMP
+            - /INT/OBSRNG
+            - /INT/PLUMOD
+            - /INT/PTRLNG
+            - /INT/RECCE
+            - /INT/SRVMET
+            - /INT/SRVSEN
+            - /INT/WITNSN
+            - /MAC/AII
+            - /MAC/COL
+            - /MIL/BCESC
+            - /MIL/BLOCKN
+            - /MIL/BOMBNG
+            - /MIL/CAPTUR
+            - /MIL/CTRATK
+            - /MIL/DEFEND
+            - /MIL/DISENG
+            - /MIL/DIVRSN
+            - /MIL/DLBATK
+            - /MIL/DSRPTN
+            - /MIL/ENVLPN
+            - /MIL/FIX
+            - /MIL/HARASS
+            - /MIL/HIDE
+            - /MIL/HLDDEF
+            - /MIL/HLDOFF
+            - /MIL/INFLTN
+            - /MIL/INTCPN
+            - /MIL/INTDCT
+            - /MIL/MASFOR
+            - /MIL/MIL
+            - /MIL/WPNFIR
+            - /NET/COMDEA
+            - /NET/DATTRF
+            - /NET/NETJAM
+            - /NET/NETSEI
+            - /NET/SGNC
+            - /NET/SGNLE
+            - /POL/NTRCOM
+            - /POL/NTREXP
+            - /POL/SCNMNG
+            - /POL/SCNPRS
+            - /POL/SHELTR
+            - /POL/SUSHOS
+            - /POL/WITDRL
+            - /REC/CLROBS
+            - /REC/COMACT
+            - /REC/COMRES
+            - /REC/CONSTN
+            - /REC/ENGCN
+            - /REC/ENGCNN
+            - /REC/PROCUR
+            - /REC/PRVACC
+            - /REC/PRVAGR
+            - /REC/PRVBDD
+            - /REC/PRVCMP
+            - /REC/PRVCNS
+            - /REC/PRVDCN
+            - /REC/PRVEDU
+            - /REC/PRVHLT
+            - /REC/PRVHSN
+            - /REC/PRVINF
+            - /REC/PRVLND
+            - /REC/PRVRPR
+            - /REC/PRVSCY
+            - /REC/PRVSHL
+            - /REC/PRVSTG
+            - /REC/PRVTRS
+            - /REC/PSO
+            - /REC/SPLLDB
+            - /REC/SPLWAT
+            - /REC/UTILTY
+            - /REC/WATER
+            - /RSC/COVERN
+            - /RSC/FRFGTN
+            - /RSC/MEDEVC
+            - /RSC/SAR
+            - /SAV/AR
+            - /SAV/ASC
+            - /SAV/RHD
+            - /SAV/RTA
+            - /SAV/SARCSL
+            - /SAV/SARHHA
+            - /SAV/SRW
+            - /SAV/USAR
+            - /SAV/UW
+            - /SCS/EDU
+            - /SOC/CNDCNF
+            - /SOC/CNDMED
+            - /SOC/CNDRCR
+            - /SOC/CNDSCL
+            - /SOC/CNDSPT
+            - /SOC/ISSMDA
+            - /SOC/ISSMDD
+            - /SOC/ISSPRS
+            - /SOC/MN
+            - /SOC/PUBMDA
+            - /SOC/PUBMDD
+            - /SOC/PUBPRS
+          examples:
+            - /SAV/ASC
+        FREETEXT:
+          type: string
+          title: Texte libre
+          x-cols: 6
+          description: "Contient des commentaires relatifs aux moyens sollicit\xE9\
+            s dans le cadre de la demande de concours. Les \xE9quipements suppl\xE9\
+            mentaires souhait\xE9s ou le nom/ pr\xE9nom des patients \xE0 prendre\
+            \ en charge peuvent \xEAtre explicitement indiqu\xE9s ici"
+          examples:
+            - "Besoin d'un grand v\xE9hicule car patients \xE0 prendre en charge volumineux.\
+            \ Ne pas utiliser les gyrophares en approche"
+        ID:
+          type: string
+          title: Identifiant de la mission
+          x-cols: 6
+          description: "Contient un identifiant de demande de concours unique. Cet\
+            \ identifiant sera r\xE9utilisable par le partenaire pour r\xE9pondre\
+            \ \xE0 cette demande."
+          examples:
+            - ABC1YU3454
+        ORG_ID:
+          type: string
+          title: "Identifiant de l'organisation propri\xE9taire"
+          x-cols: 6
+          description: "Indique l'organisation du partenaire concern\xE9 par la Demande\
+            \ de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \xEA\
+            tre utilis\xE9."
+          examples:
+            - sis44
+        NAME:
+          type: string
+          title: Nom de la mission
+          x-cols: 6
+          description: "Le nom de la mission est construit \xE0 partir de l'expression\
+            \ r\xE9guli\xE8re suivante :\n\"#DEMANDE_CONCOURS#\"{libelle_cadre_conventionnel}\"\
+            #\"{code_cadre_conventionnel}\"#\"\no\xF9 le code_cadre_conventionnel\
+            \ est issue d'une nomenclature CISU-Cadre Conventionnel (A Venir)\nNB\
+            \ : ce champ est d\xE9tourn\xE9 par rapport au standard EMSI pour permettre\
+            \ l'expression d'une demande de concours et indiquer le cadre conventionnel\
+            \ dans lequel elle est effectu\xE9e"
+          examples:
+            - '#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#'
+        STATUS:
+          type: string
+          title: Status de la mission
+          x-cols: 6
+          description: "D\xE9finit le statut de la demande de concours. La demande\
+            \ de concours \xE9tant en cours, le champ doit \xEAtre valoris\xE9 avec\
+            \ le libell\xE9 \"IPR\""
+          enum:
+            - ABO
+            - NST
+            - CANCLD
+            - COM
+            - IPR
+            - PAU
+          examples:
+            - IPR
+        START_TIME:
+          type: string
+          title: "D\xE9but de la mission"
+          x-cols: 6
+          description: "Indique l'heure d\u2019arriv\xE9e sur le lieu\_de la Demande\
+            \ de concours.\nLe d\xE9lai d'intervention en est d\xE9duit en calculant\
+            \ le d\xE9lai entre la date et heure de cr\xE9ation (cf. CONTEXT.CREATION)\
+            \ et le champ MISSION.START_TIME.\nSi la date de cr\xE9ation du message\
+            \ EMSI est identique \xE0 celui de la mission, la demande de concours\
+            \ demande un d\xE9part imm\xE9diat"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:21:00+02:00'
+        END_TIME:
+          type: string
+          title: Fin de la mission
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, ne doit pas \xEA\
+            tre renseign\xE9"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - None
+        RESOURCE_ID:
+          type: array
+          items:
+            type: string
+            title: "Ressource engag\xE9e"
+            x-cols: 6
+            description: "Non trait\xE9 dans cette version du mod\xE8le de donn\xE9\
+              e"
+            examples:
+              - "Non trait\xE9"
+        PARENT_MISSION_ID:
+          type: array
+          items:
+            type: string
+            title: Missions parentes
+            x-cols: 6
+            description: "Dans le cadre d'une demande de concours, ne doit pas \xEA\
+              tre renseign\xE9\nLa mission peut d\xE9j\xE0 \xEAtre rattach\xE9e \xE0\
+              \ des missions filles mais leurs d\xE9tails ne doivent pas \xEAtre n\xE9\
+              cessaires pour traiter la demande de concours dans le syst\xE8me du\
+              \ partenaire."
+            examples:
+              - "Non trait\xE9"
+        CHILD_MISSION_ID:
+          type: array
+          items:
+            type: string
+            title: Missions filles
+            x-cols: 6
+            description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+              \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9."
+            examples:
+              - "Non trait\xE9"
+        MAIN_MISSION_ID:
+          type: string
+          title: Mission principale
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, ne doit pas \xEA\
+            tre renseign\xE9"
+          examples:
+            - "Non trait\xE9"
+        POSITION:
+          $ref: '#/components/schemas/positionRgeo'
+        PRIORITY:
+          type: string
+          title: "Priorit\xE9 de la mission"
+          x-cols: 6
+          description: "Indique une \xE9chelle de priorit\xE9 pour la demande de concours.\
+            \ Dans le cadre du standard EMSI, cette \xE9chelle doit \xEAtre comprise\
+            \ entre 0 et 5. Ce champ peut ne pas \xEAtre interpr\xE9t\xE9 ni aliment\xE9\
+            \ par les LRMs."
+          enum:
+            - '0'
+            - '1'
+            - '2'
+            - '3'
+            - '4'
+            - '5'
+          examples:
+            - 4
+    link:
+      type: object
+      title: Lien
+      x-display: expansion-panels
+      required:
+        - ID
+      properties:
+        ID:
+          type: string
+          title: ID
+          x-cols: 6
+          description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant"
+          examples:
+            - samuA:CA126B445579GD4A67AV
+        LINK_ROLE:
+          type: string
+          title: "R\xF4le du lien"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel\nValoris\xE9\
+            \ avec le libell\xE9 ADDSTO sinon"
+          enum:
+            - ADDSTO
+            - SPRSDS
+          examples:
+            - ADDSTO
+      examples:
+        - ID: samuA:CA126B445579GD4A67AV
+          LINK_ROLE: ADDSTO
+    origin:
+      type: object
+      title: Origine
+      x-display: expansion-panels
+      required: [ ]
+      properties:
+        ORG_ID:
+          type: string
+          title: Origine ID
+          x-cols: 6
+          description: "D\xE9crit la structure ou le service \xE0 laquelle est rattach\xE9\
+            e la demande de concours.\nSe r\xE9f\xE9rer au DSF pour la structure norm\xE9\
+            e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\xE9\
+            partement}:{organisation}:{structure interne}*:{unit\xE9 fonctionnelle}*."
+          examples:
+            - samuA
+        USER_ID:
+          type: string
+          title: ID d'utilisateur de l'origine
+          x-cols: 6
+          description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
+            \ de l'EMSI"
+          examples:
+            - samuA:crra:poste1234
+        NAME:
+          type: string
+          title: 'Nom Origine '
+          x-cols: 6
+          description: Optionnel
+          examples:
+            - Samu A
+      examples:
+        - ORG_ID: samuA
+          USER_ID: samuA:crra:poste1234
+          NAME: Samu A
+    externalInfo:
+      type: object
+      title: 'Informations exterieures '
+      x-display: expansion-panels
+      required:
+        - URI
+      properties:
+        FREETEXT:
+          type: string
+          title: 'Texte libre '
+          x-cols: 6
+          description: Dans le cadre d'une demande de concours, optionnel
+          examples:
+            - Texte libre informatif sur l'origine de l'appel
+        URI:
+          type: string
+          title: "URI informations ext\xE9rieures"
+          x-cols: 6
+          description: Dans le cadre d'une demande de concours, optionnel
+          examples:
+            - piece jointe
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          description: Dans le cadre d'une demande de concours, optionnel
+          enum:
+            - MANUAL
+            - MAP
+            - OTHER
+            - PHOTO
+            - WEBSIT
+          examples:
+            - MANUAL
+      examples:
+        - FREETEXT: Texte libre informatif sur l'origine de l'appel
+          URI: piece jointe
+          TYPE: MANUAL
+    etype:
+      type: object
+      title: "Type de l'\xE9v\xE9nement"
+      x-display: expansion-panels
+      required:
+        - CATEGORY
+        - ACTOR
+        - LOCTYPE
+      properties:
+        CATEGORY:
+          type: array
+          items:
+            type: string
+            title: "Cat\xE9gorie d'\xE9v\xE9nement"
+            x-cols: 6
+            description: "Le champ peut ne pas \xEAtre interpr\xE9t\xE9 ou renseign\xE9\
+              \ avec une valeur comme 'UKN' = 'UNKOWN'"
+            enum:
+              - ASB
+              - ASR
+              - EXP
+              - FIR
+              - FLD
+              - GND
+              - HLT
+              - POL
+              - PSW
+              - TRP
+              - /ASB/ABV
+              - /ASR/ATM
+              - /ASR/HGT
+              - /ASR/ICE
+              - /ASR/MAR
+              - /ASR/SIL
+              - /ASR/TRP
+              - /ASR/UDG
+              - /ASR/WAT
+              - /EXP/AER
+              - /EXP/AMM
+              - /EXP/BLEVE
+              - /EXP/CHM
+              - /EXP/CYL
+              - /EXP/DST
+              - /EXP/FRW
+              - /EXP/GAS
+              - /EXP/HGHFLM
+              - /EXP/HPP
+              - /EXP/IMP
+              - /EXP/LPG
+              - /EXP/NUK
+              - /EXP/PRD
+              - /EXP/UKN
+              - /FIR/CLA
+              - /FIR/CLB
+              - /FIR/CLC
+              - /FIR/CLD
+              - /FIR/UKN
+              - /FLD/FLS
+              - /FLD/PLN
+              - /FLD/TID
+              - /GND/AVL
+              - /GND/EQK
+              - /GND/GEY
+              - /GND/LDS
+              - /GND/MUD
+              - /GND/SUB
+              - /GND/VUL
+              - /HLT/EPI
+              - /HLT/FMN
+              - /HLT/NDS
+              - /POL/BIO
+              - /POL/CHM
+              - /POL/NUK
+              - /POL/RAD
+              - /PSW/ALM
+              - /PSW/ASY
+              - /PSW/DEM
+              - /PSW/IMM
+              - /PSW/MEV
+              - /PSW/MIS
+              - /PSW/PKG
+              - /PSW/PRO
+              - /PSW/PRSUIT
+              - /PSW/RIOT
+              - /PSW/SUS
+              - /PSW/WNG
+              - /TRP/BRK
+              - /TRP/COL
+              - /TRP/CRS
+            examples:
+              - FIR
+        ACTOR:
+          type: array
+          items:
+            type: string
+            title: Acteurs
+            x-cols: 6
+            description: "Dans de futures versions de NexSIS, les demandes de concours\
+              \ seront diffus\xE9es \xE0 plusieurs partenaires. Seul le syst\xE8me\
+              \ de la force concern\xE9e par la demande de concours devra r\xE9pondre\
+              \ effectivement \xE0 la demande. Ce syst\xE8me de la force concern\xE9\
+              e sera identifi\xE9 comme le \"concourant\" \xE0 la demande de concours.\
+              \ \nLe libell\xE9 du champ ACTOR permet d'identifier le concourant souhait\xE9\
+              \ dans la demande de concours. Pour les premi\xE8res impl\xE9mentations\
+              \ du contrat d'interface 15-18, il n'y a pas de n\xE9cessit\xE9 pour\
+              \ les syst\xE8mes r\xE9cepteurs de filtrer les demandes de concours\
+              \ re\xE7ues via le Hub Sant\xE9.\nLe champ MISSION TYPE permet en compl\xE9\
+              ment d'identifier l'effet \xE0 obtenir souhait\xE9 \xE0 partir de la\
+              \ combinaison du code ACTOR et du code TYPE.\nLe transcodage entre ces\
+              \ deux nomenclature est d\xE9crit dans l'annexe \"R\xE9f\xE9rentiel\
+              \ Effets \xE0 Obtenir - correspondance EMSI\""
+            enum:
+              - ANI
+              - BEV
+              - PPL
+              - VEH
+              - /ANI/CON
+              - /ANI/DEA
+              - /ANI/DGR
+              - /ANI/FRM
+              - /ANI/HRD
+              - /ANI/INJ
+              - /ANI/LIV
+              - /ANI/PET
+              - /ANI/PRO
+              - /ANI/SPC
+              - /ANI/WLD
+              - /BEV/ASR
+              - /BEV/IND
+              - /BEV/NRES
+              - /BEV/OFF
+              - /BEV/OTH
+              - /BEV/RESDW
+              - /BEV/RESIN
+              - /BEV/RESINT
+              - /BEV/RESOTH
+              - /BEV/SHP
+              - /PPL/1
+              - /PPL/ADU
+              - /PPL/CHD
+              - /PPL/CNT
+              - /PPL/DED
+              - /PPL/EVC
+              - /PPL/GND
+              - /PPL/GRP
+              - /PPL/HST
+              - /PPL/INT
+              - /PPL/OTH
+              - /PPL/PRS
+              - /PPL/SNS
+              - /PPL/VIO
+              - /PPL/VLN
+              - /PPL/WTN
+              - /PPL/CHD/BAB
+              - /PPL/CHD/CHILD
+              - /PPL/CHD/INF
+              - /PPL/CHD/YOUTH
+              - /PPL/GND/FML
+              - /PPL/GND/MAL
+              - /PPL/GND/UND
+              - /PPL/HST/PCF
+              - /PPL/HST/SUI
+              - /PPL/HST/THT
+              - /PPL/HST/WPN
+              - /PPL/PRS/CST
+              - /PPL/PRS/ESC
+              - /PPL/PRS/HGS
+              - /PPL/SNS/ETH
+              - /PPL/SNS/FOR
+              - /PPL/SNS/LAN
+              - /PPL/SNS/REL
+              - /PPL/SNS/VIP
+              - /PPL/VLN/BLD
+              - /PPL/VLN/DEF
+              - /PPL/VLN/DSB
+              - /PPL/VLN/ELD
+              - /PPL/VLN/INJ
+              - /PPL/VLN/LDF
+              - /PPL/VLN/OBS
+              - /PPL/VLN/PAT
+              - /PPL/VLN/PGN
+              - /PPL/VLN/SLFPRS
+              - /PPL/VLN/UNC
+              - /VEH/AIR
+              - /VEH/ANI
+              - /VEH/BIC
+              - /VEH/CAR
+              - /VEH/EMG
+              - /VEH/MBK
+              - /VEH/MIL
+              - /VEH/OTH
+              - /VEH/TRK
+              - /VEH/TRN
+              - /VEH/VES
+              - /VEH/AIR/ARM
+              - /VEH/AIR/FLBA
+              - /VEH/AIR/FRG
+              - /VEH/AIR/FXBA
+              - /VEH/AIR/GLD
+              - /VEH/AIR/HEL
+              - /VEH/AIR/HVY
+              - /VEH/AIR/JET
+              - /VEH/AIR/LGT
+              - /VEH/AIR/MIL
+              - /VEH/AIR/ORD
+              - /VEH/AIR/OTH
+              - /VEH/AIR/PAS
+              - /VEH/AIR/PRBA
+              - /VEH/AIR/PST
+              - /VEH/AIR/RKT
+              - /VEH/AIR/SEA
+              - /VEH/AIR/SNO
+              - /VEH/AIR/TNK
+              - /VEH/AIR/UAV
+              - /VEH/AIR/ULG
+              - /VEH/OTH/HIL
+              - /VEH/OTH/SNO
+              - /VEH/TRK/ART
+              - /VEH/TRK/EXC
+              - /VEH/TRK/HZD
+              - /VEH/TRK/NHZ
+              - /VEH/TRK/NUK
+              - /VEH/TRK/REF
+              - /VEH/TRK/UND
+              - /VEH/TRN/3RL
+              - /VEH/TRN/DSL
+              - /VEH/TRN/HZD
+              - /VEH/TRN/LOC
+              - /VEH/TRN/NHZ
+              - /VEH/TRN/NUK
+              - /VEH/TRN/OVH
+              - /VEH/TRN/PAS
+              - /VEH/TRN/REF
+              - /VEH/TRN/STM
+              - /VEH/TRN/TRM
+              - /VEH/TRN/UDG
+              - /VEH/TRN/UND
+              - /VEH/TRN/VIP
+              - /VEH/TRN/VLT
+              - /VEH/VES/AMB
+              - /VEH/VES/BOT
+              - /VEH/VES/CNO
+              - /VEH/VES/CRG
+              - /VEH/VES/DSL
+              - /VEH/VES/FLO
+              - /VEH/VES/FRY
+              - /VEH/VES/HOV
+              - /VEH/VES/HZD
+              - /VEH/VES/JSK
+              - /VEH/VES/LEI
+              - /VEH/VES/LIS
+              - /VEH/VES/MIL
+              - /VEH/VES/MPW
+              - /VEH/VES/NHZ
+              - /VEH/VES/NUK
+              - /VEH/VES/PAS
+              - /VEH/VES/POL
+              - /VEH/VES/PTL
+              - /VEH/VES/RSC
+              - /VEH/VES/SAI
+              - /VEH/VES/SBM
+              - /VEH/VES/SINK
+              - /VEH/VES/SPC
+              - /VEH/VES/STE
+              - /VEH/VES/SUNK
+              - /VEH/VES/UNM
+            examples:
+              - PPL
+        LOCTYPE:
+          type: array
+          items:
+            type: string
+            title: Type de localisation
+            x-cols: 6
+            description: "Le champ peut ne pas \xEAtre affich\xE9. Par d\xE9faut,\
+              \ possible de renvoyer le code \"OTH\" =  \"OTHER\""
+            examples:
+              - FLAM
+        ENV:
+          type: string
+          title: Environnement
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          enum:
+            - CDIS
+            - DIS
+            - TER
+            - /CDIS/RIOT
+            - /DIS/CBRN
+            - /DIS/ERTHQK
+            - /DIS/FIRE
+            - /DIS/FLOOD
+            - /DIS/INDHAZ
+            - /DIS/LNDSLD
+            - /DIS/PWROUT
+            - /DIS/RADCNT
+            - /DIS/SNOW
+            - /DIS/STCLPS
+            - /DIS/STORM
+            - /DIS/TRSPRT
+            - /DIS/TSNAMI
+          examples:
+            - CDIS/RIOT
+    reference:
+      type: object
+      title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
+      x-display: expansion-panels
+      required:
+        - ORG_ID
+        - OTHER_EVENT_ID
+      properties:
+        ORG_ID:
+          type: string
+          title: ID de l'organisation
+          x-cols: 6
+          description: Identification de l'organisation partenaire
+          examples:
+            - samuC
+        OTHER_EVENT_ID:
+          type: array
+          items:
+            type: string
+            title: ID des autres event
+            x-cols: 6
+            description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
+              \ dans le syst\xE8me partenaire"
+            examples:
+              - samuC:DB326B5RC279GD4A67ZY
+    casualties:
+      type: object
+      title: Victimes
+      x-display: expansion-panels
+      required:
+        - CONTEXT
+      properties:
+        CONTEXT:
+          type: string
+          title: Contexte
+          x-cols: 6
+          description: "Le champ doit \xEAtre renseign\xE9 mais peut ne pas \xEAtre\
+            \ interpr\xE9t\xE9"
+          examples:
+            - REQ_ACTION
+        DATIME:
+          type: string
+          title: Timestamp du contexte
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:00:00+02:00'
+        DECONT:
+          type: integer
+          title: "D\xE9contamination"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 0
+        TRIAGERED:
+          type: integer
+          title: Triage Rouge
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 0
+        TRIAGEYELLOW:
+          type: integer
+          title: Jaune
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 1
+        TRIAGEGREEN:
+          type: integer
+          title: Vert
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 0
+        TRIAGEBLACK:
+          type: integer
+          title: Noir
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 0
+        MISSING:
+          type: integer
+          title: Disparus
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 0
+      examples:
+        - CONTEXT: REQ_ACTION
+          DATIME: '2022-09-27T08:00:00+02:00'
+          DECONT: 0
+          TRIAGERED: 0
+          TRIAGEYELLOW: 1
+          TRIAGEGREEN: 0
+          TRIAGEBLACK: 0
+          MISSING: 0
+    evac:
+      type: object
+      title: "Evacu\xE9s"
+      x-display: expansion-panels
+      required: [ ]
+      properties:
+        DATIME:
+          type: string
+          title: timestamp
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T10:00:00+02:00'
+        DISPLACED:
+          type: integer
+          title: "d\xE9plac\xE9s"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 0
+        EVACUATED:
+          type: integer
+          title: "\xE9vacu\xE9s"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
+          examples:
+            - 1
+      examples:
+        - DATIME: '2022-09-27T10:00:00+02:00'
+          DISPLACED: 0
+          EVACUATED: 1
+    egeo:
+      type: object
+      title: "Localisation de l'\xE9v\xE9nement"
+      x-display: expansion-panels
+      required:
+        - TYPE
+        - POSITION
+      properties:
+        DATIME:
+          type: string
+          title: "Date des derni\xE8res remont\xE9es de localisation"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9.\nLa localisation de\
+            \ l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\xE9\
+            \ pour l'intervention est syst\xE9matiquement repr\xE9cis\xE9 dans un\
+            \ objet MISSION"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - '2022-09-27T08:26:00+02:00'
+        TYPE:
+          type: string
+          title: Type de localisation
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9.\nLa localisation de\
+            \ l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\xE9\
+            \ pour l'intervention est syst\xE9matiquement repr\xE9cis\xE9 dans un\
+            \ objet MISSION"
+          enum:
+            - AIR
+            - CMB
+            - DGR
+            - FLAME
+            - GEN
+            - PLUME
+            - SMOKE
+            - VULN
+            - /AIR/COR
+            - /AIR/FLDZ
+            - /AIR/LZ
+            - /AIR/NOFLZN
+            - /AIR/PZ
+            - /AIR/UAVASP
+            - /CMB/CZ
+            - /CMB/DNGR
+            - /CMB/EXTZN
+            - /CMB/IMPTPT
+            - /DGR/BIO
+            - /DGR/BOMB
+            - /DGR/CBRNHZ
+            - /DGR/CBRNRSD
+            - /DGR/CHM
+            - /DGR/HZD
+            - /DGR/MIND
+            - /DGR/NGA
+            - /DGR/NGACIV
+            - /DGR/NUKCNL
+            - /DGR/OBSGEN
+            - /DGR/PRHBAR
+            - /DGR/RAD
+            - /DGR/RADCLD
+            - /DGR/RSTR
+            - /DGR/SGA
+            - /DGR/SITKIL
+            - /DGR/UNXOD
+            - /GEN/AOR
+            - /GEN/ASYGEN
+            - /GEN/ASYSPL
+            - /GEN/BDYOR
+            - /GEN/BDYPOA
+            - /GEN/BDYPT
+            - /GEN/CKPGEN
+            - /GEN/CNTPTL
+            - /GEN/COLDZ
+            - /GEN/COMCKP
+            - /GEN/COMLOW
+            - /GEN/COMMZ
+            - /GEN/COMUP
+            - /GEN/CONTAR
+            - /GEN/CORDON
+            - /GEN/CRDPNT
+            - /GEN/DIVRT
+            - /GEN/DROPPT
+            - /GEN/ENTPT
+            - /GEN/EVENT
+            - /GEN/EXITPT
+            - /GEN/FWCTPT
+            - /GEN/HOTZ
+            - /GEN/INCGRD
+            - /GEN/LA
+            - /GEN/LIMARE
+            - /GEN/LOCAT
+            - /GEN/MSR
+            - /GEN/PSSGPT
+            - /GEN/PTINT
+            - /GEN/RCNSAR
+            - /GEN/RNDZPT
+            - /GEN/ROUTE
+            - /GEN/SAFERT
+            - /GEN/SAFZ
+            - /GEN/SARPNT
+            - /GEN/SEARAR
+            - /GEN/SPRISK
+            - /GEN/STRTPT
+            - /GEN/SUPARE
+            - /GEN/SUPPT
+            - /GEN/TRSTRT
+            - /GEN/WARMZ
+          examples:
+            - FLAME
+        WEATHER:
+          type: array
+          items:
+            type: string
+            title: "Condition m\xE9t\xE9o"
+            x-cols: 6
+            description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+              \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9.\nLa localisation\
+              \ de l'affaire est transmise en amont dans un message RC-EDA et le lieu\
+              \ souhait\xE9 pour l'intervention est syst\xE9matiquement repr\xE9cis\xE9\
+              \ dans un objet MISSION"
+            enum:
+              - HUM
+              - ICY
+              - TDS
+              - TMP
+              - VIS
+              - WDS
+              - WIN
+              - /HUM/CORECT
+              - /HUM/DRZLE
+              - /HUM/FOG
+              - /HUM/RAIN
+              - /HUM/RAINSR
+              - /HUM/THSTRN
+              - /ICY/BLWSNW
+              - /ICY/CLRICE
+              - /ICY/CORECT
+              - /ICY/FDRZLE
+              - /ICY/FRAIN
+              - /ICY/FRZFOG
+              - /ICY/HAIL
+              - /ICY/ICECRY
+              - /ICY/ICEPLT
+              - /ICY/MIXICE
+              - /ICY/RIMICE
+              - /ICY/SLEET
+              - /ICY/SNOW
+              - /ICY/SNWGRN
+              - /ICY/SNWSHR
+              - /TDS/CORECT
+              - /TDS/LGTNNG
+              - /TDS/THST
+              - /VIS/CORECT
+              - /VIS/HAZE
+              - /VIS/SMOKE
+              - /WIN/CORECT
+              - /WIN/CYCL
+              - /WIN/DSTDVL
+              - /WIN/DSTSND
+              - /WIN/DSTSTR
+              - /WIN/FNLCLD
+              - /WIN/HURR
+              - /WIN/SNDSTR
+              - /WIN/STORM
+              - /WIN/TORN
+              - /WIN/TRST
+              - /WIN/TYPH
+              - /WIN/WHIR
+              - /WIN/WTRSPT
+            examples:
+              - HUM/RAIN
+        FREETEXT:
+          type: string
+          title: "Description de l'\xE9v\xE9nement"
+          x-cols: 6
+          description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+            \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9.\nLa localisation de\
+            \ l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\xE9\
+            \ pour l'intervention est syst\xE9matiquement repr\xE9cis\xE9 dans un\
+            \ objet MISSION"
+          examples:
+            - Un peu de pluie vers 8h
+        POSITION:
+          $ref: '#/components/schemas/positionEgeo'
+    positionEgeo:
+      type: object
+      title: "Position de l'op\xE9ration"
+      x-display: expansion-panels
+      required:
+        - LOC_ID
+      properties:
+        LOC_ID:
+          type: string
+          title: ID position
+          x-cols: 6
+          description: "Dans le cadre d'un \xE9change des op\xE9rations, optionnel.\
+            \ Le champ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9.\nLa localisation\
+            \ de l'affaire est transmise en amont dans un message RC-EDA et le lieu\
+            \ souhait\xE9 pour l'intervention est syst\xE9matiquement repr\xE9cis\xE9\
+            \ dans un objet MISSION"
+          examples:
+            - 111fb03a-6fd9-41e0-8e81-990c45188887
+        NAME:
+          type: string
+          title: Nom de position
+          x-cols: 6
+          description: "Optionnel, non utilis\xE9 par NexSIS nom de lieu"
+          examples:
+            - "Lyc\xE9e Pierre de Coubertin"
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          description: "Dans le cadre d'un \xE9change des op\xE9rations, optionnel.\
+            \ Le champ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9.\nLa localisation\
+            \ de l'affaire est transmise en amont dans un message RC-EDA et le lieu\
+            \ souhait\xE9 pour l'intervention est syst\xE9matiquement repr\xE9cis\xE9\
+            \ dans un objet MISSION"
+          examples:
+            - POINT
+        HEIGHT_ROLE:
+          type: string
+          title: Indication sur l'utilisation de la balise altitude
+          x-cols: 6
+          description: Optionnel
+          examples:
+            - MIN
+        COORDSYS:
+          type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-cols: 6
+          description: Optionnel
+          examples:
+            - EPSG-4326
+        COORD:
+          type: array
+          items:
+            $ref: '#/components/schemas/coord'
+        ADDRESS:
+          type: array
+          items:
+            type: string
+            title: Adresse
+            x-cols: 6
+            description: "Dans le cadre d'un \xE9change des op\xE9rations, optionnel.\
+              \ Le champ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9.\nLa localisation\
+              \ de l'affaire est transmise en amont dans un message RC-EDA et le lieu\
+              \ souhait\xE9 pour l'intervention est syst\xE9matiquement repr\xE9cis\xE9\
+              \ dans un objet MISSION"
+            examples:
+              - Nantes centre ville
+    coord:
+      type: object
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      required:
+        - LAT
+        - LONG
+      properties:
+        LAT:
+          type: number
+          title: Latitude
+          x-cols: 6
+          description: "Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9r\xE9, permet\
+            \ de localiser le lieu d'intervention souhait\xE9"
+          examples:
+            - '47.221866'
+        LONG:
+          type: number
+          title: Longitude
+          x-cols: 6
+          description: "Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9r\xE9, permet\
+            \ de localiser le lieu d'intervention souhait\xE9"
+          examples:
+            - '-1.575807'
+        HEIGHT:
+          type: number
+          title: Altitude
+          x-cols: 6
+          description: "Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9r\xE9, permet\
+            \ de localiser le lieu d'intervention souhait\xE9"
+          examples:
+            - 1
+      examples:
+        - LAT: 47.221866
+          LONG: -1.575807
+          HEIGHT: 1
+    positionRgeo:
+      type: object
+      title: Position de la mission
+      x-display: expansion-panels
+      required: [ ]
+      properties:
+        LOC_ID:
+          type: string
+          title: ID position
+          x-cols: 6
+          description: "Lorsque le lieu d'intervention est identique \xE0 celle d'une\
+            \ position de l'affaire partag\xE9e dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID\
+            \ doit \xEAtre aliment\xE9 valoris\xE9 comme le champ eventLocation.locId\
+            \ du message RC-EDA envoy\xE9 en amont"
+          examples:
+            - abcd-hg6T-HSG5-67AA
+        NAME:
+          type: string
+          title: Nom de position
+          x-cols: 6
+          description: "Optionnel, non utilis\xE9 par NexSIS nom de lieu"
+          examples:
+            - "Lyc\xE9e Pierre de Coubertin"
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          description: "Dans le cadre de l'interface LRM NexSIS, seul le libell\xE9\
+            \ POINT doit obligatoirement \xEAtre interpr\xE9table par les deux partenaires.\n\
+            Cf. Nomenclature EMSI - POSITION pour plus de d\xE9tails"
+          enum:
+            - POINT
+            - CIRCLE
+            - SURFACE
+            - GRID
+            - POLYGON
+            - 'ELLIPSE
+
+            '
+          examples:
+            - POINT
+        HEIGHT_ROLE:
+          type: string
+          title: Indication sur l'utilisation de la balise altitude
+          x-cols: 6
+          description: Optionnel
+          examples:
+            - MIN
+        COORDSYS:
+          type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-cols: 6
+          description: Optionnel
+          examples:
+            - EPSG-4326
+        COORD:
+          type: array
+          items:
+            $ref: '#/components/schemas/coord'
+        ADDRESS:
+          type: array
+          items:
+            type: string
+            title: Adresse
+            x-cols: 6
+            description: "Optionnel. Dans le cas d'un partage de position, les adresses\
+              \ transmises ne sont pas structur\xE9es."
+            examples:
+              - None

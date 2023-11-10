@@ -7,24 +7,36 @@
   "type": "object",
   "title": "emsi",
   "required": [
-    "CONTEXT",
-    "EVENT"
+    "emsi"
   ],
-  "properties": {
-    "CONTEXT": {
-      "$ref": "#/definitions/context"
-    },
-    "EVENT": {
-      "$ref": "#/definitions/event"
-    },
-    "MISSION": {
-      "type": "array",
-      "items": {
-        "$ref": "#/definitions/mission"
-      }
+  "allOf": [
+    {
+      "$ref": "RC-DE_schema.json"
     }
-  },
+  ],
   "definitions": {
+    "emsi": {
+      "type": "object",
+      "title": "emsi",
+      "required": [
+        "CONTEXT",
+        "EVENT"
+      ],
+      "properties": {
+        "CONTEXT": {
+          "$ref": "#/definitions/context"
+        },
+        "EVENT": {
+          "$ref": "#/definitions/event"
+        },
+        "MISSION": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/mission"
+          }
+        }
+      }
+    },
     "context": {
       "type": "object",
       "title": "Contexte",
@@ -113,7 +125,10 @@
           ]
         },
         "FREETEXT": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Texte libre",
           "x-cols": 6,
           "example": "example.json#/CONTEXT/FREETEXT",
@@ -148,7 +163,10 @@
           "description": "Il peut \u00eatre renseign\u00e9 avec l'identifiant local de l'affaire du partenaire requ\u00e9rant"
         },
         "NAME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Nom donn\u00e9 \u00e0 l'\u00e9v\u00e9nement",
           "x-cols": 6,
           "example": "example.json#/EVENT/NAME",
@@ -199,7 +217,10 @@
           "description": "Prend une valeur enti\u00e8re entre 0 et 100\nDans le cadre d'une demande de concours, optionnel"
         },
         "DECL_DATIME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Date de d\u00e9claration de l'event",
           "x-cols": 6,
           "example": "example.json#/EVENT/DECL_DATIME",
@@ -208,7 +229,10 @@
           "format": "date-time"
         },
         "OCC_DATIME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "D\u00e9crit la date et le lieu de l'\u00e9v\u00e9nement",
           "x-cols": 6,
           "example": "example.json#/EVENT/OCC_DATIME",
@@ -217,7 +241,10 @@
           "format": "date-time"
         },
         "OBS_DATIME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Date \u00e0 laquelle l'observation la plus r\u00e9cente a \u00e9t\u00e9 r\u00e9alis\u00e9e",
           "x-cols": 6,
           "example": "example.json#/EVENT/OBS_DATIME",
@@ -287,7 +314,10 @@
           ]
         },
         "FREETEXT": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Texte libre",
           "x-cols": 6,
           "example": "example.json#/EVENT/FREETEXT",
@@ -480,7 +510,10 @@
           ]
         },
         "FREETEXT": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Texte libre",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/FREETEXT",
@@ -494,7 +527,10 @@
           "description": "Contient un identifiant de demande de concours unique. Cet identifiant sera r\u00e9utilisable par le partenaire pour r\u00e9pondre \u00e0 cette demande."
         },
         "ORG_ID": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Identifiant de l'organisation propri\u00e9taire",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/ORG_ID",
@@ -532,7 +568,10 @@
           "format": "date-time"
         },
         "END_TIME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Fin de la mission",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/END_TIME",
@@ -543,7 +582,10 @@
         "RESOURCE_ID": {
           "type": "array",
           "items": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "title": "Ressource engag\u00e9e",
             "x-cols": 6,
             "example": "example.json#/MISSION/0/RESOURCE_ID/0",
@@ -553,7 +595,10 @@
         "PARENT_MISSION_ID": {
           "type": "array",
           "items": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "title": "Missions parentes",
             "x-cols": 6,
             "example": "example.json#/MISSION/0/PARENT_MISSION_ID/0",
@@ -563,7 +608,10 @@
         "CHILD_MISSION_ID": {
           "type": "array",
           "items": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "title": "Missions filles",
             "x-cols": 6,
             "example": "example.json#/MISSION/0/CHILD_MISSION_ID/0",
@@ -571,7 +619,10 @@
           }
         },
         "MAIN_MISSION_ID": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Mission principale",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/MAIN_MISSION_ID",
@@ -634,21 +685,30 @@
       "required": [],
       "properties": {
         "ORG_ID": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Origine ID",
           "x-cols": 6,
           "example": "example.json#/CONTEXT/ORIGIN/ORG_ID",
           "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e la demande de concours.\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*."
         },
         "USER_ID": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "ID d'utilisateur de l'origine",
           "x-cols": 6,
           "example": "example.json#/CONTEXT/ORIGIN/USER_ID",
           "description": "Optionnel, identifiant de l'op\u00e9rateur du service \u00e0 l'origine de l'EMSI"
         },
         "NAME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Nom Origine ",
           "x-cols": 6,
           "example": "example.json#/CONTEXT/ORIGIN/NAME",
@@ -1008,7 +1068,10 @@
           "description": "Le champ doit \u00eatre renseign\u00e9 mais peut ne pas \u00eatre interpr\u00e9t\u00e9"
         },
         "DATIME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Timestamp du contexte",
           "x-cols": 6,
           "example": "example.json#/EVENT/CASUALTIES/0/DATIME",
@@ -1068,7 +1131,10 @@
       "required": [],
       "properties": {
         "DATIME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "timestamp",
           "x-cols": 6,
           "example": "example.json#/EVENT/EVAC/0/DATIME",
@@ -1103,7 +1169,10 @@
       ],
       "properties": {
         "DATIME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Date des derni\u00e8res remont\u00e9es de localisation",
           "x-cols": 6,
           "example": "example.json#/EVENT/EGEO/0/DATIME",
@@ -1260,7 +1329,10 @@
           }
         },
         "FREETEXT": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Description de l'\u00e9v\u00e9nement",
           "x-cols": 6,
           "example": "example.json#/EVENT/EGEO/0/FREETEXT",
@@ -1288,28 +1360,40 @@
           "description": "Dans le cadre d'un \u00e9change des op\u00e9rations, optionnel. Le champ peut ne pas \u00eatre \u00e9mis ni interpr\u00e9t\u00e9.\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION"
         },
         "NAME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Nom de position",
           "x-cols": 6,
           "example": "example.json#/EVENT/EGEO/0/POSITION/NAME",
           "description": "Optionnel, non utilis\u00e9 par NexSIS nom de lieu"
         },
         "TYPE": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Type",
           "x-cols": 6,
           "example": "example.json#/EVENT/EGEO/0/POSITION/TYPE",
           "description": "Dans le cadre d'un \u00e9change des op\u00e9rations, optionnel. Le champ peut ne pas \u00eatre \u00e9mis ni interpr\u00e9t\u00e9.\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION"
         },
         "HEIGHT_ROLE": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Indication sur l'utilisation de la balise altitude",
           "x-cols": 6,
           "example": "example.json#/EVENT/EGEO/0/POSITION/HEIGHT_ROLE",
           "description": "Optionnel"
         },
         "COORDSYS": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Syst\u00e8me de coordonn\u00e9es",
           "x-cols": 6,
           "example": "example.json#/EVENT/EGEO/0/POSITION/COORDSYS",
@@ -1324,7 +1408,10 @@
         "ADDRESS": {
           "type": "array",
           "items": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "title": "Adresse",
             "x-cols": 6,
             "example": "example.json#/EVENT/EGEO/0/POSITION/ADDRESS/0",
@@ -1374,21 +1461,30 @@
       "required": [],
       "properties": {
         "LOC_ID": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "ID position",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/POSITION/LOC_ID",
           "description": "Lorsque le lieu d'intervention est identique \u00e0 celle d'une position de l'affaire partag\u00e9e dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID doit \u00eatre aliment\u00e9 valoris\u00e9 comme le champ eventLocation.locId du message RC-EDA envoy\u00e9 en amont"
         },
         "NAME": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Nom de position",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/POSITION/NAME",
           "description": "Optionnel, non utilis\u00e9 par NexSIS nom de lieu"
         },
         "TYPE": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Type",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/POSITION/TYPE",
@@ -1403,14 +1499,20 @@
           ]
         },
         "HEIGHT_ROLE": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Indication sur l'utilisation de la balise altitude",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/POSITION/HEIGHT_ROLE",
           "description": "Optionnel"
         },
         "COORDSYS": {
-          "type": ["string", "null"],
+          "type": [
+            "string",
+            "null"
+          ],
           "title": "Syst\u00e8me de coordonn\u00e9es",
           "x-cols": 6,
           "example": "example.json#/MISSION/0/POSITION/COORDSYS",
@@ -1425,7 +1527,10 @@
         "ADDRESS": {
           "type": "array",
           "items": {
-            "type": ["string", "null"],
+            "type": [
+              "string",
+              "null"
+            ],
             "title": "Adresse",
             "x-cols": 6,
             "example": "example.json#/MISSION/0/POSITION/ADDRESS/0",

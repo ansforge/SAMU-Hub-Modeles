@@ -43,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-08T11:29:35.594+01:00[Europe/Paris]")
-public class EMSI extends ContentMessage  {
+public class EMSI {
     public static final String JSON_PROPERTY_C_O_N_T_E_X_T = "CONTEXT";
     private Context CONTEXT;
 
@@ -134,7 +134,7 @@ public class EMSI extends ContentMessage  {
         return MISSION;
     }
 
-    @JacksonXmlElementWrapper(useWrapping = false)
+    @JacksonXmlElementWrapper(useWrapping = true)
 
     @JsonProperty(JSON_PROPERTY_M_I_S_S_I_O_N)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
