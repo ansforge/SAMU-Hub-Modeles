@@ -23,8 +23,6 @@ import java.util.stream.Collectors;
         "content"})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class EdxlMessage extends EdxlEnvelope {
-
-//    @JsonProperty(value = "content", required = true)
     private List<ContentObject> content;
 
     public EdxlMessage() {
