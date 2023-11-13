@@ -8,8 +8,8 @@ public class CreateCaseWrapperBuilder {
 
     private DistributionElement rcde;
     private CreateCase createCase;
-    public CreateCaseWrapperBuilder(DistributionElement rcde, CreateCase createCase) {
-        this.rcde = rcde;
+    public CreateCaseWrapperBuilder(DistributionElement distributionElement, CreateCase createCase) {
+        this.rcde = distributionElement;
         this.createCase = createCase;
     }
 
@@ -19,7 +19,7 @@ public class CreateCaseWrapperBuilder {
         createCaseMessage.setSender(rcde.getSender());
         createCaseMessage.setSentAt(rcde.getSentAt());
         if (!rcde.getKind().equals(DistributionElement.KindEnum.REPORT)) {
-            throw new IllegalArgumentException("RC_EDA must be of kind REPORT");
+            throw new IllegalArgumentException("CreateCaseWrapper must be of kind REPORT");
         }
         createCaseMessage.setKind(rcde.getKind());
         createCaseMessage.setStatus(rcde.getStatus());
