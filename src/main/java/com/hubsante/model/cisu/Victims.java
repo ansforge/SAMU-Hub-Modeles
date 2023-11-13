@@ -49,7 +49,7 @@ public class Victims {
 
         MANY("MANY"),
 
-        UNKNOWN_VOIR_NOMENCLATURE_CISU_XX_("UNKNOWN (voir Nomenclature CISU XX)");
+        UNKNOWN("UNKNOWN");
 
         private String value;
 
@@ -93,7 +93,7 @@ public class Victims {
 
         PREGNANT("PREGNANT"),
 
-        SENIOR_VOIR_NOMENCLATURE_CISU_XX_("SENIOR (voir Nomenclature CISU XX)");
+        SENIOR("SENIOR");
 
         private String value;
 

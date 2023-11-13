@@ -33,14 +33,14 @@ public class ReferenceWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement rcDe = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+        DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
                 .kind(KindEnum.ACK)
                 .build();
-        ReferenceWrapper rcRef = new ReferenceWrapperBuilder(rcDe, "id-67890")
+        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, "id-67890")
                 .build();
 
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
-                .contentMessage(rcRef)
+                .contentMessage(referenceWrapper)
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
@@ -53,10 +53,10 @@ public class ReferenceWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement rcDe = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+        DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
                 .kind(DistributionElement.KindEnum.REPORT)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(rcDe, "id-67890").build());
+        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(distributionElement, "id-67890").build());
     }
 }

@@ -21,12 +21,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 /**
- * RCEDA
+ * CreateCaseWrapper
  */
 @JsonPropertyOrder({
         CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE
 })
-@JsonTypeName("RC_EDA")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class CreateCaseWrapper extends DistributionElement {
@@ -69,8 +68,8 @@ public class CreateCaseWrapper extends DistributionElement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateCaseWrapper RC_EDA = (CreateCaseWrapper) o;
-        return Objects.equals(this.createCase, RC_EDA.createCase);
+        CreateCaseWrapper CreateCaseWrapper = (CreateCaseWrapper) o;
+        return Objects.equals(this.createCase, CreateCaseWrapper.createCase);
     }
 
     @Override
@@ -81,7 +80,7 @@ public class CreateCaseWrapper extends DistributionElement {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class RCEDA {\n");
+        sb.append("class CreateCaseWrapper {\n");
         sb.append("    createCase: ").append(toIndentedString(createCase)).append("\n");
         sb.append("}");
         return sb.toString();

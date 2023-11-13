@@ -29,13 +29,13 @@ public class CreateCaseWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement rcDe = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
+        DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
                 .build();
-        CreateCaseWrapper rcEda = new CreateCaseWrapperBuilder(rcDe, getCreateCaseMock())
+        CreateCaseWrapper createCaseWrapper = new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock())
                 .build();
 
-        assertEquals(MESSAGE_ID, rcEda.getMessageId());
-        assertEquals(getCreateCaseMock(), rcEda.getCreateCase());
+        assertEquals(MESSAGE_ID, createCaseWrapper.getMessageId());
+        assertEquals(getCreateCaseMock(), createCaseWrapper.getCreateCase());
     }
 
     @Test
@@ -44,11 +44,11 @@ public class CreateCaseWrapperBuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement rcDe = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
+        DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
                 .kind(KindEnum.ACK)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new CreateCaseWrapperBuilder(rcDe, getCreateCaseMock()).build());
+        assertThrows(IllegalArgumentException.class, () -> new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock()).build());
     }
 
     private CreateCase getCreateCaseMock() throws IOException {

@@ -6,25 +6,25 @@ import com.hubsante.model.cisu.DistributionElement;
 
 public class EmsiWrapper extends DistributionElement {
     public static final String JSON_PROPERTY_EMSI = "emsi";
-    private EMSI emsi;
+    private Emsi emsi;
 
     public EmsiWrapper() {
     }
 
-    public EmsiWrapper emsi(EMSI emsi) {
+    public EmsiWrapper emsi(Emsi emsi) {
         this.emsi = emsi;
         return this;
     }
 
     @JsonProperty(JSON_PROPERTY_EMSI)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public EMSI getEmsi() {
+    public Emsi getEmsi() {
         return emsi;
     }
 
     @JsonProperty(JSON_PROPERTY_EMSI)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setEmsi(EMSI emsi) {
+    public void setEmsi(Emsi emsi) {
         this.emsi = emsi;
     }
 }

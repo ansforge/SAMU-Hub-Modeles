@@ -4,7 +4,6 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
-import com.hubsante.model.emsi.EMSI;
 import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.report.ErrorReport;
 

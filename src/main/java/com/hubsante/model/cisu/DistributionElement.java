@@ -39,7 +39,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         DistributionElement.JSON_PROPERTY_STATUS,
         DistributionElement.JSON_PROPERTY_RECIPIENTS
 })
-@JsonTypeName("RC_DE")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:56.839+01:00[Europe/Paris]")
@@ -311,13 +310,13 @@ public class DistributionElement extends ContentMessage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DistributionElement RC_DE = (DistributionElement) o;
-        return Objects.equals(this.messageId, RC_DE.messageId) &&
-                Objects.equals(this.sender, RC_DE.sender) &&
-                Objects.equals(this.sentAt, RC_DE.sentAt) &&
-                Objects.equals(this.kind, RC_DE.kind) &&
-                Objects.equals(this.status, RC_DE.status) &&
-                Objects.equals(this.recipients, RC_DE.recipients);
+        DistributionElement distributionElement = (DistributionElement) o;
+        return Objects.equals(this.messageId, distributionElement.messageId) &&
+                Objects.equals(this.sender, distributionElement.sender) &&
+                Objects.equals(this.sentAt, distributionElement.sentAt) &&
+                Objects.equals(this.kind, distributionElement.kind) &&
+                Objects.equals(this.status, distributionElement.status) &&
+                Objects.equals(this.recipients, distributionElement.recipients);
     }
 
     @Override

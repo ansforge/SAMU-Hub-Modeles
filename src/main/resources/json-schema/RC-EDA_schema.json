@@ -560,7 +560,7 @@
                         "1",
                         "SEVERAL",
                         "MANY",
-                        "UNKNOWN (voir Nomenclature CISU XX)"
+                        "UNKNOWN"
                     ]
                 },
                 "mainVictim": {
@@ -574,7 +574,7 @@
                         "CHILD",
                         "ADULT",
                         "PREGNANT",
-                        "SENIOR (voir Nomenclature CISU XX)"
+                        "SENIOR"
                     ]
                 },
                 "freetext": {
