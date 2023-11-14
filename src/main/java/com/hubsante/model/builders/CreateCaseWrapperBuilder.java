@@ -6,24 +6,24 @@ import com.hubsante.model.cisu.CreateCaseWrapper;
 
 public class CreateCaseWrapperBuilder {
 
-    private DistributionElement rcde;
+    private DistributionElement distributionElement;
     private CreateCase createCase;
     public CreateCaseWrapperBuilder(DistributionElement distributionElement, CreateCase createCase) {
-        this.rcde = distributionElement;
+        this.distributionElement = distributionElement;
         this.createCase = createCase;
     }
 
     public CreateCaseWrapper build() {
         CreateCaseWrapper createCaseMessage = new CreateCaseWrapper();
-        createCaseMessage.setMessageId(rcde.getMessageId());
-        createCaseMessage.setSender(rcde.getSender());
-        createCaseMessage.setSentAt(rcde.getSentAt());
-        if (!rcde.getKind().equals(DistributionElement.KindEnum.REPORT)) {
+        createCaseMessage.setMessageId(distributionElement.getMessageId());
+        createCaseMessage.setSender(distributionElement.getSender());
+        createCaseMessage.setSentAt(distributionElement.getSentAt());
+        if (!distributionElement.getKind().equals(DistributionElement.KindEnum.REPORT)) {
             throw new IllegalArgumentException("CreateCaseWrapper must be of kind REPORT");
         }
-        createCaseMessage.setKind(rcde.getKind());
-        createCaseMessage.setStatus(rcde.getStatus());
-        createCaseMessage.setRecipients(rcde.getRecipients());
+        createCaseMessage.setKind(distributionElement.getKind());
+        createCaseMessage.setStatus(distributionElement.getStatus());
+        createCaseMessage.setRecipients(distributionElement.getRecipients());
         createCaseMessage.setCreateCase(createCase);
         return createCaseMessage;
     }
