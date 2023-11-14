@@ -111,6 +111,13 @@
         {
           "properties": {
             "message": {
+              "$ref": "EMSI-DC_schema.json"
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
               "$ref": "CustomContent_schema.json"
             }
           }

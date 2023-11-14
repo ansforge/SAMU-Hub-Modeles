@@ -21,7 +21,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.CallerName;
+import com.hubsante.model.cisu.Contact;
+import com.hubsante.model.cisu.DetailedName;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -30,161 +31,674 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  * Caller
  */
 @JsonPropertyOrder({
-        Caller.JSON_PROPERTY_CALLER_U_R_I,
-        Caller.JSON_PROPERTY_CALLBACK_U_R_I,
-        Caller.JSON_PROPERTY_SPOKEN_LANGUAGE,
-        Caller.JSON_PROPERTY_CALLER_INFORMATION,
-        Caller.JSON_PROPERTY_CALLER_NAME
+        Caller.JSON_PROPERTY_CALLER_CONTACT,
+        Caller.JSON_PROPERTY_CALLBACK_CONTACT,
+        Caller.JSON_PROPERTY_LANGUAGE,
+        Caller.JSON_PROPERTY_FREETEXT,
+        Caller.JSON_PROPERTY_DETAILED_NAME
 })
 @JsonTypeName("caller")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Caller {
-    public static final String JSON_PROPERTY_CALLER_U_R_I = "callerURI";
-    private String callerURI;
+    public static final String JSON_PROPERTY_CALLER_CONTACT = "callerContact";
+    private Contact callerContact;
 
-    public static final String JSON_PROPERTY_CALLBACK_U_R_I = "callbackURI";
-    private String callbackURI;
+    public static final String JSON_PROPERTY_CALLBACK_CONTACT = "callbackContact";
+    private Contact callbackContact;
 
-    public static final String JSON_PROPERTY_SPOKEN_LANGUAGE = "spokenLanguage";
-    private String spokenLanguage;
+    /**
+     * Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.
+     */
+    public enum LanguageEnum {
+        AF("AF"),
 
-    public static final String JSON_PROPERTY_CALLER_INFORMATION = "callerInformation";
-    private String callerInformation;
+        AX("AX"),
 
-    public static final String JSON_PROPERTY_CALLER_NAME = "callerName";
-    private CallerName callerName;
+        AL("AL"),
+
+        DZ("DZ"),
+
+        AS("AS"),
+
+        AD("AD"),
+
+        AO("AO"),
+
+        AI("AI"),
+
+        AQ("AQ"),
+
+        AG("AG"),
+
+        AR("AR"),
+
+        AM("AM"),
+
+        AW("AW"),
+
+        AU("AU"),
+
+        AT("AT"),
+
+        AZ("AZ"),
+
+        BS("BS"),
+
+        BH("BH"),
+
+        BD("BD"),
+
+        BB("BB"),
+
+        BY("BY"),
+
+        BE("BE"),
+
+        BZ("BZ"),
+
+        BJ("BJ"),
+
+        BM("BM"),
+
+        BT("BT"),
+
+        BO("BO"),
+
+        BA("BA"),
+
+        BW("BW"),
+
+        BV("BV"),
+
+        BR("BR"),
+
+        IO("IO"),
+
+        BN("BN"),
+
+        BG("BG"),
+
+        BF("BF"),
+
+        BI("BI"),
+
+        CV("CV"),
+
+        KH("KH"),
+
+        CM("CM"),
+
+        CA("CA"),
+
+        KY("KY"),
+
+        CF("CF"),
+
+        TD("TD"),
+
+        CL("CL"),
+
+        CN("CN"),
+
+        CX("CX"),
+
+        CC("CC"),
+
+        CO("CO"),
+
+        KM("KM"),
+
+        CG("CG"),
+
+        CK("CK"),
+
+        CR("CR"),
+
+        CI("CI"),
+
+        HR("HR"),
+
+        CU("CU"),
+
+        CW("CW"),
+
+        CY("CY"),
+
+        CZ("CZ"),
+
+        DK("DK"),
+
+        DJ("DJ"),
+
+        DM("DM"),
+
+        DO("DO"),
+
+        EC("EC"),
+
+        EG("EG"),
+
+        SV("SV"),
+
+        GQ("GQ"),
+
+        ER("ER"),
+
+        EE("EE"),
+
+        SZ("SZ"),
+
+        ET("ET"),
+
+        FK("FK"),
+
+        FO("FO"),
+
+        FJ("FJ"),
+
+        FI("FI"),
+
+        FR("FR"),
+
+        GF("GF"),
+
+        PF("PF"),
+
+        TF("TF"),
+
+        GA("GA"),
+
+        GM("GM"),
+
+        GE("GE"),
+
+        DE("DE"),
+
+        GH("GH"),
+
+        GI("GI"),
+
+        GR("GR"),
+
+        GL("GL"),
+
+        GD("GD"),
+
+        GP("GP"),
+
+        GU("GU"),
+
+        GT("GT"),
+
+        GG("GG"),
+
+        GN("GN"),
+
+        GW("GW"),
+
+        GY("GY"),
+
+        HT("HT"),
+
+        HM("HM"),
+
+        VA("VA"),
+
+        HN("HN"),
+
+        HK("HK"),
+
+        HU("HU"),
+
+        IS("IS"),
+
+        IN("IN"),
+
+        ID("ID"),
+
+        IR("IR"),
+
+        IQ("IQ"),
+
+        IE("IE"),
+
+        IM("IM"),
+
+        IL("IL"),
+
+        IT("IT"),
+
+        JM("JM"),
+
+        JP("JP"),
+
+        JE("JE"),
+
+        JO("JO"),
+
+        KZ("KZ"),
+
+        KE("KE"),
+
+        KI("KI"),
+
+        KP("KP"),
+
+        KW("KW"),
+
+        KG("KG"),
+
+        LA("LA"),
+
+        LV("LV"),
+
+        LB("LB"),
+
+        LS("LS"),
+
+        LR("LR"),
+
+        LY("LY"),
+
+        LI("LI"),
+
+        LT("LT"),
+
+        LU("LU"),
+
+        MO("MO"),
+
+        MG("MG"),
+
+        MW("MW"),
+
+        MY("MY"),
+
+        MV("MV"),
+
+        ML("ML"),
+
+        MT("MT"),
+
+        MH("MH"),
+
+        MQ("MQ"),
+
+        MR("MR"),
+
+        MU("MU"),
+
+        YT("YT"),
+
+        MX("MX"),
+
+        FM("FM"),
+
+        MC("MC"),
+
+        MN("MN"),
+
+        ME("ME"),
+
+        MS("MS"),
+
+        MA("MA"),
+
+        MZ("MZ"),
+
+        MM("MM"),
+
+        NR("NR"),
+
+        NP("NP"),
+
+        NL("NL"),
+
+        NC("NC"),
+
+        NZ("NZ"),
+
+        NI("NI"),
+
+        NE("NE"),
+
+        NG("NG"),
+
+        NU("NU"),
+
+        NF("NF"),
+
+        MK("MK"),
+
+        MP("MP"),
+
+        NO("NO"),
+
+        OM("OM"),
+
+        PK("PK"),
+
+        PW("PW"),
+
+        _STATE_OF(" State of"),
+
+        PA("PA"),
+
+        PG("PG"),
+
+        PY("PY"),
+
+        PE("PE"),
+
+        PH("PH"),
+
+        PN("PN"),
+
+        PL("PL"),
+
+        PT("PT"),
+
+        PR("PR"),
+
+        QA("QA"),
+
+        RE("RE"),
+
+        RO("RO"),
+
+        RU("RU"),
+
+        RW("RW"),
+
+        BL("BL"),
+
+        KN("KN"),
+
+        LC("LC"),
+
+        MF("MF"),
+
+        PM("PM"),
+
+        VC("VC"),
+
+        WS("WS"),
+
+        SM("SM"),
+
+        ST("ST"),
+
+        SA("SA"),
+
+        SN("SN"),
+
+        RS("RS"),
+
+        SC("SC"),
+
+        SL("SL"),
+
+        SG("SG"),
+
+        SX("SX"),
+
+        SK("SK"),
+
+        SI("SI"),
+
+        SB("SB"),
+
+        SO("SO"),
+
+        ZA("ZA"),
+
+        GS("GS"),
+
+        SS("SS"),
+
+        ES("ES"),
+
+        LK("LK"),
+
+        SD("SD"),
+
+        SR("SR"),
+
+        SJ("SJ"),
+
+        SE("SE"),
+
+        CH("CH"),
+
+        SY("SY"),
+
+        TJ("TJ"),
+
+        TH("TH"),
+
+        TL("TL"),
+
+        TG("TG"),
+
+        TK("TK"),
+
+        TO("TO"),
+
+        TT("TT"),
+
+        TN("TN"),
+
+        TR("TR"),
+
+        TM("TM"),
+
+        TC("TC"),
+
+        TV("TV"),
+
+        UG("UG"),
+
+        UA("UA"),
+
+        AE("AE"),
+
+        GB("GB"),
+
+        US("US"),
+
+        UM("UM"),
+
+        UY("UY"),
+
+        UZ("UZ"),
+
+        VU("VU"),
+
+        VE("VE"),
+
+        VN("VN"),
+
+        VG("VG"),
+
+        VI("VI"),
+
+        WF("WF"),
+
+        EH("EH"),
+
+        YE("YE"),
+
+        ZM("ZM"),
+
+        ZW("ZW");
+
+        private String value;
+
+        LanguageEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static LanguageEnum fromValue(String value) {
+            for (LanguageEnum b : LanguageEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+
+    public static final String JSON_PROPERTY_LANGUAGE = "language";
+    private LanguageEnum language;
+
+    public static final String JSON_PROPERTY_FREETEXT = "freetext";
+    private String freetext;
+
+    public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
+    private DetailedName detailedName;
 
     public Caller() {
     }
 
-    public Caller callerURI(String callerURI) {
+    public Caller callerContact(Contact callerContact) {
 
-        this.callerURI = callerURI;
+        this.callerContact = callerContact;
         return this;
     }
 
     /**
-     * Type de l&#39;URI utilisée par le réquérant et valeur. Ne peut contenir qu&#39;une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le numéro de téléphone doit être renseigné en priorité, à défaut, renseigner un autre type d&#39;URI. Si ce numéro est renseigné, il devient prioritaire par rapport au numéro d&#39;appel.
+     * Get callerContact
      *
-     * @return callerURI
+     * @return callerContact
      **/
-    @JsonProperty(JSON_PROPERTY_CALLER_U_R_I)
+    @JsonProperty(JSON_PROPERTY_CALLER_CONTACT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCallerURI() {
-        return callerURI;
+    public Contact getCallerContact() {
+        return callerContact;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CALLER_U_R_I)
+    @JsonProperty(JSON_PROPERTY_CALLER_CONTACT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCallerURI(String callerURI) {
-        this.callerURI = callerURI;
+    public void setCallerContact(Contact callerContact) {
+        this.callerContact = callerContact;
     }
 
 
-    public Caller callbackURI(String callbackURI) {
+    public Caller callbackContact(Contact callbackContact) {
 
-        this.callbackURI = callbackURI;
+        this.callbackContact = callbackContact;
         return this;
     }
 
     /**
-     * Type et valeur de l&#39;URI permettant un rappel pour avoir plus d&#39;informations : il peut s&#39;agit du requérant, de la victime ou d&#39;un témoin. Ne peut contenir qu&#39;une URI.Exemple : tel:+33611223344 OU sip:top@domain.org. Le numéro de téléphone doit être renseigné en priorité, à défaut, renseigner un autre type d&#39;URI. Si le numéro de contre-appel est renseigné, il doit être utilisé en priorité sur le numéro réquérant.
+     * Get callbackContact
      *
-     * @return callbackURI
+     * @return callbackContact
      **/
-    @JsonProperty(JSON_PROPERTY_CALLBACK_U_R_I)
+    @JsonProperty(JSON_PROPERTY_CALLBACK_CONTACT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCallbackURI() {
-        return callbackURI;
+    public Contact getCallbackContact() {
+        return callbackContact;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CALLBACK_U_R_I)
+    @JsonProperty(JSON_PROPERTY_CALLBACK_CONTACT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCallbackURI(String callbackURI) {
-        this.callbackURI = callbackURI;
+    public void setCallbackContact(Contact callbackContact) {
+        this.callbackContact = callbackContact;
     }
 
 
-    public Caller spokenLanguage(String spokenLanguage) {
+    public Caller language(LanguageEnum language) {
 
-        this.spokenLanguage = spokenLanguage;
+        this.language = language;
         return this;
     }
 
     /**
-     * Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin.
+     * Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.
      *
-     * @return spokenLanguage
+     * @return language
      **/
-    @JsonProperty(JSON_PROPERTY_SPOKEN_LANGUAGE)
+    @JsonProperty(JSON_PROPERTY_LANGUAGE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getSpokenLanguage() {
-        return spokenLanguage;
+    public LanguageEnum getLanguage() {
+        return language;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_SPOKEN_LANGUAGE)
+    @JsonProperty(JSON_PROPERTY_LANGUAGE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setSpokenLanguage(String spokenLanguage) {
-        this.spokenLanguage = spokenLanguage;
+    public void setLanguage(LanguageEnum language) {
+        this.language = language;
     }
 
 
-    public Caller callerInformation(String callerInformation) {
+    public Caller freetext(String freetext) {
 
-        this.callerInformation = callerInformation;
+        this.freetext = freetext;
         return this;
     }
 
     /**
-     * Information sur le requérant : malentendant, impliqué dans l&#39;accident, …
+     * Information sur le requérant : malentendant, impliqué dans l&#39;accident, … Les informations peuvent être passées sous forme de texte libre ou via une liste d&#39;adjectif
      *
-     * @return callerInformation
+     * @return freetext
      **/
-    @JsonProperty(JSON_PROPERTY_CALLER_INFORMATION)
+    @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCallerInformation() {
-        return callerInformation;
+    public String getFreetext() {
+        return freetext;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CALLER_INFORMATION)
+    @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCallerInformation(String callerInformation) {
-        this.callerInformation = callerInformation;
+    public void setFreetext(String freetext) {
+        this.freetext = freetext;
     }
 
 
-    public Caller callerName(CallerName callerName) {
+    public Caller detailedName(DetailedName detailedName) {
 
-        this.callerName = callerName;
+        this.detailedName = detailedName;
         return this;
     }
 
     /**
-     * Get callerName
+     * Get detailedName
      *
-     * @return callerName
+     * @return detailedName
      **/
-    @JsonProperty(JSON_PROPERTY_CALLER_NAME)
+    @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public CallerName getCallerName() {
-        return callerName;
+    public DetailedName getDetailedName() {
+        return detailedName;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CALLER_NAME)
+    @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCallerName(CallerName callerName) {
-        this.callerName = callerName;
+    public void setDetailedName(DetailedName detailedName) {
+        this.detailedName = detailedName;
     }
 
     @Override
@@ -196,31 +710,31 @@ public class Caller {
             return false;
         }
         Caller caller = (Caller) o;
-        return Objects.equals(this.callerURI, caller.callerURI) &&
-                Objects.equals(this.callbackURI, caller.callbackURI) &&
-                Objects.equals(this.spokenLanguage, caller.spokenLanguage) &&
-                Objects.equals(this.callerInformation, caller.callerInformation) &&
-                Objects.equals(this.callerName, caller.callerName);
+        return Objects.equals(this.callerContact, caller.callerContact) &&
+                Objects.equals(this.callbackContact, caller.callbackContact) &&
+                Objects.equals(this.language, caller.language) &&
+                Objects.equals(this.freetext, caller.freetext) &&
+                Objects.equals(this.detailedName, caller.detailedName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(callerURI
-                , callbackURI
-                , spokenLanguage
-                , callerInformation
-                , callerName);
+        return Objects.hash(callerContact
+                , callbackContact
+                , language
+                , freetext
+                , detailedName);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class Caller {\n");
-        sb.append("    callerURI: ").append(toIndentedString(callerURI)).append("\n");
-        sb.append("    callbackURI: ").append(toIndentedString(callbackURI)).append("\n");
-        sb.append("    spokenLanguage: ").append(toIndentedString(spokenLanguage)).append("\n");
-        sb.append("    callerInformation: ").append(toIndentedString(callerInformation)).append("\n");
-        sb.append("    callerName: ").append(toIndentedString(callerName)).append("\n");
+        sb.append("    callerContact: ").append(toIndentedString(callerContact)).append("\n");
+        sb.append("    callbackContact: ").append(toIndentedString(callbackContact)).append("\n");
+        sb.append("    language: ").append(toIndentedString(language)).append("\n");
+        sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
+        sb.append("    detailedName: ").append(toIndentedString(detailedName)).append("\n");
         sb.append("}");
         return sb.toString();
     }

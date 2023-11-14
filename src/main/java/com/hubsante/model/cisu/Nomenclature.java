@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("nomenclature")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Nomenclature {
     public static final String JSON_PROPERTY_CODE = "code";
     private String code;
@@ -56,7 +56,7 @@ public class Nomenclature {
     }
 
     /**
-     * Décrit le code de motif de recours médical
+     * A valoriser avec un code la nomenclature associée
      *
      * @return code
      **/
@@ -82,7 +82,7 @@ public class Nomenclature {
     }
 
     /**
-     * Libellé du motif
+     * A valoriser avec le libellé de la nomenclature associée. Dans le cas où un système n&#39;est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.
      *
      * @return label
      **/
@@ -108,7 +108,7 @@ public class Nomenclature {
     }
 
     /**
-     * Get freetext
+     * Permet de complémenter en commentaire libre l&#39;attribut permettant de qualifier l&#39;événement.
      *
      * @return freetext
      **/

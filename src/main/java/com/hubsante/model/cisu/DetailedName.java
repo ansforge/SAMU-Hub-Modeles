@@ -26,37 +26,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * CallerName
+ * DetailedName
  */
 @JsonPropertyOrder({
-        CallerName.JSON_PROPERTY_COMPLETE,
-        CallerName.JSON_PROPERTY_CALLER_LAST_NAME,
-        CallerName.JSON_PROPERTY_CALLER_FIRST_NAME
+        DetailedName.JSON_PROPERTY_COMPLETE,
+        DetailedName.JSON_PROPERTY_LAST_NAME,
+        DetailedName.JSON_PROPERTY_FIRST_NAME
 })
-@JsonTypeName("callerName")
+@JsonTypeName("detailedName")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
-public class CallerName {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+public class DetailedName {
     public static final String JSON_PROPERTY_COMPLETE = "complete";
     private String complete;
 
-    public static final String JSON_PROPERTY_CALLER_LAST_NAME = "callerLastName";
-    private String callerLastName;
+    public static final String JSON_PROPERTY_LAST_NAME = "lastName";
+    private String lastName;
 
-    public static final String JSON_PROPERTY_CALLER_FIRST_NAME = "callerFirstName";
-    private String callerFirstName;
+    public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
+    private String firstName;
 
-    public CallerName() {
+    public DetailedName() {
     }
 
-    public CallerName complete(String complete) {
+    public DetailedName complete(String complete) {
 
         this.complete = complete;
         return this;
     }
 
     /**
-     * Prénom et nom usuel du requérant. Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit contenir la chaîne de caractère suivante : \&quot;{callerFirstName} {callerLastName}\&quot;. Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.
+     * Prénom et nom usuel du requérant. Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : \&quot;{callerFirstName} {callerLastName}\&quot;. Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.
      *
      * @return complete
      **/
@@ -75,55 +75,55 @@ public class CallerName {
     }
 
 
-    public CallerName callerLastName(String callerLastName) {
+    public DetailedName lastName(String lastName) {
 
-        this.callerLastName = callerLastName;
+        this.lastName = lastName;
         return this;
     }
 
     /**
      * Nom du requérant
      *
-     * @return callerLastName
+     * @return lastName
      **/
-    @JsonProperty(JSON_PROPERTY_CALLER_LAST_NAME)
+    @JsonProperty(JSON_PROPERTY_LAST_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCallerLastName() {
-        return callerLastName;
+    public String getLastName() {
+        return lastName;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CALLER_LAST_NAME)
+    @JsonProperty(JSON_PROPERTY_LAST_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCallerLastName(String callerLastName) {
-        this.callerLastName = callerLastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
 
-    public CallerName callerFirstName(String callerFirstName) {
+    public DetailedName firstName(String firstName) {
 
-        this.callerFirstName = callerFirstName;
+        this.firstName = firstName;
         return this;
     }
 
     /**
-     * Prénom du réquérant
+     * Prénom du réquérant. Par convention les prénoms composés doivent préférablement être séparés par le caractère \&quot;-\&quot;
      *
-     * @return callerFirstName
+     * @return firstName
      **/
-    @JsonProperty(JSON_PROPERTY_CALLER_FIRST_NAME)
+    @JsonProperty(JSON_PROPERTY_FIRST_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCallerFirstName() {
-        return callerFirstName;
+    public String getFirstName() {
+        return firstName;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CALLER_FIRST_NAME)
+    @JsonProperty(JSON_PROPERTY_FIRST_NAME)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCallerFirstName(String callerFirstName) {
-        this.callerFirstName = callerFirstName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     @Override
@@ -134,26 +134,26 @@ public class CallerName {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CallerName callerName = (CallerName) o;
-        return Objects.equals(this.complete, callerName.complete) &&
-                Objects.equals(this.callerLastName, callerName.callerLastName) &&
-                Objects.equals(this.callerFirstName, callerName.callerFirstName);
+        DetailedName detailedName = (DetailedName) o;
+        return Objects.equals(this.complete, detailedName.complete) &&
+                Objects.equals(this.lastName, detailedName.lastName) &&
+                Objects.equals(this.firstName, detailedName.firstName);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(complete
-                , callerLastName
-                , callerFirstName);
+                , lastName
+                , firstName);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CallerName {\n");
+        sb.append("class DetailedName {\n");
         sb.append("    complete: ").append(toIndentedString(complete)).append("\n");
-        sb.append("    callerLastName: ").append(toIndentedString(callerLastName)).append("\n");
-        sb.append("    callerFirstName: ").append(toIndentedString(callerFirstName)).append("\n");
+        sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
+        sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
         sb.append("}");
         return sb.toString();
     }

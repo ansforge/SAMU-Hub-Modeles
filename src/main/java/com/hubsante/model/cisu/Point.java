@@ -31,17 +31,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
  */
 @JsonPropertyOrder({
         Point.JSON_PROPERTY_COORD,
-        Point.JSON_PROPERTY_COORDSYS
+        Point.JSON_PROPERTY_SYS_COORD
 })
 @JsonTypeName("point")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Point {
     public static final String JSON_PROPERTY_COORD = "coord";
     private Coord coord;
 
-    public static final String JSON_PROPERTY_COORDSYS = "coordsys";
-    private String coordsys;
+    public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
+    private String sysCoord;
 
     public Point() {
     }
@@ -72,29 +72,29 @@ public class Point {
     }
 
 
-    public Point coordsys(String coordsys) {
+    public Point sysCoord(String sysCoord) {
 
-        this.coordsys = coordsys;
+        this.sysCoord = sysCoord;
         return this;
     }
 
     /**
-     * Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84. Si ce champ n&#39;est pas renseigné, on considère que la valeur par défaut est «EPSG-4326».
+     * Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84. Si ce champ n&#39;est pas renseigné, on considère que la valeur par défaut est «».
      *
-     * @return coordsys
+     * @return sysCoord
      **/
-    @JsonProperty(JSON_PROPERTY_COORDSYS)
+    @JsonProperty(JSON_PROPERTY_SYS_COORD)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCoordsys() {
-        return coordsys;
+    public String getSysCoord() {
+        return sysCoord;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_COORDSYS)
+    @JsonProperty(JSON_PROPERTY_SYS_COORD)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCoordsys(String coordsys) {
-        this.coordsys = coordsys;
+    public void setSysCoord(String sysCoord) {
+        this.sysCoord = sysCoord;
     }
 
     @Override
@@ -107,13 +107,13 @@ public class Point {
         }
         Point point = (Point) o;
         return Objects.equals(this.coord, point.coord) &&
-                Objects.equals(this.coordsys, point.coordsys);
+                Objects.equals(this.sysCoord, point.sysCoord);
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(coord
-                , coordsys);
+                , sysCoord);
     }
 
     @Override
@@ -121,7 +121,7 @@ public class Point {
         StringBuilder sb = new StringBuilder();
         sb.append("class Point {\n");
         sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
-        sb.append("    coordsys: ").append(toIndentedString(coordsys)).append("\n");
+        sb.append("    sysCoord: ").append(toIndentedString(sysCoord)).append("\n");
         sb.append("}");
         return sb.toString();
     }

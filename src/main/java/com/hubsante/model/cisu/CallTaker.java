@@ -21,6 +21,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.hubsante.model.cisu.Contact;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -31,12 +32,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 @JsonPropertyOrder({
         CallTaker.JSON_PROPERTY_ORGANIZATION,
         CallTaker.JSON_PROPERTY_CONTROL_ROOM,
-        CallTaker.JSON_PROPERTY_CALLTAKER_U_R_I,
+        CallTaker.JSON_PROPERTY_ROLE,
+        CallTaker.JSON_PROPERTY_CALLTAKE_CONTACT,
         CallTaker.JSON_PROPERTY_CALLTAKER_ID
 })
 @JsonTypeName("callTaker")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class CallTaker {
     public static final String JSON_PROPERTY_ORGANIZATION = "organization";
     private String organization;
@@ -44,8 +46,46 @@ public class CallTaker {
     public static final String JSON_PROPERTY_CONTROL_ROOM = "controlRoom";
     private String controlRoom;
 
-    public static final String JSON_PROPERTY_CALLTAKER_U_R_I = "calltakerURI";
-    private String calltakerURI;
+    /**
+     * Décrit le rôle de l&#39;agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)
+     */
+    public enum RoleEnum {
+        AGENT("ARM"),
+
+        SUPERVISOR("MEDECIN");
+
+        private String value;
+
+        RoleEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static RoleEnum fromValue(String value) {
+            for (RoleEnum b : RoleEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+
+    public static final String JSON_PROPERTY_ROLE = "role";
+    private RoleEnum role;
+
+    public static final String JSON_PROPERTY_CALLTAKE_CONTACT = "calltakeContact";
+    private Contact calltakeContact;
 
     public static final String JSON_PROPERTY_CALLTAKER_ID = "calltakerId";
     private String calltakerId;
@@ -60,7 +100,7 @@ public class CallTaker {
     }
 
     /**
-     * Organisation d&#39;appartenance de l&#39;opérateur ayant traité l&#39;alerte
+     * Décrit la structure ou le service à laquelle est rattachée l&#39;agent (en fonction du niveau de précision disponible). Se référer au DSF pour la structure normée des organisations Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
      *
      * @return organization
      **/
@@ -86,7 +126,7 @@ public class CallTaker {
     }
 
     /**
-     * Salle opérationnelle de l&#39;opérateur de traitement
+     * Décrit le centre d&#39;appel auquel est rattaché l&#39;agent
      *
      * @return controlRoom
      **/
@@ -105,29 +145,55 @@ public class CallTaker {
     }
 
 
-    public CallTaker calltakerURI(String calltakerURI) {
+    public CallTaker role(RoleEnum role) {
 
-        this.calltakerURI = calltakerURI;
+        this.role = role;
         return this;
     }
 
     /**
-     * Numéro de ligne directe permettant de recontacter l&#39;opérateur de traitement
+     * Décrit le rôle de l&#39;agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)
      *
-     * @return calltakerURI
+     * @return role
      **/
-    @JsonProperty(JSON_PROPERTY_CALLTAKER_U_R_I)
+    @JsonProperty(JSON_PROPERTY_ROLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getCalltakerURI() {
-        return calltakerURI;
+    public RoleEnum getRole() {
+        return role;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_CALLTAKER_U_R_I)
+    @JsonProperty(JSON_PROPERTY_ROLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setCalltakerURI(String calltakerURI) {
-        this.calltakerURI = calltakerURI;
+    public void setRole(RoleEnum role) {
+        this.role = role;
+    }
+
+
+    public CallTaker calltakeContact(Contact calltakeContact) {
+
+        this.calltakeContact = calltakeContact;
+        return this;
+    }
+
+    /**
+     * Get calltakeContact
+     *
+     * @return calltakeContact
+     **/
+    @JsonProperty(JSON_PROPERTY_CALLTAKE_CONTACT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public Contact getCalltakeContact() {
+        return calltakeContact;
+    }
+
+
+    @JsonProperty(JSON_PROPERTY_CALLTAKE_CONTACT)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setCalltakeContact(Contact calltakeContact) {
+        this.calltakeContact = calltakeContact;
     }
 
 
@@ -138,7 +204,7 @@ public class CallTaker {
     }
 
     /**
-     * Identifiant unique de l&#39;opérateur ayant traité l&#39;alerte
+     * Identifiant unique de l&#39;opérateur ayant traité l&#39;alerte (peut être un identifiant technique, un numéro de carte CPS etc)
      *
      * @return calltakerId
      **/
@@ -167,7 +233,8 @@ public class CallTaker {
         CallTaker callTaker = (CallTaker) o;
         return Objects.equals(this.organization, callTaker.organization) &&
                 Objects.equals(this.controlRoom, callTaker.controlRoom) &&
-                Objects.equals(this.calltakerURI, callTaker.calltakerURI) &&
+                Objects.equals(this.role, callTaker.role) &&
+                Objects.equals(this.calltakeContact, callTaker.calltakeContact) &&
                 Objects.equals(this.calltakerId, callTaker.calltakerId);
     }
 
@@ -175,7 +242,8 @@ public class CallTaker {
     public int hashCode() {
         return Objects.hash(organization
                 , controlRoom
-                , calltakerURI
+                , role
+                , calltakeContact
                 , calltakerId);
     }
 
@@ -185,7 +253,8 @@ public class CallTaker {
         sb.append("class CallTaker {\n");
         sb.append("    organization: ").append(toIndentedString(organization)).append("\n");
         sb.append("    controlRoom: ").append(toIndentedString(controlRoom)).append("\n");
-        sb.append("    calltakerURI: ").append(toIndentedString(calltakerURI)).append("\n");
+        sb.append("    role: ").append(toIndentedString(role)).append("\n");
+        sb.append("    calltakeContact: ").append(toIndentedString(calltakeContact)).append("\n");
         sb.append("    calltakerId: ").append(toIndentedString(calltakerId)).append("\n");
         sb.append("}");
         return sb.toString();

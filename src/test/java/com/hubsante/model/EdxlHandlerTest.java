@@ -14,9 +14,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 public class EdxlHandlerTest {
-
-    static ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
-
     private EdxlHandler converter = new EdxlHandler();
 
     @Test
@@ -30,6 +27,20 @@ public class EdxlHandlerTest {
     @DisplayName("should consistently deserialize then serialize XML RC-EDA")
     public void end2end_RC_EDA_XML() throws IOException {
         String xml = getMessageString( "RC-EDA", true);
+        endToEndDeserializationCheck(xml, true);
+    }
+
+    @Test
+    @DisplayName("should consistently deserialize then serialize JSON EMSI-DC")
+    public void end2end_EMSI_DC_JSON() throws IOException {
+        String json = getMessageString("EMSI-DC");
+        endToEndDeserializationCheck(json, false);
+    }
+
+    @Test
+    @DisplayName("should consistently deserialize then serialize XML EMSI-DC")
+    public void end2end_EMSI_DC_XML() throws IOException {
+        String xml = getMessageString("EMSI-DC", true);
         endToEndDeserializationCheck(xml, true);
     }
 

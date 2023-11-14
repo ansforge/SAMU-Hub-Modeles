@@ -32,153 +32,169 @@
               }
             ],
             "createCase": {
-              "caseId": "SAMUA-20230725-AF1234",
-              "senderCaseId": "SAMUA-20230725-AF1234",
-              "createdAt": "2022-07-25T10:03:34+01:00",
-              "initialAlert": {
-                "alertId": "SAMUA-20230725-AL01234",
-                "receivedAt": "2022-07-25T10:01:22+01:00",
-                "reporting": "STANDARD",
-                "alertInformation": "suite collision avec un autre vélo sur piste cyclable, gonflement du genou, grosses égratignures, maux de tête",
-                "caller": {
-                  "callerURI": "tel:+330607080901",
-                  "callbackURI": "tel:+330601020304",
-                  "spokenLanguage": "Français",
-                  "callerInformation": "Epoux",
-                  "callerName": {
-                    "complete": "Louise Durand",
-                    "callerLastName": "Durand",
-                    "callerFirstName": "Louise"
-                  }
+              "caseId": "samuA:CA126B445579GD4A67AV",
+              "senderCaseId": "CA126B445579GD4A67AV",
+              "creation": "2022-09-27T08:23:34+02:00",
+              "referenceVersion": "1.2",
+              "qualification": {
+                "whatsHappen": {
+                  "code": "C07.13.02",
+                  "label": "Rod\u00e9o automobile",
+                  "freetext": "None"
                 },
-                "alertLocation": {
-                  "locID": "BA-15478-21455789",
-                  "locLabel": "devanture",
-                  "name": "Quai des Célestins",
-                  "country": "France",
-                  "freetext": "Devant la boulangerie Quai des Célestin"
+                "locationKind": {
+                  "code": "TO_BE_CONTROLLED",
+                  "label": "TO_BE_CONTROLLED",
+                  "freetext": "TO_BE_CONTROLLED"
                 },
-                "alertCode": {
-                  "cisuVersion": "1.19",
-                  "whatsHappen": {
-                    "code": "C01.01.04",
-                    "label": "2-roues",
-                    "freetext": "pas d'autres types de véhicules impliqués"
-                  },
-                  "locationKind": {
-                    "code": "L02.01.00",
-                    "label": "Voie publique hors voie rapide",
-                    "freetext": "Voie vélo le long d'une route "
-                  },
-                  "riskThreats": [
-                    {
-                      "code": "R22",
-                      "label": "Gêne à la circulation",
-                      "freetext": "vélos débordent sur la route, rsique lié aux voitures"
-                    },
-                    {
-                      "code": "R23",
-                      "label": "Gêne à la circulation",
-                      "freetext": "vélos débordent sur la route, rsique lié aux voitures"
-                    }
-                  ],
-                  "healthMotive": {
-                    "code": "M03.11, M02.07",
-                    "label": "Céphalée, migraines, Traumatisme sérieux, plaie intermédiaire",
-                    "freetext": "Portait un casque de protection"
-                  },
-                  "gravity": "faible",
-                  "victims": {
-                    "count": "MANY",
-                    "mainVictim": "ADULT",
-                    "comment": "Deuxième victime présente saignement legers aux mains et genoux"
-                  }
-                },
-                "contact": {
-                  "type": "Personne",
-                  "detail": "tel:+330607080901"
-                },
-                "callTaker": {
-                  "organization": "SAMUA",
-                  "controlRoom": "Régulation",
-                  "calltakerURI": null,
-                  "calltakerId": null
-                },
-                "resource": [
+                "riskThreat": [
                   {
-                    "resourceDesc": "DISPMED",
-                    "mimeType": "pdf",
-                    "size": 9,
-                    "URI": "https://www.docPatient1.hpLyon.com/share?res=123456",
-                    "derefURI": null,
-                    "digest": "84feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab868484feb54a7ab8684"
+                    "code": "TO_BE_CONTROLLED",
+                    "label": "TO_BE_CONTROLLED",
+                    "freetext": "TO_BE_CONTROLLED"
+                  },
+                  {
+                    "code": "TO_BE_CONTROLLED",
+                    "label": "TO_BE_CONTROLLED",
+                    "freetext": "TO_BE_CONTROLLED"
                   }
-                ]
+                ],
+                "healthMotive": {
+                  "code": "TO_BE_CONTROLLED",
+                  "label": "TO_BE_CONTROLLED",
+                  "freetext": "TO_BE_CONTROLLED"
+                },
+                "victims": {
+                  "count": "SEVERAL",
+                  "mainVictim": "CHILD",
+                  "freetext": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
+                }
               },
-              "caseLocation": {
-                "locID": "BA-15478-21455789",
-                "locLabel": "devanture",
-                "name": "Quai des Célestins",
-                "address": {
-                  "complete": "8 quai des Célestins",
-                  "number": "8",
+              "location": {
+                "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+                "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
+                "name": "Lyc\u00e9e Pierre de Coubertin",
+                "detailedAdress": {
+                  "complete": "9 Bd du Montparnasse",
+                  "number": "9, 4bis, PK10, \u2026",
                   "wayName": {
-                    "complete": "Quai des Célestins",
-                    "type": "Quai",
-                    "name": "des Célestins"
+                    "complete": "Boulevard du Montparnasse",
+                    "type": "Boulevard",
+                    "name": "du Montparnasse"
                   }
                 },
                 "city": {
-                  "name": "Lyon",
-                  "inseeCode": "69002",
-                  "detail": "deuxième arrondissement"
+                  "name": "Lille",
+                  "inseeCode": "59350",
+                  "detail": "Quartie Melun Nord, Lhomme, \u2026"
                 },
                 "access": {
-                  "floor": null,
-                  "roomNumber": null,
-                  "interphone": null,
-                  "accessCode": null,
-                  "elevator": null,
-                  "buildingName": null,
-                  "entrance": null,
-                  "entity": null
+                  "floor": "RDC, 1, 2, \u2026",
+                  "roomNumber": "A16, 37, 104, \u2026",
+                  "interphone": "Dupont",
+                  "accessCode": [
+                    "1234A",
+                    "4321B"
+                  ],
+                  "elevator": "C3",
+                  "buildingName": "Batiment B, Batiment Maunoury",
+                  "entrance": "Zone Sud, Porte 1, \u2026",
+                  "entity": "Infirmerie, service finance, service cardiologie, \u2026"
                 },
                 "geometry": {
+                  "obsDatime": "2022-09-27T08:23:34+02:00",
                   "point": {
                     "coord": {
-                      "lat": 45.7602368,
-                      "lon": 4.8310551,
-                      "height": 237,
-                      "heading": null,
-                      "speed": null,
-                      "time": "2022-07-25T10:03:34+01:00",
+                      "lat": 48.866667,
+                      "lon": 2.333333,
+                      "height": 120,
+                      "heading": 96,
+                      "speed": 34,
                       "precision": "ADDRESS"
                     },
-                    "coordsys": "EPSG-4326"
+                    "sysCoord": "EPSG-4326"
                   },
-                  "sketch": null
+                  "sketch": "None"
                 },
-                "link": [
+                "externalInfo": [
                   {
-                    "source": "BAN",
-                    "type": "check_type",
-                    "id": "id1234"
+                    "freetext": "BAN",
+                    "type": "MANUAL",
+                    "uri": "id987"
                   }
                 ],
-                "country": "France",
-                "freetext": "Devant la boulangerie Quai des Célestin"
+                "country": "FR",
+                "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
               },
-              "newAlert": null,
-              "severity": "MINOR",
+              "initialAlert": {
+                "id": "SGO050-20230605-AL0123",
+                "reception": "2022-09-27T08:21:06+02:00",
+                "reporting": "STANDARD",
+                "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
+                "caller": {
+                  "callerContact": {
+                    "type": "PHNADD",
+                    "detail": "0671830530"
+                  },
+                  "callbackContact": {
+                    "type": "PHNADD",
+                    "detail": "0671830530"
+                  },
+                  "language": "FR",
+                  "freetext": "P\u00e8re",
+                  "detailedName": {
+                    "complete": "Jean Dupont",
+                    "lastName": "Dupont",
+                    "firstName": "Jean"
+                  }
+                },
+                "alertSource": {
+                  "channel": "Personne",
+                  "type": "PHNADD",
+                  "detail": "0671830530"
+                },
+                "location": {
+                  "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+                  "name": "Lyc\u00e9e Pierre de Coubertin",
+                  "country": "FR"
+                },
+                "qualification": {
+                  "whatsHappen": {
+                    "code": "C07.13.02",
+                    "label": "Rod\u00e9o automobile",
+                    "freetext": "None"
+                  }
+                },
+                "callTaker": {
+                  "organization": "FR:Administration:44:samu44:crra:regulationN3",
+                  "controlRoom": "CGA, CGO 21, CRRA 44, ...",
+                  "role": "ARM",
+                  "calltakeContact": {
+                    "type": "PHNADD",
+                    "detail": "0671830530"
+                  },
+                  "calltakerId": "id1234"
+                },
+                "attachment": [
+                  {
+                    "description": "photo, carte, \u2026",
+                    "mimeType": "PDF, XML, JPEG, \u2026",
+                    "size": 1235,
+                    "URI": "https://hub.esante.gouv.fr/resourceExample",
+                    "derefURI": "None",
+                    "digest": "None"
+                  }
+                ]
+              },
               "additionalInformation": {
                 "customMap": {
                   "key": "neighborhood",
                   "label": "Quartier",
-                  "value": "SECT.QUARTIER HISTORIQUE",
-                  "freetext": "Une voix sens unique pour voiture + une voix bus"
+                  "value": "LYON 2e arrondissement",
+                  "freetext": "Pr\u00e9cision sur le quartier d'intervention"
                 }
               },
-              "freetext": "choc à la tête mais portait un casque de protection. 2ème victime n'a pas de blessures apparantes."
+              "freetext": "None"
             }
           }
         }

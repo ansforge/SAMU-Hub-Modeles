@@ -1,8 +1,9 @@
 package com.hubsante.model.builders;
 
 import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
+import com.hubsante.model.cisu.ReferenceWrapper;
 import com.hubsante.model.cisu.Recipient;
-import com.hubsante.model.cisu.ReferenceMessage;
 import com.hubsante.model.edxl.DistributionKind;
 import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -15,7 +16,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RC_REF_BuilderTest {
+public class ReferenceWrapperBuilderTest {
     private final String DISTRIBUTION_ID = "id-12345";
     private final String SENDER_ID = "sender-x";
     private final String RECIPIENT_ID = "recipient-y";
@@ -32,18 +33,18 @@ public class RC_REF_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
-                .kind(DistributionElement.KindEnum.ACK)
+        DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+                .kind(KindEnum.ACK)
                 .build();
-        ReferenceMessage referenceMessage = new RC_REF_Builder(distributionElement, "id-67890")
+        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, "id-67890")
                 .build();
 
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
-                .contentMessage(referenceMessage)
+                .contentMessage(referenceWrapper)
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
-        assertEquals("id-67890", ((ReferenceMessage) built.getFirstContentMessage()).getReference().getDistributionID());
+        assertEquals("id-67890", ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
     }
 
     @Test
@@ -52,10 +53,10 @@ public class RC_REF_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+        DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
                 .kind(DistributionElement.KindEnum.REPORT)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new RC_REF_Builder(distributionElement, "id-67890").build());
+        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(distributionElement, "id-67890").build());
     }
 }

@@ -23,7 +23,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -38,12 +37,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         Coord.JSON_PROPERTY_HEIGHT,
         Coord.JSON_PROPERTY_HEADING,
         Coord.JSON_PROPERTY_SPEED,
-        Coord.JSON_PROPERTY_TIME,
         Coord.JSON_PROPERTY_PRECISION
 })
 @JsonTypeName("coord")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Coord {
     public static final String JSON_PROPERTY_LAT = "lat";
     private BigDecimal lat;
@@ -60,18 +58,19 @@ public class Coord {
     public static final String JSON_PROPERTY_SPEED = "speed";
     private BigDecimal speed;
 
-    public static final String JSON_PROPERTY_TIME = "time";
-    private OffsetDateTime time;
-
     /**
-     * Niveau de précision et de confiance dans les coordonnées (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie) déterminée de façon automatique par le système en fonction des informations disponibles lors de son élaboration (n°, voie et commune) et du matching fait dans son système de localisation.
+     * Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur. CITY&#x3D;Précision à l&#39;échelle de la ville, STREET&#x3D;Précision à l&#39;échelle de la rue, ADDRESS&#x3D;Adresse précise, EXACT&#x3D;Point coordonnée GPS exact, UNKNOWN&#x3D;Précision de la localisation non évaluable par l&#39;émetteur
      */
     public enum PrecisionEnum {
         CITY("CITY"),
 
         STREET("STREET"),
 
-        ADDRESS("ADDRESS");
+        ADDRESS("ADDRESS"),
+
+        EXACT("EXACT"),
+
+        UNKNOWN("UNKNOWN");
 
         private String value;
 
@@ -165,7 +164,7 @@ public class Coord {
     }
 
     /**
-     * Altitude du point clé de la localisation, ignoré côté NexSIS.
+     * Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS.
      *
      * @return height
      **/
@@ -236,32 +235,6 @@ public class Coord {
     }
 
 
-    public Coord time(OffsetDateTime time) {
-
-        this.time = time;
-        return this;
-    }
-
-    /**
-     * Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.
-     *
-     * @return time
-     **/
-    @JsonProperty(JSON_PROPERTY_TIME)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-    public OffsetDateTime getTime() {
-        return time;
-    }
-
-
-    @JsonProperty(JSON_PROPERTY_TIME)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setTime(OffsetDateTime time) {
-        this.time = time;
-    }
-
-
     public Coord precision(PrecisionEnum precision) {
 
         this.precision = precision;
@@ -269,7 +242,7 @@ public class Coord {
     }
 
     /**
-     * Niveau de précision et de confiance dans les coordonnées (au niveau de la commune/lieu-dit, voie/rue ou adresse/point de voie) déterminée de façon automatique par le système en fonction des informations disponibles lors de son élaboration (n°, voie et commune) et du matching fait dans son système de localisation.
+     * Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur. CITY&#x3D;Précision à l&#39;échelle de la ville, STREET&#x3D;Précision à l&#39;échelle de la rue, ADDRESS&#x3D;Adresse précise, EXACT&#x3D;Point coordonnée GPS exact, UNKNOWN&#x3D;Précision de la localisation non évaluable par l&#39;émetteur
      *
      * @return precision
      **/
@@ -301,7 +274,6 @@ public class Coord {
                 Objects.equals(this.height, coord.height) &&
                 Objects.equals(this.heading, coord.heading) &&
                 Objects.equals(this.speed, coord.speed) &&
-                Objects.equals(this.time, coord.time) &&
                 Objects.equals(this.precision, coord.precision);
     }
 
@@ -312,7 +284,6 @@ public class Coord {
                 , height
                 , heading
                 , speed
-                , time
                 , precision);
     }
 
@@ -325,7 +296,6 @@ public class Coord {
         sb.append("    height: ").append(toIndentedString(height)).append("\n");
         sb.append("    heading: ").append(toIndentedString(heading)).append("\n");
         sb.append("    speed: ").append(toIndentedString(speed)).append("\n");
-        sb.append("    time: ").append(toIndentedString(time)).append("\n");
         sb.append("    precision: ").append(toIndentedString(precision)).append("\n");
         sb.append("}");
         return sb.toString();

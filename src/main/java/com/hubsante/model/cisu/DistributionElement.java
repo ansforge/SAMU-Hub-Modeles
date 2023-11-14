@@ -15,25 +15,21 @@ package com.hubsante.model.cisu;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.Recipients;
-import com.hubsante.model.cisu.Sender;
 
 import java.time.OffsetDateTime;
 
 import com.hubsante.model.edxl.ContentMessage;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * DistributionElement
+ * RCDE
  */
 @JsonPropertyOrder({
         DistributionElement.JSON_PROPERTY_MESSAGE_ID,
@@ -45,7 +41,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @JacksonXmlRootElement(localName = "message")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:47:09.130+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:56.839+01:00[Europe/Paris]")
 public class DistributionElement extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
@@ -291,15 +287,17 @@ public class DistributionElement extends ContentMessage {
      **/
     @JsonProperty(JSON_PROPERTY_RECIPIENTS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    @JacksonXmlElementWrapper(useWrapping = true)
+    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RECIPIENTS)
+    @JacksonXmlProperty(localName = "recipient")
     public List<Recipient> getRecipients() {
         return recipients;
     }
 
 
     @JsonProperty(JSON_PROPERTY_RECIPIENTS)
+    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RECIPIENTS)
+    @JacksonXmlProperty(localName = "recipient")
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    @JacksonXmlElementWrapper(useWrapping = true)
     public void setRecipients(List<Recipient> recipients) {
         this.recipients = recipients;
     }
@@ -329,7 +327,7 @@ public class DistributionElement extends ContentMessage {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class DistributionElement {\n");
+        sb.append("class RCDE {\n");
         sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
         sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
         sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");

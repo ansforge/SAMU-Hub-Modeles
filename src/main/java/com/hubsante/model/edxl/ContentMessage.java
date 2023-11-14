@@ -4,14 +4,16 @@ import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
+import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.report.ErrorReport;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
-        @JsonSubTypes.Type(CreateCaseMessage.class),
-        @JsonSubTypes.Type(ReferenceMessage.class),
+        @JsonSubTypes.Type(CreateCaseWrapper.class),
+        @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(ErrorReport.class),
-        @JsonSubTypes.Type(CustomMessage.class)
+        @JsonSubTypes.Type(CustomMessage.class),
+        @JsonSubTypes.Type(EmsiWrapper.class)
 })
 public class ContentMessage {
 }

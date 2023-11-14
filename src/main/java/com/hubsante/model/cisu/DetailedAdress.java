@@ -27,17 +27,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Address
+ * DetailedAdress
  */
 @JsonPropertyOrder({
-        Address.JSON_PROPERTY_COMPLETE,
-        Address.JSON_PROPERTY_NUMBER,
-        Address.JSON_PROPERTY_WAY_NAME
+        DetailedAdress.JSON_PROPERTY_COMPLETE,
+        DetailedAdress.JSON_PROPERTY_NUMBER,
+        DetailedAdress.JSON_PROPERTY_WAY_NAME
 })
-@JsonTypeName("address")
+@JsonTypeName("detailedAdress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
-public class Address {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+public class DetailedAdress {
     public static final String JSON_PROPERTY_COMPLETE = "complete";
     private String complete;
 
@@ -47,10 +47,10 @@ public class Address {
     public static final String JSON_PROPERTY_WAY_NAME = "wayName";
     private WayName wayName;
 
-    public Address() {
+    public DetailedAdress() {
     }
 
-    public Address complete(String complete) {
+    public DetailedAdress complete(String complete) {
 
         this.complete = complete;
         return this;
@@ -76,7 +76,7 @@ public class Address {
     }
 
 
-    public Address number(String number) {
+    public DetailedAdress number(String number) {
 
         this.number = number;
         return this;
@@ -102,7 +102,7 @@ public class Address {
     }
 
 
-    public Address wayName(WayName wayName) {
+    public DetailedAdress wayName(WayName wayName) {
 
         this.wayName = wayName;
         return this;
@@ -135,10 +135,10 @@ public class Address {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Address address = (Address) o;
-        return Objects.equals(this.complete, address.complete) &&
-                Objects.equals(this.number, address.number) &&
-                Objects.equals(this.wayName, address.wayName);
+        DetailedAdress detailedAdress = (DetailedAdress) o;
+        return Objects.equals(this.complete, detailedAdress.complete) &&
+                Objects.equals(this.number, detailedAdress.number) &&
+                Objects.equals(this.wayName, detailedAdress.wayName);
     }
 
     @Override
@@ -151,7 +151,7 @@ public class Address {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class Address {\n");
+        sb.append("class DetailedAdress {\n");
         sb.append("    complete: ").append(toIndentedString(complete)).append("\n");
         sb.append("    number: ").append(toIndentedString(number)).append("\n");
         sb.append("    wayName: ").append(toIndentedString(wayName)).append("\n");

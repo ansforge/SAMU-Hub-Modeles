@@ -22,10 +22,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.hubsante.model.cisu.Access;
-import com.hubsante.model.cisu.Address;
 import com.hubsante.model.cisu.City;
+import com.hubsante.model.cisu.DetailedAdress;
+import com.hubsante.model.cisu.ExternalInfo;
 import com.hubsante.model.cisu.Geometry;
-import com.hubsante.model.cisu.Link;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,17 +41,17 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
         Location.JSON_PROPERTY_LOC_I_D,
         Location.JSON_PROPERTY_LOC_LABEL,
         Location.JSON_PROPERTY_NAME,
-        Location.JSON_PROPERTY_ADDRESS,
+        Location.JSON_PROPERTY_DETAILED_ADRESS,
         Location.JSON_PROPERTY_CITY,
         Location.JSON_PROPERTY_ACCESS,
         Location.JSON_PROPERTY_GEOMETRY,
-        Location.JSON_PROPERTY_LINK,
+        Location.JSON_PROPERTY_EXTERNAL_INFO,
         Location.JSON_PROPERTY_COUNTRY,
         Location.JSON_PROPERTY_FREETEXT
 })
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:43:16.580+02:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
 public class Location {
     public static final String JSON_PROPERTY_LOC_I_D = "locID";
     private String locID;
@@ -62,8 +62,8 @@ public class Location {
     public static final String JSON_PROPERTY_NAME = "name";
     private String name;
 
-    public static final String JSON_PROPERTY_ADDRESS = "address";
-    private Address address;
+    public static final String JSON_PROPERTY_DETAILED_ADRESS = "detailedAdress";
+    private DetailedAdress detailedAdress;
 
     public static final String JSON_PROPERTY_CITY = "city";
     private City city;
@@ -74,26 +74,494 @@ public class Location {
     public static final String JSON_PROPERTY_GEOMETRY = "geometry";
     private Geometry geometry;
 
-    public static final String JSON_PROPERTY_LINK = "link";
-    private List<Link> link;
+    public static final String JSON_PROPERTY_EXTERNAL_INFO = "externalInfo";
+    private List<ExternalInfo> externalInfo;
 
     /**
      * Gets or Sets country
      */
     public enum CountryEnum {
-        FRANCE("France"),
+        AF("AF"),
 
-        ALLEMAGNE("Allemagne"),
+        AX("AX"),
 
-        ESPAGNE("Espagne"),
+        AL("AL"),
 
-        ITALIE("Italie"),
+        DZ("DZ"),
 
-        SUISSE("Suisse"),
+        AS("AS"),
 
-        LUXEMBOURG("Luxembourg"),
+        AD("AD"),
 
-        BELGIQUE("Belgique");
+        AO("AO"),
+
+        AI("AI"),
+
+        AQ("AQ"),
+
+        AG("AG"),
+
+        AR("AR"),
+
+        AM("AM"),
+
+        AW("AW"),
+
+        AU("AU"),
+
+        AT("AT"),
+
+        AZ("AZ"),
+
+        BS("BS"),
+
+        BH("BH"),
+
+        BD("BD"),
+
+        BB("BB"),
+
+        BY("BY"),
+
+        BE("BE"),
+
+        BZ("BZ"),
+
+        BJ("BJ"),
+
+        BM("BM"),
+
+        BT("BT"),
+
+        BO("BO"),
+
+        BA("BA"),
+
+        BW("BW"),
+
+        BV("BV"),
+
+        BR("BR"),
+
+        IO("IO"),
+
+        BN("BN"),
+
+        BG("BG"),
+
+        BF("BF"),
+
+        BI("BI"),
+
+        CV("CV"),
+
+        KH("KH"),
+
+        CM("CM"),
+
+        CA("CA"),
+
+        KY("KY"),
+
+        CF("CF"),
+
+        TD("TD"),
+
+        CL("CL"),
+
+        CN("CN"),
+
+        CX("CX"),
+
+        CC("CC"),
+
+        CO("CO"),
+
+        KM("KM"),
+
+        CG("CG"),
+
+        CK("CK"),
+
+        CR("CR"),
+
+        CI("CI"),
+
+        HR("HR"),
+
+        CU("CU"),
+
+        CW("CW"),
+
+        CY("CY"),
+
+        CZ("CZ"),
+
+        DK("DK"),
+
+        DJ("DJ"),
+
+        DM("DM"),
+
+        DO("DO"),
+
+        EC("EC"),
+
+        EG("EG"),
+
+        SV("SV"),
+
+        GQ("GQ"),
+
+        ER("ER"),
+
+        EE("EE"),
+
+        SZ("SZ"),
+
+        ET("ET"),
+
+        FK("FK"),
+
+        FO("FO"),
+
+        FJ("FJ"),
+
+        FI("FI"),
+
+        FR("FR"),
+
+        GF("GF"),
+
+        PF("PF"),
+
+        TF("TF"),
+
+        GA("GA"),
+
+        GM("GM"),
+
+        GE("GE"),
+
+        DE("DE"),
+
+        GH("GH"),
+
+        GI("GI"),
+
+        GR("GR"),
+
+        GL("GL"),
+
+        GD("GD"),
+
+        GP("GP"),
+
+        GU("GU"),
+
+        GT("GT"),
+
+        GG("GG"),
+
+        GN("GN"),
+
+        GW("GW"),
+
+        GY("GY"),
+
+        HT("HT"),
+
+        HM("HM"),
+
+        VA("VA"),
+
+        HN("HN"),
+
+        HK("HK"),
+
+        HU("HU"),
+
+        IS("IS"),
+
+        IN("IN"),
+
+        ID("ID"),
+
+        IR("IR"),
+
+        IQ("IQ"),
+
+        IE("IE"),
+
+        IM("IM"),
+
+        IL("IL"),
+
+        IT("IT"),
+
+        JM("JM"),
+
+        JP("JP"),
+
+        JE("JE"),
+
+        JO("JO"),
+
+        KZ("KZ"),
+
+        KE("KE"),
+
+        KI("KI"),
+
+        KP("KP"),
+
+        KW("KW"),
+
+        KG("KG"),
+
+        LA("LA"),
+
+        LV("LV"),
+
+        LB("LB"),
+
+        LS("LS"),
+
+        LR("LR"),
+
+        LY("LY"),
+
+        LI("LI"),
+
+        LT("LT"),
+
+        LU("LU"),
+
+        MO("MO"),
+
+        MG("MG"),
+
+        MW("MW"),
+
+        MY("MY"),
+
+        MV("MV"),
+
+        ML("ML"),
+
+        MT("MT"),
+
+        MH("MH"),
+
+        MQ("MQ"),
+
+        MR("MR"),
+
+        MU("MU"),
+
+        YT("YT"),
+
+        MX("MX"),
+
+        FM("FM"),
+
+        MC("MC"),
+
+        MN("MN"),
+
+        ME("ME"),
+
+        MS("MS"),
+
+        MA("MA"),
+
+        MZ("MZ"),
+
+        MM("MM"),
+
+        NR("NR"),
+
+        NP("NP"),
+
+        NL("NL"),
+
+        NC("NC"),
+
+        NZ("NZ"),
+
+        NI("NI"),
+
+        NE("NE"),
+
+        NG("NG"),
+
+        NU("NU"),
+
+        NF("NF"),
+
+        MK("MK"),
+
+        MP("MP"),
+
+        NO("NO"),
+
+        OM("OM"),
+
+        PK("PK"),
+
+        PW("PW"),
+
+        _STATE_OF(" State of"),
+
+        PA("PA"),
+
+        PG("PG"),
+
+        PY("PY"),
+
+        PE("PE"),
+
+        PH("PH"),
+
+        PN("PN"),
+
+        PL("PL"),
+
+        PT("PT"),
+
+        PR("PR"),
+
+        QA("QA"),
+
+        RE("RE"),
+
+        RO("RO"),
+
+        RU("RU"),
+
+        RW("RW"),
+
+        BL("BL"),
+
+        KN("KN"),
+
+        LC("LC"),
+
+        MF("MF"),
+
+        PM("PM"),
+
+        VC("VC"),
+
+        WS("WS"),
+
+        SM("SM"),
+
+        ST("ST"),
+
+        SA("SA"),
+
+        SN("SN"),
+
+        RS("RS"),
+
+        SC("SC"),
+
+        SL("SL"),
+
+        SG("SG"),
+
+        SX("SX"),
+
+        SK("SK"),
+
+        SI("SI"),
+
+        SB("SB"),
+
+        SO("SO"),
+
+        ZA("ZA"),
+
+        GS("GS"),
+
+        SS("SS"),
+
+        ES("ES"),
+
+        LK("LK"),
+
+        SD("SD"),
+
+        SR("SR"),
+
+        SJ("SJ"),
+
+        SE("SE"),
+
+        CH("CH"),
+
+        SY("SY"),
+
+        TJ("TJ"),
+
+        TH("TH"),
+
+        TL("TL"),
+
+        TG("TG"),
+
+        TK("TK"),
+
+        TO("TO"),
+
+        TT("TT"),
+
+        TN("TN"),
+
+        TR("TR"),
+
+        TM("TM"),
+
+        TC("TC"),
+
+        TV("TV"),
+
+        UG("UG"),
+
+        UA("UA"),
+
+        AE("AE"),
+
+        GB("GB"),
+
+        US("US"),
+
+        UM("UM"),
+
+        UY("UY"),
+
+        UZ("UZ"),
+
+        VU("VU"),
+
+        VE("VE"),
+
+        VN("VN"),
+
+        VG("VG"),
+
+        VI("VI"),
+
+        WF("WF"),
+
+        EH("EH"),
+
+        YE("YE"),
+
+        ZM("ZM"),
+
+        ZW("ZW");
 
         private String value;
 
@@ -125,6 +593,53 @@ public class Location {
     public static final String JSON_PROPERTY_COUNTRY = "country";
     private CountryEnum country;
 
+    /**
+     * Champ libre pour compléter les informations de localisation
+     */
+    public enum FreetextEnum {
+        FRANCE("France"),
+
+        ALLEMAGNE("Allemagne"),
+
+        ESPAGNE("Espagne"),
+
+        ITALIE("Italie"),
+
+        SUISSE("Suisse"),
+
+        LUXEMBOURG("Luxembourg"),
+
+        BELGIQUE("Belgique"),
+
+        BR_SIL("Brésil");
+
+        private String value;
+
+        FreetextEnum(String value) {
+            this.value = value;
+        }
+
+        @JsonValue
+        public String getValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @JsonCreator
+        public static FreetextEnum fromValue(String value) {
+            for (FreetextEnum b : FreetextEnum.values()) {
+                if (b.value.equals(value)) {
+                    return b;
+                }
+            }
+            throw new IllegalArgumentException("Unexpected value '" + value + "'");
+        }
+    }
+
     public static final String JSON_PROPERTY_FREETEXT = "freetext";
     private String freetext;
 
@@ -143,7 +658,7 @@ public class Location {
      * @return locID
      **/
     @JsonProperty(JSON_PROPERTY_LOC_I_D)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getLocID() {
         return locID;
@@ -151,7 +666,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_LOC_I_D)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setLocID(String locID) {
         this.locID = locID;
     }
@@ -164,7 +679,7 @@ public class Location {
     }
 
     /**
-     * Correspond à l&#39;étiquette associée à la localisation (plutôt à destination des humains). Elle va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le \&quot;name\&quot; (toponyme) et l&#39;adresse.
+     * Permet d&#39;indiquer des indications auto suffisantes permettant pour un opérationnel d&#39;accéder facilement au lieu avec des indications minimales. Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le \&quot;name\&quot; (toponyme) et l&#39;adresse. Comprend au maximum 255 caractères
      *
      * @return locLabel
      **/
@@ -195,7 +710,7 @@ public class Location {
      * @return name
      **/
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public String getName() {
         return name;
@@ -203,35 +718,35 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_NAME)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setName(String name) {
         this.name = name;
     }
 
 
-    public Location address(Address address) {
+    public Location detailedAdress(DetailedAdress detailedAdress) {
 
-        this.address = address;
+        this.detailedAdress = detailedAdress;
         return this;
     }
 
     /**
-     * Get address
+     * Get detailedAdress
      *
-     * @return address
+     * @return detailedAdress
      **/
-    @JsonProperty(JSON_PROPERTY_ADDRESS)
+    @JsonProperty(JSON_PROPERTY_DETAILED_ADRESS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public Address getAddress() {
-        return address;
+    public DetailedAdress getDetailedAdress() {
+        return detailedAdress;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_ADDRESS)
+    @JsonProperty(JSON_PROPERTY_DETAILED_ADRESS)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setDetailedAdress(DetailedAdress detailedAdress) {
+        this.detailedAdress = detailedAdress;
     }
 
 
@@ -313,44 +828,44 @@ public class Location {
     }
 
 
-    public Location link(List<Link> link) {
+    public Location externalInfo(List<ExternalInfo> externalInfo) {
 
-        this.link = link;
+        this.externalInfo = externalInfo;
         return this;
     }
 
-    public Location addLinkItem(Link linkItem) {
-        if (this.link == null) {
-            this.link = new ArrayList<>();
+    public Location addExternalInfoItem(ExternalInfo externalInfoItem) {
+        if (this.externalInfo == null) {
+            this.externalInfo = new ArrayList<>();
         }
-        this.link.add(linkItem);
+        this.externalInfo.add(externalInfoItem);
         return this;
     }
 
     /**
-     * Get link
+     * Get externalInfo
      *
-     * @return link
+     * @return externalInfo
      **/
-    @JsonProperty(JSON_PROPERTY_LINK)
+    @JsonProperty(JSON_PROPERTY_EXTERNAL_INFO)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public List<Link> getLink() {
-        return link;
+    public List<ExternalInfo> getExternalInfo() {
+        return externalInfo;
     }
 
     @JacksonXmlElementWrapper(useWrapping = false)
 
-    @JsonProperty(JSON_PROPERTY_LINK)
+    @JsonProperty(JSON_PROPERTY_EXTERNAL_INFO)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setLink(List<Link> link) {
-        if (link == null) {
+    public void setExternalInfo(List<ExternalInfo> externalInfo) {
+        if (externalInfo == null) {
             return;
         }
-        if (this.link == null) {
-            this.link = new ArrayList<>();
+        if (this.externalInfo == null) {
+            this.externalInfo = new ArrayList<>();
         }
-        this.link.addAll(link);
+        this.externalInfo.addAll(externalInfo);
     }
 
 
@@ -366,7 +881,7 @@ public class Location {
      * @return country
      **/
     @JsonProperty(JSON_PROPERTY_COUNTRY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
     public CountryEnum getCountry() {
         return country;
@@ -374,7 +889,7 @@ public class Location {
 
 
     @JsonProperty(JSON_PROPERTY_COUNTRY)
-    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setCountry(CountryEnum country) {
         this.country = country;
     }
@@ -417,11 +932,11 @@ public class Location {
         return Objects.equals(this.locID, location.locID) &&
                 Objects.equals(this.locLabel, location.locLabel) &&
                 Objects.equals(this.name, location.name) &&
-                Objects.equals(this.address, location.address) &&
+                Objects.equals(this.detailedAdress, location.detailedAdress) &&
                 Objects.equals(this.city, location.city) &&
                 Objects.equals(this.access, location.access) &&
                 Objects.equals(this.geometry, location.geometry) &&
-                Objects.equals(this.link, location.link) &&
+                Objects.equals(this.externalInfo, location.externalInfo) &&
                 Objects.equals(this.country, location.country) &&
                 Objects.equals(this.freetext, location.freetext);
     }
@@ -431,11 +946,11 @@ public class Location {
         return Objects.hash(locID
                 , locLabel
                 , name
-                , address
+                , detailedAdress
                 , city
                 , access
                 , geometry
-                , link
+                , externalInfo
                 , country
                 , freetext);
     }
@@ -447,11 +962,11 @@ public class Location {
         sb.append("    locID: ").append(toIndentedString(locID)).append("\n");
         sb.append("    locLabel: ").append(toIndentedString(locLabel)).append("\n");
         sb.append("    name: ").append(toIndentedString(name)).append("\n");
-        sb.append("    address: ").append(toIndentedString(address)).append("\n");
+        sb.append("    detailedAdress: ").append(toIndentedString(detailedAdress)).append("\n");
         sb.append("    city: ").append(toIndentedString(city)).append("\n");
         sb.append("    access: ").append(toIndentedString(access)).append("\n");
         sb.append("    geometry: ").append(toIndentedString(geometry)).append("\n");
-        sb.append("    link: ").append(toIndentedString(link)).append("\n");
+        sb.append("    externalInfo: ").append(toIndentedString(externalInfo)).append("\n");
         sb.append("    country: ").append(toIndentedString(country)).append("\n");
         sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
         sb.append("}");

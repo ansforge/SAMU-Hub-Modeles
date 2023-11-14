@@ -1,15 +1,15 @@
 package com.hubsante.model.builders;
 
 import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
 import com.hubsante.model.cisu.Recipient;
 import com.hubsante.model.cisu.Sender;
 
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.List;
 
-public class RC_DE_Builder {
+public class DistributionElementBuilder {
     private String messageId;
     private Sender sender;
     private OffsetDateTime sentAt;
@@ -32,38 +32,38 @@ public class RC_DE_Builder {
     *
     * You can override the sentAt value by providing a custom OffsetDateTime, or an offset from now (in seconds, hours or days)
      */
-    public RC_DE_Builder(@NotNull String messageId, @NotNull String senderId, @NotNull List<Recipient> recipients) {
+    public DistributionElementBuilder(@NotNull String messageId, @NotNull String senderId, @NotNull List<Recipient> recipients) {
         if (messageId == null || senderId == null || recipients == null) {
             throw new IllegalArgumentException("messageId, senderId and recipients cannot be null");
         }
         this.messageId = messageId;
         this.sender = new Sender().name(senderId).URI("hubex:" + senderId);
         this.sentAt = OffsetDateTime.now();
-        this.kind = DistributionElement.KindEnum.REPORT;
-        this.status = DistributionElement.StatusEnum.ACTUAL;
+        this.kind = KindEnum.REPORT;
+        this.status = StatusEnum.ACTUAL;
         this.recipients = recipients;
     }
-    public RC_DE_Builder sender(Sender sender) {
+    public DistributionElementBuilder sender(Sender sender) {
         this.sender = sender;
         return this;
     }
 
-    public RC_DE_Builder sentAt(@NotNull OffsetDateTime sentAt) {
+    public DistributionElementBuilder sentAt(@NotNull OffsetDateTime sentAt) {
         this.sentAt = sentAt;
         return this;
     }
 
-    public RC_DE_Builder kind(DistributionElement.KindEnum kind) {
+    public DistributionElementBuilder kind(KindEnum kind) {
         this.kind = kind;
         return this;
     }
 
-    public RC_DE_Builder status(DistributionElement.StatusEnum status) {
+    public DistributionElementBuilder status(StatusEnum status) {
         this.status = status;
         return this;
     }
 
-    public RC_DE_Builder recipients(List<Recipient> recipients) {
+    public DistributionElementBuilder recipients(List<Recipient> recipients) {
         this.recipients = recipients;
         return this;
     }

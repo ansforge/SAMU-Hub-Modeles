@@ -11,7 +11,7 @@
  */
 
 
-package com.hubsante.model.cisu;
+package com.hubsante.model.emsi;
 
 import java.util.Objects;
 import java.util.Arrays;
@@ -26,39 +26,30 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * Contact
+ * Link
  */
 @JsonPropertyOrder({
-        Contact.JSON_PROPERTY_TYPE,
-        Contact.JSON_PROPERTY_DETAIL
+        Link.JSON_PROPERTY_I_D,
+        Link.JSON_PROPERTY_L_I_N_K_R_O_L_E
 })
-@JsonTypeName("contact")
+@JsonTypeName("link")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
-public class Contact {
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-08T11:29:35.594+01:00[Europe/Paris]")
+public class Link {
+    public static final String JSON_PROPERTY_I_D = "ID";
+    private String ID;
+
     /**
-     * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
+     * Dans le cadre d&#39;une demande de concours, optionnel Valorisé avec le libellé ADDSTO sinon
      */
-    public enum TypeEnum {
-        PSTADD("PSTADD"),
+    public enum LINKROLEEnum {
+        ADDSTO("ADDSTO"),
 
-        EMLADD("EMLADD"),
-
-        IPADD("IPADD"),
-
-        FTPADD("FTPADD"),
-
-        WWWADD("WWWADD"),
-
-        PHNADD("PHNADD"),
-
-        FAXADD("FAXADD"),
-
-        PMRADD("PMRADD");
+        SPRSDS("SPRSDS");
 
         private String value;
 
-        TypeEnum(String value) {
+        LINKROLEEnum(String value) {
             this.value = value;
         }
 
@@ -73,8 +64,8 @@ public class Contact {
         }
 
         @JsonCreator
-        public static TypeEnum fromValue(String value) {
-            for (TypeEnum b : TypeEnum.values()) {
+        public static LINKROLEEnum fromValue(String value) {
+            for (LINKROLEEnum b : LINKROLEEnum.values()) {
                 if (b.value.equals(value)) {
                     return b;
                 }
@@ -83,64 +74,61 @@ public class Contact {
         }
     }
 
-    public static final String JSON_PROPERTY_TYPE = "type";
-    private TypeEnum type;
+    public static final String JSON_PROPERTY_L_I_N_K_R_O_L_E = "LINK_ROLE";
+    private LINKROLEEnum LINK_ROLE;
 
-    public static final String JSON_PROPERTY_DETAIL = "detail";
-    private String detail;
-
-    public Contact() {
+    public Link() {
     }
 
-    public Contact type(TypeEnum type) {
+    public Link ID(String ID) {
 
-        this.type = type;
+        this.ID = ID;
         return this;
     }
 
     /**
-     * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
+     * A renseigner avec l&#39;identifiant local de l&#39;affaire du partenaire requérant
      *
-     * @return type
+     * @return ID
      **/
-    @JsonProperty(JSON_PROPERTY_TYPE)
+    @JsonProperty(JSON_PROPERTY_I_D)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public TypeEnum getType() {
-        return type;
+    public String getID() {
+        return ID;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_TYPE)
+    @JsonProperty(JSON_PROPERTY_I_D)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setType(TypeEnum type) {
-        this.type = type;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
 
-    public Contact detail(String detail) {
+    public Link LINK_ROLE(LINKROLEEnum LINK_ROLE) {
 
-        this.detail = detail;
+        this.LINK_ROLE = LINK_ROLE;
         return this;
     }
 
     /**
-     * Valeur de l&#39;URI utilisée pour contacter le partenaire
+     * Dans le cadre d&#39;une demande de concours, optionnel Valorisé avec le libellé ADDSTO sinon
      *
-     * @return detail
+     * @return LINK_ROLE
      **/
-    @JsonProperty(JSON_PROPERTY_DETAIL)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    @JsonProperty(JSON_PROPERTY_L_I_N_K_R_O_L_E)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public String getDetail() {
-        return detail;
+    public LINKROLEEnum getLINKROLE() {
+        return LINK_ROLE;
     }
 
 
-    @JsonProperty(JSON_PROPERTY_DETAIL)
-    @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setDetail(String detail) {
-        this.detail = detail;
+    @JsonProperty(JSON_PROPERTY_L_I_N_K_R_O_L_E)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setLINKROLE(LINKROLEEnum LINK_ROLE) {
+        this.LINK_ROLE = LINK_ROLE;
     }
 
     @Override
@@ -151,23 +139,23 @@ public class Contact {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Contact contact = (Contact) o;
-        return Objects.equals(this.type, contact.type) &&
-                Objects.equals(this.detail, contact.detail);
+        Link link = (Link) o;
+        return Objects.equals(this.ID, link.ID) &&
+                Objects.equals(this.LINK_ROLE, link.LINK_ROLE);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(type
-                , detail);
+        return Objects.hash(ID
+                , LINK_ROLE);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class Contact {\n");
-        sb.append("    type: ").append(toIndentedString(type)).append("\n");
-        sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
+        sb.append("class Link {\n");
+        sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
+        sb.append("    LINK_ROLE: ").append(toIndentedString(LINK_ROLE)).append("\n");
         sb.append("}");
         return sb.toString();
     }

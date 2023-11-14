@@ -4,7 +4,7 @@ plugins {
 }
 
 group = 'com.hubsante'
-version = '0.2.1-SNAPSHOT'
+version = '0.2.3-SNAPSHOT'
 
 java {
     toolchain {
@@ -17,9 +17,9 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.fasterxml.jackson.core:jackson-databind:2.13.5'
-    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.13.5'
-    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.12.5'
+    implementation 'com.fasterxml.jackson.core:jackson-databind:2.15.2'
+    implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.15.2'
+    implementation 'com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.15.2'
     implementation 'javax.validation:validation-api:2.0.1.Final'
     implementation 'jakarta.annotation:jakarta.annotation-api:1.3.5'
     implementation 'com.networknt:json-schema-validator:1.0.87'

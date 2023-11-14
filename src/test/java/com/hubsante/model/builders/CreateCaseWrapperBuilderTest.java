@@ -2,8 +2,9 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.CreateCaseMessage;
 import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
+import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.cisu.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -17,7 +18,7 @@ import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
-public class RC_EDA_BuilderTest {
+public class CreateCaseWrapperBuilderTest {
     private final String MESSAGE_ID = "id-12345";
     private final String SENDER_ID = "sender-x";
     private final String RECIPIENT_ID = "recipient-y";
@@ -28,13 +29,13 @@ public class RC_EDA_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
+        DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
                 .build();
-        CreateCaseMessage createCaseMessage = new RC_EDA_Builder(distributionElement, getCreateCaseMock())
+        CreateCaseWrapper createCaseWrapper = new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock())
                 .build();
 
-        assertEquals(MESSAGE_ID, createCaseMessage.getMessageId());
-        assertEquals(getCreateCaseMock(), createCaseMessage.getCreateCase());
+        assertEquals(MESSAGE_ID, createCaseWrapper.getMessageId());
+        assertEquals(getCreateCaseMock(), createCaseWrapper.getCreateCase());
     }
 
     @Test
@@ -43,15 +44,15 @@ public class RC_EDA_BuilderTest {
         Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
-        DistributionElement distributionElement = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, recipientList)
-                .kind(DistributionElement.KindEnum.ACK)
+        DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
+                .kind(KindEnum.ACK)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new RC_EDA_Builder(distributionElement, getCreateCaseMock()).build());
+        assertThrows(IllegalArgumentException.class, () -> new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock()).build());
     }
 
     private CreateCase getCreateCaseMock() throws IOException {
         String json = getMessageString("RC-EDA");
-        return ((CreateCaseMessage) converter.deserializeJsonEDXL(json).getFirstContentMessage()).getCreateCase();
+        return ((CreateCaseWrapper) converter.deserializeJsonEDXL(json).getFirstContentMessage()).getCreateCase();
     }
 }

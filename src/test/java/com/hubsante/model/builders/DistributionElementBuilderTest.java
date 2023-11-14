@@ -1,8 +1,8 @@
 package com.hubsante.model.builders;
 
 import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.cisu.DistributionElement.*;
 import com.hubsante.model.cisu.Recipient;
-import com.hubsante.model.cisu.Sender;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RC_DE_BuilderTest {
+public class DistributionElementBuilderTest {
     private final static String MESSAGE_ID = "id-12345";
     private final String SENDER_ID = "sender-x";
     private final List<Recipient> RECIPIENT_LIST = Stream.of(new Recipient().name("recipient-y").URI("hubex:recipient-y")).collect(Collectors.toList());
@@ -23,21 +23,21 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("Should build a DistributionElement")
     public void shouldBuildRC_DEwithDefaults() {
-        DistributionElement actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
                 .build();
 
         assertEquals(MESSAGE_ID, actual.getMessageId());
         assertEquals(SENDER_ID, actual.getSender().getName());
         assertNotNull(actual.getSentAt());
-        assertEquals(DistributionElement.KindEnum.REPORT, actual.getKind());
-        assertEquals(DistributionElement.StatusEnum.ACTUAL, actual.getStatus());
+        assertEquals(KindEnum.REPORT, actual.getKind());
+        assertEquals(StatusEnum.ACTUAL, actual.getStatus());
         assertEquals(1, actual.getRecipients().size());
     }
 
     @Test
     @DisplayName("should not build a RC-DE without at least one recipient")
     public void shouldNotBuildRC_DEwithoutRecipient() {
-        RC_DE_Builder builder = new RC_DE_Builder(MESSAGE_ID, "samu-x", new ArrayList<>());
+        DistributionElementBuilder builder = new DistributionElementBuilder(MESSAGE_ID, "samu-x", new ArrayList<>());
 
         assertThrows(IllegalArgumentException.class, builder::build);
     }
@@ -46,7 +46,7 @@ public class RC_DE_BuilderTest {
     @DisplayName("should build a RC-DE with custom expedition date")
     public void shouldBuildRC_DEwithCustomExpeditionDate() {
         OffsetDateTime customDateTime = OffsetDateTime.now().plusHours(2);
-        DistributionElement actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID,RECIPIENT_LIST)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID,RECIPIENT_LIST)
                 .sentAt(customDateTime)
                 .build();
         assertEquals(customDateTime, actual.getSentAt());
@@ -55,7 +55,7 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("should not build a RC-DE with invalid expedition date")
     public void shouldNotBuildRC_DEwithInvalidExpeditionDate() {
-        RC_DE_Builder builder = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+        DistributionElementBuilder builder = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
                 .sentAt(null);
 
         assertThrows(IllegalArgumentException.class, builder::build);
@@ -64,21 +64,21 @@ public class RC_DE_BuilderTest {
     @Test
     @DisplayName("should build a RC-DE with ack Kind")
     public void shouldBuildRC_DEwithAckKind() {
-        DistributionElement actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
-                .kind(DistributionElement.KindEnum.ACK)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+                .kind(KindEnum.ACK)
                 .build();
 
-        assertEquals(DistributionElement.KindEnum.ACK, actual.getKind());
+        assertEquals(KindEnum.ACK, actual.getKind());
     }
 
     @Test
     @DisplayName("should build a RC-DE with error Kind")
     public void shouldBuildRC_DEwithCancelKind() {
-        DistributionElement actual = new RC_DE_Builder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
-                .kind(DistributionElement.KindEnum.ERROR)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
+                .kind(KindEnum.ERROR)
                 .build();
 
-        assertEquals(DistributionElement.KindEnum.ERROR, actual.getKind());
+        assertEquals(KindEnum.ERROR, actual.getKind());
     }
 
     @Test
@@ -87,7 +87,7 @@ public class RC_DE_BuilderTest {
         List<Recipient> providedRecipientList = new ArrayList<>();
         providedRecipientList.add(new Recipient().name("samu-z").URI("hubex:samu-z"));
         providedRecipientList.add(new Recipient().name("samu-y").URI("hubex:samu-y"));
-        DistributionElement actual = new RC_DE_Builder(MESSAGE_ID, "samu-x", providedRecipientList)
+        DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, "samu-x", providedRecipientList)
                 .build();
 
         assertEquals(2, actual.getRecipients().size());

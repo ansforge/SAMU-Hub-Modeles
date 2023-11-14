@@ -14,43 +14,28 @@
 package com.hubsante.model.cisu;
 
 import java.util.Objects;
-import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.DistributionElement;
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * CreateCaseMessage
+ * CreateCaseWrapper
  */
 @JsonPropertyOrder({
-        DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-        DistributionElement.JSON_PROPERTY_SENDER,
-        DistributionElement.JSON_PROPERTY_SENT_AT,
-        DistributionElement.JSON_PROPERTY_KIND,
-        DistributionElement.JSON_PROPERTY_STATUS,
-        DistributionElement.JSON_PROPERTY_RECIPIENTS,
-        CreateCaseMessage.JSON_PROPERTY_CREATE_CASE
+        CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-09-15T16:46:27.551+02:00[Europe/Paris]")
-public class CreateCaseMessage extends DistributionElement {
-    @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+public class CreateCaseWrapper extends DistributionElement {
     public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
     private CreateCase createCase;
 
-    public CreateCaseMessage() {
+    public CreateCaseWrapper() {
     }
 
-    public CreateCaseMessage createCase(CreateCase createCase) {
+    public CreateCaseWrapper createCase(CreateCase createCase) {
 
         this.createCase = createCase;
         return this;
@@ -83,8 +68,8 @@ public class CreateCaseMessage extends DistributionElement {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        CreateCaseMessage createCaseMessage = (CreateCaseMessage) o;
-        return Objects.equals(this.createCase, createCaseMessage.createCase);
+        CreateCaseWrapper CreateCaseWrapper = (CreateCaseWrapper) o;
+        return Objects.equals(this.createCase, CreateCaseWrapper.createCase);
     }
 
     @Override
@@ -95,7 +80,7 @@ public class CreateCaseMessage extends DistributionElement {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class CreateCaseMessage {\n");
+        sb.append("class CreateCaseWrapper {\n");
         sb.append("    createCase: ").append(toIndentedString(createCase)).append("\n");
         sb.append("}");
         return sb.toString();
