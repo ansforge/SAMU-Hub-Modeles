@@ -56,6 +56,8 @@ publishing {
         mavenJava(MavenPublication) {
             from components.java
 
+            // required to match Maven Central requirements
+            // see https://central.sonatype.org/publish/requirements
             pom {
                 name = 'models'
                 description = 'Models used by SAMU-Hub-Sante'
