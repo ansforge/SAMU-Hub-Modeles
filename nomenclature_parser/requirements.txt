@@ -1,0 +1,12 @@
+pandas
+json
+yaml
+warnings
+openpyxl
+pyyaml
+jsonpath-ng
+python-docx
+argparse
+xhtml2pdf
+docs
+datetime

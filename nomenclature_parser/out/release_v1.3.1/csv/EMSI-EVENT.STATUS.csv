@@ -1,0 +1,5 @@
+code;label_n1;description;commentaire
+NST;Intervention non démarré;Des alertes ont été reçues pour cette affaire mais aucune action (engagements de ressource, conseils etc) n’est encore déclenchée;
+IPR;En cours;L’affaire est en cours de résolution.;
+STOP;En pause;L’affaire est en pause pour le partenaire. Peut correspondre au cas d’une mise en veille.;
+COM;Complétée;"La situation d’urgence est sous maîtrise du partenaire qui considère qu’il n’y a plus de besoin d’échanges sur cette affaire. Lorsqu’un partenaire clôt une affaire, il renvoie un code ""COM"" à son partenaire.";
