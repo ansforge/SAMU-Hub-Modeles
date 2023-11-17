@@ -55,36 +55,6 @@ publishing {
     publications {
         mavenJava(MavenPublication) {
             from components.java
-
-            // required to match Maven Central requirements
-            // see https://central.sonatype.org/publish/requirements
-            pom {
-                name = 'models'
-                description = 'Models used by SAMU-Hub-Sante'
-                url = 'https://hub.esante.gouv.fr'
-                licenses {
-                    license {
-                        name = 'Apache-2.0'
-                        url = 'https://www.apache.org/licenses/LICENSE-2.0.txt'
-                    }
-                }
-                developers {
-                    developer {
-                        id = 'romainfd'
-                        name = 'Romain Fouilland'
-                        email = 'romain.fouilland@esante.gouv.fr'
-                    }
-                    developer {
-                        id = 'bbonche'
-                        name = 'Benjamin Bonche'
-                        email = 'benjamin.bonche.ext@esante.gouv.fr'
-                    }
-                }
-                scm {
-                    connection = 'scm:git:git://github.com/ansforge/SAMU-Hub-Sante.git'
-                    url = 'https://github.com/ansforge/SAMU-Hub-Sante'
-                }
-            }
         }
     }
     repositories {
