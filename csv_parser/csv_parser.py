@@ -7,7 +7,7 @@ import argparse
 from datetime import date
 import warnings
 import uml_generator
-
+from pathlib import Path
 
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
@@ -35,6 +35,7 @@ RUN_DOCX_OUTPUT_EXAMPLES = False
 
 DATA_DEPTH = 6  # nombre de niveaux de données
 
+
 def get_params_from_sheet(sheet):
     """ Automatically get the number of rows and columns to use for this sheet. """
     full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
@@ -57,10 +58,14 @@ def get_params_from_sheet(sheet):
         'rows': rows
     }
 
+
 params = get_params_from_sheet(args.sheet)
 MODEL_NAME = params['modelName']
+WRAPPER_NAME = MODEL_NAME[0].lower() + MODEL_NAME[1:]
 NB_ROWS = params['rows']
 NB_COLS = params['cols']
+
+Path('out/' + args.sheet).mkdir(parents=True, exist_ok=True)
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
@@ -155,6 +160,7 @@ rootObject = {
     'id': '1',
     'level_shift': 0,
     'name': MODEL_NAME,
+    'true_type': WRAPPER_NAME,
     'Objet': 'X',
     'children': children['1']
 }
@@ -191,15 +197,28 @@ with open(f'out/{args.sheet}/example.json', 'w') as outfile:
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
-    '$id': 'http://json-schema.org/draft-07/schema#',
+    '$id': 'classpath:/json-schema/schema#',
     'x-id': 'schema.json#',  # required by JSV to find the schema file locally
     'version': args.version,
     'example': 'example.json#',
     'type': 'object',
     'title': MODEL_NAME,
-    'required': [],
-    'properties': {},
-    'definitions': {}
+    'required': [WRAPPER_NAME],
+    'properties': {
+        WRAPPER_NAME: {
+            "$ref": f"#/definitions/{WRAPPER_NAME}"
+        }
+    },
+    'definitions': {
+        WRAPPER_NAME: {
+            'type': 'object',
+            'title': WRAPPER_NAME,
+            'x-display': 'expansion-panels',
+            'required': [],
+            'properties': {},
+            'example': '#'
+        }
+    }
 }
 
 
@@ -361,7 +380,7 @@ def build_json_schema(elem):
     if elem['Objet'] == 'X':
         # Root element: write it on the top level of the schema and not in definitions
         # Lower objects: in definitions -> update the type in definitions by traversing the direct children
-        fill_object_definition(elem, root=elem['level_shift'] == 0)
+        fill_object_definition(elem)  # , root=elem['level_shift'] == 0)
 
 
 def DFS(root, use_elem):
@@ -373,7 +392,7 @@ def DFS(root, use_elem):
 
 print('Generating JSON schema...')
 DFS(rootObject, build_json_schema)
-with open(f'out/{args.sheet}/schema.json', 'w') as outfile:
+with open(f'out/{args.sheet}/{args.sheet}_schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -397,17 +416,22 @@ def build_asyncapi_schema():
         asyncapi_schema[elem_name] = definition
     return asyncapi_schema
 
-
-print('Generating AsyncAPI schema...')
-with open('template.asyncapi.yaml') as f:
+print('Generating OpenAPI schema...')
+with open('template.openapi.yaml') as f:
     full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
 full_yaml['components']['schemas'] = {
     **full_yaml['components']['schemas'],
     **build_asyncapi_schema()
 }
-with open(f'out/{args.sheet}/hubsante.asyncapi.yaml', 'w') as file:
-    documents = yaml.dump(full_yaml, file, sort_keys=False)
-print('AsyncAPI schema generated.')
+
+openapi_output_path = 'out/' + args.sheet + '/' + WRAPPER_NAME + '.openapi.yaml'
+with open(f'out/{args.sheet}/{WRAPPER_NAME}.openapi.yaml', 'w') as file:
+    documents = yaml.dump(full_yaml, sort_keys=False)
+    documents = documents.replace('placeholder', WRAPPER_NAME)
+    documents = documents.replace('#/definitions/', "#/components/schemas/")
+    file.write(documents)
+
+print('OpenAPI schema generated.')
 
 print('Generating UML diagrams...')
 uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
@@ -453,19 +477,22 @@ def def_to_table(name, definition, title='', doc=None, style='Medium Shading 1 A
 
     # Iterate through each property in the JSON schema
     for field, properties in definition['properties'].items():
-        field_data = get_excel_line(name, field)
-        row_cells = table.add_row().cells
-        row_cells[0].text = field
-        row_cells[1].text = field_data['full_name']
-        typeInfo = field_data['true_type']
-        if field_data['Objet'] == 'X':
-            typeInfo = 'cf. type ' + typeInfo
-        if field_data['Détails de format'] != '':
-            typeInfo += "\n(" + field_data['Détails de format'] + ")"
-        row_cells[2].text = typeInfo
-        row_cells[3].text = field_data['Cardinalité']
-        row_cells[4].text = field_data['Description']
-        row_cells[5].text = str(field_data['Exemples'])
+        try:
+            field_data = get_excel_line(name, field)
+            row_cells = table.add_row().cells
+            row_cells[0].text = field
+            row_cells[1].text = field_data['full_name']
+            typeInfo = field_data['true_type']
+            if field_data['Objet'] == 'X':
+                typeInfo = 'cf. type ' + typeInfo
+            if field_data['Détails de format'] != '':
+                typeInfo += "\n(" + field_data['Détails de format'] + ")"
+            row_cells[2].text = typeInfo
+            row_cells[3].text = field_data['Cardinalité']
+            row_cells[4].text = field_data['Description']
+            row_cells[5].text = str(field_data['Exemples'])
+        except Exception:
+            print(f"Couldn't find element ${name} in Excel")
 
     # Specify the column widths (has to be on cells for Word) | Ref.: https://stackoverflow.com/a/43053996
     table.autofit = False

@@ -167,12 +167,10 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCase'
-        - $ref: '#/components/schemas/Reference'
+        - $ref: '#/components/schemas/ReferenceWrapper'
     EmbeddedXMLContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCase'
-        - $ref: '#/components/schemas/Reference'
+        - $ref: '#/components/schemas/ReferenceWrapper'
     Descriptor:
       properties:
         language:
@@ -219,9 +217,162 @@ components:
         - Test
         - Unknown
         - NoAppropriateDefault
+    DistributionElement:
+      type: object
+      title: DistributionElement
+      required:
+        - messageId
+        - sender
+        - sentAt
+        - kind
+        - status
+        - recipients
+      properties:
+        messageId:
+          type: string
+          title: Identifiant du message
+          x-cols: 6
+          example: example.json#/messageId
+          description: "Identifiant technique permettant d'identifier le message envoy\xE9\
+            . Cet identifiant est utilis\xE9 par NexSIS pour assurer le routage des\
+            \ messages\nPr\xE9conisation : r\xE9employer le contenu de la balise <distributionId>\
+            \ de l'enveloppe EDXL (cf. DST)"
+          examples:
+            - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        sender:
+          $ref: '#/components/schemas/sender'
+        sentAt:
+          type: string
+          title: Horodatage envoi message
+          x-cols: 6
+          example: example.json#/sentAt
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
+            \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
+            \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre\
+            \ repr\xE9sent\xE9 par '-00:00'"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+            - None
+        kind:
+          type: string
+          title: Type de message
+          x-cols: 6
+          example: example.json#/kind
+          description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
+            DST)
+          enum:
+            - Report
+            - Update
+            - Cancel
+            - Ack
+            - Error
+          examples:
+            - ALERT
+        status:
+          type: string
+          title: Statut du message
+          x-cols: 6
+          example: example.json#/status
+          description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
+            DST)
+          enum:
+            - Actual
+            - Exercise
+            - System
+          examples:
+            - ACTUAL
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipient'
+          minItems: 1
+    sender:
+      type: object
+      title: "Syst\xE8me \xE9metteur"
+      x-display: expansion-panels
+      required:
+        - name
+        - URI
+      properties:
+        name:
+          type: string
+          title: "Nom du syst\xE8me emetteur"
+          x-cols: 6
+          example: example.json#/sender/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {nom solution LRM}-{cl\xE9 de routage}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+            - sga-nexsis
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-cols: 6
+          example: example.json#/sender/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : {nom \xE9diteur}:{sender:name}\n\
+            => Pour NexSIS : sge:{sender:name}"
+          examples:
+            - sge:sga-nexsis
+      example: example.json#/sender
+      examples:
+        - name: sga-nexsis
+          URI: sge:sga-nexsis
+    recipient:
+      type: object
+      title: "Syst\xE8me destinataire"
+      x-display: expansion-panels
+      required:
+        - name
+        - URI
+      properties:
+        name:
+          type: string
+          title: "Identifiant technique du syst\xE8me destinataire"
+          x-cols: 6
+          example: example.json#/recipients/recipient/0/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+            - samu-77
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-cols: 6
+          example: example.json#/recipients/recipient/0/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n\
+            => Pour NexSIS : sge:{recipient:name}"
+          examples:
+            - sge:samu-77
+      example: example.json#/recipients/recipient/0
+      examples:
+        - name: samu-77
+          URI: sge:samu-77
+    ReferenceWrapper:
+      type: object
+      title: Wrapper pour le message de r\xE9f\xE9rence
+      required:
+        - Reference
+      allOf:
+        - $ref: '#/components/schemas/DistributionElement'
+      properties:
+        Reference:
+          $ref: '#/components/schemas/Reference'
     Reference:
       properties:
         distributionID:
           type: string
       required:
         - distributionID
+
+

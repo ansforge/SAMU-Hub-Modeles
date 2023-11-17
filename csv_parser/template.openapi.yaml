@@ -1,0 +1,11 @@
+openapi: '3.0.0'
+
+components:
+  schemas:
+    placeholderWrapper:
+      type: object
+      required:
+        - placeholder
+      properties:
+        placeholder:
+            $ref: '#/components/schemas/placeholder'
