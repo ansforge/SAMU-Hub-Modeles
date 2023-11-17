@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'maven-publish'
+    id 'com.github.hierynomus.license' version '0.16.1'
 }
 
 group = 'com.hubsante'
@@ -36,6 +37,20 @@ tasks.named('test') {
     useJUnitPlatform()
 }
 
+license {
+    header = file('LICENSE_HEADER.txt')
+    strictCheck = true
+
+    ext {
+        company = "Agence du Numerique en Sante (ANS)"
+        year = licenseYear()
+    }
+
+    mapping 'java', 'JAVADOC_STYLE'
+    include "**/*.java"
+    exclude "**/test/**"
+}
+
 publishing {
     publications {
         mavenJava(MavenPublication) {
@@ -52,4 +67,17 @@ publishing {
             }
         }
     }
+}
+
+static def licenseYear() {
+    def currentYear = new Date().format('yyyy')
+    def licenseYear
+
+    if (currentYear != "2023") {
+        licenseYear = "2023-" + currentYear
+    } else {
+        licenseYear = "2023"
+
+    }
+    return licenseYear
 }
