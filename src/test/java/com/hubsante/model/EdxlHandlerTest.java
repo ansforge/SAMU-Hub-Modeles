@@ -2,6 +2,7 @@ package com.hubsante.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class EdxlHandlerTest {
@@ -90,6 +90,17 @@ public class EdxlHandlerTest {
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));
+    }
+
+    @Test
+    @DisplayName("should be able to deserialize JSON with invalid content but valid envelope")
+    public void deserializeJsonWithInvalidContent() throws IOException, ValidationException {
+        Validator validator = new Validator();
+        String json = getMessageString("RC-EDA", false, false);
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, "EDXL-DE-full_schema.json") );
+        assertDoesNotThrow(() -> validator.validateJSON(json, "EDXL-DE-envelope-only_schema.json"));
+        EdxlMessage message = converter.deserializeJsonEDXL(json);
+        assertEquals(1, message.getContent().size());
     }
 
     private void endToEndDeserializationCheck(String input, boolean isXML) throws JsonProcessingException {
