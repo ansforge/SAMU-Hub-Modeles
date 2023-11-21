@@ -154,7 +154,7 @@ def run(model, obj, version=date.today().strftime("%y.%m.%d")):
 
     # warning, if folder out/model empty, causes failure
     print("Loading schema.json from " + os.path.join("out", model) + "...")
-    with open(os.path.join("out", model, "schema.json"), 'r') as file:
+    with open(os.path.join("out", model, f"{model}.schema.json"), 'r') as file:
         json_in = json.load(file)
         print("schema.json loaded.")
         print("Parsing schema.json ...")

@@ -98,7 +98,7 @@ strict digraph {
                 <TD><B>coord</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet coord</I><BR/>lat <I>number</I> : [1..1]<BR/>lon <I>number</I> : [1..1]<BR/>height <I>number</I> : [0..1]<BR/>heading <I>number</I> : [0..1]<BR/>speed <I>number</I> : [0..1]<BR/>precision <I>string</I> : [1..1]</TD>
+                <TD><I>objet coord</I></TD>
                 </TR>
                 </TABLE>>]
 	coord -> point [constraint=true headlabel=1 taillabel=1]
@@ -224,7 +224,7 @@ strict digraph {
                 <TD><B>coord</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet coord</I><BR/>lat <I>number</I> : [1..1]<BR/>lon <I>number</I> : [1..1]<BR/>height <I>number</I> : [0..1]<BR/>heading <I>number</I> : [0..1]<BR/>speed <I>number</I> : [0..1]<BR/>precision <I>string</I> : [1..1]</TD>
+                <TD><I>objet coord</I></TD>
                 </TR>
                 </TABLE>>]
 	coord -> point [constraint=true headlabel=1 taillabel=1]

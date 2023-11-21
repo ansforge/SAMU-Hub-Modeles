@@ -1,5 +1,5 @@
 ,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
-0,1,Identifiant affaire/dossier,,,,,,"Identifiant technique de l'affaire et partagé entre tous les intervenants.
+0,1,Identifiant affaire,,,,,,"Identifiant technique de l'affaire et partagé entre tous les intervenants.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par les systèmes du partenaire récepteur de la primo-demande de secours et contient une clé conventionnelle permettant d'identifier la source.
 Valorisation :
 {cleConventionnelle}:{cleUnique}
@@ -8,10 +8,10 @@ cleUnique est une chaîne de caractère (string) comprise entre 4 et 22 caractè
 1,2,Identifiant local de l'affaire,,,,,,"Valoriser avec l'identifiant de l'affaire dans le SI de l'émetteur du message
 Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS
 Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caractères de l'identifiant local de leur partenaire.",CA126B445579GD4A67AV,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X
-2,3,Date Heure de création de l'affaire/dossier,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF,X,X
+2,3,Date Heure de création de l'affaire,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF,X,X
 3,4,Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
 Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,,X,X
-4,5,Qualification de l'affaire/dossier,,,,,,Permet de qualifier l'affaire en générale. La qualification est issue d'une interprétation métier des alertes reçues.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X
+4,5,Qualification de l'affaire,,,,,,Permet de qualifier l'affaire en générale. La qualification est issue d'une interprétation métier des alertes reçues.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X
 5,6,,Nature de fait,,,,,Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,nomenclature,X,,X,X
 6,7,,,Code,,,,A valoriser avec un code la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,X,NOMENCLATURE : CISU-Code_Nature_de_fait,X,X
 7,8,,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
@@ -21,7 +21,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 10,11,,"Risque, menace et sensibilité",# Voir whatsHappen (type nomenclature),,,,"Décrit les risques, menaces et sensibilités (RMS). Référentiel : nomenclature CISU.",,riskThreat,,,,,,1.0,0..n,X,nomenclature,X,"Voir nomenclature CISU Risque, menace et sensibilité",X,X
 11,12,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste (MR). Référentiel : nomenclature CISU.,,healthMotive,,,,,,1.0,0..1,X,nomenclature,X,Voir nomenclature CISU Motif de recours médico-secouriste,X,X
 12,13,,Patients/Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
-13,14,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
+13,14,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN (voir Nomenclature CISU XX)",X,X
 14,15,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, PREGNANT, SENIOR (voir Nomenclature CISU XX)",X,X
 15,16,,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,,X,X
 16,17,Localisation de l'affaire,,,,,,Concerne bien le dossier de régulation pour le périmetre 15-15,,eventLocation,location,,,,,,1..1,X,location,,,X,X
@@ -29,7 +29,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 18,19,,Résumé de la localisation,,,,,"Permet d'indiquer des indications auto suffisantes permettant pour un opérationnel d'accéder facilement au lieu avec des indications minimales.
 Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
 Comprend au maximum 255 caractères","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",locLabel,,,,,,,0..1,,string,,,X,X
-19,20,,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, lac, forêt, nom de quartier (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,1..1,,string,,,X,X
+19,20,,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, lieu-dit, lac, forêt, nom de quartier (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,1..1,,string,,,X,X
 20,21,,Détails de l'adresse,,,,,,,,detailedAdress,,,,,,0..1,X,detailedAdress,,,X,X
 21,22,,,"Numéro, type et nom de voie",,,,"Numéro, type et nom de la voie. 
 Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
@@ -186,4 +186,4 @@ Dans le cadre une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,
 127,128,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
 128,129,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
 129,130,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-130,131,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
+130,131,Description de l'affaire,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X

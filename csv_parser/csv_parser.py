@@ -60,8 +60,9 @@ def get_params_from_sheet(sheet):
 
 
 params = get_params_from_sheet(args.sheet)
-MODEL_NAME = params['modelName']
-WRAPPER_NAME = MODEL_NAME[0].lower() + MODEL_NAME[1:]
+MODEL_NAME = params['modelName']  # CreateCase
+MODEL_TYPE = MODEL_NAME[0].lower() + MODEL_NAME[1:]  # createCase
+WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
 NB_ROWS = params['rows']
 NB_COLS = params['cols']
 
@@ -69,7 +70,7 @@ Path('out/' + args.sheet).mkdir(parents=True, exist_ok=True)
 
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name=args.sheet, skiprows=7, nrows=NB_ROWS)
+df = pd.read_excel('model.xlsx', sheet_name=args.sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
 # Dropping useless columns
 df = df.iloc[:, :NB_COLS]
 # Storing input data in a file to track versions
@@ -78,6 +79,25 @@ df.to_csv(f'out/{args.sheet}/input.csv')
 df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
+if MODEL_NAME != "RC-DE":
+    # Adding the wrapper
+    # - Moving all levels one level down
+    df = df.rename(columns={f"Donnée (Niveau {i})": f"Donnée (Niveau {i+1})" for i in range(1, DATA_DEPTH + 1)})
+    DATA_DEPTH += 1
+    # - Adding the wrapper line
+    df.insert(1, "Donnée (Niveau 1)", None)
+    df = pd.concat([
+        pd.DataFrame({
+            'ID': -1,
+            'Description': f"Object {MODEL_NAME}",
+            'Nouvelle balise': MODEL_TYPE,
+            'Cardinalité': '1..1',
+            'Objet': 'X',
+            'Format (ou type)': MODEL_TYPE,
+            'Donnée (Niveau 1)': f"Objet {MODEL_NAME}"
+        }, index=[-1]),
+        df
+    ])
 # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
 df['name'] = df['Balise NexSIS']
 df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
@@ -116,7 +136,7 @@ def get_true_type(row):
 
 def get_parent_type(row):
     if row['level_shift'] == 1:
-        return MODEL_NAME
+        return WRAPPER_NAME
     return df.loc[row['parent']]['true_type']
 
 
@@ -159,8 +179,7 @@ for i in range(5, 0, -1):
 rootObject = {
     'id': '1',
     'level_shift': 0,
-    'name': MODEL_NAME,
-    'true_type': WRAPPER_NAME,
+    'name': WRAPPER_NAME,
     'Objet': 'X',
     'children': children['1']
 }
@@ -198,27 +217,14 @@ with open(f'out/{args.sheet}/example.json', 'w') as outfile:
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     '$id': 'classpath:/json-schema/schema#',
-    'x-id': 'schema.json#',  # required by JSV to find the schema file locally
+    'x-id': f'{args.sheet}.schema.json#',  # required by JSV to find the schema file locally
     'version': args.version,
     'example': 'example.json#',
     'type': 'object',
     'title': MODEL_NAME,
-    'required': [WRAPPER_NAME],
-    'properties': {
-        WRAPPER_NAME: {
-            "$ref": f"#/definitions/{WRAPPER_NAME}"
-        }
-    },
-    'definitions': {
-        WRAPPER_NAME: {
-            'type': 'object',
-            'title': WRAPPER_NAME,
-            'x-display': 'expansion-panels',
-            'required': [],
-            'properties': {},
-            'example': '#'
-        }
-    }
+    'required': [],
+    'properties': {},
+    'definitions': {}
 }
 
 
@@ -380,7 +386,7 @@ def build_json_schema(elem):
     if elem['Objet'] == 'X':
         # Root element: write it on the top level of the schema and not in definitions
         # Lower objects: in definitions -> update the type in definitions by traversing the direct children
-        fill_object_definition(elem)  # , root=elem['level_shift'] == 0)
+        fill_object_definition(elem, root=elem['level_shift'] == 0)
 
 
 def DFS(root, use_elem):
@@ -392,7 +398,7 @@ def DFS(root, use_elem):
 
 print('Generating JSON schema...')
 DFS(rootObject, build_json_schema)
-with open(f'out/{args.sheet}/{args.sheet}_schema.json', 'w') as outfile:
+with open(f'out/{args.sheet}/{args.sheet}.schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -407,7 +413,7 @@ def build_asyncapi_schema():
         '$schema', 'definitions', 'version', 'id'
     ]}
     definitions = {
-        **{MODEL_NAME: root_definition},
+        **{WRAPPER_NAME: root_definition},
         **definitions
     }
     # Simply collect all objects (and root properties)
@@ -415,6 +421,7 @@ def build_asyncapi_schema():
         get_examples_with_json_example(definition)
         asyncapi_schema[elem_name] = definition
     return asyncapi_schema
+
 
 print('Generating OpenAPI schema...')
 with open('template.openapi.yaml') as f:
@@ -424,10 +431,8 @@ full_yaml['components']['schemas'] = {
     **build_asyncapi_schema()
 }
 
-openapi_output_path = 'out/' + args.sheet + '/' + WRAPPER_NAME + '.openapi.yaml'
-with open(f'out/{args.sheet}/{WRAPPER_NAME}.openapi.yaml', 'w') as file:
+with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
-    documents = documents.replace('placeholder', WRAPPER_NAME)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
     file.write(documents)
 print('OpenAPI schema generated.')
@@ -476,22 +481,19 @@ def def_to_table(name, definition, title='', doc=None, style='Medium Shading 1 A
 
     # Iterate through each property in the JSON schema
     for field, properties in definition['properties'].items():
-        try:
-            field_data = get_excel_line(name, field)
-            row_cells = table.add_row().cells
-            row_cells[0].text = field
-            row_cells[1].text = field_data['full_name']
-            typeInfo = field_data['true_type']
-            if field_data['Objet'] == 'X':
-                typeInfo = 'cf. type ' + typeInfo
-            if field_data['Détails de format'] != '':
-                typeInfo += "\n(" + field_data['Détails de format'] + ")"
-            row_cells[2].text = typeInfo
-            row_cells[3].text = field_data['Cardinalité']
-            row_cells[4].text = field_data['Description']
-            row_cells[5].text = str(field_data['Exemples'])
-        except Exception:
-            print(f"Couldn't find element ${name} in Excel")
+        field_data = get_excel_line(name, field)
+        row_cells = table.add_row().cells
+        row_cells[0].text = field
+        row_cells[1].text = field_data['full_name']
+        typeInfo = field_data['true_type']
+        if field_data['Objet'] == 'X':
+            typeInfo = 'cf. type ' + typeInfo
+        if field_data['Détails de format'] != '':
+            typeInfo += "\n(" + field_data['Détails de format'] + ")"
+        row_cells[2].text = typeInfo
+        row_cells[3].text = field_data['Cardinalité']
+        row_cells[4].text = field_data['Description']
+        row_cells[5].text = str(field_data['Exemples'])
 
     # Specify the column widths (has to be on cells for Word) | Ref.: https://stackoverflow.com/a/43053996
     table.autofit = False
@@ -511,7 +513,7 @@ section.orientation = docx.enum.section.WD_ORIENT.LANDSCAPE
 section.page_width = new_width
 section.page_height = new_height
 # Json Schema rootObject makes the object table
-def_to_table(MODEL_NAME, json_schema, title=f"Objet {MODEL_NAME}", doc=doc)
+def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAME})", doc=doc)
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
