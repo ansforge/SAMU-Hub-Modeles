@@ -430,7 +430,6 @@ with open(f'out/{args.sheet}/{WRAPPER_NAME}.openapi.yaml', 'w') as file:
     documents = documents.replace('placeholder', WRAPPER_NAME)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
     file.write(documents)
-
 print('OpenAPI schema generated.')
 
 print('Generating UML diagrams...')
