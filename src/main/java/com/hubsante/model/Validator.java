@@ -1,12 +1,12 @@
 /**
  * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -38,6 +38,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 @Slf4j
@@ -95,9 +97,31 @@ public class Validator {
         if (!validationMessages.isEmpty()) {
             StringBuilder errors = new StringBuilder();
             for (ValidationMessage errorMsg : validationMessages) {
-                errors.append(errorMsg.getMessage()).append("\n");
+                String error = formatValidationMessage(errorMsg);
+                if (error != null) {
+                    errors.append(error).append("\n");
+                }
             }
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
+        }
+    }
+
+    private String formatValidationMessage(ValidationMessage errorMsg) {
+        // We split the path string on '.'
+        List<String> path = Arrays.asList(errorMsg.getPath().split("\\."));
+        // We find the index of the element 'message' in the errorMsg's path
+        int messageIndex = path.indexOf("message");
+        if (messageIndex < 0) {
+            // If the path does not contain the element 'message', we return the error message that doesn't concern
+            // the use cases
+            return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(path.size() - 1)));
+        } else if (path.indexOf("message") + 1 >= path.size()) {
+            // If the path contains the element 'message' and ends immediately after the message 'use case',
+            // the error message is irrelevant and we ignore it.
+            return null;
+        } else {
+            // Otherwise, we return the part of error message that comes after the 'message' element
+            return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8);
         }
     }
 }
