@@ -96,17 +96,25 @@ public class Validator {
 
         if (!validationMessages.isEmpty()) {
             StringBuilder errors = new StringBuilder();
+            boolean containsAtLeastOneUseCaseError = false;
             for (ValidationMessage errorMsg : validationMessages) {
-                String error = formatValidationMessage(errorMsg);
+                String error = formatValidationErrorMessage(errorMsg);
                 if (error != null) {
                     errors.append(error).append("\n");
                 }
+                if(errorMsg.getPath().contains(".message.")){
+                    containsAtLeastOneUseCaseError = true;
+                }
+            }
+            // Append a special error message if the error string does not contain a single "use case" error
+            if (!containsAtLeastOneUseCaseError){
+                errors.append("aucun cas d'utilisation n'est specifié pour ce message \n");
             }
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
     }
 
-    private String formatValidationMessage(ValidationMessage errorMsg) {
+    private String formatValidationErrorMessage(ValidationMessage errorMsg) {
         // We split the path string on '.'
         List<String> path = Arrays.asList(errorMsg.getPath().split("\\."));
         // We find the index of the element 'message' in the errorMsg's path
