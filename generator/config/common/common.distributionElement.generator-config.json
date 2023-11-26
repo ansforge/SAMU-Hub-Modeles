@@ -1,5 +1,5 @@
 {
-  "inputSpec": "../../input/common.openapi.yml",
+  "inputSpec": "./input/common.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/distribution-element/",

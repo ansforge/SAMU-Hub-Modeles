@@ -1,5 +1,5 @@
 {
-  "inputSpec": "../../input/EMSI-DC.openapi.yml",
+  "inputSpec": "./input/EMSI-DC.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/child-classes/",

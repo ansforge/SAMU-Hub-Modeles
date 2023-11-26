@@ -1,5 +1,5 @@
 {
-  "inputSpec": "../../input/RC-EDA.openapi.yml",
+  "inputSpec": "./input/RC-EDA.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/child-classes/",

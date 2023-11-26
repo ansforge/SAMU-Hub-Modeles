@@ -1,10 +1,10 @@
 {
-  "inputSpec": "../../input/EMSI-DC.openapi.yml",
+  "inputSpec": "./input/EMSI-DC.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "EmsiWrapper",
+    "models": "emsiWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
