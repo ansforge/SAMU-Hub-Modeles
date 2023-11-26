@@ -15,7 +15,6 @@
         {{/hasDiscriminatorWithNonEmptyMapping}}
     {{/isClassnameSanitized}}
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    @JacksonXmlRootElement (localName= "message")
 {{/jackson}}
 {{>additionalModelTypeAnnotations}}{{>generatedAnnotation}}{{#discriminator}}{{>typeInfoAnnotation}}{{/discriminator}}{{>xmlAnnotation}}
 {{#vendorExtensions.x-class-extra-annotation}}
@@ -26,8 +25,6 @@ public class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{{#vendorExtens
     private static final long serialVersionUID = 1L;
 
 {{/serializableModel}}
-    @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
 {{#vars}}
     {{#isEnum}}
         {{^isContainer}}

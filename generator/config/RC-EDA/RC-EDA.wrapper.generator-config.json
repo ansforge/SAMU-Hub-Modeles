@@ -1,0 +1,21 @@
+{
+  "inputSpec": "../../input/RC-EDA.openapi.yml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/wrapper/",
+  "globalProperties": {
+    "models": "CreateCaseWrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.cisu",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false
+  }
+}

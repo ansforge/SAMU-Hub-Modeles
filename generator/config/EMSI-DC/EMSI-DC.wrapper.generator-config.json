@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./createCase.openapi.yml",
+  "inputSpec": "../../input/EMSI-DC.openapi.yml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/root-messages/",
+  "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "DistributionElement",
+    "models": "EmsiWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.cisu",
+    "modelPackage": "com.hubsante.model.emsi",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false
