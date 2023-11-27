@@ -108,7 +108,7 @@ public class Validator {
             }
             // Append a special error message if the error string does not contain a single "use case" error
             if (!containsAtLeastOneUseCaseError){
-                errors.append("aucun cas d'utilisation n'est specifié pour ce message \n");
+                errors.append("aucun cas d'utilisation n'est spécifié pour ce message \n");
             }
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
