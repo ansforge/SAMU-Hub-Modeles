@@ -16,6 +16,7 @@
     "modelPackage": "com.hubsante.model.common",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
-    "supportUrlQuery": false
+    "supportUrlQuery": false,
+    "enablePostProcessFile": true
   }
 }

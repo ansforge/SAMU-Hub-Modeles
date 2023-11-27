@@ -438,7 +438,7 @@ with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
 print('OpenAPI schema generated.')
 
 print('Generating UML diagrams...')
-uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
+# uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
 print('UML diagrams generated.')
 
 named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
