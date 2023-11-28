@@ -40,6 +40,7 @@ import java.io.InputStream;
 import java.io.StringReader;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 import java.util.Set;
 
 @Slf4j
@@ -63,6 +64,9 @@ public class Validator {
                 .enable(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
                 .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
                 .disable(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE);
+
+        // We explicitly set the Locale to ensure cross platform consistency
+        Locale.setDefault(Locale.ENGLISH);
     }
 
     public void validateXML(String message, String xsdFile) throws IOException, ValidationException {
@@ -96,19 +100,26 @@ public class Validator {
 
         if (!validationMessages.isEmpty()) {
             StringBuilder errors = new StringBuilder();
+
             boolean containsAtLeastOneUseCaseError = false;
+            boolean violatesOneOfConstraint = false;
+
             for (ValidationMessage errorMsg : validationMessages) {
                 String error = formatValidationErrorMessage(errorMsg);
                 if (error != null) {
                     errors.append(error).append("\n");
-                }
-                if(errorMsg.getPath().contains(".message.")){
-                    containsAtLeastOneUseCaseError = true;
+                    if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
+                        violatesOneOfConstraint = true;
+                    }
+                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message.")){
+                        containsAtLeastOneUseCaseError = true;
+                    }
                 }
             }
-            // Append a special error message if the error string does not contain a single "use case" error
-            if (!containsAtLeastOneUseCaseError){
-                errors.append("aucun cas d'utilisation n'est spécifié pour ce message \n");
+            // Append a special error message if the error string does not contain a single "use case" error and
+            // the there is no 'oneOf' constraint violation
+            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint) {
+                errors.append("could not detect any schemas in the message, at least one is required \n");
             }
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
@@ -120,9 +131,12 @@ public class Validator {
         // We find the index of the element 'message' in the errorMsg's path
         int messageIndex = path.indexOf("message");
         if (messageIndex < 0) {
-            // If the path does not contain the element 'message', we return the error message that doesn't concern
-            // the use cases
-            return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(path.size() - 1)));
+            // Due to the current state of our schema, which contains only one 'oneOf' constraint,
+            // if the error type indicates the violation of that constraint, we verify the argument of the
+            // error and ignore it if it is '0' (which means that no use case is valid or there are no use
+            // cases in the message at all), otherwise we return the error message.
+            return errorMsg.getType().equals("oneOf") && Arrays.stream(errorMsg.getArguments()).anyMatch(arg -> arg.equals("0")) ?
+                    null : errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(path.size() - 1)));
         } else if (path.indexOf("message") + 1 >= path.size()) {
             // If the path contains the element 'message' and ends immediately after the message 'use case',
             // the error message is irrelevant and we ignore it.
