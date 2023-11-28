@@ -9,7 +9,7 @@ import com.hubsante.model.edxl.ContentMessage;
 
 import java.util.Objects;
 
-@JsonPropertyOrder({"errorCode", "errorCause", "sourceMessage"})
+@JsonPropertyOrder({"errorCode", "errorCause", "sourceMessage", "referencedDistributionID"})
 @JacksonXmlRootElement(localName = "message")
 public class ErrorReport extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
@@ -20,14 +20,17 @@ public class ErrorReport extends ContentMessage {
     private String errorCause;
     private final String JSON_PROPERTY_SOURCE_MESSAGE = "sourceMessage";
     private String sourceMessage;
+    private final String JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID = "referencedDistributionID";
+    private String referencedDistributionID;
 
     public ErrorReport() {
     }
 
-    public ErrorReport(ErrorCode errorCode, String errorCause, String sourceMessage) {
+    public ErrorReport(ErrorCode errorCode, String errorCause, String sourceMessage, String referencedDistributionID) {
         this.errorCode = errorCode;
         this.errorCause = errorCause;
         this.sourceMessage = sourceMessage;
+        this.referencedDistributionID = referencedDistributionID;
     }
 
     @JsonProperty(JSON_PROPERTY_ERROR_CODE)
@@ -66,16 +69,24 @@ public class ErrorReport extends ContentMessage {
         this.sourceMessage = sourceMessage;
     }
 
+    @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public String getReferencedDistributionID() { return referencedDistributionID; }
+
+    @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public void setReferencedDistributionID(String referencedDistributionID) { this.referencedDistributionID = referencedDistributionID; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ErrorReport that = (ErrorReport) o;
-        return errorCode == that.errorCode && Objects.equals(errorCause, that.errorCause) && Objects.equals(sourceMessage, that.sourceMessage);
+        return errorCode == that.errorCode && Objects.equals(errorCause, that.errorCause) && Objects.equals(sourceMessage, that.sourceMessage) && Objects.equals(referencedDistributionID, that.referencedDistributionID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(errorCode, errorCause, sourceMessage);
+        return Objects.hash(errorCode, errorCause, sourceMessage, referencedDistributionID);
     }
 }
