@@ -135,8 +135,12 @@ public class Validator {
             // if the error type indicates the violation of that constraint, we verify the argument of the
             // error and ignore it if it is '0' (which means that no use case is valid or there are no use
             // cases in the message at all), otherwise we return the error message.
-            return errorMsg.getType().equals("oneOf") && Arrays.stream(errorMsg.getArguments()).anyMatch(arg -> arg.equals("0")) ?
-                    null : errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(path.size() - 1)));
+            if (errorMsg.getType().equals("oneOf")) {
+            return Arrays.stream(errorMsg.getArguments()).anyMatch(arg -> arg.equals("0")) ?
+                    null : errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(1)));
+            }else{
+                return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(path.size() - 1)));
+            }
         } else if (path.indexOf("message") + 1 >= path.size()) {
             // If the path contains the element 'message' and ends immediately after the message 'use case',
             // the error message is irrelevant and we ignore it.
