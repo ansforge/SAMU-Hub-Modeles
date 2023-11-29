@@ -85,11 +85,11 @@ public class ErrorReport extends ContentMessage {
     }
 
     @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
-    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public String getReferencedDistributionID() { return referencedDistributionID; }
 
     @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
-    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
     public void setReferencedDistributionID(String referencedDistributionID) { this.referencedDistributionID = referencedDistributionID; }
 
     @Override
