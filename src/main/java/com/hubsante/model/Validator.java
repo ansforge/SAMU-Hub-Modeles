@@ -139,7 +139,7 @@ public class Validator {
                 return Arrays.stream(errorMsg.getArguments()).anyMatch(arg -> arg.equals("0")) ?
                         null : errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get((path.size() - 1))));
             } else {
-                return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(1)));
+                return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(0)));
             }
         } else if (path.indexOf("message") + 1 >= path.size()) {
             // If the path contains the element 'message' and ends immediately after the message 'use case',
