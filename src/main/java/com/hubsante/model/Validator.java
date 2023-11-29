@@ -136,9 +136,9 @@ public class Validator {
             // error and ignore it if it is '0' (which means that no use case is valid or there are no use
             // cases in the message at all), otherwise we return the error message.
             if (errorMsg.getType().equals("oneOf")) {
-            return Arrays.stream(errorMsg.getArguments()).anyMatch(arg -> arg.equals("0")) ?
-                    null : errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(1)));
-            }else{
+                return Arrays.stream(errorMsg.getArguments()).anyMatch(arg -> arg.equals("0")) ?
+                        null : errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(1)));
+            } else {
                 return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf(path.get(path.size() - 1)));
             }
         } else if (path.indexOf("message") + 1 >= path.size()) {
