@@ -41,7 +41,7 @@ def export_csv_nomenclature(params_in, df_nomenclature_in, version, folder_outpu
         pass
     # export
     df_export.to_csv(os.path.join(folder_output, "csv", file_out),
-                     sep=";", na_rep="", encoding="utf-8", index=False)
+                     sep=";", na_rep="", keep_default_na=False, na_values=['_'], encoding="utf-8", index=False)
     return
 
 

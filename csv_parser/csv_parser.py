@@ -65,7 +65,7 @@ def get_nomenclature(elem) :
     path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
     # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
     if os.path.exists(path_file) :
-        df_nomenclature = pd.read_csv(path_file, sep=";", encoding="utf-8")
+        df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
         L_ret = df_nomenclature["code"].values.tolist()
     else :
         print(f'{path_file} does not exist. Cannot load associated nomenclature.')
