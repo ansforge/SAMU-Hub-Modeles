@@ -7,6 +7,8 @@ import argparse
 from datetime import date
 import warnings
 import uml_generator
+import os
+
 from pathlib import Path
 
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
@@ -35,7 +37,6 @@ RUN_DOCX_OUTPUT_EXAMPLES = False
 
 DATA_DEPTH = 6  # nombre de niveaux de données
 
-
 def get_params_from_sheet(sheet):
     """ Automatically get the number of rows and columns to use for this sheet. """
     full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
@@ -58,6 +59,18 @@ def get_params_from_sheet(sheet):
         'rows': rows
     }
 
+def get_nomenclature(elem) :
+    #filename to target (.csv format)
+    nomenclature_name = elem['Détails de format'][14:]
+    path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
+    # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
+    if os.path.exists(path_file) :
+        df_nomenclature = pd.read_csv(path_file, sep=";", encoding="utf-8")
+        L_ret = df_nomenclature["code"].values.tolist()
+    else :
+        print(f'{path_file} does not exist. Cannot load associated nomenclature.')
+        return []
+    return L_ret
 
 params = get_params_from_sheet(args.sheet)
 MODEL_NAME = params['modelName']  # CreateCase
@@ -275,6 +288,9 @@ def add_field_child_property(parent, child, definitions):
         childDetails['format'] = format
     if has_format_details(child, 'ENUM: '):
         childDetails['enum'] = child['Détails de format'][6:].split(', ')
+    # key word nomenclature trigger search over nomenclature folder for matching file
+    if has_format_details(child, 'NOMENCLATURE: '):
+        childDetails['enum'] = get_nomenclature(child)
     properties = definitions['properties']
     if is_array(child):
         properties[child['name']] = {
@@ -396,7 +412,7 @@ def DFS(root, use_elem):
             DFS(child, use_elem)
 
 
-print('Generating JSON schema...')
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
 DFS(rootObject, build_json_schema)
 with open(f'out/{args.sheet}/{args.sheet}.schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
@@ -423,7 +439,7 @@ def build_asyncapi_schema():
     return asyncapi_schema
 
 
-print('Generating OpenAPI schema...')
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating OpenAPI schema...{Color.END}')
 with open('template.openapi.yaml') as f:
     full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
 full_yaml['components']['schemas'] = {
@@ -437,7 +453,7 @@ with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     file.write(documents)
 print('OpenAPI schema generated.')
 
-print('Generating UML diagrams...')
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
 uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
 print('UML diagrams generated.')
 
@@ -504,7 +520,7 @@ def def_to_table(name, definition, title='', doc=None, style='Medium Shading 1 A
     return doc
 
 
-print('Generating Docx tables...')
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating Docx tables...{Color.END}')
 doc = docx.Document()
 # Set the page orientation to landscape
 section = doc.sections[0]

@@ -147,6 +147,7 @@ class Color:
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
     END = '\033[0m'
+    WARNING = '\033[93m'
 
 
 def run(model, obj, version=date.today().strftime("%y.%m.%d")):
@@ -163,6 +164,7 @@ def run(model, obj, version=date.today().strftime("%y.%m.%d")):
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
         dot.render(os.path.join("out", model, "uml_schema"))
         print("Done.")
+    return
 
 
 if __name__ == "__main__":

@@ -1,0 +1,3 @@
+code;label_n1;description;commentaire
+ADDSTO;Ajout;Le nouveau fichier EMSI ajoute des informations au fichier EMSI auquel il est lié;
+SPRSDS;Remplace;Le nouveau fichier EMSI remplace le fichier EMSI auquel il est lié.;

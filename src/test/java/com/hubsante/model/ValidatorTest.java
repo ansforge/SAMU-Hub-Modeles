@@ -21,13 +21,13 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.Arrays;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.config.Constants.ENVELOPE_SCHEMA;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class ValidatorTest {
@@ -46,7 +46,6 @@ public class ValidatorTest {
     public void jsonRcEdaValidationPasses() throws IOException {
         String input = getMessageString("RC-EDA");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
-
         // TODO bbo: add XML validation
     }
 
@@ -56,6 +55,16 @@ public class ValidatorTest {
         String input = getMessageString("RC-EDA", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
+        try{
+            validator.validateJSON(input, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            // assert that attribute createCase.initialAlert.id is missing
+            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("createCase.initialAlert.id: is missing but it is required")));
+            // assert that other errors are not present
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema")));
+        }
         // TODO bbo: add XML validation
     }
 
@@ -73,6 +82,18 @@ public class ValidatorTest {
     public void jsonEmsiDcValidationFails() throws IOException {
         String input = getMessageString( "EMSI-DC", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(input, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            // assert that no schemas are valid
+            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
+            // assert that other errors are not present
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema, but")));
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("is missing but it is required")));
+        }
 
         // TODO bbo: add XML validation
     }
@@ -92,6 +113,18 @@ public class ValidatorTest {
         String input = getMessageString( "RC-REF", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(input, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            // assert that attribute distributionID is missing
+            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("reference.distributionID: is missing but it is required")));
+            // assert that other errors are not present
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema")));
+        }
+
         // TODO bbo: add XML validation
     }
 
@@ -110,6 +143,18 @@ public class ValidatorTest {
         String input = getMessageString( "RS-INFO", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
+        // we verify the correct error message is thrown
+        try{
+            validator.validateJSON(input, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            // assert that attribute errorCode.statusCode is missing
+            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("errorCode.statusCode: is missing but it is required")));
+            // assert that other errors are not present
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema")));
+        }
+
         // TODO bbo: add XML validation
     }
 
@@ -121,5 +166,47 @@ public class ValidatorTest {
         // envelope validation does not throw because envelope is ok
         assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+    }
+
+    @Test
+    @DisplayName("too many valid schemas")
+    void tooManyValidSchemas() throws IOException {
+        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-too-many-valid-schemas.json");
+
+        // validation throws due to presence of both createcase and emsi schemas
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            // assert that too many schemas are valid
+            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema, but 2 are valid")));
+            // assert that other errors are not present
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("is missing but it is required")));
+        }
+    }
+
+    @Test
+    @DisplayName("no schemas detected")
+    void noSchemasDetected() throws IOException {
+        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-no-schemas.json");
+
+        // validation throws due to absence of schemas
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            // assert that no schemas are detected
+            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
+            // assert that other errors are not present
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema, but")));
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("is missing but it is required")));
+        }
     }
 }
