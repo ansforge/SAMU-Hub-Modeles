@@ -1,12 +1,6 @@
-import openpyxl
 import os
 import pandas as pd
-import json
-import yaml
-import argparse
-from datetime import date
 import datetime
-import warnings
 import docx
 from xhtml2pdf import pisa
 
