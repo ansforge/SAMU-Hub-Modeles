@@ -2,10 +2,9 @@
 
 ### Utilisation
 
-```python nomenclature_parser.py --version VERSION --folder FOLDER --output OUTPUT``` 
+```python nomenclature_parser.py --version VERSION --folder FOLDER``` 
 arguments optionnels
-- où folder désigne le chemin pour le dossier dans lequel les excels d'entrée sont rangées
-- où output désigne le chemin pour le dossier dans lequel les fichiers générés par le script seront rangés
+- où folder désigne le chemin pour le dossier dans lequel les excels d'entrée sont rangés
 - où version désigne la version de nomenclature que l'on s'apprête à publier
 
 ### Génération
@@ -18,3 +17,8 @@ Un sommaire est généré automatiquement à la racine du dossier.
 ### Release des nomenclatures
 
 Les releases > 1.3.1 sont mises à disposition dans les dossiers correspondant.
+```bash
+cp -r "/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/Nomenclatures/01 - Base interne/" in/
+# To use today's date as release version (otherwise, add --version flag)
+python nomenclature_parser.py
+```

@@ -1,10 +1,9 @@
 import os
 import argparse
+from datetime import date
 
 # custom lib
 import hubsante.loader as loader
-
-FOLDER = "in"
 
 parser = argparse.ArgumentParser(
     prog='Nomenclature Parser',
@@ -14,10 +13,8 @@ parser.add_argument('-v', '--version', help='the version number to be used in no
 parser.add_argument('-f', '--folder', default="in", help='the folder to be parsed')
 args = parser.parse_args()
 
-if args.version :
-    RELEASE = "v" + args.version
-if args.folder :
-    FOLDER = args.folder
+RELEASE = "v" + (args.version or date.today().strftime("%y.%m.%d"))
+FOLDER = args.folder
 
 def main() :
     # create output folder
