@@ -61,7 +61,7 @@ def get_params_from_sheet(sheet):
 def get_nomenclature(elem) :
     #filename to target (.csv format)
     nomenclature_name = elem['Détails de format'][14:]
-    path_file = os.path.join("nomenclature", nomenclature_name + ".csv")
+    path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
     # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
     if os.path.exists(path_file) :
         df_nomenclature = pd.read_csv(path_file, sep=";", encoding="utf-8")

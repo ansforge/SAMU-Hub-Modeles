@@ -1,6 +1,0 @@
-code;label_n1;description;commentaire
-ACK;Reçu et accepté;Accuse réception et acceptation du/des message(s) identifié(s) en référence;
-ALERT ;Alerte;Information initiale nécessitant l'attention des destinataires ciblés;
-CANCEL ;Annulé;Annule le(s) message(s) précédent(s) identifié(s) en référence;
-ERROR ;Erreur;Indique le rejet du/des message(s) identifié(s) en référence;
-UPDATE ;Mis à jour;Met à jour et remplace le(s) message(s) précédent(s) identifié(s) en référence.;
