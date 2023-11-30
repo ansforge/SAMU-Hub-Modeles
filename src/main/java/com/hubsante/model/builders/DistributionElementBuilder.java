@@ -15,10 +15,10 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.DistributionElement;
-import com.hubsante.model.cisu.DistributionElement.*;
-import com.hubsante.model.cisu.Recipient;
-import com.hubsante.model.cisu.Sender;
+
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.common.Recipient;
+import com.hubsante.model.common.Sender;
 
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
@@ -54,8 +54,8 @@ public class DistributionElementBuilder {
         this.messageId = messageId;
         this.sender = new Sender().name(senderId).URI("hubex:" + senderId);
         this.sentAt = OffsetDateTime.now();
-        this.kind = KindEnum.REPORT;
-        this.status = StatusEnum.ACTUAL;
+        this.kind = DistributionElement.KindEnum.REPORT;
+        this.status = DistributionElement.StatusEnum.ACTUAL;
         this.recipients = recipients;
     }
     public DistributionElementBuilder sender(Sender sender) {
@@ -68,12 +68,12 @@ public class DistributionElementBuilder {
         return this;
     }
 
-    public DistributionElementBuilder kind(KindEnum kind) {
+    public DistributionElementBuilder kind(DistributionElement.KindEnum kind) {
         this.kind = kind;
         return this;
     }
 
-    public DistributionElementBuilder status(StatusEnum status) {
+    public DistributionElementBuilder status(DistributionElement.StatusEnum status) {
         this.status = status;
         return this;
     }

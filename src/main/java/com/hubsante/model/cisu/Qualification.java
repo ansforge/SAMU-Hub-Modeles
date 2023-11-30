@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -58,7 +43,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("qualification")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T16:37:50.003054300+01:00[Europe/Paris]")
 public class Qualification {
     public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
     private Nomenclature whatsHappen;
@@ -129,6 +114,7 @@ public class Qualification {
         this.locationKind = locationKind;
     }
 
+
     public Qualification riskThreat(List<Nomenclature> riskThreat) {
 
         this.riskThreat = riskThreat;
@@ -150,16 +136,13 @@ public class Qualification {
      **/
     @JsonProperty(JSON_PROPERTY_RISK_THREAT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-//    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RISK_THREAT)
-    @JacksonXmlElementWrapper(useWrapping = false)
-    @JacksonXmlProperty(localName = JSON_PROPERTY_RISK_THREAT)
-//    @JacksonXmlProperty(localName = "item")
+
     public List<Nomenclature> getRiskThreat() {
         return riskThreat;
     }
 
-//    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RISK_THREAT)
-//    @JacksonXmlProperty(localName = "item")
+    @JacksonXmlElementWrapper(useWrapping = false)
+
     @JsonProperty(JSON_PROPERTY_RISK_THREAT)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
     public void setRiskThreat(List<Nomenclature> riskThreat) {

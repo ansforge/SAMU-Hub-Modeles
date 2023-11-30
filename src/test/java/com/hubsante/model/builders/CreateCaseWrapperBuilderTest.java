@@ -17,10 +17,9 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.DistributionElement;
-import com.hubsante.model.cisu.DistributionElement.*;
 import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.cisu.Recipient;
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.common.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -60,7 +59,7 @@ public class CreateCaseWrapperBuilderTest {
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
         DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
-                .kind(KindEnum.ACK)
+                .kind(DistributionElement.KindEnum.ACK)
                 .build();
 
         assertThrows(IllegalArgumentException.class, () -> new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock()).build());

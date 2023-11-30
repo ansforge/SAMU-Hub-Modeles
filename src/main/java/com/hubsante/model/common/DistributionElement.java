@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -26,25 +11,30 @@
  */
 
 
-package com.hubsante.model.cisu;
+package com.hubsante.model.common;
 
-import java.util.List;
 import java.util.Objects;
+import java.util.Arrays;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import com.hubsante.model.common.Recipient;
+import com.hubsante.model.common.Sender;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.hubsante.model.edxl.ContentMessage;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 /**
- * RCDE
+ * DistributionElement
  */
 @JsonPropertyOrder({
         DistributionElement.JSON_PROPERTY_MESSAGE_ID,
@@ -55,11 +45,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
         DistributionElement.JSON_PROPERTY_RECIPIENTS
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JacksonXmlRootElement(localName = "message")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:56.839+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T16:37:40.792520300+01:00[Europe/Paris]")
 public class DistributionElement extends ContentMessage {
-    @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
     public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
     private String messageId;
 
@@ -70,7 +57,7 @@ public class DistributionElement extends ContentMessage {
     private OffsetDateTime sentAt;
 
     /**
-     * Prend la valeur &lt;distributionKind de l&#39;enveloppe EDXL (voir DST)
+     * Gets or Sets kind
      */
     public enum KindEnum {
         REPORT("Report"),
@@ -114,7 +101,7 @@ public class DistributionElement extends ContentMessage {
     private KindEnum kind;
 
     /**
-     * Prend la valeur &lt;distributionStatus&gt; de l&#39;enveloppe EDXL (voir DST)
+     * Gets or Sets status
      */
     public enum StatusEnum {
         ACTUAL("Actual"),
@@ -154,7 +141,7 @@ public class DistributionElement extends ContentMessage {
     private StatusEnum status;
 
     public static final String JSON_PROPERTY_RECIPIENTS = "recipients";
-    private List<Recipient> recipients;
+    private List<Recipient> recipients = new ArrayList<>();
 
     public DistributionElement() {
     }
@@ -166,7 +153,7 @@ public class DistributionElement extends ContentMessage {
     }
 
     /**
-     * Identifiant technique permettant d&#39;identifier le message envoyé. Cet identifiant est utilisé par NexSIS pour assurer le routage des messages Préconisation : réemployer le contenu de la balise &lt;distributionID&gt; de l&#39;enveloppe EDXL (cf. DST)
+     * Get messageId
      *
      * @return messageId
      **/
@@ -218,7 +205,7 @@ public class DistributionElement extends ContentMessage {
     }
 
     /**
-     * Groupe date heure de début de partage lié à l&#39;envoi du message. Il doit  être cohérent avec le champ &lt;dateTimeSent&gt; de l&#39;enveloppe EDXL (voir DST).  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé. Le fuseau horaire pour UTC doit être représenté par &#39;-00:00&#39;
+     * Get sentAt
      *
      * @return sentAt
      **/
@@ -244,7 +231,7 @@ public class DistributionElement extends ContentMessage {
     }
 
     /**
-     * Prend la valeur &lt;distributionKind de l&#39;enveloppe EDXL (voir DST)
+     * Get kind
      *
      * @return kind
      **/
@@ -270,7 +257,7 @@ public class DistributionElement extends ContentMessage {
     }
 
     /**
-     * Prend la valeur &lt;distributionStatus&gt; de l&#39;enveloppe EDXL (voir DST)
+     * Get status
      *
      * @return status
      **/
@@ -295,6 +282,14 @@ public class DistributionElement extends ContentMessage {
         return this;
     }
 
+    public DistributionElement addRecipientsItem(Recipient recipientsItem) {
+        if (this.recipients == null) {
+            this.recipients = new ArrayList<>();
+        }
+        this.recipients.add(recipientsItem);
+        return this;
+    }
+
     /**
      * Get recipients
      *
@@ -302,19 +297,22 @@ public class DistributionElement extends ContentMessage {
      **/
     @JsonProperty(JSON_PROPERTY_RECIPIENTS)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RECIPIENTS)
-    @JacksonXmlProperty(localName = "recipient")
+
     public List<Recipient> getRecipients() {
         return recipients;
     }
 
 
     @JsonProperty(JSON_PROPERTY_RECIPIENTS)
-    @JacksonXmlElementWrapper(useWrapping = true, localName = JSON_PROPERTY_RECIPIENTS)
-    @JacksonXmlProperty(localName = "recipient")
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setRecipients(List<Recipient> recipients) {
-        this.recipients = recipients;
+        if (recipients == null) {
+            return;
+        }
+        if (this.recipients == null) {
+            this.recipients = new ArrayList<>();
+        }
+        this.recipients.addAll(recipients);
     }
 
     @Override
@@ -342,7 +340,7 @@ public class DistributionElement extends ContentMessage {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class RCDE {\n");
+        sb.append("class DistributionElement {\n");
         sb.append("    messageId: ").append(toIndentedString(messageId)).append("\n");
         sb.append("    sender: ").append(toIndentedString(sender)).append("\n");
         sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");

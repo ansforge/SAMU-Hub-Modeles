@@ -90,35 +90,35 @@
         {
           "properties": {
             "message": {
-              "$ref": "RC-EDA_schema.json"
+              "$ref": "RC-EDA.schema.json"
             }
           }
         },
         {
           "properties": {
             "message": {
-              "$ref": "RC-REF_schema.json"
+              "$ref": "RC-REF.schema.json"
             }
           }
         },
         {
           "properties": {
             "message": {
-              "$ref": "RS-INFO_schema.json"
+              "$ref": "RS-INFO.schema.json"
             }
           }
         },
         {
           "properties": {
             "message": {
-              "$ref": "EMSI-DC_schema.json"
+              "$ref": "EMSI-DC.schema.json"
             }
           }
         },
         {
           "properties": {
             "message": {
-              "$ref": "CustomContent_schema.json"
+              "$ref": "CustomContent.schema.json"
             }
           }
         }

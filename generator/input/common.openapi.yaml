@@ -63,10 +63,8 @@ components:
     ReferenceWrapper:
       required:
         - Reference
-      allOf:
-        - $ref: '#/components/schemas/DistributionElement'
       properties:
-        Reference:
+        reference:
           $ref: '#/components/schemas/Reference'
     Reference:
       properties:

@@ -15,9 +15,8 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.DistributionElement;
-import com.hubsante.model.cisu.DistributionElement.*;
-import com.hubsante.model.cisu.Recipient;
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.common.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -44,8 +43,8 @@ public class DistributionElementBuilderTest {
         assertEquals(MESSAGE_ID, actual.getMessageId());
         assertEquals(SENDER_ID, actual.getSender().getName());
         assertNotNull(actual.getSentAt());
-        assertEquals(KindEnum.REPORT, actual.getKind());
-        assertEquals(StatusEnum.ACTUAL, actual.getStatus());
+        assertEquals(DistributionElement.KindEnum.REPORT, actual.getKind());
+        assertEquals(DistributionElement.StatusEnum.ACTUAL, actual.getStatus());
         assertEquals(1, actual.getRecipients().size());
     }
 
@@ -80,20 +79,20 @@ public class DistributionElementBuilderTest {
     @DisplayName("should build a RC-DE with ack Kind")
     public void shouldBuildRC_DEwithAckKind() {
         DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
-                .kind(KindEnum.ACK)
+                .kind(DistributionElement.KindEnum.ACK)
                 .build();
 
-        assertEquals(KindEnum.ACK, actual.getKind());
+        assertEquals(DistributionElement.KindEnum.ACK, actual.getKind());
     }
 
     @Test
     @DisplayName("should build a RC-DE with error Kind")
     public void shouldBuildRC_DEwithCancelKind() {
         DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, RECIPIENT_LIST)
-                .kind(KindEnum.ERROR)
+                .kind(DistributionElement.KindEnum.ERROR)
                 .build();
 
-        assertEquals(KindEnum.ERROR, actual.getKind());
+        assertEquals(DistributionElement.KindEnum.ERROR, actual.getKind());
     }
 
     @Test

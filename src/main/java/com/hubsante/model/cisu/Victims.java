@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -50,8 +35,9 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("victims")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T16:37:50.003054300+01:00[Europe/Paris]")
 public class Victims {
+
     /**
      * Indique le nombre de victimes selon la nomenclature du référentiel CISU
      */
@@ -96,6 +82,7 @@ public class Victims {
     public static final String JSON_PROPERTY_COUNT = "count";
     private CountEnum count;
 
+
     /**
      * Identifie le type de la principale victime (celle dont l&#39;état de santé provoque le déclenchement de l&#39;envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.
      */
@@ -108,7 +95,7 @@ public class Victims {
 
         PREGNANT("PREGNANT"),
 
-        SENIOR("SENIOR");
+        SENIOR_VOIR_NOMENCLATURE_CISU_XX_("SENIOR (voir Nomenclature CISU XX)");
 
         private String value;
 

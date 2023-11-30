@@ -1,0 +1,1836 @@
+openapi: 3.0.0
+components:
+  schemas:
+    createCaseWrapper:
+      $id: classpath:/json-schema/schema#
+      x-id: RC-EDA.schema.json#
+      example: example.json#
+      type: object
+      title: createCase
+      required:
+      - createCase
+      properties:
+        createCase:
+          $ref: '#/components/schemas/createCase'
+    createCase:
+      type: object
+      title: Objet createCase
+      x-display: expansion-panels
+      required:
+      - caseId
+      - creation
+      - referenceVersion
+      - qualification
+      - location
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-cols: 6
+          example: example.json#/createCase/caseId
+          description: "Identifiant technique de l'affaire et partag\xE9 entre tous\
+            \ les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7\
+            on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune ambigu\xEF\
+            t\xE9. Il est g\xE9n\xE9r\xE9 par les syst\xE8mes du partenaire r\xE9\
+            cepteur de la primo-demande de secours et contient une cl\xE9 conventionnelle\
+            \ permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\n\
+            o\xF9 cleConventionnelle est la cl\xE9 utilis\xE9e par le partenaire emetteur\
+            \ et cleUnique l'identifiant locale d'affaire dans le syst\xE8me du partenaire\
+            \ emetteur.\ncleUnique est une cha\xEEne de caract\xE8re (string) comprise\
+            \ entre 4 et 22 caract\xE8res alphanum\xE9riques."
+          examples:
+          - samuA:CA126B445579GD4A67AV
+        senderCaseId:
+          type: string
+          title: Identifiant local de l'affaire/dossier
+          x-cols: 6
+          example: example.json#/createCase/senderCaseId
+          description: "Valoriser avec l'identifiant de l'affaire dans le SI de l'\xE9\
+            metteur du message\nCe champ est facultatif, il ne sera notamment pas\
+            \ transmis par NexSIS\nDans le cas o\xF9 deux op\xE9rateurs ont besoin\
+            \ d'identifier une affaire, ils peuvent utiliser les derniers caract\xE8\
+            res de l'identifiant local de leur partenaire."
+          examples:
+          - CA126B445579GD4A67AV
+        creation:
+          type: string
+          title: "Date Heure de cr\xE9ation de l'affaire/dossier"
+          x-cols: 6
+          example: example.json#/createCase/creation
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
+            ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
+            tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
+            re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
+            \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
+            \ \xEAtre utilis\xE9."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        referenceVersion:
+          type: string
+          title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
+          x-cols: 6
+          example: example.json#/createCase/referenceVersion
+          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
+            \ des codes transmis. \nCela permet aux diff\xE9rents syst\xE8mes de s'assurer\
+            \ qu'ils utilisent la m\xEAme version des codes de nomenclature que leurs\
+            \ partenaires."
+          examples:
+          - '1.2'
+        qualification:
+          $ref: '#/components/schemas/qualification'
+        location:
+          $ref: '#/components/schemas/location'
+        initialAlert:
+          $ref: '#/components/schemas/alert'
+        newAlert:
+          type: array
+          items:
+            $ref: '#/components/schemas/alert'
+        additionalInformation:
+          $ref: '#/components/schemas/additionalInformation'
+        freetext:
+          type: string
+          title: Description de l'affaire/dossier
+          x-cols: 6
+          example: example.json#/createCase/freetext
+          description: "Texte libre permettant de donner des informations suppl\xE9\
+            mentaires concernant l'affaire"
+          examples:
+          - None
+      example: example.json#/createCase
+    qualification:
+      type: object
+      title: Qualification de l'affaire/dossier
+      x-display: expansion-panels
+      required:
+      - whatsHappen
+      properties:
+        whatsHappen:
+          $ref: '#/components/schemas/nomenclature'
+        locationKind:
+          $ref: '#/components/schemas/nomenclature'
+        riskThreat:
+          type: array
+          items:
+            $ref: '#/components/schemas/nomenclature'
+        healthMotive:
+          $ref: '#/components/schemas/nomenclature'
+        victims:
+          $ref: '#/components/schemas/victims'
+      example: example.json#/createCase/qualification
+    location:
+      type: object
+      title: Localisation de l'affaire/dossier
+      x-display: expansion-panels
+      required:
+      - locID
+      - name
+      - country
+      properties:
+        locID:
+          type: string
+          title: Identifiant technique de localisation
+          x-cols: 6
+          example: example.json#/createCase/location/locID
+          description: "ID technique et provisoire permettant d'identifier le lieu\
+            \ dans le cadre des \xE9changes de cette affaire."
+          examples:
+          - 111fb03a-6fd9-41e0-8e81-990c45188887
+        locLabel:
+          type: string
+          title: "R\xE9sum\xE9 de la localisation"
+          x-cols: 6
+          example: example.json#/createCase/location/locLabel
+          description: "Permet d'indiquer des indications auto suffisantes permettant\
+            \ pour un op\xE9rationnel d'acc\xE9der facilement au lieu avec des indications\
+            \ minimales.\nDans les messages NexSIS, va souvent correspondre \xE0 la\
+            \ concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes\
+            \ informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au\
+            \ maximum 255 caract\xE8res"
+          examples:
+          - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
+            e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
+        name:
+          type: string
+          title: Nom du lieu
+          x-cols: 6
+          example: example.json#/createCase/location/name
+          description: "Indique le nom de lieu : nom commercial, for\xEAt de Fontainebleau,\
+            \ lac du Der (plut\xF4t \xE0 destination des syst\xE8mes)."
+          examples:
+          - "Lyc\xE9e Pierre de Coubertin"
+        detailedAdress:
+          $ref: '#/components/schemas/detailedAdress'
+        city:
+          $ref: '#/components/schemas/city'
+        access:
+          $ref: '#/components/schemas/access'
+        geometry:
+          $ref: '#/components/schemas/geometry'
+        externalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalInfo'
+        country:
+          type: string
+          title: Pays
+          x-cols: 6
+          example: example.json#/createCase/location/country
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - .nan
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - France
+        freetext:
+          type: string
+          title: Commentaire
+          x-cols: 6
+          example: example.json#/createCase/location/freetext
+          description: "Champ libre pour compl\xE9ter les informations de localisation"
+          examples:
+          - "Cl\xE9 derri\xE8re le pot de fleur"
+      example: example.json#/createCase/location
+    alert:
+      type: object
+      title: Alerte initiale
+      x-display: expansion-panels
+      required:
+      - id
+      - reception
+      - reporting
+      - caller
+      - alertSource
+      - location
+      - qualification
+      - callTaker
+      properties:
+        id:
+          type: string
+          title: Identifiant alerte
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/id
+          description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
+            \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
+            \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
+            \ par les diff\xE9rents syst\xE8mes pour garantir leur d\xE9couplage.\n\
+            Voir la description de l'identifiant de l'affaire pour voir le format.\n\
+            Lorsqu\u2019une alerte est g\xE9n\xE9r\xE9e dans NexSIS et cr\xE9e une\
+            \ affaire, elle est qualifi\xE9e d\u2019Alerte Initiale.\na)Si cette derni\xE8\
+            re concerne un partenaire (caract\xE8re m\xE9dical pour la Sant\xE9 par\
+            \ exemple), elle est relay\xE9e seule dans le message. Il y\u2019a un\
+            \ seul objet initialAlert.\nb)Sinon, une autre alerte li\xE9e \xE0 la\
+            \ m\xEAme affaire peut \xEAtre d\xE9clar\xE9e ult\xE9rieurement, concernant\
+            \ cette fois le partenaire. Lorsqu\u2019elle est d\xE9clar\xE9e cette\
+            \ Nouvelle Alerte est relay\xE9e avec l\u2019Alerte Initiale pour partager\
+            \ un contexte commun. Dans le message de cr\xE9ation d\u2019affaire il\
+            \ y\u2019a deux objets alerte : initialAlert et newAlert.\nLe rattachement\
+            \ des messages \xE0 une affaire doivent s'appuyer sur les caseId et non\
+            \ les alertId qui peuvent varier d'un syst\xE8me \xE0 l'autre."
+          examples:
+          - SGO050-20230605-AL0123
+        reception:
+          type: string
+          title: "Date de r\xE9ception de l'alerte"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/reception
+          description: "Groupe date heure de r\xE9ception de l'alerte"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:21:06+02:00'
+        reporting:
+          type: string
+          title: Signalement
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/reporting
+          description: "Permet d'attirer l'attention des forces partenaires sur une\
+            \ affaire pour le faire sortir du lot.\nEventuellement automatis\xE9 en\
+            \ fonction des crit\xE8res saisis et de leur param\xE9trage, ou renseign\xE9\
+            \ par l'op\xE9rateur. \nPrend les valeurs d\xE9finies dans la nomenclature\
+            \ CISU :\n- standard : STANDARD\n- signal\xE9 : ATTENTION\nLes syst\xE8\
+            mes peuvent proposer des fonctionnalit\xE9s faisant ressortir les dossiers\
+            \ avec le libell\xE9 ATTENTION"
+          enum:
+          - STANDARD
+          - ATTENTION
+          examples:
+          - STANDARD
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur l'alerte"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/freetext
+          description: "Texte libre permettant de donner des informations suppl\xE9\
+            mentaires concernant l'alerte"
+          examples:
+          - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
+        caller:
+          $ref: '#/components/schemas/caller'
+        alertSource:
+          $ref: '#/components/schemas/contactSource'
+        location:
+          $ref: '#/components/schemas/location'
+        qualification:
+          $ref: '#/components/schemas/qualification'
+        callTaker:
+          $ref: '#/components/schemas/callTaker'
+        attachment:
+          type: array
+          items:
+            $ref: '#/components/schemas/attachment'
+      example: example.json#/createCase/initialAlert
+    additionalInformation:
+      type: object
+      title: "Informations compl\xE9mentaires"
+      x-display: expansion-panels
+      required: []
+      properties:
+        customMap:
+          $ref: '#/components/schemas/customMap'
+      example: example.json#/createCase/additionalInformation
+    nomenclature:
+      type: object
+      title: Nature de fait
+      x-display: expansion-panels
+      required:
+      - code
+      - label
+      properties:
+        code:
+          type: string
+          title: Code
+          x-cols: 6
+          example: example.json#/createCase/qualification/whatsHappen/code
+          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          enum:
+          - C01.00.00
+          - C01.01.00
+          - C01.01.01
+          - C01.01.02
+          - C01.01.03
+          - C01.01.04
+          - C01.01.05
+          - C01.01.06
+          - C01.02.00
+          - C01.02.01
+          - C01.02.02
+          - C01.03.00
+          - C01.03.01
+          - C01.03.02
+          - C01.04.00
+          - C01.04.01
+          - C01.04.02
+          - C01.04.03
+          - C01.04.04
+          - C01.05.00
+          - C02.00.00
+          - C02.01.00
+          - C02.02.00
+          - C02.03.00
+          - C02.03.01
+          - C02.03.02
+          - C02.04.00
+          - C02.04.01
+          - C02.04.02
+          - C02.04.03
+          - C02.05.00
+          - C02.05.01
+          - C02.05.02
+          - C02.05.03
+          - C02.06.00
+          - C02.06.01
+          - C02.07.00
+          - C02.07.01
+          - C02.07.02
+          - C02.07.03
+          - C02.07.04
+          - C02.07.05
+          - C02.08.00
+          - C02.08.01
+          - C02.08.02
+          - C02.08.03
+          - C02.08.04
+          - C02.08.05
+          - C02.08.06
+          - C02.08.07
+          - C02.08.08
+          - C02.09.00
+          - C02.09.01
+          - C02.09.02
+          - C02.09.03
+          - C02.09.04
+          - C02.09.05
+          - C02.09.06
+          - C02.09.07
+          - C02.10.00
+          - C02.11.00
+          - C02.11.01
+          - C02.11.02
+          - C02.12.00
+          - C02.13.00
+          - C02.13.01
+          - C02.13.02
+          - C02.13.03
+          - C02.13.04
+          - C02.13.05
+          - C02.13.06
+          - C02.13.07
+          - C02.13.08
+          - C02.14.00
+          - C02.14.01
+          - C02.14.02
+          - C02.14.03
+          - C02.14.04
+          - C02.14.00
+          - C02.14.01
+          - C02.14.02
+          - C02.14.03
+          - C02.14.04
+          - C02.14.05
+          - C02.14.06
+          - C02.15.00
+          - C02.15.01
+          - C02.15.02
+          - C02.15.03
+          - C03.00.00
+          - C03.01.00
+          - C03.01.01
+          - C03.01.02
+          - C03.01.03
+          - C03.01.04
+          - C03.01.05
+          - C03.02.00
+          - C03.02.01
+          - C03.02.02
+          - C03.02.03
+          - C03.02.04
+          - C03.02.05
+          - C03.02.06
+          - C03.02.07
+          - C03.02.08
+          - C03.02.09
+          - C03.02.10
+          - C03.02.11
+          - C03.02.12
+          - C03.02.13
+          - C03.02.14
+          - C03.02.15
+          - C03.03.00
+          - C03.03.01
+          - C03.03.02
+          - C03.04.00
+          - C03.04.01
+          - C03.04.02
+          - C03.05.00
+          - C03.06.00
+          - C03.07.00
+          - C03.08.00
+          - C03.09.00
+          - C03.10.00
+          - C03.11.00
+          - C03.12.00
+          - C03.13.00
+          - C03.14.00
+          - C03.15.00
+          - C04.00.00
+          - C04.01.00
+          - C04.01.01
+          - C04.01.02
+          - C04.01.03
+          - C04.01.04
+          - C04.01.05
+          - C04.01.06
+          - C04.01.07
+          - C04.01.08
+          - C04.01.09
+          - C04.01.10
+          - C04.01.11
+          - C04.02.00
+          - C04.02.01
+          - C04.02.02
+          - C04.02.03
+          - C04.02.04
+          - C04.03.00
+          - C04.04.00
+          - C04.05.00
+          - C04.06.00
+          - C04.07.00
+          - C04.07.01
+          - C04.07.02
+          - C04.07.03
+          - C04.07.04
+          - C04.08.00
+          - C04.09.00
+          - C05.00.00
+          - C05.00.01
+          - C05.00.02
+          - C05.00.03
+          - C05.00.04
+          - C05.00.05
+          - C06.00.00
+          - C06.01.00
+          - C06.02.00
+          - C06.03.00
+          - C06.03.01
+          - C06.03.02
+          - C06.03.03
+          - C06.03.04
+          - C06.03.05
+          - C06.03.06
+          - C06.04.00
+          - C06.04.01
+          - C06.04.02
+          - C06.05.00
+          - C06.06.00
+          - C06.06.01
+          - C06.07.00
+          - C06.07.01
+          - C06.07.02
+          - C06.08.00
+          - C06.08.01
+          - C06.08.02
+          - C06.08.03
+          - C06.08.04
+          - C06.08.05
+          - C06.08.06
+          - C07.00.00
+          - C07.01.00
+          - C07.02.00
+          - C07.03.00
+          - C07.03.01
+          - C07.03.02
+          - C07.03.03
+          - C07.03.04
+          - C07.03.05
+          - C07.04.00
+          - C07.04.01
+          - C07.04.02
+          - C07.04.03
+          - C07.04.04
+          - C07.05.00
+          - C07.06.00
+          - C07.07.00
+          - C07.07.01
+          - C07.07.02
+          - C07.07.03
+          - C07.07.04
+          - C07.07.05
+          - C07.08.00
+          - C07.08.01
+          - C07.08.02
+          - C07.08.03
+          - C07.09.00
+          - C07.09.01
+          - C07.09.02
+          - C07.09.03
+          - C07.09.05
+          - C07.10.00
+          - C07.11.00
+          - C07.12.00
+          - C07.13.00
+          - C07.13.01
+          - C07.13.02
+          - C07.13.03
+          - C07.13.04
+          - C07.13.05
+          - C07.13.06
+          - C07.13.07
+          - C08.00.00
+          - C08.01.00
+          - C08.02.00
+          - C08.03.00
+          - C08.04.00
+          - C08.05.00
+          - C08.06.00
+          - C08.07.00
+          - C08.08.00
+          - C08.08.01
+          - C08.08.02
+          - C08.09.00
+          - C08.10.00
+          - C08.10.01
+          - C09.00.00
+          - C09.01.00
+          - C09.01.01
+          - C09.01.02
+          - C09.01.03
+          - C09.01.04
+          - C09.02.00
+          - C09.03.00
+          - C09.03.01
+          - C09.04.00
+          - C09.04.01
+          - C09.04.02
+          - C09.05.00
+          - C09.06.00
+          - C09.07.00
+          - C09.08.00
+          - C10.00.00
+          - C10.01.00
+          - C10.01.01
+          - C10.01.02
+          - C10.01.03
+          - C10.01.04
+          - C10.01.05
+          - C10.01.06
+          - C10.01.07
+          - C10.01.08
+          - C10.02.00
+          - C10.02.01
+          - C10.02.02
+          - C10.03.00
+          - C10.03.01
+          - C10.03.02
+          - C10.04.00
+          - C10.04.01
+          - C10.04.02
+          - C10.05.00
+          - C10.06.00
+          - C10.07.00
+          - C10.08.00
+          - C11.00.00
+          - C11.01.00
+          - C11.02.00
+          - C11.02.01
+          - C11.02.02
+          - C11.03.00
+          - C11.03.01
+          - C11.03.02
+          - C11.04.00
+          - C11.05.00
+          - C11.05.01
+          - C11.05.02
+          - C11.05.03
+          - C11.06.00
+          examples:
+          - C07.13.02
+        label:
+          type: string
+          title: "Libell\xE9"
+          x-cols: 6
+          example: example.json#/createCase/qualification/whatsHappen/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
+            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
+            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            \ fourni avec le code."
+          examples:
+          - "Rod\xE9o automobile"
+        freetext:
+          type: string
+          title: Commentaire
+          x-cols: 6
+          example: example.json#/createCase/qualification/whatsHappen/freetext
+          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
+            \ permettant de qualifier l'\xE9v\xE9nement."
+          examples:
+          - None
+      example: example.json#/createCase/qualification/whatsHappen
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
+        freetext: None
+    victims:
+      type: object
+      title: Patients/Victimes
+      x-display: expansion-panels
+      required: []
+      properties:
+        count:
+          type: string
+          title: Nombre de patients-victimes
+          x-cols: 6
+          example: example.json#/createCase/qualification/victims/count
+          description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
+            f\xE9rentiel CISU"
+          enum:
+          - '0'
+          - '1'
+          - SEVERAL
+          - MANY
+          - UNKNOWN
+          examples:
+          - SEVERAL
+        mainVictim:
+          type: string
+          title: Type du patient-victime principal
+          x-cols: 6
+          example: example.json#/createCase/qualification/victims/mainVictim
+          description: "Identifie le type de la principale victime (celle dont l'\xE9\
+            tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
+            \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
+            \ des partenaires impliqu\xE9s par NexSIS."
+          enum:
+          - INFANT
+          - CHILD
+          - ADULT
+          - PREGNANT
+          - SENIOR (voir Nomenclature CISU XX)
+          examples:
+          - CHILD
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur les patients-victimes"
+          x-cols: 6
+          example: example.json#/createCase/qualification/victims/freetext
+          description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
+          examples:
+          - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+      example: example.json#/createCase/qualification/victims
+      examples:
+      - count: SEVERAL
+        mainVictim: CHILD
+        freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+    detailedAdress:
+      type: object
+      title: "D\xE9tails de l'adresse"
+      x-display: expansion-panels
+      required:
+      - complete
+      properties:
+        complete:
+          type: string
+          title: "Num\xE9ro, type et nom de voie"
+          x-cols: 6
+          example: example.json#/createCase/location/detailedAdress/complete
+          description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
+            \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
+            \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
+            \ NexSIS."
+          examples:
+          - 9 Bd du Montparnasse
+        number:
+          type: string
+          title: "Num\xE9ro dans la voie"
+          x-cols: 6
+          example: example.json#/createCase/location/detailedAdress/number
+          description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
+            \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
+            p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
+          examples:
+          - "9, 4bis, PK10, \u2026"
+        wayName:
+          $ref: '#/components/schemas/wayName'
+      example: example.json#/createCase/location/detailedAdress
+    city:
+      type: object
+      title: "D\xE9tails de la commune"
+      x-display: expansion-panels
+      required: []
+      properties:
+        name:
+          type: string
+          title: Nom de la commune
+          x-cols: 6
+          example: example.json#/createCase/location/city/name
+          description: Nom officiel de la commune actuelle
+          examples:
+          - Lille
+        inseeCode:
+          type: string
+          title: Code INSEE de la commune
+          x-cols: 6
+          example: example.json#/createCase/location/city/inseeCode
+          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
+            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
+            \ renseign\xE9."
+          pattern: '[0-9]{5}'
+          examples:
+          - 59350
+        detail:
+          type: string
+          title: "Compl\xE9ment de commune"
+          x-cols: 6
+          example: example.json#/createCase/location/city/detail
+          description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
+            \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
+            \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
+            \ fusionn\xE9es pour le syst\xE8me \xE9metteur\nNB : dans tous les cas,\
+            \ la localisation GPS de la commune doit \xEAtre fournie afin d'\xE9viter\
+            \ une trop forte ambigu\xEFt\xE9"
+          examples:
+          - "Quartie Melun Nord, Lhomme, \u2026"
+      example: example.json#/createCase/location/city
+      examples:
+      - name: Lille
+        inseeCode: 59350
+        detail: "Quartie Melun Nord, Lhomme, \u2026"
+    access:
+      type: object
+      title: "D\xE9tails d'acc\xE8s"
+      x-display: expansion-panels
+      required: []
+      properties:
+        floor:
+          type: string
+          title: Etage
+          x-cols: 6
+          example: example.json#/createCase/location/access/floor
+          description: 'Etage '
+          examples:
+          - "RDC, 1, 2, \u2026"
+        roomNumber:
+          type: string
+          title: "Num\xE9ro de porte"
+          x-cols: 6
+          example: example.json#/createCase/location/access/roomNumber
+          description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
+          examples:
+          - "A16, 37, 104, \u2026"
+        interphone:
+          type: string
+          title: Interphone
+          x-cols: 6
+          example: example.json#/createCase/location/access/interphone
+          description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
+            \ de l'interphone (num\xE9ro, nom)"
+          examples:
+          - Dupont
+        accessCode:
+          type: array
+          items:
+            type: string
+            title: Digicode
+            x-cols: 6
+            example: example.json#/createCase/location/access/accessCode/0
+            description: "Indique le ou les digicodes dans l'ordre de progression\
+              \ dans le b\xE2timent"
+            examples:
+            - '[''1234A'', ''4321B'']'
+        elevator:
+          type: string
+          title: Ascenseur/escalier
+          x-cols: 6
+          example: example.json#/createCase/location/access/elevator
+          description: 'Indique l''ascenseur ou la cage d''escalier '
+          examples:
+          - C3
+        buildingName:
+          type: string
+          title: "B\xE2timent"
+          x-cols: 6
+          example: example.json#/createCase/location/access/buildingName
+          description: "Nom du b\xE2timent"
+          examples:
+          - Batiment B, Batiment Maunoury
+        entrance:
+          type: string
+          title: "Entr\xE9e"
+          x-cols: 6
+          example: example.json#/createCase/location/access/entrance
+          examples:
+          - "Zone Sud, Porte 1, \u2026"
+        entity:
+          type: string
+          title: Service
+          x-cols: 6
+          example: example.json#/createCase/location/access/entity
+          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
+          examples:
+          - "Infirmerie, service finance, service cardiologie, \u2026"
+        locphonenumber:
+          type: number
+          title: "N\xB0 de t\xE9l\xE9phone du lieu"
+          x-cols: 6
+          example: example.json#/createCase/location/access/locphonenumber
+          description: "Num\xE9ro de t\xE9l\xE9phone permettant d'acc\xE9der au lieu\
+            \ de l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat,\
+            \ t\xE9l\xE9phone du service administratif."
+          examples:
+          - 33123452323
+      example: example.json#/createCase/location/access
+    geometry:
+      type: object
+      title: "G\xE9ometrie associ\xE9e"
+      x-display: expansion-panels
+      required:
+      - obsDatime
+      properties:
+        obsDatime:
+          type: string
+          title: "Heure du dernier relev\xE9"
+          x-cols: 6
+          example: example.json#/createCase/location/geometry/obsDatime
+          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
+            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
+            \ donc pertinence des informations pour intervenir."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        point:
+          $ref: '#/components/schemas/point'
+        sketch:
+          type: string
+          title: "Formes g\xE9om\xE9triques"
+          x-cols: 6
+          example: example.json#/createCase/location/geometry/sketch
+          description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
+            \ de d\xE9crire une forme dans un syst\xE8me de projection donn\xE9. \n\
+            Dans le cas d'une alerte donn\xE9e sur une zone g\xE9ographique non pr\xE9\
+            cise (par exemple une section d'autoroute ou une zone sur un chemin de\
+            \ randonn\xE9e), une indication sur la zone de recherche peut \xEAtre\
+            \ fournie.\nEn XML, un objet gml est encapsul\xE9 dans une balise <sketch\
+            \ xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn\
+            \ JSON, les balises sont reprises depuis le mod\xE8le gml\nVoir http://www.opengis.net/gml\
+            \ pour le format de l'objet sketch"
+          examples:
+          - None
+      example: example.json#/createCase/location/geometry
+    externalInfo:
+      type: object
+      title: "Liens aux syst\xE8mes externes"
+      x-display: expansion-panels
+      required:
+      - freetext
+      - type
+      - uri
+      properties:
+        freetext:
+          type: string
+          title: Nom de la source
+          x-cols: 6
+          example: example.json#/createCase/location/externalInfo/0/freetext
+          description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
+            \ (BAN, IGN, ...)"
+          enum:
+          - BAN
+          - IGN
+          - NexSIS
+          examples:
+          - "NexSIS, BAN, IGN, \u2026"
+        type:
+          type: string
+          title: 'Type '
+          x-cols: 6
+          example: example.json#/createCase/location/externalInfo/0/type
+          description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
+            \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
+            \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
+            \ Aussi table dans une base de donn\xE9es"
+          enum:
+          - MANUAL
+          - MAP
+          - OTHER
+          - PHOTO
+          - WEBSIT
+          examples:
+          - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
+        uri:
+          type: string
+          title: Identifiant
+          x-cols: 6
+          example: example.json#/createCase/location/externalInfo/0/uri
+          description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
+          examples:
+          - id987
+      example: example.json#/createCase/location/externalInfo/0
+      examples:
+      - freetext: "NexSIS, BAN, IGN, \u2026"
+        type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
+        uri: id987
+    wayName:
+      type: object
+      title: Type et nom de voie
+      x-display: expansion-panels
+      required:
+      - complete
+      properties:
+        complete:
+          type: string
+          title: Type et nom
+          x-cols: 6
+          example: example.json#/createCase/location/detailedAdress/wayName/complete
+          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
+            Si les champs type et name sont renseign\xE9s, le champ callerName doit\
+            \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
+          examples:
+          - Boulevard du Montparnasse
+        type:
+          type: string
+          title: Type
+          x-cols: 6
+          example: example.json#/createCase/location/detailedAdress/wayName/type
+          examples:
+          - Boulevard
+        name:
+          type: string
+          title: Nom
+          x-cols: 6
+          example: example.json#/createCase/location/detailedAdress/wayName/name
+          examples:
+          - du Montparnasse
+      example: example.json#/createCase/location/detailedAdress/wayName
+      examples:
+      - complete: Boulevard du Montparnasse
+        type: Boulevard
+        name: du Montparnasse
+    point:
+      type: object
+      title: 'Point '
+      x-display: expansion-panels
+      required:
+      - coord
+      properties:
+        coord:
+          $ref: '#/components/schemas/coord'
+        sysCoord:
+          type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-cols: 6
+          example: example.json#/createCase/location/geometry/point/sysCoord
+          description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
+            \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
+            \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
+            \ valeur par d\xE9faut est \xAB\xBB."
+          examples:
+          - EPSG-4326
+      example: example.json#/createCase/location/geometry/point
+      examples:
+      - coord: &id001 {}
+        sysCoord: EPSG-4326
+    coord:
+      type: object
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      required: []
+      properties: {}
+      example: example.json#/createCase/location/geometry/point/coord
+      examples:
+      - *id001
+    caller:
+      type: object
+      title: "Requ\xE9rant"
+      x-display: expansion-panels
+      required: []
+      properties:
+        callerContact:
+          $ref: '#/components/schemas/contact'
+        callbackContact:
+          $ref: '#/components/schemas/contact'
+        language:
+          type: string
+          title: "Langue parl\xE9e"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/language
+          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
+            \ place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU."
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - .nan
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - FR
+        reqtype:
+          type: string
+          title: "Type de requ\xE9rant"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/reqtype
+          description: "Indique la relation du requ\xE9rant avec l'incident / le patient\
+            \ / la victime"
+          examples:
+          - "le patient lui-m\xEAme, p\xE8re, m\xE8re"
+        communication:
+          type: string
+          title: "Difficult\xE9 de communication"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/communication
+          description: "Indique si le requ\xE9rant rencontre ou non des difficult\xE9\
+            \ de communication"
+          examples:
+          - "Malentendant, aucune difficult\xE9 de communication"
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur le requ\xE9rant"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/freetext
+          description: "Informations compl\xE9mentaires sur le requ\xE9rant \nLes\
+            \ informations peuvent \xEAtre pass\xE9es sous forme de texte libre ou\
+            \ via une liste d'adjectif"
+          examples:
+          - "P\xE8re"
+        detailedName:
+          $ref: '#/components/schemas/detailedName'
+      example: example.json#/createCase/initialAlert/caller
+    contactSource:
+      type: object
+      title: Source de l'alerte
+      x-display: expansion-panels
+      required:
+      - channel
+      - type
+      - detail
+      properties:
+        channel:
+          type: string
+          title: Canal
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/alertSource/channel
+          description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
+            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
+          examples:
+          - Personne
+        type:
+          type: string
+          title: Type de contact de la source
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/alertSource/type
+          description: "Type de l'URI utilis\xE9e par la source, cf. nomenclature\
+            \ EMSI"
+          enum:
+          - PSTADD
+          - EMLADD
+          - IPADD
+          - FTPADD
+          - WWWADD
+          - PHNADD
+          - FAXADD
+          - PMRADD
+          examples:
+          - PHNADD
+        detail:
+          type: string
+          title: URI de contact de la source
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/alertSource/detail
+          description: "Valeur de l'URI utilis\xE9e par la source"
+          examples:
+          - 0671830530
+      example: example.json#/createCase/initialAlert/alertSource
+      examples:
+      - channel: Personne
+        type: PHNADD
+        detail: 0671830530
+    callTaker:
+      type: object
+      title: Agent
+      x-display: expansion-panels
+      required:
+      - organization
+      - controlRoom
+      properties:
+        organization:
+          type: string
+          title: Service d'urgence
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/callTaker/organization
+          description: "D\xE9crit la structure ou le service \xE0 laquelle est rattach\xE9\
+            e l'agent (en fonction du niveau de pr\xE9cision disponible).\nSe r\xE9\
+            f\xE9rer au DSF pour la structure norm\xE9e des organisations\nLe format\
+            \ est le suivant {pays}:{domaine}:{code d\xE9partement}:{organisation}:{structure\
+            \ interne}*:{unit\xE9 fonctionnelle}*."
+          examples:
+          - FR:Administration:44:samu44:crra:regulationN3
+        controlRoom:
+          type: string
+          title: Centre d'appels
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/callTaker/controlRoom
+          description: "D\xE9crit le centre d'appel auquel est rattach\xE9 l'agent"
+          examples:
+          - CGA, CGO 21, CRRA 44, ...
+        role:
+          type: string
+          title: "R\xF4le agent"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/callTaker/role
+          description: "D\xE9crit le r\xF4le de l'agent au sein du service selon la\
+            \ nomenclature PERSO (nomenclature SI-SAMU)"
+          enum: []
+          examples:
+          - ARM
+        calltakeContact:
+          $ref: '#/components/schemas/contact'
+        calltakerId:
+          type: string
+          title: ID de l'agent
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/callTaker/calltakerId
+          description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte\
+            \ (peut \xEAtre un identifiant technique, un num\xE9ro de carte CPS etc)"
+          examples:
+          - id1234
+      example: example.json#/createCase/initialAlert/callTaker
+      examples:
+      - organization: FR:Administration:44:samu44:crra:regulationN3
+        controlRoom: CGA, CGO 21, CRRA 44, ...
+        role: ARM
+        calltakeContact: {}
+        calltakerId: id1234
+    attachment:
+      type: object
+      title: "Pi\xE8ces jointes"
+      x-display: expansion-panels
+      required:
+      - URI
+      properties:
+        description:
+          type: string
+          title: Type ou description de la ressource
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/attachment/0/description
+          description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
+            \ tels que \xABcarte\xBB ou \xABphoto\xBB"
+          examples:
+          - "photo, carte, \u2026"
+        mimeType:
+          type: string
+          title: Type MIME
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/attachment/0/mimeType
+          description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
+            \ la ressource"
+          examples:
+          - "PDF, XML, JPEG, \u2026"
+        size:
+          type: integer
+          title: Taille approximative
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/attachment/0/size
+          description: Taille approximative de la ressource en kO
+          examples:
+          - "1235, 35, \u2026"
+        URI:
+          type: string
+          title: URI
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/attachment/0/URI
+          description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
+            \ la ressource sur Internet ou sur un r\xE9seau priv\xE9\nNous sugg\xE9\
+            rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\\
+            w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
+          examples:
+          - https://hub.esante.gouv.fr/resourceExample
+        derefURI:
+          type: string
+          title: URI base 64
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/attachment/0/derefURI
+          description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
+            \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
+            mes de transcodage (sur des double quotes qui casseraient le message,\
+            \ \u2026)"
+          examples:
+          - None
+        digest:
+          type: string
+          title: Hash
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/attachment/0/digest
+          description: "Hash de la ressource pour confirmer la r\xE9ception de la\
+            \ bonne ressource\nLa ressource est hash\xE9e avec le protocole SHA-256"
+          examples:
+          - None
+      example: example.json#/createCase/initialAlert/attachment/0
+      examples:
+      - description: "photo, carte, \u2026"
+        mimeType: "PDF, XML, JPEG, \u2026"
+        size: "1235, 35, \u2026"
+        URI: https://hub.esante.gouv.fr/resourceExample
+        derefURI: None
+        digest: None
+    contact:
+      type: object
+      title: "Contact requ\xE9rant"
+      x-display: expansion-panels
+      required:
+      - type
+      - detail
+      properties:
+        type:
+          type: string
+          title: "Type de contact du requ\xE9rant"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/callerContact/type
+          description: "Type de l'URI utilis\xE9e par le requ\xE9rant, cf. nomenclature\
+            \ EMSI"
+          enum:
+          - PSTADD
+          - EMLADD
+          - IPADD
+          - FTPADD
+          - WWWADD
+          - PHNADD
+          - FAXADD
+          - PMRADD
+          examples:
+          - PHNADD
+        detail:
+          type: string
+          title: "URI du contact requ\xE9rant"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/callerContact/detail
+          description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
+          examples:
+          - 0671830530
+      example: example.json#/createCase/initialAlert/caller/callerContact
+      examples:
+      - type: PHNADD
+        detail: 0671830530
+    detailedName:
+      type: object
+      title: "Pr\xE9nom & nom usuel du requ\xE9rant"
+      x-display: expansion-panels
+      required:
+      - complete
+      properties:
+        complete:
+          type: string
+          title: "Pr\xE9nom et nom"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/detailedName/complete
+          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
+            \ et callerFirstName sont renseign\xE9s, le champ callerName doit \xEA\
+            tre valoris\xE9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote\
+            \ : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et pas\
+            \ de deux champs s\xE9par\xE9s."
+          examples:
+          - Jean Dupont
+        lastName:
+          type: string
+          title: Nom
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/detailedName/lastName
+          description: "Nom du requ\xE9rant"
+          examples:
+          - Dupont
+        firstName:
+          type: string
+          title: "Pr\xE9nom"
+          x-cols: 6
+          example: example.json#/createCase/initialAlert/caller/detailedName/firstName
+          description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
+            \ compos\xE9s doivent pr\xE9f\xE9rablement \xEAtre s\xE9par\xE9s par le\
+            \ caract\xE8re \"-\""
+          examples:
+          - Jean
+      example: example.json#/createCase/initialAlert/caller/detailedName
+      examples:
+      - complete: Jean Dupont
+        lastName: Dupont
+        firstName: Jean
+    customMap:
+      type: object
+      title: "Cl\xE9 valeur adaptable"
+      x-display: expansion-panels
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          title: "Cl\xE9"
+          x-cols: 6
+          example: example.json#/createCase/additionalInformation/customMap/key
+          description: Nom de la balise
+          examples:
+          - neighborhood
+        label:
+          type: string
+          title: "Libell\xE9"
+          x-cols: 6
+          example: example.json#/createCase/additionalInformation/customMap/label
+          description: "Libell\xE9 correspondant"
+          examples:
+          - Quartier
+        value:
+          type: string
+          title: Valeur
+          x-cols: 6
+          example: example.json#/createCase/additionalInformation/customMap/value
+          description: "Valeur associ\xE9e \xE0 la cl\xE9"
+          examples:
+          - LYON 2e arrondissement
+        freetext:
+          type: string
+          title: "D\xE9tails"
+          x-cols: 6
+          example: example.json#/createCase/additionalInformation/customMap/freetext
+          description: "Informations compl\xE9mentaires sur le contexte / utilisation\
+            \ de ce matching additionnel"
+          examples:
+          - "Pr\xE9cision sur le quartier d'intervention"
+      example: example.json#/createCase/additionalInformation/customMap
+      examples:
+      - key: neighborhood
+        label: Quartier
+        value: LYON 2e arrondissement
+        freetext: "Pr\xE9cision sur le quartier d'intervention"

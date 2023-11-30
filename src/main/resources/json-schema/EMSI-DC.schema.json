@@ -11,7 +11,7 @@
   ],
   "allOf": [
     {
-      "$ref": "RC-DE_schema.json"
+      "$ref": "RC-DE.schema.json"
     }
   ],
   "properties": {

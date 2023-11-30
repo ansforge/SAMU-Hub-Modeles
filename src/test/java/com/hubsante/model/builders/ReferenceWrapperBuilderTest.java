@@ -15,10 +15,9 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.DistributionElement;
-import com.hubsante.model.cisu.DistributionElement.*;
-import com.hubsante.model.cisu.ReferenceWrapper;
-import com.hubsante.model.cisu.Recipient;
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.common.Recipient;
+import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.edxl.DistributionKind;
 import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;
@@ -49,7 +48,7 @@ public class ReferenceWrapperBuilderTest {
         List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
 
         DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
-                .kind(KindEnum.ACK)
+                .kind(DistributionElement.KindEnum.ACK)
                 .build();
         ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, "id-67890")
                 .build();

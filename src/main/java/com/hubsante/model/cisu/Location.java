@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -66,7 +51,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T17:25:02.798816900+01:00[Europe/Paris]")
 public class Location {
     public static final String JSON_PROPERTY_LOC_I_D = "locID";
     private String locID;
@@ -91,6 +76,7 @@ public class Location {
 
     public static final String JSON_PROPERTY_EXTERNAL_INFO = "externalInfo";
     private List<ExternalInfo> externalInfo;
+
 
     /**
      * Gets or Sets country
@@ -394,6 +380,8 @@ public class Location {
 
         MM("MM"),
 
+        NAN("NaN"),
+
         NR("NR"),
 
         NP("NP"),
@@ -425,8 +413,6 @@ public class Location {
         PK("PK"),
 
         PW("PW"),
-
-        _STATE_OF(" State of"),
 
         PA("PA"),
 
@@ -608,53 +594,6 @@ public class Location {
     public static final String JSON_PROPERTY_COUNTRY = "country";
     private CountryEnum country;
 
-    /**
-     * Champ libre pour compléter les informations de localisation
-     */
-    public enum FreetextEnum {
-        FRANCE("France"),
-
-        ALLEMAGNE("Allemagne"),
-
-        ESPAGNE("Espagne"),
-
-        ITALIE("Italie"),
-
-        SUISSE("Suisse"),
-
-        LUXEMBOURG("Luxembourg"),
-
-        BELGIQUE("Belgique"),
-
-        BR_SIL("Brésil");
-
-        private String value;
-
-        FreetextEnum(String value) {
-            this.value = value;
-        }
-
-        @JsonValue
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        @JsonCreator
-        public static FreetextEnum fromValue(String value) {
-            for (FreetextEnum b : FreetextEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-    }
-
     public static final String JSON_PROPERTY_FREETEXT = "freetext";
     private String freetext;
 
@@ -720,7 +659,7 @@ public class Location {
     }
 
     /**
-     * Indique le nom de lieu : nom commercial, lieu-dit, lac, forêt, nom de quartier (plutôt à destination des systèmes).
+     * Indique le nom de lieu : nom commercial, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).
      *
      * @return name
      **/

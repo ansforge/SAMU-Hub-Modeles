@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -36,7 +21,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import com.hubsante.model.cisu.Coord;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
@@ -50,10 +34,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("point")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T16:37:50.003054300+01:00[Europe/Paris]")
 public class Point {
     public static final String JSON_PROPERTY_COORD = "coord";
-    private Coord coord;
+    private Object coord;
 
     public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
     private String sysCoord;
@@ -61,7 +45,7 @@ public class Point {
     public Point() {
     }
 
-    public Point coord(Coord coord) {
+    public Point coord(Object coord) {
 
         this.coord = coord;
         return this;
@@ -75,14 +59,14 @@ public class Point {
     @JsonProperty(JSON_PROPERTY_COORD)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public Coord getCoord() {
+    public Object getCoord() {
         return coord;
     }
 
 
     @JsonProperty(JSON_PROPERTY_COORD)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setCoord(Coord coord) {
+    public void setCoord(Object coord) {
         this.coord = coord;
     }
 
