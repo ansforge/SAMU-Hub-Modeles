@@ -26,31 +26,26 @@ def to_string_custom(date_in):
 # - ["date_validation"]
 # - ["date_expiration"]
 # - ["levels"]
-def export_csv_nomenclature(params_in, df_nomenclature_in, release="v1.1", folder_output="out") :
+def export_csv_nomenclature(params_in, df_nomenclature_in, version, folder_output):
     df_export = df_nomenclature_in.copy()
     df_export.rename(columns={"Code": "code", "Description": "description", "Commentaire" : "commentaire"}, inplace=True)
     for level in range(1,params_in["levels"] + 1) :
         df_export.rename(columns={"Libellé niveau " + str(level): "label_n" + str(level)}, inplace=True)
-    # release is not taken into account for Excel
-    file_out = params_in["nomenclature_ref"] + "-" +  params_in["nomenclature_name"] + ".csv"
-    path_out = os.path.join(folder_output,"release_" + release)
-    # create dir if not exist
+    # version is not taken into account for Excel
+    file_out = params_in["nomenclature_ref"] + "-" + params_in["nomenclature_name"] + "-" + version + ".csv"
+    # create csv dir if not exist
     try :
-        os.mkdir(path_out)
-        print("Creating folder " + path_out + " ...")
-    except FileExistsError :
-        pass
-    try :
-        os.mkdir(os.path.join(path_out,"csv"))
-        print("Creating folder " + str(os.path.join(path_out,"csv")) + " ...")
+        os.mkdir(os.path.join(folder_output,"csv"))
+        print("Creating folder " + str(os.path.join(folder_output,"csv")) + " ...")
     except FileExistsError :
         pass
     # export
-    df_export.to_csv(os.path.join(path_out,"csv",file_out),
+    df_export.to_csv(os.path.join(folder_output,"csv",file_out),
         sep=";",na_rep="",encoding="utf-8", index = False)
     return
 
-def export_html_nomenclature(params_in, df_nomenclature_in, release="v1.1", folder_output="out"):
+
+def export_pdf_nomenclature(params_in, df_nomenclature_in, version, folder_output):
     df_export = df_nomenclature_in.copy()
     html_start = f"""
         <head>
@@ -89,22 +84,16 @@ def export_html_nomenclature(params_in, df_nomenclature_in, release="v1.1", fold
     # concatenate html parts
     html = html_start + html_style + html_corps + html_end
 
-    file_out = params_in["nomenclature_ref"] + "-" +  params_in["nomenclature_name"] + "-" + release + ".pdf"
-    path_out = os.path.join(folder_output,"release_" + release)
-    # create dir if not exist
+    file_out = params_in["nomenclature_ref"] + "-" +  params_in["nomenclature_name"] + "-" + version + ".pdf"
+    # create pdf dir if not exist
     try :
-        os.mkdir(path_out)
-        print("Creating folder " + path_out + " ...")
-    except FileExistsError :
-        pass
-    try :
-        os.mkdir(os.path.join(path_out,"pdf"))
-        print("Creating folder " + str(os.path.join(path_out,"pdf")) + " ...")
+        os.mkdir(os.path.join(folder_output,"pdf"))
+        print("Creating folder " + str(os.path.join(folder_output,"pdf")) + " ...")
     except FileExistsError :
         pass
     #export
     # open output file for writing (truncated binary)
-    pdf_file = open(os.path.join(path_out,"pdf",file_out), "w+b")
+    pdf_file = open(os.path.join(folder_output,"pdf",file_out), "w+b")
     # convert HTML to PDF
     pisa_status = pisa.CreatePDF(
             html,               # the HTML to convert
@@ -112,6 +101,7 @@ def export_html_nomenclature(params_in, df_nomenclature_in, release="v1.1", fold
     # close output file
     pdf_file.close()
     return
+
 
 # transform df dataframe to a doc objet
 def df_nomenclature_to_doc(params_in, df_nomenclature_in, doc=None, style='Medium Shading 1 Accent 1'):
@@ -128,7 +118,7 @@ def df_nomenclature_to_doc(params_in, df_nomenclature_in, doc=None, style='Mediu
     # table data
     table_date.rows[0].cells[0].text = "Date de validation"
     table_date.rows[1].cells[0].text = to_string_custom(params_in["date_validation"])
-    
+
     table_date.rows[0].cells[1].text = "Date d'expiration"
     table_date.rows[1].cells[1].text = to_string_custom(params_in["date_expiration"])
 
@@ -164,43 +154,36 @@ def df_nomenclature_to_doc(params_in, df_nomenclature_in, doc=None, style='Mediu
 
     return doc
 
-# export .pdf and .docx
-def export_docx_nomenclature(params_in, df_nomenclature_in, release="v1.1", folder_output="out") :
-    path_out = os.path.join(folder_output,"release_" + release)
 
+# export .pdf and .docx
+def export_docx_nomenclature(params_in, df_nomenclature_in, version, folder_output) :
     #generate docx
     doc_export = df_nomenclature_to_doc(params_in, df_nomenclature_in)
-    
+
     # .docx
-    # create dir if not exist
-    file_out_docx = params_in["nomenclature_ref"] + "-" +  params_in["nomenclature_name"] + "-" + release + ".docx"
-    
+    # create word dir if not exist
+    file_out_docx = params_in["nomenclature_ref"] + "-" +  params_in["nomenclature_name"] + "-" + version + ".docx"
     try :
-        os.mkdir(path_out)
-        print("Creating folder " + path_out + " ...")
-    except FileExistsError :
-        pass
-    try :
-        os.mkdir(os.path.join(path_out,"word"))
-        print("Creating folder " + str(os.path.join(path_out,"word")) + " ...")
+        os.mkdir(os.path.join(folder_output,"word"))
+        print("Creating folder " + str(os.path.join(folder_output,"word")) + " ...")
     except FileExistsError :
         pass
     # export
-    doc_export.save(os.path.join(path_out,"word",file_out_docx))
+    doc_export.save(os.path.join(folder_output,"word",file_out_docx))
     return
 
 
 # transform sommaire dataframe to a doc
-def df_sommaire_to_doc(df_sommaire_in, doc=None, style='Medium Shading 1 Accent 1', release="v1.1", folder_output="out"):
+def df_sommaire_to_doc(df_sommaire_in, version, doc=None, style='Medium Shading 1 Accent 1'):
     if doc is None:
         doc = docx.Document()
 
     # Add header
     doc.add_heading("Nomenclature Hub Santé", level=1)
-    doc.add_heading("N° de version " + release, level=2)
+    doc.add_heading("N° de version " + version, level=2)
     doc.add_paragraph()
-    
-    df_sommaire_in.rename(columns={"nomenclature_name": "Nomenclature", 
+
+    df_sommaire_in.rename(columns={"nomenclature_name": "Nomenclature",
                                    "file_name": "Nom de fichier",
                                    "referentiel" : "Référentiel d'origine de la norme"}, inplace=True)
 
@@ -214,27 +197,26 @@ def df_sommaire_to_doc(df_sommaire_in, doc=None, style='Medium Shading 1 Accent 
     for i in range(df_sommaire_in.shape[0]):
         for j in range(df_sommaire_in.shape[-1]):
             table.cell(i+1,j).text = str(df_sommaire_in.fillna("").values[i,j])
-    
+
     return doc
 
-def export_sommaire(df_sommaire_in, release="v1.1", folder_output="out") :
-    path_out = os.path.join(folder_output,"release_" + release)
+def export_sommaire(df_sommaire_in, version, folder_output) :
     #generate docx
-    doc_export = df_sommaire_to_doc(df_sommaire_in, release=release)
+    doc_export = df_sommaire_to_doc(df_sommaire_in, version)
 
     # .docx
-    file_out_docx = "Sommaire Nomenclature Hub" + "-" + release + ".docx"
+    file_out_docx = "Sommaire Nomenclature Hub" + "-" + version + ".docx"
 
     # export
-    doc_export.save(os.path.join(path_out,file_out_docx))
+    doc_export.save(os.path.join(folder_output, file_out_docx))
     return
 
 
 #___PARSING SHEET___
 def parse_sheet(filename_in, sheet_name_in) :
     # reading 6 first rows to get params
-    df_params = pd.read_excel(filename_in, sheet_name=sheet_name_in, 
-                              nrows=8, header=None, index_col=0, 
+    df_params = pd.read_excel(filename_in, sheet_name=sheet_name_in,
+                              nrows=8, header=None, index_col=0,
                               dtype={"levels": int, "date_validation": datetime, "date_expiration": datetime})
     df_params.fillna("",inplace=True)
     params = {}
@@ -267,15 +249,15 @@ def parse_sheet(filename_in, sheet_name_in) :
     #return
     return params, df_nomenclature
 
-#___PARSING A FILE THEN A FOLDER___
 
-def parse_excel(filename_in, df_sommaire_in, release="v1.1", folder_output="out") :
+#___PARSING A FILE THEN A FOLDER___
+def parse_excel(filename_in, df_sommaire_in, version, folder_output):
     sheet_names = pd.ExcelFile(filename_in).sheet_names
     # iterate over sheets
     for sheet_i in sheet_names :
         print("Processing " + filename_in + " : sheet " + sheet_i + " ...")
         params_i, df_nomenclature_i = parse_sheet(filename_in, sheet_i)
-        nom_fichier_i = params_i["nomenclature_ref"] + "-" +  params_i["nomenclature_name"] + "-" + release
+        nom_fichier_i = params_i["nomenclature_ref"] + "-" +  params_i["nomenclature_name"] + "-" + version
 
         # complete sommaire
         df_i = pd.DataFrame({"nomenclature_name" : params_i["nomenclature_name"],
@@ -286,29 +268,29 @@ def parse_excel(filename_in, df_sommaire_in, release="v1.1", folder_output="out"
 
         # generate export
         # for csv version not taken into account in filename
-        export_csv_nomenclature(params_i,df_nomenclature_i, release=release, folder_output=folder_output)
-        export_html_nomenclature(params_i,df_nomenclature_i, release=release, folder_output=folder_output)
-        export_docx_nomenclature(params_i,df_nomenclature_i, release=release, folder_output=folder_output)
+        export_csv_nomenclature(params_i,df_nomenclature_i, version, folder_output)
+        export_pdf_nomenclature(params_i, df_nomenclature_i, version, folder_output)
+        export_docx_nomenclature(params_i,df_nomenclature_i, version, folder_output)
     return df_sommaire_in
 
 
-def parse_folder(folder_in, release="v1.1", folder_output="out") :
+def parse_folder(folder_in, version, folder_output):
     # initialize empty df for summary
     df_sommaire = pd.DataFrame(data={},
                    columns=["nomenclature_name",
                             "file_name",
                             "referentiel"],
                     dtype=str)
-    
+
     for filename in os.listdir(folder_in):
         # check extension 
         if filename.endswith('.xlsx') :
             print("Processing " + filename + " ...")
             # processing
-            df_sommaire = parse_excel(os.path.join(folder_in,filename), df_sommaire, release=release, folder_output=folder_output)
+            df_sommaire = parse_excel(os.path.join(folder_in,filename), df_sommaire, version, folder_output)
         else :
             print(filename + " is not a valid nomenclature file.")
     print("Processing summary ...")
-    export_sommaire(df_sommaire, release=release, folder_output=folder_output)
+    export_sommaire(df_sommaire, version, folder_output)
     print("Job done.")
     return
