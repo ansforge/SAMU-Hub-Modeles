@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.model.edxl.EdxlEnvelope;
 import com.hubsante.model.edxl.EdxlMessage;
 import lombok.extern.slf4j.Slf4j;
 
@@ -50,6 +51,10 @@ public class EdxlHandler {
 
     public EdxlMessage deserializeJsonEDXL(String json) throws JsonProcessingException {
         return jsonMapper.readValue(json, EdxlMessage.class);
+    }
+
+    public EdxlEnvelope deserializeJsonEDXLEnvelope(String json) throws JsonProcessingException {
+        return jsonMapper.readValue(json, EdxlEnvelope.class);
     }
 
     public EdxlMessage deserializeXmlEDXL(String xml) throws JsonProcessingException {
