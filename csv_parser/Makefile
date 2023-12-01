@@ -30,9 +30,9 @@ run:
 	git add ..
 	make nomenclatures
 	@if git diff-index --quiet HEAD -- ..; then \
-		@echo "No changes found, skipping push..."; \
+		echo "No changes found, skipping push..."; \
 	else \
-		@echo "Changes detected, pushing updated files..."; \
+		echo "Changes detected, pushing updated files..."; \
 		git commit -m "[$(shell date +'%y.%m.%d %H:%M')] Model auto-generation"; \
 		git push origin $(TRACKING_BRANCH_NAME); \
 	fi
