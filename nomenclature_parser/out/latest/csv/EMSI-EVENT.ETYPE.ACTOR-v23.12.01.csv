@@ -1,5 +1,5 @@
 ,code,label_n1,label_n2,label_n3,description,commentaire
-0,ANI,ANIMAUX,,,L'élément de texte libre contiendra des informations détaillées sur l'espèce et d'autres caractéristiques.,
+0,ANI,Animaux,,,L'élément de texte libre contiendra des informations détaillées sur l'espèce et d'autres caractéristiques.,
 1,BEV,Environnement bâti,,,Environnement bâti,
 2,PPL,Personnes,,,Personnes,
 3,VEH,Véhicules,,,Véhicules,
