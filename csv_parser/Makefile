@@ -7,8 +7,6 @@ MODELS_FILE := "models.xlsx"
 # Tracking branch
 TRACKING_BRANCH_NAME := auto/model_tracker
 
-CURRENT_DATE := $(shell date +'%y.%m.%d %H:%M')
-
 .PHONY: setup nomenclatures run
 
 setup:
@@ -31,5 +29,5 @@ run:
 	make setup
 	git add ..
 	make nomenclatures
-	git commit -m "[$(CURRENT_DATE)] Model auto-generation"
+	git commit -m "[$(shell date +'%y.%m.%d %H:%M')] Model auto-generation"
 	git push origin $(TRACKING_BRANCH_NAME)
