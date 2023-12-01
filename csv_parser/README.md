@@ -5,17 +5,14 @@ pip install -r requirements.txt
 
 # Setup
 ```bash
-# Copy nomenclatures excels from OneDrive to local folder
-cp -r "/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/Nomenclatures/01 - Base interne/" ../nomenclature_parser/in/
-# Copy the models xlsx from OneDrive to local folder
-cp "/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD - Hub Santé.xlsx" model.xlsx
+# Run everything
+make run
 
-git add ../nomenclature_parser/in/
+# Crons to run it
+30 9-17/2 * * 1-5 cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && ae all && make run >> cron.log
+9-20 * * 1-5 cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && ae all && make run >> cron.log
+30 17 1-7 * 5 rm ~/code/ans/SAMU-Hub-Sante/models/csv_parser/cron.log
 
-
-# Commit only if needed | Ref.: https://stackoverflow.com/a/8123841/10115198
-git diff-index --quiet HEAD || git commit -m "⚙️ Auto-génération de la documentation"
-          
 ```
 
 # CSV to JsonSchema
