@@ -41,4 +41,4 @@ run:
 		git commit -m "[$(DATE)] Model auto-generation"; \
 		git push origin $(TRACKING_BRANCH_NAME); \
 	fi
-	@echo "[$(DATE)] Run done"
+	@echo "[$(DATE)] Run done."
