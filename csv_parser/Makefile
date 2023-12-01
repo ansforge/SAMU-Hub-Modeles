@@ -37,7 +37,7 @@ run:
 		echo "No changes found, skipping push..."; \
 	else \
 		echo "Changes detected, pushing updated files..."; \
-		DATE := $(shell date +'%y.%m.%d %H:%M'); \
+		DATE=$(shell date +'%y.%m.%d %H:%M'); \
 		git commit -m "[$(DATE)] Model auto-generation"; \
 		git push origin $(TRACKING_BRANCH_NAME); \
 	fi
