@@ -7,7 +7,7 @@ MODELS_FILE := "models.xlsx"
 # Tracking branch
 TRACKING_BRANCH_NAME := auto/model_tracker
 
-CURRENT_DATE := $(shell date +'%Y-%m-%d %H:%M')
+CURRENT_DATE := $(shell date +'%y.%m.%d %H:%M')
 
 .PHONY: setup nomenclatures run
 
@@ -27,7 +27,7 @@ nomenclatures:
 
 run:
 	@echo "Checking out tracking branch ($(TRACKING_BRANCH_NAME)), copying files and committing changes..."
-	git checkout -b $(TRACKING_BRANCH_NAME)
+	git checkout $(TRACKING_BRANCH_NAME)
 	make setup
 	git add ..
 	make nomenclatures

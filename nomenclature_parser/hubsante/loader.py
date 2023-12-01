@@ -40,8 +40,7 @@ def export_csv_nomenclature(params_in, df_nomenclature_in, version, folder_outpu
     except FileExistsError:
         pass
     # export
-    df_export.to_csv(os.path.join(folder_output, "csv", file_out),
-                     sep=";", na_rep="", keep_default_na=False, na_values=['_'], encoding="utf-8", index=False)
+    df_export.to_csv(os.path.join(folder_output, "csv", file_out))
     return
 
 
@@ -218,7 +217,8 @@ def parse_sheet(filename_in, sheet_name_in):
     # reading 6 first rows to get params
     df_params = pd.read_excel(filename_in, sheet_name=sheet_name_in,
                               nrows=8, header=None, index_col=0,
-                              dtype={"levels": int, "date_validation": datetime, "date_expiration": datetime})
+                              dtype={"levels": int, "date_validation": datetime, "date_expiration": datetime},
+                              keep_default_na=False, na_values=['NULL', 'null', 'NaN', 'nan', 'None', 'none', ''])
     df_params.fillna("", inplace=True)
     params = {}
     params["nomenclature_ref"] = df_params.iloc[0][1]
