@@ -23,7 +23,7 @@ nomenclatures:
 		echo "No changes in $(NOMENCLATURE_FOLDER), skipping nomenclatures generation..." | tee -a $(LOG_FILE); \
 	else \
 		echo "Changes detected in $(NOMENCLATURE_FOLDER), running nomenclatures generation..." | tee -a $(LOG_FILE); \
-		cd ../nomenclature_parser && python nomenclature_parser.py && git add .; \
+		cd ../nomenclature_parser && /Users/romainfouilland/code/envs/all/bin/python nomenclature_parser.py && git add .; \
 	fi
 
 run:
