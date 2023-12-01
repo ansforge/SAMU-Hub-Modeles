@@ -21,7 +21,7 @@ nomenclatures:
 		echo "No changes in $(NOMENCLATURE_FOLDER), skipping nomenclatures generation..."; \
 	else \
 		echo "Changes detected in $(NOMENCLATURE_FOLDER), running nomenclatures generation..."; \
-		cd ../nomenclature_parser && python nomenclature_parser.py; \
+		cd ../nomenclature_parser && python nomenclature_parser.py && git add .; \
 	fi
 
 run:
