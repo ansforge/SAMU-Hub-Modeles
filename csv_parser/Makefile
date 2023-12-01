@@ -13,32 +13,32 @@ LOG_FILE := cron.log
 .PHONY: setup nomenclatures run
 
 setup:
-	@echo "Copying nomenclatures excels from OneDrive to local folder..." | tee -a $(LOG_FILE)
+	@echo "Copying nomenclatures excels from OneDrive to local folder..."
 	cp -r $(NOMENCLATURE_IN_FOLDER) $(NOMENCLATURE_FOLDER)
-	@echo "Copying models excel from OneDrive to local folder..." | tee -a $(LOG_FILE)
+	@echo "Copying models excel from OneDrive to local folder..."
 	cp $(MODELS_IN_FILE) $(MODELS_FILE)
 
 nomenclatures:
 	@if git diff-index --quiet HEAD -- $(NOMENCLATURE_FOLDER); then \
-		echo "No changes in $(NOMENCLATURE_FOLDER), skipping nomenclatures generation..." | tee -a $(LOG_FILE); \
+		echo "No changes in $(NOMENCLATURE_FOLDER), skipping nomenclatures generation..."; \
 	else \
-		echo "Changes detected in $(NOMENCLATURE_FOLDER), running nomenclatures generation..." | tee -a $(LOG_FILE); \
+		echo "Changes detected in $(NOMENCLATURE_FOLDER), running nomenclatures generation..."; \
 		cd ../nomenclature_parser && /Users/romainfouilland/code/envs/all/bin/python nomenclature_parser.py && git add .; \
 	fi
 
 run:
-	@echo "[$(DATE)] Running script..." | tee -a $(LOG_FILE)
-	@echo "Checking out tracking branch ($(TRACKING_BRANCH_NAME)), copying files and committing changes..." | tee -a $(LOG_FILE)
+	@echo "[$(DATE)] Running script..."
+	@echo "Checking out tracking branch ($(TRACKING_BRANCH_NAME)), copying files and committing changes..."
 	git checkout $(TRACKING_BRANCH_NAME)
 	make setup
 	git add ..
 	make nomenclatures
 	@if git diff-index --quiet HEAD -- ..; then \
-		echo "No changes found, skipping push..." | tee -a $(LOG_FILE); \
+		echo "No changes found, skipping push..."; \
 	else \
-		echo "Changes detected, pushing updated files..." | tee -a $(LOG_FILE); \
+		echo "Changes detected, pushing updated files..."; \
 		DATE := $(shell date +'%y.%m.%d %H:%M'); \
 		git commit -m "[$(DATE)] Model auto-generation"; \
 		git push origin $(TRACKING_BRANCH_NAME); \
 	fi
-	@echo "[$(DATE)] Run done" | tee -a $(LOG_FILE)
+	@echo "[$(DATE)] Run done"
