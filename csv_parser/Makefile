@@ -6,34 +6,39 @@ MODELS_IN_FILE := "/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLi
 MODELS_FILE := "models.xlsx"
 # Tracking branch
 TRACKING_BRANCH_NAME := auto/model_tracker
+
+DATE := $(shell date +'%y.%m.%d %H:%M')
 LOG_FILE := cron.log
 
 .PHONY: setup nomenclatures run
 
 setup:
-	@echo "Copying nomenclatures excels from OneDrive to local folder..."
+	@echo "Copying nomenclatures excels from OneDrive to local folder..." | tee -a $(LOG_FILE)
 	cp -r $(NOMENCLATURE_IN_FOLDER) $(NOMENCLATURE_FOLDER)
-	@echo "Copying models excel from OneDrive to local folder..."
+	@echo "Copying models excel from OneDrive to local folder..." | tee -a $(LOG_FILE)
 	cp $(MODELS_IN_FILE) $(MODELS_FILE)
 
 nomenclatures:
 	@if git diff-index --quiet HEAD -- $(NOMENCLATURE_FOLDER); then \
-		echo "No changes in $(NOMENCLATURE_FOLDER), skipping nomenclatures generation..."; \
+		echo "No changes in $(NOMENCLATURE_FOLDER), skipping nomenclatures generation..." | tee -a $(LOG_FILE); \
 	else \
-		echo "Changes detected in $(NOMENCLATURE_FOLDER), running nomenclatures generation..."; \
+		echo "Changes detected in $(NOMENCLATURE_FOLDER), running nomenclatures generation..." | tee -a $(LOG_FILE); \
 		cd ../nomenclature_parser && python nomenclature_parser.py && git add .; \
 	fi
 
 run:
-	@echo "Checking out tracking branch ($(TRACKING_BRANCH_NAME)), copying files and committing changes..."
+	@echo "[$(DATE)] Running script..." | tee -a $(LOG_FILE)
+	@echo "Checking out tracking branch ($(TRACKING_BRANCH_NAME)), copying files and committing changes..." | tee -a $(LOG_FILE)
 	git checkout $(TRACKING_BRANCH_NAME)
 	make setup
 	git add ..
 	make nomenclatures
 	@if git diff-index --quiet HEAD -- ..; then \
-		echo "No changes found, skipping push..."; \
+		echo "No changes found, skipping push..." | tee -a $(LOG_FILE); \
 	else \
-		echo "Changes detected, pushing updated files..."; \
-		git commit -m "[$(shell date +'%y.%m.%d %H:%M')] Model auto-generation"; \
+		echo "Changes detected, pushing updated files..." | tee -a $(LOG_FILE); \
+		DATE := $(shell date +'%y.%m.%d %H:%M'); \
+		git commit -m "[$(DATE)] Model auto-generation"; \
 		git push origin $(TRACKING_BRANCH_NAME); \
 	fi
+	@echo "[$(DATE)] Run done" | tee -a $(LOG_FILE)
