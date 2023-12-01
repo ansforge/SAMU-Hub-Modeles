@@ -14,7 +14,7 @@ LOG_FILE := cron.log
 
 setup:
 	@echo "Copying nomenclatures excels from OneDrive to local folder..."
-	cp -r $(NOMENCLATURE_IN_FOLDER) $(NOMENCLATURE_FOLDER)
+	@cp -r $(NOMENCLATURE_IN_FOLDER) $(NOMENCLATURE_FOLDER)
 	@echo "Copying models excel from OneDrive to local folder..."
 	cp $(MODELS_IN_FILE) $(MODELS_FILE)
 
