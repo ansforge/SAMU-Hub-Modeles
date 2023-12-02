@@ -8,11 +8,13 @@ pip install -r requirements.txt
 # Run everything
 make run
 
-# Crons to run it
-30 9-17/2 * * 1-5 cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && ae all && make run >> cron.log
-9-20 * * 1-5 cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && ae all && make run >> cron.log
+# Crons
+# - For frequent runs 
+30 9-17/2 * * 1-5 cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && (make run >>cron.log 2>&1)
+# - For weekly log deletion
 30 17 1-7 * 5 rm ~/code/ans/SAMU-Hub-Sante/models/csv_parser/cron.log
-
+# - For debug (run every minute)
+# * * * * * cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && (make run >>cron.log 2>&1)
 ```
 
 # CSV to JsonSchema
