@@ -27,7 +27,7 @@ nomenclatures:
 	fi
 
 run:
-	@echo "[$(DATE)] Running script..."
+	@echo "[$(DATE)] Running script..." | tee -a $(LOG_FILE)
 	@echo "Checking out tracking branch ($(TRACKING_BRANCH_NAME)), copying files and committing changes..."
 	git checkout $(TRACKING_BRANCH_NAME)
 	make setup
