@@ -1,0 +1,1041 @@
+openapi: 3.0.0
+components:
+  schemas:
+    emsiWrapper:
+      $id: classpath:/json-schema/schema#
+      x-id: EMSI.schema.json#
+      example: example.json#
+      type: object
+      title: emsi
+      required:
+      - emsi
+      properties:
+        emsi:
+          $ref: '#/components/schemas/emsi'
+    emsi:
+      type: object
+      title: Objet emsi
+      x-display: expansion-panels
+      required:
+      - CONTEXT
+      - EVENT
+      properties:
+        CONTEXT:
+          $ref: '#/components/schemas/context'
+        EVENT:
+          $ref: '#/components/schemas/event'
+        MISSION:
+          type: array
+          items:
+            $ref: '#/components/schemas/mission'
+      example: example.json#/emsi
+    context:
+      type: object
+      title: Contexte
+      x-display: expansion-panels
+      required:
+      - ID
+      - MODE
+      - MSGTYPE
+      properties:
+        ID:
+          type: string
+          title: Identifiant du message
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/ID
+          description: "A constituer par le r\xE9dacteur du pr\xE9sent EMSI pour \xEA\
+            tre unique, il est pr\xE9conis\xE9 de reprendre la valeur du champ messageId\
+            \ de l'ent\xEAte RC-DE."
+          examples:
+          - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        MODE:
+          type: string
+          title: Mode
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/MODE
+          description: "Valeur constante dans le cadre des \xE9changes LRM-NexSIS\
+            \ : ACTUAL"
+          enum:
+          - ACTUAL
+          - EXERCS
+          - SYSTEM
+          - TEST
+          examples:
+          - ACTUAL
+        MSGTYPE:
+          type: string
+          title: Type de message
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/MSGTYPE
+          description: "- A valoriser avec la valeur \"ALERT\" lors du premier \xE9\
+            change entre syst\xE8mes.\n- A valoriser avec la valeur constante \"UPDATE\"\
+            \ ensuite.\nPeut ne pas \xEAtre interpr\xE9t\xE9 par les LRM."
+          enum:
+          - ACK
+          - ALERT
+          - CANCEL
+          - ERROR
+          - UPDATE
+          examples:
+          - UPDATE
+        CREATION:
+          type: string
+          title: "Date et heure de cr\xE9ation"
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/CREATION
+          description: "Obligatoire dans le cadre d'une demande de concours, contient\
+            \ la date de cr\xE9ation de la demande de concours dans le syst\xE8me\
+            \ du partenaire requ\xE9rant.\nA valoriser avec le m\xEAme horaire que\
+            \ dateTimeSent dans le message RC-DE associ\xE9."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:25:54+02:00'
+        LINK:
+          type: array
+          items:
+            $ref: '#/components/schemas/link'
+        LEVEL:
+          type: string
+          title: Niveau
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/LEVEL
+          description: A valoriser avec la valeur constante "OPR" dans le cadre du
+            message EMSI-EO
+          enum:
+          - STRTGC
+          - OPR
+          - TACTCL
+          examples:
+          - OPR
+        SECLASS:
+          type: string
+          title: Niveau de classification
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/SECLASS
+          description: Optionnel
+          enum:
+          - CONFID
+          - RESTRC
+          - SECRET
+          - TOPSRT
+          - UNCLAS
+          - UNMARK
+          examples:
+          - RESTRC
+        FREETEXT:
+          type: string
+          title: Texte libre
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/FREETEXT
+          description: Texte libre, optionnel
+          examples:
+          - "Contexte de grand incendie \xE0 Nantes"
+        ORIGIN:
+          $ref: '#/components/schemas/origin'
+        EXTERNAL_INFO:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalInfo'
+        URGENCY:
+          type: string
+          title: "Niveau d'urgence de l'\xE9v\xE9nement"
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/URGENCY
+          description: "Niveau d'urgence pour l'affaire en cours\nDans le cadre des\
+            \ \xE9changes LRM-NexSIS, optionnel"
+          enum:
+          - URGENT
+          - NOT_URGENT
+          examples:
+          - URGENT
+      example: example.json#/emsi/CONTEXT
+    event:
+      type: object
+      title: Evenement
+      x-display: expansion-panels
+      required:
+      - ID
+      properties:
+        ID:
+          type: string
+          title: Identifiant local de l'affaire
+          x-cols: 6
+          example: example.json#/emsi/EVENT/ID
+          description: "Identifiant local de l'affaire dans le syst\xE8me du partenaire\
+            \ emetteur"
+          examples:
+          - FR:NEXSIS:44:CGO:20231027_00002
+        NAME:
+          type: string
+          title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/NAME
+          description: Optionnel
+          examples:
+          - Grand Incendie Nantes
+        MAIN_EVENT_ID:
+          type: string
+          title: Identifiant de l'affaire
+          x-cols: 6
+          example: example.json#/emsi/EVENT/MAIN_EVENT_ID
+          description: "Identifiant d\u2019affaire partag\xE9 issu du message RC-EDA\
+            \ transmis en amont\nNB : Dans le cas d\u2019un partage initi\xE9 par\
+            \ un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
+          examples:
+          - samuA:CA126B445579GD4A67AV
+        ETYPE:
+          $ref: '#/components/schemas/etype'
+        SOURCE:
+          type: string
+          title: Source
+          x-cols: 6
+          example: example.json#/emsi/EVENT/SOURCE
+          description: Optionnel
+          enum:
+          - COMFOR
+          - HUMDED
+          - HUMOBS
+          - SENSOR
+          examples:
+          - HUMOBS
+        SCALE:
+          type: string
+          title: "Echelle de s\xE9v\xE9rit\xE9 de l'environnement"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/SCALE
+          description: Optionnel
+          enum:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          examples:
+          - 2
+        CERTAINTY:
+          type: integer
+          title: "Fiabilit\xE9"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CERTAINTY
+          description: "Prend une valeur enti\xE8re entre 0 et 100\nOptionnel"
+          examples:
+          - 100
+        DECL_DATIME:
+          type: string
+          title: "Date de d\xE9claration de l'event"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/DECL_DATIME
+          description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
+            \ avec la date/heure de cr\xE9ation de l'affaire ou de l'op\xE9ration.\n\
+            NexSIS transmettra la date/heure de cr\xE9ation de l'op\xE9ration dans\
+            \ ses syst\xE8mes (qui peut diverger de la date/heure de cr\xE9ation de\
+            \ l'affaire)"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:24:50+02:00'
+        OCC_DATIME:
+          type: string
+          title: "D\xE9crit la date et le lieu de l'\xE9v\xE9nement"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/OCC_DATIME
+          description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
+            \ avec la date de la premi\xE8re alerte ou la date \xE9valu\xE9e de d\xE9\
+            but de la situation d'urgence.\nPar exemple :\nSi un incendie est d\xE9\
+            clar\xE9 est 9h02, il a pu d\xE9marr\xE9 \xE0 8h55 par exemple.\nNB :\
+            \ temporairement, NexSIS renseignera ce champ avec la date de r\xE9ception\
+            \ de l'alerte initiale"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:20:50+02:00'
+        OBS_DATIME:
+          type: string
+          title: "Date \xE0 laquelle l'observation la plus r\xE9cente a \xE9t\xE9\
+            \ r\xE9alis\xE9e"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/OBS_DATIME
+          description: "Ce champ est id\xE9alement \xE0 valoriser avec la date/heure\
+            \ \xE0 laquelle l'observation de la situation d'urgence de l'affaire la\
+            \ plus r\xE9cente a \xE9t\xE9 r\xE9alis\xE9e.\nNexSIS transmettra la date/heure\
+            \ d'envoi de la demande de concours dans son syst\xE8me.\nNB : temporairement,\
+            \ NexSIS renseignera ce champ avec la date de r\xE9ception de l'alerte\
+            \ initiale"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:26:00+02:00'
+        STATUS:
+          type: string
+          title: Status
+          x-cols: 6
+          example: example.json#/emsi/EVENT/STATUS
+          description: "Permet de d\xE9crire le status de l'affaire en cours.\nCe\
+            \ champ suit une nomenclature EMSI. (COM = event complete, IPR = event\
+            \ in progress, NST = event not started, STOP = STOP = event under control,\
+            \ no need for additional resource)\nDans le cadre d'une op\xE9ration :\n\
+            - si l'op\xE9ration est encore en cours : rensigner 'IPR',\n- si le dispatching\
+            \ de moyens est encore en cours ou que seulement des qualifications d'alertes\
+            \ ont \xE9t\xE9 \xE9chang\xE9es sans aucune d\xE9cision de r\xE9gulation\
+            \ 'NST',\n- si l'op\xE9ration est en pause/veille : 'STOP'\n- si le message\
+            \ d'\xE9change op\xE9rationnel d\xE9crit une fin d'op\xE9ration, \xE0\
+            \ renseigner avec 'COM'\nUn message EMSI-EO sans RESSOURCE ni "
+          enum:
+          - COM
+          - IPR
+          - NST
+          - STOP
+          examples:
+          - IPR
+        RISK_ASSESMENT:
+          type: string
+          title: "Pr\xE9diction sur le risque d'\xE9volution de l'event"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/RISK_ASSESMENT
+          description: Optionnel
+          enum:
+          - NCREA
+          - DECREA
+          - STABLE
+          examples:
+          - None
+        REFERENCE:
+          type: array
+          items:
+            $ref: '#/components/schemas/reference'
+        CASUALTIES:
+          type: array
+          items:
+            $ref: '#/components/schemas/casualties'
+        EVAC:
+          type: array
+          items:
+            $ref: '#/components/schemas/evac'
+        EGEO:
+          type: array
+          items:
+            $ref: '#/components/schemas/egeo'
+        CAUSE:
+          type: string
+          title: Cause
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CAUSE
+          description: Optionnel
+          enum:
+          - ACC
+          - DEL
+          - NAT
+          examples:
+          - ACC
+        FREETEXT:
+          type: string
+          title: Texte libre
+          x-cols: 6
+          example: example.json#/emsi/EVENT/FREETEXT
+          description: Optionnel
+          examples:
+          - None
+      example: example.json#/emsi/EVENT
+    mission:
+      type: object
+      title: Missions
+      x-display: expansion-panels
+      required:
+      - TYPE
+      properties:
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/TYPE
+          description: "Le champ MISSION TYPE permet d'identifier l'effet \xE0 obtenir\
+            \ souhait\xE9 \xE0 partir de la combinaison du code ACTOR et du code TYPE.\n\
+            => La table de transcodage permettant d'identifier les concourants et\
+            \ les effets \xE0 obtenir \xE0 partir d'un code EMSI est fournie en annexe\
+            \ \"R\xE9f\xE9rentiel Effets \xE0 Obtenir - correspondance EMSI\".\nDans\
+            \ le cadre d'une r\xE9ponse \xE0 DC :\n- reprendre le type de la DC si\
+            \ le code r\xE9ponse choisi est vien \"VALIDE\"\nDans le cadre d'une mission\
+            \ d\xE9crivant les op\xE9rations en cours :\n- reprendre la nomenclature\
+            \ EMSI pour caract\xE9riser la mission en cours."
+          enum: []
+          examples:
+          - /SAV
+        FREETEXT:
+          type: string
+          title: Texte libre
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/FREETEXT
+          description: "Contient des commentaires relatifs aux objectifs et  moyens\
+            \ sollicit\xE9s dans le cadre de la demande de concours. Les \xE9quipements\
+            \ suppl\xE9mentaires souhait\xE9s ou le nom/ pr\xE9nom des patients \xE0\
+            \ prendre en charge peuvent \xEAtre explicitement indiqu\xE9s ici."
+          examples:
+          - None
+        ID:
+          type: string
+          title: Identifiant de la mission
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/ID
+          description: "Contient un identifiant de demande de concours unique. Cet\
+            \ identifiant sera r\xE9utilisable par le partenaire pour r\xE9pondre\
+            \ \xE0 cette demande.\nIdentifiant unique de la mission dans le syst\xE8\
+            me du partenaire la conduisant."
+          examples:
+          - /FF#bb511708-b004-4d7e-8820-1d56c19f1823
+        ORG_ID:
+          type: string
+          title: "Identifiant de l'organisation propri\xE9taire"
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/ORG_ID
+          description: "Indique l'organisation du partenaire concern\xE9 par la Demande\
+            \ de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \xEA\
+            tre utilis\xE9.\nIndique l'organisation du service r\xE9alisant la mission.\
+            \ Dans le cas d'une r\xE9ponse, c'est l'organisation du concourant qui\
+            \ doit \xEAtre indiqu\xE9e.\nSe r\xE9f\xE9rer au DSF pour la structure\
+            \ norm\xE9e des organisations\nLe format est le suivant {pays}:{domaine}:{code\
+            \ d\xE9partement}:{organisation}:{structure interne}*:{unit\xE9 fonctionnelle}*."
+          examples:
+          - FR:Administration:44:CGO
+        NAME:
+          type: string
+          title: Nom de la mission
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/NAME
+          description: "Le nom de la mission est construit \xE0 partir de l'expression\
+            \ r\xE9guli\xE8re suivante :\n\"#DEMANDE_CONCOURS#\"{libelle_cadre_conventionnel}\"\
+            #\"{code_cadre_conventionnel}\"#\"\no\xF9 le code_cadre_conventionnel\
+            \ est issue d'une nomenclature CISU-Cadre Conventionnel (A Venir)\nNB\
+            \ : ce champ est d\xE9tourn\xE9 par rapport au standard EMSI pour permettre\
+            \ l'expression d'une demande de concours et indiquer le cadre conventionnel\
+            \ dans lequel elle est effectu\xE9e.\nPour une r\xE9ponse \xE0 demande\
+            \ de concours :\n- Le nom de la mission est construit \xE0 partir de l'expression\
+            \ r\xE9guli\xE8re suivante :\n\"#REPONSE_DEMANDE_CONCOURS#\"{code_reponse}\"\
+            #\"\no\xF9 le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE,\
+            \ DIVERGENTE\n- sinon libre"
+          examples:
+          - "Secours \xE0 Incendie"
+        STATUS:
+          type: string
+          title: Status de la mission
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/STATUS
+          description: "Les valeurs possibles avec lesquelles valoriser ce champ sont\
+            \ d\xE9taill\xE9es au sein d'une nomenclature EMSI\n- ABO : mission refus\xE9\
+            e (ABOrted)\n- CANCLD : mission annul\xE9e (CANCeLeD)**\n- NST : mission\
+            \ non d\xE9but\xE9 pour le m\xE9tier (Not STarted)\n- IPR :  mission d\xE9\
+            but\xE9 pour le m\xE9tier (In PRogress). la valeur IPR peut \xEAtre suivi\
+            \ d'une valeur num\xE9rique de 00 \xE0 100 (IPRnn) sp\xE9cifiant le degr\xE9\
+            \ d'avancement de la mission. Ce principe n'est pas retenu au sein de\
+            \ NexSIS qui ne transmettra pas d'indication sur le degr\xE9 d'avancement\
+            \ de la mission via ce champ.\n- PAU : \xE9v\xE9nement arr\xEAt\xE9, en\
+            \ pause pour m\xE9tier, pas de besoin suppl\xE9mentaire\n- COM : \xE9\
+            v\xE9nement termin\xE9 pour le m\xE9tier (COMplete)\nLe status de la mission\
+            \ et celui des RESSOURCE associ\xE9es doit \xEAtre coh\xE9rent et transcodable\
+            \ avec un status ANTARES (voir DSF)\n\nDans le cas d'un objet MISSION\
+            \ g\xE9n\xE9rique de r\xE9ponse \xE0 demande de concours, le champ doit\
+            \ \xEAtre valoris\xE9 \xE0 \"NST\""
+          enum:
+          - ABO
+          - NST
+          - CANCLD
+          - COM
+          - IPR
+          - PAU
+          examples:
+          - IPR
+        START_TIME:
+          type: string
+          title: "D\xE9but de la mission"
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/START_TIME
+          description: "- Dans le cadre d'une r\xE9ponse \xE0 Demande de Concours\n\
+            Horraire cible pour l'arriv\xE9e sur les lieux d\xE9crites (peut diverger\
+            \ de l'horaire demand\xE9)\n- Dans le cadre d'une mission d\xE9crivant\
+            \ les op\xE9rations en cours :\nHoraire effectif de d\xE9but de la mission"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:25:00+02:00'
+        END_TIME:
+          type: string
+          title: Fin de la mission
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/END_TIME
+          description: "A valoriser selon la cat\xE9gorie de mission :\n- Dans le\
+            \ cadre d'une mission de r\xE9ponse \xE0 demande de concours : ne pas\
+            \ renseigner\n- Dans le cadre d'une mission d\xE9crivant les op\xE9rations\
+            \ en cours :\n Si c'est un d\xE9placement, l'heure d'arriv\xE9e, si c'est\
+            \ une prise en charge patient/victime, la fin de la prise en charge."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:55:00+02:00'
+        RESOURCE_ID:
+          type: string
+          title: "Ressource engag\xE9e"
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/RESOURCE_ID
+          description: "Liste des identifiants des ressources engag\xE9es dans la\
+            \ mission (voire RESSOURCE.ID)"
+          examples:
+          - 77_45102#VSAV 1#
+        PARENT_MISSION_ID:
+          type: array
+          items:
+            type: string
+            title: Missions parentes
+            x-cols: 6
+            example: example.json#/emsi/MISSION/0/PARENT_MISSION_ID/0
+            description: "Dans le cadre d'une demande de concours, ne doit pas \xEA\
+              tre renseign\xE9\nLa mission peut d\xE9j\xE0 \xEAtre rattach\xE9e \xE0\
+              \ des missions filles mais leurs d\xE9tails ne doivent pas \xEAtre n\xE9\
+              cessaires pour traiter la demande de concours dans le syst\xE8me du\
+              \ partenaire.\nCf. DSF pour l'organisation liens entre MISSION (sous-section\
+              \ \"D\xE9coupage de l'op\xE9ration en missions\")"
+            examples:
+            - None
+        CHILD_MISSION_ID:
+          type: array
+          items:
+            type: string
+            title: Missions filles
+            x-cols: 6
+            example: example.json#/emsi/MISSION/0/CHILD_MISSION_ID/0
+            description: "Cf. DSF pour l'organisation liens entre MISSION (sous-section\
+              \ \"D\xE9coupage de l'op\xE9ration en missions\")"
+            examples:
+            - None
+        MAIN_MISSION_ID:
+          type: string
+          title: Mission principale
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/MAIN_MISSION_ID
+          description: "- Dans le cas d'une mission g\xE9n\xE9rique de r\xE9ponse\
+            \ \xE0 demande de concours, indiquer l'ID de la mission g\xE9n\xE9rique\
+            \ utilis\xE9e pour mod\xE9liser la demande de concours\n- Dans le cas\
+            \ d'une mission d\xE9clench\xE9e dans le cadre d'une r\xE9ponse \xE0 demande\
+            \ de concours, l'ID de la mission g\xE9n\xE9rique de r\xE9ponse peut \xEA\
+            tre utilis\xE9e dans ce champ pour indiquer qu'elle est li\xE9e \xE0 une\
+            \ r\xE9ponse"
+          examples:
+          - /FF#bb511708-b004-4d7e-8820-1d56c19f1855
+        POSITION:
+          $ref: '#/components/schemas/position'
+        PRIORITY:
+          type: string
+          title: "Priorit\xE9 de la mission"
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/PRIORITY
+          description: "Indique une \xE9chelle de priorit\xE9 pour la demande de concours.\
+            \ Dans le cadre du standard EMSI, cette \xE9chelle doit \xEAtre comprise\
+            \ entre 0 et 5. Ce champ peut ne pas \xEAtre interpr\xE9t\xE9 ni aliment\xE9\
+            \ par les LRMs.\nDans le cadre d'un \xE9change des op\xE9rations, optionnel.\
+            \ Le champ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9."
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          examples:
+          - 5
+      example: example.json#/emsi/MISSION/0
+    link:
+      type: object
+      title: Lien
+      x-display: expansion-panels
+      required:
+      - ID
+      properties:
+        ID:
+          type: string
+          title: ID
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/LINK/0/ID
+          description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant"
+          examples:
+          - samuA:CA126B445579GD4A67AV
+        LINK_ROLE:
+          type: string
+          title: "R\xF4le du lien"
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE
+          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" en\
+            \ EMSI-EO et avec le libell\xE9 ADDSTO en EMSI-DC"
+          enum:
+          - ADDSTO
+          - SPRSDS
+          examples:
+          - ADDSTO
+      example: example.json#/emsi/CONTEXT/LINK/0
+      examples:
+      - ID: samuA:CA126B445579GD4A67AV
+        LINK_ROLE: ADDSTO
+    origin:
+      type: object
+      title: Origine
+      x-display: expansion-panels
+      required: []
+      properties:
+        ORG_ID:
+          type: string
+          title: Origine ID
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/ORIGIN/ORG_ID
+          description: "Optionnel, identifiant du service \xE0 l'origine de l'EMSI\n\
+            Se r\xE9f\xE9rer au DSF pour la structure norm\xE9e des organisations\n\
+            Le format est le suivant {pays}.{domaine}.{code d\xE9partement}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*."
+          examples:
+          - FR:Administration:44:CGO
+        USER_ID:
+          type: string
+          title: ID d'utilisateur de l'origine
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/ORIGIN/USER_ID
+          description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
+            \ de l'EMSI"
+          examples:
+          - /FF#bb511708-b004-4d7e-8820-1d56c19f1823
+        NAME:
+          type: string
+          title: 'Nom Origine '
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/ORIGIN/NAME
+          description: Optionnel
+          examples:
+          - CGO 44
+      example: example.json#/emsi/CONTEXT/ORIGIN
+      examples:
+      - ORG_ID: FR:Administration:44:CGO
+        USER_ID: /FF#bb511708-b004-4d7e-8820-1d56c19f1823
+        NAME: CGO 44
+    externalInfo:
+      type: object
+      title: 'Informations exterieures '
+      x-display: expansion-panels
+      required:
+      - URI
+      properties:
+        FREETEXT:
+          type: string
+          title: 'Texte libre '
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/FREETEXT
+          description: Optionnel
+          examples:
+          - None
+        URI:
+          type: string
+          title: "URI informations ext\xE9rieures"
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/URI
+          description: Optionnel
+          examples:
+          - 289d6939-d225-4c71-9a56-68c03ada2f5e
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/TYPE
+          description: Optionnel
+          enum:
+          - MANUAL
+          - MAP
+          - OTHER
+          - PHOTO
+          - WEBSIT
+          examples:
+          - SPRSDS
+      example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0
+      examples:
+      - FREETEXT: None
+        URI: 289d6939-d225-4c71-9a56-68c03ada2f5e
+        TYPE: SPRSDS
+    etype:
+      type: object
+      title: "Type de l'\xE9v\xE9nement"
+      x-display: expansion-panels
+      required:
+      - CATEGORY
+      - ACTOR
+      - LOCTYPE
+      properties:
+        CATEGORY:
+          type: array
+          items:
+            type: string
+            title: "Cat\xE9gorie d'\xE9v\xE9nement"
+            x-cols: 6
+            example: example.json#/emsi/EVENT/ETYPE/CATEGORY/0
+            description: "Le champ peut ne pas \xEAtre interpr\xE9t\xE9 ou renseign\xE9\
+              \ avec une valeur comme 'UKN' = 'UNKOWN'"
+            enum: []
+            examples:
+            - /FIR
+        ACTOR:
+          type: array
+          items:
+            type: string
+            title: Acteurs
+            x-cols: 6
+            example: example.json#/emsi/EVENT/ETYPE/ACTOR/0
+            description: "Dans de futures versions de NexSIS, les demandes de concours\
+              \ seront diffus\xE9es \xE0 plusieurs partenaires. Seul le syst\xE8me\
+              \ de la force concern\xE9e par la demande de concours devra r\xE9pondre\
+              \ effectivement \xE0 la demande. Ce syst\xE8me de la force concern\xE9\
+              e sera identifi\xE9 comme le \"concourant\" \xE0 la demande de concours.\n\
+              Le libell\xE9 du champ ACTOR permet d'identifier le concourant souhait\xE9\
+              \ dans la demande de concours. Pour les premi\xE8res impl\xE9mentations\
+              \ du contrat d'interface 15-18, il n'y a pas de n\xE9cessit\xE9 pour\
+              \ les syst\xE8mes r\xE9cepteurs de filtrer les demandes de concours\
+              \ re\xE7ues via le Hub Sant\xE9.\nLe champ MISSION TYPE permet en compl\xE9\
+              ment d'identifier l'effet \xE0 obtenir souhait\xE9 \xE0 partir de la\
+              \ combinaison du code ACTOR et du code TYPE.\nLe transcodage entre ces\
+              \ deux nomenclature est d\xE9crit dans l'annexe \"R\xE9f\xE9rentiel\
+              \ Effets \xE0 Obtenir - correspondance EMSI\""
+            enum: []
+            examples:
+            - /PPL/GRP
+        LOCTYPE:
+          type: array
+          items:
+            type: string
+            title: Type de localisation
+            x-cols: 6
+            example: example.json#/emsi/EVENT/ETYPE/LOCTYPE/0
+            description: "Le champ peut ne pas \xEAtre affich\xE9. Par d\xE9faut,\
+              \ possible de renvoyer le code \"OTH\" =  \"OTHER\""
+            examples:
+            - /URB/STRT
+        ENV:
+          type: string
+          title: Environnement
+          x-cols: 6
+          example: example.json#/emsi/EVENT/ETYPE/ENV
+          description: Optionnel
+          enum: []
+          examples:
+          - None
+      example: example.json#/emsi/EVENT/ETYPE
+    reference:
+      type: object
+      title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
+      x-display: expansion-panels
+      required:
+      - ORG_ID
+      - OTHER_EVENT_ID
+      properties:
+        ORG_ID:
+          type: string
+          title: ID de l'organisation
+          x-cols: 6
+          example: example.json#/emsi/EVENT/REFERENCE/0/ORG_ID
+          description: Identification de l'organisation partenaire
+          examples:
+          - FR:Administration:44:CGO
+        OTHER_EVENT_ID:
+          type: array
+          items:
+            type: string
+            title: ID des autres event
+            x-cols: 6
+            example: example.json#/emsi/EVENT/REFERENCE/0/OTHER_EVENT_ID/0
+            description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
+              \ dans le syst\xE8me partenaire"
+            examples:
+            - FR:NEXSIS:44:CGO:20231027_00002
+      example: example.json#/emsi/EVENT/REFERENCE/0
+    casualties:
+      type: object
+      title: Victimes
+      x-display: expansion-panels
+      required:
+      - CONTEXT
+      properties:
+        CONTEXT:
+          type: string
+          title: Contexte
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/CONTEXT
+          description: "Le champ doit \xEAtre renseign\xE9 mais peut ne pas \xEAtre\
+            \ interpr\xE9t\xE9"
+          examples:
+          - None
+        DATIME:
+          type: string
+          title: Timestamp du contexte
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/DATIME
+          description: Optionnel
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        DECONT:
+          type: integer
+          title: "D\xE9contamination"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/DECONT
+          description: Optionnel
+          examples:
+          - None
+        TRIAGERED:
+          type: integer
+          title: Triage Rouge
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGERED
+          description: Optionnel
+          examples:
+          - None
+        TRIAGEYELLOW:
+          type: integer
+          title: Jaune
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEYELLOW
+          description: Optionnel
+          examples:
+          - None
+        TRIAGEGREEN:
+          type: integer
+          title: Vert
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEGREEN
+          description: Optionnel
+          examples:
+          - None
+        TRIAGEBLACK:
+          type: integer
+          title: Noir
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEBLACK
+          description: Optionnel
+          examples:
+          - None
+        MISSING:
+          type: integer
+          title: Disparus
+          x-cols: 6
+          example: example.json#/emsi/EVENT/CASUALTIES/0/MISSING
+          description: Optionnel
+          examples:
+          - None
+      example: example.json#/emsi/EVENT/CASUALTIES/0
+      examples:
+      - CONTEXT: None
+        DATIME: None
+        DECONT: None
+        TRIAGERED: None
+        TRIAGEYELLOW: None
+        TRIAGEGREEN: None
+        TRIAGEBLACK: None
+        MISSING: None
+    evac:
+      type: object
+      title: "Evacu\xE9s"
+      x-display: expansion-panels
+      required: []
+      properties:
+        DATIME:
+          type: string
+          title: timestamp
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EVAC/0/DATIME
+          description: Optionnel
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        DISPLACED:
+          type: integer
+          title: "d\xE9plac\xE9s"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EVAC/0/DISPLACED
+          description: Optionnel
+          examples:
+          - None
+        EVACUATED:
+          type: integer
+          title: "\xE9vacu\xE9s"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EVAC/0/EVACUATED
+          description: Optionnel
+          examples:
+          - None
+      example: example.json#/emsi/EVENT/EVAC/0
+      examples:
+      - DATIME: None
+        DISPLACED: None
+        EVACUATED: None
+    egeo:
+      type: object
+      title: "Localisation de l'\xE9v\xE9nement"
+      x-display: expansion-panels
+      required:
+      - TYPE
+      - POSITION
+      properties:
+        DATIME:
+          type: string
+          title: "Date des derni\xE8res remont\xE9es de localisation"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/DATIME
+          description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
+            \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
+            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:26:00+02:00'
+        TYPE:
+          type: string
+          title: Type de localisation
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/TYPE
+          description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
+            \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
+            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
+          enum: []
+          examples:
+          - /HLT
+        WEATHER:
+          type: array
+          items:
+            type: string
+            title: "Condition m\xE9t\xE9o"
+            x-cols: 6
+            example: example.json#/emsi/EVENT/EGEO/0/WEATHER/0
+            description: "Optionnel\nLa localisation de l'affaire est transmise en\
+              \ amont dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention\
+              \ est syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
+            enum: []
+            examples:
+            - None
+        FREETEXT:
+          type: string
+          title: "Description de l'\xE9v\xE9nement"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/FREETEXT
+          description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
+            \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
+            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
+          examples:
+          - None
+        POSITION:
+          $ref: '#/components/schemas/position'
+      example: example.json#/emsi/EVENT/EGEO/0
+    position:
+      type: object
+      title: "Position de l'op\xE9ration"
+      x-display: expansion-panels
+      required:
+      - LOC_ID
+      properties:
+        LOC_ID:
+          type: string
+          title: ID position
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/LOC_ID
+          description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
+            \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
+            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION. \nLorsque\
+            \ le lieu d'intervention est identique \xE0 celle d'une position de l'affaire\
+            \ partag\xE9e dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID\
+            \ doit \xEAtre aliment\xE9 valoris\xE9 comme le champ eventLocation.locId\
+            \ du message RC-EDA envoy\xE9 en amont. "
+          examples:
+          - 111fb03a-6fd9-41e0-8e81-990c45188887
+        NAME:
+          type: string
+          title: Nom de position
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/NAME
+          description: "Optionnel, non utilis\xE9 par NexSIS nom de lieu"
+          examples:
+          - "Lyc\xE9e Pierre de Coubertin"
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/TYPE
+          description: "Optionnel\nDans le cadre de l'interface LRM NexSIS, seul le\
+            \ libell\xE9 POINT doit obligatoirement \xEAtre interpr\xE9table par les\
+            \ deux partenaires.\nCf. Nomenclature EMSI - POSITION pour plus de d\xE9\
+            tails"
+          examples:
+          - POINT
+        HEIGHT_ROLE:
+          type: string
+          title: Indication sur l'utilisation de la balise altitude
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/HEIGHT_ROLE
+          description: Optionnel
+          examples:
+          - MIN
+        COORDSYS:
+          type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORDSYS
+          description: Optionnel
+          examples:
+          - EPSG-4326
+        COORD:
+          type: array
+          items:
+            $ref: '#/components/schemas/coord'
+        ADDRESS:
+          type: array
+          items:
+            type: string
+            title: Adresse
+            x-cols: 6
+            example: example.json#/emsi/EVENT/EGEO/0/POSITION/ADDRESS/0
+            description: "Optionnel. Dans le cas d'un partage de position, les adresses\
+              \ transmises ne sont pas structur\xE9es."
+            examples:
+            - Nantes centre ville
+      example: example.json#/emsi/EVENT/EGEO/0/POSITION
+    coord:
+      type: object
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      required:
+      - LAT
+      - LONG
+      properties:
+        LAT:
+          type: number
+          title: 'Latitude '
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LAT
+          description: "Optionnel. \nDans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
+            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\n"
+          examples:
+          - '47.221866'
+        LONG:
+          type: number
+          title: Longitude
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LONG
+          description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
+            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\n"
+          examples:
+          - '-1.575807'
+        HEIGHT:
+          type: number
+          title: Altitude
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
+          description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
+            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\n"
+          examples:
+          - 1
+      example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0
+      examples:
+      - LAT: '47.221866'
+        LONG: '-1.575807'
+        HEIGHT: 1
