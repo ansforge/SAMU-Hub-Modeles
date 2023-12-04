@@ -136,7 +136,7 @@ La localisation de l'affaire est transmise en amont dans un message RC-EDA et le
 description of the location and its
 significance in the context of the event.",,,Un peu de pluie vers 8h,,X,,FREETEXT,,FREETEXT,,,,,,x,,0..1,0..1,0..1,,,string,,,X,
 58,59,,,Position de l'opération,,,,"Optionnel
-La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION","Provides the position of the EGEO element. All elements of POSITION are optional, but at least one shall be provided. ",,,,,,,POSITION,,POSITION,,,,,,,,1..1,1..1,1..1,,X,positionEgeo,,,X,
+La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION","Provides the position of the EGEO element. All elements of POSITION are optional, but at least one shall be provided. ",,,,,,,POSITION,,POSITION,,,,,,,,1..1,1..1,1..1,,X,position,,,X,
 59,60,,,,ID position,,,"Optionnel
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION. 
 Lorsque le lieu d'intervention est identique à celle d'une position de l'affaire partagée dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID doit être alimenté valorisé comme le champ eventLocation.locId du message RC-EDA envoyé en amont. ","Defines the identifier for this geographical area (for later reference). Unique inside an event for the node.
@@ -231,7 +231,7 @@ Cf. DSF pour l'organisation liens entre MISSION (sous-section ""Découpage de l'
 82,83,,Missions filles,,,,,"Cf. DSF pour l'organisation liens entre MISSION (sous-section ""Découpage de l'opération en missions"")",Defines the list of the missions which shall start when this mission is finished.,,,Non traité,,X,X,CHILD_MISSION_ID,,CHILD_MISSION_ID,,,,,,,,0..n,0..n,0..n,,,string,,,X,
 83,84,,Mission principale,,,,,"- Dans le cas d'une mission générique de réponse à demande de concours, indiquer l'ID de la mission générique utilisée pour modéliser la demande de concours
 - Dans le cas d'une mission déclenchée dans le cadre d'une réponse à demande de concours, l'ID de la mission générique de réponse peut être utilisée dans ce champ pour indiquer qu'elle est liée à une réponse",Defines the link to the main mission when the mission is a sub-mission. ,,,Non traité,/FF#bb511708-b004-4d7e-8820-1d56c19f1855,X,X,MAIN_MISSION_ID,,MAIN_MISSION_ID,,,,,,,,0..1,0..1,0..1,,,string,,,X,
-84,85,,Position de la mission,# Voir Position de l'opération,,,,Reprécise les coordonnées GPS du lieu d’intervention souhaité et fait le lien avec une localisation partagée préalablement en détails dans un message d’échange d’affaire.,"Provides the position of the EGEO element. All elements of POSITION are optional, but at least one shall be provided. ",identique à la totalité de  <event><position>,,,,,X,POSITION,,POSITION,,,,,,,,0..1,0..1,0..1,,X,positionRgeo,,,X,
+84,85,,Position de la mission,# Voir Position de l'opération,,,,Reprécise les coordonnées GPS du lieu d’intervention souhaité et fait le lien avec une localisation partagée préalablement en détails dans un message d’échange d’affaire.,"Provides the position of the EGEO element. All elements of POSITION are optional, but at least one shall be provided. ",identique à la totalité de  <event><position>,,,,,X,POSITION,,POSITION,,,,,,,,0..1,0..1,0..1,,X,position,,,X,
 85,86,,Priorité de la mission,,,,,"Indique une échelle de priorité pour la demande de concours. Dans le cadre du standard EMSI, cette échelle doit être comprise entre 0 et 5. Ce champ peut ne pas être interprété ni alimenté par les LRMs.
 Dans le cadre d'un échange des opérations, optionnel. Le champ peut ne pas être émis ni interprété.",Defines the priority level for this mission. An integer from 0 = low priority to 5 = highest priority,"Indique une échelle de priorité pour la demande de concours. Dans le cadre du standard EMSI, cette échelle doit être comprise entre 0 et 5. Ce champ peut ne pas être interprété ni alimenté par les LRMs.","Priorité de la mission. Attention dans le cadre des échanges 15-18, le code 5 est utilisé pour la demande de concours",4,5,X,X,PRIORITY,,PRIORITY,,,,,,,,0..1,0..1,0..1,,,string,,"ENUM: 0, 1, 2, 3, 4, 5",X,
 86,87,Ressource,,,,,,"Objet resource pouvant modéliser un véhicule, du personnel, du matériel etc","Describes the resources (human, vehicles, other hardware, etc...) which the EMSI node has the authority to deploy and is related to the event and context reported in the EMSI",Ressources mobilisées dans le cadre de l'affaire,Ressources mobilisées dans le cadre de l'affaire,,,,,RESOURCE,,RESOURCE,,,,,,,,0..n,,0..n,,X,resource,,,,X
@@ -283,7 +283,7 @@ Plusieurs positions du même type avec des horodatages différents peuvent être
 98,99,,,Texte libre ,,,,Permet de rajouter des précisions sur la localisation de la ressource transmise,,,,Position actualisée du VSAV 1 Nantes,Position actualisée du VSAV 1 Nantes,,X,FREETEXT,,FREETEXT,,,,,,,,0..1,,0..1,,,string,,,,X
 99,100,,,ID localisation,,,,Identifiant unique de la position dans le système du partenaire,"Defines the identifier for this geographical
 area for later reference. This ID shall be unique inside an event for the node.",,,,,,,ID,,ID,,,,,,,,0..1,,0..1,,,string,,,,X
-100,101,,,Position géographique,# Voir Position de l'opération,,,Détail de la position géographique,"Defines the position of the RESOURCE element. All elements of POSITION are optional, but at least one should be provided",,,,,,X,POSITION,,POSITION,,,,,,,,0..n,,0..n,,X,positionRgeo,,,,X
+100,101,,,Position géographique,# Voir Position de l'opération,,,Détail de la position géographique,"Defines the position of the RESOURCE element. All elements of POSITION are optional, but at least one should be provided",,,,,,X,POSITION,,POSITION,,,,,,,,0..n,,0..n,,X,position,,,,X
 101,102,,Quantité de la ressource,,,,,"Dans le cadre d'un échange d'opération, optionnel. Permet de quantifier une ressource :
 - à ne pas utiliser pour les véhicules ni le personnel
 - utilisable pour du matériel
@@ -313,53 +313,3 @@ EMLADD = email address, IPADD = Internet address, FTPADD = FTP address, WWWADD =
 107,108,,,Détails de contact,,,,,Provides an actual contact detailed information of the resource.,"1. RFGI du moyen NEXSIS (si RFGI disponible)
 2. Numéro de téléphone","1. RFGI du moyen NEXSIS (si RFGI disponible)
 2. Numéro de téléphone",606070707,606070707,,X,DETAIL,,DETAIL,,,,,,,,1..1,,1..1,,,string,,,,X
-108,108,4,54,41,8,3,0.0,,,,,99,,,,,,,,,,,,,,,96,,,21,128,,,,
-109,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-110, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-111,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-112,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-113,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-114,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-115,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-116,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-117,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-118,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-119,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-120,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-121,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-122,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-123,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-124,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-125,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-126,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-127,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-128,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-129,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-130, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-131, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-132, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-133, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-134, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-135, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-136, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-137, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-138, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-139, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-140, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-141, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-142, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-143, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-144, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-145, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-146, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-147, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-148, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-149, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-150, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-151, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-152, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-153, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-154, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-155, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-156, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-157, , , , , ,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
