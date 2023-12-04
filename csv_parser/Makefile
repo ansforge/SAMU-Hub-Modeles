@@ -3,7 +3,7 @@ NOMENCLATURE_IN_FOLDER := "/Users/romainfouilland/Library/CloudStorage/OneDrive-
 NOMENCLATURE_FOLDER := "../nomenclature_parser/in/"
 # Copy the models xlsx from OneDrive to local folder
 MODELS_IN_FILE := "/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD - Hub Santé.xlsx"
-MODELS_FILE := "models.xlsx"
+MODELS_FILE := "model.xlsx"
 # Tracking branch
 TRACKING_BRANCH_NAME := auto/model_tracker
 
