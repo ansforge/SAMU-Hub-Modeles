@@ -438,20 +438,47 @@ def build_asyncapi_schema():
         asyncapi_schema[elem_name] = definition
     return asyncapi_schema
 
+openapi_components = build_asyncapi_schema()
+with open('common.openapi.yaml') as f:
+    common_openapi_components = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating OpenAPI schema...{Color.END}')
 with open('template.openapi.yaml') as f:
     full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
-full_yaml['components']['schemas'] = {
-    **full_yaml['components']['schemas'],
-    **build_asyncapi_schema()
+
+    full_yaml['components']['schemas'] = {
+        **full_yaml['components']['schemas'],
+        **openapi_components
 }
+
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Adding schema info to AsyncAPI spec...{Color.END}')
+with open('template.asyncapi.yaml') as f:
+    asyncapi_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
+
+    asyncapi_yaml['components']['schemas'] = {
+        **asyncapi_yaml['components']['schemas'],
+        **common_openapi_components['components']['schemas'],
+        **openapi_components
+    }
+
+    # TODO bbo: add the following to the asyncapi spec
+    # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'] = {
+    #     **asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'],
+    #     "$ref": "#/components/schemas/{WRAPPER_NAME}"
+    # }
+
 
 with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
     file.write(documents)
 print('OpenAPI schema generated.')
+
+with open(f'out/full-asyncapi.yaml', 'w') as file:
+    documents = yaml.dump(asyncapi_yaml, sort_keys=False)
+    documents = documents.replace('#/definitions/', "#/components/schemas/")
+    file.write(documents)
+print('AsyncAPI schema generated.')
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
 uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
