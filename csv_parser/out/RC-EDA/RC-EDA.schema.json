@@ -1,0 +1,975 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RC-EDA.schema.json#",
+    "version": "23.12.04",
+    "example": "example.json#",
+    "type": "object",
+    "title": "createCase",
+    "required": [
+        "createCase"
+    ],
+    "properties": {
+        "createCase": {
+            "$ref": "#/definitions/createCase"
+        }
+    },
+    "definitions": {
+        "createCase": {
+            "type": "object",
+            "title": "Objet createCase",
+            "x-display": "expansion-panels",
+            "required": [
+                "caseId",
+                "creation",
+                "referenceVersion",
+                "qualification",
+                "location"
+            ],
+            "properties": {
+                "caseId": {
+                    "type": "string",
+                    "title": "Identifiant affaire/dossier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/caseId",
+                    "description": "Identifiant technique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par les syst\u00e8mes du partenaire r\u00e9cepteur de la primo-demande de secours et contient une cl\u00e9 conventionnelle permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\no\u00f9 cleConventionnelle est la cl\u00e9 utilis\u00e9e par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le syst\u00e8me du partenaire emetteur.\ncleUnique est une cha\u00eene de caract\u00e8re (string) comprise entre 4 et 22 caract\u00e8res alphanum\u00e9riques."
+                },
+                "senderCaseId": {
+                    "type": "string",
+                    "title": "Identifiant local de l'affaire/dossier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/senderCaseId",
+                    "description": "Valoriser avec l'identifiant de l'affaire dans le SI de l'\u00e9metteur du message\nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS\nDans le cas o\u00f9 deux op\u00e9rateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caract\u00e8res de l'identifiant local de leur partenaire."
+                },
+                "creation": {
+                    "type": "string",
+                    "title": "Date Heure de cr\u00e9ation de l'affaire/dossier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/creation",
+                    "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). Il doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation  de la premi\u00e8re alerte. Lors de l'ajout d'alerte \u00e0 une affaire ce champ ne doit pas \u00eatre modifi\u00e9.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "referenceVersion": {
+                    "type": "string",
+                    "title": "Version des nomenclatures du r\u00e9f\u00e9rentiel CISU",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/referenceVersion",
+                    "description": "Indique le num\u00e9ro de version du r\u00e9f\u00e9rentiel des nomenclatures des codes transmis. \nCela permet aux diff\u00e9rents syst\u00e8mes de s'assurer qu'ils utilisent la m\u00eame version des codes de nomenclature que leurs partenaires."
+                },
+                "qualification": {
+                    "$ref": "#/definitions/qualification"
+                },
+                "location": {
+                    "$ref": "#/definitions/location"
+                },
+                "initialAlert": {
+                    "$ref": "#/definitions/alert"
+                },
+                "newAlert": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/alert"
+                    }
+                },
+                "additionalInformation": {
+                    "$ref": "#/definitions/additionalInformation"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Description de l'affaire/dossier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/freetext",
+                    "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+                }
+            },
+            "example": "example.json#/createCase"
+        },
+        "qualification": {
+            "type": "object",
+            "title": "Qualification de l'affaire/dossier",
+            "x-display": "expansion-panels",
+            "required": [
+                "whatsHappen"
+            ],
+            "properties": {
+                "whatsHappen": {
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "locationKind": {
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "riskThreat": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/nomenclature"
+                    }
+                },
+                "healthMotive": {
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "victims": {
+                    "$ref": "#/definitions/victims"
+                }
+            },
+            "example": "example.json#/createCase/qualification"
+        },
+        "location": {
+            "type": "object",
+            "title": "Localisation de l'affaire/dossier",
+            "x-display": "expansion-panels",
+            "required": [
+                "locID",
+                "name",
+                "country"
+            ],
+            "properties": {
+                "locID": {
+                    "type": "string",
+                    "title": "Identifiant technique de localisation",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/locID",
+                    "description": "ID technique et provisoire permettant d'identifier le lieu dans le cadre des \u00e9changes de cette affaire."
+                },
+                "locLabel": {
+                    "type": "string",
+                    "title": "R\u00e9sum\u00e9 de la localisation",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/locLabel",
+                    "description": "Permet d'indiquer des indications auto suffisantes permettant pour un op\u00e9rationnel d'acc\u00e9der facilement au lieu avec des indications minimales.\nDans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au maximum 255 caract\u00e8res"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom du lieu",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/name",
+                    "description": "Indique le nom de lieu : nom commercial, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                },
+                "detailedAdress": {
+                    "$ref": "#/definitions/detailedAdress"
+                },
+                "city": {
+                    "$ref": "#/definitions/city"
+                },
+                "access": {
+                    "$ref": "#/definitions/access"
+                },
+                "geometry": {
+                    "$ref": "#/definitions/geometry"
+                },
+                "externalInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalInfo"
+                    }
+                },
+                "country": {
+                    "type": "string",
+                    "title": "Pays",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/country",
+                    "enum": []
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/freetext",
+                    "description": "Champ libre pour compl\u00e9ter les informations de localisation",
+                    "enum": [
+                        "France",
+                        "Allemagne",
+                        "Espagne",
+                        "Italie",
+                        "Suisse",
+                        "Luxembourg",
+                        "Belgique",
+                        "Br\u00e9sil"
+                    ]
+                }
+            },
+            "example": "example.json#/createCase/location"
+        },
+        "alert": {
+            "type": "object",
+            "title": "Alerte initiale",
+            "x-display": "expansion-panels",
+            "required": [
+                "id",
+                "reception",
+                "reporting",
+                "caller",
+                "alertSource",
+                "location",
+                "qualification",
+                "callTaker"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "title": "Identifiant alerte",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/id",
+                    "description": "Identifiant technique unique de l'alerte. Il doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 automatiquement par le syst\u00e8me \u00e9metteur et ne doit pas avoir de signification / utilisation particuli\u00e8re par les diff\u00e9rents syst\u00e8mes pour garantir leur d\u00e9couplage.\nVoir la description de l'identifiant de l'affaire pour voir le format.\nLorsqu\u2019une alerte est g\u00e9n\u00e9r\u00e9e dans NexSIS et cr\u00e9e une affaire, elle est qualifi\u00e9e d\u2019Alerte Initiale.\na)\tSi cette derni\u00e8re concerne un partenaire (caract\u00e8re m\u00e9dical pour la Sant\u00e9 par exemple), elle est relay\u00e9e seule dans le message. Il y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\u00e9e \u00e0 la m\u00eame affaire peut \u00eatre d\u00e9clar\u00e9e ult\u00e9rieurement, concernant cette fois le partenaire. Lorsqu\u2019elle est d\u00e9clar\u00e9e cette Nouvelle Alerte est relay\u00e9e avec l\u2019Alerte Initiale pour partager un contexte commun. Dans le message de cr\u00e9ation d\u2019affaire il y\u2019a deux objets alerte : initialAlert et newAlert.\nLe rattachement des messages \u00e0 une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un syst\u00e8me \u00e0 l'autre."
+                },
+                "reception": {
+                    "type": "string",
+                    "title": "Date de r\u00e9ception de l'alerte",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/reception",
+                    "description": "Groupe date heure de r\u00e9ception de l'alerte",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "reporting": {
+                    "type": "string",
+                    "title": "Signalement",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/reporting",
+                    "description": "Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.\nEventuellement automatis\u00e9 en fonction des crit\u00e8res saisis et de leur param\u00e9trage, ou renseign\u00e9 par l'op\u00e9rateur. \nPrend les valeurs d\u00e9finies dans la nomenclature CISU :\n- standard : STANDARD\n- signal\u00e9 : ATTENTION\nLes syst\u00e8mes peuvent proposer des fonctionnalit\u00e9s faisant ressortir les dossiers avec le libell\u00e9 ATTENTION",
+                    "enum": [
+                        "STANDARD",
+                        "ATTENTION"
+                    ]
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Informations compl\u00e9mentaires sur l'alerte",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/freetext",
+                    "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte"
+                },
+                "caller": {
+                    "$ref": "#/definitions/caller"
+                },
+                "alertSource": {
+                    "$ref": "#/definitions/contactSource"
+                },
+                "location": {
+                    "$ref": "#/definitions/location"
+                },
+                "qualification": {
+                    "$ref": "#/definitions/qualification"
+                },
+                "callTaker": {
+                    "$ref": "#/definitions/callTaker"
+                },
+                "attachment": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/attachment"
+                    }
+                }
+            },
+            "example": "example.json#/createCase/initialAlert"
+        },
+        "additionalInformation": {
+            "type": "object",
+            "title": "Informations compl\u00e9mentaires",
+            "x-display": "expansion-panels",
+            "required": [],
+            "properties": {
+                "customMap": {
+                    "$ref": "#/definitions/customMap"
+                }
+            },
+            "example": "example.json#/createCase/additionalInformation"
+        },
+        "nomenclature": {
+            "type": "object",
+            "title": "Nature de fait",
+            "x-display": "expansion-panels",
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/whatsHappen/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "enum": []
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/whatsHappen/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/whatsHappen/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "example": "example.json#/createCase/qualification/whatsHappen"
+        },
+        "victims": {
+            "type": "object",
+            "title": "Patients/Victimes",
+            "x-display": "expansion-panels",
+            "required": [],
+            "properties": {
+                "count": {
+                    "type": "string",
+                    "title": "Nombre de patients-victimes",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/victims/count",
+                    "description": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU",
+                    "enum": [
+                        "0",
+                        "1",
+                        "SEVERAL",
+                        "MANY",
+                        "UNKNOWN"
+                    ]
+                },
+                "mainVictim": {
+                    "type": "string",
+                    "title": "Type du patient-victime principal",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/victims/mainVictim",
+                    "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS.",
+                    "enum": [
+                        "INFANT",
+                        "CHILD",
+                        "ADULT",
+                        "PREGNANT",
+                        "SENIOR (voir Nomenclature CISU XX)"
+                    ]
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Informations compl\u00e9mentaires sur les patients-victimes",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/victims/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre la(les) victime(s)"
+                }
+            },
+            "example": "example.json#/createCase/qualification/victims"
+        },
+        "detailedAdress": {
+            "type": "object",
+            "title": "D\u00e9tails de l'adresse",
+            "x-display": "expansion-panels",
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Num\u00e9ro, type et nom de voie",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/detailedAdress/complete",
+                    "description": "Num\u00e9ro, type et nom de la voie. \nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\nObligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
+                },
+                "number": {
+                    "type": "string",
+                    "title": "Num\u00e9ro dans la voie",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/detailedAdress/number",
+                    "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
+                },
+                "wayName": {
+                    "$ref": "#/definitions/wayName"
+                }
+            },
+            "example": "example.json#/createCase/location/detailedAdress"
+        },
+        "city": {
+            "type": "object",
+            "title": "D\u00e9tails de la commune",
+            "x-display": "expansion-panels",
+            "required": [],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Nom de la commune",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/city/name",
+                    "description": "Nom officiel de la commune actuelle"
+                },
+                "inseeCode": {
+                    "type": "string",
+                    "title": "Code INSEE de la commune",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/city/inseeCode",
+                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.",
+                    "pattern": "[0-9]{5}"
+                },
+                "detail": {
+                    "type": "string",
+                    "title": "Compl\u00e9ment de commune",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/city/detail",
+                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9"
+                }
+            },
+            "example": "example.json#/createCase/location/city"
+        },
+        "access": {
+            "type": "object",
+            "title": "D\u00e9tails d'acc\u00e8s",
+            "x-display": "expansion-panels",
+            "required": [],
+            "properties": {
+                "floor": {
+                    "type": "string",
+                    "title": "Etage",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/floor",
+                    "description": "Etage "
+                },
+                "roomNumber": {
+                    "type": "string",
+                    "title": "Num\u00e9ro de porte",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/roomNumber",
+                    "description": "Sp\u00e9cifie num\u00e9ro d'appartement, de chambre, de bureau"
+                },
+                "interphone": {
+                    "type": "string",
+                    "title": "Interphone",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/interphone",
+                    "description": "Indique les informations n\u00e9cessaires  \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
+                },
+                "accessCode": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "Digicode",
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/location/access/accessCode/0",
+                        "description": "Indique le ou les digicodes dans l'ordre de progression dans le b\u00e2timent"
+                    }
+                },
+                "elevator": {
+                    "type": "string",
+                    "title": "Ascenseur/escalier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/elevator",
+                    "description": "Indique l'ascenseur ou la cage d'escalier "
+                },
+                "buildingName": {
+                    "type": "string",
+                    "title": "B\u00e2timent",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/buildingName",
+                    "description": "Nom du b\u00e2timent"
+                },
+                "entrance": {
+                    "type": "string",
+                    "title": "Entr\u00e9e",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/entrance"
+                },
+                "entity": {
+                    "type": "string",
+                    "title": "Service",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/entity",
+                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement"
+                },
+                "locphonenumber": {
+                    "type": "number",
+                    "title": "N\u00b0 de t\u00e9l\u00e9phone du lieu",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/access/locphonenumber",
+                    "description": "Num\u00e9ro de t\u00e9l\u00e9phone permettant d'acc\u00e9der au lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/victime."
+                }
+            },
+            "example": "example.json#/createCase/location/access"
+        },
+        "geometry": {
+            "type": "object",
+            "title": "G\u00e9ometrie associ\u00e9e",
+            "x-display": "expansion-panels",
+            "required": [
+                "obsDatime"
+            ],
+            "properties": {
+                "obsDatime": {
+                    "type": "string",
+                    "title": "Heure du dernier relev\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/obsDatime",
+                    "description": "Groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. Permet de conna\u00eetre la fra\u00eecheur et donc pertinence des informations pour intervenir.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "point": {
+                    "$ref": "#/definitions/point"
+                },
+                "sketch": {
+                    "type": "string",
+                    "title": "Formes g\u00e9om\u00e9triques",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/sketch",
+                    "description": "Objet gml (\u00e9quivalent xml du geojson). Le langage GML permet de d\u00e9crire une forme dans un syst\u00e8me de projection donn\u00e9. \nDans le cas d'une alerte donn\u00e9e sur une zone g\u00e9ographique non pr\u00e9cise (par exemple une section d'autoroute ou une zone sur un chemin de randonn\u00e9e), une indication sur la zone de recherche peut \u00eatre fournie.\nEn XML, un objet gml est encapsul\u00e9 dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn JSON, les balises sont reprises depuis le mod\u00e8le gml\nVoir http://www.opengis.net/gml pour le format de l'objet sketch"
+                }
+            },
+            "example": "example.json#/createCase/location/geometry"
+        },
+        "externalInfo": {
+            "type": "object",
+            "title": "Liens aux syst\u00e8mes externes",
+            "x-display": "expansion-panels",
+            "required": [
+                "freetext",
+                "type",
+                "uri"
+            ],
+            "properties": {
+                "freetext": {
+                    "type": "string",
+                    "title": "Nom de la source",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/externalInfo/0/freetext",
+                    "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
+                    "enum": [
+                        "BAN",
+                        "IGN",
+                        "NexSIS"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type ",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/externalInfo/0/type",
+                    "description": "D\u00e9finition du type d'objet dans le syst\u00e8me\nEx : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
+                    "enum": [
+                        "MANUAL",
+                        "MAP",
+                        "OTHER",
+                        "PHOTO",
+                        "WEBSIT"
+                    ]
+                },
+                "uri": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/externalInfo/0/uri",
+                    "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
+                }
+            },
+            "example": "example.json#/createCase/location/externalInfo/0"
+        },
+        "wayName": {
+            "type": "object",
+            "title": "Type et nom de voie",
+            "x-display": "expansion-panels",
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Type et nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/detailedAdress/wayName/complete",
+                    "description": "Type et nom de la voie (venant d'un r\u00e9f\u00e9rentiel ou non)\nSi les champs type et name sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/detailedAdress/wayName/type"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/detailedAdress/wayName/name"
+                }
+            },
+            "example": "example.json#/createCase/location/detailedAdress/wayName"
+        },
+        "point": {
+            "type": "object",
+            "title": "Point ",
+            "x-display": "expansion-panels",
+            "required": [
+                "coord"
+            ],
+            "properties": {
+                "coord": {
+                    "$ref": "#/definitions/coord"
+                },
+                "sysCoord": {
+                    "type": "string",
+                    "title": "Syst\u00e8me de coordonn\u00e9es",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/point/sysCoord",
+                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
+                }
+            },
+            "example": "example.json#/createCase/location/geometry/point"
+        },
+        "coord": {
+            "type": "object",
+            "title": "Coordonn\u00e9es",
+            "x-display": "expansion-panels",
+            "required": [
+                "lat",
+                "lon",
+                "precision"
+            ],
+            "properties": {
+                "lat": {
+                    "type": "number",
+                    "title": "Latitude",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/point/coord/lat",
+                    "description": "Latitude du point cl\u00e9 de la localisation"
+                },
+                "lon": {
+                    "type": "number",
+                    "title": "Longitude",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/point/coord/lon",
+                    "description": "Longitude du point cl\u00e9 de la localisation"
+                },
+                "height": {
+                    "type": "number",
+                    "title": "Altitude ",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/point/coord/height",
+                    "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS."
+                },
+                "heading": {
+                    "type": "number",
+                    "title": "Cap",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/point/coord/heading",
+                    "description": "En degr\u00e9"
+                },
+                "speed": {
+                    "type": "number",
+                    "title": "Vitesse",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/point/coord/speed",
+                    "description": "Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, \u2026"
+                },
+                "precision": {
+                    "type": "string",
+                    "title": "Pr\u00e9cision",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/location/geometry/point/coord/precision",
+                    "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nCITY=Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, STREET=Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, ADDRESS=Adresse pr\u00e9cise, EXACT=Point coordonn\u00e9e GPS exact, UNKNOWN=Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
+                    "enum": [
+                        "CITY",
+                        "STREET",
+                        "ADDRESS",
+                        "EXACT",
+                        "UNKNOWN"
+                    ]
+                }
+            },
+            "example": "example.json#/createCase/location/geometry/point/coord"
+        },
+        "caller": {
+            "type": "object",
+            "title": "Requ\u00e9rant",
+            "x-display": "expansion-panels",
+            "required": [],
+            "properties": {
+                "callerContact": {
+                    "$ref": "#/definitions/contact"
+                },
+                "callbackContact": {
+                    "$ref": "#/definitions/contact"
+                },
+                "language": {
+                    "type": "string",
+                    "title": "Langue parl\u00e9e",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/language",
+                    "description": "Langue parl\u00e9e par le requ\u00e9rant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.",
+                    "enum": []
+                },
+                "reqtype": {
+                    "type": "string",
+                    "title": "Type de requ\u00e9rant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/reqtype",
+                    "description": "Indique la relation du requ\u00e9rant avec l'incident / le patient / la victime"
+                },
+                "communication": {
+                    "type": "string",
+                    "title": "Difficult\u00e9 de communication",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/communication",
+                    "description": "Indique si le requ\u00e9rant rencontre ou non des difficult\u00e9 de communication"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Informations compl\u00e9mentaires sur le requ\u00e9rant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/freetext",
+                    "description": "Informations compl\u00e9mentaires sur le requ\u00e9rant \nLes informations peuvent \u00eatre pass\u00e9es sous forme de texte libre ou via une liste d'adjectif"
+                },
+                "detailedName": {
+                    "$ref": "#/definitions/detailedName"
+                }
+            },
+            "example": "example.json#/createCase/initialAlert/caller"
+        },
+        "contactSource": {
+            "type": "object",
+            "title": "Source de l'alerte",
+            "x-display": "expansion-panels",
+            "required": [
+                "channel",
+                "type",
+                "detail"
+            ],
+            "properties": {
+                "channel": {
+                    "type": "string",
+                    "title": "Canal",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/alertSource/channel",
+                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact de la source",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/alertSource/type",
+                    "description": "Type de l'URI utilis\u00e9e par la source, cf. nomenclature EMSI",
+                    "enum": [
+                        "PSTADD",
+                        "EMLADD",
+                        "IPADD",
+                        "FTPADD",
+                        "WWWADD",
+                        "PHNADD",
+                        "FAXADD",
+                        "PMRADD"
+                    ]
+                },
+                "detail": {
+                    "type": "string",
+                    "title": "URI de contact de la source",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/alertSource/detail",
+                    "description": "Valeur de l'URI utilis\u00e9e par la source"
+                }
+            },
+            "example": "example.json#/createCase/initialAlert/alertSource"
+        },
+        "callTaker": {
+            "type": "object",
+            "title": "Agent",
+            "x-display": "expansion-panels",
+            "required": [
+                "organization",
+                "controlRoom"
+            ],
+            "properties": {
+                "organization": {
+                    "type": "string",
+                    "title": "Service d'urgence",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/callTaker/organization",
+                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*."
+                },
+                "controlRoom": {
+                    "type": "string",
+                    "title": "Centre d'appels",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/callTaker/controlRoom",
+                    "description": "D\u00e9crit le centre d'appel auquel est rattach\u00e9 l'agent"
+                },
+                "role": {
+                    "type": "string",
+                    "title": "R\u00f4le agent",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/callTaker/role",
+                    "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)",
+                    "enum": []
+                },
+                "calltakeContact": {
+                    "$ref": "#/definitions/contact"
+                },
+                "calltakerId": {
+                    "type": "string",
+                    "title": "ID de l'agent",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/callTaker/calltakerId",
+                    "description": "Identifiant unique de l'op\u00e9rateur ayant trait\u00e9 l'alerte (peut \u00eatre un identifiant technique, un num\u00e9ro de carte CPS etc)"
+                }
+            },
+            "example": "example.json#/createCase/initialAlert/callTaker"
+        },
+        "attachment": {
+            "type": "object",
+            "title": "Pi\u00e8ces jointes",
+            "x-display": "expansion-panels",
+            "required": [
+                "URI"
+            ],
+            "properties": {
+                "description": {
+                    "type": "string",
+                    "title": "Type ou description de la ressource",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/attachment/0/description",
+                    "description": "D\u00e9crit la ressource en pr\u00e9cisant le type et le contenu, tels que \u00abcarte\u00bb ou \u00abphoto\u00bb"
+                },
+                "mimeType": {
+                    "type": "string",
+                    "title": "Type MIME",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/attachment/0/mimeType",
+                    "description": "L'identifiant du type MIME de contenu et sous-type d\u00e9crivant la ressource"
+                },
+                "size": {
+                    "type": "integer",
+                    "title": "Taille approximative",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/attachment/0/size",
+                    "description": "Taille approximative de la ressource en kO"
+                },
+                "URI": {
+                    "type": "string",
+                    "title": "URI",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/attachment/0/URI",
+                    "description": "Une URI, g\u00e9n\u00e9ralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un r\u00e9seau priv\u00e9\nNous sugg\u00e9rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
+                },
+                "derefURI": {
+                    "type": "string",
+                    "title": "URI base 64",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/attachment/0/derefURI",
+                    "description": "Peut \u00eatre utilis\u00e9 \u00e0 la place de l'\u00e9l\u00e9ment 'URI' pour envoyer la ressource encod\u00e9e en base64 pour \u00e9viter des probl\u00e8mes de transcodage (sur des double quotes qui casseraient le message, \u2026)"
+                },
+                "digest": {
+                    "type": "string",
+                    "title": "Hash",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/attachment/0/digest",
+                    "description": "Hash de la ressource pour confirmer la r\u00e9ception de la bonne ressource\nLa ressource est hash\u00e9e avec le protocole SHA-256"
+                }
+            },
+            "example": "example.json#/createCase/initialAlert/attachment/0"
+        },
+        "contact": {
+            "type": "object",
+            "title": "Contact requ\u00e9rant",
+            "x-display": "expansion-panels",
+            "required": [
+                "type",
+                "detail"
+            ],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact du requ\u00e9rant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/callerContact/type",
+                    "description": "Type de l'URI utilis\u00e9e par le requ\u00e9rant, cf. nomenclature EMSI",
+                    "enum": [
+                        "PSTADD",
+                        "EMLADD",
+                        "IPADD",
+                        "FTPADD",
+                        "WWWADD",
+                        "PHNADD",
+                        "FAXADD",
+                        "PMRADD"
+                    ]
+                },
+                "detail": {
+                    "type": "string",
+                    "title": "URI du contact requ\u00e9rant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/callerContact/detail",
+                    "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
+                }
+            },
+            "example": "example.json#/createCase/initialAlert/caller/callerContact"
+        },
+        "detailedName": {
+            "type": "object",
+            "title": "Pr\u00e9nom & nom usuel du requ\u00e9rant",
+            "x-display": "expansion-panels",
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Pr\u00e9nom et nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/detailedName/complete",
+                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nSi les champs callerLastName et callerFirstName sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
+                },
+                "lastName": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/detailedName/lastName",
+                    "description": "Nom du requ\u00e9rant"
+                },
+                "firstName": {
+                    "type": "string",
+                    "title": "Pr\u00e9nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/initialAlert/caller/detailedName/firstName",
+                    "description": "Pr\u00e9nom du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
+                }
+            },
+            "example": "example.json#/createCase/initialAlert/caller/detailedName"
+        },
+        "customMap": {
+            "type": "object",
+            "title": "Cl\u00e9 valeur adaptable",
+            "x-display": "expansion-panels",
+            "required": [
+                "key",
+                "value"
+            ],
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "title": "Cl\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/additionalInformation/customMap/key",
+                    "description": "Nom de la balise"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/additionalInformation/customMap/label",
+                    "description": "Libell\u00e9 correspondant"
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Valeur",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/additionalInformation/customMap/value",
+                    "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "D\u00e9tails",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/additionalInformation/customMap/freetext",
+                    "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
+                }
+            },
+            "example": "example.json#/createCase/additionalInformation/customMap"
+        }
+    }
+}

@@ -45,6 +45,7 @@ def get_params_from_sheet(sheet):
     # Computing number of rows in table
     # rows = df.iloc[7:, 0]
     # Simply remove initial rows & total row
+    # ToDo: be more resilient to nan & \xa0 in full_df.iloc[8:,0] and compute nb with count?
     rows = full_df.shape[0] - 8 - 1
     # Compute number of columns in table
     try:

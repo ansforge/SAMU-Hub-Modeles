@@ -1,0 +1,157 @@
+// UML MDD Hub Sante
+strict digraph {
+	node [shape=none]
+	edge [arrowhead=odiamond arrowtail=none]
+	rankdir=BT
+	LINK [label=<<TABLE>
+                <TR>
+                <TD><B>LINK</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet link</I><BR/>ID <I>string</I> : [1..1]<BR/>LINK_ROLE <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	LINK -> CONTEXT [constraint=true headlabel=1 taillabel="0..*"]
+	ORIGIN [label=<<TABLE>
+                <TR>
+                <TD><B>ORIGIN</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet origin</I><BR/>ORG_ID <I>string</I> : [0..1]<BR/>USER_ID <I>string</I> : [0..1]<BR/>NAME <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	ORIGIN -> CONTEXT [constraint=true headlabel=1 taillabel="0..1"]
+	EXTERNAL_INFO [label=<<TABLE>
+                <TR>
+                <TD><B>EXTERNAL_INFO</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet externalInfo</I><BR/>FREETEXT <I>string</I> : [0..1]<BR/>URI <I>string</I> : [1..1]<BR/>TYPE <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	EXTERNAL_INFO -> CONTEXT [constraint=true headlabel=1 taillabel="0..*"]
+	CONTEXT [label=<<TABLE>
+                <TR>
+                <TD><B>CONTEXT</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet context</I><BR/>ID <I>string</I> : [1..1]<BR/>MODE <I>string</I> : [1..1]<BR/>MSGTYPE <I>string</I> : [1..1]<BR/>CREATION <I>date-time</I> : [0..1]<BR/>LEVEL <I>string</I> : [0..1]<BR/>SECLASS <I>string</I> : [0..1]<BR/>FREETEXT <I>string</I> : [0..1]<BR/>URGENCY <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	CONTEXT -> emsi [constraint=true headlabel=1 taillabel=1]
+	ETYPE [label=<<TABLE>
+                <TR>
+                <TD><B>ETYPE</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet etype</I><BR/>CATEGORY <I>string</I> : [1..*]<BR/>ACTOR <I>string</I> : [1..*]<BR/>LOCTYPE <I>string</I> : [1..*]<BR/>ENV <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	ETYPE -> EVENT [constraint=true headlabel=1 taillabel="0..1"]
+	REFERENCE [label=<<TABLE>
+                <TR>
+                <TD><B>REFERENCE</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet reference</I><BR/>ORG_ID <I>string</I> : [1..1]<BR/>OTHER_EVENT_ID <I>string</I> : [1..*]</TD>
+                </TR>
+                </TABLE>>]
+	REFERENCE -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	CASUALTIES [label=<<TABLE>
+                <TR>
+                <TD><B>CASUALTIES</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet casualties</I><BR/>CONTEXT <I>string</I> : [1..1]<BR/>DATIME <I>date-time</I> : [0..1]<BR/>DECONT <I>integer</I> : [0..1]<BR/>TRIAGERED <I>integer</I> : [0..1]<BR/>TRIAGEYELLOW <I>integer</I> : [0..1]<BR/>TRIAGEGREEN <I>integer</I> : [0..1]<BR/>TRIAGEBLACK <I>integer</I> : [0..1]<BR/>MISSING <I>integer</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	CASUALTIES -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	EVAC [label=<<TABLE>
+                <TR>
+                <TD><B>EVAC</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet evac</I><BR/>DATIME <I>date-time</I> : [0..1]<BR/>DISPLACED <I>integer</I> : [0..1]<BR/>EVACUATED <I>integer</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	EVAC -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	COORD [label=<<TABLE>
+                <TR>
+                <TD><B>COORD</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet coord</I><BR/>LAT <I>number</I> : [1..1]<BR/>LONG <I>number</I> : [1..1]<BR/>HEIGHT <I>number</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	COORD -> POSITION [constraint=true headlabel=1 taillabel="0..*"]
+	POSITION [label=<<TABLE>
+                <TR>
+                <TD><B>POSITION</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>string</I> : [0..1]<BR/>TYPE <I>string</I> : [0..1]<BR/>HEIGHT_ROLE <I>string</I> : [0..1]<BR/>COORDSYS <I>string</I> : [0..1]<BR/>ADDRESS <I>string</I> : [0..*]</TD>
+                </TR>
+                </TABLE>>]
+	POSITION -> EGEO [constraint=true headlabel=1 taillabel=1]
+	EGEO [label=<<TABLE>
+                <TR>
+                <TD><B>EGEO</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet egeo</I><BR/>DATIME <I>date-time</I> : [0..1]<BR/>TYPE <I>string</I> : [1..1]<BR/>WEATHER <I>string</I> : [0..*]<BR/>FREETEXT <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	EGEO -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	EVENT [label=<<TABLE>
+                <TR>
+                <TD><B>EVENT</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet event</I><BR/>ID <I>string</I> : [1..1]<BR/>NAME <I>string</I> : [0..1]<BR/>MAIN_EVENT_ID <I>string</I> : [0..1]<BR/>SOURCE <I>string</I> : [0..1]<BR/>SCALE <I>string</I> : [0..1]<BR/>CERTAINTY <I>integer</I> : [0..1]<BR/>DECL_DATIME <I>date-time</I> : [0..1]<BR/>OCC_DATIME <I>date-time</I> : [0..1]<BR/>OBS_DATIME <I>date-time</I> : [0..1]<BR/>STATUS <I>string</I> : [0..1]<BR/>RISK_ASSESMENT <I>string</I> : [0..1]<BR/>CAUSE <I>string</I> : [0..1]<BR/>FREETEXT <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	EVENT -> emsi [constraint=true headlabel=1 taillabel=1]
+	COORD [label=<<TABLE>
+                <TR>
+                <TD><B>COORD</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet coord</I><BR/>LAT <I>number</I> : [1..1]<BR/>LONG <I>number</I> : [1..1]<BR/>HEIGHT <I>number</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	COORD -> POSITION [constraint=true headlabel=1 taillabel="0..*"]
+	POSITION [label=<<TABLE>
+                <TR>
+                <TD><B>POSITION</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>string</I> : [0..1]<BR/>TYPE <I>string</I> : [0..1]<BR/>HEIGHT_ROLE <I>string</I> : [0..1]<BR/>COORDSYS <I>string</I> : [0..1]<BR/>ADDRESS <I>string</I> : [0..*]</TD>
+                </TR>
+                </TABLE>>]
+	POSITION -> MISSION [constraint=true headlabel=1 taillabel="0..1"]
+	MISSION [label=<<TABLE>
+                <TR>
+                <TD><B>MISSION</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet mission</I><BR/>TYPE <I>string</I> : [1..1]<BR/>FREETEXT <I>string</I> : [0..1]<BR/>ID <I>string</I> : [0..1]<BR/>ORG_ID <I>string</I> : [0..1]<BR/>NAME <I>string</I> : [0..1]<BR/>STATUS <I>string</I> : [0..1]<BR/>START_TIME <I>date-time</I> : [0..1]<BR/>END_TIME <I>date-time</I> : [0..1]<BR/>RESOURCE_ID <I>string</I> : [0..1]<BR/>PARENT_MISSION_ID <I>string</I> : [0..*]<BR/>CHILD_MISSION_ID <I>string</I> : [0..*]<BR/>MAIN_MISSION_ID <I>string</I> : [0..1]<BR/>PRIORITY <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	MISSION -> emsi [constraint=true headlabel=1 taillabel="0..*"]
+	emsi [label=<<TABLE>
+                <TR>
+                <TD><B>emsi</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet emsi</I></TD>
+                </TR>
+                </TABLE>>]
+	emsi [label=<<TABLE>
+                <TR>
+                <TD><B>emsi</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet emsi</I></TD>
+                </TR>
+                </TABLE>>]
+}
