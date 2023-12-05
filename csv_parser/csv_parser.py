@@ -460,13 +460,7 @@ with open('template.asyncapi.yaml') as f:
         **common_openapi_components['components']['schemas'],
         **openapi_components
     }
-
-    # TODO bbo: add the following to the asyncapi spec
-    # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'] = {
-    #     **asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'],
-    #     "$ref": "#/components/schemas/{WRAPPER_NAME}"
-    # }
-
+    # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
 
 with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
@@ -474,6 +468,7 @@ with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     file.write(documents)
 print('OpenAPI schema generated.')
 
+#TODO bb: extract this logic to an outside script called by the gh action
 with open(f'out/full-asyncapi.yaml', 'w') as file:
     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
