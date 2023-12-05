@@ -182,7 +182,7 @@ def get_element_with_its_children(previous_children, elem_id):
 
 
 children = {}
-for i in range(5, 0, -1):
+for i in range(DATA_DEPTH, 0, -1):
     previous_children = children
     children_df = df[df['level_shift'] == i]
     children_ids = children_df.groupby('parent')['id'].apply(list)
