@@ -53,7 +53,7 @@ public class DistributionElementBuilder {
         }
         this.messageId = messageId;
         this.sender = new Sender().name(senderId).URI("hubex:" + senderId);
-        this.sentAt = OffsetDateTime.now();
+        this.sentAt = OffsetDateTime.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
         this.kind = DistributionElement.KindEnum.REPORT;
         this.status = DistributionElement.StatusEnum.ACTUAL;
         this.recipients = recipients;

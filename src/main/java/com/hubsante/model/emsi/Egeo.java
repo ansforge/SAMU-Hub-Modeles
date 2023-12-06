@@ -83,147 +83,147 @@ public class Egeo {
 
         VULN("VULN"),
 
-        _AIR_COR("/AIR/COR"),
+        _AIR_COR("AIR/COR"),
 
-        _AIR_FLDZ("/AIR/FLDZ"),
+        _AIR_FLDZ("AIR/FLDZ"),
 
-        _AIR_LZ("/AIR/LZ"),
+        _AIR_LZ("AIR/LZ"),
 
-        _AIR_NOFLZN("/AIR/NOFLZN"),
+        _AIR_NOFLZN("AIR/NOFLZN"),
 
-        _AIR_PZ("/AIR/PZ"),
+        _AIR_PZ("AIR/PZ"),
 
-        _AIR_UAVASP("/AIR/UAVASP"),
+        _AIR_UAVASP("AIR/UAVASP"),
 
-        _CMB_CZ("/CMB/CZ"),
+        _CMB_CZ("CMB/CZ"),
 
-        _CMB_DNGR("/CMB/DNGR"),
+        _CMB_DNGR("CMB/DNGR"),
 
-        _CMB_EXTZN("/CMB/EXTZN"),
+        _CMB_EXTZN("CMB/EXTZN"),
 
-        _CMB_IMPTPT("/CMB/IMPTPT"),
+        _CMB_IMPTPT("CMB/IMPTPT"),
 
-        _DGR_BIO("/DGR/BIO"),
+        _DGR_BIO("DGR/BIO"),
+        
+        _DGR_BOMB("DGR/BOMB"),
 
-        _DGR_BOMB("/DGR/BOMB"),
+        _DGR_CBRNHZ("DGR/CBRNHZ"),
 
-        _DGR_CBRNHZ("/DGR/CBRNHZ"),
+        _DGR_CBRNRSD("DGR/CBRNRSD"),
 
-        _DGR_CBRNRSD("/DGR/CBRNRSD"),
+        _DGR_CHM("DGR/CHM"),
 
-        _DGR_CHM("/DGR/CHM"),
+        _DGR_HZD("DGR/HZD"),
 
-        _DGR_HZD("/DGR/HZD"),
+        _DGR_MIND("DGR/MIND"),
 
-        _DGR_MIND("/DGR/MIND"),
+        _DGR_NGA("DGR/NGA"),
 
-        _DGR_NGA("/DGR/NGA"),
+        _DGR_NGACIV("DGR/NGACIV"),
 
-        _DGR_NGACIV("/DGR/NGACIV"),
+        _DGR_NUKCNL("DGR/NUKCNL"),
 
-        _DGR_NUKCNL("/DGR/NUKCNL"),
+        _DGR_OBSGEN("DGR/OBSGEN"),
 
-        _DGR_OBSGEN("/DGR/OBSGEN"),
+        _DGR_PRHBAR("DGR/PRHBAR"),
 
-        _DGR_PRHBAR("/DGR/PRHBAR"),
+        _DGR_RAD("DGR/RAD"),
 
-        _DGR_RAD("/DGR/RAD"),
+        _DGR_RADCLD("DGR/RADCLD"),
 
-        _DGR_RADCLD("/DGR/RADCLD"),
+        _DGR_RSTR("DGR/RSTR"),
 
-        _DGR_RSTR("/DGR/RSTR"),
+        _DGR_SGA("DGR/SGA"),
 
-        _DGR_SGA("/DGR/SGA"),
+        _DGR_SITKIL("DGR/SITKIL"),
 
-        _DGR_SITKIL("/DGR/SITKIL"),
+        _DGR_UNXOD("DGR/UNXOD"),
 
-        _DGR_UNXOD("/DGR/UNXOD"),
+        _GEN_AOR("GEN/AOR"),
 
-        _GEN_AOR("/GEN/AOR"),
+        _GEN_ASYGEN("GEN/ASYGEN"),
 
-        _GEN_ASYGEN("/GEN/ASYGEN"),
+        _GEN_ASYSPL("GEN/ASYSPL"),
 
-        _GEN_ASYSPL("/GEN/ASYSPL"),
+        _GEN_BDYOR("GEN/BDYOR"),
 
-        _GEN_BDYOR("/GEN/BDYOR"),
+        _GEN_BDYPOA("GEN/BDYPOA"),
 
-        _GEN_BDYPOA("/GEN/BDYPOA"),
+        _GEN_BDYPT("GEN/BDYPT"),
 
-        _GEN_BDYPT("/GEN/BDYPT"),
+        _GEN_CKPGEN("GEN/CKPGEN"),
 
-        _GEN_CKPGEN("/GEN/CKPGEN"),
+        _GEN_CNTPTL("GEN/CNTPTL"),
 
-        _GEN_CNTPTL("/GEN/CNTPTL"),
+        _GEN_COLDZ("GEN/COLDZ"),
 
-        _GEN_COLDZ("/GEN/COLDZ"),
+        _GEN_COMCKP("GEN/COMCKP"),
 
-        _GEN_COMCKP("/GEN/COMCKP"),
+        _GEN_COMLOW("GEN/COMLOW"),
 
-        _GEN_COMLOW("/GEN/COMLOW"),
+        _GEN_COMMZ("GEN/COMMZ"),
 
-        _GEN_COMMZ("/GEN/COMMZ"),
+        _GEN_COMUP("GEN/COMUP"),
 
-        _GEN_COMUP("/GEN/COMUP"),
+        _GEN_CONTAR("GEN/CONTAR"),
 
-        _GEN_CONTAR("/GEN/CONTAR"),
+        _GEN_CORDON("GEN/CORDON"),
 
-        _GEN_CORDON("/GEN/CORDON"),
+        _GEN_CRDPNT("GEN/CRDPNT"),
 
-        _GEN_CRDPNT("/GEN/CRDPNT"),
+        _GEN_DIVRT("GEN/DIVRT"),
 
-        _GEN_DIVRT("/GEN/DIVRT"),
+        _GEN_DROPPT("GEN/DROPPT"),
 
-        _GEN_DROPPT("/GEN/DROPPT"),
+        _GEN_ENTPT("GEN/ENTPT"),
 
-        _GEN_ENTPT("/GEN/ENTPT"),
+        _GEN_EVENT("GEN/EVENT"),
 
-        _GEN_EVENT("/GEN/EVENT"),
+        _GEN_EXITPT("GEN/EXITPT"),
 
-        _GEN_EXITPT("/GEN/EXITPT"),
+        _GEN_FWCTPT("GEN/FWCTPT"),
 
-        _GEN_FWCTPT("/GEN/FWCTPT"),
+        _GEN_HOTZ("GEN/HOTZ"),
 
-        _GEN_HOTZ("/GEN/HOTZ"),
+        _GEN_INCGRD("GEN/INCGRD"),
 
-        _GEN_INCGRD("/GEN/INCGRD"),
+        _GEN_LA("GEN/LA"),
 
-        _GEN_LA("/GEN/LA"),
+        _GEN_LIMARE("GEN/LIMARE"),
 
-        _GEN_LIMARE("/GEN/LIMARE"),
+        _GEN_LOCAT("GEN/LOCAT"),
 
-        _GEN_LOCAT("/GEN/LOCAT"),
+        _GEN_MSR("GEN/MSR"),
 
-        _GEN_MSR("/GEN/MSR"),
+        _GEN_PSSGPT("GEN/PSSGPT"),
 
-        _GEN_PSSGPT("/GEN/PSSGPT"),
+        _GEN_PTINT("GEN/PTINT"),
 
-        _GEN_PTINT("/GEN/PTINT"),
+        _GEN_RCNSAR("GEN/RCNSAR"),
 
-        _GEN_RCNSAR("/GEN/RCNSAR"),
+        _GEN_RNDZPT("GEN/RNDZPT"),
 
-        _GEN_RNDZPT("/GEN/RNDZPT"),
+        _GEN_ROUTE("GEN/ROUTE"),
 
-        _GEN_ROUTE("/GEN/ROUTE"),
+        _GEN_SAFERT("GEN/SAFERT"),
 
-        _GEN_SAFERT("/GEN/SAFERT"),
+        _GEN_SAFZ("GEN/SAFZ"),
 
-        _GEN_SAFZ("/GEN/SAFZ"),
+        _GEN_SARPNT("GEN/SARPNT"),
 
-        _GEN_SARPNT("/GEN/SARPNT"),
+        _GEN_SEARAR("GEN/SEARAR"),
 
-        _GEN_SEARAR("/GEN/SEARAR"),
+        _GEN_SPRISK("GEN/SPRISK"),
 
-        _GEN_SPRISK("/GEN/SPRISK"),
+        _GEN_STRTPT("GEN/STRTPT"),
 
-        _GEN_STRTPT("/GEN/STRTPT"),
+        _GEN_SUPARE("GEN/SUPARE"),
 
-        _GEN_SUPARE("/GEN/SUPARE"),
+        _GEN_SUPPT("GEN/SUPPT"),
 
-        _GEN_SUPPT("/GEN/SUPPT"),
+        _GEN_TRSTRT("GEN/TRSTRT"),
 
-        _GEN_TRSTRT("/GEN/TRSTRT"),
-
-        _GEN_WARMZ("/GEN/WARMZ");
+        _GEN_WARMZ("GEN/WARMZ");
 
         private String value;
 
@@ -273,87 +273,87 @@ public class Egeo {
 
         WIN("WIN"),
 
-        HUM_CORECT("/HUM/CORECT"),
+        HUM_CORECT("HUM/CORECT"),
 
-        HUM_DRZLE("/HUM/DRZLE"),
+        HUM_DRZLE("HUM/DRZLE"),
 
-        HUM_FOG("/HUM/FOG"),
+        HUM_FOG("HUM/FOG"),
 
-        HUM_RAIN("/HUM/RAIN"),
+        HUM_RAIN("HUM/RAIN"),
 
-        HUM_RAINSR("/HUM/RAINSR"),
+        HUM_RAINSR("HUM/RAINSR"),
 
-        HUM_THSTRN("/HUM/THSTRN"),
+        HUM_THSTRN("HUM/THSTRN"),
 
-        ICY_BLWSNW("/ICY/BLWSNW"),
+        ICY_BLWSNW("ICY/BLWSNW"),
 
-        ICY_CLRICE("/ICY/CLRICE"),
+        ICY_CLRICE("ICY/CLRICE"),
 
-        ICY_CORECT("/ICY/CORECT"),
+        ICY_CORECT("ICY/CORECT"),
 
-        ICY_FDRZLE("/ICY/FDRZLE"),
+        ICY_FDRZLE("ICY/FDRZLE"),
 
-        ICY_FRAIN("/ICY/FRAIN"),
+        ICY_FRAIN("ICY/FRAIN"),
 
-        ICY_FRZFOG("/ICY/FRZFOG"),
+        ICY_FRZFOG("ICY/FRZFOG"),
 
-        ICY_HAIL("/ICY/HAIL"),
+        ICY_HAIL("ICY/HAIL"),
 
-        ICY_ICECRY("/ICY/ICECRY"),
+        ICY_ICECRY("ICY/ICECRY"),
 
-        ICY_ICEPLT("/ICY/ICEPLT"),
+        ICY_ICEPLT("ICY/ICEPLT"),
 
-        ICY_MIXICE("/ICY/MIXICE"),
+        ICY_MIXICE("ICY/MIXICE"),
 
-        ICY_RIMICE("/ICY/RIMICE"),
+        ICY_RIMICE("ICY/RIMICE"),
 
-        ICY_SLEET("/ICY/SLEET"),
+        ICY_SLEET("ICY/SLEET"),
 
-        ICY_SNOW("/ICY/SNOW"),
+        ICY_SNOW("ICY/SNOW"),
 
-        ICY_SNWGRN("/ICY/SNWGRN"),
+        ICY_SNWGRN("ICY/SNWGRN"),
 
-        ICY_SNWSHR("/ICY/SNWSHR"),
+        ICY_SNWSHR("ICY/SNWSHR"),
 
-        TDS_CORECT("/TDS/CORECT"),
+        TDS_CORECT("TDS/CORECT"),
 
-        TDS_LGTNNG("/TDS/LGTNNG"),
+        TDS_LGTNNG("TDS/LGTNNG"),
 
-        TDS_THST("/TDS/THST"),
+        TDS_THST("TDS/THST"),
 
-        VIS_CORECT("/VIS/CORECT"),
+        VIS_CORECT("VIS/CORECT"),
 
-        VIS_HAZE("/VIS/HAZE"),
+        VIS_HAZE("VIS/HAZE"),
 
-        VIS_SMOKE("/VIS/SMOKE"),
+        VIS_SMOKE("VIS/SMOKE"),
 
-        WIN_CORECT("/WIN/CORECT"),
+        WIN_CORECT("WIN/CORECT"),
 
-        WIN_CYCL("/WIN/CYCL"),
+        WIN_CYCL("WIN/CYCL"),
 
-        WIN_DSTDVL("/WIN/DSTDVL"),
+        WIN_DSTDVL("WIN/DSTDVL"),
 
-        WIN_DSTSND("/WIN/DSTSND"),
+        WIN_DSTSND("WIN/DSTSND"),
 
-        WIN_DSTSTR("/WIN/DSTSTR"),
+        WIN_DSTSTR("WIN/DSTSTR"),
 
-        WIN_FNLCLD("/WIN/FNLCLD"),
+        WIN_FNLCLD("WIN/FNLCLD"),
 
-        WIN_HURR("/WIN/HURR"),
+        WIN_HURR("WIN/HURR"),
 
-        WIN_SNDSTR("/WIN/SNDSTR"),
+        WIN_SNDSTR("WIN/SNDSTR"),
 
-        WIN_STORM("/WIN/STORM"),
+        WIN_STORM("WIN/STORM"),
 
-        WIN_TORN("/WIN/TORN"),
+        WIN_TORN("WIN/TORN"),
 
-        WIN_TRST("/WIN/TRST"),
+        WIN_TRST("WIN/TRST"),
 
-        WIN_TYPH("/WIN/TYPH"),
+        WIN_TYPH("WIN/TYPH"),
 
-        WIN_WHIR("/WIN/WHIR"),
+        WIN_WHIR("WIN/WHIR"),
 
-        WIN_WTRSPT("/WIN/WTRSPT");
+        WIN_WTRSPT("WIN/WTRSPT");
 
         private String value;
 

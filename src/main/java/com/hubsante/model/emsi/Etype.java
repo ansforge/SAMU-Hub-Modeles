@@ -81,127 +81,127 @@ public class Etype {
 
         TRP("TRP"),
 
-        ASB_ABV("/ASB/ABV"),
+        ASB_ABV("ASB/ABV"),
 
-        ASR_ATM("/ASR/ATM"),
+        ASR_ATM("ASR/ATM"),
 
-        ASR_HGT("/ASR/HGT"),
+        ASR_HGT("ASR/HGT"),
 
-        ASR_ICE("/ASR/ICE"),
+        ASR_ICE("ASR/ICE"),
 
-        ASR_MAR("/ASR/MAR"),
+        ASR_MAR("ASR/MAR"),
 
-        ASR_SIL("/ASR/SIL"),
+        ASR_SIL("ASR/SIL"),
 
-        ASR_TRP("/ASR/TRP"),
+        ASR_TRP("ASR/TRP"),
 
-        ASR_UDG("/ASR/UDG"),
+        ASR_UDG("ASR/UDG"),
 
-        ASR_WAT("/ASR/WAT"),
+        ASR_WAT("ASR/WAT"),
 
-        EXP_AER("/EXP/AER"),
+        EXP_AER("EXP/AER"),
 
-        EXP_AMM("/EXP/AMM"),
+        EXP_AMM("EXP/AMM"),
 
-        EXP_BLEVE("/EXP/BLEVE"),
+        EXP_BLEVE("EXP/BLEVE"),
 
-        EXP_CHM("/EXP/CHM"),
+        EXP_CHM("EXP/CHM"),
 
-        EXP_CYL("/EXP/CYL"),
+        EXP_CYL("EXP/CYL"),
 
-        EXP_DST("/EXP/DST"),
+        EXP_DST("EXP/DST"),
 
-        EXP_FRW("/EXP/FRW"),
+        EXP_FRW("EXP/FRW"),
 
-        EXP_GAS("/EXP/GAS"),
+        EXP_GAS("EXP/GAS"),
 
-        EXP_HGHFLM("/EXP/HGHFLM"),
+        EXP_HGHFLM("EXP/HGHFLM"),
 
-        EXP_HPP("/EXP/HPP"),
+        EXP_HPP("EXP/HPP"),
 
-        EXP_IMP("/EXP/IMP"),
+        EXP_IMP("EXP/IMP"),
 
-        EXP_LPG("/EXP/LPG"),
+        EXP_LPG("EXP/LPG"),
 
-        EXP_NUK("/EXP/NUK"),
+        EXP_NUK("EXP/NUK"),
 
-        EXP_PRD("/EXP/PRD"),
+        EXP_PRD("EXP/PRD"),
 
-        EXP_UKN("/EXP/UKN"),
+        EXP_UKN("EXP/UKN"),
 
-        FIR_CLA("/FIR/CLA"),
+        FIR_CLA("FIR/CLA"),
 
-        FIR_CLB("/FIR/CLB"),
+        FIR_CLB("FIR/CLB"),
 
-        FIR_CLC("/FIR/CLC"),
+        FIR_CLC("FIR/CLC"),
 
-        FIR_CLD("/FIR/CLD"),
+        FIR_CLD("FIR/CLD"),
 
-        FIR_UKN("/FIR/UKN"),
+        FIR_UKN("FIR/UKN"),
 
-        FLD_FLS("/FLD/FLS"),
+        FLD_FLS("FLD/FLS"),
 
-        FLD_PLN("/FLD/PLN"),
+        FLD_PLN("FLD/PLN"),
 
-        FLD_TID("/FLD/TID"),
+        FLD_TID("FLD/TID"),
 
-        GND_AVL("/GND/AVL"),
+        GND_AVL("GND/AVL"),
 
-        GND_EQK("/GND/EQK"),
+        GND_EQK("GND/EQK"),
 
-        GND_GEY("/GND/GEY"),
+        GND_GEY("GND/GEY"),
 
-        GND_LDS("/GND/LDS"),
+        GND_LDS("GND/LDS"),
 
-        GND_MUD("/GND/MUD"),
+        GND_MUD("GND/MUD"),
 
-        GND_SUB("/GND/SUB"),
+        GND_SUB("GND/SUB"),
 
-        GND_VUL("/GND/VUL"),
+        GND_VUL("GND/VUL"),
 
-        HLT_EPI("/HLT/EPI"),
+        HLT_EPI("HLT/EPI"),
 
-        HLT_FMN("/HLT/FMN"),
+        HLT_FMN("HLT/FMN"),
 
-        HLT_NDS("/HLT/NDS"),
+        HLT_NDS("HLT/NDS"),
 
-        POL_BIO("/POL/BIO"),
+        POL_BIO("POL/BIO"),
 
-        POL_CHM("/POL/CHM"),
+        POL_CHM("POL/CHM"),
 
-        POL_NUK("/POL/NUK"),
+        POL_NUK("POL/NUK"),
 
-        POL_RAD("/POL/RAD"),
+        POL_RAD("POL/RAD"),
 
-        PSW_ALM("/PSW/ALM"),
+        PSW_ALM("PSW/ALM"),
 
-        PSW_ASY("/PSW/ASY"),
+        PSW_ASY("PSW/ASY"),
 
-        PSW_DEM("/PSW/DEM"),
+        PSW_DEM("PSW/DEM"),
 
-        PSW_IMM("/PSW/IMM"),
+        PSW_IMM("PSW/IMM"),
 
-        PSW_MEV("/PSW/MEV"),
+        PSW_MEV("PSW/MEV"),
 
-        PSW_MIS("/PSW/MIS"),
+        PSW_MIS("PSW/MIS"),
 
-        PSW_PKG("/PSW/PKG"),
+        PSW_PKG("PSW/PKG"),
 
-        PSW_PRO("/PSW/PRO"),
+        PSW_PRO("PSW/PRO"),
 
-        PSW_PRSUIT("/PSW/PRSUIT"),
+        PSW_PRSUIT("PSW/PRSUIT"),
 
-        PSW_RIOT("/PSW/RIOT"),
+        PSW_RIOT("PSW/RIOT"),
 
-        PSW_SUS("/PSW/SUS"),
+        PSW_SUS("PSW/SUS"),
 
-        PSW_WNG("/PSW/WNG"),
+        PSW_WNG("PSW/WNG"),
 
-        TRP_BRK("/TRP/BRK"),
+        TRP_BRK("TRP/BRK"),
 
-        TRP_COL("/TRP/COL"),
+        TRP_COL("TRP/COL"),
 
-        TRP_CRS("/TRP/CRS");
+        TRP_CRS("TRP/CRS");
 
         private String value;
 
@@ -245,305 +245,305 @@ public class Etype {
 
         VEH("VEH"),
 
-        _ANI_CON("/ANI/CON"),
+        _ANI_CON("ANI/CON"),
 
-        _ANI_DEA("/ANI/DEA"),
+        _ANI_DEA("ANI/DEA"),
 
-        _ANI_DGR("/ANI/DGR"),
+        _ANI_DGR("ANI/DGR"),
 
-        _ANI_FRM("/ANI/FRM"),
+        _ANI_FRM("ANI/FRM"),
 
-        _ANI_HRD("/ANI/HRD"),
+        _ANI_HRD("ANI/HRD"),
 
-        _ANI_INJ("/ANI/INJ"),
+        _ANI_INJ("ANI/INJ"),
 
-        _ANI_LIV("/ANI/LIV"),
+        _ANI_LIV("ANI/LIV"),
 
-        _ANI_PET("/ANI/PET"),
+        _ANI_PET("ANI/PET"),
 
-        _ANI_PRO("/ANI/PRO"),
+        _ANI_PRO("ANI/PRO"),
 
-        _ANI_SPC("/ANI/SPC"),
+        _ANI_SPC("ANI/SPC"),
 
-        _ANI_WLD("/ANI/WLD"),
+        _ANI_WLD("ANI/WLD"),
 
-        _BEV_ASR("/BEV/ASR"),
+        _BEV_ASR("BEV/ASR"),
 
-        _BEV_IND("/BEV/IND"),
+        _BEV_IND("BEV/IND"),
 
-        _BEV_NRES("/BEV/NRES"),
+        _BEV_NRES("BEV/NRES"),
 
-        _BEV_OFF("/BEV/OFF"),
+        _BEV_OFF("BEV/OFF"),
 
-        _BEV_OTH("/BEV/OTH"),
+        _BEV_OTH("BEV/OTH"),
 
-        _BEV_RESDW("/BEV/RESDW"),
+        _BEV_RESDW("BEV/RESDW"),
 
-        _BEV_RESIN("/BEV/RESIN"),
+        _BEV_RESIN("BEV/RESIN"),
 
-        _BEV_RESINT("/BEV/RESINT"),
+        _BEV_RESINT("BEV/RESINT"),
 
-        _BEV_RESOTH("/BEV/RESOTH"),
+        _BEV_RESOTH("BEV/RESOTH"),
 
-        _BEV_SHP("/BEV/SHP"),
+        _BEV_SHP("BEV/SHP"),
 
-        _PPL_1("/PPL/1"),
+        _PPL_1("PPL/1"),
 
-        _PPL_ADU("/PPL/ADU"),
+        _PPL_ADU("PPL/ADU"),
 
-        _PPL_CHD("/PPL/CHD"),
+        _PPL_CHD("PPL/CHD"),
 
-        _PPL_CNT("/PPL/CNT"),
+        _PPL_CNT("PPL/CNT"),
 
-        _PPL_DED("/PPL/DED"),
+        _PPL_DED("PPL/DED"),
 
-        _PPL_EVC("/PPL/EVC"),
+        _PPL_EVC("PPL/EVC"),
 
-        _PPL_GND("/PPL/GND"),
+        _PPL_GND("PPL/GND"),
 
-        _PPL_GRP("/PPL/GRP"),
+        _PPL_GRP("PPL/GRP"),
 
-        _PPL_HST("/PPL/HST"),
+        _PPL_HST("PPL/HST"),
 
-        _PPL_INT("/PPL/INT"),
+        _PPL_INT("PPL/INT"),
 
-        _PPL_OTH("/PPL/OTH"),
+        _PPL_OTH("PPL/OTH"),
 
-        _PPL_PRS("/PPL/PRS"),
+        _PPL_PRS("PPL/PRS"),
 
-        _PPL_SNS("/PPL/SNS"),
+        _PPL_SNS("PPL/SNS"),
 
-        _PPL_VIO("/PPL/VIO"),
+        _PPL_VIO("PPL/VIO"),
 
-        _PPL_VLN("/PPL/VLN"),
+        _PPL_VLN("PPL/VLN"),
 
-        _PPL_WTN("/PPL/WTN"),
+        _PPL_WTN("PPL/WTN"),
 
-        _PPL_CHD_BAB("/PPL/CHD/BAB"),
+        _PPL_CHD_BAB("PPL/CHD/BAB"),
 
-        _PPL_CHD_CHILD("/PPL/CHD/CHILD"),
+        _PPL_CHD_CHILD("PPL/CHD/CHILD"),
 
-        _PPL_CHD_INF("/PPL/CHD/INF"),
+        _PPL_CHD_INF("PPL/CHD/INF"),
 
-        _PPL_CHD_YOUTH("/PPL/CHD/YOUTH"),
+        _PPL_CHD_YOUTH("PPL/CHD/YOUTH"),
 
-        _PPL_GND_FML("/PPL/GND/FML"),
+        _PPL_GND_FML("PPL/GND/FML"),
 
-        _PPL_GND_MAL("/PPL/GND/MAL"),
+        _PPL_GND_MAL("PPL/GND/MAL"),
 
-        _PPL_GND_UND("/PPL/GND/UND"),
+        _PPL_GND_UND("PPL/GND/UND"),
 
-        _PPL_HST_PCF("/PPL/HST/PCF"),
+        _PPL_HST_PCF("PPL/HST/PCF"),
 
-        _PPL_HST_SUI("/PPL/HST/SUI"),
+        _PPL_HST_SUI("PPL/HST/SUI"),
 
-        _PPL_HST_THT("/PPL/HST/THT"),
+        _PPL_HST_THT("PPL/HST/THT"),
 
-        _PPL_HST_WPN("/PPL/HST/WPN"),
+        _PPL_HST_WPN("PPL/HST/WPN"),
 
-        _PPL_PRS_CST("/PPL/PRS/CST"),
+        _PPL_PRS_CST("PPL/PRS/CST"),
 
-        _PPL_PRS_ESC("/PPL/PRS/ESC"),
+        _PPL_PRS_ESC("PPL/PRS/ESC"),
 
-        _PPL_PRS_HGS("/PPL/PRS/HGS"),
+        _PPL_PRS_HGS("PPL/PRS/HGS"),
 
-        _PPL_SNS_ETH("/PPL/SNS/ETH"),
+        _PPL_SNS_ETH("PPL/SNS/ETH"),
 
-        _PPL_SNS_FOR("/PPL/SNS/FOR"),
+        _PPL_SNS_FOR("PPL/SNS/FOR"),
 
-        _PPL_SNS_LAN("/PPL/SNS/LAN"),
+        _PPL_SNS_LAN("PPL/SNS/LAN"),
 
-        _PPL_SNS_REL("/PPL/SNS/REL"),
+        _PPL_SNS_REL("PPL/SNS/REL"),
 
-        _PPL_SNS_VIP("/PPL/SNS/VIP"),
+        _PPL_SNS_VIP("PPL/SNS/VIP"),
 
-        _PPL_VLN_BLD("/PPL/VLN/BLD"),
+        _PPL_VLN_BLD("PPL/VLN/BLD"),
 
-        _PPL_VLN_DEF("/PPL/VLN/DEF"),
+        _PPL_VLN_DEF("PPL/VLN/DEF"),
 
-        _PPL_VLN_DSB("/PPL/VLN/DSB"),
+        _PPL_VLN_DSB("PPL/VLN/DSB"),
 
-        _PPL_VLN_ELD("/PPL/VLN/ELD"),
+        _PPL_VLN_ELD("PPL/VLN/ELD"),
 
-        _PPL_VLN_INJ("/PPL/VLN/INJ"),
+        _PPL_VLN_INJ("PPL/VLN/INJ"),
 
-        _PPL_VLN_LDF("/PPL/VLN/LDF"),
+        _PPL_VLN_LDF("PPL/VLN/LDF"),
 
-        _PPL_VLN_OBS("/PPL/VLN/OBS"),
+        _PPL_VLN_OBS("PPL/VLN/OBS"),
 
-        _PPL_VLN_PAT("/PPL/VLN/PAT"),
+        _PPL_VLN_PAT("PPL/VLN/PAT"),
 
-        _PPL_VLN_PGN("/PPL/VLN/PGN"),
+        _PPL_VLN_PGN("PPL/VLN/PGN"),
 
-        _PPL_VLN_SLFPRS("/PPL/VLN/SLFPRS"),
+        _PPL_VLN_SLFPRS("PPL/VLN/SLFPRS"),
 
-        _PPL_VLN_UNC("/PPL/VLN/UNC"),
+        _PPL_VLN_UNC("PPL/VLN/UNC"),
 
-        _VEH_AIR("/VEH/AIR"),
+        _VEH_AIR("VEH/AIR"),
 
-        _VEH_ANI("/VEH/ANI"),
+        _VEH_ANI("VEH/ANI"),
 
-        _VEH_BIC("/VEH/BIC"),
+        _VEH_BIC("VEH/BIC"),
 
-        _VEH_CAR("/VEH/CAR"),
+        _VEH_CAR("VEH/CAR"),
 
-        _VEH_EMG("/VEH/EMG"),
+        _VEH_EMG("VEH/EMG"),
 
-        _VEH_MBK("/VEH/MBK"),
+        _VEH_MBK("VEH/MBK"),
 
-        _VEH_MIL("/VEH/MIL"),
+        _VEH_MIL("VEH/MIL"),
 
-        _VEH_OTH("/VEH/OTH"),
+        _VEH_OTH("VEH/OTH"),
 
-        _VEH_TRK("/VEH/TRK"),
+        _VEH_TRK("VEH/TRK"),
 
-        _VEH_TRN("/VEH/TRN"),
+        _VEH_TRN("VEH/TRN"),
 
-        _VEH_VES("/VEH/VES"),
+        _VEH_VES("VEH/VES"),
 
-        _VEH_AIR_ARM("/VEH/AIR/ARM"),
+        _VEH_AIR_ARM("VEH/AIR/ARM"),
 
-        _VEH_AIR_FLBA("/VEH/AIR/FLBA"),
+        _VEH_AIR_FLBA("VEH/AIR/FLBA"),
 
-        _VEH_AIR_FRG("/VEH/AIR/FRG"),
+        _VEH_AIR_FRG("VEH/AIR/FRG"),
 
-        _VEH_AIR_FXBA("/VEH/AIR/FXBA"),
+        _VEH_AIR_FXBA("VEH/AIR/FXBA"),
 
-        _VEH_AIR_GLD("/VEH/AIR/GLD"),
+        _VEH_AIR_GLD("VEH/AIR/GLD"),
 
-        _VEH_AIR_HEL("/VEH/AIR/HEL"),
+        _VEH_AIR_HEL("VEH/AIR/HEL"),
 
-        _VEH_AIR_HVY("/VEH/AIR/HVY"),
+        _VEH_AIR_HVY("VEH/AIR/HVY"),
 
-        _VEH_AIR_JET("/VEH/AIR/JET"),
+        _VEH_AIR_JET("VEH/AIR/JET"),
 
-        _VEH_AIR_LGT("/VEH/AIR/LGT"),
+        _VEH_AIR_LGT("VEH/AIR/LGT"),
 
-        _VEH_AIR_MIL("/VEH/AIR/MIL"),
+        _VEH_AIR_MIL("VEH/AIR/MIL"),
 
-        _VEH_AIR_ORD("/VEH/AIR/ORD"),
+        _VEH_AIR_ORD("VEH/AIR/ORD"),
 
-        _VEH_AIR_OTH("/VEH/AIR/OTH"),
+        _VEH_AIR_OTH("VEH/AIR/OTH"),
 
-        _VEH_AIR_PAS("/VEH/AIR/PAS"),
+        _VEH_AIR_PAS("VEH/AIR/PAS"),
 
-        _VEH_AIR_PRBA("/VEH/AIR/PRBA"),
+        _VEH_AIR_PRBA("VEH/AIR/PRBA"),
 
-        _VEH_AIR_PST("/VEH/AIR/PST"),
+        _VEH_AIR_PST("VEH/AIR/PST"),
 
-        _VEH_AIR_RKT("/VEH/AIR/RKT"),
+        _VEH_AIR_RKT("VEH/AIR/RKT"),
 
-        _VEH_AIR_SEA("/VEH/AIR/SEA"),
+        _VEH_AIR_SEA("VEH/AIR/SEA"),
 
-        _VEH_AIR_SNO("/VEH/AIR/SNO"),
+        _VEH_AIR_SNO("VEH/AIR/SNO"),
 
-        _VEH_AIR_TNK("/VEH/AIR/TNK"),
+        _VEH_AIR_TNK("VEH/AIR/TNK"),
 
-        _VEH_AIR_UAV("/VEH/AIR/UAV"),
+        _VEH_AIR_UAV("VEH/AIR/UAV"),
 
-        _VEH_AIR_ULG("/VEH/AIR/ULG"),
+        _VEH_AIR_ULG("VEH/AIR/ULG"),
 
-        _VEH_OTH_HIL("/VEH/OTH/HIL"),
+        _VEH_OTH_HIL("VEH/OTH/HIL"),
 
-        _VEH_OTH_SNO("/VEH/OTH/SNO"),
+        _VEH_OTH_SNO("VEH/OTH/SNO"),
 
-        _VEH_TRK_ART("/VEH/TRK/ART"),
+        _VEH_TRK_ART("VEH/TRK/ART"),
 
-        _VEH_TRK_EXC("/VEH/TRK/EXC"),
+        _VEH_TRK_EXC("VEH/TRK/EXC"),
 
-        _VEH_TRK_HZD("/VEH/TRK/HZD"),
+        _VEH_TRK_HZD("VEH/TRK/HZD"),
 
-        _VEH_TRK_NHZ("/VEH/TRK/NHZ"),
+        _VEH_TRK_NHZ("VEH/TRK/NHZ"),
 
-        _VEH_TRK_NUK("/VEH/TRK/NUK"),
+        _VEH_TRK_NUK("VEH/TRK/NUK"),
 
-        _VEH_TRK_REF("/VEH/TRK/REF"),
+        _VEH_TRK_REF("VEH/TRK/REF"),
 
-        _VEH_TRK_UND("/VEH/TRK/UND"),
+        _VEH_TRK_UND("VEH/TRK/UND"),
 
-        _VEH_TRN_3RL("/VEH/TRN/3RL"),
+        _VEH_TRN_3RL("VEH/TRN/3RL"),
 
-        _VEH_TRN_DSL("/VEH/TRN/DSL"),
+        _VEH_TRN_DSL("VEH/TRN/DSL"),
 
-        _VEH_TRN_HZD("/VEH/TRN/HZD"),
+        _VEH_TRN_HZD("VEH/TRN/HZD"),
 
-        _VEH_TRN_LOC("/VEH/TRN/LOC"),
+        _VEH_TRN_LOC("VEH/TRN/LOC"),
 
-        _VEH_TRN_NHZ("/VEH/TRN/NHZ"),
+        _VEH_TRN_NHZ("VEH/TRN/NHZ"),
 
-        _VEH_TRN_NUK("/VEH/TRN/NUK"),
+        _VEH_TRN_NUK("VEH/TRN/NUK"),
 
-        _VEH_TRN_OVH("/VEH/TRN/OVH"),
+        _VEH_TRN_OVH("VEH/TRN/OVH"),
 
-        _VEH_TRN_PAS("/VEH/TRN/PAS"),
+        _VEH_TRN_PAS("VEH/TRN/PAS"),
 
-        _VEH_TRN_REF("/VEH/TRN/REF"),
+        _VEH_TRN_REF("VEH/TRN/REF"),
 
-        _VEH_TRN_STM("/VEH/TRN/STM"),
+        _VEH_TRN_STM("VEH/TRN/STM"),
 
-        _VEH_TRN_TRM("/VEH/TRN/TRM"),
+        _VEH_TRN_TRM("VEH/TRN/TRM"),
 
-        _VEH_TRN_UDG("/VEH/TRN/UDG"),
+        _VEH_TRN_UDG("VEH/TRN/UDG"),
 
-        _VEH_TRN_UND("/VEH/TRN/UND"),
+        _VEH_TRN_UND("VEH/TRN/UND"),
 
-        _VEH_TRN_VIP("/VEH/TRN/VIP"),
+        _VEH_TRN_VIP("VEH/TRN/VIP"),
 
-        _VEH_TRN_VLT("/VEH/TRN/VLT"),
+        _VEH_TRN_VLT("VEH/TRN/VLT"),
 
-        _VEH_VES_AMB("/VEH/VES/AMB"),
+        _VEH_VES_AMB("VEH/VES/AMB"),
 
-        _VEH_VES_BOT("/VEH/VES/BOT"),
+        _VEH_VES_BOT("VEH/VES/BOT"),
 
-        _VEH_VES_CNO("/VEH/VES/CNO"),
+        _VEH_VES_CNO("VEH/VES/CNO"),
 
-        _VEH_VES_CRG("/VEH/VES/CRG"),
+        _VEH_VES_CRG("VEH/VES/CRG"),
 
-        _VEH_VES_DSL("/VEH/VES/DSL"),
+        _VEH_VES_DSL("VEH/VES/DSL"),
 
-        _VEH_VES_FLO("/VEH/VES/FLO"),
+        _VEH_VES_FLO("VEH/VES/FLO"),
 
-        _VEH_VES_FRY("/VEH/VES/FRY"),
+        _VEH_VES_FRY("VEH/VES/FRY"),
 
-        _VEH_VES_HOV("/VEH/VES/HOV"),
+        _VEH_VES_HOV("VEH/VES/HOV"),
 
-        _VEH_VES_HZD("/VEH/VES/HZD"),
+        _VEH_VES_HZD("VEH/VES/HZD"),
 
-        _VEH_VES_JSK("/VEH/VES/JSK"),
+        _VEH_VES_JSK("VEH/VES/JSK"),
 
-        _VEH_VES_LEI("/VEH/VES/LEI"),
+        _VEH_VES_LEI("VEH/VES/LEI"),
 
-        _VEH_VES_LIS("/VEH/VES/LIS"),
+        _VEH_VES_LIS("VEH/VES/LIS"),
 
-        _VEH_VES_MIL("/VEH/VES/MIL"),
+        _VEH_VES_MIL("VEH/VES/MIL"),
 
-        _VEH_VES_MPW("/VEH/VES/MPW"),
+        _VEH_VES_MPW("VEH/VES/MPW"),
 
-        _VEH_VES_NHZ("/VEH/VES/NHZ"),
+        _VEH_VES_NHZ("VEH/VES/NHZ"),
 
-        _VEH_VES_NUK("/VEH/VES/NUK"),
+        _VEH_VES_NUK("VEH/VES/NUK"),
 
-        _VEH_VES_PAS("/VEH/VES/PAS"),
+        _VEH_VES_PAS("VEH/VES/PAS"),
 
-        _VEH_VES_POL("/VEH/VES/POL"),
+        _VEH_VES_POL("VEH/VES/POL"),
 
-        _VEH_VES_PTL("/VEH/VES/PTL"),
+        _VEH_VES_PTL("VEH/VES/PTL"),
 
-        _VEH_VES_RSC("/VEH/VES/RSC"),
+        _VEH_VES_RSC("VEH/VES/RSC"),
 
-        _VEH_VES_SAI("/VEH/VES/SAI"),
+        _VEH_VES_SAI("VEH/VES/SAI"),
 
-        _VEH_VES_SBM("/VEH/VES/SBM"),
+        _VEH_VES_SBM("VEH/VES/SBM"),
 
-        _VEH_VES_SINK("/VEH/VES/SINK"),
+        _VEH_VES_SINK("VEH/VES/SINK"),
 
-        _VEH_VES_SPC("/VEH/VES/SPC"),
+        _VEH_VES_SPC("VEH/VES/SPC"),
 
-        _VEH_VES_STE("/VEH/VES/STE"),
+        _VEH_VES_STE("VEH/VES/STE"),
 
-        _VEH_VES_SUNK("/VEH/VES/SUNK"),
+        _VEH_VES_SUNK("VEH/VES/SUNK"),
 
-        _VEH_VES_UNM("/VEH/VES/UNM");
+        _VEH_VES_UNM("VEH/VES/UNM");
 
         private String value;
 
@@ -588,33 +588,33 @@ public class Etype {
 
         TER("TER"),
 
-        CDIS_RIOT("/CDIS/RIOT"),
+        CDIS_RIOT("CDIS/RIOT"),
 
-        DIS_CBRN("/DIS/CBRN"),
+        DIS_CBRN("DIS/CBRN"),
 
-        DIS_ERTHQK("/DIS/ERTHQK"),
+        DIS_ERTHQK("DIS/ERTHQK"),
 
-        DIS_FIRE("/DIS/FIRE"),
+        DIS_FIRE("DIS/FIRE"),
 
-        DIS_FLOOD("/DIS/FLOOD"),
+        DIS_FLOOD("DIS/FLOOD"),
 
-        DIS_INDHAZ("/DIS/INDHAZ"),
+        DIS_INDHAZ("DIS/INDHAZ"),
 
-        DIS_LNDSLD("/DIS/LNDSLD"),
+        DIS_LNDSLD("DIS/LNDSLD"),
 
-        DIS_PWROUT("/DIS/PWROUT"),
+        DIS_PWROUT("DIS/PWROUT"),
 
-        DIS_RADCNT("/DIS/RADCNT"),
+        DIS_RADCNT("DIS/RADCNT"),
 
-        DIS_SNOW("/DIS/SNOW"),
+        DIS_SNOW("DIS/SNOW"),
 
-        DIS_STCLPS("/DIS/STCLPS"),
+        DIS_STCLPS("DIS/STCLPS"),
 
-        DIS_STORM("/DIS/STORM"),
+        DIS_STORM("DIS/STORM"),
 
-        DIS_TRSPRT("/DIS/TRSPRT"),
+        DIS_TRSPRT("DIS/TRSPRT"),
 
-        DIS_TSNAMI("/DIS/TSNAMI");
+        DIS_TSNAMI("DIS/TSNAMI");
 
         private String value;
 

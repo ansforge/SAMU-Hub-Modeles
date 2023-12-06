@@ -105,297 +105,297 @@ public class Mission {
 
         SOC("SOC"),
 
-        _C2_DEBRIF("/C2/DEBRIF"),
+        _C2_DEBRIF("C2/DEBRIF"),
 
-        _C2_DNRSKA("/C2/DNRSKA"),
+        _C2_DNRSKA("C2/DNRSKA"),
 
-        _C2_INASSM("/C2/INASSM"),
+        _C2_INASSM("C2/INASSM"),
 
-        _C2_OIC("/C2/OIC"),
+        _C2_OIC("C2/OIC"),
 
-        _C2_POA("/C2/POA"),
+        _C2_POA("C2/POA"),
 
-        _C2_THRTAS("/C2/THRTAS"),
+        _C2_THRTAS("C2/THRTAS"),
 
-        _CBRN_CBRNCH("/CBRN/CBRNCH"),
+        _CBRN_CBRNCH("CBRN/CBRNCH"),
 
-        _CBRN_CBRNDC("/CBRN/CBRNDC"),
+        _CBRN_CBRNDC("CBRN/CBRNDC"),
 
-        _CBRN_NTRCH("/CBRN/NTRCH"),
+        _CBRN_NTRCH("CBRN/NTRCH"),
 
-        _CBRN_NUCWS("/CBRN/NUCWS"),
+        _CBRN_NUCWS("CBRN/NUCWS"),
 
-        _FF_IN("/FF/IN"),
+        _FF_IN("FF/IN"),
 
-        _FF_OA("/FF/OA"),
+        _FF_OA("FF/OA"),
 
-        _FF_SALVAG("/FF/SALVAG"),
+        _FF_SALVAG("FF/SALVAG"),
 
-        _FF_STR("/FF/STR"),
+        _FF_STR("FF/STR"),
 
-        _FF_TRP("/FF/TRP"),
+        _FF_TRP("FF/TRP"),
 
-        _FSTT_DI("/FSTT/DI"),
+        _FSTT_DI("FSTT/DI"),
 
-        _FSTT_RRHAZ("/FSTT/RRHAZ"),
+        _FSTT_RRHAZ("FSTT/RRHAZ"),
 
-        _FSTT_TA("/FSTT/TA"),
+        _FSTT_TA("FSTT/TA"),
 
-        _GEN_AIRLAU("/GEN/AIRLAU"),
+        _GEN_AIRLAU("GEN/AIRLAU"),
 
-        _GEN_ASSMBL("/GEN/ASSMBL"),
+        _GEN_ASSMBL("GEN/ASSMBL"),
 
-        _GEN_CRWDCT("/GEN/CRWDCT"),
+        _GEN_CRWDCT("GEN/CRWDCT"),
 
-        _GEN_DEMO("/GEN/DEMO"),
+        _GEN_DEMO("GEN/DEMO"),
 
-        _GEN_DEPLOY("/GEN/DEPLOY"),
+        _GEN_DEPLOY("GEN/DEPLOY"),
 
-        _GEN_DSTRBT("/GEN/DSTRBT"),
+        _GEN_DSTRBT("GEN/DSTRBT"),
 
-        _GEN_FINANC("/GEN/FINANC"),
+        _GEN_FINANC("GEN/FINANC"),
 
-        _GEN_MARKNG("/GEN/MARKNG"),
+        _GEN_MARKNG("GEN/MARKNG"),
 
-        _GEN_MOVE("/GEN/MOVE"),
+        _GEN_MOVE("GEN/MOVE"),
 
-        _GEN_RECVRN("/GEN/RECVRN"),
+        _GEN_RECVRN("GEN/RECVRN"),
 
-        _GEN_RECVRY("/GEN/RECVRY"),
+        _GEN_RECVRY("GEN/RECVRY"),
 
-        _GEN_REDPLN("/GEN/REDPLN"),
+        _GEN_REDPLN("GEN/REDPLN"),
 
-        _GEN_REORGN("/GEN/REORGN"),
+        _GEN_REORGN("GEN/REORGN"),
 
-        _GEN_REPAIR("/GEN/REPAIR"),
+        _GEN_REPAIR("GEN/REPAIR"),
 
-        _GEN_RESPLN("/GEN/RESPLN"),
+        _GEN_RESPLN("GEN/RESPLN"),
 
-        _GEN_RESTNG("/GEN/RESTNG"),
+        _GEN_RESTNG("GEN/RESTNG"),
 
-        _GEN_RETIRE("/GEN/RETIRE"),
+        _GEN_RETIRE("GEN/RETIRE"),
 
-        _GEN_RLFPLC("/GEN/RLFPLC"),
+        _GEN_RLFPLC("GEN/RLFPLC"),
 
-        _GEN_RNDZVS("/GEN/RNDZVS"),
+        _GEN_RNDZVS("GEN/RNDZVS"),
 
-        _GEN_SCNMNG("/GEN/SCNMNG"),
+        _GEN_SCNMNG("GEN/SCNMNG"),
 
-        _GEN_SECRNG("/GEN/SECRNG"),
+        _GEN_SECRNG("GEN/SECRNG"),
 
-        _GEN_STNGUP("/GEN/STNGUP"),
+        _GEN_STNGUP("GEN/STNGUP"),
 
-        _GEN_SUPRTN("/GEN/SUPRTN"),
+        _GEN_SUPRTN("GEN/SUPRTN"),
 
-        _GEN_TRNSPN("/GEN/TRNSPN"),
+        _GEN_TRNSPN("GEN/TRNSPN"),
 
-        _INT_BIOSMP("/INT/BIOSMP"),
+        _INT_BIOSMP("INT/BIOSMP"),
 
-        _INT_CHMSMP("/INT/CHMSMP"),
+        _INT_CHMSMP("INT/CHMSMP"),
 
-        _INT_IDENT("/INT/IDENT"),
+        _INT_IDENT("INT/IDENT"),
 
-        _INT_ILLUMN("/INT/ILLUMN"),
+        _INT_ILLUMN("INT/ILLUMN"),
 
-        _INT_LOCTNG("/INT/LOCTNG"),
+        _INT_LOCTNG("INT/LOCTNG"),
 
-        _INT_NUCSMP("/INT/NUCSMP"),
+        _INT_NUCSMP("INT/NUCSMP"),
 
-        _INT_OBSRNG("/INT/OBSRNG"),
+        _INT_OBSRNG("INT/OBSRNG"),
 
-        _INT_PLUMOD("/INT/PLUMOD"),
+        _INT_PLUMOD("INT/PLUMOD"),
 
-        _INT_PTRLNG("/INT/PTRLNG"),
+        _INT_PTRLNG("INT/PTRLNG"),
 
-        _INT_RECCE("/INT/RECCE"),
+        _INT_RECCE("INT/RECCE"),
 
-        _INT_SRVMET("/INT/SRVMET"),
+        _INT_SRVMET("INT/SRVMET"),
 
-        _INT_SRVSEN("/INT/SRVSEN"),
+        _INT_SRVSEN("INT/SRVSEN"),
 
-        _INT_WITNSN("/INT/WITNSN"),
+        _INT_WITNSN("INT/WITNSN"),
 
-        _MAC_AII("/MAC/AII"),
+        _MAC_AII("MAC/AII"),
 
-        _MAC_COL("/MAC/COL"),
+        _MAC_COL("MAC/COL"),
 
-        _MIL_BCESC("/MIL/BCESC"),
+        _MIL_BCESC("MIL/BCESC"),
 
-        _MIL_BLOCKN("/MIL/BLOCKN"),
+        _MIL_BLOCKN("MIL/BLOCKN"),
 
-        _MIL_BOMBNG("/MIL/BOMBNG"),
+        _MIL_BOMBNG("MIL/BOMBNG"),
 
-        _MIL_CAPTUR("/MIL/CAPTUR"),
+        _MIL_CAPTUR("MIL/CAPTUR"),
 
-        _MIL_CTRATK("/MIL/CTRATK"),
+        _MIL_CTRATK("MIL/CTRATK"),
 
-        _MIL_DEFEND("/MIL/DEFEND"),
+        _MIL_DEFEND("MIL/DEFEND"),
 
-        _MIL_DISENG("/MIL/DISENG"),
+        _MIL_DISENG("MIL/DISENG"),
 
-        _MIL_DIVRSN("/MIL/DIVRSN"),
+        _MIL_DIVRSN("MIL/DIVRSN"),
 
-        _MIL_DLBATK("/MIL/DLBATK"),
+        _MIL_DLBATK("MIL/DLBATK"),
 
-        _MIL_DSRPTN("/MIL/DSRPTN"),
+        _MIL_DSRPTN("MIL/DSRPTN"),
 
-        _MIL_ENVLPN("/MIL/ENVLPN"),
+        _MIL_ENVLPN("MIL/ENVLPN"),
 
-        _MIL_FIX("/MIL/FIX"),
+        _MIL_FIX("MIL/FIX"),
 
-        _MIL_HARASS("/MIL/HARASS"),
+        _MIL_HARASS("MIL/HARASS"),
 
-        _MIL_HIDE("/MIL/HIDE"),
+        _MIL_HIDE("MIL/HIDE"),
 
-        _MIL_HLDDEF("/MIL/HLDDEF"),
+        _MIL_HLDDEF("MIL/HLDDEF"),
 
-        _MIL_HLDOFF("/MIL/HLDOFF"),
+        _MIL_HLDOFF("MIL/HLDOFF"),
 
-        _MIL_INFLTN("/MIL/INFLTN"),
+        _MIL_INFLTN("MIL/INFLTN"),
 
-        _MIL_INTCPN("/MIL/INTCPN"),
+        _MIL_INTCPN("MIL/INTCPN"),
 
-        _MIL_INTDCT("/MIL/INTDCT"),
+        _MIL_INTDCT("MIL/INTDCT"),
 
-        _MIL_MASFOR("/MIL/MASFOR"),
+        _MIL_MASFOR("MIL/MASFOR"),
 
-        _MIL_MIL("/MIL/MIL"),
+        _MIL_MIL("MIL/MIL"),
 
-        _MIL_WPNFIR("/MIL/WPNFIR"),
+        _MIL_WPNFIR("MIL/WPNFIR"),
 
-        _NET_COMDEA("/NET/COMDEA"),
+        _NET_COMDEA("NET/COMDEA"),
 
-        _NET_DATTRF("/NET/DATTRF"),
+        _NET_DATTRF("NET/DATTRF"),
 
-        _NET_NETJAM("/NET/NETJAM"),
+        _NET_NETJAM("NET/NETJAM"),
 
-        _NET_NETSEI("/NET/NETSEI"),
+        _NET_NETSEI("NET/NETSEI"),
 
-        _NET_SGNC("/NET/SGNC"),
+        _NET_SGNC("NET/SGNC"),
 
-        _NET_SGNLE("/NET/SGNLE"),
+        _NET_SGNLE("NET/SGNLE"),
 
-        _POL_NTRCOM("/POL/NTRCOM"),
+        _POL_NTRCOM("POL/NTRCOM"),
 
-        _POL_NTREXP("/POL/NTREXP"),
+        _POL_NTREXP("POL/NTREXP"),
 
-        _POL_SCNMNG("/POL/SCNMNG"),
+        _POL_SCNMNG("POL/SCNMNG"),
 
-        _POL_SCNPRS("/POL/SCNPRS"),
+        _POL_SCNPRS("POL/SCNPRS"),
 
-        _POL_SHELTR("/POL/SHELTR"),
+        _POL_SHELTR("POL/SHELTR"),
 
-        _POL_SUSHOS("/POL/SUSHOS"),
+        _POL_SUSHOS("POL/SUSHOS"),
 
-        _POL_WITDRL("/POL/WITDRL"),
+        _POL_WITDRL("POL/WITDRL"),
 
-        _REC_CLROBS("/REC/CLROBS"),
+        _REC_CLROBS("REC/CLROBS"),
 
-        _REC_COMACT("/REC/COMACT"),
+        _REC_COMACT("REC/COMACT"),
 
-        _REC_COMRES("/REC/COMRES"),
+        _REC_COMRES("REC/COMRES"),
 
-        _REC_CONSTN("/REC/CONSTN"),
+        _REC_CONSTN("REC/CONSTN"),
 
-        _REC_ENGCN("/REC/ENGCN"),
+        _REC_ENGCN("REC/ENGCN"),
 
-        _REC_ENGCNN("/REC/ENGCNN"),
+        _REC_ENGCNN("REC/ENGCNN"),
 
-        _REC_PROCUR("/REC/PROCUR"),
+        _REC_PROCUR("REC/PROCUR"),
 
-        _REC_PRVACC("/REC/PRVACC"),
+        _REC_PRVACC("REC/PRVACC"),
 
-        _REC_PRVAGR("/REC/PRVAGR"),
+        _REC_PRVAGR("REC/PRVAGR"),
 
-        _REC_PRVBDD("/REC/PRVBDD"),
+        _REC_PRVBDD("REC/PRVBDD"),
 
-        _REC_PRVCMP("/REC/PRVCMP"),
+        _REC_PRVCMP("REC/PRVCMP"),
 
-        _REC_PRVCNS("/REC/PRVCNS"),
+        _REC_PRVCNS("REC/PRVCNS"),
 
-        _REC_PRVDCN("/REC/PRVDCN"),
+        _REC_PRVDCN("REC/PRVDCN"),
 
-        _REC_PRVEDU("/REC/PRVEDU"),
+        _REC_PRVEDU("REC/PRVEDU"),
 
-        _REC_PRVHLT("/REC/PRVHLT"),
+        _REC_PRVHLT("REC/PRVHLT"),
 
-        _REC_PRVHSN("/REC/PRVHSN"),
+        _REC_PRVHSN("REC/PRVHSN"),
 
-        _REC_PRVINF("/REC/PRVINF"),
+        _REC_PRVINF("REC/PRVINF"),
 
-        _REC_PRVLND("/REC/PRVLND"),
+        _REC_PRVLND("REC/PRVLND"),
 
-        _REC_PRVRPR("/REC/PRVRPR"),
+        _REC_PRVRPR("REC/PRVRPR"),
 
-        _REC_PRVSCY("/REC/PRVSCY"),
+        _REC_PRVSCY("REC/PRVSCY"),
 
-        _REC_PRVSHL("/REC/PRVSHL"),
+        _REC_PRVSHL("REC/PRVSHL"),
 
-        _REC_PRVSTG("/REC/PRVSTG"),
+        _REC_PRVSTG("REC/PRVSTG"),
 
-        _REC_PRVTRS("/REC/PRVTRS"),
+        _REC_PRVTRS("REC/PRVTRS"),
 
-        _REC_PSO("/REC/PSO"),
+        _REC_PSO("REC/PSO"),
 
-        _REC_SPLLDB("/REC/SPLLDB"),
+        _REC_SPLLDB("REC/SPLLDB"),
 
-        _REC_SPLWAT("/REC/SPLWAT"),
+        _REC_SPLWAT("REC/SPLWAT"),
 
-        _REC_UTILTY("/REC/UTILTY"),
+        _REC_UTILTY("REC/UTILTY"),
 
-        _REC_WATER("/REC/WATER"),
+        _REC_WATER("REC/WATER"),
 
-        _RSC_COVERN("/RSC/COVERN"),
+        _RSC_COVERN("RSC/COVERN"),
 
-        _RSC_FRFGTN("/RSC/FRFGTN"),
+        _RSC_FRFGTN("RSC/FRFGTN"),
 
-        _RSC_MEDEVC("/RSC/MEDEVC"),
+        _RSC_MEDEVC("RSC/MEDEVC"),
 
-        _RSC_SAR("/RSC/SAR"),
+        _RSC_SAR("RSC/SAR"),
 
-        _SAV_AR("/SAV/AR"),
+        _SAV_AR("SAV/AR"),
 
-        _SAV_ASC("/SAV/ASC"),
+        _SAV_ASC("SAV/ASC"),
 
-        _SAV_RHD("/SAV/RHD"),
+        _SAV_RHD("SAV/RHD"),
 
-        _SAV_RTA("/SAV/RTA"),
+        _SAV_RTA("SAV/RTA"),
 
-        _SAV_SARCSL("/SAV/SARCSL"),
+        _SAV_SARCSL("SAV/SARCSL"),
 
-        _SAV_SARHHA("/SAV/SARHHA"),
+        _SAV_SARHHA("SAV/SARHHA"),
 
-        _SAV_SRW("/SAV/SRW"),
+        _SAV_SRW("SAV/SRW"),
 
-        _SAV_USAR("/SAV/USAR"),
+        _SAV_USAR("SAV/USAR"),
 
-        _SAV_UW("/SAV/UW"),
+        _SAV_UW("SAV/UW"),
 
-        _SCS_EDU("/SCS/EDU"),
+        _SCS_EDU("SCS/EDU"),
 
-        _SOC_CNDCNF("/SOC/CNDCNF"),
+        _SOC_CNDCNF("SOC/CNDCNF"),
 
-        _SOC_CNDMED("/SOC/CNDMED"),
+        _SOC_CNDMED("SOC/CNDMED"),
 
-        _SOC_CNDRCR("/SOC/CNDRCR"),
+        _SOC_CNDRCR("SOC/CNDRCR"),
 
-        _SOC_CNDSCL("/SOC/CNDSCL"),
+        _SOC_CNDSCL("SOC/CNDSCL"),
 
-        _SOC_CNDSPT("/SOC/CNDSPT"),
+        _SOC_CNDSPT("SOC/CNDSPT"),
 
-        _SOC_ISSMDA("/SOC/ISSMDA"),
+        _SOC_ISSMDA("SOC/ISSMDA"),
 
-        _SOC_ISSMDD("/SOC/ISSMDD"),
+        _SOC_ISSMDD("SOC/ISSMDD"),
 
-        _SOC_ISSPRS("/SOC/ISSPRS"),
+        _SOC_ISSPRS("SOC/ISSPRS"),
 
-        _SOC_MN("/SOC/MN"),
+        _SOC_MN("SOC/MN"),
 
-        _SOC_PUBMDA("/SOC/PUBMDA"),
+        _SOC_PUBMDA("SOC/PUBMDA"),
 
-        _SOC_PUBMDD("/SOC/PUBMDD"),
+        _SOC_PUBMDD("SOC/PUBMDD"),
 
-        _SOC_PUBPRS("/SOC/PUBPRS");
+        _SOC_PUBPRS("SOC/PUBPRS");
 
         private String value;
 
