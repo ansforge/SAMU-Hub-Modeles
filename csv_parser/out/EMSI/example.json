@@ -1,0 +1,135 @@
+{
+    "emsi": {
+        "CONTEXT": {
+            "ID": "d350c9d2-9d76-4568-b0b7-a747ffadc949",
+            "MODE": "ACTUAL",
+            "MSGTYPE": "UPDATE",
+            "CREATION": "2022-09-27T08:25:54+02:00",
+            "LINK": [
+                {
+                    "ID": "samuA:CA126B445579GD4A67AV",
+                    "LINK_ROLE": "ADDSTO"
+                }
+            ],
+            "LEVEL": "OPR",
+            "SECLASS": "RESTRC",
+            "FREETEXT": "Contexte de grand incendie \u00e0 Nantes",
+            "ORIGIN": {
+                "ORG_ID": "FR:Administration:44:CGO",
+                "USER_ID": "/FF#bb511708-b004-4d7e-8820-1d56c19f1823",
+                "NAME": "CGO 44"
+            },
+            "EXTERNAL_INFO": [
+                {
+                    "FREETEXT": "None",
+                    "URI": "289d6939-d225-4c71-9a56-68c03ada2f5e",
+                    "TYPE": "SPRSDS"
+                }
+            ],
+            "URGENCY": "URGENT"
+        },
+        "EVENT": {
+            "ID": "FR:NEXSIS:44:CGO:20231027_00002",
+            "NAME": "Grand Incendie Nantes",
+            "MAIN_EVENT_ID": "samuA:CA126B445579GD4A67AV",
+            "ETYPE": {
+                "CATEGORY": [
+                    "/FIR"
+                ],
+                "ACTOR": [
+                    "/PPL/GRP"
+                ],
+                "LOCTYPE": [
+                    "/URB/STRT"
+                ],
+                "ENV": "None"
+            },
+            "SOURCE": "HUMOBS",
+            "SCALE": 2,
+            "CERTAINTY": 100,
+            "DECL_DATIME": "2022-09-27T08:24:50+02:00",
+            "OCC_DATIME": "2022-09-27T08:20:50+02:00",
+            "OBS_DATIME": "2022-09-27T08:26:00+02:00",
+            "STATUS": "IPR",
+            "RISK_ASSESMENT": "None",
+            "REFERENCE": [
+                {
+                    "ORG_ID": "FR:Administration:44:CGO",
+                    "OTHER_EVENT_ID": [
+                        "FR:NEXSIS:44:CGO:20231027_00002"
+                    ]
+                }
+            ],
+            "CASUALTIES": [
+                {
+                    "CONTEXT": "None",
+                    "DATIME": "None",
+                    "DECONT": "None",
+                    "TRIAGERED": "None",
+                    "TRIAGEYELLOW": "None",
+                    "TRIAGEGREEN": "None",
+                    "TRIAGEBLACK": "None",
+                    "MISSING": "None"
+                }
+            ],
+            "EVAC": [
+                {
+                    "DATIME": "None",
+                    "DISPLACED": "None",
+                    "EVACUATED": "None"
+                }
+            ],
+            "EGEO": [
+                {
+                    "DATIME": "2022-09-27T08:26:00+02:00",
+                    "TYPE": "/HLT",
+                    "WEATHER": [
+                        "None"
+                    ],
+                    "FREETEXT": "None",
+                    "POSITION": {
+                        "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+                        "NAME": "Lyc\u00e9e Pierre de Coubertin",
+                        "TYPE": "POINT",
+                        "HEIGHT_ROLE": "MIN",
+                        "COORDSYS": "EPSG-4326",
+                        "COORD": [
+                            {
+                                "LAT": "47.221866",
+                                "LONG": "-1.575807",
+                                "HEIGHT": 1
+                            }
+                        ],
+                        "ADDRESS": [
+                            "Nantes centre ville"
+                        ]
+                    }
+                }
+            ],
+            "CAUSE": "ACC",
+            "FREETEXT": "None"
+        },
+        "MISSION": [
+            {
+                "TYPE": "/SAV",
+                "FREETEXT": "None",
+                "ID": "/FF#bb511708-b004-4d7e-8820-1d56c19f1823",
+                "ORG_ID": "FR:Administration:44:CGO",
+                "NAME": "Secours \u00e0 Incendie",
+                "STATUS": "IPR",
+                "START_TIME": "2022-09-27T08:25:00+02:00",
+                "END_TIME": "2022-09-27T08:55:00+02:00",
+                "RESOURCE_ID": "77_45102#VSAV 1#",
+                "PARENT_MISSION_ID": [
+                    "None"
+                ],
+                "CHILD_MISSION_ID": [
+                    "None"
+                ],
+                "MAIN_MISSION_ID": "/FF#bb511708-b004-4d7e-8820-1d56c19f1855",
+                "POSITION": {},
+                "PRIORITY": 5
+            }
+        ]
+    }
+}

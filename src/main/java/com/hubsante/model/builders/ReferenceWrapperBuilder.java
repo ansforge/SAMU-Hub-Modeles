@@ -15,9 +15,10 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.DistributionElement;
-import com.hubsante.model.cisu.ReferenceWrapper;
-import com.hubsante.model.cisu.Reference;
+
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.common.Reference;
+import com.hubsante.model.common.ReferenceWrapper;
 
 public class ReferenceWrapperBuilder {
     private DistributionElement distributionElement;

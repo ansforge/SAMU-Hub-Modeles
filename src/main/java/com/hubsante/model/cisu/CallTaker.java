@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -53,7 +38,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("callTaker")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T16:37:50.003054300+01:00[Europe/Paris]")
 public class CallTaker {
     public static final String JSON_PROPERTY_ORGANIZATION = "organization";
     private String organization;
@@ -61,43 +46,8 @@ public class CallTaker {
     public static final String JSON_PROPERTY_CONTROL_ROOM = "controlRoom";
     private String controlRoom;
 
-    /**
-     * Décrit le rôle de l&#39;agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)
-     */
-    public enum RoleEnum {
-        AGENT("ARM"),
-
-        SUPERVISOR("MEDECIN");
-
-        private String value;
-
-        RoleEnum(String value) {
-            this.value = value;
-        }
-
-        @JsonValue
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-
-        @JsonCreator
-        public static RoleEnum fromValue(String value) {
-            for (RoleEnum b : RoleEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-    }
-
     public static final String JSON_PROPERTY_ROLE = "role";
-    private RoleEnum role;
+    private String role;
 
     public static final String JSON_PROPERTY_CALLTAKE_CONTACT = "calltakeContact";
     private Contact calltakeContact;
@@ -160,7 +110,7 @@ public class CallTaker {
     }
 
 
-    public CallTaker role(RoleEnum role) {
+    public CallTaker role(String role) {
 
         this.role = role;
         return this;
@@ -174,14 +124,14 @@ public class CallTaker {
     @JsonProperty(JSON_PROPERTY_ROLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public RoleEnum getRole() {
+    public String getRole() {
         return role;
     }
 
 
     @JsonProperty(JSON_PROPERTY_ROLE)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setRole(RoleEnum role) {
+    public void setRole(String role) {
         this.role = role;
     }
 

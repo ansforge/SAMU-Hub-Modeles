@@ -1,5 +1,0 @@
-code;label_n1;description;commentaire
-COMFOR ;Prévision informatique;Des alertes ont été reçues pour cette affaire mais aucune action (engagements de ressource, conseils etc) n’est encore déclenchée;
-HUMDED ;Déduction humaine;L’affaire est en cours de résolution.;
-HUMOBS ;Observation humaine;L’affaire est en pause pour le partenaire. Peut correspondre au cas d’une mise en veille.;
-SENSOR ;Observation par capteur;"La situation d’urgence est sous maîtrise du partenaire qui considère qu’il n’y a plus de besoin d’échanges sur cette affaire. Lorsqu’un partenaire clôt une affaire, il renvoie un code ""COM"" à son partenaire.";

@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -50,9 +35,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("externalInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T16:37:50.003054300+01:00[Europe/Paris]")
 public class ExternalInfo {
-    public static final String JSON_PROPERTY_FREETEXT = "freetext";
 
     /**
      * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
@@ -90,7 +74,10 @@ public class ExternalInfo {
             throw new IllegalArgumentException("Unexpected value '" + value + "'");
         }
     }
-    private String freetext;
+
+    public static final String JSON_PROPERTY_FREETEXT = "freetext";
+    private FreetextEnum freetext;
+
 
     /**
      * Définition du type d&#39;objet dans le système Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données
@@ -142,7 +129,7 @@ public class ExternalInfo {
     public ExternalInfo() {
     }
 
-    public ExternalInfo freetext(String freetext) {
+    public ExternalInfo freetext(FreetextEnum freetext) {
 
         this.freetext = freetext;
         return this;
@@ -156,14 +143,14 @@ public class ExternalInfo {
     @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-    public String getFreetext() {
+    public FreetextEnum getFreetext() {
         return freetext;
     }
 
 
     @JsonProperty(JSON_PROPERTY_FREETEXT)
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
-    public void setFreetext(String freetext) {
+    public void setFreetext(FreetextEnum freetext) {
         this.freetext = freetext;
     }
 

@@ -153,14 +153,9 @@ class Color:
 def run(model, obj, version=date.today().strftime("%y.%m.%d")):
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {version} of {model} ...{Color.END}')
 
-    # warning, if folder out/model empty, raise WARNING
-    path_file = os.path.join("out", model, "schema.json")
-    if os.path.exists(path_file) :
-        print("Loading schema.json from " + path_file + "...")
-    else :
-        print(f'{Color.WARNING}{path_file} does not exist. Cannot generate UML schema !')
-        return
-    with open(path_file, 'r') as file:
+    # warning, if folder out/model empty, causes failure
+    print("Loading schema.json from " + os.path.join("out", model) + "...")
+    with open(os.path.join("out", model, f"{model}.schema.json"), 'r') as file:
         json_in = json.load(file)
         print("schema.json loaded.")
         print("Parsing schema.json ...")

@@ -17,7 +17,7 @@ package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.hubsante.model.cisu.DistributionElement;
+import com.hubsante.model.common.DistributionElement;
 
 public class EmsiWrapper extends DistributionElement {
     public static final String JSON_PROPERTY_EMSI = "emsi";

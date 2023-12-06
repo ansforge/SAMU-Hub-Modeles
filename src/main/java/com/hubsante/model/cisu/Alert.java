@@ -1,18 +1,3 @@
-/**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 /*
  *
  *
@@ -68,13 +53,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 })
 @JsonTypeName("alert")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-07T12:09:36.642+01:00[Europe/Paris]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2023-11-30T16:37:50.003054300+01:00[Europe/Paris]")
 public class Alert {
     public static final String JSON_PROPERTY_ID = "id";
     private String id;
 
     public static final String JSON_PROPERTY_RECEPTION = "reception";
     private OffsetDateTime reception;
+
 
     /**
      * Permet d&#39;attirer l&#39;attention des forces partenaires sur une affaire pour le faire sortir du lot. Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l&#39;opérateur.  Prend les valeurs définies dans la nomenclature CISU : - standard : STANDARD - signalé : ATTENTION Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION
@@ -145,7 +131,7 @@ public class Alert {
     }
 
     /**
-     * Identifiant technique unique de l&#39;alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage. Voir la description de l&#39;identifiant de l&#39;affaire pour voir le format. Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale. a) Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert. b) Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert. Le rattachement des messages à une affaire doivent s&#39;appuyer sur les caseId et non les alertId qui peuvent varier d&#39;un système à l&#39;autre.
+     * Identifiant technique unique de l&#39;alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage. Voir la description de l&#39;identifiant de l&#39;affaire pour voir le format. Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale. a)Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert. b)Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert. Le rattachement des messages à une affaire doivent s&#39;appuyer sur les caseId et non les alertId qui peuvent varier d&#39;un système à l&#39;autre.
      *
      * @return id
      **/

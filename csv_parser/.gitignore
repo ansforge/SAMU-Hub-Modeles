@@ -6,3 +6,6 @@ out/others
 *.gv
 *.dot
 __pycache__
+
+# cron logs
+cron.log

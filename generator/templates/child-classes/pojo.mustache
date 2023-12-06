@@ -25,8 +25,7 @@ public class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{{#vendorExtens
     private static final long serialVersionUID = 1L;
 
 {{/serializableModel}}
-{{#vars}}
-    {{#isEnum}}
+{{#vars}}    {{#isEnum}}
         {{^isContainer}}
             {{>modelInnerEnum}}
         {{/isContainer}}

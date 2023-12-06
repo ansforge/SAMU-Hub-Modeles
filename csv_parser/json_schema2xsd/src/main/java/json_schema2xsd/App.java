@@ -24,7 +24,7 @@ public class App {
 
         for (String schema : Arrays.asList("RC-EDA", "EMSI-DC")) {
             // Specify the path to your JSON schema file
-            String jsonSchemaResourcePath = "/" + schema + "_schema.json";
+            String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
             // Specify the path to save the generated XSD file
             String xsdFilePath = "out" + jsonSchemaResourcePath.replace(".json", ".xsd");

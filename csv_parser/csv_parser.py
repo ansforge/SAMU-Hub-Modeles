@@ -9,6 +9,7 @@ import warnings
 import uml_generator
 import os
 
+from pathlib import Path
 
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
@@ -44,6 +45,7 @@ def get_params_from_sheet(sheet):
     # Computing number of rows in table
     # rows = df.iloc[7:, 0]
     # Simply remove initial rows & total row
+    # ToDo: be more resilient to nan & \xa0 in full_df.iloc[8:,0] and compute nb with count?
     rows = full_df.shape[0] - 8 - 1
     # Compute number of columns in table
     try:
@@ -64,7 +66,7 @@ def get_nomenclature(elem) :
     path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
     # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
     if os.path.exists(path_file) :
-        df_nomenclature = pd.read_csv(path_file, sep=";", encoding="utf-8")
+        df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
         L_ret = df_nomenclature["code"].values.tolist()
     else :
         print(f'{path_file} does not exist. Cannot load associated nomenclature.')
@@ -72,13 +74,17 @@ def get_nomenclature(elem) :
     return L_ret
 
 params = get_params_from_sheet(args.sheet)
-MODEL_NAME = params['modelName']
+MODEL_NAME = params['modelName']  # CreateCase
+MODEL_TYPE = MODEL_NAME[0].lower() + MODEL_NAME[1:]  # createCase
+WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
 NB_ROWS = params['rows']
 NB_COLS = params['cols']
 
+Path('out/' + args.sheet).mkdir(parents=True, exist_ok=True)
+
 # DATA COLLECTION AND CLEANING
 # Read CSV, skipping useless first and last lines
-df = pd.read_excel('model.xlsx', sheet_name=args.sheet, skiprows=7, nrows=NB_ROWS)
+df = pd.read_excel('model.xlsx', sheet_name=args.sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
 # Dropping useless columns
 df = df.iloc[:, :NB_COLS]
 # Storing input data in a file to track versions
@@ -87,6 +93,25 @@ df.to_csv(f'out/{args.sheet}/input.csv')
 df = df[df['15-18'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
+if MODEL_NAME != "RC-DE":
+    # Adding the wrapper
+    # - Moving all levels one level down
+    df = df.rename(columns={f"Donnée (Niveau {i})": f"Donnée (Niveau {i+1})" for i in range(1, DATA_DEPTH + 1)})
+    DATA_DEPTH += 1
+    # - Adding the wrapper line
+    df.insert(1, "Donnée (Niveau 1)", None)
+    df = pd.concat([
+        pd.DataFrame({
+            'ID': -1,
+            'Description': f"Object {MODEL_NAME}",
+            'Nouvelle balise': MODEL_TYPE,
+            'Cardinalité': '1..1',
+            'Objet': 'X',
+            'Format (ou type)': MODEL_TYPE,
+            'Donnée (Niveau 1)': f"Objet {MODEL_NAME}"
+        }, index=[-1]),
+        df
+    ])
 # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
 df['name'] = df['Balise NexSIS']
 df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
@@ -125,7 +150,7 @@ def get_true_type(row):
 
 def get_parent_type(row):
     if row['level_shift'] == 1:
-        return MODEL_NAME
+        return WRAPPER_NAME
     return df.loc[row['parent']]['true_type']
 
 
@@ -158,7 +183,7 @@ def get_element_with_its_children(previous_children, elem_id):
 
 
 children = {}
-for i in range(5, 0, -1):
+for i in range(DATA_DEPTH, 0, -1):
     previous_children = children
     children_df = df[df['level_shift'] == i]
     children_ids = children_df.groupby('parent')['id'].apply(list)
@@ -168,7 +193,7 @@ for i in range(5, 0, -1):
 rootObject = {
     'id': '1',
     'level_shift': 0,
-    'name': MODEL_NAME,
+    'name': WRAPPER_NAME,
     'Objet': 'X',
     'children': children['1']
 }
@@ -205,8 +230,8 @@ with open(f'out/{args.sheet}/example.json', 'w') as outfile:
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
-    '$id': 'http://json-schema.org/draft-07/schema#',
-    'x-id': 'schema.json#',  # required by JSV to find the schema file locally
+    '$id': 'classpath:/json-schema/schema#',
+    'x-id': f'{args.sheet}.schema.json#',  # required by JSV to find the schema file locally
     'version': args.version,
     'example': 'example.json#',
     'type': 'object',
@@ -390,7 +415,7 @@ def DFS(root, use_elem):
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
 DFS(rootObject, build_json_schema)
-with open(f'out/{args.sheet}/schema.json', 'w') as outfile:
+with open(f'out/{args.sheet}/{args.sheet}.schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -405,7 +430,7 @@ def build_asyncapi_schema():
         '$schema', 'definitions', 'version', 'id'
     ]}
     definitions = {
-        **{MODEL_NAME: root_definition},
+        **{WRAPPER_NAME: root_definition},
         **definitions
     }
     # Simply collect all objects (and root properties)
@@ -414,16 +439,41 @@ def build_asyncapi_schema():
         asyncapi_schema[elem_name] = definition
     return asyncapi_schema
 
+openapi_components = build_asyncapi_schema()
+with open('common.openapi.yaml') as f:
+    common_openapi_components = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
-print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating AsyncAPI schema...{Color.END}')
-with open('template.asyncapi.yaml') as f:
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating OpenAPI schema...{Color.END}')
+with open('template.openapi.yaml') as f:
     full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
-full_yaml['components']['schemas'] = {
-    **full_yaml['components']['schemas'],
-    **build_asyncapi_schema()
+
+    full_yaml['components']['schemas'] = {
+        **full_yaml['components']['schemas'],
+        **openapi_components
 }
-with open(f'out/{args.sheet}/hubsante.asyncapi.yaml', 'w') as file:
-    documents = yaml.dump(full_yaml, file, sort_keys=False)
+
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Adding schema info to AsyncAPI spec...{Color.END}')
+with open('template.asyncapi.yaml') as f:
+    asyncapi_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
+
+    asyncapi_yaml['components']['schemas'] = {
+        **asyncapi_yaml['components']['schemas'],
+        **common_openapi_components['components']['schemas'],
+        **openapi_components
+    }
+    # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
+
+with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
+    documents = yaml.dump(full_yaml, sort_keys=False)
+    documents = documents.replace('#/definitions/', "#/components/schemas/")
+    file.write(documents)
+print('OpenAPI schema generated.')
+
+#TODO bb: extract this logic to an outside script called by the gh action
+with open(f'out/full-asyncapi.yaml', 'w') as file:
+    documents = yaml.dump(asyncapi_yaml, sort_keys=False)
+    documents = documents.replace('#/definitions/', "#/components/schemas/")
+    file.write(documents)
 print('AsyncAPI schema generated.')
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
@@ -502,7 +552,7 @@ section.orientation = docx.enum.section.WD_ORIENT.LANDSCAPE
 section.page_width = new_width
 section.page_height = new_height
 # Json Schema rootObject makes the object table
-def_to_table(MODEL_NAME, json_schema, title=f"Objet {MODEL_NAME}", doc=doc)
+def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAME})", doc=doc)
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)

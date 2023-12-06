@@ -1,0 +1,22 @@
+{
+  "inputSpec": "./input/EMSI-DC.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/wrapper/",
+  "globalProperties": {
+    "models": "emsiWrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.emsi",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "enablePostProcessFile": true
+  }
+}

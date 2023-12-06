@@ -167,12 +167,8 @@ components:
           $ref: '#/components/schemas/EmbeddedXMLContent'
     EmbeddedJsonContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCase'
-        - $ref: '#/components/schemas/Reference'
     EmbeddedXMLContent:
       oneOf:
-        - $ref: '#/components/schemas/CreateCase'
-        - $ref: '#/components/schemas/Reference'
     Descriptor:
       properties:
         language:
@@ -219,9 +215,5 @@ components:
         - Test
         - Unknown
         - NoAppropriateDefault
-    Reference:
-      properties:
-        distributionID:
-          type: string
-      required:
-        - distributionID
+
+

@@ -7,46 +7,6 @@ les fichiers [cisu-generator-config.json](cisu-generator-config.json) et [cisu-r
 - le nom du générateur utilisé : 'java'
 - des propriétés additionnelles en fonction du générateur utilisé
 
-Il y a deux fichiers car nous voulons implémenter du comportement supplémentaire sur un nombre limité de classes : les classes des messages (CisuCreateMessage, etc),
-qui sont des XmlRootElement et qui doivent contenir un setter spécifique pour le namespace.
-
-On utilise donc deux templates pojo.mustache différents pour couvrir les deux cas.
-Celui appelé par la config principale a été surchargé pour prendre les éléments suivants :
-- ajout de l'annotation
-```java
-@JsonInclude(JsonInclude.Include.NON_EMPTY)
-```
-au niveau de la classe
-- modification du setter des listes :
-```java
-if (this.{{name}} == null) {
-        this.{{name}} = new ArrayList<>();
-        }
-        this.{{name}}.addAll({{name}});
-```
-
-Il pourra être utile de le retravailler pour l'alléger (le template est celui utilisé par défaut avec les modifications signalées ci-dessus; on doit pouvoir l'expurger de toute la logique ne nous correspondant pas - autres librairies de sérialisation, annotation OpenAPI / swagger, etc).
-
-
-Le template utilisé pour les classes RootElement ajoute les éléments suivants :
-- ajout de l'annotation 
-```java
-@JacksonXmlRootElement (localName= "message")
-```
-pour coller au nommage du xsd
-- ajout de la propriété
-```java
-@JacksonXmlProperty(isAttribute = true)
-String xmlns = "urn:emergency:cisu:2.0";
-```
-
-Les templates model.mustache, qui prennent en charge la génération des imports en tête de fichier, ont été surchargés pour intégrer la ligne suivante :
-```java
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
-```
-pour pouvoir utiliser les annotations JacksonXmlRootElement et JacksonXmlProperty ajoutées ci-dessus.
-
-Comme on ne peut passer dans la conf que la liste des classes à traiter, sans pouvoir gérer d'exclusion, on applique la génération en deux temps en appliquant les commandes suivantes :
 
 ```bash
 npx @openapitools/openapi-generator-cli generate -c .\cisu-generator-config.json --skip-validate-spec
@@ -64,17 +24,22 @@ Il faudrait également disposer de plusieurs configurations, pour isoler la gén
 Ainsi on peut ne rebuilder que le modèle concerné, sans avoir à rebuilder tout le projet, au fur et à mesure des itérations.
 
 
-### Notes :
-Le générateur OpenAPI respecte la casse. Il faut donc que le fichier inputSpec utilise la même casse que dans les xsd pour faciliter la double sérialisation XML/JSON
-(loc_Id, height_role, URI)
-Ce faisant on "économise" une annotation supplémentaire dans les classes.
-Il faudra donc bien s'assurer lors de la construction des contrats que la casse est bien la même dans les deux specs. 
 
+```bash
+# common
+npx @openapitools/openapi-generator-cli generate -c ..\config\common\common.generator-config.json --skip-validate-spec
 
+npx @openapitools/openapi-generator-cli generate -c ..\config\common\common.wrapper.generator-config.json --skip-validate-spec
 
+npx @openapitools/openapi-generator-cli generate -c ..\config\common\common.distributionElement.generator-config.json --skip-validate-spec
 
+# createCase
+npx @openapitools/openapi-generator-cli generate -c ..\config\RC-EDA\RC-EDA.generator-config.json --skip-validate-spec
 
+npx @openapitools/openapi-generator-cli generate -c ..\config\RC-EDA\RC-EDA.wrapper.generator-config.json --skip-validate-spec
 
+# emsi
+npx @openapitools/openapi-generator-cli generate -c ..\config\EMSI-DC\EMSI-DC.generator-config.json --skip-validate-spec
 
-
-
+npx @openapitools/openapi-generator-cli generate -c ..\config\EMSI-DC\EMSI-DC.wrapper.generator-config.json --skip-validate-spec
+```

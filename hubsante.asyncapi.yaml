@@ -218,9 +218,6 @@ components:
         - Unknown
         - NoAppropriateDefault
     DistributionElement:
-      $id: http://json-schema.org/draft-07/schema#
-      x-id: schema.json#
-      example: example.json#
       type: object
       title: DistributionElement
       required:
