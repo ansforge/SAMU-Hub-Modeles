@@ -24,7 +24,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Grant execute permission for Gradlew
-        run: chmod +x gradlew
+        run: chmod +x ./gradlew
 
       - name: Check license
         env:
