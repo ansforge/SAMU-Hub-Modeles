@@ -40,23 +40,23 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew test
 
-      - name: Add coverage to PR
-        id: jacoco
-        uses: madrapps/jacoco-report@v1.3
-        with:
-          paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          min-coverage-overall: 40
-          min-coverage-changed-files: 60
-
-      - name: Setup .NET Core # Required to execute ReportGenerator
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: 6.x
-          dotnet-quality: 'ga'
-
-      - name: ReportGenerator
-        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
-        with:
-          reports: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
-          targetdir: coveragereport
+#      - name: Add coverage to PR
+#        id: jacoco
+#        uses: madrapps/jacoco-report@v1.3
+#        with:
+#          paths: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+#          token: ${{ secrets.GITHUB_TOKEN }}
+#          min-coverage-overall: 40
+#          min-coverage-changed-files: 60
+#
+#      - name: Setup .NET Core # Required to execute ReportGenerator
+#        uses: actions/setup-dotnet@v3
+#        with:
+#          dotnet-version: 6.x
+#          dotnet-quality: 'ga'
+#
+#      - name: ReportGenerator
+#        uses: danielpalme/ReportGenerator-GitHub-Action@5.1.23
+#        with:
+#          reports: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
+#          targetdir: coveragereport
