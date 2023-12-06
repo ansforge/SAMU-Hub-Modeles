@@ -8,11 +8,8 @@ env:
   SCHEMAS: "RC-EDA"
 
 jobs:
-  generate-model:
+  generate:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./generator
 
     env:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
@@ -32,7 +29,6 @@ jobs:
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             python3 ./csv_parser.py -s $SCHEMA
             mv ./out/$SCHEMA/$SCHEMA.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
-            cat ./out/full-asyncapi.yaml
           done
 
       - name: Set up JDK 11
@@ -53,6 +49,7 @@ jobs:
         run: apt install -y clang-format
 
       - name: Generate Java classes
+        working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.wrapper.generator-config.json --skip-validate-spec
@@ -66,7 +63,13 @@ jobs:
 
       - name: copy generated classes
         run: |
-          rsync -r --ignore-existing ./classes/src/main/java/com/hubsante/model/* ../src/main/java/com/hubsante/model/
+          cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
+
+      - name: Grant execute permission for Gradlew
+        run: chmod +x ./gradlew
+
+      - name: Check license
+        run: ./gradlew licenseFormat
 
       - name: commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
