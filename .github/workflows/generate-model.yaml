@@ -1,8 +1,9 @@
 name: generate-model
 
 on:
-  schedule: # run every 24 hours
-    - cron: '0 0 * * *'
+  pull_request:
+    branches:
+      - '**'
 
 env:
   SCHEMAS: "RC-EDA"
