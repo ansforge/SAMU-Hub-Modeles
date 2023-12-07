@@ -45,7 +45,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-07T09:28:32.288913Z[Etc/UTC]")
+          date = "2023-12-07T09:49:36.011840Z[Etc/UTC]")
 public class Reference {
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;
