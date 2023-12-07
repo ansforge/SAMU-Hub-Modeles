@@ -47,7 +47,7 @@ jobs:
         run: npm install -g @openapitools/openapi-generator-cli
 
       - name: install linter
-        run: apt install -y clang-format
+        run: sudo apt install -y clang-format
 
       - name: Generate Java classes
         working-directory: ./generator
