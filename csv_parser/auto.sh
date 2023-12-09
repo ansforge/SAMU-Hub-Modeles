@@ -47,12 +47,12 @@ run() {
   fi
 
   echo $(whoami)
-  git push origin "$TRACKING_BRANCH_NAME" --verbose
+  git push --verbose
 
   LOCAL_COMMITS_AHEAD=$(git rev-list --count @{u}..HEAD)
   if [ $LOCAL_COMMITS_AHEAD -gt 0 ]; then
     echo "Remote $LOCAL_COMMITS_AHEAD commits behind, pushing..."
-    git push origin "$TRACKING_BRANCH_NAME"
+    git push
   else
     echo "Remote up-to-date, skipping push."
   fi
