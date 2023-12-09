@@ -4,11 +4,21 @@ pip install -r requirements.txt
 ```
 
 # Setup
+## Run
 ```bash
 # Run everything
-make run
+./auto.sh
+```
 
-# Crons
+## Cron
+### Setup
+Weird bug left `git push` hanging and not doing anything. Updating remote from https to git fixed it.
+```bash
+git remote set-url origin git@github.com:ansforge/SAMU-Hub-Modeles.git
+```
+
+### Crontab
+```bash
 # - For frequent runs 
 30 9-17/2 * * 1-5 cd ~/code/ans/AUTO_SAMU-Hub-Modeles/csv_parser/ && (./auto.sh >>cron.log 2>&1)
 # - For weekly log deletion
