@@ -26,7 +26,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 15,16,,Attribution du dossier,,,,,Décrit le type de professionnel médical à qui le dossier est attribué,"Médecin généraliste, médecin urgentiste etc.",,fileusage,,,,,,0..1,,string,?,?,,X
 16,17,,Patients/Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
 17,18,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
-18,19,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, PREGNANT, SENIOR (voir Nomenclature CISU XX)",X,X
+18,19,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, SENIOR",X,X
 19,20,,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,,X,X
 20,21,Localisation de l'affaire/dossier,,,,,,Concerne bien le dossier de régulation pour le périmetre 15-15,,eventLocation,location,,,,,,1..1,X,location,,,X,X
 21,22,,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,,,,,,,1..1,,string,,,X,X
@@ -145,7 +145,7 @@ Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{st
 Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
 
 ",,resource,attachment,,,,,,0..n,X,attachment,,,X,X
-94,95,,,Type ou description de la ressource,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X
+94,95,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X
 95,96,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,,X,X
 96,97,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,,X,X
 97,98,,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
@@ -155,11 +155,10 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
 La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X
 100,101,CRRA référent,,,,,,Grand principe de la maitrise du dossier : définie par la doctrine actuelle. Les dossiers = Samu qui s'occupent du lieu d'intervention. Utilisation et notion à préciser (en cours)," CRRA 44, ...",,crraowner,,,,,,1..1,,string,,"idem ligne 47 - centre d'appel -
 référentiel PSAP - GT 399",,X
-101,102,CRAA de traitement du dossier,,,,,,"Champ servant à transférer un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
+101,102,CRRA traitant,,,,,,"Champ servant à transférer un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
 Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
 Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
-Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en ajoutant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.
-Ce champ ne doit être rempli qu'au moment du 1er transfert d'un dossier (création d'une affaire et acceptation du transfert du dossier) : il ne devra pas être modifiable une fois le transfert accepté  (pour les mises à jour de dossiers déjà en cours de traitement par exemple.",fr.health.samu090 ,,crratransfert,,,,,,0..1,,string,,,,X
+Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.",fr.health.samu090 ,,crratransfert,,,,,,1..1,,string,,,,X
 102,103,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médeci référent, etc) pour le traitement d'un dossier.",,,operators,,,,,,0..n,X,operators,,,,X
 103,104,,NOM,,,,,Nom de famille de l'opérateur,,,opname,,,,,,1..1,,string,,,,X
 104,105,,Prénom,,,,,Prénom de l'opérateur référent,,,opfirstname,,,,,,0..1,,string,,,,X

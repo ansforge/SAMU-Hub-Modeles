@@ -33,7 +33,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-07T09:49:49.365808Z[Etc/UTC]")
+          date = "2023-12-09T16:25:28.790386Z[Etc/UTC]")
 public class CreateCaseWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";

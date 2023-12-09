@@ -33,7 +33,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-07T09:49:45.602118Z[Etc/UTC]")
+          date = "2023-12-09T16:25:25.095859Z[Etc/UTC]")
 public class Victims {
 
   /**
@@ -91,9 +91,7 @@ public class Victims {
 
     ADULT("ADULT"),
 
-    PREGNANT("PREGNANT"),
-
-    SENIOR_VOIR_NOMENCLATURE_CISU_XX_("SENIOR (voir Nomenclature CISU XX)");
+    SENIOR("SENIOR");
 
     private String value;
 

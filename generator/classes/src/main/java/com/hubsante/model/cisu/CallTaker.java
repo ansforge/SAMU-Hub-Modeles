@@ -35,7 +35,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-07T09:49:45.602118Z[Etc/UTC]")
+          date = "2023-12-09T16:25:25.095859Z[Etc/UTC]")
 public class CallTaker {
   public static final String JSON_PROPERTY_ORGANIZATION = "organization";
   private String organization;

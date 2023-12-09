@@ -662,8 +662,7 @@ components:
           - INFANT
           - CHILD
           - ADULT
-          - PREGNANT
-          - SENIOR (voir Nomenclature CISU XX)
+          - SENIOR
           examples:
           - CHILD
         freetext:
@@ -1227,7 +1226,7 @@ components:
       properties:
         description:
           type: string
-          title: Type ou description de la ressource
+          title: Type ou description pj
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/description
           description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\

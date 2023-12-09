@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "23.12.07",
+    "version": "23.12.09",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -339,8 +339,7 @@
                         "INFANT",
                         "CHILD",
                         "ADULT",
-                        "PREGNANT",
-                        "SENIOR (voir Nomenclature CISU XX)"
+                        "SENIOR"
                     ]
                 },
                 "freetext": {
@@ -820,7 +819,7 @@
             "properties": {
                 "description": {
                     "type": "string",
-                    "title": "Type ou description de la ressource",
+                    "title": "Type ou description pj",
                     "x-cols": 6,
                     "example": "example.json#/createCase/initialAlert/attachment/0/description",
                     "description": "D\u00e9crit la ressource en pr\u00e9cisant le type et le contenu, tels que \u00abcarte\u00bb ou \u00abphoto\u00bb"
