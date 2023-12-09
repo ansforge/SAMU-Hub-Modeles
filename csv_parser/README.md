@@ -28,6 +28,24 @@ Update local crons (`crontab -e`). To see current crons, use `crontab -l`.
 # * * * * * cd ~/code/ans/AUTO_SAMU-Hub-Modeles/csv_parser/ && (./auto.sh >>cron.log 2>&1)
 ```
 
+## Merge and branch creation process
+```bash
+# Review PR and merge it in GitHub
+# Go to local tracker repo 
+cd ~/code/ans/AUTO_SAMU-Hub-Modeles/
+# Delete remote branch (also doable on GitHub PR)
+git branch -d -r origin/auto/model_tracker
+# Delete local branch
+git checkout main
+git branch -D auto/model_tracker
+# Pull latest main state
+git pull
+# Recreate branch from latest main
+git checkout -b auto/model_tracker
+# Link it with remote branch
+git push -u origin auto/model_tracker
+```
+
 # CSV to JsonSchema
 ## Usage
 ```bash
@@ -62,5 +80,3 @@ UML generator is called by default in the `csv_parser.py` but you may want to ru
 python uml_generator.py -m RC-EDA -o cisu -v 1.12
 python uml_generator.py --model RC-EDA --obj cisu --version 1.12
 ```
-
-
