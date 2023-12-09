@@ -46,12 +46,10 @@ run() {
     git commit -m "[$DATE] Model auto-generation"
   fi
 
-  git push --verbose
-
   LOCAL_COMMITS_AHEAD=$(git rev-list --count @{u}..HEAD)
   if [ $LOCAL_COMMITS_AHEAD -gt 0 ]; then
     echo "Remote $LOCAL_COMMITS_AHEAD commits behind, pushing..."
-    git push
+    git push --verbose
   else
     echo "Remote up-to-date, skipping push."
   fi
