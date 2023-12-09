@@ -46,6 +46,7 @@ run() {
     git commit -m "[$DATE] Model auto-generation"
   fi
 
+  echo $(whoami)
   git push origin "$TRACKING_BRANCH_NAME"
 
   LOCAL_COMMITS_AHEAD=$(git rev-list --count @{u}..HEAD)
