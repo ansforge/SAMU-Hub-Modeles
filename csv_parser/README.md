@@ -18,6 +18,7 @@ git remote set-url origin git@github.com:ansforge/SAMU-Hub-Modeles.git
 ```
 
 ### Crontab
+Update local crons (`crontab -e`). To see current crons, use `crontab -l`.
 ```bash
 # - For frequent runs 
 30 9-17/2 * * 1-5 cd ~/code/ans/AUTO_SAMU-Hub-Modeles/csv_parser/ && (./auto.sh >>cron.log 2>&1)
