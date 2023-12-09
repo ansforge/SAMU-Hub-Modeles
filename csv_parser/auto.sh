@@ -46,7 +46,6 @@ run() {
     git commit -m "[$DATE] Model auto-generation"
   fi
 
-  echo $(whoami)
   git push --verbose
 
   LOCAL_COMMITS_AHEAD=$(git rev-list --count @{u}..HEAD)
