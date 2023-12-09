@@ -34,7 +34,7 @@ Update local crons (`crontab -e`). To see current crons, use `crontab -l`.
 # Go to local tracker repo 
 cd ~/code/ans/AUTO_SAMU-Hub-Modeles/
 # Delete remote branch (also doable on GitHub PR)
-git branch -d -r origin/auto/model_tracker
+git push origin --delete auto/model_tracker
 # Delete local branch
 git checkout main
 git branch -D auto/model_tracker
