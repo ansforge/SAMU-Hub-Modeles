@@ -135,6 +135,7 @@ public class Emsi {
      **/
     @JsonProperty(JSON_PROPERTY_M_I_S_S_I_O_N)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    @JacksonXmlElementWrapper(useWrapping = false)
 
     public List<Mission> getMISSION() {
         return MISSION;

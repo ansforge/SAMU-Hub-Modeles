@@ -50,10 +50,7 @@
                   "ORG_ID": "samuA",
                   "USER_ID": "samuA:crra:poste1234",
                   "NAME": "Samu A"
-                },
-                "EXTERNAL_INFO": [
-                  {}
-                ]
+                }
               },
               "EVENT": {
                 "ID": "samuA:CA126B445579GD4A67AV",

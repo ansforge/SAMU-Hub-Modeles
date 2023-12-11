@@ -84,13 +84,14 @@ public class CreateCaseWrapper extends DistributionElement {
 
     @Override
     public int hashCode() {
-        return Objects.hash(createCase);
+        return Objects.hash(super.hashCode(), createCase);
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("class CreateCaseWrapper {\n");
+        sb.append(super.toString()).append("\n");
         sb.append("    createCase: ").append(toIndentedString(createCase)).append("\n");
         sb.append("}");
         return sb.toString();

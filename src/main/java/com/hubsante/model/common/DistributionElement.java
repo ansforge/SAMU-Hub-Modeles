@@ -303,7 +303,8 @@ public class DistributionElement extends ContentMessage {
     }
 
 
-    @JsonProperty(JSON_PROPERTY_RECIPIENTS)
+//    @JsonProperty(JSON_PROPERTY_RECIPIENTS)
+    @JsonProperty("recipient")
     @JsonInclude(value = JsonInclude.Include.ALWAYS)
     public void setRecipients(List<Recipient> recipients) {
         if (recipients == null) {
