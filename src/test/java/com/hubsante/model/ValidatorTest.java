@@ -253,57 +253,14 @@ public class ValidatorTest {
 
                 String schema = getSchemaFromFileName(useCase);
                 String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String wrapperJson = getWrapperString(useCase, useCaseJson);
 
-                assertDoesNotThrow(() -> validator.validateJSON(wrapperJson, schema));
+                assertDoesNotThrow(() -> validator.validateJSON(useCaseJson, schema));
                 log.info("File {} is valid against schema", file.getName());
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-    }
-
-    private String getWrapperString(String useCase, String rawUseCaseMessage) throws JsonProcessingException {
-        ContentMessage contentMessage = null;
-
-        switch (useCase) {
-            case "RC-EDA":
-                contentMessage = new CreateCaseWrapperBuilder(
-                        getDistributionElementMock(),
-                        mapper.readValue(rawUseCaseMessage, CreateCaseWrapper.class).getCreateCase()).build();
-                break;
-            case "EMSI-DC":
-                contentMessage = new EmsiWrapperBuilder(
-                        getDistributionElementMock(),
-                        mapper.readValue(rawUseCaseMessage, EmsiWrapper.class).getEmsi()).build();
-                break;
-            case "RC-REF":
-                contentMessage = new ReferenceWrapperBuilder(
-                        getDistributionElementMock(),
-                        mapper.readValue(rawUseCaseMessage, ReferenceWrapper.class).getReference().getDistributionID()).build();
-                break;
-            case "RS-INFO":
-                contentMessage = mapper.readValue(rawUseCaseMessage, ContentMessage.class);
-                break;
-            default:
-                log.error("No schema found for use case {}", useCase);
-        }
-        if (contentMessage == null) {
-            return null;
-        }
-
-        return mapper.writeValueAsString(contentMessage);
-    }
-
-    private DistributionElement getDistributionElementMock() {
-        Recipient fictiveRecipient = new Recipient();
-        fictiveRecipient.setName("fr.health.recipient");
-        fictiveRecipient.setURI("hubex");
-        List<Recipient> recipients = new ArrayList<>();
-        recipients.add(fictiveRecipient);
-
-        return new DistributionElementBuilder("mock_id", "fr.health.sender", recipients).build();
     }
 
     private String getUseCaseCodeFromFileName(String fileName) {

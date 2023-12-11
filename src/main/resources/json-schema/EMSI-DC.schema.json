@@ -9,11 +9,6 @@
   "required": [
     "emsi"
   ],
-  "allOf": [
-    {
-      "$ref": "RC-DE.schema.json"
-    }
-  ],
   "properties": {
     "emsi": {
       "$ref": "#/definitions/emsi"

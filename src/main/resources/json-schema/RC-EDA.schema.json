@@ -9,11 +9,6 @@
     "required": [
         "createCase"
     ],
-    "allOf": [
-        {
-            "$ref": "RC-DE.schema.json"
-        }
-    ],
     "properties": {
         "createCase": {
             "$ref": "#/definitions/createCase"
