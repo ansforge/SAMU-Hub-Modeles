@@ -60,7 +60,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T13:17:22.159266Z[Etc/UTC]")
+          date = "2023-12-12T14:16:37.128897Z[Etc/UTC]")
 public class CreateCase {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
