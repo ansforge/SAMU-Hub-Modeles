@@ -47,7 +47,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T13:17:16.551189Z[Etc/UTC]")
+          date = "2023-12-12T14:16:31.494676Z[Etc/UTC]")
 public class ReferenceWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";

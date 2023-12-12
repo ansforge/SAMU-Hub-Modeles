@@ -2,3 +2,5 @@
 generator/classes/**
 .idea/
 build/**
+reportgeneratortool/**
+coveragereport/**
