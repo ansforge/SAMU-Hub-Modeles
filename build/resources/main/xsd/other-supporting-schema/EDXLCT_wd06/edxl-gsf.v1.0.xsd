@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:edxl-gsf="urn:oasis:names:tc:emergency:edxl:gsf:1.0" targetNamespace="urn:oasis:names:tc:emergency:edxl:gsf:1.0" elementFormDefault="qualified" version="1.0">
+	<xs:import namespace="http://www.opengis.net/gml/3.2" schemaLocation="edxl-gsf-base.xsd"/>
+	<xs:element name="EDXLGeoLocation" type="edxl-gsf:EDXLGeoLocationType"/>
+	<xs:complexType name="EDXLGeoLocationType">
+		<xs:choice>
+			<xs:element ref="gml:Point" maxOccurs="1"/>
+			<xs:element ref="gml:CircleByCenterPoint" maxOccurs="1"/>
+			<xs:element ref="gml:Polygon" maxOccurs="1"/>
+			<xs:element ref="gml:Envelope" maxOccurs="1"/>
+			<xs:element ref="gml:LineString" maxOccurs="1"/>
+		</xs:choice>
+	</xs:complexType>
+</xs:schema>

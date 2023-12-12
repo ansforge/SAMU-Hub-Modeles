@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2010 rel. 3 sp1 (x64) (http://www.altova.com) by Donald McGarry (MITRE Corporation)
+	Adapted to edxl_ciq 2011/04/12 wbj -->
+<xs:schema xmlns:a="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xal" xmlns:n="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xnl" xmlns="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xpil" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ciq:1.0:ct" targetNamespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xpil" elementFormDefault="qualified" attributeFormDefault="qualified">
+	<xs:annotation>
+		<xs:documentation> 
+			Specification Name: OASIS EDXL extensible Party Information Language (xPIL) profile ver 1.0
+            Description: Defines the W3C schema for the EDXL Profile representing party information (unique identifiers)
+            including 	party name and address
+            (Using XML Schema based standard code list/enumeration mechanism - OPTION 1 AND DEFAULT)
+            Produced by: Emergency Management Infrastructure Framework Subcommittee
+            URL: http://docs.oasis-open.org
+            Version: 1.0  
+            Status: Committee Specification Draft
+            Copyright: 2010, OASIS, http://www.oasis-open.org
+            Last Modified: 12 July 2011
+            Last Modified by: Don McGarry - The MITRE Corp.
+            
+            Profile Developed From:
+            Specification Name: OASIS CIQ TC - extensible Party Information Language (xPIL) 
+            Description: Defines the W3C schema for representing party information (unique identifiers)
+            including 	party name and address
+            (Using XML Schema based standard code list/enumeration mechanism - OPTION 1 AND DEFAULT)
+            Produced by: OASIS Customer Information Quality Technical Committee
+            URL: http://www.oasis-open.org/committees/ciq
+            Version: 3.0  
+            Status: Committee Specification CS02
+            Copyright: 2007-09, OASIS, http://www.oasis-open.org
+            Last Modified: 20 September 2008
+            Last Modified by: Ram Kumar, Chair, OASIS CIQ TC (original file)
+		</xs:documentation>
+	</xs:annotation>
+	<xs:import namespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:ct" schemaLocation="CommonTypes.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xnl" schemaLocation="edxl_xNL.xsd"/>
+	<xs:import namespace="urn:oasis:names:tc:emergency:edxl:ciq:1.0:xal" schemaLocation="edxl_xAL.xsd"/>
+	<xs:include schemaLocation="xPIL-types.xsd"/>
+	<!--*************** KEY TOP LEVEL ELEMENTS ********************-->
+	<xs:element name="Party" type="PartyType">
+		<xs:annotation>
+			<xs:documentation>
+                A container for defining the unique characteristics of a party,
+                which can be a person or organisation
+            </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<xs:element name="PersonDetails">
+		<xs:annotation>
+			<xs:documentation>
+                A container for defining the unique characteristics of a person only
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:complexContent>
+				<xs:extension base="PersonDetailsType"/>
+			</xs:complexContent>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="OrganisationDetails" type="OrganisationDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+                A container for defining the unique characteristics of an organisation only
+            </xs:documentation>
+		</xs:annotation>
+	</xs:element>
+	<!--**************** COMPLEX TYPES ********************************-->
+	<xs:complexType name="PartyType">
+		<xs:annotation>
+			<xs:documentation>
+                A container for defining the unique characteristics of a party, which can
+                be a person or organisation
+            </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="PartyName" type="n:PartyNameType" minOccurs="0"/>
+			<xs:element ref="Addresses" minOccurs="0"/>
+			<xs:element ref="ContactNumbers" minOccurs="0"/>
+			<xs:element ref="ElectronicAddressIdentifiers" minOccurs="0"/>
+			<xs:element ref="Identifiers" minOccurs="0"/>
+			<xs:element ref="OrganisationInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Container for other organisation specific details that are not
+                        covered in this schema that are common to a party
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="PersonDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+                A container for defining the unique characteristics of a person only
+            </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="n:PersonName" maxOccurs="unbounded"/>
+			<xs:element ref="Addresses" minOccurs="0"/>
+			<xs:element ref="ContactNumbers" minOccurs="0"/>
+			<xs:element ref="ElectronicAddressIdentifiers" minOccurs="0"/>
+			<xs:element ref="Identifiers" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OrganisationDetailsType">
+		<xs:annotation>
+			<xs:documentation>
+                A container for defining the unique characteristics of an organisation only   
+            </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element ref="n:OrganisationName" maxOccurs="unbounded"/>
+			<xs:element ref="Addresses" minOccurs="0"/>
+			<xs:element ref="ContactNumbers" minOccurs="0"/>
+			<xs:element ref="ElectronicAddressIdentifiers" minOccurs="0"/>
+			<xs:element ref="OrganisationInfo" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+                        Container for other person specific details that are not covered
+                        in this schema elements that are common to a party
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!--**************** SECOND LEVEL ELEMENTS FOR REUSE - COMMON ELEMENTS VALID AND REUSABLE FOR BOTH PERSON AND ORGANISATION ***************************-->
+	<xs:element name="Addresses">
+		<xs:annotation>
+			<xs:documentation>
+                A container for all party addresses
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Address" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:complexContent>
+							<xs:extension base="a:AddressType"/>
+						</xs:complexContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ContactNumbers">
+		<xs:annotation>
+			<xs:documentation>
+                A container for all kinds of telecommunication lines of party used
+                for contact purposes. e.g. phone, fax, mobile, pager, etc.
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ContactNumber" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+                            Universal telecommunication number structure
+                        </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="ContactNumberElement" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+                                        Full contact number or part of it
+                                    </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="ct:String">
+											<xs:attribute name="Type" type="ContactNumberElementList">
+												<xs:annotation>
+													<xs:documentation>
+                                                        If present, specifies type of the information
+                                                        provided as text value of the element.
+                                                    </xs:documentation>
+												</xs:annotation>
+											</xs:attribute>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="CommunicationMediaType" type="CommunicationMediaTypeList">
+							<xs:annotation>
+								<xs:documentation>
+                                    Free text explanation of the communication line type. e.g. telephone,
+                                    land line, mobile, fax, pager, etc
+                                </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="Usage" type="ContactNumberUsageList">
+							<xs:annotation>
+								<xs:documentation>
+                                    Nature of contact.
+                                    Example: business, personal, free call, toll free, after hours, etc
+                                </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+						<xs:attribute name="ContactHours" type="ct:String">
+							<xs:annotation>
+								<xs:documentation>
+                                    Free text expression of contact hours. e.g. 9:00AM-5:00PM
+                                </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ElectronicAddressIdentifiers">
+		<xs:annotation>
+			<xs:documentation>
+                A container of different types of electronic addresses of party
+                (e.g. email, chat, skype, etc)
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="ElectronicAddressIdentifier" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="ct:String">
+								<xs:attribute name="Type" type="ElectronicAddressIdentifierTypeList">
+									<xs:annotation>
+										<xs:documentation>
+                                            Type of electronic address identifier
+                                        </xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+								<xs:attribute name="Usage" type="ElectronicAddressIdentifierUsageList">
+									<xs:annotation>
+										<xs:documentation>
+                                            Usage of electronic address identifier. e.g. business, personal
+                                        </xs:documentation>
+									</xs:annotation>
+								</xs:attribute>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Identifiers">
+		<xs:annotation>
+			<xs:documentation>
+                A container for a list of Identifiers to recognise the party such as
+                customer identifer, social security number, tax number, etc.
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="Identifier" maxOccurs="unbounded">
+					<xs:annotation>
+						<xs:documentation>
+                            Identifier to recognise the party such as customer identifer, social
+                            security number, National ID Card, tax number, buiness number, company
+                            number, company registration, etc
+                        </xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="IdentifierElement" minOccurs="0" maxOccurs="unbounded">
+								<xs:annotation>
+									<xs:documentation>
+                                        Information about the identifer
+                                    </xs:documentation>
+								</xs:annotation>
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="ct:String">
+											<xs:attribute name="Type" type="PartyIdentifierElementList"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="IssuerName" type="n:OrganisationNameType" minOccurs="0">
+								<xs:annotation>
+									<xs:documentation>
+                                        Reference to a Party element that describes the issuing organisation
+                                    </xs:documentation>
+								</xs:annotation>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="Type" type="PartyIdentifierTypeList">
+							<xs:annotation>
+								<xs:documentation>
+                                    Type of identifier. e.g. Tax Number
+                                </xs:documentation>
+							</xs:annotation>
+						</xs:attribute>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--***************** SECOND LEVEL ELEMENTS FOR REUSE - FOR ORGANISATION SPECIFIC DATA ONLY ***********************-->
+	<xs:element name="OrganisationInfo">
+		<xs:annotation>
+			<xs:documentation>
+                Container for organisation specific details that are not covered in this
+                schema that is common to a party
+            </xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:attribute name="Type" type="OrganisationInfoTypeList">
+				<xs:annotation>
+					<xs:documentation>
+                        Type of organisation. Free text description, e.g. Company,
+                        Trust, Bank, Society, Club, etc.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="CategoryType" type="OrganisationCategoryTypeList">
+				<xs:annotation>
+					<xs:documentation>
+                        Type of category the organisation belongs to such as club,
+                        association, company, vendor, etc
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Status" type="ct:StatusList">
+				<xs:annotation>
+					<xs:documentation>
+                        Status of the entity. e.g. Old, Current, Inactive, Active, etc
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="Nature" type="OrganisationInfoNatureList">
+				<xs:annotation>
+					<xs:documentation>
+                        Nature of the organisation. e.g. Public limited, Commercial,
+                        charity, non-commercial, etc.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IndustryType" type="IndustryTypeList">
+				<xs:annotation>
+					<xs:documentation>
+                        Organisation Industry type such as IT, Manufacturing.
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IndustryCode" type="IndustryCodeList">
+				<xs:annotation>
+					<xs:documentation>
+                        Industry code or classification
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="IndustryCodeType" type="ct:String">
+				<xs:annotation>
+					<xs:documentation>
+                        Type of code used for industry code
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="NumberOfEmployees" type="ct:String">
+				<xs:annotation>
+					<xs:documentation>
+                        Free text description of organisation size in terms of number of employees
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OperatingHourStartTime" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>
+                        Operating hour start time of the organisation, e.g. 9:00am
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attribute name="OperatingHourEndTime" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>
+                        Operating hour end time for the organisation. e.g. 5:00pm
+                    </xs:documentation>
+				</xs:annotation>
+			</xs:attribute>
+			<xs:attributeGroup ref="ct:grDataQuality"/>
+			<xs:anyAttribute namespace="##other" processContents="lax"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

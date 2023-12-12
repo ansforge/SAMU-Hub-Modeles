@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.hubsante.model.builders.DistributionElementBuilderTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-12-12T10:36:01" hostname="fv-az575-669" time="0.011">
+  <properties/>
+  <testcase name="should not build a RC-DE without at least one recipient" classname="com.hubsante.model.builders.DistributionElementBuilderTest" time="0.001"/>
+  <testcase name="should build a RC-DE with ack Kind" classname="com.hubsante.model.builders.DistributionElementBuilderTest" time="0.001"/>
+  <testcase name="should not build a RC-DE with invalid expedition date" classname="com.hubsante.model.builders.DistributionElementBuilderTest" time="0.002"/>
+  <testcase name="should build a RC-DE with custom expedition date" classname="com.hubsante.model.builders.DistributionElementBuilderTest" time="0.0"/>
+  <testcase name="should build a RC-DE with provided recipient list" classname="com.hubsante.model.builders.DistributionElementBuilderTest" time="0.001"/>
+  <testcase name="should build a RC-DE with error Kind" classname="com.hubsante.model.builders.DistributionElementBuilderTest" time="0.001"/>
+  <testcase name="Should build a DistributionElement" classname="com.hubsante.model.builders.DistributionElementBuilderTest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
