@@ -27,7 +27,12 @@
 
 package com.hubsante.model.common;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.common.Recipient;
 import com.hubsante.model.common.Sender;
@@ -286,7 +291,6 @@ public class DistributionElement extends ContentMessage {
   }
 
   @JsonProperty(JSON_PROPERTY_RECIPIENTS)
-  @JacksonXmlElementWrapper(localName = "recipient")
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRecipients(List<Recipient> recipients) {
     if (recipients == null) {
