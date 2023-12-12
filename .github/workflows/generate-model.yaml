@@ -71,9 +71,6 @@ jobs:
 
       - name: Check license
         run: ./gradlew licenseFormat
-
-      - name: Build and run tests
-        run: ./gradlew test
         
       - name: Add coverage to PR
         id: jacoco
@@ -100,3 +97,6 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
+
+      - name: Build and run tests
+        run: ./gradlew test
