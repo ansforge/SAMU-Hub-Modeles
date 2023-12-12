@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Descriptor.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">models-2</a> &gt; <a href="index.source.html" class="el_package">com.hubsante.model.edxl</a> &gt; <span class="el_source">Descriptor.java</span></div><h1>Descriptor.java</h1><pre class="source lang-java linenums">/**
+ * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.hubsante.model.edxl;
+
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
+import java.util.Objects;
+
+@JsonAutoDetect(
+        fieldVisibility = JsonAutoDetect.Visibility.ANY,
+        getterVisibility = JsonAutoDetect.Visibility.NONE
+)
+public class Descriptor {
+
+    @JacksonXmlProperty(localName = &quot;xlink:type&quot;, isAttribute = true)
+    public String getXmlns() {
+<span class="fc" id="L32">        return &quot;resource&quot;;</span>
+    }
+
+    @JsonProperty(value = &quot;language&quot;, required = true)
+    private String language;
+
+    @JsonProperty(value = &quot;explicitAddress&quot;, required = true)
+    private ExplicitAddress explicitAddress;
+
+<span class="fc" id="L41">    public Descriptor() {</span>
+<span class="fc" id="L42">    }</span>
+
+<span class="fc" id="L44">    public Descriptor(String language, ExplicitAddress explicitAddress) {</span>
+<span class="fc" id="L45">        this.language = language;</span>
+<span class="fc" id="L46">        this.explicitAddress = explicitAddress;</span>
+<span class="fc" id="L47">    }</span>
+
+    public String getLanguage() {
+<span class="nc" id="L50">        return language;</span>
+    }
+
+    public void setLanguage(String language) {
+<span class="fc" id="L54">        this.language = language;</span>
+<span class="fc" id="L55">    }</span>
+
+    public ExplicitAddress getExplicitAddress() {
+<span class="fc" id="L58">        return explicitAddress;</span>
+    }
+
+    public void setExplicitAddress(ExplicitAddress explicitAddress) {
+<span class="fc" id="L62">        this.explicitAddress = explicitAddress;</span>
+<span class="fc" id="L63">    }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L67" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L68" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L69">        Descriptor that = (Descriptor) o;</span>
+<span class="pc bpc" id="L70" title="2 of 4 branches missed.">        return language.equals(that.language) &amp;&amp; explicitAddress.equals(that.explicitAddress);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L75">        return Objects.hash(language, explicitAddress);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L80">        return &quot;Descriptor{&quot; +</span>
+                &quot;language='&quot; + language + '\'' +
+                &quot;, explicitAddress=&quot; + explicitAddress +
+                '}';
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

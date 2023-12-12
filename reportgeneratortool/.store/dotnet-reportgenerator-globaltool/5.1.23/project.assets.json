@@ -1,0 +1,41 @@
+{
+  "version": 3,
+  "targets": {
+    "net8.0/linux-x64": {
+      "dotnet-reportgenerator-globaltool/5.1.23": {
+        "type": "package",
+        "tools": {
+          "tools/net7.0/any/DotNetConfig.dll": {},
+          "tools/net7.0/any/DotnetToolSettings.xml": {},
+          "tools/net7.0/any/McMaster.NETCore.Plugins.dll": {},
+          "tools/net7.0/any/Microsoft.DotNet.PlatformAbstractions.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.Configuration.Abstractions.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.Configuration.Binder.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.Configuration.CommandLine.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.Configuration.FileExtensions.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.Configuration.Json.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.Configuration.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.DependencyModel.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.FileProviders.Abstractions.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.FileProviders.Physical.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.FileSystemGlobbing.dll": {},
+          "tools/net7.0/any/Microsoft.Extensions.Primitives.dll": {},
+          "tools/net7.0/any/ReportGenerator.Core.dll": {},
+          "tools/net7.0/any/ReportGenerator.Core.xml": {},
+          "tools/net7.0/any/ReportGenerator.DotnetCorePluginLoader.dll": {},
+          "tools/net7.0/any/ReportGenerator.DotnetCorePluginLoader.xml": {},
+          "tools/net7.0/any/ReportGenerator.deps.json": {},
+          "tools/net7.0/any/ReportGenerator.dll": {},
+          "tools/net7.0/any/ReportGenerator.exe": {},
+          "tools/net7.0/any/ReportGenerator.runtimeconfig.json": {},
+          "tools/net7.0/any/SixLabors.Fonts.dll": {},
+          "tools/net7.0/any/SixLabors.ImageSharp.Drawing.dll": {},
+          "tools/net7.0/any/SixLabors.ImageSharp.dll": {},
+          "tools/net7.0/any/appsettings.json": {}
+        }
+      }
+    }
+  },
+  "libraries": {},
+  "projectFileDependencyGroups": {}
+}
