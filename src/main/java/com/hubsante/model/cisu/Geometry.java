@@ -50,7 +50,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T13:13:30.743382Z[Etc/UTC]")
+          date = "2023-12-12T13:17:22.159266Z[Etc/UTC]")
 public class Geometry {
   public static final String JSON_PROPERTY_OBS_DATIME = "obsDatime";
   private OffsetDateTime obsDatime;
