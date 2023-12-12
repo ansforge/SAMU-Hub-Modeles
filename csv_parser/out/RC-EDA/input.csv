@@ -12,7 +12,7 @@ Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuven
 3,4,Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
 Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,,X,X
 4,5,Qualification de l'affaire/dossier,,,,,,Permet de qualifier l'affaire en générale. La qualification est issue d'une interprétation métier des alertes reçues.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X
-5,6,,Nature de fait,,,,,Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,nomenclature,X,,X,X
+5,6,,Nature de fait,,,,,Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,nomenclature,,,X,X
 6,7,,,Code,,,,A valoriser avec un code la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,X,NOMENCLATURE: CISU-Code_Nature_de_fait,X,X
 7,8,,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,,1.0,1..1,,string,X,Voir nomenclature associée,X,X
@@ -86,8 +86,8 @@ L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé a
 59,60,,,Type ,,,,"Définition du type d'objet dans le système
 Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",X,X
 60,61,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,,X,X
-61,62,,Pays,,,,,,France,country,,,,,,,1..1,,string,,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
-62,63,,Commentaire,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,X,"ENUM: France, Allemagne, Espagne, Italie, Suisse, Luxembourg, Belgique, Brésil",X,X
+61,62,,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
+62,63,,Commentaire,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
 63,64,Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communication d'urgence. Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte.
 L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.
 Le système destinataire reçoit une affaire lorsqu'une alerte le concerne. S'il ne gère pas les affaires multi-alertes, il doit donc créer une affaire seulement sur l'alerte le concernant : pour une création d'affaire, sur l'alerte initiale et pour une mise à jour d'affaire, sur la nouvelle alerte (en récupérant éventuellement des informations de l'alerte initiale en historique).
@@ -155,7 +155,7 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
 La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X
 100,101,CRRA référent,,,,,,Grand principe de la maitrise du dossier : définie par la doctrine actuelle. Les dossiers = Samu qui s'occupent du lieu d'intervention. Utilisation et notion à préciser (en cours)," CRRA 44, ...",,crraowner,,,,,,1..1,,string,,"idem ligne 47 - centre d'appel -
 référentiel PSAP - GT 399",,X
-101,102,CRRA traitant,,,,,,"Champ servant à transférer un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
+101,102,CRRA traitant,,,,,,"Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
 Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
 Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
 Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.",fr.health.samu090 ,,crratransfert,,,,,,1..1,,string,,,,X

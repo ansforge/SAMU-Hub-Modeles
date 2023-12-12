@@ -41,7 +41,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-09T16:25:22.214582Z[Etc/UTC]")
+          date = "2023-12-12T10:27:05.778303Z[Etc/UTC]")
 public class DistributionElement extends ContentMessage {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   private String messageId;

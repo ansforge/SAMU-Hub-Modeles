@@ -58,7 +58,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-09T16:25:25.095859Z[Etc/UTC]")
+          date = "2023-12-12T10:27:08.740290Z[Etc/UTC]")
 public class Location {
   public static final String JSON_PROPERTY_LOC_I_D = "locID";
   private String locID;
@@ -87,53 +87,8 @@ public class Location {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   private String country;
 
-  /**
-   * Champ libre pour compléter les informations de localisation
-   */
-  public enum FreetextEnum {
-    FRANCE("France"),
-
-    ALLEMAGNE("Allemagne"),
-
-    ESPAGNE("Espagne"),
-
-    ITALIE("Italie"),
-
-    SUISSE("Suisse"),
-
-    LUXEMBOURG("Luxembourg"),
-
-    BELGIQUE("Belgique"),
-
-    BR_SIL("Brésil");
-
-    private String value;
-
-    FreetextEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static FreetextEnum fromValue(String value) {
-      for (FreetextEnum b : FreetextEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private FreetextEnum freetext;
+  private String freetext;
 
   public Location() {}
 
@@ -367,7 +322,7 @@ public class Location {
     this.country = country;
   }
 
-  public Location freetext(FreetextEnum freetext) {
+  public Location freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -380,13 +335,13 @@ public class Location {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public FreetextEnum getFreetext() {
+  public String getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(FreetextEnum freetext) {
+  public void setFreetext(String freetext) {
     this.freetext = freetext;
   }
 

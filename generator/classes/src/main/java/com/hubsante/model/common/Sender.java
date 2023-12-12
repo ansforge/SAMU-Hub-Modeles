@@ -31,7 +31,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-09T16:25:16.280034Z[Etc/UTC]")
+          date = "2023-12-12T10:26:54.937045Z[Etc/UTC]")
 public class Sender {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;

@@ -476,15 +476,6 @@ components:
           x-cols: 6
           example: example.json#/createCase/location/freetext
           description: "Champ libre pour compl\xE9ter les informations de localisation"
-          enum:
-          - France
-          - Allemagne
-          - Espagne
-          - Italie
-          - Suisse
-          - Luxembourg
-          - Belgique
-          - "Br\xE9sil"
           examples:
           - "Cl\xE9 derri\xE8re le pot de fleur"
       example: example.json#/createCase/location

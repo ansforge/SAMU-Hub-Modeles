@@ -34,7 +34,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-09T16:25:25.095859Z[Etc/UTC]")
+          date = "2023-12-12T10:27:08.740290Z[Etc/UTC]")
 public class Attachment {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;

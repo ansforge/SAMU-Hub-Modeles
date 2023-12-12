@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "23.12.09",
+    "version": "23.12.12",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -175,17 +175,7 @@
                     "title": "Commentaire",
                     "x-cols": 6,
                     "example": "example.json#/createCase/location/freetext",
-                    "description": "Champ libre pour compl\u00e9ter les informations de localisation",
-                    "enum": [
-                        "France",
-                        "Allemagne",
-                        "Espagne",
-                        "Italie",
-                        "Suisse",
-                        "Luxembourg",
-                        "Belgique",
-                        "Br\u00e9sil"
-                    ]
+                    "description": "Champ libre pour compl\u00e9ter les informations de localisation"
                 }
             },
             "example": "example.json#/createCase/location"
