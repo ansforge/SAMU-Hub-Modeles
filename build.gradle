@@ -2,6 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.github.hierynomus.license' version '0.16.1'
+    id 'jacoco'
 }
 
 group = 'com.hubsante'
@@ -33,8 +34,16 @@ dependencies {
     testAnnotationProcessor 'org.projectlombok:lombok:1.18.22'
 }
 
+jacocoTestReport {
+    reports {
+        html.required = true
+        xml.required = true
+    }
+}
+
 tasks.named('test') {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 }
 
 license {
