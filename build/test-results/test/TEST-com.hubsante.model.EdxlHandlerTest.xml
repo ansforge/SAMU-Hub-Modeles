@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.hubsante.model.EdxlHandlerTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2023-12-12T10:46:43" hostname="fv-az1116-294" time="0.861">
+<testsuite name="com.hubsante.model.EdxlHandlerTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2023-12-12T12:51:57" hostname="fv-az525-163" time="0.919">
   <properties/>
-  <testcase name="should consistently deserialize EDXL with several content objects" classname="com.hubsante.model.EdxlHandlerTest" time="0.233"/>
-  <testcase name="should consistently deserialize then serialize XML RC-REF" classname="com.hubsante.model.EdxlHandlerTest" time="0.129"/>
-  <testcase name="should add XML prefix" classname="com.hubsante.model.EdxlHandlerTest" time="0.131"/>
-  <testcase name="should consistently deserialize then serialize XML RS-INFO" classname="com.hubsante.model.EdxlHandlerTest" time="0.033"/>
-  <testcase name="should consistently deserialize then serialize JSON RC-EDA" classname="com.hubsante.model.EdxlHandlerTest" time="0.056"/>
-  <testcase name="should consistently deserialize then serialize JSON RS-INFO" classname="com.hubsante.model.EdxlHandlerTest" time="0.016"/>
-  <testcase name="should consistently deserialize then serialize JSON EMSI-DC" classname="com.hubsante.model.EdxlHandlerTest" time="0.11"/>
-  <testcase name="should consistently deserialize then serialize XML RC-EDA" classname="com.hubsante.model.EdxlHandlerTest" time="0.073"/>
-  <testcase name="should consistently deserialize then serialize XML EMSI-DC" classname="com.hubsante.model.EdxlHandlerTest" time="0.048"/>
+  <testcase name="should consistently deserialize EDXL with several content objects" classname="com.hubsante.model.EdxlHandlerTest" time="0.265"/>
+  <testcase name="should consistently deserialize then serialize XML RC-REF" classname="com.hubsante.model.EdxlHandlerTest" time="0.155"/>
+  <testcase name="should add XML prefix" classname="com.hubsante.model.EdxlHandlerTest" time="0.133"/>
+  <testcase name="should consistently deserialize then serialize XML RS-INFO" classname="com.hubsante.model.EdxlHandlerTest" time="0.031"/>
+  <testcase name="should consistently deserialize then serialize JSON RC-EDA" classname="com.hubsante.model.EdxlHandlerTest" time="0.059"/>
+  <testcase name="should consistently deserialize then serialize JSON RS-INFO" classname="com.hubsante.model.EdxlHandlerTest" time="0.014"/>
+  <testcase name="should consistently deserialize then serialize JSON EMSI-DC" classname="com.hubsante.model.EdxlHandlerTest" time="0.1"/>
+  <testcase name="should consistently deserialize then serialize XML RC-EDA" classname="com.hubsante.model.EdxlHandlerTest" time="0.078"/>
+  <testcase name="should consistently deserialize then serialize XML EMSI-DC" classname="com.hubsante.model.EdxlHandlerTest" time="0.052"/>
   <testcase name="should consistently deserialize then serialize JSON RC-REF" classname="com.hubsante.model.EdxlHandlerTest" time="0.012"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[SLF4J: No SLF4J providers were found.

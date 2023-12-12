@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.hubsante.model.builders.EDXL_DE_BuilderTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-12-12T10:46:45" hostname="fv-az1116-294" time="0.022">
+<testsuite name="com.hubsante.model.builders.EDXL_DE_BuilderTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2023-12-12T12:51:59" hostname="fv-az525-163" time="0.01">
   <properties/>
   <testcase name="should build an EDXL Message with custom expedition date and offset in seconds" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.001"/>
-  <testcase name="should throw exception if builder is not initialized with mandatory parameters" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.003"/>
+  <testcase name="should throw exception if builder is not initialized with mandatory parameters" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.0"/>
   <testcase name="should build an EDXL Message with custom expedition date and offset in hours" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.0"/>
-  <testcase name="should build an EDXL Message with custom expedition date" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.0"/>
+  <testcase name="should build an EDXL Message with custom expedition date" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.001"/>
   <testcase name="should build an EDXL Message with custom distribution status" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.0"/>
-  <testcase name="should build an EDXL Message with custom expiration date" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.001"/>
-  <testcase name="should build an EDXL Message" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.002"/>
+  <testcase name="should build an EDXL Message with custom expiration date" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.0"/>
+  <testcase name="should build an EDXL Message" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.0"/>
   <testcase name="should not build an EDXL Message with sent date after expiration date" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.001"/>
-  <testcase name="should build an EDXL Message with custom expedition date and offset in days" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.0"/>
+  <testcase name="should build an EDXL Message with custom expedition date and offset in days" classname="com.hubsante.model.builders.EDXL_DE_BuilderTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

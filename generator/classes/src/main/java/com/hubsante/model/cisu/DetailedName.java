@@ -33,7 +33,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T10:46:15.933411Z[Etc/UTC]")
+          date = "2023-12-12T12:51:21.739399Z[Etc/UTC]")
 public class DetailedName {
   public static final String JSON_PROPERTY_COMPLETE = "complete";
   private String complete;

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.hubsante.model.ValidatorTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2023-12-12T10:46:44" hostname="fv-az1116-294" time="0.432">
+<testsuite name="com.hubsante.model.ValidatorTest" tests="11" skipped="0" failures="0" errors="0" timestamp="2023-12-12T12:51:58" hostname="fv-az525-163" time="0.459">
   <properties/>
-  <testcase name="RC-REF validation fails" classname="com.hubsante.model.ValidatorTest" time="0.2"/>
-  <testcase name="no schemas detected" classname="com.hubsante.model.ValidatorTest" time="0.045"/>
-  <testcase name="RS-INFO validation fails" classname="com.hubsante.model.ValidatorTest" time="0.029"/>
-  <testcase name="RC-EDA validation fails" classname="com.hubsante.model.ValidatorTest" time="0.035"/>
-  <testcase name="EMSI-DC validation passes" classname="com.hubsante.model.ValidatorTest" time="0.023"/>
-  <testcase name="RS-INFO validation passes" classname="com.hubsante.model.ValidatorTest" time="0.01"/>
+  <testcase name="RC-REF validation fails" classname="com.hubsante.model.ValidatorTest" time="0.235"/>
+  <testcase name="no schemas detected" classname="com.hubsante.model.ValidatorTest" time="0.042"/>
+  <testcase name="RS-INFO validation fails" classname="com.hubsante.model.ValidatorTest" time="0.025"/>
+  <testcase name="RC-EDA validation fails" classname="com.hubsante.model.ValidatorTest" time="0.037"/>
+  <testcase name="EMSI-DC validation passes" classname="com.hubsante.model.ValidatorTest" time="0.016"/>
+  <testcase name="RS-INFO validation passes" classname="com.hubsante.model.ValidatorTest" time="0.009"/>
   <testcase name="invalid content valid enveloppe" classname="com.hubsante.model.ValidatorTest" time="0.015"/>
-  <testcase name="RC-REF validation passes" classname="com.hubsante.model.ValidatorTest" time="0.008"/>
-  <testcase name="EMSI-DC validation fails" classname="com.hubsante.model.ValidatorTest" time="0.015"/>
-  <testcase name="too many valid schemas" classname="com.hubsante.model.ValidatorTest" time="0.026"/>
+  <testcase name="RC-REF validation passes" classname="com.hubsante.model.ValidatorTest" time="0.009"/>
+  <testcase name="EMSI-DC validation fails" classname="com.hubsante.model.ValidatorTest" time="0.017"/>
+  <testcase name="too many valid schemas" classname="com.hubsante.model.ValidatorTest" time="0.028"/>
   <testcase name="RC-EDA validation passes" classname="com.hubsante.model.ValidatorTest" time="0.01"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
