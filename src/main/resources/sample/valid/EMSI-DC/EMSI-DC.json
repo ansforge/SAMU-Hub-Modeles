@@ -29,6 +29,10 @@
               {
                 "name": "samuB",
                 "URI": "hubex:fr.health.samuB"
+              },
+              {
+                "name": "samuB2",
+                "URI": "hubex:fr.health.samuB2"
               }
             ],
             "emsi": {
@@ -147,7 +151,7 @@
                     "Non trait\u00e9"
                   ],
                   "PARENT_MISSION_ID": [
-                    "Non trait\u00e9"
+                    "Non traité"
                   ],
                   "CHILD_MISSION_ID": [
                     "Non trait\u00e9"

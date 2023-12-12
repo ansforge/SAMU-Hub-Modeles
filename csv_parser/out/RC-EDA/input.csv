@@ -12,7 +12,7 @@ Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuven
 3,4,Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
 Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,,X,X
 4,5,Qualification de l'affaire/dossier,,,,,,Permet de qualifier l'affaire en générale. La qualification est issue d'une interprétation métier des alertes reçues.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X
-5,6,,Nature de fait,,,,,Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,nomenclature,X,,X,X
+5,6,,Nature de fait,,,,,Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,nomenclature,,,X,X
 6,7,,,Code,,,,A valoriser avec un code la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,X,NOMENCLATURE: CISU-Code_Nature_de_fait,X,X
 7,8,,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,,1.0,1..1,,string,X,Voir nomenclature associée,X,X
@@ -26,7 +26,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 15,16,,Attribution du dossier,,,,,Décrit le type de professionnel médical à qui le dossier est attribué,"Médecin généraliste, médecin urgentiste etc.",,fileusage,,,,,,0..1,,string,?,?,,X
 16,17,,Patients/Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
 17,18,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
-18,19,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, PREGNANT, SENIOR (voir Nomenclature CISU XX)",X,X
+18,19,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, SENIOR",X,X
 19,20,,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,,X,X
 20,21,Localisation de l'affaire/dossier,,,,,,Concerne bien le dossier de régulation pour le périmetre 15-15,,eventLocation,location,,,,,,1..1,X,location,,,X,X
 21,22,,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,,,,,,,1..1,,string,,,X,X
@@ -86,8 +86,8 @@ L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé a
 59,60,,,Type ,,,,"Définition du type d'objet dans le système
 Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",X,X
 60,61,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,,X,X
-61,62,,Pays,,,,,,France,country,,,,,,,1..1,,string,,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
-62,63,,Commentaire,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,X,"ENUM: France, Allemagne, Espagne, Italie, Suisse, Luxembourg, Belgique, Brésil",X,X
+61,62,,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
+62,63,,Commentaire,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
 63,64,Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communication d'urgence. Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte.
 L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.
 Le système destinataire reçoit une affaire lorsqu'une alerte le concerne. S'il ne gère pas les affaires multi-alertes, il doit donc créer une affaire seulement sur l'alerte le concernant : pour une création d'affaire, sur l'alerte initiale et pour une mise à jour d'affaire, sur la nouvelle alerte (en récupérant éventuellement des informations de l'alerte initiale en historique).
@@ -145,7 +145,7 @@ Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{st
 Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
 
 ",,resource,attachment,,,,,,0..n,X,attachment,,,X,X
-94,95,,,Type ou description de la ressource,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X
+94,95,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X
 95,96,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,,X,X
 96,97,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,,X,X
 97,98,,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
@@ -155,11 +155,10 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
 La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X
 100,101,CRRA référent,,,,,,Grand principe de la maitrise du dossier : définie par la doctrine actuelle. Les dossiers = Samu qui s'occupent du lieu d'intervention. Utilisation et notion à préciser (en cours)," CRRA 44, ...",,crraowner,,,,,,1..1,,string,,"idem ligne 47 - centre d'appel -
 référentiel PSAP - GT 399",,X
-101,102,CRAA de traitement du dossier,,,,,,"Champ servant à transférer un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
+101,102,CRRA traitant,,,,,,"Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
 Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
 Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
-Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en ajoutant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.
-Ce champ ne doit être rempli qu'au moment du 1er transfert d'un dossier (création d'une affaire et acceptation du transfert du dossier) : il ne devra pas être modifiable une fois le transfert accepté  (pour les mises à jour de dossiers déjà en cours de traitement par exemple.",fr.health.samu090 ,,crratransfert,,,,,,0..1,,string,,,,X
+Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.",fr.health.samu090 ,,crratransfert,,,,,,1..1,,string,,,,X
 102,103,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médeci référent, etc) pour le traitement d'un dossier.",,,operators,,,,,,0..n,X,operators,,,,X
 103,104,,NOM,,,,,Nom de famille de l'opérateur,,,opname,,,,,,1..1,,string,,,,X
 104,105,,Prénom,,,,,Prénom de l'opérateur référent,,,opfirstname,,,,,,0..1,,string,,,,X
