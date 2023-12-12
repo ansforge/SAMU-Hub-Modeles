@@ -48,7 +48,7 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 @javax.annotation.
 Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T12:59:54.270161Z[Etc/UTC]")
+          date = "2023-12-12T13:04:49.055848Z[Etc/UTC]")
 public class ContactSource {
   public static final String JSON_PROPERTY_CHANNEL = "channel";
   private String channel;
