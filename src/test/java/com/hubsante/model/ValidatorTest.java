@@ -44,8 +44,7 @@ import java.util.*;
 import java.util.logging.Logger;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.ENVELOPE_SCHEMA;
+import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -190,6 +189,11 @@ public class ValidatorTest {
         // envelope validation does not throw because envelope is ok
         assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        String xml = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.xml");
+        // envelope validation does not throw because envelope is ok
+        assertDoesNotThrow(() -> validator.validateXML(xml, ENVELOPE_XSD));
+        assertThrows(ValidationException.class, () -> validator.validateXML(xml, "EDXL-DE.xsd"));
     }
 
     @Test
