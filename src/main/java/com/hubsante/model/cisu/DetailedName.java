@@ -46,9 +46,7 @@ import java.util.Objects;
                     DetailedName.JSON_PROPERTY_FIRST_NAME})
 @JsonTypeName("detailedName")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T14:16:37.128897Z[Etc/UTC]")
+
 public class DetailedName {
   public static final String JSON_PROPERTY_COMPLETE = "complete";
   private String complete;

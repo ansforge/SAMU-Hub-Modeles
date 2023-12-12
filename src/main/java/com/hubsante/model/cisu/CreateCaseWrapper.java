@@ -46,9 +46,7 @@ import java.util.Objects;
 @JsonPropertyOrder({CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE})
 @JsonTypeName("createCaseWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T14:16:40.887058Z[Etc/UTC]")
+
 public class CreateCaseWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";

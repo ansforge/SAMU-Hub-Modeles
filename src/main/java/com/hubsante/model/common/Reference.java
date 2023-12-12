@@ -43,9 +43,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T14:16:28.107117Z[Etc/UTC]")
+
 public class Reference {
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;

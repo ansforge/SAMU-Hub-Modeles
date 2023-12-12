@@ -44,9 +44,7 @@ import java.util.Objects;
 @JsonPropertyOrder({Contact.JSON_PROPERTY_TYPE, Contact.JSON_PROPERTY_DETAIL})
 @JsonTypeName("contact")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T14:16:37.128897Z[Etc/UTC]")
+
 public class Contact {
 
   /**

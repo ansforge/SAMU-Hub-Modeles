@@ -52,9 +52,7 @@ import java.util.Objects;
                     Qualification.JSON_PROPERTY_VICTIMS})
 @JsonTypeName("qualification")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T14:16:37.128897Z[Etc/UTC]")
+
 public class Qualification {
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
   private Nomenclature whatsHappen;

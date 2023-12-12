@@ -46,9 +46,7 @@ import java.util.Objects;
                     Nomenclature.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("nomenclature")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T14:16:37.128897Z[Etc/UTC]")
+
 public class Nomenclature {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;

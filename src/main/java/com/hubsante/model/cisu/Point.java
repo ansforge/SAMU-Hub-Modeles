@@ -45,9 +45,7 @@ import java.util.Objects;
 @JsonPropertyOrder({Point.JSON_PROPERTY_COORD, Point.JSON_PROPERTY_SYS_COORD})
 @JsonTypeName("point")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T14:16:37.128897Z[Etc/UTC]")
+
 public class Point {
   public static final String JSON_PROPERTY_COORD = "coord";
   private Coord coord;
