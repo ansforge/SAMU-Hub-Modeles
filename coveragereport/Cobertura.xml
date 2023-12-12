@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE coverage SYSTEM "http://cobertura.sourceforge.net/xml/coverage-04.dtd">
-<coverage line-rate="0.5821294810058855" branch-rate="0.35042016806722687" lines-covered="2176" lines-valid="3738" branches-covered="417" branches-valid="1190" complexity="NaN" version="0" timestamp="1702386350">
+<coverage line-rate="0.5821294810058855" branch-rate="0.35042016806722687" lines-covered="2176" lines-valid="3738" branches-covered="417" branches-valid="1190" complexity="NaN" version="0" timestamp="1702386859">
   <sources />
   <packages>
     <package name="com/hubsante/model" line-rate="0.7840909090909091" branch-rate="0.75" complexity="NaN">
