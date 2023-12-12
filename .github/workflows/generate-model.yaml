@@ -71,6 +71,11 @@ jobs:
 
       - name: Check license
         run: ./gradlew licenseFormat
+        
+      - name: commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: ⚙️ Auto-génération des classes et des specs
 
       - name: Build and run tests
         run: ./gradlew test
@@ -95,8 +100,3 @@ jobs:
         with:
           reports: ${{ github.workspace }}/build/reports/jacoco/test/jacocoTestReport.xml
           targetdir: coveragereport
-
-      - name: commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: ⚙️ Auto-génération des classes et des specs

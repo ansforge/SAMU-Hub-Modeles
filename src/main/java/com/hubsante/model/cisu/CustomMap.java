@@ -46,9 +46,7 @@ import java.util.Objects;
                     CustomMap.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("customMap")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T13:17:22.159266Z[Etc/UTC]")
+
 public class CustomMap {
   public static final String JSON_PROPERTY_KEY = "key";
   private String key;

@@ -52,9 +52,7 @@ import java.util.Objects;
      Access.JSON_PROPERTY_LOCPHONENUMBER})
 @JsonTypeName("access")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T13:17:22.159266Z[Etc/UTC]")
+
 public class Access {
   public static final String JSON_PROPERTY_FLOOR = "floor";
   private String floor;

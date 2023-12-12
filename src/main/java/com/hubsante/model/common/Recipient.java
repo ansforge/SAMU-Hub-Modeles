@@ -45,9 +45,7 @@ import java.util.Objects;
     {Recipient.JSON_PROPERTY_NAME, Recipient.JSON_PROPERTY_U_R_I})
 @JsonTypeName("recipient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T13:17:13.147227Z[Etc/UTC]")
+
 public class Recipient {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;

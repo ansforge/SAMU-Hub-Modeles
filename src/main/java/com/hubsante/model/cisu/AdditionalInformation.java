@@ -45,9 +45,7 @@ import java.util.Objects;
 @JsonPropertyOrder({AdditionalInformation.JSON_PROPERTY_CUSTOM_MAP})
 @JsonTypeName("additionalInformation")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@javax.annotation.
-Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen",
-          date = "2023-12-12T13:17:22.159266Z[Etc/UTC]")
+
 public class AdditionalInformation {
   public static final String JSON_PROPERTY_CUSTOM_MAP = "customMap";
   private CustomMap customMap;
