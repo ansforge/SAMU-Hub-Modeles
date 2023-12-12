@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "classpath:/json-schema/schema#",
+  "x-id": "schema.json#",
+  "version": "0.4.9",
+  "example": "example.json#",
+  "type": "object",
+  "title": "RS_INFO",
+  "required": [
+    "customContent"
+  ],
+  "properties": {
+    "customContent": {
+      "$ref": "#/definitions/customContent"
+    },
+    "additionalProperties": false
+  },
+  "definitions": {
+    "customContent": {
+      "type": "object",
+      "title": "customContent"
+    }
+  }
+}
