@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ErrorCode.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">models-2</a> &gt; <a href="index.source.html" class="el_package">com.hubsante.model.report</a> &gt; <span class="el_source">ErrorCode.java</span></div><h1>ErrorCode.java</h1><pre class="source lang-java linenums">/**
+ * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.hubsante.model.report;
+
+import com.fasterxml.jackson.annotation.*;
+
+<span class="fc" id="L20">@JsonFormat(shape = JsonFormat.Shape.OBJECT)</span>
+public enum ErrorCode {
+<span class="fc" id="L22">    DELIVERY_MODE_INCONSISTENCY(100, &quot;DELIVERY_MODE_INCONSISTENCY&quot;),</span>
+<span class="fc" id="L23">    NOT_ALLOWED_CONTENT_TYPE(101, &quot;NOT_ALLOWED_CONTENT_TYPE&quot;),</span>
+<span class="fc" id="L24">    UNRECOGNIZED_MESSAGE_FORMAT(102, &quot;UNRECOGNIZED_MESSAGE_FORMAT&quot;),</span>
+<span class="fc" id="L25">    SENDER_INCONSISTENCY(200, &quot;SENDER_INCONSISTENCY&quot;),</span>
+<span class="fc" id="L26">    INVALID_MESSAGE(300, &quot;INVALID_MESSAGE&quot;),</span>
+<span class="fc" id="L27">    SCHEMA_NOT_FOUND(301, &quot;SCHEMA_NOT_FOUND&quot;),</span>
+<span class="fc" id="L28">    EXPIRED_MESSAGE_BEFORE_ROUTING(400, &quot;EXPIRED_MESSAGE_BEFORE_ROUTING&quot;),</span>
+<span class="fc" id="L29">    DEAD_LETTER_QUEUED(500, &quot;DEAD_LETTER_QUEUED&quot;),</span>
+<span class="fc" id="L30">    UNROUTABLE_MESSAGE(501, &quot;UNROUTABLE_MESSAGE&quot;);</span>
+
+<span class="fc" id="L32">    private final String JSON_PROPERTY_STATUS_CODE = &quot;statusCode&quot;;</span>
+    private final int statusCode;
+<span class="fc" id="L34">    private final String JSON_PROPERTY_STATUS_STRING = &quot;statusString&quot;;</span>
+    private final String statusString;
+
+<span class="fc" id="L37">    ErrorCode(int statusCode, String statusString) {</span>
+<span class="fc" id="L38">        this.statusCode = statusCode;</span>
+<span class="fc" id="L39">        this.statusString = statusString;</span>
+<span class="fc" id="L40">    }</span>
+
+    @JsonCreator
+    public static ErrorCode forValues(@JsonProperty(&quot;statusCode&quot;) int statusCode, @JsonProperty(&quot;statusString&quot;) String statusString) {
+<span class="pc bpc" id="L44" title="1 of 2 branches missed.">        for (ErrorCode errorCode : ErrorCode.values()) {</span>
+<span class="pc bpc" id="L45" title="2 of 4 branches missed.">            if (errorCode.statusCode == statusCode &amp;&amp; errorCode.statusString.equals(statusString)) {</span>
+<span class="fc" id="L46">                return errorCode;</span>
+            }
+        }
+<span class="nc" id="L49">        return null;</span>
+    }
+    @JsonProperty(JSON_PROPERTY_STATUS_CODE)
+    public int getStatusCode() {
+<span class="fc" id="L53">        return this.statusCode;</span>
+    }
+
+    @JsonProperty(JSON_PROPERTY_STATUS_STRING)
+    public String getStatusString() {
+<span class="fc" id="L58">        return this.statusString;</span>
+    }
+
+    @JsonIgnore
+    public boolean isSetupError() {
+<span class="nc bnc" id="L63" title="All 2 branches missed.">        return this.statusCode &lt; 200;</span>
+    }
+
+    @JsonIgnore
+    public boolean isUnauthorizedError() {
+<span class="nc bnc" id="L68" title="All 4 branches missed.">        return this.statusCode &gt;= 200 &amp;&amp; this.statusCode &lt; 300;</span>
+    }
+
+    @JsonIgnore
+    public boolean isParsingError() {
+<span class="nc bnc" id="L73" title="All 4 branches missed.">        return this.statusCode &gt;= 300 &amp;&amp; this.statusCode &lt; 400;</span>
+    }
+
+    @JsonIgnore
+    public boolean isExpired() {
+<span class="nc bnc" id="L78" title="All 4 branches missed.">        return this.statusCode &gt;= 400 &amp;&amp; this.statusCode &lt; 500;</span>
+    }
+
+    @JsonIgnore
+    public boolean isUndelivered() {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        return this.statusCode &gt;= 500;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

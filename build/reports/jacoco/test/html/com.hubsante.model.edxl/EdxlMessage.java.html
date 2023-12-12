@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EdxlMessage.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">models-2</a> &gt; <a href="index.source.html" class="el_package">com.hubsante.model.edxl</a> &gt; <span class="el_source">EdxlMessage.java</span></div><h1>EdxlMessage.java</h1><pre class="source lang-java linenums">/**
+ * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.hubsante.model.edxl;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+@JsonPropertyOrder({
+        &quot;distributionID&quot;,
+        &quot;senderID&quot;,
+        &quot;dateTimeSent&quot;,
+        &quot;dateTimeExpires&quot;,
+        &quot;distributionStatus&quot;,
+        &quot;distributionKind&quot;,
+        &quot;descriptor&quot;,
+        &quot;content&quot;})
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class EdxlMessage extends EdxlEnvelope {
+    private List&lt;ContentObject&gt; content;
+
+    public EdxlMessage() {
+<span class="fc" id="L44">        super();</span>
+<span class="fc" id="L45">    }</span>
+
+    public EdxlMessage(String distributionID, String senderID, OffsetDateTime dateTimeSent, OffsetDateTime dateTimeExpires,
+                       DistributionStatus distributionStatus, DistributionKind distributionKind, Descriptor descriptor,
+                       ContentMessage innerMessage) {
+<span class="fc" id="L50">        super(distributionID, senderID, dateTimeSent, dateTimeExpires, distributionStatus, distributionKind, descriptor);</span>
+<span class="fc" id="L51">        this.setContentFrom(innerMessage);</span>
+<span class="fc" id="L52">    }</span>
+
+    public EdxlMessage content(List&lt;ContentObject&gt; content) {
+<span class="nc" id="L55">        this.content = content;</span>
+<span class="nc" id="L56">        return this;</span>
+    }
+
+    public EdxlMessage addContentObject(ContentObject contentObject) {
+<span class="nc bnc" id="L60" title="All 2 branches missed.">        if (this.content == null) {</span>
+<span class="nc" id="L61">            this.content = new ArrayList&lt;&gt;();</span>
+        }
+<span class="nc" id="L63">        this.content.add(contentObject);</span>
+<span class="nc" id="L64">        return this;</span>
+    }
+
+    @JacksonXmlElementWrapper(useWrapping = true, localName = &quot;content&quot;)
+    @JsonProperty(value = &quot;content&quot;)
+    @JacksonXmlProperty(localName = &quot;contentObject&quot;)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public List&lt;ContentObject&gt; getContent() {
+<span class="fc" id="L72">        return content;</span>
+    }
+
+    @JacksonXmlElementWrapper(useWrapping = true, localName = &quot;content&quot;)
+    @JsonProperty(value = &quot;content&quot;)
+    @JacksonXmlProperty(localName = &quot;contentObject&quot;)
+    @JsonInclude(value = JsonInclude.Include.ALWAYS)
+    public void setContent(List&lt;ContentObject&gt; content) {
+<span class="fc" id="L80">        this.content = content;</span>
+<span class="fc" id="L81">    }</span>
+
+    public &lt;T extends ContentMessage&gt; void setContentFrom(T embeddedContent) {
+<span class="fc" id="L84">        List&lt;ContentObject&gt; contentObjectList = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L85">        contentObjectList.add(new ContentObject(new ContentWrapper(new EmbeddedContent(embeddedContent))));</span>
+<span class="fc" id="L86">        this.setContent(contentObjectList);</span>
+<span class="fc" id="L87">    }</span>
+
+    public ContentMessage getFirstContentMessage() {
+<span class="fc" id="L90">        return this.getContent().stream().findFirst().orElseThrow(ArrayIndexOutOfBoundsException::new)</span>
+<span class="fc" id="L91">                .getContentWrapper().getEmbeddedContent().getMessage();</span>
+    }
+
+    public List&lt;ContentMessage&gt; getAllContentMessages() {
+<span class="fc" id="L95">        return this.content.stream()</span>
+<span class="fc" id="L96">                .map(contentObject -&gt; ((ContentMessage) contentObject.getContentWrapper().getEmbeddedContent().getMessage()))</span>
+<span class="fc" id="L97">                .collect(Collectors.toList());</span>
+    }
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L102" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L103" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="pc bpc" id="L104" title="1 of 2 branches missed.">        if (!super.equals(o)) return false;</span>
+<span class="fc" id="L105">        EdxlMessage that = (EdxlMessage) o;</span>
+<span class="fc" id="L106">        return Objects.equals(content, that.content);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L111">        return Objects.hash(super.hashCode(), content);</span>
+    }
+
+    @Override
+    public String toString() {
+<span class="nc" id="L116">        return &quot;class EdxlMessage {\n&quot; +</span>
+<span class="nc" id="L117">                        &quot;    distributionID: &quot; + toIndentedString(super.getDistributionID()) + &quot;\n&quot; +</span>
+<span class="nc" id="L118">                        &quot;    senderId: &quot; + toIndentedString(super.getSenderID()) + &quot;\n&quot; +</span>
+<span class="nc" id="L119">                        &quot;    dateTimeSent: &quot; + toIndentedString(super.getDateTimeSent()) + &quot;\n&quot; +</span>
+<span class="nc" id="L120">                        &quot;    dateTimeExpires: &quot; + toIndentedString(super.getDateTimeExpires()) + &quot;\n&quot; +</span>
+<span class="nc" id="L121">                        &quot;    distributionStatus: &quot; + toIndentedString(super.getDistributionStatus()) + &quot;\n&quot; +</span>
+<span class="nc" id="L122">                        &quot;    distributionKind: &quot; + toIndentedString(super.getDistributionKind()) + &quot;\n&quot; +</span>
+<span class="nc" id="L123">                        &quot;    descriptor: &quot; + toIndentedString(super.getDescriptor()) + &quot;\n&quot; +</span>
+<span class="nc" id="L124">                        &quot;    content: &quot; + toIndentedString(content) + &quot;\n&quot; +</span>
+                &quot;}&quot;;
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+<span class="nc bnc" id="L133" title="All 2 branches missed.">        if (o == null) {</span>
+<span class="nc" id="L134">            return &quot;null&quot;;</span>
+        }
+<span class="nc" id="L136">        return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>

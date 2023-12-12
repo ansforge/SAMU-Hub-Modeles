@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ErrorReport.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">models-2</a> &gt; <a href="index.source.html" class="el_package">com.hubsante.model.report</a> &gt; <span class="el_source">ErrorReport.java</span></div><h1>ErrorReport.java</h1><pre class="source lang-java linenums">/**
+ * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.hubsante.model.report;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import com.hubsante.model.edxl.ContentMessage;
+
+import java.util.Objects;
+
+@JsonPropertyOrder({&quot;errorCode&quot;, &quot;errorCause&quot;, &quot;sourceMessage&quot;, &quot;referencedDistributionID&quot;})
+@JacksonXmlRootElement(localName = &quot;message&quot;)
+public class ErrorReport extends ContentMessage {
+<span class="pc" id="L30">    @JacksonXmlProperty(isAttribute = true)</span>
+    String xmlns = &quot;urn:emergency:cisu:2.0&quot;;
+<span class="pc" id="L32">    private final String JSON_PROPERTY_ERROR_CODE = &quot;errorCode&quot;;</span>
+    private ErrorCode errorCode;
+<span class="pc" id="L34">    private final String JSON_PROPERTY_ERROR_CAUSE = &quot;errorCause&quot;;</span>
+    private String errorCause;
+<span class="pc" id="L36">    private final String JSON_PROPERTY_SOURCE_MESSAGE = &quot;sourceMessage&quot;;</span>
+    private String sourceMessage;
+<span class="pc" id="L38">    private final String JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID = &quot;referencedDistributionID&quot;;</span>
+    private String referencedDistributionID;
+
+<span class="fc" id="L41">    public ErrorReport() {</span>
+<span class="fc" id="L42">    }</span>
+
+<span class="nc" id="L44">    public ErrorReport(ErrorCode errorCode, String errorCause, String sourceMessage, String referencedDistributionID) {</span>
+<span class="nc" id="L45">        this.errorCode = errorCode;</span>
+<span class="nc" id="L46">        this.errorCause = errorCause;</span>
+<span class="nc" id="L47">        this.sourceMessage = sourceMessage;</span>
+<span class="nc" id="L48">        this.referencedDistributionID = referencedDistributionID;</span>
+<span class="nc" id="L49">    }</span>
+
+    @JsonProperty(JSON_PROPERTY_ERROR_CODE)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public ErrorCode getErrorCode() {
+<span class="fc" id="L54">        return errorCode;</span>
+    }
+
+    @JsonProperty(JSON_PROPERTY_ERROR_CODE)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public void setErrorCode(ErrorCode errorCode) {
+<span class="fc" id="L60">        this.errorCode = errorCode;</span>
+<span class="fc" id="L61">    }</span>
+
+    @JsonProperty(JSON_PROPERTY_ERROR_CAUSE)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public String getErrorCause() {
+<span class="fc" id="L66">        return errorCause;</span>
+    }
+
+    @JsonProperty(JSON_PROPERTY_ERROR_CAUSE)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public void setErrorCause(String errorCause) {
+<span class="fc" id="L72">        this.errorCause = errorCause;</span>
+<span class="fc" id="L73">    }</span>
+
+    @JsonProperty(JSON_PROPERTY_SOURCE_MESSAGE)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public String getSourceMessage() {
+<span class="fc" id="L78">        return sourceMessage;</span>
+    }
+
+    @JsonProperty(JSON_PROPERTY_SOURCE_MESSAGE)
+    @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
+    public void setSourceMessage(String sourceMessage) {
+<span class="fc" id="L84">        this.sourceMessage = sourceMessage;</span>
+<span class="fc" id="L85">    }</span>
+
+    @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+<span class="fc" id="L89">    public String getReferencedDistributionID() { return referencedDistributionID; }</span>
+
+    @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
+    @JsonInclude(JsonInclude.Include.NON_EMPTY)
+<span class="nc" id="L93">    public void setReferencedDistributionID(String referencedDistributionID) { this.referencedDistributionID = referencedDistributionID; }</span>
+
+    @Override
+    public boolean equals(Object o) {
+<span class="pc bpc" id="L97" title="1 of 2 branches missed.">        if (this == o) return true;</span>
+<span class="pc bpc" id="L98" title="2 of 4 branches missed.">        if (o == null || getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L99">        ErrorReport that = (ErrorReport) o;</span>
+<span class="pc bpc" id="L100" title="4 of 8 branches missed.">        return errorCode == that.errorCode &amp;&amp; Objects.equals(errorCause, that.errorCause) &amp;&amp; Objects.equals(sourceMessage, that.sourceMessage) &amp;&amp; Objects.equals(referencedDistributionID, that.referencedDistributionID);</span>
+    }
+
+    @Override
+    public int hashCode() {
+<span class="nc" id="L105">        return Objects.hash(errorCode, errorCause, sourceMessage, referencedDistributionID);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.9.202303310957</span></div></body></html>
