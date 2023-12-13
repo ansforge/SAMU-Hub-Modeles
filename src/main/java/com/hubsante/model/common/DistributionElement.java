@@ -52,7 +52,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_SENT_AT,
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENTS})
+                    DistributionElement.JSON_PROPERTY_RECIPIENT})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DistributionElement extends ContentMessage {
@@ -145,8 +145,8 @@ public class DistributionElement extends ContentMessage {
   public static final String JSON_PROPERTY_STATUS = "status";
   private StatusEnum status;
 
-  public static final String JSON_PROPERTY_RECIPIENTS = "recipients";
-  private List<Recipient> recipients = new ArrayList<>();
+  public static final String JSON_PROPERTY_RECIPIENT = "recipient";
+  private List<Recipient> recipient = new ArrayList<>();
 
   public DistributionElement() {}
 
@@ -265,41 +265,41 @@ public class DistributionElement extends ContentMessage {
     this.status = status;
   }
 
-  public DistributionElement recipients(List<Recipient> recipients) {
+  public DistributionElement recipient(List<Recipient> recipient) {
 
-    this.recipients = recipients;
+    this.recipient = recipient;
     return this;
   }
 
-  public DistributionElement addRecipientsItem(Recipient recipientsItem) {
-    if (this.recipients == null) {
-      this.recipients = new ArrayList<>();
+  public DistributionElement addRecipientItem(Recipient recipientItem) {
+    if (this.recipient == null) {
+      this.recipient = new ArrayList<>();
     }
-    this.recipients.add(recipientsItem);
+    this.recipient.add(recipientItem);
     return this;
   }
 
   /**
-   * Get recipients
-   * @return recipients
+   * Get recipient
+   * @return recipient
    **/
-  @JsonProperty(JSON_PROPERTY_RECIPIENTS)
+  @JsonProperty(JSON_PROPERTY_RECIPIENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Recipient> getRecipients() {
-    return recipients;
+  public List<Recipient> getRecipient() {
+    return recipient;
   }
 
-  @JsonProperty(JSON_PROPERTY_RECIPIENTS)
+  @JsonProperty(JSON_PROPERTY_RECIPIENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRecipients(List<Recipient> recipients) {
-    if (recipients == null) {
+  public void setRecipient(List<Recipient> recipient) {
+    if (recipient == null) {
       return;
     }
-    if (this.recipients == null) {
-      this.recipients = new ArrayList<>();
+    if (this.recipient == null) {
+      this.recipient = new ArrayList<>();
     }
-    this.recipients.addAll(recipients);
+    this.recipient.addAll(recipient);
   }
 
   @Override
@@ -316,12 +316,12 @@ public class DistributionElement extends ContentMessage {
         Objects.equals(this.sentAt, distributionElement.sentAt) &&
         Objects.equals(this.kind, distributionElement.kind) &&
         Objects.equals(this.status, distributionElement.status) &&
-        Objects.equals(this.recipients, distributionElement.recipients);
+        Objects.equals(this.recipient, distributionElement.recipient);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(messageId, sender, sentAt, kind, status, recipients);
+    return Objects.hash(messageId, sender, sentAt, kind, status, recipient);
   }
 
   @Override
@@ -335,8 +335,8 @@ public class DistributionElement extends ContentMessage {
     sb.append("    sentAt: ").append(toIndentedString(sentAt)).append("\n");
     sb.append("    kind: ").append(toIndentedString(kind)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    recipients: ")
-        .append(toIndentedString(recipients))
+    sb.append("    recipient: ")
+        .append(toIndentedString(recipient))
         .append("\n");
     sb.append("}");
     return sb.toString();
