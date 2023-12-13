@@ -67,10 +67,11 @@ def get_nomenclature(elem):
     nomenclature_name = elem['Détails de format'][14:]
     for filename in os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv")):
         if filename.startswith(nomenclature_name):
-            df_nomenclature = pd.read_csv(filename, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
+            path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
+            df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
             L_ret = df_nomenclature["code"].values.tolist()
         else :
-            print(f'{path_file} does not exist. Cannot load associated nomenclature.')
+            print(f'{filename} does not exist. Cannot load associated nomenclature.')
             return []
 
     # path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
