@@ -37,6 +37,7 @@ RUN_DOCX_OUTPUT_EXAMPLES = False
 
 DATA_DEPTH = 6  # nombre de niveaux de données
 
+
 def get_params_from_sheet(sheet):
     """ Automatically get the number of rows and columns to use for this sheet. """
     full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
@@ -60,18 +61,28 @@ def get_params_from_sheet(sheet):
         'rows': rows
     }
 
-def get_nomenclature(elem) :
-    #filename to target (.csv format)
+
+def get_nomenclature(elem):
+    # filename to target (.csv format)
     nomenclature_name = elem['Détails de format'][14:]
-    path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
-    # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
-    if os.path.exists(path_file) :
-        df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
-        L_ret = df_nomenclature["code"].values.tolist()
-    else :
-        print(f'{path_file} does not exist. Cannot load associated nomenclature.')
-        return []
+    for filename in os.listdir(os.path.join("..", "nomenclature_parser", "latest", "csv")):
+        if filename.startswith(nomenclature_name):
+            df_nomenclature = pd.read_csv(filename, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
+            L_ret = df_nomenclature["code"].values.tolist()
+        else :
+            print(f'{path_file} does not exist. Cannot load associated nomenclature.')
+            return []
+
+    # path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
+    # # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
+    # if os.path.exists(path_file) :
+    #     df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
+    #     L_ret = df_nomenclature["code"].values.tolist()
+    # else :
+    #     print(f'{path_file} does not exist. Cannot load associated nomenclature.')
+    #     return []
     return L_ret
+
 
 params = get_params_from_sheet(args.sheet)
 MODEL_NAME = params['modelName']  # CreateCase
@@ -96,7 +107,7 @@ df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: p
 if MODEL_NAME != "RC-DE":
     # Adding the wrapper
     # - Moving all levels one level down
-    df = df.rename(columns={f"Donnée (Niveau {i})": f"Donnée (Niveau {i+1})" for i in range(1, DATA_DEPTH + 1)})
+    df = df.rename(columns={f"Donnée (Niveau {i})": f"Donnée (Niveau {i + 1})" for i in range(1, DATA_DEPTH + 1)})
     DATA_DEPTH += 1
     # - Adding the wrapper line
     df.insert(1, "Donnée (Niveau 1)", None)
@@ -439,6 +450,7 @@ def build_asyncapi_schema():
         asyncapi_schema[elem_name] = definition
     return asyncapi_schema
 
+
 openapi_components = build_asyncapi_schema()
 with open('common.openapi.yaml') as f:
     common_openapi_components = yaml.load(f, Loader=yaml.loader.SafeLoader)
@@ -450,7 +462,7 @@ with open('template.openapi.yaml') as f:
     full_yaml['components']['schemas'] = {
         **full_yaml['components']['schemas'],
         **openapi_components
-}
+    }
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Adding schema info to AsyncAPI spec...{Color.END}')
 with open('template.asyncapi.yaml') as f:
@@ -469,7 +481,7 @@ with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     file.write(documents)
 print('OpenAPI schema generated.')
 
-#TODO bb: extract this logic to an outside script called by the gh action
+# TODO bb: extract this logic to an outside script called by the gh action
 with open(f'out/full-asyncapi.yaml', 'w') as file:
     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
