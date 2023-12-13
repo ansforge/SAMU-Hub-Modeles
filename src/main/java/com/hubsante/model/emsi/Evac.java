@@ -67,8 +67,7 @@ public class Evac {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return DATIME
    **/
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
@@ -91,8 +90,7 @@ public class Evac {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return DISPLACED
    **/
   @JsonProperty(JSON_PROPERTY_D_I_S_P_L_A_C_E_D)
@@ -115,8 +113,7 @@ public class Evac {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return EVACUATED
    **/
   @JsonProperty(JSON_PROPERTY_E_V_A_C_U_A_T_E_D)

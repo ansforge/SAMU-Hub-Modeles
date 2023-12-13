@@ -66,10 +66,10 @@ public class Origin {
   }
 
   /**
-   * Décrit la structure ou le service à laquelle est rattachée la demande de
-   *concours. Se référer au DSF pour la structure normée des organisations Le
-   *format est le suivant {pays}:{domaine}:{code
-   *département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
+   * Optionnel, identifiant du service à l&#39;origine de l&#39;EMSI Se référer
+   *au DSF pour la structure normée des organisations Le format est le suivant
+   *{pays}.{domaine}.{code département}.{organisation}.{structure
+   *interne}*.{unité fonctionnelle}*.
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)

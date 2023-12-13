@@ -66,8 +66,8 @@ public class Coord {
   }
 
   /**
-   * Dans le cas où aucun LOC_ID n&#39;est transféré, permet de localiser le
-   *lieu d&#39;intervention souhaité
+   * Optionnel.  Dans le cas où aucun LOC_ID n&#39;est transféré, permet de
+   *localiser le lieu d&#39;intervention souhaité
    * @return LAT
    **/
   @JsonProperty(JSON_PROPERTY_L_A_T)
@@ -90,8 +90,8 @@ public class Coord {
   }
 
   /**
-   * Dans le cas où aucun LOC_ID n&#39;est transféré, permet de localiser le
-   *lieu d&#39;intervention souhaité
+   * Optionnel. Dans le cas où aucun LOC_ID n&#39;est transféré, permet de
+   *localiser le lieu d&#39;intervention souhaité
    * @return LONG
    **/
   @JsonProperty(JSON_PROPERTY_L_O_N_G)
@@ -114,8 +114,8 @@ public class Coord {
   }
 
   /**
-   * Dans le cas où aucun LOC_ID n&#39;est transféré, permet de localiser le
-   *lieu d&#39;intervention souhaité
+   * Optionnel. Dans le cas où aucun LOC_ID n&#39;est transféré, permet de
+   *localiser le lieu d&#39;intervention souhaité
    * @return HEIGHT
    **/
   @JsonProperty(JSON_PROPERTY_H_E_I_G_H_T)

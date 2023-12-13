@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.emsi.ExternalInfo;
 import com.hubsante.model.emsi.Link;
 import com.hubsante.model.emsi.Origin;
 import java.time.OffsetDateTime;
@@ -52,7 +53,8 @@ import java.util.Objects;
      Context.JSON_PROPERTY_L_I_N_K, Context.JSON_PROPERTY_L_E_V_E_L,
      Context.JSON_PROPERTY_S_E_C_L_A_S_S, Context.JSON_PROPERTY_F_R_E_E_T_E_X_T,
      Context.JSON_PROPERTY_O_R_I_G_I_N,
-     Context.JSON_PROPERTY_E_X_T_E_R_N_A_L_I_N_F_O})
+     Context.JSON_PROPERTY_E_X_T_E_R_N_A_L_I_N_F_O,
+     Context.JSON_PROPERTY_U_R_G_E_N_C_Y})
 @JsonTypeName("context")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -101,8 +103,9 @@ public class Context {
   private MODEEnum MODE;
 
   /**
-   * Valeur constante dans le cadre d&#39;une demande de concours pour des
-   * échanges LRM-NexSIS : UPDATE
+   * - A valoriser avec la valeur \&quot;ALERT\&quot; lors du premier échange
+   * entre systèmes. - A valoriser avec la valeur constante \&quot;UPDATE\&quot;
+   * ensuite. Peut ne pas être interprété par les LRM.
    */
   public enum MSGTYPEEnum {
     ACK("ACK"),
@@ -150,7 +153,8 @@ public class Context {
   private List<Link> LINK;
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel
+   * A valoriser avec la valeur constante \&quot;OPR\&quot; dans le cadre du
+   * message EMSI-EO
    */
   public enum LEVELEnum {
     STRTGC("STRTGC"),
@@ -188,7 +192,7 @@ public class Context {
   private LEVELEnum LEVEL;
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel
+   * Optionnel
    */
   public enum SECLASSEnum {
     CONFID("CONFID"),
@@ -239,7 +243,44 @@ public class Context {
 
   public static final String JSON_PROPERTY_E_X_T_E_R_N_A_L_I_N_F_O =
       "EXTERNAL_INFO";
-  private List<Object> EXTERNAL_INFO;
+  private List<ExternalInfo> EXTERNAL_INFO;
+
+  /**
+   * Niveau d&#39;urgence pour l&#39;affaire en cours Dans le cadre des échanges
+   * LRM-NexSIS, optionnel
+   */
+  public enum URGENCYEnum {
+    URGENT("URGENT"),
+
+    NOT_URGENT("NOT_URGENT");
+
+    private String value;
+
+    URGENCYEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static URGENCYEnum fromValue(String value) {
+      for (URGENCYEnum b : URGENCYEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_U_R_G_E_N_C_Y = "URGENCY";
+  private URGENCYEnum URGENCY;
 
   public Context() {}
 
@@ -250,8 +291,8 @@ public class Context {
   }
 
   /**
-   * A constituer par le rédacteur du présent EMSI pour être unique, peut
-   *reprendre messageId de l&#39;en tête RC-DE.
+   * A constituer par le rédacteur du présent EMSI pour être unique, il est
+   *préconisé de reprendre la valeur du champ messageId de l&#39;entête RC-DE.
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)
@@ -297,8 +338,9 @@ public class Context {
   }
 
   /**
-   * Valeur constante dans le cadre d&#39;une demande de concours pour des
-   *échanges LRM-NexSIS : UPDATE
+   * - A valoriser avec la valeur \&quot;ALERT\&quot; lors du premier échange
+   *entre systèmes. - A valoriser avec la valeur constante \&quot;UPDATE\&quot;
+   *ensuite. Peut ne pas être interprété par les LRM.
    * @return MSGTYPE
    **/
   @JsonProperty(JSON_PROPERTY_M_S_G_T_Y_P_E)
@@ -323,18 +365,19 @@ public class Context {
   /**
    * Obligatoire dans le cadre d&#39;une demande de concours, contient la date
    *de création de la demande de concours dans le système du partenaire
-   *requérant
+   *requérant. A valoriser avec le même horaire que dateTimeSent dans le message
+   *RC-DE associé.
    * @return CREATION
    **/
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getCREATION() {
     return CREATION;
   }
 
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCREATION(OffsetDateTime CREATION) {
     this.CREATION = CREATION;
   }
@@ -385,7 +428,8 @@ public class Context {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel
+   * A valoriser avec la valeur constante \&quot;OPR\&quot; dans le cadre du
+   *message EMSI-EO
    * @return LEVEL
    **/
   @JsonProperty(JSON_PROPERTY_L_E_V_E_L)
@@ -408,7 +452,7 @@ public class Context {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel
+   * Optionnel
    * @return SECLASS
    **/
   @JsonProperty(JSON_PROPERTY_S_E_C_L_A_S_S)
@@ -431,7 +475,7 @@ public class Context {
   }
 
   /**
-   * Texte libre Dans le cadre d&#39;une demande de concours, optionnel
+   * Texte libre, optionnel
    * @return FREETEXT
    **/
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
@@ -470,13 +514,13 @@ public class Context {
     this.ORIGIN = ORIGIN;
   }
 
-  public Context EXTERNAL_INFO(List<Object> EXTERNAL_INFO) {
+  public Context EXTERNAL_INFO(List<ExternalInfo> EXTERNAL_INFO) {
 
     this.EXTERNAL_INFO = EXTERNAL_INFO;
     return this;
   }
 
-  public Context addEXTERNALINFOItem(Object EXTERNAL_INFOItem) {
+  public Context addEXTERNALINFOItem(ExternalInfo EXTERNAL_INFOItem) {
     if (this.EXTERNAL_INFO == null) {
       this.EXTERNAL_INFO = new ArrayList<>();
     }
@@ -491,7 +535,7 @@ public class Context {
   @JsonProperty(JSON_PROPERTY_E_X_T_E_R_N_A_L_I_N_F_O)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getEXTERNALINFO() {
+  public List<ExternalInfo> getEXTERNALINFO() {
     return EXTERNAL_INFO;
   }
 
@@ -499,7 +543,7 @@ public class Context {
 
   @JsonProperty(JSON_PROPERTY_E_X_T_E_R_N_A_L_I_N_F_O)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEXTERNALINFO(List<Object> EXTERNAL_INFO) {
+  public void setEXTERNALINFO(List<ExternalInfo> EXTERNAL_INFO) {
     if (EXTERNAL_INFO == null) {
       return;
     }
@@ -507,6 +551,30 @@ public class Context {
       this.EXTERNAL_INFO = new ArrayList<>();
     }
     this.EXTERNAL_INFO.addAll(EXTERNAL_INFO);
+  }
+
+  public Context URGENCY(URGENCYEnum URGENCY) {
+
+    this.URGENCY = URGENCY;
+    return this;
+  }
+
+  /**
+   * Niveau d&#39;urgence pour l&#39;affaire en cours Dans le cadre des échanges
+   *LRM-NexSIS, optionnel
+   * @return URGENCY
+   **/
+  @JsonProperty(JSON_PROPERTY_U_R_G_E_N_C_Y)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public URGENCYEnum getURGENCY() {
+    return URGENCY;
+  }
+
+  @JsonProperty(JSON_PROPERTY_U_R_G_E_N_C_Y)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setURGENCY(URGENCYEnum URGENCY) {
+    this.URGENCY = URGENCY;
   }
 
   @Override
@@ -527,13 +595,14 @@ public class Context {
         Objects.equals(this.SECLASS, context.SECLASS) &&
         Objects.equals(this.FREETEXT, context.FREETEXT) &&
         Objects.equals(this.ORIGIN, context.ORIGIN) &&
-        Objects.equals(this.EXTERNAL_INFO, context.EXTERNAL_INFO);
+        Objects.equals(this.EXTERNAL_INFO, context.EXTERNAL_INFO) &&
+        Objects.equals(this.URGENCY, context.URGENCY);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(ID, MODE, MSGTYPE, CREATION, LINK, LEVEL, SECLASS,
-                        FREETEXT, ORIGIN, EXTERNAL_INFO);
+                        FREETEXT, ORIGIN, EXTERNAL_INFO, URGENCY);
   }
 
   @Override
@@ -552,6 +621,7 @@ public class Context {
     sb.append("    EXTERNAL_INFO: ")
         .append(toIndentedString(EXTERNAL_INFO))
         .append("\n");
+    sb.append("    URGENCY: ").append(toIndentedString(URGENCY)).append("\n");
     sb.append("}");
     return sb.toString();
   }

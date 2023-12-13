@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.emsi.PositionRgeo;
+import com.hubsante.model.emsi.Position;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -61,366 +61,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Mission {
-
-  /**
-   * Le champ MISSION TYPE permet d&#39;identifier l&#39;effet à obtenir
-   * souhaité à partir de la combinaison du code ACTOR et du code TYPE.
-   * &#x3D;&gt; La table de transcodage permettant d&#39;identifier les
-   * concourants et les effets à obtenir à partir d&#39;un code EMSI est fournie
-   * en annexe \&quot;Référentiel Effets à Obtenir - correspondance EMSI\&quot;.
-   */
-  public enum TYPEEnum {
-    C2("C2"),
-
-    CBRN("CBRN"),
-
-    FF("FF"),
-
-    FSTT("FSTT"),
-
-    GEN("GEN"),
-
-    INT("INT"),
-
-    MAC("MAC"),
-
-    MIL("MIL"),
-
-    NET("NET"),
-
-    OPR("OPR"),
-
-    POL("POL"),
-
-    REC("REC"),
-
-    RSC("RSC"),
-
-    SAV("SAV"),
-
-    SCS("SCS"),
-
-    SOC("SOC"),
-
-    _C2_DEBRIF("/C2/DEBRIF"),
-
-    _C2_DNRSKA("/C2/DNRSKA"),
-
-    _C2_INASSM("/C2/INASSM"),
-
-    _C2_OIC("/C2/OIC"),
-
-    _C2_POA("/C2/POA"),
-
-    _C2_THRTAS("/C2/THRTAS"),
-
-    _CBRN_CBRNCH("/CBRN/CBRNCH"),
-
-    _CBRN_CBRNDC("/CBRN/CBRNDC"),
-
-    _CBRN_NTRCH("/CBRN/NTRCH"),
-
-    _CBRN_NUCWS("/CBRN/NUCWS"),
-
-    _FF_IN("/FF/IN"),
-
-    _FF_OA("/FF/OA"),
-
-    _FF_SALVAG("/FF/SALVAG"),
-
-    _FF_STR("/FF/STR"),
-
-    _FF_TRP("/FF/TRP"),
-
-    _FSTT_DI("/FSTT/DI"),
-
-    _FSTT_RRHAZ("/FSTT/RRHAZ"),
-
-    _FSTT_TA("/FSTT/TA"),
-
-    _GEN_AIRLAU("/GEN/AIRLAU"),
-
-    _GEN_ASSMBL("/GEN/ASSMBL"),
-
-    _GEN_CRWDCT("/GEN/CRWDCT"),
-
-    _GEN_DEMO("/GEN/DEMO"),
-
-    _GEN_DEPLOY("/GEN/DEPLOY"),
-
-    _GEN_DSTRBT("/GEN/DSTRBT"),
-
-    _GEN_FINANC("/GEN/FINANC"),
-
-    _GEN_MARKNG("/GEN/MARKNG"),
-
-    _GEN_MOVE("/GEN/MOVE"),
-
-    _GEN_RECVRN("/GEN/RECVRN"),
-
-    _GEN_RECVRY("/GEN/RECVRY"),
-
-    _GEN_REDPLN("/GEN/REDPLN"),
-
-    _GEN_REORGN("/GEN/REORGN"),
-
-    _GEN_REPAIR("/GEN/REPAIR"),
-
-    _GEN_RESPLN("/GEN/RESPLN"),
-
-    _GEN_RESTNG("/GEN/RESTNG"),
-
-    _GEN_RETIRE("/GEN/RETIRE"),
-
-    _GEN_RLFPLC("/GEN/RLFPLC"),
-
-    _GEN_RNDZVS("/GEN/RNDZVS"),
-
-    _GEN_SCNMNG("/GEN/SCNMNG"),
-
-    _GEN_SECRNG("/GEN/SECRNG"),
-
-    _GEN_STNGUP("/GEN/STNGUP"),
-
-    _GEN_SUPRTN("/GEN/SUPRTN"),
-
-    _GEN_TRNSPN("/GEN/TRNSPN"),
-
-    _INT_BIOSMP("/INT/BIOSMP"),
-
-    _INT_CHMSMP("/INT/CHMSMP"),
-
-    _INT_IDENT("/INT/IDENT"),
-
-    _INT_ILLUMN("/INT/ILLUMN"),
-
-    _INT_LOCTNG("/INT/LOCTNG"),
-
-    _INT_NUCSMP("/INT/NUCSMP"),
-
-    _INT_OBSRNG("/INT/OBSRNG"),
-
-    _INT_PLUMOD("/INT/PLUMOD"),
-
-    _INT_PTRLNG("/INT/PTRLNG"),
-
-    _INT_RECCE("/INT/RECCE"),
-
-    _INT_SRVMET("/INT/SRVMET"),
-
-    _INT_SRVSEN("/INT/SRVSEN"),
-
-    _INT_WITNSN("/INT/WITNSN"),
-
-    _MAC_AII("/MAC/AII"),
-
-    _MAC_COL("/MAC/COL"),
-
-    _MIL_BCESC("/MIL/BCESC"),
-
-    _MIL_BLOCKN("/MIL/BLOCKN"),
-
-    _MIL_BOMBNG("/MIL/BOMBNG"),
-
-    _MIL_CAPTUR("/MIL/CAPTUR"),
-
-    _MIL_CTRATK("/MIL/CTRATK"),
-
-    _MIL_DEFEND("/MIL/DEFEND"),
-
-    _MIL_DISENG("/MIL/DISENG"),
-
-    _MIL_DIVRSN("/MIL/DIVRSN"),
-
-    _MIL_DLBATK("/MIL/DLBATK"),
-
-    _MIL_DSRPTN("/MIL/DSRPTN"),
-
-    _MIL_ENVLPN("/MIL/ENVLPN"),
-
-    _MIL_FIX("/MIL/FIX"),
-
-    _MIL_HARASS("/MIL/HARASS"),
-
-    _MIL_HIDE("/MIL/HIDE"),
-
-    _MIL_HLDDEF("/MIL/HLDDEF"),
-
-    _MIL_HLDOFF("/MIL/HLDOFF"),
-
-    _MIL_INFLTN("/MIL/INFLTN"),
-
-    _MIL_INTCPN("/MIL/INTCPN"),
-
-    _MIL_INTDCT("/MIL/INTDCT"),
-
-    _MIL_MASFOR("/MIL/MASFOR"),
-
-    _MIL_MIL("/MIL/MIL"),
-
-    _MIL_WPNFIR("/MIL/WPNFIR"),
-
-    _NET_COMDEA("/NET/COMDEA"),
-
-    _NET_DATTRF("/NET/DATTRF"),
-
-    _NET_NETJAM("/NET/NETJAM"),
-
-    _NET_NETSEI("/NET/NETSEI"),
-
-    _NET_SGNC("/NET/SGNC"),
-
-    _NET_SGNLE("/NET/SGNLE"),
-
-    _POL_NTRCOM("/POL/NTRCOM"),
-
-    _POL_NTREXP("/POL/NTREXP"),
-
-    _POL_SCNMNG("/POL/SCNMNG"),
-
-    _POL_SCNPRS("/POL/SCNPRS"),
-
-    _POL_SHELTR("/POL/SHELTR"),
-
-    _POL_SUSHOS("/POL/SUSHOS"),
-
-    _POL_WITDRL("/POL/WITDRL"),
-
-    _REC_CLROBS("/REC/CLROBS"),
-
-    _REC_COMACT("/REC/COMACT"),
-
-    _REC_COMRES("/REC/COMRES"),
-
-    _REC_CONSTN("/REC/CONSTN"),
-
-    _REC_ENGCN("/REC/ENGCN"),
-
-    _REC_ENGCNN("/REC/ENGCNN"),
-
-    _REC_PROCUR("/REC/PROCUR"),
-
-    _REC_PRVACC("/REC/PRVACC"),
-
-    _REC_PRVAGR("/REC/PRVAGR"),
-
-    _REC_PRVBDD("/REC/PRVBDD"),
-
-    _REC_PRVCMP("/REC/PRVCMP"),
-
-    _REC_PRVCNS("/REC/PRVCNS"),
-
-    _REC_PRVDCN("/REC/PRVDCN"),
-
-    _REC_PRVEDU("/REC/PRVEDU"),
-
-    _REC_PRVHLT("/REC/PRVHLT"),
-
-    _REC_PRVHSN("/REC/PRVHSN"),
-
-    _REC_PRVINF("/REC/PRVINF"),
-
-    _REC_PRVLND("/REC/PRVLND"),
-
-    _REC_PRVRPR("/REC/PRVRPR"),
-
-    _REC_PRVSCY("/REC/PRVSCY"),
-
-    _REC_PRVSHL("/REC/PRVSHL"),
-
-    _REC_PRVSTG("/REC/PRVSTG"),
-
-    _REC_PRVTRS("/REC/PRVTRS"),
-
-    _REC_PSO("/REC/PSO"),
-
-    _REC_SPLLDB("/REC/SPLLDB"),
-
-    _REC_SPLWAT("/REC/SPLWAT"),
-
-    _REC_UTILTY("/REC/UTILTY"),
-
-    _REC_WATER("/REC/WATER"),
-
-    _RSC_COVERN("/RSC/COVERN"),
-
-    _RSC_FRFGTN("/RSC/FRFGTN"),
-
-    _RSC_MEDEVC("/RSC/MEDEVC"),
-
-    _RSC_SAR("/RSC/SAR"),
-
-    _SAV_AR("/SAV/AR"),
-
-    _SAV_ASC("/SAV/ASC"),
-
-    _SAV_RHD("/SAV/RHD"),
-
-    _SAV_RTA("/SAV/RTA"),
-
-    _SAV_SARCSL("/SAV/SARCSL"),
-
-    _SAV_SARHHA("/SAV/SARHHA"),
-
-    _SAV_SRW("/SAV/SRW"),
-
-    _SAV_USAR("/SAV/USAR"),
-
-    _SAV_UW("/SAV/UW"),
-
-    _SCS_EDU("/SCS/EDU"),
-
-    _SOC_CNDCNF("/SOC/CNDCNF"),
-
-    _SOC_CNDMED("/SOC/CNDMED"),
-
-    _SOC_CNDRCR("/SOC/CNDRCR"),
-
-    _SOC_CNDSCL("/SOC/CNDSCL"),
-
-    _SOC_CNDSPT("/SOC/CNDSPT"),
-
-    _SOC_ISSMDA("/SOC/ISSMDA"),
-
-    _SOC_ISSMDD("/SOC/ISSMDD"),
-
-    _SOC_ISSPRS("/SOC/ISSPRS"),
-
-    _SOC_MN("/SOC/MN"),
-
-    _SOC_PUBMDA("/SOC/PUBMDA"),
-
-    _SOC_PUBMDD("/SOC/PUBMDD"),
-
-    _SOC_PUBPRS("/SOC/PUBPRS");
-
-    private String value;
-
-    TYPEEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TYPEEnum fromValue(String value) {
-      for (TYPEEnum b : TYPEEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private TYPEEnum TYPE;
+  private String TYPE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
   private String FREETEXT;
@@ -435,11 +77,25 @@ public class Mission {
   private String NAME;
 
   /**
-   * Définit le statut de la demande de concours. La demande de concours étant
-   * en cours, le champ doit être valorisé avec le libellé \&quot;IPR\&quot;
+   * Les valeurs possibles avec lesquelles valoriser ce champ sont détaillées au
+   * sein d&#39;une nomenclature EMSI - ABO : mission refusée (ABOrted) - CANCLD
+   * : mission annulée (CANCeLeD)** - NST : mission non débuté pour le métier
+   * (Not STarted) - IPR :  mission débuté pour le métier (In PRogress). la
+   * valeur IPR peut être suivi d&#39;une valeur numérique de 00 à 100 (IPRnn)
+   * spécifiant le degré d&#39;avancement de la mission. Ce principe n&#39;est
+   * pas retenu au sein de NexSIS qui ne transmettra pas d&#39;indication sur le
+   * degré d&#39;avancement de la mission via ce champ. - PAU : événement
+   * arrêté, en pause pour métier, pas de besoin supplémentaire - COM :
+   * événement terminé pour le métier (COMplete) Le status de la mission et
+   * celui des RESSOURCE associées doit être cohérent et transcodable avec un
+   * status ANTARES (voir DSF)  Dans le cas d&#39;un objet MISSION générique de
+   * réponse à demande de concours, le champ doit être valorisé à
+   * \&quot;NST\&quot;
    */
   public enum STATUSEnum {
-    _ABO(" ABO"),
+    ABO("ABO"),
+
+    NST("NST"),
 
     CANCLD("CANCLD"),
 
@@ -484,7 +140,7 @@ public class Mission {
   private OffsetDateTime END_TIME;
 
   public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D = "RESOURCE_ID";
-  private List<String> RESOURCE_ID;
+  private String RESOURCE_ID;
 
   public static final String JSON_PROPERTY_P_A_R_E_N_T_M_I_S_S_I_O_N_I_D =
       "PARENT_MISSION_ID";
@@ -499,12 +155,14 @@ public class Mission {
   private String MAIN_MISSION_ID;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
-  private PositionRgeo POSITION;
+  private Position POSITION;
 
   /**
    * Indique une échelle de priorité pour la demande de concours. Dans le cadre
    * du standard EMSI, cette échelle doit être comprise entre 0 et 5. Ce champ
-   * peut ne pas être interprété ni alimenté par les LRMs.
+   * peut ne pas être interprété ni alimenté par les LRMs. Dans le cadre
+   * d&#39;un échange des opérations, optionnel. Le champ peut ne pas être émis
+   * ni interprété.
    */
   public enum PRIORITYEnum {
     _0("0"),
@@ -549,7 +207,7 @@ public class Mission {
 
   public Mission() {}
 
-  public Mission TYPE(TYPEEnum TYPE) {
+  public Mission TYPE(String TYPE) {
 
     this.TYPE = TYPE;
     return this;
@@ -561,18 +219,22 @@ public class Mission {
    *&#x3D;&gt; La table de transcodage permettant d&#39;identifier les
    *concourants et les effets à obtenir à partir d&#39;un code EMSI est fournie
    *en annexe \&quot;Référentiel Effets à Obtenir - correspondance EMSI\&quot;.
+   *Dans le cadre d&#39;une réponse à DC : - reprendre le type de la DC si le
+   *code réponse choisi est vien \&quot;VALIDE\&quot; Dans le cadre d&#39;une
+   *mission décrivant les opérations en cours : - reprendre la nomenclature EMSI
+   *pour caractériser la mission en cours.
    * @return TYPE
    **/
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public TYPEEnum getTYPE() {
+  public String getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTYPE(TYPEEnum TYPE) {
+  public void setTYPE(String TYPE) {
     this.TYPE = TYPE;
   }
 
@@ -583,10 +245,10 @@ public class Mission {
   }
 
   /**
-   * Contient des commentaires relatifs aux moyens sollicités dans le cadre de
-   *la demande de concours. Les équipements supplémentaires souhaités ou le nom/
-   *prénom des patients à prendre en charge peuvent être explicitement indiqués
-   *ici
+   * Contient des commentaires relatifs aux objectifs et  moyens sollicités dans
+   *le cadre de la demande de concours. Les équipements supplémentaires
+   *souhaités ou le nom/ prénom des patients à prendre en charge peuvent être
+   *explicitement indiqués ici.
    * @return FREETEXT
    **/
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
@@ -610,18 +272,19 @@ public class Mission {
 
   /**
    * Contient un identifiant de demande de concours unique. Cet identifiant sera
-   *réutilisable par le partenaire pour répondre à cette demande.
+   *réutilisable par le partenaire pour répondre à cette demande. Identifiant
+   *unique de la mission dans le système du partenaire la conduisant.
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getID() {
     return ID;
   }
 
   @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setID(String ID) {
     this.ID = ID;
   }
@@ -635,6 +298,11 @@ public class Mission {
   /**
    * Indique l&#39;organisation du partenaire concerné par la Demande de
    *Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut être utilisé.
+   *Indique l&#39;organisation du service réalisant la mission. Dans le cas
+   *d&#39;une réponse, c&#39;est l&#39;organisation du concourant qui doit être
+   *indiquée. Se référer au DSF pour la structure normée des organisations Le
+   *format est le suivant {pays}:{domaine}:{code
+   *département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
@@ -663,18 +331,23 @@ public class Mission {
    *où le code_cadre_conventionnel est issue d&#39;une nomenclature CISU-Cadre
    *Conventionnel (A Venir) NB : ce champ est détourné par rapport au standard
    *EMSI pour permettre l&#39;expression d&#39;une demande de concours et
-   *indiquer le cadre conventionnel dans lequel elle est effectuée
+   *indiquer le cadre conventionnel dans lequel elle est effectuée. Pour une
+   *réponse à demande de concours : - Le nom de la mission est construit à
+   *partir de l&#39;expression régulière suivante :
+   *\&quot;#REPONSE_DEMANDE_CONCOURS#\&quot;{code_reponse}\&quot;#\&quot; où le
+   *code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE, DIVERGENTE
+   *- sinon libre
    * @return NAME
    **/
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNAME(String NAME) {
     this.NAME = NAME;
   }
@@ -686,8 +359,19 @@ public class Mission {
   }
 
   /**
-   * Définit le statut de la demande de concours. La demande de concours étant
-   *en cours, le champ doit être valorisé avec le libellé \&quot;IPR\&quot;
+   * Les valeurs possibles avec lesquelles valoriser ce champ sont détaillées au
+   *sein d&#39;une nomenclature EMSI - ABO : mission refusée (ABOrted) - CANCLD
+   *: mission annulée (CANCeLeD)** - NST : mission non débuté pour le métier
+   *(Not STarted) - IPR :  mission débuté pour le métier (In PRogress). la
+   *valeur IPR peut être suivi d&#39;une valeur numérique de 00 à 100 (IPRnn)
+   *spécifiant le degré d&#39;avancement de la mission. Ce principe n&#39;est
+   *pas retenu au sein de NexSIS qui ne transmettra pas d&#39;indication sur le
+   *degré d&#39;avancement de la mission via ce champ. - PAU : événement arrêté,
+   *en pause pour métier, pas de besoin supplémentaire - COM : événement terminé
+   *pour le métier (COMplete) Le status de la mission et celui des RESSOURCE
+   *associées doit être cohérent et transcodable avec un status ANTARES (voir
+   *DSF)  Dans le cas d&#39;un objet MISSION générique de réponse à demande de
+   *concours, le champ doit être valorisé à \&quot;NST\&quot;
    * @return STATUS
    **/
   @JsonProperty(JSON_PROPERTY_S_T_A_T_U_S)
@@ -710,22 +394,21 @@ public class Mission {
   }
 
   /**
-   * Indique l&#39;heure d’arrivée sur le lieu de la Demande de concours. Le
-   *délai d&#39;intervention en est déduit en calculant le délai entre la date
-   *et heure de création (cf. CONTEXT.CREATION) et le champ MISSION.START_TIME.
-   *Si la date de création du message EMSI est identique à celui de la mission,
-   *la demande de concours demande un départ immédiat
+   * - Dans le cadre d&#39;une réponse à Demande de Concours Horraire cible pour
+   *l&#39;arrivée sur les lieux décrites (peut diverger de l&#39;horaire
+   *demandé) - Dans le cadre d&#39;une mission décrivant les opérations en cours
+   *: Horaire effectif de début de la mission
    * @return START_TIME
    **/
   @JsonProperty(JSON_PROPERTY_S_T_A_R_T_T_I_M_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getSTARTTIME() {
     return START_TIME;
   }
 
   @JsonProperty(JSON_PROPERTY_S_T_A_R_T_T_I_M_E)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setSTARTTIME(OffsetDateTime START_TIME) {
     this.START_TIME = START_TIME;
   }
@@ -737,7 +420,11 @@ public class Mission {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, ne doit pas être renseigné
+   * A valoriser selon la catégorie de mission : - Dans le cadre d&#39;une
+   *mission de réponse à demande de concours : ne pas renseigner - Dans le cadre
+   *d&#39;une mission décrivant les opérations en cours :  Si c&#39;est un
+   *déplacement, l&#39;heure d&#39;arrivée, si c&#39;est une prise en charge
+   *patient/victime, la fin de la prise en charge.
    * @return END_TIME
    **/
   @JsonProperty(JSON_PROPERTY_E_N_D_T_I_M_E)
@@ -753,43 +440,28 @@ public class Mission {
     this.END_TIME = END_TIME;
   }
 
-  public Mission RESOURCE_ID(List<String> RESOURCE_ID) {
+  public Mission RESOURCE_ID(String RESOURCE_ID) {
 
     this.RESOURCE_ID = RESOURCE_ID;
     return this;
   }
 
-  public Mission addRESOURCEIDItem(String RESOURCE_IDItem) {
-    if (this.RESOURCE_ID == null) {
-      this.RESOURCE_ID = new ArrayList<>();
-    }
-    this.RESOURCE_ID.add(RESOURCE_IDItem);
-    return this;
-  }
-
   /**
-   * Get RESOURCE_ID
+   * Liste des identifiants des ressources engagées dans la mission (voire
+   *RESSOURCE.ID)
    * @return RESOURCE_ID
    **/
   @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getRESOURCEID() {
+  public String getRESOURCEID() {
     return RESOURCE_ID;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRESOURCEID(List<String> RESOURCE_ID) {
-    if (RESOURCE_ID == null) {
-      return;
-    }
-    if (this.RESOURCE_ID == null) {
-      this.RESOURCE_ID = new ArrayList<>();
-    }
-    this.RESOURCE_ID.addAll(RESOURCE_ID);
+  public void setRESOURCEID(String RESOURCE_ID) {
+    this.RESOURCE_ID = RESOURCE_ID;
   }
 
   public Mission PARENT_MISSION_ID(List<String> PARENT_MISSION_ID) {
@@ -877,7 +549,12 @@ public class Mission {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, ne doit pas être renseigné
+   * - Dans le cas d&#39;une mission générique de réponse à demande de concours,
+   *indiquer l&#39;ID de la mission générique utilisée pour modéliser la demande
+   *de concours - Dans le cas d&#39;une mission déclenchée dans le cadre
+   *d&#39;une réponse à demande de concours, l&#39;ID de la mission générique de
+   *réponse peut être utilisée dans ce champ pour indiquer qu&#39;elle est liée
+   *à une réponse
    * @return MAIN_MISSION_ID
    **/
   @JsonProperty(JSON_PROPERTY_M_A_I_N_M_I_S_S_I_O_N_I_D)
@@ -893,7 +570,7 @@ public class Mission {
     this.MAIN_MISSION_ID = MAIN_MISSION_ID;
   }
 
-  public Mission POSITION(PositionRgeo POSITION) {
+  public Mission POSITION(Position POSITION) {
 
     this.POSITION = POSITION;
     return this;
@@ -904,15 +581,15 @@ public class Mission {
    * @return POSITION
    **/
   @JsonProperty(JSON_PROPERTY_P_O_S_I_T_I_O_N)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public PositionRgeo getPOSITION() {
+  public Position getPOSITION() {
     return POSITION;
   }
 
   @JsonProperty(JSON_PROPERTY_P_O_S_I_T_I_O_N)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPOSITION(PositionRgeo POSITION) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPOSITION(Position POSITION) {
     this.POSITION = POSITION;
   }
 
@@ -925,7 +602,9 @@ public class Mission {
   /**
    * Indique une échelle de priorité pour la demande de concours. Dans le cadre
    *du standard EMSI, cette échelle doit être comprise entre 0 et 5. Ce champ
-   *peut ne pas être interprété ni alimenté par les LRMs.
+   *peut ne pas être interprété ni alimenté par les LRMs. Dans le cadre d&#39;un
+   *échange des opérations, optionnel. Le champ peut ne pas être émis ni
+   *interprété.
    * @return PRIORITY
    **/
   @JsonProperty(JSON_PROPERTY_P_R_I_O_R_I_T_Y)

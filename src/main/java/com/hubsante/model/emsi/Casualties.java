@@ -113,8 +113,7 @@ public class Casualties {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return DATIME
    **/
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
@@ -137,8 +136,7 @@ public class Casualties {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return DECONT
    **/
   @JsonProperty(JSON_PROPERTY_D_E_C_O_N_T)
@@ -161,8 +159,7 @@ public class Casualties {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return TRIAGERED
    **/
   @JsonProperty(JSON_PROPERTY_T_R_I_A_G_E_R_E_D)
@@ -185,8 +182,7 @@ public class Casualties {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return TRIAGEYELLOW
    **/
   @JsonProperty(JSON_PROPERTY_T_R_I_A_G_E_Y_E_L_L_O_W)
@@ -209,8 +205,7 @@ public class Casualties {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return TRIAGEGREEN
    **/
   @JsonProperty(JSON_PROPERTY_T_R_I_A_G_E_G_R_E_E_N)
@@ -233,8 +228,7 @@ public class Casualties {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return TRIAGEBLACK
    **/
   @JsonProperty(JSON_PROPERTY_T_R_I_A_G_E_B_L_A_C_K)
@@ -257,8 +251,7 @@ public class Casualties {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return MISSING
    **/
   @JsonProperty(JSON_PROPERTY_M_I_S_S_I_N_G)

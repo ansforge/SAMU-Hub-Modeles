@@ -80,8 +80,7 @@ public class Event {
   private Etype ETYPE;
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   * pas être émis ni interprété
+   * Optionnel
    */
   public enum SOURCEEnum {
     COMFOR("COMFOR"),
@@ -121,8 +120,7 @@ public class Event {
   private SOURCEEnum SOURCE;
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   * pas être émis ni interprété
+   * Optionnel
    */
   public enum SCALEEnum {
     _1("1"),
@@ -179,9 +177,14 @@ public class Event {
    * Permet de décrire le status de l&#39;affaire en cours. Ce champ suit une
    * nomenclature EMSI. (COM &#x3D; event complete, IPR &#x3D; event in
    * progress, NST &#x3D; event not started, STOP &#x3D; STOP &#x3D; event under
-   * control, no need for additional resource) Dans le cadre d&#39;une demande
-   * de concours, systématiquement renseigné à IPR (In Progress) car
-   * l&#39;affaire est en cours de traitement par l&#39;un des partenaires.
+   * control, no need for additional resource) Dans le cadre d&#39;une opération
+   * : - si l&#39;opération est encore en cours : rensigner &#39;IPR&#39;, - si
+   * le dispatching de moyens est encore en cours ou que seulement des
+   * qualifications d&#39;alertes ont été échangées sans aucune décision de
+   * régulation &#39;NST&#39;, - si l&#39;opération est en pause/veille :
+   * &#39;STOP&#39; - si le message d&#39;échange opérationnel décrit une fin
+   * d&#39;opération, à renseigner avec &#39;COM&#39; Un message EMSI-EO sans
+   * RESSOURCE ni
    */
   public enum STATUSEnum {
     COM("COM"),
@@ -221,8 +224,7 @@ public class Event {
   private STATUSEnum STATUS;
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   * pas être émis ni interprété
+   * Optionnel
    */
   public enum RISKASSESMENTEnum {
     NCREA("NCREA"),
@@ -273,8 +275,7 @@ public class Event {
   private List<Egeo> EGEO;
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   * pas être émis ni interprété.
+   * Optionnel
    */
   public enum CAUSEEnum {
     ACC("ACC"),
@@ -323,8 +324,7 @@ public class Event {
   }
 
   /**
-   * Il peut être renseigné avec l&#39;identifiant local de l&#39;affaire du
-   *partenaire requérant
+   * Identifiant local de l&#39;affaire dans le système du partenaire emetteur
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)
@@ -347,8 +347,7 @@ public class Event {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return NAME
    **/
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
@@ -371,18 +370,20 @@ public class Event {
   }
 
   /**
-   * Identifiant d’affaire partagé issu du message RC-EDA transmis en amont
+   * Identifiant d’affaire partagé issu du message RC-EDA transmis en amont NB :
+   *Dans le cas d’un partage initié par un SAMU, on peut avoir EVENT.ID &#x3D;
+   *EVENT.MAIN_EVENT_ID
    * @return MAIN_EVENT_ID
    **/
   @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getMAINEVENTID() {
     return MAIN_EVENT_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMAINEVENTID(String MAIN_EVENT_ID) {
     this.MAIN_EVENT_ID = MAIN_EVENT_ID;
   }
@@ -417,8 +418,7 @@ public class Event {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return SOURCE
    **/
   @JsonProperty(JSON_PROPERTY_S_O_U_R_C_E)
@@ -441,8 +441,7 @@ public class Event {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return SCALE
    **/
   @JsonProperty(JSON_PROPERTY_S_C_A_L_E)
@@ -465,8 +464,7 @@ public class Event {
   }
 
   /**
-   * Prend une valeur entière entre 0 et 100 Dans le cadre d&#39;une demande de
-   *concours, optionnel
+   * Prend une valeur entière entre 0 et 100 Optionnel
    * @return CERTAINTY
    **/
   @JsonProperty(JSON_PROPERTY_C_E_R_T_A_I_N_T_Y)
@@ -518,7 +516,8 @@ public class Event {
    * Dans le cadre d&#39;une demande de concours, ce champ est valorisé avec la
    *date de la première alerte ou la date évaluée de début de la situation
    *d&#39;urgence. Par exemple : Si un incendie est déclaré est 9h02, il a pu
-   *démarré à 8h55 par exemple.
+   *démarré à 8h55 par exemple. NB : temporairement, NexSIS renseignera ce champ
+   *avec la date de réception de l&#39;alerte initiale
    * @return OCC_DATIME
    **/
   @JsonProperty(JSON_PROPERTY_O_C_C_D_A_T_I_M_E)
@@ -541,10 +540,11 @@ public class Event {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, ce champ est idéalement à
-   *valoriser avec la date/heure à laquelle l&#39;observation de la situation
-   *d&#39;urgence la plus récente a été réalisée. NexSIS transmettra la
-   *date/heure d&#39;envoi de la demande de concours dans son système.
+   * Ce champ est idéalement à valoriser avec la date/heure à laquelle
+   *l&#39;observation de la situation d&#39;urgence de l&#39;affaire la plus
+   *récente a été réalisée. NexSIS transmettra la date/heure d&#39;envoi de la
+   *demande de concours dans son système. NB : temporairement, NexSIS
+   *renseignera ce champ avec la date de réception de l&#39;alerte initiale
    * @return OBS_DATIME
    **/
   @JsonProperty(JSON_PROPERTY_O_B_S_D_A_T_I_M_E)
@@ -570,9 +570,14 @@ public class Event {
    * Permet de décrire le status de l&#39;affaire en cours. Ce champ suit une
    *nomenclature EMSI. (COM &#x3D; event complete, IPR &#x3D; event in progress,
    *NST &#x3D; event not started, STOP &#x3D; STOP &#x3D; event under control,
-   *no need for additional resource) Dans le cadre d&#39;une demande de
-   *concours, systématiquement renseigné à IPR (In Progress) car l&#39;affaire
-   *est en cours de traitement par l&#39;un des partenaires.
+   *no need for additional resource) Dans le cadre d&#39;une opération : - si
+   *l&#39;opération est encore en cours : rensigner &#39;IPR&#39;, - si le
+   *dispatching de moyens est encore en cours ou que seulement des
+   *qualifications d&#39;alertes ont été échangées sans aucune décision de
+   *régulation &#39;NST&#39;, - si l&#39;opération est en pause/veille :
+   *&#39;STOP&#39; - si le message d&#39;échange opérationnel décrit une fin
+   *d&#39;opération, à renseigner avec &#39;COM&#39; Un message EMSI-EO sans
+   *RESSOURCE ni
    * @return STATUS
    **/
   @JsonProperty(JSON_PROPERTY_S_T_A_T_U_S)
@@ -595,8 +600,7 @@ public class Event {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return RISK_ASSESMENT
    **/
   @JsonProperty(JSON_PROPERTY_R_I_S_K_A_S_S_E_S_M_E_N_T)
@@ -775,8 +779,7 @@ public class Event {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété.
+   * Optionnel
    * @return CAUSE
    **/
   @JsonProperty(JSON_PROPERTY_C_A_U_S_E)
@@ -799,8 +802,7 @@ public class Event {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété
+   * Optionnel
    * @return FREETEXT
    **/
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)

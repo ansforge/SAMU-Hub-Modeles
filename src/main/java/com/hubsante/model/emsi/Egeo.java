@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.emsi.PositionEgeo;
+import com.hubsante.model.emsi.Position;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -56,335 +56,17 @@ public class Egeo {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
   private OffsetDateTime DATIME;
 
-  /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   * pas être émis ni interprété. La localisation de l&#39;affaire est transmise
-   * en amont dans un message RC-EDA et le lieu souhaité pour l&#39;intervention
-   * est systématiquement reprécisé dans un objet MISSION
-   */
-  public enum TYPEEnum {
-    AIR("AIR"),
-
-    CMB("CMB"),
-
-    DGR("DGR"),
-
-    FLAME("FLAME"),
-
-    GEN("GEN"),
-
-    PLUME("PLUME"),
-
-    SMOKE("SMOKE"),
-
-    VULN("VULN"),
-
-    _AIR_COR("/AIR/COR"),
-
-    _AIR_FLDZ("/AIR/FLDZ"),
-
-    _AIR_LZ("/AIR/LZ"),
-
-    _AIR_NOFLZN("/AIR/NOFLZN"),
-
-    _AIR_PZ("/AIR/PZ"),
-
-    _AIR_UAVASP("/AIR/UAVASP"),
-
-    _CMB_CZ("/CMB/CZ"),
-
-    _CMB_DNGR("/CMB/DNGR"),
-
-    _CMB_EXTZN("/CMB/EXTZN"),
-
-    _CMB_IMPTPT("/CMB/IMPTPT"),
-
-    _DGR_BIO("/DGR/BIO"),
-
-    _DGR_BOMB("/DGR/BOMB"),
-
-    _DGR_CBRNHZ("/DGR/CBRNHZ"),
-
-    _DGR_CBRNRSD("/DGR/CBRNRSD"),
-
-    _DGR_CHM("/DGR/CHM"),
-
-    _DGR_HZD("/DGR/HZD"),
-
-    _DGR_MIND("/DGR/MIND"),
-
-    _DGR_NGA("/DGR/NGA"),
-
-    _DGR_NGACIV("/DGR/NGACIV"),
-
-    _DGR_NUKCNL("/DGR/NUKCNL"),
-
-    _DGR_OBSGEN("/DGR/OBSGEN"),
-
-    _DGR_PRHBAR("/DGR/PRHBAR"),
-
-    _DGR_RAD("/DGR/RAD"),
-
-    _DGR_RADCLD("/DGR/RADCLD"),
-
-    _DGR_RSTR("/DGR/RSTR"),
-
-    _DGR_SGA("/DGR/SGA"),
-
-    _DGR_SITKIL("/DGR/SITKIL"),
-
-    _DGR_UNXOD("/DGR/UNXOD"),
-
-    _GEN_AOR("/GEN/AOR"),
-
-    _GEN_ASYGEN("/GEN/ASYGEN"),
-
-    _GEN_ASYSPL("/GEN/ASYSPL"),
-
-    _GEN_BDYOR("/GEN/BDYOR"),
-
-    _GEN_BDYPOA("/GEN/BDYPOA"),
-
-    _GEN_BDYPT("/GEN/BDYPT"),
-
-    _GEN_CKPGEN("/GEN/CKPGEN"),
-
-    _GEN_CNTPTL("/GEN/CNTPTL"),
-
-    _GEN_COLDZ("/GEN/COLDZ"),
-
-    _GEN_COMCKP("/GEN/COMCKP"),
-
-    _GEN_COMLOW("/GEN/COMLOW"),
-
-    _GEN_COMMZ("/GEN/COMMZ"),
-
-    _GEN_COMUP("/GEN/COMUP"),
-
-    _GEN_CONTAR("/GEN/CONTAR"),
-
-    _GEN_CORDON("/GEN/CORDON"),
-
-    _GEN_CRDPNT("/GEN/CRDPNT"),
-
-    _GEN_DIVRT("/GEN/DIVRT"),
-
-    _GEN_DROPPT("/GEN/DROPPT"),
-
-    _GEN_ENTPT("/GEN/ENTPT"),
-
-    _GEN_EVENT("/GEN/EVENT"),
-
-    _GEN_EXITPT("/GEN/EXITPT"),
-
-    _GEN_FWCTPT("/GEN/FWCTPT"),
-
-    _GEN_HOTZ("/GEN/HOTZ"),
-
-    _GEN_INCGRD("/GEN/INCGRD"),
-
-    _GEN_LA("/GEN/LA"),
-
-    _GEN_LIMARE("/GEN/LIMARE"),
-
-    _GEN_LOCAT("/GEN/LOCAT"),
-
-    _GEN_MSR("/GEN/MSR"),
-
-    _GEN_PSSGPT("/GEN/PSSGPT"),
-
-    _GEN_PTINT("/GEN/PTINT"),
-
-    _GEN_RCNSAR("/GEN/RCNSAR"),
-
-    _GEN_RNDZPT("/GEN/RNDZPT"),
-
-    _GEN_ROUTE("/GEN/ROUTE"),
-
-    _GEN_SAFERT("/GEN/SAFERT"),
-
-    _GEN_SAFZ("/GEN/SAFZ"),
-
-    _GEN_SARPNT("/GEN/SARPNT"),
-
-    _GEN_SEARAR("/GEN/SEARAR"),
-
-    _GEN_SPRISK("/GEN/SPRISK"),
-
-    _GEN_STRTPT("/GEN/STRTPT"),
-
-    _GEN_SUPARE("/GEN/SUPARE"),
-
-    _GEN_SUPPT("/GEN/SUPPT"),
-
-    _GEN_TRSTRT("/GEN/TRSTRT"),
-
-    _GEN_WARMZ("/GEN/WARMZ");
-
-    private String value;
-
-    TYPEEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TYPEEnum fromValue(String value) {
-      for (TYPEEnum b : TYPEEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private TYPEEnum TYPE;
-
-  /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   * pas être émis ni interprété. La localisation de l&#39;affaire est transmise
-   * en amont dans un message RC-EDA et le lieu souhaité pour l&#39;intervention
-   * est systématiquement reprécisé dans un objet MISSION
-   */
-  public enum WEATHEREnum {
-    HUM("/HUM"),
-
-    ICY("/ICY"),
-
-    TDS("/TDS"),
-
-    TMP("/TMP"),
-
-    VIS("/VIS"),
-
-    WDDSSS("/Wddsss"),
-
-    WIN("/WIN"),
-
-    HUM_CORECT("/HUM/CORECT"),
-
-    HUM_DRZLE("/HUM/DRZLE"),
-
-    HUM_FOG("/HUM/FOG"),
-
-    HUM_RAIN("/HUM/RAIN"),
-
-    HUM_RAINSR("/HUM/RAINSR"),
-
-    HUM_THSTRN("/HUM/THSTRN"),
-
-    ICY_BLWSNW("/ICY/BLWSNW"),
-
-    ICY_CLRICE("/ICY/CLRICE"),
-
-    ICY_CORECT("/ICY/CORECT"),
-
-    ICY_FDRZLE("/ICY/FDRZLE"),
-
-    ICY_FRAIN("/ICY/FRAIN"),
-
-    ICY_FRZFOG("/ICY/FRZFOG"),
-
-    ICY_HAIL("/ICY/HAIL"),
-
-    ICY_ICECRY("/ICY/ICECRY"),
-
-    ICY_ICEPLT("/ICY/ICEPLT"),
-
-    ICY_MIXICE("/ICY/MIXICE"),
-
-    ICY_RIMICE("/ICY/RIMICE"),
-
-    ICY_SLEET("/ICY/SLEET"),
-
-    ICY_SNOW("/ICY/SNOW"),
-
-    ICY_SNWGRN("/ICY/SNWGRN"),
-
-    ICY_SNWSHR("/ICY/SNWSHR"),
-
-    TDS_CORECT("/TDS/CORECT"),
-
-    TDS_LGTNNG("/TDS/LGTNNG"),
-
-    TDS_THST("/TDS/THST"),
-
-    VIS_CORECT("/VIS/CORECT"),
-
-    VIS_HAZE("/VIS/HAZE"),
-
-    VIS_SMOKE("/VIS/SMOKE"),
-
-    WIN_CORECT("/WIN/CORECT"),
-
-    WIN_CYCL("/WIN/CYCL"),
-
-    WIN_DSTDVL("/WIN/DSTDVL"),
-
-    WIN_DSTSND("/WIN/DSTSND"),
-
-    WIN_DSTSTR("/WIN/DSTSTR"),
-
-    WIN_FNLCLD("/WIN/FNLCLD"),
-
-    WIN_HURR("/WIN/HURR"),
-
-    WIN_SNDSTR("/WIN/SNDSTR"),
-
-    WIN_STORM("/WIN/STORM"),
-
-    WIN_TORN("/WIN/TORN"),
-
-    WIN_TRST("/WIN/TRST"),
-
-    WIN_TYPH("/WIN/TYPH"),
-
-    WIN_WHIR("/WIN/WHIR"),
-
-    WIN_WTRSPT("/WIN/WTRSPT");
-
-    private String value;
-
-    WEATHEREnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static WEATHEREnum fromValue(String value) {
-      for (WEATHEREnum b : WEATHEREnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private String TYPE;
 
   public static final String JSON_PROPERTY_W_E_A_T_H_E_R = "WEATHER";
-  private List<WEATHEREnum> WEATHER;
+  private List<String> WEATHER;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
   private String FREETEXT;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
-  private PositionEgeo POSITION;
+  private Position POSITION;
 
   public Egeo() {}
 
@@ -395,10 +77,9 @@ public class Egeo {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété. La localisation de l&#39;affaire est transmise
-   *en amont dans un message RC-EDA et le lieu souhaité pour l&#39;intervention
-   *est systématiquement reprécisé dans un objet MISSION
+   * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
+   *message RC-EDA et le lieu souhaité pour l&#39;intervention est
+   *systématiquement reprécisé dans un objet MISSION
    * @return DATIME
    **/
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
@@ -414,39 +95,38 @@ public class Egeo {
     this.DATIME = DATIME;
   }
 
-  public Egeo TYPE(TYPEEnum TYPE) {
+  public Egeo TYPE(String TYPE) {
 
     this.TYPE = TYPE;
     return this;
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété. La localisation de l&#39;affaire est transmise
-   *en amont dans un message RC-EDA et le lieu souhaité pour l&#39;intervention
-   *est systématiquement reprécisé dans un objet MISSION
+   * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
+   *message RC-EDA et le lieu souhaité pour l&#39;intervention est
+   *systématiquement reprécisé dans un objet MISSION
    * @return TYPE
    **/
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public TYPEEnum getTYPE() {
+  public String getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTYPE(TYPEEnum TYPE) {
+  public void setTYPE(String TYPE) {
     this.TYPE = TYPE;
   }
 
-  public Egeo WEATHER(List<WEATHEREnum> WEATHER) {
+  public Egeo WEATHER(List<String> WEATHER) {
 
     this.WEATHER = WEATHER;
     return this;
   }
 
-  public Egeo addWEATHERItem(WEATHEREnum WEATHERItem) {
+  public Egeo addWEATHERItem(String WEATHERItem) {
     if (this.WEATHER == null) {
       this.WEATHER = new ArrayList<>();
     }
@@ -461,7 +141,7 @@ public class Egeo {
   @JsonProperty(JSON_PROPERTY_W_E_A_T_H_E_R)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<WEATHEREnum> getWEATHER() {
+  public List<String> getWEATHER() {
     return WEATHER;
   }
 
@@ -469,7 +149,7 @@ public class Egeo {
 
   @JsonProperty(JSON_PROPERTY_W_E_A_T_H_E_R)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWEATHER(List<WEATHEREnum> WEATHER) {
+  public void setWEATHER(List<String> WEATHER) {
     if (WEATHER == null) {
       return;
     }
@@ -486,10 +166,9 @@ public class Egeo {
   }
 
   /**
-   * Dans le cadre d&#39;une demande de concours, optionnel. Le champ peut ne
-   *pas être émis ni interprété. La localisation de l&#39;affaire est transmise
-   *en amont dans un message RC-EDA et le lieu souhaité pour l&#39;intervention
-   *est systématiquement reprécisé dans un objet MISSION
+   * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
+   *message RC-EDA et le lieu souhaité pour l&#39;intervention est
+   *systématiquement reprécisé dans un objet MISSION
    * @return FREETEXT
    **/
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
@@ -505,7 +184,7 @@ public class Egeo {
     this.FREETEXT = FREETEXT;
   }
 
-  public Egeo POSITION(PositionEgeo POSITION) {
+  public Egeo POSITION(Position POSITION) {
 
     this.POSITION = POSITION;
     return this;
@@ -518,13 +197,13 @@ public class Egeo {
   @JsonProperty(JSON_PROPERTY_P_O_S_I_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public PositionEgeo getPOSITION() {
+  public Position getPOSITION() {
     return POSITION;
   }
 
   @JsonProperty(JSON_PROPERTY_P_O_S_I_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPOSITION(PositionEgeo POSITION) {
+  public void setPOSITION(Position POSITION) {
     this.POSITION = POSITION;
   }
 
