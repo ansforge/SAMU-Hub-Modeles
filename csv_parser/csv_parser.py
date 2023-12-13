@@ -166,6 +166,13 @@ if not df[df['name'].isnull()].empty:
     print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
           f"Check these columns are correctly set up.{Color.END}")
     HAS_ERROR = True
+# - name with spaces
+if not df[df['name'].str.contains(' ')].empty:
+    print(f"{Color.RED}ERROR: some rows have spaces in their 'name' field:{Color.ORANGE}")
+    print(df[df['name'].str.contains(' ')])
+    print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
+          f"Check these columns are correctly set up.{Color.END}")
+    HAS_ERROR = True
 # - Failed to compute level_shift
 if not df[df['level_shift'] == -1].empty:
     print(f"{Color.RED}ERROR: level_shift couldn't be computed for some rows:{Color.ORANGE}")
