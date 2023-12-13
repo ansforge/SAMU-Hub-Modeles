@@ -299,7 +299,7 @@ components:
           - DECREA
           - STABLE
           examples:
-          - None
+          - STABLE
         REFERENCE:
           type: array
           items:
@@ -335,7 +335,7 @@ components:
           example: example.json#/emsi/EVENT/FREETEXT
           description: Optionnel
           examples:
-          - None
+          - "Maison sur le c\xF4t\xE9 droit de la route"
       example: example.json#/emsi/EVENT
     mission:
       type: object
@@ -360,7 +360,7 @@ components:
             \ EMSI pour caract\xE9riser la mission en cours."
           enum: []
           examples:
-          - /SAV
+          - SAV/ASC
         FREETEXT:
           type: string
           title: Texte libre
@@ -675,7 +675,7 @@ components:
               \ avec une valeur comme 'UKN' = 'UNKOWN'"
             enum: []
             examples:
-            - /FIR
+            - FIR
         ACTOR:
           type: array
           items:
@@ -699,7 +699,7 @@ components:
               \ Effets \xE0 Obtenir - correspondance EMSI\""
             enum: []
             examples:
-            - /PPL/GRP
+            - PPL/GRP
         LOCTYPE:
           type: array
           items:
@@ -710,7 +710,7 @@ components:
             description: "Le champ peut ne pas \xEAtre affich\xE9. Par d\xE9faut,\
               \ possible de renvoyer le code \"OTH\" =  \"OTHER\""
             examples:
-            - /URB/STRT
+            - URB/STRT
         ENV:
           type: string
           title: Environnement
@@ -719,7 +719,7 @@ components:
           description: Optionnel
           enum: []
           examples:
-          - None
+          - CDIS/RIOT
       example: example.json#/emsi/EVENT/ETYPE
     reference:
       type: object
@@ -764,7 +764,7 @@ components:
           description: "Le champ doit \xEAtre renseign\xE9 mais peut ne pas \xEAtre\
             \ interpr\xE9t\xE9"
           examples:
-          - None
+          - REQ_ACTION
         DATIME:
           type: string
           title: Timestamp du contexte
@@ -774,7 +774,7 @@ components:
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:00:00+02:00'
         DECONT:
           type: integer
           title: "D\xE9contamination"
@@ -782,7 +782,7 @@ components:
           example: example.json#/emsi/EVENT/CASUALTIES/0/DECONT
           description: Optionnel
           examples:
-          - None
+          - 0
         TRIAGERED:
           type: integer
           title: Triage Rouge
@@ -790,7 +790,7 @@ components:
           example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGERED
           description: Optionnel
           examples:
-          - None
+          - 0
         TRIAGEYELLOW:
           type: integer
           title: Jaune
@@ -798,7 +798,7 @@ components:
           example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEYELLOW
           description: Optionnel
           examples:
-          - None
+          - 1
         TRIAGEGREEN:
           type: integer
           title: Vert
@@ -806,7 +806,7 @@ components:
           example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEGREEN
           description: Optionnel
           examples:
-          - None
+          - 0
         TRIAGEBLACK:
           type: integer
           title: Noir
@@ -814,7 +814,7 @@ components:
           example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEBLACK
           description: Optionnel
           examples:
-          - None
+          - 0
         MISSING:
           type: integer
           title: Disparus
@@ -822,17 +822,17 @@ components:
           example: example.json#/emsi/EVENT/CASUALTIES/0/MISSING
           description: Optionnel
           examples:
-          - None
+          - 0
       example: example.json#/emsi/EVENT/CASUALTIES/0
       examples:
-      - CONTEXT: None
-        DATIME: None
-        DECONT: None
-        TRIAGERED: None
-        TRIAGEYELLOW: None
-        TRIAGEGREEN: None
-        TRIAGEBLACK: None
-        MISSING: None
+      - CONTEXT: REQ_ACTION
+        DATIME: '2022-09-27T08:00:00+02:00'
+        DECONT: 0
+        TRIAGERED: 0
+        TRIAGEYELLOW: 1
+        TRIAGEGREEN: 0
+        TRIAGEBLACK: 0
+        MISSING: 0
     evac:
       type: object
       title: "Evacu\xE9s"
@@ -848,7 +848,7 @@ components:
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T10:00:00+02:00'
         DISPLACED:
           type: integer
           title: "d\xE9plac\xE9s"
@@ -856,7 +856,7 @@ components:
           example: example.json#/emsi/EVENT/EVAC/0/DISPLACED
           description: Optionnel
           examples:
-          - None
+          - 0
         EVACUATED:
           type: integer
           title: "\xE9vacu\xE9s"
@@ -864,12 +864,12 @@ components:
           example: example.json#/emsi/EVENT/EVAC/0/EVACUATED
           description: Optionnel
           examples:
-          - None
+          - 1
       example: example.json#/emsi/EVENT/EVAC/0
       examples:
-      - DATIME: None
-        DISPLACED: None
-        EVACUATED: None
+      - DATIME: '2022-09-27T10:00:00+02:00'
+        DISPLACED: 0
+        EVACUATED: 1
     egeo:
       type: object
       title: "Localisation de l'\xE9v\xE9nement"
@@ -900,7 +900,7 @@ components:
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
           enum: []
           examples:
-          - /HLT
+          - HLT
         WEATHER:
           type: array
           items:
@@ -913,7 +913,7 @@ components:
               \ est syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
             enum: []
             examples:
-            - None
+            - HUM/RAIN
         FREETEXT:
           type: string
           title: "Description de l'\xE9v\xE9nement"
@@ -923,7 +923,7 @@ components:
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
           examples:
-          - None
+          - Un peu de pluie vers 8h
         POSITION:
           $ref: '#/components/schemas/position'
       example: example.json#/emsi/EVENT/EGEO/0
