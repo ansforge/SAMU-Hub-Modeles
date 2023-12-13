@@ -159,6 +159,13 @@ if not df[row_donnees_count == 0].empty:
     print(df[row_donnees_count == 0])
     print(f"Perhaps these lines should be deleted or contained only comments.{Color.END}")
     HAS_ERROR = True
+# - No name
+if not df[df['name'].isnull()].empty:
+    print(f"{Color.RED}ERROR: some rows have no 'name' field:{Color.ORANGE}")
+    print(df[df['name'].isnull()])
+    print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
+          f"Check these columns are correctly set up.{Color.END}")
+    HAS_ERROR = True
 # - Failed to compute level_shift
 if not df[df['level_shift'] == -1].empty:
     print(f"{Color.RED}ERROR: level_shift couldn't be computed for some rows:{Color.ORANGE}")
