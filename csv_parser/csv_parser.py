@@ -11,6 +11,11 @@ import os
 
 from pathlib import Path
 
+# Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
@@ -24,6 +29,8 @@ args = parser.parse_args()
 
 
 class Color:
+    ORANGE = '\033[93m'
+    RED = '\033[91m'
     PURPLE = '\033[95m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
@@ -60,6 +67,7 @@ def get_params_from_sheet(sheet):
         'cols': cols,
         'rows': rows
     }
+
 
 def get_nomenclature(elem):
     # filename to target (.csv format)
@@ -126,10 +134,74 @@ df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
 # Get level in data hierarchy
 df['level_shift'] = -1
 for i in range(1, 1 + DATA_DEPTH):
+    # Number of distinct values in 'level i' column before that item included
     df[f"level_{i}"] = df[f"Donnée (Niveau {i})"].notnull().cumsum()
+    # Number of distinct values in 'level i' column before that item excluded
     df[f"previous_level_{i}"] = df[f"level_{i}"].shift(periods=1, fill_value=0)
+    # If the 2 numbers are different => that item's active 'Donnée' column is i => update 'level_shift' column
     df["level_shift"] = df.apply(
         lambda row: i if row[f"level_{i}"] != row[f"previous_level_{i}"] else row['level_shift'], axis=1)
+
+
+# DATA VALIDATION
+HAS_ERROR = False
+
+
+def get_row_donnees_count(df):
+    # Filter columns based on the specified prefix
+    niveau_columns = [col for col in df.columns if col.startswith('Donnée (Niveau')]
+    # Count non-null values in each row for the selected columns
+    return df[niveau_columns].notnull().sum(axis=1)
+
+
+row_donnees_count = get_row_donnees_count(df)
+# - Lines with multiple 'Données'
+if not df[row_donnees_count > 1].empty:
+    print(f"{Color.RED}ERROR: some rows have multiple 'Données' fields:{Color.ORANGE}")
+    print(df[row_donnees_count > 1])
+    print(f"Perhaps these lines contains uncorrectly formatted comments (should start with '# ').{Color.END}")
+    HAS_ERROR = True
+# - Lines with no 'Données'
+if not df[row_donnees_count == 0].empty:
+    print(f"{Color.RED}ERROR: some rows have no 'Données' field:{Color.ORANGE}")
+    print(df[row_donnees_count == 0])
+    print(f"Perhaps these lines should be deleted or contained only comments.{Color.END}")
+    HAS_ERROR = True
+# - No name
+if not df[df['name'].isnull()].empty:
+    print(f"{Color.RED}ERROR: some rows have no 'name' field:{Color.ORANGE}")
+    print(df[df['name'].isnull()])
+    print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
+          f"Check these columns are correctly set up.{Color.END}")
+    HAS_ERROR = True
+# - name with spaces
+if not df[df['name'].str.contains(' ')].empty:
+    print(f"{Color.RED}ERROR: some rows have spaces in their 'name' field:{Color.ORANGE}")
+    print(df[df['name'].str.contains(' ')])
+    print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
+          f"Check these columns are correctly set up.{Color.END}")
+    HAS_ERROR = True
+# - objects with basic types
+basic_types = ['integer', 'number', 'string', 'datetime', 'date']
+objects_with_basic_type_df = df.loc[
+    (df['Objet'] == 'X') &
+    (df['Format (ou type)'].isin(basic_types))
+]
+if not objects_with_basic_type_df.empty:
+    print(f"{Color.RED}ERROR: some rows have objects with basic type:{Color.ORANGE}")
+    print(objects_with_basic_type_df)
+    print(f"Objects (column 'Objet' = X) can't have a basic type (column 'Format (ou type)') {basic_types}.{Color.END}")
+    HAS_ERROR = True
+# - Failed to compute level_shift
+if not df[df['level_shift'] == -1].empty:
+    print(f"{Color.RED}ERROR: level_shift couldn't be computed for some rows:{Color.ORANGE}")
+    print(df[df['level_shift'] == -1])
+    print(
+        f"If these rows were not mentioned in a previous error, "
+        f"the exact reason should be investigated by the dev team...{Color.END}")
+    HAS_ERROR = True
+if HAS_ERROR:
+    exit(1)
 
 
 # Get IDs, parent and build data hierarchy tree structure
@@ -211,6 +283,21 @@ def is_array(elem):
     return elem['Cardinalité'].endswith('n')
 
 
+def navigate_children_with_id(id_path):
+    """
+    Helper to navigate through children tree using item id.
+    ex : '1.1.11' gives children['1'][0]['children'][11]['children']
+    """
+    # Removing wrapper
+    current = children['1']
+    id_path = id_path[2:]
+    # Navigating following given id_path
+    keys = list(map(int, id_path.split('.')))
+    for key in keys:
+        current = current[key - 1]['children']
+    return current
+
+
 # Recursively build a json example
 def build_example(elem):
     if elem['Objet'] != 'X':
@@ -218,6 +305,11 @@ def build_example(elem):
             return 'None'
         return elem['Exemples']
     elif 'children' not in elem:
+        # ToDo: Could be object reference (so no children itself but first definition of its type has)
+        # But it is not so easy to access the first reference here as nor the JSON Schema nor example are built yet
+        # .id is not correct as the ID don't reset but are always increasing... computing some resetting id is necessary
+        # type_first_definition = df[df['true_type'] == elem['true_type']].iloc[0].id
+        # type_children = navigate_children_with_id(type_first_definition)
         return {}
     else:
         children = {}
@@ -359,7 +451,8 @@ def fill_object_definition(elem, root=False):
     else:
         if 'children' not in elem:
             assert elem['Format (ou type)'] in json_schema['definitions'], \
-                f"The type of the object {elem['name']} is not defined"
+                (f"The type of the object '{elem['name']}' is not defined.\n"
+                 f"Make sure the object is not empty")
             return json_schema['definitions'][elem['Format (ou type)']]
         typeName = elem['true_type']
         definition = json_schema['definitions'][typeName]
@@ -383,7 +476,12 @@ def get_examples_with_json_example(definition):
     json_schema_path = "$" + definition['example'].split('#')[1]
     path_with_arrays = json_schema_path.replace('/0', '[0]')
     path = path_with_arrays.replace('/', '.')
-    example = parse(path).find(json_example)[0].value
+    try:
+        example = parse(path).find(json_example)[0].value
+    except Exception as err:
+        print(f"{Color.ORANGE}WARNING: '{err}' while getting example from JSON sample.{Color.ORANGE}")
+        print(f"Path {path} of data '{definition['title']}' not found. Make sure parents and types are OK.{Color.END}")
+        return
     if depth(example) < 2:
         definition['examples'] = [example]
     # Do it as well for all its children properties
