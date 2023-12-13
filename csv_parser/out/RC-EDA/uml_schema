@@ -39,6 +39,15 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
+	filefuture [label=<<TABLE>
+                <TR>
+                <TD><B>filefuture</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet filefuture</I><BR/>filestatus <I>string</I> : [0..1]<BR/>filetype <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	filefuture -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	victims [label=<<TABLE>
                 <TR>
                 <TD><B>victims</B></TD>
@@ -53,7 +62,7 @@ strict digraph {
                 <TD><B>qualification</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet qualification</I></TD>
+                <TD><I>objet qualification</I><BR/>fileusage <I>string</I> : [0..1]<BR/>medicalPriority <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	qualification -> createCase [constraint=true headlabel=1 taillabel=1]
@@ -300,6 +309,15 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
+	filefuture [label=<<TABLE>
+                <TR>
+                <TD><B>filefuture</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet filefuture</I><BR/>filestatus <I>string</I> : [0..1]<BR/>filetype <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	filefuture -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	victims [label=<<TABLE>
                 <TR>
                 <TD><B>victims</B></TD>
@@ -314,7 +332,7 @@ strict digraph {
                 <TD><B>qualification</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet qualification</I></TD>
+                <TD><I>objet qualification</I><BR/>fileusage <I>string</I> : [0..1]<BR/>medicalPriority <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	qualification -> initialAlert [constraint=true headlabel=1 taillabel=1]
@@ -354,6 +372,276 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	initialAlert -> createCase [constraint=true headlabel=1 taillabel="0..1"]
+	operators [label=<<TABLE>
+                <TR>
+                <TD><B>operators</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet operators</I><BR/>opname <I>string</I> : [1..1]<BR/>opfirstname <I>string</I> : [0..1]<BR/>opid <I>string</I> : [0..1]<BR/>oprole <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	operators -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	patientid [label=<<TABLE>
+                <TR>
+                <TD><B>patientid</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patientid</I><BR/>source <I>string</I> : [1..1]<BR/>patidvalue <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	patientid -> identifier [constraint=true headlabel=1 taillabel="0..*"]
+	INScycle [label=<<TABLE>
+                <TR>
+                <TD><B>INScycle</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet INScycle</I><BR/>patidstatus <I>string</I> : [0..1]<BR/>patidattribute <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	INScycle -> identifier [constraint=true headlabel=1 taillabel="0..1"]
+	matins [label=<<TABLE>
+                <TR>
+                <TD><B>matins</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet matINS</I><BR/>matinsvalue <I>number</I> : [0..1]<BR/>matinsoid <I>number</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	matins -> identifier [constraint=true headlabel=1 taillabel="0..1"]
+	strictinstraits [label=<<TABLE>
+                <TR>
+                <TD><B>strictinstraits</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet strictINStraits</I><BR/>birthname <I>string</I> : [0..1]<BR/>firstfirstname <I>string</I> : [0..1]<BR/>firstnameslist <I>string</I> : [0..1]<BR/>birthDate <I>date-time</I> : [0..1]<BR/>sex <I>string</I> : [0..1]<BR/>birthplacecode <I>number</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	strictinstraits -> identifier [constraint=true headlabel=1 taillabel="0..1"]
+	nonstrictINStraits [label=<<TABLE>
+                <TR>
+                <TD><B>nonstrictINStraits</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet nonstrictINStraits</I><BR/>customaryname <I>string</I> : [0..1]<BR/>customaryfirstname <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	nonstrictINStraits -> identifier [constraint=true headlabel=1 taillabel="0..1"]
+	personalContact [label=<<TABLE>
+                <TR>
+                <TD><B>personalContact</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalContact</I><BR/>type <I>string</I> : [1..1]<BR/>detail <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	personalContact -> identifier [constraint=true headlabel=1 taillabel="0..*"]
+	wayName [label=<<TABLE>
+                <TR>
+                <TD><B>wayName</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>string</I> : [0..1]<BR/>name <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	wayName -> detailedAdress [constraint=true headlabel=1 taillabel="0..1"]
+	detailedAdress [label=<<TABLE>
+                <TR>
+                <TD><B>detailedAdress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	detailedAdress -> personalAdress [constraint=true headlabel=1 taillabel="0..1"]
+	city [label=<<TABLE>
+                <TR>
+                <TD><B>city</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet city</I><BR/>name <I>string</I> : [0..1]<BR/>inseeCode <I>string</I> : [0..1]<BR/>detail <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	city -> personalAdress [constraint=true headlabel=1 taillabel="0..1"]
+	personalAdress [label=<<TABLE>
+                <TR>
+                <TD><B>personalAdress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalAdress</I></TD>
+                </TR>
+                </TABLE>>]
+	personalAdress -> identifier [constraint=true headlabel=1 taillabel="0..1"]
+	wayName [label=<<TABLE>
+                <TR>
+                <TD><B>wayName</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>string</I> : [0..1]<BR/>name <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	wayName -> detailedAdress [constraint=true headlabel=1 taillabel="0..1"]
+	detailedAdress [label=<<TABLE>
+                <TR>
+                <TD><B>detailedAdress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	detailedAdress -> personalAdress [constraint=true headlabel=1 taillabel="0..1"]
+	city [label=<<TABLE>
+                <TR>
+                <TD><B>city</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet city</I><BR/>name <I>string</I> : [0..1]<BR/>inseeCode <I>string</I> : [0..1]<BR/>detail <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	city -> personalAdress [constraint=true headlabel=1 taillabel="0..1"]
+	personalAdress [label=<<TABLE>
+                <TR>
+                <TD><B>personalAdress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalAdress</I></TD>
+                </TR>
+                </TABLE>>]
+	personalAdress -> personalGP [constraint=true headlabel=1 taillabel="0..1"]
+	personalContact [label=<<TABLE>
+                <TR>
+                <TD><B>personalContact</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalContact</I><BR/>type <I>string</I> : [1..1]<BR/>detail <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	personalContact -> personalGP [constraint=true headlabel=1 taillabel="0..*"]
+	personalGP [label=<<TABLE>
+                <TR>
+                <TD><B>personalGP</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalGP</I><BR/>gpname <I>string</I> : [0..1]<BR/>gpfirstname <I>string</I> : [0..1]<BR/>gpID <I>string</I> : [0..1]<BR/>pgphone <I>number</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	personalGP -> identifier [constraint=true headlabel=1 taillabel="0..1"]
+	identifier [label=<<TABLE>
+                <TR>
+                <TD><B>identifier</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet identifier</I><BR/>age <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	identifier -> patients [constraint=true headlabel=1 taillabel="0..*"]
+	whatsHappen [label=<<TABLE>
+                <TR>
+                <TD><B>whatsHappen</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	whatsHappen -> patients [constraint=true headlabel=1 taillabel="0..1"]
+	patinfo [label=<<TABLE>
+                <TR>
+                <TD><B>patinfo</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patinfo</I><BR/>weight <I>integer</I> : [0..1]<BR/>height <I>integer</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	patinfo -> patients [constraint=true headlabel=1 taillabel="0..1"]
+	patients [label=<<TABLE>
+                <TR>
+                <TD><B>patients</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patients</I><BR/>patientcaseID <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	patients -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	operators [label=<<TABLE>
+                <TR>
+                <TD><B>operators</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet operators</I><BR/>opname <I>string</I> : [1..1]<BR/>opfirstname <I>string</I> : [0..1]<BR/>opid <I>string</I> : [0..1]<BR/>oprole <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	operators -> medicalfile [constraint=true headlabel=1 taillabel="0..1"]
+	medicalfile [label=<<TABLE>
+                <TR>
+                <TD><B>medicalfile</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet medicalfile</I><BR/>freetext <I>string</I> : [0..*]<BR/>medicalhistory <I>string</I> : [0..*]<BR/>treatments <I>string</I> : [0..*]</TD>
+                </TR>
+                </TABLE>>]
+	medicalfile -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
+	patdestination [label=<<TABLE>
+                <TR>
+                <TD><B>patdestination</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patdestination</I><BR/>facility <I>string</I> : [0..1]<BR/>service <I>string</I> : [0..1]<BR/>other <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	patdestination -> patPathway [constraint=true headlabel=1 taillabel="0..1"]
+	patPathway [label=<<TABLE>
+                <TR>
+                <TD><B>patPathway</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patientPathway</I><BR/>decisiontype <I>string</I> : [0..1]<BR/>orientation <I>string</I> : [0..1]<BR/>rtypeTransport <I>string</I> : [0..*]<BR/>levelOfCare <I>string</I> : [0..1]<BR/>carelevel <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	patPathway -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
+	mainDiagnosis [label=<<TABLE>
+                <TR>
+                <TD><B>mainDiagnosis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet diagnosis</I><BR/>codediag <I>string</I> : [0..1]<BR/>titlemaindiag <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	mainDiagnosis -> hypothesis [constraint=true headlabel=1 taillabel="0..1"]
+	otherDiagnosis [label=<<TABLE>
+                <TR>
+                <TD><B>otherDiagnosis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet diagnosis</I><BR/>codediag <I>string</I> : [0..1]<BR/>titlemaindiag <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	otherDiagnosis -> hypothesis [constraint=true headlabel=1 taillabel="0..*"]
+	hypothesis [label=<<TABLE>
+                <TR>
+                <TD><B>hypothesis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet hypothesis</I></TD>
+                </TR>
+                </TABLE>>]
+	hypothesis -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..1"]
+	resourceDiagnosis [label=<<TABLE>
+                <TR>
+                <TD><B>resourceDiagnosis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet diagnosis</I><BR/>codediag <I>string</I> : [0..1]<BR/>titlemaindiag <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	resourceDiagnosis -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..1"]
+	medicalAnalysis [label=<<TABLE>
+                <TR>
+                <TD><B>medicalAnalysis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet medicalAnalysis</I><BR/>patientcaseID <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	medicalAnalysis -> createCase [constraint=true headlabel=1 taillabel="0..1"]
 	newAlert [label=<<TABLE>
                 <TR>
                 <TD><B>newAlert</B></TD>
@@ -386,7 +674,7 @@ strict digraph {
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>crraowner <I>string</I> : [1..1]<BR/>crratransfert <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	createCase [label=<<TABLE>
@@ -394,7 +682,7 @@ strict digraph {
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>crraowner <I>string</I> : [1..1]<BR/>crratransfert <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 }
