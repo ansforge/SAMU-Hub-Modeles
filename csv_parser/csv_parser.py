@@ -70,6 +70,7 @@ def get_nomenclature(elem):
             path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
             df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
             L_ret = df_nomenclature["code"].values.tolist()
+            return L_ret
         else :
             print(f'{filename} does not exist. Cannot load associated nomenclature.')
             return []
@@ -82,7 +83,7 @@ def get_nomenclature(elem):
     # else :
     #     print(f'{path_file} does not exist. Cannot load associated nomenclature.')
     #     return []
-    return L_ret
+    # return L_ret
 
 
 params = get_params_from_sheet(args.sheet)
