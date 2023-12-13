@@ -45,7 +45,7 @@ public class DistributionElementBuilderTest {
         assertNotNull(actual.getSentAt());
         assertEquals(DistributionElement.KindEnum.REPORT, actual.getKind());
         assertEquals(DistributionElement.StatusEnum.ACTUAL, actual.getStatus());
-        assertEquals(1, actual.getRecipients().size());
+        assertEquals(1, actual.getRecipient().size());
     }
 
     @Test
@@ -104,6 +104,6 @@ public class DistributionElementBuilderTest {
         DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, "samu-x", providedRecipientList)
                 .build();
 
-        assertEquals(2, actual.getRecipients().size());
+        assertEquals(2, actual.getRecipient().size());
     }
 }

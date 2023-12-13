@@ -25,7 +25,7 @@
             "sentAt": "2022-07-25T10:04:34+01:00",
             "kind": "Report",
             "status": "Actual",
-            "recipients": [
+            "recipient": [
               {
                 "name": "samuB",
                 "URI": "hubex:fr.health.samuB"
@@ -43,24 +43,24 @@
                   "freetext": "None"
                 },
                 "locationKind": {
-                  "code": "TO_BE_CONTROLLED",
+                  "code": "C01.00.00",
                   "label": "TO_BE_CONTROLLED",
                   "freetext": "TO_BE_CONTROLLED"
                 },
                 "riskThreat": [
                   {
-                    "code": "TO_BE_CONTROLLED",
+                    "code": "C01.00.00",
                     "label": "TO_BE_CONTROLLED",
                     "freetext": "TO_BE_CONTROLLED"
                   },
                   {
-                    "code": "TO_BE_CONTROLLED",
+                    "code": "C01.00.00",
                     "label": "TO_BE_CONTROLLED",
                     "freetext": "TO_BE_CONTROLLED"
                   }
                 ],
                 "healthMotive": {
-                  "code": "TO_BE_CONTROLLED",
+                  "code": "C01.00.00",
                   "label": "TO_BE_CONTROLLED",
                   "freetext": "TO_BE_CONTROLLED"
                 },
