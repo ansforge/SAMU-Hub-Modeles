@@ -1,5 +1,5 @@
 {
-  "inputSpec": "./input/EMSI-DC.openapi.yaml",
+  "inputSpec": "./input/EMSI.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/wrapper/",
@@ -9,7 +9,7 @@
     "apiTests": false,
     "apiDocs": false,
     "modelDocs": false,
-    "modelTests": true
+    "modelTests": false
   },
   "additionalProperties": {
     "library": "native",
