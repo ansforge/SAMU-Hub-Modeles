@@ -423,7 +423,8 @@ def fill_object_definition(elem, root=False):
     else:
         if 'children' not in elem:
             assert elem['Format (ou type)'] in json_schema['definitions'], \
-                f"The type of the object {elem['name']} is not defined"
+                (f"The type of the object '{elem['name']}' is not defined.\n"
+                 f"Make sure the object is not empty")
             return json_schema['definitions'][elem['Format (ou type)']]
         typeName = elem['true_type']
         definition = json_schema['definitions'][typeName]
