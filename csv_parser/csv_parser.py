@@ -61,29 +61,22 @@ def get_params_from_sheet(sheet):
         'rows': rows
     }
 
-
 def get_nomenclature(elem):
     # filename to target (.csv format)
     nomenclature_name = elem['Détails de format'][14:]
+    path_file = ''
     for filename in os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv")):
         if filename.startswith(nomenclature_name):
             path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
-            df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
-            L_ret = df_nomenclature["code"].values.tolist()
-            return L_ret
-        else :
-            print(f'{filename} does not exist. Cannot load associated nomenclature.')
-            return []
 
-    # path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", nomenclature_name + ".csv")
-    # # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
-    # if os.path.exists(path_file) :
-    #     df_nomenclature = pd.read_csv(path_file, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
-    #     L_ret = df_nomenclature["code"].values.tolist()
-    # else :
-    #     print(f'{path_file} does not exist. Cannot load associated nomenclature.')
-    #     return []
-    # return L_ret
+    if path_file != '':
+        df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8")
+        L_ret = df_nomenclature["code"].values.tolist()
+    else :
+        # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
+        print(f'{nomenclature_name} does not exist. Cannot load associated nomenclature.')
+        return []
+    return L_ret
 
 
 params = get_params_from_sheet(args.sheet)
