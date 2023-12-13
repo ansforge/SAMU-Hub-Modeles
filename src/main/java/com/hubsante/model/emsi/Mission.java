@@ -61,8 +61,370 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Mission {
+
+  /**
+   * Le champ MISSION TYPE permet d&#39;identifier l&#39;effet à obtenir
+   * souhaité à partir de la combinaison du code ACTOR et du code TYPE.
+   * &#x3D;&gt; La table de transcodage permettant d&#39;identifier les
+   * concourants et les effets à obtenir à partir d&#39;un code EMSI est fournie
+   * en annexe \&quot;Référentiel Effets à Obtenir - correspondance EMSI\&quot;.
+   * Dans le cadre d&#39;une réponse à DC : - reprendre le type de la DC si le
+   * code réponse choisi est vien \&quot;VALIDE\&quot; Dans le cadre d&#39;une
+   * mission décrivant les opérations en cours : - reprendre la nomenclature
+   * EMSI pour caractériser la mission en cours.
+   */
+  public enum TYPEEnum {
+    C2("C2"),
+
+    CBRN("CBRN"),
+
+    FF("FF"),
+
+    FSTT("FSTT"),
+
+    GEN("GEN"),
+
+    INT("INT"),
+
+    MAC("MAC"),
+
+    MIL("MIL"),
+
+    NET("NET"),
+
+    OPR("OPR"),
+
+    POL("POL"),
+
+    REC("REC"),
+
+    RSC("RSC"),
+
+    SAV("SAV"),
+
+    SCS("SCS"),
+
+    SOC("SOC"),
+
+    C2_DEBRIF("C2/DEBRIF"),
+
+    C2_DNRSKA("C2/DNRSKA"),
+
+    C2_INASSM("C2/INASSM"),
+
+    C2_OIC("C2/OIC"),
+
+    C2_POA("C2/POA"),
+
+    C2_THRTAS("C2/THRTAS"),
+
+    CBRN_CBRNCH("CBRN/CBRNCH"),
+
+    CBRN_CBRNDC("CBRN/CBRNDC"),
+
+    CBRN_NTRCH("CBRN/NTRCH"),
+
+    CBRN_NUCWS("CBRN/NUCWS"),
+
+    FF_IN("FF/IN"),
+
+    FF_OA("FF/OA"),
+
+    FF_SALVAG("FF/SALVAG"),
+
+    FF_STR("FF/STR"),
+
+    FF_TRP("FF/TRP"),
+
+    FSTT_DI("FSTT/DI"),
+
+    FSTT_RRHAZ("FSTT/RRHAZ"),
+
+    FSTT_TA("FSTT/TA"),
+
+    GEN_AIRLAU("GEN/AIRLAU"),
+
+    GEN_ASSMBL("GEN/ASSMBL"),
+
+    GEN_CRWDCT("GEN/CRWDCT"),
+
+    GEN_DEMO("GEN/DEMO"),
+
+    GEN_DEPLOY("GEN/DEPLOY"),
+
+    GEN_DSTRBT("GEN/DSTRBT"),
+
+    GEN_FINANC("GEN/FINANC"),
+
+    GEN_MARKNG("GEN/MARKNG"),
+
+    GEN_MOVE("GEN/MOVE"),
+
+    GEN_RECVRN("GEN/RECVRN"),
+
+    GEN_RECVRY("GEN/RECVRY"),
+
+    GEN_REDPLN("GEN/REDPLN"),
+
+    GEN_REORGN("GEN/REORGN"),
+
+    GEN_REPAIR("GEN/REPAIR"),
+
+    GEN_RESPLN("GEN/RESPLN"),
+
+    GEN_RESTNG("GEN/RESTNG"),
+
+    GEN_RETIRE("GEN/RETIRE"),
+
+    GEN_RLFPLC("GEN/RLFPLC"),
+
+    GEN_RNDZVS("GEN/RNDZVS"),
+
+    GEN_SCNMNG("GEN/SCNMNG"),
+
+    GEN_SECRNG("GEN/SECRNG"),
+
+    GEN_STNGUP("GEN/STNGUP"),
+
+    GEN_SUPRTN("GEN/SUPRTN"),
+
+    GEN_TRNSPN("GEN/TRNSPN"),
+
+    INT_BIOSMP("INT/BIOSMP"),
+
+    INT_CHMSMP("INT/CHMSMP"),
+
+    INT_IDENT("INT/IDENT"),
+
+    INT_ILLUMN("INT/ILLUMN"),
+
+    INT_LOCTNG("INT/LOCTNG"),
+
+    INT_NUCSMP("INT/NUCSMP"),
+
+    INT_OBSRNG("INT/OBSRNG"),
+
+    INT_PLUMOD("INT/PLUMOD"),
+
+    INT_PTRLNG("INT/PTRLNG"),
+
+    INT_RECCE("INT/RECCE"),
+
+    INT_SRVMET("INT/SRVMET"),
+
+    INT_SRVSEN("INT/SRVSEN"),
+
+    INT_WITNSN("INT/WITNSN"),
+
+    MAC_AII("MAC/AII"),
+
+    MAC_COL("MAC/COL"),
+
+    MIL_BCESC("MIL/BCESC"),
+
+    MIL_BLOCKN("MIL/BLOCKN"),
+
+    MIL_BOMBNG("MIL/BOMBNG"),
+
+    MIL_CAPTUR("MIL/CAPTUR"),
+
+    MIL_CTRATK("MIL/CTRATK"),
+
+    MIL_DEFEND("MIL/DEFEND"),
+
+    MIL_DISENG("MIL/DISENG"),
+
+    MIL_DIVRSN("MIL/DIVRSN"),
+
+    MIL_DLBATK("MIL/DLBATK"),
+
+    MIL_DSRPTN("MIL/DSRPTN"),
+
+    MIL_ENVLPN("MIL/ENVLPN"),
+
+    MIL_FIX("MIL/FIX"),
+
+    MIL_HARASS("MIL/HARASS"),
+
+    MIL_HIDE("MIL/HIDE"),
+
+    MIL_HLDDEF("MIL/HLDDEF"),
+
+    MIL_HLDOFF("MIL/HLDOFF"),
+
+    MIL_INFLTN("MIL/INFLTN"),
+
+    MIL_INTCPN("MIL/INTCPN"),
+
+    MIL_INTDCT("MIL/INTDCT"),
+
+    MIL_MASFOR("MIL/MASFOR"),
+
+    MIL_MIL("MIL/MIL"),
+
+    MIL_WPNFIR("MIL/WPNFIR"),
+
+    NET_COMDEA("NET/COMDEA"),
+
+    NET_DATTRF("NET/DATTRF"),
+
+    NET_NETJAM("NET/NETJAM"),
+
+    NET_NETSEI("NET/NETSEI"),
+
+    NET_SGNC("NET/SGNC"),
+
+    NET_SGNLE("NET/SGNLE"),
+
+    POL_NTRCOM("POL/NTRCOM"),
+
+    POL_NTREXP("POL/NTREXP"),
+
+    POL_SCNMNG("POL/SCNMNG"),
+
+    POL_SCNPRS("POL/SCNPRS"),
+
+    POL_SHELTR("POL/SHELTR"),
+
+    POL_SUSHOS("POL/SUSHOS"),
+
+    POL_WITDRL("POL/WITDRL"),
+
+    REC_CLROBS("REC/CLROBS"),
+
+    REC_COMACT("REC/COMACT"),
+
+    REC_COMRES("REC/COMRES"),
+
+    REC_CONSTN("REC/CONSTN"),
+
+    REC_ENGCN("REC/ENGCN"),
+
+    REC_ENGCNN("REC/ENGCNN"),
+
+    REC_PROCUR("REC/PROCUR"),
+
+    REC_PRVACC("REC/PRVACC"),
+
+    REC_PRVAGR("REC/PRVAGR"),
+
+    REC_PRVBDD("REC/PRVBDD"),
+
+    REC_PRVCMP("REC/PRVCMP"),
+
+    REC_PRVCNS("REC/PRVCNS"),
+
+    REC_PRVDCN("REC/PRVDCN"),
+
+    REC_PRVEDU("REC/PRVEDU"),
+
+    REC_PRVHLT("REC/PRVHLT"),
+
+    REC_PRVHSN("REC/PRVHSN"),
+
+    REC_PRVINF("REC/PRVINF"),
+
+    REC_PRVLND("REC/PRVLND"),
+
+    REC_PRVRPR("REC/PRVRPR"),
+
+    REC_PRVSCY("REC/PRVSCY"),
+
+    REC_PRVSHL("REC/PRVSHL"),
+
+    REC_PRVSTG("REC/PRVSTG"),
+
+    REC_PRVTRS("REC/PRVTRS"),
+
+    REC_PSO("REC/PSO"),
+
+    REC_SPLLDB("REC/SPLLDB"),
+
+    REC_SPLWAT("REC/SPLWAT"),
+
+    REC_UTILTY("REC/UTILTY"),
+
+    REC_WATER("REC/WATER"),
+
+    RSC_COVERN("RSC/COVERN"),
+
+    RSC_FRFGTN("RSC/FRFGTN"),
+
+    RSC_MEDEVC("RSC/MEDEVC"),
+
+    RSC_SAR("RSC/SAR"),
+
+    SAV_AR("SAV/AR"),
+
+    SAV_ASC("SAV/ASC"),
+
+    SAV_RHD("SAV/RHD"),
+
+    SAV_RTA("SAV/RTA"),
+
+    SAV_SARCSL("SAV/SARCSL"),
+
+    SAV_SARHHA("SAV/SARHHA"),
+
+    SAV_SRW("SAV/SRW"),
+
+    SAV_USAR("SAV/USAR"),
+
+    SAV_UW("SAV/UW"),
+
+    SCS_EDU("SCS/EDU"),
+
+    SOC_CNDCNF("SOC/CNDCNF"),
+
+    SOC_CNDMED("SOC/CNDMED"),
+
+    SOC_CNDRCR("SOC/CNDRCR"),
+
+    SOC_CNDSCL("SOC/CNDSCL"),
+
+    SOC_CNDSPT("SOC/CNDSPT"),
+
+    SOC_ISSMDA("SOC/ISSMDA"),
+
+    SOC_ISSMDD("SOC/ISSMDD"),
+
+    SOC_ISSPRS("SOC/ISSPRS"),
+
+    SOC_MN("SOC/MN"),
+
+    SOC_PUBMDA("SOC/PUBMDA"),
+
+    SOC_PUBMDD("SOC/PUBMDD"),
+
+    SOC_PUBPRS("SOC/PUBPRS");
+
+    private String value;
+
+    TYPEEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TYPEEnum fromValue(String value) {
+      for (TYPEEnum b : TYPEEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private String TYPE;
+  private TYPEEnum TYPE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
   private String FREETEXT;
@@ -207,7 +569,7 @@ public class Mission {
 
   public Mission() {}
 
-  public Mission TYPE(String TYPE) {
+  public Mission TYPE(TYPEEnum TYPE) {
 
     this.TYPE = TYPE;
     return this;
@@ -228,13 +590,13 @@ public class Mission {
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getTYPE() {
+  public TYPEEnum getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTYPE(String TYPE) {
+  public void setTYPE(TYPEEnum TYPE) {
     this.TYPE = TYPE;
   }
 
