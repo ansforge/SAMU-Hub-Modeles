@@ -45,22 +45,22 @@
                                     <freetext>None</freetext>
                                 </whatsHappen>
                                 <locationKind>
-                                    <code>TO_BE_CONTROLLED</code>
+                                    <code>C01.00.00</code>
                                     <label>TO_BE_CONTROLLED</label>
                                     <freetext>TO_BE_CONTROLLED</freetext>
                                 </locationKind>
                                 <riskThreat>
-                                    <code>TO_BE_CONTROLLED</code>
+                                    <code>C01.00.00</code>
                                     <label>TO_BE_CONTROLLED</label>
                                     <freetext>TO_BE_CONTROLLED</freetext>
                                 </riskThreat>
                                 <riskThreat>
-                                    <code>TO_BE_CONTROLLED</code>
+                                    <code>C01.00.00</code>
                                     <label>TO_BE_CONTROLLED</label>
                                     <freetext>TO_BE_CONTROLLED</freetext>
                                 </riskThreat>
                                 <healthMotive>
-                                    <code>TO_BE_CONTROLLED</code>
+                                    <code>C01.00.00</code>
                                     <label>TO_BE_CONTROLLED</label>
                                     <freetext>TO_BE_CONTROLLED</freetext>
                                 </healthMotive>
@@ -212,17 +212,17 @@
                                         <freetext>None</freetext>
                                     </whatsHappen>
                                     <locationKind>
-                                        <code>TO_BE_CONTROLLED</code>
+                                        <code>C01.00.00</code>
                                         <label>TO_BE_CONTROLLED</label>
                                         <freetext>TO_BE_CONTROLLED</freetext>
                                     </locationKind>
                                     <riskThreat>
-                                        <code>TO_BE_CONTROLLED</code>
+                                        <code>C01.00.00</code>
                                         <label>TO_BE_CONTROLLED</label>
                                         <freetext>TO_BE_CONTROLLED</freetext>
                                     </riskThreat>
                                     <healthMotive>
-                                        <code>TO_BE_CONTROLLED</code>
+                                        <code>C01.00.00</code>
                                         <label>TO_BE_CONTROLLED</label>
                                         <freetext>TO_BE_CONTROLLED</freetext>
                                     </healthMotive>
@@ -338,22 +338,22 @@
                                         <freetext>None</freetext>
                                     </whatsHappen>
                                     <locationKind>
-                                        <code>TO_BE_CONTROLLED</code>
+                                        <code>C01.00.00</code>
                                         <label>TO_BE_CONTROLLED</label>
                                         <freetext>TO_BE_CONTROLLED</freetext>
                                     </locationKind>
                                     <riskThreat>
-                                        <code>TO_BE_CONTROLLED</code>
+                                        <code>C01.00.00</code>
                                         <label>TO_BE_CONTROLLED</label>
                                         <freetext>TO_BE_CONTROLLED</freetext>
                                     </riskThreat>
                                     <riskThreat>
-                                        <code>TO_BE_CONTROLLED</code>
+                                        <code>C01.00.00</code>
                                         <label>TO_BE_CONTROLLED</label>
                                         <freetext>TO_BE_CONTROLLED</freetext>
                                     </riskThreat>
                                     <healthMotive>
-                                        <code>TO_BE_CONTROLLED</code>
+                                        <code>C01.00.00</code>
                                         <label>TO_BE_CONTROLLED</label>
                                         <freetext>TO_BE_CONTROLLED</freetext>
                                     </healthMotive>

@@ -43,24 +43,24 @@
                   "freetext": "None"
                 },
                 "locationKind": {
-                  "code": "TO_BE_CONTROLLED",
+                  "code": "C01.00.00",
                   "label": "TO_BE_CONTROLLED",
                   "freetext": "TO_BE_CONTROLLED"
                 },
                 "riskThreat": [
                   {
-                    "code": "TO_BE_CONTROLLED",
+                    "code": "C01.00.00",
                     "label": "TO_BE_CONTROLLED",
                     "freetext": "TO_BE_CONTROLLED"
                   },
                   {
-                    "code": "TO_BE_CONTROLLED",
+                    "code": "C01.00.00",
                     "label": "TO_BE_CONTROLLED",
                     "freetext": "TO_BE_CONTROLLED"
                   }
                 ],
                 "healthMotive": {
-                  "code": "TO_BE_CONTROLLED",
+                  "code": "C01.00.00",
                   "label": "TO_BE_CONTROLLED",
                   "freetext": "TO_BE_CONTROLLED"
                 },
