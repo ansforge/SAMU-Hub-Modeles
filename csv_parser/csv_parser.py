@@ -65,7 +65,7 @@ def get_params_from_sheet(sheet):
 def get_nomenclature(elem):
     # filename to target (.csv format)
     nomenclature_name = elem['Détails de format'][14:]
-    for filename in os.listdir(os.path.join("..", "nomenclature_parser", "latest", "csv")):
+    for filename in os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv")):
         if filename.startswith(nomenclature_name):
             df_nomenclature = pd.read_csv(filename, sep=";", keep_default_na=False, na_values=['_'], encoding="utf-8")
             L_ret = df_nomenclature["code"].values.tolist()
