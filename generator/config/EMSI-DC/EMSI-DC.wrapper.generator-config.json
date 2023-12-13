@@ -9,7 +9,7 @@
     "apiTests": false,
     "apiDocs": false,
     "modelDocs": false,
-    "modelTests": false
+    "modelTests": true
   },
   "additionalProperties": {
     "library": "native",
