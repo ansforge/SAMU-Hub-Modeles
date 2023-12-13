@@ -11,6 +11,11 @@ import os
 
 from pathlib import Path
 
+# Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
@@ -24,6 +29,8 @@ args = parser.parse_args()
 
 
 class Color:
+    ORANGE = '\033[93m'
+    RED = '\033[91m'
     PURPLE = '\033[95m'
     BOLD = '\033[1m'
     UNDERLINE = '\033[4m'
@@ -124,6 +131,14 @@ for i in range(1, 1 + DATA_DEPTH):
     df[f"previous_level_{i}"] = df[f"level_{i}"].shift(periods=1, fill_value=0)
     df["level_shift"] = df.apply(
         lambda row: i if row[f"level_{i}"] != row[f"previous_level_{i}"] else row['level_shift'], axis=1)
+
+# DATA VALIDATION
+if not df[df['level_shift'] == -1].empty:
+    print(f"{Color.RED}ERROR: level_shift couldn't be computed for some rows:{Color.ORANGE}")
+    print(df[df['level_shift'] == -1])
+    print(f"No data was found in these row for the columns 'Donnée (Niveau X)'.\n"
+          f"Perhaps these lines should be deleted or contained only comments.{Color.END}")
+    exit(1)
 
 
 # Get IDs, parent and build data hierarchy tree structure
