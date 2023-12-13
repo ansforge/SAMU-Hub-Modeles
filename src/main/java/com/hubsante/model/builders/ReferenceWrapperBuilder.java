@@ -39,7 +39,7 @@ public class ReferenceWrapperBuilder {
         }
         referenceMessage.setKind(distributionElement.getKind());
         referenceMessage.setStatus(distributionElement.getStatus());
-        referenceMessage.setRecipients(distributionElement.getRecipients());
+        referenceMessage.setRecipient(distributionElement.getRecipient());
         referenceMessage.setReference(reference);
         return referenceMessage;
     }

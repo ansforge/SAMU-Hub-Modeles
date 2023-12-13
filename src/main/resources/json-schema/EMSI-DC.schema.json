@@ -580,17 +580,11 @@
           "format": "date-time"
         },
         "RESOURCE_ID": {
-          "type": "array",
-          "items": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "title": "Ressource engag\u00e9e",
-            "x-cols": 6,
-            "example": "example.json#/MISSION/0/RESOURCE_ID/0",
-            "description": "Non trait\u00e9 dans cette version du mod\u00e8le de donn\u00e9e"
-          }
+          "type": "string",
+          "title": "Ressource engag\u00e9e",
+          "x-cols": 6,
+          "example": "example.json#/emsi/MISSION/0/RESOURCE_ID",
+          "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voire RESSOURCE.ID)"
         },
         "PARENT_MISSION_ID": {
           "type": "array",

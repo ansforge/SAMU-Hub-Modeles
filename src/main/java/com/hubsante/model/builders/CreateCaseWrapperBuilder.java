@@ -38,7 +38,7 @@ public class CreateCaseWrapperBuilder {
         }
         createCaseMessage.setKind(distributionElement.getKind());
         createCaseMessage.setStatus(distributionElement.getStatus());
-        createCaseMessage.setRecipients(distributionElement.getRecipients());
+        createCaseMessage.setRecipient(distributionElement.getRecipient());
         createCaseMessage.setCreateCase(createCase);
         return createCaseMessage;
     }

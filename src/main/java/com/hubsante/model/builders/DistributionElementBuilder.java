@@ -97,7 +97,7 @@ public class DistributionElementBuilder {
         if (recipients.isEmpty()) {
             throw new IllegalArgumentException("recipients list cannot be empty");
         }
-        distributionElement.setRecipients(recipients);
+        distributionElement.setRecipient(recipients);
 
         return distributionElement;
     }

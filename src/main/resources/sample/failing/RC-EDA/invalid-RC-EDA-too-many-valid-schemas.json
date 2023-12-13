@@ -25,7 +25,7 @@
             "sentAt": "2022-07-25T10:04:34+01:00",
             "kind": "Report",
             "status": "Actual",
-            "recipients": [
+            "recipient": [
               {
                 "name": "samuB",
                 "URI": "hubex:fr.health.samuB"
@@ -311,9 +311,7 @@
                   "STATUS": "IPR",
                   "START_TIME": "2022-09-27T08:21:00+02:00",
                   "END_TIME": "2022-09-27T10:21:00+02:00",
-                  "RESOURCE_ID": [
-                    "Non trait\u00e9"
-                  ],
+                  "RESOURCE_ID": "Non traité",
                   "PARENT_MISSION_ID": [
                     "Non trait\u00e9"
                   ],

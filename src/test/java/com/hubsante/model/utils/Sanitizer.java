@@ -47,21 +47,21 @@ public class Sanitizer {
                 CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper) contentMessage;
                 createCaseWrapper.setMessageId("messageId");
                 createCaseWrapper.setSender(sanitizeSender());
-                sanitizeRecipients(createCaseWrapper.getRecipients());
+                sanitizeRecipients(createCaseWrapper.getRecipient());
                 return createCaseWrapper;
 
             case "EmsiWrapper":
                 EmsiWrapper emsiWrapper = (EmsiWrapper) contentMessage;
                 emsiWrapper.setMessageId("messageId");
                 emsiWrapper.setSender(sanitizeSender());
-                sanitizeRecipients(emsiWrapper.getRecipients());
+                sanitizeRecipients(emsiWrapper.getRecipient());
                 return emsiWrapper;
 
             case "ReferenceWrapper":
                 ReferenceWrapper referenceWrapper = (ReferenceWrapper) contentMessage;
                 referenceWrapper.setMessageId("messageId");
                 referenceWrapper.setSender(sanitizeSender());
-                sanitizeRecipients(referenceWrapper.getRecipients());
+                sanitizeRecipients(referenceWrapper.getRecipient());
                 return referenceWrapper;
 
             default:

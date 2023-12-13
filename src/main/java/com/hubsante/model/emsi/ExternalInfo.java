@@ -39,28 +39,38 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Link
+ * ExternalInfo
  */
-@JsonPropertyOrder({Link.JSON_PROPERTY_I_D, Link.JSON_PROPERTY_L_I_N_K_R_O_L_E})
-@JsonTypeName("link")
+@JsonPropertyOrder({ExternalInfo.JSON_PROPERTY_F_R_E_E_T_E_X_T,
+                    ExternalInfo.JSON_PROPERTY_U_R_I,
+                    ExternalInfo.JSON_PROPERTY_T_Y_P_E})
+@JsonTypeName("externalInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Link {
-  public static final String JSON_PROPERTY_I_D = "ID";
-  private String ID;
+public class ExternalInfo {
+  public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
+  private String FREETEXT;
+
+  public static final String JSON_PROPERTY_U_R_I = "URI";
+  private String URI;
 
   /**
-   * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; en EMSI-EO
-   * et avec le libellé ADDSTO en EMSI-DC
+   * Optionnel
    */
-  public enum LINKROLEEnum {
-    ADDSTO("ADDSTO"),
+  public enum TYPEEnum {
+    MANUAL("MANUAL"),
 
-    SPRSDS("SPRSDS");
+    MAP("MAP"),
+
+    OTHER("OTHER"),
+
+    PHOTO("PHOTO"),
+
+    WEBSIT("WEBSIT");
 
     private String value;
 
-    LINKROLEEnum(String value) { this.value = value; }
+    TYPEEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -73,8 +83,8 @@ public class Link {
     }
 
     @JsonCreator
-    public static LINKROLEEnum fromValue(String value) {
-      for (LINKROLEEnum b : LINKROLEEnum.values()) {
+    public static TYPEEnum fromValue(String value) {
+      for (TYPEEnum b : TYPEEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -83,57 +93,78 @@ public class Link {
     }
   }
 
-  public static final String JSON_PROPERTY_L_I_N_K_R_O_L_E = "LINK_ROLE";
-  private LINKROLEEnum LINK_ROLE;
+  public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
+  private TYPEEnum TYPE;
 
-  public Link() {}
+  public ExternalInfo() {}
 
-  public Link ID(String ID) {
+  public ExternalInfo FREETEXT(String FREETEXT) {
 
-    this.ID = ID;
+    this.FREETEXT = FREETEXT;
     return this;
   }
 
   /**
-   * A renseigner avec l&#39;identifiant local de l&#39;affaire du partenaire
-   *requérant
-   * @return ID
+   * Optionnel
+   * @return FREETEXT
    **/
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getID() {
-    return ID;
+  public String getFREETEXT() {
+    return FREETEXT;
   }
 
-  @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setID(String ID) {
-    this.ID = ID;
+  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFREETEXT(String FREETEXT) {
+    this.FREETEXT = FREETEXT;
   }
 
-  public Link LINK_ROLE(LINKROLEEnum LINK_ROLE) {
+  public ExternalInfo URI(String URI) {
 
-    this.LINK_ROLE = LINK_ROLE;
+    this.URI = URI;
     return this;
   }
 
   /**
-   * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; en EMSI-EO
-   *et avec le libellé ADDSTO en EMSI-DC
-   * @return LINK_ROLE
+   * Optionnel
+   * @return URI
    **/
-  @JsonProperty(JSON_PROPERTY_L_I_N_K_R_O_L_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_U_R_I)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public LINKROLEEnum getLINKROLE() {
-    return LINK_ROLE;
+  public String getURI() {
+    return URI;
   }
 
-  @JsonProperty(JSON_PROPERTY_L_I_N_K_R_O_L_E)
+  @JsonProperty(JSON_PROPERTY_U_R_I)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setURI(String URI) {
+    this.URI = URI;
+  }
+
+  public ExternalInfo TYPE(TYPEEnum TYPE) {
+
+    this.TYPE = TYPE;
+    return this;
+  }
+
+  /**
+   * Optionnel
+   * @return TYPE
+   **/
+  @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLINKROLE(LINKROLEEnum LINK_ROLE) {
-    this.LINK_ROLE = LINK_ROLE;
+
+  public TYPEEnum getTYPE() {
+    return TYPE;
+  }
+
+  @JsonProperty(JSON_PROPERTY_T_Y_P_E)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTYPE(TYPEEnum TYPE) {
+    this.TYPE = TYPE;
   }
 
   @Override
@@ -144,24 +175,24 @@ public class Link {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Link link = (Link)o;
-    return Objects.equals(this.ID, link.ID) &&
-        Objects.equals(this.LINK_ROLE, link.LINK_ROLE);
+    ExternalInfo externalInfo = (ExternalInfo)o;
+    return Objects.equals(this.FREETEXT, externalInfo.FREETEXT) &&
+        Objects.equals(this.URI, externalInfo.URI) &&
+        Objects.equals(this.TYPE, externalInfo.TYPE);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ID, LINK_ROLE);
+    return Objects.hash(FREETEXT, URI, TYPE);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Link {\n");
-    sb.append("    ID: ").append(toIndentedString(ID)).append("\n");
-    sb.append("    LINK_ROLE: ")
-        .append(toIndentedString(LINK_ROLE))
-        .append("\n");
+    sb.append("class ExternalInfo {\n");
+    sb.append("    FREETEXT: ").append(toIndentedString(FREETEXT)).append("\n");
+    sb.append("    URI: ").append(toIndentedString(URI)).append("\n");
+    sb.append("    TYPE: ").append(toIndentedString(TYPE)).append("\n");
     sb.append("}");
     return sb.toString();
   }

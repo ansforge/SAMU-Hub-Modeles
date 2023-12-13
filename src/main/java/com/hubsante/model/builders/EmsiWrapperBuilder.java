@@ -38,7 +38,7 @@ public class EmsiWrapperBuilder {
         }
         emsiWrapper.setKind(distributionElement.getKind());
         emsiWrapper.setStatus(distributionElement.getStatus());
-        emsiWrapper.setRecipients(distributionElement.getRecipients());
+        emsiWrapper.setRecipient(distributionElement.getRecipient());
         emsiWrapper.setEmsi(emsi);
         return emsiWrapper;
     }

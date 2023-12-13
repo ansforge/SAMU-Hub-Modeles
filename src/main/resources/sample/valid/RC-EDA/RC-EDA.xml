@@ -27,12 +27,10 @@
                         <sentAt>2022-07-25T10:04:34+01:00</sentAt>
                         <kind>Report</kind>
                         <status>Actual</status>
-<!--                        <recipients>-->
-                            <recipient>
-                                <name>samuA</name>
-                                <URI>hubex:fr.health.samuA</URI>
-                            </recipient>
-<!--                        </recipients>-->
+                        <recipient>
+                            <name>samuA</name>
+                            <URI>hubex:fr.health.samuA</URI>
+                        </recipient>
                         <createCase>
                             <caseId>samuA:CA126B445579GD4A67AV</caseId>
                             <senderCaseId>CA126B445579GD4A67AV</senderCaseId>
@@ -44,31 +42,6 @@
                                     <label>Rodéo automobile</label>
                                     <freetext>None</freetext>
                                 </whatsHappen>
-                                <locationKind>
-                                    <code>TO_BE_CONTROLLED</code>
-                                    <label>TO_BE_CONTROLLED</label>
-                                    <freetext>TO_BE_CONTROLLED</freetext>
-                                </locationKind>
-                                <riskThreat>
-                                    <code>TO_BE_CONTROLLED</code>
-                                    <label>TO_BE_CONTROLLED</label>
-                                    <freetext>TO_BE_CONTROLLED</freetext>
-                                </riskThreat>
-                                <riskThreat>
-                                    <code>TO_BE_CONTROLLED</code>
-                                    <label>TO_BE_CONTROLLED</label>
-                                    <freetext>TO_BE_CONTROLLED</freetext>
-                                </riskThreat>
-                                <healthMotive>
-                                    <code>TO_BE_CONTROLLED</code>
-                                    <label>TO_BE_CONTROLLED</label>
-                                    <freetext>TO_BE_CONTROLLED</freetext>
-                                </healthMotive>
-                                <victims>
-                                    <count>SEVERAL</count>
-                                    <mainVictim>CHILD</mainVictim>
-                                    <freetext>Jeanne Dupont, 6 ans, ne répond plus</freetext>
-                                </victims>
                             </qualification>
                             <location>
                                 <locID>111fb03a-6fd9-41e0-8e81-990c45188887</locID>

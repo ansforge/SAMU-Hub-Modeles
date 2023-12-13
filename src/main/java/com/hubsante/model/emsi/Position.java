@@ -42,70 +42,25 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * PositionRgeo
+ * Position
  */
-@JsonPropertyOrder({PositionRgeo.JSON_PROPERTY_L_O_C_I_D,
-                    PositionRgeo.JSON_PROPERTY_N_A_M_E,
-                    PositionRgeo.JSON_PROPERTY_T_Y_P_E,
-                    PositionRgeo.JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E,
-                    PositionRgeo.JSON_PROPERTY_C_O_O_R_D_S_Y_S,
-                    PositionRgeo.JSON_PROPERTY_C_O_O_R_D,
-                    PositionRgeo.JSON_PROPERTY_A_D_D_R_E_S_S})
-@JsonTypeName("positionRgeo")
+@JsonPropertyOrder(
+    {Position.JSON_PROPERTY_L_O_C_I_D, Position.JSON_PROPERTY_N_A_M_E,
+     Position.JSON_PROPERTY_T_Y_P_E, Position.JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E,
+     Position.JSON_PROPERTY_C_O_O_R_D_S_Y_S, Position.JSON_PROPERTY_C_O_O_R_D,
+     Position.JSON_PROPERTY_A_D_D_R_E_S_S})
+@JsonTypeName("position")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PositionRgeo {
+public class Position {
   public static final String JSON_PROPERTY_L_O_C_I_D = "LOC_ID";
   private String LOC_ID;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
   private String NAME;
 
-  /**
-   * Dans le cadre de l&#39;interface LRM NexSIS, seul le libellé POINT doit
-   * obligatoirement être interprétable par les deux partenaires. Cf.
-   * Nomenclature EMSI - POSITION pour plus de détails
-   */
-  public enum TYPEEnum {
-    POINT("POINT"),
-
-    CIRCLE("CIRCLE"),
-
-    SURFACE("SURFACE"),
-
-    GRID("GRID"),
-
-    POLYGON("POLYGON"),
-
-    ELLIPSE_("ELLIPSE ");
-
-    private String value;
-
-    TYPEEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TYPEEnum fromValue(String value) {
-      for (TYPEEnum b : TYPEEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private TYPEEnum TYPE;
+  private String TYPE;
 
   public static final String JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E = "HEIGHT_ROLE";
   private String HEIGHT_ROLE;
@@ -119,35 +74,38 @@ public class PositionRgeo {
   public static final String JSON_PROPERTY_A_D_D_R_E_S_S = "ADDRESS";
   private List<String> ADDRESS;
 
-  public PositionRgeo() {}
+  public Position() {}
 
-  public PositionRgeo LOC_ID(String LOC_ID) {
+  public Position LOC_ID(String LOC_ID) {
 
     this.LOC_ID = LOC_ID;
     return this;
   }
 
   /**
-   * Lorsque le lieu d&#39;intervention est identique à celle d&#39;une position
-   *de l&#39;affaire partagée dans le message RC-EDA, le champ
-   *MISSION.RGEO.POSITION.LOC_ID doit être alimenté valorisé comme le champ
-   *eventLocation.locId du message RC-EDA envoyé en amont
+   * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
+   *message RC-EDA et le lieu souhaité pour l&#39;intervention est
+   *systématiquement reprécisé dans un objet MISSION.  Lorsque le lieu
+   *d&#39;intervention est identique à celle d&#39;une position de l&#39;affaire
+   *partagée dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID doit
+   *être alimenté valorisé comme le champ eventLocation.locId du message RC-EDA
+   *envoyé en amont.
    * @return LOC_ID
    **/
   @JsonProperty(JSON_PROPERTY_L_O_C_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getLOCID() {
     return LOC_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_L_O_C_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setLOCID(String LOC_ID) {
     this.LOC_ID = LOC_ID;
   }
 
-  public PositionRgeo NAME(String NAME) {
+  public Position NAME(String NAME) {
 
     this.NAME = NAME;
     return this;
@@ -170,32 +128,32 @@ public class PositionRgeo {
     this.NAME = NAME;
   }
 
-  public PositionRgeo TYPE(TYPEEnum TYPE) {
+  public Position TYPE(String TYPE) {
 
     this.TYPE = TYPE;
     return this;
   }
 
   /**
-   * Dans le cadre de l&#39;interface LRM NexSIS, seul le libellé POINT doit
-   *obligatoirement être interprétable par les deux partenaires. Cf.
+   * Optionnel Dans le cadre de l&#39;interface LRM NexSIS, seul le libellé
+   *POINT doit obligatoirement être interprétable par les deux partenaires. Cf.
    *Nomenclature EMSI - POSITION pour plus de détails
    * @return TYPE
    **/
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TYPEEnum getTYPE() {
+  public String getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTYPE(TYPEEnum TYPE) {
+  public void setTYPE(String TYPE) {
     this.TYPE = TYPE;
   }
 
-  public PositionRgeo HEIGHT_ROLE(String HEIGHT_ROLE) {
+  public Position HEIGHT_ROLE(String HEIGHT_ROLE) {
 
     this.HEIGHT_ROLE = HEIGHT_ROLE;
     return this;
@@ -218,7 +176,7 @@ public class PositionRgeo {
     this.HEIGHT_ROLE = HEIGHT_ROLE;
   }
 
-  public PositionRgeo COORDSYS(String COORDSYS) {
+  public Position COORDSYS(String COORDSYS) {
 
     this.COORDSYS = COORDSYS;
     return this;
@@ -241,13 +199,13 @@ public class PositionRgeo {
     this.COORDSYS = COORDSYS;
   }
 
-  public PositionRgeo COORD(List<Coord> COORD) {
+  public Position COORD(List<Coord> COORD) {
 
     this.COORD = COORD;
     return this;
   }
 
-  public PositionRgeo addCOORDItem(Coord COORDItem) {
+  public Position addCOORDItem(Coord COORDItem) {
     if (this.COORD == null) {
       this.COORD = new ArrayList<>();
     }
@@ -280,13 +238,13 @@ public class PositionRgeo {
     this.COORD.addAll(COORD);
   }
 
-  public PositionRgeo ADDRESS(List<String> ADDRESS) {
+  public Position ADDRESS(List<String> ADDRESS) {
 
     this.ADDRESS = ADDRESS;
     return this;
   }
 
-  public PositionRgeo addADDRESSItem(String ADDRESSItem) {
+  public Position addADDRESSItem(String ADDRESSItem) {
     if (this.ADDRESS == null) {
       this.ADDRESS = new ArrayList<>();
     }
@@ -327,14 +285,14 @@ public class PositionRgeo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PositionRgeo positionRgeo = (PositionRgeo)o;
-    return Objects.equals(this.LOC_ID, positionRgeo.LOC_ID) &&
-        Objects.equals(this.NAME, positionRgeo.NAME) &&
-        Objects.equals(this.TYPE, positionRgeo.TYPE) &&
-        Objects.equals(this.HEIGHT_ROLE, positionRgeo.HEIGHT_ROLE) &&
-        Objects.equals(this.COORDSYS, positionRgeo.COORDSYS) &&
-        Objects.equals(this.COORD, positionRgeo.COORD) &&
-        Objects.equals(this.ADDRESS, positionRgeo.ADDRESS);
+    Position position = (Position)o;
+    return Objects.equals(this.LOC_ID, position.LOC_ID) &&
+        Objects.equals(this.NAME, position.NAME) &&
+        Objects.equals(this.TYPE, position.TYPE) &&
+        Objects.equals(this.HEIGHT_ROLE, position.HEIGHT_ROLE) &&
+        Objects.equals(this.COORDSYS, position.COORDSYS) &&
+        Objects.equals(this.COORD, position.COORD) &&
+        Objects.equals(this.ADDRESS, position.ADDRESS);
   }
 
   @Override
@@ -346,7 +304,7 @@ public class PositionRgeo {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PositionRgeo {\n");
+    sb.append("class Position {\n");
     sb.append("    LOC_ID: ").append(toIndentedString(LOC_ID)).append("\n");
     sb.append("    NAME: ").append(toIndentedString(NAME)).append("\n");
     sb.append("    TYPE: ").append(toIndentedString(TYPE)).append("\n");

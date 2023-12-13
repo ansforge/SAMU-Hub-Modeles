@@ -110,9 +110,7 @@
         "STATUS": "IPR",
         "START_TIME": "2023-11-03T10:20:00+01:00",
         "END_TIME": null,
-        "RESOURCE_ID": [
-          null
-        ],
+        "RESOURCE_ID": "",
         "PARENT_MISSION_ID": [
           null
         ],

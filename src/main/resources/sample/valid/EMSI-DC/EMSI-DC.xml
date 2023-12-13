@@ -27,14 +27,12 @@
                         <sentAt>2022-07-25T10:04:34+01:00</sentAt>
                         <kind>Report</kind>
                         <status>Actual</status>
-                        <recipient>
-                            <name>samuA</name>
-                            <URI>hubex:fr.health.samuA</URI>
-                        </recipient>
-                        <recipient>
-                            <name>samuA2</name>
-                            <URI>hubex:fr.health.samuA2</URI>
-                        </recipient>
+                        <recipients>
+                            <recipient>
+                                <name>samuA</name>
+                                <URI>hubex:fr.health.samuA</URI>
+                            </recipient>
+                        </recipients>
                         <emsi>
                             <CONTEXT>
                                 <ID>d350c9d2-9d76-4568-b0b7-a747ffadc949</ID>
