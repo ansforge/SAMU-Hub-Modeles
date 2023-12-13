@@ -173,6 +173,17 @@ if not df[df['name'].str.contains(' ')].empty:
     print(f"Name is based on column 'Balise NexSIS' overwritten by any value in 'Nouvelle balise'.\n"
           f"Check these columns are correctly set up.{Color.END}")
     HAS_ERROR = True
+# - objects with basic types
+basic_types = ['integer', 'number', 'string', 'datetime', 'date']
+objects_with_basic_type_df = df.loc[
+    (df['Objet'] == 'X') &
+    (df['Format (ou type)'].isin(basic_types))
+]
+if not objects_with_basic_type_df.empty:
+    print(f"{Color.RED}ERROR: some rows have objects with basic type:{Color.ORANGE}")
+    print(objects_with_basic_type_df)
+    print(f"Objects (column 'Objet' = X) can't have a basic type (column 'Format (ou type)') {basic_types}.{Color.END}")
+    HAS_ERROR = True
 # - Failed to compute level_shift
 if not df[df['level_shift'] == -1].empty:
     print(f"{Color.RED}ERROR: level_shift couldn't be computed for some rows:{Color.ORANGE}")
@@ -210,14 +221,7 @@ def get_true_type(row):
 def get_parent_type(row):
     if row['level_shift'] == 1:
         return WRAPPER_NAME
-    try:
-        return df.loc[row['parent']]['true_type']
-    except KeyError as err:
-        print(f"{Color.RED}ERROR: couldn't find parent {err} for row:{Color.ORANGE}")
-        print(row)
-        print(f"No data was found in these row for the columns 'Donnée (Niveau X)'.\n"
-              f"Perhaps these lines should be deleted or contained only comments.{Color.END}")
-        exit(1)
+    return df.loc[row['parent']]['true_type']
 
 
 def build_id(row):
