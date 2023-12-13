@@ -62,8 +62,7 @@ public class EdxlHandlerTest {
 
         EdxlMessage messageFromJson = sanitizeEdxl(converter.deserializeJsonEDXL(json));
         EdxlMessage messageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xml));
-        // TODO : fix it when coord object will be implemented
-//        assertEquals(messageFromJson, messageFromXml);
+        assertEquals(messageFromJson, messageFromXml);
     }
 
     @Test
