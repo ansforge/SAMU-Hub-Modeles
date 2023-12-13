@@ -15,6 +15,12 @@
                 {}
             ],
             "healthMotive": {},
+            "filefuture": {
+                "filestatus": "None",
+                "filetype": "D, DR, DRM"
+            },
+            "fileusage": "M\u00e9decin g\u00e9n\u00e9raliste, m\u00e9decin urgentiste etc.",
+            "medicalPriority": "P0, P1, P2, P3",
             "victims": {
                 "count": "SEVERAL",
                 "mainVictim": "CHILD",
@@ -122,6 +128,122 @@
                     "digest": "None"
                 }
             ]
+        },
+        "crraowner": " CRRA 44, ...",
+        "crratransfert": "fr.health.samu090 ",
+        "operators": [
+            {
+                "opname": "None",
+                "opfirstname": "None",
+                "opid": "None",
+                "oprole": "ARM, Medecin r\u00e9gulateur\u2026"
+            }
+        ],
+        "patients": [
+            {
+                "patientcaseID": "None",
+                "identifier": [
+                    {
+                        "patientid": [
+                            {
+                                "source": "NIR, SINUS, SI-VIC, \u2026",
+                                "patidvalue": "id1234"
+                            }
+                        ],
+                        "INScycle": {
+                            "patidstatus": "None",
+                            "patidattribute": "None"
+                        },
+                        "matins": {
+                            "matinsvalue": "2 77 01 01 154 002 29",
+                            "matinsoid": "1.2.250.1.213.1.4.8"
+                        },
+                        "strictinstraits": {
+                            "birthname": "Dupont",
+                            "firstfirstname": "None",
+                            "firstnameslist": "None",
+                            "birthDate": "None",
+                            "sex": "F",
+                            "birthplacecode": "None"
+                        },
+                        "nonstrictINStraits": {
+                            "customaryname": "Dupont",
+                            "customaryfirstname": "Jeanne"
+                        },
+                        "personalContact": [
+                            {
+                                "type": "PHNADD",
+                                "detail": "0671830530"
+                            }
+                        ],
+                        "personalAdress": {
+                            "detailedAdress": {},
+                            "city": {}
+                        },
+                        "personalGP": {
+                            "gpname": "None",
+                            "gpfirstname": "None",
+                            "gpID": "None",
+                            "pgphone": "None",
+                            "personalAdress": {},
+                            "personalContact": [
+                                {}
+                            ]
+                        },
+                        "age": "6Y"
+                    }
+                ],
+                "whatsHappen": {
+                    "freetext": "None"
+                },
+                "patinfo": {
+                    "weight": 31,
+                    "height": 109
+                }
+            }
+        ],
+        "medicalAnalysis": {
+            "patientcaseID": "None",
+            "medicalfile": [
+                {
+                    "operators": {},
+                    "freetext": [
+                        "None"
+                    ],
+                    "medicalhistory": [
+                        "None"
+                    ],
+                    "treatments": [
+                        "None"
+                    ]
+                }
+            ],
+            "patPathway": [
+                {
+                    "decisiontype": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
+                    "orientation": "None",
+                    "rtypeTransport": [
+                        "None"
+                    ],
+                    "levelOfCare": "M\u00e9dical, param\u00e9dical, secouriste",
+                    "patdestination": {
+                        "facility": "None",
+                        "service": "None",
+                        "other": "None"
+                    },
+                    "carelevel": "R1/R2/R3/R4"
+                }
+            ],
+            "hypothesis": {
+                "mainDiagnosis": {
+                    "codediag": "None",
+                    "titlemaindiag": "None"
+                },
+                "otherDiagnosis": [
+                    {}
+                ]
+            },
+            "resourceDiagnosis": {}
         },
         "newAlert": [
             {}
