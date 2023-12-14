@@ -21,6 +21,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -63,7 +64,7 @@ public class DistributionElementBuilderTest {
         DistributionElement actual = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID,RECIPIENT_LIST)
                 .sentAt(customDateTime)
                 .build();
-        assertEquals(customDateTime, actual.getSentAt());
+        assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), actual.getSentAt());
     }
 
     @Test

@@ -27,12 +27,14 @@
                         <sentAt>2022-07-25T10:04:34+01:00</sentAt>
                         <kind>Report</kind>
                         <status>Actual</status>
-                        <recipients>
-                            <recipient>
-                                <name>samuA</name>
-                                <URI>hubex:fr.health.samuA</URI>
-                            </recipient>
-                        </recipients>
+                        <recipient>
+                            <name>samuA</name>
+                            <URI>hubex:fr.health.samuA</URI>
+                        </recipient>
+                        <recipient>
+                            <name>samuA2</name>
+                            <URI>hubex:fr.health.samuA2</URI>
+                        </recipient>
                         <emsi>
                             <CONTEXT>
                                 <ID>d350c9d2-9d76-4568-b0b7-a747ffadc949</ID>
@@ -65,9 +67,9 @@
                                 <SOURCE>COMFOR</SOURCE>
                                 <SCALE>3</SCALE>
                                 <CERTAINTY>95</CERTAINTY>
-                                <DECL_DATETIME>2022-09-27T08:24:50+02:00</DECL_DATETIME>
-                                <OCC_DATETIME>2022-09-27T08:20:50+02:00</OCC_DATETIME>
-                                <OBS_DATETIME>2022-09-27T08:26:00+02:00</OBS_DATETIME>
+                                <DECL_DATIME>2022-09-27T08:24:50+02:00</DECL_DATIME>
+                                <OCC_DATIME>2022-09-27T08:20:50+02:00</OCC_DATIME>
+                                <OBS_DATIME>2022-09-27T08:26:00+02:00</OBS_DATIME>
                                 <STATUS>IPR</STATUS>
                                 <RISK_ASSESMENT>STABLE</RISK_ASSESMENT>
                                 <REFERENCE>
@@ -96,7 +98,7 @@
                                     <FREETEXT>Un peu de pluie vers 8h</FREETEXT>
                                     <POSITION>
                                         <LOC_ID>111fb03a-6fd9-41e0-8e81-990c45188887</LOC_ID>
-                                        <NAME>Lyc\u00e9e Pierre de Coubertin"</NAME>
+                                        <NAME>Lycée Pierre de Coubertin</NAME>
                                         <TYPE>POINT</TYPE>
                                         <HEIGHT_ROLE>MIN</HEIGHT_ROLE>
                                         <COORDSYS>EPSG-4326</COORDSYS>
@@ -128,7 +130,7 @@
                                     <LOC_ID>abcd-hg6T-HSG5-67AA</LOC_ID>
                                     <NAME>Lycée Pierre de Coubertin</NAME>
                                     <TYPE>POINT</TYPE>
-                                    <HEIGHTROLE>MIN</HEIGHTROLE>
+                                    <HEIGHT_ROLE>MIN</HEIGHT_ROLE>
                                     <COORDSYS>EPSG-4326</COORDSYS>
                                     <COORD>
                                         <LAT>47.221866</LAT>

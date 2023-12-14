@@ -1,6 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "classpath:/json-schema/schema#",
+  "$id": "https://json-schema.org/draft-07/schema#",
+  "type": "object",
   "definitions": {
     "EdxlEnvelope": {
       "type": "object",
@@ -85,77 +86,7 @@
       }
     },
     "EmbeddedJsonContent": {
-      "type": "object",
-      "oneOf": [
-        {
-          "allOf": [
-            {
-                "properties": {
-                    "message": {
-                    "$ref": "RC-DE.schema.json"
-                    }
-                }
-            },
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-EDA.schema.json"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-REF.schema.json"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "properties": {
-            "message": {
-              "$ref": "RS-INFO.schema.json"
-            }
-          }
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "$ref": "EMSI-DC.schema.json"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "properties": {
-            "message": {
-              "$ref": "CustomContent.schema.json"
-            }
-          }
-        }
-      ]
+      "type": "object"
     },
     "Descriptor": {
       "type": "object",

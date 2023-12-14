@@ -159,7 +159,7 @@ public class Casualties {
   }
 
   /**
-   * Optionnel
+   * Optionnel, Triage victime au sens EMSI
    * @return TRIAGERED
    **/
   @JsonProperty(JSON_PROPERTY_T_R_I_A_G_E_R_E_D)

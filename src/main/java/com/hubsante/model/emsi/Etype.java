@@ -53,7 +53,8 @@ public class Etype {
 
   /**
    * Le champ peut ne pas être interprété ou renseigné avec une valeur comme
-   * &#39;UKN&#39; &#x3D; &#39;UNKOWN&#39;
+   * &#39;UKN&#39; &#x3D; &#39;UNKOWN&#39; A constituer depuis
+   * ref_mapping_EMSI&lt;ETYPE&gt;&lt;CATEGORY&gt;_NEXSIS
    */
   public enum CATEGORYEnum {
     ASB("ASB"),

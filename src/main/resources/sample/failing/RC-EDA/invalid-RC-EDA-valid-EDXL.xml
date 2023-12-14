@@ -19,7 +19,6 @@
             <contentXML>
                 <embeddedXMLContent>
                     <message xmlns="urn:emergency:cisu:2.0">
-                        <messageId>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</messageId>
                         <sender>
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
@@ -42,20 +41,30 @@
                                     <label>Rodéo automobile</label>
                                     <freetext>None</freetext>
                                 </whatsHappen>
+                                <locationKind>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
+                                </locationKind>
                                 <riskThreat>
-                                    <code>C01.00.00</code>
-                                    <label>Gêne à la circulation</label>
-                                    <freetext>risque lié aux voitures</freetext>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
                                 </riskThreat>
                                 <riskThreat>
-                                    <code>C01.01.00</code>
-                                    <label>Second riskThreat</label>
-                                    <freetext>champ libre</freetext>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
                                 </riskThreat>
+                                <healthMotive>
+                                    <code>TO_BE_CONTROLLED</code>
+                                    <label>TO_BE_CONTROLLED</label>
+                                    <freetext>TO_BE_CONTROLLED</freetext>
+                                </healthMotive>
                                 <victims>
                                     <count>SEVERAL</count>
-                                    <mainVictim>ADULT</mainVictim>
-                                    <freetext>Deuxième victime présente saignements legers aux mains et genoux</freetext>
+                                    <mainVictim>CHILD</mainVictim>
+                                    <freetext>Jeanne Dupont, 6 ans, ne répond plus</freetext>
                                 </victims>
                             </qualification>
                             <location>

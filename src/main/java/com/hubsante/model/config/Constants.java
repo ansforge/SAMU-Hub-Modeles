@@ -17,5 +17,7 @@ package com.hubsante.model.config;
 
 public class Constants {
     public static final String ENVELOPE_SCHEMA = "EDXL-DE-envelope-only.schema.json";
+    public static final String ENVELOPE_XSD = "EDXL-DE-envelope-only.xsd";
     public static final String FULL_SCHEMA = "EDXL-DE-full.schema.json";
+    public static final String FULL_XSD = "EDXL-DE-full.xsd";
 }

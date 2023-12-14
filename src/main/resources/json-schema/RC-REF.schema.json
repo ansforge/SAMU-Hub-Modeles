@@ -9,11 +9,6 @@
   "required": [
     "reference"
   ],
-  "allOf": [
-    {
-      "$ref": "RC-DE.schema.json"
-    }
-  ],
   "properties": {
     "reference": {
       "$ref": "#/definitions/reference"
