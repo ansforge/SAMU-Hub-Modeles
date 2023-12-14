@@ -116,7 +116,8 @@ public class Origin {
   }
 
   /**
-   * Optionnel
+   * Optionnel  A constituer par le rédacteur pour être intelligible (exemple
+   *[structure].[nom])
    * @return NAME
    **/
   @JsonProperty(JSON_PROPERTY_N_A_M_E)

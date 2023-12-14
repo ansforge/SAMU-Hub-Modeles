@@ -192,7 +192,10 @@ public class Context {
   private LEVELEnum LEVEL;
 
   /**
-   * Optionnel
+   * Optionnel  Dans NexSIS ;  Les messages transmis par NexSIS auront un champ
+   * valorisé avec systématiquement le même code:
+   * \&quot;RESTRC\&quot;&#x3D;restricted Les LRM doivent également renseigner
+   * la valeur \&quot;RESTRC\&quot;
    */
   public enum SECLASSEnum {
     CONFID("CONFID"),
@@ -366,7 +369,10 @@ public class Context {
    * Obligatoire dans le cadre d&#39;une demande de concours, contient la date
    *de création de la demande de concours dans le système du partenaire
    *requérant. A valoriser avec le même horaire que dateTimeSent dans le message
-   *RC-DE associé.
+   *RC-DE associé. Dans le cadre d&#39;une demande de concours, obligatoire. Ce
+   *champ est valorisée avec l&#39;heure de création de la demande de concours
+   *chez le partenaire emetteur. L&#39;heure d&#39;envoi du message peut être
+   *obtenue via l&#39;enveloppe EDXL-DE (se référer au DST)
    * @return CREATION
    **/
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
@@ -452,7 +458,10 @@ public class Context {
   }
 
   /**
-   * Optionnel
+   * Optionnel  Dans NexSIS ;  Les messages transmis par NexSIS auront un champ
+   *valorisé avec systématiquement le même code:
+   *\&quot;RESTRC\&quot;&#x3D;restricted Les LRM doivent également renseigner la
+   *valeur \&quot;RESTRC\&quot;
    * @return SECLASS
    **/
   @JsonProperty(JSON_PROPERTY_S_E_C_L_A_S_S)
@@ -475,7 +484,16 @@ public class Context {
   }
 
   /**
-   * Texte libre, optionnel
+   * Texte libre, optionnel  Dans NexSIS;  Fonction de l&#39;événement
+   *générateur RG 1 : la valeur de &lt;context&gt;&lt;freetext&gt; reste à
+   *&#39;Création d&#39;un événement opérationnel EMSI&#39; &amp; version &amp;
+   *&#39;suite à réception d&#39;une affaire*&#39; dans le cadre de la création
+   *d&#39;une opération commune (conforme RG 2 de NEXSIS-6618) RG 3 : les
+   *événements générateurs sont ceux définis au sein de NEXSIS-6619 RG 1 de
+   *traçabilité  ( input &#x3D; &lt;Evenement à l&#39;origine&gt; &#x3D;
+   *CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE /
+   *RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE)
+   *auxquels seront ajoutés  les éventuels événements à venir.
    * @return FREETEXT
    **/
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)

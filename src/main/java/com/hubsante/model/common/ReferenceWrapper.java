@@ -86,18 +86,20 @@ public class ReferenceWrapper extends DistributionElement {
       return false;
     }
     ReferenceWrapper referenceWrapper = (ReferenceWrapper)o;
-    return Objects.equals(this.reference, referenceWrapper.reference);
+    return Objects.equals(this.reference, referenceWrapper.reference) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(reference);
+    return Objects.hash(reference, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ReferenceWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    reference: ")
         .append(toIndentedString(reference))
         .append("\n");

@@ -26,12 +26,10 @@
                         <sentAt>2022-07-25T10:04:34+01:00</sentAt>
                         <status>Actual</status>
                         <kind>Ack</kind>
-                        <recipients>
-                            <recipient>
-                                <name>samuA</name>
-                                <URI>hubex:fr.health.samuA</URI>
-                            </recipient>
-                        </recipients>
+                        <recipient>
+                            <name>samuA</name>
+                            <URI>hubex:fr.health.samuA</URI>
+                        </recipient>
                         <reference>
                             <distributionID>samuA_2607723d-507d-4cbf-bf74-12345f7064cd</distributionID>
                         </reference>

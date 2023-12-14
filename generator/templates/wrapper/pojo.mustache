@@ -20,7 +20,7 @@
 {{#vendorExtensions.x-class-extra-annotation}}
     {{{vendorExtensions.x-class-extra-annotation}}}
 {{/vendorExtensions.x-class-extra-annotation}}
-public class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends DistributionElement {
+public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends DistributionElement {
 {{#serializableModel}}
     private static final long serialVersionUID = 1L;
 
@@ -93,10 +93,8 @@ public class {{classname}} {{#parent}}extends {{{.}}} {{/parent}}{{#vendorExtens
 
 {{/vars}}
 public {{classname}}() {
-{{#parent}}
     {{#parcelableModel}}
         super();{{/parcelableModel}}
-{{/parent}}
 {{#gson}}
     {{#discriminator}}
         {{#discriminator.isEnum}}
@@ -272,7 +270,6 @@ public {{classname}}() {
     {{/isReadOnly}}
 
 {{/vars}}
-{{#parent}}
     {{#allVars}}
         {{#isOverridden}}
             @Override
@@ -288,7 +285,6 @@ public {{classname}}() {
 
         {{/isOverridden}}
     {{/allVars}}
-{{/parent}}
 @Override
 public boolean equals(Object o) {
 {{#useReflectionEqualsHashCode}}
@@ -303,9 +299,9 @@ public boolean equals(Object o) {
     }{{#hasVars}}
         {{classname}} {{classVarName}} = ({{classname}}) o;
         return {{#vars}}{{#vendorExtensions.x-is-jackson-optional-nullable}}equalsNullable(this.{{name}}, {{classVarName}}.{{name}}){{/vendorExtensions.x-is-jackson-optional-nullable}}{{^vendorExtensions.x-is-jackson-optional-nullable}}{{#isByteArray}}Arrays{{/isByteArray}}{{^isByteArray}}Objects{{/isByteArray}}.equals(this.{{name}}, {{classVarName}}.{{name}}){{/vendorExtensions.x-is-jackson-optional-nullable}}{{^-last}} &&
-        {{/-last}}{{/vars}}{{#parent}} &&
-        super.equals(o){{/parent}};{{/hasVars}}{{^hasVars}}
-        return {{#parent}}super.equals(o){{/parent}}{{^parent}}true{{/parent}};{{/hasVars}}
+        {{/-last}}{{/vars}}&&
+        super.equals(o);{{/hasVars}}{{^hasVars}}
+        return super.equals(o);{{/hasVars}}
 {{/useReflectionEqualsHashCode}}
 }{{#vendorExtensions.x-jackson-optional-nullable-helpers}}
 
@@ -319,7 +315,7 @@ public boolean equals(Object o) {
         return HashCodeBuilder.reflectionHashCode(this);
 {{/useReflectionEqualsHashCode}}
 {{^useReflectionEqualsHashCode}}
-        return Objects.hash({{#vars}}{{#vendorExtensions.x-is-jackson-optional-nullable}}hashCodeNullable({{name}}){{/vendorExtensions.x-is-jackson-optional-nullable}}{{^vendorExtensions.x-is-jackson-optional-nullable}}{{^isByteArray}}{{name}}{{/isByteArray}}{{#isByteArray}}Arrays.hashCode({{name}}){{/isByteArray}}{{/vendorExtensions.x-is-jackson-optional-nullable}}{{^-last}}, {{/-last}}{{/vars}}{{#parent}}{{#hasVars}}, {{/hasVars}}super.hashCode(){{/parent}});
+        return Objects.hash({{#vars}}{{#vendorExtensions.x-is-jackson-optional-nullable}}hashCodeNullable({{name}}){{/vendorExtensions.x-is-jackson-optional-nullable}}{{^vendorExtensions.x-is-jackson-optional-nullable}}{{^isByteArray}}{{name}}{{/isByteArray}}{{#isByteArray}}Arrays.hashCode({{name}}){{/isByteArray}}{{/vendorExtensions.x-is-jackson-optional-nullable}}{{^-last}}, {{/-last}}{{/vars}}{{#hasVars}}, {{/hasVars}}super.hashCode());
 {{/useReflectionEqualsHashCode}}
     }{{#vendorExtensions.x-jackson-optional-nullable-helpers}}
 
@@ -334,9 +330,7 @@ public boolean equals(Object o) {
     public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class {{classname}} {\n");
-{{#parent}}
-        sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-{{/parent}}
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
 {{#vars}}
         sb.append("    {{name}}: ").append(toIndentedString({{name}})).append("\n");
 {{/vars}}
@@ -556,9 +550,7 @@ public boolean equals(Object o) {
                 out.writeList(this);
         {{/isArray}}
         {{^isArray}}
-            {{#parent}}
-                    super.writeToParcel(out, flags);
-            {{/parent}}
+                super.writeToParcel(out, flags);
             {{#vars}}
                     out.writeValue({{name}});
             {{/vars}}
@@ -571,9 +563,7 @@ public boolean equals(Object o) {
             in.readTypedList(this, {{arrayModelType}}.CREATOR);
     {{/isArray}}
     {{^isArray}}
-        {{#parent}}
-                super(in);
-        {{/parent}}
+            super(in);
         {{#vars}}
             {{#isPrimitiveType}}
                 {{name}} = ({{{datatypeWithEnum}}})in.readValue(null);

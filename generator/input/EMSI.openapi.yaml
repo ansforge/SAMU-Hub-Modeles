@@ -86,7 +86,11 @@ components:
           description: "Obligatoire dans le cadre d'une demande de concours, contient\
             \ la date de cr\xE9ation de la demande de concours dans le syst\xE8me\
             \ du partenaire requ\xE9rant.\nA valoriser avec le m\xEAme horaire que\
-            \ dateTimeSent dans le message RC-DE associ\xE9."
+            \ dateTimeSent dans le message RC-DE associ\xE9.\nDans le cadre d'une\
+            \ demande de concours, obligatoire. Ce champ est valoris\xE9e avec l'heure\
+            \ de cr\xE9ation de la demande de concours chez le partenaire emetteur.\
+            \ L'heure d'envoi du message peut \xEAtre obtenue via l'enveloppe EDXL-DE\
+            \ (se r\xE9f\xE9rer au DST)"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -113,7 +117,10 @@ components:
           title: Niveau de classification
           x-cols: 6
           example: example.json#/emsi/CONTEXT/SECLASS
-          description: Optionnel
+          description: "Optionnel\n\nDans NexSIS ; \nLes messages transmis par NexSIS\
+            \ auront un champ valoris\xE9 avec syst\xE9matiquement le m\xEAme code:\
+            \ \"RESTRC\"=restricted\nLes LRM doivent \xE9galement renseigner la valeur\
+            \ \"RESTRC\""
           enum:
           - CONFID
           - RESTRC
@@ -128,7 +135,17 @@ components:
           title: Texte libre
           x-cols: 6
           example: example.json#/emsi/CONTEXT/FREETEXT
-          description: Texte libre, optionnel
+          description: "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\xE9\
+            v\xE9nement g\xE9n\xE9rateur\nRG 1 : la valeur de <context><freetext>\
+            \ reste \xE0  'Cr\xE9ation d'un \xE9v\xE9nement op\xE9rationnel EMSI'\
+            \ & version & 'suite \xE0 r\xE9ception d'une affaire*' dans le cadre de\
+            \ la cr\xE9ation d'une op\xE9ration commune (conforme RG 2 de NEXSIS-6618)\n\
+            RG 3 : les \xE9v\xE9nements g\xE9n\xE9rateurs sont ceux d\xE9finis au\
+            \ sein de NEXSIS-6619 RG 1 de tra\xE7abilit\xE9  ( input = <Evenement\
+            \ \xE0 l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION\
+            \ / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE\
+            \ / MAJ_LOCALISATION_ADRESSE) auxquels seront ajout\xE9s  les \xE9ventuels\
+            \ \xE9v\xE9nements \xE0 venir."
           examples:
           - "Contexte de grand incendie \xE0 Nantes"
         ORIGIN:
@@ -165,13 +182,14 @@ components:
           description: "Identifiant local de l'affaire dans le syst\xE8me du partenaire\
             \ emetteur"
           examples:
-          - FR:NEXSIS:44:CGO:20231027_00002
+          - samu44
         NAME:
           type: string
           title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
           x-cols: 6
           example: example.json#/emsi/EVENT/NAME
-          description: Optionnel
+          description: "Optionnel\nDans nexSIS; [libelle NF 1 m\xE9tier] & \" - \"\
+            \ & [libelle TL 1 m\xE9tier] & \" - \" & [libell\xE9 commune]"
           examples:
           - Grand Incendie Nantes
         MAIN_EVENT_ID:
@@ -204,7 +222,7 @@ components:
           title: "Echelle de s\xE9v\xE9rit\xE9 de l'environnement"
           x-cols: 6
           example: example.json#/emsi/EVENT/SCALE
-          description: Optionnel
+          description: "Optionnel, Niveau de criticit\xE9 de l'op\xE9ration"
           enum:
           - '1'
           - '2'
@@ -218,7 +236,9 @@ components:
           title: "Fiabilit\xE9"
           x-cols: 6
           example: example.json#/emsi/EVENT/CERTAINTY
-          description: "Prend une valeur enti\xE8re entre 0 et 100\nOptionnel"
+          description: "Prend une valeur enti\xE8re entre 0 et 100, et d\xE9crit \xE0\
+            \ quel point l'alerte associ\xE9e \xE0 l'\xE9v\xE9nement est fiable\n\
+            Optionnel"
           examples:
           - 100
         DECL_DATIME:
@@ -533,7 +553,8 @@ components:
             \ suppl\xE9mentaires souhait\xE9s ou le nom/ pr\xE9nom des patients \xE0\
             \ prendre en charge peuvent \xEAtre explicitement indiqu\xE9s ici."
           examples:
-          - None
+          - "Besoin d'un grand v\xE9hicule car patients \xE0 prendre en charge volumineux.\
+            \ Ne pas utiliser les gyrophares en approche"
         ID:
           type: string
           title: Identifiant de la mission
@@ -556,9 +577,10 @@ components:
             \ Dans le cas d'une r\xE9ponse, c'est l'organisation du concourant qui\
             \ doit \xEAtre indiqu\xE9e.\nSe r\xE9f\xE9rer au DSF pour la structure\
             \ norm\xE9e des organisations\nLe format est le suivant {pays}:{domaine}:{code\
-            \ d\xE9partement}:{organisation}:{structure interne}*:{unit\xE9 fonctionnelle}*."
+            \ d\xE9partement}:{organisation}:{structure interne}*:{unit\xE9 fonctionnelle}*.\n\
+            identique \xE0 <CONTEXT><ORIGIN><ORG_ID>"
           examples:
-          - FR:Administration:44:CGO
+          - fr.health.44.samu44
         NAME:
           type: string
           title: Nom de la mission
@@ -576,7 +598,7 @@ components:
             #\"\no\xF9 le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE,\
             \ DIVERGENTE\n- sinon libre"
           examples:
-          - "Secours \xE0 Incendie"
+          - '#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#'
         STATUS:
           type: string
           title: Status de la mission
@@ -717,7 +739,12 @@ components:
           x-cols: 6
           example: example.json#/emsi/CONTEXT/LINK/0/ID
           description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
-            \ requ\xE9rant"
+            \ requ\xE9rant\nDans NexSIS;\nRG 1  \u2013 : cr\xE9ation du premier message\
+            \ EMSi suite r\xE9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\xE9ro\
+            \ d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour\
+            \ tous les messages cr\xE9\xE9s apr\xE8s le premier, EMSI <LINK> est compl\xE9\
+            t\xE9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\xE9c\xE9dent\
+            \ cr\xE9\xE9 au sein du SGO r\xE9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
           examples:
           - samuA:CA126B445579GD4A67AV
         LINK_ROLE:
@@ -726,7 +753,13 @@ components:
           x-cols: 6
           example: example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE
           description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" en\
-            \ EMSI-EO et avec le libell\xE9 ADDSTO en EMSI-DC"
+            \ EMSI-EO et avec le libell\xE9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG\
+            \ 1  \u2013 : cr\xE9ation du premier message EMSi suite r\xE9ception Affaire\
+            \ * <LINK><LINK ID> = <Num\xE9ro d'affaire initiale>\n\u2022 <LINK><LINK\
+            \ ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\xE9\xE9s apr\xE8\
+            s le premier, EMSI <LINK> est compl\xE9t\xE9 par <LINK><LINK ID> contenant\
+            \ l'ID de message EMSI pr\xE9c\xE9dent cr\xE9\xE9 au sein du SGO r\xE9\
+            dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
           enum:
           - ADDSTO
           - SPRSDS
@@ -752,7 +785,7 @@ components:
             Le format est le suivant {pays}.{domaine}.{code d\xE9partement}.{organisation}.{structure\
             \ interne}*.{unit\xE9 fonctionnelle}*."
           examples:
-          - FR:Administration:44:CGO
+          - fr.health.44.samu44
         USER_ID:
           type: string
           title: ID d'utilisateur de l'origine
@@ -761,20 +794,21 @@ components:
           description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
             \ de l'EMSI"
           examples:
-          - /FF#bb511708-b004-4d7e-8820-1d56c19f1823
+          - None
         NAME:
           type: string
           title: 'Nom Origine '
           x-cols: 6
           example: example.json#/emsi/CONTEXT/ORIGIN/NAME
-          description: Optionnel
+          description: "Optionnel\n\nA constituer par le r\xE9dacteur pour \xEAtre\
+            \ intelligible (exemple [structure].[nom])"
           examples:
-          - CGO 44
+          - samu44
       example: example.json#/emsi/CONTEXT/ORIGIN
       examples:
-      - ORG_ID: FR:Administration:44:CGO
-        USER_ID: /FF#bb511708-b004-4d7e-8820-1d56c19f1823
-        NAME: CGO 44
+      - ORG_ID: fr.health.44.samu44
+        USER_ID: None
+        NAME: samu44
     externalInfo:
       type: object
       title: 'Informations exterieures '
@@ -834,7 +868,7 @@ components:
             x-cols: 6
             example: example.json#/emsi/EVENT/ETYPE/CATEGORY/0
             description: "Le champ peut ne pas \xEAtre interpr\xE9t\xE9 ou renseign\xE9\
-              \ avec une valeur comme 'UKN' = 'UNKOWN'"
+              \ avec une valeur comme 'UKN' = 'UNKOWN'\nA constituer depuis ref_mapping_EMSI<ETYPE><CATEGORY>_NEXSIS"
             enum:
             - ASB
             - ASR
@@ -1140,7 +1174,7 @@ components:
           example: example.json#/emsi/EVENT/REFERENCE/0/ORG_ID
           description: Identification de l'organisation partenaire
           examples:
-          - FR:Administration:44:CGO
+          - fr.health.44.samu44
         OTHER_EVENT_ID:
           type: array
           items:
@@ -1151,7 +1185,7 @@ components:
             description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
               \ dans le syst\xE8me partenaire"
             examples:
-            - FR:NEXSIS:44:CGO:20231027_00002
+            - samu4412345
       example: example.json#/emsi/EVENT/REFERENCE/0
     casualties:
       type: object
@@ -1192,7 +1226,7 @@ components:
           title: Triage Rouge
           x-cols: 6
           example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGERED
-          description: Optionnel
+          description: Optionnel, Triage victime au sens EMSI
           examples:
           - 0
         TRIAGEYELLOW:
@@ -1301,7 +1335,10 @@ components:
           example: example.json#/emsi/EVENT/EGEO/0/TYPE
           description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
-            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
+            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION.\nA constituer\
+            \ depuis ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_\n/!\\ plusieurs champs\
+            \ NEXSIS\n/!\\ plusieurs valeurs par champs d'o\xF9 un groupe<EGEO> \xE0\
+            \ cr\xE9er par type diff\xE9rents"
           enum:
           - AIR
           - CMB
@@ -1543,8 +1580,7 @@ components:
           title: 'Latitude '
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LAT
-          description: "Optionnel. \nDans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
-            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\n"
+          description: "derni\xE8re coordonn\xE9e x  connue de la ressource"
           examples:
           - '47.221866'
         LONG:
@@ -1553,7 +1589,8 @@ components:
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LONG
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
-            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\n"
+            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
+            re coordonn\xE9e y  connue de la ressource\nbetween \u221290 and +90"
           examples:
           - '-1.575807'
         HEIGHT:
@@ -1562,7 +1599,8 @@ components:
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
-            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\n"
+            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
+            re coordonn\xE9e z  connue de la ressource\nbetween \u2212180 and +180"
           examples:
           - 1
       example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0

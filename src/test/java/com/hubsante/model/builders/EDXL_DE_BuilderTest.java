@@ -25,6 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.OffsetDateTime;
+import java.time.temporal.ChronoUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -70,7 +71,7 @@ public class EDXL_DE_BuilderTest {
                 .dateTimeSent(customDateTime)
                 .build();
 
-        assertEquals(customDateTime, built.getDateTimeSent());
+        assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
         assertEquals(built.getDateTimeSent().plusDays(1), built.getDateTimeExpires());
     }
 
@@ -85,7 +86,7 @@ public class EDXL_DE_BuilderTest {
                 .dateTimeExpires(customDateTimeExpires)
                 .build();
 
-        assertEquals(customDateTimeExpires, built.getDateTimeExpires());
+        assertEquals(customDateTimeExpires.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeExpires());
     }
 
     @Test
@@ -112,7 +113,7 @@ public class EDXL_DE_BuilderTest {
                 .dateTimeSentAndExpiresAfterSeconds(customDateTime, 3600)
                 .build();
 
-        assertEquals(customDateTime, built.getDateTimeSent());
+        assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
         assertEquals(built.getDateTimeSent().plusHours(1), built.getDateTimeExpires());
     }
 
@@ -127,7 +128,7 @@ public class EDXL_DE_BuilderTest {
                 .dateTimeSentAndExpiresAfterHours(customDateTime, 24)
                 .build();
 
-        assertEquals(customDateTime, built.getDateTimeSent());
+        assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
         assertEquals(built.getDateTimeSent().plusDays(1), built.getDateTimeExpires());
     }
 
@@ -142,7 +143,7 @@ public class EDXL_DE_BuilderTest {
                 .dateTimeSentAndExpiresAfterDays(customDateTime, 1)
                 .build();
 
-        assertEquals(customDateTime, built.getDateTimeSent());
+        assertEquals(customDateTime.truncatedTo(ChronoUnit.SECONDS), built.getDateTimeSent());
         assertEquals(built.getDateTimeSent().plusDays(1), built.getDateTimeExpires());
     }
 
