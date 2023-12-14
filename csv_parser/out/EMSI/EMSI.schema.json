@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "23.12.13",
+    "version": "23.12.14",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -88,7 +88,7 @@
                     "title": "Date et heure de cr\u00e9ation",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/CREATION",
-                    "description": "Obligatoire dans le cadre d'une demande de concours, contient la date de cr\u00e9ation de la demande de concours dans le syst\u00e8me du partenaire requ\u00e9rant.\nA valoriser avec le m\u00eame horaire que dateTimeSent dans le message RC-DE associ\u00e9.",
+                    "description": "Obligatoire dans le cadre d'une demande de concours, contient la date de cr\u00e9ation de la demande de concours dans le syst\u00e8me du partenaire requ\u00e9rant.\nA valoriser avec le m\u00eame horaire que dateTimeSent dans le message RC-DE associ\u00e9.\nDans le cadre d'une demande de concours, obligatoire. Ce champ est valoris\u00e9e avec l'heure de cr\u00e9ation de la demande de concours chez le partenaire emetteur. L'heure d'envoi du message peut \u00eatre obtenue via l'enveloppe EDXL-DE (se r\u00e9f\u00e9rer au DST)",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -115,7 +115,7 @@
                     "title": "Niveau de classification",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/SECLASS",
-                    "description": "Optionnel",
+                    "description": "Optionnel\n\nDans NexSIS ; \nLes messages transmis par NexSIS auront un champ valoris\u00e9 avec syst\u00e9matiquement le m\u00eame code: \"RESTRC\"=restricted\nLes LRM doivent \u00e9galement renseigner la valeur \"RESTRC\"",
                     "enum": [
                         "CONFID",
                         "RESTRC",
@@ -130,7 +130,7 @@
                     "title": "Texte libre",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/FREETEXT",
-                    "description": "Texte libre, optionnel"
+                    "description": "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\u00e9v\u00e9nement g\u00e9n\u00e9rateur\nRG 1 : la valeur de <context><freetext> reste \u00e0  'Cr\u00e9ation d'un \u00e9v\u00e9nement op\u00e9rationnel EMSI' & version & 'suite \u00e0 r\u00e9ception d'une affaire*' dans le cadre de la cr\u00e9ation d'une op\u00e9ration commune (conforme RG 2 de NEXSIS-6618)\nRG 3 : les \u00e9v\u00e9nements g\u00e9n\u00e9rateurs sont ceux d\u00e9finis au sein de NEXSIS-6619 RG 1 de tra\u00e7abilit\u00e9  ( input = <Evenement \u00e0 l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajout\u00e9s  les \u00e9ventuels \u00e9v\u00e9nements \u00e0 venir."
                 },
                 "ORIGIN": {
                     "$ref": "#/definitions/origin"
@@ -175,7 +175,7 @@
                     "title": "Nom donn\u00e9 \u00e0 l'\u00e9v\u00e9nement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/NAME",
-                    "description": "Optionnel"
+                    "description": "Optionnel\nDans nexSIS; [libelle NF 1 m\u00e9tier] & \" - \" & [libelle TL 1 m\u00e9tier] & \" - \" & [libell\u00e9 commune]"
                 },
                 "MAIN_EVENT_ID": {
                     "type": "string",
@@ -205,7 +205,7 @@
                     "title": "Echelle de s\u00e9v\u00e9rit\u00e9 de l'environnement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/SCALE",
-                    "description": "Optionnel",
+                    "description": "Optionnel, Niveau de criticit\u00e9 de l'op\u00e9ration",
                     "enum": [
                         "1",
                         "2",
@@ -219,7 +219,7 @@
                     "title": "Fiabilit\u00e9",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CERTAINTY",
-                    "description": "Prend une valeur enti\u00e8re entre 0 et 100\nOptionnel"
+                    "description": "Prend une valeur enti\u00e8re entre 0 et 100, et d\u00e9crit \u00e0 quel point l'alerte associ\u00e9e \u00e0 l'\u00e9v\u00e9nement est fiable\nOptionnel"
                 },
                 "DECL_DATIME": {
                     "type": "string",
@@ -517,7 +517,7 @@
                     "title": "Identifiant de l'organisation propri\u00e9taire",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/ORG_ID",
-                    "description": "Indique l'organisation du partenaire concern\u00e9 par la Demande de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \u00eatre utilis\u00e9.\nIndique l'organisation du service r\u00e9alisant la mission. Dans le cas d'une r\u00e9ponse, c'est l'organisation du concourant qui doit \u00eatre indiqu\u00e9e.\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*."
+                    "description": "Indique l'organisation du partenaire concern\u00e9 par la Demande de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \u00eatre utilis\u00e9.\nIndique l'organisation du service r\u00e9alisant la mission. Dans le cas d'une r\u00e9ponse, c'est l'organisation du concourant qui doit \u00eatre indiqu\u00e9e.\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*.\nidentique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
                 },
                 "NAME": {
                     "type": "string",
@@ -627,14 +627,14 @@
                     "title": "ID",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/LINK/0/ID",
-                    "description": "A renseigner avec l'identifiant local de l'affaire du partenaire requ\u00e9rant"
+                    "description": "A renseigner avec l'identifiant local de l'affaire du partenaire requ\u00e9rant\nDans NexSIS;\nRG 1  \u2013 : cr\u00e9ation du premier message EMSi suite r\u00e9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\u00e9ro d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\u00e9\u00e9s apr\u00e8s le premier, EMSI <LINK> est compl\u00e9t\u00e9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\u00e9c\u00e9dent cr\u00e9\u00e9 au sein du SGO r\u00e9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
                 },
                 "LINK_ROLE": {
                     "type": "string",
                     "title": "R\u00f4le du lien",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE",
-                    "description": "Optionnel : \u00e0 valoriser avec la constante \"SPRSDS\" en EMSI-EO et avec le libell\u00e9 ADDSTO en EMSI-DC",
+                    "description": "Optionnel : \u00e0 valoriser avec la constante \"SPRSDS\" en EMSI-EO et avec le libell\u00e9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG 1  \u2013 : cr\u00e9ation du premier message EMSi suite r\u00e9ception Affaire * <LINK><LINK ID> = <Num\u00e9ro d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\u00e9\u00e9s apr\u00e8s le premier, EMSI <LINK> est compl\u00e9t\u00e9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\u00e9c\u00e9dent cr\u00e9\u00e9 au sein du SGO r\u00e9dacteur * <LINK><LINK ROLE> = 'SPRSDS'",
                     "enum": [
                         "ADDSTO",
                         "SPRSDS"
@@ -668,7 +668,7 @@
                     "title": "Nom Origine ",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ORIGIN/NAME",
-                    "description": "Optionnel"
+                    "description": "Optionnel\n\nA constituer par le r\u00e9dacteur pour \u00eatre intelligible (exemple [structure].[nom])"
                 }
             },
             "example": "example.json#/emsi/CONTEXT/ORIGIN"
@@ -729,7 +729,7 @@
                         "title": "Cat\u00e9gorie d'\u00e9v\u00e9nement",
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/ETYPE/CATEGORY/0",
-                        "description": "Le champ peut ne pas \u00eatre interpr\u00e9t\u00e9 ou renseign\u00e9 avec une valeur comme 'UKN' = 'UNKOWN'",
+                        "description": "Le champ peut ne pas \u00eatre interpr\u00e9t\u00e9 ou renseign\u00e9 avec une valeur comme 'UKN' = 'UNKOWN'\nA constituer depuis ref_mapping_EMSI<ETYPE><CATEGORY>_NEXSIS",
                         "enum": [
                             "ASB",
                             "ASR",
@@ -1075,7 +1075,7 @@
                     "title": "Triage Rouge",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/TRIAGERED",
-                    "description": "Optionnel"
+                    "description": "Optionnel, Triage victime au sens EMSI"
                 },
                 "TRIAGEYELLOW": {
                     "type": "integer",
@@ -1163,7 +1163,7 @@
                     "title": "Type de localisation",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/TYPE",
-                    "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION",
+                    "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION.\nA constituer depuis ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_\n/!\\ plusieurs champs NEXSIS\n/!\\ plusieurs valeurs par champs d'o\u00f9 un groupe<EGEO> \u00e0 cr\u00e9er par type diff\u00e9rents",
                     "enum": [
                         "AIR",
                         "CMB",
@@ -1395,21 +1395,21 @@
                     "title": "Latitude ",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LAT",
-                    "description": "Optionnel. \nDans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\n"
+                    "description": "derni\u00e8re coordonn\u00e9e x  connue de la ressource"
                 },
                 "LONG": {
                     "type": "number",
                     "title": "Longitude",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LONG",
-                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\n"
+                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e y  connue de la ressource\nbetween \u221290 and +90"
                 },
                 "HEIGHT": {
                     "type": "number",
                     "title": "Altitude",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT",
-                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\n"
+                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e z  connue de la ressource\nbetween \u2212180 and +180"
                 }
             },
             "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0"
