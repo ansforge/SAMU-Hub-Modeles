@@ -4,17 +4,46 @@ pip install -r requirements.txt
 ```
 
 # Setup
+## Run
 ```bash
 # Run everything
-make run
+./auto.sh
+```
 
-# Crons
+## Cron
+### Setup
+Weird bug left `git push` hanging and not doing anything. Updating remote from https to git fixed it.
+```bash
+git remote set-url origin git@github.com:ansforge/SAMU-Hub-Modeles.git
+```
+
+### Crontab
+Update local crons (`crontab -e`). To see current crons, use `crontab -l`.
+```bash
 # - For frequent runs 
-30 9-17/2 * * 1-5 cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && (make run >>cron.log 2>&1)
+30 9-17/2 * * 1-5 cd ~/code/ans/AUTO_SAMU-Hub-Modeles/csv_parser/ && (./auto.sh >>cron.log 2>&1)
 # - For weekly log deletion
-30 17 1-7 * 5 rm ~/code/ans/SAMU-Hub-Sante/models/csv_parser/cron.log
+30 17 1-7 * 5 rm ~/code/ans/AUTO_SAMU-Hub-Modeles/csv_parser/cron.log
 # - For debug (run every minute)
-# * * * * * cd ~/code/ans/SAMU-Hub-Sante/models/csv_parser/ && (make run >>cron.log 2>&1)
+# * * * * * cd ~/code/ans/AUTO_SAMU-Hub-Modeles/csv_parser/ && (./auto.sh >>cron.log 2>&1)
+```
+
+## Merge and branch creation process
+```bash
+# Review PR and merge it in GitHub
+# Go to local tracker repo 
+cd ~/code/ans/AUTO_SAMU-Hub-Modeles/
+# Delete remote branch (also doable on GitHub PR)
+git push origin --delete auto/model_tracker
+# Delete local branch
+git checkout main
+git branch -D auto/model_tracker
+# Pull latest main state
+git pull
+# Recreate branch from latest main
+git checkout -b auto/model_tracker
+# Link it with remote branch
+git push -u origin auto/model_tracker
 ```
 
 # CSV to JsonSchema
@@ -51,5 +80,3 @@ UML generator is called by default in the `csv_parser.py` but you may want to ru
 python uml_generator.py -m RC-EDA -o cisu -v 1.12
 python uml_generator.py --model RC-EDA --obj cisu --version 1.12
 ```
-
-

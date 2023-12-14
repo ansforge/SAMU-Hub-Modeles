@@ -16,13 +16,22 @@
 package com.hubsante.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.hubsante.model.cisu.CreateCaseWrapper;
+import com.hubsante.model.common.Recipient;
+import com.hubsante.model.common.ReferenceWrapper;
+import com.hubsante.model.common.Sender;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.emsi.EmsiWrapper;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
+import static com.hubsante.model.utils.Sanitizer.sanitizeEdxl;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -34,15 +43,26 @@ public class EdxlHandlerTest {
     @Test
     @DisplayName("should consistently deserialize then serialize JSON RC-EDA")
     public void end2end_RC_EDA_JSON() throws IOException {
-        String json = getMessageString( "RC-EDA");
+        String json = getMessageString("RC-EDA");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize XML RC-EDA")
     public void end2end_RC_EDA_XML() throws IOException {
-        String xml = getMessageString( "RC-EDA", true);
+        String xml = getMessageString("RC-EDA", true);
         endToEndDeserializationCheck(xml, true);
+    }
+
+    @Test
+    @DisplayName("json and xml RC-EDA should be equal")
+    public void jsonAndXmlRC_EDA() throws IOException {
+        String json = getMessageString("RC-EDA");
+        String xml = getMessageString("RC-EDA", true);
+
+        EdxlMessage messageFromJson = sanitizeEdxl(converter.deserializeJsonEDXL(json));
+        EdxlMessage messageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xml));
+        assertEquals(messageFromJson, messageFromXml);
     }
 
     @Test
@@ -57,6 +77,17 @@ public class EdxlHandlerTest {
     public void end2end_EMSI_DC_XML() throws IOException {
         String xml = getMessageString("EMSI-DC", true);
         endToEndDeserializationCheck(xml, true);
+    }
+
+    @Test
+    @DisplayName("json and xml EMSI should be equal")
+    public void jsonAndXmlEMSI() throws IOException {
+        String json = getMessageString("EMSI-DC");
+        String xml = getMessageString("EMSI-DC", true);
+
+        EdxlMessage messageFromJson = sanitizeEdxl(converter.deserializeJsonEDXL(json));
+        EdxlMessage messageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xml));
+        assertEquals(messageFromJson, messageFromXml);
     }
 
     @Test
@@ -122,11 +153,13 @@ public class EdxlHandlerTest {
         }
 
         /*
-        * We prefer compare objects instead of strings to avoid noise such as indentation issues, line breaks, etc.
-        * (basically, our serializer generates one-liners but we prefer to store our commit files with indentation for readability)
+         * We prefer compare objects instead of strings to avoid noise such as indentation issues, line breaks, etc.
+         * (basically, our serializer generates one-liners but we prefer to store our commit files with indentation for readability)
          */
         assertEquals(messageFromInput, messageFromOutput);
     }
+
+
 
     private String xmlPrefix() {
         return "<?xml version='1.0' encoding='UTF-8'?>";

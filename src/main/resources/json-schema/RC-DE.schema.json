@@ -12,7 +12,7 @@
         "sentAt",
         "kind",
         "status",
-        "recipients"
+        "recipient"
     ],
     "properties": {
         "messageId": {
@@ -60,8 +60,11 @@
                 "System"
             ]
         },
-        "recipients": {
-            "$ref": "#/definitions/recipients"
+        "recipient": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/recipient"
+            }
         }
     },
     "definitions": {
@@ -90,25 +93,6 @@
                 }
             },
             "example": "example.json#/sender"
-        },
-        "recipients": {
-            "type": "array",
-            "items": {"$ref": "#/definitions/recipient"},
-            "minItems": 1,
-            "title": "Syst\u00e8mes destinataires",
-            "x-display": "expansion-panels",
-            "required": [
-                "recipient"
-            ],
-            "properties": {
-                "recipient": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/recipient"
-                    }
-                }
-            },
-            "example": "example.json#/recipients"
         },
         "recipient": {
             "type": "object",

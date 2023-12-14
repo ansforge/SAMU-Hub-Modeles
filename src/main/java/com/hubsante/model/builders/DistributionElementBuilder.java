@@ -24,6 +24,8 @@ import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+import static java.time.temporal.ChronoUnit.SECONDS;
+
 public class DistributionElementBuilder {
     private String messageId;
     private Sender sender;
@@ -91,13 +93,13 @@ public class DistributionElementBuilder {
         if (sentAt == null) {
             throw new IllegalArgumentException("sentAt cannot be null");
         }
-        distributionElement.setSentAt(sentAt);
+        distributionElement.setSentAt(sentAt.truncatedTo(SECONDS));
         distributionElement.setKind(kind);
         distributionElement.setStatus(status);
         if (recipients.isEmpty()) {
             throw new IllegalArgumentException("recipients list cannot be empty");
         }
-        distributionElement.setRecipients(recipients);
+        distributionElement.setRecipient(recipients);
 
         return distributionElement;
     }
