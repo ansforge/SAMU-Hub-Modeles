@@ -1159,7 +1159,7 @@
                     "title": "Latitude",
                     "x-cols": 6,
                     "example": "example.json#/createCase/location/geometry/point/coord/lat",
-                    "description": "Latitude du point cl\u00e9 de la localisation"
+                    "description": "Latitude du point cl\u00e9 de la localisation "
                 },
                 "lon": {
                     "type": "number",
@@ -1173,7 +1173,7 @@
                     "title": "Altitude ",
                     "x-cols": 6,
                     "example": "example.json#/createCase/location/geometry/point/coord/height",
-                    "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS."
+                    "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
                 },
                 "heading": {
                     "type": "number",
