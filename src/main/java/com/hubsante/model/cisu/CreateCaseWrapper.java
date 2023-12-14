@@ -87,18 +87,20 @@ public class CreateCaseWrapper extends DistributionElement {
       return false;
     }
     CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper)o;
-    return Objects.equals(this.createCase, createCaseWrapper.createCase);
+    return Objects.equals(this.createCase, createCaseWrapper.createCase) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createCase);
+    return Objects.hash(createCase, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCaseWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    createCase: ")
         .append(toIndentedString(createCase))
         .append("\n");

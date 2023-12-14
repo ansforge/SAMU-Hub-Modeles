@@ -87,18 +87,19 @@ public class EmsiWrapper extends DistributionElement {
       return false;
     }
     EmsiWrapper emsiWrapper = (EmsiWrapper)o;
-    return Objects.equals(this.emsi, emsiWrapper.emsi);
+    return Objects.equals(this.emsi, emsiWrapper.emsi) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(emsi);
+    return Objects.hash(emsi, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class EmsiWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    emsi: ").append(toIndentedString(emsi)).append("\n");
     sb.append("}");
     return sb.toString();

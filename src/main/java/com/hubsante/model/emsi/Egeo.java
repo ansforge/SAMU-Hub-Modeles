@@ -59,7 +59,10 @@ public class Egeo {
   /**
    * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
    * message RC-EDA et le lieu souhaité pour l&#39;intervention est
-   * systématiquement reprécisé dans un objet MISSION
+   * systématiquement reprécisé dans un objet MISSION. A constituer depuis
+   * ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_ /!\\ plusieurs champs NEXSIS /!\\
+   * plusieurs valeurs par champs d&#39;où un groupe&lt;EGEO&gt; à créer par
+   * type différents
    */
   public enum TYPEEnum {
     AIR("AIR"),
@@ -420,7 +423,10 @@ public class Egeo {
   /**
    * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
    *message RC-EDA et le lieu souhaité pour l&#39;intervention est
-   *systématiquement reprécisé dans un objet MISSION
+   *systématiquement reprécisé dans un objet MISSION. A constituer depuis
+   *ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_ /!\\ plusieurs champs NEXSIS /!\\
+   *plusieurs valeurs par champs d&#39;où un groupe&lt;EGEO&gt; à créer par type
+   *différents
    * @return TYPE
    **/
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)

@@ -51,7 +51,13 @@ public class Link {
 
   /**
    * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; en EMSI-EO
-   * et avec le libellé ADDSTO en EMSI-DC
+   * et avec le libellé ADDSTO en EMSI-DC  Dans Nexsis; RG 1  – : création du
+   * premier message EMSi suite réception Affaire * &lt;LINK&gt;&lt;LINK ID&gt;
+   * &#x3D; &lt;Numéro d&#39;affaire initiale&gt; • &lt;LINK&gt;&lt;LINK
+   * ROLE&gt; &#x3D; &#39;ADDSTO&#39;, RG 2 : Pour tous les messages créés après
+   * le premier, EMSI &lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt;
+   * contenant l&#39;ID de message EMSI précédent créé au sein du SGO rédacteur
+   * * &lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D; &#39;SPRSDS&#39;
    */
   public enum LINKROLEEnum {
     ADDSTO("ADDSTO"),
@@ -96,7 +102,13 @@ public class Link {
 
   /**
    * A renseigner avec l&#39;identifiant local de l&#39;affaire du partenaire
-   *requérant
+   *requérant Dans NexSIS; RG 1  – : création du premier message EMSi suite
+   *réception Affaire • &lt;LINK&gt;&lt;LINK ID&gt; &#x3D; &lt;Numéro
+   *d&#39;affaire initiale&gt; • &lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D;
+   *&#39;ADDSTO&#39;, RG 2 : Pour tous les messages créés après le premier, EMSI
+   *&lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt; contenant l&#39;ID
+   *de message EMSI précédent créé au sein du SGO rédacteur *
+   *&lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D; &#39;SPRSDS&#39;
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)
@@ -120,7 +132,13 @@ public class Link {
 
   /**
    * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; en EMSI-EO
-   *et avec le libellé ADDSTO en EMSI-DC
+   *et avec le libellé ADDSTO en EMSI-DC  Dans Nexsis; RG 1  – : création du
+   *premier message EMSi suite réception Affaire * &lt;LINK&gt;&lt;LINK ID&gt;
+   *&#x3D; &lt;Numéro d&#39;affaire initiale&gt; • &lt;LINK&gt;&lt;LINK ROLE&gt;
+   *&#x3D; &#39;ADDSTO&#39;, RG 2 : Pour tous les messages créés après le
+   *premier, EMSI &lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt;
+   *contenant l&#39;ID de message EMSI précédent créé au sein du SGO rédacteur *
+   *&lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D; &#39;SPRSDS&#39;
    * @return LINK_ROLE
    **/
   @JsonProperty(JSON_PROPERTY_L_I_N_K_R_O_L_E)
