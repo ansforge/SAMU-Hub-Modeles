@@ -11,7 +11,7 @@ components:
         - sentAt
         - kind
         - status
-        - recipients
+        - recipient
       properties:
         messageId:
           type: string
@@ -35,7 +35,7 @@ components:
             - Actual
             - Exercise
             - System
-        recipients:
+        recipient:
           type: array
           items:
             $ref: '#/components/schemas/recipient'

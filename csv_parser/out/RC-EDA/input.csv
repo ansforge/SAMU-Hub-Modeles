@@ -24,7 +24,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 13,14,,,Etat du dossier,,,,cf. cycle SI SAMU uniquement (si applicable) : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU,,,filestatus,,,,,,0..1,,string,X,"ENUM: Nouveau , Actif , Validé , Clôturé , Classé ",,X
 14,15,,,Type de dossier,,,,D/DR/DRM si cycle SI-SAMU implémenté,"D, DR, DRM",,filetype,,,,,,0..1,,string,X,"ENUM : D, DR, DRM",,X
 15,16,,Attribution du dossier,,,,,Décrit le type de professionnel médical à qui le dossier est attribué,"Médecin généraliste, médecin urgentiste etc.",,fileusage,,,,,,0..1,,string,?,?,,X
-16,17,,Priorité de régulation médicale,,,,,Décrit la priorité de régulation médicale du dossier.,"P0, P1, P2, P3",,,,,,,,0..1,,string,X,"ENUM: P0, P1, P2, P3",,X
+16,17,,Priorité de régulation médicale,,,,,Décrit la priorité de régulation médicale du dossier.,"P0, P1, P2, P3",,medicalPriority,,,,,,0..1,,string,X,"ENUM: P0, P1, P2, P3",,X
 17,18,,Patients/Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
 18,19,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
 19,20,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, SENIOR",X,X
@@ -68,9 +68,9 @@ Sera toujours fourni par NexSIS.",,point,point,,,,,,0..1,X,point,,,X,X
 49,50,,,,Coordonnées,,,"Le SGO ne fonctionne toujours sur des coordonnées X/Y ainsi qu'une adresse indicative associée. 
 NexSIS dispose donc toujours d'un point GPS utilisé pour le temps de trajet, la détermination de l'intervenant le plus proche, ...
 L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord,coord,,,,,,1..1,X,coord,,,X,X
-50,51,,,,,Latitude,,Latitude du point clé de la localisation,48.866667,lat,lat,,,,,,1..1,,number,,,X,X
+50,51,,,,,Latitude,,Latitude du point clé de la localisation ,48.866667,lat,lat,,,,,,1..1,,number,,,X,X
 51,52,,,,,Longitude,,Longitude du point clé de la localisation,2.333333,lon,lon,,,,,,1..1,,number,,,X,X
-52,53,,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS.",120,,height,,,,,,0..1,,number,,,X,X
+52,53,,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,,X,X
 53,54,,,,,Cap,,En degré,96,,heading,,,,,,0..1,,number,,,X,X
 54,55,,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,,,,,,0..1,,number,,,X,X
 55,56,,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
@@ -208,29 +208,29 @@ Pierre Alain Jacques",,,firstfirstname,,,,,,0..1,,string,,,,X
 127,128,,,Traits non stricts de l'identité,,,,,,,nonstrictINStraits,,,,,,0..1,X,nonstrictINStraits,,,,X
 128,129,,,,Nom usuel ,,,Nom porté dans la vie courante. Le nom utilisé peut être similaire au nom de naissance.,Dupont,,customaryname,Vn,		Nom de la première victime,,,,0..1,,string,,,,X
 129,130,,,,Prénom usuel,,,Prénom porté dans la vie courante. Le prénom utilisé peut être l’un des prénom(s) de naissance ou tout autre prénom choisi par l’usager.,Jeanne,,customaryfirstname,Vp,		Prénom de la première victime,,,,0..1,,string,,,,X
-130,131,,,Contact patient,,,,Type et valeur des URI utilisées par le patient concerné,tel:0606060606,,personalcontact,,,,,,0..n,X,personalcontact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
+130,131,,,Contact patient,,,,Type et valeur des URI utilisées par le patient concerné,tel:0606060606,,personalContact,,,,,,0..n,X,personalContact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
 131,132,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",,X
 132,133,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,,X
 133,134,,,Adresse patient,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,personalAdress,,,,,,0..1,X,personalAdress,,,,X
-134,135,,,,# Voir detailedAdress,,,,,,detailedAdress,,,,,,0..1,X,detailedAdress,,,,X
-135,136,,,,# Voir city,,,,,,city,,,,,,0..1,X,city,,,,X
+134,135,,,,Adresse,# Voir detailedAdress,,,,,detailedAdress,,,,,,0..1,X,detailedAdress,,,,X
+135,136,,,,Ville,# Voir city,,,,,city,,,,,,0..1,X,city,,,,X
 136,137,,,Médecin traitant ,,,,,,,personalGP,,,,,,0..1,X,personalGP,,,,X
 137,138,,,,Nom,,,Nom du médecin traitant du patient si connu,,,gpname,,,,,,0..1,,string,,,,X
 138,139,,,,Prénom,,,Prénom du médecin traitant du patient si connu,,,gpfirstname,,,,,,0..1,,string,,,,X
 139,140,,,,Identifiant,,,Numéro RPPS du médecin traitant ?,,,gpID,,,,,,0..1,,string,,,,X
 140,141,,,,Numéro de téléphone,,,N° de téléphone du médecin traitant du patient,,,pgphone,,,,,,0..1,,number,,,,X
-141,142,,,,Adresse medecin,#voir personalAdress,,,,,personalAdress,,,,,,0..1,X,personalAdress,,,,X
-142,143,,,,Contact médecin,#voir personalcontact,,Type et valeur des URI utilisées par le patient concerné,tel:0606060606,,personalcontact,,,,,,0..n,X,personalcontact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
-143,144,,,Age,,,,Age du patient,6Y,,age,,,,,,0..1,,string,,REGEX: ,,X
+141,142,,,,Adresse medecin,# voir personalAdress,,,,,personalAdress,,,,,,0..1,X,personalAdress,,,,X
+142,143,,,,Contact médecin,# voir personalcontact,,Type et valeur des URI utilisées par le patient concerné,tel:0606060606,,personalContact,,,,,,0..n,X,personalContact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
+143,144,,,Age,,,,Age du patient (Norme ISO_8601),6Y,,age,,,,,,0..1,,string,,REGEX: ,,X
 144,145,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,whatsHappen,,,,,,1.0,0..1,X,nomenclature,X,,,X
 145,146,,,Informations complémentaires,,,,,,,freetext,,,,,,0..1,,string,,,,X
-146,147,,Informations patient,,,,,,,,patinfo,,,,,,0..1,X,medicalfile,,,,X
+146,147,,Informations patient,,,,,,,,patinfo,,,,,,0..1,X,,,,,X
 147,148,,,Poids,,,,Poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,,,X
 148,149,,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,,,X
-149,150,Régulation médicale,,,,,,,,,,,,,,,0..1,X,,,,,X
-150,151,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientcaseID,,,,,,0..1,X,string,,,,X
-151,152,,Notes de régulation,,,,,,,,medicalfile,,,,,,0..n,X,string,,,,X
-152,153,,,Professionnel de santé qui réalise l'interrogatoire,cf. operators,,,Professionnel de santé qui réalise l'interrogatoire,,,operators,,,,,,0..1,,string,,,,X
+149,150,Régulation médicale,,,,,,,,,medicalAnalysis,,,,,,0..1,X,,,,,X
+150,151,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientcaseID,,,,,,0..1,,string,,,,X
+151,152,,Notes de régulation,,,,,,,,medicalfile,,,,,,0..n,X,,,,,X
+152,153,,,Professionnel de santé qui réalise l'interrogatoire,# Voir operators,,,Professionnel de santé qui réalise l'interrogatoire,,,operators,,,,,,0..1,X,operators,,,,X
 153,154,,,Observations,,,,Observations médicales du professionnel de santé qui réalise l'interrogatoire,,,freetext,,,,,,0..1,,string,,,,X
 154,155,,,Antécédents,,,,Antécédents médicaux ,,,medicalhistory,,,,,,0..n,,string,,,,X
 155,156,,,Complément antecédents,,,,"Texte libre a utiliser au besoin si nomenclature non implémentée,et/ou précisions à apporter",,,freetext,,,,,,0..1,,string,,,,X
@@ -239,7 +239,7 @@ Pierre Alain Jacques",,,firstfirstname,,,,,,0..1,,string,,,,X
 158,159,,,Allergies,,,,Texte libre pour décrire les allergies du patient,,,freetext,,,,,,0..1,,string,,,,X
 159,160,,,Autres Commentaires,,,,Champ libre pour compléter les informations du dossier médical (notes médicales),,,freetext,,,,,,0..n,,string,,,,X
 160,161,,Décisions,,,,,,,,patPathway,,,,,,0..n,X,patientPathway,,,,X
-161,162,,,Type de décision,,,,,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,decisiontype,,,,,,0..1,,string,X,,,X
+161,162,,,Type de décision,,,,,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,decisiontype,,,,,,0..1,,string,X,?,,X
 162,163,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,,,,X
 163,164,,,Vecteur de transport,,,,ID du/des Vecteur(s) de transport engagés pour la prise en charge du patient,,,rtypeTransport,,,,,,0..n,,string,,,,X
 164,165,,,Niveau de médicalisation,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,levelOfCare,,,,,,0..1,,string,,R[X],,X
@@ -249,18 +249,18 @@ Pierre Alain Jacques",,,firstfirstname,,,,,,0..1,,string,,,,X
 168,169,,,,Autre,,,,,,other,,,,,,0..1,,string,,,,X
 169,170,,,Niveau de soin,,,,,R1/R2/R3/R4,,carelevel,,,,,,0..1,,string,X,"ENUM: R1, R2, R3, R4",,X
 170,171,,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,,,X
-171,172,,,Hypothèse de régulation médicale principale,,,,,,,diagnosis,,,,,,0..1,X,diagnosis,,,,X
+171,172,,,Hypothèse de régulation médicale principale,,,,,,,mainDiagnosis,,,,,,0..1,X,diagnosis,,,,X
 172,173,,,,Code,,,,,,codediag,,,,,,0..1,,string,X,?,,X
 173,174,,,,libellé,,,,,,titlemaindiag,,,,,,0..1,,string,X,?,,X
-174,175,,,Hypothèses de régulation médicale secondaires,#voir diagnosis,,,,,,diagnosis,,,,,,0..n,X,diagnosis,,,,X
-175,178,,Diagnostic de l'effecteur,#voir diagnosis,,,,,,,diagnosis,,,,,,0..1,,string,X,?,,X
-176,179,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+174,175,,,Hypothèses de régulation médicale secondaires,# voir diagnosis,,,,,,otherDiagnosis,,,,,,0..n,X,diagnosis,,,,X
+175,176,,Diagnostic de l'effecteur,# voir diagnosis,,,,,,,resourceDiagnosis,,,,,,0..1,X,diagnosis,,,,X
+176,177,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
-177,180,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
-178,181,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
-179,182,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
-180,183,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
-181,184,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
-182,185,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-183,186,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
+177,178,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+178,179,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
+179,180,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
+180,181,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
+181,182,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
+182,183,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
+183,184,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
