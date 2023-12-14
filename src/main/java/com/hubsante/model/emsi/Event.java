@@ -120,7 +120,7 @@ public class Event {
   private SOURCEEnum SOURCE;
 
   /**
-   * Optionnel
+   * Optionnel, Niveau de criticité de l&#39;opération
    */
   public enum SCALEEnum {
     _1("1"),
@@ -347,7 +347,8 @@ public class Event {
   }
 
   /**
-   * Optionnel
+   * Optionnel Dans nexSIS; [libelle NF 1 métier] &amp; \&quot; - \&quot; &amp;
+   *[libelle TL 1 métier] &amp; \&quot; - \&quot; &amp; [libellé commune]
    * @return NAME
    **/
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
@@ -441,7 +442,7 @@ public class Event {
   }
 
   /**
-   * Optionnel
+   * Optionnel, Niveau de criticité de l&#39;opération
    * @return SCALE
    **/
   @JsonProperty(JSON_PROPERTY_S_C_A_L_E)
@@ -464,7 +465,8 @@ public class Event {
   }
 
   /**
-   * Prend une valeur entière entre 0 et 100 Optionnel
+   * Prend une valeur entière entre 0 et 100, et décrit à quel point
+   *l&#39;alerte associée à l&#39;événement est fiable Optionnel
    * @return CERTAINTY
    **/
   @JsonProperty(JSON_PROPERTY_C_E_R_T_A_I_N_T_Y)

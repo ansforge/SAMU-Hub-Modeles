@@ -1239,7 +1239,7 @@ components:
           title: Latitude
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/lat
-          description: "Latitude du point cl\xE9 de la localisation"
+          description: "Latitude du point cl\xE9 de la localisation "
           examples:
           - '48.866667'
         lon:
@@ -1256,7 +1256,7 @@ components:
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/height
           description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
-            \ ignor\xE9 c\xF4t\xE9 NexSIS."
+            \ ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
           - 120
         heading:

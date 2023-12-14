@@ -665,6 +665,7 @@ public class Mission {
    *indiquée. Se référer au DSF pour la structure normée des organisations Le
    *format est le suivant {pays}:{domaine}:{code
    *département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
+   *identique à &lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
