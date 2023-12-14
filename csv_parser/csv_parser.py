@@ -101,6 +101,17 @@ Path('out/' + args.sheet).mkdir(parents=True, exist_ok=True)
 df = pd.read_excel('model.xlsx', sheet_name=args.sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
 # Dropping useless columns
 df = df.iloc[:, :NB_COLS]
+# Column validation
+REQUIRED_COLUMNS = [
+    *[f"Donnée (Niveau {i})" for i in range(1, DATA_DEPTH + 1)],
+    'ID', 'Description', 'Cardinalité', 'Balise NexSIS', 'Nouvelle balise', 'Objet', 'Format (ou type)'
+]
+if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
+    print(f"{Color.RED}ERROR: some key columns are missing:{Color.ORANGE}")
+    print(set(REQUIRED_COLUMNS) - set(df.columns))
+    print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS}.{Color.END}")
+    exit(1)
+
 # Storing input data in a file to track versions
 df.to_csv(f'out/{args.sheet}/input.csv')
 # Keeping only 15-NexSIS fields
