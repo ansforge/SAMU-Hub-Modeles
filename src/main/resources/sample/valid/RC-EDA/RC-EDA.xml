@@ -42,6 +42,21 @@
                                     <label>Rodéo automobile</label>
                                     <freetext>None</freetext>
                                 </whatsHappen>
+                                <riskThreat>
+                                    <code>C01.00.00</code>
+                                    <label>Gêne à la circulation</label>
+                                    <freetext>risque lié aux voitures</freetext>
+                                </riskThreat>
+                                <riskThreat>
+                                    <code>C01.01.00</code>
+                                    <label>Second riskThreat</label>
+                                    <freetext>champ libre</freetext>
+                                </riskThreat>
+                                <victims>
+                                    <count>SEVERAL</count>
+                                    <mainVictim>ADULT</mainVictim>
+                                    <freetext>Deuxième victime présente saignements legers aux mains et genoux</freetext>
+                                </victims>
                             </qualification>
                             <location>
                                 <locID>111fb03a-6fd9-41e0-8e81-990c45188887</locID>

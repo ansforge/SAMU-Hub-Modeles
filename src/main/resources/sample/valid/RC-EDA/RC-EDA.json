@@ -41,6 +41,23 @@
                   "code": "C07.13.02",
                   "label": "Rod\u00e9o automobile",
                   "freetext": "None"
+                },
+                "riskThreat": [
+                  {
+                    "code": "C01.00.00",
+                    "label": "Gêne à la circulation",
+                    "freetext": "risque lié aux voitures"
+                  },
+                  {
+                    "code": "C01.01.00",
+                    "label": "Second riskThreat",
+                    "freetext": "champ libre"
+                  }
+                ],
+                "victims": {
+                  "count": "SEVERAL",
+                  "mainVictim": "ADULT",
+                  "freetext": "Deuxième victime présente saignements legers aux mains et genoux"
                 }
               },
               "location": {
