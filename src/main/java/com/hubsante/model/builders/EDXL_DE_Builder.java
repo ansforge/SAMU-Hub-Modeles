@@ -20,6 +20,8 @@ import com.hubsante.model.edxl.*;
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 
+import static java.time.temporal.ChronoUnit.SECONDS;
+
 public class EDXL_DE_Builder {
 
     private String distributionID;
@@ -118,6 +120,13 @@ public class EDXL_DE_Builder {
     }
 
     public EdxlMessage build() {
+        if (this.distributionID == null | this.senderID == null | this.dateTimeSent == null | this.dateTimeExpires == null
+                | this.distributionStatus == null | this.distributionKind == null | this.descriptor == null) {
+            throw new IllegalArgumentException("unprovided mandatory field(s)");
+        }
+        this.dateTimeSent = this.dateTimeSent.truncatedTo(SECONDS);
+        this.dateTimeExpires = this.dateTimeExpires.truncatedTo(SECONDS);
+
         return new EdxlMessage(this.distributionID, this.senderID, this.dateTimeSent, this.dateTimeExpires,
                 this.distributionStatus, this.distributionKind, this.descriptor, this.content);
     }

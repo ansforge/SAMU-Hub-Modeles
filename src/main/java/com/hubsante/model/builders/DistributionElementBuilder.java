@@ -24,6 +24,8 @@ import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
 import java.util.List;
 
+import static java.time.temporal.ChronoUnit.SECONDS;
+
 public class DistributionElementBuilder {
     private String messageId;
     private Sender sender;
@@ -53,7 +55,7 @@ public class DistributionElementBuilder {
         }
         this.messageId = messageId;
         this.sender = new Sender().name(senderId).URI("hubex:" + senderId);
-        this.sentAt = OffsetDateTime.now().truncatedTo(java.time.temporal.ChronoUnit.SECONDS);
+        this.sentAt = OffsetDateTime.now();
         this.kind = DistributionElement.KindEnum.REPORT;
         this.status = DistributionElement.StatusEnum.ACTUAL;
         this.recipients = recipients;
@@ -91,7 +93,7 @@ public class DistributionElementBuilder {
         if (sentAt == null) {
             throw new IllegalArgumentException("sentAt cannot be null");
         }
-        distributionElement.setSentAt(sentAt);
+        distributionElement.setSentAt(sentAt.truncatedTo(SECONDS));
         distributionElement.setKind(kind);
         distributionElement.setStatus(status);
         if (recipients.isEmpty()) {

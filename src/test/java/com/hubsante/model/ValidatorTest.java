@@ -15,22 +15,10 @@
  */
 package com.hubsante.model;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.hubsante.model.builders.CreateCaseWrapperBuilder;
-import com.hubsante.model.builders.DistributionElementBuilder;
-import com.hubsante.model.builders.EmsiWrapperBuilder;
-import com.hubsante.model.builders.ReferenceWrapperBuilder;
-import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.common.Recipient;
-import com.hubsante.model.common.ReferenceWrapper;
-import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
@@ -41,10 +29,10 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.*;
-import java.util.logging.Logger;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.*;
+import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -241,50 +229,21 @@ public class ValidatorTest {
     @Test
     @DisplayName("all examples files passing")
     public void examplesBundlePassingTest() {
-        String[] available_schemas = new String[]{"RC-EDA", "EMSI-DC", "RC-REF", "RS-INFO"};
         String folder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
         File[] files = new File(folder).listFiles();
-
         assert files != null;
 
         Arrays.stream(files).forEach(file -> {
             try {
-                String useCase = getUseCaseCodeFromFileName(file.getName());
-                if (Arrays.stream(available_schemas).noneMatch(useCase::equals)) {
-                    log.warn("Unhandled use case for file {}", file.getName());
-                    return;
-                }
-
-                String schema = getSchemaFromFileName(useCase);
                 String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                assertDoesNotThrow(() -> validator.validateJSON(useCaseJson, schema));
+                assertDoesNotThrow(() -> validator.validateJSON(fullJson, FULL_SCHEMA));
                 log.info("File {} is valid against schema", file.getName());
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
         });
-    }
-
-    private String getUseCaseCodeFromFileName(String fileName) {
-        return fileName.substring(0, fileName.indexOf("-usecase"));
-    }
-
-    private String getSchemaFromFileName(String useCase) {
-        switch (useCase) {
-            case "RC-EDA":
-                return "RC-EDA.schema.json";
-            // TODO bbo: replace with generic EMSI when all EMSI cases will be merged in single schema
-            case "EMSI-DC":
-                return "EMSI-DC.schema.json";
-            case "RC-REF":
-                return "RC-REF.schema.json";
-            case "RS-INFO":
-                return "RS-INFO.schema.json";
-            default:
-                log.error("No schema found for use case {}", useCase);
-        }
-        return null;
     }
 }
