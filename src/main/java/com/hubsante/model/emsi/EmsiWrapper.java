@@ -86,6 +86,9 @@ public class EmsiWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
+    if (!super.equals(o)) {
+      return false;
+    }
     EmsiWrapper emsiWrapper = (EmsiWrapper)o;
     return Objects.equals(this.emsi, emsiWrapper.emsi) && super.equals(o);
   }
