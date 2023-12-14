@@ -22,12 +22,12 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
-        for (String schema : Arrays.asList("RC-EDA", "EMSI", "EDXL-DE-envelope-only")) {
+        for (String schema : Arrays.asList("RC-EDA", "EMSI", "RC-DE", "EDXL-DE-envelope-only")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
             // Specify the path to save the generated XSD file
-            String xsdFilePath = "out" + jsonSchemaResourcePath.replace(".json", ".xsd");
+            String xsdFilePath = "out" + jsonSchemaResourcePath.replace(".schema.json", ".xsd");
 
             // Create a Config object to customize the conversion
             Config config = new Config.Builder()
