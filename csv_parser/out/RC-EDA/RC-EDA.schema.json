@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "23.12.14",
+    "version": "23.12.15",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
