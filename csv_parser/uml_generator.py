@@ -93,7 +93,6 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
         cardinalite_child = ("0","1")
         # if dict_in contains x-health-only: True, add it to the buffer
         if "x-health-only" in dict_in and dict_in["x-health-only"] == True :
-            print(dict_in)
             buffer_description_node[id_parent] = buffer_description_node[id_parent] + "<BR/>" + "is_health_only: True"
         # check if child is required
         if "required" in dict_in :
@@ -157,19 +156,21 @@ class Color:
     WARNING = '\033[93m'
 
 
-def run(model, obj, version=date.today().strftime("%y.%m.%d")):
+def run(model, obj, version=date.today().strftime("%y.%m.%d"), filter=False):
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {version} of {model} ...{Color.END}')
 
     # warning, if folder out/model empty, causes failure
     print("Loading schema.json from " + os.path.join("out", model) + "...")
-    with open(os.path.join("out", model, f"{model}.schema.json"), 'r') as file:
+    # if args.filter, add -CISU to the file name
+    path = os.path.join("out", model, f"{model}-CISU.schema.json" if filter else f"{model}.schema.json")
+    with open(os.path.join(path), 'r') as file:
         json_in = json.load(file)
         print("schema.json loaded.")
         print("Parsing schema.json ...")
         parse_root_node(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
-        print("Rendering " + os.path.join("out", model, "uml_schema.pdf") + " ...")
+        print("Rendering " + os.path.join("out", model, "uml_schema_CISU.pdf" if filter else "uml_schema.pdf" ) + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-        dot.render(os.path.join("out", model, "uml_schema"))
+        dot.render(os.path.join("out", model, "uml_schema_CISU" if filter else "uml_schema"))
         print("Done.")
     return
 

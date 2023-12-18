@@ -343,7 +343,7 @@ def build_example(elem):
 
 
 json_example = build_example(rootObject)
-with open(f'out/{args.sheet}/example.json', 'w') as outfile:
+with open(f'out/{args.sheet}/example-CISU.json' if args.filter else f'out/{args.sheet}/example.json', 'w') as outfile:
     json.dump(json_example, outfile, indent=4)
 
 # Go through data (list or tree) and use it to build the expected JSON schema
@@ -541,8 +541,12 @@ def DFS(root, use_elem):
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
 DFS(rootObject, build_json_schema)
-with open(f'out/{args.sheet}/{args.sheet}.schema.json', 'w') as outfile:
-    json.dump(json_schema, outfile, indent=4)
+if(args.filter):
+    with open(f'out/{args.sheet}/{args.sheet}-CISU.schema.json', 'w') as outfile:
+        json.dump(json_schema, outfile, indent=4)
+else:
+    with open(f'out/{args.sheet}/{args.sheet}.schema.json', 'w') as outfile:
+        json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
 
@@ -604,7 +608,7 @@ with open(f'out/full-asyncapi.yaml', 'w') as file:
 print('AsyncAPI schema generated.')
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
-uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
+uml_generator.run(args.sheet, MODEL_NAME, version=args.version, filter=args.filter)
 print('UML diagrams generated.')
 
 named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
@@ -683,7 +687,7 @@ def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAM
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-doc.save(f'out/{args.sheet}/schema.docx')
+doc.save(f'out/{args.sheet}/schema-CISU.docx' if args.filter else f'out/{args.sheet}/schema.docx')
 
 print('Docx tables generated.')
 
