@@ -25,7 +25,8 @@
                 "creation",
                 "referenceVersion",
                 "qualification",
-                "location"
+                "location",
+                "crratransfert"
             ],
             "properties": {
                 "caseId": {
@@ -66,6 +67,28 @@
                 },
                 "initialAlert": {
                     "$ref": "#/definitions/alert"
+                },
+                "crratransfert": {
+                    "type": "string",
+                    "title": "CRRA traitant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/crratransfert",
+                    "description": "Champ servant \u00e0 transf\u00e9rer la responsabilit\u00e9 du traitement d'un dossier \u00e0 un autre CRAA / \u00e0 lui demander de prendre en charge le traitement du dossier.\nLe SAMU demandeur entre dans ce champ l'ID du CRAA \u00e0 qui il demande de traiter l'affaire (uniquement en cas de transfert int\u00e9gral du traitement d'un dossier).\nLe SAMU qui re\u00e7oit la demande de transfert et l'accepte renvoie un RC-EDA de mise \u00e0 jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.\nLe SAMU qui re\u00e7oit la demande de transfert et la refuse renvoie un RC-EDA de mise \u00e0 jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui."
+                },
+                "operators": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/operators"
+                    }
+                },
+                "patients": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/patients"
+                    }
+                },
+                "medicalAnalysis": {
+                    "$ref": "#/definitions/medicalAnalysis"
                 },
                 "newAlert": {
                     "type": "array",
@@ -109,6 +132,29 @@
                 },
                 "healthMotive": {
                     "$ref": "#/definitions/nomenclature"
+                },
+                "filefuture": {
+                    "$ref": "#/definitions/filefuture"
+                },
+                "fileusage": {
+                    "type": "string",
+                    "title": "Attribution du dossier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/fileusage",
+                    "description": "D\u00e9crit le type de professionnel m\u00e9dical \u00e0 qui le dossier est attribu\u00e9"
+                },
+                "medicalPriority": {
+                    "type": "string",
+                    "title": "Priorit\u00e9 de r\u00e9gulation m\u00e9dicale",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/medicalPriority",
+                    "description": "D\u00e9crit la priorit\u00e9 de r\u00e9gulation m\u00e9dicale du dossier.",
+                    "enum": [
+                        "P0",
+                        "P1",
+                        "P2",
+                        "P3"
+                    ]
                 },
                 "victims": {
                     "$ref": "#/definitions/victims"
@@ -499,6 +545,113 @@
             },
             "example": "example.json#/createCase/initialAlert"
         },
+        "operators": {
+            "type": "object",
+            "title": "Op\u00e9rateurs impliqu\u00e9s",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "opname",
+                "oprole"
+            ],
+            "properties": {
+                "opname": {
+                    "type": "string",
+                    "title": "NOM",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/operators/0/opname",
+                    "description": "Nom de famille de l'op\u00e9rateur"
+                },
+                "opfirstname": {
+                    "type": "string",
+                    "title": "Pr\u00e9nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/operators/0/opfirstname",
+                    "description": "Pr\u00e9nom de l'op\u00e9rateur r\u00e9f\u00e9rent"
+                },
+                "opid": {
+                    "type": "string",
+                    "title": "ID",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/operators/0/opid",
+                    "description": "Identifiant professionnel de l'op\u00e9rateur si existant"
+                },
+                "oprole": {
+                    "type": "string",
+                    "title": "R\u00f4le",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/operators/0/oprole",
+                    "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message"
+                }
+            },
+            "example": "example.json#/createCase/operators/0"
+        },
+        "patients": {
+            "type": "object",
+            "title": "Patients / victimes",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "patientcaseID"
+            ],
+            "properties": {
+                "patientcaseID": {
+                    "type": "string",
+                    "title": "ID patient partag\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientcaseID",
+                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
+                },
+                "patientFile": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/identifier"
+                    }
+                },
+                "patientwhatsHappen": {
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "patinfo": {
+                    "$ref": "#/definitions/patinfo"
+                }
+            },
+            "example": "example.json#/createCase/patients/0"
+        },
+        "medicalAnalysis": {
+            "type": "object",
+            "title": "R\u00e9gulation m\u00e9dicale",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "patientcaseID": {
+                    "type": "string",
+                    "title": "ID patient partag\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patientcaseID",
+                    "description": "ID du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
+                },
+                "medicalfile": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/medicalfile"
+                    }
+                },
+                "patPathway": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/patientPathway"
+                    }
+                },
+                "hypothesis": {
+                    "$ref": "#/definitions/hypothesis"
+                },
+                "resourceDiagnosis": {
+                    "$ref": "#/definitions/nomenclature"
+                }
+            },
+            "example": "example.json#/createCase/medicalAnalysis"
+        },
         "additionalInformation": {
             "type": "object",
             "title": "Informations compl\u00e9mentaires",
@@ -846,6 +999,37 @@
                 }
             },
             "example": "example.json#/createCase/qualification/whatsHappen"
+        },
+        "filefuture": {
+            "type": "object",
+            "title": "Devenir du dossier ",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "filestatus": {
+                    "type": "string",
+                    "title": "Etat du dossier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/filefuture/filestatus",
+                    "description": "cf. cycle SI SAMU uniquement (si applicable) : \u00e9changer l'\u00e9tat du dossier si le cycle de vie du dossier est impl\u00e9ment\u00e9 de mani\u00e8re conforme au cycle de vie du dossier SI-SAMU",
+                    "enum": [
+                        "Nouveau ",
+                        "Actif ",
+                        "Valid\u00e9 ",
+                        "Cl\u00f4tur\u00e9 ",
+                        "Class\u00e9 "
+                    ]
+                },
+                "filetype": {
+                    "type": "string",
+                    "title": "Type de dossier",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/filefuture/filetype",
+                    "description": "D/DR/DRM si cycle SI-SAMU impl\u00e9ment\u00e9"
+                }
+            },
+            "example": "example.json#/createCase/qualification/filefuture"
         },
         "victims": {
             "type": "object",
@@ -1724,6 +1908,451 @@
                 }
             },
             "example": "example.json#/createCase/initialAlert/caller/detailedName"
+        },
+        "identifier": {
+            "type": "object",
+            "title": "Dossier administratif",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "patientID": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/patientid"
+                    }
+                },
+                "INScycle": {
+                    "$ref": "#/definitions/INScycle"
+                },
+                "matINS": {
+                    "$ref": "#/definitions/matINS"
+                },
+                "strictINStraits": {
+                    "$ref": "#/definitions/strictINStraits"
+                },
+                "nonstrictINStraits": {
+                    "$ref": "#/definitions/nonstrictINStraits"
+                },
+                "patientContact": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/contact"
+                    }
+                },
+                "patientAddress": {
+                    "$ref": "#/definitions/personalAddress"
+                },
+                "personalGP": {
+                    "$ref": "#/definitions/personalGP"
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0"
+        },
+        "patinfo": {
+            "type": "object",
+            "title": "Informations patient",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "weight": {
+                    "type": "integer",
+                    "title": "Poids",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patinfo/weight",
+                    "description": "Poids en kilogrammes"
+                },
+                "height": {
+                    "type": "integer",
+                    "title": "Taille",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patinfo/height",
+                    "description": "Taille en centim\u00e8tres"
+                },
+                "age": {
+                    "type": "string",
+                    "title": "Age",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patinfo/age",
+                    "description": "Age du patient (Norme ISO_8601)",
+                    "pattern": ""
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patinfo"
+        },
+        "patientid": {
+            "type": "object",
+            "title": "Identifiant(s) patient(s)",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "title": "Source  /  type d'identifiant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/patientID/0/source",
+                    "description": "Type de l'identifiant fourni",
+                    "enum": [
+                        "NIR",
+                        "SINUS",
+                        "SI-VIC",
+                        "\u2026"
+                    ]
+                },
+                "patIDvalue": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/patientID/0/patIDvalue",
+                    "description": "L'identifiant en lui-m\u00eame"
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0/patientID/0"
+        },
+        "INScycle": {
+            "type": "object",
+            "title": "Impl\u00e9mentation INS",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "patIDstatus": {
+                    "type": "string",
+                    "title": "Statut de l'identit\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/INScycle/patIDstatus",
+                    "description": "Le RNIV exige que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent les 4 statuts fonctionnels suivants :\n- \u00ab identit\u00e9 provisoire \u00bb,\n- \u00ab identit\u00e9 r\u00e9cup\u00e9r\u00e9e \u00bb,\n- \u00ab identit\u00e9 valid\u00e9e \u00bb,\n- \u00ab identit\u00e9 qualifi\u00e9e \u00bb.\nCes statuts fonctionnels sont exclusifs les uns des autres. Le r\u00e9f\u00e9rentiel INS [EXI 18] pr\u00e9cise en outre que le matricule INS et l\u2019OID doivent \u00eatre accompagn\u00e9s d\u2019informations confirmant qu\u2019ils ont \u00e9t\u00e9 qualifi\u00e9s."
+                },
+                "patIDattribute": {
+                    "type": "string",
+                    "title": "Attribut de l'identit\u00e9",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/INScycle/patIDattribute",
+                    "description": "Le RNIV recommande que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent a minima les 3 attributs suivants :\n- identit\u00e9 homonyme,\n- identit\u00e9 douteuse,\n- identit\u00e9 fictive."
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0/INScycle"
+        },
+        "matINS": {
+            "type": "object",
+            "title": "Matricule INS",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "matINSvalue": {
+                    "type": "number",
+                    "title": "Matricule ",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/matINS/matINSvalue",
+                    "description": "n\u00b0 NIR OU n\u00b0 NIA de l'individu. Le matricule INS (et son OID) ne doit jamais \u00eatre propag\u00e9 (= \u00e9chang\u00e9) si l'identit\u00e9 est \u00e0 un statut autre que qualifi\u00e9e. Il correspond au num\u00e9ro personnel de s\u00e9curit\u00e9 sociale. Il peut \u00eatre diff\u00e9rent du num\u00e9ro de s\u00e9curit\u00e9 sociale utilis\u00e9 pour le remboursement des soins par l\u2019assurance maladie, dans le cas par exemple o\u00f9 l\u2019usager n\u2019est pas l\u2019assur\u00e9 social (ex.: l\u2019enfant qui est rattach\u00e9 \u00e0 l\u2019un de ses parents).\nLe matricule INS est compos\u00e9 des 13 caract\u00e8res et de la cl\u00e9 de contr\u00f4le. "
+                },
+                "matINSoid": {
+                    "type": "number",
+                    "title": "OID",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/matINS/matINSoid",
+                    "description": "Identifiant de la structure qui a affect\u00e9 l\u2019INS sous la forme d'un OID. Les OID (Object Identifier) sont des identifiants universels, repr\u00e9sent\u00e9s sous la forme d'une suite d'entiers. Ils sont organis\u00e9s sous forme hi\u00e9rarchique avec des n\u0153uds. L'OID est toujours associ\u00e9 \u00e0 un matricule INS, il n'est donc pas propag\u00e9 si le statut de l'identit\u00e9 n'est pas \"qualifi\u00e9e\""
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0/matINS"
+        },
+        "strictINStraits": {
+            "type": "object",
+            "title": "Traits stricts de l'identit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "birthname": {
+                    "type": "string",
+                    "title": "Nom de naissance",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/strictINStraits/birthname",
+                    "description": "Egalement appel\u00e9 nom de famille."
+                },
+                "firstfirstname": {
+                    "type": "string",
+                    "title": "Premier pr\u00e9nom de naissance",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/strictINStraits/firstfirstname",
+                    "description": "Doit \u00eatre coh\u00e9rent avec la liste des pr\u00e9noms de naissance renvoy\u00e9e par INSi. Ex: si la liste des pr\u00e9noms renvoy\u00e9e est \"Pierre Alain Jacques\", le premier pr\u00e9nom de naissance ne peut \u00eatre que : \nPierre\nPierre Alain\nPierre Alain Jacques"
+                },
+                "firstnameslist": {
+                    "type": "string",
+                    "title": "Liste des pr\u00e9noms de naissance",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/strictINStraits/firstnameslist",
+                    "description": "Ensemble des pr\u00e9noms de naissance (renvoy\u00e9s par INSi)"
+                },
+                "birthDate": {
+                    "type": "string",
+                    "title": "Date de naissance",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/strictINStraits/birthDate",
+                    "description": "Date de naissance du patient",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "sex": {
+                    "type": "string",
+                    "title": "Sexe ",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/strictINStraits/sex",
+                    "description": "Sexe du patient",
+                    "enum": [
+                        "U",
+                        "F",
+                        "M",
+                        "O"
+                    ]
+                },
+                "birthplacecode": {
+                    "type": "number",
+                    "title": "Code lieu de naissance",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/strictINStraits/birthplacecode",
+                    "description": "Il s\u2019agit de la commune de naissance pour les personnes n\u00e9es en France et du pays de naissance pour les personnes n\u00e9es \u00e0 l\u2019\u00e9tranger. Utilisation du code INSEE (diff\u00e9rent du code postal), auquel est associ\u00e9 le nom de la commune ou du pays correspondant."
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0/strictINStraits"
+        },
+        "nonstrictINStraits": {
+            "type": "object",
+            "title": "Traits non stricts de l'identit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "customaryname": {
+                    "type": "string",
+                    "title": "Nom usuel ",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/nonstrictINStraits/customaryname",
+                    "description": "Nom port\u00e9 dans la vie courante. Le nom utilis\u00e9 peut \u00eatre similaire au nom de naissance."
+                },
+                "customaryfirstname": {
+                    "type": "string",
+                    "title": "Pr\u00e9nom usuel",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/nonstrictINStraits/customaryfirstname",
+                    "description": "Pr\u00e9nom port\u00e9 dans la vie courante. Le pr\u00e9nom utilis\u00e9 peut \u00eatre l\u2019un des pr\u00e9nom(s) de naissance ou tout autre pr\u00e9nom choisi par l\u2019usager."
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0/nonstrictINStraits"
+        },
+        "personalAddress": {
+            "type": "object",
+            "title": "Adresse patient",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "detailedAddress": {
+                    "$ref": "#/definitions/detailedAddress"
+                },
+                "city": {
+                    "$ref": "#/definitions/city"
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0/patientAddress"
+        },
+        "personalGP": {
+            "type": "object",
+            "title": "M\u00e9decin traitant ",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "GPname": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/personalGP/GPname",
+                    "description": "Nom du m\u00e9decin traitant du patient si connu"
+                },
+                "GPfirstname": {
+                    "type": "string",
+                    "title": "Pr\u00e9nom",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/personalGP/GPfirstname",
+                    "description": "Pr\u00e9nom du m\u00e9decin traitant du patient si connu"
+                },
+                "GPID": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/patientFile/0/personalGP/GPID",
+                    "description": "Num\u00e9ro RPPS du m\u00e9decin traitant"
+                },
+                "GPAddress": {
+                    "$ref": "#/definitions/personalAddress"
+                },
+                "GPContact": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/contact"
+                    }
+                }
+            },
+            "example": "example.json#/createCase/patients/0/patientFile/0/personalGP"
+        },
+        "detailedAddress": {
+            "type": "object",
+            "title": "Adresse",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {},
+            "example": "example.json#/createCase/patients/0/patientFile/0/patientAddress/detailedAddress"
+        },
+        "medicalfile": {
+            "type": "object",
+            "title": "Notes de r\u00e9gulation",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "operators": {
+                    "$ref": "#/definitions/operators"
+                },
+                "freetext": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "Autres Commentaires",
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/medicalAnalysis/medicalfile/0/freetext/0",
+                        "description": "Champ libre pour compl\u00e9ter les informations du dossier m\u00e9dical (notes m\u00e9dicales)"
+                    }
+                },
+                "medicalhistory": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "Ant\u00e9c\u00e9dents",
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/medicalAnalysis/medicalfile/0/medicalhistory/0",
+                        "description": "Ant\u00e9c\u00e9dents m\u00e9dicaux "
+                    }
+                },
+                "treatments": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "Traitements",
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/medicalAnalysis/medicalfile/0/treatments/0",
+                        "description": "Traitements pris par le patient"
+                    }
+                }
+            },
+            "example": "example.json#/createCase/medicalAnalysis/medicalfile/0"
+        },
+        "patientPathway": {
+            "type": "object",
+            "title": "D\u00e9cisions",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "decisiontype": {
+                    "type": "string",
+                    "title": "Type de d\u00e9cision",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patPathway/0/decisiontype",
+                    "description": "Type de d\u00e9cision prise"
+                },
+                "orientation": {
+                    "type": "string",
+                    "title": "Orientation",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patPathway/0/orientation",
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
+                },
+                "rtypeTransport": {
+                    "type": "array",
+                    "items": {
+                        "type": "string",
+                        "title": "Vecteur de transport",
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/medicalAnalysis/patPathway/0/rtypeTransport/0",
+                        "description": "Type de transport engag\u00e9 pour la prise en charge du patient"
+                    }
+                },
+                "teamMedicalLevel": {
+                    "type": "string",
+                    "title": "Niveau de m\u00e9dicalisation",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patPathway/0/teamMedicalLevel",
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                },
+                "patdestination": {
+                    "$ref": "#/definitions/patdestination"
+                },
+                "carelevel": {
+                    "type": "string",
+                    "title": "Niveau de soin",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patPathway/0/carelevel",
+                    "enum": [
+                        "R1",
+                        "R2",
+                        "R3",
+                        "R4"
+                    ]
+                }
+            },
+            "example": "example.json#/createCase/medicalAnalysis/patPathway/0"
+        },
+        "hypothesis": {
+            "type": "object",
+            "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "mainDiagnosis": {
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "otherDiagnosis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/nomenclature"
+                    }
+                }
+            },
+            "example": "example.json#/createCase/medicalAnalysis/hypothesis"
+        },
+        "patdestination": {
+            "type": "object",
+            "title": "Destination",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "facility": {
+                    "type": "string",
+                    "title": "Etablissement",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patPathway/0/patdestination/facility"
+                },
+                "service": {
+                    "type": "string",
+                    "title": "Service",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patPathway/0/patdestination/service"
+                },
+                "other": {
+                    "type": "string",
+                    "title": "Autre",
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/patPathway/0/patdestination/other"
+                }
+            },
+            "example": "example.json#/createCase/medicalAnalysis/patPathway/0/patdestination"
         },
         "customMap": {
             "type": "object",
