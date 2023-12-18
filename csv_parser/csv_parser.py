@@ -25,6 +25,8 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument('-v', '--version', help='the version number to be used in model. Defaults to today.')
 parser.add_argument('-s', '--sheet', default="RC-EDA", help='the Excel sheet to be parsed.')
+parser.add_argument('-f', '--filter', default=False, help='If present, only 15-18 fields will be kept and -CISU will '
+                                                          'be appended to everything except openapi yaml')
 args = parser.parse_args()
 
 
@@ -114,8 +116,11 @@ if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
 
 # Storing input data in a file to track versions
 df.to_csv(f'out/{args.sheet}/input.csv')
-# Keeping only 15-NexSIS fields
-df = df[df['15-18'] == 'X']
+# Keeping only 15-NexSIS fields if filter is set
+if args.filter:
+    df = df[df['15-18'] == 'X']
+else :
+    df = df[df['15-15'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
 if MODEL_NAME != "RC-DE":
