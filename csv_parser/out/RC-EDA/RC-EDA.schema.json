@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "23.12.14",
+    "version": "23.12.18",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -19,6 +19,7 @@
             "type": "object",
             "title": "Objet createCase",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "caseId",
                 "creation",
@@ -89,6 +90,7 @@
             "type": "object",
             "title": "Qualification de l'affaire/dossier",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "whatsHappen"
             ],
@@ -118,6 +120,7 @@
             "type": "object",
             "title": "Localisation de l'affaire/dossier",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "locID",
                 "name",
@@ -426,6 +429,7 @@
             "type": "object",
             "title": "Alerte initiale",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "id",
                 "reception",
@@ -499,6 +503,7 @@
             "type": "object",
             "title": "Informations compl\u00e9mentaires",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "customMap": {
@@ -511,6 +516,7 @@
             "type": "object",
             "title": "Nature de fait",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "code",
                 "label"
@@ -845,6 +851,7 @@
             "type": "object",
             "title": "Patients/Victimes",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "count": {
@@ -888,6 +895,7 @@
             "type": "object",
             "title": "D\u00e9tails de l'adresse",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "complete"
             ],
@@ -916,6 +924,7 @@
             "type": "object",
             "title": "D\u00e9tails de la commune",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "name": {
@@ -947,6 +956,7 @@
             "type": "object",
             "title": "D\u00e9tails d'acc\u00e8s",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "floor": {
@@ -1021,6 +1031,7 @@
             "type": "object",
             "title": "G\u00e9ometrie associ\u00e9e",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "obsDatime"
             ],
@@ -1051,6 +1062,7 @@
             "type": "object",
             "title": "Liens aux syst\u00e8mes externes",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "freetext",
                 "type",
@@ -1097,6 +1109,7 @@
             "type": "object",
             "title": "Type et nom de voie",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "complete"
             ],
@@ -1127,6 +1140,7 @@
             "type": "object",
             "title": "Point ",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "coord"
             ],
@@ -1148,6 +1162,7 @@
             "type": "object",
             "title": "Coordonn\u00e9es",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "lat",
                 "lon",
@@ -1210,6 +1225,7 @@
             "type": "object",
             "title": "Requ\u00e9rant",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "callerContact": {
@@ -1499,6 +1515,7 @@
             "type": "object",
             "title": "Source de l'alerte",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "channel",
                 "type",
@@ -1543,6 +1560,7 @@
             "type": "object",
             "title": "Agent",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "organization",
                 "controlRoom"
@@ -1587,6 +1605,7 @@
             "type": "object",
             "title": "Pi\u00e8ces jointes",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "URI"
             ],
@@ -1640,6 +1659,7 @@
             "type": "object",
             "title": "Contact requ\u00e9rant",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "type",
                 "detail"
@@ -1676,6 +1696,7 @@
             "type": "object",
             "title": "Pr\u00e9nom & nom usuel du requ\u00e9rant",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "complete"
             ],
@@ -1708,6 +1729,7 @@
             "type": "object",
             "title": "Cl\u00e9 valeur adaptable",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "key",
                 "value"

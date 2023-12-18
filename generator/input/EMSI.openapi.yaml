@@ -16,6 +16,7 @@ components:
       type: object
       title: Objet emsi
       x-display: expansion-panels
+      x-health-only: false
       required:
       - CONTEXT
       - EVENT
@@ -33,6 +34,7 @@ components:
       type: object
       title: Contexte
       x-display: expansion-panels
+      x-health-only: false
       required:
       - ID
       - MODE
@@ -171,6 +173,7 @@ components:
       type: object
       title: Evenement
       x-display: expansion-panels
+      x-health-only: false
       required:
       - ID
       properties:
@@ -361,6 +364,7 @@ components:
       type: object
       title: Missions
       x-display: expansion-panels
+      x-health-only: false
       required:
       - TYPE
       properties:
@@ -730,6 +734,7 @@ components:
       type: object
       title: Lien
       x-display: expansion-panels
+      x-health-only: false
       required:
       - ID
       properties:
@@ -773,6 +778,7 @@ components:
       type: object
       title: Origine
       x-display: expansion-panels
+      x-health-only: false
       required: []
       properties:
         ORG_ID:
@@ -813,6 +819,7 @@ components:
       type: object
       title: 'Informations exterieures '
       x-display: expansion-panels
+      x-health-only: false
       required:
       - URI
       properties:
@@ -855,6 +862,7 @@ components:
       type: object
       title: "Type de l'\xE9v\xE9nement"
       x-display: expansion-panels
+      x-health-only: false
       required:
       - CATEGORY
       - ACTOR
@@ -1163,6 +1171,7 @@ components:
       type: object
       title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
       x-display: expansion-panels
+      x-health-only: false
       required:
       - ORG_ID
       - OTHER_EVENT_ID
@@ -1191,6 +1200,7 @@ components:
       type: object
       title: Victimes
       x-display: expansion-panels
+      x-health-only: false
       required:
       - CONTEXT
       properties:
@@ -1275,6 +1285,7 @@ components:
       type: object
       title: "Evacu\xE9s"
       x-display: expansion-panels
+      x-health-only: false
       required: []
       properties:
         DATIME:
@@ -1312,6 +1323,7 @@ components:
       type: object
       title: "Localisation de l'\xE9v\xE9nement"
       x-display: expansion-panels
+      x-health-only: false
       required:
       - TYPE
       - POSITION
@@ -1499,6 +1511,7 @@ components:
       type: object
       title: "Position de l'op\xE9ration"
       x-display: expansion-panels
+      x-health-only: false
       required:
       - LOC_ID
       properties:
@@ -1571,6 +1584,7 @@ components:
       type: object
       title: "Coordonn\xE9es"
       x-display: expansion-panels
+      x-health-only: false
       required:
       - LAT
       - LONG
