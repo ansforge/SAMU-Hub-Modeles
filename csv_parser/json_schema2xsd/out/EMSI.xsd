@@ -1,0 +1,765 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:x="https://hub.esante.gouv.fr/EMSI.xsd" elementFormDefault="qualified"
+        targetNamespace="https://hub.esante.gouv.fr/EMSI.xsd" xmlns="http://www.w3.org/2001/XMLSchema">
+    <complexType name="EMSI">
+        <sequence>
+            <element name="emsi" type="x:emsi"/>
+        </sequence>
+    </complexType>
+    <complexType name="emsi">
+        <sequence>
+            <element name="CONTEXT" type="x:context"/>
+            <element name="EVENT" type="x:event"/>
+            <element minOccurs="0" name="MISSION">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="mission" type="x:mission"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="context">
+        <sequence>
+            <element name="ID" type="string">
+                <annotation>
+                    <documentation>A constituer par le rédacteur du présent EMSI pour être unique, il est préconisé de
+                        reprendre la valeur du champ messageId de l'entête RC-DE.
+                    </documentation>
+                </annotation>
+            </element>
+            <element name="MODE">
+                <annotation>
+                    <documentation>Valeur constante dans le cadre des échanges LRM-NexSIS : ACTUAL</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ACTUAL"/>
+                        <enumeration value="EXERCS"/>
+                        <enumeration value="SYSTEM"/>
+                        <enumeration value="TEST"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="MSGTYPE">
+                <annotation>
+                    <documentation>- A valoriser avec la valeur "ALERT" lors du premier échange entre systèmes.
+                        - A valoriser avec la valeur constante "UPDATE" ensuite.
+                        Peut ne pas être interprété par les LRM.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ACK"/>
+                        <enumeration value="ALERT"/>
+                        <enumeration value="CANCEL"/>
+                        <enumeration value="ERROR"/>
+                        <enumeration value="UPDATE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="CREATION" type="dateTime">
+                <annotation>
+                    <documentation>Obligatoire dans le cadre d'une demande de concours, contient la date de création de
+                        la demande de concours dans le système du partenaire requérant.
+                        A valoriser avec le même horaire que dateTimeSent dans le message RC-DE associé.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="LINK">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="link" type="x:link"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="LEVEL">
+                <annotation>
+                    <documentation>A valoriser avec la valeur constante "OPR" dans le cadre du message EMSI-EO
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="STRTGC"/>
+                        <enumeration value="OPR"/>
+                        <enumeration value="TACTCL"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="SECLASS">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="CONFID"/>
+                        <enumeration value="RESTRC"/>
+                        <enumeration value="SECRET"/>
+                        <enumeration value="TOPSRT"/>
+                        <enumeration value="UNCLAS"/>
+                        <enumeration value="UNMARK"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="FREETEXT" type="string">
+                <annotation>
+                    <documentation>Texte libre, optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="ORIGIN" type="x:origin"/>
+            <element minOccurs="0" name="EXTERNAL_INFO">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="URGENCY">
+                <annotation>
+                    <documentation>Niveau d'urgence pour l'affaire en cours
+                        Dans le cadre des échanges LRM-NexSIS, optionnel
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="URGENT"/>
+                        <enumeration value="NOT_URGENT"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="event">
+        <sequence>
+            <element name="ID" type="string">
+                <annotation>
+                    <documentation>Identifiant local de l'affaire dans le système du partenaire emetteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="NAME" type="string">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="MAIN_EVENT_ID" type="string">
+                <annotation>
+                    <documentation>Identifiant d’affaire partagé issu du message RC-EDA transmis en amont
+                        NB : Dans le cas d’un partage initié par un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="ETYPE" type="x:etype"/>
+            <element minOccurs="0" name="SOURCE">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="COMFOR"/>
+                        <enumeration value="HUMDED"/>
+                        <enumeration value="HUMOBS"/>
+                        <enumeration value="SENSOR"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="SCALE">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="1"/>
+                        <enumeration value="2"/>
+                        <enumeration value="3"/>
+                        <enumeration value="4"/>
+                        <enumeration value="5"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="CERTAINTY" type="int">
+                <annotation>
+                    <documentation>Prend une valeur entière entre 0 et 100
+                        Optionnel
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="DECL_DATIME" type="dateTime">
+                <annotation>
+                    <documentation>Dans le cadre d'une demande de concours, ce champ est valorisé avec la date/heure de
+                        création de l'affaire ou de l'opération.
+                        NexSIS transmettra la date/heure de création de l'opération dans ses systèmes (qui peut diverger
+                        de la date/heure de création de l'affaire)
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="OCC_DATIME" type="dateTime">
+                <annotation>
+                    <documentation>Dans le cadre d'une demande de concours, ce champ est valorisé avec la date de la
+                        première alerte ou la date évaluée de début de la situation d'urgence.
+                        Par exemple :
+                        Si un incendie est déclaré est 9h02, il a pu démarré à 8h55 par exemple.
+                        NB : temporairement, NexSIS renseignera ce champ avec la date de réception de l'alerte initiale
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="OBS_DATIME" type="dateTime">
+                <annotation>
+                    <documentation>Ce champ est idéalement à valoriser avec la date/heure à laquelle l'observation de la
+                        situation d'urgence de l'affaire la plus récente a été réalisée.
+                        NexSIS transmettra la date/heure d'envoi de la demande de concours dans son système.
+                        NB : temporairement, NexSIS renseignera ce champ avec la date de réception de l'alerte initiale
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="STATUS">
+                <annotation>
+                    <documentation>Permet de décrire le status de l'affaire en cours.
+                        Ce champ suit une nomenclature EMSI. (COM = event complete, IPR = event in progress, NST = event
+                        not started, STOP = STOP = event under control, no need for additional resource)
+                        Dans le cadre d'une opération :
+                        - si l'opération est encore en cours : rensigner 'IPR',
+                        - si le dispatching de moyens est encore en cours ou que seulement des qualifications d'alertes
+                        ont été échangées sans aucune décision de régulation 'NST',
+                        - si l'opération est en pause/veille : 'STOP'
+                        - si le message d'échange opérationnel décrit une fin d'opération, à renseigner avec 'COM'
+                        Un message EMSI-EO sans RESSOURCE ni
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="COM"/>
+                        <enumeration value="IPR"/>
+                        <enumeration value="NST"/>
+                        <enumeration value="STOP"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="RISK_ASSESMENT">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="NCREA"/>
+                        <enumeration value="DECREA"/>
+                        <enumeration value="STABLE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="REFERENCE">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="reference" type="x:reference"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="CASUALTIES">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="casualties" type="x:casualties"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="EVAC">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="evac" type="x:evac"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="EGEO">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="egeo" type="x:egeo"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="CAUSE">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ACC"/>
+                        <enumeration value="DEL"/>
+                        <enumeration value="NAT"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="FREETEXT" type="string">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="mission">
+        <sequence>
+            <element name="TYPE">
+                <annotation>
+                    <documentation>Le champ MISSION TYPE permet d'identifier l'effet à obtenir souhaité à partir de la
+                        combinaison du code ACTOR et du code TYPE.
+                        =&gt; La table de transcodage permettant d'identifier les concourants et les effets à obtenir à
+                        partir d'un code EMSI est fournie en annexe "Référentiel Effets à Obtenir - correspondance
+                        EMSI".
+                        Dans le cadre d'une réponse à DC :
+                        - reprendre le type de la DC si le code réponse choisi est vien "VALIDE"
+                        Dans le cadre d'une mission décrivant les opérations en cours :
+                        - reprendre la nomenclature EMSI pour caractériser la mission en cours.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string"/>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="FREETEXT" type="string">
+                <annotation>
+                    <documentation>Contient des commentaires relatifs aux objectifs et moyens sollicités dans le cadre
+                        de la demande de concours. Les équipements supplémentaires souhaités ou le nom/ prénom des
+                        patients à prendre en charge peuvent être explicitement indiqués ici.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="ID" type="string">
+                <annotation>
+                    <documentation>Contient un identifiant de demande de concours unique. Cet identifiant sera
+                        réutilisable par le partenaire pour répondre à cette demande.
+                        Identifiant unique de la mission dans le système du partenaire la conduisant.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="ORG_ID" type="string">
+                <annotation>
+                    <documentation>Indique l'organisation du partenaire concerné par la Demande de Concours (voir DSF
+                        8.4). Le code CRRA ou le code du SIS peut être utilisé.
+                        Indique l'organisation du service réalisant la mission. Dans le cas d'une réponse, c'est
+                        l'organisation du concourant qui doit être indiquée.
+                        Se référer au DSF pour la structure normée des organisations
+                        Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure
+                        interne}*:{unité fonctionnelle}*.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="NAME" type="string">
+                <annotation>
+                    <documentation>Le nom de la mission est construit à partir de l'expression régulière suivante :
+                        "#DEMANDE_CONCOURS#"{libelle_cadre_conventionnel}"#"{code_cadre_conventionnel}"#"
+                        où le code_cadre_conventionnel est issue d'une nomenclature CISU-Cadre Conventionnel (A Venir)
+                        NB : ce champ est détourné par rapport au standard EMSI pour permettre l'expression d'une
+                        demande de concours et indiquer le cadre conventionnel dans lequel elle est effectuée.
+                        Pour une réponse à demande de concours :
+                        - Le nom de la mission est construit à partir de l'expression régulière suivante :
+                        "#REPONSE_DEMANDE_CONCOURS#"{code_reponse}"#"
+                        où le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE, DIVERGENTE
+                        - sinon libre
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="STATUS">
+                <annotation>
+                    <documentation>Les valeurs possibles avec lesquelles valoriser ce champ sont détaillées au sein
+                        d'une nomenclature EMSI
+                        - ABO : mission refusée (ABOrted)
+                        - CANCLD : mission annulée (CANCeLeD)**
+                        - NST : mission non débuté pour le métier (Not STarted)
+                        - IPR : mission débuté pour le métier (In PRogress). la valeur IPR peut être suivi d'une valeur
+                        numérique de 00 à 100 (IPRnn) spécifiant le degré d'avancement de la mission. Ce principe n'est
+                        pas retenu au sein de NexSIS qui ne transmettra pas d'indication sur le degré d'avancement de la
+                        mission via ce champ.
+                        - PAU : événement arrêté, en pause pour métier, pas de besoin supplémentaire
+                        - COM : événement terminé pour le métier (COMplete)
+                        Le status de la mission et celui des RESSOURCE associées doit être cohérent et transcodable avec
+                        un status ANTARES (voir DSF)
+
+                        Dans le cas d'un objet MISSION générique de réponse à demande de concours, le champ doit être
+                        valorisé à "NST"
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ABO"/>
+                        <enumeration value="NST"/>
+                        <enumeration value="CANCLD"/>
+                        <enumeration value="COM"/>
+                        <enumeration value="IPR"/>
+                        <enumeration value="PAU"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="START_TIME" type="dateTime">
+                <annotation>
+                    <documentation>- Dans le cadre d'une réponse à Demande de Concours
+                        Horraire cible pour l'arrivée sur les lieux décrites (peut diverger de l'horaire demandé)
+                        - Dans le cadre d'une mission décrivant les opérations en cours :
+                        Horaire effectif de début de la mission
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="END_TIME" type="dateTime">
+                <annotation>
+                    <documentation>A valoriser selon la catégorie de mission :
+                        - Dans le cadre d'une mission de réponse à demande de concours : ne pas renseigner
+                        - Dans le cadre d'une mission décrivant les opérations en cours :
+                        Si c'est un déplacement, l'heure d'arrivée, si c'est une prise en charge patient/victime, la fin
+                        de la prise en charge.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="RESOURCE_ID" type="string">
+                <annotation>
+                    <documentation>Liste des identifiants des ressources engagées dans la mission (voire RESSOURCE.ID)
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="PARENT_MISSION_ID">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="CHILD_MISSION_ID">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="MAIN_MISSION_ID" type="string">
+                <annotation>
+                    <documentation>- Dans le cas d'une mission générique de réponse à demande de concours, indiquer l'ID
+                        de la mission générique utilisée pour modéliser la demande de concours
+                        - Dans le cas d'une mission déclenchée dans le cadre d'une réponse à demande de concours, l'ID
+                        de la mission générique de réponse peut être utilisée dans ce champ pour indiquer qu'elle est
+                        liée à une réponse
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="POSITION" type="x:position"/>
+            <element minOccurs="0" name="PRIORITY">
+                <annotation>
+                    <documentation>Indique une échelle de priorité pour la demande de concours. Dans le cadre du
+                        standard EMSI, cette échelle doit être comprise entre 0 et 5. Ce champ peut ne pas être
+                        interprété ni alimenté par les LRMs.
+                        Dans le cadre d'un échange des opérations, optionnel. Le champ peut ne pas être émis ni
+                        interprété.
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="0"/>
+                        <enumeration value="1"/>
+                        <enumeration value="2"/>
+                        <enumeration value="3"/>
+                        <enumeration value="4"/>
+                        <enumeration value="5"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="link">
+        <sequence>
+            <element name="ID" type="string">
+                <annotation>
+                    <documentation>A renseigner avec l'identifiant local de l'affaire du partenaire requérant
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="LINK_ROLE">
+                <annotation>
+                    <documentation>Optionnel : à valoriser avec la constante "SPRSDS" en EMSI-EO et avec le libellé
+                        ADDSTO en EMSI-DC
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ADDSTO"/>
+                        <enumeration value="SPRSDS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="origin">
+        <sequence>
+            <element minOccurs="0" name="ORG_ID" type="string">
+                <annotation>
+                    <documentation>Optionnel, identifiant du service à l'origine de l'EMSI
+                        Se référer au DSF pour la structure normée des organisations
+                        Le format est le suivant {pays}.{domaine}.{code département}.{organisation}.{structure
+                        interne}*.{unité fonctionnelle}*.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="USER_ID" type="string">
+                <annotation>
+                    <documentation>Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="NAME" type="string">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="externalInfo">
+        <sequence>
+            <element minOccurs="0" name="FREETEXT" type="string">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element name="URI" type="string">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="TYPE">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MANUAL"/>
+                        <enumeration value="MAP"/>
+                        <enumeration value="OTHER"/>
+                        <enumeration value="PHOTO"/>
+                        <enumeration value="WEBSIT"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="etype">
+        <sequence>
+            <element name="CATEGORY">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="enum"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="ACTOR">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="enum"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element name="LOCTYPE">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="ENV">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string"/>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="reference">
+        <sequence>
+            <element name="ORG_ID" type="string">
+                <annotation>
+                    <documentation>Identification de l'organisation partenaire</documentation>
+                </annotation>
+            </element>
+            <element name="OTHER_EVENT_ID">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="casualties">
+        <sequence>
+            <element name="CONTEXT" type="string">
+                <annotation>
+                    <documentation>Le champ doit être renseigné mais peut ne pas être interprété</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="DATIME" type="dateTime">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="DECONT" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="TRIAGERED" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="TRIAGEYELLOW" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="TRIAGEGREEN" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="TRIAGEBLACK" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="MISSING" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="evac">
+        <sequence>
+            <element minOccurs="0" name="DATIME" type="dateTime">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="DISPLACED" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="EVACUATED" type="int">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="egeo">
+        <sequence>
+            <element minOccurs="0" name="DATIME" type="dateTime">
+                <annotation>
+                    <documentation>Optionnel
+                        La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité
+                        pour l'intervention est systématiquement reprécisé dans un objet MISSION
+                    </documentation>
+                </annotation>
+            </element>
+            <element name="TYPE">
+                <annotation>
+                    <documentation>Optionnel
+                        La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité
+                        pour l'intervention est systématiquement reprécisé dans un objet MISSION
+                    </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string"/>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="WEATHER">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="enum"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="FREETEXT" type="string">
+                <annotation>
+                    <documentation>Optionnel
+                        La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité
+                        pour l'intervention est systématiquement reprécisé dans un objet MISSION
+                    </documentation>
+                </annotation>
+            </element>
+            <element name="POSITION" type="x:position"/>
+        </sequence>
+    </complexType>
+    <complexType name="position">
+        <sequence>
+            <element name="LOC_ID" type="string">
+                <annotation>
+                    <documentation>Optionnel
+                        La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité
+                        pour l'intervention est systématiquement reprécisé dans un objet MISSION.
+                        Lorsque le lieu d'intervention est identique à celle d'une position de l'affaire partagée dans
+                        le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID doit être alimenté valorisé comme le
+                        champ eventLocation.locId du message RC-EDA envoyé en amont.
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="NAME" type="string">
+                <annotation>
+                    <documentation>Optionnel, non utilisé par NexSIS nom de lieu</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="TYPE" type="string">
+                <annotation>
+                    <documentation>Optionnel
+                        Dans le cadre de l'interface LRM NexSIS, seul le libellé POINT doit obligatoirement être
+                        interprétable par les deux partenaires.
+                        Cf. Nomenclature EMSI - POSITION pour plus de détails
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="HEIGHT_ROLE" type="string">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="COORDSYS" type="string">
+                <annotation>
+                    <documentation>Optionnel</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="COORD">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="coord" type="x:coord"/>
+                    </sequence>
+                </complexType>
+            </element>
+            <element minOccurs="0" name="ADDRESS">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="coord">
+        <sequence>
+            <element name="LAT" type="decimal">
+                <annotation>
+                    <documentation>Optionnel.
+                        Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu d'intervention souhaité
+                    </documentation>
+                </annotation>
+            </element>
+            <element name="LONG" type="decimal">
+                <annotation>
+                    <documentation>Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu
+                        d'intervention souhaité
+                    </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="HEIGHT" type="decimal">
+                <annotation>
+                    <documentation>Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu
+                        d'intervention souhaité
+                    </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

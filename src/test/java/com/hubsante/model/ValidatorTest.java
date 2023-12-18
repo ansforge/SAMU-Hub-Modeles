@@ -33,6 +33,7 @@ import java.util.*;
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -78,6 +79,7 @@ public class ValidatorTest {
         }
         // TODO bbo: add XML validation
     }
+
 
     @Test
     @DisplayName("EMSI-DC validation passes")
@@ -137,6 +139,22 @@ public class ValidatorTest {
         }
 
         // TODO bbo: add XML validation
+    }
+
+    @Test
+    @DisplayName("RC-REF xml validation passes")
+    public void xmlRcRefValidationPasses() throws IOException {
+        // TODO : test from DEXL-DE xsd with includes
+        String input = getMessageByFileName("RC-REF-only.xml");
+        assertDoesNotThrow(() -> validator.validateXML(input, "RC-REF.xsd"));
+    }
+
+    @Test
+    @DisplayName("RC-EDA xml validation passes")
+    public void xmlRcEdaValidationPasses() throws IOException {
+        // TODO : test from DEXL-DE xsd with includes
+        String input = getMessageByFileName("RC-EDA-only.xml");
+        assertDoesNotThrow(() -> validator.validateXML(input, "RC-EDA.xsd"));
     }
 
     @Test

@@ -22,7 +22,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
-        for (String schema : Arrays.asList("RC-EDA", "EMSI", "RC-DE", "EDXL-DE-envelope-only")) {
+        for (String schema : Arrays.asList("RC-EDA", "RC-REF", "EMSI", "RC-DE", "EDXL-DE-envelope-only")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 

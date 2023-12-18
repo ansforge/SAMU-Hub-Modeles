@@ -6,7 +6,6 @@
             <element name="createCase" type="x:createCase"/>
         </sequence>
     </complexType>
-    <element name="message" type="x:RC-EDA"/>
     <complexType name="createCase">
         <sequence>
             <element name="caseId" type="string">
@@ -74,7 +73,12 @@
         <sequence>
             <element name="whatsHappen" type="x:nomenclature"/>
             <element minOccurs="0" name="locationKind" type="x:nomenclature"/>
-            <element minOccurs="0" maxOccurs="unbounded" name="riskThreat" type="x:nomenclature">
+            <element minOccurs="0" name="riskThreat">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="nomenclature" type="x:nomenclature"/>
+                    </sequence>
+                </complexType>
             </element>
             <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
             <element minOccurs="0" name="victims" type="x:victims"/>
@@ -110,16 +114,34 @@
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
-            <element minOccurs="0" maxOccurs="unbounded" name="externalInfo" type="x:externalInfo"/>
+            <element minOccurs="0" name="externalInfo">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
+                    </sequence>
+                </complexType>
+            </element>
             <element name="country">
                 <simpleType>
                     <restriction base="string"/>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
+            <element minOccurs="0" name="freetext">
                 <annotation>
                     <documentation>Champ libre pour compléter les informations de localisation</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="France"/>
+                        <enumeration value="Allemagne"/>
+                        <enumeration value="Espagne"/>
+                        <enumeration value="Italie"/>
+                        <enumeration value="Suisse"/>
+                        <enumeration value="Luxembourg"/>
+                        <enumeration value="Belgique"/>
+                        <enumeration value="Brésil"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -181,7 +203,13 @@
             <element name="location" type="x:location"/>
             <element name="qualification" type="x:qualification"/>
             <element name="callTaker" type="x:callTaker"/>
-            <element minOccurs="0" maxOccurs="unbounded" name="attachment" type="x:attachment"/>
+            <element minOccurs="0" name="attachment">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
+                    </sequence>
+                </complexType>
+            </element>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -308,7 +336,7 @@
             </element>
         </sequence>
     </complexType>
-    <complexType name="access" mixed="true">
+    <complexType name="access">
         <sequence>
             <element minOccurs="0" name="floor" type="string">
                 <annotation>
@@ -327,7 +355,13 @@
                     </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" maxOccurs="unbounded" name="accessCode" type="string"/>
+            <element minOccurs="0" name="accessCode">
+                <complexType>
+                    <sequence>
+                        <element maxOccurs="unbounded" minOccurs="0" name="item" type="string"/>
+                    </sequence>
+                </complexType>
+            </element>
             <element minOccurs="0" name="elevator" type="string">
                 <annotation>
                     <documentation>Indique l'ascenseur ou la cage d'escalier</documentation>
