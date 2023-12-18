@@ -229,6 +229,10 @@ def is_typed_object(row):
     isTyped = str(row['Format (ou type)']) != 'nan'
     return isObject & isTyped
 
+def is_health_only(row):
+    """Is elem only for 15-15?"""
+    isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
+    return isHealthOnly
 
 def get_true_type(row):
     """Get the type of elem (defaults to its name if there is no type specified)"""
@@ -255,6 +259,7 @@ def build_full_name(row):
 
 
 df['is_typed_object'] = df.apply(is_typed_object, axis=1)
+df['is_health_only'] = df.apply(is_health_only, axis=1)
 df['true_type'] = df.apply(get_true_type, axis=1)
 df['id'] = df.apply(build_id, axis=1)
 df = df.set_index('id', drop=False)
@@ -424,6 +429,7 @@ def add_object_child_definition(parent, child, definitions):
             'type': 'object',
             'title': child['full_name'],
             'x-display': 'expansion-panels',
+            'x-health-only': child['is_health_only'],
             'required': [],
             'properties': {},
             'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')

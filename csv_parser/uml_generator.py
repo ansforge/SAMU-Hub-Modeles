@@ -54,7 +54,10 @@ def add_node(id_parent, id_in, type_in, buffer_description, cardinalite):
                 </TR>
                 </TABLE>>'''
     str_node = template_html_node.format(str(id_in), "<I>objet " + type_in + "</I>" + buffer_description)
-    dot.node(id_in, str_node)
+    if("is_health_only" in buffer_description):
+        dot.node(id_in, str_node, fillcolor="lightgreen", style="filled")
+    else:
+        dot.node(id_in, str_node)
     # draw edges with parents nodes
     # no edge if pointing itself
     if id_parent and (id_parent != id_in):
@@ -88,6 +91,10 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
     # buffer_description_node stores descrition of each node to append leaf description
     for id_child, child in dict_in["properties"].items() :
         cardinalite_child = ("0","1")
+        # if dict_in contains x-health-only: True, add it to the buffer
+        if "x-health-only" in dict_in and dict_in["x-health-only"] == True :
+            print(dict_in)
+            buffer_description_node[id_parent] = buffer_description_node[id_parent] + "<BR/>" + "is_health_only: True"
         # check if child is required
         if "required" in dict_in :
                 if id_child in dict_in["required"] :
