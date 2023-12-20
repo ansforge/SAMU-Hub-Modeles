@@ -39,6 +39,15 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
+	filefuture [label=<<TABLE>
+                <TR>
+                <TD><B>filefuture</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet filefuture</I> <B>15-15</B><BR/>filestatus <I>string</I> : [0..1] <B>15-15</B><BR/>filetype <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	filefuture -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	victims [label=<<TABLE>
                 <TR>
                 <TD><B>victims</B></TD>
@@ -53,9 +62,9 @@ strict digraph {
                 <TD><B>qualification</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet qualification</I></TD>
+                <TD><I>objet qualification</I><BR/>fileusage <I>string</I> : [0..1] <B>15-15</B><BR/>medicalPriority <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
-                </TABLE>>]
+                </TABLE>> fillcolor=firebrick1 style=filled]
 	qualification -> createCase [constraint=true headlabel=1 taillabel=1]
 	wayName [label=<<TABLE>
                 <TR>
@@ -300,6 +309,15 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
+	filefuture [label=<<TABLE>
+                <TR>
+                <TD><B>filefuture</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet filefuture</I> <B>15-15</B><BR/>filestatus <I>string</I> : [0..1] <B>15-15</B><BR/>filetype <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	filefuture -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	victims [label=<<TABLE>
                 <TR>
                 <TD><B>victims</B></TD>
@@ -314,9 +332,9 @@ strict digraph {
                 <TD><B>qualification</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet qualification</I></TD>
+                <TD><I>objet qualification</I><BR/>fileusage <I>string</I> : [0..1] <B>15-15</B><BR/>medicalPriority <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
-                </TABLE>>]
+                </TABLE>> fillcolor=firebrick1 style=filled]
 	qualification -> initialAlert [constraint=true headlabel=1 taillabel=1]
 	calltakeContact [label=<<TABLE>
                 <TR>
@@ -354,6 +372,258 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	initialAlert -> createCase [constraint=true headlabel=1 taillabel="0..1"]
+	operators [label=<<TABLE>
+                <TR>
+                <TD><B>operators</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet operators</I> <B>15-15</B><BR/>opname <I>string</I> : [1..1] <B>15-15</B><BR/>opfirstname <I>string</I> : [0..1] <B>15-15</B><BR/>opid <I>string</I> : [0..1] <B>15-15</B><BR/>oprole <I>string</I> : [1..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	operators -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	patientID [label=<<TABLE>
+                <TR>
+                <TD><B>patientID</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patientid</I> <B>15-15</B><BR/>source <I>string</I> : [0..1] <B>15-15</B><BR/>patIDvalue <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patientID -> patientFile [constraint=true headlabel=1 taillabel="0..*"]
+	INScycle [label=<<TABLE>
+                <TR>
+                <TD><B>INScycle</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet INScycle</I> <B>15-15</B><BR/>patIDstatus <I>string</I> : [0..1] <B>15-15</B><BR/>patIDattribute <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	INScycle -> patientFile [constraint=true headlabel=1 taillabel="0..1"]
+	matINS [label=<<TABLE>
+                <TR>
+                <TD><B>matINS</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet matINS</I> <B>15-15</B><BR/>matINSvalue <I>number</I> : [0..1] <B>15-15</B><BR/>matINSoid <I>number</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	matINS -> patientFile [constraint=true headlabel=1 taillabel="0..1"]
+	strictINStraits [label=<<TABLE>
+                <TR>
+                <TD><B>strictINStraits</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet strictINStraits</I> <B>15-15</B><BR/>birthname <I>string</I> : [0..1] <B>15-15</B><BR/>firstfirstname <I>string</I> : [0..1] <B>15-15</B><BR/>firstnameslist <I>string</I> : [0..1] <B>15-15</B><BR/>birthDate <I>date-time</I> : [0..1] <B>15-15</B><BR/>sex <I>string</I> : [0..1] <B>15-15</B><BR/>birthplacecode <I>number</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	strictINStraits -> patientFile [constraint=true headlabel=1 taillabel="0..1"]
+	nonstrictINStraits [label=<<TABLE>
+                <TR>
+                <TD><B>nonstrictINStraits</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet nonstrictINStraits</I> <B>15-15</B><BR/>customaryname <I>string</I> : [0..1] <B>15-15</B><BR/>customaryfirstname <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	nonstrictINStraits -> patientFile [constraint=true headlabel=1 taillabel="0..1"]
+	patientContact [label=<<TABLE>
+                <TR>
+                <TD><B>patientContact</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet contact</I> <B>15-15</B><BR/>type <I>string</I> : [1..1]<BR/>detail <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patientContact -> patientFile [constraint=true headlabel=1 taillabel="0..*"]
+	detailedAddress [label=<<TABLE>
+                <TR>
+                <TD><B>detailedAddress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet detailedAddress</I> <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	detailedAddress -> patientAddress [constraint=true headlabel=1 taillabel="0..1"]
+	city [label=<<TABLE>
+                <TR>
+                <TD><B>city</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet city</I> <B>15-15</B><BR/>name <I>string</I> : [0..1]<BR/>inseeCode <I>string</I> : [0..1]<BR/>detail <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	city -> patientAddress [constraint=true headlabel=1 taillabel="0..1"]
+	patientAddress [label=<<TABLE>
+                <TR>
+                <TD><B>patientAddress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalAddress</I> <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patientAddress -> patientFile [constraint=true headlabel=1 taillabel="0..1"]
+	detailedAddress [label=<<TABLE>
+                <TR>
+                <TD><B>detailedAddress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet detailedAddress</I> <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	detailedAddress -> GPAddress [constraint=true headlabel=1 taillabel="0..1"]
+	city [label=<<TABLE>
+                <TR>
+                <TD><B>city</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet city</I> <B>15-15</B><BR/>name <I>string</I> : [0..1]<BR/>inseeCode <I>string</I> : [0..1]<BR/>detail <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	city -> GPAddress [constraint=true headlabel=1 taillabel="0..1"]
+	GPAddress [label=<<TABLE>
+                <TR>
+                <TD><B>GPAddress</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalAddress</I> <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	GPAddress -> personalGP [constraint=true headlabel=1 taillabel="0..1"]
+	GPContact [label=<<TABLE>
+                <TR>
+                <TD><B>GPContact</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet contact</I> <B>15-15</B><BR/>type <I>string</I> : [1..1]<BR/>detail <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	GPContact -> personalGP [constraint=true headlabel=1 taillabel="0..*"]
+	personalGP [label=<<TABLE>
+                <TR>
+                <TD><B>personalGP</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet personalGP</I> <B>15-15</B><BR/>GPname <I>string</I> : [0..1] <B>15-15</B><BR/>GPfirstname <I>string</I> : [0..1] <B>15-15</B><BR/>GPID <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	personalGP -> patientFile [constraint=true headlabel=1 taillabel="0..1"]
+	patientFile [label=<<TABLE>
+                <TR>
+                <TD><B>patientFile</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet identifier</I> <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patientFile -> patients [constraint=true headlabel=1 taillabel="0..*"]
+	patientwhatsHappen [label=<<TABLE>
+                <TR>
+                <TD><B>patientwhatsHappen</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet nomenclature</I> <B>15-15</B><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patientwhatsHappen -> patients [constraint=true headlabel=1 taillabel="0..1"]
+	patinfo [label=<<TABLE>
+                <TR>
+                <TD><B>patinfo</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patinfo</I> <B>15-15</B><BR/>weight <I>integer</I> : [0..1] <B>15-15</B><BR/>height <I>integer</I> : [0..1] <B>15-15</B><BR/>age <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patinfo -> patients [constraint=true headlabel=1 taillabel="0..1"]
+	patients [label=<<TABLE>
+                <TR>
+                <TD><B>patients</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patients</I> <B>15-15</B><BR/>patientcaseID <I>string</I> : [1..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patients -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	operators [label=<<TABLE>
+                <TR>
+                <TD><B>operators</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet operators</I> <B>15-15</B><BR/>opname <I>string</I> : [1..1] <B>15-15</B><BR/>opfirstname <I>string</I> : [0..1] <B>15-15</B><BR/>opid <I>string</I> : [0..1] <B>15-15</B><BR/>oprole <I>string</I> : [1..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	operators -> medicalfile [constraint=true headlabel=1 taillabel="0..1"]
+	medicalfile [label=<<TABLE>
+                <TR>
+                <TD><B>medicalfile</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet medicalfile</I> <B>15-15</B><BR/>freetext <I>string</I> : [0..*] <B>15-15</B><BR/>medicalhistory <I>string</I> : [0..*] <B>15-15</B><BR/>treatments <I>string</I> : [0..*] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	medicalfile -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
+	patdestination [label=<<TABLE>
+                <TR>
+                <TD><B>patdestination</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patdestination</I> <B>15-15</B><BR/>facility <I>string</I> : [0..1] <B>15-15</B><BR/>service <I>string</I> : [0..1] <B>15-15</B><BR/>other <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patdestination -> patPathway [constraint=true headlabel=1 taillabel="0..1"]
+	patPathway [label=<<TABLE>
+                <TR>
+                <TD><B>patPathway</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet patientPathway</I> <B>15-15</B><BR/>decisiontype <I>string</I> : [0..1] <B>15-15</B><BR/>orientation <I>string</I> : [0..1] <B>15-15</B><BR/>rtypeTransport <I>string</I> : [0..*] <B>15-15</B><BR/>teamMedicalLevel <I>string</I> : [0..1] <B>15-15</B><BR/>carelevel <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	patPathway -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
+	mainDiagnosis [label=<<TABLE>
+                <TR>
+                <TD><B>mainDiagnosis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet nomenclature</I> <B>15-15</B><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	mainDiagnosis -> hypothesis [constraint=true headlabel=1 taillabel="0..1"]
+	otherDiagnosis [label=<<TABLE>
+                <TR>
+                <TD><B>otherDiagnosis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet nomenclature</I> <B>15-15</B><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	otherDiagnosis -> hypothesis [constraint=true headlabel=1 taillabel="0..*"]
+	hypothesis [label=<<TABLE>
+                <TR>
+                <TD><B>hypothesis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet hypothesis</I> <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	hypothesis -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..1"]
+	resourceDiagnosis [label=<<TABLE>
+                <TR>
+                <TD><B>resourceDiagnosis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet nomenclature</I> <B>15-15</B><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	resourceDiagnosis -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..1"]
+	medicalAnalysis [label=<<TABLE>
+                <TR>
+                <TD><B>medicalAnalysis</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet medicalAnalysis</I> <B>15-15</B><BR/>patientcaseID <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	medicalAnalysis -> createCase [constraint=true headlabel=1 taillabel="0..1"]
 	newAlert [label=<<TABLE>
                 <TR>
                 <TD><B>newAlert</B></TD>
@@ -386,15 +656,15 @@ strict digraph {
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>crratransfert <I>string</I> : [1..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..1]</TD>
                 </TR>
-                </TABLE>>]
+                </TABLE>> fillcolor=firebrick1 style=filled]
 	createCase [label=<<TABLE>
                 <TR>
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>crratransfert <I>string</I> : [1..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..1]</TD>
                 </TR>
-                </TABLE>>]
+                </TABLE>> fillcolor=firebrick1 style=filled]
 }

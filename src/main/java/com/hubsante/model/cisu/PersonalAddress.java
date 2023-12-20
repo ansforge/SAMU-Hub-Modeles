@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.emsi;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,63 +34,72 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.emsi.Resource;
-import java.util.ArrayList;
+import com.hubsante.model.cisu.City;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * Emsi
+ * PersonalAddress
  */
-@JsonPropertyOrder({Emsi.JSON_PROPERTY_R_E_S_O_U_R_C_E})
-@JsonTypeName("emsi")
+@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
+                    PersonalAddress.JSON_PROPERTY_CITY})
+@JsonTypeName("personalAddress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Emsi {
-  public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E = "RESOURCE";
-  private List<Resource> RESOURCE;
+public class PersonalAddress {
+  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
+  private Object detailedAddress;
 
-  public Emsi() {}
+  public static final String JSON_PROPERTY_CITY = "city";
+  private City city;
 
-  public Emsi RESOURCE(List<Resource> RESOURCE) {
+  public PersonalAddress() {}
 
-    this.RESOURCE = RESOURCE;
-    return this;
-  }
+  public PersonalAddress detailedAddress(Object detailedAddress) {
 
-  public Emsi addRESOURCEItem(Resource RESOURCEItem) {
-    if (this.RESOURCE == null) {
-      this.RESOURCE = new ArrayList<>();
-    }
-    this.RESOURCE.add(RESOURCEItem);
+    this.detailedAddress = detailedAddress;
     return this;
   }
 
   /**
-   * Get RESOURCE
-   * @return RESOURCE
+   * Get detailedAddress
+   * @return detailedAddress
    **/
-  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Resource> getRESOURCE() {
-    return RESOURCE;
+  public Object getDetailedAddress() {
+    return detailedAddress;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRESOURCE(List<Resource> RESOURCE) {
-    if (RESOURCE == null) {
-      return;
-    }
-    if (this.RESOURCE == null) {
-      this.RESOURCE = new ArrayList<>();
-    }
-    this.RESOURCE.addAll(RESOURCE);
+  public void setDetailedAddress(Object detailedAddress) {
+    this.detailedAddress = detailedAddress;
+  }
+
+  public PersonalAddress city(City city) {
+
+    this.city = city;
+    return this;
+  }
+
+  /**
+   * Get city
+   * @return city
+   **/
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public City getCity() {
+    return city;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCity(City city) {
+    this.city = city;
   }
 
   @Override
@@ -101,20 +110,25 @@ public class Emsi {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Emsi emsi = (Emsi)o;
-    return Objects.equals(this.RESOURCE, emsi.RESOURCE);
+    PersonalAddress personalAddress = (PersonalAddress)o;
+    return Objects.equals(this.detailedAddress,
+                          personalAddress.detailedAddress) &&
+        Objects.equals(this.city, personalAddress.city);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(RESOURCE);
+    return Objects.hash(detailedAddress, city);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Emsi {\n");
-    sb.append("    RESOURCE: ").append(toIndentedString(RESOURCE)).append("\n");
+    sb.append("class PersonalAddress {\n");
+    sb.append("    detailedAddress: ")
+        .append(toIndentedString(detailedAddress))
+        .append("\n");
+    sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("}");
     return sb.toString();
   }

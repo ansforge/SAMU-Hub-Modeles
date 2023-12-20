@@ -34,63 +34,72 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.emsi.Resource;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * Emsi
+ * Contact
  */
-@JsonPropertyOrder({Emsi.JSON_PROPERTY_R_E_S_O_U_R_C_E})
-@JsonTypeName("emsi")
+@JsonPropertyOrder(
+    {Contact.JSON_PROPERTY_T_Y_P_E, Contact.JSON_PROPERTY_D_E_T_A_I_L})
+@JsonTypeName("contact")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Emsi {
-  public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E = "RESOURCE";
-  private List<Resource> RESOURCE;
+public class Contact {
+  public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
+  private String TYPE;
 
-  public Emsi() {}
+  public static final String JSON_PROPERTY_D_E_T_A_I_L = "DETAIL";
+  private String DETAIL;
 
-  public Emsi RESOURCE(List<Resource> RESOURCE) {
+  public Contact() {}
 
-    this.RESOURCE = RESOURCE;
-    return this;
-  }
+  public Contact TYPE(String TYPE) {
 
-  public Emsi addRESOURCEItem(Resource RESOURCEItem) {
-    if (this.RESOURCE == null) {
-      this.RESOURCE = new ArrayList<>();
-    }
-    this.RESOURCE.add(RESOURCEItem);
+    this.TYPE = TYPE;
     return this;
   }
 
   /**
-   * Get RESOURCE
-   * @return RESOURCE
+   * Type de contact, voir énumération associée  1. PMRADD (si RFGI
+   *disponible) 2. PHNADD pour téléphonie
+   * @return TYPE
    **/
-  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_T_Y_P_E)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Resource> getRESOURCE() {
-    return RESOURCE;
+  public String getTYPE() {
+    return TYPE;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
+  @JsonProperty(JSON_PROPERTY_T_Y_P_E)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setTYPE(String TYPE) {
+    this.TYPE = TYPE;
+  }
 
-  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRESOURCE(List<Resource> RESOURCE) {
-    if (RESOURCE == null) {
-      return;
-    }
-    if (this.RESOURCE == null) {
-      this.RESOURCE = new ArrayList<>();
-    }
-    this.RESOURCE.addAll(RESOURCE);
+  public Contact DETAIL(String DETAIL) {
+
+    this.DETAIL = DETAIL;
+    return this;
+  }
+
+  /**
+   * 1. RFGI du moyen NEXSIS (si RFGI disponible) 2. Numéro de téléphone
+   * @return DETAIL
+   **/
+  @JsonProperty(JSON_PROPERTY_D_E_T_A_I_L)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getDETAIL() {
+    return DETAIL;
+  }
+
+  @JsonProperty(JSON_PROPERTY_D_E_T_A_I_L)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDETAIL(String DETAIL) {
+    this.DETAIL = DETAIL;
   }
 
   @Override
@@ -101,20 +110,22 @@ public class Emsi {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Emsi emsi = (Emsi)o;
-    return Objects.equals(this.RESOURCE, emsi.RESOURCE);
+    Contact contact = (Contact)o;
+    return Objects.equals(this.TYPE, contact.TYPE) &&
+        Objects.equals(this.DETAIL, contact.DETAIL);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(RESOURCE);
+    return Objects.hash(TYPE, DETAIL);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Emsi {\n");
-    sb.append("    RESOURCE: ").append(toIndentedString(RESOURCE)).append("\n");
+    sb.append("class Contact {\n");
+    sb.append("    TYPE: ").append(toIndentedString(TYPE)).append("\n");
+    sb.append("    DETAIL: ").append(toIndentedString(DETAIL)).append("\n");
     sb.append("}");
     return sb.toString();
   }

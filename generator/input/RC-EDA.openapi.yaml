@@ -12,6 +12,7 @@ components:
       properties:
         createCase:
           $ref: '#/components/schemas/createCase'
+          x-health-only: false
     createCase:
       type: object
       title: Objet createCase
@@ -23,10 +24,12 @@ components:
       - referenceVersion
       - qualification
       - location
+      - crratransfert
       properties:
         caseId:
           type: string
           title: Identifiant affaire/dossier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/caseId
           description: "Identifiant technique de l'affaire et partag\xE9 entre tous\
@@ -44,6 +47,7 @@ components:
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/senderCaseId
           description: "Valoriser avec l'identifiant de l'affaire dans le SI de l'\xE9\
@@ -56,6 +60,7 @@ components:
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'affaire/dossier"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/creation
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
@@ -71,6 +76,7 @@ components:
         referenceVersion:
           type: string
           title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/referenceVersion
           description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
@@ -81,19 +87,57 @@ components:
           - '1.2'
         qualification:
           $ref: '#/components/schemas/qualification'
+          x-health-only: false
         location:
           $ref: '#/components/schemas/location'
+          x-health-only: false
         initialAlert:
           $ref: '#/components/schemas/alert'
+          x-health-only: false
+        crratransfert:
+          type: string
+          title: CRRA traitant
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/crratransfert
+          description: "Champ servant \xE0 transf\xE9rer la responsabilit\xE9 du traitement\
+            \ d'un dossier \xE0 un autre CRAA / \xE0 lui demander de prendre en charge\
+            \ le traitement du dossier.\nLe SAMU demandeur entre dans ce champ l'ID\
+            \ du CRAA \xE0 qui il demande de traiter l'affaire (uniquement en cas\
+            \ de transfert int\xE9gral du traitement d'un dossier).\nLe SAMU qui re\xE7\
+            oit la demande de transfert et l'accepte renvoie un RC-EDA de mise \xE0\
+            \ jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier\
+            \ chez lui dans le message.\nLe SAMU qui re\xE7oit la demande de transfert\
+            \ et la refuse renvoie un RC-EDA de mise \xE0 jour en remettant l'ID du\
+            \ SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez\
+            \ lui."
+          examples:
+          - 'fr.health.samu090 '
+        operators:
+          type: array
+          items:
+            $ref: '#/components/schemas/operators'
+            x-health-only: true
+        patients:
+          type: array
+          items:
+            $ref: '#/components/schemas/patients'
+            x-health-only: true
+        medicalAnalysis:
+          $ref: '#/components/schemas/medicalAnalysis'
+          x-health-only: true
         newAlert:
           type: array
           items:
             $ref: '#/components/schemas/alert'
+            x-health-only: false
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
+          x-health-only: false
         freetext:
           type: string
           title: Description de l'affaire/dossier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
@@ -111,16 +155,48 @@ components:
       properties:
         whatsHappen:
           $ref: '#/components/schemas/nomenclature'
+          x-health-only: false
         locationKind:
           $ref: '#/components/schemas/nomenclature'
+          x-health-only: false
         riskThreat:
           type: array
           items:
             $ref: '#/components/schemas/nomenclature'
+            x-health-only: false
         healthMotive:
           $ref: '#/components/schemas/nomenclature'
+          x-health-only: false
+        filefuture:
+          $ref: '#/components/schemas/filefuture'
+          x-health-only: true
+        fileusage:
+          type: string
+          title: Attribution du dossier
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/qualification/fileusage
+          description: "D\xE9crit le type de professionnel m\xE9dical \xE0 qui le\
+            \ dossier est attribu\xE9"
+          examples:
+          - "M\xE9decin g\xE9n\xE9raliste, m\xE9decin urgentiste etc."
+        medicalPriority:
+          type: string
+          title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/qualification/medicalPriority
+          description: "D\xE9crit la priorit\xE9 de r\xE9gulation m\xE9dicale du dossier."
+          enum:
+          - P0
+          - P1
+          - P2
+          - P3
+          examples:
+          - P0, P1, P2, P3
         victims:
           $ref: '#/components/schemas/victims'
+          x-health-only: false
       example: example.json#/createCase/qualification
     location:
       type: object
@@ -135,6 +211,7 @@ components:
         locID:
           type: string
           title: Identifiant technique de localisation
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/locID
           description: "ID technique et provisoire permettant d'identifier le lieu\
@@ -144,6 +221,7 @@ components:
         locLabel:
           type: string
           title: "R\xE9sum\xE9 de la localisation"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/locLabel
           description: "Permet d'indiquer des indications auto suffisantes permettant\
@@ -158,6 +236,7 @@ components:
         name:
           type: string
           title: Nom du lieu
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/name
           description: "Indique le nom de lieu : nom commercial, for\xEAt de Fontainebleau,\
@@ -166,19 +245,25 @@ components:
           - "Lyc\xE9e Pierre de Coubertin"
         detailedAdress:
           $ref: '#/components/schemas/detailedAdress'
+          x-health-only: false
         city:
           $ref: '#/components/schemas/city'
+          x-health-only: false
         access:
           $ref: '#/components/schemas/access'
+          x-health-only: false
         geometry:
           $ref: '#/components/schemas/geometry'
+          x-health-only: false
         externalInfo:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
+            x-health-only: false
         country:
           type: string
           title: Pays
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/country
           enum:
@@ -428,6 +513,7 @@ components:
         freetext:
           type: string
           title: Commentaire
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/freetext
           description: "Champ libre pour compl\xE9ter les informations de localisation"
@@ -452,6 +538,7 @@ components:
         id:
           type: string
           title: Identifiant alerte
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/id
           description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
@@ -476,6 +563,7 @@ components:
         reception:
           type: string
           title: "Date de r\xE9ception de l'alerte"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/reception
           description: "Groupe date heure de r\xE9ception de l'alerte"
@@ -486,6 +574,7 @@ components:
         reporting:
           type: string
           title: Signalement
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/reporting
           description: "Permet d'attirer l'attention des forces partenaires sur une\
@@ -503,6 +592,7 @@ components:
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur l'alerte"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
@@ -511,19 +601,141 @@ components:
           - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
         caller:
           $ref: '#/components/schemas/caller'
+          x-health-only: false
         alertSource:
           $ref: '#/components/schemas/contactSource'
+          x-health-only: false
         location:
           $ref: '#/components/schemas/location'
+          x-health-only: false
         qualification:
           $ref: '#/components/schemas/qualification'
+          x-health-only: false
         callTaker:
           $ref: '#/components/schemas/callTaker'
+          x-health-only: false
         attachment:
           type: array
           items:
             $ref: '#/components/schemas/attachment'
+            x-health-only: false
       example: example.json#/createCase/initialAlert
+    operators:
+      type: object
+      title: "Op\xE9rateurs impliqu\xE9s"
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - opname
+      - oprole
+      properties:
+        opname:
+          type: string
+          title: NOM
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/operators/0/opname
+          description: "Nom de famille de l'op\xE9rateur"
+          examples:
+          - None
+        opfirstname:
+          type: string
+          title: "Pr\xE9nom"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/operators/0/opfirstname
+          description: "Pr\xE9nom de l'op\xE9rateur r\xE9f\xE9rent"
+          examples:
+          - None
+        opid:
+          type: string
+          title: ID
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/operators/0/opid
+          description: "Identifiant professionnel de l'op\xE9rateur si existant"
+          examples:
+          - None
+        oprole:
+          type: string
+          title: "R\xF4le"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/operators/0/oprole
+          description: "R\xF4le de l'op\xE9rateur au sein de l'entit\xE9 \xE9mettrice\
+            \ du message"
+          examples:
+          - "ARM, Medecin r\xE9gulateur\u2026"
+      example: example.json#/createCase/operators/0
+      examples:
+      - opname: None
+        opfirstname: None
+        opid: None
+        oprole: "ARM, Medecin r\xE9gulateur\u2026"
+    patients:
+      type: object
+      title: Patients / victimes
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - patientcaseID
+      properties:
+        patientcaseID:
+          type: string
+          title: "ID patient partag\xE9"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientcaseID
+          description: "Identifiant technique du patient pour permettre les rapprochements\
+            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
+          examples:
+          - None
+        patientFile:
+          type: array
+          items:
+            $ref: '#/components/schemas/identifier'
+            x-health-only: true
+        patientwhatsHappen:
+          $ref: '#/components/schemas/nomenclature'
+          x-health-only: true
+        patinfo:
+          $ref: '#/components/schemas/patinfo'
+          x-health-only: true
+      example: example.json#/createCase/patients/0
+    medicalAnalysis:
+      type: object
+      title: "R\xE9gulation m\xE9dicale"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        patientcaseID:
+          type: string
+          title: "ID patient partag\xE9"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patientcaseID
+          description: "ID du patient concern\xE9, lorsque le patient existe et est\
+            \ identifi\xE9"
+          examples:
+          - None
+        medicalfile:
+          type: array
+          items:
+            $ref: '#/components/schemas/medicalfile'
+            x-health-only: true
+        patPathway:
+          type: array
+          items:
+            $ref: '#/components/schemas/patientPathway'
+            x-health-only: true
+        hypothesis:
+          $ref: '#/components/schemas/hypothesis'
+          x-health-only: true
+        resourceDiagnosis:
+          $ref: '#/components/schemas/nomenclature'
+          x-health-only: true
+      example: example.json#/createCase/medicalAnalysis
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -533,6 +745,7 @@ components:
       properties:
         customMap:
           $ref: '#/components/schemas/customMap'
+          x-health-only: false
       example: example.json#/createCase/additionalInformation
     nomenclature:
       type: object
@@ -546,6 +759,7 @@ components:
         code:
           type: string
           title: Code
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/whatsHappen/code
           description: "A valoriser avec un code la nomenclature associ\xE9e"
@@ -854,6 +1068,7 @@ components:
         label:
           type: string
           title: "Libell\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/whatsHappen/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
@@ -865,6 +1080,7 @@ components:
         freetext:
           type: string
           title: Commentaire
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/whatsHappen/freetext
           description: "Permet de compl\xE9menter en commentaire libre l'attribut\
@@ -876,6 +1092,43 @@ components:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
         freetext: None
+    filefuture:
+      type: object
+      title: 'Devenir du dossier '
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        filestatus:
+          type: string
+          title: Etat du dossier
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/qualification/filefuture/filestatus
+          description: "cf. cycle SI SAMU uniquement (si applicable) : \xE9changer\
+            \ l'\xE9tat du dossier si le cycle de vie du dossier est impl\xE9ment\xE9\
+            \ de mani\xE8re conforme au cycle de vie du dossier SI-SAMU"
+          enum:
+          - 'Nouveau '
+          - 'Actif '
+          - "Valid\xE9 "
+          - "Cl\xF4tur\xE9 "
+          - "Class\xE9 "
+          examples:
+          - None
+        filetype:
+          type: string
+          title: Type de dossier
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/qualification/filefuture/filetype
+          description: "D/DR/DRM si cycle SI-SAMU impl\xE9ment\xE9"
+          examples:
+          - D, DR, DRM
+      example: example.json#/createCase/qualification/filefuture
+      examples:
+      - filestatus: None
+        filetype: D, DR, DRM
     victims:
       type: object
       title: Patients/Victimes
@@ -886,6 +1139,7 @@ components:
         count:
           type: string
           title: Nombre de patients-victimes
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/victims/count
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
@@ -901,6 +1155,7 @@ components:
         mainVictim:
           type: string
           title: Type du patient-victime principal
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/victims/mainVictim
           description: "Identifie le type de la principale victime (celle dont l'\xE9\
@@ -917,6 +1172,7 @@ components:
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur les patients-victimes"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/victims/freetext
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
@@ -938,6 +1194,7 @@ components:
         complete:
           type: string
           title: "Num\xE9ro, type et nom de voie"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/complete
           description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
@@ -949,6 +1206,7 @@ components:
         number:
           type: string
           title: "Num\xE9ro dans la voie"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/number
           description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
@@ -958,6 +1216,7 @@ components:
           - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/components/schemas/wayName'
+          x-health-only: false
       example: example.json#/createCase/location/detailedAdress
     city:
       type: object
@@ -969,6 +1228,7 @@ components:
         name:
           type: string
           title: Nom de la commune
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/city/name
           description: Nom officiel de la commune actuelle
@@ -977,6 +1237,7 @@ components:
         inseeCode:
           type: string
           title: Code INSEE de la commune
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/city/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
@@ -988,6 +1249,7 @@ components:
         detail:
           type: string
           title: "Compl\xE9ment de commune"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/city/detail
           description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
@@ -1013,6 +1275,7 @@ components:
         floor:
           type: string
           title: Etage
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/floor
           description: 'Etage '
@@ -1021,6 +1284,7 @@ components:
         roomNumber:
           type: string
           title: "Num\xE9ro de porte"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/roomNumber
           description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
@@ -1029,6 +1293,7 @@ components:
         interphone:
           type: string
           title: Interphone
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/interphone
           description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
@@ -1037,9 +1302,11 @@ components:
           - Dupont
         accessCode:
           type: array
+          x-health-only: false
           items:
             type: string
             title: Digicode
+            x-health-only: false
             x-cols: 6
             example: example.json#/createCase/location/access/accessCode/0
             description: "Indique le ou les digicodes dans l'ordre de progression\
@@ -1049,6 +1316,7 @@ components:
         elevator:
           type: string
           title: Ascenseur/escalier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/elevator
           description: 'Indique l''ascenseur ou la cage d''escalier '
@@ -1057,6 +1325,7 @@ components:
         buildingName:
           type: string
           title: "B\xE2timent"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/buildingName
           description: "Nom du b\xE2timent"
@@ -1065,6 +1334,7 @@ components:
         entrance:
           type: string
           title: "Entr\xE9e"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/entrance
           examples:
@@ -1072,6 +1342,7 @@ components:
         entity:
           type: string
           title: Service
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/entity
           description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
@@ -1080,6 +1351,7 @@ components:
         locphonenumber:
           type: number
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/locphonenumber
           description: "Num\xE9ro de t\xE9l\xE9phone permettant d'acc\xE9der au lieu\
@@ -1099,6 +1371,7 @@ components:
         obsDatime:
           type: string
           title: "Heure du dernier relev\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/obsDatime
           description: "Groupe date heure de renseignement des coordonn\xE9es du point\
@@ -1110,9 +1383,11 @@ components:
           - '2022-09-27T08:23:34+02:00'
         point:
           $ref: '#/components/schemas/point'
+          x-health-only: false
         sketch:
           type: string
           title: "Formes g\xE9om\xE9triques"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/sketch
           description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
@@ -1140,6 +1415,7 @@ components:
         freetext:
           type: string
           title: Nom de la source
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/externalInfo/0/freetext
           description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
@@ -1153,6 +1429,7 @@ components:
         type:
           type: string
           title: 'Type '
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/externalInfo/0/type
           description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
@@ -1170,6 +1447,7 @@ components:
         uri:
           type: string
           title: Identifiant
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/externalInfo/0/uri
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
@@ -1191,6 +1469,7 @@ components:
         complete:
           type: string
           title: Type et nom
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/wayName/complete
           description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
@@ -1201,6 +1480,7 @@ components:
         type:
           type: string
           title: Type
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/wayName/type
           examples:
@@ -1208,6 +1488,7 @@ components:
         name:
           type: string
           title: Nom
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/wayName/name
           examples:
@@ -1227,9 +1508,11 @@ components:
       properties:
         coord:
           $ref: '#/components/schemas/coord'
+          x-health-only: false
         sysCoord:
           type: string
           title: "Syst\xE8me de coordonn\xE9es"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/sysCoord
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
@@ -1252,6 +1535,7 @@ components:
         lat:
           type: number
           title: Latitude
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/lat
           description: "Latitude du point cl\xE9 de la localisation "
@@ -1260,6 +1544,7 @@ components:
         lon:
           type: number
           title: Longitude
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/lon
           description: "Longitude du point cl\xE9 de la localisation"
@@ -1268,6 +1553,7 @@ components:
         height:
           type: number
           title: 'Altitude '
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/height
           description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
@@ -1277,6 +1563,7 @@ components:
         heading:
           type: number
           title: Cap
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/heading
           description: "En degr\xE9"
@@ -1285,6 +1572,7 @@ components:
         speed:
           type: number
           title: Vitesse
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/speed
           description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
@@ -1294,6 +1582,7 @@ components:
         precision:
           type: string
           title: "Pr\xE9cision"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/precision
           description: "Indique via une nomenclature le niveau de pr\xE9cision des\
@@ -1327,11 +1616,14 @@ components:
       properties:
         callerContact:
           $ref: '#/components/schemas/contact'
+          x-health-only: false
         callbackContact:
           $ref: '#/components/schemas/contact'
+          x-health-only: false
         language:
           type: string
           title: "Langue parl\xE9e"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/language
           description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
@@ -1583,6 +1875,7 @@ components:
         reqtype:
           type: string
           title: "Type de requ\xE9rant"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/reqtype
           description: "Indique la relation du requ\xE9rant avec l'incident / le patient\
@@ -1592,6 +1885,7 @@ components:
         communication:
           type: string
           title: "Difficult\xE9 de communication"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/communication
           description: "Indique si le requ\xE9rant rencontre ou non des difficult\xE9\
@@ -1601,6 +1895,7 @@ components:
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur le requ\xE9rant"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/freetext
           description: "Informations compl\xE9mentaires sur le requ\xE9rant \nLes\
@@ -1610,6 +1905,7 @@ components:
           - "P\xE8re"
         detailedName:
           $ref: '#/components/schemas/detailedName'
+          x-health-only: false
       example: example.json#/createCase/initialAlert/caller
     contactSource:
       type: object
@@ -1624,6 +1920,7 @@ components:
         channel:
           type: string
           title: Canal
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/alertSource/channel
           description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
@@ -1633,6 +1930,7 @@ components:
         type:
           type: string
           title: Type de contact de la source
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/alertSource/type
           description: "Type de l'URI utilis\xE9e par la source, cf. nomenclature\
@@ -1651,6 +1949,7 @@ components:
         detail:
           type: string
           title: URI de contact de la source
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/alertSource/detail
           description: "Valeur de l'URI utilis\xE9e par la source"
@@ -1673,6 +1972,7 @@ components:
         organization:
           type: string
           title: Service d'urgence
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/organization
           description: "D\xE9crit la structure ou le service \xE0 laquelle est rattach\xE9\
@@ -1685,6 +1985,7 @@ components:
         controlRoom:
           type: string
           title: Centre d'appels
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/controlRoom
           description: "D\xE9crit le centre d'appel auquel est rattach\xE9 l'agent"
@@ -1693,6 +1994,7 @@ components:
         role:
           type: string
           title: "R\xF4le agent"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/role
           description: "D\xE9crit le r\xF4le de l'agent au sein du service selon la\
@@ -1702,9 +2004,11 @@ components:
           - ARM
         calltakeContact:
           $ref: '#/components/schemas/contact'
+          x-health-only: false
         calltakerId:
           type: string
           title: ID de l'agent
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/calltakerId
           description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte\
@@ -1729,6 +2033,7 @@ components:
         description:
           type: string
           title: Type ou description pj
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/description
           description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
@@ -1738,6 +2043,7 @@ components:
         mimeType:
           type: string
           title: Type MIME
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/mimeType
           description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
@@ -1747,6 +2053,7 @@ components:
         size:
           type: integer
           title: Taille approximative
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/size
           description: Taille approximative de la ressource en kO
@@ -1755,6 +2062,7 @@ components:
         URI:
           type: string
           title: URI
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/URI
           description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
@@ -1766,6 +2074,7 @@ components:
         derefURI:
           type: string
           title: URI base 64
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/derefURI
           description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
@@ -1777,6 +2086,7 @@ components:
         digest:
           type: string
           title: Hash
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/digest
           description: "Hash de la ressource pour confirmer la r\xE9ception de la\
@@ -1803,6 +2113,7 @@ components:
         type:
           type: string
           title: "Type de contact du requ\xE9rant"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/callerContact/type
           description: "Type de l'URI utilis\xE9e par le requ\xE9rant, cf. nomenclature\
@@ -1821,6 +2132,7 @@ components:
         detail:
           type: string
           title: "URI du contact requ\xE9rant"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/callerContact/detail
           description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
@@ -1841,6 +2153,7 @@ components:
         complete:
           type: string
           title: "Pr\xE9nom et nom"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/complete
           description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
@@ -1853,6 +2166,7 @@ components:
         lastName:
           type: string
           title: Nom
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/lastName
           description: "Nom du requ\xE9rant"
@@ -1861,6 +2175,7 @@ components:
         firstName:
           type: string
           title: "Pr\xE9nom"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/firstName
           description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
@@ -1873,6 +2188,547 @@ components:
       - complete: Jean Dupont
         lastName: Dupont
         firstName: Jean
+    identifier:
+      type: object
+      title: Dossier administratif
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        patientID:
+          type: array
+          items:
+            $ref: '#/components/schemas/patientid'
+            x-health-only: true
+        INScycle:
+          $ref: '#/components/schemas/INScycle'
+          x-health-only: true
+        matINS:
+          $ref: '#/components/schemas/matINS'
+          x-health-only: true
+        strictINStraits:
+          $ref: '#/components/schemas/strictINStraits'
+          x-health-only: true
+        nonstrictINStraits:
+          $ref: '#/components/schemas/nonstrictINStraits'
+          x-health-only: true
+        patientContact:
+          type: array
+          items:
+            $ref: '#/components/schemas/contact'
+            x-health-only: true
+        patientAddress:
+          $ref: '#/components/schemas/personalAddress'
+          x-health-only: true
+        personalGP:
+          $ref: '#/components/schemas/personalGP'
+          x-health-only: true
+      example: example.json#/createCase/patients/0/patientFile/0
+    patinfo:
+      type: object
+      title: Informations patient
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        weight:
+          type: integer
+          title: Poids
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patinfo/weight
+          description: Poids en kilogrammes
+          examples:
+          - 31
+        height:
+          type: integer
+          title: Taille
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patinfo/height
+          description: "Taille en centim\xE8tres"
+          examples:
+          - 109
+        age:
+          type: string
+          title: Age
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patinfo/age
+          description: Age du patient (Norme ISO_8601)
+          pattern: ''
+          examples:
+          - 6Y
+      example: example.json#/createCase/patients/0/patinfo
+      examples:
+      - weight: 31
+        height: 109
+        age: 6Y
+    patientid:
+      type: object
+      title: Identifiant(s) patient(s)
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        source:
+          type: string
+          title: Source  /  type d'identifiant
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/patientID/0/source
+          description: Type de l'identifiant fourni
+          enum:
+          - NIR
+          - SINUS
+          - SI-VIC
+          - "\u2026"
+          examples:
+          - "NIR, SINUS, SI-VIC, \u2026"
+        patIDvalue:
+          type: string
+          title: Identifiant
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/patientID/0/patIDvalue
+          description: "L'identifiant en lui-m\xEAme"
+          examples:
+          - id1234
+      example: example.json#/createCase/patients/0/patientFile/0/patientID/0
+      examples:
+      - source: "NIR, SINUS, SI-VIC, \u2026"
+        patIDvalue: id1234
+    INScycle:
+      type: object
+      title: "Impl\xE9mentation INS"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        patIDstatus:
+          type: string
+          title: "Statut de l'identit\xE9"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/INScycle/patIDstatus
+          description: "Le RNIV exige que les logiciels r\xE9f\xE9rentiels d\u2019\
+            identit\xE9s g\xE8rent les 4 statuts fonctionnels suivants :\n- \xAB identit\xE9\
+            \ provisoire \xBB,\n- \xAB identit\xE9 r\xE9cup\xE9r\xE9e \xBB,\n- \xAB\
+            \ identit\xE9 valid\xE9e \xBB,\n- \xAB identit\xE9 qualifi\xE9e \xBB.\n\
+            Ces statuts fonctionnels sont exclusifs les uns des autres. Le r\xE9f\xE9\
+            rentiel INS [EXI 18] pr\xE9cise en outre que le matricule INS et l\u2019\
+            OID doivent \xEAtre accompagn\xE9s d\u2019informations confirmant qu\u2019\
+            ils ont \xE9t\xE9 qualifi\xE9s."
+          examples:
+          - None
+        patIDattribute:
+          type: string
+          title: "Attribut de l'identit\xE9"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/INScycle/patIDattribute
+          description: "Le RNIV recommande que les logiciels r\xE9f\xE9rentiels d\u2019\
+            identit\xE9s g\xE8rent a minima les 3 attributs suivants :\n- identit\xE9\
+            \ homonyme,\n- identit\xE9 douteuse,\n- identit\xE9 fictive."
+          examples:
+          - None
+      example: example.json#/createCase/patients/0/patientFile/0/INScycle
+      examples:
+      - patIDstatus: None
+        patIDattribute: None
+    matINS:
+      type: object
+      title: Matricule INS
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        matINSvalue:
+          type: number
+          title: 'Matricule '
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/matINS/matINSvalue
+          description: "n\xB0 NIR OU n\xB0 NIA de l'individu. Le matricule INS (et\
+            \ son OID) ne doit jamais \xEAtre propag\xE9 (= \xE9chang\xE9) si l'identit\xE9\
+            \ est \xE0 un statut autre que qualifi\xE9e. Il correspond au num\xE9\
+            ro personnel de s\xE9curit\xE9 sociale. Il peut \xEAtre diff\xE9rent du\
+            \ num\xE9ro de s\xE9curit\xE9 sociale utilis\xE9 pour le remboursement\
+            \ des soins par l\u2019assurance maladie, dans le cas par exemple o\xF9\
+            \ l\u2019usager n\u2019est pas l\u2019assur\xE9 social (ex.: l\u2019enfant\
+            \ qui est rattach\xE9 \xE0 l\u2019un de ses parents).\nLe matricule INS\
+            \ est compos\xE9 des 13 caract\xE8res et de la cl\xE9 de contr\xF4le. "
+          examples:
+          - 2 77 01 01 154 002 29
+        matINSoid:
+          type: number
+          title: OID
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/matINS/matINSoid
+          description: "Identifiant de la structure qui a affect\xE9 l\u2019INS sous\
+            \ la forme d'un OID. Les OID (Object Identifier) sont des identifiants\
+            \ universels, repr\xE9sent\xE9s sous la forme d'une suite d'entiers. Ils\
+            \ sont organis\xE9s sous forme hi\xE9rarchique avec des n\u0153uds. L'OID\
+            \ est toujours associ\xE9 \xE0 un matricule INS, il n'est donc pas propag\xE9\
+            \ si le statut de l'identit\xE9 n'est pas \"qualifi\xE9e\""
+          examples:
+          - 1.2.250.1.213.1.4.8
+      example: example.json#/createCase/patients/0/patientFile/0/matINS
+      examples:
+      - matINSvalue: 2 77 01 01 154 002 29
+        matINSoid: 1.2.250.1.213.1.4.8
+    strictINStraits:
+      type: object
+      title: "Traits stricts de l'identit\xE9"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        birthname:
+          type: string
+          title: Nom de naissance
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/strictINStraits/birthname
+          description: "Egalement appel\xE9 nom de famille."
+          examples:
+          - Dupont
+        firstfirstname:
+          type: string
+          title: "Premier pr\xE9nom de naissance"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/strictINStraits/firstfirstname
+          description: "Doit \xEAtre coh\xE9rent avec la liste des pr\xE9noms de naissance\
+            \ renvoy\xE9e par INSi. Ex: si la liste des pr\xE9noms renvoy\xE9e est\
+            \ \"Pierre Alain Jacques\", le premier pr\xE9nom de naissance ne peut\
+            \ \xEAtre que : \nPierre\nPierre Alain\nPierre Alain Jacques"
+          examples:
+          - None
+        firstnameslist:
+          type: string
+          title: "Liste des pr\xE9noms de naissance"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/strictINStraits/firstnameslist
+          description: "Ensemble des pr\xE9noms de naissance (renvoy\xE9s par INSi)"
+          examples:
+          - None
+        birthDate:
+          type: string
+          title: Date de naissance
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/strictINStraits/birthDate
+          description: Date de naissance du patient
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        sex:
+          type: string
+          title: 'Sexe '
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/strictINStraits/sex
+          description: Sexe du patient
+          enum:
+          - U
+          - F
+          - M
+          - O
+          examples:
+          - F
+        birthplacecode:
+          type: number
+          title: Code lieu de naissance
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/strictINStraits/birthplacecode
+          description: "Il s\u2019agit de la commune de naissance pour les personnes\
+            \ n\xE9es en France et du pays de naissance pour les personnes n\xE9es\
+            \ \xE0 l\u2019\xE9tranger. Utilisation du code INSEE (diff\xE9rent du\
+            \ code postal), auquel est associ\xE9 le nom de la commune ou du pays\
+            \ correspondant."
+          examples:
+          - None
+      example: example.json#/createCase/patients/0/patientFile/0/strictINStraits
+      examples:
+      - birthname: Dupont
+        firstfirstname: None
+        firstnameslist: None
+        birthDate: None
+        sex: F
+        birthplacecode: None
+    nonstrictINStraits:
+      type: object
+      title: "Traits non stricts de l'identit\xE9"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        customaryname:
+          type: string
+          title: 'Nom usuel '
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/nonstrictINStraits/customaryname
+          description: "Nom port\xE9 dans la vie courante. Le nom utilis\xE9 peut\
+            \ \xEAtre similaire au nom de naissance."
+          examples:
+          - Dupont
+        customaryfirstname:
+          type: string
+          title: "Pr\xE9nom usuel"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/nonstrictINStraits/customaryfirstname
+          description: "Pr\xE9nom port\xE9 dans la vie courante. Le pr\xE9nom utilis\xE9\
+            \ peut \xEAtre l\u2019un des pr\xE9nom(s) de naissance ou tout autre pr\xE9\
+            nom choisi par l\u2019usager."
+          examples:
+          - Jeanne
+      example: example.json#/createCase/patients/0/patientFile/0/nonstrictINStraits
+      examples:
+      - customaryname: Dupont
+        customaryfirstname: Jeanne
+    personalAddress:
+      type: object
+      title: Adresse patient
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        detailedAddress:
+          $ref: '#/components/schemas/detailedAddress'
+          x-health-only: true
+        city:
+          $ref: '#/components/schemas/city'
+          x-health-only: true
+      example: example.json#/createCase/patients/0/patientFile/0/patientAddress
+      examples:
+      - detailedAddress: &id001 {}
+        city: {}
+    personalGP:
+      type: object
+      title: "M\xE9decin traitant "
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        GPname:
+          type: string
+          title: Nom
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/personalGP/GPname
+          description: "Nom du m\xE9decin traitant du patient si connu"
+          examples:
+          - None
+        GPfirstname:
+          type: string
+          title: "Pr\xE9nom"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/personalGP/GPfirstname
+          description: "Pr\xE9nom du m\xE9decin traitant du patient si connu"
+          examples:
+          - None
+        GPID:
+          type: string
+          title: Identifiant
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/patientFile/0/personalGP/GPID
+          description: "Num\xE9ro RPPS du m\xE9decin traitant"
+          examples:
+          - None
+        GPAddress:
+          $ref: '#/components/schemas/personalAddress'
+          x-health-only: true
+        GPContact:
+          type: array
+          items:
+            $ref: '#/components/schemas/contact'
+            x-health-only: true
+      example: example.json#/createCase/patients/0/patientFile/0/personalGP
+    detailedAddress:
+      type: object
+      title: Adresse
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties: {}
+      example: example.json#/createCase/patients/0/patientFile/0/patientAddress/detailedAddress
+      examples:
+      - *id001
+    medicalfile:
+      type: object
+      title: "Notes de r\xE9gulation"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        operators:
+          $ref: '#/components/schemas/operators'
+          x-health-only: true
+        freetext:
+          type: array
+          x-health-only: true
+          items:
+            type: string
+            title: Autres Commentaires
+            x-health-only: true
+            x-cols: 6
+            example: example.json#/createCase/medicalAnalysis/medicalfile/0/freetext/0
+            description: "Champ libre pour compl\xE9ter les informations du dossier\
+              \ m\xE9dical (notes m\xE9dicales)"
+            examples:
+            - None
+        medicalhistory:
+          type: array
+          x-health-only: true
+          items:
+            type: string
+            title: "Ant\xE9c\xE9dents"
+            x-health-only: true
+            x-cols: 6
+            example: example.json#/createCase/medicalAnalysis/medicalfile/0/medicalhistory/0
+            description: "Ant\xE9c\xE9dents m\xE9dicaux "
+            examples:
+            - None
+        treatments:
+          type: array
+          x-health-only: true
+          items:
+            type: string
+            title: Traitements
+            x-health-only: true
+            x-cols: 6
+            example: example.json#/createCase/medicalAnalysis/medicalfile/0/treatments/0
+            description: Traitements pris par le patient
+            examples:
+            - None
+      example: example.json#/createCase/medicalAnalysis/medicalfile/0
+    patientPathway:
+      type: object
+      title: "D\xE9cisions"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        decisiontype:
+          type: string
+          title: "Type de d\xE9cision"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patPathway/0/decisiontype
+          description: "Type de d\xE9cision prise"
+          examples:
+          - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
+            orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
+        orientation:
+          type: string
+          title: Orientation
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patPathway/0/orientation
+          description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
+            gulateur"
+          examples:
+          - None
+        rtypeTransport:
+          type: array
+          x-health-only: true
+          items:
+            type: string
+            title: Vecteur de transport
+            x-health-only: true
+            x-cols: 6
+            example: example.json#/createCase/medicalAnalysis/patPathway/0/rtypeTransport/0
+            description: "Type de transport engag\xE9 pour la prise en charge du patient"
+            examples:
+            - 'SMUR '
+        teamMedicalLevel:
+          type: string
+          title: "Niveau de m\xE9dicalisation"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patPathway/0/teamMedicalLevel
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
+            dicale, standard, incomplete, ...)"
+          examples:
+          - "M\xE9dical, param\xE9dical, secouriste"
+        patdestination:
+          $ref: '#/components/schemas/patdestination'
+          x-health-only: true
+        carelevel:
+          type: string
+          title: Niveau de soin
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patPathway/0/carelevel
+          enum:
+          - R1
+          - R2
+          - R3
+          - R4
+          examples:
+          - R1/R2/R3/R4
+      example: example.json#/createCase/medicalAnalysis/patPathway/0
+    hypothesis:
+      type: object
+      title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        mainDiagnosis:
+          $ref: '#/components/schemas/nomenclature'
+          x-health-only: true
+        otherDiagnosis:
+          type: array
+          items:
+            $ref: '#/components/schemas/nomenclature'
+            x-health-only: true
+      example: example.json#/createCase/medicalAnalysis/hypothesis
+    patdestination:
+      type: object
+      title: Destination
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        facility:
+          type: string
+          title: Etablissement
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patPathway/0/patdestination/facility
+          examples:
+          - None
+        service:
+          type: string
+          title: Service
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patPathway/0/patdestination/service
+          examples:
+          - None
+        other:
+          type: string
+          title: Autre
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/medicalAnalysis/patPathway/0/patdestination/other
+          examples:
+          - None
+      example: example.json#/createCase/medicalAnalysis/patPathway/0/patdestination
+      examples:
+      - facility: None
+        service: None
+        other: None
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"
@@ -1885,6 +2741,7 @@ components:
         key:
           type: string
           title: "Cl\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/key
           description: Nom de la balise
@@ -1893,6 +2750,7 @@ components:
         label:
           type: string
           title: "Libell\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/label
           description: "Libell\xE9 correspondant"
@@ -1901,6 +2759,7 @@ components:
         value:
           type: string
           title: Valeur
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/value
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
@@ -1909,6 +2768,7 @@ components:
         freetext:
           type: string
           title: "D\xE9tails"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/freetext
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
