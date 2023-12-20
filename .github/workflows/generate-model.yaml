@@ -30,6 +30,7 @@ jobs:
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             python3 ./csv_parser.py -s $SCHEMA
             mv ./out/$SCHEMA/$SCHEMA.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
+            mv ./out/$SCHEMA/$SCHEMA.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
           done
 
       - name: Install JDK 11
