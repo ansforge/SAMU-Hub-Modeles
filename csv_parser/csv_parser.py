@@ -593,7 +593,7 @@ with open('template.asyncapi.yaml') as f:
     }
     # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
 
-with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
     file.write(documents)
