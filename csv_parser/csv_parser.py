@@ -387,7 +387,7 @@ def add_field_child_property(parent, child, definitions):
         definitions['required'].append(child['name'])
     typeName, pattern, format = type_matching(child)
     if nullable_string(child, typeName):
-        typeName = '[string, null]'
+        typeName = ["string", "null"]
     parentExamplePath = get_parent_example_path(parent)
     childDetails = {
         'type': typeName,
