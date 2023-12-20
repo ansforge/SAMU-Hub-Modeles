@@ -41,7 +41,7 @@ components:
           examples:
           - samuA:CA126B445579GD4A67AV
         senderCaseId:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Identifiant local de l'affaire/dossier
           x-cols: 6
           example: example.json#/createCase/senderCaseId
@@ -91,7 +91,7 @@ components:
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
         freetext:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Description de l'affaire/dossier
           x-cols: 6
           example: example.json#/createCase/freetext
@@ -139,7 +139,7 @@ components:
           examples:
           - 111fb03a-6fd9-41e0-8e81-990c45188887
         locLabel:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "R\xE9sum\xE9 de la localisation"
           x-cols: 6
           example: example.json#/createCase/location/locLabel
@@ -423,7 +423,7 @@ components:
           examples:
           - France
         freetext:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Commentaire
           x-cols: 6
           example: example.json#/createCase/location/freetext
@@ -497,7 +497,7 @@ components:
           examples:
           - STANDARD
         freetext:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Informations compl\xE9mentaires sur l'alerte"
           x-cols: 6
           example: example.json#/createCase/initialAlert/freetext
@@ -557,7 +557,7 @@ components:
           examples:
           - "Rod\xE9o automobile"
         freetext:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Commentaire
           x-cols: 6
           example: example.json#/createCase/qualification/whatsHappen/freetext
@@ -577,7 +577,7 @@ components:
       required: []
       properties:
         count:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Nombre de patients-victimes
           x-cols: 6
           example: example.json#/createCase/qualification/victims/count
@@ -592,7 +592,7 @@ components:
           examples:
           - SEVERAL
         mainVictim:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Type du patient-victime principal
           x-cols: 6
           example: example.json#/createCase/qualification/victims/mainVictim
@@ -608,7 +608,7 @@ components:
           examples:
           - CHILD
         freetext:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Informations compl\xE9mentaires sur les patients-victimes"
           x-cols: 6
           example: example.json#/createCase/qualification/victims/freetext
@@ -639,7 +639,7 @@ components:
           examples:
           - 9 Bd du Montparnasse
         number:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Num\xE9ro dans la voie"
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/number
@@ -658,7 +658,7 @@ components:
       required: []
       properties:
         name:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Nom de la commune
           x-cols: 6
           example: example.json#/createCase/location/city/name
@@ -666,7 +666,7 @@ components:
           examples:
           - Lille
         inseeCode:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Code INSEE de la commune
           x-cols: 6
           example: example.json#/createCase/location/city/inseeCode
@@ -677,7 +677,7 @@ components:
           examples:
           - 59350
         detail:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Compl\xE9ment de commune"
           x-cols: 6
           example: example.json#/createCase/location/city/detail
@@ -701,7 +701,7 @@ components:
       required: []
       properties:
         floor:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Etage
           x-cols: 6
           example: example.json#/createCase/location/access/floor
@@ -709,7 +709,7 @@ components:
           examples:
           - "RDC, 1, 2, \u2026"
         roomNumber:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Num\xE9ro de porte"
           x-cols: 6
           example: example.json#/createCase/location/access/roomNumber
@@ -717,7 +717,7 @@ components:
           examples:
           - "A16, 37, 104, \u2026"
         interphone:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Interphone
           x-cols: 6
           example: example.json#/createCase/location/access/interphone
@@ -728,7 +728,7 @@ components:
         accessCode:
           type: array
           items:
-            type: '["string", "null"]'
+            type: '[string, null]'
             title: Digicode
             x-cols: 6
             example: example.json#/createCase/location/access/accessCode/0
@@ -737,7 +737,7 @@ components:
             examples:
             - '[''1234A'', ''4321B'']'
         elevator:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Ascenseur/escalier
           x-cols: 6
           example: example.json#/createCase/location/access/elevator
@@ -745,7 +745,7 @@ components:
           examples:
           - C3
         buildingName:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "B\xE2timent"
           x-cols: 6
           example: example.json#/createCase/location/access/buildingName
@@ -753,14 +753,14 @@ components:
           examples:
           - Batiment B, Batiment Maunoury
         entrance:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Entr\xE9e"
           x-cols: 6
           example: example.json#/createCase/location/access/entrance
           examples:
           - "Zone Sud, Porte 1, \u2026"
         entity:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Service
           x-cols: 6
           example: example.json#/createCase/location/access/entity
@@ -800,7 +800,7 @@ components:
         point:
           $ref: '#/components/schemas/point'
         sketch:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Formes g\xE9om\xE9triques"
           x-cols: 6
           example: example.json#/createCase/location/geometry/sketch
@@ -886,14 +886,14 @@ components:
           examples:
           - Boulevard du Montparnasse
         type:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Type
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/wayName/type
           examples:
           - Boulevard
         name:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Nom
           x-cols: 6
           example: example.json#/createCase/location/detailedAdress/wayName/name
@@ -914,7 +914,7 @@ components:
         coord:
           $ref: '#/components/schemas/coord'
         sysCoord:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Syst\xE8me de coordonn\xE9es"
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/sysCoord
@@ -1014,7 +1014,7 @@ components:
         callbackContact:
           $ref: '#/components/schemas/contact'
         language:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Langue parl\xE9e"
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/language
@@ -1265,7 +1265,7 @@ components:
           examples:
           - FR
         reqtype:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Type de requ\xE9rant"
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/reqtype
@@ -1274,7 +1274,7 @@ components:
           examples:
           - "le patient lui-m\xEAme, p\xE8re, m\xE8re"
         communication:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Difficult\xE9 de communication"
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/communication
@@ -1283,7 +1283,7 @@ components:
           examples:
           - "Malentendant, aucune difficult\xE9 de communication"
         freetext:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Informations compl\xE9mentaires sur le requ\xE9rant"
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/freetext
@@ -1373,7 +1373,7 @@ components:
           examples:
           - CGA, CGO 21, CRRA 44, ...
         role:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "R\xF4le agent"
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/role
@@ -1385,7 +1385,7 @@ components:
         calltakeContact:
           $ref: '#/components/schemas/contact'
         calltakerId:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: ID de l'agent
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/calltakerId
@@ -1408,7 +1408,7 @@ components:
       - URI
       properties:
         description:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Type ou description pj
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/description
@@ -1417,7 +1417,7 @@ components:
           examples:
           - "photo, carte, \u2026"
         mimeType:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Type MIME
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/mimeType
@@ -1445,7 +1445,7 @@ components:
           examples:
           - https://hub.esante.gouv.fr/resourceExample
         derefURI:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: URI base 64
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/derefURI
@@ -1456,7 +1456,7 @@ components:
           examples:
           - None
         digest:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Hash
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/digest
@@ -1530,7 +1530,7 @@ components:
           examples:
           - Jean Dupont
         lastName:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: Nom
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/lastName
@@ -1538,7 +1538,7 @@ components:
           examples:
           - Dupont
         firstName:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Pr\xE9nom"
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/firstName
@@ -1569,7 +1569,7 @@ components:
           examples:
           - neighborhood
         label:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "Libell\xE9"
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/label
@@ -1585,7 +1585,7 @@ components:
           examples:
           - LYON 2e arrondissement
         freetext:
-          type: '["string", "null"]'
+          type: '[string, null]'
           title: "D\xE9tails"
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/freetext
