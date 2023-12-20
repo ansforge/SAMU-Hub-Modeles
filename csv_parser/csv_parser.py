@@ -587,6 +587,7 @@ with open('template.asyncapi.yaml') as f:
 with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
+    documents = documents.replace('- null', '')
     file.write(documents)
 print('OpenAPI schema generated.')
 
@@ -594,6 +595,7 @@ print('OpenAPI schema generated.')
 with open(f'out/full-asyncapi.yaml', 'w') as file:
     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
+    documents = documents.replace('- null', '')
     file.write(documents)
 print('AsyncAPI schema generated.')
 
