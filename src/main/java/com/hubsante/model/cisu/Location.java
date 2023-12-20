@@ -39,6 +39,7 @@ import com.hubsante.model.cisu.City;
 import com.hubsante.model.cisu.DetailedAdress;
 import com.hubsante.model.cisu.ExternalInfo;
 import com.hubsante.model.cisu.Geometry;
+import com.hubsante.model.cisu.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -62,7 +63,7 @@ public class Location {
   private String locID;
 
   public static final String JSON_PROPERTY_LOC_LABEL = "locLabel";
-  private String locLabel;
+  private StringNull locLabel = null;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -597,7 +598,7 @@ public class Location {
   private CountryEnum country;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private StringNull freetext = null;
 
   public Location() {}
 
@@ -625,7 +626,7 @@ public class Location {
     this.locID = locID;
   }
 
-  public Location locLabel(String locLabel) {
+  public Location locLabel(StringNull locLabel) {
 
     this.locLabel = locLabel;
     return this;
@@ -643,13 +644,13 @@ public class Location {
   @JsonProperty(JSON_PROPERTY_LOC_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getLocLabel() {
+  public StringNull getLocLabel() {
     return locLabel;
   }
 
   @JsonProperty(JSON_PROPERTY_LOC_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocLabel(String locLabel) {
+  public void setLocLabel(StringNull locLabel) {
     this.locLabel = locLabel;
   }
 
@@ -831,7 +832,7 @@ public class Location {
     this.country = country;
   }
 
-  public Location freetext(String freetext) {
+  public Location freetext(StringNull freetext) {
 
     this.freetext = freetext;
     return this;
@@ -844,13 +845,13 @@ public class Location {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public StringNull getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
+  public void setFreetext(StringNull freetext) {
     this.freetext = freetext;
   }
 

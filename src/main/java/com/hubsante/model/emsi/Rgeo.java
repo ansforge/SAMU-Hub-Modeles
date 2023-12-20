@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Position;
-import java.time.OffsetDateTime;
+import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -53,7 +53,7 @@ import java.util.Objects;
 
 public class Rgeo {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private OffsetDateTime DATIME;
+  private StringNull DATIME = null;
 
   /**
    * Type de position indiqué pour la ressource : - ASP : assembly point. Point
@@ -108,17 +108,17 @@ public class Rgeo {
   private TYPEEnum TYPE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private String FREETEXT;
+  private StringNull FREETEXT = null;
 
   public static final String JSON_PROPERTY_I_D = "ID";
-  private String ID;
+  private StringNull ID = null;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
   private List<Position> POSITION;
 
   public Rgeo() {}
 
-  public Rgeo DATIME(OffsetDateTime DATIME) {
+  public Rgeo DATIME(StringNull DATIME) {
 
     this.DATIME = DATIME;
     return this;
@@ -133,13 +133,13 @@ public class Rgeo {
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getDATIME() {
+  public StringNull getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDATIME(OffsetDateTime DATIME) {
+  public void setDATIME(StringNull DATIME) {
     this.DATIME = DATIME;
   }
 
@@ -176,7 +176,7 @@ public class Rgeo {
     this.TYPE = TYPE;
   }
 
-  public Rgeo FREETEXT(String FREETEXT) {
+  public Rgeo FREETEXT(StringNull FREETEXT) {
 
     this.FREETEXT = FREETEXT;
     return this;
@@ -190,17 +190,17 @@ public class Rgeo {
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFREETEXT() {
+  public StringNull getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(String FREETEXT) {
+  public void setFREETEXT(StringNull FREETEXT) {
     this.FREETEXT = FREETEXT;
   }
 
-  public Rgeo ID(String ID) {
+  public Rgeo ID(StringNull ID) {
 
     this.ID = ID;
     return this;
@@ -213,13 +213,13 @@ public class Rgeo {
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getID() {
+  public StringNull getID() {
     return ID;
   }
 
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setID(String ID) {
+  public void setID(StringNull ID) {
     this.ID = ID;
   }
 

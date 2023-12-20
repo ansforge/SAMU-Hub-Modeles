@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -55,7 +56,7 @@ public class Nomenclature {
   private String label;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private StringNull freetext = null;
 
   public Nomenclature() {}
 
@@ -107,7 +108,7 @@ public class Nomenclature {
     this.label = label;
   }
 
-  public Nomenclature freetext(String freetext) {
+  public Nomenclature freetext(StringNull freetext) {
 
     this.freetext = freetext;
     return this;
@@ -121,13 +122,13 @@ public class Nomenclature {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public StringNull getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
+  public void setFreetext(StringNull freetext) {
     this.freetext = freetext;
   }
 

@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Point;
+import com.hubsante.model.cisu.StringNull;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -57,7 +58,7 @@ public class Geometry {
   private Point point;
 
   public static final String JSON_PROPERTY_SKETCH = "sketch";
-  private String sketch;
+  private StringNull sketch = null;
 
   public Geometry() {}
 
@@ -109,7 +110,7 @@ public class Geometry {
     this.point = point;
   }
 
-  public Geometry sketch(String sketch) {
+  public Geometry sketch(StringNull sketch) {
 
     this.sketch = sketch;
     return this;
@@ -131,13 +132,13 @@ public class Geometry {
   @JsonProperty(JSON_PROPERTY_SKETCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSketch() {
+  public StringNull getSketch() {
     return sketch;
   }
 
   @JsonProperty(JSON_PROPERTY_SKETCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSketch(String sketch) {
+  public void setSketch(StringNull sketch) {
     this.sketch = sketch;
   }
 

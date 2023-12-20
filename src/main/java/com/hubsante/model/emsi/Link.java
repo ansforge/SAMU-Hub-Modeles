@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.emsi.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -64,12 +65,12 @@ public class Link {
 
     SPRSDS("SPRSDS");
 
-    private String value;
+    private StringNull value;
 
-    LINKROLEEnum(String value) { this.value = value; }
+    LINKROLEEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -79,7 +80,7 @@ public class Link {
     }
 
     @JsonCreator
-    public static LINKROLEEnum fromValue(String value) {
+    public static LINKROLEEnum fromValue(StringNull value) {
       for (LINKROLEEnum b : LINKROLEEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -90,7 +91,7 @@ public class Link {
   }
 
   public static final String JSON_PROPERTY_L_I_N_K_R_O_L_E = "LINK_ROLE";
-  private LINKROLEEnum LINK_ROLE;
+  private LINKROLEEnum LINK_ROLE = null;
 
   public Link() {}
 

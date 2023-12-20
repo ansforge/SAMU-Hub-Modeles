@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -51,10 +52,10 @@ public class WayName {
   private String complete;
 
   public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  private StringNull type = null;
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private StringNull name = null;
 
   public WayName() {}
 
@@ -83,7 +84,7 @@ public class WayName {
     this.complete = complete;
   }
 
-  public WayName type(String type) {
+  public WayName type(StringNull type) {
 
     this.type = type;
     return this;
@@ -96,17 +97,17 @@ public class WayName {
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getType() {
+  public StringNull getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
+  public void setType(StringNull type) {
     this.type = type;
   }
 
-  public WayName name(String name) {
+  public WayName name(StringNull name) {
 
     this.name = name;
     return this;
@@ -119,13 +120,13 @@ public class WayName {
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
+  public StringNull getName() {
     return name;
   }
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+  public void setName(StringNull name) {
     this.name = name;
   }
 

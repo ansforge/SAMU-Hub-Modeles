@@ -40,6 +40,7 @@ import com.hubsante.model.cisu.Caller;
 import com.hubsante.model.cisu.ContactSource;
 import com.hubsante.model.cisu.Location;
 import com.hubsante.model.cisu.Qualification;
+import com.hubsante.model.cisu.StringNull;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -108,7 +109,7 @@ public class Alert {
   private ReportingEnum reporting;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private StringNull freetext = null;
 
   public static final String JSON_PROPERTY_CALLER = "caller";
   private Caller caller;
@@ -142,10 +143,10 @@ public class Alert {
    *signification / utilisation particulière par les différents systèmes pour
    *garantir leur découplage. Voir la description de l&#39;identifiant de
    *l&#39;affaire pour voir le format. Lorsqu’une alerte est générée dans NexSIS
-   *et crée une affaire, elle est qualifiée d’Alerte Initiale. a) Si cette
+   *et crée une affaire, elle est qualifiée d’Alerte Initiale. a)Si cette
    *dernière concerne un partenaire (caractère médical pour la Santé par
    *exemple), elle est relayée seule dans le message. Il y’a un seul objet
-   *initialAlert. b) Sinon, une autre alerte liée à la même affaire peut être
+   *initialAlert. b)Sinon, une autre alerte liée à la même affaire peut être
    *déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle
    *est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour
    *partager un contexte commun. Dans le message de création d’affaire il y’a
@@ -218,7 +219,7 @@ public class Alert {
     this.reporting = reporting;
   }
 
-  public Alert freetext(String freetext) {
+  public Alert freetext(StringNull freetext) {
 
     this.freetext = freetext;
     return this;
@@ -232,13 +233,13 @@ public class Alert {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public StringNull getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
+  public void setFreetext(StringNull freetext) {
     this.freetext = freetext;
   }
 

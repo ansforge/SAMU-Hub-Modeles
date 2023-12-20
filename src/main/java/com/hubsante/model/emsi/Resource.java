@@ -37,6 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Contact;
 import com.hubsante.model.emsi.Rgeo;
 import com.hubsante.model.emsi.Rtype;
+import com.hubsante.model.emsi.StringNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -63,16 +64,16 @@ public class Resource {
   private Rtype RTYPE;
 
   public static final String JSON_PROPERTY_I_D = "ID";
-  private String ID;
+  private StringNull ID = null;
 
   public static final String JSON_PROPERTY_O_R_G_I_D = "ORG_ID";
-  private String ORG_ID;
+  private StringNull ORG_ID = null;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private String NAME;
+  private StringNull NAME = null;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private String FREETEXT;
+  private StringNull FREETEXT = null;
 
   public static final String JSON_PROPERTY_R_G_E_O = "RGEO";
   private List<Rgeo> RGEO;
@@ -185,12 +186,12 @@ public class Resource {
 
     WGT_KGH("WGT/KGH");
 
-    private String value;
+    private StringNull value;
 
-    UMEnum(String value) { this.value = value; }
+    UMEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -200,7 +201,7 @@ public class Resource {
     }
 
     @JsonCreator
-    public static UMEnum fromValue(String value) {
+    public static UMEnum fromValue(StringNull value) {
       for (UMEnum b : UMEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -211,7 +212,7 @@ public class Resource {
   }
 
   public static final String JSON_PROPERTY_U_M = "UM";
-  private UMEnum UM;
+  private UMEnum UM = null;
 
   /**
    * Définit le statut de disponibilité d&#39;une ressource. - AVAILB :
@@ -239,12 +240,12 @@ public class Resource {
 
     IN_USE_ON_SCENE("IN_USE/ON_SCENE");
 
-    private String value;
+    private StringNull value;
 
-    STATUSEnum(String value) { this.value = value; }
+    STATUSEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -254,7 +255,7 @@ public class Resource {
     }
 
     @JsonCreator
-    public static STATUSEnum fromValue(String value) {
+    public static STATUSEnum fromValue(StringNull value) {
       for (STATUSEnum b : STATUSEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -265,11 +266,11 @@ public class Resource {
   }
 
   public static final String JSON_PROPERTY_S_T_A_T_U_S = "STATUS";
-  private STATUSEnum STATUS;
+  private STATUSEnum STATUS = null;
 
   public static final String JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y =
       "NATIONALITY";
-  private String NATIONALITY;
+  private StringNull NATIONALITY = null;
 
   public static final String JSON_PROPERTY_C_O_N_T_A_C_T_S = "CONTACTS";
   private List<Contact> CONTACTS;
@@ -299,7 +300,7 @@ public class Resource {
     this.RTYPE = RTYPE;
   }
 
-  public Resource ID(String ID) {
+  public Resource ID(StringNull ID) {
 
     this.ID = ID;
     return this;
@@ -318,17 +319,17 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getID() {
+  public StringNull getID() {
     return ID;
   }
 
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setID(String ID) {
+  public void setID(StringNull ID) {
     this.ID = ID;
   }
 
-  public Resource ORG_ID(String ORG_ID) {
+  public Resource ORG_ID(StringNull ORG_ID) {
 
     this.ORG_ID = ORG_ID;
     return this;
@@ -349,17 +350,17 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getORGID() {
+  public StringNull getORGID() {
     return ORG_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setORGID(String ORG_ID) {
+  public void setORGID(StringNull ORG_ID) {
     this.ORG_ID = ORG_ID;
   }
 
-  public Resource NAME(String NAME) {
+  public Resource NAME(StringNull NAME) {
 
     this.NAME = NAME;
     return this;
@@ -374,17 +375,17 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getNAME() {
+  public StringNull getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNAME(String NAME) {
+  public void setNAME(StringNull NAME) {
     this.NAME = NAME;
   }
 
-  public Resource FREETEXT(String FREETEXT) {
+  public Resource FREETEXT(StringNull FREETEXT) {
 
     this.FREETEXT = FREETEXT;
     return this;
@@ -400,13 +401,13 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFREETEXT() {
+  public StringNull getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(String FREETEXT) {
+  public void setFREETEXT(StringNull FREETEXT) {
     this.FREETEXT = FREETEXT;
   }
 
@@ -529,7 +530,7 @@ public class Resource {
     this.STATUS = STATUS;
   }
 
-  public Resource NATIONALITY(String NATIONALITY) {
+  public Resource NATIONALITY(StringNull NATIONALITY) {
 
     this.NATIONALITY = NATIONALITY;
     return this;
@@ -543,13 +544,13 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getNATIONALITY() {
+  public StringNull getNATIONALITY() {
     return NATIONALITY;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNATIONALITY(String NATIONALITY) {
+  public void setNATIONALITY(StringNull NATIONALITY) {
     this.NATIONALITY = NATIONALITY;
   }
 

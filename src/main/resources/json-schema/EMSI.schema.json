@@ -90,7 +90,7 @@
                     ]
                 },
                 "CREATION": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Date et heure de cr\u00e9ation",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/CREATION",
@@ -105,7 +105,7 @@
                     }
                 },
                 "LEVEL": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Niveau",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/LEVEL",
@@ -117,7 +117,7 @@
                     ]
                 },
                 "SECLASS": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Niveau de classification",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/SECLASS",
@@ -132,7 +132,7 @@
                     ]
                 },
                 "FREETEXT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Texte libre",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/FREETEXT",
@@ -148,7 +148,7 @@
                     }
                 },
                 "URGENCY": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Niveau d'urgence de l'\u00e9v\u00e9nement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/URGENCY",
@@ -177,14 +177,14 @@
                     "description": "Identifiant local de l'affaire dans le syst\u00e8me du partenaire emetteur"
                 },
                 "NAME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Nom donn\u00e9 \u00e0 l'\u00e9v\u00e9nement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/NAME",
                     "description": "Optionnel\nDans nexSIS; [libelle NF 1 m\u00e9tier] & \" - \" & [libelle TL 1 m\u00e9tier] & \" - \" & [libell\u00e9 commune]"
                 },
                 "MAIN_EVENT_ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Identifiant de l'affaire",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/MAIN_EVENT_ID",
@@ -194,7 +194,7 @@
                     "$ref": "#/definitions/etype"
                 },
                 "SOURCE": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Source",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/SOURCE",
@@ -207,7 +207,7 @@
                     ]
                 },
                 "SCALE": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Echelle de s\u00e9v\u00e9rit\u00e9 de l'environnement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/SCALE",
@@ -228,7 +228,7 @@
                     "description": "Prend une valeur enti\u00e8re entre 0 et 100, et d\u00e9crit \u00e0 quel point l'alerte associ\u00e9e \u00e0 l'\u00e9v\u00e9nement est fiable\nOptionnel"
                 },
                 "DECL_DATIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Date de d\u00e9claration de l'event",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/DECL_DATIME",
@@ -237,7 +237,7 @@
                     "format": "date-time"
                 },
                 "OCC_DATIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "D\u00e9crit la date et le lieu de l'\u00e9v\u00e9nement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/OCC_DATIME",
@@ -246,7 +246,7 @@
                     "format": "date-time"
                 },
                 "OBS_DATIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Date \u00e0 laquelle l'observation la plus r\u00e9cente a \u00e9t\u00e9 r\u00e9alis\u00e9e",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/OBS_DATIME",
@@ -255,7 +255,7 @@
                     "format": "date-time"
                 },
                 "STATUS": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Status",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/STATUS",
@@ -268,7 +268,7 @@
                     ]
                 },
                 "RISK_ASSESMENT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Pr\u00e9diction sur le risque d'\u00e9volution de l'event",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/RISK_ASSESMENT",
@@ -304,7 +304,7 @@
                     }
                 },
                 "CAUSE": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Cause",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CAUSE",
@@ -316,7 +316,7 @@
                     ]
                 },
                 "FREETEXT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Texte libre",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/FREETEXT",
@@ -505,35 +505,35 @@
                     ]
                 },
                 "FREETEXT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Texte libre",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/FREETEXT",
                     "description": "Contient des commentaires relatifs aux objectifs et  moyens sollicit\u00e9s dans le cadre de la demande de concours. Les \u00e9quipements suppl\u00e9mentaires souhait\u00e9s ou le nom/ pr\u00e9nom des patients \u00e0 prendre en charge peuvent \u00eatre explicitement indiqu\u00e9s ici."
                 },
                 "ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Identifiant de la mission",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/ID",
                     "description": "Contient un identifiant de demande de concours unique. Cet identifiant sera r\u00e9utilisable par le partenaire pour r\u00e9pondre \u00e0 cette demande.\nIdentifiant unique de la mission dans le syst\u00e8me du partenaire la conduisant."
                 },
                 "ORG_ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Identifiant de l'organisation propri\u00e9taire",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/ORG_ID",
                     "description": "Indique l'organisation du partenaire concern\u00e9 par la Demande de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \u00eatre utilis\u00e9.\nIndique l'organisation du service r\u00e9alisant la mission. Dans le cas d'une r\u00e9ponse, c'est l'organisation du concourant qui doit \u00eatre indiqu\u00e9e.\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*.\nidentique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
                 },
                 "NAME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Nom de la mission",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/NAME",
                     "description": "Le nom de la mission est construit \u00e0 partir de l'expression r\u00e9guli\u00e8re suivante :\n\"#DEMANDE_CONCOURS#\"{libelle_cadre_conventionnel}\"#\"{code_cadre_conventionnel}\"#\"\no\u00f9 le code_cadre_conventionnel est issue d'une nomenclature CISU-Cadre Conventionnel (A Venir)\nNB : ce champ est d\u00e9tourn\u00e9 par rapport au standard EMSI pour permettre l'expression d'une demande de concours et indiquer le cadre conventionnel dans lequel elle est effectu\u00e9e.\nPour une r\u00e9ponse \u00e0 demande de concours :\n- Le nom de la mission est construit \u00e0 partir de l'expression r\u00e9guli\u00e8re suivante :\n\"#REPONSE_DEMANDE_CONCOURS#\"{code_reponse}\"#\"\no\u00f9 le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE, DIVERGENTE\n- sinon libre"
                 },
                 "STATUS": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Status de la mission",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/STATUS",
@@ -548,7 +548,7 @@
                     ]
                 },
                 "START_TIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "D\u00e9but de la mission",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/START_TIME",
@@ -557,7 +557,7 @@
                     "format": "date-time"
                 },
                 "END_TIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Fin de la mission",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/END_TIME",
@@ -566,7 +566,7 @@
                     "format": "date-time"
                 },
                 "RESOURCE_ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Ressource engag\u00e9e",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/RESOURCE_ID",
@@ -575,7 +575,7 @@
                 "PARENT_MISSION_ID": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "type": "[\"string\", \"null\"]",
                         "title": "Missions parentes",
                         "x-cols": 6,
                         "example": "example.json#/emsi/MISSION/0/PARENT_MISSION_ID/0",
@@ -585,7 +585,7 @@
                 "CHILD_MISSION_ID": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "type": "[\"string\", \"null\"]",
                         "title": "Missions filles",
                         "x-cols": 6,
                         "example": "example.json#/emsi/MISSION/0/CHILD_MISSION_ID/0",
@@ -593,7 +593,7 @@
                     }
                 },
                 "MAIN_MISSION_ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Mission principale",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/MAIN_MISSION_ID",
@@ -603,7 +603,7 @@
                     "$ref": "#/definitions/position"
                 },
                 "PRIORITY": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Priorit\u00e9 de la mission",
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/PRIORITY",
@@ -632,28 +632,28 @@
                     "$ref": "#/definitions/rtype"
                 },
                 "ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "ID de la ressource",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/ID",
                     "description": "Identifiant unique de la ressource  dans le syst\u00e8me du partenaire propri\u00e9taire. Les syst\u00e8mes sont garants de l'unicit\u00e9 et de l'invariablit\u00e9 des ids de v\u00e9hicule dans le temps. Ils peuvent se servir des ids dans les r\u00e9f\u00e9rentiels existants si ils sont uniques et stables.\nDans le cas d'un v\u00e9hicule agr\u00e9g\u00e9 par un LRM (comme un SMUR), l'ID doit \u00eatre valoris\u00e9 avec son immatriculation.\nDans le cas d'un v\u00e9hicule agr\u00e9g\u00e9 par NexSIS, l'ID fournit peut ne pas correspondre \u00e0 une immatriculation."
                 },
                 "ORG_ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Identifiant de l'organisation propri\u00e9taire",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/ORG_ID",
                     "description": "Identifiant de l'organisation \u00e0 laquelle la ressource est rattach\u00e9e (caserne, SAMU etc).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{code d\u00e9partement}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.\nDans le cas o\u00f9 le LRM/NexSIS sert d'aggr\u00e9gateur pour des v\u00e9hicules appartenant \u00e0 un partenaire tiers (type ambulance priv\u00e9e), l'identifiant d'organisation permet d'identifier ce tiers\nA constituer par le r\u00e9dacteur du pr\u00e9sent EMSI pour \u00eatre unique, identique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
                 },
                 "NAME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Nom de la ressource",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/NAME",
                     "description": "Nom donn\u00e9 \u00e0 la ressource par le partenaire. L'immatriculation peut \u00eatre utilis\u00e9e dans le nom courant des v\u00e9hicules.\nDans le cas pompier, les v\u00e9hicules sont nomm\u00e9s\nDans le cas d'\u00e9quipier, cela peut \u00eatre leur nom"
                 },
                 "FREETEXT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Description de la ressource",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/FREETEXT",
@@ -673,7 +673,7 @@
                     "description": "Dans le cadre d'un \u00e9change d'op\u00e9ration, optionnel. Permet de quantifier une ressource :\n- \u00e0 ne pas utiliser pour les v\u00e9hicules ni le personnel\n- utilisable pour du mat\u00e9riel\n- utilisable pour des consommables (dans le cas de consommable, \u00e0 compl\u00e9ter avec le champ UM)"
                 },
                 "UM": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Unit\u00e9 de mesure pour la ressource",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/UM",
@@ -732,7 +732,7 @@
                     ]
                 },
                 "STATUS": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Statut de la ressource",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/STATUS",
@@ -748,7 +748,7 @@
                     ]
                 },
                 "NATIONALITY": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Nationalit\u00e9 de la ressource",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/NATIONALITY",
@@ -779,7 +779,7 @@
                     "description": "A renseigner avec l'identifiant local de l'affaire du partenaire requ\u00e9rant\nDans NexSIS;\nRG 1  \u2013 : cr\u00e9ation du premier message EMSi suite r\u00e9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\u00e9ro d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\u00e9\u00e9s apr\u00e8s le premier, EMSI <LINK> est compl\u00e9t\u00e9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\u00e9c\u00e9dent cr\u00e9\u00e9 au sein du SGO r\u00e9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
                 },
                 "LINK_ROLE": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "R\u00f4le du lien",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE",
@@ -799,21 +799,21 @@
             "required": [],
             "properties": {
                 "ORG_ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Origine ID",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ORIGIN/ORG_ID",
                     "description": "Optionnel, identifiant du service \u00e0 l'origine de l'EMSI\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{code d\u00e9partement}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
                 },
                 "USER_ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "ID d'utilisateur de l'origine",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ORIGIN/USER_ID",
                     "description": "Optionnel, identifiant de l'op\u00e9rateur du service \u00e0 l'origine de l'EMSI"
                 },
                 "NAME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Nom Origine ",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ORIGIN/NAME",
@@ -831,7 +831,7 @@
             ],
             "properties": {
                 "FREETEXT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Texte libre ",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/FREETEXT",
@@ -845,7 +845,7 @@
                     "description": "Optionnel"
                 },
                 "TYPE": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Type",
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/TYPE",
@@ -1131,7 +1131,7 @@
                     }
                 },
                 "ENV": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Environnement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/ETYPE/ENV",
@@ -1204,7 +1204,7 @@
                     "description": "Le champ doit \u00eatre renseign\u00e9 mais peut ne pas \u00eatre interpr\u00e9t\u00e9"
                 },
                 "DATIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Timestamp du contexte",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/DATIME",
@@ -1264,7 +1264,7 @@
             "required": [],
             "properties": {
                 "DATIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "timestamp",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EVAC/0/DATIME",
@@ -1299,7 +1299,7 @@
             ],
             "properties": {
                 "DATIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Date des derni\u00e8res remont\u00e9es de localisation",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/DATIME",
@@ -1398,7 +1398,7 @@
                 "WEATHER": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "type": "[\"string\", \"null\"]",
                         "title": "Condition m\u00e9t\u00e9o",
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/EGEO/0/WEATHER/0",
@@ -1456,7 +1456,7 @@
                     }
                 },
                 "FREETEXT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Description de l'\u00e9v\u00e9nement",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/FREETEXT",
@@ -1484,28 +1484,28 @@
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION. \nLorsque le lieu d'intervention est identique \u00e0 celle d'une position de l'affaire partag\u00e9e dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID doit \u00eatre aliment\u00e9 valoris\u00e9 comme le champ eventLocation.locId du message RC-EDA envoy\u00e9 en amont. "
                 },
                 "NAME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Nom de position",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/NAME",
                     "description": "Optionnel, non utilis\u00e9 par NexSIS nom de lieu"
                 },
                 "TYPE": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Type",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/TYPE",
                     "description": "Optionnel\nDans le cadre de l'interface LRM NexSIS, seul le libell\u00e9 POINT doit obligatoirement \u00eatre interpr\u00e9table par les deux partenaires.\nCf. Nomenclature EMSI - POSITION pour plus de d\u00e9tails"
                 },
                 "HEIGHT_ROLE": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Indication sur l'utilisation de la balise altitude",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/HEIGHT_ROLE",
                     "description": "Optionnel"
                 },
                 "COORDSYS": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Syst\u00e8me de coordonn\u00e9es",
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORDSYS",
@@ -1520,7 +1520,7 @@
                 "ADDRESS": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "type": "[\"string\", \"null\"]",
                         "title": "Adresse",
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/ADDRESS/0",
@@ -2187,7 +2187,7 @@
                 "CAPABILITY": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "type": "[\"string\", \"null\"]",
                         "title": "Capacit\u00e9s de la ressource",
                         "x-cols": 6,
                         "example": "example.json#/emsi/RESOURCE/0/RTYPE/CAPABILITY/0",
@@ -2197,7 +2197,7 @@
                 "CHARACTERISTICS": {
                     "type": "array",
                     "items": {
-                        "type": "string",
+                        "type": "[\"string\", \"null\"]",
                         "title": "Caract\u00e9ristiques de la ressource",
                         "x-cols": 6,
                         "example": "example.json#/emsi/RESOURCE/0/RTYPE/CHARACTERISTICS/0",
@@ -2216,7 +2216,7 @@
             ],
             "properties": {
                 "DATIME": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Horaire de la localisation",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/RGEO/0/DATIME",
@@ -2239,14 +2239,14 @@
                     ]
                 },
                 "FREETEXT": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "Texte libre ",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/RGEO/0/FREETEXT",
                     "description": "Permet de rajouter des pr\u00e9cisions sur la localisation de la ressource transmise"
                 },
                 "ID": {
-                    "type": "string",
+                    "type": "[\"string\", \"null\"]",
                     "title": "ID localisation",
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/RGEO/0/ID",

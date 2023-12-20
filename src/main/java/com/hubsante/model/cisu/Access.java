@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,35 +56,35 @@ import java.util.Objects;
 
 public class Access {
   public static final String JSON_PROPERTY_FLOOR = "floor";
-  private String floor;
+  private StringNull floor = null;
 
   public static final String JSON_PROPERTY_ROOM_NUMBER = "roomNumber";
-  private String roomNumber;
+  private StringNull roomNumber = null;
 
   public static final String JSON_PROPERTY_INTERPHONE = "interphone";
-  private String interphone;
+  private StringNull interphone = null;
 
   public static final String JSON_PROPERTY_ACCESS_CODE = "accessCode";
-  private List<String> accessCode;
+  private List<StringNull> accessCode;
 
   public static final String JSON_PROPERTY_ELEVATOR = "elevator";
-  private String elevator;
+  private StringNull elevator = null;
 
   public static final String JSON_PROPERTY_BUILDING_NAME = "buildingName";
-  private String buildingName;
+  private StringNull buildingName = null;
 
   public static final String JSON_PROPERTY_ENTRANCE = "entrance";
-  private String entrance;
+  private StringNull entrance = null;
 
   public static final String JSON_PROPERTY_ENTITY = "entity";
-  private String entity;
+  private StringNull entity = null;
 
   public static final String JSON_PROPERTY_LOCPHONENUMBER = "locphonenumber";
   private BigDecimal locphonenumber;
 
   public Access() {}
 
-  public Access floor(String floor) {
+  public Access floor(StringNull floor) {
 
     this.floor = floor;
     return this;
@@ -96,17 +97,17 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_FLOOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFloor() {
+  public StringNull getFloor() {
     return floor;
   }
 
   @JsonProperty(JSON_PROPERTY_FLOOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFloor(String floor) {
+  public void setFloor(StringNull floor) {
     this.floor = floor;
   }
 
-  public Access roomNumber(String roomNumber) {
+  public Access roomNumber(StringNull roomNumber) {
 
     this.roomNumber = roomNumber;
     return this;
@@ -119,17 +120,17 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_ROOM_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getRoomNumber() {
+  public StringNull getRoomNumber() {
     return roomNumber;
   }
 
   @JsonProperty(JSON_PROPERTY_ROOM_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoomNumber(String roomNumber) {
+  public void setRoomNumber(StringNull roomNumber) {
     this.roomNumber = roomNumber;
   }
 
-  public Access interphone(String interphone) {
+  public Access interphone(StringNull interphone) {
 
     this.interphone = interphone;
     return this;
@@ -143,23 +144,23 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_INTERPHONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getInterphone() {
+  public StringNull getInterphone() {
     return interphone;
   }
 
   @JsonProperty(JSON_PROPERTY_INTERPHONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInterphone(String interphone) {
+  public void setInterphone(StringNull interphone) {
     this.interphone = interphone;
   }
 
-  public Access accessCode(List<String> accessCode) {
+  public Access accessCode(List<StringNull> accessCode) {
 
     this.accessCode = accessCode;
     return this;
   }
 
-  public Access addAccessCodeItem(String accessCodeItem) {
+  public Access addAccessCodeItem(StringNull accessCodeItem) {
     if (this.accessCode == null) {
       this.accessCode = new ArrayList<>();
     }
@@ -174,7 +175,7 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_ACCESS_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getAccessCode() {
+  public List<StringNull> getAccessCode() {
     return accessCode;
   }
 
@@ -182,7 +183,7 @@ public class Access {
 
   @JsonProperty(JSON_PROPERTY_ACCESS_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccessCode(List<String> accessCode) {
+  public void setAccessCode(List<StringNull> accessCode) {
     if (accessCode == null) {
       return;
     }
@@ -192,7 +193,7 @@ public class Access {
     this.accessCode.addAll(accessCode);
   }
 
-  public Access elevator(String elevator) {
+  public Access elevator(StringNull elevator) {
 
     this.elevator = elevator;
     return this;
@@ -205,17 +206,17 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_ELEVATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getElevator() {
+  public StringNull getElevator() {
     return elevator;
   }
 
   @JsonProperty(JSON_PROPERTY_ELEVATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setElevator(String elevator) {
+  public void setElevator(StringNull elevator) {
     this.elevator = elevator;
   }
 
-  public Access buildingName(String buildingName) {
+  public Access buildingName(StringNull buildingName) {
 
     this.buildingName = buildingName;
     return this;
@@ -228,17 +229,17 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_BUILDING_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getBuildingName() {
+  public StringNull getBuildingName() {
     return buildingName;
   }
 
   @JsonProperty(JSON_PROPERTY_BUILDING_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildingName(String buildingName) {
+  public void setBuildingName(StringNull buildingName) {
     this.buildingName = buildingName;
   }
 
-  public Access entrance(String entrance) {
+  public Access entrance(StringNull entrance) {
 
     this.entrance = entrance;
     return this;
@@ -251,17 +252,17 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_ENTRANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getEntrance() {
+  public StringNull getEntrance() {
     return entrance;
   }
 
   @JsonProperty(JSON_PROPERTY_ENTRANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntrance(String entrance) {
+  public void setEntrance(StringNull entrance) {
     this.entrance = entrance;
   }
 
-  public Access entity(String entity) {
+  public Access entity(StringNull entity) {
 
     this.entity = entity;
     return this;
@@ -274,13 +275,13 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_ENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getEntity() {
+  public StringNull getEntity() {
     return entity;
   }
 
   @JsonProperty(JSON_PROPERTY_ENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntity(String entity) {
+  public void setEntity(StringNull entity) {
     this.entity = entity;
   }
 

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -52,10 +53,10 @@ public class DetailedName {
   private String complete;
 
   public static final String JSON_PROPERTY_LAST_NAME = "lastName";
-  private String lastName;
+  private StringNull lastName = null;
 
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
-  private String firstName;
+  private StringNull firstName = null;
 
   public DetailedName() {}
 
@@ -85,7 +86,7 @@ public class DetailedName {
     this.complete = complete;
   }
 
-  public DetailedName lastName(String lastName) {
+  public DetailedName lastName(StringNull lastName) {
 
     this.lastName = lastName;
     return this;
@@ -98,17 +99,17 @@ public class DetailedName {
   @JsonProperty(JSON_PROPERTY_LAST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getLastName() {
+  public StringNull getLastName() {
     return lastName;
   }
 
   @JsonProperty(JSON_PROPERTY_LAST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLastName(String lastName) {
+  public void setLastName(StringNull lastName) {
     this.lastName = lastName;
   }
 
-  public DetailedName firstName(String firstName) {
+  public DetailedName firstName(StringNull firstName) {
 
     this.firstName = firstName;
     return this;
@@ -122,13 +123,13 @@ public class DetailedName {
   @JsonProperty(JSON_PROPERTY_FIRST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFirstName() {
+  public StringNull getFirstName() {
     return firstName;
   }
 
   @JsonProperty(JSON_PROPERTY_FIRST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFirstName(String firstName) {
+  public void setFirstName(StringNull firstName) {
     this.firstName = firstName;
   }
 

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -48,17 +49,17 @@ import java.util.Objects;
 
 public class City {
   public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  private StringNull name = null;
 
   public static final String JSON_PROPERTY_INSEE_CODE = "inseeCode";
-  private String inseeCode;
+  private StringNull inseeCode = null;
 
   public static final String JSON_PROPERTY_DETAIL = "detail";
-  private String detail;
+  private StringNull detail = null;
 
   public City() {}
 
-  public City name(String name) {
+  public City name(StringNull name) {
 
     this.name = name;
     return this;
@@ -71,17 +72,17 @@ public class City {
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getName() {
+  public StringNull getName() {
     return name;
   }
 
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
+  public void setName(StringNull name) {
     this.name = name;
   }
 
-  public City inseeCode(String inseeCode) {
+  public City inseeCode(StringNull inseeCode) {
 
     this.inseeCode = inseeCode;
     return this;
@@ -95,17 +96,17 @@ public class City {
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getInseeCode() {
+  public StringNull getInseeCode() {
     return inseeCode;
   }
 
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInseeCode(String inseeCode) {
+  public void setInseeCode(StringNull inseeCode) {
     this.inseeCode = inseeCode;
   }
 
-  public City detail(String detail) {
+  public City detail(StringNull detail) {
 
     this.detail = detail;
     return this;
@@ -122,13 +123,13 @@ public class City {
   @JsonProperty(JSON_PROPERTY_DETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDetail() {
+  public StringNull getDetail() {
     return detail;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetail(String detail) {
+  public void setDetail(StringNull detail) {
     this.detail = detail;
   }
 

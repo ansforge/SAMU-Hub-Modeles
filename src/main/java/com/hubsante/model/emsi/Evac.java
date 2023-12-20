@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.time.OffsetDateTime;
+import com.hubsante.model.emsi.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -50,7 +50,7 @@ import java.util.Objects;
 
 public class Evac {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private OffsetDateTime DATIME;
+  private StringNull DATIME = null;
 
   public static final String JSON_PROPERTY_D_I_S_P_L_A_C_E_D = "DISPLACED";
   private Integer DISPLACED;
@@ -60,7 +60,7 @@ public class Evac {
 
   public Evac() {}
 
-  public Evac DATIME(OffsetDateTime DATIME) {
+  public Evac DATIME(StringNull DATIME) {
 
     this.DATIME = DATIME;
     return this;
@@ -73,13 +73,13 @@ public class Evac {
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getDATIME() {
+  public StringNull getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDATIME(OffsetDateTime DATIME) {
+  public void setDATIME(StringNull DATIME) {
     this.DATIME = DATIME;
   }
 

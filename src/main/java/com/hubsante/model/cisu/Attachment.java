@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -50,10 +51,10 @@ import java.util.Objects;
 
 public class Attachment {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private String description;
+  private StringNull description = null;
 
   public static final String JSON_PROPERTY_MIME_TYPE = "mimeType";
-  private String mimeType;
+  private StringNull mimeType = null;
 
   public static final String JSON_PROPERTY_SIZE = "size";
   private Integer size;
@@ -62,14 +63,14 @@ public class Attachment {
   private String URI;
 
   public static final String JSON_PROPERTY_DEREF_U_R_I = "derefURI";
-  private String derefURI;
+  private StringNull derefURI = null;
 
   public static final String JSON_PROPERTY_DIGEST = "digest";
-  private String digest;
+  private StringNull digest = null;
 
   public Attachment() {}
 
-  public Attachment description(String description) {
+  public Attachment description(StringNull description) {
 
     this.description = description;
     return this;
@@ -83,17 +84,17 @@ public class Attachment {
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDescription() {
+  public StringNull getDescription() {
     return description;
   }
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(String description) {
+  public void setDescription(StringNull description) {
     this.description = description;
   }
 
-  public Attachment mimeType(String mimeType) {
+  public Attachment mimeType(StringNull mimeType) {
 
     this.mimeType = mimeType;
     return this;
@@ -107,13 +108,13 @@ public class Attachment {
   @JsonProperty(JSON_PROPERTY_MIME_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getMimeType() {
+  public StringNull getMimeType() {
     return mimeType;
   }
 
   @JsonProperty(JSON_PROPERTY_MIME_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMimeType(String mimeType) {
+  public void setMimeType(StringNull mimeType) {
     this.mimeType = mimeType;
   }
 
@@ -166,7 +167,7 @@ public class Attachment {
     this.URI = URI;
   }
 
-  public Attachment derefURI(String derefURI) {
+  public Attachment derefURI(StringNull derefURI) {
 
     this.derefURI = derefURI;
     return this;
@@ -181,17 +182,17 @@ public class Attachment {
   @JsonProperty(JSON_PROPERTY_DEREF_U_R_I)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDerefURI() {
+  public StringNull getDerefURI() {
     return derefURI;
   }
 
   @JsonProperty(JSON_PROPERTY_DEREF_U_R_I)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDerefURI(String derefURI) {
+  public void setDerefURI(StringNull derefURI) {
     this.derefURI = derefURI;
   }
 
-  public Attachment digest(String digest) {
+  public Attachment digest(StringNull digest) {
 
     this.digest = digest;
     return this;
@@ -205,13 +206,13 @@ public class Attachment {
   @JsonProperty(JSON_PROPERTY_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDigest() {
+  public StringNull getDigest() {
     return digest;
   }
 
   @JsonProperty(JSON_PROPERTY_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDigest(String digest) {
+  public void setDigest(StringNull digest) {
     this.digest = digest;
   }
 

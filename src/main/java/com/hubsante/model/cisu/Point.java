@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Coord;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -51,7 +52,7 @@ public class Point {
   private Coord coord;
 
   public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
-  private String sysCoord;
+  private StringNull sysCoord = null;
 
   public Point() {}
 
@@ -78,7 +79,7 @@ public class Point {
     this.coord = coord;
   }
 
-  public Point sysCoord(String sysCoord) {
+  public Point sysCoord(StringNull sysCoord) {
 
     this.sysCoord = sysCoord;
     return this;
@@ -93,13 +94,13 @@ public class Point {
   @JsonProperty(JSON_PROPERTY_SYS_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSysCoord() {
+  public StringNull getSysCoord() {
     return sysCoord;
   }
 
   @JsonProperty(JSON_PROPERTY_SYS_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysCoord(String sysCoord) {
+  public void setSysCoord(StringNull sysCoord) {
     this.sysCoord = sysCoord;
   }
 

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.emsi.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -49,7 +50,7 @@ import java.util.Objects;
 
 public class ExternalInfo {
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private String FREETEXT;
+  private StringNull FREETEXT = null;
 
   public static final String JSON_PROPERTY_U_R_I = "URI";
   private String URI;
@@ -68,12 +69,12 @@ public class ExternalInfo {
 
     WEBSIT("WEBSIT");
 
-    private String value;
+    private StringNull value;
 
-    TYPEEnum(String value) { this.value = value; }
+    TYPEEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -83,7 +84,7 @@ public class ExternalInfo {
     }
 
     @JsonCreator
-    public static TYPEEnum fromValue(String value) {
+    public static TYPEEnum fromValue(StringNull value) {
       for (TYPEEnum b : TYPEEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -94,11 +95,11 @@ public class ExternalInfo {
   }
 
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private TYPEEnum TYPE;
+  private TYPEEnum TYPE = null;
 
   public ExternalInfo() {}
 
-  public ExternalInfo FREETEXT(String FREETEXT) {
+  public ExternalInfo FREETEXT(StringNull FREETEXT) {
 
     this.FREETEXT = FREETEXT;
     return this;
@@ -111,13 +112,13 @@ public class ExternalInfo {
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFREETEXT() {
+  public StringNull getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(String FREETEXT) {
+  public void setFREETEXT(StringNull FREETEXT) {
     this.FREETEXT = FREETEXT;
   }
 

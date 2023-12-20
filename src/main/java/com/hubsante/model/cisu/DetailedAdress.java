@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import com.hubsante.model.cisu.WayName;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -53,7 +54,7 @@ public class DetailedAdress {
   private String complete;
 
   public static final String JSON_PROPERTY_NUMBER = "number";
-  private String number;
+  private StringNull number = null;
 
   public static final String JSON_PROPERTY_WAY_NAME = "wayName";
   private WayName wayName;
@@ -85,7 +86,7 @@ public class DetailedAdress {
     this.complete = complete;
   }
 
-  public DetailedAdress number(String number) {
+  public DetailedAdress number(StringNull number) {
 
     this.number = number;
     return this;
@@ -100,13 +101,13 @@ public class DetailedAdress {
   @JsonProperty(JSON_PROPERTY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getNumber() {
+  public StringNull getNumber() {
     return number;
   }
 
   @JsonProperty(JSON_PROPERTY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNumber(String number) {
+  public void setNumber(StringNull number) {
     this.number = number;
   }
 

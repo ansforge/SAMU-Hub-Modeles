@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.emsi.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -49,17 +50,17 @@ import java.util.Objects;
 
 public class Origin {
   public static final String JSON_PROPERTY_O_R_G_I_D = "ORG_ID";
-  private String ORG_ID;
+  private StringNull ORG_ID = null;
 
   public static final String JSON_PROPERTY_U_S_E_R_I_D = "USER_ID";
-  private String USER_ID;
+  private StringNull USER_ID = null;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private String NAME;
+  private StringNull NAME = null;
 
   public Origin() {}
 
-  public Origin ORG_ID(String ORG_ID) {
+  public Origin ORG_ID(StringNull ORG_ID) {
 
     this.ORG_ID = ORG_ID;
     return this;
@@ -75,17 +76,17 @@ public class Origin {
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getORGID() {
+  public StringNull getORGID() {
     return ORG_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setORGID(String ORG_ID) {
+  public void setORGID(StringNull ORG_ID) {
     this.ORG_ID = ORG_ID;
   }
 
-  public Origin USER_ID(String USER_ID) {
+  public Origin USER_ID(StringNull USER_ID) {
 
     this.USER_ID = USER_ID;
     return this;
@@ -99,17 +100,17 @@ public class Origin {
   @JsonProperty(JSON_PROPERTY_U_S_E_R_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getUSERID() {
+  public StringNull getUSERID() {
     return USER_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_U_S_E_R_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUSERID(String USER_ID) {
+  public void setUSERID(StringNull USER_ID) {
     this.USER_ID = USER_ID;
   }
 
-  public Origin NAME(String NAME) {
+  public Origin NAME(StringNull NAME) {
 
     this.NAME = NAME;
     return this;
@@ -123,13 +124,13 @@ public class Origin {
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getNAME() {
+  public StringNull getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNAME(String NAME) {
+  public void setNAME(StringNull NAME) {
     this.NAME = NAME;
   }
 

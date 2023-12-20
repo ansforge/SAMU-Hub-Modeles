@@ -98,10 +98,10 @@ NB :
 65,66,,Identifiant alerte,,,,,"Identifiant technique unique de l'alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage.
 Voir la description de l'identifiant de l'affaire pour voir le format.
 Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
-a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
-b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
+a)Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
+b)Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
 Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.",SGO050-20230605-AL0123,alertId,id,,,,,1.0,1..1,,string,,,X,X
-66,67,,Date de réception de l'alerte,,,,,Groupe date heure de réception de l'alerte,2022-09-27T08:21:06+02:00,receivedAt,reception,HA ,		Date et heure de prise d'appel   (format DD/MM/YYYY HH24:MI:SS),,,,1..1,,datetime,,Format datetime décrit dans le DSF,X,X
+66,67,,Date de réception de l'alerte,,,,,Groupe date heure de réception de l'alerte,2022-09-27T08:21:06+02:00,receivedAt,reception,HA ,Date et heure de prise d'appel   (format DD/MM/YYYY HH24:MI:SS),,,,1..1,,datetime,,Format datetime décrit dans le DSF,X,X
 67,68,,Signalement,,,,,"Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.
 Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. 
 Prend les valeurs définies dans la nomenclature CISU :
@@ -206,8 +206,8 @@ Pierre Alain Jacques",,,firstfirstname,,,,,,0..1,,string,,,,X
 125,126,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",,X
 126,127,,,,Code lieu de naissance,,,"Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.",,,birthplacecode,,,,,,0..1,,number,,,,X
 127,128,,,Traits non stricts de l'identité,,,,,,,nonstrictINStraits,,,,,,0..1,X,nonstrictINStraits,,,,X
-128,129,,,,Nom usuel ,,,Nom porté dans la vie courante. Le nom utilisé peut être similaire au nom de naissance.,Dupont,,customaryname,Vn,		Nom de la première victime,,,,0..1,,string,,,,X
-129,130,,,,Prénom usuel,,,Prénom porté dans la vie courante. Le prénom utilisé peut être l’un des prénom(s) de naissance ou tout autre prénom choisi par l’usager.,Jeanne,,customaryfirstname,Vp,		Prénom de la première victime,,,,0..1,,string,,,,X
+128,129,,,,Nom usuel ,,,Nom porté dans la vie courante. Le nom utilisé peut être similaire au nom de naissance.,Dupont,,customaryname,Vn,Nom de la première victime,,,,0..1,,string,,,,X
+129,130,,,,Prénom usuel,,,Prénom porté dans la vie courante. Le prénom utilisé peut être l’un des prénom(s) de naissance ou tout autre prénom choisi par l’usager.,Jeanne,,customaryfirstname,Vp,Prénom de la première victime,,,,0..1,,string,,,,X
 130,131,,,Contact patient,# voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,patientContact,,,,,,0..n,X,contact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
 131,132,,,Adresse patient,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,patientAddress,,,,,,0..1,X,personalAddress,,,,X
 132,133,,,,Adresse,# Voir detailedAdress,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,,X

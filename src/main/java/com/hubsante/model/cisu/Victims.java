@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -63,12 +64,12 @@ public class Victims {
 
     UNKNOWN("UNKNOWN");
 
-    private String value;
+    private StringNull value;
 
-    CountEnum(String value) { this.value = value; }
+    CountEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -78,7 +79,7 @@ public class Victims {
     }
 
     @JsonCreator
-    public static CountEnum fromValue(String value) {
+    public static CountEnum fromValue(StringNull value) {
       for (CountEnum b : CountEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -89,7 +90,7 @@ public class Victims {
   }
 
   public static final String JSON_PROPERTY_COUNT = "count";
-  private CountEnum count;
+  private CountEnum count = null;
 
   /**
    * Identifie le type de la principale victime (celle dont l&#39;état de santé
@@ -106,12 +107,12 @@ public class Victims {
 
     SENIOR("SENIOR");
 
-    private String value;
+    private StringNull value;
 
-    MainVictimEnum(String value) { this.value = value; }
+    MainVictimEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -121,7 +122,7 @@ public class Victims {
     }
 
     @JsonCreator
-    public static MainVictimEnum fromValue(String value) {
+    public static MainVictimEnum fromValue(StringNull value) {
       for (MainVictimEnum b : MainVictimEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -132,10 +133,10 @@ public class Victims {
   }
 
   public static final String JSON_PROPERTY_MAIN_VICTIM = "mainVictim";
-  private MainVictimEnum mainVictim;
+  private MainVictimEnum mainVictim = null;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private StringNull freetext = null;
 
   public Victims() {}
 
@@ -188,7 +189,7 @@ public class Victims {
     this.mainVictim = mainVictim;
   }
 
-  public Victims freetext(String freetext) {
+  public Victims freetext(StringNull freetext) {
 
     this.freetext = freetext;
     return this;
@@ -201,13 +202,13 @@ public class Victims {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public StringNull getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
+  public void setFreetext(StringNull freetext) {
     this.freetext = freetext;
   }
 

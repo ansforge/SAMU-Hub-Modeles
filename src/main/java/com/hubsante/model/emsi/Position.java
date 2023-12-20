@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Coord;
+import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -57,22 +58,22 @@ public class Position {
   private String LOC_ID;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private String NAME;
+  private StringNull NAME = null;
 
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private String TYPE;
+  private StringNull TYPE = null;
 
   public static final String JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E = "HEIGHT_ROLE";
-  private String HEIGHT_ROLE;
+  private StringNull HEIGHT_ROLE = null;
 
   public static final String JSON_PROPERTY_C_O_O_R_D_S_Y_S = "COORDSYS";
-  private String COORDSYS;
+  private StringNull COORDSYS = null;
 
   public static final String JSON_PROPERTY_C_O_O_R_D = "COORD";
   private List<Coord> COORD;
 
   public static final String JSON_PROPERTY_A_D_D_R_E_S_S = "ADDRESS";
-  private List<String> ADDRESS;
+  private List<StringNull> ADDRESS;
 
   public Position() {}
 
@@ -105,7 +106,7 @@ public class Position {
     this.LOC_ID = LOC_ID;
   }
 
-  public Position NAME(String NAME) {
+  public Position NAME(StringNull NAME) {
 
     this.NAME = NAME;
     return this;
@@ -118,17 +119,17 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getNAME() {
+  public StringNull getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNAME(String NAME) {
+  public void setNAME(StringNull NAME) {
     this.NAME = NAME;
   }
 
-  public Position TYPE(String TYPE) {
+  public Position TYPE(StringNull TYPE) {
 
     this.TYPE = TYPE;
     return this;
@@ -143,17 +144,17 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getTYPE() {
+  public StringNull getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTYPE(String TYPE) {
+  public void setTYPE(StringNull TYPE) {
     this.TYPE = TYPE;
   }
 
-  public Position HEIGHT_ROLE(String HEIGHT_ROLE) {
+  public Position HEIGHT_ROLE(StringNull HEIGHT_ROLE) {
 
     this.HEIGHT_ROLE = HEIGHT_ROLE;
     return this;
@@ -166,17 +167,17 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getHEIGHTROLE() {
+  public StringNull getHEIGHTROLE() {
     return HEIGHT_ROLE;
   }
 
   @JsonProperty(JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHEIGHTROLE(String HEIGHT_ROLE) {
+  public void setHEIGHTROLE(StringNull HEIGHT_ROLE) {
     this.HEIGHT_ROLE = HEIGHT_ROLE;
   }
 
-  public Position COORDSYS(String COORDSYS) {
+  public Position COORDSYS(StringNull COORDSYS) {
 
     this.COORDSYS = COORDSYS;
     return this;
@@ -189,13 +190,13 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_C_O_O_R_D_S_Y_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCOORDSYS() {
+  public StringNull getCOORDSYS() {
     return COORDSYS;
   }
 
   @JsonProperty(JSON_PROPERTY_C_O_O_R_D_S_Y_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCOORDSYS(String COORDSYS) {
+  public void setCOORDSYS(StringNull COORDSYS) {
     this.COORDSYS = COORDSYS;
   }
 
@@ -238,13 +239,13 @@ public class Position {
     this.COORD.addAll(COORD);
   }
 
-  public Position ADDRESS(List<String> ADDRESS) {
+  public Position ADDRESS(List<StringNull> ADDRESS) {
 
     this.ADDRESS = ADDRESS;
     return this;
   }
 
-  public Position addADDRESSItem(String ADDRESSItem) {
+  public Position addADDRESSItem(StringNull ADDRESSItem) {
     if (this.ADDRESS == null) {
       this.ADDRESS = new ArrayList<>();
     }
@@ -259,7 +260,7 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_A_D_D_R_E_S_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getADDRESS() {
+  public List<StringNull> getADDRESS() {
     return ADDRESS;
   }
 
@@ -267,7 +268,7 @@ public class Position {
 
   @JsonProperty(JSON_PROPERTY_A_D_D_R_E_S_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setADDRESS(List<String> ADDRESS) {
+  public void setADDRESS(List<StringNull> ADDRESS) {
     if (ADDRESS == null) {
       return;
     }

@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Contact;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -57,13 +58,13 @@ public class CallTaker {
   private String controlRoom;
 
   public static final String JSON_PROPERTY_ROLE = "role";
-  private String role;
+  private StringNull role = null;
 
   public static final String JSON_PROPERTY_CALLTAKE_CONTACT = "calltakeContact";
   private Contact calltakeContact;
 
   public static final String JSON_PROPERTY_CALLTAKER_ID = "calltakerId";
-  private String calltakerId;
+  private StringNull calltakerId = null;
 
   public CallTaker() {}
 
@@ -117,7 +118,7 @@ public class CallTaker {
     this.controlRoom = controlRoom;
   }
 
-  public CallTaker role(String role) {
+  public CallTaker role(StringNull role) {
 
     this.role = role;
     return this;
@@ -131,13 +132,13 @@ public class CallTaker {
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getRole() {
+  public StringNull getRole() {
     return role;
   }
 
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRole(String role) {
+  public void setRole(StringNull role) {
     this.role = role;
   }
 
@@ -164,7 +165,7 @@ public class CallTaker {
     this.calltakeContact = calltakeContact;
   }
 
-  public CallTaker calltakerId(String calltakerId) {
+  public CallTaker calltakerId(StringNull calltakerId) {
 
     this.calltakerId = calltakerId;
     return this;
@@ -178,13 +179,13 @@ public class CallTaker {
   @JsonProperty(JSON_PROPERTY_CALLTAKER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCalltakerId() {
+  public StringNull getCalltakerId() {
     return calltakerId;
   }
 
   @JsonProperty(JSON_PROPERTY_CALLTAKER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCalltakerId(String calltakerId) {
+  public void setCalltakerId(StringNull calltakerId) {
     this.calltakerId = calltakerId;
   }
 

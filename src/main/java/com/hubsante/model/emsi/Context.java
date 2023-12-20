@@ -37,7 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.ExternalInfo;
 import com.hubsante.model.emsi.Link;
 import com.hubsante.model.emsi.Origin;
-import java.time.OffsetDateTime;
+import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -147,7 +147,7 @@ public class Context {
   private MSGTYPEEnum MSGTYPE;
 
   public static final String JSON_PROPERTY_C_R_E_A_T_I_O_N = "CREATION";
-  private OffsetDateTime CREATION;
+  private StringNull CREATION = null;
 
   public static final String JSON_PROPERTY_L_I_N_K = "LINK";
   private List<Link> LINK;
@@ -163,12 +163,12 @@ public class Context {
 
     TACTCL("TACTCL");
 
-    private String value;
+    private StringNull value;
 
-    LEVELEnum(String value) { this.value = value; }
+    LEVELEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -178,7 +178,7 @@ public class Context {
     }
 
     @JsonCreator
-    public static LEVELEnum fromValue(String value) {
+    public static LEVELEnum fromValue(StringNull value) {
       for (LEVELEnum b : LEVELEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -189,7 +189,7 @@ public class Context {
   }
 
   public static final String JSON_PROPERTY_L_E_V_E_L = "LEVEL";
-  private LEVELEnum LEVEL;
+  private LEVELEnum LEVEL = null;
 
   /**
    * Optionnel  Dans NexSIS ;  Les messages transmis par NexSIS auront un champ
@@ -210,12 +210,12 @@ public class Context {
 
     UNMARK("UNMARK");
 
-    private String value;
+    private StringNull value;
 
-    SECLASSEnum(String value) { this.value = value; }
+    SECLASSEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -225,7 +225,7 @@ public class Context {
     }
 
     @JsonCreator
-    public static SECLASSEnum fromValue(String value) {
+    public static SECLASSEnum fromValue(StringNull value) {
       for (SECLASSEnum b : SECLASSEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -236,10 +236,10 @@ public class Context {
   }
 
   public static final String JSON_PROPERTY_S_E_C_L_A_S_S = "SECLASS";
-  private SECLASSEnum SECLASS;
+  private SECLASSEnum SECLASS = null;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private String FREETEXT;
+  private StringNull FREETEXT = null;
 
   public static final String JSON_PROPERTY_O_R_I_G_I_N = "ORIGIN";
   private Origin ORIGIN;
@@ -257,12 +257,12 @@ public class Context {
 
     NOT_URGENT("NOT_URGENT");
 
-    private String value;
+    private StringNull value;
 
-    URGENCYEnum(String value) { this.value = value; }
+    URGENCYEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -272,7 +272,7 @@ public class Context {
     }
 
     @JsonCreator
-    public static URGENCYEnum fromValue(String value) {
+    public static URGENCYEnum fromValue(StringNull value) {
       for (URGENCYEnum b : URGENCYEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -283,7 +283,7 @@ public class Context {
   }
 
   public static final String JSON_PROPERTY_U_R_G_E_N_C_Y = "URGENCY";
-  private URGENCYEnum URGENCY;
+  private URGENCYEnum URGENCY = null;
 
   public Context() {}
 
@@ -359,7 +359,7 @@ public class Context {
     this.MSGTYPE = MSGTYPE;
   }
 
-  public Context CREATION(OffsetDateTime CREATION) {
+  public Context CREATION(StringNull CREATION) {
 
     this.CREATION = CREATION;
     return this;
@@ -378,13 +378,13 @@ public class Context {
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getCREATION() {
+  public StringNull getCREATION() {
     return CREATION;
   }
 
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCREATION(OffsetDateTime CREATION) {
+  public void setCREATION(StringNull CREATION) {
     this.CREATION = CREATION;
   }
 
@@ -477,7 +477,7 @@ public class Context {
     this.SECLASS = SECLASS;
   }
 
-  public Context FREETEXT(String FREETEXT) {
+  public Context FREETEXT(StringNull FREETEXT) {
 
     this.FREETEXT = FREETEXT;
     return this;
@@ -499,13 +499,13 @@ public class Context {
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFREETEXT() {
+  public StringNull getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(String FREETEXT) {
+  public void setFREETEXT(StringNull FREETEXT) {
     this.FREETEXT = FREETEXT;
   }
 

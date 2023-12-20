@@ -38,6 +38,7 @@ import com.hubsante.model.cisu.AdditionalInformation;
 import com.hubsante.model.cisu.Alert;
 import com.hubsante.model.cisu.Location;
 import com.hubsante.model.cisu.Qualification;
+import com.hubsante.model.cisu.StringNull;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -64,7 +65,7 @@ public class CreateCase {
   private String caseId;
 
   public static final String JSON_PROPERTY_SENDER_CASE_ID = "senderCaseId";
-  private String senderCaseId;
+  private StringNull senderCaseId = null;
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
@@ -90,7 +91,7 @@ public class CreateCase {
   private AdditionalInformation additionalInformation;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private StringNull freetext = null;
 
   public CreateCase() {}
 
@@ -126,7 +127,7 @@ public class CreateCase {
     this.caseId = caseId;
   }
 
-  public CreateCase senderCaseId(String senderCaseId) {
+  public CreateCase senderCaseId(StringNull senderCaseId) {
 
     this.senderCaseId = senderCaseId;
     return this;
@@ -143,13 +144,13 @@ public class CreateCase {
   @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSenderCaseId() {
+  public StringNull getSenderCaseId() {
     return senderCaseId;
   }
 
   @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSenderCaseId(String senderCaseId) {
+  public void setSenderCaseId(StringNull senderCaseId) {
     this.senderCaseId = senderCaseId;
   }
 
@@ -338,7 +339,7 @@ public class CreateCase {
     this.additionalInformation = additionalInformation;
   }
 
-  public CreateCase freetext(String freetext) {
+  public CreateCase freetext(StringNull freetext) {
 
     this.freetext = freetext;
     return this;
@@ -352,13 +353,13 @@ public class CreateCase {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public StringNull getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
+  public void setFreetext(StringNull freetext) {
     this.freetext = freetext;
   }
 

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -52,13 +53,13 @@ public class CustomMap {
   private String key;
 
   public static final String JSON_PROPERTY_LABEL = "label";
-  private String label;
+  private StringNull label = null;
 
   public static final String JSON_PROPERTY_VALUE = "value";
   private String value;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private StringNull freetext = null;
 
   public CustomMap() {}
 
@@ -85,7 +86,7 @@ public class CustomMap {
     this.key = key;
   }
 
-  public CustomMap label(String label) {
+  public CustomMap label(StringNull label) {
 
     this.label = label;
     return this;
@@ -98,13 +99,13 @@ public class CustomMap {
   @JsonProperty(JSON_PROPERTY_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getLabel() {
+  public StringNull getLabel() {
     return label;
   }
 
   @JsonProperty(JSON_PROPERTY_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabel(String label) {
+  public void setLabel(StringNull label) {
     this.label = label;
   }
 
@@ -131,7 +132,7 @@ public class CustomMap {
     this.value = value;
   }
 
-  public CustomMap freetext(String freetext) {
+  public CustomMap freetext(StringNull freetext) {
 
     this.freetext = freetext;
     return this;
@@ -145,13 +146,13 @@ public class CustomMap {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public StringNull getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
+  public void setFreetext(StringNull freetext) {
     this.freetext = freetext;
   }
 

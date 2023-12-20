@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.time.OffsetDateTime;
+import com.hubsante.model.emsi.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -58,7 +58,7 @@ public class Casualties {
   private String CONTEXT;
 
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private OffsetDateTime DATIME;
+  private StringNull DATIME = null;
 
   public static final String JSON_PROPERTY_D_E_C_O_N_T = "DECONT";
   private Integer DECONT;
@@ -106,7 +106,7 @@ public class Casualties {
     this.CONTEXT = CONTEXT;
   }
 
-  public Casualties DATIME(OffsetDateTime DATIME) {
+  public Casualties DATIME(StringNull DATIME) {
 
     this.DATIME = DATIME;
     return this;
@@ -119,13 +119,13 @@ public class Casualties {
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getDATIME() {
+  public StringNull getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDATIME(OffsetDateTime DATIME) {
+  public void setDATIME(StringNull DATIME) {
     this.DATIME = DATIME;
   }
 

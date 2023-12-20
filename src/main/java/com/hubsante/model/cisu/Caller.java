@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Contact;
 import com.hubsante.model.cisu.DetailedName;
+import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -545,12 +546,12 @@ public class Caller {
 
     ZW("ZW");
 
-    private String value;
+    private StringNull value;
 
-    LanguageEnum(String value) { this.value = value; }
+    LanguageEnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -560,7 +561,7 @@ public class Caller {
     }
 
     @JsonCreator
-    public static LanguageEnum fromValue(String value) {
+    public static LanguageEnum fromValue(StringNull value) {
       for (LanguageEnum b : LanguageEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -571,16 +572,16 @@ public class Caller {
   }
 
   public static final String JSON_PROPERTY_LANGUAGE = "language";
-  private LanguageEnum language;
+  private LanguageEnum language = null;
 
   public static final String JSON_PROPERTY_REQTYPE = "reqtype";
-  private String reqtype;
+  private StringNull reqtype = null;
 
   public static final String JSON_PROPERTY_COMMUNICATION = "communication";
-  private String communication;
+  private StringNull communication = null;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private StringNull freetext = null;
 
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
   private DetailedName detailedName;
@@ -657,7 +658,7 @@ public class Caller {
     this.language = language;
   }
 
-  public Caller reqtype(String reqtype) {
+  public Caller reqtype(StringNull reqtype) {
 
     this.reqtype = reqtype;
     return this;
@@ -671,17 +672,17 @@ public class Caller {
   @JsonProperty(JSON_PROPERTY_REQTYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getReqtype() {
+  public StringNull getReqtype() {
     return reqtype;
   }
 
   @JsonProperty(JSON_PROPERTY_REQTYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReqtype(String reqtype) {
+  public void setReqtype(StringNull reqtype) {
     this.reqtype = reqtype;
   }
 
-  public Caller communication(String communication) {
+  public Caller communication(StringNull communication) {
 
     this.communication = communication;
     return this;
@@ -694,17 +695,17 @@ public class Caller {
   @JsonProperty(JSON_PROPERTY_COMMUNICATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCommunication() {
+  public StringNull getCommunication() {
     return communication;
   }
 
   @JsonProperty(JSON_PROPERTY_COMMUNICATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCommunication(String communication) {
+  public void setCommunication(StringNull communication) {
     this.communication = communication;
   }
 
-  public Caller freetext(String freetext) {
+  public Caller freetext(StringNull freetext) {
 
     this.freetext = freetext;
     return this;
@@ -718,13 +719,13 @@ public class Caller {
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public StringNull getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
+  public void setFreetext(StringNull freetext) {
     this.freetext = freetext;
   }
 

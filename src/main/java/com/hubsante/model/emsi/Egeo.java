@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Position;
-import java.time.OffsetDateTime;
+import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -54,7 +54,7 @@ import java.util.Objects;
 
 public class Egeo {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private OffsetDateTime DATIME;
+  private StringNull DATIME = null;
 
   /**
    * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
@@ -353,12 +353,12 @@ public class Egeo {
 
     WIN_WTRSPT("WIN/WTRSPT");
 
-    private String value;
+    private StringNull value;
 
-    WEATHEREnum(String value) { this.value = value; }
+    WEATHEREnum(StringNull value) { this.value = value; }
 
     @JsonValue
-    public String getValue() {
+    public StringNull getValue() {
       return value;
     }
 
@@ -368,7 +368,7 @@ public class Egeo {
     }
 
     @JsonCreator
-    public static WEATHEREnum fromValue(String value) {
+    public static WEATHEREnum fromValue(StringNull value) {
       for (WEATHEREnum b : WEATHEREnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -382,14 +382,14 @@ public class Egeo {
   private List<WEATHEREnum> WEATHER;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private String FREETEXT;
+  private StringNull FREETEXT = null;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
   private Position POSITION;
 
   public Egeo() {}
 
-  public Egeo DATIME(OffsetDateTime DATIME) {
+  public Egeo DATIME(StringNull DATIME) {
 
     this.DATIME = DATIME;
     return this;
@@ -404,13 +404,13 @@ public class Egeo {
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getDATIME() {
+  public StringNull getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDATIME(OffsetDateTime DATIME) {
+  public void setDATIME(StringNull DATIME) {
     this.DATIME = DATIME;
   }
 
@@ -481,7 +481,7 @@ public class Egeo {
     this.WEATHER.addAll(WEATHER);
   }
 
-  public Egeo FREETEXT(String FREETEXT) {
+  public Egeo FREETEXT(StringNull FREETEXT) {
 
     this.FREETEXT = FREETEXT;
     return this;
@@ -496,13 +496,13 @@ public class Egeo {
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFREETEXT() {
+  public StringNull getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(String FREETEXT) {
+  public void setFREETEXT(StringNull FREETEXT) {
     this.FREETEXT = FREETEXT;
   }
 
