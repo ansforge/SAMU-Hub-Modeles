@@ -169,9 +169,9 @@ def run(model, obj, version=date.today().strftime("%y.%m.%d"), filter=False):
         print("schema.json loaded.")
         print("Parsing schema.json ...")
         parse_root_node(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
-        print("Rendering " + os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_schema.pdf") + " ...")
+        print("Rendering " + os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_diagram.pdf") + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-        dot.render(os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_schema"))
+        dot.render(os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_diagram"))
         print("Done.")
     return
 
