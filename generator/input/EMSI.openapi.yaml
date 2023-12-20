@@ -85,7 +85,7 @@ components:
         CREATION:
           type:
           - string
-          - 'null'
+          
           title: "Date et heure de cr\xE9ation"
           x-cols: 6
           example: example.json#/emsi/CONTEXT/CREATION
@@ -108,7 +108,7 @@ components:
         LEVEL:
           type:
           - string
-          - 'null'
+          
           title: Niveau
           x-cols: 6
           example: example.json#/emsi/CONTEXT/LEVEL
@@ -123,7 +123,7 @@ components:
         SECLASS:
           type:
           - string
-          - 'null'
+          
           title: Niveau de classification
           x-cols: 6
           example: example.json#/emsi/CONTEXT/SECLASS
@@ -143,7 +143,7 @@ components:
         FREETEXT:
           type:
           - string
-          - 'null'
+          
           title: Texte libre
           x-cols: 6
           example: example.json#/emsi/CONTEXT/FREETEXT
@@ -169,7 +169,7 @@ components:
         URGENCY:
           type:
           - string
-          - 'null'
+          
           title: "Niveau d'urgence de l'\xE9v\xE9nement"
           x-cols: 6
           example: example.json#/emsi/CONTEXT/URGENCY
@@ -200,7 +200,7 @@ components:
         NAME:
           type:
           - string
-          - 'null'
+          
           title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
           x-cols: 6
           example: example.json#/emsi/EVENT/NAME
@@ -211,7 +211,7 @@ components:
         MAIN_EVENT_ID:
           type:
           - string
-          - 'null'
+          
           title: Identifiant de l'affaire
           x-cols: 6
           example: example.json#/emsi/EVENT/MAIN_EVENT_ID
@@ -225,7 +225,7 @@ components:
         SOURCE:
           type:
           - string
-          - 'null'
+          
           title: Source
           x-cols: 6
           example: example.json#/emsi/EVENT/SOURCE
@@ -240,7 +240,7 @@ components:
         SCALE:
           type:
           - string
-          - 'null'
+          
           title: "Echelle de s\xE9v\xE9rit\xE9 de l'environnement"
           x-cols: 6
           example: example.json#/emsi/EVENT/SCALE
@@ -266,7 +266,7 @@ components:
         DECL_DATIME:
           type:
           - string
-          - 'null'
+          
           title: "Date de d\xE9claration de l'event"
           x-cols: 6
           example: example.json#/emsi/EVENT/DECL_DATIME
@@ -282,7 +282,7 @@ components:
         OCC_DATIME:
           type:
           - string
-          - 'null'
+          
           title: "D\xE9crit la date et le lieu de l'\xE9v\xE9nement"
           x-cols: 6
           example: example.json#/emsi/EVENT/OCC_DATIME
@@ -299,7 +299,7 @@ components:
         OBS_DATIME:
           type:
           - string
-          - 'null'
+          
           title: "Date \xE0 laquelle l'observation la plus r\xE9cente a \xE9t\xE9\
             \ r\xE9alis\xE9e"
           x-cols: 6
@@ -317,7 +317,7 @@ components:
         STATUS:
           type:
           - string
-          - 'null'
+          
           title: Status
           x-cols: 6
           example: example.json#/emsi/EVENT/STATUS
@@ -341,7 +341,7 @@ components:
         RISK_ASSESMENT:
           type:
           - string
-          - 'null'
+          
           title: "Pr\xE9diction sur le risque d'\xE9volution de l'event"
           x-cols: 6
           example: example.json#/emsi/EVENT/RISK_ASSESMENT
@@ -371,7 +371,7 @@ components:
         CAUSE:
           type:
           - string
-          - 'null'
+          
           title: Cause
           x-cols: 6
           example: example.json#/emsi/EVENT/CAUSE
@@ -385,7 +385,7 @@ components:
         FREETEXT:
           type:
           - string
-          - 'null'
+          
           title: Texte libre
           x-cols: 6
           example: example.json#/emsi/EVENT/FREETEXT
@@ -582,7 +582,7 @@ components:
         FREETEXT:
           type:
           - string
-          - 'null'
+          
           title: Texte libre
           x-cols: 6
           example: example.json#/emsi/MISSION/0/FREETEXT
@@ -596,7 +596,7 @@ components:
         ID:
           type:
           - string
-          - 'null'
+          
           title: Identifiant de la mission
           x-cols: 6
           example: example.json#/emsi/MISSION/0/ID
@@ -609,7 +609,7 @@ components:
         ORG_ID:
           type:
           - string
-          - 'null'
+          
           title: "Identifiant de l'organisation propri\xE9taire"
           x-cols: 6
           example: example.json#/emsi/MISSION/0/ORG_ID
@@ -626,7 +626,7 @@ components:
         NAME:
           type:
           - string
-          - 'null'
+          
           title: Nom de la mission
           x-cols: 6
           example: example.json#/emsi/MISSION/0/NAME
@@ -646,7 +646,7 @@ components:
         STATUS:
           type:
           - string
-          - 'null'
+          
           title: Status de la mission
           x-cols: 6
           example: example.json#/emsi/MISSION/0/STATUS
@@ -677,7 +677,7 @@ components:
         START_TIME:
           type:
           - string
-          - 'null'
+          
           title: "D\xE9but de la mission"
           x-cols: 6
           example: example.json#/emsi/MISSION/0/START_TIME
@@ -692,7 +692,7 @@ components:
         END_TIME:
           type:
           - string
-          - 'null'
+          
           title: Fin de la mission
           x-cols: 6
           example: example.json#/emsi/MISSION/0/END_TIME
@@ -708,7 +708,7 @@ components:
         RESOURCE_ID:
           type:
           - string
-          - 'null'
+          
           title: "Ressource engag\xE9e"
           x-cols: 6
           example: example.json#/emsi/MISSION/0/RESOURCE_ID
@@ -721,7 +721,7 @@ components:
           items:
             type:
             - string
-            - 'null'
+            
             title: Missions parentes
             x-cols: 6
             example: example.json#/emsi/MISSION/0/PARENT_MISSION_ID/0
@@ -738,7 +738,7 @@ components:
           items:
             type:
             - string
-            - 'null'
+            
             title: Missions filles
             x-cols: 6
             example: example.json#/emsi/MISSION/0/CHILD_MISSION_ID/0
@@ -749,7 +749,7 @@ components:
         MAIN_MISSION_ID:
           type:
           - string
-          - 'null'
+          
           title: Mission principale
           x-cols: 6
           example: example.json#/emsi/MISSION/0/MAIN_MISSION_ID
@@ -767,7 +767,7 @@ components:
         PRIORITY:
           type:
           - string
-          - 'null'
+          
           title: "Priorit\xE9 de la mission"
           x-cols: 6
           example: example.json#/emsi/MISSION/0/PRIORITY
@@ -798,7 +798,7 @@ components:
         ID:
           type:
           - string
-          - 'null'
+          
           title: ID de la ressource
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/ID
@@ -815,7 +815,7 @@ components:
         ORG_ID:
           type:
           - string
-          - 'null'
+          
           title: "Identifiant de l'organisation propri\xE9taire"
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/ORG_ID
@@ -832,7 +832,7 @@ components:
         NAME:
           type:
           - string
-          - 'null'
+          
           title: Nom de la ressource
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/NAME
@@ -845,7 +845,7 @@ components:
         FREETEXT:
           type:
           - string
-          - 'null'
+          
           title: Description de la ressource
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/FREETEXT
@@ -874,7 +874,7 @@ components:
         UM:
           type:
           - string
-          - 'null'
+          
           title: "Unit\xE9 de mesure pour la ressource"
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/UM
@@ -936,7 +936,7 @@ components:
         STATUS:
           type:
           - string
-          - 'null'
+          
           title: Statut de la ressource
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/STATUS
@@ -962,7 +962,7 @@ components:
         NATIONALITY:
           type:
           - string
-          - 'null'
+          
           title: "Nationalit\xE9 de la ressource"
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/NATIONALITY
@@ -999,7 +999,7 @@ components:
         LINK_ROLE:
           type:
           - string
-          - 'null'
+          
           title: "R\xF4le du lien"
           x-cols: 6
           example: example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE
@@ -1029,7 +1029,7 @@ components:
         ORG_ID:
           type:
           - string
-          - 'null'
+          
           title: Origine ID
           x-cols: 6
           example: example.json#/emsi/CONTEXT/ORIGIN/ORG_ID
@@ -1042,7 +1042,7 @@ components:
         USER_ID:
           type:
           - string
-          - 'null'
+          
           title: ID d'utilisateur de l'origine
           x-cols: 6
           example: example.json#/emsi/CONTEXT/ORIGIN/USER_ID
@@ -1053,7 +1053,7 @@ components:
         NAME:
           type:
           - string
-          - 'null'
+          
           title: 'Nom Origine '
           x-cols: 6
           example: example.json#/emsi/CONTEXT/ORIGIN/NAME
@@ -1076,7 +1076,7 @@ components:
         FREETEXT:
           type:
           - string
-          - 'null'
+          
           title: 'Texte libre '
           x-cols: 6
           example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/FREETEXT
@@ -1094,7 +1094,7 @@ components:
         TYPE:
           type:
           - string
-          - 'null'
+          
           title: Type
           x-cols: 6
           example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/TYPE
@@ -1396,7 +1396,7 @@ components:
         ENV:
           type:
           - string
-          - 'null'
+          
           title: Environnement
           x-cols: 6
           example: example.json#/emsi/EVENT/ETYPE/ENV
@@ -1469,7 +1469,7 @@ components:
         DATIME:
           type:
           - string
-          - 'null'
+          
           title: Timestamp du contexte
           x-cols: 6
           example: example.json#/emsi/EVENT/CASUALTIES/0/DATIME
@@ -1545,7 +1545,7 @@ components:
         DATIME:
           type:
           - string
-          - 'null'
+          
           title: timestamp
           x-cols: 6
           example: example.json#/emsi/EVENT/EVAC/0/DATIME
@@ -1586,7 +1586,7 @@ components:
         DATIME:
           type:
           - string
-          - 'null'
+          
           title: "Date des derni\xE8res remont\xE9es de localisation"
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/DATIME
@@ -1695,7 +1695,7 @@ components:
           items:
             type:
             - string
-            - 'null'
+            
             title: "Condition m\xE9t\xE9o"
             x-cols: 6
             example: example.json#/emsi/EVENT/EGEO/0/WEATHER/0
@@ -1756,7 +1756,7 @@ components:
         FREETEXT:
           type:
           - string
-          - 'null'
+          
           title: "Description de l'\xE9v\xE9nement"
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/FREETEXT
@@ -1792,7 +1792,7 @@ components:
         NAME:
           type:
           - string
-          - 'null'
+          
           title: Nom de position
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/NAME
@@ -1802,7 +1802,7 @@ components:
         TYPE:
           type:
           - string
-          - 'null'
+          
           title: Type
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/TYPE
@@ -1815,7 +1815,7 @@ components:
         HEIGHT_ROLE:
           type:
           - string
-          - 'null'
+          
           title: Indication sur l'utilisation de la balise altitude
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/HEIGHT_ROLE
@@ -1825,7 +1825,7 @@ components:
         COORDSYS:
           type:
           - string
-          - 'null'
+          
           title: "Syst\xE8me de coordonn\xE9es"
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORDSYS
@@ -1841,7 +1841,7 @@ components:
           items:
             type:
             - string
-            - 'null'
+            
             title: Adresse
             x-cols: 6
             example: example.json#/emsi/EVENT/EGEO/0/POSITION/ADDRESS/0
@@ -2520,7 +2520,7 @@ components:
           items:
             type:
             - string
-            - 'null'
+            
             title: "Capacit\xE9s de la ressource"
             x-cols: 6
             example: example.json#/emsi/RESOURCE/0/RTYPE/CAPABILITY/0
@@ -2533,7 +2533,7 @@ components:
           items:
             type:
             - string
-            - 'null'
+            
             title: "Caract\xE9ristiques de la ressource"
             x-cols: 6
             example: example.json#/emsi/RESOURCE/0/RTYPE/CHARACTERISTICS/0
@@ -2553,7 +2553,7 @@ components:
         DATIME:
           type:
           - string
-          - 'null'
+          
           title: Horaire de la localisation
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/DATIME
@@ -2592,7 +2592,7 @@ components:
         FREETEXT:
           type:
           - string
-          - 'null'
+          
           title: 'Texte libre '
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/FREETEXT
@@ -2603,7 +2603,7 @@ components:
         ID:
           type:
           - string
-          - 'null'
+          
           title: ID localisation
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/ID
