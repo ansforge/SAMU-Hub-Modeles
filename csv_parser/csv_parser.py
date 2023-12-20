@@ -38,9 +38,10 @@ class Color:
     UNDERLINE = '\033[4m'
     END = '\033[0m'
 
+appendCisuIfNeeded = '-CISU' if args.filter else ''
 
 args.version = args.version or date.today().strftime("%y.%m.%d")
-print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building version {args.version} of {args.sheet} sheet...{Color.END}')
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building version {args.version} of {args.sheet}{appendCisuIfNeeded} sheet...{Color.END}')
 
 RUN_DOCX_OUTPUT_EXAMPLES = False
 
@@ -114,13 +115,15 @@ if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
     print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS}.{Color.END}")
     exit(1)
 
-# Storing input data in a file to track versions
-df.to_csv(f'out/{args.sheet}/input.csv')
 # Keeping only 15-NexSIS fields if filter is set
 if args.filter:
     df = df[df['15-18'] == 'X']
 else :
     df = df[df['15-15'] == 'X']
+
+# Storing input data in a file to track versions
+df.to_csv(f'out/{args.sheet}{appendCisuIfNeeded}/input.csv')
+
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
 if MODEL_NAME != "RC-DE":
@@ -343,14 +346,14 @@ def build_example(elem):
 
 
 json_example = build_example(rootObject)
-with open(f'out/{args.sheet}/example-CISU.json' if args.filter else f'out/{args.sheet}/example.json', 'w') as outfile:
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/example.json', 'w') as outfile:
     json.dump(json_example, outfile, indent=4)
 
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     '$id': 'classpath:/json-schema/schema#',
-    'x-id': f'{args.sheet}.schema.json#',  # required by JSV to find the schema file locally
+    'x-id': f'{args.sheet}{appendCisuIfNeeded}.schema.json#',  # required by JSV to find the schema file locally
     'version': args.version,
     'example': 'example.json#',
     'type': 'object',
@@ -542,10 +545,7 @@ def DFS(root, use_elem):
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
 DFS(rootObject, build_json_schema)
 if(args.filter):
-    with open(f'out/{args.sheet}/{args.sheet}-CISU.schema.json', 'w') as outfile:
-        json.dump(json_schema, outfile, indent=4)
-else:
-    with open(f'out/{args.sheet}/{args.sheet}.schema.json', 'w') as outfile:
+    with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.schema.json', 'w') as outfile:
         json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -594,7 +594,7 @@ with open('template.asyncapi.yaml') as f:
     }
     # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
 
-with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
     file.write(documents)
@@ -687,7 +687,7 @@ def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAM
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-doc.save(f'out/{args.sheet}/schema-CISU.docx' if args.filter else f'out/{args.sheet}/schema.docx')
+doc.save(f'out/{args.sheet}{appendCisuIfNeeded}/schema{appendCisuIfNeeded}.docx')
 
 print('Docx tables generated.')
 

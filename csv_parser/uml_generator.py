@@ -157,20 +157,21 @@ class Color:
 
 
 def run(model, obj, version=date.today().strftime("%y.%m.%d"), filter=False):
+    appendCisuIfNeeded = "-CISU" if filter else ""
+    appendUnderscoreCisuIfNeeded = "_CISU" if filter else ""
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {version} of {model} ...{Color.END}')
 
     # warning, if folder out/model empty, causes failure
-    print("Loading schema.json from " + os.path.join("out", model) + "...")
-    # if args.filter, add -CISU to the file name
-    path = os.path.join("out", model, f"{model}-CISU.schema.json" if filter else f"{model}.schema.json")
+    print("Loading schema.json from " + os.path.join("out", model+appendCisuIfNeeded) + "...")
+    path = os.path.join("out", model+appendCisuIfNeeded, f"{model}{appendCisuIfNeeded}.schema.json")
     with open(os.path.join(path), 'r') as file:
         json_in = json.load(file)
         print("schema.json loaded.")
         print("Parsing schema.json ...")
         parse_root_node(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
-        print("Rendering " + os.path.join("out", model, "uml_schema_CISU.pdf" if filter else "uml_schema.pdf" ) + " ...")
+        print("Rendering " + os.path.join("out", model+appendCisuIfNeeded, "uml_schema"+appendUnderscoreCisuIfNeeded+".pdf" if filter else "uml_schema.pdf" ) + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-        dot.render(os.path.join("out", model, "uml_schema_CISU" if filter else "uml_schema"))
+        dot.render(os.path.join("out", model+appendCisuIfNeeded, "uml_schema"+appendUnderscoreCisuIfNeeded if filter else "uml_schema"))
         print("Done.")
     return
 
