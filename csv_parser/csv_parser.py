@@ -122,7 +122,7 @@ else :
     df = df[df['15-15'] == 'X']
 
 # Storing input data in a file to track versions
-df.to_csv(f'out/{args.sheet}{appendCisuIfNeeded}/input.csv')
+df.to_csv(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.input.csv')
 
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
@@ -346,7 +346,7 @@ def build_example(elem):
 
 
 json_example = build_example(rootObject)
-with open(f'out/{args.sheet}{appendCisuIfNeeded}/example.json', 'w') as outfile:
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.example.json', 'w') as outfile:
     json.dump(json_example, outfile, indent=4)
 
 # Go through data (list or tree) and use it to build the expected JSON schema
@@ -544,9 +544,8 @@ def DFS(root, use_elem):
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
 DFS(rootObject, build_json_schema)
-if(args.filter):
-    with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.schema.json', 'w') as outfile:
-        json.dump(json_schema, outfile, indent=4)
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.schema.json', 'w') as outfile:
+    json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
 
@@ -594,7 +593,7 @@ with open('template.asyncapi.yaml') as f:
     }
     # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
 
-with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}.openapi.yaml', 'w') as file:
+with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
     file.write(documents)
@@ -687,7 +686,7 @@ def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAM
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-doc.save(f'out/{args.sheet}{appendCisuIfNeeded}/schema{appendCisuIfNeeded}.docx')
+doc.save(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.schema.docx')
 
 print('Docx tables generated.')
 

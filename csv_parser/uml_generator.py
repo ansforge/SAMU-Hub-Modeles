@@ -158,7 +158,7 @@ class Color:
 
 def run(model, obj, version=date.today().strftime("%y.%m.%d"), filter=False):
     appendCisuIfNeeded = "-CISU" if filter else ""
-    appendUnderscoreCisuIfNeeded = "_CISU" if filter else ""
+
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {version} of {model} ...{Color.END}')
 
     # warning, if folder out/model empty, causes failure
@@ -169,9 +169,9 @@ def run(model, obj, version=date.today().strftime("%y.%m.%d"), filter=False):
         print("schema.json loaded.")
         print("Parsing schema.json ...")
         parse_root_node(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
-        print("Rendering " + os.path.join("out", model+appendCisuIfNeeded, "uml_schema"+appendUnderscoreCisuIfNeeded+".pdf" if filter else "uml_schema.pdf" ) + " ...")
+        print("Rendering " + os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_schema.pdf") + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-        dot.render(os.path.join("out", model+appendCisuIfNeeded, "uml_schema"+appendUnderscoreCisuIfNeeded if filter else "uml_schema"))
+        dot.render(os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_schema"))
         print("Done.")
     return
 
