@@ -377,12 +377,16 @@ def get_parent_example_path(parent):
         return json_schema['example']
     return json_schema['definitions'][parent['true_type']]['example']
 
+def nullable_string(elem, typeName):
+    nullable = elem['Cardinalité'].startswith('0')
+    return typeName == 'string' and nullable
+
 def add_field_child_property(parent, child, definitions):
     """Update parent definitions (required and properties) by adding the child information for a field child"""
     if child['Cardinalité'].startswith('1'):
         definitions['required'].append(child['name'])
     typeName, pattern, format = type_matching(child)
-    if typeName == 'string' & child['Cardinalité'].startswith('0'):
+    if nullable_string(child, typeName):
         typeName = '["string", "null"]'
     parentExamplePath = get_parent_example_path(parent)
     childDetails = {
