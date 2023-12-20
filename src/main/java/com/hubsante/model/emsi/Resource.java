@@ -28,6 +28,7 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,13 +38,14 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Contact;
 import com.hubsante.model.emsi.Rgeo;
 import com.hubsante.model.emsi.Rtype;
-import com.hubsante.model.emsi.StringNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Resource
@@ -64,16 +66,16 @@ public class Resource {
   private Rtype RTYPE;
 
   public static final String JSON_PROPERTY_I_D = "ID";
-  private StringNull ID = null;
+  private JsonNullable<Object> ID = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_O_R_G_I_D = "ORG_ID";
-  private StringNull ORG_ID = null;
+  private JsonNullable<Object> ORG_ID = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private StringNull NAME = null;
+  private JsonNullable<Object> NAME = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private StringNull FREETEXT = null;
+  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_R_G_E_O = "RGEO";
   private List<Rgeo> RGEO;
@@ -186,12 +188,12 @@ public class Resource {
 
     WGT_KGH("WGT/KGH");
 
-    private StringNull value;
+    private String value;
 
-    UMEnum(StringNull value) { this.value = value; }
+    UMEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -201,7 +203,7 @@ public class Resource {
     }
 
     @JsonCreator
-    public static UMEnum fromValue(StringNull value) {
+    public static UMEnum fromValue(String value) {
       for (UMEnum b : UMEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -212,7 +214,7 @@ public class Resource {
   }
 
   public static final String JSON_PROPERTY_U_M = "UM";
-  private UMEnum UM = null;
+  private UMEnum UM;
 
   /**
    * Définit le statut de disponibilité d&#39;une ressource. - AVAILB :
@@ -240,12 +242,12 @@ public class Resource {
 
     IN_USE_ON_SCENE("IN_USE/ON_SCENE");
 
-    private StringNull value;
+    private String value;
 
-    STATUSEnum(StringNull value) { this.value = value; }
+    STATUSEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -255,7 +257,7 @@ public class Resource {
     }
 
     @JsonCreator
-    public static STATUSEnum fromValue(StringNull value) {
+    public static STATUSEnum fromValue(String value) {
       for (STATUSEnum b : STATUSEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -266,11 +268,11 @@ public class Resource {
   }
 
   public static final String JSON_PROPERTY_S_T_A_T_U_S = "STATUS";
-  private STATUSEnum STATUS = null;
+  private STATUSEnum STATUS;
 
   public static final String JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y =
       "NATIONALITY";
-  private StringNull NATIONALITY = null;
+  private JsonNullable<Object> NATIONALITY = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_C_O_N_T_A_C_T_S = "CONTACTS";
   private List<Contact> CONTACTS;
@@ -300,9 +302,9 @@ public class Resource {
     this.RTYPE = RTYPE;
   }
 
-  public Resource ID(StringNull ID) {
+  public Resource ID(Object ID) {
+    this.ID = JsonNullable.<Object>of(ID);
 
-    this.ID = ID;
     return this;
   }
 
@@ -316,22 +318,28 @@ public class Resource {
    *par NexSIS, l&#39;ID fournit peut ne pas correspondre à une immatriculation.
    * @return ID
    **/
+  @JsonIgnore
+
+  public Object getID() {
+    return ID.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getID() {
+  public JsonNullable<Object> getID_JsonNullable() {
     return ID;
   }
 
   @JsonProperty(JSON_PROPERTY_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setID(StringNull ID) {
-    this.ID = ID;
+
+  public void setID(Object ID) {
+    this.ID = JsonNullable.<Object>of(ID);
   }
 
-  public Resource ORG_ID(StringNull ORG_ID) {
+  public Resource ORG_ID(Object ORG_ID) {
+    this.ORG_ID = JsonNullable.<Object>of(ORG_ID);
 
-    this.ORG_ID = ORG_ID;
     return this;
   }
 
@@ -347,22 +355,28 @@ public class Resource {
    *&lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
    * @return ORG_ID
    **/
+  @JsonIgnore
+
+  public Object getORGID() {
+    return ORG_ID.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getORGID() {
+  public JsonNullable<Object> getORGID_JsonNullable() {
     return ORG_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setORGID(StringNull ORG_ID) {
-    this.ORG_ID = ORG_ID;
+
+  public void setORGID(Object ORG_ID) {
+    this.ORG_ID = JsonNullable.<Object>of(ORG_ID);
   }
 
-  public Resource NAME(StringNull NAME) {
+  public Resource NAME(Object NAME) {
+    this.NAME = JsonNullable.<Object>of(NAME);
 
-    this.NAME = NAME;
     return this;
   }
 
@@ -372,22 +386,28 @@ public class Resource {
    *véhicules sont nommés Dans le cas d&#39;équipier, cela peut être leur nom
    * @return NAME
    **/
+  @JsonIgnore
+
+  public Object getNAME() {
+    return NAME.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getNAME() {
+  public JsonNullable<Object> getNAME_JsonNullable() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNAME(StringNull NAME) {
-    this.NAME = NAME;
+
+  public void setNAME(Object NAME) {
+    this.NAME = JsonNullable.<Object>of(NAME);
   }
 
-  public Resource FREETEXT(StringNull FREETEXT) {
+  public Resource FREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
 
-    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -398,17 +418,23 @@ public class Resource {
    *plaque d&#39;immatriculation.
    * @return FREETEXT
    **/
-  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getFREETEXT() {
-    return FREETEXT;
+  public Object getFREETEXT() {
+    return FREETEXT.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(StringNull FREETEXT) {
-    this.FREETEXT = FREETEXT;
+
+  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+    return FREETEXT;
+  }
+
+  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
+
+  public void setFREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
   }
 
   public Resource RGEO(List<Rgeo> RGEO) {
@@ -530,9 +556,9 @@ public class Resource {
     this.STATUS = STATUS;
   }
 
-  public Resource NATIONALITY(StringNull NATIONALITY) {
+  public Resource NATIONALITY(Object NATIONALITY) {
+    this.NATIONALITY = JsonNullable.<Object>of(NATIONALITY);
 
-    this.NATIONALITY = NATIONALITY;
     return this;
   }
 
@@ -541,17 +567,23 @@ public class Resource {
    *elements.
    * @return NATIONALITY
    **/
-  @JsonProperty(JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getNATIONALITY() {
-    return NATIONALITY;
+  public Object getNATIONALITY() {
+    return NATIONALITY.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNATIONALITY(StringNull NATIONALITY) {
-    this.NATIONALITY = NATIONALITY;
+
+  public JsonNullable<Object> getNATIONALITY_JsonNullable() {
+    return NATIONALITY;
+  }
+
+  @JsonProperty(JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y)
+
+  public void setNATIONALITY(Object NATIONALITY) {
+    this.NATIONALITY = JsonNullable.<Object>of(NATIONALITY);
   }
 
   public Resource CONTACTS(List<Contact> CONTACTS) {
@@ -603,22 +635,37 @@ public class Resource {
     }
     Resource resource = (Resource)o;
     return Objects.equals(this.RTYPE, resource.RTYPE) &&
-        Objects.equals(this.ID, resource.ID) &&
-        Objects.equals(this.ORG_ID, resource.ORG_ID) &&
-        Objects.equals(this.NAME, resource.NAME) &&
-        Objects.equals(this.FREETEXT, resource.FREETEXT) &&
+        equalsNullable(this.ID, resource.ID) &&
+        equalsNullable(this.ORG_ID, resource.ORG_ID) &&
+        equalsNullable(this.NAME, resource.NAME) &&
+        equalsNullable(this.FREETEXT, resource.FREETEXT) &&
         Objects.equals(this.RGEO, resource.RGEO) &&
         Objects.equals(this.QUANTITY, resource.QUANTITY) &&
         Objects.equals(this.UM, resource.UM) &&
         Objects.equals(this.STATUS, resource.STATUS) &&
-        Objects.equals(this.NATIONALITY, resource.NATIONALITY) &&
+        equalsNullable(this.NATIONALITY, resource.NATIONALITY) &&
         Objects.equals(this.CONTACTS, resource.CONTACTS);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(RTYPE, ID, ORG_ID, NAME, FREETEXT, RGEO, QUANTITY, UM,
-                        STATUS, NATIONALITY, CONTACTS);
+    return Objects.hash(RTYPE, hashCodeNullable(ID), hashCodeNullable(ORG_ID),
+                        hashCodeNullable(NAME), hashCodeNullable(FREETEXT),
+                        RGEO, QUANTITY, UM, STATUS,
+                        hashCodeNullable(NATIONALITY), CONTACTS);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

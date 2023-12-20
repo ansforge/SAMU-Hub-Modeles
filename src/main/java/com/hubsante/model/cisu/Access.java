@@ -28,19 +28,21 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.StringNull;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Access
@@ -56,37 +58,37 @@ import java.util.Objects;
 
 public class Access {
   public static final String JSON_PROPERTY_FLOOR = "floor";
-  private StringNull floor = null;
+  private JsonNullable<Object> floor = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_ROOM_NUMBER = "roomNumber";
-  private StringNull roomNumber = null;
+  private JsonNullable<Object> roomNumber = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_INTERPHONE = "interphone";
-  private StringNull interphone = null;
+  private JsonNullable<Object> interphone = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_ACCESS_CODE = "accessCode";
-  private List<StringNull> accessCode;
+  private List<Object> accessCode;
 
   public static final String JSON_PROPERTY_ELEVATOR = "elevator";
-  private StringNull elevator = null;
+  private JsonNullable<Object> elevator = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_BUILDING_NAME = "buildingName";
-  private StringNull buildingName = null;
+  private JsonNullable<Object> buildingName = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_ENTRANCE = "entrance";
-  private StringNull entrance = null;
+  private JsonNullable<Object> entrance = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_ENTITY = "entity";
-  private StringNull entity = null;
+  private JsonNullable<Object> entity = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_LOCPHONENUMBER = "locphonenumber";
   private BigDecimal locphonenumber;
 
   public Access() {}
 
-  public Access floor(StringNull floor) {
+  public Access floor(Object floor) {
+    this.floor = JsonNullable.<Object>of(floor);
 
-    this.floor = floor;
     return this;
   }
 
@@ -94,22 +96,28 @@ public class Access {
    * Etage
    * @return floor
    **/
+  @JsonIgnore
+
+  public Object getFloor() {
+    return floor.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_FLOOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getFloor() {
+  public JsonNullable<Object> getFloor_JsonNullable() {
     return floor;
   }
 
   @JsonProperty(JSON_PROPERTY_FLOOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFloor(StringNull floor) {
-    this.floor = floor;
+
+  public void setFloor(Object floor) {
+    this.floor = JsonNullable.<Object>of(floor);
   }
 
-  public Access roomNumber(StringNull roomNumber) {
+  public Access roomNumber(Object roomNumber) {
+    this.roomNumber = JsonNullable.<Object>of(roomNumber);
 
-    this.roomNumber = roomNumber;
     return this;
   }
 
@@ -117,22 +125,28 @@ public class Access {
    * Spécifie numéro d&#39;appartement, de chambre, de bureau
    * @return roomNumber
    **/
+  @JsonIgnore
+
+  public Object getRoomNumber() {
+    return roomNumber.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_ROOM_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getRoomNumber() {
+  public JsonNullable<Object> getRoomNumber_JsonNullable() {
     return roomNumber;
   }
 
   @JsonProperty(JSON_PROPERTY_ROOM_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRoomNumber(StringNull roomNumber) {
-    this.roomNumber = roomNumber;
+
+  public void setRoomNumber(Object roomNumber) {
+    this.roomNumber = JsonNullable.<Object>of(roomNumber);
   }
 
-  public Access interphone(StringNull interphone) {
+  public Access interphone(Object interphone) {
+    this.interphone = JsonNullable.<Object>of(interphone);
 
-    this.interphone = interphone;
     return this;
   }
 
@@ -141,26 +155,32 @@ public class Access {
    *l&#39;interphone (numéro, nom)
    * @return interphone
    **/
+  @JsonIgnore
+
+  public Object getInterphone() {
+    return interphone.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_INTERPHONE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getInterphone() {
+  public JsonNullable<Object> getInterphone_JsonNullable() {
     return interphone;
   }
 
   @JsonProperty(JSON_PROPERTY_INTERPHONE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInterphone(StringNull interphone) {
-    this.interphone = interphone;
+
+  public void setInterphone(Object interphone) {
+    this.interphone = JsonNullable.<Object>of(interphone);
   }
 
-  public Access accessCode(List<StringNull> accessCode) {
+  public Access accessCode(List<Object> accessCode) {
 
     this.accessCode = accessCode;
     return this;
   }
 
-  public Access addAccessCodeItem(StringNull accessCodeItem) {
+  public Access addAccessCodeItem(Object accessCodeItem) {
     if (this.accessCode == null) {
       this.accessCode = new ArrayList<>();
     }
@@ -175,7 +195,7 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_ACCESS_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<StringNull> getAccessCode() {
+  public List<Object> getAccessCode() {
     return accessCode;
   }
 
@@ -183,7 +203,7 @@ public class Access {
 
   @JsonProperty(JSON_PROPERTY_ACCESS_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAccessCode(List<StringNull> accessCode) {
+  public void setAccessCode(List<Object> accessCode) {
     if (accessCode == null) {
       return;
     }
@@ -193,9 +213,9 @@ public class Access {
     this.accessCode.addAll(accessCode);
   }
 
-  public Access elevator(StringNull elevator) {
+  public Access elevator(Object elevator) {
+    this.elevator = JsonNullable.<Object>of(elevator);
 
-    this.elevator = elevator;
     return this;
   }
 
@@ -203,22 +223,28 @@ public class Access {
    * Indique l&#39;ascenseur ou la cage d&#39;escalier
    * @return elevator
    **/
+  @JsonIgnore
+
+  public Object getElevator() {
+    return elevator.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_ELEVATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getElevator() {
+  public JsonNullable<Object> getElevator_JsonNullable() {
     return elevator;
   }
 
   @JsonProperty(JSON_PROPERTY_ELEVATOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setElevator(StringNull elevator) {
-    this.elevator = elevator;
+
+  public void setElevator(Object elevator) {
+    this.elevator = JsonNullable.<Object>of(elevator);
   }
 
-  public Access buildingName(StringNull buildingName) {
+  public Access buildingName(Object buildingName) {
+    this.buildingName = JsonNullable.<Object>of(buildingName);
 
-    this.buildingName = buildingName;
     return this;
   }
 
@@ -226,22 +252,28 @@ public class Access {
    * Nom du bâtiment
    * @return buildingName
    **/
+  @JsonIgnore
+
+  public Object getBuildingName() {
+    return buildingName.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_BUILDING_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getBuildingName() {
+  public JsonNullable<Object> getBuildingName_JsonNullable() {
     return buildingName;
   }
 
   @JsonProperty(JSON_PROPERTY_BUILDING_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBuildingName(StringNull buildingName) {
-    this.buildingName = buildingName;
+
+  public void setBuildingName(Object buildingName) {
+    this.buildingName = JsonNullable.<Object>of(buildingName);
   }
 
-  public Access entrance(StringNull entrance) {
+  public Access entrance(Object entrance) {
+    this.entrance = JsonNullable.<Object>of(entrance);
 
-    this.entrance = entrance;
     return this;
   }
 
@@ -249,22 +281,28 @@ public class Access {
    * Get entrance
    * @return entrance
    **/
+  @JsonIgnore
+
+  public Object getEntrance() {
+    return entrance.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_ENTRANCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getEntrance() {
+  public JsonNullable<Object> getEntrance_JsonNullable() {
     return entrance;
   }
 
   @JsonProperty(JSON_PROPERTY_ENTRANCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntrance(StringNull entrance) {
-    this.entrance = entrance;
+
+  public void setEntrance(Object entrance) {
+    this.entrance = JsonNullable.<Object>of(entrance);
   }
 
-  public Access entity(StringNull entity) {
+  public Access entity(Object entity) {
+    this.entity = JsonNullable.<Object>of(entity);
 
-    this.entity = entity;
     return this;
   }
 
@@ -272,17 +310,23 @@ public class Access {
    * Nom du service concerné au sein de l&#39;établissement
    * @return entity
    **/
-  @JsonProperty(JSON_PROPERTY_ENTITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getEntity() {
-    return entity;
+  public Object getEntity() {
+    return entity.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_ENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEntity(StringNull entity) {
-    this.entity = entity;
+
+  public JsonNullable<Object> getEntity_JsonNullable() {
+    return entity;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ENTITY)
+
+  public void setEntity(Object entity) {
+    this.entity = JsonNullable.<Object>of(entity);
   }
 
   public Access locphonenumber(BigDecimal locphonenumber) {
@@ -319,21 +363,37 @@ public class Access {
       return false;
     }
     Access access = (Access)o;
-    return Objects.equals(this.floor, access.floor) &&
-        Objects.equals(this.roomNumber, access.roomNumber) &&
-        Objects.equals(this.interphone, access.interphone) &&
+    return equalsNullable(this.floor, access.floor) &&
+        equalsNullable(this.roomNumber, access.roomNumber) &&
+        equalsNullable(this.interphone, access.interphone) &&
         Objects.equals(this.accessCode, access.accessCode) &&
-        Objects.equals(this.elevator, access.elevator) &&
-        Objects.equals(this.buildingName, access.buildingName) &&
-        Objects.equals(this.entrance, access.entrance) &&
-        Objects.equals(this.entity, access.entity) &&
+        equalsNullable(this.elevator, access.elevator) &&
+        equalsNullable(this.buildingName, access.buildingName) &&
+        equalsNullable(this.entrance, access.entrance) &&
+        equalsNullable(this.entity, access.entity) &&
         Objects.equals(this.locphonenumber, access.locphonenumber);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(floor, roomNumber, interphone, accessCode, elevator,
-                        buildingName, entrance, entity, locphonenumber);
+    return Objects.hash(
+        hashCodeNullable(floor), hashCodeNullable(roomNumber),
+        hashCodeNullable(interphone), accessCode, hashCodeNullable(elevator),
+        hashCodeNullable(buildingName), hashCodeNullable(entrance),
+        hashCodeNullable(entity), locphonenumber);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

@@ -28,6 +28,7 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -40,13 +41,14 @@ import com.hubsante.model.cisu.Caller;
 import com.hubsante.model.cisu.ContactSource;
 import com.hubsante.model.cisu.Location;
 import com.hubsante.model.cisu.Qualification;
-import com.hubsante.model.cisu.StringNull;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Alert
@@ -109,7 +111,7 @@ public class Alert {
   private ReportingEnum reporting;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private StringNull freetext = null;
+  private JsonNullable<Object> freetext = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_CALLER = "caller";
   private Caller caller;
@@ -219,9 +221,9 @@ public class Alert {
     this.reporting = reporting;
   }
 
-  public Alert freetext(StringNull freetext) {
+  public Alert freetext(Object freetext) {
+    this.freetext = JsonNullable.<Object>of(freetext);
 
-    this.freetext = freetext;
     return this;
   }
 
@@ -230,17 +232,23 @@ public class Alert {
    *concernant l&#39;alerte
    * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getFreetext() {
-    return freetext;
+  public Object getFreetext() {
+    return freetext.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(StringNull freetext) {
-    this.freetext = freetext;
+
+  public JsonNullable<Object> getFreetext_JsonNullable() {
+    return freetext;
+  }
+
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+
+  public void setFreetext(Object freetext) {
+    this.freetext = JsonNullable.<Object>of(freetext);
   }
 
   public Alert caller(Caller caller) {
@@ -409,7 +417,7 @@ public class Alert {
     return Objects.equals(this.id, alert.id) &&
         Objects.equals(this.reception, alert.reception) &&
         Objects.equals(this.reporting, alert.reporting) &&
-        Objects.equals(this.freetext, alert.freetext) &&
+        equalsNullable(this.freetext, alert.freetext) &&
         Objects.equals(this.caller, alert.caller) &&
         Objects.equals(this.alertSource, alert.alertSource) &&
         Objects.equals(this.location, alert.location) &&
@@ -418,10 +426,24 @@ public class Alert {
         Objects.equals(this.attachment, alert.attachment);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(id, reception, reporting, freetext, caller, alertSource,
-                        location, qualification, callTaker, attachment);
+    return Objects.hash(id, reception, reporting, hashCodeNullable(freetext),
+                        caller, alertSource, location, qualification, callTaker,
+                        attachment);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

@@ -28,16 +28,18 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Attachment
@@ -51,10 +53,10 @@ import java.util.Objects;
 
 public class Attachment {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
-  private StringNull description = null;
+  private JsonNullable<Object> description = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_MIME_TYPE = "mimeType";
-  private StringNull mimeType = null;
+  private JsonNullable<Object> mimeType = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_SIZE = "size";
   private Integer size;
@@ -63,16 +65,16 @@ public class Attachment {
   private String URI;
 
   public static final String JSON_PROPERTY_DEREF_U_R_I = "derefURI";
-  private StringNull derefURI = null;
+  private JsonNullable<Object> derefURI = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_DIGEST = "digest";
-  private StringNull digest = null;
+  private JsonNullable<Object> digest = JsonNullable.<Object>of(null);
 
   public Attachment() {}
 
-  public Attachment description(StringNull description) {
+  public Attachment description(Object description) {
+    this.description = JsonNullable.<Object>of(description);
 
-    this.description = description;
     return this;
   }
 
@@ -81,22 +83,28 @@ public class Attachment {
    *«photo»
    * @return description
    **/
+  @JsonIgnore
+
+  public Object getDescription() {
+    return description.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getDescription() {
+  public JsonNullable<Object> getDescription_JsonNullable() {
     return description;
   }
 
   @JsonProperty(JSON_PROPERTY_DESCRIPTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDescription(StringNull description) {
-    this.description = description;
+
+  public void setDescription(Object description) {
+    this.description = JsonNullable.<Object>of(description);
   }
 
-  public Attachment mimeType(StringNull mimeType) {
+  public Attachment mimeType(Object mimeType) {
+    this.mimeType = JsonNullable.<Object>of(mimeType);
 
-    this.mimeType = mimeType;
     return this;
   }
 
@@ -105,17 +113,23 @@ public class Attachment {
    *ressource
    * @return mimeType
    **/
-  @JsonProperty(JSON_PROPERTY_MIME_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getMimeType() {
-    return mimeType;
+  public Object getMimeType() {
+    return mimeType.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_MIME_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMimeType(StringNull mimeType) {
-    this.mimeType = mimeType;
+
+  public JsonNullable<Object> getMimeType_JsonNullable() {
+    return mimeType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_MIME_TYPE)
+
+  public void setMimeType(Object mimeType) {
+    this.mimeType = JsonNullable.<Object>of(mimeType);
   }
 
   public Attachment size(Integer size) {
@@ -167,9 +181,9 @@ public class Attachment {
     this.URI = URI;
   }
 
-  public Attachment derefURI(StringNull derefURI) {
+  public Attachment derefURI(Object derefURI) {
+    this.derefURI = JsonNullable.<Object>of(derefURI);
 
-    this.derefURI = derefURI;
     return this;
   }
 
@@ -179,22 +193,28 @@ public class Attachment {
    *des double quotes qui casseraient le message, …)
    * @return derefURI
    **/
+  @JsonIgnore
+
+  public Object getDerefURI() {
+    return derefURI.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_DEREF_U_R_I)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getDerefURI() {
+  public JsonNullable<Object> getDerefURI_JsonNullable() {
     return derefURI;
   }
 
   @JsonProperty(JSON_PROPERTY_DEREF_U_R_I)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDerefURI(StringNull derefURI) {
-    this.derefURI = derefURI;
+
+  public void setDerefURI(Object derefURI) {
+    this.derefURI = JsonNullable.<Object>of(derefURI);
   }
 
-  public Attachment digest(StringNull digest) {
+  public Attachment digest(Object digest) {
+    this.digest = JsonNullable.<Object>of(digest);
 
-    this.digest = digest;
     return this;
   }
 
@@ -203,17 +223,23 @@ public class Attachment {
    *ressource est hashée avec le protocole SHA-256
    * @return digest
    **/
-  @JsonProperty(JSON_PROPERTY_DIGEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getDigest() {
-    return digest;
+  public Object getDigest() {
+    return digest.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_DIGEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDigest(StringNull digest) {
-    this.digest = digest;
+
+  public JsonNullable<Object> getDigest_JsonNullable() {
+    return digest;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DIGEST)
+
+  public void setDigest(Object digest) {
+    this.digest = JsonNullable.<Object>of(digest);
   }
 
   @Override
@@ -225,17 +251,32 @@ public class Attachment {
       return false;
     }
     Attachment attachment = (Attachment)o;
-    return Objects.equals(this.description, attachment.description) &&
-        Objects.equals(this.mimeType, attachment.mimeType) &&
+    return equalsNullable(this.description, attachment.description) &&
+        equalsNullable(this.mimeType, attachment.mimeType) &&
         Objects.equals(this.size, attachment.size) &&
         Objects.equals(this.URI, attachment.URI) &&
-        Objects.equals(this.derefURI, attachment.derefURI) &&
-        Objects.equals(this.digest, attachment.digest);
+        equalsNullable(this.derefURI, attachment.derefURI) &&
+        equalsNullable(this.digest, attachment.digest);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, mimeType, size, URI, derefURI, digest);
+    return Objects.hash(hashCodeNullable(description),
+                        hashCodeNullable(mimeType), size, URI,
+                        hashCodeNullable(derefURI), hashCodeNullable(digest));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

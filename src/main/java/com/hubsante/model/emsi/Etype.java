@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -621,12 +620,12 @@ public class Etype {
 
     DIS_TSNAMI("DIS/TSNAMI");
 
-    private StringNull value;
+    private String value;
 
-    ENVEnum(StringNull value) { this.value = value; }
+    ENVEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -636,7 +635,7 @@ public class Etype {
     }
 
     @JsonCreator
-    public static ENVEnum fromValue(StringNull value) {
+    public static ENVEnum fromValue(String value) {
       for (ENVEnum b : ENVEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -647,7 +646,7 @@ public class Etype {
   }
 
   public static final String JSON_PROPERTY_E_N_V = "ENV";
-  private ENVEnum ENV = null;
+  private ENVEnum ENV;
 
   public Etype() {}
 

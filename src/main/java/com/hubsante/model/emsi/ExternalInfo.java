@@ -28,16 +28,18 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.emsi.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * ExternalInfo
@@ -50,7 +52,7 @@ import java.util.Objects;
 
 public class ExternalInfo {
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private StringNull FREETEXT = null;
+  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_U_R_I = "URI";
   private String URI;
@@ -69,12 +71,12 @@ public class ExternalInfo {
 
     WEBSIT("WEBSIT");
 
-    private StringNull value;
+    private String value;
 
-    TYPEEnum(StringNull value) { this.value = value; }
+    TYPEEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -84,7 +86,7 @@ public class ExternalInfo {
     }
 
     @JsonCreator
-    public static TYPEEnum fromValue(StringNull value) {
+    public static TYPEEnum fromValue(String value) {
       for (TYPEEnum b : TYPEEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -95,13 +97,13 @@ public class ExternalInfo {
   }
 
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private TYPEEnum TYPE = null;
+  private TYPEEnum TYPE;
 
   public ExternalInfo() {}
 
-  public ExternalInfo FREETEXT(StringNull FREETEXT) {
+  public ExternalInfo FREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
 
-    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -109,17 +111,23 @@ public class ExternalInfo {
    * Optionnel
    * @return FREETEXT
    **/
-  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getFREETEXT() {
-    return FREETEXT;
+  public Object getFREETEXT() {
+    return FREETEXT.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(StringNull FREETEXT) {
-    this.FREETEXT = FREETEXT;
+
+  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+    return FREETEXT;
+  }
+
+  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
+
+  public void setFREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
   }
 
   public ExternalInfo URI(String URI) {
@@ -177,14 +185,27 @@ public class ExternalInfo {
       return false;
     }
     ExternalInfo externalInfo = (ExternalInfo)o;
-    return Objects.equals(this.FREETEXT, externalInfo.FREETEXT) &&
+    return equalsNullable(this.FREETEXT, externalInfo.FREETEXT) &&
         Objects.equals(this.URI, externalInfo.URI) &&
         Objects.equals(this.TYPE, externalInfo.TYPE);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(FREETEXT, URI, TYPE);
+    return Objects.hash(hashCodeNullable(FREETEXT), URI, TYPE);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

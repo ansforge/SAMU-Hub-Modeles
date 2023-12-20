@@ -28,16 +28,18 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * CustomMap
@@ -53,13 +55,13 @@ public class CustomMap {
   private String key;
 
   public static final String JSON_PROPERTY_LABEL = "label";
-  private StringNull label = null;
+  private JsonNullable<Object> label = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_VALUE = "value";
   private String value;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private StringNull freetext = null;
+  private JsonNullable<Object> freetext = JsonNullable.<Object>of(null);
 
   public CustomMap() {}
 
@@ -86,9 +88,9 @@ public class CustomMap {
     this.key = key;
   }
 
-  public CustomMap label(StringNull label) {
+  public CustomMap label(Object label) {
+    this.label = JsonNullable.<Object>of(label);
 
-    this.label = label;
     return this;
   }
 
@@ -96,17 +98,23 @@ public class CustomMap {
    * Libellé correspondant
    * @return label
    **/
-  @JsonProperty(JSON_PROPERTY_LABEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getLabel() {
-    return label;
+  public Object getLabel() {
+    return label.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLabel(StringNull label) {
-    this.label = label;
+
+  public JsonNullable<Object> getLabel_JsonNullable() {
+    return label;
+  }
+
+  @JsonProperty(JSON_PROPERTY_LABEL)
+
+  public void setLabel(Object label) {
+    this.label = JsonNullable.<Object>of(label);
   }
 
   public CustomMap value(String value) {
@@ -132,9 +140,9 @@ public class CustomMap {
     this.value = value;
   }
 
-  public CustomMap freetext(StringNull freetext) {
+  public CustomMap freetext(Object freetext) {
+    this.freetext = JsonNullable.<Object>of(freetext);
 
-    this.freetext = freetext;
     return this;
   }
 
@@ -143,17 +151,23 @@ public class CustomMap {
    *additionnel
    * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getFreetext() {
-    return freetext;
+  public Object getFreetext() {
+    return freetext.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(StringNull freetext) {
-    this.freetext = freetext;
+
+  public JsonNullable<Object> getFreetext_JsonNullable() {
+    return freetext;
+  }
+
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+
+  public void setFreetext(Object freetext) {
+    this.freetext = JsonNullable.<Object>of(freetext);
   }
 
   @Override
@@ -166,14 +180,28 @@ public class CustomMap {
     }
     CustomMap customMap = (CustomMap)o;
     return Objects.equals(this.key, customMap.key) &&
-        Objects.equals(this.label, customMap.label) &&
+        equalsNullable(this.label, customMap.label) &&
         Objects.equals(this.value, customMap.value) &&
-        Objects.equals(this.freetext, customMap.freetext);
+        equalsNullable(this.freetext, customMap.freetext);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(key, label, value, freetext);
+    return Objects.hash(key, hashCodeNullable(label), value,
+                        hashCodeNullable(freetext));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

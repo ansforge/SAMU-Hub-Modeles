@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -1292,11 +1291,11 @@ public class Rtype {
   private List<RCLASSEnum> RCLASS = new ArrayList<>();
 
   public static final String JSON_PROPERTY_C_A_P_A_B_I_L_I_T_Y = "CAPABILITY";
-  private List<StringNull> CAPABILITY;
+  private List<Object> CAPABILITY;
 
   public static final String JSON_PROPERTY_C_H_A_R_A_C_T_E_R_I_S_T_I_C_S =
       "CHARACTERISTICS";
-  private List<StringNull> CHARACTERISTICS;
+  private List<Object> CHARACTERISTICS;
 
   public Rtype() {}
 
@@ -1339,13 +1338,13 @@ public class Rtype {
     this.RCLASS.addAll(RCLASS);
   }
 
-  public Rtype CAPABILITY(List<StringNull> CAPABILITY) {
+  public Rtype CAPABILITY(List<Object> CAPABILITY) {
 
     this.CAPABILITY = CAPABILITY;
     return this;
   }
 
-  public Rtype addCAPABILITYItem(StringNull CAPABILITYItem) {
+  public Rtype addCAPABILITYItem(Object CAPABILITYItem) {
     if (this.CAPABILITY == null) {
       this.CAPABILITY = new ArrayList<>();
     }
@@ -1360,7 +1359,7 @@ public class Rtype {
   @JsonProperty(JSON_PROPERTY_C_A_P_A_B_I_L_I_T_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<StringNull> getCAPABILITY() {
+  public List<Object> getCAPABILITY() {
     return CAPABILITY;
   }
 
@@ -1368,7 +1367,7 @@ public class Rtype {
 
   @JsonProperty(JSON_PROPERTY_C_A_P_A_B_I_L_I_T_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCAPABILITY(List<StringNull> CAPABILITY) {
+  public void setCAPABILITY(List<Object> CAPABILITY) {
     if (CAPABILITY == null) {
       return;
     }
@@ -1378,13 +1377,13 @@ public class Rtype {
     this.CAPABILITY.addAll(CAPABILITY);
   }
 
-  public Rtype CHARACTERISTICS(List<StringNull> CHARACTERISTICS) {
+  public Rtype CHARACTERISTICS(List<Object> CHARACTERISTICS) {
 
     this.CHARACTERISTICS = CHARACTERISTICS;
     return this;
   }
 
-  public Rtype addCHARACTERISTICSItem(StringNull CHARACTERISTICSItem) {
+  public Rtype addCHARACTERISTICSItem(Object CHARACTERISTICSItem) {
     if (this.CHARACTERISTICS == null) {
       this.CHARACTERISTICS = new ArrayList<>();
     }
@@ -1399,7 +1398,7 @@ public class Rtype {
   @JsonProperty(JSON_PROPERTY_C_H_A_R_A_C_T_E_R_I_S_T_I_C_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<StringNull> getCHARACTERISTICS() {
+  public List<Object> getCHARACTERISTICS() {
     return CHARACTERISTICS;
   }
 
@@ -1407,7 +1406,7 @@ public class Rtype {
 
   @JsonProperty(JSON_PROPERTY_C_H_A_R_A_C_T_E_R_I_S_T_I_C_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCHARACTERISTICS(List<StringNull> CHARACTERISTICS) {
+  public void setCHARACTERISTICS(List<Object> CHARACTERISTICS) {
     if (CHARACTERISTICS == null) {
       return;
     }

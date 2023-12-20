@@ -28,16 +28,18 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Nomenclature
@@ -56,7 +58,7 @@ public class Nomenclature {
   private String label;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private StringNull freetext = null;
+  private JsonNullable<Object> freetext = JsonNullable.<Object>of(null);
 
   public Nomenclature() {}
 
@@ -108,9 +110,9 @@ public class Nomenclature {
     this.label = label;
   }
 
-  public Nomenclature freetext(StringNull freetext) {
+  public Nomenclature freetext(Object freetext) {
+    this.freetext = JsonNullable.<Object>of(freetext);
 
-    this.freetext = freetext;
     return this;
   }
 
@@ -119,17 +121,23 @@ public class Nomenclature {
    *qualifier l&#39;événement.
    * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getFreetext() {
-    return freetext;
+  public Object getFreetext() {
+    return freetext.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(StringNull freetext) {
-    this.freetext = freetext;
+
+  public JsonNullable<Object> getFreetext_JsonNullable() {
+    return freetext;
+  }
+
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+
+  public void setFreetext(Object freetext) {
+    this.freetext = JsonNullable.<Object>of(freetext);
   }
 
   @Override
@@ -143,12 +151,25 @@ public class Nomenclature {
     Nomenclature nomenclature = (Nomenclature)o;
     return Objects.equals(this.code, nomenclature.code) &&
         Objects.equals(this.label, nomenclature.label) &&
-        Objects.equals(this.freetext, nomenclature.freetext);
+        equalsNullable(this.freetext, nomenclature.freetext);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, label, freetext);
+    return Objects.hash(code, label, hashCodeNullable(freetext));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

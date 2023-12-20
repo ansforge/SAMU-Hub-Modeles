@@ -8,7 +8,7 @@ strict digraph {
                 <TD><B>LINK</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet link</I><BR/>ID <I>string</I> : [1..1]<BR/>LINK_ROLE <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet link</I><BR/>ID <I>string</I> : [1..1]<BR/>LINK_ROLE <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	LINK -> CONTEXT [constraint=true headlabel=1 taillabel="0..*"]
@@ -17,7 +17,7 @@ strict digraph {
                 <TD><B>ORIGIN</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet origin</I><BR/>ORG_ID <I>[string, null]</I> : [0..1]<BR/>USER_ID <I>[string, null]</I> : [0..1]<BR/>NAME <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet origin</I><BR/>ORG_ID <I>['string', 'null']</I> : [0..1]<BR/>USER_ID <I>['string', 'null']</I> : [0..1]<BR/>NAME <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	ORIGIN -> CONTEXT [constraint=true headlabel=1 taillabel="0..1"]
@@ -26,7 +26,7 @@ strict digraph {
                 <TD><B>EXTERNAL_INFO</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet externalInfo</I><BR/>FREETEXT <I>[string, null]</I> : [0..1]<BR/>URI <I>string</I> : [1..1]<BR/>TYPE <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet externalInfo</I><BR/>FREETEXT <I>['string', 'null']</I> : [0..1]<BR/>URI <I>string</I> : [1..1]<BR/>TYPE <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	EXTERNAL_INFO -> CONTEXT [constraint=true headlabel=1 taillabel="0..*"]
@@ -35,7 +35,7 @@ strict digraph {
                 <TD><B>CONTEXT</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet context</I><BR/>ID <I>string</I> : [1..1]<BR/>MODE <I>string</I> : [1..1]<BR/>MSGTYPE <I>string</I> : [1..1]<BR/>CREATION <I>date-time</I> : [0..1]<BR/>LEVEL <I>[string, null]</I> : [0..1]<BR/>SECLASS <I>[string, null]</I> : [0..1]<BR/>FREETEXT <I>[string, null]</I> : [0..1]<BR/>URGENCY <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet context</I><BR/>ID <I>string</I> : [1..1]<BR/>MODE <I>string</I> : [1..1]<BR/>MSGTYPE <I>string</I> : [1..1]<BR/>CREATION <I>date-time</I> : [0..1]<BR/>LEVEL <I>['string', 'null']</I> : [0..1]<BR/>SECLASS <I>['string', 'null']</I> : [0..1]<BR/>FREETEXT <I>['string', 'null']</I> : [0..1]<BR/>URGENCY <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	CONTEXT -> emsi [constraint=true headlabel=1 taillabel=1]
@@ -44,7 +44,7 @@ strict digraph {
                 <TD><B>ETYPE</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet etype</I><BR/>CATEGORY <I>string</I> : [1..*]<BR/>ACTOR <I>string</I> : [1..*]<BR/>LOCTYPE <I>string</I> : [1..*]<BR/>ENV <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet etype</I><BR/>CATEGORY <I>string</I> : [1..*]<BR/>ACTOR <I>string</I> : [1..*]<BR/>LOCTYPE <I>string</I> : [1..*]<BR/>ENV <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	ETYPE -> EVENT [constraint=true headlabel=1 taillabel="0..1"]
@@ -89,7 +89,7 @@ strict digraph {
                 <TD><B>POSITION</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>[string, null]</I> : [0..1]<BR/>TYPE <I>[string, null]</I> : [0..1]<BR/>HEIGHT_ROLE <I>[string, null]</I> : [0..1]<BR/>COORDSYS <I>[string, null]</I> : [0..1]<BR/>ADDRESS <I>[string, null]</I> : [0..*]</TD>
+                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>['string', 'null']</I> : [0..1]<BR/>TYPE <I>['string', 'null']</I> : [0..1]<BR/>HEIGHT_ROLE <I>['string', 'null']</I> : [0..1]<BR/>COORDSYS <I>['string', 'null']</I> : [0..1]<BR/>ADDRESS <I>['string', 'null']</I> : [0..*]</TD>
                 </TR>
                 </TABLE>>]
 	POSITION -> EGEO [constraint=true headlabel=1 taillabel=1]
@@ -98,7 +98,7 @@ strict digraph {
                 <TD><B>EGEO</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet egeo</I><BR/>DATIME <I>date-time</I> : [0..1]<BR/>TYPE <I>string</I> : [1..1]<BR/>WEATHER <I>[string, null]</I> : [0..*]<BR/>FREETEXT <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet egeo</I><BR/>DATIME <I>date-time</I> : [0..1]<BR/>TYPE <I>string</I> : [1..1]<BR/>WEATHER <I>['string', 'null']</I> : [0..*]<BR/>FREETEXT <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	EGEO -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
@@ -107,7 +107,7 @@ strict digraph {
                 <TD><B>EVENT</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet event</I><BR/>ID <I>string</I> : [1..1]<BR/>NAME <I>[string, null]</I> : [0..1]<BR/>MAIN_EVENT_ID <I>[string, null]</I> : [0..1]<BR/>SOURCE <I>[string, null]</I> : [0..1]<BR/>SCALE <I>[string, null]</I> : [0..1]<BR/>CERTAINTY <I>integer</I> : [0..1]<BR/>DECL_DATIME <I>date-time</I> : [0..1]<BR/>OCC_DATIME <I>date-time</I> : [0..1]<BR/>OBS_DATIME <I>date-time</I> : [0..1]<BR/>STATUS <I>[string, null]</I> : [0..1]<BR/>RISK_ASSESMENT <I>[string, null]</I> : [0..1]<BR/>CAUSE <I>[string, null]</I> : [0..1]<BR/>FREETEXT <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet event</I><BR/>ID <I>string</I> : [1..1]<BR/>NAME <I>['string', 'null']</I> : [0..1]<BR/>MAIN_EVENT_ID <I>['string', 'null']</I> : [0..1]<BR/>SOURCE <I>['string', 'null']</I> : [0..1]<BR/>SCALE <I>['string', 'null']</I> : [0..1]<BR/>CERTAINTY <I>integer</I> : [0..1]<BR/>DECL_DATIME <I>date-time</I> : [0..1]<BR/>OCC_DATIME <I>date-time</I> : [0..1]<BR/>OBS_DATIME <I>date-time</I> : [0..1]<BR/>STATUS <I>['string', 'null']</I> : [0..1]<BR/>RISK_ASSESMENT <I>['string', 'null']</I> : [0..1]<BR/>CAUSE <I>['string', 'null']</I> : [0..1]<BR/>FREETEXT <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	EVENT -> emsi [constraint=true headlabel=1 taillabel=1]
@@ -125,7 +125,7 @@ strict digraph {
                 <TD><B>POSITION</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>[string, null]</I> : [0..1]<BR/>TYPE <I>[string, null]</I> : [0..1]<BR/>HEIGHT_ROLE <I>[string, null]</I> : [0..1]<BR/>COORDSYS <I>[string, null]</I> : [0..1]<BR/>ADDRESS <I>[string, null]</I> : [0..*]</TD>
+                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>['string', 'null']</I> : [0..1]<BR/>TYPE <I>['string', 'null']</I> : [0..1]<BR/>HEIGHT_ROLE <I>['string', 'null']</I> : [0..1]<BR/>COORDSYS <I>['string', 'null']</I> : [0..1]<BR/>ADDRESS <I>['string', 'null']</I> : [0..*]</TD>
                 </TR>
                 </TABLE>>]
 	POSITION -> MISSION [constraint=true headlabel=1 taillabel="0..1"]
@@ -134,7 +134,7 @@ strict digraph {
                 <TD><B>MISSION</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet mission</I><BR/>TYPE <I>string</I> : [1..1]<BR/>FREETEXT <I>[string, null]</I> : [0..1]<BR/>ID <I>[string, null]</I> : [0..1]<BR/>ORG_ID <I>[string, null]</I> : [0..1]<BR/>NAME <I>[string, null]</I> : [0..1]<BR/>STATUS <I>[string, null]</I> : [0..1]<BR/>START_TIME <I>date-time</I> : [0..1]<BR/>END_TIME <I>date-time</I> : [0..1]<BR/>RESOURCE_ID <I>[string, null]</I> : [0..1]<BR/>PARENT_MISSION_ID <I>[string, null]</I> : [0..*]<BR/>CHILD_MISSION_ID <I>[string, null]</I> : [0..*]<BR/>MAIN_MISSION_ID <I>[string, null]</I> : [0..1]<BR/>PRIORITY <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet mission</I><BR/>TYPE <I>string</I> : [1..1]<BR/>FREETEXT <I>['string', 'null']</I> : [0..1]<BR/>ID <I>['string', 'null']</I> : [0..1]<BR/>ORG_ID <I>['string', 'null']</I> : [0..1]<BR/>NAME <I>['string', 'null']</I> : [0..1]<BR/>STATUS <I>['string', 'null']</I> : [0..1]<BR/>START_TIME <I>date-time</I> : [0..1]<BR/>END_TIME <I>date-time</I> : [0..1]<BR/>RESOURCE_ID <I>['string', 'null']</I> : [0..1]<BR/>PARENT_MISSION_ID <I>['string', 'null']</I> : [0..*]<BR/>CHILD_MISSION_ID <I>['string', 'null']</I> : [0..*]<BR/>MAIN_MISSION_ID <I>['string', 'null']</I> : [0..1]<BR/>PRIORITY <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	MISSION -> emsi [constraint=true headlabel=1 taillabel="0..*"]
@@ -143,7 +143,7 @@ strict digraph {
                 <TD><B>RTYPE</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet rtype</I><BR/>RCLASS <I>string</I> : [1..*]<BR/>CAPABILITY <I>[string, null]</I> : [0..*]<BR/>CHARACTERISTICS <I>[string, null]</I> : [0..*]</TD>
+                <TD><I>objet rtype</I><BR/>RCLASS <I>string</I> : [1..*]<BR/>CAPABILITY <I>['string', 'null']</I> : [0..*]<BR/>CHARACTERISTICS <I>['string', 'null']</I> : [0..*]</TD>
                 </TR>
                 </TABLE>>]
 	RTYPE -> RESOURCE [constraint=true headlabel=1 taillabel=1]
@@ -161,7 +161,7 @@ strict digraph {
                 <TD><B>POSITION</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>[string, null]</I> : [0..1]<BR/>TYPE <I>[string, null]</I> : [0..1]<BR/>HEIGHT_ROLE <I>[string, null]</I> : [0..1]<BR/>COORDSYS <I>[string, null]</I> : [0..1]<BR/>ADDRESS <I>[string, null]</I> : [0..*]</TD>
+                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>['string', 'null']</I> : [0..1]<BR/>TYPE <I>['string', 'null']</I> : [0..1]<BR/>HEIGHT_ROLE <I>['string', 'null']</I> : [0..1]<BR/>COORDSYS <I>['string', 'null']</I> : [0..1]<BR/>ADDRESS <I>['string', 'null']</I> : [0..*]</TD>
                 </TR>
                 </TABLE>>]
 	POSITION -> RGEO [constraint=true headlabel=1 taillabel="0..*"]
@@ -170,7 +170,7 @@ strict digraph {
                 <TD><B>RGEO</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet rgeo</I><BR/>DATIME <I>date-time</I> : [0..1]<BR/>TYPE <I>string</I> : [1..1]<BR/>FREETEXT <I>[string, null]</I> : [0..1]<BR/>ID <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet rgeo</I><BR/>DATIME <I>date-time</I> : [0..1]<BR/>TYPE <I>string</I> : [1..1]<BR/>FREETEXT <I>['string', 'null']</I> : [0..1]<BR/>ID <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	RGEO -> RESOURCE [constraint=true headlabel=1 taillabel="0..*"]
@@ -188,7 +188,7 @@ strict digraph {
                 <TD><B>RESOURCE</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet resource</I><BR/>ID <I>[string, null]</I> : [0..1]<BR/>ORG_ID <I>[string, null]</I> : [0..1]<BR/>NAME <I>[string, null]</I> : [0..1]<BR/>FREETEXT <I>[string, null]</I> : [0..1]<BR/>QUANTITY <I>number</I> : [0..1]<BR/>UM <I>[string, null]</I> : [0..1]<BR/>STATUS <I>[string, null]</I> : [0..1]<BR/>NATIONALITY <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet resource</I><BR/>ID <I>['string', 'null']</I> : [0..1]<BR/>ORG_ID <I>['string', 'null']</I> : [0..1]<BR/>NAME <I>['string', 'null']</I> : [0..1]<BR/>FREETEXT <I>['string', 'null']</I> : [0..1]<BR/>QUANTITY <I>number</I> : [0..1]<BR/>UM <I>['string', 'null']</I> : [0..1]<BR/>STATUS <I>['string', 'null']</I> : [0..1]<BR/>NATIONALITY <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	RESOURCE -> emsi [constraint=true headlabel=1 taillabel="0..*"]

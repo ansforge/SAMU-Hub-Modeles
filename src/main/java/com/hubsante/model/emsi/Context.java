@@ -28,6 +28,7 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,12 +38,13 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.ExternalInfo;
 import com.hubsante.model.emsi.Link;
 import com.hubsante.model.emsi.Origin;
-import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Context
@@ -147,7 +149,7 @@ public class Context {
   private MSGTYPEEnum MSGTYPE;
 
   public static final String JSON_PROPERTY_C_R_E_A_T_I_O_N = "CREATION";
-  private StringNull CREATION = null;
+  private JsonNullable<Object> CREATION = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_L_I_N_K = "LINK";
   private List<Link> LINK;
@@ -163,12 +165,12 @@ public class Context {
 
     TACTCL("TACTCL");
 
-    private StringNull value;
+    private String value;
 
-    LEVELEnum(StringNull value) { this.value = value; }
+    LEVELEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -178,7 +180,7 @@ public class Context {
     }
 
     @JsonCreator
-    public static LEVELEnum fromValue(StringNull value) {
+    public static LEVELEnum fromValue(String value) {
       for (LEVELEnum b : LEVELEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -189,7 +191,7 @@ public class Context {
   }
 
   public static final String JSON_PROPERTY_L_E_V_E_L = "LEVEL";
-  private LEVELEnum LEVEL = null;
+  private LEVELEnum LEVEL;
 
   /**
    * Optionnel  Dans NexSIS ;  Les messages transmis par NexSIS auront un champ
@@ -210,12 +212,12 @@ public class Context {
 
     UNMARK("UNMARK");
 
-    private StringNull value;
+    private String value;
 
-    SECLASSEnum(StringNull value) { this.value = value; }
+    SECLASSEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -225,7 +227,7 @@ public class Context {
     }
 
     @JsonCreator
-    public static SECLASSEnum fromValue(StringNull value) {
+    public static SECLASSEnum fromValue(String value) {
       for (SECLASSEnum b : SECLASSEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -236,10 +238,10 @@ public class Context {
   }
 
   public static final String JSON_PROPERTY_S_E_C_L_A_S_S = "SECLASS";
-  private SECLASSEnum SECLASS = null;
+  private SECLASSEnum SECLASS;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private StringNull FREETEXT = null;
+  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_O_R_I_G_I_N = "ORIGIN";
   private Origin ORIGIN;
@@ -257,12 +259,12 @@ public class Context {
 
     NOT_URGENT("NOT_URGENT");
 
-    private StringNull value;
+    private String value;
 
-    URGENCYEnum(StringNull value) { this.value = value; }
+    URGENCYEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -272,7 +274,7 @@ public class Context {
     }
 
     @JsonCreator
-    public static URGENCYEnum fromValue(StringNull value) {
+    public static URGENCYEnum fromValue(String value) {
       for (URGENCYEnum b : URGENCYEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -283,7 +285,7 @@ public class Context {
   }
 
   public static final String JSON_PROPERTY_U_R_G_E_N_C_Y = "URGENCY";
-  private URGENCYEnum URGENCY = null;
+  private URGENCYEnum URGENCY;
 
   public Context() {}
 
@@ -359,9 +361,9 @@ public class Context {
     this.MSGTYPE = MSGTYPE;
   }
 
-  public Context CREATION(StringNull CREATION) {
+  public Context CREATION(Object CREATION) {
+    this.CREATION = JsonNullable.<Object>of(CREATION);
 
-    this.CREATION = CREATION;
     return this;
   }
 
@@ -375,17 +377,23 @@ public class Context {
    *obtenue via l&#39;enveloppe EDXL-DE (se référer au DST)
    * @return CREATION
    **/
-  @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getCREATION() {
-    return CREATION;
+  public Object getCREATION() {
+    return CREATION.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCREATION(StringNull CREATION) {
-    this.CREATION = CREATION;
+
+  public JsonNullable<Object> getCREATION_JsonNullable() {
+    return CREATION;
+  }
+
+  @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
+
+  public void setCREATION(Object CREATION) {
+    this.CREATION = JsonNullable.<Object>of(CREATION);
   }
 
   public Context LINK(List<Link> LINK) {
@@ -477,9 +485,9 @@ public class Context {
     this.SECLASS = SECLASS;
   }
 
-  public Context FREETEXT(StringNull FREETEXT) {
+  public Context FREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
 
-    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -496,17 +504,23 @@ public class Context {
    *auxquels seront ajoutés  les éventuels événements à venir.
    * @return FREETEXT
    **/
-  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getFREETEXT() {
-    return FREETEXT;
+  public Object getFREETEXT() {
+    return FREETEXT.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(StringNull FREETEXT) {
-    this.FREETEXT = FREETEXT;
+
+  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+    return FREETEXT;
+  }
+
+  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
+
+  public void setFREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
   }
 
   public Context ORIGIN(Origin ORIGIN) {
@@ -607,20 +621,34 @@ public class Context {
     return Objects.equals(this.ID, context.ID) &&
         Objects.equals(this.MODE, context.MODE) &&
         Objects.equals(this.MSGTYPE, context.MSGTYPE) &&
-        Objects.equals(this.CREATION, context.CREATION) &&
+        equalsNullable(this.CREATION, context.CREATION) &&
         Objects.equals(this.LINK, context.LINK) &&
         Objects.equals(this.LEVEL, context.LEVEL) &&
         Objects.equals(this.SECLASS, context.SECLASS) &&
-        Objects.equals(this.FREETEXT, context.FREETEXT) &&
+        equalsNullable(this.FREETEXT, context.FREETEXT) &&
         Objects.equals(this.ORIGIN, context.ORIGIN) &&
         Objects.equals(this.EXTERNAL_INFO, context.EXTERNAL_INFO) &&
         Objects.equals(this.URGENCY, context.URGENCY);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(ID, MODE, MSGTYPE, CREATION, LINK, LEVEL, SECLASS,
-                        FREETEXT, ORIGIN, EXTERNAL_INFO, URGENCY);
+    return Objects.hash(ID, MODE, MSGTYPE, hashCodeNullable(CREATION), LINK,
+                        LEVEL, SECLASS, hashCodeNullable(FREETEXT), ORIGIN,
+                        EXTERNAL_INFO, URGENCY);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

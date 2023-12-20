@@ -28,6 +28,7 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -39,12 +40,13 @@ import com.hubsante.model.emsi.Egeo;
 import com.hubsante.model.emsi.Etype;
 import com.hubsante.model.emsi.Evac;
 import com.hubsante.model.emsi.Reference;
-import com.hubsante.model.emsi.StringNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Event
@@ -70,11 +72,11 @@ public class Event {
   private String ID;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private StringNull NAME = null;
+  private JsonNullable<Object> NAME = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D =
       "MAIN_EVENT_ID";
-  private StringNull MAIN_EVENT_ID = null;
+  private JsonNullable<Object> MAIN_EVENT_ID = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_E_T_Y_P_E = "ETYPE";
   private Etype ETYPE;
@@ -91,12 +93,12 @@ public class Event {
 
     SENSOR("SENSOR");
 
-    private StringNull value;
+    private String value;
 
-    SOURCEEnum(StringNull value) { this.value = value; }
+    SOURCEEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -106,7 +108,7 @@ public class Event {
     }
 
     @JsonCreator
-    public static SOURCEEnum fromValue(StringNull value) {
+    public static SOURCEEnum fromValue(String value) {
       for (SOURCEEnum b : SOURCEEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -117,7 +119,7 @@ public class Event {
   }
 
   public static final String JSON_PROPERTY_S_O_U_R_C_E = "SOURCE";
-  private SOURCEEnum SOURCE = null;
+  private SOURCEEnum SOURCE;
 
   /**
    * Optionnel, Niveau de criticité de l&#39;opération
@@ -133,12 +135,12 @@ public class Event {
 
     _5("5");
 
-    private StringNull value;
+    private String value;
 
-    SCALEEnum(StringNull value) { this.value = value; }
+    SCALEEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -148,7 +150,7 @@ public class Event {
     }
 
     @JsonCreator
-    public static SCALEEnum fromValue(StringNull value) {
+    public static SCALEEnum fromValue(String value) {
       for (SCALEEnum b : SCALEEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -159,19 +161,19 @@ public class Event {
   }
 
   public static final String JSON_PROPERTY_S_C_A_L_E = "SCALE";
-  private SCALEEnum SCALE = null;
+  private SCALEEnum SCALE;
 
   public static final String JSON_PROPERTY_C_E_R_T_A_I_N_T_Y = "CERTAINTY";
   private Integer CERTAINTY;
 
   public static final String JSON_PROPERTY_D_E_C_L_D_A_T_I_M_E = "DECL_DATIME";
-  private StringNull DECL_DATIME = null;
+  private JsonNullable<Object> DECL_DATIME = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_O_C_C_D_A_T_I_M_E = "OCC_DATIME";
-  private StringNull OCC_DATIME = null;
+  private JsonNullable<Object> OCC_DATIME = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_O_B_S_D_A_T_I_M_E = "OBS_DATIME";
-  private StringNull OBS_DATIME = null;
+  private JsonNullable<Object> OBS_DATIME = JsonNullable.<Object>of(null);
 
   /**
    * Permet de décrire le status de l&#39;affaire en cours. Ce champ suit une
@@ -195,12 +197,12 @@ public class Event {
 
     STOP("STOP");
 
-    private StringNull value;
+    private String value;
 
-    STATUSEnum(StringNull value) { this.value = value; }
+    STATUSEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -210,7 +212,7 @@ public class Event {
     }
 
     @JsonCreator
-    public static STATUSEnum fromValue(StringNull value) {
+    public static STATUSEnum fromValue(String value) {
       for (STATUSEnum b : STATUSEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -221,7 +223,7 @@ public class Event {
   }
 
   public static final String JSON_PROPERTY_S_T_A_T_U_S = "STATUS";
-  private STATUSEnum STATUS = null;
+  private STATUSEnum STATUS;
 
   /**
    * Optionnel
@@ -233,12 +235,12 @@ public class Event {
 
     STABLE("STABLE");
 
-    private StringNull value;
+    private String value;
 
-    RISKASSESMENTEnum(StringNull value) { this.value = value; }
+    RISKASSESMENTEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -248,7 +250,7 @@ public class Event {
     }
 
     @JsonCreator
-    public static RISKASSESMENTEnum fromValue(StringNull value) {
+    public static RISKASSESMENTEnum fromValue(String value) {
       for (RISKASSESMENTEnum b : RISKASSESMENTEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -260,7 +262,7 @@ public class Event {
 
   public static final String JSON_PROPERTY_R_I_S_K_A_S_S_E_S_M_E_N_T =
       "RISK_ASSESMENT";
-  private RISKASSESMENTEnum RISK_ASSESMENT = null;
+  private RISKASSESMENTEnum RISK_ASSESMENT;
 
   public static final String JSON_PROPERTY_R_E_F_E_R_E_N_C_E = "REFERENCE";
   private List<Reference> REFERENCE;
@@ -284,12 +286,12 @@ public class Event {
 
     NAT("NAT");
 
-    private StringNull value;
+    private String value;
 
-    CAUSEEnum(StringNull value) { this.value = value; }
+    CAUSEEnum(String value) { this.value = value; }
 
     @JsonValue
-    public StringNull getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -299,7 +301,7 @@ public class Event {
     }
 
     @JsonCreator
-    public static CAUSEEnum fromValue(StringNull value) {
+    public static CAUSEEnum fromValue(String value) {
       for (CAUSEEnum b : CAUSEEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -310,10 +312,10 @@ public class Event {
   }
 
   public static final String JSON_PROPERTY_C_A_U_S_E = "CAUSE";
-  private CAUSEEnum CAUSE = null;
+  private CAUSEEnum CAUSE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private StringNull FREETEXT = null;
+  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
 
   public Event() {}
 
@@ -340,9 +342,9 @@ public class Event {
     this.ID = ID;
   }
 
-  public Event NAME(StringNull NAME) {
+  public Event NAME(Object NAME) {
+    this.NAME = JsonNullable.<Object>of(NAME);
 
-    this.NAME = NAME;
     return this;
   }
 
@@ -351,22 +353,28 @@ public class Event {
    *[libelle TL 1 métier] &amp; \&quot; - \&quot; &amp; [libellé commune]
    * @return NAME
    **/
+  @JsonIgnore
+
+  public Object getNAME() {
+    return NAME.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getNAME() {
+  public JsonNullable<Object> getNAME_JsonNullable() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNAME(StringNull NAME) {
-    this.NAME = NAME;
+
+  public void setNAME(Object NAME) {
+    this.NAME = JsonNullable.<Object>of(NAME);
   }
 
-  public Event MAIN_EVENT_ID(StringNull MAIN_EVENT_ID) {
+  public Event MAIN_EVENT_ID(Object MAIN_EVENT_ID) {
+    this.MAIN_EVENT_ID = JsonNullable.<Object>of(MAIN_EVENT_ID);
 
-    this.MAIN_EVENT_ID = MAIN_EVENT_ID;
     return this;
   }
 
@@ -376,17 +384,23 @@ public class Event {
    *EVENT.MAIN_EVENT_ID
    * @return MAIN_EVENT_ID
    **/
-  @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getMAINEVENTID() {
-    return MAIN_EVENT_ID;
+  public Object getMAINEVENTID() {
+    return MAIN_EVENT_ID.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMAINEVENTID(StringNull MAIN_EVENT_ID) {
-    this.MAIN_EVENT_ID = MAIN_EVENT_ID;
+
+  public JsonNullable<Object> getMAINEVENTID_JsonNullable() {
+    return MAIN_EVENT_ID;
+  }
+
+  @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)
+
+  public void setMAINEVENTID(Object MAIN_EVENT_ID) {
+    this.MAIN_EVENT_ID = JsonNullable.<Object>of(MAIN_EVENT_ID);
   }
 
   public Event ETYPE(Etype ETYPE) {
@@ -482,9 +496,9 @@ public class Event {
     this.CERTAINTY = CERTAINTY;
   }
 
-  public Event DECL_DATIME(StringNull DECL_DATIME) {
+  public Event DECL_DATIME(Object DECL_DATIME) {
+    this.DECL_DATIME = JsonNullable.<Object>of(DECL_DATIME);
 
-    this.DECL_DATIME = DECL_DATIME;
     return this;
   }
 
@@ -495,22 +509,28 @@ public class Event {
    *(qui peut diverger de la date/heure de création de l&#39;affaire)
    * @return DECL_DATIME
    **/
+  @JsonIgnore
+
+  public Object getDECLDATIME() {
+    return DECL_DATIME.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_D_E_C_L_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getDECLDATIME() {
+  public JsonNullable<Object> getDECLDATIME_JsonNullable() {
     return DECL_DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_E_C_L_D_A_T_I_M_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDECLDATIME(StringNull DECL_DATIME) {
-    this.DECL_DATIME = DECL_DATIME;
+
+  public void setDECLDATIME(Object DECL_DATIME) {
+    this.DECL_DATIME = JsonNullable.<Object>of(DECL_DATIME);
   }
 
-  public Event OCC_DATIME(StringNull OCC_DATIME) {
+  public Event OCC_DATIME(Object OCC_DATIME) {
+    this.OCC_DATIME = JsonNullable.<Object>of(OCC_DATIME);
 
-    this.OCC_DATIME = OCC_DATIME;
     return this;
   }
 
@@ -522,22 +542,28 @@ public class Event {
    *avec la date de réception de l&#39;alerte initiale
    * @return OCC_DATIME
    **/
+  @JsonIgnore
+
+  public Object getOCCDATIME() {
+    return OCC_DATIME.orElse(null);
+  }
+
   @JsonProperty(JSON_PROPERTY_O_C_C_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getOCCDATIME() {
+  public JsonNullable<Object> getOCCDATIME_JsonNullable() {
     return OCC_DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_O_C_C_D_A_T_I_M_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOCCDATIME(StringNull OCC_DATIME) {
-    this.OCC_DATIME = OCC_DATIME;
+
+  public void setOCCDATIME(Object OCC_DATIME) {
+    this.OCC_DATIME = JsonNullable.<Object>of(OCC_DATIME);
   }
 
-  public Event OBS_DATIME(StringNull OBS_DATIME) {
+  public Event OBS_DATIME(Object OBS_DATIME) {
+    this.OBS_DATIME = JsonNullable.<Object>of(OBS_DATIME);
 
-    this.OBS_DATIME = OBS_DATIME;
     return this;
   }
 
@@ -549,17 +575,23 @@ public class Event {
    *renseignera ce champ avec la date de réception de l&#39;alerte initiale
    * @return OBS_DATIME
    **/
-  @JsonProperty(JSON_PROPERTY_O_B_S_D_A_T_I_M_E)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getOBSDATIME() {
-    return OBS_DATIME;
+  public Object getOBSDATIME() {
+    return OBS_DATIME.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_O_B_S_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOBSDATIME(StringNull OBS_DATIME) {
-    this.OBS_DATIME = OBS_DATIME;
+
+  public JsonNullable<Object> getOBSDATIME_JsonNullable() {
+    return OBS_DATIME;
+  }
+
+  @JsonProperty(JSON_PROPERTY_O_B_S_D_A_T_I_M_E)
+
+  public void setOBSDATIME(Object OBS_DATIME) {
+    this.OBS_DATIME = JsonNullable.<Object>of(OBS_DATIME);
   }
 
   public Event STATUS(STATUSEnum STATUS) {
@@ -797,9 +829,9 @@ public class Event {
     this.CAUSE = CAUSE;
   }
 
-  public Event FREETEXT(StringNull FREETEXT) {
+  public Event FREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
 
-    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -807,17 +839,23 @@ public class Event {
    * Optionnel
    * @return FREETEXT
    **/
-  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getFREETEXT() {
-    return FREETEXT;
+  public Object getFREETEXT() {
+    return FREETEXT.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFREETEXT(StringNull FREETEXT) {
-    this.FREETEXT = FREETEXT;
+
+  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+    return FREETEXT;
+  }
+
+  @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
+
+  public void setFREETEXT(Object FREETEXT) {
+    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
   }
 
   @Override
@@ -830,15 +868,15 @@ public class Event {
     }
     Event event = (Event)o;
     return Objects.equals(this.ID, event.ID) &&
-        Objects.equals(this.NAME, event.NAME) &&
-        Objects.equals(this.MAIN_EVENT_ID, event.MAIN_EVENT_ID) &&
+        equalsNullable(this.NAME, event.NAME) &&
+        equalsNullable(this.MAIN_EVENT_ID, event.MAIN_EVENT_ID) &&
         Objects.equals(this.ETYPE, event.ETYPE) &&
         Objects.equals(this.SOURCE, event.SOURCE) &&
         Objects.equals(this.SCALE, event.SCALE) &&
         Objects.equals(this.CERTAINTY, event.CERTAINTY) &&
-        Objects.equals(this.DECL_DATIME, event.DECL_DATIME) &&
-        Objects.equals(this.OCC_DATIME, event.OCC_DATIME) &&
-        Objects.equals(this.OBS_DATIME, event.OBS_DATIME) &&
+        equalsNullable(this.DECL_DATIME, event.DECL_DATIME) &&
+        equalsNullable(this.OCC_DATIME, event.OCC_DATIME) &&
+        equalsNullable(this.OBS_DATIME, event.OBS_DATIME) &&
         Objects.equals(this.STATUS, event.STATUS) &&
         Objects.equals(this.RISK_ASSESMENT, event.RISK_ASSESMENT) &&
         Objects.equals(this.REFERENCE, event.REFERENCE) &&
@@ -846,15 +884,30 @@ public class Event {
         Objects.equals(this.EVAC, event.EVAC) &&
         Objects.equals(this.EGEO, event.EGEO) &&
         Objects.equals(this.CAUSE, event.CAUSE) &&
-        Objects.equals(this.FREETEXT, event.FREETEXT);
+        equalsNullable(this.FREETEXT, event.FREETEXT);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(ID, NAME, MAIN_EVENT_ID, ETYPE, SOURCE, SCALE,
-                        CERTAINTY, DECL_DATIME, OCC_DATIME, OBS_DATIME, STATUS,
-                        RISK_ASSESMENT, REFERENCE, CASUALTIES, EVAC, EGEO,
-                        CAUSE, FREETEXT);
+    return Objects.hash(
+        ID, hashCodeNullable(NAME), hashCodeNullable(MAIN_EVENT_ID), ETYPE,
+        SOURCE, SCALE, CERTAINTY, hashCodeNullable(DECL_DATIME),
+        hashCodeNullable(OCC_DATIME), hashCodeNullable(OBS_DATIME), STATUS,
+        RISK_ASSESMENT, REFERENCE, CASUALTIES, EVAC, EGEO, CAUSE,
+        hashCodeNullable(FREETEXT));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

@@ -28,17 +28,19 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.StringNull;
 import com.hubsante.model.cisu.WayName;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * DetailedAdress
@@ -54,7 +56,7 @@ public class DetailedAdress {
   private String complete;
 
   public static final String JSON_PROPERTY_NUMBER = "number";
-  private StringNull number = null;
+  private JsonNullable<Object> number = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_WAY_NAME = "wayName";
   private WayName wayName;
@@ -86,9 +88,9 @@ public class DetailedAdress {
     this.complete = complete;
   }
 
-  public DetailedAdress number(StringNull number) {
+  public DetailedAdress number(Object number) {
+    this.number = JsonNullable.<Object>of(number);
 
-    this.number = number;
     return this;
   }
 
@@ -98,17 +100,23 @@ public class DetailedAdress {
    *numéro (par exemple bis, a…).
    * @return number
    **/
-  @JsonProperty(JSON_PROPERTY_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getNumber() {
-    return number;
+  public Object getNumber() {
+    return number.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNumber(StringNull number) {
-    this.number = number;
+
+  public JsonNullable<Object> getNumber_JsonNullable() {
+    return number;
+  }
+
+  @JsonProperty(JSON_PROPERTY_NUMBER)
+
+  public void setNumber(Object number) {
+    this.number = JsonNullable.<Object>of(number);
   }
 
   public DetailedAdress wayName(WayName wayName) {
@@ -144,13 +152,26 @@ public class DetailedAdress {
     }
     DetailedAdress detailedAdress = (DetailedAdress)o;
     return Objects.equals(this.complete, detailedAdress.complete) &&
-        Objects.equals(this.number, detailedAdress.number) &&
+        equalsNullable(this.number, detailedAdress.number) &&
         Objects.equals(this.wayName, detailedAdress.wayName);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(complete, number, wayName);
+    return Objects.hash(complete, hashCodeNullable(number), wayName);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

@@ -8,7 +8,7 @@ strict digraph {
                 <TD><B>whatsHappen</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	whatsHappen -> qualification [constraint=true headlabel=1 taillabel=1]
@@ -17,7 +17,7 @@ strict digraph {
                 <TD><B>locationKind</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	locationKind -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -26,7 +26,7 @@ strict digraph {
                 <TD><B>riskThreat</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	riskThreat -> qualification [constraint=true headlabel=1 taillabel="0..*"]
@@ -35,7 +35,7 @@ strict digraph {
                 <TD><B>healthMotive</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -44,7 +44,7 @@ strict digraph {
                 <TD><B>victims</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet victims</I><BR/>count <I>[string, null]</I> : [0..1]<BR/>mainVictim <I>[string, null]</I> : [0..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet victims</I><BR/>count <I>['string', 'null']</I> : [0..1]<BR/>mainVictim <I>['string', 'null']</I> : [0..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	victims -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -62,7 +62,7 @@ strict digraph {
                 <TD><B>wayName</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>[string, null]</I> : [0..1]<BR/>name <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>['string', 'null']</I> : [0..1]<BR/>name <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	wayName -> detailedAdress [constraint=true headlabel=1 taillabel="0..1"]
@@ -71,7 +71,7 @@ strict digraph {
                 <TD><B>detailedAdress</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	detailedAdress -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -80,7 +80,7 @@ strict digraph {
                 <TD><B>city</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet city</I><BR/>name <I>[string, null]</I> : [0..1]<BR/>inseeCode <I>[string, null]</I> : [0..1]<BR/>detail <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet city</I><BR/>name <I>['string', 'null']</I> : [0..1]<BR/>inseeCode <I>['string', 'null']</I> : [0..1]<BR/>detail <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	city -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -89,7 +89,7 @@ strict digraph {
                 <TD><B>access</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet access</I><BR/>floor <I>[string, null]</I> : [0..1]<BR/>roomNumber <I>[string, null]</I> : [0..1]<BR/>interphone <I>[string, null]</I> : [0..1]<BR/>accessCode <I>[string, null]</I> : [0..*]<BR/>elevator <I>[string, null]</I> : [0..1]<BR/>buildingName <I>[string, null]</I> : [0..1]<BR/>entrance <I>[string, null]</I> : [0..1]<BR/>entity <I>[string, null]</I> : [0..1]<BR/>locphonenumber <I>number</I> : [0..1]</TD>
+                <TD><I>objet access</I><BR/>floor <I>['string', 'null']</I> : [0..1]<BR/>roomNumber <I>['string', 'null']</I> : [0..1]<BR/>interphone <I>['string', 'null']</I> : [0..1]<BR/>accessCode <I>['string', 'null']</I> : [0..*]<BR/>elevator <I>['string', 'null']</I> : [0..1]<BR/>buildingName <I>['string', 'null']</I> : [0..1]<BR/>entrance <I>['string', 'null']</I> : [0..1]<BR/>entity <I>['string', 'null']</I> : [0..1]<BR/>locphonenumber <I>number</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	access -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -107,7 +107,7 @@ strict digraph {
                 <TD><B>point</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet point</I><BR/>sysCoord <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet point</I><BR/>sysCoord <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	point -> geometry [constraint=true headlabel=1 taillabel="0..1"]
@@ -116,7 +116,7 @@ strict digraph {
                 <TD><B>geometry</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet geometry</I><BR/>obsDatime <I>date-time</I> : [1..1]<BR/>sketch <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet geometry</I><BR/>obsDatime <I>date-time</I> : [1..1]<BR/>sketch <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	geometry -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -134,7 +134,7 @@ strict digraph {
                 <TD><B>location</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet location</I><BR/>locID <I>string</I> : [1..1]<BR/>locLabel <I>[string, null]</I> : [0..1]<BR/>name <I>string</I> : [1..1]<BR/>country <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet location</I><BR/>locID <I>string</I> : [1..1]<BR/>locLabel <I>['string', 'null']</I> : [0..1]<BR/>name <I>string</I> : [1..1]<BR/>country <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	location -> createCase [constraint=true headlabel=1 taillabel=1]
@@ -161,7 +161,7 @@ strict digraph {
                 <TD><B>detailedName</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet detailedName</I><BR/>complete <I>string</I> : [1..1]<BR/>lastName <I>[string, null]</I> : [0..1]<BR/>firstName <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet detailedName</I><BR/>complete <I>string</I> : [1..1]<BR/>lastName <I>['string', 'null']</I> : [0..1]<BR/>firstName <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	detailedName -> caller [constraint=true headlabel=1 taillabel="0..1"]
@@ -170,7 +170,7 @@ strict digraph {
                 <TD><B>caller</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet caller</I><BR/>language <I>[string, null]</I> : [0..1]<BR/>reqtype <I>[string, null]</I> : [0..1]<BR/>communication <I>[string, null]</I> : [0..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet caller</I><BR/>language <I>['string', 'null']</I> : [0..1]<BR/>reqtype <I>['string', 'null']</I> : [0..1]<BR/>communication <I>['string', 'null']</I> : [0..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	caller -> initialAlert [constraint=true headlabel=1 taillabel=1]
@@ -188,7 +188,7 @@ strict digraph {
                 <TD><B>wayName</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>[string, null]</I> : [0..1]<BR/>name <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>['string', 'null']</I> : [0..1]<BR/>name <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	wayName -> detailedAdress [constraint=true headlabel=1 taillabel="0..1"]
@@ -197,7 +197,7 @@ strict digraph {
                 <TD><B>detailedAdress</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	detailedAdress -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -206,7 +206,7 @@ strict digraph {
                 <TD><B>city</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet city</I><BR/>name <I>[string, null]</I> : [0..1]<BR/>inseeCode <I>[string, null]</I> : [0..1]<BR/>detail <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet city</I><BR/>name <I>['string', 'null']</I> : [0..1]<BR/>inseeCode <I>['string', 'null']</I> : [0..1]<BR/>detail <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	city -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -215,7 +215,7 @@ strict digraph {
                 <TD><B>access</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet access</I><BR/>floor <I>[string, null]</I> : [0..1]<BR/>roomNumber <I>[string, null]</I> : [0..1]<BR/>interphone <I>[string, null]</I> : [0..1]<BR/>accessCode <I>[string, null]</I> : [0..*]<BR/>elevator <I>[string, null]</I> : [0..1]<BR/>buildingName <I>[string, null]</I> : [0..1]<BR/>entrance <I>[string, null]</I> : [0..1]<BR/>entity <I>[string, null]</I> : [0..1]<BR/>locphonenumber <I>number</I> : [0..1]</TD>
+                <TD><I>objet access</I><BR/>floor <I>['string', 'null']</I> : [0..1]<BR/>roomNumber <I>['string', 'null']</I> : [0..1]<BR/>interphone <I>['string', 'null']</I> : [0..1]<BR/>accessCode <I>['string', 'null']</I> : [0..*]<BR/>elevator <I>['string', 'null']</I> : [0..1]<BR/>buildingName <I>['string', 'null']</I> : [0..1]<BR/>entrance <I>['string', 'null']</I> : [0..1]<BR/>entity <I>['string', 'null']</I> : [0..1]<BR/>locphonenumber <I>number</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	access -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -233,7 +233,7 @@ strict digraph {
                 <TD><B>point</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet point</I><BR/>sysCoord <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet point</I><BR/>sysCoord <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	point -> geometry [constraint=true headlabel=1 taillabel="0..1"]
@@ -242,7 +242,7 @@ strict digraph {
                 <TD><B>geometry</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet geometry</I><BR/>obsDatime <I>date-time</I> : [1..1]<BR/>sketch <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet geometry</I><BR/>obsDatime <I>date-time</I> : [1..1]<BR/>sketch <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	geometry -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -260,7 +260,7 @@ strict digraph {
                 <TD><B>location</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet location</I><BR/>locID <I>string</I> : [1..1]<BR/>locLabel <I>[string, null]</I> : [0..1]<BR/>name <I>string</I> : [1..1]<BR/>country <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet location</I><BR/>locID <I>string</I> : [1..1]<BR/>locLabel <I>['string', 'null']</I> : [0..1]<BR/>name <I>string</I> : [1..1]<BR/>country <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	location -> initialAlert [constraint=true headlabel=1 taillabel=1]
@@ -269,7 +269,7 @@ strict digraph {
                 <TD><B>whatsHappen</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	whatsHappen -> qualification [constraint=true headlabel=1 taillabel=1]
@@ -278,7 +278,7 @@ strict digraph {
                 <TD><B>locationKind</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	locationKind -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -287,7 +287,7 @@ strict digraph {
                 <TD><B>riskThreat</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	riskThreat -> qualification [constraint=true headlabel=1 taillabel="0..*"]
@@ -296,7 +296,7 @@ strict digraph {
                 <TD><B>healthMotive</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet nomenclature</I><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -305,7 +305,7 @@ strict digraph {
                 <TD><B>victims</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet victims</I><BR/>count <I>[string, null]</I> : [0..1]<BR/>mainVictim <I>[string, null]</I> : [0..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet victims</I><BR/>count <I>['string', 'null']</I> : [0..1]<BR/>mainVictim <I>['string', 'null']</I> : [0..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	victims -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -332,7 +332,7 @@ strict digraph {
                 <TD><B>callTaker</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet callTaker</I><BR/>organization <I>string</I> : [1..1]<BR/>controlRoom <I>string</I> : [1..1]<BR/>role <I>[string, null]</I> : [0..1]<BR/>calltakerId <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet callTaker</I><BR/>organization <I>string</I> : [1..1]<BR/>controlRoom <I>string</I> : [1..1]<BR/>role <I>['string', 'null']</I> : [0..1]<BR/>calltakerId <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	callTaker -> initialAlert [constraint=true headlabel=1 taillabel=1]
@@ -341,7 +341,7 @@ strict digraph {
                 <TD><B>attachment</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet attachment</I><BR/>description <I>[string, null]</I> : [0..1]<BR/>mimeType <I>[string, null]</I> : [0..1]<BR/>size <I>integer</I> : [0..1]<BR/>URI <I>string</I> : [1..1]<BR/>derefURI <I>[string, null]</I> : [0..1]<BR/>digest <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet attachment</I><BR/>description <I>['string', 'null']</I> : [0..1]<BR/>mimeType <I>['string', 'null']</I> : [0..1]<BR/>size <I>integer</I> : [0..1]<BR/>URI <I>string</I> : [1..1]<BR/>derefURI <I>['string', 'null']</I> : [0..1]<BR/>digest <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	attachment -> initialAlert [constraint=true headlabel=1 taillabel="0..*"]
@@ -350,7 +350,7 @@ strict digraph {
                 <TD><B>initialAlert</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet alert</I><BR/>id <I>string</I> : [1..1]<BR/>reception <I>date-time</I> : [1..1]<BR/>reporting <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet alert</I><BR/>id <I>string</I> : [1..1]<BR/>reception <I>date-time</I> : [1..1]<BR/>reporting <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	initialAlert -> createCase [constraint=true headlabel=1 taillabel="0..1"]
@@ -368,7 +368,7 @@ strict digraph {
                 <TD><B>customMap</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet customMap</I><BR/>key <I>string</I> : [1..1]<BR/>label <I>[string, null]</I> : [0..1]<BR/>value <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet customMap</I><BR/>key <I>string</I> : [1..1]<BR/>label <I>['string', 'null']</I> : [0..1]<BR/>value <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	customMap -> additionalInformation [constraint=true headlabel=1 taillabel="0..1"]
@@ -386,7 +386,7 @@ strict digraph {
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>[string, null]</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>['string', 'null']</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	createCase [label=<<TABLE>
@@ -394,7 +394,7 @@ strict digraph {
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>[string, null]</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>[string, null]</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>['string', 'null']</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>freetext <I>['string', 'null']</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 }

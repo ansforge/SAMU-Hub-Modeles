@@ -28,6 +28,7 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -35,11 +36,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Point;
-import com.hubsante.model.cisu.StringNull;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Geometry
@@ -58,7 +60,7 @@ public class Geometry {
   private Point point;
 
   public static final String JSON_PROPERTY_SKETCH = "sketch";
-  private StringNull sketch = null;
+  private JsonNullable<Object> sketch = JsonNullable.<Object>of(null);
 
   public Geometry() {}
 
@@ -110,9 +112,9 @@ public class Geometry {
     this.point = point;
   }
 
-  public Geometry sketch(StringNull sketch) {
+  public Geometry sketch(Object sketch) {
+    this.sketch = JsonNullable.<Object>of(sketch);
 
-    this.sketch = sketch;
     return this;
   }
 
@@ -129,17 +131,23 @@ public class Geometry {
    *de l&#39;objet sketch
    * @return sketch
    **/
-  @JsonProperty(JSON_PROPERTY_SKETCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getSketch() {
-    return sketch;
+  public Object getSketch() {
+    return sketch.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_SKETCH)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSketch(StringNull sketch) {
-    this.sketch = sketch;
+
+  public JsonNullable<Object> getSketch_JsonNullable() {
+    return sketch;
+  }
+
+  @JsonProperty(JSON_PROPERTY_SKETCH)
+
+  public void setSketch(Object sketch) {
+    this.sketch = JsonNullable.<Object>of(sketch);
   }
 
   @Override
@@ -153,12 +161,25 @@ public class Geometry {
     Geometry geometry = (Geometry)o;
     return Objects.equals(this.obsDatime, geometry.obsDatime) &&
         Objects.equals(this.point, geometry.point) &&
-        Objects.equals(this.sketch, geometry.sketch);
+        equalsNullable(this.sketch, geometry.sketch);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(obsDatime, point, sketch);
+    return Objects.hash(obsDatime, point, hashCodeNullable(sketch));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override

@@ -28,6 +28,7 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -35,10 +36,11 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Contact;
-import com.hubsante.model.cisu.StringNull;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.Objects;
+import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * CallTaker
@@ -58,13 +60,13 @@ public class CallTaker {
   private String controlRoom;
 
   public static final String JSON_PROPERTY_ROLE = "role";
-  private StringNull role = null;
+  private String role;
 
   public static final String JSON_PROPERTY_CALLTAKE_CONTACT = "calltakeContact";
   private Contact calltakeContact;
 
   public static final String JSON_PROPERTY_CALLTAKER_ID = "calltakerId";
-  private StringNull calltakerId = null;
+  private JsonNullable<Object> calltakerId = JsonNullable.<Object>of(null);
 
   public CallTaker() {}
 
@@ -118,7 +120,7 @@ public class CallTaker {
     this.controlRoom = controlRoom;
   }
 
-  public CallTaker role(StringNull role) {
+  public CallTaker role(String role) {
 
     this.role = role;
     return this;
@@ -132,13 +134,13 @@ public class CallTaker {
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public StringNull getRole() {
+  public String getRole() {
     return role;
   }
 
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRole(StringNull role) {
+  public void setRole(String role) {
     this.role = role;
   }
 
@@ -165,9 +167,9 @@ public class CallTaker {
     this.calltakeContact = calltakeContact;
   }
 
-  public CallTaker calltakerId(StringNull calltakerId) {
+  public CallTaker calltakerId(Object calltakerId) {
+    this.calltakerId = JsonNullable.<Object>of(calltakerId);
 
-    this.calltakerId = calltakerId;
     return this;
   }
 
@@ -176,17 +178,23 @@ public class CallTaker {
    *un identifiant technique, un numéro de carte CPS etc)
    * @return calltakerId
    **/
-  @JsonProperty(JSON_PROPERTY_CALLTAKER_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
 
-  public StringNull getCalltakerId() {
-    return calltakerId;
+  public Object getCalltakerId() {
+    return calltakerId.orElse(null);
   }
 
   @JsonProperty(JSON_PROPERTY_CALLTAKER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCalltakerId(StringNull calltakerId) {
-    this.calltakerId = calltakerId;
+
+  public JsonNullable<Object> getCalltakerId_JsonNullable() {
+    return calltakerId;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CALLTAKER_ID)
+
+  public void setCalltakerId(Object calltakerId) {
+    this.calltakerId = JsonNullable.<Object>of(calltakerId);
   }
 
   @Override
@@ -202,13 +210,26 @@ public class CallTaker {
         Objects.equals(this.controlRoom, callTaker.controlRoom) &&
         Objects.equals(this.role, callTaker.role) &&
         Objects.equals(this.calltakeContact, callTaker.calltakeContact) &&
-        Objects.equals(this.calltakerId, callTaker.calltakerId);
+        equalsNullable(this.calltakerId, callTaker.calltakerId);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a,
+                                            JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() &&
+                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(organization, controlRoom, role, calltakeContact,
-                        calltakerId);
+                        hashCodeNullable(calltakerId));
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
   }
 
   @Override
