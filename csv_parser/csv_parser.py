@@ -115,7 +115,7 @@ if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
 # Storing input data in a file to track versions
 df.to_csv(f'out/{args.sheet}/input.csv')
 # Keeping only 15-NexSIS fields
-df = df[df['15-18'] == 'X']
+df = df[df['15-15'] == 'X']
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
 if MODEL_NAME != "RC-DE":
@@ -392,6 +392,7 @@ def add_field_child_property(parent, child, definitions):
     childDetails = {
         'type': typeName,
         'title': child['full_name'],
+        'x-health-only': child['is_health_only'],
         'x-cols': 6,
         'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
     }
@@ -410,6 +411,7 @@ def add_field_child_property(parent, child, definitions):
     if is_array(child):
         properties[child['name']] = {
             'type': 'array',
+            'x-health-only': child['is_health_only'],
             'items': childDetails
         }
     else:
@@ -442,11 +444,13 @@ def add_object_child_definition(parent, child, definitions):
             'type': 'array',
             'items': {
                 '$ref': '#/definitions/' + childTypeName,
+                'x-health-only': child['is_health_only'],
             }
         }
     else:
         properties[child['name']] = {
             '$ref': '#/definitions/' + childTypeName,
+            'x-health-only': child['is_health_only']
         }
 
 
