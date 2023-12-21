@@ -139,7 +139,7 @@ Dans le cas où le requérant est à l'origine de l'alerte les objets contactSou
 Se référer au DSF pour la structure normée des organisations
 Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.",FR:Administration:44:samu44:crra:regulationN3,organization,,,,,,,1..1,,string,,,X,X
 90,91,,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,,,,,,,1..1,,string,,,X,X
-91,92,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,X,NOMENCLATURE: PERSO (nomenclature SI-SAMU),X,X
+91,92,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,,NOMENCLATURE: PERSO (nomenclature SI-SAMU),X,X
 92,93,,,Contact de l'agent,# voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerURI,calltakeContact,,,,,,0..1,X,contact,,,X,X
 93,94,,,ID de l'agent,,,,"Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)",id1234,calltakerId,,O1,Code de l'opérateur ayant pris l'appel,,,,0..1,,string,,,X,X
 94,95,,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
