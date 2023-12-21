@@ -377,17 +377,11 @@ def get_parent_example_path(parent):
         return json_schema['example']
     return json_schema['definitions'][parent['true_type']]['example']
 
-def nullable_string(elem, typeName):
-    nullable = elem['Cardinalité'].startswith('0')
-    return typeName == 'string' and nullable
-
 def add_field_child_property(parent, child, definitions):
     """Update parent definitions (required and properties) by adding the child information for a field child"""
     if child['Cardinalité'].startswith('1'):
         definitions['required'].append(child['name'])
     typeName, pattern, format = type_matching(child)
-    if nullable_string(child, typeName):
-        typeName = ["string", "null"]
     parentExamplePath = get_parent_example_path(parent)
     childDetails = {
         'type': typeName,
@@ -587,7 +581,6 @@ with open('template.asyncapi.yaml') as f:
 with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
-    documents = documents.replace("- 'null'", '')
     file.write(documents)
 print('OpenAPI schema generated.')
 
@@ -595,7 +588,6 @@ print('OpenAPI schema generated.')
 with open(f'out/full-asyncapi.yaml', 'w') as file:
     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
-    documents = documents.replace('- null', '')
     file.write(documents)
 print('AsyncAPI schema generated.')
 
