@@ -377,7 +377,6 @@ def get_parent_example_path(parent):
         return json_schema['example']
     return json_schema['definitions'][parent['true_type']]['example']
 
-
 def add_field_child_property(parent, child, definitions):
     """Update parent definitions (required and properties) by adding the child information for a field child"""
     if child['Cardinalité'].startswith('1'):

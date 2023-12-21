@@ -37,6 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Context;
 import com.hubsante.model.emsi.Event;
 import com.hubsante.model.emsi.Mission;
+import com.hubsante.model.emsi.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -46,9 +47,9 @@ import java.util.Objects;
 /**
  * Emsi
  */
-@JsonPropertyOrder({Emsi.JSON_PROPERTY_C_O_N_T_E_X_T,
-                    Emsi.JSON_PROPERTY_E_V_E_N_T,
-                    Emsi.JSON_PROPERTY_M_I_S_S_I_O_N})
+@JsonPropertyOrder(
+    {Emsi.JSON_PROPERTY_C_O_N_T_E_X_T, Emsi.JSON_PROPERTY_E_V_E_N_T,
+     Emsi.JSON_PROPERTY_M_I_S_S_I_O_N, Emsi.JSON_PROPERTY_R_E_S_O_U_R_C_E})
 @JsonTypeName("emsi")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -61,6 +62,9 @@ public class Emsi {
 
   public static final String JSON_PROPERTY_M_I_S_S_I_O_N = "MISSION";
   private List<Mission> MISSION;
+
+  public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E = "RESOURCE";
+  private List<Resource> RESOURCE;
 
   public Emsi() {}
 
@@ -149,6 +153,45 @@ public class Emsi {
     this.MISSION.addAll(MISSION);
   }
 
+  public Emsi RESOURCE(List<Resource> RESOURCE) {
+
+    this.RESOURCE = RESOURCE;
+    return this;
+  }
+
+  public Emsi addRESOURCEItem(Resource RESOURCEItem) {
+    if (this.RESOURCE == null) {
+      this.RESOURCE = new ArrayList<>();
+    }
+    this.RESOURCE.add(RESOURCEItem);
+    return this;
+  }
+
+  /**
+   * Get RESOURCE
+   * @return RESOURCE
+   **/
+  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Resource> getRESOURCE() {
+    return RESOURCE;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRESOURCE(List<Resource> RESOURCE) {
+    if (RESOURCE == null) {
+      return;
+    }
+    if (this.RESOURCE == null) {
+      this.RESOURCE = new ArrayList<>();
+    }
+    this.RESOURCE.addAll(RESOURCE);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -160,12 +203,13 @@ public class Emsi {
     Emsi emsi = (Emsi)o;
     return Objects.equals(this.CONTEXT, emsi.CONTEXT) &&
         Objects.equals(this.EVENT, emsi.EVENT) &&
-        Objects.equals(this.MISSION, emsi.MISSION);
+        Objects.equals(this.MISSION, emsi.MISSION) &&
+        Objects.equals(this.RESOURCE, emsi.RESOURCE);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(CONTEXT, EVENT, MISSION);
+    return Objects.hash(CONTEXT, EVENT, MISSION, RESOURCE);
   }
 
   @Override
@@ -175,6 +219,7 @@ public class Emsi {
     sb.append("    CONTEXT: ").append(toIndentedString(CONTEXT)).append("\n");
     sb.append("    EVENT: ").append(toIndentedString(EVENT)).append("\n");
     sb.append("    MISSION: ").append(toIndentedString(MISSION)).append("\n");
+    sb.append("    RESOURCE: ").append(toIndentedString(RESOURCE)).append("\n");
     sb.append("}");
     return sb.toString();
   }
