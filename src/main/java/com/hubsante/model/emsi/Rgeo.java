@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -36,13 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Position;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Rgeo
@@ -55,7 +53,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Rgeo {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private JsonNullable<Object> DATIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime DATIME;
 
   /**
    * Type de position indiqué pour la ressource : - ASP : assembly point. Point
@@ -110,19 +108,19 @@ public class Rgeo {
   private TYPEEnum TYPE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
+  private String FREETEXT;
 
   public static final String JSON_PROPERTY_I_D = "ID";
-  private JsonNullable<Object> ID = JsonNullable.<Object>of(null);
+  private String ID;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
   private List<Position> POSITION;
 
   public Rgeo() {}
 
-  public Rgeo DATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  public Rgeo DATIME(OffsetDateTime DATIME) {
 
+    this.DATIME = DATIME;
     return this;
   }
 
@@ -132,23 +130,17 @@ public class Rgeo {
    *position, un horaire cible d&#39;arrivée.
    * @return DATIME
    **/
-  @JsonIgnore
-
-  public Object getDATIME() {
-    return DATIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getDATIME_JsonNullable() {
+  public OffsetDateTime getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
-
-  public void setDATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDATIME(OffsetDateTime DATIME) {
+    this.DATIME = DATIME;
   }
 
   public Rgeo TYPE(TYPEEnum TYPE) {
@@ -184,9 +176,9 @@ public class Rgeo {
     this.TYPE = TYPE;
   }
 
-  public Rgeo FREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  public Rgeo FREETEXT(String FREETEXT) {
 
+    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -195,28 +187,22 @@ public class Rgeo {
    *transmise
    * @return FREETEXT
    **/
-  @JsonIgnore
-
-  public Object getFREETEXT() {
-    return FREETEXT.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+  public String getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-
-  public void setFREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFREETEXT(String FREETEXT) {
+    this.FREETEXT = FREETEXT;
   }
 
-  public Rgeo ID(Object ID) {
-    this.ID = JsonNullable.<Object>of(ID);
+  public Rgeo ID(String ID) {
 
+    this.ID = ID;
     return this;
   }
 
@@ -224,23 +210,17 @@ public class Rgeo {
    * Identifiant unique de la position dans le système du partenaire
    * @return ID
    **/
-  @JsonIgnore
-
-  public Object getID() {
-    return ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getID_JsonNullable() {
+  public String getID() {
     return ID;
   }
 
   @JsonProperty(JSON_PROPERTY_I_D)
-
-  public void setID(Object ID) {
-    this.ID = JsonNullable.<Object>of(ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setID(String ID) {
+    this.ID = ID;
   }
 
   public Rgeo POSITION(List<Position> POSITION) {
@@ -291,31 +271,16 @@ public class Rgeo {
       return false;
     }
     Rgeo rgeo = (Rgeo)o;
-    return equalsNullable(this.DATIME, rgeo.DATIME) &&
+    return Objects.equals(this.DATIME, rgeo.DATIME) &&
         Objects.equals(this.TYPE, rgeo.TYPE) &&
-        equalsNullable(this.FREETEXT, rgeo.FREETEXT) &&
-        equalsNullable(this.ID, rgeo.ID) &&
+        Objects.equals(this.FREETEXT, rgeo.FREETEXT) &&
+        Objects.equals(this.ID, rgeo.ID) &&
         Objects.equals(this.POSITION, rgeo.POSITION);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(DATIME), TYPE,
-                        hashCodeNullable(FREETEXT), hashCodeNullable(ID),
-                        POSITION);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(DATIME, TYPE, FREETEXT, ID, POSITION);
   }
 
   @Override

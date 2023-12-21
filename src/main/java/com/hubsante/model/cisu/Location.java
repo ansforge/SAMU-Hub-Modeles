@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -44,9 +43,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Location
@@ -65,7 +62,7 @@ public class Location {
   private String locID;
 
   public static final String JSON_PROPERTY_LOC_LABEL = "locLabel";
-  private JsonNullable<Object> locLabel = JsonNullable.<Object>of(null);
+  private String locLabel;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
@@ -600,7 +597,7 @@ public class Location {
   private CountryEnum country;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private JsonNullable<Object> freetext = JsonNullable.<Object>of(null);
+  private String freetext;
 
   public Location() {}
 
@@ -628,9 +625,9 @@ public class Location {
     this.locID = locID;
   }
 
-  public Location locLabel(Object locLabel) {
-    this.locLabel = JsonNullable.<Object>of(locLabel);
+  public Location locLabel(String locLabel) {
 
+    this.locLabel = locLabel;
     return this;
   }
 
@@ -643,23 +640,17 @@ public class Location {
    *caractères
    * @return locLabel
    **/
-  @JsonIgnore
-
-  public Object getLocLabel() {
-    return locLabel.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_LOC_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getLocLabel_JsonNullable() {
+  public String getLocLabel() {
     return locLabel;
   }
 
   @JsonProperty(JSON_PROPERTY_LOC_LABEL)
-
-  public void setLocLabel(Object locLabel) {
-    this.locLabel = JsonNullable.<Object>of(locLabel);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocLabel(String locLabel) {
+    this.locLabel = locLabel;
   }
 
   public Location name(String name) {
@@ -840,9 +831,9 @@ public class Location {
     this.country = country;
   }
 
-  public Location freetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  public Location freetext(String freetext) {
 
+    this.freetext = freetext;
     return this;
   }
 
@@ -850,23 +841,17 @@ public class Location {
    * Champ libre pour compléter les informations de localisation
    * @return freetext
    **/
-  @JsonIgnore
-
-  public Object getFreetext() {
-    return freetext.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFreetext_JsonNullable() {
+  public String getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-
-  public void setFreetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   @Override
@@ -879,7 +864,7 @@ public class Location {
     }
     Location location = (Location)o;
     return Objects.equals(this.locID, location.locID) &&
-        equalsNullable(this.locLabel, location.locLabel) &&
+        Objects.equals(this.locLabel, location.locLabel) &&
         Objects.equals(this.name, location.name) &&
         Objects.equals(this.detailedAdress, location.detailedAdress) &&
         Objects.equals(this.city, location.city) &&
@@ -887,27 +872,13 @@ public class Location {
         Objects.equals(this.geometry, location.geometry) &&
         Objects.equals(this.externalInfo, location.externalInfo) &&
         Objects.equals(this.country, location.country) &&
-        equalsNullable(this.freetext, location.freetext);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.freetext, location.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locID, hashCodeNullable(locLabel), name, detailedAdress,
-                        city, access, geometry, externalInfo, country,
-                        hashCodeNullable(freetext));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(locID, locLabel, name, detailedAdress, city, access,
+                        geometry, externalInfo, country, freetext);
   }
 
   @Override

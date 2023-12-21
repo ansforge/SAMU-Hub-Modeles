@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -38,9 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Coord;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Point
@@ -54,7 +51,7 @@ public class Point {
   private Coord coord;
 
   public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
-  private JsonNullable<Object> sysCoord = JsonNullable.<Object>of(null);
+  private String sysCoord;
 
   public Point() {}
 
@@ -81,9 +78,9 @@ public class Point {
     this.coord = coord;
   }
 
-  public Point sysCoord(Object sysCoord) {
-    this.sysCoord = JsonNullable.<Object>of(sysCoord);
+  public Point sysCoord(String sysCoord) {
 
+    this.sysCoord = sysCoord;
     return this;
   }
 
@@ -93,23 +90,17 @@ public class Point {
    *n&#39;est pas renseigné, on considère que la valeur par défaut est «».
    * @return sysCoord
    **/
-  @JsonIgnore
-
-  public Object getSysCoord() {
-    return sysCoord.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_SYS_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getSysCoord_JsonNullable() {
+  public String getSysCoord() {
     return sysCoord;
   }
 
   @JsonProperty(JSON_PROPERTY_SYS_COORD)
-
-  public void setSysCoord(Object sysCoord) {
-    this.sysCoord = JsonNullable.<Object>of(sysCoord);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSysCoord(String sysCoord) {
+    this.sysCoord = sysCoord;
   }
 
   @Override
@@ -122,25 +113,12 @@ public class Point {
     }
     Point point = (Point)o;
     return Objects.equals(this.coord, point.coord) &&
-        equalsNullable(this.sysCoord, point.sysCoord);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.sysCoord, point.sysCoord);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(coord, hashCodeNullable(sysCoord));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(coord, sysCoord);
   }
 
   @Override

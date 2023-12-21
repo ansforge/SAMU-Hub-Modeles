@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -44,9 +43,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * CreateCase
@@ -67,7 +64,7 @@ public class CreateCase {
   private String caseId;
 
   public static final String JSON_PROPERTY_SENDER_CASE_ID = "senderCaseId";
-  private JsonNullable<Object> senderCaseId = JsonNullable.<Object>of(null);
+  private String senderCaseId;
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
@@ -93,7 +90,7 @@ public class CreateCase {
   private AdditionalInformation additionalInformation;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private JsonNullable<Object> freetext = JsonNullable.<Object>of(null);
+  private String freetext;
 
   public CreateCase() {}
 
@@ -129,9 +126,9 @@ public class CreateCase {
     this.caseId = caseId;
   }
 
-  public CreateCase senderCaseId(Object senderCaseId) {
-    this.senderCaseId = JsonNullable.<Object>of(senderCaseId);
+  public CreateCase senderCaseId(String senderCaseId) {
 
+    this.senderCaseId = senderCaseId;
     return this;
   }
 
@@ -143,23 +140,17 @@ public class CreateCase {
    *de l&#39;identifiant local de leur partenaire.
    * @return senderCaseId
    **/
-  @JsonIgnore
-
-  public Object getSenderCaseId() {
-    return senderCaseId.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getSenderCaseId_JsonNullable() {
+  public String getSenderCaseId() {
     return senderCaseId;
   }
 
   @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
-
-  public void setSenderCaseId(Object senderCaseId) {
-    this.senderCaseId = JsonNullable.<Object>of(senderCaseId);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSenderCaseId(String senderCaseId) {
+    this.senderCaseId = senderCaseId;
   }
 
   public CreateCase creation(OffsetDateTime creation) {
@@ -347,9 +338,9 @@ public class CreateCase {
     this.additionalInformation = additionalInformation;
   }
 
-  public CreateCase freetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  public CreateCase freetext(String freetext) {
 
+    this.freetext = freetext;
     return this;
   }
 
@@ -358,23 +349,17 @@ public class CreateCase {
    *concernant l&#39;affaire
    * @return freetext
    **/
-  @JsonIgnore
-
-  public Object getFreetext() {
-    return freetext.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFreetext_JsonNullable() {
+  public String getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-
-  public void setFreetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   @Override
@@ -387,7 +372,7 @@ public class CreateCase {
     }
     CreateCase createCase = (CreateCase)o;
     return Objects.equals(this.caseId, createCase.caseId) &&
-        equalsNullable(this.senderCaseId, createCase.senderCaseId) &&
+        Objects.equals(this.senderCaseId, createCase.senderCaseId) &&
         Objects.equals(this.creation, createCase.creation) &&
         Objects.equals(this.referenceVersion, createCase.referenceVersion) &&
         Objects.equals(this.qualification, createCase.qualification) &&
@@ -396,28 +381,14 @@ public class CreateCase {
         Objects.equals(this.newAlert, createCase.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCase.additionalInformation) &&
-        equalsNullable(this.freetext, createCase.freetext);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.freetext, createCase.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, hashCodeNullable(senderCaseId), creation,
-                        referenceVersion, qualification, location, initialAlert,
-                        newAlert, additionalInformation,
-                        hashCodeNullable(freetext));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
+                        qualification, location, initialAlert, newAlert,
+                        additionalInformation, freetext);
   }
 
   @Override

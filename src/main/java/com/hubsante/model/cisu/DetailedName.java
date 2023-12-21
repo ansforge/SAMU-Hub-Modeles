@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,9 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * DetailedName
@@ -55,10 +52,10 @@ public class DetailedName {
   private String complete;
 
   public static final String JSON_PROPERTY_LAST_NAME = "lastName";
-  private JsonNullable<Object> lastName = JsonNullable.<Object>of(null);
+  private String lastName;
 
   public static final String JSON_PROPERTY_FIRST_NAME = "firstName";
-  private JsonNullable<Object> firstName = JsonNullable.<Object>of(null);
+  private String firstName;
 
   public DetailedName() {}
 
@@ -88,9 +85,9 @@ public class DetailedName {
     this.complete = complete;
   }
 
-  public DetailedName lastName(Object lastName) {
-    this.lastName = JsonNullable.<Object>of(lastName);
+  public DetailedName lastName(String lastName) {
 
+    this.lastName = lastName;
     return this;
   }
 
@@ -98,28 +95,22 @@ public class DetailedName {
    * Nom du requérant
    * @return lastName
    **/
-  @JsonIgnore
-
-  public Object getLastName() {
-    return lastName.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_LAST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getLastName_JsonNullable() {
+  public String getLastName() {
     return lastName;
   }
 
   @JsonProperty(JSON_PROPERTY_LAST_NAME)
-
-  public void setLastName(Object lastName) {
-    this.lastName = JsonNullable.<Object>of(lastName);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
   }
 
-  public DetailedName firstName(Object firstName) {
-    this.firstName = JsonNullable.<Object>of(firstName);
+  public DetailedName firstName(String firstName) {
 
+    this.firstName = firstName;
     return this;
   }
 
@@ -128,23 +119,17 @@ public class DetailedName {
    *préférablement être séparés par le caractère \&quot;-\&quot;
    * @return firstName
    **/
-  @JsonIgnore
-
-  public Object getFirstName() {
-    return firstName.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_FIRST_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFirstName_JsonNullable() {
+  public String getFirstName() {
     return firstName;
   }
 
   @JsonProperty(JSON_PROPERTY_FIRST_NAME)
-
-  public void setFirstName(Object firstName) {
-    this.firstName = JsonNullable.<Object>of(firstName);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
   }
 
   @Override
@@ -157,27 +142,13 @@ public class DetailedName {
     }
     DetailedName detailedName = (DetailedName)o;
     return Objects.equals(this.complete, detailedName.complete) &&
-        equalsNullable(this.lastName, detailedName.lastName) &&
-        equalsNullable(this.firstName, detailedName.firstName);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.lastName, detailedName.lastName) &&
+        Objects.equals(this.firstName, detailedName.firstName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(complete, hashCodeNullable(lastName),
-                        hashCodeNullable(firstName));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(complete, lastName, firstName);
   }
 
   @Override

@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -36,13 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Position;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Mission
@@ -429,16 +427,16 @@ public class Mission {
   private TYPEEnum TYPE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
+  private String FREETEXT;
 
   public static final String JSON_PROPERTY_I_D = "ID";
-  private JsonNullable<Object> ID = JsonNullable.<Object>of(null);
+  private String ID;
 
   public static final String JSON_PROPERTY_O_R_G_I_D = "ORG_ID";
-  private JsonNullable<Object> ORG_ID = JsonNullable.<Object>of(null);
+  private String ORG_ID;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private JsonNullable<Object> NAME = JsonNullable.<Object>of(null);
+  private String NAME;
 
   /**
    * Les valeurs possibles avec lesquelles valoriser ce champ sont détaillées au
@@ -498,25 +496,25 @@ public class Mission {
   private STATUSEnum STATUS;
 
   public static final String JSON_PROPERTY_S_T_A_R_T_T_I_M_E = "START_TIME";
-  private JsonNullable<Object> START_TIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime START_TIME;
 
   public static final String JSON_PROPERTY_E_N_D_T_I_M_E = "END_TIME";
-  private JsonNullable<Object> END_TIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime END_TIME;
 
   public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D = "RESOURCE_ID";
-  private JsonNullable<Object> RESOURCE_ID = JsonNullable.<Object>of(null);
+  private String RESOURCE_ID;
 
   public static final String JSON_PROPERTY_P_A_R_E_N_T_M_I_S_S_I_O_N_I_D =
       "PARENT_MISSION_ID";
-  private List<Object> PARENT_MISSION_ID;
+  private List<String> PARENT_MISSION_ID;
 
   public static final String JSON_PROPERTY_C_H_I_L_D_M_I_S_S_I_O_N_I_D =
       "CHILD_MISSION_ID";
-  private List<Object> CHILD_MISSION_ID;
+  private List<String> CHILD_MISSION_ID;
 
   public static final String JSON_PROPERTY_M_A_I_N_M_I_S_S_I_O_N_I_D =
       "MAIN_MISSION_ID";
-  private JsonNullable<Object> MAIN_MISSION_ID = JsonNullable.<Object>of(null);
+  private String MAIN_MISSION_ID;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
   private Position POSITION;
@@ -602,9 +600,9 @@ public class Mission {
     this.TYPE = TYPE;
   }
 
-  public Mission FREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  public Mission FREETEXT(String FREETEXT) {
 
+    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -615,28 +613,22 @@ public class Mission {
    *explicitement indiqués ici.
    * @return FREETEXT
    **/
-  @JsonIgnore
-
-  public Object getFREETEXT() {
-    return FREETEXT.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+  public String getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-
-  public void setFREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFREETEXT(String FREETEXT) {
+    this.FREETEXT = FREETEXT;
   }
 
-  public Mission ID(Object ID) {
-    this.ID = JsonNullable.<Object>of(ID);
+  public Mission ID(String ID) {
 
+    this.ID = ID;
     return this;
   }
 
@@ -646,28 +638,22 @@ public class Mission {
    *unique de la mission dans le système du partenaire la conduisant.
    * @return ID
    **/
-  @JsonIgnore
-
-  public Object getID() {
-    return ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getID_JsonNullable() {
+  public String getID() {
     return ID;
   }
 
   @JsonProperty(JSON_PROPERTY_I_D)
-
-  public void setID(Object ID) {
-    this.ID = JsonNullable.<Object>of(ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setID(String ID) {
+    this.ID = ID;
   }
 
-  public Mission ORG_ID(Object ORG_ID) {
-    this.ORG_ID = JsonNullable.<Object>of(ORG_ID);
+  public Mission ORG_ID(String ORG_ID) {
 
+    this.ORG_ID = ORG_ID;
     return this;
   }
 
@@ -682,28 +668,22 @@ public class Mission {
    *identique à &lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
    * @return ORG_ID
    **/
-  @JsonIgnore
-
-  public Object getORGID() {
-    return ORG_ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getORGID_JsonNullable() {
+  public String getORGID() {
     return ORG_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
-
-  public void setORGID(Object ORG_ID) {
-    this.ORG_ID = JsonNullable.<Object>of(ORG_ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setORGID(String ORG_ID) {
+    this.ORG_ID = ORG_ID;
   }
 
-  public Mission NAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  public Mission NAME(String NAME) {
 
+    this.NAME = NAME;
     return this;
   }
 
@@ -722,23 +702,17 @@ public class Mission {
    *- sinon libre
    * @return NAME
    **/
-  @JsonIgnore
-
-  public Object getNAME() {
-    return NAME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getNAME_JsonNullable() {
+  public String getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-
-  public void setNAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNAME(String NAME) {
+    this.NAME = NAME;
   }
 
   public Mission STATUS(STATUSEnum STATUS) {
@@ -776,9 +750,9 @@ public class Mission {
     this.STATUS = STATUS;
   }
 
-  public Mission START_TIME(Object START_TIME) {
-    this.START_TIME = JsonNullable.<Object>of(START_TIME);
+  public Mission START_TIME(OffsetDateTime START_TIME) {
 
+    this.START_TIME = START_TIME;
     return this;
   }
 
@@ -789,28 +763,22 @@ public class Mission {
    *: Horaire effectif de début de la mission
    * @return START_TIME
    **/
-  @JsonIgnore
-
-  public Object getSTARTTIME() {
-    return START_TIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_S_T_A_R_T_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getSTARTTIME_JsonNullable() {
+  public OffsetDateTime getSTARTTIME() {
     return START_TIME;
   }
 
   @JsonProperty(JSON_PROPERTY_S_T_A_R_T_T_I_M_E)
-
-  public void setSTARTTIME(Object START_TIME) {
-    this.START_TIME = JsonNullable.<Object>of(START_TIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSTARTTIME(OffsetDateTime START_TIME) {
+    this.START_TIME = START_TIME;
   }
 
-  public Mission END_TIME(Object END_TIME) {
-    this.END_TIME = JsonNullable.<Object>of(END_TIME);
+  public Mission END_TIME(OffsetDateTime END_TIME) {
 
+    this.END_TIME = END_TIME;
     return this;
   }
 
@@ -822,28 +790,22 @@ public class Mission {
    *patient/victime, la fin de la prise en charge.
    * @return END_TIME
    **/
-  @JsonIgnore
-
-  public Object getENDTIME() {
-    return END_TIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_E_N_D_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getENDTIME_JsonNullable() {
+  public OffsetDateTime getENDTIME() {
     return END_TIME;
   }
 
   @JsonProperty(JSON_PROPERTY_E_N_D_T_I_M_E)
-
-  public void setENDTIME(Object END_TIME) {
-    this.END_TIME = JsonNullable.<Object>of(END_TIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setENDTIME(OffsetDateTime END_TIME) {
+    this.END_TIME = END_TIME;
   }
 
-  public Mission RESOURCE_ID(Object RESOURCE_ID) {
-    this.RESOURCE_ID = JsonNullable.<Object>of(RESOURCE_ID);
+  public Mission RESOURCE_ID(String RESOURCE_ID) {
 
+    this.RESOURCE_ID = RESOURCE_ID;
     return this;
   }
 
@@ -852,32 +814,26 @@ public class Mission {
    *RESSOURCE.ID)
    * @return RESOURCE_ID
    **/
-  @JsonIgnore
-
-  public Object getRESOURCEID() {
-    return RESOURCE_ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getRESOURCEID_JsonNullable() {
+  public String getRESOURCEID() {
     return RESOURCE_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D)
-
-  public void setRESOURCEID(Object RESOURCE_ID) {
-    this.RESOURCE_ID = JsonNullable.<Object>of(RESOURCE_ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRESOURCEID(String RESOURCE_ID) {
+    this.RESOURCE_ID = RESOURCE_ID;
   }
 
-  public Mission PARENT_MISSION_ID(List<Object> PARENT_MISSION_ID) {
+  public Mission PARENT_MISSION_ID(List<String> PARENT_MISSION_ID) {
 
     this.PARENT_MISSION_ID = PARENT_MISSION_ID;
     return this;
   }
 
-  public Mission addPARENTMISSIONIDItem(Object PARENT_MISSION_IDItem) {
+  public Mission addPARENTMISSIONIDItem(String PARENT_MISSION_IDItem) {
     if (this.PARENT_MISSION_ID == null) {
       this.PARENT_MISSION_ID = new ArrayList<>();
     }
@@ -892,7 +848,7 @@ public class Mission {
   @JsonProperty(JSON_PROPERTY_P_A_R_E_N_T_M_I_S_S_I_O_N_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getPARENTMISSIONID() {
+  public List<String> getPARENTMISSIONID() {
     return PARENT_MISSION_ID;
   }
 
@@ -900,7 +856,7 @@ public class Mission {
 
   @JsonProperty(JSON_PROPERTY_P_A_R_E_N_T_M_I_S_S_I_O_N_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPARENTMISSIONID(List<Object> PARENT_MISSION_ID) {
+  public void setPARENTMISSIONID(List<String> PARENT_MISSION_ID) {
     if (PARENT_MISSION_ID == null) {
       return;
     }
@@ -910,13 +866,13 @@ public class Mission {
     this.PARENT_MISSION_ID.addAll(PARENT_MISSION_ID);
   }
 
-  public Mission CHILD_MISSION_ID(List<Object> CHILD_MISSION_ID) {
+  public Mission CHILD_MISSION_ID(List<String> CHILD_MISSION_ID) {
 
     this.CHILD_MISSION_ID = CHILD_MISSION_ID;
     return this;
   }
 
-  public Mission addCHILDMISSIONIDItem(Object CHILD_MISSION_IDItem) {
+  public Mission addCHILDMISSIONIDItem(String CHILD_MISSION_IDItem) {
     if (this.CHILD_MISSION_ID == null) {
       this.CHILD_MISSION_ID = new ArrayList<>();
     }
@@ -931,7 +887,7 @@ public class Mission {
   @JsonProperty(JSON_PROPERTY_C_H_I_L_D_M_I_S_S_I_O_N_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getCHILDMISSIONID() {
+  public List<String> getCHILDMISSIONID() {
     return CHILD_MISSION_ID;
   }
 
@@ -939,7 +895,7 @@ public class Mission {
 
   @JsonProperty(JSON_PROPERTY_C_H_I_L_D_M_I_S_S_I_O_N_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCHILDMISSIONID(List<Object> CHILD_MISSION_ID) {
+  public void setCHILDMISSIONID(List<String> CHILD_MISSION_ID) {
     if (CHILD_MISSION_ID == null) {
       return;
     }
@@ -949,9 +905,9 @@ public class Mission {
     this.CHILD_MISSION_ID.addAll(CHILD_MISSION_ID);
   }
 
-  public Mission MAIN_MISSION_ID(Object MAIN_MISSION_ID) {
-    this.MAIN_MISSION_ID = JsonNullable.<Object>of(MAIN_MISSION_ID);
+  public Mission MAIN_MISSION_ID(String MAIN_MISSION_ID) {
 
+    this.MAIN_MISSION_ID = MAIN_MISSION_ID;
     return this;
   }
 
@@ -964,23 +920,17 @@ public class Mission {
    *à une réponse
    * @return MAIN_MISSION_ID
    **/
-  @JsonIgnore
-
-  public Object getMAINMISSIONID() {
-    return MAIN_MISSION_ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_M_A_I_N_M_I_S_S_I_O_N_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getMAINMISSIONID_JsonNullable() {
+  public String getMAINMISSIONID() {
     return MAIN_MISSION_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_M_A_I_N_M_I_S_S_I_O_N_I_D)
-
-  public void setMAINMISSIONID(Object MAIN_MISSION_ID) {
-    this.MAIN_MISSION_ID = JsonNullable.<Object>of(MAIN_MISSION_ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMAINMISSIONID(String MAIN_MISSION_ID) {
+    this.MAIN_MISSION_ID = MAIN_MISSION_ID;
   }
 
   public Mission POSITION(Position POSITION) {
@@ -1043,42 +993,26 @@ public class Mission {
     }
     Mission mission = (Mission)o;
     return Objects.equals(this.TYPE, mission.TYPE) &&
-        equalsNullable(this.FREETEXT, mission.FREETEXT) &&
-        equalsNullable(this.ID, mission.ID) &&
-        equalsNullable(this.ORG_ID, mission.ORG_ID) &&
-        equalsNullable(this.NAME, mission.NAME) &&
+        Objects.equals(this.FREETEXT, mission.FREETEXT) &&
+        Objects.equals(this.ID, mission.ID) &&
+        Objects.equals(this.ORG_ID, mission.ORG_ID) &&
+        Objects.equals(this.NAME, mission.NAME) &&
         Objects.equals(this.STATUS, mission.STATUS) &&
-        equalsNullable(this.START_TIME, mission.START_TIME) &&
-        equalsNullable(this.END_TIME, mission.END_TIME) &&
-        equalsNullable(this.RESOURCE_ID, mission.RESOURCE_ID) &&
+        Objects.equals(this.START_TIME, mission.START_TIME) &&
+        Objects.equals(this.END_TIME, mission.END_TIME) &&
+        Objects.equals(this.RESOURCE_ID, mission.RESOURCE_ID) &&
         Objects.equals(this.PARENT_MISSION_ID, mission.PARENT_MISSION_ID) &&
         Objects.equals(this.CHILD_MISSION_ID, mission.CHILD_MISSION_ID) &&
-        equalsNullable(this.MAIN_MISSION_ID, mission.MAIN_MISSION_ID) &&
+        Objects.equals(this.MAIN_MISSION_ID, mission.MAIN_MISSION_ID) &&
         Objects.equals(this.POSITION, mission.POSITION) &&
         Objects.equals(this.PRIORITY, mission.PRIORITY);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(
-        TYPE, hashCodeNullable(FREETEXT), hashCodeNullable(ID),
-        hashCodeNullable(ORG_ID), hashCodeNullable(NAME), STATUS,
-        hashCodeNullable(START_TIME), hashCodeNullable(END_TIME),
-        hashCodeNullable(RESOURCE_ID), PARENT_MISSION_ID, CHILD_MISSION_ID,
-        hashCodeNullable(MAIN_MISSION_ID), POSITION, PRIORITY);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(TYPE, FREETEXT, ID, ORG_ID, NAME, STATUS, START_TIME,
+                        END_TIME, RESOURCE_ID, PARENT_MISSION_ID,
+                        CHILD_MISSION_ID, MAIN_MISSION_ID, POSITION, PRIORITY);
   }
 
   @Override

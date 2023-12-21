@@ -1291,11 +1291,11 @@ public class Rtype {
   private List<RCLASSEnum> RCLASS = new ArrayList<>();
 
   public static final String JSON_PROPERTY_C_A_P_A_B_I_L_I_T_Y = "CAPABILITY";
-  private List<Object> CAPABILITY;
+  private List<String> CAPABILITY;
 
   public static final String JSON_PROPERTY_C_H_A_R_A_C_T_E_R_I_S_T_I_C_S =
       "CHARACTERISTICS";
-  private List<Object> CHARACTERISTICS;
+  private List<String> CHARACTERISTICS;
 
   public Rtype() {}
 
@@ -1338,13 +1338,13 @@ public class Rtype {
     this.RCLASS.addAll(RCLASS);
   }
 
-  public Rtype CAPABILITY(List<Object> CAPABILITY) {
+  public Rtype CAPABILITY(List<String> CAPABILITY) {
 
     this.CAPABILITY = CAPABILITY;
     return this;
   }
 
-  public Rtype addCAPABILITYItem(Object CAPABILITYItem) {
+  public Rtype addCAPABILITYItem(String CAPABILITYItem) {
     if (this.CAPABILITY == null) {
       this.CAPABILITY = new ArrayList<>();
     }
@@ -1359,7 +1359,7 @@ public class Rtype {
   @JsonProperty(JSON_PROPERTY_C_A_P_A_B_I_L_I_T_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getCAPABILITY() {
+  public List<String> getCAPABILITY() {
     return CAPABILITY;
   }
 
@@ -1367,7 +1367,7 @@ public class Rtype {
 
   @JsonProperty(JSON_PROPERTY_C_A_P_A_B_I_L_I_T_Y)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCAPABILITY(List<Object> CAPABILITY) {
+  public void setCAPABILITY(List<String> CAPABILITY) {
     if (CAPABILITY == null) {
       return;
     }
@@ -1377,13 +1377,13 @@ public class Rtype {
     this.CAPABILITY.addAll(CAPABILITY);
   }
 
-  public Rtype CHARACTERISTICS(List<Object> CHARACTERISTICS) {
+  public Rtype CHARACTERISTICS(List<String> CHARACTERISTICS) {
 
     this.CHARACTERISTICS = CHARACTERISTICS;
     return this;
   }
 
-  public Rtype addCHARACTERISTICSItem(Object CHARACTERISTICSItem) {
+  public Rtype addCHARACTERISTICSItem(String CHARACTERISTICSItem) {
     if (this.CHARACTERISTICS == null) {
       this.CHARACTERISTICS = new ArrayList<>();
     }
@@ -1398,7 +1398,7 @@ public class Rtype {
   @JsonProperty(JSON_PROPERTY_C_H_A_R_A_C_T_E_R_I_S_T_I_C_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getCHARACTERISTICS() {
+  public List<String> getCHARACTERISTICS() {
     return CHARACTERISTICS;
   }
 
@@ -1406,7 +1406,7 @@ public class Rtype {
 
   @JsonProperty(JSON_PROPERTY_C_H_A_R_A_C_T_E_R_I_S_T_I_C_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCHARACTERISTICS(List<Object> CHARACTERISTICS) {
+  public void setCHARACTERISTICS(List<String> CHARACTERISTICS) {
     if (CHARACTERISTICS == null) {
       return;
     }

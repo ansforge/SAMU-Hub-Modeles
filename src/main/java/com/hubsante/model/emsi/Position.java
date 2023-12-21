@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -40,9 +39,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Position
@@ -60,22 +57,22 @@ public class Position {
   private String LOC_ID;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private JsonNullable<Object> NAME = JsonNullable.<Object>of(null);
+  private String NAME;
 
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private JsonNullable<Object> TYPE = JsonNullable.<Object>of(null);
+  private String TYPE;
 
   public static final String JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E = "HEIGHT_ROLE";
-  private JsonNullable<Object> HEIGHT_ROLE = JsonNullable.<Object>of(null);
+  private String HEIGHT_ROLE;
 
   public static final String JSON_PROPERTY_C_O_O_R_D_S_Y_S = "COORDSYS";
-  private JsonNullable<Object> COORDSYS = JsonNullable.<Object>of(null);
+  private String COORDSYS;
 
   public static final String JSON_PROPERTY_C_O_O_R_D = "COORD";
   private List<Coord> COORD;
 
   public static final String JSON_PROPERTY_A_D_D_R_E_S_S = "ADDRESS";
-  private List<Object> ADDRESS;
+  private List<String> ADDRESS;
 
   public Position() {}
 
@@ -108,9 +105,9 @@ public class Position {
     this.LOC_ID = LOC_ID;
   }
 
-  public Position NAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  public Position NAME(String NAME) {
 
+    this.NAME = NAME;
     return this;
   }
 
@@ -118,28 +115,22 @@ public class Position {
    * Optionnel, non utilisé par NexSIS nom de lieu
    * @return NAME
    **/
-  @JsonIgnore
-
-  public Object getNAME() {
-    return NAME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getNAME_JsonNullable() {
+  public String getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-
-  public void setNAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNAME(String NAME) {
+    this.NAME = NAME;
   }
 
-  public Position TYPE(Object TYPE) {
-    this.TYPE = JsonNullable.<Object>of(TYPE);
+  public Position TYPE(String TYPE) {
 
+    this.TYPE = TYPE;
     return this;
   }
 
@@ -149,28 +140,22 @@ public class Position {
    *Nomenclature EMSI - POSITION pour plus de détails
    * @return TYPE
    **/
-  @JsonIgnore
-
-  public Object getTYPE() {
-    return TYPE.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getTYPE_JsonNullable() {
+  public String getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
-
-  public void setTYPE(Object TYPE) {
-    this.TYPE = JsonNullable.<Object>of(TYPE);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTYPE(String TYPE) {
+    this.TYPE = TYPE;
   }
 
-  public Position HEIGHT_ROLE(Object HEIGHT_ROLE) {
-    this.HEIGHT_ROLE = JsonNullable.<Object>of(HEIGHT_ROLE);
+  public Position HEIGHT_ROLE(String HEIGHT_ROLE) {
 
+    this.HEIGHT_ROLE = HEIGHT_ROLE;
     return this;
   }
 
@@ -178,28 +163,22 @@ public class Position {
    * Optionnel
    * @return HEIGHT_ROLE
    **/
-  @JsonIgnore
-
-  public Object getHEIGHTROLE() {
-    return HEIGHT_ROLE.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getHEIGHTROLE_JsonNullable() {
+  public String getHEIGHTROLE() {
     return HEIGHT_ROLE;
   }
 
   @JsonProperty(JSON_PROPERTY_H_E_I_G_H_T_R_O_L_E)
-
-  public void setHEIGHTROLE(Object HEIGHT_ROLE) {
-    this.HEIGHT_ROLE = JsonNullable.<Object>of(HEIGHT_ROLE);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHEIGHTROLE(String HEIGHT_ROLE) {
+    this.HEIGHT_ROLE = HEIGHT_ROLE;
   }
 
-  public Position COORDSYS(Object COORDSYS) {
-    this.COORDSYS = JsonNullable.<Object>of(COORDSYS);
+  public Position COORDSYS(String COORDSYS) {
 
+    this.COORDSYS = COORDSYS;
     return this;
   }
 
@@ -207,23 +186,17 @@ public class Position {
    * Optionnel
    * @return COORDSYS
    **/
-  @JsonIgnore
-
-  public Object getCOORDSYS() {
-    return COORDSYS.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_C_O_O_R_D_S_Y_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getCOORDSYS_JsonNullable() {
+  public String getCOORDSYS() {
     return COORDSYS;
   }
 
   @JsonProperty(JSON_PROPERTY_C_O_O_R_D_S_Y_S)
-
-  public void setCOORDSYS(Object COORDSYS) {
-    this.COORDSYS = JsonNullable.<Object>of(COORDSYS);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCOORDSYS(String COORDSYS) {
+    this.COORDSYS = COORDSYS;
   }
 
   public Position COORD(List<Coord> COORD) {
@@ -265,13 +238,13 @@ public class Position {
     this.COORD.addAll(COORD);
   }
 
-  public Position ADDRESS(List<Object> ADDRESS) {
+  public Position ADDRESS(List<String> ADDRESS) {
 
     this.ADDRESS = ADDRESS;
     return this;
   }
 
-  public Position addADDRESSItem(Object ADDRESSItem) {
+  public Position addADDRESSItem(String ADDRESSItem) {
     if (this.ADDRESS == null) {
       this.ADDRESS = new ArrayList<>();
     }
@@ -286,7 +259,7 @@ public class Position {
   @JsonProperty(JSON_PROPERTY_A_D_D_R_E_S_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getADDRESS() {
+  public List<String> getADDRESS() {
     return ADDRESS;
   }
 
@@ -294,7 +267,7 @@ public class Position {
 
   @JsonProperty(JSON_PROPERTY_A_D_D_R_E_S_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setADDRESS(List<Object> ADDRESS) {
+  public void setADDRESS(List<String> ADDRESS) {
     if (ADDRESS == null) {
       return;
     }
@@ -314,32 +287,18 @@ public class Position {
     }
     Position position = (Position)o;
     return Objects.equals(this.LOC_ID, position.LOC_ID) &&
-        equalsNullable(this.NAME, position.NAME) &&
-        equalsNullable(this.TYPE, position.TYPE) &&
-        equalsNullable(this.HEIGHT_ROLE, position.HEIGHT_ROLE) &&
-        equalsNullable(this.COORDSYS, position.COORDSYS) &&
+        Objects.equals(this.NAME, position.NAME) &&
+        Objects.equals(this.TYPE, position.TYPE) &&
+        Objects.equals(this.HEIGHT_ROLE, position.HEIGHT_ROLE) &&
+        Objects.equals(this.COORDSYS, position.COORDSYS) &&
         Objects.equals(this.COORD, position.COORD) &&
         Objects.equals(this.ADDRESS, position.ADDRESS);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(LOC_ID, hashCodeNullable(NAME), hashCodeNullable(TYPE),
-                        hashCodeNullable(HEIGHT_ROLE),
-                        hashCodeNullable(COORDSYS), COORD, ADDRESS);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(LOC_ID, NAME, TYPE, HEIGHT_ROLE, COORDSYS, COORD,
+                        ADDRESS);
   }
 
   @Override

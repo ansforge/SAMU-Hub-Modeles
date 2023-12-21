@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -38,13 +37,12 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.ExternalInfo;
 import com.hubsante.model.emsi.Link;
 import com.hubsante.model.emsi.Origin;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Context
@@ -149,7 +147,7 @@ public class Context {
   private MSGTYPEEnum MSGTYPE;
 
   public static final String JSON_PROPERTY_C_R_E_A_T_I_O_N = "CREATION";
-  private JsonNullable<Object> CREATION = JsonNullable.<Object>of(null);
+  private OffsetDateTime CREATION;
 
   public static final String JSON_PROPERTY_L_I_N_K = "LINK";
   private List<Link> LINK;
@@ -241,7 +239,7 @@ public class Context {
   private SECLASSEnum SECLASS;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
+  private String FREETEXT;
 
   public static final String JSON_PROPERTY_O_R_I_G_I_N = "ORIGIN";
   private Origin ORIGIN;
@@ -361,9 +359,9 @@ public class Context {
     this.MSGTYPE = MSGTYPE;
   }
 
-  public Context CREATION(Object CREATION) {
-    this.CREATION = JsonNullable.<Object>of(CREATION);
+  public Context CREATION(OffsetDateTime CREATION) {
 
+    this.CREATION = CREATION;
     return this;
   }
 
@@ -377,23 +375,17 @@ public class Context {
    *obtenue via l&#39;enveloppe EDXL-DE (se référer au DST)
    * @return CREATION
    **/
-  @JsonIgnore
-
-  public Object getCREATION() {
-    return CREATION.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getCREATION_JsonNullable() {
+  public OffsetDateTime getCREATION() {
     return CREATION;
   }
 
   @JsonProperty(JSON_PROPERTY_C_R_E_A_T_I_O_N)
-
-  public void setCREATION(Object CREATION) {
-    this.CREATION = JsonNullable.<Object>of(CREATION);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCREATION(OffsetDateTime CREATION) {
+    this.CREATION = CREATION;
   }
 
   public Context LINK(List<Link> LINK) {
@@ -485,9 +477,9 @@ public class Context {
     this.SECLASS = SECLASS;
   }
 
-  public Context FREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  public Context FREETEXT(String FREETEXT) {
 
+    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -504,23 +496,17 @@ public class Context {
    *auxquels seront ajoutés  les éventuels événements à venir.
    * @return FREETEXT
    **/
-  @JsonIgnore
-
-  public Object getFREETEXT() {
-    return FREETEXT.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+  public String getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-
-  public void setFREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFREETEXT(String FREETEXT) {
+    this.FREETEXT = FREETEXT;
   }
 
   public Context ORIGIN(Origin ORIGIN) {
@@ -621,34 +607,20 @@ public class Context {
     return Objects.equals(this.ID, context.ID) &&
         Objects.equals(this.MODE, context.MODE) &&
         Objects.equals(this.MSGTYPE, context.MSGTYPE) &&
-        equalsNullable(this.CREATION, context.CREATION) &&
+        Objects.equals(this.CREATION, context.CREATION) &&
         Objects.equals(this.LINK, context.LINK) &&
         Objects.equals(this.LEVEL, context.LEVEL) &&
         Objects.equals(this.SECLASS, context.SECLASS) &&
-        equalsNullable(this.FREETEXT, context.FREETEXT) &&
+        Objects.equals(this.FREETEXT, context.FREETEXT) &&
         Objects.equals(this.ORIGIN, context.ORIGIN) &&
         Objects.equals(this.EXTERNAL_INFO, context.EXTERNAL_INFO) &&
         Objects.equals(this.URGENCY, context.URGENCY);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(ID, MODE, MSGTYPE, hashCodeNullable(CREATION), LINK,
-                        LEVEL, SECLASS, hashCodeNullable(FREETEXT), ORIGIN,
-                        EXTERNAL_INFO, URGENCY);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(ID, MODE, MSGTYPE, CREATION, LINK, LEVEL, SECLASS,
+                        FREETEXT, ORIGIN, EXTERNAL_INFO, URGENCY);
   }
 
   @Override

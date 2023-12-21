@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,9 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Victims
@@ -138,7 +135,7 @@ public class Victims {
   private MainVictimEnum mainVictim;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private JsonNullable<Object> freetext = JsonNullable.<Object>of(null);
+  private String freetext;
 
   public Victims() {}
 
@@ -191,9 +188,9 @@ public class Victims {
     this.mainVictim = mainVictim;
   }
 
-  public Victims freetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  public Victims freetext(String freetext) {
 
+    this.freetext = freetext;
     return this;
   }
 
@@ -201,23 +198,17 @@ public class Victims {
    * Permet de complémenter en commentaire libre la(les) victime(s)
    * @return freetext
    **/
-  @JsonIgnore
-
-  public Object getFreetext() {
-    return freetext.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFreetext_JsonNullable() {
+  public String getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-
-  public void setFreetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   @Override
@@ -231,25 +222,12 @@ public class Victims {
     Victims victims = (Victims)o;
     return Objects.equals(this.count, victims.count) &&
         Objects.equals(this.mainVictim, victims.mainVictim) &&
-        equalsNullable(this.freetext, victims.freetext);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.freetext, victims.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(count, mainVictim, hashCodeNullable(freetext));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(count, mainVictim, freetext);
   }
 
   @Override

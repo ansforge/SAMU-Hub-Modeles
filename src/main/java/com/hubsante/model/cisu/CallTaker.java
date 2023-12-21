@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -38,9 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Contact;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * CallTaker
@@ -66,7 +63,7 @@ public class CallTaker {
   private Contact calltakeContact;
 
   public static final String JSON_PROPERTY_CALLTAKER_ID = "calltakerId";
-  private JsonNullable<Object> calltakerId = JsonNullable.<Object>of(null);
+  private String calltakerId;
 
   public CallTaker() {}
 
@@ -167,9 +164,9 @@ public class CallTaker {
     this.calltakeContact = calltakeContact;
   }
 
-  public CallTaker calltakerId(Object calltakerId) {
-    this.calltakerId = JsonNullable.<Object>of(calltakerId);
+  public CallTaker calltakerId(String calltakerId) {
 
+    this.calltakerId = calltakerId;
     return this;
   }
 
@@ -178,23 +175,17 @@ public class CallTaker {
    *un identifiant technique, un numéro de carte CPS etc)
    * @return calltakerId
    **/
-  @JsonIgnore
-
-  public Object getCalltakerId() {
-    return calltakerId.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_CALLTAKER_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getCalltakerId_JsonNullable() {
+  public String getCalltakerId() {
     return calltakerId;
   }
 
   @JsonProperty(JSON_PROPERTY_CALLTAKER_ID)
-
-  public void setCalltakerId(Object calltakerId) {
-    this.calltakerId = JsonNullable.<Object>of(calltakerId);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCalltakerId(String calltakerId) {
+    this.calltakerId = calltakerId;
   }
 
   @Override
@@ -210,26 +201,13 @@ public class CallTaker {
         Objects.equals(this.controlRoom, callTaker.controlRoom) &&
         Objects.equals(this.role, callTaker.role) &&
         Objects.equals(this.calltakeContact, callTaker.calltakeContact) &&
-        equalsNullable(this.calltakerId, callTaker.calltakerId);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.calltakerId, callTaker.calltakerId);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(organization, controlRoom, role, calltakeContact,
-                        hashCodeNullable(calltakerId));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+                        calltakerId);
   }
 
   @Override

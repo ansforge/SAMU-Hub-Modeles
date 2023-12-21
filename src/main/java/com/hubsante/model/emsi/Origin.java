@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,9 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Origin
@@ -52,19 +49,19 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Origin {
   public static final String JSON_PROPERTY_O_R_G_I_D = "ORG_ID";
-  private JsonNullable<Object> ORG_ID = JsonNullable.<Object>of(null);
+  private String ORG_ID;
 
   public static final String JSON_PROPERTY_U_S_E_R_I_D = "USER_ID";
-  private JsonNullable<Object> USER_ID = JsonNullable.<Object>of(null);
+  private String USER_ID;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private JsonNullable<Object> NAME = JsonNullable.<Object>of(null);
+  private String NAME;
 
   public Origin() {}
 
-  public Origin ORG_ID(Object ORG_ID) {
-    this.ORG_ID = JsonNullable.<Object>of(ORG_ID);
+  public Origin ORG_ID(String ORG_ID) {
 
+    this.ORG_ID = ORG_ID;
     return this;
   }
 
@@ -75,28 +72,22 @@ public class Origin {
    *interne}*.{unité fonctionnelle}*.
    * @return ORG_ID
    **/
-  @JsonIgnore
-
-  public Object getORGID() {
-    return ORG_ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getORGID_JsonNullable() {
+  public String getORGID() {
     return ORG_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
-
-  public void setORGID(Object ORG_ID) {
-    this.ORG_ID = JsonNullable.<Object>of(ORG_ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setORGID(String ORG_ID) {
+    this.ORG_ID = ORG_ID;
   }
 
-  public Origin USER_ID(Object USER_ID) {
-    this.USER_ID = JsonNullable.<Object>of(USER_ID);
+  public Origin USER_ID(String USER_ID) {
 
+    this.USER_ID = USER_ID;
     return this;
   }
 
@@ -105,28 +96,22 @@ public class Origin {
    *l&#39;EMSI
    * @return USER_ID
    **/
-  @JsonIgnore
-
-  public Object getUSERID() {
-    return USER_ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_U_S_E_R_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getUSERID_JsonNullable() {
+  public String getUSERID() {
     return USER_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_U_S_E_R_I_D)
-
-  public void setUSERID(Object USER_ID) {
-    this.USER_ID = JsonNullable.<Object>of(USER_ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUSERID(String USER_ID) {
+    this.USER_ID = USER_ID;
   }
 
-  public Origin NAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  public Origin NAME(String NAME) {
 
+    this.NAME = NAME;
     return this;
   }
 
@@ -135,23 +120,17 @@ public class Origin {
    *[structure].[nom])
    * @return NAME
    **/
-  @JsonIgnore
-
-  public Object getNAME() {
-    return NAME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getNAME_JsonNullable() {
+  public String getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-
-  public void setNAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNAME(String NAME) {
+    this.NAME = NAME;
   }
 
   @Override
@@ -163,28 +142,14 @@ public class Origin {
       return false;
     }
     Origin origin = (Origin)o;
-    return equalsNullable(this.ORG_ID, origin.ORG_ID) &&
-        equalsNullable(this.USER_ID, origin.USER_ID) &&
-        equalsNullable(this.NAME, origin.NAME);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    return Objects.equals(this.ORG_ID, origin.ORG_ID) &&
+        Objects.equals(this.USER_ID, origin.USER_ID) &&
+        Objects.equals(this.NAME, origin.NAME);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(ORG_ID), hashCodeNullable(USER_ID),
-                        hashCodeNullable(NAME));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(ORG_ID, USER_ID, NAME);
   }
 
   @Override

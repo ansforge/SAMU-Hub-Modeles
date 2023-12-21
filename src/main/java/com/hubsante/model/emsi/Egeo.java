@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -36,13 +35,12 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.emsi.Position;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Egeo
@@ -56,7 +54,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Egeo {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private JsonNullable<Object> DATIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime DATIME;
 
   /**
    * Optionnel La localisation de l&#39;affaire est transmise en amont dans un
@@ -384,16 +382,16 @@ public class Egeo {
   private List<WEATHEREnum> WEATHER;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
+  private String FREETEXT;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
   private Position POSITION;
 
   public Egeo() {}
 
-  public Egeo DATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  public Egeo DATIME(OffsetDateTime DATIME) {
 
+    this.DATIME = DATIME;
     return this;
   }
 
@@ -403,23 +401,17 @@ public class Egeo {
    *systématiquement reprécisé dans un objet MISSION
    * @return DATIME
    **/
-  @JsonIgnore
-
-  public Object getDATIME() {
-    return DATIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getDATIME_JsonNullable() {
+  public OffsetDateTime getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
-
-  public void setDATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDATIME(OffsetDateTime DATIME) {
+    this.DATIME = DATIME;
   }
 
   public Egeo TYPE(TYPEEnum TYPE) {
@@ -489,9 +481,9 @@ public class Egeo {
     this.WEATHER.addAll(WEATHER);
   }
 
-  public Egeo FREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  public Egeo FREETEXT(String FREETEXT) {
 
+    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -501,23 +493,17 @@ public class Egeo {
    *systématiquement reprécisé dans un objet MISSION
    * @return FREETEXT
    **/
-  @JsonIgnore
-
-  public Object getFREETEXT() {
-    return FREETEXT.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+  public String getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-
-  public void setFREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFREETEXT(String FREETEXT) {
+    this.FREETEXT = FREETEXT;
   }
 
   public Egeo POSITION(Position POSITION) {
@@ -552,30 +538,16 @@ public class Egeo {
       return false;
     }
     Egeo egeo = (Egeo)o;
-    return equalsNullable(this.DATIME, egeo.DATIME) &&
+    return Objects.equals(this.DATIME, egeo.DATIME) &&
         Objects.equals(this.TYPE, egeo.TYPE) &&
         Objects.equals(this.WEATHER, egeo.WEATHER) &&
-        equalsNullable(this.FREETEXT, egeo.FREETEXT) &&
+        Objects.equals(this.FREETEXT, egeo.FREETEXT) &&
         Objects.equals(this.POSITION, egeo.POSITION);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(DATIME), TYPE, WEATHER,
-                        hashCodeNullable(FREETEXT), POSITION);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(DATIME, TYPE, WEATHER, FREETEXT, POSITION);
   }
 
   @Override

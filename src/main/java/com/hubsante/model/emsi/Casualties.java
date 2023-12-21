@@ -28,18 +28,16 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Casualties
@@ -60,7 +58,7 @@ public class Casualties {
   private String CONTEXT;
 
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private JsonNullable<Object> DATIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime DATIME;
 
   public static final String JSON_PROPERTY_D_E_C_O_N_T = "DECONT";
   private Integer DECONT;
@@ -108,9 +106,9 @@ public class Casualties {
     this.CONTEXT = CONTEXT;
   }
 
-  public Casualties DATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  public Casualties DATIME(OffsetDateTime DATIME) {
 
+    this.DATIME = DATIME;
     return this;
   }
 
@@ -118,23 +116,17 @@ public class Casualties {
    * Optionnel
    * @return DATIME
    **/
-  @JsonIgnore
-
-  public Object getDATIME() {
-    return DATIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getDATIME_JsonNullable() {
+  public OffsetDateTime getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
-
-  public void setDATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDATIME(OffsetDateTime DATIME) {
+    this.DATIME = DATIME;
   }
 
   public Casualties DECONT(Integer DECONT) {
@@ -285,7 +277,7 @@ public class Casualties {
     }
     Casualties casualties = (Casualties)o;
     return Objects.equals(this.CONTEXT, casualties.CONTEXT) &&
-        equalsNullable(this.DATIME, casualties.DATIME) &&
+        Objects.equals(this.DATIME, casualties.DATIME) &&
         Objects.equals(this.DECONT, casualties.DECONT) &&
         Objects.equals(this.TRIAGERED, casualties.TRIAGERED) &&
         Objects.equals(this.TRIAGEYELLOW, casualties.TRIAGEYELLOW) &&
@@ -294,23 +286,10 @@ public class Casualties {
         Objects.equals(this.MISSING, casualties.MISSING);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(CONTEXT, hashCodeNullable(DATIME), DECONT, TRIAGERED,
-                        TRIAGEYELLOW, TRIAGEGREEN, TRIAGEBLACK, MISSING);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(CONTEXT, DATIME, DECONT, TRIAGERED, TRIAGEYELLOW,
+                        TRIAGEGREEN, TRIAGEBLACK, MISSING);
   }
 
   @Override

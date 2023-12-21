@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,9 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * WayName
@@ -54,10 +51,10 @@ public class WayName {
   private String complete;
 
   public static final String JSON_PROPERTY_TYPE = "type";
-  private JsonNullable<Object> type = JsonNullable.<Object>of(null);
+  private String type;
 
   public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<Object> name = JsonNullable.<Object>of(null);
+  private String name;
 
   public WayName() {}
 
@@ -86,9 +83,9 @@ public class WayName {
     this.complete = complete;
   }
 
-  public WayName type(Object type) {
-    this.type = JsonNullable.<Object>of(type);
+  public WayName type(String type) {
 
+    this.type = type;
     return this;
   }
 
@@ -96,28 +93,22 @@ public class WayName {
    * Get type
    * @return type
    **/
-  @JsonIgnore
-
-  public Object getType() {
-    return type.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getType_JsonNullable() {
+  public String getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
-
-  public void setType(Object type) {
-    this.type = JsonNullable.<Object>of(type);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(String type) {
+    this.type = type;
   }
 
-  public WayName name(Object name) {
-    this.name = JsonNullable.<Object>of(name);
+  public WayName name(String name) {
 
+    this.name = name;
     return this;
   }
 
@@ -125,23 +116,17 @@ public class WayName {
    * Get name
    * @return name
    **/
-  @JsonIgnore
-
-  public Object getName() {
-    return name.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getName_JsonNullable() {
+  public String getName() {
     return name;
   }
 
   @JsonProperty(JSON_PROPERTY_NAME)
-
-  public void setName(Object name) {
-    this.name = JsonNullable.<Object>of(name);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Override
@@ -154,27 +139,13 @@ public class WayName {
     }
     WayName wayName = (WayName)o;
     return Objects.equals(this.complete, wayName.complete) &&
-        equalsNullable(this.type, wayName.type) &&
-        equalsNullable(this.name, wayName.name);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.type, wayName.type) &&
+        Objects.equals(this.name, wayName.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(complete, hashCodeNullable(type),
-                        hashCodeNullable(name));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(complete, type, name);
   }
 
   @Override

@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -37,9 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * City
@@ -51,19 +48,19 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class City {
   public static final String JSON_PROPERTY_NAME = "name";
-  private JsonNullable<Object> name = JsonNullable.<Object>of(null);
+  private String name;
 
   public static final String JSON_PROPERTY_INSEE_CODE = "inseeCode";
-  private JsonNullable<Object> inseeCode = JsonNullable.<Object>of(null);
+  private String inseeCode;
 
   public static final String JSON_PROPERTY_DETAIL = "detail";
-  private JsonNullable<Object> detail = JsonNullable.<Object>of(null);
+  private String detail;
 
   public City() {}
 
-  public City name(Object name) {
-    this.name = JsonNullable.<Object>of(name);
+  public City name(String name) {
 
+    this.name = name;
     return this;
   }
 
@@ -71,28 +68,22 @@ public class City {
    * Nom officiel de la commune actuelle
    * @return name
    **/
-  @JsonIgnore
-
-  public Object getName() {
-    return name.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getName_JsonNullable() {
+  public String getName() {
     return name;
   }
 
   @JsonProperty(JSON_PROPERTY_NAME)
-
-  public void setName(Object name) {
-    this.name = JsonNullable.<Object>of(name);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public City inseeCode(Object inseeCode) {
-    this.inseeCode = JsonNullable.<Object>of(inseeCode);
+  public City inseeCode(String inseeCode) {
 
+    this.inseeCode = inseeCode;
     return this;
   }
 
@@ -101,28 +92,22 @@ public class City {
    *en vigueur. Obligatoire si le nom de la commune est renseigné.
    * @return inseeCode
    **/
-  @JsonIgnore
-
-  public Object getInseeCode() {
-    return inseeCode.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getInseeCode_JsonNullable() {
+  public String getInseeCode() {
     return inseeCode;
   }
 
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)
-
-  public void setInseeCode(Object inseeCode) {
-    this.inseeCode = JsonNullable.<Object>of(inseeCode);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInseeCode(String inseeCode) {
+    this.inseeCode = inseeCode;
   }
 
-  public City detail(Object detail) {
-    this.detail = JsonNullable.<Object>of(detail);
+  public City detail(String detail) {
 
+    this.detail = detail;
     return this;
   }
 
@@ -134,23 +119,17 @@ public class City {
    *d&#39;éviter une trop forte ambiguïté
    * @return detail
    **/
-  @JsonIgnore
-
-  public Object getDetail() {
-    return detail.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_DETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getDetail_JsonNullable() {
+  public String getDetail() {
     return detail;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAIL)
-
-  public void setDetail(Object detail) {
-    this.detail = JsonNullable.<Object>of(detail);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetail(String detail) {
+    this.detail = detail;
   }
 
   @Override
@@ -162,28 +141,14 @@ public class City {
       return false;
     }
     City city = (City)o;
-    return equalsNullable(this.name, city.name) &&
-        equalsNullable(this.inseeCode, city.inseeCode) &&
-        equalsNullable(this.detail, city.detail);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+    return Objects.equals(this.name, city.name) &&
+        Objects.equals(this.inseeCode, city.inseeCode) &&
+        Objects.equals(this.detail, city.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(name), hashCodeNullable(inseeCode),
-                        hashCodeNullable(detail));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(name, inseeCode, detail);
   }
 
   @Override

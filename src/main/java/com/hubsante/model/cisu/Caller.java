@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -39,9 +38,7 @@ import com.hubsante.model.cisu.Contact;
 import com.hubsante.model.cisu.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Caller
@@ -577,13 +574,13 @@ public class Caller {
   private LanguageEnum language;
 
   public static final String JSON_PROPERTY_REQTYPE = "reqtype";
-  private JsonNullable<Object> reqtype = JsonNullable.<Object>of(null);
+  private String reqtype;
 
   public static final String JSON_PROPERTY_COMMUNICATION = "communication";
-  private JsonNullable<Object> communication = JsonNullable.<Object>of(null);
+  private String communication;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private JsonNullable<Object> freetext = JsonNullable.<Object>of(null);
+  private String freetext;
 
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
   private DetailedName detailedName;
@@ -660,9 +657,9 @@ public class Caller {
     this.language = language;
   }
 
-  public Caller reqtype(Object reqtype) {
-    this.reqtype = JsonNullable.<Object>of(reqtype);
+  public Caller reqtype(String reqtype) {
 
+    this.reqtype = reqtype;
     return this;
   }
 
@@ -671,28 +668,22 @@ public class Caller {
    *victime
    * @return reqtype
    **/
-  @JsonIgnore
-
-  public Object getReqtype() {
-    return reqtype.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_REQTYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getReqtype_JsonNullable() {
+  public String getReqtype() {
     return reqtype;
   }
 
   @JsonProperty(JSON_PROPERTY_REQTYPE)
-
-  public void setReqtype(Object reqtype) {
-    this.reqtype = JsonNullable.<Object>of(reqtype);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReqtype(String reqtype) {
+    this.reqtype = reqtype;
   }
 
-  public Caller communication(Object communication) {
-    this.communication = JsonNullable.<Object>of(communication);
+  public Caller communication(String communication) {
 
+    this.communication = communication;
     return this;
   }
 
@@ -700,28 +691,22 @@ public class Caller {
    * Indique si le requérant rencontre ou non des difficulté de communication
    * @return communication
    **/
-  @JsonIgnore
-
-  public Object getCommunication() {
-    return communication.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_COMMUNICATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getCommunication_JsonNullable() {
+  public String getCommunication() {
     return communication;
   }
 
   @JsonProperty(JSON_PROPERTY_COMMUNICATION)
-
-  public void setCommunication(Object communication) {
-    this.communication = JsonNullable.<Object>of(communication);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommunication(String communication) {
+    this.communication = communication;
   }
 
-  public Caller freetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  public Caller freetext(String freetext) {
 
+    this.freetext = freetext;
     return this;
   }
 
@@ -730,23 +715,17 @@ public class Caller {
    *être passées sous forme de texte libre ou via une liste d&#39;adjectif
    * @return freetext
    **/
-  @JsonIgnore
-
-  public Object getFreetext() {
-    return freetext.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFreetext_JsonNullable() {
+  public String getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-
-  public void setFreetext(Object freetext) {
-    this.freetext = JsonNullable.<Object>of(freetext);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   public Caller detailedName(DetailedName detailedName) {
@@ -784,31 +763,16 @@ public class Caller {
     return Objects.equals(this.callerContact, caller.callerContact) &&
         Objects.equals(this.callbackContact, caller.callbackContact) &&
         Objects.equals(this.language, caller.language) &&
-        equalsNullable(this.reqtype, caller.reqtype) &&
-        equalsNullable(this.communication, caller.communication) &&
-        equalsNullable(this.freetext, caller.freetext) &&
+        Objects.equals(this.reqtype, caller.reqtype) &&
+        Objects.equals(this.communication, caller.communication) &&
+        Objects.equals(this.freetext, caller.freetext) &&
         Objects.equals(this.detailedName, caller.detailedName);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(callerContact, callbackContact, language,
-                        hashCodeNullable(reqtype),
-                        hashCodeNullable(communication),
-                        hashCodeNullable(freetext), detailedName);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(callerContact, callbackContact, language, reqtype,
+                        communication, freetext, detailedName);
   }
 
   @Override

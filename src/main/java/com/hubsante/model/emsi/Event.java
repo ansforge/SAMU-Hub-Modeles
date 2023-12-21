@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -40,13 +39,12 @@ import com.hubsante.model.emsi.Egeo;
 import com.hubsante.model.emsi.Etype;
 import com.hubsante.model.emsi.Evac;
 import com.hubsante.model.emsi.Reference;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Event
@@ -72,11 +70,11 @@ public class Event {
   private String ID;
 
   public static final String JSON_PROPERTY_N_A_M_E = "NAME";
-  private JsonNullable<Object> NAME = JsonNullable.<Object>of(null);
+  private String NAME;
 
   public static final String JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D =
       "MAIN_EVENT_ID";
-  private JsonNullable<Object> MAIN_EVENT_ID = JsonNullable.<Object>of(null);
+  private String MAIN_EVENT_ID;
 
   public static final String JSON_PROPERTY_E_T_Y_P_E = "ETYPE";
   private Etype ETYPE;
@@ -167,13 +165,13 @@ public class Event {
   private Integer CERTAINTY;
 
   public static final String JSON_PROPERTY_D_E_C_L_D_A_T_I_M_E = "DECL_DATIME";
-  private JsonNullable<Object> DECL_DATIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime DECL_DATIME;
 
   public static final String JSON_PROPERTY_O_C_C_D_A_T_I_M_E = "OCC_DATIME";
-  private JsonNullable<Object> OCC_DATIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime OCC_DATIME;
 
   public static final String JSON_PROPERTY_O_B_S_D_A_T_I_M_E = "OBS_DATIME";
-  private JsonNullable<Object> OBS_DATIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime OBS_DATIME;
 
   /**
    * Permet de décrire le status de l&#39;affaire en cours. Ce champ suit une
@@ -315,7 +313,7 @@ public class Event {
   private CAUSEEnum CAUSE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
-  private JsonNullable<Object> FREETEXT = JsonNullable.<Object>of(null);
+  private String FREETEXT;
 
   public Event() {}
 
@@ -342,9 +340,9 @@ public class Event {
     this.ID = ID;
   }
 
-  public Event NAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  public Event NAME(String NAME) {
 
+    this.NAME = NAME;
     return this;
   }
 
@@ -353,28 +351,22 @@ public class Event {
    *[libelle TL 1 métier] &amp; \&quot; - \&quot; &amp; [libellé commune]
    * @return NAME
    **/
-  @JsonIgnore
-
-  public Object getNAME() {
-    return NAME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getNAME_JsonNullable() {
+  public String getNAME() {
     return NAME;
   }
 
   @JsonProperty(JSON_PROPERTY_N_A_M_E)
-
-  public void setNAME(Object NAME) {
-    this.NAME = JsonNullable.<Object>of(NAME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNAME(String NAME) {
+    this.NAME = NAME;
   }
 
-  public Event MAIN_EVENT_ID(Object MAIN_EVENT_ID) {
-    this.MAIN_EVENT_ID = JsonNullable.<Object>of(MAIN_EVENT_ID);
+  public Event MAIN_EVENT_ID(String MAIN_EVENT_ID) {
 
+    this.MAIN_EVENT_ID = MAIN_EVENT_ID;
     return this;
   }
 
@@ -384,23 +376,17 @@ public class Event {
    *EVENT.MAIN_EVENT_ID
    * @return MAIN_EVENT_ID
    **/
-  @JsonIgnore
-
-  public Object getMAINEVENTID() {
-    return MAIN_EVENT_ID.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getMAINEVENTID_JsonNullable() {
+  public String getMAINEVENTID() {
     return MAIN_EVENT_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)
-
-  public void setMAINEVENTID(Object MAIN_EVENT_ID) {
-    this.MAIN_EVENT_ID = JsonNullable.<Object>of(MAIN_EVENT_ID);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMAINEVENTID(String MAIN_EVENT_ID) {
+    this.MAIN_EVENT_ID = MAIN_EVENT_ID;
   }
 
   public Event ETYPE(Etype ETYPE) {
@@ -496,9 +482,9 @@ public class Event {
     this.CERTAINTY = CERTAINTY;
   }
 
-  public Event DECL_DATIME(Object DECL_DATIME) {
-    this.DECL_DATIME = JsonNullable.<Object>of(DECL_DATIME);
+  public Event DECL_DATIME(OffsetDateTime DECL_DATIME) {
 
+    this.DECL_DATIME = DECL_DATIME;
     return this;
   }
 
@@ -509,28 +495,22 @@ public class Event {
    *(qui peut diverger de la date/heure de création de l&#39;affaire)
    * @return DECL_DATIME
    **/
-  @JsonIgnore
-
-  public Object getDECLDATIME() {
-    return DECL_DATIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_D_E_C_L_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getDECLDATIME_JsonNullable() {
+  public OffsetDateTime getDECLDATIME() {
     return DECL_DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_E_C_L_D_A_T_I_M_E)
-
-  public void setDECLDATIME(Object DECL_DATIME) {
-    this.DECL_DATIME = JsonNullable.<Object>of(DECL_DATIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDECLDATIME(OffsetDateTime DECL_DATIME) {
+    this.DECL_DATIME = DECL_DATIME;
   }
 
-  public Event OCC_DATIME(Object OCC_DATIME) {
-    this.OCC_DATIME = JsonNullable.<Object>of(OCC_DATIME);
+  public Event OCC_DATIME(OffsetDateTime OCC_DATIME) {
 
+    this.OCC_DATIME = OCC_DATIME;
     return this;
   }
 
@@ -542,28 +522,22 @@ public class Event {
    *avec la date de réception de l&#39;alerte initiale
    * @return OCC_DATIME
    **/
-  @JsonIgnore
-
-  public Object getOCCDATIME() {
-    return OCC_DATIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_O_C_C_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getOCCDATIME_JsonNullable() {
+  public OffsetDateTime getOCCDATIME() {
     return OCC_DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_O_C_C_D_A_T_I_M_E)
-
-  public void setOCCDATIME(Object OCC_DATIME) {
-    this.OCC_DATIME = JsonNullable.<Object>of(OCC_DATIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOCCDATIME(OffsetDateTime OCC_DATIME) {
+    this.OCC_DATIME = OCC_DATIME;
   }
 
-  public Event OBS_DATIME(Object OBS_DATIME) {
-    this.OBS_DATIME = JsonNullable.<Object>of(OBS_DATIME);
+  public Event OBS_DATIME(OffsetDateTime OBS_DATIME) {
 
+    this.OBS_DATIME = OBS_DATIME;
     return this;
   }
 
@@ -575,23 +549,17 @@ public class Event {
    *renseignera ce champ avec la date de réception de l&#39;alerte initiale
    * @return OBS_DATIME
    **/
-  @JsonIgnore
-
-  public Object getOBSDATIME() {
-    return OBS_DATIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_O_B_S_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getOBSDATIME_JsonNullable() {
+  public OffsetDateTime getOBSDATIME() {
     return OBS_DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_O_B_S_D_A_T_I_M_E)
-
-  public void setOBSDATIME(Object OBS_DATIME) {
-    this.OBS_DATIME = JsonNullable.<Object>of(OBS_DATIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOBSDATIME(OffsetDateTime OBS_DATIME) {
+    this.OBS_DATIME = OBS_DATIME;
   }
 
   public Event STATUS(STATUSEnum STATUS) {
@@ -829,9 +797,9 @@ public class Event {
     this.CAUSE = CAUSE;
   }
 
-  public Event FREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  public Event FREETEXT(String FREETEXT) {
 
+    this.FREETEXT = FREETEXT;
     return this;
   }
 
@@ -839,23 +807,17 @@ public class Event {
    * Optionnel
    * @return FREETEXT
    **/
-  @JsonIgnore
-
-  public Object getFREETEXT() {
-    return FREETEXT.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getFREETEXT_JsonNullable() {
+  public String getFREETEXT() {
     return FREETEXT;
   }
 
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)
-
-  public void setFREETEXT(Object FREETEXT) {
-    this.FREETEXT = JsonNullable.<Object>of(FREETEXT);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFREETEXT(String FREETEXT) {
+    this.FREETEXT = FREETEXT;
   }
 
   @Override
@@ -868,15 +830,15 @@ public class Event {
     }
     Event event = (Event)o;
     return Objects.equals(this.ID, event.ID) &&
-        equalsNullable(this.NAME, event.NAME) &&
-        equalsNullable(this.MAIN_EVENT_ID, event.MAIN_EVENT_ID) &&
+        Objects.equals(this.NAME, event.NAME) &&
+        Objects.equals(this.MAIN_EVENT_ID, event.MAIN_EVENT_ID) &&
         Objects.equals(this.ETYPE, event.ETYPE) &&
         Objects.equals(this.SOURCE, event.SOURCE) &&
         Objects.equals(this.SCALE, event.SCALE) &&
         Objects.equals(this.CERTAINTY, event.CERTAINTY) &&
-        equalsNullable(this.DECL_DATIME, event.DECL_DATIME) &&
-        equalsNullable(this.OCC_DATIME, event.OCC_DATIME) &&
-        equalsNullable(this.OBS_DATIME, event.OBS_DATIME) &&
+        Objects.equals(this.DECL_DATIME, event.DECL_DATIME) &&
+        Objects.equals(this.OCC_DATIME, event.OCC_DATIME) &&
+        Objects.equals(this.OBS_DATIME, event.OBS_DATIME) &&
         Objects.equals(this.STATUS, event.STATUS) &&
         Objects.equals(this.RISK_ASSESMENT, event.RISK_ASSESMENT) &&
         Objects.equals(this.REFERENCE, event.REFERENCE) &&
@@ -884,30 +846,15 @@ public class Event {
         Objects.equals(this.EVAC, event.EVAC) &&
         Objects.equals(this.EGEO, event.EGEO) &&
         Objects.equals(this.CAUSE, event.CAUSE) &&
-        equalsNullable(this.FREETEXT, event.FREETEXT);
-  }
-
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+        Objects.equals(this.FREETEXT, event.FREETEXT);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(
-        ID, hashCodeNullable(NAME), hashCodeNullable(MAIN_EVENT_ID), ETYPE,
-        SOURCE, SCALE, CERTAINTY, hashCodeNullable(DECL_DATIME),
-        hashCodeNullable(OCC_DATIME), hashCodeNullable(OBS_DATIME), STATUS,
-        RISK_ASSESMENT, REFERENCE, CASUALTIES, EVAC, EGEO, CAUSE,
-        hashCodeNullable(FREETEXT));
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(ID, NAME, MAIN_EVENT_ID, ETYPE, SOURCE, SCALE,
+                        CERTAINTY, DECL_DATIME, OCC_DATIME, OBS_DATIME, STATUS,
+                        RISK_ASSESMENT, REFERENCE, CASUALTIES, EVAC, EGEO,
+                        CAUSE, FREETEXT);
   }
 
   @Override

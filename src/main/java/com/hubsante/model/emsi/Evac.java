@@ -28,18 +28,16 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.NoSuchElementException;
 import java.util.Objects;
-import org.openapitools.jackson.nullable.JsonNullable;
 
 /**
  * Evac
@@ -52,7 +50,7 @@ import org.openapitools.jackson.nullable.JsonNullable;
 
 public class Evac {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
-  private JsonNullable<Object> DATIME = JsonNullable.<Object>of(null);
+  private OffsetDateTime DATIME;
 
   public static final String JSON_PROPERTY_D_I_S_P_L_A_C_E_D = "DISPLACED";
   private Integer DISPLACED;
@@ -62,9 +60,9 @@ public class Evac {
 
   public Evac() {}
 
-  public Evac DATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  public Evac DATIME(OffsetDateTime DATIME) {
 
+    this.DATIME = DATIME;
     return this;
   }
 
@@ -72,23 +70,17 @@ public class Evac {
    * Optionnel
    * @return DATIME
    **/
-  @JsonIgnore
-
-  public Object getDATIME() {
-    return DATIME.orElse(null);
-  }
-
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public JsonNullable<Object> getDATIME_JsonNullable() {
+  public OffsetDateTime getDATIME() {
     return DATIME;
   }
 
   @JsonProperty(JSON_PROPERTY_D_A_T_I_M_E)
-
-  public void setDATIME(Object DATIME) {
-    this.DATIME = JsonNullable.<Object>of(DATIME);
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDATIME(OffsetDateTime DATIME) {
+    this.DATIME = DATIME;
   }
 
   public Evac DISPLACED(Integer DISPLACED) {
@@ -146,27 +138,14 @@ public class Evac {
       return false;
     }
     Evac evac = (Evac)o;
-    return equalsNullable(this.DATIME, evac.DATIME) &&
+    return Objects.equals(this.DATIME, evac.DATIME) &&
         Objects.equals(this.DISPLACED, evac.DISPLACED) &&
         Objects.equals(this.EVACUATED, evac.EVACUATED);
   }
 
-  private static <T> boolean equalsNullable(JsonNullable<T> a,
-                                            JsonNullable<T> b) {
-    return a == b || (a != null && b != null && a.isPresent() &&
-                      b.isPresent() && Objects.deepEquals(a.get(), b.get()));
-  }
-
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(DATIME), DISPLACED, EVACUATED);
-  }
-
-  private static <T> int hashCodeNullable(JsonNullable<T> a) {
-    if (a == null) {
-      return 1;
-    }
-    return a.isPresent() ? Arrays.deepHashCode(new Object[] {a.get()}) : 31;
+    return Objects.hash(DATIME, DISPLACED, EVACUATED);
   }
 
   @Override
