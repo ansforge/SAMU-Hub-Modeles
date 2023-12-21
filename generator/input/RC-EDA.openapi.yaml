@@ -1379,7 +1379,6 @@ components:
           example: example.json#/createCase/initialAlert/callTaker/role
           description: "D\xE9crit le r\xF4le de l'agent au sein du service selon la\
             \ nomenclature PERSO (nomenclature SI-SAMU)"
-          enum: []
           examples:
           - ARM
         calltakeContact:
