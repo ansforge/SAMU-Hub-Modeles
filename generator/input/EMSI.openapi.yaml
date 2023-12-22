@@ -56,6 +56,7 @@ components:
         ORG_ID:
           type: string
           title: "Identifiant de l'organisation propri\xE9taire"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/ORG_ID
           description: "Identifiant de l'organisation \xE0 laquelle la ressource est\
@@ -155,6 +156,7 @@ components:
       properties:
         RCLASS:
           type: array
+          x-health-only: false
           items:
             type: string
             title: Classes de la ressource
@@ -170,6 +172,7 @@ components:
             - MAT/VEH/ROADVE/FRFGTN
         CAPABILITY:
           type: array
+          x-health-only: false
           items:
             type: string
             title: "Capacit\xE9s de la ressource"
@@ -182,6 +185,7 @@ components:
         MAIN_MISSION_ID:
           type: string
           title: Mission principale
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/MISSION/0/MAIN_MISSION_ID
           description: "- Dans le cas d'une mission g\xE9n\xE9rique de r\xE9ponse\
@@ -198,6 +202,7 @@ components:
         PRIORITY:
           type: string
           title: "Priorit\xE9 de la mission"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/MISSION/0/PRIORITY
           description: "Indique une \xE9chelle de priorit\xE9 pour la demande de concours.\
@@ -219,6 +224,7 @@ components:
       type: object
       title: Ressource
       x-display: expansion-panels
+      x-health-only: false
       required:
       - RTYPE
       properties:
@@ -227,6 +233,7 @@ components:
         ID:
           type: string
           title: ID de la ressource
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/ID
           description: "Identifiant unique de la ressource  dans le syst\xE8me du\
@@ -242,6 +249,7 @@ components:
         ORG_ID:
           type: string
           title: "Identifiant de l'organisation propri\xE9taire"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/ORG_ID
           description: "Identifiant de l'organisation \xE0 laquelle la ressource est\
@@ -257,6 +265,7 @@ components:
         NAME:
           type: string
           title: Nom de la ressource
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/NAME
           description: "Nom donn\xE9 \xE0 la ressource par le partenaire. L'immatriculation\
@@ -268,6 +277,7 @@ components:
         FREETEXT:
           type: string
           title: Description de la ressource
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/FREETEXT
           description: "Texte libre permettant de d\xE9crire la ressource o\xF9 d'ajouter\
@@ -283,6 +293,7 @@ components:
         QUANTITY:
           type: number
           title: "Quantit\xE9 de la ressource"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/QUANTITY
           description: "Dans le cadre d'un \xE9change d'op\xE9ration, optionnel. Permet\
@@ -295,6 +306,7 @@ components:
         UM:
           type: string
           title: "Unit\xE9 de mesure pour la ressource"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/UM
           description: "Dans le cadre d'un \xE9change d'op\xE9ration, optionnel. Unit\xE9\
@@ -355,6 +367,7 @@ components:
         STATUS:
           type: string
           title: Statut de la ressource
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/STATUS
           description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
@@ -379,6 +392,7 @@ components:
         NATIONALITY:
           type: string
           title: "Nationalit\xE9 de la ressource"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/NATIONALITY
           description: "Nationalit\xE9 d'une ressource, r\xE9employer ISO 3166-1-alpha-2\
@@ -400,6 +414,7 @@ components:
         ID:
           type: string
           title: ID
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/LINK/0/ID
           description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
@@ -414,6 +429,7 @@ components:
         LINK_ROLE:
           type: string
           title: "R\xF4le du lien"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE
           description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" en\
@@ -442,6 +458,7 @@ components:
         ORG_ID:
           type: string
           title: Origine ID
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/ORIGIN/ORG_ID
           description: "Optionnel, identifiant du service \xE0 l'origine de l'EMSI\n\
@@ -453,6 +470,7 @@ components:
         USER_ID:
           type: string
           title: ID d'utilisateur de l'origine
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/ORIGIN/USER_ID
           description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
@@ -462,6 +480,7 @@ components:
         NAME:
           type: string
           title: 'Nom Origine '
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/ORIGIN/NAME
           description: "Optionnel\n\nA constituer par le r\xE9dacteur pour \xEAtre\
@@ -483,6 +502,7 @@ components:
         FREETEXT:
           type: string
           title: 'Texte libre '
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/FREETEXT
           description: Optionnel
@@ -491,6 +511,7 @@ components:
         URI:
           type: string
           title: "URI informations ext\xE9rieures"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/URI
           description: Optionnel
@@ -499,6 +520,7 @@ components:
         TYPE:
           type: string
           title: Type
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/TYPE
           description: Optionnel
@@ -526,6 +548,7 @@ components:
       properties:
         CATEGORY:
           type: array
+          x-health-only: false
           items:
             type: string
             title: "Caract\xE9ristiques de la ressource"
@@ -560,6 +583,7 @@ components:
         TYPE:
           type: string
           title: Type de localisation
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/TYPE
           description: "Type de position indiqu\xE9 pour la ressource :\n- ASP : assembly\
@@ -640,6 +664,7 @@ components:
         LAT:
           type: number
           title: 'Latitude '
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LAT
           description: "derni\xE8re coordonn\xE9e x  connue de la ressource"
@@ -648,6 +673,7 @@ components:
         LONG:
           type: number
           title: Longitude
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LONG
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
@@ -658,6 +684,7 @@ components:
         HEIGHT:
           type: number
           title: Altitude
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
@@ -674,14 +701,17 @@ components:
       type: object
       title: Type de la ressource
       x-display: expansion-panels
+      x-health-only: false
       required:
       - RCLASS
       properties:
         RCLASS:
           type: array
+          x-health-only: false
           items:
             type: string
             title: Classes de la ressource
+            x-health-only: false
             x-cols: 6
             example: example.json#/emsi/RESOURCE/0/RTYPE/RCLASS/0
             description: "Permet d'indiquer la classe de l'objet RESOURCE. Plusieurs\
@@ -1296,9 +1326,11 @@ components:
             - MAT/VEH/ROADVE/FRFGTN
         CAPABILITY:
           type: array
+          x-health-only: false
           items:
             type: string
             title: "Capacit\xE9s de la ressource"
+            x-health-only: false
             x-cols: 6
             example: example.json#/emsi/RESOURCE/0/RTYPE/CAPABILITY/0
             description: "Permet d'indiquer les capacit\xE9s de la ressource d'apr\xE8\
@@ -1307,9 +1339,11 @@ components:
             - None
         CHARACTERISTICS:
           type: array
+          x-health-only: false
           items:
             type: string
             title: "Caract\xE9ristiques de la ressource"
+            x-health-only: false
             x-cols: 6
             example: example.json#/emsi/RESOURCE/0/RTYPE/CHARACTERISTICS/0
             description: "Permet d'indiquer des caract\xE9ristique physiques de la\
@@ -1322,12 +1356,14 @@ components:
       type: object
       title: Localisation de la ressource
       x-display: expansion-panels
+      x-health-only: false
       required:
       - TYPE
       properties:
         DATIME:
           type: string
           title: Horaire de la localisation
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/DATIME
           description: "Horaire associ\xE9 \xE0 l'arriv\xE9e de la ressource sur la\
@@ -1340,6 +1376,7 @@ components:
         TYPE:
           type: string
           title: Type de localisation
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/TYPE
           description: "Type de position indiqu\xE9 pour la ressource :\n- ASP : assembly\
@@ -1365,6 +1402,7 @@ components:
         FREETEXT:
           type: string
           title: 'Texte libre '
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/FREETEXT
           description: "Permet de rajouter des pr\xE9cisions sur la localisation de\
@@ -1374,6 +1412,7 @@ components:
         ID:
           type: string
           title: ID localisation
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/RGEO/0/ID
           description: "Identifiant unique de la position dans le syst\xE8me du partenaire"
@@ -1388,6 +1427,7 @@ components:
       type: object
       title: Contacts
       x-display: expansion-panels
+      x-health-only: false
       required:
       - TYPE
       - DETAIL
@@ -1395,6 +1435,7 @@ components:
         TYPE:
           type: string
           title: Type de contact
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/CONTACTS/0/TYPE
           description: "Type de contact, voir \xE9num\xE9ration associ\xE9e\n\n1.\
@@ -1413,6 +1454,7 @@ components:
         DETAIL:
           type: string
           title: "D\xE9tails de contact"
+          x-health-only: false
           x-cols: 6
           example: example.json#/emsi/RESOURCE/0/CONTACTS/0/DETAIL
           description: "1. RFGI du moyen NEXSIS (si RFGI disponible)\n2. Num\xE9ro\

@@ -43,21 +43,20 @@ def set_cardinalite(minimal, max) :
 ## PARSING
 
 
-def add_node(id_parent, id_in, type_in, buffer_description, cardinalite):
+def add_node(id_parent, id_in, type_in, buffer_description, cardinalite, health_only=False):
+    if health_only:
+        background_color = "BGCOLOR=\"coral\""
+    else:
+        background_color = ""
     # draw node
     template_html_node = '''<<TABLE>
                 <TR>
-                <TD><B>{}</B></TD>
+                <TD {}><B>{}</B></TD>
                 </TR>
-                <TR>
-                <TD>{}</TD>
-                </TR>
+                {}
                 </TABLE>>'''
-    str_node = template_html_node.format(str(id_in), "<I>objet " + type_in + "</I>" + buffer_description)
-    if("is_health_only" in buffer_description):
-        dot.node(id_in, str_node, fillcolor="lightgreen", style="filled")
-    else:
-        dot.node(id_in, str_node)
+    str_node = template_html_node.format(background_color, str(id_in), "<TR><TD "+background_color+" BORDER=\"0\"><I>objet " + type_in + "</I></TD></TR>" + buffer_description)
+    dot.node(id_in, str_node)
     # draw edges with parents nodes
     # no edge if pointing itself
     if id_parent and (id_parent != id_in):
@@ -86,14 +85,11 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
     # no parsing of id to ignore
     if id_parent in id_ignore :
         if id_parent in buffer_description_node :
-            buffer_description_node[id_parent] = "<BR/>cf. objet du même type"
+            buffer_description_node[id_parent] = "cf. objet du même type"
         return
     # buffer_description_node stores descrition of each node to append leaf description
     for id_child, child in dict_in["properties"].items() :
         cardinalite_child = ("0","1")
-        # if dict_in contains x-health-only: True, add it to the buffer
-        if "x-health-only" in dict_in and dict_in["x-health-only"] == True :
-            buffer_description_node[id_parent] = buffer_description_node[id_parent] + "<BR/>" + "is_health_only: True"
         # check if child is required
         if "required" in dict_in :
                 if id_child in dict_in["required"] :
@@ -111,7 +107,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
             buffer_description_node[id_child] = ""
             parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
             add_node(id_parent, id_child, id_child,
-                     buffer_description_node[id_child], cardinalite=cardinalite_child)
+                     buffer_description_node[id_child], cardinalite=cardinalite_child, health_only=child["x-health-only"] if "x-health-only" in child else False)
         else :
             # if type is indicated consider as a leaf
             if "type" in child :
@@ -121,20 +117,30 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                 if id_parent in buffer_description_node :
                     #if child is a leaf, description is appended to buffer_description_node for parent
                     # replacing n by * charachter
-                    child_description = "{} <I>{}</I> : [{}..{}]".format(id_child, child["type"],
-                                                                cardinalite_child[0],
-                                                                cardinalite_child[1].replace("n","*"))
-                    buffer_description_node[id_parent] = buffer_description_node[id_parent] + "<BR/>" + child_description
+                    health_only = ""
+                    # if child contains x-health-only: True, add 15-15 to the child description
+                    if "x-health-only" in child and child["x-health-only"] == True :
+                        health_only = " <B>15-15</B>"
+                    child_description = "<TR><TD BORDER=\"0\" {}>{} <I>{}</I> : [{}..{}] {}</TD></TR>".format("BGCOLOR=\"coral\"" if "x-health-only" in child and child["x-health-only"] == True else "",
+                                                                                        id_child, 
+                                                                                        child["type"],
+                                                                                        cardinalite_child[0],
+                                                                                        cardinalite_child[1].replace("n","*"),
+                                                                                        health_only)
+                    buffer_description_node[id_parent] = buffer_description_node[id_parent] +  child_description
             # else look for ref
             elif "$ref" in child :
                 # getting type child and child with ref
                 type_child = get_id_ref(child["$ref"])
-                child = get_ref(child["$ref"], dict_definitions)
                 # print(id_parent + " - - >" + id_child)
                 buffer_description_node[id_child] = ""
+                # if child contains x-health-only: True or is a health-only array add 15-15 to the buffer
+                if "x-health-only" in child and child["x-health-only"] == True :
+                    buffer_description_node[id_child] = buffer_description_node[id_child]
+                child = get_ref(child["$ref"], dict_definitions)
                 parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
                 add_node(id_parent, id_child, type_child, 
-                         buffer_description_node[id_child], cardinalite=cardinalite_child)
+                         buffer_description_node[id_child], cardinalite=cardinalite_child, health_only=child["x-health-only"] if "x-health-only" in child else False)
             else :
                 print("Erreur syntaxe json_schema " + id_parent + "... Generating anyway")
     return

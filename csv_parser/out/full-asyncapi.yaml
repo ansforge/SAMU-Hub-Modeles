@@ -859,6 +859,7 @@ components:
         id:
           type: string
           title: ID
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/operators/0/id
           description: "Identifiant professionnel de l'op\xE9rateur si existant"
@@ -1371,6 +1372,7 @@ components:
         type:
           type: string
           title: Type
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/detailedAddress/wayName/type
           examples:
@@ -1400,6 +1402,7 @@ components:
         sysCoord:
           type: string
           title: "Syst\xE8me de coordonn\xE9es"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/sysCoord
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
@@ -1430,6 +1433,7 @@ components:
         lon:
           type: number
           title: Longitude
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/lon
           description: "Longitude du point cl\xE9 de la localisation"

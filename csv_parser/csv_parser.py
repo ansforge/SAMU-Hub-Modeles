@@ -399,6 +399,7 @@ def add_field_child_property(parent, child, definitions):
     childDetails = {
         'type': typeName,
         'title': child['full_name'],
+        'x-health-only': child['is_health_only'],
         'x-cols': 6,
         'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
     }
@@ -417,6 +418,7 @@ def add_field_child_property(parent, child, definitions):
     if is_array(child):
         properties[child['name']] = {
             'type': 'array',
+            'x-health-only': child['is_health_only'],
             'items': childDetails
         }
     else:
