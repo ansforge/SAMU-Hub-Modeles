@@ -34,10 +34,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.Decisions;
 import com.hubsante.model.cisu.Hypothesis;
-import com.hubsante.model.cisu.Medicalfile;
 import com.hubsante.model.cisu.Nomenclature;
-import com.hubsante.model.cisu.PatientPathway;
+import com.hubsante.model.cisu.Notes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -47,23 +47,23 @@ import java.util.Objects;
 /**
  * MedicalAnalysis
  */
-@JsonPropertyOrder({MedicalAnalysis.JSON_PROPERTY_PATIENTCASE_I_D,
-                    MedicalAnalysis.JSON_PROPERTY_MEDICALFILE,
-                    MedicalAnalysis.JSON_PROPERTY_PAT_PATHWAY,
+@JsonPropertyOrder({MedicalAnalysis.JSON_PROPERTY_PATIENT_ID,
+                    MedicalAnalysis.JSON_PROPERTY_NOTES,
+                    MedicalAnalysis.JSON_PROPERTY_DECISIONS,
                     MedicalAnalysis.JSON_PROPERTY_HYPOTHESIS,
                     MedicalAnalysis.JSON_PROPERTY_RESOURCE_DIAGNOSIS})
 @JsonTypeName("medicalAnalysis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class MedicalAnalysis {
-  public static final String JSON_PROPERTY_PATIENTCASE_I_D = "patientcaseID";
-  private String patientcaseID;
+  public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
+  private String patientId;
 
-  public static final String JSON_PROPERTY_MEDICALFILE = "medicalfile";
-  private List<Medicalfile> medicalfile;
+  public static final String JSON_PROPERTY_NOTES = "notes";
+  private List<Notes> notes;
 
-  public static final String JSON_PROPERTY_PAT_PATHWAY = "patPathway";
-  private List<PatientPathway> patPathway;
+  public static final String JSON_PROPERTY_DECISIONS = "decisions";
+  private List<Decisions> decisions;
 
   public static final String JSON_PROPERTY_HYPOTHESIS = "hypothesis";
   private Hypothesis hypothesis;
@@ -74,105 +74,105 @@ public class MedicalAnalysis {
 
   public MedicalAnalysis() {}
 
-  public MedicalAnalysis patientcaseID(String patientcaseID) {
+  public MedicalAnalysis patientId(String patientId) {
 
-    this.patientcaseID = patientcaseID;
+    this.patientId = patientId;
     return this;
   }
 
   /**
    * ID du patient concerné, lorsque le patient existe et est identifié
-   * @return patientcaseID
+   * @return patientId
    **/
-  @JsonProperty(JSON_PROPERTY_PATIENTCASE_I_D)
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getPatientcaseID() {
-    return patientcaseID;
+  public String getPatientId() {
+    return patientId;
   }
 
-  @JsonProperty(JSON_PROPERTY_PATIENTCASE_I_D)
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPatientcaseID(String patientcaseID) {
-    this.patientcaseID = patientcaseID;
+  public void setPatientId(String patientId) {
+    this.patientId = patientId;
   }
 
-  public MedicalAnalysis medicalfile(List<Medicalfile> medicalfile) {
+  public MedicalAnalysis notes(List<Notes> notes) {
 
-    this.medicalfile = medicalfile;
+    this.notes = notes;
     return this;
   }
 
-  public MedicalAnalysis addMedicalfileItem(Medicalfile medicalfileItem) {
-    if (this.medicalfile == null) {
-      this.medicalfile = new ArrayList<>();
+  public MedicalAnalysis addNotesItem(Notes notesItem) {
+    if (this.notes == null) {
+      this.notes = new ArrayList<>();
     }
-    this.medicalfile.add(medicalfileItem);
+    this.notes.add(notesItem);
     return this;
   }
 
   /**
-   * Get medicalfile
-   * @return medicalfile
+   * Get notes
+   * @return notes
    **/
-  @JsonProperty(JSON_PROPERTY_MEDICALFILE)
+  @JsonProperty(JSON_PROPERTY_NOTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Medicalfile> getMedicalfile() {
-    return medicalfile;
+  public List<Notes> getNotes() {
+    return notes;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_MEDICALFILE)
+  @JsonProperty(JSON_PROPERTY_NOTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalfile(List<Medicalfile> medicalfile) {
-    if (medicalfile == null) {
+  public void setNotes(List<Notes> notes) {
+    if (notes == null) {
       return;
     }
-    if (this.medicalfile == null) {
-      this.medicalfile = new ArrayList<>();
+    if (this.notes == null) {
+      this.notes = new ArrayList<>();
     }
-    this.medicalfile.addAll(medicalfile);
+    this.notes.addAll(notes);
   }
 
-  public MedicalAnalysis patPathway(List<PatientPathway> patPathway) {
+  public MedicalAnalysis decisions(List<Decisions> decisions) {
 
-    this.patPathway = patPathway;
+    this.decisions = decisions;
     return this;
   }
 
-  public MedicalAnalysis addPatPathwayItem(PatientPathway patPathwayItem) {
-    if (this.patPathway == null) {
-      this.patPathway = new ArrayList<>();
+  public MedicalAnalysis addDecisionsItem(Decisions decisionsItem) {
+    if (this.decisions == null) {
+      this.decisions = new ArrayList<>();
     }
-    this.patPathway.add(patPathwayItem);
+    this.decisions.add(decisionsItem);
     return this;
   }
 
   /**
-   * Get patPathway
-   * @return patPathway
+   * Get decisions
+   * @return decisions
    **/
-  @JsonProperty(JSON_PROPERTY_PAT_PATHWAY)
+  @JsonProperty(JSON_PROPERTY_DECISIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<PatientPathway> getPatPathway() {
-    return patPathway;
+  public List<Decisions> getDecisions() {
+    return decisions;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_PAT_PATHWAY)
+  @JsonProperty(JSON_PROPERTY_DECISIONS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPatPathway(List<PatientPathway> patPathway) {
-    if (patPathway == null) {
+  public void setDecisions(List<Decisions> decisions) {
+    if (decisions == null) {
       return;
     }
-    if (this.patPathway == null) {
-      this.patPathway = new ArrayList<>();
+    if (this.decisions == null) {
+      this.decisions = new ArrayList<>();
     }
-    this.patPathway.addAll(patPathway);
+    this.decisions.addAll(decisions);
   }
 
   public MedicalAnalysis hypothesis(Hypothesis hypothesis) {
@@ -230,9 +230,9 @@ public class MedicalAnalysis {
       return false;
     }
     MedicalAnalysis medicalAnalysis = (MedicalAnalysis)o;
-    return Objects.equals(this.patientcaseID, medicalAnalysis.patientcaseID) &&
-        Objects.equals(this.medicalfile, medicalAnalysis.medicalfile) &&
-        Objects.equals(this.patPathway, medicalAnalysis.patPathway) &&
+    return Objects.equals(this.patientId, medicalAnalysis.patientId) &&
+        Objects.equals(this.notes, medicalAnalysis.notes) &&
+        Objects.equals(this.decisions, medicalAnalysis.decisions) &&
         Objects.equals(this.hypothesis, medicalAnalysis.hypothesis) &&
         Objects.equals(this.resourceDiagnosis,
                        medicalAnalysis.resourceDiagnosis);
@@ -240,7 +240,7 @@ public class MedicalAnalysis {
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientcaseID, medicalfile, patPathway, hypothesis,
+    return Objects.hash(patientId, notes, decisions, hypothesis,
                         resourceDiagnosis);
   }
 
@@ -248,14 +248,12 @@ public class MedicalAnalysis {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MedicalAnalysis {\n");
-    sb.append("    patientcaseID: ")
-        .append(toIndentedString(patientcaseID))
+    sb.append("    patientId: ")
+        .append(toIndentedString(patientId))
         .append("\n");
-    sb.append("    medicalfile: ")
-        .append(toIndentedString(medicalfile))
-        .append("\n");
-    sb.append("    patPathway: ")
-        .append(toIndentedString(patPathway))
+    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
+    sb.append("    decisions: ")
+        .append(toIndentedString(decisions))
         .append("\n");
     sb.append("    hypothesis: ")
         .append(toIndentedString(hypothesis))

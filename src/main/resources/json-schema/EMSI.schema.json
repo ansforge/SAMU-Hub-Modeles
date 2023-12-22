@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "23.12.21",
+    "version": "23.12.22",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -19,6 +19,7 @@
             "type": "object",
             "title": "Objet emsi",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "CONTEXT",
                 "EVENT"
@@ -49,6 +50,7 @@
             "type": "object",
             "title": "Contexte",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ID",
                 "MODE",
@@ -173,6 +175,7 @@
             "type": "object",
             "title": "Evenement",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ID"
             ],
@@ -350,6 +353,7 @@
             "type": "object",
             "title": "Missions",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "TYPE"
             ],
@@ -812,6 +816,7 @@
             "type": "object",
             "title": "Lien",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ID"
             ],
@@ -843,6 +848,7 @@
             "type": "object",
             "title": "Origine",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "ORG_ID": {
@@ -876,6 +882,7 @@
             "type": "object",
             "title": "Informations exterieures ",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "URI"
             ],
@@ -918,6 +925,7 @@
             "type": "object",
             "title": "Type de l'\u00e9v\u00e9nement",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "CATEGORY",
                 "ACTOR",
@@ -1223,6 +1231,7 @@
             "type": "object",
             "title": "Lien vers d'autres objets \u00e9v\u00e9nements EMSI",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ORG_ID",
                 "OTHER_EVENT_ID"
@@ -1255,6 +1264,7 @@
             "type": "object",
             "title": "Victimes",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "CONTEXT"
             ],
@@ -1332,6 +1342,7 @@
             "type": "object",
             "title": "Evacu\u00e9s",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "DATIME": {
@@ -1367,6 +1378,7 @@
             "type": "object",
             "title": "Localisation de l'\u00e9v\u00e9nement",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "TYPE",
                 "POSITION"
@@ -1551,6 +1563,7 @@
             "type": "object",
             "title": "Position de l'op\u00e9ration",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "LOC_ID"
             ],
@@ -1620,6 +1633,7 @@
             "type": "object",
             "title": "Coordonn\u00e9es",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "LAT",
                 "LONG"

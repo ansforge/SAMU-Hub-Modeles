@@ -56,9 +56,8 @@ import java.util.Objects;
      CreateCase.JSON_PROPERTY_CREATION,
      CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
      CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
-     CreateCase.JSON_PROPERTY_INITIAL_ALERT,
-     CreateCase.JSON_PROPERTY_CRRATRANSFERT, CreateCase.JSON_PROPERTY_OPERATORS,
-     CreateCase.JSON_PROPERTY_PATIENTS,
+     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_OWNER,
+     CreateCase.JSON_PROPERTY_OPERATORS, CreateCase.JSON_PROPERTY_PATIENTS,
      CreateCase.JSON_PROPERTY_MEDICAL_ANALYSIS,
      CreateCase.JSON_PROPERTY_NEW_ALERT,
      CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
@@ -89,8 +88,8 @@ public class CreateCase {
   public static final String JSON_PROPERTY_INITIAL_ALERT = "initialAlert";
   private Alert initialAlert;
 
-  public static final String JSON_PROPERTY_CRRATRANSFERT = "crratransfert";
-  private String crratransfert;
+  public static final String JSON_PROPERTY_OWNER = "owner";
+  private String owner;
 
   public static final String JSON_PROPERTY_OPERATORS = "operators";
   private List<Operators> operators;
@@ -293,9 +292,9 @@ public class CreateCase {
     this.initialAlert = initialAlert;
   }
 
-  public CreateCase crratransfert(String crratransfert) {
+  public CreateCase owner(String owner) {
 
-    this.crratransfert = crratransfert;
+    this.owner = owner;
     return this;
   }
 
@@ -310,19 +309,19 @@ public class CreateCase {
    *SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de
    *mise à jour en remettant l&#39;ID du SAMU demandeur dans ce champ + il
    *envoie l&#39;ID local du dossier chez lui.
-   * @return crratransfert
+   * @return owner
    **/
-  @JsonProperty(JSON_PROPERTY_CRRATRANSFERT)
+  @JsonProperty(JSON_PROPERTY_OWNER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getCrratransfert() {
-    return crratransfert;
+  public String getOwner() {
+    return owner;
   }
 
-  @JsonProperty(JSON_PROPERTY_CRRATRANSFERT)
+  @JsonProperty(JSON_PROPERTY_OWNER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCrratransfert(String crratransfert) {
-    this.crratransfert = crratransfert;
+  public void setOwner(String owner) {
+    this.owner = owner;
   }
 
   public CreateCase operators(List<Operators> operators) {
@@ -530,7 +529,7 @@ public class CreateCase {
         Objects.equals(this.qualification, createCase.qualification) &&
         Objects.equals(this.location, createCase.location) &&
         Objects.equals(this.initialAlert, createCase.initialAlert) &&
-        Objects.equals(this.crratransfert, createCase.crratransfert) &&
+        Objects.equals(this.owner, createCase.owner) &&
         Objects.equals(this.operators, createCase.operators) &&
         Objects.equals(this.patients, createCase.patients) &&
         Objects.equals(this.medicalAnalysis, createCase.medicalAnalysis) &&
@@ -543,8 +542,8 @@ public class CreateCase {
   @Override
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
-                        qualification, location, initialAlert, crratransfert,
-                        operators, patients, medicalAnalysis, newAlert,
+                        qualification, location, initialAlert, owner, operators,
+                        patients, medicalAnalysis, newAlert,
                         additionalInformation, freetext);
   }
 
@@ -567,9 +566,7 @@ public class CreateCase {
     sb.append("    initialAlert: ")
         .append(toIndentedString(initialAlert))
         .append("\n");
-    sb.append("    crratransfert: ")
-        .append(toIndentedString(crratransfert))
-        .append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    operators: ")
         .append(toIndentedString(operators))
         .append("\n");

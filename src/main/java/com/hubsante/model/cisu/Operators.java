@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -41,117 +42,90 @@ import java.util.Objects;
 /**
  * Operators
  */
-@JsonPropertyOrder(
-    {Operators.JSON_PROPERTY_OPNAME, Operators.JSON_PROPERTY_OPFIRSTNAME,
-     Operators.JSON_PROPERTY_OPID, Operators.JSON_PROPERTY_OPROLE})
+@JsonPropertyOrder({Operators.JSON_PROPERTY_DETAILED_NAME,
+                    Operators.JSON_PROPERTY_ID, Operators.JSON_PROPERTY_ROLE})
 @JsonTypeName("operators")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Operators {
-  public static final String JSON_PROPERTY_OPNAME = "opname";
-  private String opname;
+  public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
+  private DetailedName detailedName;
 
-  public static final String JSON_PROPERTY_OPFIRSTNAME = "opfirstname";
-  private String opfirstname;
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
 
-  public static final String JSON_PROPERTY_OPID = "opid";
-  private String opid;
-
-  public static final String JSON_PROPERTY_OPROLE = "oprole";
-  private String oprole;
+  public static final String JSON_PROPERTY_ROLE = "role";
+  private String role;
 
   public Operators() {}
 
-  public Operators opname(String opname) {
+  public Operators detailedName(DetailedName detailedName) {
 
-    this.opname = opname;
+    this.detailedName = detailedName;
     return this;
   }
 
   /**
-   * Nom de famille de l&#39;opérateur
-   * @return opname
+   * Get detailedName
+   * @return detailedName
    **/
-  @JsonProperty(JSON_PROPERTY_OPNAME)
+  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getOpname() {
-    return opname;
+  public DetailedName getDetailedName() {
+    return detailedName;
   }
 
-  @JsonProperty(JSON_PROPERTY_OPNAME)
+  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOpname(String opname) {
-    this.opname = opname;
+  public void setDetailedName(DetailedName detailedName) {
+    this.detailedName = detailedName;
   }
 
-  public Operators opfirstname(String opfirstname) {
+  public Operators id(String id) {
 
-    this.opfirstname = opfirstname;
-    return this;
-  }
-
-  /**
-   * Prénom de l&#39;opérateur référent
-   * @return opfirstname
-   **/
-  @JsonProperty(JSON_PROPERTY_OPFIRSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getOpfirstname() {
-    return opfirstname;
-  }
-
-  @JsonProperty(JSON_PROPERTY_OPFIRSTNAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpfirstname(String opfirstname) {
-    this.opfirstname = opfirstname;
-  }
-
-  public Operators opid(String opid) {
-
-    this.opid = opid;
+    this.id = id;
     return this;
   }
 
   /**
    * Identifiant professionnel de l&#39;opérateur si existant
-   * @return opid
+   * @return id
    **/
-  @JsonProperty(JSON_PROPERTY_OPID)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getOpid() {
-    return opid;
+  public String getId() {
+    return id;
   }
 
-  @JsonProperty(JSON_PROPERTY_OPID)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOpid(String opid) {
-    this.opid = opid;
+  public void setId(String id) {
+    this.id = id;
   }
 
-  public Operators oprole(String oprole) {
+  public Operators role(String role) {
 
-    this.oprole = oprole;
+    this.role = role;
     return this;
   }
 
   /**
    * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
-   * @return oprole
+   * @return role
    **/
-  @JsonProperty(JSON_PROPERTY_OPROLE)
+  @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getOprole() {
-    return oprole;
+  public String getRole() {
+    return role;
   }
 
-  @JsonProperty(JSON_PROPERTY_OPROLE)
+  @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOprole(String oprole) {
-    this.oprole = oprole;
+  public void setRole(String role) {
+    this.role = role;
   }
 
   @Override
@@ -163,27 +137,25 @@ public class Operators {
       return false;
     }
     Operators operators = (Operators)o;
-    return Objects.equals(this.opname, operators.opname) &&
-        Objects.equals(this.opfirstname, operators.opfirstname) &&
-        Objects.equals(this.opid, operators.opid) &&
-        Objects.equals(this.oprole, operators.oprole);
+    return Objects.equals(this.detailedName, operators.detailedName) &&
+        Objects.equals(this.id, operators.id) &&
+        Objects.equals(this.role, operators.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(opname, opfirstname, opid, oprole);
+    return Objects.hash(detailedName, id, role);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Operators {\n");
-    sb.append("    opname: ").append(toIndentedString(opname)).append("\n");
-    sb.append("    opfirstname: ")
-        .append(toIndentedString(opfirstname))
+    sb.append("    detailedName: ")
+        .append(toIndentedString(detailedName))
         .append("\n");
-    sb.append("    opid: ").append(toIndentedString(opid)).append("\n");
-    sb.append("    oprole: ").append(toIndentedString(oprole)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();
   }
