@@ -47,15 +47,62 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Contact {
+
+  /**
+   * Type de contact, voir énumération associée  1. PMRADD (si RFGI
+   * disponible) 2. PHNADD pour téléphonie
+   */
+  public enum TYPEEnum {
+    PSTADD("PSTADD"),
+
+    EMLADD("EMLADD"),
+
+    IPADD("IPADD"),
+
+    FTPADD("FTPADD"),
+
+    WWWADD("WWWADD"),
+
+    PHNADD("PHNADD"),
+
+    FAXADD("FAXADD"),
+
+    PMRADD("PMRADD");
+
+    private String value;
+
+    TYPEEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TYPEEnum fromValue(String value) {
+      for (TYPEEnum b : TYPEEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private String TYPE;
+  private TYPEEnum TYPE;
 
   public static final String JSON_PROPERTY_D_E_T_A_I_L = "DETAIL";
   private String DETAIL;
 
   public Contact() {}
 
-  public Contact TYPE(String TYPE) {
+  public Contact TYPE(TYPEEnum TYPE) {
 
     this.TYPE = TYPE;
     return this;
@@ -69,13 +116,13 @@ public class Contact {
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getTYPE() {
+  public TYPEEnum getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTYPE(String TYPE) {
+  public void setTYPE(TYPEEnum TYPE) {
     this.TYPE = TYPE;
   }
 

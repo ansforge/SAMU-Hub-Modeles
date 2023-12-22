@@ -312,8 +312,11 @@ components:
         RESOURCE:
           type: array
           items:
+            $ref: '#/components/schemas/mission'
+        RESOURCE:
+          type: array
+          items:
             $ref: '#/components/schemas/resource'
-            x-health-only: true
       example: example.json#/emsi
     resource:
       type: object
@@ -481,7 +484,352 @@ components:
               s le standard EMSI"
             examples:
             - None
-        CHARACTERISTICS:
+        MAIN_MISSION_ID:
+          type: string
+          title: Mission principale
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/MAIN_MISSION_ID
+          description: "- Dans le cas d'une mission g\xE9n\xE9rique de r\xE9ponse\
+            \ \xE0 demande de concours, indiquer l'ID de la mission g\xE9n\xE9rique\
+            \ utilis\xE9e pour mod\xE9liser la demande de concours\n- Dans le cas\
+            \ d'une mission d\xE9clench\xE9e dans le cadre d'une r\xE9ponse \xE0 demande\
+            \ de concours, l'ID de la mission g\xE9n\xE9rique de r\xE9ponse peut \xEA\
+            tre utilis\xE9e dans ce champ pour indiquer qu'elle est li\xE9e \xE0 une\
+            \ r\xE9ponse"
+          examples:
+          - /FF#bb511708-b004-4d7e-8820-1d56c19f1855
+        POSITION:
+          $ref: '#/components/schemas/position'
+        PRIORITY:
+          type: string
+          title: "Priorit\xE9 de la mission"
+          x-cols: 6
+          example: example.json#/emsi/MISSION/0/PRIORITY
+          description: "Indique une \xE9chelle de priorit\xE9 pour la demande de concours.\
+            \ Dans le cadre du standard EMSI, cette \xE9chelle doit \xEAtre comprise\
+            \ entre 0 et 5. Ce champ peut ne pas \xEAtre interpr\xE9t\xE9 ni aliment\xE9\
+            \ par les LRMs.\nDans le cadre d'un \xE9change des op\xE9rations, optionnel.\
+            \ Le champ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9."
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          examples:
+          - 5
+      example: example.json#/emsi/MISSION/0
+    resource:
+      type: object
+      title: Ressource
+      x-display: expansion-panels
+      required:
+      - RTYPE
+      properties:
+        RTYPE:
+          $ref: '#/components/schemas/rtype'
+        ID:
+          type: string
+          title: ID de la ressource
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/ID
+          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
+            \ partenaire propri\xE9taire. Les syst\xE8mes sont garants de l'unicit\xE9\
+            \ et de l'invariablit\xE9 des ids de v\xE9hicule dans le temps. Ils peuvent\
+            \ se servir des ids dans les r\xE9f\xE9rentiels existants si ils sont\
+            \ uniques et stables.\nDans le cas d'un v\xE9hicule agr\xE9g\xE9 par un\
+            \ LRM (comme un SMUR), l'ID doit \xEAtre valoris\xE9 avec son immatriculation.\n\
+            Dans le cas d'un v\xE9hicule agr\xE9g\xE9 par NexSIS, l'ID fournit peut\
+            \ ne pas correspondre \xE0 une immatriculation."
+          examples:
+          - 77_45102#VSAV 1#
+        ORG_ID:
+          type: string
+          title: "Identifiant de l'organisation propri\xE9taire"
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/ORG_ID
+          description: "Identifiant de l'organisation \xE0 laquelle la ressource est\
+            \ rattach\xE9e (caserne, SAMU etc).\nSe r\xE9f\xE9rer au DSF pour la structure\
+            \ norm\xE9e des organisations\nLe format est le suivant {pays}.{domaine}.{code\
+            \ d\xE9partement}.{organisation}.{structure interne}*.{unit\xE9 fonctionnelle}*.\n\
+            Dans le cas o\xF9 le LRM/NexSIS sert d'aggr\xE9gateur pour des v\xE9hicules\
+            \ appartenant \xE0 un partenaire tiers (type ambulance priv\xE9e), l'identifiant\
+            \ d'organisation permet d'identifier ce tiers\nA constituer par le r\xE9\
+            dacteur du pr\xE9sent EMSI pour \xEAtre unique, identique \xE0 <CONTEXT><ORIGIN><ORG_ID>"
+          examples:
+          - FR:Administration:44:CASERNENANTES
+        NAME:
+          type: string
+          title: Nom de la ressource
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/NAME
+          description: "Nom donn\xE9 \xE0 la ressource par le partenaire. L'immatriculation\
+            \ peut \xEAtre utilis\xE9e dans le nom courant des v\xE9hicules.\nDans\
+            \ le cas pompier, les v\xE9hicules sont nomm\xE9s\nDans le cas d'\xE9\
+            quipier, cela peut \xEAtre leur nom"
+          examples:
+          - VSAV 1 Nantes
+        FREETEXT:
+          type: string
+          title: Description de la ressource
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/FREETEXT
+          description: "Texte libre permettant de d\xE9crire la ressource o\xF9 d'ajouter\
+            \ des pr\xE9cisions sur son engagement.\nPermet aussi notamment de d\xE9\
+            crire des attributs librement pour la ressource.\nPar exemple, pour un\
+            \ v\xE9hicule, sa plaque d'immatriculation."
+          examples:
+          - None
+        RGEO:
+          type: array
+          items:
+            $ref: '#/components/schemas/rgeo'
+        QUANTITY:
+          type: number
+          title: "Quantit\xE9 de la ressource"
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/QUANTITY
+          description: "Dans le cadre d'un \xE9change d'op\xE9ration, optionnel. Permet\
+            \ de quantifier une ressource :\n- \xE0 ne pas utiliser pour les v\xE9\
+            hicules ni le personnel\n- utilisable pour du mat\xE9riel\n- utilisable\
+            \ pour des consommables (dans le cas de consommable, \xE0 compl\xE9ter\
+            \ avec le champ UM)"
+          examples:
+          - 1
+        UM:
+          type: string
+          title: "Unit\xE9 de mesure pour la ressource"
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/UM
+          description: "Dans le cadre d'un \xE9change d'op\xE9ration, optionnel. Unit\xE9\
+            \ de mesure pour des ressources consommables"
+          enum:
+          - LSV
+          - OTH
+          - PKG
+          - TIM
+          - WGT
+          - LSV/CM
+          - LSV/CMH
+          - LSV/CNTLTR
+          - LSV/DEG
+          - LSV/HCTLTR
+          - LSV/HCTMTR
+          - LSV/KM
+          - LSV/KPH
+          - LSV/LI
+          - LSV/LTPRHR
+          - LSV/LTPRMN
+          - LSV/METRE
+          - LSV/MILLTR
+          - LSV/MILMTR
+          - LSV/SMH
+          - LSV/SQM
+          - OTH/COIL
+          - OTH/DOZEN
+          - OTH/EA
+          - OTH/GROSS
+          - OTH/MANHUR
+          - OTH/MHPRHR
+          - PKG/BALE
+          - PKG/BARREL
+          - PKG/BLK
+          - PKG/BOX
+          - PKG/CASE
+          - PKG/CONTNR
+          - PKG/CRATE
+          - PKG/DRM
+          - PKG/JERCAN
+          - PKG/PAK
+          - PKG/PAL
+          - PKG/RATION
+          - TIM/DAY
+          - TIM/HR
+          - TIM/MINUTE
+          - TIM/MON
+          - TIM/SECOND
+          - TIM/WEK
+          - TIM/YEA
+          - WGT/CNTGRM
+          - WGT/GRAM
+          - WGT/KG
+          - WGT/KGH
+          examples:
+          - None
+        STATUS:
+          type: string
+          title: Statut de la ressource
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/STATUS
+          description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
+            - AVAILB : Lorsqu'une mission est termin\xE9e, une ressource redevient\
+            \ disponible\n- RESRVD : Lorsque la ressource est r\xE9serv\xE9e pour\
+            \ intervenir sur l'affaire mais pas encore engag\xE9e dans l'op\xE9ration.\
+            \ Par exemple : un SMUR termine un autre transfert patient/victime avant\
+            \ de rejoindre une autre intervention : il est alors RESRVD\n- IN_USE/MOBILE\
+            \ : \xE0 utiliser pour les v\xE9hicules et le personnel lorsqu'ils se\
+            \ d\xE9places\n- IN_USE/ON_SCENE : \xE0 utiliser pour les v\xE9hicules\
+            \ et le personnel lorsqu'ils sont sur les lieux de l'affaire"
+          enum:
+          - AVAILB
+          - UNAV
+          - MAINTC
+          - RESRVD
+          - VIRTUAL
+          - IN_USE/MOBILE
+          - IN_USE/ON_SCENE
+          examples:
+          - IN_USE/MOBILE
+        NATIONALITY:
+          type: string
+          title: "Nationalit\xE9 de la ressource"
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/NATIONALITY
+          description: "Nationalit\xE9 d'une ressource, r\xE9employer ISO 3166-1-alpha-2\
+            \ code elements."
+          examples:
+          - FR
+        CONTACTS:
+          type: array
+          items:
+            $ref: '#/components/schemas/contact'
+      example: example.json#/emsi/RESOURCE/0
+    link:
+      type: object
+      title: Lien
+      x-display: expansion-panels
+      required:
+      - ID
+      properties:
+        ID:
+          type: string
+          title: ID
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/LINK/0/ID
+          description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant\nDans NexSIS;\nRG 1  \u2013 : cr\xE9ation du premier message\
+            \ EMSi suite r\xE9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\xE9ro\
+            \ d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour\
+            \ tous les messages cr\xE9\xE9s apr\xE8s le premier, EMSI <LINK> est compl\xE9\
+            t\xE9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\xE9c\xE9dent\
+            \ cr\xE9\xE9 au sein du SGO r\xE9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          examples:
+          - samuA:CA126B445579GD4A67AV
+        LINK_ROLE:
+          type: string
+          title: "R\xF4le du lien"
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE
+          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" en\
+            \ EMSI-EO et avec le libell\xE9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG\
+            \ 1  \u2013 : cr\xE9ation du premier message EMSi suite r\xE9ception Affaire\
+            \ * <LINK><LINK ID> = <Num\xE9ro d'affaire initiale>\n\u2022 <LINK><LINK\
+            \ ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\xE9\xE9s apr\xE8\
+            s le premier, EMSI <LINK> est compl\xE9t\xE9 par <LINK><LINK ID> contenant\
+            \ l'ID de message EMSI pr\xE9c\xE9dent cr\xE9\xE9 au sein du SGO r\xE9\
+            dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          enum:
+          - ADDSTO
+          - SPRSDS
+          examples:
+          - ADDSTO
+      example: example.json#/emsi/CONTEXT/LINK/0
+      examples:
+      - ID: samuA:CA126B445579GD4A67AV
+        LINK_ROLE: ADDSTO
+    origin:
+      type: object
+      title: Origine
+      x-display: expansion-panels
+      required: []
+      properties:
+        ORG_ID:
+          type: string
+          title: Origine ID
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/ORIGIN/ORG_ID
+          description: "Optionnel, identifiant du service \xE0 l'origine de l'EMSI\n\
+            Se r\xE9f\xE9rer au DSF pour la structure norm\xE9e des organisations\n\
+            Le format est le suivant {pays}.{domaine}.{code d\xE9partement}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*."
+          examples:
+          - fr.health.44.samu44
+        USER_ID:
+          type: string
+          title: ID d'utilisateur de l'origine
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/ORIGIN/USER_ID
+          description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
+            \ de l'EMSI"
+          examples:
+          - None
+        NAME:
+          type: string
+          title: 'Nom Origine '
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/ORIGIN/NAME
+          description: "Optionnel\n\nA constituer par le r\xE9dacteur pour \xEAtre\
+            \ intelligible (exemple [structure].[nom])"
+          examples:
+          - samu44
+      example: example.json#/emsi/CONTEXT/ORIGIN
+      examples:
+      - ORG_ID: fr.health.44.samu44
+        USER_ID: None
+        NAME: samu44
+    externalInfo:
+      type: object
+      title: 'Informations exterieures '
+      x-display: expansion-panels
+      required:
+      - URI
+      properties:
+        FREETEXT:
+          type: string
+          title: 'Texte libre '
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/FREETEXT
+          description: Optionnel
+          examples:
+          - None
+        URI:
+          type: string
+          title: "URI informations ext\xE9rieures"
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/URI
+          description: Optionnel
+          examples:
+          - 289d6939-d225-4c71-9a56-68c03ada2f5e
+        TYPE:
+          type: string
+          title: Type
+          x-cols: 6
+          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/TYPE
+          description: Optionnel
+          enum:
+          - MANUAL
+          - MAP
+          - OTHER
+          - PHOTO
+          - WEBSIT
+          examples:
+          - SPRSDS
+      example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0
+      examples:
+      - FREETEXT: None
+        URI: 289d6939-d225-4c71-9a56-68c03ada2f5e
+        TYPE: SPRSDS
+    etype:
+      type: object
+      title: "Type de l'\xE9v\xE9nement"
+      x-display: expansion-panels
+      required:
+      - CATEGORY
+      - ACTOR
+      - LOCTYPE
+      properties:
+        CATEGORY:
           type: array
           x-health-only: true
           items:
@@ -599,9 +947,793 @@ components:
       type: object
       title: "Position g\xE9ographique"
       x-display: expansion-panels
-      x-health-only: true
-      required: []
-      properties: {}
-      example: example.json#/emsi/RESOURCE/0/RGEO/0/POSITION/0
+      required:
+      - LAT
+      - LONG
+      properties:
+        LAT:
+          type: number
+          title: 'Latitude '
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LAT
+          description: "derni\xE8re coordonn\xE9e x  connue de la ressource"
+          examples:
+          - '47.221866'
+        LONG:
+          type: number
+          title: Longitude
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LONG
+          description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
+            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
+            re coordonn\xE9e y  connue de la ressource\nbetween \u221290 and +90"
+          examples:
+          - '-1.575807'
+        HEIGHT:
+          type: number
+          title: Altitude
+          x-cols: 6
+          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
+          description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
+            r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
+            re coordonn\xE9e z  connue de la ressource\nbetween \u2212180 and +180"
+          examples:
+          - 1
+      example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0
       examples:
-      - {}
+      - LAT: '47.221866'
+        LONG: '-1.575807'
+        HEIGHT: 1
+    rtype:
+      type: object
+      title: Type de la ressource
+      x-display: expansion-panels
+      required:
+      - RCLASS
+      properties:
+        RCLASS:
+          type: array
+          items:
+            type: string
+            title: Classes de la ressource
+            x-cols: 6
+            example: example.json#/emsi/RESOURCE/0/RTYPE/RCLASS/0
+            description: "Permet d'indiquer la classe de l'objet RESOURCE. Plusieurs\
+              \ niveau de d\xE9tails sont fournis par la nomenclature associ\xE9e.\n\
+              Le premier niveau permet notamment de d\xE9crire la classe principale\
+              \ de ressource :\n- Un v\xE9hicule,\n- Le personnel mobilis\xE9,\n-\
+              \ Des consommables/ du mat\xE9riel,\n- Un lieu ou une organisation (non\
+              \ utilis\xE9 pour le moment)\nVoir nomenclature EMSI associ\xE9e"
+            enum:
+            - FAC
+            - HUM
+            - MAT
+            - ORG
+            - FAC/BRIDGE
+            - FAC/BUILDN
+            - FAC/DEPOT
+            - FAC/NETWK
+            - FAC/OPR
+            - FAC/OTH
+            - FAC/WATFIR
+            - FAC/BRIDGE/MILVHL
+            - FAC/BUILDN/BARRCK
+            - FAC/BUILDN/BUNKER
+            - FAC/BUILDN/COB
+            - FAC/BUILDN/CTT
+            - FAC/BUILDN/DAM
+            - FAC/BUILDN/GYMNAS
+            - FAC/BUILDN/HANGAR
+            - FAC/BUILDN/HOUSE
+            - FAC/BUILDN/HUT
+            - FAC/BUILDN/INDINS
+            - FAC/BUILDN/OFFICE
+            - FAC/BUILDN/SCHOOL
+            - FAC/BUILDN/SHD
+            - FAC/BUILDN/SHLSUR
+            - FAC/BUILDN/SHLUND
+            - FAC/BUILDN/SHOP
+            - FAC/BUILDN/TOW
+            - FAC/BUILDN/TUN
+            - FAC/BUILDN/WALL
+            - FAC/BUILDN/WTW
+            - FAC/DEPOT/BIO
+            - FAC/DEPOT/CBRN
+            - FAC/DEPOT/CHM
+            - FAC/DEPOT/ENG
+            - FAC/DEPOT/MED
+            - FAC/DEPOT/MUN
+            - FAC/DEPOT/POL
+            - FAC/NETWK/ADSL
+            - FAC/NETWK/ATM
+            - FAC/NETWK/CTZALT
+            - FAC/NETWK/EMGNWK
+            - FAC/NETWK/GPRS
+            - FAC/NETWK/GSM
+            - FAC/NETWK/INTRAN
+            - FAC/NETWK/INTRNT
+            - FAC/NETWK/ISDN
+            - FAC/NETWK/LAN
+            - FAC/NETWK/PAMR
+            - FAC/NETWK/PDMR
+            - FAC/NETWK/PGSM
+            - FAC/NETWK/PSTN
+            - FAC/NETWK/RADEHF
+            - FAC/NETWK/RADHF
+            - FAC/NETWK/RADIO
+            - FAC/NETWK/RADLF
+            - FAC/NETWK/RADMF
+            - FAC/NETWK/RADSHF
+            - FAC/NETWK/RADUHF
+            - FAC/NETWK/RADVHF
+            - FAC/NETWK/RADVLF
+            - FAC/NETWK/RAYNET
+            - FAC/NETWK/RELAY
+            - FAC/NETWK/SDSL
+            - FAC/NETWK/TV
+            - FAC/NETWK/UMTS
+            - FAC/NETWK/VDSL
+            - FAC/NETWK/WAN
+            - FAC/NETWK/WIMAX
+            - FAC/NETWK/WLAN
+            - FAC/OPR/AMBFAC
+            - FAC/OPR/BDHOLD
+            - FAC/OPR/CAMP
+            - FAC/OPR/CASBUR
+            - FAC/OPR/CASCLR
+            - FAC/OPR/CASCOL
+            - FAC/OPR/CP
+            - FAC/OPR/CSCLPT
+            - FAC/OPR/CVCLPT
+            - FAC/OPR/DEBRDP
+            - FAC/OPR/DECONP
+            - FAC/OPR/DISBED
+            - FAC/OPR/DOCFAC
+            - FAC/OPR/EMMORT
+            - FAC/OPR/EQPOOL
+            - FAC/OPR/EVASSP
+            - FAC/OPR/FACAIR
+            - FAC/OPR/FACMIL
+            - FAC/OPR/FACNAV
+            - FAC/OPR/FAMFRD
+            - FAC/OPR/FIRFAC
+            - FAC/OPR/FSAAMM
+            - FAC/OPR/GERBED
+            - FAC/OPR/HOLD
+            - FAC/OPR/HPD
+            - FAC/OPR/HPT
+            - FAC/OPR/HSP
+            - FAC/OPR/HSPFLD
+            - FAC/OPR/HSPFLD
+            - FAC/OPR/IRM
+            - FAC/OPR/MARSHAL
+            - FAC/OPR/MATBED
+            - FAC/OPR/MEDBED
+            - FAC/OPR/MEDSPT
+            - FAC/OPR/MOBLCP
+            - FAC/OPR/OPCTCN
+            - FAC/OPR/PHARMA
+            - FAC/OPR/POLFAC
+            - FAC/OPR/POLPT
+            - FAC/OPR/REFARE
+            - FAC/OPR/RRRSPT
+            - FAC/OPR/SITLOG
+            - FAC/OPR/SPTARE
+            - FAC/OPR/SRVCNT
+            - FAC/OPR/STCOCN
+            - FAC/OPR/STCTCN
+            - FAC/OPR/TCCTCN
+            - FAC/OTH/ACCOM
+            - FAC/OTH/AIRFLD
+            - FAC/OTH/BANK
+            - FAC/OTH/BATH
+            - FAC/OTH/CAN
+            - FAC/OTH/CEM
+            - FAC/OTH/DCH
+            - FAC/OTH/ELCINS
+            - FAC/OTH/ELCSPL
+            - FAC/OTH/EQIMFT
+            - FAC/OTH/FACGOV
+            - FAC/OTH/FACPOW
+            - FAC/OTH/FACTEC
+            - FAC/OTH/FACTEL
+            - FAC/OTH/FACTRN
+            - FAC/OTH/FATST
+            - FAC/OTH/FERINS
+            - FAC/OTH/FHPT
+            - FAC/OTH/LGRLPT
+            - FAC/OTH/MAINTF
+            - FAC/OTH/PTL
+            - FAC/OTH/RES
+            - FAC/OTH/VST
+            - FAC/OTH/WATSPL
+            - FAC/OTH/WSHFAC
+            - FAC/WATFIR/FOMBLK
+            - FAC/WATFIR/HYDRNT
+            - FAC/WATFIR/TOWNMN
+            - HUM/CAPAB
+            - HUM/PERSON
+            - HUM/UNIT
+            - HUM/CAPAB/AMB
+            - HUM/CAPAB/FIR
+            - HUM/CAPAB/MED
+            - HUM/CAPAB/MIL
+            - HUM/CAPAB/POL
+            - HUM/CAPAB/TRP
+            - HUM/CAPAB/AMB/INCOFF
+            - HUM/CAPAB/AMB/PARAMD
+            - HUM/CAPAB/AMB/SAFOFF
+            - HUM/CAPAB/AMB/TECHNIC
+            - HUM/CAPAB/FIR/BACOFF
+            - HUM/CAPAB/FIR/BAEOFF
+            - HUM/CAPAB/FIR/COMOFF
+            - HUM/CAPAB/FIR/CONOFF
+            - HUM/CAPAB/FIR/DECOFF
+            - HUM/CAPAB/FIR/FINOFF
+            - HUM/CAPAB/FIR/FOMOFF
+            - HUM/CAPAB/FIR/HAZOFF
+            - HUM/CAPAB/FIR/INCCOM
+            - HUM/CAPAB/FIR/LIAOFF
+            - HUM/CAPAB/FIR/LOGOFF
+            - HUM/CAPAB/FIR/MAROFF
+            - HUM/CAPAB/FIR/MEDOFF
+            - HUM/CAPAB/FIR/OPRCOM
+            - HUM/CAPAB/FIR/SAFOFF
+            - HUM/CAPAB/FIR/SALOFF
+            - HUM/CAPAB/FIR/SECCOM
+            - HUM/CAPAB/FIR/STAOFF
+            - HUM/CAPAB/FIR/STRCOM
+            - HUM/CAPAB/FIR/TACCOM
+            - HUM/CAPAB/FIR/WATOFF
+            - HUM/CAPAB/MED/ANSPHY
+            - HUM/CAPAB/MED/DNTPHY
+            - HUM/CAPAB/MED/DOCTOR
+            - HUM/CAPAB/MED/GYNPHY
+            - HUM/CAPAB/MED/HDNPHY
+            - HUM/CAPAB/MED/INMPHY
+            - HUM/CAPAB/MED/NURSE
+            - HUM/CAPAB/MED/ORTPHY
+            - HUM/CAPAB/MED/OTHPHY
+            - HUM/CAPAB/MED/PRCPHY
+            - HUM/CAPAB/MED/PSYPHY
+            - HUM/CAPAB/MED/PTHPHY
+            - HUM/CAPAB/MED/RADPHY
+            - HUM/CAPAB/MED/SURPHY
+            - HUM/CAPAB/MIL/AUTCDR
+            - HUM/CAPAB/MIL/INTOFF
+            - HUM/CAPAB/MIL/LIAISN
+            - HUM/CAPAB/MIL/OF1
+            - HUM/CAPAB/MIL/OF10
+            - HUM/CAPAB/MIL/OF2
+            - HUM/CAPAB/MIL/OF3
+            - HUM/CAPAB/MIL/OF4
+            - HUM/CAPAB/MIL/OF5
+            - HUM/CAPAB/MIL/OF6
+            - HUM/CAPAB/MIL/OF7
+            - HUM/CAPAB/MIL/OF8
+            - HUM/CAPAB/MIL/OF9
+            - HUM/CAPAB/MIL/OFFR
+            - HUM/CAPAB/MIL/OPSOFF
+            - HUM/CAPAB/MIL/OR1
+            - HUM/CAPAB/MIL/OR2
+            - HUM/CAPAB/MIL/OR3
+            - HUM/CAPAB/MIL/OR4
+            - HUM/CAPAB/MIL/OR5
+            - HUM/CAPAB/MIL/OR6
+            - HUM/CAPAB/MIL/OR7
+            - HUM/CAPAB/MIL/OR8
+            - HUM/CAPAB/MIL/OR9
+            - HUM/CAPAB/MIL/OTHR
+            - HUM/CAPAB/MIL/POC
+            - HUM/CAPAB/POL/BMBOFF
+            - HUM/CAPAB/POL/CASOFF
+            - HUM/CAPAB/POL/COFF
+            - HUM/CAPAB/POL/DETCTV
+            - HUM/CAPAB/POL/DIVER
+            - HUM/CAPAB/POL/MOM
+            - HUM/CAPAB/POL/PIO
+            - HUM/CAPAB/POL/PMR
+            - HUM/CAPAB/POL/RDINV
+            - HUM/CAPAB/POL/SCO
+            - HUM/CAPAB/POL/SIO
+            - HUM/CAPAB/POL/STTTK
+            - HUM/CAPAB/TRP/AIRFW
+            - HUM/CAPAB/TRP/AIRRW
+            - HUM/CAPAB/TRP/AMPH
+            - HUM/CAPAB/TRP/LNDRAI
+            - HUM/CAPAB/TRP/LNDWHL
+            - HUM/CAPAB/TRP/SEASS
+            - HUM/CAPAB/TRP/SEASUR
+            - HUM/PERSON/CFIROF
+            - HUM/PERSON/GOVEMP
+            - HUM/PERSON/INTLCT
+            - HUM/PERSON/JRNLST
+            - HUM/PERSON/MEDIA
+            - HUM/PERSON/NONGVE
+            - HUM/PERSON/POLCHF
+            - HUM/PERSON/VILELD
+            - HUM/PERSON/WRITER
+            - HUM/UNIT/AIRLSN
+            - HUM/UNIT/C2
+            - HUM/UNIT/CBRN
+            - HUM/UNIT/CONST
+            - HUM/UNIT/CRSMAN
+            - HUM/UNIT/DISID
+            - HUM/UNIT/EMPOFF
+            - HUM/UNIT/ENG
+            - HUM/UNIT/ENVOFF
+            - HUM/UNIT/FINANC
+            - HUM/UNIT/FIXWNG
+            - HUM/UNIT/GUID
+            - HUM/UNIT/HELCTR
+            - HUM/UNIT/LAWENF
+            - HUM/UNIT/LNDSPT
+            - HUM/UNIT/LOG
+            - HUM/UNIT/MAGRSP
+            - HUM/UNIT/MAINT
+            - HUM/UNIT/MDSADV
+            - HUM/UNIT/MEDCL
+            - HUM/UNIT/MST
+            - HUM/UNIT/MSURTM
+            - HUM/UNIT/NAVAL
+            - HUM/UNIT/POL
+            - HUM/UNIT/PSYCH
+            - HUM/UNIT/RAILWY
+            - HUM/UNIT/RECCE
+            - HUM/UNIT/RELCHP
+            - HUM/UNIT/RIVERN
+            - HUM/UNIT/SAR
+            - HUM/UNIT/SECPOL
+            - HUM/UNIT/SHRPAT
+            - HUM/UNIT/SPECIA
+            - HUM/UNIT/SURG
+            - HUM/UNIT/TRAUMA
+            - HUM/UNIT/TRNPTN
+            - HUM/UNIT/VET
+            - HUM/UNIT/WLFCOR
+            - HUM/UNIT/POL/AIRSPT
+            - HUM/UNIT/POL/MNTPOL
+            - HUM/UNIT/POL/PUBORD
+            - HUM/UNIT/POL/RDSPT
+            - HUM/UNIT/POL/SPCLST
+            - HUM/UNIT/SAR/CSAR
+            - HUM/UNIT/SAR/MSAR
+            - HUM/UNIT/SAR/RSAR
+            - HUM/UNIT/SAR/RST
+            - HUM/UNIT/SAR/SSAR
+            - HUM/UNIT/SAR/USAR
+            - HUM/UNIT/SAR/WSAR
+            - HUM/UNIT/SAR/USAR/CANIN
+            - HUM/UNIT/SAR/USAR/DETEC
+            - MAT/CM
+            - MAT/EQ
+            - MAT/VEH
+            - MAT/CM/ABSAG
+            - MAT/CM/BIOAGN
+            - MAT/CM/CHMAGN
+            - MAT/CM/CON
+            - MAT/CM/EXTAG
+            - MAT/CM/FOO
+            - MAT/CM/FUEL
+            - MAT/CM/FUSE
+            - MAT/CM/LUBRIC
+            - MAT/CM/MATING
+            - MAT/CM/MEDICN
+            - MAT/CM/MEDSPL
+            - MAT/CM/MEGPHN
+            - MAT/CM/MONEY
+            - MAT/CM/OIL
+            - MAT/CM/PAINT
+            - MAT/CM/PAPER
+            - MAT/CM/PPE
+            - MAT/CM/RATCO
+            - MAT/CM/RATFR
+            - MAT/CM/RATTI
+            - MAT/CM/RETAG
+            - MAT/CM/TIMBER
+            - MAT/CM/UNIFRM
+            - MAT/CM/WIRE
+            - MAT/CM/WTREXT
+            - MAT/CM/WTRPOT
+            - MAT/CM/ABSAG/CHM
+            - MAT/CM/ABSAG/PHY
+            - MAT/CM/EXTAG/CO2
+            - MAT/CM/EXTAG/DRYMIN
+            - MAT/CM/EXTAG/FATFIR
+            - MAT/CM/EXTAG/FOAM
+            - MAT/CM/EXTAG/HALON
+            - MAT/CM/EXTAG/INERT
+            - MAT/CM/EXTAG/METPWD
+            - MAT/CM/EXTAG/POWDER
+            - MAT/CM/EXTAG/FOAM/AFFF
+            - MAT/CM/EXTAG/FOAM/AFFFAR
+            - MAT/CM/EXTAG/FOAM/OTH
+            - MAT/CM/FUEL/AVNFU
+            - MAT/CM/FUEL/DIESEL
+            - MAT/CM/FUEL/KEROS
+            - MAT/CM/FUEL/LPG
+            - MAT/CM/FUEL/NATGAS
+            - MAT/CM/FUEL/PETROL
+            - MAT/CM/MEDICN/1STAID
+            - MAT/CM/MEDICN/AMPHTM
+            - MAT/CM/MEDICN/BLOOD
+            - MAT/CM/MEDICN/BNDDR
+            - MAT/CM/MEDICN/KTMINE
+            - MAT/CM/MEDICN/MORFIN
+            - MAT/CM/MEDICN/WTRMED
+            - MAT/CM/PPE/CBRNKIT
+            - MAT/CM/PPE/CLOTH
+            - MAT/CM/PPE/RESP
+            - MAT/CM/PPE/SURCOT
+            - MAT/CM/PPE/CLOTH/CHEMCL
+            - MAT/CM/PPE/CLOTH/FFCLO
+            - MAT/CM/PPE/CLOTH/FKIT
+            - MAT/CM/PPE/CLOTH/CHEMCL/CHEMB
+            - MAT/CM/PPE/CLOTH/CHEMCL/CHEMG
+            - MAT/CM/PPE/CLOTH/CHEMCL/GASSU
+            - MAT/CM/PPE/CLOTH/CHEMCL/LIQSU
+            - MAT/CM/PPE/CLOTH/CHEMCL/SPLASU
+            - MAT/CM/PPE/CLOTH/CHEMCL/TEMPSU
+            - MAT/EQ/CBRN
+            - MAT/EQ/ELC
+            - MAT/EQ/ENG
+            - MAT/EQ/OTH
+            - MAT/EQ/POLICE
+            - MAT/EQ/CBRN/ABICHM
+            - MAT/EQ/CBRN/ABIDET
+            - MAT/EQ/CBRN/ACHDET
+            - MAT/EQ/CBRN/ARDDET
+            - MAT/EQ/CBRN/BIOINT
+            - MAT/EQ/CBRN/BIOSTO
+            - MAT/EQ/CBRN/CBRNDEC
+            - MAT/EQ/CBRN/CBRNREC
+            - MAT/EQ/CBRN/CHMMON
+            - MAT/EQ/CBRN/MSSPTR
+            - MAT/EQ/CBRN/RDSPTR
+            - MAT/EQ/ELC/AMTRAD
+            - MAT/EQ/ELC/C3I
+            - MAT/EQ/ELC/COMSYS
+            - MAT/EQ/ELC/COMVEH
+            - MAT/EQ/ELC/MULTIRE
+            - MAT/EQ/ELC/NAV
+            - MAT/EQ/ELC/NAVRAD
+            - MAT/EQ/ELC/OTH
+            - MAT/EQ/ELC/POWGN
+            - MAT/EQ/ELC/RIDD
+            - MAT/EQ/ELC/SEN
+            - MAT/EQ/ELC/SONAR
+            - MAT/EQ/ELC/THIMC
+            - MAT/EQ/ELC/VIBRA
+            - MAT/EQ/ELC/COMSYS/MEGPHN
+            - MAT/EQ/ELC/COMSYS/PAGER
+            - MAT/EQ/ELC/COMSYS/PMRRDIO
+            - MAT/EQ/ELC/COMSYS/PUBADD
+            - MAT/EQ/ELC/COMSYS/RDBRCT
+            - MAT/EQ/ENG/BRIDGG
+            - MAT/EQ/ENG/CNSTVE
+            - MAT/EQ/ENG/CONST
+            - MAT/EQ/ENG/DOZER
+            - MAT/EQ/ENG/ERTHMV
+            - MAT/EQ/ENG/FIRFGT
+            - MAT/EQ/ENG/INTEL
+            - MAT/EQ/ENG/MINECL
+            - MAT/EQ/ENG/MINEDT
+            - MAT/EQ/ENG/MINEMR
+            - MAT/EQ/ENG/WPNPRT
+            - MAT/EQ/ENG/FIRFGT/BRHTAP
+            - MAT/EQ/ENG/FIRFGT/CEAR
+            - MAT/EQ/ENG/FIRFGT/CEC
+            - MAT/EQ/ENG/FIRFGT/CECH
+            - MAT/EQ/ENG/FIRFGT/CEEV
+            - MAT/EQ/ENG/FIRFGT/CEM
+            - MAT/EQ/ENG/FIRFGT/CEPC
+            - MAT/EQ/ENG/FIRFGT/CEPO
+            - MAT/EQ/ENG/FIRFGT/CEPOL
+            - MAT/EQ/ENG/FIRFGT/CER
+            - MAT/EQ/ENG/FIRFGT/CESD
+            - MAT/EQ/ENG/FIRFGT/GRDMON
+            - MAT/EQ/ENG/FIRFGT/MPR
+            - MAT/EQ/ENG/FIRFGT/RAR
+            - MAT/EQ/ENG/FIRFGT/UMIR
+            - MAT/EQ/ENG/FIRFGT/VAMUR
+            - MAT/EQ/ENG/INTEL/CAMERA
+            - MAT/EQ/ENG/INTEL/CCTVCM
+            - MAT/EQ/ENG/INTEL/CDVDOG
+            - MAT/EQ/ENG/INTEL/FSPDCM
+            - MAT/EQ/ENG/INTEL/FTFLCM
+            - MAT/EQ/ENG/INTEL/PSPDCM
+            - MAT/EQ/ENG/INTEL/TCKDOG
+            - MAT/EQ/ENG/WPNPRT/BALVST
+            - MAT/EQ/ENG/WPNPRT/BATON
+            - MAT/EQ/ENG/WPNPRT/ENFDOG
+            - MAT/EQ/ENG/WPNPRT/FIREARM
+            - MAT/EQ/ENG/WPNPRT/HNDCUF
+            - MAT/EQ/ENG/WPNPRT/OFFPRT
+            - MAT/EQ/ENG/WPNPRT/PRSCNT
+            - MAT/EQ/OTH/BLNKT
+            - MAT/EQ/OTH/CONTNR
+            - MAT/EQ/OTH/CUTING
+            - MAT/EQ/OTH/TANK
+            - MAT/EQ/OTH/TENT
+            - MAT/EQ/OTH/WATPUR
+            - MAT/EQ/POLICE/BRTEST
+            - MAT/EQ/POLICE/CONE
+            - MAT/EQ/POLICE/LAMP
+            - MAT/EQ/POLICE/STINGER
+            - MAT/EQ/POLICE/TORCH
+            - MAT/EQ/POLICE/UNFRMC
+            - MAT/EQ/POLICE/UNFRMN
+            - MAT/VEH/AIRCRF
+            - MAT/VEH/HORSE
+            - MAT/VEH/RAILVE
+            - MAT/VEH/ROADVE
+            - MAT/VEH/VESSEL
+            - MAT/VEH/AIRCRF/AIRTRS
+            - MAT/VEH/AIRCRF/CMDCTL
+            - MAT/VEH/AIRCRF/HEL
+            - MAT/VEH/AIRCRF/HELCMD
+            - MAT/VEH/AIRCRF/HELMED
+            - MAT/VEH/AIRCRF/HELREC
+            - MAT/VEH/AIRCRF/MEDEVC
+            - MAT/VEH/AIRCRF/PLANE
+            - MAT/VEH/AIRCRF/POLHEL
+            - MAT/VEH/AIRCRF/RECCE
+            - MAT/VEH/AIRCRF/SAR
+            - MAT/VEH/AIRCRF/TANKER
+            - MAT/VEH/AIRCRF/UAV
+            - MAT/VEH/RAILVE/LCMDSE
+            - MAT/VEH/RAILVE/LCMDSL
+            - MAT/VEH/RAILVE/LCMELC
+            - MAT/VEH/RAILVE/LCMSTM
+            - MAT/VEH/RAILVE/LCMTND
+            - MAT/VEH/RAILVE/LCMTVE
+            - MAT/VEH/RAILVE/RLDEQP
+            - MAT/VEH/RAILVE/RLLSTK
+            - MAT/VEH/RAILVE/TRAM
+            - MAT/VEH/RAILVE/WGNART
+            - MAT/VEH/RAILVE/WGNBRK
+            - MAT/VEH/RAILVE/WGNCAR
+            - MAT/VEH/RAILVE/WGNCRG
+            - MAT/VEH/RAILVE/WGNCSS
+            - MAT/VEH/RAILVE/WGNCTL
+            - MAT/VEH/RAILVE/WGNFLB
+            - MAT/VEH/RAILVE/WGNFUL
+            - MAT/VEH/RAILVE/WGNHPR
+            - MAT/VEH/RAILVE/WGNISO
+            - MAT/VEH/RAILVE/WGNLQD
+            - MAT/VEH/RAILVE/WGNMNR
+            - MAT/VEH/RAILVE/WGNOPC
+            - MAT/VEH/RAILVE/WGNPAS
+            - MAT/VEH/RAILVE/WGNRFG
+            - MAT/VEH/RAILVE/WGNRPR
+            - MAT/VEH/RAILVE/WGNSPP
+            - MAT/VEH/RAILVE/WGNWAT
+            - MAT/VEH/RAILVE/WGNWFL
+            - MAT/VEH/ROADVE/AMBUL
+            - MAT/VEH/ROADVE/AUTOMO
+            - MAT/VEH/ROADVE/BICYCL
+            - MAT/VEH/ROADVE/BUS
+            - MAT/VEH/ROADVE/CCTRCK
+            - MAT/VEH/ROADVE/CRANE
+            - MAT/VEH/ROADVE/FRFGTN
+            - MAT/VEH/ROADVE/HETVEH
+            - MAT/VEH/ROADVE/MAINT
+            - MAT/VEH/ROADVE/MHVEH
+            - MAT/VEH/ROADVE/MILUV
+            - MAT/VEH/ROADVE/MOTCYC
+            - MAT/VEH/ROADVE/POD
+            - MAT/VEH/ROADVE/POLICE
+            - MAT/VEH/ROADVE/SEMI
+            - MAT/VEH/ROADVE/TRACTR
+            - MAT/VEH/ROADVE/TRAILR
+            - MAT/VEH/ROADVE/TRLBUS
+            - MAT/VEH/ROADVE/TRUCK
+            - MAT/VEH/ROADVE/FRFGTN/AERIAL
+            - MAT/VEH/ROADVE/FRFGTN/BREATH
+            - MAT/VEH/ROADVE/FRFGTN/C3
+            - MAT/VEH/ROADVE/FRFGTN/FRF
+            - MAT/VEH/ROADVE/FRFGTN/HAZMAT
+            - MAT/VEH/ROADVE/FRFGTN/OTHR
+            - MAT/VEH/ROADVE/FRFGTN/PERCAR
+            - MAT/VEH/ROADVE/FRFGTN/PUMP
+            - MAT/VEH/ROADVE/FRFGTN/RSC
+            - MAT/VEH/ROADVE/POLICE/COMLIA
+            - MAT/VEH/ROADVE/POLICE/DOGUNT
+            - MAT/VEH/ROADVE/POLICE/GENPUR
+            - MAT/VEH/ROADVE/POLICE/HAZMAT
+            - MAT/VEH/ROADVE/POLICE/MBIKE
+            - MAT/VEH/ROADVE/POLICE/PATROL
+            - MAT/VEH/ROADVE/POLICE/RSPONSE
+            - MAT/VEH/ROADVE/POLICE/TRAFFIC
+            - MAT/VEH/ROADVE/POLICE/TRANSIT
+            - MAT/VEH/ROADVE/POLICE/VAN
+            - MAT/VEH/VESSEL/AIRCAR
+            - MAT/VEH/VESSEL/AMPH
+            - MAT/VEH/VESSEL/BARGE
+            - MAT/VEH/VESSEL/BARSHP
+            - MAT/VEH/VESSEL/BRDGBT
+            - MAT/VEH/VESSEL/CNTSHP
+            - MAT/VEH/VESSEL/CSRSHP
+            - MAT/VEH/VESSEL/CSTSHP
+            - MAT/VEH/VESSEL/DPSMVS
+            - MAT/VEH/VESSEL/FERRY
+            - MAT/VEH/VESSEL/FIRBOT
+            - MAT/VEH/VESSEL/FLTCRN
+            - MAT/VEH/VESSEL/FLTDRG
+            - MAT/VEH/VESSEL/FLTDRY
+            - MAT/VEH/VESSEL/FREBLK
+            - MAT/VEH/VESSEL/FRELIQ
+            - MAT/VEH/VESSEL/HOSSHP
+            - MAT/VEH/VESSEL/HOVCRF
+            - MAT/VEH/VESSEL/ICEBRK
+            - MAT/VEH/VESSEL/LAUNCH
+            - MAT/VEH/VESSEL/LGHTER
+            - MAT/VEH/VESSEL/LNDCRF
+            - MAT/VEH/VESSEL/MERSHP
+            - MAT/VEH/VESSEL/MOBLS
+            - MAT/VEH/VESSEL/OILER
+            - MAT/VEH/VESSEL/PASSGR
+            - MAT/VEH/VESSEL/PATVES
+            - MAT/VEH/VESSEL/POLSPD
+            - MAT/VEH/VESSEL/PRV
+            - MAT/VEH/VESSEL/RAFT
+            - MAT/VEH/VESSEL/RPRSHP
+            - MAT/VEH/VESSEL/SAILVS
+            - MAT/VEH/VESSEL/SALSHP
+            - MAT/VEH/VESSEL/SMLLBO
+            - MAT/VEH/VESSEL/SUBMAR
+            - MAT/VEH/VESSEL/TANKER
+            - MAT/VEH/VESSEL/TENDER
+            - MAT/VEH/VESSEL/TUGBOT
+            - ORG/AMBUL
+            - ORG/CIVP
+            - ORG/COASTG
+            - ORG/DOCTOR
+            - ORG/ENVAGC
+            - ORG/FIRFS
+            - ORG/GEND
+            - ORG/HOSP
+            - ORG/IDCOM
+            - ORG/LCRESF
+            - ORG/LOCAUT
+            - ORG/MARAGC
+            - ORG/METAGC
+            - ORG/MIL
+            - ORG/NGO
+            - ORG/POLCNG
+            - ORG/POLICE
+            - ORG/RGRESF
+            - ORG/SPADPV
+            - ORG/TRS
+            - ORG/WATAGC
+            examples:
+            - MAT/VEH/ROADVE/FRFGTN
+        CAPABILITY:
+          type: array
+          items:
+            type: string
+            title: "Capacit\xE9s de la ressource"
+            x-cols: 6
+            example: example.json#/emsi/RESOURCE/0/RTYPE/CAPABILITY/0
+            description: "Permet d'indiquer les capacit\xE9s de la ressource d'apr\xE8\
+              s le standard EMSI"
+            examples:
+            - None
+        CHARACTERISTICS:
+          type: array
+          items:
+            type: string
+            title: "Caract\xE9ristiques de la ressource"
+            x-cols: 6
+            example: example.json#/emsi/RESOURCE/0/RTYPE/CHARACTERISTICS/0
+            description: "Permet d'indiquer des caract\xE9ristique physiques de la\
+              \ ressource (hauteur, largeur, longueur et poids).\nLe d\xE9tail de\
+              \ fonctionnement de cette nomenclature est fournie en annexe."
+            examples:
+            - None
+      example: example.json#/emsi/RESOURCE/0/RTYPE
+    rgeo:
+      type: object
+      title: Localisation de la ressource
+      x-display: expansion-panels
+      required:
+      - TYPE
+      properties:
+        DATIME:
+          type: string
+          title: Horaire de la localisation
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/RGEO/0/DATIME
+          description: "Horaire associ\xE9 \xE0 l'arriv\xE9e de la ressource sur la\
+            \ position. En fonction du TYPE de possition, peut indiquer un horaire\
+            \ de relev\xE9 de position, un horaire cible d'arriv\xE9e."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:44:00+02:00'
+        TYPE:
+          type: string
+          title: Type de localisation
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/RGEO/0/TYPE
+          description: "Type de position indiqu\xE9 pour la ressource :\n- ASP : assembly\
+            \ point. Point de rassemblement par d\xE9faut des ressources li\xE9es\
+            \ \xE0 la mission. Peut ne pas \xEAtre utilis\xE9\n- CUR : current. Position\
+            \ actualis\xE9e de la ressource permettant le suivi g\xE9olocalis\xE9\
+            \ des v\xE9hicules notamment. Peut ne pas \xEAtre utilis\xE9\n- INC :\
+            \ incident. Consigne relative au positionnement de la ressource sur le\
+            \ lieu d'intervention. Peut ne pas \xEAtre utilis\xE9\n- STG : staging\
+            \ point. Consigne relative au stationnement des v\xE9hicules ou au stockage\
+            \ du mat\xE9riel par exemple. peut ne pas \xEAtre utilis\xE9\n- TGT :\
+            \ targer location. Si renseign\xE9, doit \xEAtre coh\xE9rent avec la position\
+            \ renseign\xE9e pour la mission.\nPlusieurs positions du m\xEAme type\
+            \ avec des horodatages diff\xE9rents peuvent \xEAtre fournies. "
+          enum:
+          - ASP
+          - CUR
+          - INC
+          - STG
+          - TGT
+          examples:
+          - CUR
+        FREETEXT:
+          type: string
+          title: 'Texte libre '
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/RGEO/0/FREETEXT
+          description: "Permet de rajouter des pr\xE9cisions sur la localisation de\
+            \ la ressource transmise"
+          examples:
+          - "Position actualis\xE9e du VSAV 1 Nantes"
+        ID:
+          type: string
+          title: ID localisation
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/RGEO/0/ID
+          description: "Identifiant unique de la position dans le syst\xE8me du partenaire"
+          examples:
+          - None
+        POSITION:
+          type: array
+          items:
+            $ref: '#/components/schemas/position'
+      example: example.json#/emsi/RESOURCE/0/RGEO/0
+    contact:
+      type: object
+      title: Contacts
+      x-display: expansion-panels
+      required:
+      - TYPE
+      - DETAIL
+      properties:
+        TYPE:
+          type: string
+          title: Type de contact
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/CONTACTS/0/TYPE
+          description: "Type de contact, voir \xE9num\xE9ration associ\xE9e\n\n1.\
+            \ PMRADD (si RFGI disponible)\n2. PHNADD pour t\xE9l\xE9phonie"
+          enum:
+          - PSTADD
+          - EMLADD
+          - IPADD
+          - FTPADD
+          - WWWADD
+          - PHNADD
+          - FAXADD
+          - PMRADD
+          examples:
+          - PHNADD
+        DETAIL:
+          type: string
+          title: "D\xE9tails de contact"
+          x-cols: 6
+          example: example.json#/emsi/RESOURCE/0/CONTACTS/0/DETAIL
+          description: "1. RFGI du moyen NEXSIS (si RFGI disponible)\n2. Num\xE9ro\
+            \ de t\xE9l\xE9phone"
+          examples:
+          - 606070707
+      example: example.json#/emsi/RESOURCE/0/CONTACTS/0
+      examples:
+      - TYPE: PHNADD
+        DETAIL: 606070707

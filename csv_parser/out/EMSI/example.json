@@ -39,6 +39,46 @@
                     }
                 ]
             }
+        ],
+        "RESOURCE": [
+            {
+                "RTYPE": {
+                    "RCLASS": [
+                        "MAT/VEH/ROADVE/FRFGTN"
+                    ],
+                    "CAPABILITY": [
+                        "None"
+                    ],
+                    "CHARACTERISTICS": [
+                        "None"
+                    ]
+                },
+                "ID": "77_45102#VSAV 1#",
+                "ORG_ID": "FR:Administration:44:CASERNENANTES",
+                "NAME": "VSAV 1 Nantes",
+                "FREETEXT": "None",
+                "RGEO": [
+                    {
+                        "DATIME": "2022-09-27T08:44:00+02:00",
+                        "TYPE": "CUR",
+                        "FREETEXT": "Position actualis\u00e9e du VSAV 1 Nantes",
+                        "ID": "None",
+                        "POSITION": [
+                            {}
+                        ]
+                    }
+                ],
+                "QUANTITY": 1,
+                "UM": "None",
+                "STATUS": "IN_USE/MOBILE",
+                "NATIONALITY": "FR",
+                "CONTACTS": [
+                    {
+                        "TYPE": "PHNADD",
+                        "DETAIL": 606070707
+                    }
+                ]
+            }
         ]
     }
 }

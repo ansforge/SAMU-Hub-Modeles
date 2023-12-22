@@ -80,11 +80,192 @@ public class Resource {
   public static final String JSON_PROPERTY_Q_U_A_N_T_I_T_Y = "QUANTITY";
   private BigDecimal QUANTITY;
 
+  /**
+   * Dans le cadre d&#39;un échange d&#39;opération, optionnel. Unité de mesure
+   * pour des ressources consommables
+   */
+  public enum UMEnum {
+    LSV("LSV"),
+
+    OTH("OTH"),
+
+    PKG("PKG"),
+
+    TIM("TIM"),
+
+    WGT("WGT"),
+
+    LSV_CM("LSV/CM"),
+
+    LSV_CMH("LSV/CMH"),
+
+    LSV_CNTLTR("LSV/CNTLTR"),
+
+    LSV_DEG("LSV/DEG"),
+
+    LSV_HCTLTR("LSV/HCTLTR"),
+
+    LSV_HCTMTR("LSV/HCTMTR"),
+
+    LSV_KM("LSV/KM"),
+
+    LSV_KPH("LSV/KPH"),
+
+    LSV_LI("LSV/LI"),
+
+    LSV_LTPRHR("LSV/LTPRHR"),
+
+    LSV_LTPRMN("LSV/LTPRMN"),
+
+    LSV_METRE("LSV/METRE"),
+
+    LSV_MILLTR("LSV/MILLTR"),
+
+    LSV_MILMTR("LSV/MILMTR"),
+
+    LSV_SMH("LSV/SMH"),
+
+    LSV_SQM("LSV/SQM"),
+
+    OTH_COIL("OTH/COIL"),
+
+    OTH_DOZEN("OTH/DOZEN"),
+
+    OTH_EA("OTH/EA"),
+
+    OTH_GROSS("OTH/GROSS"),
+
+    OTH_MANHUR("OTH/MANHUR"),
+
+    OTH_MHPRHR("OTH/MHPRHR"),
+
+    PKG_BALE("PKG/BALE"),
+
+    PKG_BARREL("PKG/BARREL"),
+
+    PKG_BLK("PKG/BLK"),
+
+    PKG_BOX("PKG/BOX"),
+
+    PKG_CASE("PKG/CASE"),
+
+    PKG_CONTNR("PKG/CONTNR"),
+
+    PKG_CRATE("PKG/CRATE"),
+
+    PKG_DRM("PKG/DRM"),
+
+    PKG_JERCAN("PKG/JERCAN"),
+
+    PKG_PAK("PKG/PAK"),
+
+    PKG_PAL("PKG/PAL"),
+
+    PKG_RATION("PKG/RATION"),
+
+    TIM_DAY("TIM/DAY"),
+
+    TIM_HR("TIM/HR"),
+
+    TIM_MINUTE("TIM/MINUTE"),
+
+    TIM_MON("TIM/MON"),
+
+    TIM_SECOND("TIM/SECOND"),
+
+    TIM_WEK("TIM/WEK"),
+
+    TIM_YEA("TIM/YEA"),
+
+    WGT_CNTGRM("WGT/CNTGRM"),
+
+    WGT_GRAM("WGT/GRAM"),
+
+    WGT_KG("WGT/KG"),
+
+    WGT_KGH("WGT/KGH");
+
+    private String value;
+
+    UMEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static UMEnum fromValue(String value) {
+      for (UMEnum b : UMEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_U_M = "UM";
-  private String UM;
+  private UMEnum UM;
+
+  /**
+   * Définit le statut de disponibilité d&#39;une ressource. - AVAILB :
+   * Lorsqu&#39;une mission est terminée, une ressource redevient disponible -
+   * RESRVD : Lorsque la ressource est réservée pour intervenir sur
+   * l&#39;affaire mais pas encore engagée dans l&#39;opération. Par exemple :
+   * un SMUR termine un autre transfert patient/victime avant de rejoindre une
+   * autre intervention : il est alors RESRVD - IN_USE/MOBILE : à utiliser pour
+   * les véhicules et le personnel lorsqu&#39;ils se déplaces - IN_USE/ON_SCENE
+   * : à utiliser pour les véhicules et le personnel lorsqu&#39;ils sont sur les
+   * lieux de l&#39;affaire
+   */
+  public enum STATUSEnum {
+    AVAILB("AVAILB"),
+
+    UNAV("UNAV"),
+
+    MAINTC("MAINTC"),
+
+    RESRVD("RESRVD"),
+
+    VIRTUAL("VIRTUAL"),
+
+    IN_USE_MOBILE("IN_USE/MOBILE"),
+
+    IN_USE_ON_SCENE("IN_USE/ON_SCENE");
+
+    private String value;
+
+    STATUSEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static STATUSEnum fromValue(String value) {
+      for (STATUSEnum b : STATUSEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_S_T_A_T_U_S = "STATUS";
-  private String STATUS;
+  private STATUSEnum STATUS;
 
   public static final String JSON_PROPERTY_N_A_T_I_O_N_A_L_I_T_Y =
       "NATIONALITY";
@@ -294,7 +475,7 @@ public class Resource {
     this.QUANTITY = QUANTITY;
   }
 
-  public Resource UM(String UM) {
+  public Resource UM(UMEnum UM) {
 
     this.UM = UM;
     return this;
@@ -308,17 +489,17 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_U_M)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getUM() {
+  public UMEnum getUM() {
     return UM;
   }
 
   @JsonProperty(JSON_PROPERTY_U_M)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setUM(String UM) {
+  public void setUM(UMEnum UM) {
     this.UM = UM;
   }
 
-  public Resource STATUS(String STATUS) {
+  public Resource STATUS(STATUSEnum STATUS) {
 
     this.STATUS = STATUS;
     return this;
@@ -338,13 +519,13 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_S_T_A_T_U_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSTATUS() {
+  public STATUSEnum getSTATUS() {
     return STATUS;
   }
 
   @JsonProperty(JSON_PROPERTY_S_T_A_T_U_S)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSTATUS(String STATUS) {
+  public void setSTATUS(STATUSEnum STATUS) {
     this.STATUS = STATUS;
   }
 

@@ -46,7 +46,79 @@ strict digraph {
                 <TR>
                 <TD><I>objet resource</I> <B>15-15</B><BR/>ID <I>string</I> : [0..1] <B>15-15</B><BR/>ORG_ID <I>string</I> : [0..1] <B>15-15</B><BR/>NAME <I>string</I> : [0..1] <B>15-15</B><BR/>FREETEXT <I>string</I> : [0..1] <B>15-15</B><BR/>QUANTITY <I>number</I> : [0..1] <B>15-15</B><BR/>UM <I>string</I> : [0..1] <B>15-15</B><BR/>STATUS <I>string</I> : [0..1] <B>15-15</B><BR/>NATIONALITY <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
-                </TABLE>> fillcolor=firebrick1 style=filled]
+                </TABLE>>]
+	COORD -> POSITION [constraint=true headlabel=1 taillabel="0..*"]
+	POSITION [label=<<TABLE>
+                <TR>
+                <TD><B>POSITION</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>string</I> : [0..1]<BR/>TYPE <I>string</I> : [0..1]<BR/>HEIGHT_ROLE <I>string</I> : [0..1]<BR/>COORDSYS <I>string</I> : [0..1]<BR/>ADDRESS <I>string</I> : [0..*]</TD>
+                </TR>
+                </TABLE>>]
+	POSITION -> MISSION [constraint=true headlabel=1 taillabel="0..1"]
+	MISSION [label=<<TABLE>
+                <TR>
+                <TD><B>MISSION</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet mission</I><BR/>TYPE <I>string</I> : [1..1]<BR/>FREETEXT <I>string</I> : [0..1]<BR/>ID <I>string</I> : [0..1]<BR/>ORG_ID <I>string</I> : [0..1]<BR/>NAME <I>string</I> : [0..1]<BR/>STATUS <I>string</I> : [0..1]<BR/>START_TIME <I>date-time</I> : [0..1]<BR/>END_TIME <I>date-time</I> : [0..1]<BR/>RESOURCE_ID <I>string</I> : [0..1]<BR/>PARENT_MISSION_ID <I>string</I> : [0..*]<BR/>CHILD_MISSION_ID <I>string</I> : [0..*]<BR/>MAIN_MISSION_ID <I>string</I> : [0..1]<BR/>PRIORITY <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	MISSION -> emsi [constraint=true headlabel=1 taillabel="0..*"]
+	RTYPE [label=<<TABLE>
+                <TR>
+                <TD><B>RTYPE</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet rtype</I><BR/>RCLASS <I>string</I> : [1..*]<BR/>CAPABILITY <I>string</I> : [0..*]<BR/>CHARACTERISTICS <I>string</I> : [0..*]</TD>
+                </TR>
+                </TABLE>>]
+	RTYPE -> RESOURCE [constraint=true headlabel=1 taillabel=1]
+	COORD [label=<<TABLE>
+                <TR>
+                <TD><B>COORD</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet coord</I><BR/>LAT <I>number</I> : [1..1]<BR/>LONG <I>number</I> : [1..1]<BR/>HEIGHT <I>number</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	COORD -> POSITION [constraint=true headlabel=1 taillabel="0..*"]
+	POSITION [label=<<TABLE>
+                <TR>
+                <TD><B>POSITION</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet position</I><BR/>LOC_ID <I>string</I> : [1..1]<BR/>NAME <I>string</I> : [0..1]<BR/>TYPE <I>string</I> : [0..1]<BR/>HEIGHT_ROLE <I>string</I> : [0..1]<BR/>COORDSYS <I>string</I> : [0..1]<BR/>ADDRESS <I>string</I> : [0..*]</TD>
+                </TR>
+                </TABLE>>]
+	POSITION -> RGEO [constraint=true headlabel=1 taillabel="0..*"]
+	RGEO [label=<<TABLE>
+                <TR>
+                <TD><B>RGEO</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet rgeo</I><BR/>DATIME <I>date-time</I> : [0..1]<BR/>TYPE <I>string</I> : [1..1]<BR/>FREETEXT <I>string</I> : [0..1]<BR/>ID <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
+	RGEO -> RESOURCE [constraint=true headlabel=1 taillabel="0..*"]
+	CONTACTS [label=<<TABLE>
+                <TR>
+                <TD><B>CONTACTS</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet contact</I><BR/>TYPE <I>string</I> : [1..1]<BR/>DETAIL <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	CONTACTS -> RESOURCE [constraint=true headlabel=1 taillabel="0..*"]
+	RESOURCE [label=<<TABLE>
+                <TR>
+                <TD><B>RESOURCE</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet resource</I><BR/>ID <I>string</I> : [0..1]<BR/>ORG_ID <I>string</I> : [0..1]<BR/>NAME <I>string</I> : [0..1]<BR/>FREETEXT <I>string</I> : [0..1]<BR/>QUANTITY <I>number</I> : [0..1]<BR/>UM <I>string</I> : [0..1]<BR/>STATUS <I>string</I> : [0..1]<BR/>NATIONALITY <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>>]
 	RESOURCE -> emsi [constraint=true headlabel=1 taillabel="0..*"]
 	emsi [label=<<TABLE>
                 <TR>
