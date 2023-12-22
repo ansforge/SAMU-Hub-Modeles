@@ -142,7 +142,7 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "EMSI-DC.schema.json"
+                  "$ref": "EMSI.schema.json"
                 }
               }
             }
