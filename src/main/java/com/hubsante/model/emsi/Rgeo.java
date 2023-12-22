@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.emsi.Position;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,8 +55,57 @@ public class Rgeo {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
   private OffsetDateTime DATIME;
 
+  /**
+   * Type de position indiqué pour la ressource : - ASP : assembly point. Point
+   * de rassemblement par défaut des ressources liées à la mission. Peut ne pas
+   * être utilisé - CUR : current. Position actualisée de la ressource
+   * permettant le suivi géolocalisé des véhicules notamment. Peut ne pas être
+   * utilisé - INC : incident. Consigne relative au positionnement de la
+   * ressource sur le lieu d&#39;intervention. Peut ne pas être utilisé - STG :
+   * staging point. Consigne relative au stationnement des véhicules ou au
+   * stockage du matériel par exemple. peut ne pas être utilisé - TGT : targer
+   * location. Si renseigné, doit être cohérent avec la position renseignée pour
+   * la mission. Plusieurs positions du même type avec des horodatages
+   * différents peuvent être fournies.
+   */
+  public enum TYPEEnum {
+    ASP("ASP"),
+
+    CUR("CUR"),
+
+    INC("INC"),
+
+    STG("STG"),
+
+    TGT("TGT");
+
+    private String value;
+
+    TYPEEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TYPEEnum fromValue(String value) {
+      for (TYPEEnum b : TYPEEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_T_Y_P_E = "TYPE";
-  private String TYPE;
+  private TYPEEnum TYPE;
 
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
   private String FREETEXT;
@@ -64,7 +114,7 @@ public class Rgeo {
   private String ID;
 
   public static final String JSON_PROPERTY_P_O_S_I_T_I_O_N = "POSITION";
-  private List<Object> POSITION;
+  private List<Position> POSITION;
 
   public Rgeo() {}
 
@@ -93,7 +143,7 @@ public class Rgeo {
     this.DATIME = DATIME;
   }
 
-  public Rgeo TYPE(String TYPE) {
+  public Rgeo TYPE(TYPEEnum TYPE) {
 
     this.TYPE = TYPE;
     return this;
@@ -116,13 +166,13 @@ public class Rgeo {
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getTYPE() {
+  public TYPEEnum getTYPE() {
     return TYPE;
   }
 
   @JsonProperty(JSON_PROPERTY_T_Y_P_E)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTYPE(String TYPE) {
+  public void setTYPE(TYPEEnum TYPE) {
     this.TYPE = TYPE;
   }
 
@@ -173,13 +223,13 @@ public class Rgeo {
     this.ID = ID;
   }
 
-  public Rgeo POSITION(List<Object> POSITION) {
+  public Rgeo POSITION(List<Position> POSITION) {
 
     this.POSITION = POSITION;
     return this;
   }
 
-  public Rgeo addPOSITIONItem(Object POSITIONItem) {
+  public Rgeo addPOSITIONItem(Position POSITIONItem) {
     if (this.POSITION == null) {
       this.POSITION = new ArrayList<>();
     }
@@ -194,7 +244,7 @@ public class Rgeo {
   @JsonProperty(JSON_PROPERTY_P_O_S_I_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getPOSITION() {
+  public List<Position> getPOSITION() {
     return POSITION;
   }
 
@@ -202,7 +252,7 @@ public class Rgeo {
 
   @JsonProperty(JSON_PROPERTY_P_O_S_I_T_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPOSITION(List<Object> POSITION) {
+  public void setPOSITION(List<Position> POSITION) {
     if (POSITION == null) {
       return;
     }

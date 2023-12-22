@@ -142,10 +142,10 @@ public class Alert {
    *signification / utilisation particulière par les différents systèmes pour
    *garantir leur découplage. Voir la description de l&#39;identifiant de
    *l&#39;affaire pour voir le format. Lorsqu’une alerte est générée dans NexSIS
-   *et crée une affaire, elle est qualifiée d’Alerte Initiale. a) Si cette
+   *et crée une affaire, elle est qualifiée d’Alerte Initiale. a)Si cette
    *dernière concerne un partenaire (caractère médical pour la Santé par
    *exemple), elle est relayée seule dans le message. Il y’a un seul objet
-   *initialAlert. b) Sinon, une autre alerte liée à la même affaire peut être
+   *initialAlert. b)Sinon, une autre alerte liée à la même affaire peut être
    *déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle
    *est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour
    *partager un contexte commun. Dans le message de création d’affaire il y’a

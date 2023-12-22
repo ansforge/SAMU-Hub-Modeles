@@ -34,6 +34,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.emsi.Context;
+import com.hubsante.model.emsi.Event;
+import com.hubsante.model.emsi.Mission;
 import com.hubsante.model.emsi.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,7 +47,9 @@ import java.util.Objects;
 /**
  * Emsi
  */
-@JsonPropertyOrder({Emsi.JSON_PROPERTY_R_E_S_O_U_R_C_E})
+@JsonPropertyOrder(
+    {Emsi.JSON_PROPERTY_C_O_N_T_E_X_T, Emsi.JSON_PROPERTY_E_V_E_N_T,
+     Emsi.JSON_PROPERTY_M_I_S_S_I_O_N, Emsi.JSON_PROPERTY_R_E_S_O_U_R_C_E})
 @JsonTypeName("emsi")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -52,7 +57,95 @@ public class Emsi {
   public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E = "RESOURCE";
   private List<Resource> RESOURCE;
 
+  public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E = "RESOURCE";
+  private List<Resource> RESOURCE;
+
   public Emsi() {}
+
+  public Emsi RESOURCE(List<Resource> RESOURCE) {
+
+    this.RESOURCE = RESOURCE;
+    return this;
+  }
+
+  /**
+   * Get CONTEXT
+   * @return CONTEXT
+   **/
+  @JsonProperty(JSON_PROPERTY_C_O_N_T_E_X_T)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Context getCONTEXT() {
+    return CONTEXT;
+  }
+
+  @JsonProperty(JSON_PROPERTY_C_O_N_T_E_X_T)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCONTEXT(Context CONTEXT) {
+    this.CONTEXT = CONTEXT;
+  }
+
+  public Emsi EVENT(Event EVENT) {
+
+    this.EVENT = EVENT;
+    return this;
+  }
+
+  /**
+   * Get EVENT
+   * @return EVENT
+   **/
+  @JsonProperty(JSON_PROPERTY_E_V_E_N_T)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Event getEVENT() {
+    return EVENT;
+  }
+
+  @JsonProperty(JSON_PROPERTY_E_V_E_N_T)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setEVENT(Event EVENT) {
+    this.EVENT = EVENT;
+  }
+
+  public Emsi MISSION(List<Mission> MISSION) {
+
+    this.MISSION = MISSION;
+    return this;
+  }
+
+  public Emsi addMISSIONItem(Mission MISSIONItem) {
+    if (this.MISSION == null) {
+      this.MISSION = new ArrayList<>();
+    }
+    this.RESOURCE.add(RESOURCEItem);
+    return this;
+  }
+
+  /**
+   * Get RESOURCE
+   * @return RESOURCE
+   **/
+  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Resource> getRESOURCE() {
+    return RESOURCE;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRESOURCE(List<Resource> RESOURCE) {
+    if (RESOURCE == null) {
+      return;
+    }
+    if (this.RESOURCE == null) {
+      this.RESOURCE = new ArrayList<>();
+    }
+    this.RESOURCE.addAll(RESOURCE);
+  }
 
   public Emsi RESOURCE(List<Resource> RESOURCE) {
 
@@ -102,18 +195,24 @@ public class Emsi {
       return false;
     }
     Emsi emsi = (Emsi)o;
-    return Objects.equals(this.RESOURCE, emsi.RESOURCE);
+    return Objects.equals(this.CONTEXT, emsi.CONTEXT) &&
+        Objects.equals(this.EVENT, emsi.EVENT) &&
+        Objects.equals(this.MISSION, emsi.MISSION) &&
+        Objects.equals(this.RESOURCE, emsi.RESOURCE);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(RESOURCE);
+    return Objects.hash(CONTEXT, EVENT, MISSION, RESOURCE);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Emsi {\n");
+    sb.append("    CONTEXT: ").append(toIndentedString(CONTEXT)).append("\n");
+    sb.append("    EVENT: ").append(toIndentedString(EVENT)).append("\n");
+    sb.append("    MISSION: ").append(toIndentedString(MISSION)).append("\n");
     sb.append("    RESOURCE: ").append(toIndentedString(RESOURCE)).append("\n");
     sb.append("}");
     return sb.toString();

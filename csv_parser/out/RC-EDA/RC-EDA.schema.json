@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "23.12.18",
+    "version": "23.12.20",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -1770,7 +1770,7 @@
                     "x-cols": 6,
                     "example": "example.json#/createCase/initialAlert/callTaker/role",
                     "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)",
-                    "enum": []
+                    "enum": [""]
                 },
                 "calltakeContact": {
                     "$ref": "#/definitions/contact"
