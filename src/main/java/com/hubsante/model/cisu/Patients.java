@@ -34,10 +34,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.InsIdentity;
+import com.hubsante.model.cisu.Identifier;
 import com.hubsante.model.cisu.Nomenclature;
-import com.hubsante.model.cisu.PatientDetails;
-import java.io.File;
+import com.hubsante.model.cisu.Patinfo;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -47,161 +46,136 @@ import java.util.Objects;
 /**
  * Patients
  */
-@JsonPropertyOrder({Patients.JSON_PROPERTY_ID, Patients.JSON_PROPERTY_FILE,
-                    Patients.JSON_PROPERTY_IDENTITY,
-                    Patients.JSON_PROPERTY_WHATS_HAPPEN,
-                    Patients.JSON_PROPERTY_DETAILS})
+@JsonPropertyOrder({Patients.JSON_PROPERTY_PATIENTCASE_I_D,
+                    Patients.JSON_PROPERTY_PATIENT_FILE,
+                    Patients.JSON_PROPERTY_PATIENTWHATS_HAPPEN,
+                    Patients.JSON_PROPERTY_PATINFO})
 @JsonTypeName("patients")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Patients {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_PATIENTCASE_I_D = "patientcaseID";
+  private String patientcaseID;
 
-  public static final String JSON_PROPERTY_FILE = "file";
-  private List<File> _file;
+  public static final String JSON_PROPERTY_PATIENT_FILE = "patientFile";
+  private List<Identifier> patientFile;
 
-  public static final String JSON_PROPERTY_IDENTITY = "identity";
-  private InsIdentity identity;
+  public static final String JSON_PROPERTY_PATIENTWHATS_HAPPEN =
+      "patientwhatsHappen";
+  private Nomenclature patientwhatsHappen;
 
-  public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
-  private Nomenclature whatsHappen;
-
-  public static final String JSON_PROPERTY_DETAILS = "details";
-  private PatientDetails details;
+  public static final String JSON_PROPERTY_PATINFO = "patinfo";
+  private Patinfo patinfo;
 
   public Patients() {}
 
-  public Patients id(String id) {
+  public Patients patientcaseID(String patientcaseID) {
 
-    this.id = id;
+    this.patientcaseID = patientcaseID;
     return this;
   }
 
   /**
    * Identifiant technique du patient pour permettre les rapprochements
    *d&#39;infos. Le 1er qui créé l&#39;ID patient a raison.
-   * @return id
+   * @return patientcaseID
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_PATIENTCASE_I_D)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getId() {
-    return id;
+  public String getPatientcaseID() {
+    return patientcaseID;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_PATIENTCASE_I_D)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
+  public void setPatientcaseID(String patientcaseID) {
+    this.patientcaseID = patientcaseID;
   }
 
-  public Patients _file(List<File> _file) {
+  public Patients patientFile(List<Identifier> patientFile) {
 
-    this._file = _file;
+    this.patientFile = patientFile;
     return this;
   }
 
-  public Patients addFileItem(File _fileItem) {
-    if (this._file == null) {
-      this._file = new ArrayList<>();
+  public Patients addPatientFileItem(Identifier patientFileItem) {
+    if (this.patientFile == null) {
+      this.patientFile = new ArrayList<>();
     }
-    this._file.add(_fileItem);
+    this.patientFile.add(patientFileItem);
     return this;
   }
 
   /**
-   * Get _file
-   * @return _file
+   * Get patientFile
+   * @return patientFile
    **/
-  @JsonProperty(JSON_PROPERTY_FILE)
+  @JsonProperty(JSON_PROPERTY_PATIENT_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<File> getFile() {
-    return _file;
+  public List<Identifier> getPatientFile() {
+    return patientFile;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_FILE)
+  @JsonProperty(JSON_PROPERTY_PATIENT_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFile(List<File> _file) {
-    if (_file == null) {
+  public void setPatientFile(List<Identifier> patientFile) {
+    if (patientFile == null) {
       return;
     }
-    if (this._file == null) {
-      this._file = new ArrayList<>();
+    if (this.patientFile == null) {
+      this.patientFile = new ArrayList<>();
     }
-    this._file.addAll(_file);
+    this.patientFile.addAll(patientFile);
   }
 
-  public Patients identity(InsIdentity identity) {
+  public Patients patientwhatsHappen(Nomenclature patientwhatsHappen) {
 
-    this.identity = identity;
+    this.patientwhatsHappen = patientwhatsHappen;
     return this;
   }
 
   /**
-   * Get identity
-   * @return identity
+   * Get patientwhatsHappen
+   * @return patientwhatsHappen
    **/
-  @JsonProperty(JSON_PROPERTY_IDENTITY)
+  @JsonProperty(JSON_PROPERTY_PATIENTWHATS_HAPPEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InsIdentity getIdentity() {
-    return identity;
+  public Nomenclature getPatientwhatsHappen() {
+    return patientwhatsHappen;
   }
 
-  @JsonProperty(JSON_PROPERTY_IDENTITY)
+  @JsonProperty(JSON_PROPERTY_PATIENTWHATS_HAPPEN)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdentity(InsIdentity identity) {
-    this.identity = identity;
+  public void setPatientwhatsHappen(Nomenclature patientwhatsHappen) {
+    this.patientwhatsHappen = patientwhatsHappen;
   }
 
-  public Patients whatsHappen(Nomenclature whatsHappen) {
+  public Patients patinfo(Patinfo patinfo) {
 
-    this.whatsHappen = whatsHappen;
+    this.patinfo = patinfo;
     return this;
   }
 
   /**
-   * Get whatsHappen
-   * @return whatsHappen
+   * Get patinfo
+   * @return patinfo
    **/
-  @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
+  @JsonProperty(JSON_PROPERTY_PATINFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Nomenclature getWhatsHappen() {
-    return whatsHappen;
+  public Patinfo getPatinfo() {
+    return patinfo;
   }
 
-  @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
+  @JsonProperty(JSON_PROPERTY_PATINFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWhatsHappen(Nomenclature whatsHappen) {
-    this.whatsHappen = whatsHappen;
-  }
-
-  public Patients details(PatientDetails details) {
-
-    this.details = details;
-    return this;
-  }
-
-  /**
-   * Get details
-   * @return details
-   **/
-  @JsonProperty(JSON_PROPERTY_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public PatientDetails getDetails() {
-    return details;
-  }
-
-  @JsonProperty(JSON_PROPERTY_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(PatientDetails details) {
-    this.details = details;
+  public void setPatinfo(Patinfo patinfo) {
+    this.patinfo = patinfo;
   }
 
   @Override
@@ -213,29 +187,32 @@ public class Patients {
       return false;
     }
     Patients patients = (Patients)o;
-    return Objects.equals(this.id, patients.id) &&
-        Objects.equals(this._file, patients._file) &&
-        Objects.equals(this.identity, patients.identity) &&
-        Objects.equals(this.whatsHappen, patients.whatsHappen) &&
-        Objects.equals(this.details, patients.details);
+    return Objects.equals(this.patientcaseID, patients.patientcaseID) &&
+        Objects.equals(this.patientFile, patients.patientFile) &&
+        Objects.equals(this.patientwhatsHappen, patients.patientwhatsHappen) &&
+        Objects.equals(this.patinfo, patients.patinfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _file, identity, whatsHappen, details);
+    return Objects.hash(patientcaseID, patientFile, patientwhatsHappen,
+                        patinfo);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Patients {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _file: ").append(toIndentedString(_file)).append("\n");
-    sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
-    sb.append("    whatsHappen: ")
-        .append(toIndentedString(whatsHappen))
+    sb.append("    patientcaseID: ")
+        .append(toIndentedString(patientcaseID))
         .append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    patientFile: ")
+        .append(toIndentedString(patientFile))
+        .append("\n");
+    sb.append("    patientwhatsHappen: ")
+        .append(toIndentedString(patientwhatsHappen))
+        .append("\n");
+    sb.append("    patinfo: ").append(toIndentedString(patinfo)).append("\n");
     sb.append("}");
     return sb.toString();
   }

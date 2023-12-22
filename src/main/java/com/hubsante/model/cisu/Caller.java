@@ -45,7 +45,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Caller.JSON_PROPERTY_CALLER_CONTACT, Caller.JSON_PROPERTY_CALLBACK_CONTACT,
-     Caller.JSON_PROPERTY_LANGUAGE, Caller.JSON_PROPERTY_TYPE,
+     Caller.JSON_PROPERTY_LANGUAGE, Caller.JSON_PROPERTY_REQTYPE,
      Caller.JSON_PROPERTY_COMMUNICATION, Caller.JSON_PROPERTY_FREETEXT,
      Caller.JSON_PROPERTY_DETAILED_NAME})
 @JsonTypeName("caller")
@@ -573,8 +573,8 @@ public class Caller {
   public static final String JSON_PROPERTY_LANGUAGE = "language";
   private LanguageEnum language;
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  public static final String JSON_PROPERTY_REQTYPE = "reqtype";
+  private String reqtype;
 
   public static final String JSON_PROPERTY_COMMUNICATION = "communication";
   private String communication;
@@ -657,28 +657,28 @@ public class Caller {
     this.language = language;
   }
 
-  public Caller type(String type) {
+  public Caller reqtype(String reqtype) {
 
-    this.type = type;
+    this.reqtype = reqtype;
     return this;
   }
 
   /**
    * Indique la relation du requérant avec l&#39;incident / le patient / la
    *victime
-   * @return type
+   * @return reqtype
    **/
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_REQTYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getType() {
-    return type;
+  public String getReqtype() {
+    return reqtype;
   }
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_REQTYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
+  public void setReqtype(String reqtype) {
+    this.reqtype = reqtype;
   }
 
   public Caller communication(String communication) {
@@ -763,7 +763,7 @@ public class Caller {
     return Objects.equals(this.callerContact, caller.callerContact) &&
         Objects.equals(this.callbackContact, caller.callbackContact) &&
         Objects.equals(this.language, caller.language) &&
-        Objects.equals(this.type, caller.type) &&
+        Objects.equals(this.reqtype, caller.reqtype) &&
         Objects.equals(this.communication, caller.communication) &&
         Objects.equals(this.freetext, caller.freetext) &&
         Objects.equals(this.detailedName, caller.detailedName);
@@ -771,7 +771,7 @@ public class Caller {
 
   @Override
   public int hashCode() {
-    return Objects.hash(callerContact, callbackContact, language, type,
+    return Objects.hash(callerContact, callbackContact, language, reqtype,
                         communication, freetext, detailedName);
   }
 
@@ -786,7 +786,7 @@ public class Caller {
         .append(toIndentedString(callbackContact))
         .append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    reqtype: ").append(toIndentedString(reqtype)).append("\n");
     sb.append("    communication: ")
         .append(toIndentedString(communication))
         .append("\n");

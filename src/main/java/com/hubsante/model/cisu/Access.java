@@ -49,7 +49,7 @@ import java.util.Objects;
      Access.JSON_PROPERTY_INTERPHONE, Access.JSON_PROPERTY_ACCESS_CODE,
      Access.JSON_PROPERTY_ELEVATOR, Access.JSON_PROPERTY_BUILDING_NAME,
      Access.JSON_PROPERTY_ENTRANCE, Access.JSON_PROPERTY_ENTITY,
-     Access.JSON_PROPERTY_PHONE_NUMBER})
+     Access.JSON_PROPERTY_LOCPHONENUMBER})
 @JsonTypeName("access")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -78,8 +78,8 @@ public class Access {
   public static final String JSON_PROPERTY_ENTITY = "entity";
   private String entity;
 
-  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  private BigDecimal phoneNumber;
+  public static final String JSON_PROPERTY_LOCPHONENUMBER = "locphonenumber";
+  private BigDecimal locphonenumber;
 
   public Access() {}
 
@@ -284,9 +284,9 @@ public class Access {
     this.entity = entity;
   }
 
-  public Access phoneNumber(BigDecimal phoneNumber) {
+  public Access locphonenumber(BigDecimal locphonenumber) {
 
-    this.phoneNumber = phoneNumber;
+    this.locphonenumber = locphonenumber;
     return this;
   }
 
@@ -294,19 +294,19 @@ public class Access {
    * Numéro de téléphone permettant d&#39;accéder au lieu de l&#39;intervention,
    *par exemple : téléphone du secrétariat, téléphone du service administratif
    *ou se trouve le patient/victime.
-   * @return phoneNumber
+   * @return locphonenumber
    **/
-  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  @JsonProperty(JSON_PROPERTY_LOCPHONENUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getPhoneNumber() {
-    return phoneNumber;
+  public BigDecimal getLocphonenumber() {
+    return locphonenumber;
   }
 
-  @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
+  @JsonProperty(JSON_PROPERTY_LOCPHONENUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(BigDecimal phoneNumber) {
-    this.phoneNumber = phoneNumber;
+  public void setLocphonenumber(BigDecimal locphonenumber) {
+    this.locphonenumber = locphonenumber;
   }
 
   @Override
@@ -326,13 +326,13 @@ public class Access {
         Objects.equals(this.buildingName, access.buildingName) &&
         Objects.equals(this.entrance, access.entrance) &&
         Objects.equals(this.entity, access.entity) &&
-        Objects.equals(this.phoneNumber, access.phoneNumber);
+        Objects.equals(this.locphonenumber, access.locphonenumber);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(floor, roomNumber, interphone, accessCode, elevator,
-                        buildingName, entrance, entity, phoneNumber);
+                        buildingName, entrance, entity, locphonenumber);
   }
 
   @Override
@@ -355,8 +355,8 @@ public class Access {
         .append("\n");
     sb.append("    entrance: ").append(toIndentedString(entrance)).append("\n");
     sb.append("    entity: ").append(toIndentedString(entity)).append("\n");
-    sb.append("    phoneNumber: ")
-        .append(toIndentedString(phoneNumber))
+    sb.append("    locphonenumber: ")
+        .append(toIndentedString(locphonenumber))
         .append("\n");
     sb.append("}");
     return sb.toString();

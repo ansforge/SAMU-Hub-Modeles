@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.CaseDetails;
+import com.hubsante.model.cisu.Filefuture;
 import com.hubsante.model.cisu.Nomenclature;
 import com.hubsante.model.cisu.Victims;
 import java.util.ArrayList;
@@ -50,7 +50,9 @@ import java.util.Objects;
                     Qualification.JSON_PROPERTY_LOCATION_KIND,
                     Qualification.JSON_PROPERTY_RISK_THREAT,
                     Qualification.JSON_PROPERTY_HEALTH_MOTIVE,
-                    Qualification.JSON_PROPERTY_DETAILS,
+                    Qualification.JSON_PROPERTY_FILEFUTURE,
+                    Qualification.JSON_PROPERTY_FILEUSAGE,
+                    Qualification.JSON_PROPERTY_MEDICAL_PRIORITY,
                     Qualification.JSON_PROPERTY_VICTIMS})
 @JsonTypeName("qualification")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -68,8 +70,51 @@ public class Qualification {
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
   private Nomenclature healthMotive;
 
-  public static final String JSON_PROPERTY_DETAILS = "details";
-  private CaseDetails details;
+  public static final String JSON_PROPERTY_FILEFUTURE = "filefuture";
+  private Filefuture filefuture;
+
+  public static final String JSON_PROPERTY_FILEUSAGE = "fileusage";
+  private String fileusage;
+
+  /**
+   * Décrit la priorité de régulation médicale du dossier.
+   */
+  public enum MedicalPriorityEnum {
+    P0("P0"),
+
+    P1("P1"),
+
+    P2("P2"),
+
+    P3("P3");
+
+    private String value;
+
+    MedicalPriorityEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static MedicalPriorityEnum fromValue(String value) {
+      for (MedicalPriorityEnum b : MedicalPriorityEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_MEDICAL_PRIORITY = "medicalPriority";
+  private MedicalPriorityEnum medicalPriority;
 
   public static final String JSON_PROPERTY_VICTIMS = "victims";
   private Victims victims;
@@ -184,27 +229,73 @@ public class Qualification {
     this.healthMotive = healthMotive;
   }
 
-  public Qualification details(CaseDetails details) {
+  public Qualification filefuture(Filefuture filefuture) {
 
-    this.details = details;
+    this.filefuture = filefuture;
     return this;
   }
 
   /**
-   * Get details
-   * @return details
+   * Get filefuture
+   * @return filefuture
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_FILEFUTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CaseDetails getDetails() {
-    return details;
+  public Filefuture getFilefuture() {
+    return filefuture;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_FILEFUTURE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(CaseDetails details) {
-    this.details = details;
+  public void setFilefuture(Filefuture filefuture) {
+    this.filefuture = filefuture;
+  }
+
+  public Qualification fileusage(String fileusage) {
+
+    this.fileusage = fileusage;
+    return this;
+  }
+
+  /**
+   * Décrit le type de professionnel médical à qui le dossier est attribué
+   * @return fileusage
+   **/
+  @JsonProperty(JSON_PROPERTY_FILEUSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFileusage() {
+    return fileusage;
+  }
+
+  @JsonProperty(JSON_PROPERTY_FILEUSAGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFileusage(String fileusage) {
+    this.fileusage = fileusage;
+  }
+
+  public Qualification medicalPriority(MedicalPriorityEnum medicalPriority) {
+
+    this.medicalPriority = medicalPriority;
+    return this;
+  }
+
+  /**
+   * Décrit la priorité de régulation médicale du dossier.
+   * @return medicalPriority
+   **/
+  @JsonProperty(JSON_PROPERTY_MEDICAL_PRIORITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public MedicalPriorityEnum getMedicalPriority() {
+    return medicalPriority;
+  }
+
+  @JsonProperty(JSON_PROPERTY_MEDICAL_PRIORITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMedicalPriority(MedicalPriorityEnum medicalPriority) {
+    this.medicalPriority = medicalPriority;
   }
 
   public Qualification victims(Victims victims) {
@@ -243,14 +334,16 @@ public class Qualification {
         Objects.equals(this.locationKind, qualification.locationKind) &&
         Objects.equals(this.riskThreat, qualification.riskThreat) &&
         Objects.equals(this.healthMotive, qualification.healthMotive) &&
-        Objects.equals(this.details, qualification.details) &&
+        Objects.equals(this.filefuture, qualification.filefuture) &&
+        Objects.equals(this.fileusage, qualification.fileusage) &&
+        Objects.equals(this.medicalPriority, qualification.medicalPriority) &&
         Objects.equals(this.victims, qualification.victims);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(whatsHappen, locationKind, riskThreat, healthMotive,
-                        details, victims);
+                        filefuture, fileusage, medicalPriority, victims);
   }
 
   @Override
@@ -269,7 +362,15 @@ public class Qualification {
     sb.append("    healthMotive: ")
         .append(toIndentedString(healthMotive))
         .append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    filefuture: ")
+        .append(toIndentedString(filefuture))
+        .append("\n");
+    sb.append("    fileusage: ")
+        .append(toIndentedString(fileusage))
+        .append("\n");
+    sb.append("    medicalPriority: ")
+        .append(toIndentedString(medicalPriority))
+        .append("\n");
     sb.append("    victims: ").append(toIndentedString(victims)).append("\n");
     sb.append("}");
     return sb.toString();
