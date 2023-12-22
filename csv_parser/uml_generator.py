@@ -136,7 +136,6 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                     buffer_description_node[id_child] = buffer_description_node[id_child] + " <B>15-15</B>"
                 child = get_ref(child["$ref"], dict_definitions)
                 parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
-                print("Adding node " + id_child + " to " + id_parent + "child content: "+ str(buffer_description_node[id_child]))
                 add_node(id_parent, id_child, type_child, 
                          buffer_description_node[id_child], cardinalite=cardinalite_child)
             else :
