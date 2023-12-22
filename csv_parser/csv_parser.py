@@ -118,7 +118,7 @@ if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
 # Keeping only 15-NexSIS fields if filter is set
 if args.filter:
     df = df[df['15-18'] == 'X']
-else :
+else:
     df = df[df['15-15'] == 'X']
 
 # Storing input data in a file to track versions
