@@ -27,6 +27,7 @@ components:
         caseId:
           type: string
           title: Identifiant affaire/dossier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/caseId
           description: "Identifiant technique de l'affaire et partag\xE9 entre tous\
@@ -44,6 +45,7 @@ components:
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/senderCaseId
           description: "Valoriser avec l'identifiant de l'affaire dans le SI de l'\xE9\
@@ -56,6 +58,7 @@ components:
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'affaire/dossier"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/creation
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
@@ -71,6 +74,7 @@ components:
         referenceVersion:
           type: string
           title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/referenceVersion
           description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
@@ -94,6 +98,7 @@ components:
         freetext:
           type: string
           title: Description de l'affaire/dossier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
@@ -135,6 +140,7 @@ components:
         locID:
           type: string
           title: Identifiant technique de localisation
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/locID
           description: "ID technique et provisoire permettant d'identifier le lieu\
@@ -144,6 +150,7 @@ components:
         locLabel:
           type: string
           title: "R\xE9sum\xE9 de la localisation"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/locLabel
           description: "Permet d'indiquer des indications auto suffisantes permettant\
@@ -158,14 +165,15 @@ components:
         name:
           type: string
           title: Nom du lieu
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/name
           description: "Indique le nom de lieu : nom commercial, for\xEAt de Fontainebleau,\
             \ lac du Der (plut\xF4t \xE0 destination des syst\xE8mes)."
           examples:
           - "Lyc\xE9e Pierre de Coubertin"
-        detailedAdress:
-          $ref: '#/components/schemas/detailedAdress'
+        detailedAddress:
+          $ref: '#/components/schemas/detailedAddress'
         city:
           $ref: '#/components/schemas/city'
         access:
@@ -179,6 +187,7 @@ components:
         country:
           type: string
           title: Pays
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/country
           enum:
@@ -428,6 +437,7 @@ components:
         freetext:
           type: string
           title: Commentaire
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/freetext
           description: "Champ libre pour compl\xE9ter les informations de localisation"
@@ -452,6 +462,7 @@ components:
         id:
           type: string
           title: Identifiant alerte
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/id
           description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
@@ -476,6 +487,7 @@ components:
         reception:
           type: string
           title: "Date de r\xE9ception de l'alerte"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/reception
           description: "Groupe date heure de r\xE9ception de l'alerte"
@@ -486,6 +498,7 @@ components:
         reporting:
           type: string
           title: Signalement
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/reporting
           description: "Permet d'attirer l'attention des forces partenaires sur une\
@@ -503,6 +516,7 @@ components:
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur l'alerte"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
@@ -546,314 +560,16 @@ components:
         code:
           type: string
           title: Code
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/whatsHappen/code
           description: "A valoriser avec un code la nomenclature associ\xE9e"
-          enum:
-          - C01.00.00
-          - C01.01.00
-          - C01.01.01
-          - C01.01.02
-          - C01.01.03
-          - C01.01.04
-          - C01.01.05
-          - C01.01.06
-          - C01.02.00
-          - C01.02.01
-          - C01.02.02
-          - C01.03.00
-          - C01.03.01
-          - C01.03.02
-          - C01.04.00
-          - C01.04.01
-          - C01.04.02
-          - C01.04.03
-          - C01.04.04
-          - C01.05.00
-          - C02.00.00
-          - C02.01.00
-          - C02.02.00
-          - C02.03.00
-          - C02.03.01
-          - C02.03.02
-          - C02.04.00
-          - C02.04.01
-          - C02.04.02
-          - C02.04.03
-          - C02.05.00
-          - C02.05.01
-          - C02.05.02
-          - C02.05.03
-          - C02.06.00
-          - C02.06.01
-          - C02.07.00
-          - C02.07.01
-          - C02.07.02
-          - C02.07.03
-          - C02.07.04
-          - C02.07.05
-          - C02.08.00
-          - C02.08.01
-          - C02.08.02
-          - C02.08.03
-          - C02.08.04
-          - C02.08.05
-          - C02.08.06
-          - C02.08.07
-          - C02.08.08
-          - C02.09.00
-          - C02.09.01
-          - C02.09.02
-          - C02.09.03
-          - C02.09.04
-          - C02.09.05
-          - C02.09.06
-          - C02.09.07
-          - C02.10.00
-          - C02.11.00
-          - C02.11.01
-          - C02.11.02
-          - C02.12.00
-          - C02.13.00
-          - C02.13.01
-          - C02.13.02
-          - C02.13.03
-          - C02.13.04
-          - C02.13.05
-          - C02.13.06
-          - C02.13.07
-          - C02.13.08
-          - C02.14.00
-          - C02.14.01
-          - C02.14.02
-          - C02.14.03
-          - C02.14.04
-          - C02.14.00
-          - C02.14.01
-          - C02.14.02
-          - C02.14.03
-          - C02.14.04
-          - C02.14.05
-          - C02.14.06
-          - C02.15.00
-          - C02.15.01
-          - C02.15.02
-          - C02.15.03
-          - C03.00.00
-          - C03.01.00
-          - C03.01.01
-          - C03.01.02
-          - C03.01.03
-          - C03.01.04
-          - C03.01.05
-          - C03.02.00
-          - C03.02.01
-          - C03.02.02
-          - C03.02.03
-          - C03.02.04
-          - C03.02.05
-          - C03.02.06
-          - C03.02.07
-          - C03.02.08
-          - C03.02.09
-          - C03.02.10
-          - C03.02.11
-          - C03.02.12
-          - C03.02.13
-          - C03.02.14
-          - C03.02.15
-          - C03.03.00
-          - C03.03.01
-          - C03.03.02
-          - C03.04.00
-          - C03.04.01
-          - C03.04.02
-          - C03.05.00
-          - C03.06.00
-          - C03.07.00
-          - C03.08.00
-          - C03.09.00
-          - C03.10.00
-          - C03.11.00
-          - C03.12.00
-          - C03.13.00
-          - C03.14.00
-          - C03.15.00
-          - C04.00.00
-          - C04.01.00
-          - C04.01.01
-          - C04.01.02
-          - C04.01.03
-          - C04.01.04
-          - C04.01.05
-          - C04.01.06
-          - C04.01.07
-          - C04.01.08
-          - C04.01.09
-          - C04.01.10
-          - C04.01.11
-          - C04.02.00
-          - C04.02.01
-          - C04.02.02
-          - C04.02.03
-          - C04.02.04
-          - C04.03.00
-          - C04.04.00
-          - C04.05.00
-          - C04.06.00
-          - C04.07.00
-          - C04.07.01
-          - C04.07.02
-          - C04.07.03
-          - C04.07.04
-          - C04.08.00
-          - C04.09.00
-          - C05.00.00
-          - C05.00.01
-          - C05.00.02
-          - C05.00.03
-          - C05.00.04
-          - C05.00.05
-          - C06.00.00
-          - C06.01.00
-          - C06.02.00
-          - C06.03.00
-          - C06.03.01
-          - C06.03.02
-          - C06.03.03
-          - C06.03.04
-          - C06.03.05
-          - C06.03.06
-          - C06.04.00
-          - C06.04.01
-          - C06.04.02
-          - C06.05.00
-          - C06.06.00
-          - C06.06.01
-          - C06.07.00
-          - C06.07.01
-          - C06.07.02
-          - C06.08.00
-          - C06.08.01
-          - C06.08.02
-          - C06.08.03
-          - C06.08.04
-          - C06.08.05
-          - C06.08.06
-          - C07.00.00
-          - C07.01.00
-          - C07.02.00
-          - C07.03.00
-          - C07.03.01
-          - C07.03.02
-          - C07.03.03
-          - C07.03.04
-          - C07.03.05
-          - C07.04.00
-          - C07.04.01
-          - C07.04.02
-          - C07.04.03
-          - C07.04.04
-          - C07.05.00
-          - C07.06.00
-          - C07.07.00
-          - C07.07.01
-          - C07.07.02
-          - C07.07.03
-          - C07.07.04
-          - C07.07.05
-          - C07.08.00
-          - C07.08.01
-          - C07.08.02
-          - C07.08.03
-          - C07.09.00
-          - C07.09.01
-          - C07.09.02
-          - C07.09.03
-          - C07.09.05
-          - C07.10.00
-          - C07.11.00
-          - C07.12.00
-          - C07.13.00
-          - C07.13.01
-          - C07.13.02
-          - C07.13.03
-          - C07.13.04
-          - C07.13.05
-          - C07.13.06
-          - C07.13.07
-          - C08.00.00
-          - C08.01.00
-          - C08.02.00
-          - C08.03.00
-          - C08.04.00
-          - C08.05.00
-          - C08.06.00
-          - C08.07.00
-          - C08.08.00
-          - C08.08.01
-          - C08.08.02
-          - C08.09.00
-          - C08.10.00
-          - C08.10.01
-          - C09.00.00
-          - C09.01.00
-          - C09.01.01
-          - C09.01.02
-          - C09.01.03
-          - C09.01.04
-          - C09.02.00
-          - C09.03.00
-          - C09.03.01
-          - C09.04.00
-          - C09.04.01
-          - C09.04.02
-          - C09.05.00
-          - C09.06.00
-          - C09.07.00
-          - C09.08.00
-          - C10.00.00
-          - C10.01.00
-          - C10.01.01
-          - C10.01.02
-          - C10.01.03
-          - C10.01.04
-          - C10.01.05
-          - C10.01.06
-          - C10.01.07
-          - C10.01.08
-          - C10.02.00
-          - C10.02.01
-          - C10.02.02
-          - C10.03.00
-          - C10.03.01
-          - C10.03.02
-          - C10.04.00
-          - C10.04.01
-          - C10.04.02
-          - C10.05.00
-          - C10.06.00
-          - C10.07.00
-          - C10.08.00
-          - C11.00.00
-          - C11.01.00
-          - C11.02.00
-          - C11.02.01
-          - C11.02.02
-          - C11.03.00
-          - C11.03.01
-          - C11.03.02
-          - C11.04.00
-          - C11.05.00
-          - C11.05.01
-          - C11.05.02
-          - C11.05.03
-          - C11.06.00
           examples:
           - C07.13.02
         label:
           type: string
           title: "Libell\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/whatsHappen/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
@@ -865,6 +581,7 @@ components:
         freetext:
           type: string
           title: Commentaire
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/whatsHappen/freetext
           description: "Permet de compl\xE9menter en commentaire libre l'attribut\
@@ -886,6 +603,7 @@ components:
         count:
           type: string
           title: Nombre de patients-victimes
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/victims/count
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
@@ -901,6 +619,7 @@ components:
         mainVictim:
           type: string
           title: Type du patient-victime principal
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/victims/mainVictim
           description: "Identifie le type de la principale victime (celle dont l'\xE9\
@@ -917,6 +636,7 @@ components:
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur les patients-victimes"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/qualification/victims/freetext
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
@@ -927,7 +647,7 @@ components:
       - count: SEVERAL
         mainVictim: CHILD
         freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
-    detailedAdress:
+    detailedAddress:
       type: object
       title: "D\xE9tails de l'adresse"
       x-display: expansion-panels
@@ -938,8 +658,9 @@ components:
         complete:
           type: string
           title: "Num\xE9ro, type et nom de voie"
+          x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/location/detailedAdress/complete
+          example: example.json#/createCase/location/detailedAddress/complete
           description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
             \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
             \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
@@ -949,8 +670,9 @@ components:
         number:
           type: string
           title: "Num\xE9ro dans la voie"
+          x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/location/detailedAdress/number
+          example: example.json#/createCase/location/detailedAddress/number
           description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
             \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
             p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
@@ -958,7 +680,7 @@ components:
           - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/components/schemas/wayName'
-      example: example.json#/createCase/location/detailedAdress
+      example: example.json#/createCase/location/detailedAddress
     city:
       type: object
       title: "D\xE9tails de la commune"
@@ -969,6 +691,7 @@ components:
         name:
           type: string
           title: Nom de la commune
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/city/name
           description: Nom officiel de la commune actuelle
@@ -977,6 +700,7 @@ components:
         inseeCode:
           type: string
           title: Code INSEE de la commune
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/city/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
@@ -988,6 +712,7 @@ components:
         detail:
           type: string
           title: "Compl\xE9ment de commune"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/city/detail
           description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
@@ -1013,6 +738,7 @@ components:
         floor:
           type: string
           title: Etage
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/floor
           description: 'Etage '
@@ -1021,6 +747,7 @@ components:
         roomNumber:
           type: string
           title: "Num\xE9ro de porte"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/roomNumber
           description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
@@ -1029,6 +756,7 @@ components:
         interphone:
           type: string
           title: Interphone
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/interphone
           description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
@@ -1037,9 +765,11 @@ components:
           - Dupont
         accessCode:
           type: array
+          x-health-only: false
           items:
             type: string
             title: Digicode
+            x-health-only: false
             x-cols: 6
             example: example.json#/createCase/location/access/accessCode/0
             description: "Indique le ou les digicodes dans l'ordre de progression\
@@ -1049,6 +779,7 @@ components:
         elevator:
           type: string
           title: Ascenseur/escalier
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/elevator
           description: 'Indique l''ascenseur ou la cage d''escalier '
@@ -1057,6 +788,7 @@ components:
         buildingName:
           type: string
           title: "B\xE2timent"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/buildingName
           description: "Nom du b\xE2timent"
@@ -1065,6 +797,7 @@ components:
         entrance:
           type: string
           title: "Entr\xE9e"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/entrance
           examples:
@@ -1072,16 +805,18 @@ components:
         entity:
           type: string
           title: Service
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/access/entity
           description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
           examples:
           - "Infirmerie, service finance, service cardiologie, \u2026"
-        locphonenumber:
+        phoneNumber:
           type: number
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
+          x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/location/access/locphonenumber
+          example: example.json#/createCase/location/access/phoneNumber
           description: "Num\xE9ro de t\xE9l\xE9phone permettant d'acc\xE9der au lieu\
             \ de l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat,\
             \ t\xE9l\xE9phone du service administratif ou se trouve le patient/victime."
@@ -1099,6 +834,7 @@ components:
         obsDatime:
           type: string
           title: "Heure du dernier relev\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/obsDatime
           description: "Groupe date heure de renseignement des coordonn\xE9es du point\
@@ -1113,6 +849,7 @@ components:
         sketch:
           type: string
           title: "Formes g\xE9om\xE9triques"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/sketch
           description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
@@ -1140,6 +877,7 @@ components:
         freetext:
           type: string
           title: Nom de la source
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/externalInfo/0/freetext
           description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
@@ -1153,6 +891,7 @@ components:
         type:
           type: string
           title: 'Type '
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/externalInfo/0/type
           description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
@@ -1170,6 +909,7 @@ components:
         uri:
           type: string
           title: Identifiant
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/externalInfo/0/uri
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
@@ -1191,8 +931,9 @@ components:
         complete:
           type: string
           title: Type et nom
+          x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/location/detailedAdress/wayName/complete
+          example: example.json#/createCase/location/detailedAddress/wayName/complete
           description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
             Si les champs type et name sont renseign\xE9s, le champ callerName doit\
             \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
@@ -1201,18 +942,20 @@ components:
         type:
           type: string
           title: Type
+          x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/location/detailedAdress/wayName/type
+          example: example.json#/createCase/location/detailedAddress/wayName/type
           examples:
           - Boulevard
         name:
           type: string
           title: Nom
+          x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/location/detailedAdress/wayName/name
+          example: example.json#/createCase/location/detailedAddress/wayName/name
           examples:
           - du Montparnasse
-      example: example.json#/createCase/location/detailedAdress/wayName
+      example: example.json#/createCase/location/detailedAddress/wayName
       examples:
       - complete: Boulevard du Montparnasse
         type: Boulevard
@@ -1230,6 +973,7 @@ components:
         sysCoord:
           type: string
           title: "Syst\xE8me de coordonn\xE9es"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/sysCoord
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
@@ -1252,6 +996,7 @@ components:
         lat:
           type: number
           title: Latitude
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/lat
           description: "Latitude du point cl\xE9 de la localisation "
@@ -1260,6 +1005,7 @@ components:
         lon:
           type: number
           title: Longitude
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/lon
           description: "Longitude du point cl\xE9 de la localisation"
@@ -1268,6 +1014,7 @@ components:
         height:
           type: number
           title: 'Altitude '
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/height
           description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
@@ -1277,6 +1024,7 @@ components:
         heading:
           type: number
           title: Cap
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/heading
           description: "En degr\xE9"
@@ -1285,6 +1033,7 @@ components:
         speed:
           type: number
           title: Vitesse
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/speed
           description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
@@ -1294,6 +1043,7 @@ components:
         precision:
           type: string
           title: "Pr\xE9cision"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/location/geometry/point/coord/precision
           description: "Indique via une nomenclature le niveau de pr\xE9cision des\
@@ -1332,6 +1082,7 @@ components:
         language:
           type: string
           title: "Langue parl\xE9e"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/language
           description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
@@ -1580,11 +1331,12 @@ components:
           - ZW
           examples:
           - FR
-        reqtype:
+        type:
           type: string
           title: "Type de requ\xE9rant"
+          x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/initialAlert/caller/reqtype
+          example: example.json#/createCase/initialAlert/caller/type
           description: "Indique la relation du requ\xE9rant avec l'incident / le patient\
             \ / la victime"
           examples:
@@ -1592,6 +1344,7 @@ components:
         communication:
           type: string
           title: "Difficult\xE9 de communication"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/communication
           description: "Indique si le requ\xE9rant rencontre ou non des difficult\xE9\
@@ -1601,6 +1354,7 @@ components:
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur le requ\xE9rant"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/freetext
           description: "Informations compl\xE9mentaires sur le requ\xE9rant \nLes\
@@ -1624,6 +1378,7 @@ components:
         channel:
           type: string
           title: Canal
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/alertSource/channel
           description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
@@ -1633,6 +1388,7 @@ components:
         type:
           type: string
           title: Type de contact de la source
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/alertSource/type
           description: "Type de l'URI utilis\xE9e par la source, cf. nomenclature\
@@ -1651,6 +1407,7 @@ components:
         detail:
           type: string
           title: URI de contact de la source
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/alertSource/detail
           description: "Valeur de l'URI utilis\xE9e par la source"
@@ -1673,6 +1430,7 @@ components:
         organization:
           type: string
           title: Service d'urgence
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/organization
           description: "D\xE9crit la structure ou le service \xE0 laquelle est rattach\xE9\
@@ -1685,6 +1443,7 @@ components:
         controlRoom:
           type: string
           title: Centre d'appels
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/controlRoom
           description: "D\xE9crit le centre d'appel auquel est rattach\xE9 l'agent"
@@ -1693,11 +1452,11 @@ components:
         role:
           type: string
           title: "R\xF4le agent"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/role
           description: "D\xE9crit le r\xF4le de l'agent au sein du service selon la\
             \ nomenclature PERSO (nomenclature SI-SAMU)"
-          enum: []
           examples:
           - ARM
         calltakeContact:
@@ -1705,6 +1464,7 @@ components:
         calltakerId:
           type: string
           title: ID de l'agent
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/callTaker/calltakerId
           description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte\
@@ -1729,6 +1489,7 @@ components:
         description:
           type: string
           title: Type ou description pj
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/description
           description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
@@ -1738,6 +1499,7 @@ components:
         mimeType:
           type: string
           title: Type MIME
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/mimeType
           description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
@@ -1747,6 +1509,7 @@ components:
         size:
           type: integer
           title: Taille approximative
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/size
           description: Taille approximative de la ressource en kO
@@ -1755,6 +1518,7 @@ components:
         URI:
           type: string
           title: URI
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/URI
           description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
@@ -1766,6 +1530,7 @@ components:
         derefURI:
           type: string
           title: URI base 64
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/derefURI
           description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
@@ -1777,6 +1542,7 @@ components:
         digest:
           type: string
           title: Hash
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/attachment/0/digest
           description: "Hash de la ressource pour confirmer la r\xE9ception de la\
@@ -1803,6 +1569,7 @@ components:
         type:
           type: string
           title: "Type de contact du requ\xE9rant"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/callerContact/type
           description: "Type de l'URI utilis\xE9e par le requ\xE9rant, cf. nomenclature\
@@ -1821,6 +1588,7 @@ components:
         detail:
           type: string
           title: "URI du contact requ\xE9rant"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/callerContact/detail
           description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
@@ -1841,6 +1609,7 @@ components:
         complete:
           type: string
           title: "Pr\xE9nom et nom"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/complete
           description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
@@ -1853,6 +1622,7 @@ components:
         lastName:
           type: string
           title: Nom
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/lastName
           description: "Nom du requ\xE9rant"
@@ -1861,6 +1631,7 @@ components:
         firstName:
           type: string
           title: "Pr\xE9nom"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/detailedName/firstName
           description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
@@ -1885,6 +1656,7 @@ components:
         key:
           type: string
           title: "Cl\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/key
           description: Nom de la balise
@@ -1893,6 +1665,7 @@ components:
         label:
           type: string
           title: "Libell\xE9"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/label
           description: "Libell\xE9 correspondant"
@@ -1901,6 +1674,7 @@ components:
         value:
           type: string
           title: Valeur
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/value
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
@@ -1909,6 +1683,7 @@ components:
         freetext:
           type: string
           title: "D\xE9tails"
+          x-health-only: false
           x-cols: 6
           example: example.json#/createCase/additionalInformation/customMap/freetext
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
