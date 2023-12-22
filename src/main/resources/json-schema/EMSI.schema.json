@@ -19,6 +19,7 @@
             "type": "object",
             "title": "Objet emsi",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "CONTEXT",
                 "EVENT"
@@ -49,6 +50,7 @@
             "type": "object",
             "title": "Contexte",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ID",
                 "MODE",
@@ -58,6 +60,7 @@
                 "ID": {
                     "type": "string",
                     "title": "Identifiant du message",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ID",
                     "description": "A constituer par le r\u00e9dacteur du pr\u00e9sent EMSI pour \u00eatre unique, il est pr\u00e9conis\u00e9 de reprendre la valeur du champ messageId de l'ent\u00eate RC-DE."
@@ -65,6 +68,7 @@
                 "MODE": {
                     "type": "string",
                     "title": "Mode",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/MODE",
                     "description": "Valeur constante dans le cadre des \u00e9changes LRM-NexSIS : ACTUAL",
@@ -78,6 +82,7 @@
                 "MSGTYPE": {
                     "type": "string",
                     "title": "Type de message",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/MSGTYPE",
                     "description": "- A valoriser avec la valeur \"ALERT\" lors du premier \u00e9change entre syst\u00e8mes.\n- A valoriser avec la valeur constante \"UPDATE\" ensuite.\nPeut ne pas \u00eatre interpr\u00e9t\u00e9 par les LRM.",
@@ -92,6 +97,7 @@
                 "CREATION": {
                     "type": "string",
                     "title": "Date et heure de cr\u00e9ation",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/CREATION",
                     "description": "Obligatoire dans le cadre d'une demande de concours, contient la date de cr\u00e9ation de la demande de concours dans le syst\u00e8me du partenaire requ\u00e9rant.\nA valoriser avec le m\u00eame horaire que dateTimeSent dans le message RC-DE associ\u00e9.\nDans le cadre d'une demande de concours, obligatoire. Ce champ est valoris\u00e9e avec l'heure de cr\u00e9ation de la demande de concours chez le partenaire emetteur. L'heure d'envoi du message peut \u00eatre obtenue via l'enveloppe EDXL-DE (se r\u00e9f\u00e9rer au DST)",
@@ -107,6 +113,7 @@
                 "LEVEL": {
                     "type": "string",
                     "title": "Niveau",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/LEVEL",
                     "description": "A valoriser avec la valeur constante \"OPR\" dans le cadre du message EMSI-EO",
@@ -119,6 +126,7 @@
                 "SECLASS": {
                     "type": "string",
                     "title": "Niveau de classification",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/SECLASS",
                     "description": "Optionnel\n\nDans NexSIS ; \nLes messages transmis par NexSIS auront un champ valoris\u00e9 avec syst\u00e9matiquement le m\u00eame code: \"RESTRC\"=restricted\nLes LRM doivent \u00e9galement renseigner la valeur \"RESTRC\"",
@@ -134,6 +142,7 @@
                 "FREETEXT": {
                     "type": "string",
                     "title": "Texte libre",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/FREETEXT",
                     "description": "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\u00e9v\u00e9nement g\u00e9n\u00e9rateur\nRG 1 : la valeur de <context><freetext> reste \u00e0  'Cr\u00e9ation d'un \u00e9v\u00e9nement op\u00e9rationnel EMSI' & version & 'suite \u00e0 r\u00e9ception d'une affaire*' dans le cadre de la cr\u00e9ation d'une op\u00e9ration commune (conforme RG 2 de NEXSIS-6618)\nRG 3 : les \u00e9v\u00e9nements g\u00e9n\u00e9rateurs sont ceux d\u00e9finis au sein de NEXSIS-6619 RG 1 de tra\u00e7abilit\u00e9  ( input = <Evenement \u00e0 l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajout\u00e9s  les \u00e9ventuels \u00e9v\u00e9nements \u00e0 venir."
@@ -150,6 +159,7 @@
                 "URGENCY": {
                     "type": "string",
                     "title": "Niveau d'urgence de l'\u00e9v\u00e9nement",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/URGENCY",
                     "description": "Niveau d'urgence pour l'affaire en cours\nDans le cadre des \u00e9changes LRM-NexSIS, optionnel",
@@ -165,6 +175,7 @@
             "type": "object",
             "title": "Evenement",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ID"
             ],
@@ -172,6 +183,7 @@
                 "ID": {
                     "type": "string",
                     "title": "Identifiant local de l'affaire",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/ID",
                     "description": "Identifiant local de l'affaire dans le syst\u00e8me du partenaire emetteur"
@@ -179,6 +191,7 @@
                 "NAME": {
                     "type": "string",
                     "title": "Nom donn\u00e9 \u00e0 l'\u00e9v\u00e9nement",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/NAME",
                     "description": "Optionnel\nDans nexSIS; [libelle NF 1 m\u00e9tier] & \" - \" & [libelle TL 1 m\u00e9tier] & \" - \" & [libell\u00e9 commune]"
@@ -186,6 +199,7 @@
                 "MAIN_EVENT_ID": {
                     "type": "string",
                     "title": "Identifiant de l'affaire",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/MAIN_EVENT_ID",
                     "description": "Identifiant d\u2019affaire partag\u00e9 issu du message RC-EDA transmis en amont\nNB : Dans le cas d\u2019un partage initi\u00e9 par un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
@@ -196,6 +210,7 @@
                 "SOURCE": {
                     "type": "string",
                     "title": "Source",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/SOURCE",
                     "description": "Optionnel",
@@ -209,6 +224,7 @@
                 "SCALE": {
                     "type": "string",
                     "title": "Echelle de s\u00e9v\u00e9rit\u00e9 de l'environnement",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/SCALE",
                     "description": "Optionnel, Niveau de criticit\u00e9 de l'op\u00e9ration",
@@ -223,6 +239,7 @@
                 "CERTAINTY": {
                     "type": "integer",
                     "title": "Fiabilit\u00e9",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CERTAINTY",
                     "description": "Prend une valeur enti\u00e8re entre 0 et 100, et d\u00e9crit \u00e0 quel point l'alerte associ\u00e9e \u00e0 l'\u00e9v\u00e9nement est fiable\nOptionnel"
@@ -230,6 +247,7 @@
                 "DECL_DATIME": {
                     "type": "string",
                     "title": "Date de d\u00e9claration de l'event",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/DECL_DATIME",
                     "description": "Dans le cadre d'une demande de concours, ce champ est valoris\u00e9 avec la date/heure de cr\u00e9ation de l'affaire ou de l'op\u00e9ration.\nNexSIS transmettra la date/heure de cr\u00e9ation de l'op\u00e9ration dans ses syst\u00e8mes (qui peut diverger de la date/heure de cr\u00e9ation de l'affaire)",
@@ -239,6 +257,7 @@
                 "OCC_DATIME": {
                     "type": "string",
                     "title": "D\u00e9crit la date et le lieu de l'\u00e9v\u00e9nement",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/OCC_DATIME",
                     "description": "Dans le cadre d'une demande de concours, ce champ est valoris\u00e9 avec la date de la premi\u00e8re alerte ou la date \u00e9valu\u00e9e de d\u00e9but de la situation d'urgence.\nPar exemple :\nSi un incendie est d\u00e9clar\u00e9 est 9h02, il a pu d\u00e9marr\u00e9 \u00e0 8h55 par exemple.\nNB : temporairement, NexSIS renseignera ce champ avec la date de r\u00e9ception de l'alerte initiale",
@@ -248,6 +267,7 @@
                 "OBS_DATIME": {
                     "type": "string",
                     "title": "Date \u00e0 laquelle l'observation la plus r\u00e9cente a \u00e9t\u00e9 r\u00e9alis\u00e9e",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/OBS_DATIME",
                     "description": "Ce champ est id\u00e9alement \u00e0 valoriser avec la date/heure \u00e0 laquelle l'observation de la situation d'urgence de l'affaire la plus r\u00e9cente a \u00e9t\u00e9 r\u00e9alis\u00e9e.\nNexSIS transmettra la date/heure d'envoi de la demande de concours dans son syst\u00e8me.\nNB : temporairement, NexSIS renseignera ce champ avec la date de r\u00e9ception de l'alerte initiale",
@@ -257,6 +277,7 @@
                 "STATUS": {
                     "type": "string",
                     "title": "Status",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/STATUS",
                     "description": "Permet de d\u00e9crire le status de l'affaire en cours.\nCe champ suit une nomenclature EMSI. (COM = event complete, IPR = event in progress, NST = event not started, STOP = STOP = event under control, no need for additional resource)\nDans le cadre d'une op\u00e9ration :\n- si l'op\u00e9ration est encore en cours : rensigner 'IPR',\n- si le dispatching de moyens est encore en cours ou que seulement des qualifications d'alertes ont \u00e9t\u00e9 \u00e9chang\u00e9es sans aucune d\u00e9cision de r\u00e9gulation 'NST',\n- si l'op\u00e9ration est en pause/veille : 'STOP'\n- si le message d'\u00e9change op\u00e9rationnel d\u00e9crit une fin d'op\u00e9ration, \u00e0 renseigner avec 'COM'\nUn message EMSI-EO sans RESSOURCE ni ",
@@ -270,6 +291,7 @@
                 "RISK_ASSESMENT": {
                     "type": "string",
                     "title": "Pr\u00e9diction sur le risque d'\u00e9volution de l'event",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/RISK_ASSESMENT",
                     "description": "Optionnel",
@@ -306,6 +328,7 @@
                 "CAUSE": {
                     "type": "string",
                     "title": "Cause",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CAUSE",
                     "description": "Optionnel",
@@ -318,6 +341,7 @@
                 "FREETEXT": {
                     "type": "string",
                     "title": "Texte libre",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/FREETEXT",
                     "description": "Optionnel"
@@ -329,6 +353,7 @@
             "type": "object",
             "title": "Missions",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "TYPE"
             ],
@@ -336,6 +361,7 @@
                 "TYPE": {
                     "type": "string",
                     "title": "Type",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/TYPE",
                     "description": "Le champ MISSION TYPE permet d'identifier l'effet \u00e0 obtenir souhait\u00e9 \u00e0 partir de la combinaison du code ACTOR et du code TYPE.\n=> La table de transcodage permettant d'identifier les concourants et les effets \u00e0 obtenir \u00e0 partir d'un code EMSI est fournie en annexe \"R\u00e9f\u00e9rentiel Effets \u00e0 Obtenir - correspondance EMSI\".\nDans le cadre d'une r\u00e9ponse \u00e0 DC :\n- reprendre le type de la DC si le code r\u00e9ponse choisi est vien \"VALIDE\"\nDans le cadre d'une mission d\u00e9crivant les op\u00e9rations en cours :\n- reprendre la nomenclature EMSI pour caract\u00e9riser la mission en cours.",
@@ -507,6 +533,7 @@
                 "FREETEXT": {
                     "type": "string",
                     "title": "Texte libre",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/FREETEXT",
                     "description": "Contient des commentaires relatifs aux objectifs et  moyens sollicit\u00e9s dans le cadre de la demande de concours. Les \u00e9quipements suppl\u00e9mentaires souhait\u00e9s ou le nom/ pr\u00e9nom des patients \u00e0 prendre en charge peuvent \u00eatre explicitement indiqu\u00e9s ici."
@@ -514,6 +541,7 @@
                 "ID": {
                     "type": "string",
                     "title": "Identifiant de la mission",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/ID",
                     "description": "Contient un identifiant de demande de concours unique. Cet identifiant sera r\u00e9utilisable par le partenaire pour r\u00e9pondre \u00e0 cette demande.\nIdentifiant unique de la mission dans le syst\u00e8me du partenaire la conduisant."
@@ -521,6 +549,7 @@
                 "ORG_ID": {
                     "type": "string",
                     "title": "Identifiant de l'organisation propri\u00e9taire",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/ORG_ID",
                     "description": "Indique l'organisation du partenaire concern\u00e9 par la Demande de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \u00eatre utilis\u00e9.\nIndique l'organisation du service r\u00e9alisant la mission. Dans le cas d'une r\u00e9ponse, c'est l'organisation du concourant qui doit \u00eatre indiqu\u00e9e.\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*.\nidentique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
@@ -528,6 +557,7 @@
                 "NAME": {
                     "type": "string",
                     "title": "Nom de la mission",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/NAME",
                     "description": "Le nom de la mission est construit \u00e0 partir de l'expression r\u00e9guli\u00e8re suivante :\n\"#DEMANDE_CONCOURS#\"{libelle_cadre_conventionnel}\"#\"{code_cadre_conventionnel}\"#\"\no\u00f9 le code_cadre_conventionnel est issue d'une nomenclature CISU-Cadre Conventionnel (A Venir)\nNB : ce champ est d\u00e9tourn\u00e9 par rapport au standard EMSI pour permettre l'expression d'une demande de concours et indiquer le cadre conventionnel dans lequel elle est effectu\u00e9e.\nPour une r\u00e9ponse \u00e0 demande de concours :\n- Le nom de la mission est construit \u00e0 partir de l'expression r\u00e9guli\u00e8re suivante :\n\"#REPONSE_DEMANDE_CONCOURS#\"{code_reponse}\"#\"\no\u00f9 le code_reponse peut prendre les valeurs ACCEPTE, REFUS, PARTIELLE, DIVERGENTE\n- sinon libre"
@@ -535,6 +565,7 @@
                 "STATUS": {
                     "type": "string",
                     "title": "Status de la mission",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/STATUS",
                     "description": "Les valeurs possibles avec lesquelles valoriser ce champ sont d\u00e9taill\u00e9es au sein d'une nomenclature EMSI\n- ABO : mission refus\u00e9e (ABOrted)\n- CANCLD : mission annul\u00e9e (CANCeLeD)**\n- NST : mission non d\u00e9but\u00e9 pour le m\u00e9tier (Not STarted)\n- IPR :  mission d\u00e9but\u00e9 pour le m\u00e9tier (In PRogress). la valeur IPR peut \u00eatre suivi d'une valeur num\u00e9rique de 00 \u00e0 100 (IPRnn) sp\u00e9cifiant le degr\u00e9 d'avancement de la mission. Ce principe n'est pas retenu au sein de NexSIS qui ne transmettra pas d'indication sur le degr\u00e9 d'avancement de la mission via ce champ.\n- PAU : \u00e9v\u00e9nement arr\u00eat\u00e9, en pause pour m\u00e9tier, pas de besoin suppl\u00e9mentaire\n- COM : \u00e9v\u00e9nement termin\u00e9 pour le m\u00e9tier (COMplete)\nLe status de la mission et celui des RESSOURCE associ\u00e9es doit \u00eatre coh\u00e9rent et transcodable avec un status ANTARES (voir DSF)\n\nDans le cas d'un objet MISSION g\u00e9n\u00e9rique de r\u00e9ponse \u00e0 demande de concours, le champ doit \u00eatre valoris\u00e9 \u00e0 \"NST\"",
@@ -550,6 +581,7 @@
                 "START_TIME": {
                     "type": "string",
                     "title": "D\u00e9but de la mission",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/START_TIME",
                     "description": "- Dans le cadre d'une r\u00e9ponse \u00e0 Demande de Concours\nHorraire cible pour l'arriv\u00e9e sur les lieux d\u00e9crites (peut diverger de l'horaire demand\u00e9)\n- Dans le cadre d'une mission d\u00e9crivant les op\u00e9rations en cours :\nHoraire effectif de d\u00e9but de la mission",
@@ -559,6 +591,7 @@
                 "END_TIME": {
                     "type": "string",
                     "title": "Fin de la mission",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/END_TIME",
                     "description": "A valoriser selon la cat\u00e9gorie de mission :\n- Dans le cadre d'une mission de r\u00e9ponse \u00e0 demande de concours : ne pas renseigner\n- Dans le cadre d'une mission d\u00e9crivant les op\u00e9rations en cours :\n Si c'est un d\u00e9placement, l'heure d'arriv\u00e9e, si c'est une prise en charge patient/victime, la fin de la prise en charge.",
@@ -568,15 +601,18 @@
                 "RESOURCE_ID": {
                     "type": "string",
                     "title": "Ressource engag\u00e9e",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/RESOURCE_ID",
                     "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voire RESSOURCE.ID)"
                 },
                 "PARENT_MISSION_ID": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Missions parentes",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/MISSION/0/PARENT_MISSION_ID/0",
                         "description": "Dans le cadre d'une demande de concours, ne doit pas \u00eatre renseign\u00e9\nLa mission peut d\u00e9j\u00e0 \u00eatre rattach\u00e9e \u00e0 des missions filles mais leurs d\u00e9tails ne doivent pas \u00eatre n\u00e9cessaires pour traiter la demande de concours dans le syst\u00e8me du partenaire.\nCf. DSF pour l'organisation liens entre MISSION (sous-section \"D\u00e9coupage de l'op\u00e9ration en missions\")"
@@ -584,9 +620,11 @@
                 },
                 "CHILD_MISSION_ID": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Missions filles",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/MISSION/0/CHILD_MISSION_ID/0",
                         "description": "Cf. DSF pour l'organisation liens entre MISSION (sous-section \"D\u00e9coupage de l'op\u00e9ration en missions\")"
@@ -595,6 +633,7 @@
                 "MAIN_MISSION_ID": {
                     "type": "string",
                     "title": "Mission principale",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/MAIN_MISSION_ID",
                     "description": "- Dans le cas d'une mission g\u00e9n\u00e9rique de r\u00e9ponse \u00e0 demande de concours, indiquer l'ID de la mission g\u00e9n\u00e9rique utilis\u00e9e pour mod\u00e9liser la demande de concours\n- Dans le cas d'une mission d\u00e9clench\u00e9e dans le cadre d'une r\u00e9ponse \u00e0 demande de concours, l'ID de la mission g\u00e9n\u00e9rique de r\u00e9ponse peut \u00eatre utilis\u00e9e dans ce champ pour indiquer qu'elle est li\u00e9e \u00e0 une r\u00e9ponse"
@@ -605,6 +644,7 @@
                 "PRIORITY": {
                     "type": "string",
                     "title": "Priorit\u00e9 de la mission",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/MISSION/0/PRIORITY",
                     "description": "Indique une \u00e9chelle de priorit\u00e9 pour la demande de concours. Dans le cadre du standard EMSI, cette \u00e9chelle doit \u00eatre comprise entre 0 et 5. Ce champ peut ne pas \u00eatre interpr\u00e9t\u00e9 ni aliment\u00e9 par les LRMs.\nDans le cadre d'un \u00e9change des op\u00e9rations, optionnel. Le champ peut ne pas \u00eatre \u00e9mis ni interpr\u00e9t\u00e9.",
@@ -624,6 +664,7 @@
             "type": "object",
             "title": "Ressource",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "RTYPE"
             ],
@@ -634,6 +675,7 @@
                 "ID": {
                     "type": "string",
                     "title": "ID de la ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/ID",
                     "description": "Identifiant unique de la ressource  dans le syst\u00e8me du partenaire propri\u00e9taire. Les syst\u00e8mes sont garants de l'unicit\u00e9 et de l'invariablit\u00e9 des ids de v\u00e9hicule dans le temps. Ils peuvent se servir des ids dans les r\u00e9f\u00e9rentiels existants si ils sont uniques et stables.\nDans le cas d'un v\u00e9hicule agr\u00e9g\u00e9 par un LRM (comme un SMUR), l'ID doit \u00eatre valoris\u00e9 avec son immatriculation.\nDans le cas d'un v\u00e9hicule agr\u00e9g\u00e9 par NexSIS, l'ID fournit peut ne pas correspondre \u00e0 une immatriculation."
@@ -641,6 +683,7 @@
                 "ORG_ID": {
                     "type": "string",
                     "title": "Identifiant de l'organisation propri\u00e9taire",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/ORG_ID",
                     "description": "Identifiant de l'organisation \u00e0 laquelle la ressource est rattach\u00e9e (caserne, SAMU etc).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{code d\u00e9partement}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.\nDans le cas o\u00f9 le LRM/NexSIS sert d'aggr\u00e9gateur pour des v\u00e9hicules appartenant \u00e0 un partenaire tiers (type ambulance priv\u00e9e), l'identifiant d'organisation permet d'identifier ce tiers\nA constituer par le r\u00e9dacteur du pr\u00e9sent EMSI pour \u00eatre unique, identique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
@@ -648,6 +691,7 @@
                 "NAME": {
                     "type": "string",
                     "title": "Nom de la ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/NAME",
                     "description": "Nom donn\u00e9 \u00e0 la ressource par le partenaire. L'immatriculation peut \u00eatre utilis\u00e9e dans le nom courant des v\u00e9hicules.\nDans le cas pompier, les v\u00e9hicules sont nomm\u00e9s\nDans le cas d'\u00e9quipier, cela peut \u00eatre leur nom"
@@ -655,6 +699,7 @@
                 "FREETEXT": {
                     "type": "string",
                     "title": "Description de la ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/FREETEXT",
                     "description": "Texte libre permettant de d\u00e9crire la ressource o\u00f9 d'ajouter des pr\u00e9cisions sur son engagement.\nPermet aussi notamment de d\u00e9crire des attributs librement pour la ressource.\nPar exemple, pour un v\u00e9hicule, sa plaque d'immatriculation."
@@ -668,6 +713,7 @@
                 "QUANTITY": {
                     "type": "number",
                     "title": "Quantit\u00e9 de la ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/QUANTITY",
                     "description": "Dans le cadre d'un \u00e9change d'op\u00e9ration, optionnel. Permet de quantifier une ressource :\n- \u00e0 ne pas utiliser pour les v\u00e9hicules ni le personnel\n- utilisable pour du mat\u00e9riel\n- utilisable pour des consommables (dans le cas de consommable, \u00e0 compl\u00e9ter avec le champ UM)"
@@ -675,6 +721,7 @@
                 "UM": {
                     "type": "string",
                     "title": "Unit\u00e9 de mesure pour la ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/UM",
                     "description": "Dans le cadre d'un \u00e9change d'op\u00e9ration, optionnel. Unit\u00e9 de mesure pour des ressources consommables",
@@ -734,6 +781,7 @@
                 "STATUS": {
                     "type": "string",
                     "title": "Statut de la ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/STATUS",
                     "description": "D\u00e9finit le statut de disponibilit\u00e9 d'une ressource.\n- AVAILB : Lorsqu'une mission est termin\u00e9e, une ressource redevient disponible\n- RESRVD : Lorsque la ressource est r\u00e9serv\u00e9e pour intervenir sur l'affaire mais pas encore engag\u00e9e dans l'op\u00e9ration. Par exemple : un SMUR termine un autre transfert patient/victime avant de rejoindre une autre intervention : il est alors RESRVD\n- IN_USE/MOBILE : \u00e0 utiliser pour les v\u00e9hicules et le personnel lorsqu'ils se d\u00e9places\n- IN_USE/ON_SCENE : \u00e0 utiliser pour les v\u00e9hicules et le personnel lorsqu'ils sont sur les lieux de l'affaire",
@@ -750,6 +798,7 @@
                 "NATIONALITY": {
                     "type": "string",
                     "title": "Nationalit\u00e9 de la ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/NATIONALITY",
                     "description": "Nationalit\u00e9 d'une ressource, r\u00e9employer ISO 3166-1-alpha-2 code elements."
@@ -767,6 +816,7 @@
             "type": "object",
             "title": "Lien",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ID"
             ],
@@ -774,6 +824,7 @@
                 "ID": {
                     "type": "string",
                     "title": "ID",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/LINK/0/ID",
                     "description": "A renseigner avec l'identifiant local de l'affaire du partenaire requ\u00e9rant\nDans NexSIS;\nRG 1  \u2013 : cr\u00e9ation du premier message EMSi suite r\u00e9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\u00e9ro d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\u00e9\u00e9s apr\u00e8s le premier, EMSI <LINK> est compl\u00e9t\u00e9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\u00e9c\u00e9dent cr\u00e9\u00e9 au sein du SGO r\u00e9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
@@ -781,6 +832,7 @@
                 "LINK_ROLE": {
                     "type": "string",
                     "title": "R\u00f4le du lien",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE",
                     "description": "Optionnel : \u00e0 valoriser avec la constante \"SPRSDS\" en EMSI-EO et avec le libell\u00e9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG 1  \u2013 : cr\u00e9ation du premier message EMSi suite r\u00e9ception Affaire * <LINK><LINK ID> = <Num\u00e9ro d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\u00e9\u00e9s apr\u00e8s le premier, EMSI <LINK> est compl\u00e9t\u00e9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\u00e9c\u00e9dent cr\u00e9\u00e9 au sein du SGO r\u00e9dacteur * <LINK><LINK ROLE> = 'SPRSDS'",
@@ -796,11 +848,13 @@
             "type": "object",
             "title": "Origine",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "ORG_ID": {
                     "type": "string",
                     "title": "Origine ID",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ORIGIN/ORG_ID",
                     "description": "Optionnel, identifiant du service \u00e0 l'origine de l'EMSI\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{code d\u00e9partement}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
@@ -808,6 +862,7 @@
                 "USER_ID": {
                     "type": "string",
                     "title": "ID d'utilisateur de l'origine",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ORIGIN/USER_ID",
                     "description": "Optionnel, identifiant de l'op\u00e9rateur du service \u00e0 l'origine de l'EMSI"
@@ -815,6 +870,7 @@
                 "NAME": {
                     "type": "string",
                     "title": "Nom Origine ",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/ORIGIN/NAME",
                     "description": "Optionnel\n\nA constituer par le r\u00e9dacteur pour \u00eatre intelligible (exemple [structure].[nom])"
@@ -826,6 +882,7 @@
             "type": "object",
             "title": "Informations exterieures ",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "URI"
             ],
@@ -833,6 +890,7 @@
                 "FREETEXT": {
                     "type": "string",
                     "title": "Texte libre ",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/FREETEXT",
                     "description": "Optionnel"
@@ -840,6 +898,7 @@
                 "URI": {
                     "type": "string",
                     "title": "URI informations ext\u00e9rieures",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/URI",
                     "description": "Optionnel"
@@ -847,6 +906,7 @@
                 "TYPE": {
                     "type": "string",
                     "title": "Type",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/TYPE",
                     "description": "Optionnel",
@@ -865,6 +925,7 @@
             "type": "object",
             "title": "Type de l'\u00e9v\u00e9nement",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "CATEGORY",
                 "ACTOR",
@@ -873,9 +934,11 @@
             "properties": {
                 "CATEGORY": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Cat\u00e9gorie d'\u00e9v\u00e9nement",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/ETYPE/CATEGORY/0",
                         "description": "Le champ peut ne pas \u00eatre interpr\u00e9t\u00e9 ou renseign\u00e9 avec une valeur comme 'UKN' = 'UNKOWN'\nA constituer depuis ref_mapping_EMSI<ETYPE><CATEGORY>_NEXSIS",
@@ -956,9 +1019,11 @@
                 },
                 "ACTOR": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Acteurs",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/ETYPE/ACTOR/0",
                         "description": "Dans de futures versions de NexSIS, les demandes de concours seront diffus\u00e9es \u00e0 plusieurs partenaires. Seul le syst\u00e8me de la force concern\u00e9e par la demande de concours devra r\u00e9pondre effectivement \u00e0 la demande. Ce syst\u00e8me de la force concern\u00e9e sera identifi\u00e9 comme le \"concourant\" \u00e0 la demande de concours.\nLe libell\u00e9 du champ ACTOR permet d'identifier le concourant souhait\u00e9 dans la demande de concours. Pour les premi\u00e8res impl\u00e9mentations du contrat d'interface 15-18, il n'y a pas de n\u00e9cessit\u00e9 pour les syst\u00e8mes r\u00e9cepteurs de filtrer les demandes de concours re\u00e7ues via le Hub Sant\u00e9.\nLe champ MISSION TYPE permet en compl\u00e9ment d'identifier l'effet \u00e0 obtenir souhait\u00e9 \u00e0 partir de la combinaison du code ACTOR et du code TYPE.\nLe transcodage entre ces deux nomenclature est d\u00e9crit dans l'annexe \"R\u00e9f\u00e9rentiel Effets \u00e0 Obtenir - correspondance EMSI\"",
@@ -1122,9 +1187,11 @@
                 },
                 "LOCTYPE": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Type de localisation",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/ETYPE/LOCTYPE/0",
                         "description": "Le champ peut ne pas \u00eatre affich\u00e9. Par d\u00e9faut, possible de renvoyer le code \"OTH\" =  \"OTHER\""
@@ -1133,6 +1200,7 @@
                 "ENV": {
                     "type": "string",
                     "title": "Environnement",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/ETYPE/ENV",
                     "description": "Optionnel",
@@ -1163,6 +1231,7 @@
             "type": "object",
             "title": "Lien vers d'autres objets \u00e9v\u00e9nements EMSI",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "ORG_ID",
                 "OTHER_EVENT_ID"
@@ -1171,15 +1240,18 @@
                 "ORG_ID": {
                     "type": "string",
                     "title": "ID de l'organisation",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/REFERENCE/0/ORG_ID",
                     "description": "Identification de l'organisation partenaire"
                 },
                 "OTHER_EVENT_ID": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "ID des autres event",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/REFERENCE/0/OTHER_EVENT_ID/0",
                         "description": "Indique d'autres identifiants utilis\u00e9s pour l'affaire dans le syst\u00e8me partenaire"
@@ -1192,6 +1264,7 @@
             "type": "object",
             "title": "Victimes",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "CONTEXT"
             ],
@@ -1199,6 +1272,7 @@
                 "CONTEXT": {
                     "type": "string",
                     "title": "Contexte",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/CONTEXT",
                     "description": "Le champ doit \u00eatre renseign\u00e9 mais peut ne pas \u00eatre interpr\u00e9t\u00e9"
@@ -1206,6 +1280,7 @@
                 "DATIME": {
                     "type": "string",
                     "title": "Timestamp du contexte",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/DATIME",
                     "description": "Optionnel",
@@ -1215,6 +1290,7 @@
                 "DECONT": {
                     "type": "integer",
                     "title": "D\u00e9contamination",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/DECONT",
                     "description": "Optionnel"
@@ -1222,6 +1298,7 @@
                 "TRIAGERED": {
                     "type": "integer",
                     "title": "Triage Rouge",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/TRIAGERED",
                     "description": "Optionnel, Triage victime au sens EMSI"
@@ -1229,6 +1306,7 @@
                 "TRIAGEYELLOW": {
                     "type": "integer",
                     "title": "Jaune",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEYELLOW",
                     "description": "Optionnel"
@@ -1236,6 +1314,7 @@
                 "TRIAGEGREEN": {
                     "type": "integer",
                     "title": "Vert",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEGREEN",
                     "description": "Optionnel"
@@ -1243,6 +1322,7 @@
                 "TRIAGEBLACK": {
                     "type": "integer",
                     "title": "Noir",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEBLACK",
                     "description": "Optionnel"
@@ -1250,6 +1330,7 @@
                 "MISSING": {
                     "type": "integer",
                     "title": "Disparus",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/CASUALTIES/0/MISSING",
                     "description": "Optionnel"
@@ -1261,11 +1342,13 @@
             "type": "object",
             "title": "Evacu\u00e9s",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "DATIME": {
                     "type": "string",
                     "title": "timestamp",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EVAC/0/DATIME",
                     "description": "Optionnel",
@@ -1275,6 +1358,7 @@
                 "DISPLACED": {
                     "type": "integer",
                     "title": "d\u00e9plac\u00e9s",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EVAC/0/DISPLACED",
                     "description": "Optionnel"
@@ -1282,6 +1366,7 @@
                 "EVACUATED": {
                     "type": "integer",
                     "title": "\u00e9vacu\u00e9s",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EVAC/0/EVACUATED",
                     "description": "Optionnel"
@@ -1293,6 +1378,7 @@
             "type": "object",
             "title": "Localisation de l'\u00e9v\u00e9nement",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "TYPE",
                 "POSITION"
@@ -1301,6 +1387,7 @@
                 "DATIME": {
                     "type": "string",
                     "title": "Date des derni\u00e8res remont\u00e9es de localisation",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/DATIME",
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION",
@@ -1310,6 +1397,7 @@
                 "TYPE": {
                     "type": "string",
                     "title": "Type de localisation",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/TYPE",
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION.\nA constituer depuis ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_\n/!\\ plusieurs champs NEXSIS\n/!\\ plusieurs valeurs par champs d'o\u00f9 un groupe<EGEO> \u00e0 cr\u00e9er par type diff\u00e9rents",
@@ -1397,9 +1485,11 @@
                 },
                 "WEATHER": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Condition m\u00e9t\u00e9o",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/EGEO/0/WEATHER/0",
                         "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION",
@@ -1458,6 +1548,7 @@
                 "FREETEXT": {
                     "type": "string",
                     "title": "Description de l'\u00e9v\u00e9nement",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/FREETEXT",
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION"
@@ -1472,6 +1563,7 @@
             "type": "object",
             "title": "Position de l'op\u00e9ration",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "LOC_ID"
             ],
@@ -1479,6 +1571,7 @@
                 "LOC_ID": {
                     "type": "string",
                     "title": "ID position",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/LOC_ID",
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION. \nLorsque le lieu d'intervention est identique \u00e0 celle d'une position de l'affaire partag\u00e9e dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID doit \u00eatre aliment\u00e9 valoris\u00e9 comme le champ eventLocation.locId du message RC-EDA envoy\u00e9 en amont. "
@@ -1486,6 +1579,7 @@
                 "NAME": {
                     "type": "string",
                     "title": "Nom de position",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/NAME",
                     "description": "Optionnel, non utilis\u00e9 par NexSIS nom de lieu"
@@ -1493,6 +1587,7 @@
                 "TYPE": {
                     "type": "string",
                     "title": "Type",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/TYPE",
                     "description": "Optionnel\nDans le cadre de l'interface LRM NexSIS, seul le libell\u00e9 POINT doit obligatoirement \u00eatre interpr\u00e9table par les deux partenaires.\nCf. Nomenclature EMSI - POSITION pour plus de d\u00e9tails"
@@ -1500,6 +1595,7 @@
                 "HEIGHT_ROLE": {
                     "type": "string",
                     "title": "Indication sur l'utilisation de la balise altitude",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/HEIGHT_ROLE",
                     "description": "Optionnel"
@@ -1507,6 +1603,7 @@
                 "COORDSYS": {
                     "type": "string",
                     "title": "Syst\u00e8me de coordonn\u00e9es",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORDSYS",
                     "description": "Optionnel"
@@ -1519,9 +1616,11 @@
                 },
                 "ADDRESS": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Adresse",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/ADDRESS/0",
                         "description": "Optionnel. Dans le cas d'un partage de position, les adresses transmises ne sont pas structur\u00e9es."
@@ -1534,6 +1633,7 @@
             "type": "object",
             "title": "Coordonn\u00e9es",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "LAT",
                 "LONG"
@@ -1542,6 +1642,7 @@
                 "LAT": {
                     "type": "number",
                     "title": "Latitude ",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LAT",
                     "description": "derni\u00e8re coordonn\u00e9e x  connue de la ressource"
@@ -1549,6 +1650,7 @@
                 "LONG": {
                     "type": "number",
                     "title": "Longitude",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LONG",
                     "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e y  connue de la ressource\nbetween \u221290 and +90"
@@ -1556,6 +1658,7 @@
                 "HEIGHT": {
                     "type": "number",
                     "title": "Altitude",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT",
                     "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e z  connue de la ressource\nbetween \u2212180 and +180"
@@ -1567,15 +1670,18 @@
             "type": "object",
             "title": "Type de la ressource",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "RCLASS"
             ],
             "properties": {
                 "RCLASS": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Classes de la ressource",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/RESOURCE/0/RTYPE/RCLASS/0",
                         "description": "Permet d'indiquer la classe de l'objet RESOURCE. Plusieurs niveau de d\u00e9tails sont fournis par la nomenclature associ\u00e9e.\nLe premier niveau permet notamment de d\u00e9crire la classe principale de ressource :\n- Un v\u00e9hicule,\n- Le personnel mobilis\u00e9,\n- Des consommables/ du mat\u00e9riel,\n- Un lieu ou une organisation (non utilis\u00e9 pour le moment)\nVoir nomenclature EMSI associ\u00e9e",
@@ -2186,9 +2292,11 @@
                 },
                 "CAPABILITY": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Capacit\u00e9s de la ressource",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/RESOURCE/0/RTYPE/CAPABILITY/0",
                         "description": "Permet d'indiquer les capacit\u00e9s de la ressource d'apr\u00e8s le standard EMSI"
@@ -2196,9 +2304,11 @@
                 },
                 "CHARACTERISTICS": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
                         "type": "string",
                         "title": "Caract\u00e9ristiques de la ressource",
+                        "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/RESOURCE/0/RTYPE/CHARACTERISTICS/0",
                         "description": "Permet d'indiquer des caract\u00e9ristique physiques de la ressource (hauteur, largeur, longueur et poids).\nLe d\u00e9tail de fonctionnement de cette nomenclature est fournie en annexe."
@@ -2211,6 +2321,7 @@
             "type": "object",
             "title": "Localisation de la ressource",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "TYPE"
             ],
@@ -2218,6 +2329,7 @@
                 "DATIME": {
                     "type": "string",
                     "title": "Horaire de la localisation",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/RGEO/0/DATIME",
                     "description": "Horaire associ\u00e9 \u00e0 l'arriv\u00e9e de la ressource sur la position. En fonction du TYPE de possition, peut indiquer un horaire de relev\u00e9 de position, un horaire cible d'arriv\u00e9e.",
@@ -2227,6 +2339,7 @@
                 "TYPE": {
                     "type": "string",
                     "title": "Type de localisation",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/RGEO/0/TYPE",
                     "description": "Type de position indiqu\u00e9 pour la ressource :\n- ASP : assembly point. Point de rassemblement par d\u00e9faut des ressources li\u00e9es \u00e0 la mission. Peut ne pas \u00eatre utilis\u00e9\n- CUR : current. Position actualis\u00e9e de la ressource permettant le suivi g\u00e9olocalis\u00e9 des v\u00e9hicules notamment. Peut ne pas \u00eatre utilis\u00e9\n- INC : incident. Consigne relative au positionnement de la ressource sur le lieu d'intervention. Peut ne pas \u00eatre utilis\u00e9\n- STG : staging point. Consigne relative au stationnement des v\u00e9hicules ou au stockage du mat\u00e9riel par exemple. peut ne pas \u00eatre utilis\u00e9\n- TGT : targer location. Si renseign\u00e9, doit \u00eatre coh\u00e9rent avec la position renseign\u00e9e pour la mission.\nPlusieurs positions du m\u00eame type avec des horodatages diff\u00e9rents peuvent \u00eatre fournies. ",
@@ -2241,6 +2354,7 @@
                 "FREETEXT": {
                     "type": "string",
                     "title": "Texte libre ",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/RGEO/0/FREETEXT",
                     "description": "Permet de rajouter des pr\u00e9cisions sur la localisation de la ressource transmise"
@@ -2248,6 +2362,7 @@
                 "ID": {
                     "type": "string",
                     "title": "ID localisation",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/RGEO/0/ID",
                     "description": "Identifiant unique de la position dans le syst\u00e8me du partenaire"
@@ -2265,6 +2380,7 @@
             "type": "object",
             "title": "Contacts",
             "x-display": "expansion-panels",
+            "x-health-only": false,
             "required": [
                 "TYPE",
                 "DETAIL"
@@ -2273,6 +2389,7 @@
                 "TYPE": {
                     "type": "string",
                     "title": "Type de contact",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/CONTACTS/0/TYPE",
                     "description": "Type de contact, voir \u00e9num\u00e9ration associ\u00e9e\n\n1. PMRADD (si RFGI disponible)\n2. PHNADD pour t\u00e9l\u00e9phonie",
@@ -2290,6 +2407,7 @@
                 "DETAIL": {
                     "type": "string",
                     "title": "D\u00e9tails de contact",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/CONTACTS/0/DETAIL",
                     "description": "1. RFGI du moyen NEXSIS (si RFGI disponible)\n2. Num\u00e9ro de t\u00e9l\u00e9phone"

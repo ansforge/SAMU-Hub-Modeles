@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.cisu.CaseDetails;
 import com.hubsante.model.cisu.Nomenclature;
 import com.hubsante.model.cisu.Victims;
 import java.util.ArrayList;
@@ -49,6 +50,7 @@ import java.util.Objects;
                     Qualification.JSON_PROPERTY_LOCATION_KIND,
                     Qualification.JSON_PROPERTY_RISK_THREAT,
                     Qualification.JSON_PROPERTY_HEALTH_MOTIVE,
+                    Qualification.JSON_PROPERTY_DETAILS,
                     Qualification.JSON_PROPERTY_VICTIMS})
 @JsonTypeName("qualification")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -65,6 +67,9 @@ public class Qualification {
 
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
   private Nomenclature healthMotive;
+
+  public static final String JSON_PROPERTY_DETAILS = "details";
+  private CaseDetails details;
 
   public static final String JSON_PROPERTY_VICTIMS = "victims";
   private Victims victims;
@@ -179,6 +184,29 @@ public class Qualification {
     this.healthMotive = healthMotive;
   }
 
+  public Qualification details(CaseDetails details) {
+
+    this.details = details;
+    return this;
+  }
+
+  /**
+   * Get details
+   * @return details
+   **/
+  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CaseDetails getDetails() {
+    return details;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetails(CaseDetails details) {
+    this.details = details;
+  }
+
   public Qualification victims(Victims victims) {
 
     this.victims = victims;
@@ -215,13 +243,14 @@ public class Qualification {
         Objects.equals(this.locationKind, qualification.locationKind) &&
         Objects.equals(this.riskThreat, qualification.riskThreat) &&
         Objects.equals(this.healthMotive, qualification.healthMotive) &&
+        Objects.equals(this.details, qualification.details) &&
         Objects.equals(this.victims, qualification.victims);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(whatsHappen, locationKind, riskThreat, healthMotive,
-                        victims);
+                        details, victims);
   }
 
   @Override
@@ -240,6 +269,7 @@ public class Qualification {
     sb.append("    healthMotive: ")
         .append(toIndentedString(healthMotive))
         .append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("    victims: ").append(toIndentedString(victims)).append("\n");
     sb.append("}");
     return sb.toString();

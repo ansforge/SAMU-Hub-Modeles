@@ -25,6 +25,8 @@ parser = argparse.ArgumentParser(
 )
 parser.add_argument('-v', '--version', help='the version number to be used in model. Defaults to today.')
 parser.add_argument('-s', '--sheet', default="RC-EDA", help='the Excel sheet to be parsed.')
+parser.add_argument('-f', '--filter', default=False, help='If present, only 15-18 fields will be kept and -CISU will '
+                                                          'be appended to everything except openapi yaml')
 args = parser.parse_args()
 
 
@@ -36,9 +38,10 @@ class Color:
     UNDERLINE = '\033[4m'
     END = '\033[0m'
 
+appendCisuIfNeeded = '-CISU' if args.filter else ''
 
 args.version = args.version or date.today().strftime("%y.%m.%d")
-print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building version {args.version} of {args.sheet} sheet...{Color.END}')
+print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building version {args.version} of {args.sheet}{appendCisuIfNeeded} sheet...{Color.END}')
 
 RUN_DOCX_OUTPUT_EXAMPLES = False
 
@@ -112,10 +115,15 @@ if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
     print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS}.{Color.END}")
     exit(1)
 
+# Keeping only 15-NexSIS fields if filter is set
+if args.filter:
+    df = df[df['15-18'] == 'X']
+else:
+    df = df[df['15-15'] == 'X']
+
 # Storing input data in a file to track versions
-df.to_csv(f'out/{args.sheet}/input.csv')
-# Keeping only 15-NexSIS fields
-df = df[df['15-18'] == 'X']
+df.to_csv(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.input.csv')
+
 # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
 df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(lambda x: pd.NA if str(x).startswith('# ') else x)
 if MODEL_NAME != "RC-DE":
@@ -229,6 +237,10 @@ def is_typed_object(row):
     isTyped = str(row['Format (ou type)']) != 'nan'
     return isObject & isTyped
 
+def is_health_only(row):
+    """Is elem only for 15-15?"""
+    isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
+    return isHealthOnly
 
 def get_true_type(row):
     """Get the type of elem (defaults to its name if there is no type specified)"""
@@ -255,6 +267,7 @@ def build_full_name(row):
 
 
 df['is_typed_object'] = df.apply(is_typed_object, axis=1)
+df['is_health_only'] = df.apply(is_health_only, axis=1)
 df['true_type'] = df.apply(get_true_type, axis=1)
 df['id'] = df.apply(build_id, axis=1)
 df = df.set_index('id', drop=False)
@@ -333,14 +346,14 @@ def build_example(elem):
 
 
 json_example = build_example(rootObject)
-with open(f'out/{args.sheet}/example.json', 'w') as outfile:
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.example.json', 'w') as outfile:
     json.dump(json_example, outfile, indent=4)
 
 # Go through data (list or tree) and use it to build the expected JSON schema
 json_schema = {
     '$schema': 'http://json-schema.org/draft-07/schema#',
     '$id': 'classpath:/json-schema/schema#',
-    'x-id': f'{args.sheet}.schema.json#',  # required by JSV to find the schema file locally
+    'x-id': f'{args.sheet}{appendCisuIfNeeded}.schema.json#',  # required by JSV to find the schema file locally
     'version': args.version,
     'example': 'example.json#',
     'type': 'object',
@@ -386,6 +399,7 @@ def add_field_child_property(parent, child, definitions):
     childDetails = {
         'type': typeName,
         'title': child['full_name'],
+        'x-health-only': child['is_health_only'],
         'x-cols': 6,
         'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
     }
@@ -404,6 +418,7 @@ def add_field_child_property(parent, child, definitions):
     if is_array(child):
         properties[child['name']] = {
             'type': 'array',
+            'x-health-only': child['is_health_only'],
             'items': childDetails
         }
     else:
@@ -423,6 +438,7 @@ def add_object_child_definition(parent, child, definitions):
             'type': 'object',
             'title': child['full_name'],
             'x-display': 'expansion-panels',
+            'x-health-only': child['is_health_only'],
             'required': [],
             'properties': {},
             'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
@@ -529,7 +545,7 @@ def DFS(root, use_elem):
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
 DFS(rootObject, build_json_schema)
-with open(f'out/{args.sheet}/{args.sheet}.schema.json', 'w') as outfile:
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.schema.json', 'w') as outfile:
     json.dump(json_schema, outfile, indent=4)
 print('JSON schema generated.')
 
@@ -578,7 +594,7 @@ with open('template.asyncapi.yaml') as f:
     }
     # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
 
-with open(f'out/{args.sheet}/{args.sheet}.openapi.yaml', 'w') as file:
+with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.openapi.yaml', 'w') as file:
     documents = yaml.dump(full_yaml, sort_keys=False)
     documents = documents.replace('#/definitions/', "#/components/schemas/")
     file.write(documents)
@@ -592,7 +608,7 @@ with open(f'out/full-asyncapi.yaml', 'w') as file:
 print('AsyncAPI schema generated.')
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
-uml_generator.run(args.sheet, MODEL_NAME, version=args.version)
+uml_generator.run(args.sheet, MODEL_NAME, version=args.version, filter=args.filter)
 print('UML diagrams generated.')
 
 named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
@@ -671,7 +687,7 @@ def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAM
 # Then all Json Schema definitions are types tables
 for elem_name, definition in json_schema['definitions'].items():
     def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
-doc.save(f'out/{args.sheet}/schema.docx')
+doc.save(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded}.schema.docx')
 
 print('Docx tables generated.')
 
