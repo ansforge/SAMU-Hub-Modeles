@@ -55,7 +55,7 @@ def add_node(id_parent, id_in, type_in, buffer_description, cardinalite):
                 </TABLE>>'''
     str_node = template_html_node.format(str(id_in), "<I>objet " + type_in + "</I>" + buffer_description)
     if("15-15" in buffer_description):
-        dot.node(id_in, str_node, fillcolor="firebrick1", style="filled")
+        dot.node(id_in, str_node, fillcolor="coral", style="filled")
     else:
         dot.node(id_in, str_node)
     # draw edges with parents nodes
