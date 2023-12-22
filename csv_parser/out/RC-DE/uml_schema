@@ -11,31 +11,31 @@ strict digraph {
                 <TD><I>objet sender</I><BR/>name <I>string</I> : [1..1]<BR/>URI <I>string</I> : [1..1]</TD>
                 </TR>
                 </TABLE>>]
-	sender -> cisu [constraint=true headlabel=1 taillabel=1]
-	recipient [label=<<TABLE>
-                <TR>
-                <TD><B>recipient</B></TD>
-                </TR>
-                <TR>
-                <TD><I>objet recipient</I><BR/>name <I>string</I> : [1..1]<BR/>URI <I>string</I> : [1..1]</TD>
-                </TR>
-                </TABLE>>]
-	recipient -> recipients [constraint=true headlabel=1 taillabel="1..*"]
+	sender -> distributionElement [constraint=true headlabel=1 taillabel=1]
 	recipients [label=<<TABLE>
                 <TR>
                 <TD><B>recipients</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet recipients</I></TD>
+                <TD><I>objet recipient</I><BR/>name <I>string</I> : [1..1]<BR/>URI <I>string</I> : [1..1]<BR/>reason <I>string</I> : [1..1]<BR/>source <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
-	recipients -> cisu [constraint=true headlabel=1 taillabel=1]
-	cisu [label=<<TABLE>
+	recipients -> distributionElement [constraint=true headlabel=1 taillabel="1..*"]
+	distributionElement [label=<<TABLE>
                 <TR>
-                <TD><B>cisu</B></TD>
+                <TD><B>distributionElement</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet cisu</I><BR/>messageId <I>string</I> : [1..1]<BR/>sentAt <I>date-time</I> : [1..1]<BR/>kind <I>string</I> : [1..1]<BR/>status <I>string</I> : [1..1]</TD>
+                <TD><I>objet distributionElement</I><BR/>messageId <I>string</I> : [1..1]<BR/>sentAt <I>date-time</I> : [1..1]<BR/>kind <I>string</I> : [1..1]<BR/>status <I>string</I> : [1..1]</TD>
+                </TR>
+                </TABLE>>]
+	distributionElement -> DistributionElement [constraint=true headlabel=1 taillabel=1]
+	DistributionElement [label=<<TABLE>
+                <TR>
+                <TD><B>DistributionElement</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet DistributionElement</I></TD>
                 </TR>
                 </TABLE>>]
 }

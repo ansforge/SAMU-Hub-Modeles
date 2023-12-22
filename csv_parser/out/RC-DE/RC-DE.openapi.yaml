@@ -1,0 +1,210 @@
+openapi: 3.0.0
+components:
+  schemas:
+    distributionElementWrapper:
+      $id: classpath:/json-schema/schema#
+      x-id: RC-DE.schema.json#
+      example: example.json#
+      type: object
+      title: DistributionElement
+      required:
+      - distributionElement
+      properties:
+        distributionElement:
+          $ref: '#/components/schemas/distributionElement'
+          x-health-only: false
+    distributionElement:
+      type: object
+      title: Objet DistributionElement
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - messageId
+      - sender
+      - sentAt
+      - kind
+      - status
+      - recipients
+      properties:
+        messageId:
+          type: string
+          title: Identifiant du message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/messageId
+          description: I
+          examples:
+          - d350c9d2-9d76-4568-b0b7-a747ffadc949
+        sender:
+          $ref: '#/components/schemas/sender'
+          x-health-only: false
+        sentAt:
+          type: string
+          title: Horodatage envoi message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/sentAt
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 l'envoi\
+            \ du message. Il doit  \xEAtre coh\xE9rent avec le champ <dateTimeSent>\
+            \ de l'enveloppe EDXL (voir DST).  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9. Le fuseau horaire pour UTC doit \xEAtre\
+            \ repr\xE9sent\xE9 par '-00:00'"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        kind:
+          type: string
+          title: Type de message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/kind
+          description: Prend la valeur <distributionKind de l'enveloppe EDXL (voir
+            DST)
+          enum:
+          - REPORT
+          - UPDATE
+          - CANCEL
+          - ACK
+          - ERROR
+          examples:
+          - ALERT
+        status:
+          type: string
+          title: Statut du message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/status
+          description: Prend la valeur <distributionStatus> de l'enveloppe EDXL (voir
+            DST)
+          enum:
+          - ACTUAL
+          - EXERCISE
+          - SYSTEM
+          examples:
+          - ACTUAL
+        recipients:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipient'
+            x-health-only: false
+      example: example.json#/distributionElement
+    sender:
+      type: object
+      title: "Syst\xE8me \xE9metteur"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - name
+      - URI
+      properties:
+        name:
+          type: string
+          title: "Nom du syst\xE8me emetteur"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/sender/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {nom solution LRM}-{cl\xE9 de routage}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+          - sga-nexsis
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/sender/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : {nom \xE9diteur}:{sender:name}\n\
+            => Pour NexSIS : sge:{sender:name}"
+          examples:
+          - sge:sga-nexsis
+      example: example.json#/distributionElement/sender
+      examples:
+      - name: sga-nexsis
+        URI: sge:sga-nexsis
+    recipient:
+      type: object
+      title: "Syst\xE8mes destinataires"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - name
+      - URI
+      - reason
+      properties:
+        name:
+          type: string
+          title: "Identifiant technique du syst\xE8me destinataire"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/recipients/0/name
+          description: "Identifiant technique du syst\xE8me emetteur\nFormat : \n\
+            => Pour les SAMU : {cl\xE9 de routage}-{nom solution LRM}\no\xF9 cl\xE9\
+            \ de routage d\xE9signe le nom de la cl\xE9 de routage utilis\xE9e par\
+            \ le LRM pour les \xE9changes et {nom solution LRM} est le nom donn\xE9\
+            \ par l'\xE9diteur \xE0 sa solution (libre)\n=> Pour NeXSIS : \xE0 d\xE9\
+            finir {sga|sgo}-nexsis"
+          examples:
+          - samu-77
+        URI:
+          type: string
+          title: URI (identifiant technique)
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/recipients/0/URI
+          description: "uri du syst\xE8me. Permet d'identifier le vecteur utilis\xE9\
+            \ par les \xE9changes\nFormat :\n=> Pour les LRM : sge:{recipient:name}\n\
+            => Pour NexSIS : sge:{recipient:name}"
+          examples:
+          - sge:samu-77
+        reason:
+          type: string
+          title: "Raison de partage avec le syst\xE8me destinataire"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/recipients/0/reason
+          description: "Raison motivant l'envoi du pr\xE9sent message au partenaire\
+            \ :\nPROPOSITION :\n- INFORMATION : le message est transmis \xE0 titre\
+            \ informatif\n- GENERAL : le message est transmis \xE0 l'ensemble des\
+            \ partenaires sans distinction\n- CONCERN : le message concerne sp\xE9\
+            cifiquement la force du syst\xE8me destinataire\n- REPONSE : le message\
+            \ est \xE9mis en r\xE9ponse \xE0 un message pr\xE9c\xE9dent\n- DEMANDE\
+            \ : le message est associ\xE9 \xE0 une demande concernant sp\xE9cifiquement\
+            \ la force partenaire"
+          enum:
+          - INFORMATION
+          - GENERAL
+          - CONCERN
+          - REPONSE
+          - DEMANDE
+          examples:
+          - INFORMATION
+        source:
+          type: string
+          title: "Source d'\xE9mission"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionElement/recipients/0/source
+          description: "Indique la source d\xE9clenchant l'envoi du pr\xE9sent message\
+            \ au syst\xE8me destinataire.\nPROPOSITION :\n- ABONNEMENT : le syst\xE8\
+            me destinataire est abonn\xE9 aux alertes concernant le syst\xE8me partenaire\n\
+            - MANUEL : le syst\xE8me partenaire a d\xE9clench\xE9 un envoi manuel\
+            \ du message\n- REPONSE : le message est envoy\xE9 dans le cadre d'une\
+            \ r\xE9ponse aux syst\xE8me partenaire"
+          enum:
+          - ABONNEMENT
+          - MANUEL
+          - REPONSE
+          examples:
+          - ABONNEMENT
+      example: example.json#/distributionElement/recipients/0
+      examples:
+      - name: samu-77
+        URI: sge:samu-77
+        reason: INFORMATION
+        source: ABONNEMENT
