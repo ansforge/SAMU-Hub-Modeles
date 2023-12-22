@@ -68,9 +68,9 @@ public class Emsi {
 
   public Emsi() {}
 
-  public Emsi RESOURCE(List<Resource> RESOURCE) {
+  public Emsi CONTEXT(Context CONTEXT) {
 
-    this.RESOURCE = RESOURCE;
+    this.CONTEXT = CONTEXT;
     return this;
   }
 
@@ -124,33 +124,33 @@ public class Emsi {
     if (this.MISSION == null) {
       this.MISSION = new ArrayList<>();
     }
-    this.RESOURCE.add(RESOURCEItem);
+    this.MISSION.add(MISSIONItem);
     return this;
   }
 
   /**
-   * Get RESOURCE
-   * @return RESOURCE
+   * Get MISSION
+   * @return MISSION
    **/
-  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonProperty(JSON_PROPERTY_M_I_S_S_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Resource> getRESOURCE() {
-    return RESOURCE;
+  public List<Mission> getMISSION() {
+    return MISSION;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
+  @JsonProperty(JSON_PROPERTY_M_I_S_S_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRESOURCE(List<Resource> RESOURCE) {
-    if (RESOURCE == null) {
+  public void setMISSION(List<Mission> MISSION) {
+    if (MISSION == null) {
       return;
     }
-    if (this.RESOURCE == null) {
-      this.RESOURCE = new ArrayList<>();
+    if (this.MISSION == null) {
+      this.MISSION = new ArrayList<>();
     }
-    this.RESOURCE.addAll(RESOURCE);
+    this.MISSION.addAll(MISSION);
   }
 
   public Emsi RESOURCE(List<Resource> RESOURCE) {
