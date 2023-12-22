@@ -39,25 +39,24 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * InsCycle
+ * INScycle
  */
-@JsonPropertyOrder(
-    {InsCycle.JSON_PROPERTY_STATUS, InsCycle.JSON_PROPERTY_ATTRIBUTE})
-@JsonTypeName("insCycle")
+@JsonPropertyOrder({INScycle.JSON_PROPERTY_PAT_I_DSTATUS,
+                    INScycle.JSON_PROPERTY_PAT_I_DATTRIBUTE})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class InsCycle {
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
+public class INScycle {
+  public static final String JSON_PROPERTY_PAT_I_DSTATUS = "patIDstatus";
+  private String patIDstatus;
 
-  public static final String JSON_PROPERTY_ATTRIBUTE = "attribute";
-  private String attribute;
+  public static final String JSON_PROPERTY_PAT_I_DATTRIBUTE = "patIDattribute";
+  private String patIDattribute;
 
-  public InsCycle() {}
+  public INScycle() {}
 
-  public InsCycle status(String status) {
+  public INScycle patIDstatus(String patIDstatus) {
 
-    this.status = status;
+    this.patIDstatus = patIDstatus;
     return this;
   }
 
@@ -68,24 +67,24 @@ public class InsCycle {
    *fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18]
    *précise en outre que le matricule INS et l’OID doivent être accompagnés
    *d’informations confirmant qu’ils ont été qualifiés.
-   * @return status
+   * @return patIDstatus
    **/
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(JSON_PROPERTY_PAT_I_DSTATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStatus() {
-    return status;
+  public String getPatIDstatus() {
+    return patIDstatus;
   }
 
-  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonProperty(JSON_PROPERTY_PAT_I_DSTATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
-    this.status = status;
+  public void setPatIDstatus(String patIDstatus) {
+    this.patIDstatus = patIDstatus;
   }
 
-  public InsCycle attribute(String attribute) {
+  public INScycle patIDattribute(String patIDattribute) {
 
-    this.attribute = attribute;
+    this.patIDattribute = patIDattribute;
     return this;
   }
 
@@ -93,19 +92,19 @@ public class InsCycle {
    * Le RNIV recommande que les logiciels référentiels d’identités gèrent a
    *minima les 3 attributs suivants : - identité homonyme, - identité douteuse,
    *- identité fictive.
-   * @return attribute
+   * @return patIDattribute
    **/
-  @JsonProperty(JSON_PROPERTY_ATTRIBUTE)
+  @JsonProperty(JSON_PROPERTY_PAT_I_DATTRIBUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getAttribute() {
-    return attribute;
+  public String getPatIDattribute() {
+    return patIDattribute;
   }
 
-  @JsonProperty(JSON_PROPERTY_ATTRIBUTE)
+  @JsonProperty(JSON_PROPERTY_PAT_I_DATTRIBUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttribute(String attribute) {
-    this.attribute = attribute;
+  public void setPatIDattribute(String patIDattribute) {
+    this.patIDattribute = patIDattribute;
   }
 
   @Override
@@ -116,23 +115,25 @@ public class InsCycle {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InsCycle insCycle = (InsCycle)o;
-    return Objects.equals(this.status, insCycle.status) &&
-        Objects.equals(this.attribute, insCycle.attribute);
+    INScycle inScycle = (INScycle)o;
+    return Objects.equals(this.patIDstatus, inScycle.patIDstatus) &&
+        Objects.equals(this.patIDattribute, inScycle.patIDattribute);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, attribute);
+    return Objects.hash(patIDstatus, patIDattribute);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InsCycle {\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    attribute: ")
-        .append(toIndentedString(attribute))
+    sb.append("class INScycle {\n");
+    sb.append("    patIDstatus: ")
+        .append(toIndentedString(patIDstatus))
+        .append("\n");
+    sb.append("    patIDattribute: ")
+        .append(toIndentedString(patIDattribute))
         .append("\n");
     sb.append("}");
     return sb.toString();
