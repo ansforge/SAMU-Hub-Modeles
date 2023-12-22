@@ -11,8 +11,7 @@
     ],
     "properties": {
         "createCase": {
-            "$ref": "#/definitions/createCase",
-            "x-health-only": false
+            "$ref": "#/definitions/createCase"
         }
     },
     "definitions": {
@@ -65,16 +64,13 @@
                     "description": "Indique le num\u00e9ro de version du r\u00e9f\u00e9rentiel des nomenclatures des codes transmis. \nCela permet aux diff\u00e9rents syst\u00e8mes de s'assurer qu'ils utilisent la m\u00eame version des codes de nomenclature que leurs partenaires."
                 },
                 "qualification": {
-                    "$ref": "#/definitions/qualification",
-                    "x-health-only": false
+                    "$ref": "#/definitions/qualification"
                 },
                 "location": {
-                    "$ref": "#/definitions/location",
-                    "x-health-only": false
+                    "$ref": "#/definitions/location"
                 },
                 "initialAlert": {
-                    "$ref": "#/definitions/alert",
-                    "x-health-only": false
+                    "$ref": "#/definitions/alert"
                 },
                 "crratransfert": {
                     "type": "string",
@@ -87,31 +83,26 @@
                 "operators": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/operators",
-                        "x-health-only": true
+                        "$ref": "#/definitions/operators"
                     }
                 },
                 "patients": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/patients",
-                        "x-health-only": true
+                        "$ref": "#/definitions/patients"
                     }
                 },
                 "medicalAnalysis": {
-                    "$ref": "#/definitions/medicalAnalysis",
-                    "x-health-only": true
+                    "$ref": "#/definitions/medicalAnalysis"
                 },
                 "newAlert": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/alert",
-                        "x-health-only": false
+                        "$ref": "#/definitions/alert"
                     }
                 },
                 "additionalInformation": {
-                    "$ref": "#/definitions/additionalInformation",
-                    "x-health-only": false
+                    "$ref": "#/definitions/additionalInformation"
                 },
                 "freetext": {
                     "type": "string",
@@ -134,27 +125,22 @@
             ],
             "properties": {
                 "whatsHappen": {
-                    "$ref": "#/definitions/nomenclature",
-                    "x-health-only": false
+                    "$ref": "#/definitions/nomenclature"
                 },
                 "locationKind": {
-                    "$ref": "#/definitions/nomenclature",
-                    "x-health-only": false
+                    "$ref": "#/definitions/nomenclature"
                 },
                 "riskThreat": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/nomenclature",
-                        "x-health-only": false
+                        "$ref": "#/definitions/nomenclature"
                     }
                 },
                 "healthMotive": {
-                    "$ref": "#/definitions/nomenclature",
-                    "x-health-only": false
+                    "$ref": "#/definitions/nomenclature"
                 },
                 "filefuture": {
-                    "$ref": "#/definitions/filefuture",
-                    "x-health-only": true
+                    "$ref": "#/definitions/filefuture"
                 },
                 "fileusage": {
                     "type": "string",
@@ -179,8 +165,7 @@
                     ]
                 },
                 "victims": {
-                    "$ref": "#/definitions/victims",
-                    "x-health-only": false
+                    "$ref": "#/definitions/victims"
                 }
             },
             "example": "example.json#/createCase/qualification"
@@ -221,26 +206,21 @@
                     "description": "Indique le nom de lieu : nom commercial, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
                 },
                 "detailedAdress": {
-                    "$ref": "#/definitions/detailedAdress",
-                    "x-health-only": false
+                    "$ref": "#/definitions/detailedAdress"
                 },
                 "city": {
-                    "$ref": "#/definitions/city",
-                    "x-health-only": false
+                    "$ref": "#/definitions/city"
                 },
                 "access": {
-                    "$ref": "#/definitions/access",
-                    "x-health-only": false
+                    "$ref": "#/definitions/access"
                 },
                 "geometry": {
-                    "$ref": "#/definitions/geometry",
-                    "x-health-only": false
+                    "$ref": "#/definitions/geometry"
                 },
                 "externalInfo": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/externalInfo",
-                        "x-health-only": false
+                        "$ref": "#/definitions/externalInfo"
                     }
                 },
                 "country": {
@@ -559,30 +539,24 @@
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte"
                 },
                 "caller": {
-                    "$ref": "#/definitions/caller",
-                    "x-health-only": false
+                    "$ref": "#/definitions/caller"
                 },
                 "alertSource": {
-                    "$ref": "#/definitions/contactSource",
-                    "x-health-only": false
+                    "$ref": "#/definitions/contactSource"
                 },
                 "location": {
-                    "$ref": "#/definitions/location",
-                    "x-health-only": false
+                    "$ref": "#/definitions/location"
                 },
                 "qualification": {
-                    "$ref": "#/definitions/qualification",
-                    "x-health-only": false
+                    "$ref": "#/definitions/qualification"
                 },
                 "callTaker": {
-                    "$ref": "#/definitions/callTaker",
-                    "x-health-only": false
+                    "$ref": "#/definitions/callTaker"
                 },
                 "attachment": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/attachment",
-                        "x-health-only": false
+                        "$ref": "#/definitions/attachment"
                     }
                 }
             },
@@ -653,17 +627,14 @@
                 "patientFile": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/identifier",
-                        "x-health-only": true
+                        "$ref": "#/definitions/identifier"
                     }
                 },
                 "patientwhatsHappen": {
-                    "$ref": "#/definitions/nomenclature",
-                    "x-health-only": true
+                    "$ref": "#/definitions/nomenclature"
                 },
                 "patinfo": {
-                    "$ref": "#/definitions/patinfo",
-                    "x-health-only": true
+                    "$ref": "#/definitions/patinfo"
                 }
             },
             "example": "example.json#/createCase/patients/0"
@@ -686,24 +657,20 @@
                 "medicalfile": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/medicalfile",
-                        "x-health-only": true
+                        "$ref": "#/definitions/medicalfile"
                     }
                 },
                 "patPathway": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/patientPathway",
-                        "x-health-only": true
+                        "$ref": "#/definitions/patientPathway"
                     }
                 },
                 "hypothesis": {
-                    "$ref": "#/definitions/hypothesis",
-                    "x-health-only": true
+                    "$ref": "#/definitions/hypothesis"
                 },
                 "resourceDiagnosis": {
-                    "$ref": "#/definitions/nomenclature",
-                    "x-health-only": true
+                    "$ref": "#/definitions/nomenclature"
                 }
             },
             "example": "example.json#/createCase/medicalAnalysis"
@@ -716,8 +683,7 @@
             "required": [],
             "properties": {
                 "customMap": {
-                    "$ref": "#/definitions/customMap",
-                    "x-health-only": false
+                    "$ref": "#/definitions/customMap"
                 }
             },
             "example": "example.json#/createCase/additionalInformation"
@@ -865,8 +831,7 @@
                     "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
                 },
                 "wayName": {
-                    "$ref": "#/definitions/wayName",
-                    "x-health-only": false
+                    "$ref": "#/definitions/wayName"
                 }
             },
             "example": "example.json#/createCase/location/detailedAdress"
@@ -1011,8 +976,7 @@
                     "format": "date-time"
                 },
                 "point": {
-                    "$ref": "#/definitions/point",
-                    "x-health-only": false
+                    "$ref": "#/definitions/point"
                 },
                 "sketch": {
                     "type": "string",
@@ -1119,8 +1083,7 @@
             ],
             "properties": {
                 "coord": {
-                    "$ref": "#/definitions/coord",
-                    "x-health-only": false
+                    "$ref": "#/definitions/coord"
                 },
                 "sysCoord": {
                     "type": "string",
@@ -1210,12 +1173,10 @@
             "required": [],
             "properties": {
                 "callerContact": {
-                    "$ref": "#/definitions/contact",
-                    "x-health-only": false
+                    "$ref": "#/definitions/contact"
                 },
                 "callbackContact": {
-                    "$ref": "#/definitions/contact",
-                    "x-health-only": false
+                    "$ref": "#/definitions/contact"
                 },
                 "language": {
                     "type": "string",
@@ -1493,8 +1454,7 @@
                     "description": "Informations compl\u00e9mentaires sur le requ\u00e9rant \nLes informations peuvent \u00eatre pass\u00e9es sous forme de texte libre ou via une liste d'adjectif"
                 },
                 "detailedName": {
-                    "$ref": "#/definitions/detailedName",
-                    "x-health-only": false
+                    "$ref": "#/definitions/detailedName"
                 }
             },
             "example": "example.json#/createCase/initialAlert/caller"
@@ -1582,8 +1542,7 @@
                     "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)"
                 },
                 "calltakeContact": {
-                    "$ref": "#/definitions/contact",
-                    "x-health-only": false
+                    "$ref": "#/definitions/contact"
                 },
                 "calltakerId": {
                     "type": "string",
@@ -1741,40 +1700,32 @@
                 "patientID": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/patientid",
-                        "x-health-only": true
+                        "$ref": "#/definitions/patientid"
                     }
                 },
                 "INScycle": {
-                    "$ref": "#/definitions/INScycle",
-                    "x-health-only": true
+                    "$ref": "#/definitions/INScycle"
                 },
                 "matINS": {
-                    "$ref": "#/definitions/matINS",
-                    "x-health-only": true
+                    "$ref": "#/definitions/matINS"
                 },
                 "strictINStraits": {
-                    "$ref": "#/definitions/strictINStraits",
-                    "x-health-only": true
+                    "$ref": "#/definitions/strictINStraits"
                 },
                 "nonstrictINStraits": {
-                    "$ref": "#/definitions/nonstrictINStraits",
-                    "x-health-only": true
+                    "$ref": "#/definitions/nonstrictINStraits"
                 },
                 "patientContact": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/contact",
-                        "x-health-only": true
+                        "$ref": "#/definitions/contact"
                     }
                 },
                 "patientAddress": {
-                    "$ref": "#/definitions/personalAddress",
-                    "x-health-only": true
+                    "$ref": "#/definitions/personalAddress"
                 },
                 "personalGP": {
-                    "$ref": "#/definitions/personalGP",
-                    "x-health-only": true
+                    "$ref": "#/definitions/personalGP"
                 }
             },
             "example": "example.json#/createCase/patients/0/patientFile/0"
@@ -1998,12 +1949,10 @@
             "required": [],
             "properties": {
                 "detailedAddress": {
-                    "$ref": "#/definitions/detailedAddress",
-                    "x-health-only": true
+                    "$ref": "#/definitions/detailedAddress"
                 },
                 "city": {
-                    "$ref": "#/definitions/city",
-                    "x-health-only": true
+                    "$ref": "#/definitions/city"
                 }
             },
             "example": "example.json#/createCase/patients/0/patientFile/0/patientAddress"
@@ -2040,14 +1989,12 @@
                     "description": "Num\u00e9ro RPPS du m\u00e9decin traitant"
                 },
                 "GPAddress": {
-                    "$ref": "#/definitions/personalAddress",
-                    "x-health-only": true
+                    "$ref": "#/definitions/personalAddress"
                 },
                 "GPContact": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/contact",
-                        "x-health-only": true
+                        "$ref": "#/definitions/contact"
                     }
                 }
             },
@@ -2070,8 +2017,7 @@
             "required": [],
             "properties": {
                 "operators": {
-                    "$ref": "#/definitions/operators",
-                    "x-health-only": true
+                    "$ref": "#/definitions/operators"
                 },
                 "freetext": {
                     "type": "array",
@@ -2156,8 +2102,7 @@
                     "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
                 },
                 "patdestination": {
-                    "$ref": "#/definitions/patdestination",
-                    "x-health-only": true
+                    "$ref": "#/definitions/patdestination"
                 },
                 "carelevel": {
                     "type": "string",
@@ -2183,14 +2128,12 @@
             "required": [],
             "properties": {
                 "mainDiagnosis": {
-                    "$ref": "#/definitions/nomenclature",
-                    "x-health-only": true
+                    "$ref": "#/definitions/nomenclature"
                 },
                 "otherDiagnosis": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/nomenclature",
-                        "x-health-only": true
+                        "$ref": "#/definitions/nomenclature"
                     }
                 }
             },

@@ -12,7 +12,6 @@ components:
       properties:
         emsi:
           $ref: '#/components/schemas/emsi'
-          x-health-only: false
     emsi:
       type: object
       title: Objet emsi
@@ -24,20 +23,16 @@ components:
       properties:
         CONTEXT:
           $ref: '#/components/schemas/context'
-          x-health-only: false
         EVENT:
           $ref: '#/components/schemas/event'
-          x-health-only: false
         MISSION:
           type: array
           items:
             $ref: '#/components/schemas/mission'
-            x-health-only: false
         RESOURCE:
           type: array
           items:
             $ref: '#/components/schemas/resource'
-            x-health-only: false
       example: example.json#/emsi
     context:
       type: object
@@ -114,7 +109,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
-            x-health-only: false
         LEVEL:
           type: string
           title: Niveau
@@ -169,12 +163,10 @@ components:
           - "Contexte de grand incendie \xE0 Nantes"
         ORIGIN:
           $ref: '#/components/schemas/origin'
-          x-health-only: false
         EXTERNAL_INFO:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
-            x-health-only: false
         URGENCY:
           type: string
           title: "Niveau d'urgence de l'\xE9v\xE9nement"
@@ -230,7 +222,6 @@ components:
           - samuA:CA126B445579GD4A67AV
         ETYPE:
           $ref: '#/components/schemas/etype'
-          x-health-only: false
         SOURCE:
           type: string
           title: Source
@@ -359,22 +350,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/reference'
-            x-health-only: false
         CASUALTIES:
           type: array
           items:
             $ref: '#/components/schemas/casualties'
-            x-health-only: false
         EVAC:
           type: array
           items:
             $ref: '#/components/schemas/evac'
-            x-health-only: false
         EGEO:
           type: array
           items:
             $ref: '#/components/schemas/egeo'
-            x-health-only: false
         CAUSE:
           type: string
           title: Cause
@@ -762,7 +749,6 @@ components:
           - /FF#bb511708-b004-4d7e-8820-1d56c19f1855
         POSITION:
           $ref: '#/components/schemas/position'
-          x-health-only: false
         PRIORITY:
           type: string
           title: "Priorit\xE9 de la mission"
@@ -794,7 +780,6 @@ components:
       properties:
         RTYPE:
           $ref: '#/components/schemas/rtype'
-          x-health-only: false
         ID:
           type: string
           title: ID de la ressource
@@ -855,7 +840,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/rgeo'
-            x-health-only: false
         QUANTITY:
           type: number
           title: "Quantit\xE9 de la ressource"
@@ -969,7 +953,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact'
-            x-health-only: false
       example: example.json#/emsi/RESOURCE/0
     link:
       type: object
@@ -1781,7 +1764,6 @@ components:
           - Un peu de pluie vers 8h
         POSITION:
           $ref: '#/components/schemas/position'
-          x-health-only: false
       example: example.json#/emsi/EVENT/EGEO/0
     position:
       type: object
@@ -1849,7 +1831,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/coord'
-            x-health-only: false
         ADDRESS:
           type: array
           x-health-only: false
@@ -2634,7 +2615,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/position'
-            x-health-only: false
       example: example.json#/emsi/RESOURCE/0/RGEO/0
     contact:
       type: object

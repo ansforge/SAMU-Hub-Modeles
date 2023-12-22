@@ -12,7 +12,6 @@ components:
       properties:
         createCase:
           $ref: '#/components/schemas/createCase'
-          x-health-only: false
     createCase:
       type: object
       title: Objet createCase
@@ -87,13 +86,10 @@ components:
           - '1.2'
         qualification:
           $ref: '#/components/schemas/qualification'
-          x-health-only: false
         location:
           $ref: '#/components/schemas/location'
-          x-health-only: false
         initialAlert:
           $ref: '#/components/schemas/alert'
-          x-health-only: false
         crratransfert:
           type: string
           title: CRRA traitant
@@ -117,23 +113,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/operators'
-            x-health-only: true
         patients:
           type: array
           items:
             $ref: '#/components/schemas/patients'
-            x-health-only: true
         medicalAnalysis:
           $ref: '#/components/schemas/medicalAnalysis'
-          x-health-only: true
         newAlert:
           type: array
           items:
             $ref: '#/components/schemas/alert'
-            x-health-only: false
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
-          x-health-only: false
         freetext:
           type: string
           title: Description de l'affaire/dossier
@@ -155,21 +146,16 @@ components:
       properties:
         whatsHappen:
           $ref: '#/components/schemas/nomenclature'
-          x-health-only: false
         locationKind:
           $ref: '#/components/schemas/nomenclature'
-          x-health-only: false
         riskThreat:
           type: array
           items:
             $ref: '#/components/schemas/nomenclature'
-            x-health-only: false
         healthMotive:
           $ref: '#/components/schemas/nomenclature'
-          x-health-only: false
         filefuture:
           $ref: '#/components/schemas/filefuture'
-          x-health-only: true
         fileusage:
           type: string
           title: Attribution du dossier
@@ -196,7 +182,6 @@ components:
           - P0, P1, P2, P3
         victims:
           $ref: '#/components/schemas/victims'
-          x-health-only: false
       example: example.json#/createCase/qualification
     location:
       type: object
@@ -245,21 +230,16 @@ components:
           - "Lyc\xE9e Pierre de Coubertin"
         detailedAdress:
           $ref: '#/components/schemas/detailedAdress'
-          x-health-only: false
         city:
           $ref: '#/components/schemas/city'
-          x-health-only: false
         access:
           $ref: '#/components/schemas/access'
-          x-health-only: false
         geometry:
           $ref: '#/components/schemas/geometry'
-          x-health-only: false
         externalInfo:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
-            x-health-only: false
         country:
           type: string
           title: Pays
@@ -601,24 +581,18 @@ components:
           - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
         caller:
           $ref: '#/components/schemas/caller'
-          x-health-only: false
         alertSource:
           $ref: '#/components/schemas/contactSource'
-          x-health-only: false
         location:
           $ref: '#/components/schemas/location'
-          x-health-only: false
         qualification:
           $ref: '#/components/schemas/qualification'
-          x-health-only: false
         callTaker:
           $ref: '#/components/schemas/callTaker'
-          x-health-only: false
         attachment:
           type: array
           items:
             $ref: '#/components/schemas/attachment'
-            x-health-only: false
       example: example.json#/createCase/initialAlert
     operators:
       type: object
@@ -694,13 +668,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/identifier'
-            x-health-only: true
         patientwhatsHappen:
           $ref: '#/components/schemas/nomenclature'
-          x-health-only: true
         patinfo:
           $ref: '#/components/schemas/patinfo'
-          x-health-only: true
       example: example.json#/createCase/patients/0
     medicalAnalysis:
       type: object
@@ -723,18 +694,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalfile'
-            x-health-only: true
         patPathway:
           type: array
           items:
             $ref: '#/components/schemas/patientPathway'
-            x-health-only: true
         hypothesis:
           $ref: '#/components/schemas/hypothesis'
-          x-health-only: true
         resourceDiagnosis:
           $ref: '#/components/schemas/nomenclature'
-          x-health-only: true
       example: example.json#/createCase/medicalAnalysis
     additionalInformation:
       type: object
@@ -745,7 +712,6 @@ components:
       properties:
         customMap:
           $ref: '#/components/schemas/customMap'
-          x-health-only: false
       example: example.json#/createCase/additionalInformation
     nomenclature:
       type: object
@@ -916,7 +882,6 @@ components:
           - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/components/schemas/wayName'
-          x-health-only: false
       example: example.json#/createCase/location/detailedAdress
     city:
       type: object
@@ -1083,7 +1048,6 @@ components:
           - '2022-09-27T08:23:34+02:00'
         point:
           $ref: '#/components/schemas/point'
-          x-health-only: false
         sketch:
           type: string
           title: "Formes g\xE9om\xE9triques"
@@ -1208,7 +1172,6 @@ components:
       properties:
         coord:
           $ref: '#/components/schemas/coord'
-          x-health-only: false
         sysCoord:
           type: string
           title: "Syst\xE8me de coordonn\xE9es"
@@ -1316,10 +1279,8 @@ components:
       properties:
         callerContact:
           $ref: '#/components/schemas/contact'
-          x-health-only: false
         callbackContact:
           $ref: '#/components/schemas/contact'
-          x-health-only: false
         language:
           type: string
           title: "Langue parl\xE9e"
@@ -1605,7 +1566,6 @@ components:
           - "P\xE8re"
         detailedName:
           $ref: '#/components/schemas/detailedName'
-          x-health-only: false
       example: example.json#/createCase/initialAlert/caller
     contactSource:
       type: object
@@ -1703,7 +1663,6 @@ components:
           - ARM
         calltakeContact:
           $ref: '#/components/schemas/contact'
-          x-health-only: false
         calltakerId:
           type: string
           title: ID de l'agent
@@ -1898,30 +1857,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patientid'
-            x-health-only: true
         INScycle:
           $ref: '#/components/schemas/INScycle'
-          x-health-only: true
         matINS:
           $ref: '#/components/schemas/matINS'
-          x-health-only: true
         strictINStraits:
           $ref: '#/components/schemas/strictINStraits'
-          x-health-only: true
         nonstrictINStraits:
           $ref: '#/components/schemas/nonstrictINStraits'
-          x-health-only: true
         patientContact:
           type: array
           items:
             $ref: '#/components/schemas/contact'
-            x-health-only: true
         patientAddress:
           $ref: '#/components/schemas/personalAddress'
-          x-health-only: true
         personalGP:
           $ref: '#/components/schemas/personalGP'
-          x-health-only: true
       example: example.json#/createCase/patients/0/patientFile/0
     patinfo:
       type: object
@@ -2201,10 +2152,8 @@ components:
       properties:
         detailedAddress:
           $ref: '#/components/schemas/detailedAddress'
-          x-health-only: true
         city:
           $ref: '#/components/schemas/city'
-          x-health-only: true
       example: example.json#/createCase/patients/0/patientFile/0/patientAddress
       examples:
       - detailedAddress: &id001 {}
@@ -2245,12 +2194,10 @@ components:
           - None
         GPAddress:
           $ref: '#/components/schemas/personalAddress'
-          x-health-only: true
         GPContact:
           type: array
           items:
             $ref: '#/components/schemas/contact'
-            x-health-only: true
       example: example.json#/createCase/patients/0/patientFile/0/personalGP
     detailedAddress:
       type: object
@@ -2271,7 +2218,6 @@ components:
       properties:
         operators:
           $ref: '#/components/schemas/operators'
-          x-health-only: true
         freetext:
           type: array
           x-health-only: true
@@ -2361,7 +2307,6 @@ components:
           - "M\xE9dical, param\xE9dical, secouriste"
         patdestination:
           $ref: '#/components/schemas/patdestination'
-          x-health-only: true
         carelevel:
           type: string
           title: Niveau de soin
@@ -2385,12 +2330,10 @@ components:
       properties:
         mainDiagnosis:
           $ref: '#/components/schemas/nomenclature'
-          x-health-only: true
         otherDiagnosis:
           type: array
           items:
             $ref: '#/components/schemas/nomenclature'
-            x-health-only: true
       example: example.json#/createCase/medicalAnalysis/hypothesis
     patdestination:
       type: object

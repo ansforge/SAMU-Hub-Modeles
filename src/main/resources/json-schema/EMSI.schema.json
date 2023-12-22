@@ -11,8 +11,7 @@
     ],
     "properties": {
         "emsi": {
-            "$ref": "#/definitions/emsi",
-            "x-health-only": false
+            "$ref": "#/definitions/emsi"
         }
     },
     "definitions": {
@@ -27,25 +26,21 @@
             ],
             "properties": {
                 "CONTEXT": {
-                    "$ref": "#/definitions/context",
-                    "x-health-only": false
+                    "$ref": "#/definitions/context"
                 },
                 "EVENT": {
-                    "$ref": "#/definitions/event",
-                    "x-health-only": false
+                    "$ref": "#/definitions/event"
                 },
                 "MISSION": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/mission",
-                        "x-health-only": false
+                        "$ref": "#/definitions/mission"
                     }
                 },
                 "RESOURCE": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/resource",
-                        "x-health-only": false
+                        "$ref": "#/definitions/resource"
                     }
                 }
             },
@@ -112,8 +107,7 @@
                 "LINK": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/link",
-                        "x-health-only": false
+                        "$ref": "#/definitions/link"
                     }
                 },
                 "LEVEL": {
@@ -154,14 +148,12 @@
                     "description": "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\u00e9v\u00e9nement g\u00e9n\u00e9rateur\nRG 1 : la valeur de <context><freetext> reste \u00e0  'Cr\u00e9ation d'un \u00e9v\u00e9nement op\u00e9rationnel EMSI' & version & 'suite \u00e0 r\u00e9ception d'une affaire*' dans le cadre de la cr\u00e9ation d'une op\u00e9ration commune (conforme RG 2 de NEXSIS-6618)\nRG 3 : les \u00e9v\u00e9nements g\u00e9n\u00e9rateurs sont ceux d\u00e9finis au sein de NEXSIS-6619 RG 1 de tra\u00e7abilit\u00e9  ( input = <Evenement \u00e0 l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajout\u00e9s  les \u00e9ventuels \u00e9v\u00e9nements \u00e0 venir."
                 },
                 "ORIGIN": {
-                    "$ref": "#/definitions/origin",
-                    "x-health-only": false
+                    "$ref": "#/definitions/origin"
                 },
                 "EXTERNAL_INFO": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/externalInfo",
-                        "x-health-only": false
+                        "$ref": "#/definitions/externalInfo"
                     }
                 },
                 "URGENCY": {
@@ -213,8 +205,7 @@
                     "description": "Identifiant d\u2019affaire partag\u00e9 issu du message RC-EDA transmis en amont\nNB : Dans le cas d\u2019un partage initi\u00e9 par un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
                 },
                 "ETYPE": {
-                    "$ref": "#/definitions/etype",
-                    "x-health-only": false
+                    "$ref": "#/definitions/etype"
                 },
                 "SOURCE": {
                     "type": "string",
@@ -313,29 +304,25 @@
                 "REFERENCE": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/reference",
-                        "x-health-only": false
+                        "$ref": "#/definitions/reference"
                     }
                 },
                 "CASUALTIES": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/casualties",
-                        "x-health-only": false
+                        "$ref": "#/definitions/casualties"
                     }
                 },
                 "EVAC": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/evac",
-                        "x-health-only": false
+                        "$ref": "#/definitions/evac"
                     }
                 },
                 "EGEO": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/egeo",
-                        "x-health-only": false
+                        "$ref": "#/definitions/egeo"
                     }
                 },
                 "CAUSE": {
@@ -652,8 +639,7 @@
                     "description": "- Dans le cas d'une mission g\u00e9n\u00e9rique de r\u00e9ponse \u00e0 demande de concours, indiquer l'ID de la mission g\u00e9n\u00e9rique utilis\u00e9e pour mod\u00e9liser la demande de concours\n- Dans le cas d'une mission d\u00e9clench\u00e9e dans le cadre d'une r\u00e9ponse \u00e0 demande de concours, l'ID de la mission g\u00e9n\u00e9rique de r\u00e9ponse peut \u00eatre utilis\u00e9e dans ce champ pour indiquer qu'elle est li\u00e9e \u00e0 une r\u00e9ponse"
                 },
                 "POSITION": {
-                    "$ref": "#/definitions/position",
-                    "x-health-only": false
+                    "$ref": "#/definitions/position"
                 },
                 "PRIORITY": {
                     "type": "string",
@@ -684,8 +670,7 @@
             ],
             "properties": {
                 "RTYPE": {
-                    "$ref": "#/definitions/rtype",
-                    "x-health-only": false
+                    "$ref": "#/definitions/rtype"
                 },
                 "ID": {
                     "type": "string",
@@ -722,8 +707,7 @@
                 "RGEO": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/rgeo",
-                        "x-health-only": false
+                        "$ref": "#/definitions/rgeo"
                     }
                 },
                 "QUANTITY": {
@@ -822,8 +806,7 @@
                 "CONTACTS": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/contact",
-                        "x-health-only": false
+                        "$ref": "#/definitions/contact"
                     }
                 }
             },
@@ -1571,8 +1554,7 @@
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION"
                 },
                 "POSITION": {
-                    "$ref": "#/definitions/position",
-                    "x-health-only": false
+                    "$ref": "#/definitions/position"
                 }
             },
             "example": "example.json#/emsi/EVENT/EGEO/0"
@@ -1629,8 +1611,7 @@
                 "COORD": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/coord",
-                        "x-health-only": false
+                        "$ref": "#/definitions/coord"
                     }
                 },
                 "ADDRESS": {
@@ -2389,8 +2370,7 @@
                 "POSITION": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/position",
-                        "x-health-only": false
+                        "$ref": "#/definitions/position"
                     }
                 }
             },
