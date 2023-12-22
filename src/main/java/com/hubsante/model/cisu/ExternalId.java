@@ -34,73 +34,109 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.City;
-import com.hubsante.model.cisu.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * ExternalId
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder(
+    {ExternalId.JSON_PROPERTY_SOURCE, ExternalId.JSON_PROPERTY_VALUE})
+@JsonTypeName("externalId")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class ExternalId {
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  /**
+   * Type de l&#39;identifiant fourni
+   */
+  public enum SourceEnum {
+    NIR("NIR"),
 
-  public PersonalAddress() {}
+    SINUS("SINUS"),
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+    SI_VIC("SI-VIC"),
 
-    this.detailedAddress = detailedAddress;
+    _("…");
+
+    private String value;
+
+    SourceEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
+
+  public static final String JSON_PROPERTY_VALUE = "value";
+  private String value;
+
+  public ExternalId() {}
+
+  public ExternalId source(SourceEnum source) {
+
+    this.source = source;
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * Type de l&#39;identifiant fourni
+   * @return source
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public SourceEnum getSource() {
+    return source;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
-  public PersonalAddress city(City city) {
+  public ExternalId value(String value) {
 
-    this.city = city;
+    this.value = value;
     return this;
   }
 
   /**
-   * Get city
-   * @return city
+   * L&#39;identifiant en lui-même
+   * @return value
    **/
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public City getCity() {
-    return city;
+  public String getValue() {
+    return value;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  public void setValue(String value) {
+    this.value = value;
   }
 
   @Override
@@ -111,25 +147,22 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    ExternalId externalId = (ExternalId)o;
+    return Objects.equals(this.source, externalId.source) &&
+        Objects.equals(this.value, externalId.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(source, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
-        .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("class ExternalId {\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

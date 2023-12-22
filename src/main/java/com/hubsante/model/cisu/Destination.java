@@ -34,73 +34,98 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.City;
-import com.hubsante.model.cisu.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * Destination
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder({Destination.JSON_PROPERTY_FACILITY,
+                    Destination.JSON_PROPERTY_SERVICE,
+                    Destination.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("destination")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class Destination {
+  public static final String JSON_PROPERTY_FACILITY = "facility";
+  private String facility;
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  public static final String JSON_PROPERTY_SERVICE = "service";
+  private String service;
 
-  public PersonalAddress() {}
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private String freetext;
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+  public Destination() {}
 
-    this.detailedAddress = detailedAddress;
+  public Destination facility(String facility) {
+
+    this.facility = facility;
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * Get facility
+   * @return facility
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_FACILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public String getFacility() {
+    return facility;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_FACILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
+  public void setFacility(String facility) {
+    this.facility = facility;
   }
 
-  public PersonalAddress city(City city) {
+  public Destination service(String service) {
 
-    this.city = city;
+    this.service = service;
     return this;
   }
 
   /**
-   * Get city
-   * @return city
+   * Get service
+   * @return service
    **/
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_SERVICE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public City getCity() {
-    return city;
+  public String getService() {
+    return service;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_SERVICE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  public void setService(String service) {
+    this.service = service;
+  }
+
+  public Destination freetext(String freetext) {
+
+    this.freetext = freetext;
+    return this;
+  }
+
+  /**
+   * Get freetext
+   * @return freetext
+   **/
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFreetext() {
+    return freetext;
+  }
+
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   @Override
@@ -111,25 +136,24 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    Destination destination = (Destination)o;
+    return Objects.equals(this.facility, destination.facility) &&
+        Objects.equals(this.service, destination.service) &&
+        Objects.equals(this.freetext, destination.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(facility, service, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
-        .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("class Destination {\n");
+    sb.append("    facility: ").append(toIndentedString(facility)).append("\n");
+    sb.append("    service: ").append(toIndentedString(service)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

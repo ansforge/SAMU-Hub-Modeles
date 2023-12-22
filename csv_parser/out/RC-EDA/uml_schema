@@ -39,12 +39,12 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
-	filefuture [label=<<TABLE>
+	details [label=<<TABLE>
                 <TR>
-                <TD><B>filefuture</B></TD>
+                <TD><B>details</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet filefuture</I> <B>15-15</B><BR/>filestatus <I>string</I> : [0..1] <B>15-15</B><BR/>filetype <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet caseDetails</I> <B>15-15</B><BR/>status <I>string</I> : [0..1] <B>15-15</B><BR/>type <I>string</I> : [0..1] <B>15-15</B><BR/>attribution <I>string</I> : [0..1] <B>15-15</B><BR/>priority <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	filefuture -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -62,7 +62,7 @@ strict digraph {
                 <TD><B>qualification</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet qualification</I><BR/>fileusage <I>string</I> : [0..1] <B>15-15</B><BR/>medicalPriority <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet qualification</I></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	qualification -> createCase [constraint=true headlabel=1 taillabel=1]
@@ -74,16 +74,16 @@ strict digraph {
                 <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>string</I> : [0..1]<BR/>name <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
-	wayName -> detailedAdress [constraint=true headlabel=1 taillabel="0..1"]
-	detailedAdress [label=<<TABLE>
+	wayName -> detailedAddress [constraint=true headlabel=1 taillabel="0..1"]
+	detailedAddress [label=<<TABLE>
                 <TR>
-                <TD><B>detailedAdress</B></TD>
+                <TD><B>detailedAddress</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
+                <TD><I>objet detailedAddress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
-	detailedAdress -> location [constraint=true headlabel=1 taillabel="0..1"]
+	detailedAddress -> location [constraint=true headlabel=1 taillabel="0..1"]
 	city [label=<<TABLE>
                 <TR>
                 <TD><B>city</B></TD>
@@ -98,7 +98,7 @@ strict digraph {
                 <TD><B>access</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet access</I><BR/>floor <I>string</I> : [0..1]<BR/>roomNumber <I>string</I> : [0..1]<BR/>interphone <I>string</I> : [0..1]<BR/>accessCode <I>string</I> : [0..*]<BR/>elevator <I>string</I> : [0..1]<BR/>buildingName <I>string</I> : [0..1]<BR/>entrance <I>string</I> : [0..1]<BR/>entity <I>string</I> : [0..1]<BR/>locphonenumber <I>number</I> : [0..1]</TD>
+                <TD><I>objet access</I><BR/>floor <I>string</I> : [0..1]<BR/>roomNumber <I>string</I> : [0..1]<BR/>interphone <I>string</I> : [0..1]<BR/>accessCode <I>string</I> : [0..*]<BR/>elevator <I>string</I> : [0..1]<BR/>buildingName <I>string</I> : [0..1]<BR/>entrance <I>string</I> : [0..1]<BR/>entity <I>string</I> : [0..1]<BR/>phoneNumber <I>number</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	access -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -179,7 +179,7 @@ strict digraph {
                 <TD><B>caller</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet caller</I><BR/>language <I>string</I> : [0..1]<BR/>reqtype <I>string</I> : [0..1]<BR/>communication <I>string</I> : [0..1]<BR/>freetext <I>string</I> : [0..1]</TD>
+                <TD><I>objet caller</I><BR/>language <I>string</I> : [0..1]<BR/>type <I>string</I> : [0..1]<BR/>communication <I>string</I> : [0..1]<BR/>freetext <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	caller -> initialAlert [constraint=true headlabel=1 taillabel=1]
@@ -200,16 +200,16 @@ strict digraph {
                 <TD><I>objet wayName</I><BR/>complete <I>string</I> : [1..1]<BR/>type <I>string</I> : [0..1]<BR/>name <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
-	wayName -> detailedAdress [constraint=true headlabel=1 taillabel="0..1"]
-	detailedAdress [label=<<TABLE>
+	wayName -> detailedAddress [constraint=true headlabel=1 taillabel="0..1"]
+	detailedAddress [label=<<TABLE>
                 <TR>
-                <TD><B>detailedAdress</B></TD>
+                <TD><B>detailedAddress</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet detailedAdress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
+                <TD><I>objet detailedAddress</I><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
-	detailedAdress -> location [constraint=true headlabel=1 taillabel="0..1"]
+	detailedAddress -> location [constraint=true headlabel=1 taillabel="0..1"]
 	city [label=<<TABLE>
                 <TR>
                 <TD><B>city</B></TD>
@@ -224,7 +224,7 @@ strict digraph {
                 <TD><B>access</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet access</I><BR/>floor <I>string</I> : [0..1]<BR/>roomNumber <I>string</I> : [0..1]<BR/>interphone <I>string</I> : [0..1]<BR/>accessCode <I>string</I> : [0..*]<BR/>elevator <I>string</I> : [0..1]<BR/>buildingName <I>string</I> : [0..1]<BR/>entrance <I>string</I> : [0..1]<BR/>entity <I>string</I> : [0..1]<BR/>locphonenumber <I>number</I> : [0..1]</TD>
+                <TD><I>objet access</I><BR/>floor <I>string</I> : [0..1]<BR/>roomNumber <I>string</I> : [0..1]<BR/>interphone <I>string</I> : [0..1]<BR/>accessCode <I>string</I> : [0..*]<BR/>elevator <I>string</I> : [0..1]<BR/>buildingName <I>string</I> : [0..1]<BR/>entrance <I>string</I> : [0..1]<BR/>entity <I>string</I> : [0..1]<BR/>phoneNumber <I>number</I> : [0..1]</TD>
                 </TR>
                 </TABLE>>]
 	access -> location [constraint=true headlabel=1 taillabel="0..1"]
@@ -309,12 +309,12 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
-	filefuture [label=<<TABLE>
+	details [label=<<TABLE>
                 <TR>
-                <TD><B>filefuture</B></TD>
+                <TD><B>details</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet filefuture</I> <B>15-15</B><BR/>filestatus <I>string</I> : [0..1] <B>15-15</B><BR/>filetype <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet caseDetails</I> <B>15-15</B><BR/>status <I>string</I> : [0..1] <B>15-15</B><BR/>type <I>string</I> : [0..1] <B>15-15</B><BR/>attribution <I>string</I> : [0..1] <B>15-15</B><BR/>priority <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	filefuture -> qualification [constraint=true headlabel=1 taillabel="0..1"]
@@ -332,7 +332,7 @@ strict digraph {
                 <TD><B>qualification</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet qualification</I><BR/>fileusage <I>string</I> : [0..1] <B>15-15</B><BR/>medicalPriority <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet qualification</I></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	qualification -> initialAlert [constraint=true headlabel=1 taillabel=1]
@@ -372,21 +372,30 @@ strict digraph {
                 </TR>
                 </TABLE>>]
 	initialAlert -> createCase [constraint=true headlabel=1 taillabel="0..1"]
+	detailedName [label=<<TABLE>
+                <TR>
+                <TD><B>detailedName</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet detailedName</I> <B>15-15</B><BR/>complete <I>string</I> : [1..1]<BR/>lastName <I>string</I> : [0..1]<BR/>firstName <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	detailedName -> operators [constraint=true headlabel=1 taillabel=1]
 	operators [label=<<TABLE>
                 <TR>
                 <TD><B>operators</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet operators</I> <B>15-15</B><BR/>opname <I>string</I> : [1..1] <B>15-15</B><BR/>opfirstname <I>string</I> : [0..1] <B>15-15</B><BR/>opid <I>string</I> : [0..1] <B>15-15</B><BR/>oprole <I>string</I> : [1..1] <B>15-15</B></TD>
+                <TD><I>objet operators</I> <B>15-15</B><BR/>id <I>string</I> : [0..1] <B>15-15</B><BR/>role <I>string</I> : [1..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	operators -> createCase [constraint=true headlabel=1 taillabel="0..*"]
-	patientID [label=<<TABLE>
+	externalId [label=<<TABLE>
                 <TR>
-                <TD><B>patientID</B></TD>
+                <TD><B>externalId</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet patientid</I> <B>15-15</B><BR/>source <I>string</I> : [0..1] <B>15-15</B><BR/>patIDvalue <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet externalId</I> <B>15-15</B><BR/>source <I>string</I> : [0..1] <B>15-15</B><BR/>value <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	patientID -> patientFile [constraint=true headlabel=1 taillabel="0..*"]
@@ -440,7 +449,7 @@ strict digraph {
                 <TD><B>detailedAddress</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet detailedAddress</I> <B>15-15</B></TD>
+                <TD><I>objet detailedAddress</I> <B>15-15</B><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	detailedAddress -> patientAddress [constraint=true headlabel=1 taillabel="0..1"]
@@ -455,7 +464,7 @@ strict digraph {
 	city -> patientAddress [constraint=true headlabel=1 taillabel="0..1"]
 	patientAddress [label=<<TABLE>
                 <TR>
-                <TD><B>patientAddress</B></TD>
+                <TD><B>personalAddress</B></TD>
                 </TR>
                 <TR>
                 <TD><I>objet personalAddress</I> <B>15-15</B></TD>
@@ -467,7 +476,7 @@ strict digraph {
                 <TD><B>detailedAddress</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet detailedAddress</I> <B>15-15</B></TD>
+                <TD><I>objet detailedAddress</I> <B>15-15</B><BR/>complete <I>string</I> : [1..1]<BR/>number <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	detailedAddress -> GPAddress [constraint=true headlabel=1 taillabel="0..1"]
@@ -482,7 +491,7 @@ strict digraph {
 	city -> GPAddress [constraint=true headlabel=1 taillabel="0..1"]
 	GPAddress [label=<<TABLE>
                 <TR>
-                <TD><B>GPAddress</B></TD>
+                <TD><B>personalAddress</B></TD>
                 </TR>
                 <TR>
                 <TD><I>objet personalAddress</I> <B>15-15</B></TD>
@@ -491,7 +500,7 @@ strict digraph {
 	GPAddress -> personalGP [constraint=true headlabel=1 taillabel="0..1"]
 	GPContact [label=<<TABLE>
                 <TR>
-                <TD><B>GPContact</B></TD>
+                <TD><B>contact</B></TD>
                 </TR>
                 <TR>
                 <TD><I>objet contact</I> <B>15-15</B><BR/>type <I>string</I> : [1..1]<BR/>detail <I>string</I> : [1..1]</TD>
@@ -500,25 +509,70 @@ strict digraph {
 	GPContact -> personalGP [constraint=true headlabel=1 taillabel="0..*"]
 	personalGP [label=<<TABLE>
                 <TR>
-                <TD><B>personalGP</B></TD>
+                <TD><B>generalPractitioner</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet personalGP</I> <B>15-15</B><BR/>GPname <I>string</I> : [0..1] <B>15-15</B><BR/>GPfirstname <I>string</I> : [0..1] <B>15-15</B><BR/>GPID <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet generalPractitioner</I> <B>15-15</B><BR/>id <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	personalGP -> patientFile [constraint=true headlabel=1 taillabel="0..1"]
 	patientFile [label=<<TABLE>
                 <TR>
-                <TD><B>patientFile</B></TD>
+                <TD><B>file</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet identifier</I> <B>15-15</B></TD>
+                <TD><I>objet file</I> <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	patientFile -> patients [constraint=true headlabel=1 taillabel="0..*"]
 	patientwhatsHappen [label=<<TABLE>
                 <TR>
-                <TD><B>patientwhatsHappen</B></TD>
+                <TD><B>cycle</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet insCycle</I> <B>15-15</B><BR/>status <I>string</I> : [0..1] <B>15-15</B><BR/>attribute <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	cycle -> identity [constraint=true headlabel=1 taillabel="0..1"]
+	number [label=<<TABLE>
+                <TR>
+                <TD><B>number</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet insNumber</I> <B>15-15</B><BR/>value <I>string</I> : [0..1] <B>15-15</B><BR/>oid <I>string</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	number -> identity [constraint=true headlabel=1 taillabel="0..1"]
+	strictFeatures [label=<<TABLE>
+                <TR>
+                <TD><B>strictFeatures</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet insStrictFeatures</I> <B>15-15</B><BR/>birthName <I>string</I> : [0..1] <B>15-15</B><BR/>birthFirstName <I>string</I> : [0..1] <B>15-15</B><BR/>birthFirstNamesList <I>string</I> : [0..1] <B>15-15</B><BR/>birthDate <I>date-time</I> : [0..1] <B>15-15</B><BR/>sex <I>string</I> : [0..1] <B>15-15</B><BR/>birthPlaceCode <I>number</I> : [0..1] <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	strictFeatures -> identity [constraint=true headlabel=1 taillabel="0..1"]
+	nonStrictFeatures [label=<<TABLE>
+                <TR>
+                <TD><B>nonStrictFeatures</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet detailedName</I> <B>15-15</B><BR/>complete <I>string</I> : [1..1]<BR/>lastName <I>string</I> : [0..1]<BR/>firstName <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	nonStrictFeatures -> identity [constraint=true headlabel=1 taillabel="0..1"]
+	identity [label=<<TABLE>
+                <TR>
+                <TD><B>identity</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet insIdentity</I> <B>15-15</B></TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	identity -> patients [constraint=true headlabel=1 taillabel="0..1"]
+	whatsHappen [label=<<TABLE>
+                <TR>
+                <TD><B>whatsHappen</B></TD>
                 </TR>
                 <TR>
                 <TD><I>objet nomenclature</I> <B>15-15</B><BR/>code <I>string</I> : [1..1]<BR/>label <I>string</I> : [1..1]<BR/>freetext <I>string</I> : [0..1]</TD>
@@ -527,10 +581,10 @@ strict digraph {
 	patientwhatsHappen -> patients [constraint=true headlabel=1 taillabel="0..1"]
 	patinfo [label=<<TABLE>
                 <TR>
-                <TD><B>patinfo</B></TD>
+                <TD><B>details</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet patinfo</I> <B>15-15</B><BR/>weight <I>integer</I> : [0..1] <B>15-15</B><BR/>height <I>integer</I> : [0..1] <B>15-15</B><BR/>age <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet patientDetails</I> <B>15-15</B><BR/>weight <I>integer</I> : [0..1] <B>15-15</B><BR/>height <I>integer</I> : [0..1] <B>15-15</B><BR/>age <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	patinfo -> patients [constraint=true headlabel=1 taillabel="0..1"]
@@ -539,43 +593,52 @@ strict digraph {
                 <TD><B>patients</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet patients</I> <B>15-15</B><BR/>patientcaseID <I>string</I> : [1..1] <B>15-15</B></TD>
+                <TD><I>objet patients</I> <B>15-15</B><BR/>id <I>string</I> : [1..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	patients -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	detailedName [label=<<TABLE>
+                <TR>
+                <TD><B>detailedName</B></TD>
+                </TR>
+                <TR>
+                <TD><I>objet detailedName</I> <B>15-15</B><BR/>complete <I>string</I> : [1..1]<BR/>lastName <I>string</I> : [0..1]<BR/>firstName <I>string</I> : [0..1]</TD>
+                </TR>
+                </TABLE>> fillcolor=firebrick1 style=filled]
+	detailedName -> operators [constraint=true headlabel=1 taillabel=1]
 	operators [label=<<TABLE>
                 <TR>
                 <TD><B>operators</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet operators</I> <B>15-15</B><BR/>opname <I>string</I> : [1..1] <B>15-15</B><BR/>opfirstname <I>string</I> : [0..1] <B>15-15</B><BR/>opid <I>string</I> : [0..1] <B>15-15</B><BR/>oprole <I>string</I> : [1..1] <B>15-15</B></TD>
+                <TD><I>objet operators</I> <B>15-15</B><BR/>id <I>string</I> : [0..1] <B>15-15</B><BR/>role <I>string</I> : [1..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	operators -> medicalfile [constraint=true headlabel=1 taillabel="0..1"]
 	medicalfile [label=<<TABLE>
                 <TR>
-                <TD><B>medicalfile</B></TD>
+                <TD><B>notes</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet medicalfile</I> <B>15-15</B><BR/>freetext <I>string</I> : [0..*] <B>15-15</B><BR/>medicalhistory <I>string</I> : [0..*] <B>15-15</B><BR/>treatments <I>string</I> : [0..*] <B>15-15</B></TD>
+                <TD><I>objet notes</I> <B>15-15</B><BR/>observations <I>string</I> : [0..1] <B>15-15</B><BR/>medicalHistory <I>string</I> : [0..*] <B>15-15</B><BR/>medicalHistoryFreetext <I>string</I> : [0..1] <B>15-15</B><BR/>treatments <I>string</I> : [0..*] <B>15-15</B><BR/>treatmentsFreetext <I>string</I> : [0..1] <B>15-15</B><BR/>allergies <I>string</I> : [0..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..*] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	medicalfile -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
 	patdestination [label=<<TABLE>
                 <TR>
-                <TD><B>patdestination</B></TD>
+                <TD><B>destination</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet patdestination</I> <B>15-15</B><BR/>facility <I>string</I> : [0..1] <B>15-15</B><BR/>service <I>string</I> : [0..1] <B>15-15</B><BR/>other <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet destination</I> <B>15-15</B><BR/>facility <I>string</I> : [0..1] <B>15-15</B><BR/>service <I>string</I> : [0..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	patdestination -> patPathway [constraint=true headlabel=1 taillabel="0..1"]
 	patPathway [label=<<TABLE>
                 <TR>
-                <TD><B>patPathway</B></TD>
+                <TD><B>decisions</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet patientPathway</I> <B>15-15</B><BR/>decisiontype <I>string</I> : [0..1] <B>15-15</B><BR/>orientation <I>string</I> : [0..1] <B>15-15</B><BR/>rtypeTransport <I>string</I> : [0..*] <B>15-15</B><BR/>teamMedicalLevel <I>string</I> : [0..1] <B>15-15</B><BR/>carelevel <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet decisions</I> <B>15-15</B><BR/>type <I>string</I> : [0..1] <B>15-15</B><BR/>orientation <I>string</I> : [0..1] <B>15-15</B><BR/>transportation <I>string</I> : [0..*] <B>15-15</B><BR/>medicalisation <I>string</I> : [0..1] <B>15-15</B><BR/>carelevel <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	patPathway -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
@@ -620,7 +683,7 @@ strict digraph {
                 <TD><B>medicalAnalysis</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet medicalAnalysis</I> <B>15-15</B><BR/>patientcaseID <I>string</I> : [0..1] <B>15-15</B></TD>
+                <TD><I>objet medicalAnalysis</I> <B>15-15</B><BR/>patientId <I>string</I> : [0..1] <B>15-15</B></TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	medicalAnalysis -> createCase [constraint=true headlabel=1 taillabel="0..1"]
@@ -656,7 +719,7 @@ strict digraph {
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>crratransfert <I>string</I> : [1..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>owner <I>string</I> : [1..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 	createCase [label=<<TABLE>
@@ -664,7 +727,7 @@ strict digraph {
                 <TD><B>createCase</B></TD>
                 </TR>
                 <TR>
-                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>crratransfert <I>string</I> : [1..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..1]</TD>
+                <TD><I>objet createCase</I><BR/>caseId <I>string</I> : [1..1]<BR/>senderCaseId <I>string</I> : [0..1]<BR/>creation <I>date-time</I> : [1..1]<BR/>referenceVersion <I>string</I> : [1..1]<BR/>owner <I>string</I> : [1..1] <B>15-15</B><BR/>freetext <I>string</I> : [0..1]</TD>
                 </TR>
                 </TABLE>> fillcolor=coral style=filled]
 }
