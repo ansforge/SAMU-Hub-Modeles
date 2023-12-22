@@ -14,10 +14,7 @@
         "ORG_ID": "fr.health.samu690.chuLyon.crra.regulationN3",
         "USER_ID": "fr.health.samu690.chuLyon.crra.regulationN3.poste123",
         "NAME": "samu690"
-      },
-      "EXTERNAL_INFO": [
-        {}
-      ]
+      }
     },
     "EVENT": {
       "ID": "fr.health.samu690-20231103-AF1234",

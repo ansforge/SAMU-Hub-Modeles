@@ -99,11 +99,13 @@ public class ValidatorTest {
             validator.validateJSON(input, FULL_SCHEMA);
         } catch (ValidationException e) {
             String[] errors = e.getMessage().split("\n");
-            // assert that no schemas are valid
-            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
+
+            // assert that emsi.context.ID is missing
+            assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("is missing but it is required")));
             // assert that other errors are not present
+            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
             assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema, but")));
-            assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("is missing but it is required")));
+
         }
 
         // TODO bbo: add XML validation
@@ -187,7 +189,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("too many valid schemas")
     void tooManyValidSchemas() throws IOException {
-        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-too-many-valid-schemas.json");
+        String json = getInvalidMessage("too-many-valid-schemas.json");
 
         // validation throws due to presence of both createcase and emsi schemas
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
@@ -218,7 +220,7 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
             String[] errors = e.getMessage().split("\n");
-            // assert that no schemas are detected
+            // asser.t that no schemas are detected
             assertTrue(Arrays.stream(errors).anyMatch(error -> error.contains("could not detect any schemas in the message, at least one is required")));
             // assert that other errors are not present
             assertTrue(Arrays.stream(errors).noneMatch(error -> error.contains("embeddedJsonContent: should be valid to one and only one schema, but")));
