@@ -77,8 +77,11 @@ jobs:
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
 
-      - name: Copy generated classes to src/
+      - name: Replace src/ with generated classes
         run: |
+          rm -r ./src/main/java/com/hubsante/model/common
+          rm -r ./src/main/java/com/hubsante/model/cisu
+          rm -r ./src/main/java/com/hubsante/model/emsi
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew
