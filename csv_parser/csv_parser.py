@@ -443,13 +443,11 @@ def add_object_child_definition(parent, child, definitions):
             'type': 'array',
             'items': {
                 '$ref': '#/definitions/' + childTypeName,
-                'x-health-only': child['is_health_only'],
             }
         }
     else:
         properties[child['name']] = {
             '$ref': '#/definitions/' + childTypeName,
-            'x-health-only': child['is_health_only']
         }
 
 

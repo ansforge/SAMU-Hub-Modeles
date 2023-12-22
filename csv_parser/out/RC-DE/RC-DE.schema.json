@@ -11,8 +11,7 @@
     ],
     "properties": {
         "distributionElement": {
-            "$ref": "#/definitions/distributionElement",
-            "x-health-only": false
+            "$ref": "#/definitions/distributionElement"
         }
     },
     "definitions": {
@@ -39,8 +38,7 @@
                     "description": "I"
                 },
                 "sender": {
-                    "$ref": "#/definitions/sender",
-                    "x-health-only": false
+                    "$ref": "#/definitions/sender"
                 },
                 "sentAt": {
                     "type": "string",
@@ -83,8 +81,7 @@
                 "recipients": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/recipient",
-                        "x-health-only": false
+                        "$ref": "#/definitions/recipient"
                     }
                 }
             },

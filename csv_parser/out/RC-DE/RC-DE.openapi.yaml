@@ -12,7 +12,6 @@ components:
       properties:
         distributionElement:
           $ref: '#/components/schemas/distributionElement'
-          x-health-only: false
     distributionElement:
       type: object
       title: Objet DistributionElement
@@ -37,7 +36,6 @@ components:
           - d350c9d2-9d76-4568-b0b7-a747ffadc949
         sender:
           $ref: '#/components/schemas/sender'
-          x-health-only: false
         sentAt:
           type: string
           title: Horodatage envoi message
@@ -87,7 +85,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/recipient'
-            x-health-only: false
       example: example.json#/distributionElement
     sender:
       type: object
