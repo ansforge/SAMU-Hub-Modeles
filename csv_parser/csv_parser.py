@@ -601,11 +601,11 @@ with open(f'out/{args.sheet}{appendCisuIfNeeded}/{args.sheet}{appendCisuIfNeeded
 print('OpenAPI schema generated.')
 
 # TODO bb: extract this logic to an outside script called by the gh action
-with open(f'out/full-asyncapi.yaml', 'w') as file:
-    documents = yaml.dump(asyncapi_yaml, sort_keys=False)
-    documents = documents.replace('#/definitions/', "#/components/schemas/")
-    file.write(documents)
-print('AsyncAPI schema generated.')
+# with open(f'out/full-asyncapi.yaml', 'w') as file:
+#     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
+#     documents = documents.replace('#/definitions/', "#/components/schemas/")
+#     file.write(documents)
+# print('AsyncAPI schema generated.')
 
 print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
 uml_generator.run(args.sheet, MODEL_NAME, version=args.version, filter=args.filter)
