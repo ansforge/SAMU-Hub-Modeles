@@ -166,7 +166,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
 107,110,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,,X
 108,111,,Dossier administratif,,,,,,,,file,,,,,,0..n,X,file,,,,X
 109,112,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
-110,113,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,0..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, …",,X
+110,113,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,0..1,,string,X,"ENUM: NIR, SINUS, SI-VIC",,X
 111,114,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,0..1,,string,,,,X
 112,131,,,Contact patient,# voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
 113,132,,,Adresse patient,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X

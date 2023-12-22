@@ -56,9 +56,7 @@ public class ExternalId {
 
     SINUS("SINUS"),
 
-    SI_VIC("SI-VIC"),
-
-    _("…");
+    SI_VIC("SI-VIC");
 
     private String value;
 

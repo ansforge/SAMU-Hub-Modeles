@@ -1782,8 +1782,7 @@
                     "enum": [
                         "NIR",
                         "SINUS",
-                        "SI-VIC",
-                        "\u2026"
+                        "SI-VIC"
                     ]
                 },
                 "value": {

@@ -1927,7 +1927,6 @@ components:
           - NIR
           - SINUS
           - SI-VIC
-          - "\u2026"
           examples:
           - "NIR, SINUS, SI-VIC, \u2026"
         value:
