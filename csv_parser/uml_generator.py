@@ -45,7 +45,7 @@ def set_cardinalite(minimal, max) :
 
 def add_node(id_parent, id_in, type_in, buffer_description, cardinalite, health_only=False):
     if health_only:
-        background_color = "BGCOLOR=\"lightpink\""
+        background_color = "BGCOLOR=\"coral\""
     else:
         background_color = ""
     # draw node
@@ -81,7 +81,7 @@ def add_node(id_parent, id_in, type_in, buffer_description, cardinalite, health_
             return ValueError
     return
 
-def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, id_ignore=[], health_only_ref=False) :
+def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, id_ignore=[]) :
     # no parsing of id to ignore
     if id_parent in id_ignore :
         if id_parent in buffer_description_node :
@@ -107,7 +107,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
             buffer_description_node[id_child] = ""
             parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
             add_node(id_parent, id_child, id_child,
-                     buffer_description_node[id_child], cardinalite=cardinalite_child, health_only=True if health_only_ref or "x-health-only" in child and child["x-health-only"]==True else False)
+                     buffer_description_node[id_child], cardinalite=cardinalite_child, health_only=child["x-health-only"] if "x-health-only" in child else False)
         else :
             # if type is indicated consider as a leaf
             if "type" in child :
@@ -121,7 +121,7 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                     # if child contains x-health-only: True, add 15-15 to the child description
                     if "x-health-only" in child and child["x-health-only"] == True :
                         health_only = " <B>15-15</B>"
-                    child_description = "<TR><TD BORDER=\"0\" {}>{} <I>{}</I> : [{}..{}] {}</TD></TR>".format("BGCOLOR=\"lightpink\"" if health_only_ref or "x-health-only" in child and child["x-health-only"] == True else "",
+                    child_description = "<TR><TD BORDER=\"0\" {}>{} <I>{}</I> : [{}..{}] {}</TD></TR>".format("BGCOLOR=\"coral\"" if "x-health-only" in child and child["x-health-only"] == True else "",
                                                                                         id_child, 
                                                                                         child["type"],
                                                                                         cardinalite_child[0],
@@ -134,14 +134,13 @@ def parse_object(id_parent, dict_in, dict_definitions, buffer_description_node, 
                 type_child = get_id_ref(child["$ref"])
                 # print(id_parent + " - - >" + id_child)
                 buffer_description_node[id_child] = ""
-                health_ref = False
                 # if child contains x-health-only: True or is a health-only array add 15-15 to the buffer
-                if health_only_ref or "x-health-only" in child and child["x-health-only"] == True :
-                    health_ref = True
+                if "x-health-only" in child and child["x-health-only"] == True :
+                    buffer_description_node[id_child] = buffer_description_node[id_child]
                 child = get_ref(child["$ref"], dict_definitions)
-                parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore, health_only_ref=health_ref)
+                parse_object(id_child, child, dict_definitions, buffer_description_node, id_ignore=id_ignore)
                 add_node(id_parent, id_child, type_child, 
-                         buffer_description_node[id_child], cardinalite=cardinalite_child, health_only=health_ref)
+                         buffer_description_node[id_child], cardinalite=cardinalite_child, health_only=child["x-health-only"] if "x-health-only" in child else False)
             else :
                 print("Erreur syntaxe json_schema " + id_parent + "... Generating anyway")
     return
