@@ -1710,7 +1710,7 @@
         },
         "insIdentity": {
             "type": "object",
-            "title": "Identit\u00e9e INS",
+            "title": "Identit\u00e9 INS",
             "x-display": "expansion-panels",
             "x-health-only": true,
             "required": [],
