@@ -34,73 +34,82 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.City;
-import com.hubsante.model.cisu.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * InsNumber
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder({InsNumber.JSON_PROPERTY_VALUE, InsNumber.JSON_PROPERTY_OID})
+@JsonTypeName("insNumber")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class InsNumber {
+  public static final String JSON_PROPERTY_VALUE = "value";
+  private String value;
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  public static final String JSON_PROPERTY_OID = "oid";
+  private String oid;
 
-  public PersonalAddress() {}
+  public InsNumber() {}
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+  public InsNumber value(String value) {
 
-    this.detailedAddress = detailedAddress;
+    this.value = value;
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * n° NIR OU n° NIA de l&#39;individu. Le matricule INS (et son OID) ne doit
+   *jamais être propagé (&#x3D; échangé) si l&#39;identité est à un statut autre
+   *que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il
+   *peut être différent du numéro de sécurité sociale utilisé pour le
+   *remboursement des soins par l’assurance maladie, dans le cas par exemple où
+   *l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de
+   *ses parents). Le matricule INS est composé des 13 caractères et de la clé de
+   *contrôle.
+   * @return value
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public String getValue() {
+    return value;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
+  public void setValue(String value) {
+    this.value = value;
   }
 
-  public PersonalAddress city(City city) {
+  public InsNumber oid(String oid) {
 
-    this.city = city;
+    this.oid = oid;
     return this;
   }
 
   /**
-   * Get city
-   * @return city
+   * Identifiant de la structure qui a affecté l’INS sous la forme d&#39;un OID.
+   *Les OID (Object Identifier) sont des identifiants universels, représentés
+   *sous la forme d&#39;une suite d&#39;entiers. Ils sont organisés sous forme
+   *hiérarchique avec des nœuds. L&#39;OID est toujours associé à un matricule
+   *INS, il n&#39;est donc pas propagé si le statut de l&#39;identité n&#39;est
+   *pas \&quot;qualifiée\&quot;
+   * @return oid
    **/
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_OID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public City getCity() {
-    return city;
+  public String getOid() {
+    return oid;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_OID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  public void setOid(String oid) {
+    this.oid = oid;
   }
 
   @Override
@@ -111,25 +120,22 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    InsNumber insNumber = (InsNumber)o;
+    return Objects.equals(this.value, insNumber.value) &&
+        Objects.equals(this.oid, insNumber.oid);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(value, oid);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
-        .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("class InsNumber {\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    oid: ").append(toIndentedString(oid)).append("\n");
     sb.append("}");
     return sb.toString();
   }

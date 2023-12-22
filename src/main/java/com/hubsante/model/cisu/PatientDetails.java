@@ -34,73 +34,98 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.City;
-import com.hubsante.model.cisu.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * PatientDetails
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder({PatientDetails.JSON_PROPERTY_WEIGHT,
+                    PatientDetails.JSON_PROPERTY_HEIGHT,
+                    PatientDetails.JSON_PROPERTY_AGE})
+@JsonTypeName("patientDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class PatientDetails {
+  public static final String JSON_PROPERTY_WEIGHT = "weight";
+  private Integer weight;
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  public static final String JSON_PROPERTY_HEIGHT = "height";
+  private Integer height;
 
-  public PersonalAddress() {}
+  public static final String JSON_PROPERTY_AGE = "age";
+  private String age;
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+  public PatientDetails() {}
 
-    this.detailedAddress = detailedAddress;
+  public PatientDetails weight(Integer weight) {
+
+    this.weight = weight;
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * Poids en kilogrammes
+   * @return weight
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public Integer getWeight() {
+    return weight;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
+  public void setWeight(Integer weight) {
+    this.weight = weight;
   }
 
-  public PersonalAddress city(City city) {
+  public PatientDetails height(Integer height) {
 
-    this.city = city;
+    this.height = height;
     return this;
   }
 
   /**
-   * Get city
-   * @return city
+   * Taille en centimètres
+   * @return height
    **/
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_HEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public City getCity() {
-    return city;
+  public Integer getHeight() {
+    return height;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_HEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  public void setHeight(Integer height) {
+    this.height = height;
+  }
+
+  public PatientDetails age(String age) {
+
+    this.age = age;
+    return this;
+  }
+
+  /**
+   * Age du patient (Norme ISO_8601)
+   * @return age
+   **/
+  @JsonProperty(JSON_PROPERTY_AGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getAge() {
+    return age;
+  }
+
+  @JsonProperty(JSON_PROPERTY_AGE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAge(String age) {
+    this.age = age;
   }
 
   @Override
@@ -111,25 +136,24 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    PatientDetails patientDetails = (PatientDetails)o;
+    return Objects.equals(this.weight, patientDetails.weight) &&
+        Objects.equals(this.height, patientDetails.height) &&
+        Objects.equals(this.age, patientDetails.age);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(weight, height, age);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
-        .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("class PatientDetails {\n");
+    sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
+    sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    age: ").append(toIndentedString(age)).append("\n");
     sb.append("}");
     return sb.toString();
   }

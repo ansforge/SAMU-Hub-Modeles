@@ -34,73 +34,78 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.City;
-import com.hubsante.model.cisu.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * InsCycle
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder(
+    {InsCycle.JSON_PROPERTY_STATUS, InsCycle.JSON_PROPERTY_ATTRIBUTE})
+@JsonTypeName("insCycle")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class InsCycle {
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private String status;
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  public static final String JSON_PROPERTY_ATTRIBUTE = "attribute";
+  private String attribute;
 
-  public PersonalAddress() {}
+  public InsCycle() {}
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+  public InsCycle status(String status) {
 
-    this.detailedAddress = detailedAddress;
+    this.status = status;
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * Le RNIV exige que les logiciels référentiels d’identités gèrent les 4
+   *statuts fonctionnels suivants : - « identité provisoire », - « identité
+   *récupérée », - « identité validée », - « identité qualifiée ». Ces statuts
+   *fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18]
+   *précise en outre que le matricule INS et l’OID doivent être accompagnés
+   *d’informations confirmant qu’ils ont été qualifiés.
+   * @return status
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public String getStatus() {
+    return status;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
+  public void setStatus(String status) {
+    this.status = status;
   }
 
-  public PersonalAddress city(City city) {
+  public InsCycle attribute(String attribute) {
 
-    this.city = city;
+    this.attribute = attribute;
     return this;
   }
 
   /**
-   * Get city
-   * @return city
+   * Le RNIV recommande que les logiciels référentiels d’identités gèrent a
+   *minima les 3 attributs suivants : - identité homonyme, - identité douteuse,
+   *- identité fictive.
+   * @return attribute
    **/
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_ATTRIBUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public City getCity() {
-    return city;
+  public String getAttribute() {
+    return attribute;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_ATTRIBUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  public void setAttribute(String attribute) {
+    this.attribute = attribute;
   }
 
   @Override
@@ -111,25 +116,24 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    InsCycle insCycle = (InsCycle)o;
+    return Objects.equals(this.status, insCycle.status) &&
+        Objects.equals(this.attribute, insCycle.attribute);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(status, attribute);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
+    sb.append("class InsCycle {\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    attribute: ")
+        .append(toIndentedString(attribute))
         .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("}");
     return sb.toString();
   }
