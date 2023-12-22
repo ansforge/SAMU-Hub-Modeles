@@ -27,7 +27,7 @@ jobs:
         working-directory: ./csv_parser
         run: pip install -r ./requirements.txt
 
-      - name: [SCHEMAS] Run csv_parser and collect OpenAPI & JSON Schemas
+      - name: (SCHEMAS) Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         run: |
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
@@ -37,7 +37,7 @@ jobs:
             mv ./out/$SCHEMA/$SCHEMA.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
           done
 
-      - name: [SCHEMAS_CISU] Run csv_parser and collect JSON Schemas (filtering only 15-NexSIS)
+      - name: (SCHEMAS_CISU) Run csv_parser and collect JSON Schemas (filtering only 15-NexSIS)
         working-directory: ./csv_parser
         run: |
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_CISU"
