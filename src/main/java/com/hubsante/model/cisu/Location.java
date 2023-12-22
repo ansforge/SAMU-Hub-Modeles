@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Access;
 import com.hubsante.model.cisu.City;
-import com.hubsante.model.cisu.DetailedAdress;
+import com.hubsante.model.cisu.DetailedAddress;
 import com.hubsante.model.cisu.ExternalInfo;
 import com.hubsante.model.cisu.Geometry;
 import java.util.ArrayList;
@@ -50,7 +50,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Location.JSON_PROPERTY_LOC_I_D, Location.JSON_PROPERTY_LOC_LABEL,
-     Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_DETAILED_ADRESS,
+     Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_DETAILED_ADDRESS,
      Location.JSON_PROPERTY_CITY, Location.JSON_PROPERTY_ACCESS,
      Location.JSON_PROPERTY_GEOMETRY, Location.JSON_PROPERTY_EXTERNAL_INFO,
      Location.JSON_PROPERTY_COUNTRY, Location.JSON_PROPERTY_FREETEXT})
@@ -67,8 +67,8 @@ public class Location {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public static final String JSON_PROPERTY_DETAILED_ADRESS = "detailedAdress";
-  private DetailedAdress detailedAdress;
+  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
+  private DetailedAddress detailedAddress;
 
   public static final String JSON_PROPERTY_CITY = "city";
   private City city;
@@ -677,27 +677,27 @@ public class Location {
     this.name = name;
   }
 
-  public Location detailedAdress(DetailedAdress detailedAdress) {
+  public Location detailedAddress(DetailedAddress detailedAddress) {
 
-    this.detailedAdress = detailedAdress;
+    this.detailedAddress = detailedAddress;
     return this;
   }
 
   /**
-   * Get detailedAdress
-   * @return detailedAdress
+   * Get detailedAddress
+   * @return detailedAddress
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADRESS)
+  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAdress getDetailedAdress() {
-    return detailedAdress;
+  public DetailedAddress getDetailedAddress() {
+    return detailedAddress;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADRESS)
+  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAdress(DetailedAdress detailedAdress) {
-    this.detailedAdress = detailedAdress;
+  public void setDetailedAddress(DetailedAddress detailedAddress) {
+    this.detailedAddress = detailedAddress;
   }
 
   public Location city(City city) {
@@ -866,7 +866,7 @@ public class Location {
     return Objects.equals(this.locID, location.locID) &&
         Objects.equals(this.locLabel, location.locLabel) &&
         Objects.equals(this.name, location.name) &&
-        Objects.equals(this.detailedAdress, location.detailedAdress) &&
+        Objects.equals(this.detailedAddress, location.detailedAddress) &&
         Objects.equals(this.city, location.city) &&
         Objects.equals(this.access, location.access) &&
         Objects.equals(this.geometry, location.geometry) &&
@@ -877,7 +877,7 @@ public class Location {
 
   @Override
   public int hashCode() {
-    return Objects.hash(locID, locLabel, name, detailedAdress, city, access,
+    return Objects.hash(locID, locLabel, name, detailedAddress, city, access,
                         geometry, externalInfo, country, freetext);
   }
 
@@ -888,8 +888,8 @@ public class Location {
     sb.append("    locID: ").append(toIndentedString(locID)).append("\n");
     sb.append("    locLabel: ").append(toIndentedString(locLabel)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    detailedAdress: ")
-        .append(toIndentedString(detailedAdress))
+    sb.append("    detailedAddress: ")
+        .append(toIndentedString(detailedAddress))
         .append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    access: ").append(toIndentedString(access)).append("\n");

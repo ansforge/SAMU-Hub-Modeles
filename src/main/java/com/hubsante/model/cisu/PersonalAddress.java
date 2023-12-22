@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.City;
+import com.hubsante.model.cisu.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -49,14 +50,14 @@ import java.util.Objects;
 
 public class PersonalAddress {
   public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private Object detailedAddress;
+  private DetailedAddress detailedAddress;
 
   public static final String JSON_PROPERTY_CITY = "city";
   private City city;
 
   public PersonalAddress() {}
 
-  public PersonalAddress detailedAddress(Object detailedAddress) {
+  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
 
     this.detailedAddress = detailedAddress;
     return this;
@@ -69,13 +70,13 @@ public class PersonalAddress {
   @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getDetailedAddress() {
+  public DetailedAddress getDetailedAddress() {
     return detailedAddress;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(Object detailedAddress) {
+  public void setDetailedAddress(DetailedAddress detailedAddress) {
     this.detailedAddress = detailedAddress;
   }
 
