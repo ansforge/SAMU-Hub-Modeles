@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -55,7 +55,7 @@ public class TestMessagesHelper {
     /**
      * Allows to get an invalid sample message as a JSON String
      *
-     * @param messagePath complete filename of the invalid message template (RC-EDA-missing-required-fields.json,
+     * @param messagePath complete filename of the invalid message template (RC-EDA-CISU-missing-required-fields.json,
      *                    RS-INFO-missing-required-fields.json, EMSI-DC-missing-required-fields.json, etc.)
      * @return the sample invalid message as a JSON String
      * @throws IOException if the specified filename does not correspond to an existing invalid sample message

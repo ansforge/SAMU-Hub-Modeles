@@ -44,6 +44,7 @@ jobs:
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_CISU"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             python3 ./csv_parser.py -s $SCHEMA --filter True
+            mv ./out/$SCHEMA-CISU/$SCHEMA-CISU.openapi.yaml ../generator/input/$SCHEMA-CISU.openapi.yaml
             mv ./out/$SCHEMA-CISU/$SCHEMA-CISU.schema.json ../src/main/resources/json-schema/$SCHEMA-CISU.schema.json
           done
 
@@ -76,12 +77,19 @@ jobs:
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
+          
+          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_CISU"
+          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA-CISU/$SCHEMA-CISU.generator-config.json --skip-validate-spec
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA-CISU/$SCHEMA-CISU.wrapper.generator-config.json --skip-validate-spec
+          done
 
       - name: Replace src/ with generated classes
         run: |
-          rm -r ./src/main/java/com/hubsante/model/common
-          rm -r ./src/main/java/com/hubsante/model/cisu
-          rm -r ./src/main/java/com/hubsante/model/emsi
+          rm -r ./src/main/java/com/hubsante/model/common || true
+          rm -r ./src/main/java/com/hubsante/model/cisu || true
+          rm -r ./src/main/java/com/hubsante/model/rs || true
+          rm -r ./src/main/java/com/hubsante/model/emsi || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew

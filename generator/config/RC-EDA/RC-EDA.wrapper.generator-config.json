@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.cisu",
+    "modelPackage": "com.hubsante.model.rs",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,

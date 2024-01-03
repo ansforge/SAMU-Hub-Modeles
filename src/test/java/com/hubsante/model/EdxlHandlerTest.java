@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -43,22 +43,22 @@ public class EdxlHandlerTest {
     @Test
     @DisplayName("should consistently deserialize then serialize JSON RC-EDA")
     public void end2end_RC_EDA_JSON() throws IOException {
-        String json = getMessageString("RC-EDA");
+        String json = getMessageString("RC-EDA-CISU");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
     @DisplayName("should consistently deserialize then serialize XML RC-EDA")
     public void end2end_RC_EDA_XML() throws IOException {
-        String xml = getMessageString("RC-EDA", true);
+        String xml = getMessageString("RC-EDA-CISU", true);
         endToEndDeserializationCheck(xml, true);
     }
 
     @Test
     @DisplayName("json and xml RC-EDA should be equal")
     public void jsonAndXmlRC_EDA() throws IOException {
-        String json = getMessageString("RC-EDA");
-        String xml = getMessageString("RC-EDA", true);
+        String json = getMessageString("RC-EDA-CISU");
+        String xml = getMessageString("RC-EDA-CISU", true);
 
         EdxlMessage messageFromJson = sanitizeEdxl(converter.deserializeJsonEDXL(json));
         EdxlMessage messageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xml));
@@ -132,7 +132,7 @@ public class EdxlHandlerTest {
     @Test
     @DisplayName("should add XML prefix")
     public void verifyXmlPrefix() throws IOException {
-        String json = getMessageString("RC-EDA");
+        String json = getMessageString("RC-EDA-CISU");
         EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
         String xml = converter.serializeXmlEDXL(messageFromInput);
         assertTrue(() -> xml.startsWith(xmlPrefix()));

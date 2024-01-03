@@ -117,6 +117,24 @@
             {
               "properties": {
                 "message": {
+                  "$ref": "RC-EDA-CISU.schema.json"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
                   "$ref": "RC-REF.schema.json"
                 }
               }

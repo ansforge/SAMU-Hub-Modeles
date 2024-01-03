@@ -37,7 +37,7 @@
       "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
       "locLabel": "8 quai des Célestins - 69002 Lyon",
       "name": "Quai des Célestins",
-      "detailedAdress": {
+      "detailedAddress": {
         "complete": "8 quai des Célestins",
         "number": "8",
         "wayName": {
@@ -104,7 +104,7 @@
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
         "locLabel": "8 quai des Célestins - 69002 Lyon",
         "name": "Quai des Célestins",
-        "detailedAdress": {
+        "detailedAddress": {
           "complete": "8 quai des Célestins",
           "number": "8",
           "wayName": {

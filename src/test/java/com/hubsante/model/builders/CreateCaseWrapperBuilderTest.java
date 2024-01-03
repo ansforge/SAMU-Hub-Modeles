@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,7 +66,7 @@ public class CreateCaseWrapperBuilderTest {
     }
 
     private CreateCase getCreateCaseMock() throws IOException {
-        String json = getMessageString("RC-EDA");
+        String json = getMessageString("RC-EDA-CISU");
         return ((CreateCaseWrapper) converter.deserializeJsonEDXL(json).getFirstContentMessage()).getCreateCase();
     }
 }
