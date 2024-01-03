@@ -86,10 +86,10 @@ jobs:
 
       - name: Replace src/ with generated classes
         run: |
-          rm -r ./src/main/java/com/hubsante/model/common
-          rm -r ./src/main/java/com/hubsante/model/cisu
-          rm -r ./src/main/java/com/hubsante/model/rs
-          rm -r ./src/main/java/com/hubsante/model/emsi
+          rm -r ./src/main/java/com/hubsante/model/common || true
+          rm -r ./src/main/java/com/hubsante/model/cisu || true
+          rm -r ./src/main/java/com/hubsante/model/rs || true
+          rm -r ./src/main/java/com/hubsante/model/emsi || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew
