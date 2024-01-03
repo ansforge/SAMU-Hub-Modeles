@@ -4,9 +4,11 @@ on:
   pull_request:
     branches:
       - '**'
+  workflow_dispatch:
 
 env:
   SCHEMAS: "RC-EDA EMSI"
+  SCHEMAS_CISU: "RC-EDA"
 
 jobs:
   generate:
@@ -22,15 +24,27 @@ jobs:
       - name: Install Graphviz
         uses: ts-graphviz/setup-graphviz@v1
 
-      - name: Install python requirements, run csv_parser and collect OpenAPI specs
+      - name: Install python requirements
+        working-directory: ./csv_parser
+        run: pip install -r ./requirements.txt
+
+      - name: (SCHEMAS) Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         run: |
-          pip install -r ./requirements.txt
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             python3 ./csv_parser.py -s $SCHEMA
             mv ./out/$SCHEMA/$SCHEMA.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
             mv ./out/$SCHEMA/$SCHEMA.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
+          done
+
+      - name: (SCHEMAS_CISU) Run csv_parser and collect JSON Schemas (filtering only 15-NexSIS)
+        working-directory: ./csv_parser
+        run: |
+          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_CISU"
+          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
+            python3 ./csv_parser.py -s $SCHEMA --filter True
+            mv ./out/$SCHEMA-CISU/$SCHEMA-CISU.schema.json ../src/main/resources/json-schema/$SCHEMA-CISU.schema.json
           done
 
       - name: Install JDK 11
@@ -63,8 +77,11 @@ jobs:
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
 
-      - name: Copy generated classes to src/
+      - name: Replace src/ with generated classes
         run: |
+          rm -r ./src/main/java/com/hubsante/model/common
+          rm -r ./src/main/java/com/hubsante/model/cisu
+          rm -r ./src/main/java/com/hubsante/model/emsi
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew

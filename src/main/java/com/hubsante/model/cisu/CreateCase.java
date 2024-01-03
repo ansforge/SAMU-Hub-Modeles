@@ -37,6 +37,9 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.AdditionalInformation;
 import com.hubsante.model.cisu.Alert;
 import com.hubsante.model.cisu.Location;
+import com.hubsante.model.cisu.MedicalAnalysis;
+import com.hubsante.model.cisu.Operators;
+import com.hubsante.model.cisu.Patients;
 import com.hubsante.model.cisu.Qualification;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -53,7 +56,10 @@ import java.util.Objects;
      CreateCase.JSON_PROPERTY_CREATION,
      CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
      CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
-     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_NEW_ALERT,
+     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_OWNER,
+     CreateCase.JSON_PROPERTY_OPERATORS, CreateCase.JSON_PROPERTY_PATIENTS,
+     CreateCase.JSON_PROPERTY_MEDICAL_ANALYSIS,
+     CreateCase.JSON_PROPERTY_NEW_ALERT,
      CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
      CreateCase.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("createCase")
@@ -81,6 +87,18 @@ public class CreateCase {
 
   public static final String JSON_PROPERTY_INITIAL_ALERT = "initialAlert";
   private Alert initialAlert;
+
+  public static final String JSON_PROPERTY_OWNER = "owner";
+  private String owner;
+
+  public static final String JSON_PROPERTY_OPERATORS = "operators";
+  private List<Operators> operators;
+
+  public static final String JSON_PROPERTY_PATIENTS = "patients";
+  private List<Patients> patients;
+
+  public static final String JSON_PROPERTY_MEDICAL_ANALYSIS = "medicalAnalysis";
+  private MedicalAnalysis medicalAnalysis;
 
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
@@ -274,6 +292,139 @@ public class CreateCase {
     this.initialAlert = initialAlert;
   }
 
+  public CreateCase owner(String owner) {
+
+    this.owner = owner;
+    return this;
+  }
+
+  /**
+   * Champ servant à transférer la responsabilité du traitement d&#39;un dossier
+   *à un autre CRAA / à lui demander de prendre en charge le traitement du
+   *dossier. Le SAMU demandeur entre dans ce champ l&#39;ID du CRAA à qui il
+   *demande de traiter l&#39;affaire (uniquement en cas de transfert intégral du
+   *traitement d&#39;un dossier). Le SAMU qui reçoit la demande de transfert et
+   *l&#39;accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce
+   *champ + en ajoutant l&#39;ID local du dossier chez lui dans le message. Le
+   *SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de
+   *mise à jour en remettant l&#39;ID du SAMU demandeur dans ce champ + il
+   *envoie l&#39;ID local du dossier chez lui.
+   * @return owner
+   **/
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getOwner() {
+    return owner;
+  }
+
+  @JsonProperty(JSON_PROPERTY_OWNER)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setOwner(String owner) {
+    this.owner = owner;
+  }
+
+  public CreateCase operators(List<Operators> operators) {
+
+    this.operators = operators;
+    return this;
+  }
+
+  public CreateCase addOperatorsItem(Operators operatorsItem) {
+    if (this.operators == null) {
+      this.operators = new ArrayList<>();
+    }
+    this.operators.add(operatorsItem);
+    return this;
+  }
+
+  /**
+   * Get operators
+   * @return operators
+   **/
+  @JsonProperty(JSON_PROPERTY_OPERATORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Operators> getOperators() {
+    return operators;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_OPERATORS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOperators(List<Operators> operators) {
+    if (operators == null) {
+      return;
+    }
+    if (this.operators == null) {
+      this.operators = new ArrayList<>();
+    }
+    this.operators.addAll(operators);
+  }
+
+  public CreateCase patients(List<Patients> patients) {
+
+    this.patients = patients;
+    return this;
+  }
+
+  public CreateCase addPatientsItem(Patients patientsItem) {
+    if (this.patients == null) {
+      this.patients = new ArrayList<>();
+    }
+    this.patients.add(patientsItem);
+    return this;
+  }
+
+  /**
+   * Get patients
+   * @return patients
+   **/
+  @JsonProperty(JSON_PROPERTY_PATIENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Patients> getPatients() {
+    return patients;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_PATIENTS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPatients(List<Patients> patients) {
+    if (patients == null) {
+      return;
+    }
+    if (this.patients == null) {
+      this.patients = new ArrayList<>();
+    }
+    this.patients.addAll(patients);
+  }
+
+  public CreateCase medicalAnalysis(MedicalAnalysis medicalAnalysis) {
+
+    this.medicalAnalysis = medicalAnalysis;
+    return this;
+  }
+
+  /**
+   * Get medicalAnalysis
+   * @return medicalAnalysis
+   **/
+  @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public MedicalAnalysis getMedicalAnalysis() {
+    return medicalAnalysis;
+  }
+
+  @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMedicalAnalysis(MedicalAnalysis medicalAnalysis) {
+    this.medicalAnalysis = medicalAnalysis;
+  }
+
   public CreateCase newAlert(List<Alert> newAlert) {
 
     this.newAlert = newAlert;
@@ -378,6 +529,10 @@ public class CreateCase {
         Objects.equals(this.qualification, createCase.qualification) &&
         Objects.equals(this.location, createCase.location) &&
         Objects.equals(this.initialAlert, createCase.initialAlert) &&
+        Objects.equals(this.owner, createCase.owner) &&
+        Objects.equals(this.operators, createCase.operators) &&
+        Objects.equals(this.patients, createCase.patients) &&
+        Objects.equals(this.medicalAnalysis, createCase.medicalAnalysis) &&
         Objects.equals(this.newAlert, createCase.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCase.additionalInformation) &&
@@ -387,7 +542,8 @@ public class CreateCase {
   @Override
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
-                        qualification, location, initialAlert, newAlert,
+                        qualification, location, initialAlert, owner, operators,
+                        patients, medicalAnalysis, newAlert,
                         additionalInformation, freetext);
   }
 
@@ -409,6 +565,14 @@ public class CreateCase {
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    initialAlert: ")
         .append(toIndentedString(initialAlert))
+        .append("\n");
+    sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
+    sb.append("    operators: ")
+        .append(toIndentedString(operators))
+        .append("\n");
+    sb.append("    patients: ").append(toIndentedString(patients)).append("\n");
+    sb.append("    medicalAnalysis: ")
+        .append(toIndentedString(medicalAnalysis))
         .append("\n");
     sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
     sb.append("    additionalInformation: ")

@@ -40,15 +40,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * DetailedAdress
+ * DetailedAddress
  */
-@JsonPropertyOrder({DetailedAdress.JSON_PROPERTY_COMPLETE,
-                    DetailedAdress.JSON_PROPERTY_NUMBER,
-                    DetailedAdress.JSON_PROPERTY_WAY_NAME})
-@JsonTypeName("detailedAdress")
+@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_COMPLETE,
+                    DetailedAddress.JSON_PROPERTY_NUMBER,
+                    DetailedAddress.JSON_PROPERTY_WAY_NAME})
+@JsonTypeName("detailedAddress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class DetailedAdress {
+public class DetailedAddress {
   public static final String JSON_PROPERTY_COMPLETE = "complete";
   private String complete;
 
@@ -58,9 +58,9 @@ public class DetailedAdress {
   public static final String JSON_PROPERTY_WAY_NAME = "wayName";
   private WayName wayName;
 
-  public DetailedAdress() {}
+  public DetailedAddress() {}
 
-  public DetailedAdress complete(String complete) {
+  public DetailedAddress complete(String complete) {
 
     this.complete = complete;
     return this;
@@ -85,7 +85,7 @@ public class DetailedAdress {
     this.complete = complete;
   }
 
-  public DetailedAdress number(String number) {
+  public DetailedAddress number(String number) {
 
     this.number = number;
     return this;
@@ -110,7 +110,7 @@ public class DetailedAdress {
     this.number = number;
   }
 
-  public DetailedAdress wayName(WayName wayName) {
+  public DetailedAddress wayName(WayName wayName) {
 
     this.wayName = wayName;
     return this;
@@ -141,10 +141,10 @@ public class DetailedAdress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DetailedAdress detailedAdress = (DetailedAdress)o;
-    return Objects.equals(this.complete, detailedAdress.complete) &&
-        Objects.equals(this.number, detailedAdress.number) &&
-        Objects.equals(this.wayName, detailedAdress.wayName);
+    DetailedAddress detailedAddress = (DetailedAddress)o;
+    return Objects.equals(this.complete, detailedAddress.complete) &&
+        Objects.equals(this.number, detailedAddress.number) &&
+        Objects.equals(this.wayName, detailedAddress.wayName);
   }
 
   @Override
@@ -155,7 +155,7 @@ public class DetailedAdress {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DetailedAdress {\n");
+    sb.append("class DetailedAddress {\n");
     sb.append("    complete: ").append(toIndentedString(complete)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    wayName: ").append(toIndentedString(wayName)).append("\n");

@@ -15,6 +15,12 @@
                 {}
             ],
             "healthMotive": {},
+            "details": {
+                "status": "None",
+                "type": "D, DR, DRM",
+                "attribution": "M\u00e9decin g\u00e9n\u00e9raliste, m\u00e9decin urgentiste etc.",
+                "priority": "P0, P1, P2, P3"
+            },
             "victims": {
                 "count": "SEVERAL",
                 "mainVictim": "CHILD",
@@ -25,7 +31,7 @@
             "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
             "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
             "name": "Lyc\u00e9e Pierre de Coubertin",
-            "detailedAdress": {
+            "detailedAddress": {
                 "complete": "9 Bd du Montparnasse",
                 "number": "9, 4bis, PK10, \u2026",
                 "wayName": {
@@ -50,7 +56,7 @@
                 "buildingName": "Batiment B, Batiment Maunoury",
                 "entrance": "Zone Sud, Porte 1, \u2026",
                 "entity": "Infirmerie, service finance, service cardiologie, \u2026",
-                "locphonenumber": 33123452323
+                "phoneNumber": 33123452323
             },
             "geometry": {
                 "obsDatime": "2022-09-27T08:23:34+02:00",
@@ -89,7 +95,7 @@
                 },
                 "callbackContact": {},
                 "language": "FR",
-                "reqtype": "le patient lui-m\u00eame, p\u00e8re, m\u00e8re",
+                "type": "le patient lui-m\u00eame, p\u00e8re, m\u00e8re",
                 "communication": "Malentendant, aucune difficult\u00e9 de communication",
                 "freetext": "P\u00e8re",
                 "detailedName": {
@@ -122,6 +128,113 @@
                     "digest": "None"
                 }
             ]
+        },
+        "owner": "fr.health.samu090 ",
+        "operators": [
+            {
+                "detailedName": {},
+                "id": "None",
+                "role": "ARM, Medecin r\u00e9gulateur\u2026"
+            }
+        ],
+        "patients": [
+            {
+                "id": "None",
+                "file": [
+                    {
+                        "externalId": [
+                            {
+                                "source": "NIR, SINUS, SI-VIC, \u2026",
+                                "value": "id1234"
+                            }
+                        ],
+                        "contact": [
+                            {}
+                        ],
+                        "personalAddress": {
+                            "detailedAddress": {},
+                            "city": {}
+                        },
+                        "generalPractitioner": {
+                            "detailedName": {},
+                            "id": "None",
+                            "personalAddress": {},
+                            "contact": [
+                                {}
+                            ]
+                        }
+                    }
+                ],
+                "identity": {
+                    "cycle": {
+                        "status": "None",
+                        "attribute": "None"
+                    },
+                    "number": {
+                        "value": "2 77 01 01 154 002 29",
+                        "oid": "1.2.250.1.213.1.4.8"
+                    },
+                    "strictFeatures": {
+                        "birthName": "Dupont",
+                        "birthFirstName": "None",
+                        "birthFirstNamesList": "None",
+                        "birthDate": "None",
+                        "sex": "F",
+                        "birthPlaceCode": "None"
+                    },
+                    "nonStrictFeatures": {}
+                },
+                "whatsHappen": {},
+                "details": {
+                    "weight": 31,
+                    "height": 109,
+                    "age": "6Y"
+                }
+            }
+        ],
+        "medicalAnalysis": {
+            "patientId": "None",
+            "notes": [
+                {
+                    "operators": {},
+                    "observations": "None",
+                    "medicalHistory": [
+                        "None"
+                    ],
+                    "medicalHistoryFreetext": "None",
+                    "treatments": [
+                        "None"
+                    ],
+                    "treatmentsFreetext": "None",
+                    "allergies": "None",
+                    "freetext": [
+                        "None"
+                    ]
+                }
+            ],
+            "decisions": [
+                {
+                    "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
+                    "orientation": "None",
+                    "transportation": [
+                        "SMUR "
+                    ],
+                    "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
+                    "destination": {
+                        "facility": "None",
+                        "service": "None",
+                        "freetext": "None"
+                    },
+                    "carelevel": "R1/R2/R3/R4"
+                }
+            ],
+            "hypothesis": {
+                "mainDiagnosis": {},
+                "otherDiagnosis": [
+                    {}
+                ]
+            },
+            "resourceDiagnosis": {}
         },
         "newAlert": [
             {}
