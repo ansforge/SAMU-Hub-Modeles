@@ -66,7 +66,7 @@ public class CreateCaseWrapperBuilderTest {
     }
 
     private CreateCase getCreateCaseMock() throws IOException {
-        String json = getMessageString("RC-EDA");
+        String json = getMessageString("RC-EDA-CISU");
         return ((CreateCaseWrapper) converter.deserializeJsonEDXL(json).getFirstContentMessage()).getCreateCase();
     }
 }

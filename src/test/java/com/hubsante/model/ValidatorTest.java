@@ -161,13 +161,13 @@ public class ValidatorTest {
     @Test
     @DisplayName("invalid content valid enveloppe")
     public void invalidContentValidEnvelopeTest() throws IOException {
-        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.json");
+        String json = getInvalidMessage("RC-EDA-CISU/invalid-RC-EDA-CISU-valid-EDXL.json");
 
         // envelope validation does not throw because envelope is ok
         assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
 
-        String xml = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.xml");
+        String xml = getInvalidMessage("RC-EDA-CISU/invalid-RC-EDA-CISU-valid-EDXL.xml");
         // envelope validation does not throw because envelope is ok
         assertDoesNotThrow(() -> validator.validateXML(xml, ENVELOPE_XSD));
         assertThrows(ValidationException.class, () -> validator.validateXML(xml, "EDXL-DE.xsd"));
@@ -193,7 +193,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("no schemas detected")
     void noSchemasDetected() throws IOException {
-        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-no-schemas.json");
+        String json = getInvalidMessage("RC-EDA-CISU/invalid-RC-EDA-CISU-no-schemas.json");
 
         // validation throws due to absence of schemas
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
