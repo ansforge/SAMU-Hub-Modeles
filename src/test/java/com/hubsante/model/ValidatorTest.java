@@ -60,7 +60,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RC-EDA validation passes")
     public void jsonRcEdaValidationPasses() throws IOException {
-        String input = getMessageString("RC-EDA");
+        String input = getMessageString("RC-EDA-CISU");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
         // TODO bbo: add XML validation
     }
@@ -68,7 +68,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("RC-EDA validation fails")
     public void jsonRcEdaValidationFails() throws IOException {
-        String input = getMessageString("RC-EDA", false, false);
+        String input = getMessageString("RC-EDA-CISU", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
         try {
