@@ -170,7 +170,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
 111,114,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,0..1,,string,,,,X
 112,131,,,Contact patient,# voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
 113,132,,,Adresse patient,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
-114,133,,,,Adresse,# Voir detailedAdress,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,,X
+114,133,,,,Adresse,# Voir detailedAddress,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,,X
 115,134,,,,Ville,# Voir city,,,,,city,,,,,,0..1,X,city,,,,X
 116,135,,,Médecin traitant ,,,,,,,generalPractitioner,,,,,,0..1,X,generalPractitioner,,,,X
 117,136,,,,Prénom et nom,,,Nom du médecin traitant du patient si connu,,,detailedName,,,,,,0..1,X,detailedName,,,,X

@@ -110,7 +110,7 @@
                     </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="detailedAdress" type="x:detailedAdress"/>
+            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
@@ -285,7 +285,7 @@
             </element>
         </sequence>
     </complexType>
-    <complexType name="detailedAdress">
+    <complexType name="detailedAddress">
         <sequence>
             <element name="complete" type="string">
                 <annotation>

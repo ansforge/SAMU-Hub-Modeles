@@ -145,8 +145,8 @@
                     "example": "example.json#/createCase/location/name",
                     "description": "Indique le nom de lieu : nom commercial, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
                 },
-                "detailedAdress": {
-                    "$ref": "#/definitions/detailedAdress"
+                "detailedAddress": {
+                    "$ref": "#/definitions/detailedAddress"
                 },
                 "city": {
                     "$ref": "#/definitions/city"
@@ -353,7 +353,7 @@
             },
             "example": "example.json#/createCase/qualification/victims"
         },
-        "detailedAdress": {
+        "detailedAddress": {
             "type": "object",
             "title": "D\u00e9tails de l'adresse",
             "x-display": "expansion-panels",
@@ -365,21 +365,21 @@
                     "type": "string",
                     "title": "Num\u00e9ro, type et nom de voie",
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAdress/complete",
+                    "example": "example.json#/createCase/location/detailedAddress/complete",
                     "description": "Num\u00e9ro, type et nom de la voie. \nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\nObligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
                 },
                 "number": {
                     "type": "string",
                     "title": "Num\u00e9ro dans la voie",
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAdress/number",
+                    "example": "example.json#/createCase/location/detailedAddress/number",
                     "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
                 },
                 "wayName": {
                     "$ref": "#/definitions/wayName"
                 }
             },
-            "example": "example.json#/createCase/location/detailedAdress"
+            "example": "example.json#/createCase/location/detailedAddress"
         },
         "city": {
             "type": "object",
@@ -574,23 +574,23 @@
                     "type": "string",
                     "title": "Type et nom",
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAdress/wayName/complete",
+                    "example": "example.json#/createCase/location/detailedAddress/wayName/complete",
                     "description": "Type et nom de la voie (venant d'un r\u00e9f\u00e9rentiel ou non)\nSi les champs type et name sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
                 },
                 "type": {
                     "type": "string",
                     "title": "Type",
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAdress/wayName/type"
+                    "example": "example.json#/createCase/location/detailedAddress/wayName/type"
                 },
                 "name": {
                     "type": "string",
                     "title": "Nom",
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAdress/wayName/name"
+                    "example": "example.json#/createCase/location/detailedAddress/wayName/name"
                 }
             },
-            "example": "example.json#/createCase/location/detailedAdress/wayName"
+            "example": "example.json#/createCase/location/detailedAddress/wayName"
         },
         "point": {
             "type": "object",
