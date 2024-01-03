@@ -44,6 +44,7 @@ jobs:
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_CISU"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             python3 ./csv_parser.py -s $SCHEMA --filter True
+            mv ./out/$SCHEMA-CISU/$SCHEMA-CISU.openapi.yaml ../generator/input/$SCHEMA-CISU.openapi.yaml
             mv ./out/$SCHEMA-CISU/$SCHEMA-CISU.schema.json ../src/main/resources/json-schema/$SCHEMA-CISU.schema.json
           done
 
