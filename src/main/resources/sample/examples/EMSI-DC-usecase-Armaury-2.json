@@ -13,13 +13,13 @@
       "ORIGIN": {
         "ORG_ID": "fr.health.samu690.chuLyon.crra.regulationN3",
         "USER_ID": "fr.health.samu690.chuLyon.crra.regulationN3.poste123",
-        "NAME": "samu690"
+        "NAME": "SAMU 69"
       }
     },
     "EVENT": {
       "ID": "fr.health.samu690-20231103-AF1234",
       "NAME": "Incident sur voix cyclable",
-      "MAIN_EVENT_ID": "fr:health:samu690-20231103-AF1234",
+      "MAIN_EVENT_ID": "frhealth.samu690-20231103-AF1234",
       "ETYPE": {
         "CATEGORY": [
           "TRP/COL"
