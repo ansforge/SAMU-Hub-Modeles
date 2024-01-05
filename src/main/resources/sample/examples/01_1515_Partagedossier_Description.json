@@ -1,0 +1,21 @@
+
+{
+
+file: '01_1515_Partagedossier',
+
+icon: 'mdi-circular-saw',
+
+  name: 'Didier Morel',
+
+  caller: 'Sébastien Morel, témoin accident impliquant son père,  Didier Morel',
+
+  context: 'Accident domestique : blessure grave causée par une scie circulaire électrique',
+
+  environment: 'Domicile, outil scie débranché et sécurisé',
+
+  victims: '1 victimes, nécessitant assistance SAMU',
+
+  victim: 'Homme, adulte, 65 ans',
+
+  medicalSituation: 'Plaie traumatique profonde, perte de conscience, hémorragie importante'
+}
