@@ -20,6 +20,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 9,10,,Type de lieu,# Voir whatsHappen (type nomenclature),,,,Décrit le type de lieu (TL). Référentiel : nomenclature CISU,,locationKind,,CI,Type de lieu d'intervention,,,1.0,0..1,X,nomenclature,,,X,X
 10,11,,"Risque, menace et sensibilité",# Voir whatsHappen (type nomenclature),,,,"Décrit les risques, menaces et sensibilités (RMS). Référentiel : nomenclature CISU.",,riskThreat,,,,,,1.0,0..n,X,nomenclature,,,X,X
 11,12,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste (MR). Référentiel : nomenclature CISU.,,healthMotive,,,,,,1.0,0..1,X,nomenclature,,,X,X
+12,13,,Détails du dossier ,,,,,cf. cycle SI SAMU uniquement (si applicable) ,,,details,,,,,,0..1,X,caseDetails,,,,X
+13,14,,,Etat du dossier,,,,cf. cycle SI SAMU uniquement (si applicable) : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU,,,status,,,,,,0..1,,string,X,"ENUM: Nouveau , Actif , Validé , Clôturé , Classé ",,X
+14,15,,,Type de dossier,,,,D/DR/DRM si cycle SI-SAMU implémenté,"D, DR, DRM",,type,,,,,,0..1,,string,X,"ENUM : D, DR, DRM",,X
+15,16,,,Attribution du dossier,,,,Décrit le type de professionnel médical à qui le dossier est attribué,"Médecin généraliste, médecin urgentiste etc.",,attribution,,,,,,0..1,,string,?,?,,X
+16,17,,,Priorité de régulation médicale,,,,Décrit la priorité de régulation médicale du dossier.,"P0, P1, P2, P3",,priority,,,,,,0..1,,string,X,"ENUM: P0, P1, P2, P3",,X
 17,18,,Patients/Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
 18,19,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
 19,20,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, SENIOR",X,X
@@ -149,6 +154,95 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
 99,100,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,X
 100,101,,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
 La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X
+101,103,CRRA traitant,,,,,,"Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
+Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
+Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
+Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.",fr.health.samu090 ,,owner,,,,,,1..1,,string,,,,X
+102,104,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médeci référent, etc) pour le traitement d'un dossier.",,,operators,,,,,,0..n,X,operators,,,,X
+103,105,,Prénom & nom de l'opérateur,,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,1..1,X,detailedName,,,,X
+104,107,,ID,,,,,Identifiant professionnel de l'opérateur si existant,,,id,,,,,,0..1,,string,,,,X
+105,108,,Rôle,,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,,,,X
+106,109,Patients / victimes,,,,,,Identification des patients / victimes,,,patients,,,,,,0..n,X,patients,,,,X
+107,110,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,,X
+108,111,,Dossier administratif,,,,,,,,file,,,,,,0..n,X,file,,,,X
+109,112,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
+110,113,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,0..1,,string,X,"ENUM: NIR, SINUS, SI-VIC",,X
+111,114,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,0..1,,string,,,,X
+112,131,,,Contact patient,# voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
+113,132,,,Adresse patient,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
+114,133,,,,Adresse,# Voir detailedAdress,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,,X
+115,134,,,,Ville,# Voir city,,,,,city,,,,,,0..1,X,city,,,,X
+116,135,,,Médecin traitant ,,,,,,,generalPractitioner,,,,,,0..1,X,generalPractitioner,,,,X
+117,136,,,,Prénom et nom,,,Nom du médecin traitant du patient si connu,,,detailedName,,,,,,0..1,X,detailedName,,,,X
+118,138,,,,Identifiant,,,Numéro RPPS du médecin traitant,,,id,,,,,,0..1,,string,,,,X
+119,139,,,,Adresse medecin,# voir patientAddress (type personalAddress),,,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
+120,140,,,,Contact médecin,# voir callerContact (type contact),,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
+121,115,,Identité INS,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,,X
+122,115,,,Implémentation INS,,,,"Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
+- « identité provisoire »,
+- « identité récupérée »,
+- « identité validée »,
+- « identité qualifiée ».
+Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.",,,cycle,,,,,,0..1,X,insCycle,,,,X
+123,116,,,,Statut de l'identité,,,"Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
+- « identité provisoire »,
+- « identité récupérée »,
+- « identité validée »,
+- « identité qualifiée ».
+Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.",,,status,,,,,,0..1,,string,X,,,X
+124,117,,,,Attribut de l'identité,,,"Le RNIV recommande que les logiciels référentiels d’identités gèrent a minima les 3 attributs suivants :
+- identité homonyme,
+- identité douteuse,
+- identité fictive.",,,attribute,,,,,,0..1,,string,X,,,X
+125,118,,,Matricule INS,,,,"n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
+Le matricule INS est composé des 13 caractères et de la clé de contrôle. ",,,number,,,,,,0..1,X,insNumber,,,,X
+126,119,,,,Matricule ,,,"n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
+Le matricule INS est composé des 13 caractères et de la clé de contrôle. ",2 77 01 01 154 002 29,,value,,,,,,0..1,,string,,,,X
+127,120,,,,OID,,,"Identifiant de la structure qui a affecté l’INS sous la forme d'un OID. Les OID (Object Identifier) sont des identifiants universels, représentés sous la forme d'une suite d'entiers. Ils sont organisés sous forme hiérarchique avec des nœuds. L'OID est toujours associé à un matricule INS, il n'est donc pas propagé si le statut de l'identité n'est pas ""qualifiée""",1.2.250.1.213.1.4.8,,oid,,,,,,0..1,,string,X,,,X
+128,121,,,Traits stricts de l'identité,,,,"L’Identité Nationale de Santé (INS) permet de référencer les données de santé avec une identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé.
+Elle est composée : 
+ - Du matricule INS (NIR - numéro d’inscription au répertoire national des personnes physiques - ou NIA – numéro identifiant attente - de l’individu). Concrètement, ce numéro correspond au numéro de sécurité sociale pour les ouvrants-droits, c’est-à-dire la très grande majorité des personnes majeures. Pour les autres assurés, ce numéro figure sur leur attestation de sécurité sociale et sera affiché dans l’espace numérique de santé (Mon espace santé) ; 
+- Des cinq traits stricts de référence (nom de naissance, prénom(s) de naissance, date de naissance, sexe, lieu de naissance).",,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,,,X
+129,122,,,,Nom de naissance,,,Egalement appelé nom de famille.,Dupont,,birthName,,,,,,0..1,,string,,,,X
+130,123,,,,Premier prénom de naissance,,,"Doit être cohérent avec la liste des prénoms de naissance renvoyée par INSi. Ex: si la liste des prénoms renvoyée est ""Pierre Alain Jacques"", le premier prénom de naissance ne peut être que : 
+Pierre
+Pierre Alain
+Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
+131,124,,,,Liste des prénoms de naissance,,,Ensemble des prénoms de naissance (renvoyés par INSi),,,birthFirstNamesList,,,,,,0..1,,string,,,,X
+132,125,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF,,X
+133,126,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",,X
+134,127,,,,Code lieu de naissance,,,"Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.",,,birthPlaceCode,,,,,,0..1,,number,,,,X
+135,128,,,Traits non stricts de l'identité,,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,,X
+136,141,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,whatsHappen,,,,,,0..1,X,nomenclature,,,,X
+137,142,,Informations patient,,,,,,,,details,,,,,,0..1,X,patientDetails,,,,X
+138,143,,,Poids,,,,Poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,,,X
+139,144,,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,,,X
+140,145,,,Age,,,,Age du patient (Norme ISO_8601),6Y,,age,,,,,,0..1,,string,,REGEX: ,,X
+141,146,Régulation médicale,,,,,,Données spécifiques à la régulation médicale,,,medicalAnalysis,,,,,,0..1,X,medicalAnalysis,,,,X
+142,147,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientId,,,,,,0..1,,string,,,,X
+143,148,,Notes de régulation,,,,,Notes médicales,,,notes,,,,,,0..n,X,notes,,,,X
+144,149,,,Professionnel de santé qui réalise l'interrogatoire,# Voir operators,,,Professionnel de santé qui réalise l'interrogatoire,,,operators,,,,,,0..1,X,operators,,,,X
+145,150,,,Observations,,,,Observations médicales du professionnel de santé qui réalise l'interrogatoire,,,observations,,,,,,0..1,,string,,,,X
+146,151,,,Antécédents,,,,Antécédents médicaux ,,,medicalHistory,,,,,,0..n,,string,,,,X
+147,152,,,Complément antecédents,,,,"Texte libre a utiliser au besoin si nomenclature non implémentée,et/ou précisions à apporter",,,medicalHistoryFreetext,,,,,,0..1,,string,,,,X
+148,153,,,Traitements,,,,Traitements pris par le patient,,,treatments,,,,,,0..n,,string,,,,X
+149,154,,,Compléments traitements,,,,"Texte libre a utiliser au besoin si nomenclature non implémentée,et/ou précisions à apporter",,,treatmentsFreetext,,,,,,0..1,,string,,,,X
+150,155,,,Allergies,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
+151,156,,,Autres Commentaires,,,,Champ libre pour compléter les informations du dossier médical (notes médicales),,,freetext,,,,,,0..n,,string,,,,X
+152,157,,Décisions,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decisions,,,,,,0..n,X,decisions,,,,X
+153,158,,,Type de décision,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,"ENUM : Conseil médical, Décision d’intervention, Décision d’orientation et de transport, Pas de décision supplémentaire",,X
+154,159,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,?,,X
+155,160,,,Vecteur de transport,,,,Type de transport engagé pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,,X
+156,161,,,Niveau de médicalisation,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,?,,X
+157,162,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,,X
+158,163,,,,Etablissement,,,,,,facility,,,,,,0..1,,string,,,,X
+159,164,,,,Service,,,,,,service,,,,,,0..1,,string,,,,X
+160,165,,,,Autre,,,,,,freetext,,,,,,0..1,,string,,,,X
+161,166,,,Niveau de soin,,,,,R1/R2/R3/R4,,carelevel,,,,,,0..1,,string,X,"ENUM: R1, R2, R3, R4",,X
+162,167,,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,,,X
+163,168,,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type nomenclature),,,Hypothese diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
+164,169,,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type nomenclature),,,Hypotheses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,nomenclature,,,,X
+165,170,,Diagnostic de l'effecteur,# Voir whatsHappen (type nomenclature),,,,Diagnostic posé par le médecin effecteur qui se trouve sur les lieux de l'affaire,,,resourceDiagnosis,,,,,,0..1,X,nomenclature,,,,X
 166,171,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
