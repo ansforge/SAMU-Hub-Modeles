@@ -384,7 +384,7 @@ public class Location {
 
     MM("MM"),
 
-    EMPTY(""),
+    NA("NA"),
 
     NR("NR"),
 

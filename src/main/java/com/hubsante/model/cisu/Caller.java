@@ -361,7 +361,7 @@ public class Caller {
 
     MM("MM"),
 
-    EMPTY(""),
+    NA("NA"),
 
     NR("NR"),
 
