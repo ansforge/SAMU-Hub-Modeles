@@ -99,7 +99,7 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "RC-EDA.schema.json"
+                  "$ref": "RS-EDA.schema.json"
                 }
               }
             }
@@ -117,7 +117,7 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "RC-EDA-CISU.schema.json"
+                  "$ref": "RC-EDA.schema.json"
                 }
               }
             }

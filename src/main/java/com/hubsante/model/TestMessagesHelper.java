@@ -55,7 +55,7 @@ public class TestMessagesHelper {
     /**
      * Allows to get an invalid sample message as a JSON String
      *
-     * @param messagePath complete filename of the invalid message template (RC-EDA-CISU-missing-required-fields.json,
+     * @param messagePath complete filename of the invalid message template (RC-EDA-missing-required-fields.json,
      *                    RS-INFO-missing-required-fields.json, EMSI-DC-missing-required-fields.json, etc.)
      * @return the sample invalid message as a JSON String
      * @throws IOException if the specified filename does not correspond to an existing invalid sample message
