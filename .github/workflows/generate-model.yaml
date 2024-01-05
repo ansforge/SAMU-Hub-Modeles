@@ -34,6 +34,7 @@ jobs:
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_HEALTH"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             if [ $SCHEMA == RS* ]; then
+          echo RC${SCHEMA#RS}
                 python3 ./csv_parser.py -s RC${SCHEMA#RS}
                 mv ./out/RC${SCHEMA#RS}/RC${SCHEMA#RS}.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
                 mv ./out/RC${SCHEMA#RS}/RC${SCHEMA#RS}.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
