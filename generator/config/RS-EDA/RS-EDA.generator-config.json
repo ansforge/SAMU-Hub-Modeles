@@ -1,5 +1,5 @@
 {
-  "inputSpec": "./input/RC-EDA.openapi.yaml",
+  "inputSpec": "./input/RS-EDA.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/child-classes/",
@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.rs",
+    "modelPackage": "com.hubsante.model.health",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,

@@ -1,5 +1,5 @@
 {
-  "inputSpec": "./input/RC-EDA-CISU.openapi.yaml",
+  "inputSpec": "./input/RS-EDA.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/wrapper/",
@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.cisu",
+    "modelPackage": "com.hubsante.model.health",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
