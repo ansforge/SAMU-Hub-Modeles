@@ -43,7 +43,5 @@ def parser_and_mv():
 # ---------------------------------------- RUN
 if args.stage == 'parser_and_mv':
     parser_and_mv()
-elif args.stage == '':
-    run(args.sheet, args.name, args.version, args.filter)
 else:
     exit(1)
