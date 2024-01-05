@@ -4,9 +4,10 @@ on:
   pull_request:
     branches:
       - '**'
+  workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA EMSI"
+  SCHEMAS: "RC-EDA RS-EDA EMSI"
 
 jobs:
   generate:
@@ -22,15 +23,13 @@ jobs:
       - name: Install Graphviz
         uses: ts-graphviz/setup-graphviz@v1
 
-      - name: Install python requirements, run csv_parser and collect OpenAPI specs
+      - name: Install python requirements
         working-directory: ./csv_parser
-        run: |
-          pip install -r ./requirements.txt
-          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
-          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-            python3 ./csv_parser.py -s $SCHEMA
-            mv ./out/$SCHEMA/$SCHEMA.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
-          done
+        run: pip install -r ./requirements.txt
+
+      - name: Run csv_parser and collect OpenAPI & JSON Schemas
+        working-directory: ./csv_parser
+        run: python workflow.py --stage parser_and_mv
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
@@ -62,8 +61,12 @@ jobs:
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
 
-      - name: Copy generated classes to src/
+      - name: Replace src/ with generated classes
         run: |
+          rm -r ./src/main/java/com/hubsante/model/common || true
+          rm -r ./src/main/java/com/hubsante/model/cisu || true
+          rm -r ./src/main/java/com/hubsante/model/health || true
+          rm -r ./src/main/java/com/hubsante/model/emsi || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew

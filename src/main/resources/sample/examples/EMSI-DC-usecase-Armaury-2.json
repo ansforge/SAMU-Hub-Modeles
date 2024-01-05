@@ -13,16 +13,13 @@
       "ORIGIN": {
         "ORG_ID": "fr.health.samu690.chuLyon.crra.regulationN3",
         "USER_ID": "fr.health.samu690.chuLyon.crra.regulationN3.poste123",
-        "NAME": "samu690"
-      },
-      "EXTERNAL_INFO": [
-        {}
-      ]
+        "NAME": "SAMU 69"
+      }
     },
     "EVENT": {
       "ID": "fr.health.samu690-20231103-AF1234",
       "NAME": "Incident sur voix cyclable",
-      "MAIN_EVENT_ID": "fr:health:samu690-20231103-AF1234",
+      "MAIN_EVENT_ID": "frhealth.samu690-20231103-AF1234",
       "ETYPE": {
         "CATEGORY": [
           "TRP/COL"
@@ -65,7 +62,6 @@
       ],
       "EVAC": [
         {
-          "DATIME": null,
           "DISPLACED": 0,
           "EVACUATED": 0
         }
@@ -77,7 +73,6 @@
           "WEATHER": [
             "WIN"
           ],
-          "FREETEXT": null,
           "POSITION": {
             "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
             "NAME": "Quai des Célestins",
@@ -97,8 +92,7 @@
           }
         }
       ],
-      "CAUSE": "ACC",
-      "FREETEXT": null
+      "CAUSE": "ACC"
     },
     "MISSION": [
       {
@@ -109,15 +103,7 @@
         "NAME": "#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#",
         "STATUS": "IPR",
         "START_TIME": "2023-11-03T10:20:00+01:00",
-        "END_TIME": null,
         "RESOURCE_ID": "",
-        "PARENT_MISSION_ID": [
-          null
-        ],
-        "CHILD_MISSION_ID": [
-          null
-        ],
-        "MAIN_MISSION_ID": null,
         "POSITION": {
           "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
           "NAME": "Quai des Célestins",

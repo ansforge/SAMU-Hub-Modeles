@@ -37,7 +37,7 @@
       "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
       "locLabel": "8 quai des Célestins - 69002 Lyon",
       "name": "Quai des Célestins",
-      "detailedAdress": {
+      "detailedAddress": {
         "complete": "8 quai des Célestins",
         "number": "8",
         "wayName": {
@@ -48,18 +48,7 @@
       },
       "city": {
         "name": "Lyon",
-        "inseeCode": "65002",
-        "detail": null
-      },
-      "access": {
-        "floor": null,
-        "roomNumber": null,
-        "interphone": null,
-        "accessCode": [],
-        "elevator": null,
-        "buildingName": null,
-        "entrance": null,
-        "entity": null
+        "inseeCode": "65002"
       },
       "geometry": {
         "obsDatime": "2023-11-03T10:04:00+01:00" ,
@@ -73,8 +62,7 @@
             "precision": "ADDRESS"
           },
           "sysCoord": "EPSG-4326"
-        },
-        "sketch": null
+        }
       },
       "externalInfo": [
         {
@@ -83,8 +71,7 @@
           "uri": "id987"
         }
       ],
-      "country": "FR",
-      "freetext": null
+      "country": "FR"
     },
     "initialAlert": {
       "id": "samu690-20231103-AL01234",
@@ -117,7 +104,7 @@
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
         "locLabel": "8 quai des Célestins - 69002 Lyon",
         "name": "Quai des Célestins",
-        "detailedAdress": {
+        "detailedAddress": {
           "complete": "8 quai des Célestins",
           "number": "8",
           "wayName": {
@@ -128,18 +115,7 @@
         },
         "city": {
           "name": "Lyon",
-          "inseeCode": "65002",
-          "detail": null
-        },
-        "access": {
-          "floor": null,
-          "roomNumber": null,
-          "interphone": null,
-          "accessCode": [],
-          "elevator": null,
-          "buildingName": null,
-          "entrance": null,
-          "entity": null
+          "inseeCode": "65002"
         },
         "geometry": {
           "obsDatime": "2023-11-03T10:04:00+01:00" ,
@@ -153,8 +129,7 @@
               "precision": "ADDRESS"
             },
             "sysCoord": "EPSG-4326"
-          },
-          "sketch": null
+          }
         },
         "externalInfo": [
           {
@@ -163,8 +138,7 @@
             "uri": "id987"
           }
         ],
-        "country": "FR",
-        "freetext": null
+        "country": "FR"
       },
       "qualification": {
         "whatsHappen": {
@@ -210,9 +184,7 @@
           "description": "photo",
           "mimeType": "JPEP",
           "size": 35,
-          "URI": "https://hub.esante.gouv.fr/resourceExample",
-          "derefURI": null,
-          "digest": null
+          "URI": "https://hub.esante.gouv.fr/resourceExample"
         }
       ]
     },

@@ -534,8 +534,8 @@ components:
             \ de quartier (plut\xF4t \xE0 destination des syst\xE8mes)."
           examples:
             - "Lyc\xE9e Pierre de Coubertin"
-        detailedAdress:
-          $ref: '#/components/schemas/detailedAdress'
+        detailedAddress:
+          $ref: '#/components/schemas/detailedAddress'
         city:
           $ref: '#/components/schemas/city'
         access:
@@ -986,7 +986,7 @@ components:
         - count: SEVERAL
           mainVictim: CHILD
           freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
-    detailedAdress:
+    detailedAddress:
       type: object
       title: "D\xE9tails de l'adresse"
       x-display: expansion-panels
