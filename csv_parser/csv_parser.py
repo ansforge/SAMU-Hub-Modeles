@@ -30,10 +30,10 @@ def run(sheet, name, version, filter):
         END = '\033[0m'
 
     version = version or date.today().strftime("%y.%m.%d")
-    print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}'
-          f'Building version {version} of {'15-NexSIS' if filter else ''} {sheet} sheet '
-          f'into {name} schema...'
-          f'{Color.END}')
+    print(f"{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}"
+          f"Building version {version} of {'15-NexSIS' if filter else ''} {sheet} sheet "
+          f"into {name} schema..."
+          f"{Color.END}")
 
     RUN_DOCX_OUTPUT_EXAMPLES = False
 
