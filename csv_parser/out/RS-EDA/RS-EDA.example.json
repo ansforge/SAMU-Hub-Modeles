@@ -140,31 +140,29 @@
         "patients": [
             {
                 "id": "None",
-                "file": [
-                    {
-                        "externalId": [
-                            {
-                                "source": "NIR, SINUS, SI-VIC, \u2026",
-                                "value": "id1234"
-                            }
-                        ],
+                "file": {
+                    "externalId": [
+                        {
+                            "source": "NIR, SINUS, SI-VIC, \u2026",
+                            "value": "id1234"
+                        }
+                    ],
+                    "contact": [
+                        {}
+                    ],
+                    "personalAddress": {
+                        "detailedAddress": {},
+                        "city": {}
+                    },
+                    "generalPractitioner": {
+                        "detailedName": {},
+                        "id": "None",
+                        "personalAddress": {},
                         "contact": [
                             {}
-                        ],
-                        "personalAddress": {
-                            "detailedAddress": {},
-                            "city": {}
-                        },
-                        "generalPractitioner": {
-                            "detailedName": {},
-                            "id": "None",
-                            "personalAddress": {},
-                            "contact": [
-                                {}
-                            ]
-                        }
+                        ]
                     }
-                ],
+                },
                 "identity": {
                     "cycle": {
                         "status": "None",

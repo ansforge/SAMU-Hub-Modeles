@@ -38,10 +38,8 @@ import com.hubsante.model.health.InsIdentity;
 import com.hubsante.model.health.Nomenclature;
 import com.hubsante.model.health.PatientDetails;
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -59,7 +57,7 @@ public class Patients {
   private String id;
 
   public static final String JSON_PROPERTY_FILE = "file";
-  private List<File> _file;
+  private File _file;
 
   public static final String JSON_PROPERTY_IDENTITY = "identity";
   private InsIdentity identity;
@@ -96,17 +94,9 @@ public class Patients {
     this.id = id;
   }
 
-  public Patients _file(List<File> _file) {
+  public Patients _file(File _file) {
 
     this._file = _file;
-    return this;
-  }
-
-  public Patients addFileItem(File _fileItem) {
-    if (this._file == null) {
-      this._file = new ArrayList<>();
-    }
-    this._file.add(_fileItem);
     return this;
   }
 
@@ -117,22 +107,14 @@ public class Patients {
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<File> getFile() {
+  public File getFile() {
     return _file;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFile(List<File> _file) {
-    if (_file == null) {
-      return;
-    }
-    if (this._file == null) {
-      this._file = new ArrayList<>();
-    }
-    this._file.addAll(_file);
+  public void setFile(File _file) {
+    this._file = _file;
   }
 
   public Patients identity(InsIdentity identity) {

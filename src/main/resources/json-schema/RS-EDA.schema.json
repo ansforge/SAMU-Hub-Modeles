@@ -357,7 +357,7 @@
                         "MA",
                         "MZ",
                         "MM",
-                        "NA",
+                        "",
                         "NR",
                         "NP",
                         "NL",
@@ -590,10 +590,7 @@
                     "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
                 },
                 "file": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/file"
-                    }
+                    "$ref": "#/definitions/file"
                 },
                 "identity": {
                     "$ref": "#/definitions/insIdentity"
@@ -1325,7 +1322,7 @@
                         "MA",
                         "MZ",
                         "MM",
-                        "NA",
+                        "",
                         "NR",
                         "NP",
                         "NL",
@@ -1607,7 +1604,7 @@
         },
         "contact": {
             "type": "object",
-            "title": "Contact requ\u00e9rant",
+            "title": "Contact",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1646,7 +1643,7 @@
         },
         "detailedName": {
             "type": "object",
-            "title": "Pr\u00e9nom & nom usuel du requ\u00e9rant",
+            "title": "Pr\u00e9nom & nom usuel",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1706,7 +1703,7 @@
                     "$ref": "#/definitions/generalPractitioner"
                 }
             },
-            "example": "example.json#/createCase/patients/0/file/0"
+            "example": "example.json#/createCase/patients/0/file"
         },
         "insIdentity": {
             "type": "object",
@@ -1777,7 +1774,7 @@
                     "title": "Source  /  type d'identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patients/0/file/0/externalId/0/source",
+                    "example": "example.json#/createCase/patients/0/file/externalId/0/source",
                     "description": "Type de l'identifiant fourni",
                     "enum": [
                         "NIR",
@@ -1790,15 +1787,15 @@
                     "title": "Identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patients/0/file/0/externalId/0/value",
+                    "example": "example.json#/createCase/patients/0/file/externalId/0/value",
                     "description": "L'identifiant en lui-m\u00eame"
                 }
             },
-            "example": "example.json#/createCase/patients/0/file/0/externalId/0"
+            "example": "example.json#/createCase/patients/0/file/externalId/0"
         },
         "personalAddress": {
             "type": "object",
-            "title": "Adresse patient",
+            "title": "Adresse",
             "x-display": "expansion-panels",
             "x-health-only": true,
             "required": [],
@@ -1810,7 +1807,7 @@
                     "$ref": "#/definitions/city"
                 }
             },
-            "example": "example.json#/createCase/patients/0/file/0/personalAddress"
+            "example": "example.json#/createCase/patients/0/file/personalAddress"
         },
         "generalPractitioner": {
             "type": "object",
@@ -1827,7 +1824,7 @@
                     "title": "Identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patients/0/file/0/generalPractitioner/id",
+                    "example": "example.json#/createCase/patients/0/file/generalPractitioner/id",
                     "description": "Num\u00e9ro RPPS du m\u00e9decin traitant"
                 },
                 "personalAddress": {
@@ -1840,7 +1837,7 @@
                     }
                 }
             },
-            "example": "example.json#/createCase/patients/0/file/0/generalPractitioner"
+            "example": "example.json#/createCase/patients/0/file/generalPractitioner"
         },
         "insCycle": {
             "type": "object",

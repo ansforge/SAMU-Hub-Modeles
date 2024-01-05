@@ -707,7 +707,7 @@ strict digraph {
                 </TR>
                 <TR><TD BGCOLOR="coral" BORDER="0"><I>objet file</I></TD></TR>
                 </TABLE>>]
-	file -> patients [constraint=true headlabel=1 taillabel="0..*"]
+	file -> patients [constraint=true headlabel=1 taillabel="0..1"]
 	cycle [label=<<TABLE>
                 <TR>
                 <TD BGCOLOR="coral"><B>cycle</B></TD>

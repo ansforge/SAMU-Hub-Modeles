@@ -372,7 +372,7 @@ components:
           - MA
           - MZ
           - MM
-          - NA
+          - ''
           - NR
           - NP
           - NL
@@ -624,9 +624,7 @@ components:
           examples:
           - None
         file:
-          type: array
-          items:
-            $ref: '#/components/schemas/file'
+          $ref: '#/components/schemas/file'
         identity:
           $ref: '#/components/schemas/insIdentity'
         whatsHappen:
@@ -1426,7 +1424,7 @@ components:
           - MA
           - MZ
           - MM
-          - NA
+          - ''
           - NR
           - NP
           - NL
@@ -1748,7 +1746,7 @@ components:
         digest: None
     contact:
       type: object
-      title: "Contact requ\xE9rant"
+      title: Contact
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -1789,7 +1787,7 @@ components:
         detail: 0671830530
     detailedName:
       type: object
-      title: "Pr\xE9nom & nom usuel du requ\xE9rant"
+      title: "Pr\xE9nom & nom usuel"
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -1852,7 +1850,7 @@ components:
           $ref: '#/components/schemas/personalAddress'
         generalPractitioner:
           $ref: '#/components/schemas/generalPractitioner'
-      example: example.json#/createCase/patients/0/file/0
+      example: example.json#/createCase/patients/0/file
     insIdentity:
       type: object
       title: "Identit\xE9 INS"
@@ -1921,7 +1919,7 @@ components:
           title: Source  /  type d'identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/file/0/externalId/0/source
+          example: example.json#/createCase/patients/0/file/externalId/0/source
           description: Type de l'identifiant fourni
           enum:
           - NIR
@@ -1934,17 +1932,17 @@ components:
           title: Identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/file/0/externalId/0/value
+          example: example.json#/createCase/patients/0/file/externalId/0/value
           description: "L'identifiant en lui-m\xEAme"
           examples:
           - id1234
-      example: example.json#/createCase/patients/0/file/0/externalId/0
+      example: example.json#/createCase/patients/0/file/externalId/0
       examples:
       - source: "NIR, SINUS, SI-VIC, \u2026"
         value: id1234
     personalAddress:
       type: object
-      title: Adresse patient
+      title: Adresse
       x-display: expansion-panels
       x-health-only: true
       required: []
@@ -1953,7 +1951,7 @@ components:
           $ref: '#/components/schemas/detailedAddress'
         city:
           $ref: '#/components/schemas/city'
-      example: example.json#/createCase/patients/0/file/0/personalAddress
+      example: example.json#/createCase/patients/0/file/personalAddress
       examples:
       - detailedAddress: {}
         city: {}
@@ -1971,7 +1969,7 @@ components:
           title: Identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/file/0/generalPractitioner/id
+          example: example.json#/createCase/patients/0/file/generalPractitioner/id
           description: "Num\xE9ro RPPS du m\xE9decin traitant"
           examples:
           - None
@@ -1981,7 +1979,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact'
-      example: example.json#/createCase/patients/0/file/0/generalPractitioner
+      example: example.json#/createCase/patients/0/file/generalPractitioner
     insCycle:
       type: object
       title: "Impl\xE9mentation INS"

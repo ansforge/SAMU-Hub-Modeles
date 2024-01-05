@@ -330,7 +330,7 @@
                         "MA",
                         "MZ",
                         "MM",
-                        "NA",
+                        "",
                         "NR",
                         "NP",
                         "NL",
@@ -1140,7 +1140,7 @@
                         "MA",
                         "MZ",
                         "MM",
-                        "NA",
+                        "",
                         "NR",
                         "NP",
                         "NL",
@@ -1422,7 +1422,7 @@
         },
         "contact": {
             "type": "object",
-            "title": "Contact requ\u00e9rant",
+            "title": "Contact",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1461,7 +1461,7 @@
         },
         "detailedName": {
             "type": "object",
-            "title": "Pr\u00e9nom & nom usuel du requ\u00e9rant",
+            "title": "Pr\u00e9nom & nom usuel",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
