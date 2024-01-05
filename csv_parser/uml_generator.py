@@ -163,21 +163,19 @@ class Color:
 
 
 def run(model, obj, version=date.today().strftime("%y.%m.%d"), filter=False):
-    appendCisuIfNeeded = "-CISU" if filter else ""
-
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {version} of {model} ...{Color.END}')
 
     # warning, if folder out/model empty, causes failure
-    print("Loading schema.json from " + os.path.join("out", model+appendCisuIfNeeded) + "...")
-    path = os.path.join("out", model+appendCisuIfNeeded, f"{model}{appendCisuIfNeeded}.schema.json")
+    print("Loading schema.json from " + os.path.join("out", model) + "...")
+    path = os.path.join("out", model, f"{model}.schema.json")
     with open(os.path.join(path), 'r') as file:
         json_in = json.load(file)
         print("schema.json loaded.")
         print("Parsing schema.json ...")
         parse_root_node(obj, json_in, json_in["definitions"], {}, id_ignore=["newAlert", "alertLocation"])
-        print("Rendering " + os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_diagram.pdf") + " ...")
+        print("Rendering " + os.path.join("out", model, model+".uml_diagram.pdf") + " ...")
         dot.edge_attr.update(arrowhead='odiamond', arrowtail='none')
-        dot.render(os.path.join("out", model+appendCisuIfNeeded, model+appendCisuIfNeeded+".uml_diagram"))
+        dot.render(os.path.join("out", model, model+".uml_diagram"))
         print("Done.")
     return
 
@@ -188,7 +186,7 @@ if __name__ == "__main__":
         description='Generate uml from json-schema',
     )
     parser.add_argument('-v', '--version', help='the version number to be used in model. Defaults to today.')
-    parser.add_argument('-m', '--model', default="RC-EDA.json", help='the concerned model to parse')
+    parser.add_argument('-m', '--model', default="RC-EDA", help='the concerned model to parse')
     parser.add_argument('-o', '--obj', default="cisu", help='define the head object')
     args = parser.parse_args()
 
