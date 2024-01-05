@@ -1,0 +1,175 @@
+{
+    "emsi": {
+        "CONTEXT": {
+            "ID": "d350c9d2-9d76-4568-b0b7-a747ffadc949",
+            "MODE": "ACTUAL",
+            "MSGTYPE": "UPDATE",
+            "CREATION": "2022-09-27T08:25:54+02:00",
+            "LINK": [
+                {
+                    "ID": "samuA:CA126B445579GD4A67AV",
+                    "LINK_ROLE": "ADDSTO"
+                }
+            ],
+            "LEVEL": "OPR",
+            "SECLASS": "RESTRC",
+            "FREETEXT": "Contexte de grand incendie \u00e0 Nantes",
+            "ORIGIN": {
+                "ORG_ID": "fr.health.44.samu44",
+                "USER_ID": "None",
+                "NAME": "samu44"
+            },
+            "EXTERNAL_INFO": [
+                {
+                    "FREETEXT": "None",
+                    "URI": "289d6939-d225-4c71-9a56-68c03ada2f5e",
+                    "TYPE": "SPRSDS"
+                }
+            ],
+            "URGENCY": "URGENT"
+        },
+        "EVENT": {
+            "ID": "samu44",
+            "NAME": "Grand Incendie Nantes",
+            "MAIN_EVENT_ID": "samuA:CA126B445579GD4A67AV",
+            "ETYPE": {
+                "CATEGORY": [
+                    "FIR"
+                ],
+                "ACTOR": [
+                    "PPL/GRP"
+                ],
+                "LOCTYPE": [
+                    "URB/STRT"
+                ],
+                "ENV": "CDIS/RIOT"
+            },
+            "SOURCE": "HUMOBS",
+            "SCALE": 2,
+            "CERTAINTY": 100,
+            "DECL_DATIME": "2022-09-27T08:24:50+02:00",
+            "OCC_DATIME": "2022-09-27T08:20:50+02:00",
+            "OBS_DATIME": "2022-09-27T08:26:00+02:00",
+            "STATUS": "IPR",
+            "RISK_ASSESMENT": "STABLE",
+            "REFERENCE": [
+                {
+                    "ORG_ID": "fr.health.44.samu44",
+                    "OTHER_EVENT_ID": [
+                        "samu4412345"
+                    ]
+                }
+            ],
+            "CASUALTIES": [
+                {
+                    "CONTEXT": "REQ_ACTION",
+                    "DATIME": "2022-09-27T08:00:00+02:00",
+                    "DECONT": 0,
+                    "TRIAGERED": 0,
+                    "TRIAGEYELLOW": 1,
+                    "TRIAGEGREEN": 0,
+                    "TRIAGEBLACK": 0,
+                    "MISSING": 0
+                }
+            ],
+            "EVAC": [
+                {
+                    "DATIME": "2022-09-27T10:00:00+02:00",
+                    "DISPLACED": 0,
+                    "EVACUATED": 1
+                }
+            ],
+            "EGEO": [
+                {
+                    "DATIME": "2022-09-27T08:26:00+02:00",
+                    "TYPE": "HLT",
+                    "WEATHER": [
+                        "HUM/RAIN"
+                    ],
+                    "FREETEXT": "Un peu de pluie vers 8h",
+                    "POSITION": {
+                        "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+                        "NAME": "Lyc\u00e9e Pierre de Coubertin",
+                        "TYPE": "POINT",
+                        "HEIGHT_ROLE": "MIN",
+                        "COORDSYS": "EPSG-4326",
+                        "COORD": [
+                            {
+                                "LAT": "47.221866",
+                                "LONG": "-1.575807",
+                                "HEIGHT": 1
+                            }
+                        ],
+                        "ADDRESS": [
+                            "Nantes centre ville"
+                        ]
+                    }
+                }
+            ],
+            "CAUSE": "ACC",
+            "FREETEXT": "Maison sur le c\u00f4t\u00e9 droit de la route"
+        },
+        "MISSION": [
+            {
+                "TYPE": "SAV/ASC",
+                "FREETEXT": "Besoin d'un grand v\u00e9hicule car patients \u00e0 prendre en charge volumineux. Ne pas utiliser les gyrophares en approche",
+                "ID": "/FF#bb511708-b004-4d7e-8820-1d56c19f1823",
+                "ORG_ID": "fr.health.44.samu44",
+                "NAME": "#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#",
+                "STATUS": "IPR",
+                "START_TIME": "2022-09-27T08:25:00+02:00",
+                "END_TIME": "2022-09-27T08:55:00+02:00",
+                "RESOURCE_ID": "77_45102#VSAV 1#",
+                "PARENT_MISSION_ID": [
+                    "None"
+                ],
+                "CHILD_MISSION_ID": [
+                    "None"
+                ],
+                "MAIN_MISSION_ID": "/FF#bb511708-b004-4d7e-8820-1d56c19f1855",
+                "POSITION": {},
+                "PRIORITY": 5
+            }
+        ],
+        "RESOURCE": [
+            {
+                "RTYPE": {
+                    "RCLASS": [
+                        "MAT/VEH/ROADVE/FRFGTN"
+                    ],
+                    "CAPABILITY": [
+                        "None"
+                    ],
+                    "CHARACTERISTICS": [
+                        "None"
+                    ]
+                },
+                "ID": "77_45102#VSAV 1#",
+                "ORG_ID": "FR:Administration:44:CASERNENANTES",
+                "NAME": "VSAV 1 Nantes",
+                "FREETEXT": "None",
+                "RGEO": [
+                    {
+                        "DATIME": "2022-09-27T08:44:00+02:00",
+                        "TYPE": "CUR",
+                        "FREETEXT": "Position actualis\u00e9e du VSAV 1 Nantes",
+                        "ID": "None",
+                        "POSITION": [
+                            {}
+                        ]
+                    }
+                ],
+                "QUANTITY": 1,
+                "UM": "None",
+                "STATUS": "IN_USE/MOBILE",
+                "NATIONALITY": "FR",
+                "CONTACTS": [
+                    {
+                        "TYPE": "PHNADD",
+                        "DETAIL": 606070707
+                    }
+                ]
+            }
+        ]
+    }
+}
