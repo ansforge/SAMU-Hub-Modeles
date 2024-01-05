@@ -1,6 +1,19 @@
 import os
+import argparse
+
 import csv_parser
 
+# ---------------------------------------- ARGS CONFIGURATION
+parser = argparse.ArgumentParser(
+    prog='Workflow Automator',
+    description='Automates the build workflow for the model (specs, schemas, ...)',
+)
+parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', ''], help='The wokflow stage to run')
+args = parser.parse_args()
+
+print(args.stage)
+
+# ---------------------------------------- SCHEMAS CONFIGURATION
 schemas = [{
     'name': 'RC-EDA',
     'sheet': 'RC-EDA',
@@ -16,6 +29,7 @@ schemas = [{
 }]
 
 
+# ---------------------------------------- STAGE FUNCTIONS
 def parser_and_mv():
     for schema in schemas:
         # Run csv_parser
@@ -26,17 +40,10 @@ def parser_and_mv():
         os.rename(f"./out/{name}/{name}.schema.json", f"../src/main/resources/json-schema/{name}.schema.json")
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        prog='Workflow Automator',
-        description='Automates the build workflow for the model (specs, schemas, ...)',
-    )
-    parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', ''], help='The wokflow stage to run')
-    args = parser.parse_args()
-
-    if args.stage == 'parser_and_mv':
-        parser_and_mv()
-    elif args.stage == '':
-        run(args.sheet, args.name, args.version, args.filter)
-    else:
-        exit(1)
+# ---------------------------------------- RUN
+if args.stage == 'parser_and_mv':
+    parser_and_mv()
+elif args.stage == '':
+    run(args.sheet, args.name, args.version, args.filter)
+else:
+    exit(1)
