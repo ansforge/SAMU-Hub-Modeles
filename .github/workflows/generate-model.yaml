@@ -7,8 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA EMSI"
-  SCHEMAS_CISU: "RC-EDA"
+  SCHEMAS_HEALTH: "RS-EDA"
+  SCHEMAS_CISU: "RC-EDA EMSI"
 
 jobs:
   generate:
@@ -31,11 +31,18 @@ jobs:
       - name: (SCHEMAS) Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
         run: |
-          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
+          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_HEALTH"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-            python3 ./csv_parser.py -s $SCHEMA
-            mv ./out/$SCHEMA/$SCHEMA.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
-            mv ./out/$SCHEMA/$SCHEMA.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
+            if [ $SCHEMA == RS* ]; then
+                python3 ./csv_parser.py -s RC${SCHEMA#RS}
+                mv ./out/RC${SCHEMA#RS}/RC${SCHEMA#RS}.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
+                mv ./out/RC${SCHEMA#RS}/RC${SCHEMA#RS}.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
+            else
+                python3 ./csv_parser.py -s $SCHEMA
+                mv ./out/$SCHEMA/$SCHEMA.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
+                mv ./out/$SCHEMA/$SCHEMA.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
+            fi
+            
           done
 
       - name: (SCHEMAS_CISU) Run csv_parser and collect JSON Schemas (filtering only 15-NexSIS)
@@ -44,8 +51,8 @@ jobs:
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_CISU"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             python3 ./csv_parser.py -s $SCHEMA --filter True
-            mv ./out/$SCHEMA-CISU/$SCHEMA-CISU.openapi.yaml ../generator/input/$SCHEMA-CISU.openapi.yaml
-            mv ./out/$SCHEMA-CISU/$SCHEMA-CISU.schema.json ../src/main/resources/json-schema/$SCHEMA-CISU.schema.json
+            mv ./out/$SCHEMA/$SCHEMA.openapi.yaml ../generator/input/$SCHEMA.openapi.yaml
+            mv ./out/$SCHEMA/$SCHEMA.schema.json ../src/main/resources/json-schema/$SCHEMA.schema.json
           done
 
       - name: Install JDK 11
@@ -72,7 +79,7 @@ jobs:
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.wrapper.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.distributionElement.generator-config.json --skip-validate-spec
 
-          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
+          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_HEALTH"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
@@ -80,15 +87,15 @@ jobs:
           
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS_CISU"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA-CISU/$SCHEMA-CISU.generator-config.json --skip-validate-spec
-            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA-CISU/$SCHEMA-CISU.wrapper.generator-config.json --skip-validate-spec
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
 
       - name: Replace src/ with generated classes
         run: |
           rm -r ./src/main/java/com/hubsante/model/common || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
-          rm -r ./src/main/java/com/hubsante/model/rs || true
+          rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 

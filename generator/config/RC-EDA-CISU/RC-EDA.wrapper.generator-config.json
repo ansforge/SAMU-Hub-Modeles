@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/RC-EDA-CISU.openapi.yaml",
+  "inputSpec": "./input/RC-EDA.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/child-classes/",
+  "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "",
+    "models": "createCaseWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
