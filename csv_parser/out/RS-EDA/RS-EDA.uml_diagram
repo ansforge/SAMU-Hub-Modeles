@@ -803,7 +803,7 @@ strict digraph {
                 <TR>
                 <TD BGCOLOR="coral"><B>medicalnotes</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet medicalnotes</I></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">creationmedicalnote <I>date-time</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">freetext <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">medicalHistory <I>string</I> : [0..*]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">medicalHistoryFreetext <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">treatments <I>string</I> : [0..*]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">treatmentsFreetext <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">allergies <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet medicalnotes</I></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">creationmedicalnote <I>date-time</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">freetext <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">medicalHistoryFreetext <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">treatmentsFreetext <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">allergiesFreetext <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
                 </TABLE>>]
 	medicalnotes -> patients [constraint=true headlabel=1 taillabel="0..*"]
 	patients [label=<<TABLE>

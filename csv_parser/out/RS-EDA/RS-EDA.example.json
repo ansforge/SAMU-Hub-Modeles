@@ -201,15 +201,9 @@
                         "operators": {},
                         "creationmedicalnote": "2022-09-27T08:23:34+02:00",
                         "freetext": "None",
-                        "medicalHistory": [
-                            "None"
-                        ],
                         "medicalHistoryFreetext": "None",
-                        "treatments": [
-                            "None"
-                        ],
                         "treatmentsFreetext": "None",
-                        "allergies": "None"
+                        "allergiesFreetext": "None"
                     }
                 ]
             }

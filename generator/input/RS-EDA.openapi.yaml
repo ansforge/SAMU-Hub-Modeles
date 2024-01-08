@@ -1940,7 +1940,7 @@ components:
       example: example.json#/createCase/patients/0/hypothesis
     medicalnotes:
       type: object
-      title: "Notes de r\xE9gulation m\xE9dicale"
+      title: "Interrogatoire m\xE9dical"
       x-display: expansion-panels
       x-health-only: true
       required:
@@ -1950,13 +1950,13 @@ components:
           $ref: '#/components/schemas/operators'
         creationmedicalnote:
           type: string
-          title: "Date Heure de cr\xE9ation de la note de r\xE9gulation"
+          title: "Date Heure de cr\xE9ation de l'interrogatoire"
           x-health-only: true
           x-cols: 6
           example: example.json#/createCase/patients/0/medicalnotes/0/creationmedicalnote
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
-            ation de la note de r\xE9gulation.  L'indicateur de fuseau horaire Z ne\
-            \ doit pas \xEAtre utilis\xE9."
+            ation de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas\
+            \ \xEAtre utilis\xE9."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1968,63 +1968,46 @@ components:
           x-cols: 6
           example: example.json#/createCase/patients/0/medicalnotes/0/freetext
           description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
-            \ r\xE9alise l'interrogatoire"
+            \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
+            \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
+            \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
           examples:
           - None
-        medicalHistory:
-          type: array
-          x-health-only: true
-          items:
-            type: string
-            title: "Ant\xE9c\xE9dents"
-            x-health-only: true
-            x-cols: 6
-            example: example.json#/createCase/patients/0/medicalnotes/0/medicalHistory/0
-            description: "Ant\xE9c\xE9dents m\xE9dicaux "
-            examples:
-            - None
         medicalHistoryFreetext:
           type: string
-          title: "Compl\xE9ment antec\xE9dents"
+          title: "Ant\xE9c\xE9dents"
           x-health-only: true
           x-cols: 6
           example: example.json#/createCase/patients/0/medicalnotes/0/medicalHistoryFreetext
-          description: "Texte libre a utiliser au besoin si nomenclature non impl\xE9\
-            ment\xE9e,et/ou pr\xE9cisions \xE0 apporter"
+          description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient"
           examples:
           - None
-        treatments:
-          type: array
-          x-health-only: true
-          items:
-            type: string
-            title: Traitements
-            x-health-only: true
-            x-cols: 6
-            example: example.json#/createCase/patients/0/medicalnotes/0/treatments/0
-            description: Traitements pris par le patient
-            examples:
-            - None
         treatmentsFreetext:
           type: string
-          title: "Compl\xE9ments traitements"
+          title: Traitements
           x-health-only: true
           x-cols: 6
           example: example.json#/createCase/patients/0/medicalnotes/0/treatmentsFreetext
-          description: "Texte libre a utiliser au besoin si nomenclature non impl\xE9\
-            ment\xE9e,et/ou pr\xE9cisions \xE0 apporter"
+          description: "Texte libre  pour d\xE9crire les traitements du patient"
           examples:
           - None
-        allergies:
+        allergiesFreetext:
           type: string
           title: Allergies
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/medicalnotes/0/allergies
+          example: example.json#/createCase/patients/0/medicalnotes/0/allergiesFreetext
           description: "Texte libre pour d\xE9crire les allergies du patient"
           examples:
           - None
       example: example.json#/createCase/patients/0/medicalnotes/0
+      examples:
+      - operators: {}
+        creationmedicalnote: '2022-09-27T08:23:34+02:00'
+        freetext: None
+        medicalHistoryFreetext: None
+        treatmentsFreetext: None
+        allergiesFreetext: None
     externalId:
       type: object
       title: Identifiant(s) patient(s)

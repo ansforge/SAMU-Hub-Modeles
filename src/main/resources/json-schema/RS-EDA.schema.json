@@ -1800,7 +1800,7 @@
         },
         "medicalnotes": {
             "type": "object",
-            "title": "Notes de r\u00e9gulation m\u00e9dicale",
+            "title": "Interrogatoire m\u00e9dical",
             "x-display": "expansion-panels",
             "x-health-only": true,
             "required": [
@@ -1812,11 +1812,11 @@
                 },
                 "creationmedicalnote": {
                     "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la note de r\u00e9gulation",
+                    "title": "Date Heure de cr\u00e9ation de l'interrogatoire",
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/createCase/patients/0/medicalnotes/0/creationmedicalnote",
-                    "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de la note de r\u00e9gulation.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+                    "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1826,54 +1826,30 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/createCase/patients/0/medicalnotes/0/freetext",
-                    "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire"
-                },
-                "medicalHistory": {
-                    "type": "array",
-                    "x-health-only": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Ant\u00e9c\u00e9dents",
-                        "x-health-only": true,
-                        "x-cols": 6,
-                        "example": "example.json#/createCase/patients/0/medicalnotes/0/medicalHistory/0",
-                        "description": "Ant\u00e9c\u00e9dents m\u00e9dicaux "
-                    }
+                    "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire (texte libre)\nChamp \u00e0 utiliser pour aggr\u00e9ger l'ensemble des ant\u00e9c\u00e9dents /traitements/allergies du patient si les cat\u00e9gories ne sont pas disctinctes dans le LRM"
                 },
                 "medicalHistoryFreetext": {
                     "type": "string",
-                    "title": "Compl\u00e9ment antec\u00e9dents",
+                    "title": "Ant\u00e9c\u00e9dents",
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/createCase/patients/0/medicalnotes/0/medicalHistoryFreetext",
-                    "description": "Texte libre a utiliser au besoin si nomenclature non impl\u00e9ment\u00e9e,et/ou pr\u00e9cisions \u00e0 apporter"
-                },
-                "treatments": {
-                    "type": "array",
-                    "x-health-only": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Traitements",
-                        "x-health-only": true,
-                        "x-cols": 6,
-                        "example": "example.json#/createCase/patients/0/medicalnotes/0/treatments/0",
-                        "description": "Traitements pris par le patient"
-                    }
+                    "description": "Texte libre  pour d\u00e9crire les ant\u00e9c\u00e9dents du patient"
                 },
                 "treatmentsFreetext": {
                     "type": "string",
-                    "title": "Compl\u00e9ments traitements",
+                    "title": "Traitements",
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/createCase/patients/0/medicalnotes/0/treatmentsFreetext",
-                    "description": "Texte libre a utiliser au besoin si nomenclature non impl\u00e9ment\u00e9e,et/ou pr\u00e9cisions \u00e0 apporter"
+                    "description": "Texte libre  pour d\u00e9crire les traitements du patient"
                 },
-                "allergies": {
+                "allergiesFreetext": {
                     "type": "string",
                     "title": "Allergies",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patients/0/medicalnotes/0/allergies",
+                    "example": "example.json#/createCase/patients/0/medicalnotes/0/allergiesFreetext",
                     "description": "Texte libre pour d\u00e9crire les allergies du patient"
                 }
             },
