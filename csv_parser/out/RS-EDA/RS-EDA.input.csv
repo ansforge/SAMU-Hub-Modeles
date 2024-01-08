@@ -112,7 +112,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
 69,70,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X
 70,71,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,0..1,X,contact,,,X,X
 71,72,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X
-72,73,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X
+72,73,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",X,X
 73,74,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X
 74,75,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
 75,76,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"le patient lui-même, père, mère",,type,,,,,,0..1,,string,X,?,X,X
@@ -168,7 +168,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
 109,112,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
 110,113,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,0..1,,string,X,"ENUM: NIR, SINUS, SI-VIC",,X
 111,114,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,0..1,,string,,,,X
-112,131,,,Contact,# Voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
+112,131,,,Contact,# Voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,,,X
 113,132,,,Adresse,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
 114,133,,,,Adresse,# Voir detailedAddress,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,,X
 115,134,,,,Ville,# Voir city,,,,,city,,,,,,0..1,X,city,,,,X
@@ -176,7 +176,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
 117,136,,,,Prénom et nom,,,Nom du médecin traitant du patient si connu,,,detailedName,,,,,,0..1,X,detailedName,,,,X
 118,138,,,,Identifiant,,,Numéro RPPS du médecin traitant,,,id,,,,,,0..1,,string,,,,X
 119,139,,,,Adresse medecin,# Voir patientAddress (type personalAddress),,,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
-120,140,,,,Contact médecin,# Voir callerContact (type contact),,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,"REGEX: tel:([#\+\*]|37000|00+)?[0-9]{2,15}",,X
+120,140,,,,Contact médecin,# Voir callerContact (type contact),,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,,,X
 121,115,,Identité INS,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,,X
 122,115,,,Implémentation INS,,,,"Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
 - « identité provisoire »,
@@ -218,31 +218,31 @@ Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
 138,143,,,Poids,,,,Poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,,,X
 139,144,,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,,,X
 140,145,,,Age,,,,Age du patient (Norme ISO_8601),6Y,,age,,,,,,0..1,,string,,REGEX: ,,X
-141,146,Régulation médicale,,,,,,Données spécifiques à la régulation médicale,,,medicalAnalysis,,,,,,0..1,X,medicalAnalysis,,,,X
-142,147,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientId,,,,,,0..1,,string,,,,X
-143,148,,Notes de régulation,,,,,Notes médicales,,,notes,,,,,,0..n,X,notes,,,,X
-144,149,,,Professionnel de santé qui réalise l'interrogatoire,# Voir operators,,,Professionnel de santé qui réalise l'interrogatoire,,,operators,,,,,,0..1,X,operators,,,,X
-145,150,,,Observations,,,,Observations médicales du professionnel de santé qui réalise l'interrogatoire,,,observations,,,,,,0..1,,string,,,,X
-146,151,,,Antécédents,,,,Antécédents médicaux ,,,medicalHistory,,,,,,0..n,,string,,,,X
-147,152,,,Complément antecédents,,,,"Texte libre a utiliser au besoin si nomenclature non implémentée,et/ou précisions à apporter",,,medicalHistoryFreetext,,,,,,0..1,,string,,,,X
-148,153,,,Traitements,,,,Traitements pris par le patient,,,treatments,,,,,,0..n,,string,,,,X
-149,154,,,Compléments traitements,,,,"Texte libre a utiliser au besoin si nomenclature non implémentée,et/ou précisions à apporter",,,treatmentsFreetext,,,,,,0..1,,string,,,,X
-150,155,,,Allergies,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
-151,156,,,Autres Commentaires,,,,Champ libre pour compléter les informations du dossier médical (notes médicales),,,freetext,,,,,,0..n,,string,,,,X
-152,157,,Décisions,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decisions,,,,,,0..n,X,decisions,,,,X
-153,158,,,Type de décision,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,"ENUM : Conseil médical, Décision d’intervention, Décision d’orientation et de transport, Pas de décision supplémentaire",,X
-154,159,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,?,,X
-155,160,,,Vecteur de transport,,,,Type de transport engagé pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,,X
-156,161,,,Niveau de médicalisation,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,?,,X
-157,162,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,,X
-158,163,,,,Etablissement,,,,,,facility,,,,,,0..1,,string,,,,X
-159,164,,,,Service,,,,,,service,,,,,,0..1,,string,,,,X
-160,165,,,,Autre,,,,,,freetext,,,,,,0..1,,string,,,,X
-161,166,,,Niveau de soin,,,,,R1/R2/R3/R4,,carelevel,,,,,,0..1,,string,X,"ENUM: R1, R2, R3, R4",,X
-162,167,,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,,,X
-163,168,,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type nomenclature),,,Hypothese diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
-164,169,,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type nomenclature),,,Hypotheses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,nomenclature,,,,X
-165,170,,Diagnostic de l'effecteur,# Voir whatsHappen (type nomenclature),,,,Diagnostic posé par le médecin effecteur qui se trouve sur les lieux de l'affaire,,,resourceDiagnosis,,,,,,0..1,X,nomenclature,,,,X
+141,166,,,Niveau de soin,,,,,R1/R2/R3/R4,,carelevel,,,,,,0..1,,string,X,"ENUM: R1, R2, R3, R4",,X
+142,167,,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,,,X
+143,168,,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type nomenclature),,,Hypothese diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
+144,169,,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type nomenclature),,,Hypotheses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,nomenclature,,,,X
+145,170,,Diagnostic de l'effecteur,# Voir whatsHappen (type nomenclature),,,,Diagnostic posé par le médecin effecteur qui se trouve sur les lieux de l'affaire,,,resourceDiagnosis,,,,,,0..1,X,nomenclature,,,,X
+146,148,,Notes de régulation médicale,,,,,Notes de régulation médicale,,,medicalnotes,,,,,,0..n,X,medicalnotes,,,,X
+147,149,,,Professionnel de santé qui réalise l'interrogatoire,# Voir operators,,,Professionnel de santé qui réalise l'interrogatoire,,,operators,,,,,,0..1,X,operators,,,,X
+148,,,,Date Heure de création de la note de régulation,,,,Groupe date heure de début de partage lié à la création de la note de régulation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creationmedicalnote,,,,,,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+149,150,,,Observations et commentaires,,,,Observations médicales du professionnel de santé qui réalise l'interrogatoire,,,freetext,,,,,,0..1,,string,,,,X
+150,151,,,Antécédents,,,,Antécédents médicaux ,,,medicalHistory,,,,,,0..n,,string,,,,X
+151,152,,,Complément antecédents,,,,"Texte libre a utiliser au besoin si nomenclature non implémentée,et/ou précisions à apporter",,,medicalHistoryFreetext,,,,,,0..1,,string,,,,X
+152,153,,,Traitements,,,,Traitements pris par le patient,,,treatments,,,,,,0..n,,string,,,,X
+153,154,,,Compléments traitements,,,,"Texte libre a utiliser au besoin si nomenclature non implémentée,et/ou précisions à apporter",,,treatmentsFreetext,,,,,,0..1,,string,,,,X
+154,155,,,Allergies,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
+155,146,Régulation médicale,,,,,,Données spécifiques à la régulation médicale,,,medicalAnalysis,,,,,,0..n,X,medicalAnalysis,,,,X
+156,147,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientId,,,,,,0..1,,string,,,,X
+157,157,,Décisions,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decisions,,,,,,0..n,X,decisions,,,,X
+158,158,,,Type de décision,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,"ENUM : Conseil médical, Décision d’intervention, Décision d’orientation et de transport, Pas de décision supplémentaire",,X
+159,159,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,?,,X
+160,160,,,Vecteur de transport,,,,Type de transport engagé pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,,X
+161,161,,,Niveau de médicalisation,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,?,,X
+162,162,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,,X
+163,163,,,,Etablissement,,,,,,facility,,,,,,0..1,,string,,,,X
+164,164,,,,Service,,,,,,service,,,,,,0..1,,string,,,,X
+165,165,,,,Autre,,,,,,freetext,,,,,,0..1,,string,,,,X
 166,171,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X

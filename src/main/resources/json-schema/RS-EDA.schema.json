@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.01.05",
+    "version": "24.01.08",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -93,7 +93,10 @@
                     }
                 },
                 "medicalAnalysis": {
-                    "$ref": "#/definitions/medicalAnalysis"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/medicalAnalysis"
+                    }
                 },
                 "newAlert": {
                     "type": "array",
@@ -600,6 +603,18 @@
                 },
                 "details": {
                     "$ref": "#/definitions/patientDetails"
+                },
+                "hypothesis": {
+                    "$ref": "#/definitions/hypothesis"
+                },
+                "resourceDiagnosis": {
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "medicalnotes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/medicalnotes"
+                    }
                 }
             },
             "example": "example.json#/createCase/patients/0"
@@ -616,29 +631,17 @@
                     "title": "ID patient partag\u00e9",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/patientId",
+                    "example": "example.json#/createCase/medicalAnalysis/0/patientId",
                     "description": "ID du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
-                },
-                "notes": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/notes"
-                    }
                 },
                 "decisions": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/decisions"
                     }
-                },
-                "hypothesis": {
-                    "$ref": "#/definitions/hypothesis"
-                },
-                "resourceDiagnosis": {
-                    "$ref": "#/definitions/nomenclature"
                 }
             },
-            "example": "example.json#/createCase/medicalAnalysis"
+            "example": "example.json#/createCase/medicalAnalysis/0"
         },
         "additionalInformation": {
             "type": "object",
@@ -1636,7 +1639,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/createCase/initialAlert/caller/callerContact/detail",
-                    "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
+                    "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire",
+                    "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 }
             },
             "example": "example.json#/createCase/initialAlert/caller/callerContact"
@@ -1758,9 +1762,122 @@
                     "example": "example.json#/createCase/patients/0/details/age",
                     "description": "Age du patient (Norme ISO_8601)",
                     "pattern": ""
+                },
+                "carelevel": {
+                    "type": "string",
+                    "title": "Niveau de soin",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/details/carelevel",
+                    "enum": [
+                        "R1",
+                        "R2",
+                        "R3",
+                        "R4"
+                    ]
                 }
             },
             "example": "example.json#/createCase/patients/0/details"
+        },
+        "hypothesis": {
+            "type": "object",
+            "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {
+                "mainDiagnosis": {
+                    "$ref": "#/definitions/nomenclature"
+                },
+                "otherDiagnosis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/nomenclature"
+                    }
+                }
+            },
+            "example": "example.json#/createCase/patients/0/hypothesis"
+        },
+        "medicalnotes": {
+            "type": "object",
+            "title": "Notes de r\u00e9gulation m\u00e9dicale",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "creationmedicalnote"
+            ],
+            "properties": {
+                "operators": {
+                    "$ref": "#/definitions/operators"
+                },
+                "creationmedicalnote": {
+                    "type": "string",
+                    "title": "Date Heure de cr\u00e9ation de la note de r\u00e9gulation",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/medicalnotes/0/creationmedicalnote",
+                    "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de la note de r\u00e9gulation.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Observations et commentaires",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/medicalnotes/0/freetext",
+                    "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire"
+                },
+                "medicalHistory": {
+                    "type": "array",
+                    "x-health-only": true,
+                    "items": {
+                        "type": "string",
+                        "title": "Ant\u00e9c\u00e9dents",
+                        "x-health-only": true,
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/patients/0/medicalnotes/0/medicalHistory/0",
+                        "description": "Ant\u00e9c\u00e9dents m\u00e9dicaux "
+                    }
+                },
+                "medicalHistoryFreetext": {
+                    "type": "string",
+                    "title": "Compl\u00e9ment antec\u00e9dents",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/medicalnotes/0/medicalHistoryFreetext",
+                    "description": "Texte libre a utiliser au besoin si nomenclature non impl\u00e9ment\u00e9e,et/ou pr\u00e9cisions \u00e0 apporter"
+                },
+                "treatments": {
+                    "type": "array",
+                    "x-health-only": true,
+                    "items": {
+                        "type": "string",
+                        "title": "Traitements",
+                        "x-health-only": true,
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/patients/0/medicalnotes/0/treatments/0",
+                        "description": "Traitements pris par le patient"
+                    }
+                },
+                "treatmentsFreetext": {
+                    "type": "string",
+                    "title": "Compl\u00e9ments traitements",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/medicalnotes/0/treatmentsFreetext",
+                    "description": "Texte libre a utiliser au besoin si nomenclature non impl\u00e9ment\u00e9e,et/ou pr\u00e9cisions \u00e0 apporter"
+                },
+                "allergies": {
+                    "type": "string",
+                    "title": "Allergies",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patients/0/medicalnotes/0/allergies",
+                    "description": "Texte libre pour d\u00e9crire les allergies du patient"
+                }
+            },
+            "example": "example.json#/createCase/patients/0/medicalnotes/0"
         },
         "externalId": {
             "type": "object",
@@ -1957,87 +2074,6 @@
             },
             "example": "example.json#/createCase/patients/0/identity/strictFeatures"
         },
-        "notes": {
-            "type": "object",
-            "title": "Notes de r\u00e9gulation",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [],
-            "properties": {
-                "operators": {
-                    "$ref": "#/definitions/operators"
-                },
-                "observations": {
-                    "type": "string",
-                    "title": "Observations",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/notes/0/observations",
-                    "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire"
-                },
-                "medicalHistory": {
-                    "type": "array",
-                    "x-health-only": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Ant\u00e9c\u00e9dents",
-                        "x-health-only": true,
-                        "x-cols": 6,
-                        "example": "example.json#/createCase/medicalAnalysis/notes/0/medicalHistory/0",
-                        "description": "Ant\u00e9c\u00e9dents m\u00e9dicaux "
-                    }
-                },
-                "medicalHistoryFreetext": {
-                    "type": "string",
-                    "title": "Compl\u00e9ment antec\u00e9dents",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/notes/0/medicalHistoryFreetext",
-                    "description": "Texte libre a utiliser au besoin si nomenclature non impl\u00e9ment\u00e9e,et/ou pr\u00e9cisions \u00e0 apporter"
-                },
-                "treatments": {
-                    "type": "array",
-                    "x-health-only": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Traitements",
-                        "x-health-only": true,
-                        "x-cols": 6,
-                        "example": "example.json#/createCase/medicalAnalysis/notes/0/treatments/0",
-                        "description": "Traitements pris par le patient"
-                    }
-                },
-                "treatmentsFreetext": {
-                    "type": "string",
-                    "title": "Compl\u00e9ments traitements",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/notes/0/treatmentsFreetext",
-                    "description": "Texte libre a utiliser au besoin si nomenclature non impl\u00e9ment\u00e9e,et/ou pr\u00e9cisions \u00e0 apporter"
-                },
-                "allergies": {
-                    "type": "string",
-                    "title": "Allergies",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/notes/0/allergies",
-                    "description": "Texte libre pour d\u00e9crire les allergies du patient"
-                },
-                "freetext": {
-                    "type": "array",
-                    "x-health-only": true,
-                    "items": {
-                        "type": "string",
-                        "title": "Autres Commentaires",
-                        "x-health-only": true,
-                        "x-cols": 6,
-                        "example": "example.json#/createCase/medicalAnalysis/notes/0/freetext/0",
-                        "description": "Champ libre pour compl\u00e9ter les informations du dossier m\u00e9dical (notes m\u00e9dicales)"
-                    }
-                }
-            },
-            "example": "example.json#/createCase/medicalAnalysis/notes/0"
-        },
         "decisions": {
             "type": "object",
             "title": "D\u00e9cisions",
@@ -2050,7 +2086,7 @@
                     "title": "Type de d\u00e9cision",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/decisions/0/type",
+                    "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/type",
                     "description": "Type de d\u00e9cision prise"
                 },
                 "orientation": {
@@ -2058,7 +2094,7 @@
                     "title": "Orientation",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/decisions/0/orientation",
+                    "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/orientation",
                     "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
                 },
                 "transportation": {
@@ -2069,7 +2105,7 @@
                         "title": "Vecteur de transport",
                         "x-health-only": true,
                         "x-cols": 6,
-                        "example": "example.json#/createCase/medicalAnalysis/decisions/0/transportation/0",
+                        "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/transportation/0",
                         "description": "Type de transport engag\u00e9 pour la prise en charge du patient"
                     }
                 },
@@ -2078,46 +2114,14 @@
                     "title": "Niveau de m\u00e9dicalisation",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/decisions/0/medicalisation",
+                    "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/medicalisation",
                     "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
                 },
                 "destination": {
                     "$ref": "#/definitions/destination"
-                },
-                "carelevel": {
-                    "type": "string",
-                    "title": "Niveau de soin",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/decisions/0/carelevel",
-                    "enum": [
-                        "R1",
-                        "R2",
-                        "R3",
-                        "R4"
-                    ]
                 }
             },
-            "example": "example.json#/createCase/medicalAnalysis/decisions/0"
-        },
-        "hypothesis": {
-            "type": "object",
-            "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [],
-            "properties": {
-                "mainDiagnosis": {
-                    "$ref": "#/definitions/nomenclature"
-                },
-                "otherDiagnosis": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/nomenclature"
-                    }
-                }
-            },
-            "example": "example.json#/createCase/medicalAnalysis/hypothesis"
+            "example": "example.json#/createCase/medicalAnalysis/0/decisions/0"
         },
         "destination": {
             "type": "object",
@@ -2131,24 +2135,24 @@
                     "title": "Etablissement",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/decisions/0/destination/facility"
+                    "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/destination/facility"
                 },
                 "service": {
                     "type": "string",
                     "title": "Service",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/decisions/0/destination/service"
+                    "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/destination/service"
                 },
                 "freetext": {
                     "type": "string",
                     "title": "Autre",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/decisions/0/destination/freetext"
+                    "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/destination/freetext"
                 }
             },
-            "example": "example.json#/createCase/medicalAnalysis/decisions/0/destination"
+            "example": "example.json#/createCase/medicalAnalysis/0/decisions/0/destination"
         },
         "customMap": {
             "type": "object",

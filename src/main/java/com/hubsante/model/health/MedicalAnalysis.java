@@ -35,9 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.Decisions;
-import com.hubsante.model.health.Hypothesis;
-import com.hubsante.model.health.Nomenclature;
-import com.hubsante.model.health.Notes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -48,10 +45,7 @@ import java.util.Objects;
  * MedicalAnalysis
  */
 @JsonPropertyOrder({MedicalAnalysis.JSON_PROPERTY_PATIENT_ID,
-                    MedicalAnalysis.JSON_PROPERTY_NOTES,
-                    MedicalAnalysis.JSON_PROPERTY_DECISIONS,
-                    MedicalAnalysis.JSON_PROPERTY_HYPOTHESIS,
-                    MedicalAnalysis.JSON_PROPERTY_RESOURCE_DIAGNOSIS})
+                    MedicalAnalysis.JSON_PROPERTY_DECISIONS})
 @JsonTypeName("medicalAnalysis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -59,18 +53,8 @@ public class MedicalAnalysis {
   public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
   private String patientId;
 
-  public static final String JSON_PROPERTY_NOTES = "notes";
-  private List<Notes> notes;
-
   public static final String JSON_PROPERTY_DECISIONS = "decisions";
   private List<Decisions> decisions;
-
-  public static final String JSON_PROPERTY_HYPOTHESIS = "hypothesis";
-  private Hypothesis hypothesis;
-
-  public static final String JSON_PROPERTY_RESOURCE_DIAGNOSIS =
-      "resourceDiagnosis";
-  private Nomenclature resourceDiagnosis;
 
   public MedicalAnalysis() {}
 
@@ -95,45 +79,6 @@ public class MedicalAnalysis {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setPatientId(String patientId) {
     this.patientId = patientId;
-  }
-
-  public MedicalAnalysis notes(List<Notes> notes) {
-
-    this.notes = notes;
-    return this;
-  }
-
-  public MedicalAnalysis addNotesItem(Notes notesItem) {
-    if (this.notes == null) {
-      this.notes = new ArrayList<>();
-    }
-    this.notes.add(notesItem);
-    return this;
-  }
-
-  /**
-   * Get notes
-   * @return notes
-   **/
-  @JsonProperty(JSON_PROPERTY_NOTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Notes> getNotes() {
-    return notes;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_NOTES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotes(List<Notes> notes) {
-    if (notes == null) {
-      return;
-    }
-    if (this.notes == null) {
-      this.notes = new ArrayList<>();
-    }
-    this.notes.addAll(notes);
   }
 
   public MedicalAnalysis decisions(List<Decisions> decisions) {
@@ -175,52 +120,6 @@ public class MedicalAnalysis {
     this.decisions.addAll(decisions);
   }
 
-  public MedicalAnalysis hypothesis(Hypothesis hypothesis) {
-
-    this.hypothesis = hypothesis;
-    return this;
-  }
-
-  /**
-   * Get hypothesis
-   * @return hypothesis
-   **/
-  @JsonProperty(JSON_PROPERTY_HYPOTHESIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Hypothesis getHypothesis() {
-    return hypothesis;
-  }
-
-  @JsonProperty(JSON_PROPERTY_HYPOTHESIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHypothesis(Hypothesis hypothesis) {
-    this.hypothesis = hypothesis;
-  }
-
-  public MedicalAnalysis resourceDiagnosis(Nomenclature resourceDiagnosis) {
-
-    this.resourceDiagnosis = resourceDiagnosis;
-    return this;
-  }
-
-  /**
-   * Get resourceDiagnosis
-   * @return resourceDiagnosis
-   **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Nomenclature getResourceDiagnosis() {
-    return resourceDiagnosis;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceDiagnosis(Nomenclature resourceDiagnosis) {
-    this.resourceDiagnosis = resourceDiagnosis;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -231,17 +130,12 @@ public class MedicalAnalysis {
     }
     MedicalAnalysis medicalAnalysis = (MedicalAnalysis)o;
     return Objects.equals(this.patientId, medicalAnalysis.patientId) &&
-        Objects.equals(this.notes, medicalAnalysis.notes) &&
-        Objects.equals(this.decisions, medicalAnalysis.decisions) &&
-        Objects.equals(this.hypothesis, medicalAnalysis.hypothesis) &&
-        Objects.equals(this.resourceDiagnosis,
-                       medicalAnalysis.resourceDiagnosis);
+        Objects.equals(this.decisions, medicalAnalysis.decisions);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientId, notes, decisions, hypothesis,
-                        resourceDiagnosis);
+    return Objects.hash(patientId, decisions);
   }
 
   @Override
@@ -251,15 +145,8 @@ public class MedicalAnalysis {
     sb.append("    patientId: ")
         .append(toIndentedString(patientId))
         .append("\n");
-    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    decisions: ")
         .append(toIndentedString(decisions))
-        .append("\n");
-    sb.append("    hypothesis: ")
-        .append(toIndentedString(hypothesis))
-        .append("\n");
-    sb.append("    resourceDiagnosis: ")
-        .append(toIndentedString(resourceDiagnosis))
         .append("\n");
     sb.append("}");
     return sb.toString();

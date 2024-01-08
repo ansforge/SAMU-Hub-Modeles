@@ -41,9 +41,9 @@ import java.util.Objects;
 /**
  * PatientDetails
  */
-@JsonPropertyOrder({PatientDetails.JSON_PROPERTY_WEIGHT,
-                    PatientDetails.JSON_PROPERTY_HEIGHT,
-                    PatientDetails.JSON_PROPERTY_AGE})
+@JsonPropertyOrder(
+    {PatientDetails.JSON_PROPERTY_WEIGHT, PatientDetails.JSON_PROPERTY_HEIGHT,
+     PatientDetails.JSON_PROPERTY_AGE, PatientDetails.JSON_PROPERTY_CARELEVEL})
 @JsonTypeName("patientDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -56,6 +56,46 @@ public class PatientDetails {
 
   public static final String JSON_PROPERTY_AGE = "age";
   private String age;
+
+  /**
+   * Gets or Sets carelevel
+   */
+  public enum CarelevelEnum {
+    R1("R1"),
+
+    R2("R2"),
+
+    R3("R3"),
+
+    R4("R4");
+
+    private String value;
+
+    CarelevelEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CarelevelEnum fromValue(String value) {
+      for (CarelevelEnum b : CarelevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CARELEVEL = "carelevel";
+  private CarelevelEnum carelevel;
 
   public PatientDetails() {}
 
@@ -128,6 +168,29 @@ public class PatientDetails {
     this.age = age;
   }
 
+  public PatientDetails carelevel(CarelevelEnum carelevel) {
+
+    this.carelevel = carelevel;
+    return this;
+  }
+
+  /**
+   * Get carelevel
+   * @return carelevel
+   **/
+  @JsonProperty(JSON_PROPERTY_CARELEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CarelevelEnum getCarelevel() {
+    return carelevel;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CARELEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCarelevel(CarelevelEnum carelevel) {
+    this.carelevel = carelevel;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -139,12 +202,13 @@ public class PatientDetails {
     PatientDetails patientDetails = (PatientDetails)o;
     return Objects.equals(this.weight, patientDetails.weight) &&
         Objects.equals(this.height, patientDetails.height) &&
-        Objects.equals(this.age, patientDetails.age);
+        Objects.equals(this.age, patientDetails.age) &&
+        Objects.equals(this.carelevel, patientDetails.carelevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(weight, height, age);
+    return Objects.hash(weight, height, age, carelevel);
   }
 
   @Override
@@ -154,6 +218,9 @@ public class PatientDetails {
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    age: ").append(toIndentedString(age)).append("\n");
+    sb.append("    carelevel: ")
+        .append(toIndentedString(carelevel))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

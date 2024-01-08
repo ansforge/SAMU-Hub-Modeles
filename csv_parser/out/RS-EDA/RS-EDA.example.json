@@ -186,54 +186,54 @@
                 "details": {
                     "weight": 31,
                     "height": 109,
-                    "age": "6Y"
-                }
+                    "age": "6Y",
+                    "carelevel": "R1/R2/R3/R4"
+                },
+                "hypothesis": {
+                    "mainDiagnosis": {},
+                    "otherDiagnosis": [
+                        {}
+                    ]
+                },
+                "resourceDiagnosis": {},
+                "medicalnotes": [
+                    {
+                        "operators": {},
+                        "creationmedicalnote": "2022-09-27T08:23:34+02:00",
+                        "freetext": "None",
+                        "medicalHistory": [
+                            "None"
+                        ],
+                        "medicalHistoryFreetext": "None",
+                        "treatments": [
+                            "None"
+                        ],
+                        "treatmentsFreetext": "None",
+                        "allergies": "None"
+                    }
+                ]
             }
         ],
-        "medicalAnalysis": {
-            "patientId": "None",
-            "notes": [
-                {
-                    "operators": {},
-                    "observations": "None",
-                    "medicalHistory": [
-                        "None"
-                    ],
-                    "medicalHistoryFreetext": "None",
-                    "treatments": [
-                        "None"
-                    ],
-                    "treatmentsFreetext": "None",
-                    "allergies": "None",
-                    "freetext": [
-                        "None"
-                    ]
-                }
-            ],
-            "decisions": [
-                {
-                    "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
-                    "orientation": "None",
-                    "transportation": [
-                        "SMUR "
-                    ],
-                    "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
-                    "destination": {
-                        "facility": "None",
-                        "service": "None",
-                        "freetext": "None"
-                    },
-                    "carelevel": "R1/R2/R3/R4"
-                }
-            ],
-            "hypothesis": {
-                "mainDiagnosis": {},
-                "otherDiagnosis": [
-                    {}
+        "medicalAnalysis": [
+            {
+                "patientId": "None",
+                "decisions": [
+                    {
+                        "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
+                        "orientation": "None",
+                        "transportation": [
+                            "SMUR "
+                        ],
+                        "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
+                        "destination": {
+                            "facility": "None",
+                            "service": "None",
+                            "freetext": "None"
+                        }
+                    }
                 ]
-            },
-            "resourceDiagnosis": {}
-        },
+            }
+        ],
         "newAlert": [
             {}
         ],

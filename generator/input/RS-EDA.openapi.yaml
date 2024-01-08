@@ -118,7 +118,9 @@ components:
           items:
             $ref: '#/components/schemas/patients'
         medicalAnalysis:
-          $ref: '#/components/schemas/medicalAnalysis'
+          type: array
+          items:
+            $ref: '#/components/schemas/medicalAnalysis'
         newAlert:
           type: array
           items:
@@ -631,6 +633,14 @@ components:
           $ref: '#/components/schemas/nomenclature'
         details:
           $ref: '#/components/schemas/patientDetails'
+        hypothesis:
+          $ref: '#/components/schemas/hypothesis'
+        resourceDiagnosis:
+          $ref: '#/components/schemas/nomenclature'
+        medicalnotes:
+          type: array
+          items:
+            $ref: '#/components/schemas/medicalnotes'
       example: example.json#/createCase/patients/0
     medicalAnalysis:
       type: object
@@ -644,24 +654,16 @@ components:
           title: "ID patient partag\xE9"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/patientId
+          example: example.json#/createCase/medicalAnalysis/0/patientId
           description: "ID du patient concern\xE9, lorsque le patient existe et est\
             \ identifi\xE9"
           examples:
           - None
-        notes:
-          type: array
-          items:
-            $ref: '#/components/schemas/notes'
         decisions:
           type: array
           items:
             $ref: '#/components/schemas/decisions'
-        hypothesis:
-          $ref: '#/components/schemas/hypothesis'
-        resourceDiagnosis:
-          $ref: '#/components/schemas/nomenclature'
-      example: example.json#/createCase/medicalAnalysis
+      example: example.json#/createCase/medicalAnalysis/0
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -1779,6 +1781,7 @@ components:
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/callerContact/detail
           description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
+          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
           examples:
           - 0671830530
       example: example.json#/createCase/initialAlert/caller/callerContact
@@ -1902,11 +1905,126 @@ components:
           pattern: ''
           examples:
           - 6Y
+        carelevel:
+          type: string
+          title: Niveau de soin
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/details/carelevel
+          enum:
+          - R1
+          - R2
+          - R3
+          - R4
+          examples:
+          - R1/R2/R3/R4
       example: example.json#/createCase/patients/0/details
       examples:
       - weight: 31
         height: 109
         age: 6Y
+        carelevel: R1/R2/R3/R4
+    hypothesis:
+      type: object
+      title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties:
+        mainDiagnosis:
+          $ref: '#/components/schemas/nomenclature'
+        otherDiagnosis:
+          type: array
+          items:
+            $ref: '#/components/schemas/nomenclature'
+      example: example.json#/createCase/patients/0/hypothesis
+    medicalnotes:
+      type: object
+      title: "Notes de r\xE9gulation m\xE9dicale"
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - creationmedicalnote
+      properties:
+        operators:
+          $ref: '#/components/schemas/operators'
+        creationmedicalnote:
+          type: string
+          title: "Date Heure de cr\xE9ation de la note de r\xE9gulation"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/medicalnotes/0/creationmedicalnote
+          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
+            ation de la note de r\xE9gulation.  L'indicateur de fuseau horaire Z ne\
+            \ doit pas \xEAtre utilis\xE9."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        freetext:
+          type: string
+          title: Observations et commentaires
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/medicalnotes/0/freetext
+          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
+            \ r\xE9alise l'interrogatoire"
+          examples:
+          - None
+        medicalHistory:
+          type: array
+          x-health-only: true
+          items:
+            type: string
+            title: "Ant\xE9c\xE9dents"
+            x-health-only: true
+            x-cols: 6
+            example: example.json#/createCase/patients/0/medicalnotes/0/medicalHistory/0
+            description: "Ant\xE9c\xE9dents m\xE9dicaux "
+            examples:
+            - None
+        medicalHistoryFreetext:
+          type: string
+          title: "Compl\xE9ment antec\xE9dents"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/medicalnotes/0/medicalHistoryFreetext
+          description: "Texte libre a utiliser au besoin si nomenclature non impl\xE9\
+            ment\xE9e,et/ou pr\xE9cisions \xE0 apporter"
+          examples:
+          - None
+        treatments:
+          type: array
+          x-health-only: true
+          items:
+            type: string
+            title: Traitements
+            x-health-only: true
+            x-cols: 6
+            example: example.json#/createCase/patients/0/medicalnotes/0/treatments/0
+            description: Traitements pris par le patient
+            examples:
+            - None
+        treatmentsFreetext:
+          type: string
+          title: "Compl\xE9ments traitements"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/medicalnotes/0/treatmentsFreetext
+          description: "Texte libre a utiliser au besoin si nomenclature non impl\xE9\
+            ment\xE9e,et/ou pr\xE9cisions \xE0 apporter"
+          examples:
+          - None
+        allergies:
+          type: string
+          title: Allergies
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/createCase/patients/0/medicalnotes/0/allergies
+          description: "Texte libre pour d\xE9crire les allergies du patient"
+          examples:
+          - None
+      example: example.json#/createCase/patients/0/medicalnotes/0
     externalId:
       type: object
       title: Identifiant(s) patient(s)
@@ -2143,92 +2261,6 @@ components:
         birthDate: None
         sex: F
         birthPlaceCode: None
-    notes:
-      type: object
-      title: "Notes de r\xE9gulation"
-      x-display: expansion-panels
-      x-health-only: true
-      required: []
-      properties:
-        operators:
-          $ref: '#/components/schemas/operators'
-        observations:
-          type: string
-          title: Observations
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/notes/0/observations
-          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
-            \ r\xE9alise l'interrogatoire"
-          examples:
-          - None
-        medicalHistory:
-          type: array
-          x-health-only: true
-          items:
-            type: string
-            title: "Ant\xE9c\xE9dents"
-            x-health-only: true
-            x-cols: 6
-            example: example.json#/createCase/medicalAnalysis/notes/0/medicalHistory/0
-            description: "Ant\xE9c\xE9dents m\xE9dicaux "
-            examples:
-            - None
-        medicalHistoryFreetext:
-          type: string
-          title: "Compl\xE9ment antec\xE9dents"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/notes/0/medicalHistoryFreetext
-          description: "Texte libre a utiliser au besoin si nomenclature non impl\xE9\
-            ment\xE9e,et/ou pr\xE9cisions \xE0 apporter"
-          examples:
-          - None
-        treatments:
-          type: array
-          x-health-only: true
-          items:
-            type: string
-            title: Traitements
-            x-health-only: true
-            x-cols: 6
-            example: example.json#/createCase/medicalAnalysis/notes/0/treatments/0
-            description: Traitements pris par le patient
-            examples:
-            - None
-        treatmentsFreetext:
-          type: string
-          title: "Compl\xE9ments traitements"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/notes/0/treatmentsFreetext
-          description: "Texte libre a utiliser au besoin si nomenclature non impl\xE9\
-            ment\xE9e,et/ou pr\xE9cisions \xE0 apporter"
-          examples:
-          - None
-        allergies:
-          type: string
-          title: Allergies
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/notes/0/allergies
-          description: "Texte libre pour d\xE9crire les allergies du patient"
-          examples:
-          - None
-        freetext:
-          type: array
-          x-health-only: true
-          items:
-            type: string
-            title: Autres Commentaires
-            x-health-only: true
-            x-cols: 6
-            example: example.json#/createCase/medicalAnalysis/notes/0/freetext/0
-            description: "Champ libre pour compl\xE9ter les informations du dossier\
-              \ m\xE9dical (notes m\xE9dicales)"
-            examples:
-            - None
-      example: example.json#/createCase/medicalAnalysis/notes/0
     decisions:
       type: object
       title: "D\xE9cisions"
@@ -2241,7 +2273,7 @@ components:
           title: "Type de d\xE9cision"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/decisions/0/type
+          example: example.json#/createCase/medicalAnalysis/0/decisions/0/type
           description: "Type de d\xE9cision prise"
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
@@ -2251,7 +2283,7 @@ components:
           title: Orientation
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/decisions/0/orientation
+          example: example.json#/createCase/medicalAnalysis/0/decisions/0/orientation
           description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
             gulateur"
           examples:
@@ -2264,7 +2296,7 @@ components:
             title: Vecteur de transport
             x-health-only: true
             x-cols: 6
-            example: example.json#/createCase/medicalAnalysis/decisions/0/transportation/0
+            example: example.json#/createCase/medicalAnalysis/0/decisions/0/transportation/0
             description: "Type de transport engag\xE9 pour la prise en charge du patient"
             examples:
             - 'SMUR '
@@ -2273,41 +2305,14 @@ components:
           title: "Niveau de m\xE9dicalisation"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/decisions/0/medicalisation
+          example: example.json#/createCase/medicalAnalysis/0/decisions/0/medicalisation
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
             dicale, standard, incomplete, ...)"
           examples:
           - "M\xE9dical, param\xE9dical, secouriste"
         destination:
           $ref: '#/components/schemas/destination'
-        carelevel:
-          type: string
-          title: Niveau de soin
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/decisions/0/carelevel
-          enum:
-          - R1
-          - R2
-          - R3
-          - R4
-          examples:
-          - R1/R2/R3/R4
-      example: example.json#/createCase/medicalAnalysis/decisions/0
-    hypothesis:
-      type: object
-      title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale"
-      x-display: expansion-panels
-      x-health-only: true
-      required: []
-      properties:
-        mainDiagnosis:
-          $ref: '#/components/schemas/nomenclature'
-        otherDiagnosis:
-          type: array
-          items:
-            $ref: '#/components/schemas/nomenclature'
-      example: example.json#/createCase/medicalAnalysis/hypothesis
+      example: example.json#/createCase/medicalAnalysis/0/decisions/0
     destination:
       type: object
       title: Destination
@@ -2320,7 +2325,7 @@ components:
           title: Etablissement
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/decisions/0/destination/facility
+          example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination/facility
           examples:
           - None
         service:
@@ -2328,7 +2333,7 @@ components:
           title: Service
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/decisions/0/destination/service
+          example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination/service
           examples:
           - None
         freetext:
@@ -2336,10 +2341,10 @@ components:
           title: Autre
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/decisions/0/destination/freetext
+          example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination/freetext
           examples:
           - None
-      example: example.json#/createCase/medicalAnalysis/decisions/0/destination
+      example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination
       examples:
       - facility: None
         service: None

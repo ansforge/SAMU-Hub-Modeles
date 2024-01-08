@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.Operators;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -42,23 +43,29 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Notes
+ * Medicalnotes
  */
-@JsonPropertyOrder(
-    {Notes.JSON_PROPERTY_OPERATORS, Notes.JSON_PROPERTY_OBSERVATIONS,
-     Notes.JSON_PROPERTY_MEDICAL_HISTORY,
-     Notes.JSON_PROPERTY_MEDICAL_HISTORY_FREETEXT,
-     Notes.JSON_PROPERTY_TREATMENTS, Notes.JSON_PROPERTY_TREATMENTS_FREETEXT,
-     Notes.JSON_PROPERTY_ALLERGIES, Notes.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("notes")
+@JsonPropertyOrder({Medicalnotes.JSON_PROPERTY_OPERATORS,
+                    Medicalnotes.JSON_PROPERTY_CREATIONMEDICALNOTE,
+                    Medicalnotes.JSON_PROPERTY_FREETEXT,
+                    Medicalnotes.JSON_PROPERTY_MEDICAL_HISTORY,
+                    Medicalnotes.JSON_PROPERTY_MEDICAL_HISTORY_FREETEXT,
+                    Medicalnotes.JSON_PROPERTY_TREATMENTS,
+                    Medicalnotes.JSON_PROPERTY_TREATMENTS_FREETEXT,
+                    Medicalnotes.JSON_PROPERTY_ALLERGIES})
+@JsonTypeName("medicalnotes")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Notes {
+public class Medicalnotes {
   public static final String JSON_PROPERTY_OPERATORS = "operators";
   private Operators operators;
 
-  public static final String JSON_PROPERTY_OBSERVATIONS = "observations";
-  private String observations;
+  public static final String JSON_PROPERTY_CREATIONMEDICALNOTE =
+      "creationmedicalnote";
+  private OffsetDateTime creationmedicalnote;
+
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private String freetext;
 
   public static final String JSON_PROPERTY_MEDICAL_HISTORY = "medicalHistory";
   private List<String> medicalHistory;
@@ -77,12 +84,9 @@ public class Notes {
   public static final String JSON_PROPERTY_ALLERGIES = "allergies";
   private String allergies;
 
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private List<String> freetext;
+  public Medicalnotes() {}
 
-  public Notes() {}
-
-  public Notes operators(Operators operators) {
+  public Medicalnotes operators(Operators operators) {
 
     this.operators = operators;
     return this;
@@ -105,37 +109,61 @@ public class Notes {
     this.operators = operators;
   }
 
-  public Notes observations(String observations) {
+  public Medicalnotes creationmedicalnote(OffsetDateTime creationmedicalnote) {
 
-    this.observations = observations;
+    this.creationmedicalnote = creationmedicalnote;
+    return this;
+  }
+
+  /**
+   * Groupe date heure de début de partage lié à la création de la note de
+   *régulation.  L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
+   * @return creationmedicalnote
+   **/
+  @JsonProperty(JSON_PROPERTY_CREATIONMEDICALNOTE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public OffsetDateTime getCreationmedicalnote() {
+    return creationmedicalnote;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CREATIONMEDICALNOTE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCreationmedicalnote(OffsetDateTime creationmedicalnote) {
+    this.creationmedicalnote = creationmedicalnote;
+  }
+
+  public Medicalnotes freetext(String freetext) {
+
+    this.freetext = freetext;
     return this;
   }
 
   /**
    * Observations médicales du professionnel de santé qui réalise
    *l&#39;interrogatoire
-   * @return observations
+   * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_OBSERVATIONS)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getObservations() {
-    return observations;
+  public String getFreetext() {
+    return freetext;
   }
 
-  @JsonProperty(JSON_PROPERTY_OBSERVATIONS)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObservations(String observations) {
-    this.observations = observations;
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
-  public Notes medicalHistory(List<String> medicalHistory) {
+  public Medicalnotes medicalHistory(List<String> medicalHistory) {
 
     this.medicalHistory = medicalHistory;
     return this;
   }
 
-  public Notes addMedicalHistoryItem(String medicalHistoryItem) {
+  public Medicalnotes addMedicalHistoryItem(String medicalHistoryItem) {
     if (this.medicalHistory == null) {
       this.medicalHistory = new ArrayList<>();
     }
@@ -168,7 +196,7 @@ public class Notes {
     this.medicalHistory.addAll(medicalHistory);
   }
 
-  public Notes medicalHistoryFreetext(String medicalHistoryFreetext) {
+  public Medicalnotes medicalHistoryFreetext(String medicalHistoryFreetext) {
 
     this.medicalHistoryFreetext = medicalHistoryFreetext;
     return this;
@@ -192,13 +220,13 @@ public class Notes {
     this.medicalHistoryFreetext = medicalHistoryFreetext;
   }
 
-  public Notes treatments(List<String> treatments) {
+  public Medicalnotes treatments(List<String> treatments) {
 
     this.treatments = treatments;
     return this;
   }
 
-  public Notes addTreatmentsItem(String treatmentsItem) {
+  public Medicalnotes addTreatmentsItem(String treatmentsItem) {
     if (this.treatments == null) {
       this.treatments = new ArrayList<>();
     }
@@ -231,7 +259,7 @@ public class Notes {
     this.treatments.addAll(treatments);
   }
 
-  public Notes treatmentsFreetext(String treatmentsFreetext) {
+  public Medicalnotes treatmentsFreetext(String treatmentsFreetext) {
 
     this.treatmentsFreetext = treatmentsFreetext;
     return this;
@@ -255,7 +283,7 @@ public class Notes {
     this.treatmentsFreetext = treatmentsFreetext;
   }
 
-  public Notes allergies(String allergies) {
+  public Medicalnotes allergies(String allergies) {
 
     this.allergies = allergies;
     return this;
@@ -278,45 +306,6 @@ public class Notes {
     this.allergies = allergies;
   }
 
-  public Notes freetext(List<String> freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  public Notes addFreetextItem(String freetextItem) {
-    if (this.freetext == null) {
-      this.freetext = new ArrayList<>();
-    }
-    this.freetext.add(freetextItem);
-    return this;
-  }
-
-  /**
-   * Get freetext
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getFreetext() {
-    return freetext;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(List<String> freetext) {
-    if (freetext == null) {
-      return;
-    }
-    if (this.freetext == null) {
-      this.freetext = new ArrayList<>();
-    }
-    this.freetext.addAll(freetext);
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -325,35 +314,38 @@ public class Notes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Notes notes = (Notes)o;
-    return Objects.equals(this.operators, notes.operators) &&
-        Objects.equals(this.observations, notes.observations) &&
-        Objects.equals(this.medicalHistory, notes.medicalHistory) &&
+    Medicalnotes medicalnotes = (Medicalnotes)o;
+    return Objects.equals(this.operators, medicalnotes.operators) &&
+        Objects.equals(this.creationmedicalnote,
+                       medicalnotes.creationmedicalnote) &&
+        Objects.equals(this.freetext, medicalnotes.freetext) &&
+        Objects.equals(this.medicalHistory, medicalnotes.medicalHistory) &&
         Objects.equals(this.medicalHistoryFreetext,
-                       notes.medicalHistoryFreetext) &&
-        Objects.equals(this.treatments, notes.treatments) &&
-        Objects.equals(this.treatmentsFreetext, notes.treatmentsFreetext) &&
-        Objects.equals(this.allergies, notes.allergies) &&
-        Objects.equals(this.freetext, notes.freetext);
+                       medicalnotes.medicalHistoryFreetext) &&
+        Objects.equals(this.treatments, medicalnotes.treatments) &&
+        Objects.equals(this.treatmentsFreetext,
+                       medicalnotes.treatmentsFreetext) &&
+        Objects.equals(this.allergies, medicalnotes.allergies);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(operators, observations, medicalHistory,
-                        medicalHistoryFreetext, treatments, treatmentsFreetext,
-                        allergies, freetext);
+    return Objects.hash(operators, creationmedicalnote, freetext,
+                        medicalHistory, medicalHistoryFreetext, treatments,
+                        treatmentsFreetext, allergies);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Notes {\n");
+    sb.append("class Medicalnotes {\n");
     sb.append("    operators: ")
         .append(toIndentedString(operators))
         .append("\n");
-    sb.append("    observations: ")
-        .append(toIndentedString(observations))
+    sb.append("    creationmedicalnote: ")
+        .append(toIndentedString(creationmedicalnote))
         .append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("    medicalHistory: ")
         .append(toIndentedString(medicalHistory))
         .append("\n");
@@ -369,7 +361,6 @@ public class Notes {
     sb.append("    allergies: ")
         .append(toIndentedString(allergies))
         .append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }
