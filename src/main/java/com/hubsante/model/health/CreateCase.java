@@ -98,7 +98,7 @@ public class CreateCase {
   private List<Patients> patients;
 
   public static final String JSON_PROPERTY_MEDICAL_ANALYSIS = "medicalAnalysis";
-  private MedicalAnalysis medicalAnalysis;
+  private List<MedicalAnalysis> medicalAnalysis;
 
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
@@ -402,9 +402,18 @@ public class CreateCase {
     this.patients.addAll(patients);
   }
 
-  public CreateCase medicalAnalysis(MedicalAnalysis medicalAnalysis) {
+  public CreateCase medicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
 
     this.medicalAnalysis = medicalAnalysis;
+    return this;
+  }
+
+  public CreateCase
+  addMedicalAnalysisItem(MedicalAnalysis medicalAnalysisItem) {
+    if (this.medicalAnalysis == null) {
+      this.medicalAnalysis = new ArrayList<>();
+    }
+    this.medicalAnalysis.add(medicalAnalysisItem);
     return this;
   }
 
@@ -415,14 +424,22 @@ public class CreateCase {
   @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public MedicalAnalysis getMedicalAnalysis() {
+  public List<MedicalAnalysis> getMedicalAnalysis() {
     return medicalAnalysis;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalAnalysis(MedicalAnalysis medicalAnalysis) {
-    this.medicalAnalysis = medicalAnalysis;
+  public void setMedicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
+    if (medicalAnalysis == null) {
+      return;
+    }
+    if (this.medicalAnalysis == null) {
+      this.medicalAnalysis = new ArrayList<>();
+    }
+    this.medicalAnalysis.addAll(medicalAnalysis);
   }
 
   public CreateCase newAlert(List<Alert> newAlert) {

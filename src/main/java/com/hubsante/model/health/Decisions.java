@@ -44,11 +44,11 @@ import java.util.Objects;
 /**
  * Decisions
  */
-@JsonPropertyOrder(
-    {Decisions.JSON_PROPERTY_TYPE, Decisions.JSON_PROPERTY_ORIENTATION,
-     Decisions.JSON_PROPERTY_TRANSPORTATION,
-     Decisions.JSON_PROPERTY_MEDICALISATION,
-     Decisions.JSON_PROPERTY_DESTINATION, Decisions.JSON_PROPERTY_CARELEVEL})
+@JsonPropertyOrder({Decisions.JSON_PROPERTY_TYPE,
+                    Decisions.JSON_PROPERTY_ORIENTATION,
+                    Decisions.JSON_PROPERTY_TRANSPORTATION,
+                    Decisions.JSON_PROPERTY_MEDICALISATION,
+                    Decisions.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decisions")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -67,46 +67,6 @@ public class Decisions {
 
   public static final String JSON_PROPERTY_DESTINATION = "destination";
   private Destination destination;
-
-  /**
-   * Gets or Sets carelevel
-   */
-  public enum CarelevelEnum {
-    R1("R1"),
-
-    R2("R2"),
-
-    R3("R3"),
-
-    R4("R4");
-
-    private String value;
-
-    CarelevelEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CarelevelEnum fromValue(String value) {
-      for (CarelevelEnum b : CarelevelEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_CARELEVEL = "carelevel";
-  private CarelevelEnum carelevel;
 
   public Decisions() {}
 
@@ -242,29 +202,6 @@ public class Decisions {
     this.destination = destination;
   }
 
-  public Decisions carelevel(CarelevelEnum carelevel) {
-
-    this.carelevel = carelevel;
-    return this;
-  }
-
-  /**
-   * Get carelevel
-   * @return carelevel
-   **/
-  @JsonProperty(JSON_PROPERTY_CARELEVEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public CarelevelEnum getCarelevel() {
-    return carelevel;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CARELEVEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCarelevel(CarelevelEnum carelevel) {
-    this.carelevel = carelevel;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -278,14 +215,13 @@ public class Decisions {
         Objects.equals(this.orientation, decisions.orientation) &&
         Objects.equals(this.transportation, decisions.transportation) &&
         Objects.equals(this.medicalisation, decisions.medicalisation) &&
-        Objects.equals(this.destination, decisions.destination) &&
-        Objects.equals(this.carelevel, decisions.carelevel);
+        Objects.equals(this.destination, decisions.destination);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(type, orientation, transportation, medicalisation,
-                        destination, carelevel);
+                        destination);
   }
 
   @Override
@@ -304,9 +240,6 @@ public class Decisions {
         .append("\n");
     sb.append("    destination: ")
         .append(toIndentedString(destination))
-        .append("\n");
-    sb.append("    carelevel: ")
-        .append(toIndentedString(carelevel))
         .append("\n");
     sb.append("}");
     return sb.toString();

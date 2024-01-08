@@ -237,7 +237,8 @@ def parse_sheet(filename_in, sheet_name_in):
     params["nomenclature_description"] = df_params.iloc[7][1]
     # print(params)
     # skipping six first rows
-    df_nomenclature = pd.read_excel(filename_in, sheet_name=sheet_name_in, skiprows=8)
+    df_nomenclature = pd.read_excel(filename_in, sheet_name=sheet_name_in, skiprows=8,
+                                    keep_default_na=False, na_values=['NULL', 'null', 'NaN', 'nan', 'None', 'none', ''])
     # checking levels
     for level in range(1, params["levels"] + 1):
         if ("Libellé niveau " + str(level)) not in df_nomenclature.columns:

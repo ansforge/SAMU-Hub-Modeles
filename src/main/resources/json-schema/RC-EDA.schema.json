@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.01.05",
+    "version": "24.01.08",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -1422,7 +1422,7 @@
         },
         "contact": {
             "type": "object",
-            "title": "Contact requ\u00e9rant",
+            "title": "Contact",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1454,14 +1454,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/createCase/initialAlert/caller/callerContact/detail",
-                    "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
+                    "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire",
+                    "pattern": "tel:([#\\+\\*]|37000|00+)?[0-9]{2,15}"
                 }
             },
             "example": "example.json#/createCase/initialAlert/caller/callerContact"
         },
         "detailedName": {
             "type": "object",
-            "title": "Pr\u00e9nom & nom usuel du requ\u00e9rant",
+            "title": "Pr\u00e9nom & nom usuel",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
