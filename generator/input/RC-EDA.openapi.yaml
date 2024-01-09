@@ -1592,7 +1592,6 @@ components:
           x-cols: 6
           example: example.json#/createCase/initialAlert/caller/callerContact/detail
           description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
-          pattern: tel:([#\+\*]|37000|00+)?[0-9]{2,15}
           examples:
           - 0671830530
       example: example.json#/createCase/initialAlert/caller/callerContact
