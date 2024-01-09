@@ -797,7 +797,7 @@
                     "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)",
                     "enum": []
                 },
-                "calltakeContact": {
+                "calltakerContact": {
                     "$ref": "#/definitions/contact"
                 },
                 "calltakerId": {

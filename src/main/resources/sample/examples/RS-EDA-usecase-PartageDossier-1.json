@@ -158,7 +158,7 @@
         "organization": "fr.health.samu770.chuLyon.crra.regulationN3",
         "controlRoom": "CRRA 770",
         "role": "ARM",
-        "calltakeContact": {
+        "calltakerContact": {
           "type": "PHNADD",
           "detail": "0112345678"
         },
