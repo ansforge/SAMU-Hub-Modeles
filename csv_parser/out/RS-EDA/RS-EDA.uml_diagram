@@ -248,13 +248,13 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet qualification</I></TD></TR>
                 </TABLE>>]
 	qualification -> initialAlert [constraint=true headlabel=1 taillabel=1]
-	calltakeContact [label=<<TABLE>
+	calltakerContact [label=<<TABLE>
                 <TR>
-                <TD ><B>calltakeContact</B></TD>
+                <TD ><B>calltakerContact</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	calltakeContact -> callTaker [constraint=true headlabel=1 taillabel="0..1"]
+	calltakerContact -> callTaker [constraint=true headlabel=1 taillabel="0..1"]
 	callTaker [label=<<TABLE>
                 <TR>
                 <TD ><B>callTaker</B></TD>
@@ -568,13 +568,13 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet qualification</I></TD></TR>
                 </TABLE>>]
 	qualification -> initialAlert [constraint=true headlabel=1 taillabel=1]
-	calltakeContact [label=<<TABLE>
+	calltakerContact [label=<<TABLE>
                 <TR>
-                <TD ><B>calltakeContact</B></TD>
+                <TD ><B>calltakerContact</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	calltakeContact -> callTaker [constraint=true headlabel=1 taillabel="0..1"]
+	calltakerContact -> callTaker [constraint=true headlabel=1 taillabel="0..1"]
 	callTaker [label=<<TABLE>
                 <TR>
                 <TD ><B>callTaker</B></TD>

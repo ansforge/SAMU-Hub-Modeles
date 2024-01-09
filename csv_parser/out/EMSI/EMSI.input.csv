@@ -220,7 +220,7 @@ Horaire effectif de début de la mission",Describes the date and time of the Sta
 - Dans le cadre d'une mission de réponse à demande de concours : ne pas renseigner
 - Dans le cadre d'une mission décrivant les opérations en cours :
  Si c'est un déplacement, l'heure d'arrivée, si c'est une prise en charge patient/victime, la fin de la prise en charge.",Describes the date and time of the End of the mission.,2022-09-27T08:55:00+02:00,X,END_TIME,,END_TIME,,,,,0..1,0..1,0..1,,,datetime,,,X,X
-80,81,,Ressource engagée,,,,,Liste des identifiants des ressources engagées dans la mission (voire RESSOURCE.ID),Defines the link with the description in the RESOURCE/ID element(s).,77_45102#VSAV 1#,X,RESOURCE_ID,,RESOURCE_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
+80,81,,Ressource engagée,,,,,Liste des identifiants des ressources engagées dans la mission (voire RESSOURCE.ID),Defines the link with the description in the RESOURCE/ID element(s).,77_45102#VSAV 1#,X,RESOURCE_ID,,RESOURCE_ID,,,,,0..n,0..n,0..n,,,string,,,X,X
 81,82,,Missions parentes,,,,,"Dans le cadre d'une demande de concours, ne doit pas être renseigné
 La mission peut déjà être rattachée à des missions filles mais leurs détails ne doivent pas être nécessaires pour traiter la demande de concours dans le système du partenaire.
 Cf. DSF pour l'organisation liens entre MISSION (sous-section ""Découpage de l'opération en missions"")",Defines the list of the missions which shall be completed before the beginning of this mission.,,X,PARENT_MISSION_ID,,PARENT_MISSION_ID,,,,,0..n,0..n,0..n,,,string,,,X,X

@@ -115,7 +115,7 @@
                 "organization": "FR:Administration:44:samu44:crra:regulationN3",
                 "controlRoom": "CGA, CGO 21, CRRA 44, ...",
                 "role": "ARM",
-                "calltakeContact": {},
+                "calltakerContact": {},
                 "calltakerId": "id1234"
             },
             "attachment": [
