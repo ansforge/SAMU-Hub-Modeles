@@ -158,11 +158,11 @@ La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,
 Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
 Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
 Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.",fr.health.samu090 ,,owner,,,,,,1..1,,string,,,,X
-102,103,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médeci référent, etc) pour le traitement d'un dossier.",,,operators,,,,,,0..n,X,operators,,,,X
-103,104,,Prénom & nom de l'opérateur,,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,1..1,X,detailedName,,,,X
+102,103,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médeci référent, etc) pour le traitement d'un dossier.",,,operator,,,,,,0..n,X,operator,,,,X
+103,104,,Prénom et nom,,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,1..1,X,detailedName,,,,X
 104,105,,ID,,,,,Identifiant professionnel de l'opérateur si existant,,,id,,,,,,0..1,,string,,,,X
 105,106,,Rôle,,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,,,,X
-106,107,Patients / victimes,,,,,,Identification des patients / victimes,,,patients,,,,,,0..n,X,patients,,,,X
+106,107,Patients / victimes,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,,X
 107,108,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,,X
 108,109,,Dossier administratif,,,,,,,,file,,,,,,0..1,X,file,,,,X
 109,110,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
@@ -212,28 +212,28 @@ Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
 132,133,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF,,X
 133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",,X
 134,135,,,,Code lieu de naissance,,,"Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.",,,birthPlaceCode,,,,,,0..1,,number,,,,X
-135,136,,,Traits non stricts de l'identité,,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,,X
-136,137,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,whatsHappen,,,,,,0..1,X,nomenclature,,,,X
-137,138,,Informations patient,,,,,,,,details,,,,,,0..1,X,patientDetails,,,,X
+135,136,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,,X
+136,137,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,healthMotive,,,,,,0..1,X,nomenclature,,,,X
+137,138,,Informations patient,,,,,,,,detail,,,,,,0..1,X,patientDetail,,,,X
 138,139,,,Poids,,,,Poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,,,X
 139,140,,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,,,X
 140,141,,,Age,,,,Age du patient (Norme ISO_8601),6Y,,age,,,,,,0..1,,string,,REGEX: ,,X
-141,142,,,Niveau de soin,,,,,R1/R2/R3/R4,,carelevel,,,,,,0..1,,string,X,"ENUM: R1, R2, R3, R4",,X
+141,142,,,Niveau de soin,,,,,R1/R2/R3/R4,,careLevel,,,,,,0..1,,string,X,"ENUM: R1, R2, R3, R4",,X
 142,143,,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,,,X
 143,144,,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type nomenclature),,,Hypothese diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
 144,145,,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type nomenclature),,,Hypotheses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,nomenclature,,,,X
 145,146,,Diagnostic de l'effecteur,# Voir whatsHappen (type nomenclature),,,,Diagnostic posé par le médecin effecteur qui se trouve sur les lieux de l'affaire,,,resourceDiagnosis,,,,,,0..1,X,nomenclature,,,,X
-146,147,,Interrogatoire médical,,,,,Interrogatoire médical. Aussi appelé note de régulation médicale.,,,medicalnotes,,,,,,0..n,X,medicalnotes,,,,X
-147,148,,,Professionnel de santé qui réalise l'interrogatoire,# Voir operators,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operators,,,,,,0..1,X,operators,,,,X
-148,149,,,Date Heure de création de l'interrogatoire,,,,Groupe date heure de début de partage lié à la création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creationmedicalnote,,,,,,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+146,147,,Interrogatoire médical,,,,,Interrogatoire médical. Aussi appelé note de régulation médicale.,,,medicalNote,,,,,,0..n,X,medicalNote,,,,X
+147,148,,,Professionnel de santé qui réalise l'interrogatoire,# Voir operator,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,0..1,X,operator,,,,X
+148,149,,,Date Heure de création de l'interrogatoire,,,,Groupe date heure de début de partage lié à la création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,Format datetime décrit dans le DSF,,X
 149,150,,,Observations et commentaires,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
 Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM",,,freetext,,,,,,0..1,,string,,,,X
-150,151,,,Antécédents,,,,Texte libre  pour décrire les antécédents du patient,,,medicalHistoryFreetext,,,,,,0..1,,string,,,,X
-151,152,,,Traitements,,,,Texte libre  pour décrire les traitements du patient,,,treatmentsFreetext,,,,,,0..1,,string,,,,X
-152,153,,,Allergies,,,,Texte libre pour décrire les allergies du patient,,,allergiesFreetext,,,,,,0..1,,string,,,,X
+150,151,,,Antécédents,,,,Texte libre  pour décrire les antécédents du patient,,,medicalHistory,,,,,,0..1,,string,,,,X
+151,152,,,Traitements,,,,Texte libre  pour décrire les traitements du patient,,,treatments,,,,,,0..1,,string,,,,X
+152,153,,,Allergies,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
 153,154,Régulation médicale,,,,,,Données spécifiques à la régulation médicale,,,medicalAnalysis,,,,,,0..n,X,medicalAnalysis,,,,X
 154,155,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientId,,,,,,0..1,,string,,,,X
-155,156,,Décisions,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decisions,,,,,,0..n,X,decisions,,,,X
+155,156,,Décisions,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,,X
 156,157,,,Type de décision,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,"ENUM : Conseil médical, Décision d’intervention, Décision d’orientation et de transport, Pas de décision supplémentaire",,X
 157,158,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,?,,X
 158,159,,,Vecteur de transport,,,,Type de transport engagé pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,,X

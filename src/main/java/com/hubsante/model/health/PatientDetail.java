@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PatientDetails
+ * PatientDetail
  */
 @JsonPropertyOrder(
-    {PatientDetails.JSON_PROPERTY_WEIGHT, PatientDetails.JSON_PROPERTY_HEIGHT,
-     PatientDetails.JSON_PROPERTY_AGE, PatientDetails.JSON_PROPERTY_CARELEVEL})
-@JsonTypeName("patientDetails")
+    {PatientDetail.JSON_PROPERTY_WEIGHT, PatientDetail.JSON_PROPERTY_HEIGHT,
+     PatientDetail.JSON_PROPERTY_AGE, PatientDetail.JSON_PROPERTY_CARE_LEVEL})
+@JsonTypeName("patientDetail")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PatientDetails {
+public class PatientDetail {
   public static final String JSON_PROPERTY_WEIGHT = "weight";
   private Integer weight;
 
@@ -58,9 +58,9 @@ public class PatientDetails {
   private String age;
 
   /**
-   * Gets or Sets carelevel
+   * Gets or Sets careLevel
    */
-  public enum CarelevelEnum {
+  public enum CareLevelEnum {
     R1("R1"),
 
     R2("R2"),
@@ -71,7 +71,7 @@ public class PatientDetails {
 
     private String value;
 
-    CarelevelEnum(String value) { this.value = value; }
+    CareLevelEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -84,8 +84,8 @@ public class PatientDetails {
     }
 
     @JsonCreator
-    public static CarelevelEnum fromValue(String value) {
-      for (CarelevelEnum b : CarelevelEnum.values()) {
+    public static CareLevelEnum fromValue(String value) {
+      for (CareLevelEnum b : CareLevelEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -94,12 +94,12 @@ public class PatientDetails {
     }
   }
 
-  public static final String JSON_PROPERTY_CARELEVEL = "carelevel";
-  private CarelevelEnum carelevel;
+  public static final String JSON_PROPERTY_CARE_LEVEL = "careLevel";
+  private CareLevelEnum careLevel;
 
-  public PatientDetails() {}
+  public PatientDetail() {}
 
-  public PatientDetails weight(Integer weight) {
+  public PatientDetail weight(Integer weight) {
 
     this.weight = weight;
     return this;
@@ -122,7 +122,7 @@ public class PatientDetails {
     this.weight = weight;
   }
 
-  public PatientDetails height(Integer height) {
+  public PatientDetail height(Integer height) {
 
     this.height = height;
     return this;
@@ -145,7 +145,7 @@ public class PatientDetails {
     this.height = height;
   }
 
-  public PatientDetails age(String age) {
+  public PatientDetail age(String age) {
 
     this.age = age;
     return this;
@@ -168,27 +168,27 @@ public class PatientDetails {
     this.age = age;
   }
 
-  public PatientDetails carelevel(CarelevelEnum carelevel) {
+  public PatientDetail careLevel(CareLevelEnum careLevel) {
 
-    this.carelevel = carelevel;
+    this.careLevel = careLevel;
     return this;
   }
 
   /**
-   * Get carelevel
-   * @return carelevel
+   * Get careLevel
+   * @return careLevel
    **/
-  @JsonProperty(JSON_PROPERTY_CARELEVEL)
+  @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CarelevelEnum getCarelevel() {
-    return carelevel;
+  public CareLevelEnum getCareLevel() {
+    return careLevel;
   }
 
-  @JsonProperty(JSON_PROPERTY_CARELEVEL)
+  @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCarelevel(CarelevelEnum carelevel) {
-    this.carelevel = carelevel;
+  public void setCareLevel(CareLevelEnum careLevel) {
+    this.careLevel = careLevel;
   }
 
   @Override
@@ -199,27 +199,27 @@ public class PatientDetails {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PatientDetails patientDetails = (PatientDetails)o;
-    return Objects.equals(this.weight, patientDetails.weight) &&
-        Objects.equals(this.height, patientDetails.height) &&
-        Objects.equals(this.age, patientDetails.age) &&
-        Objects.equals(this.carelevel, patientDetails.carelevel);
+    PatientDetail patientDetail = (PatientDetail)o;
+    return Objects.equals(this.weight, patientDetail.weight) &&
+        Objects.equals(this.height, patientDetail.height) &&
+        Objects.equals(this.age, patientDetail.age) &&
+        Objects.equals(this.careLevel, patientDetail.careLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(weight, height, age, carelevel);
+    return Objects.hash(weight, height, age, careLevel);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PatientDetails {\n");
+    sb.append("class PatientDetail {\n");
     sb.append("    weight: ").append(toIndentedString(weight)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
     sb.append("    age: ").append(toIndentedString(age)).append("\n");
-    sb.append("    carelevel: ")
-        .append(toIndentedString(carelevel))
+    sb.append("    careLevel: ")
+        .append(toIndentedString(careLevel))
         .append("\n");
     sb.append("}");
     return sb.toString();

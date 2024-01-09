@@ -42,17 +42,16 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Decisions
+ * Decision
  */
-@JsonPropertyOrder({Decisions.JSON_PROPERTY_TYPE,
-                    Decisions.JSON_PROPERTY_ORIENTATION,
-                    Decisions.JSON_PROPERTY_TRANSPORTATION,
-                    Decisions.JSON_PROPERTY_MEDICALISATION,
-                    Decisions.JSON_PROPERTY_DESTINATION})
-@JsonTypeName("decisions")
+@JsonPropertyOrder(
+    {Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
+     Decision.JSON_PROPERTY_TRANSPORTATION,
+     Decision.JSON_PROPERTY_MEDICALISATION, Decision.JSON_PROPERTY_DESTINATION})
+@JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Decisions {
+public class Decision {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
@@ -68,9 +67,9 @@ public class Decisions {
   public static final String JSON_PROPERTY_DESTINATION = "destination";
   private Destination destination;
 
-  public Decisions() {}
+  public Decision() {}
 
-  public Decisions type(String type) {
+  public Decision type(String type) {
 
     this.type = type;
     return this;
@@ -93,7 +92,7 @@ public class Decisions {
     this.type = type;
   }
 
-  public Decisions orientation(String orientation) {
+  public Decision orientation(String orientation) {
 
     this.orientation = orientation;
     return this;
@@ -116,13 +115,13 @@ public class Decisions {
     this.orientation = orientation;
   }
 
-  public Decisions transportation(List<String> transportation) {
+  public Decision transportation(List<String> transportation) {
 
     this.transportation = transportation;
     return this;
   }
 
-  public Decisions addTransportationItem(String transportationItem) {
+  public Decision addTransportationItem(String transportationItem) {
     if (this.transportation == null) {
       this.transportation = new ArrayList<>();
     }
@@ -155,7 +154,7 @@ public class Decisions {
     this.transportation.addAll(transportation);
   }
 
-  public Decisions medicalisation(String medicalisation) {
+  public Decision medicalisation(String medicalisation) {
 
     this.medicalisation = medicalisation;
     return this;
@@ -179,7 +178,7 @@ public class Decisions {
     this.medicalisation = medicalisation;
   }
 
-  public Decisions destination(Destination destination) {
+  public Decision destination(Destination destination) {
 
     this.destination = destination;
     return this;
@@ -210,12 +209,12 @@ public class Decisions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Decisions decisions = (Decisions)o;
-    return Objects.equals(this.type, decisions.type) &&
-        Objects.equals(this.orientation, decisions.orientation) &&
-        Objects.equals(this.transportation, decisions.transportation) &&
-        Objects.equals(this.medicalisation, decisions.medicalisation) &&
-        Objects.equals(this.destination, decisions.destination);
+    Decision decision = (Decision)o;
+    return Objects.equals(this.type, decision.type) &&
+        Objects.equals(this.orientation, decision.orientation) &&
+        Objects.equals(this.transportation, decision.transportation) &&
+        Objects.equals(this.medicalisation, decision.medicalisation) &&
+        Objects.equals(this.destination, decision.destination);
   }
 
   @Override
@@ -227,7 +226,7 @@ public class Decisions {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Decisions {\n");
+    sb.append("class Decision {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    orientation: ")
         .append(toIndentedString(orientation))

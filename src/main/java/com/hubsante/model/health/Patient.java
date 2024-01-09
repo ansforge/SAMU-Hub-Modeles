@@ -36,9 +36,9 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.Hypothesis;
 import com.hubsante.model.health.InsIdentity;
-import com.hubsante.model.health.Medicalnotes;
+import com.hubsante.model.health.MedicalNote;
 import com.hubsante.model.health.Nomenclature;
-import com.hubsante.model.health.PatientDetails;
+import com.hubsante.model.health.PatientDetail;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,18 +47,18 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Patients
+ * Patient
  */
 @JsonPropertyOrder(
-    {Patients.JSON_PROPERTY_ID, Patients.JSON_PROPERTY_FILE,
-     Patients.JSON_PROPERTY_IDENTITY, Patients.JSON_PROPERTY_WHATS_HAPPEN,
-     Patients.JSON_PROPERTY_DETAILS, Patients.JSON_PROPERTY_HYPOTHESIS,
-     Patients.JSON_PROPERTY_RESOURCE_DIAGNOSIS,
-     Patients.JSON_PROPERTY_MEDICALNOTES})
-@JsonTypeName("patients")
+    {Patient.JSON_PROPERTY_ID, Patient.JSON_PROPERTY_FILE,
+     Patient.JSON_PROPERTY_IDENTITY, Patient.JSON_PROPERTY_HEALTH_MOTIVE,
+     Patient.JSON_PROPERTY_DETAIL, Patient.JSON_PROPERTY_HYPOTHESIS,
+     Patient.JSON_PROPERTY_RESOURCE_DIAGNOSIS,
+     Patient.JSON_PROPERTY_MEDICAL_NOTE})
+@JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Patients {
+public class Patient {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
@@ -68,11 +68,11 @@ public class Patients {
   public static final String JSON_PROPERTY_IDENTITY = "identity";
   private InsIdentity identity;
 
-  public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
-  private Nomenclature whatsHappen;
+  public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
+  private Nomenclature healthMotive;
 
-  public static final String JSON_PROPERTY_DETAILS = "details";
-  private PatientDetails details;
+  public static final String JSON_PROPERTY_DETAIL = "detail";
+  private PatientDetail detail;
 
   public static final String JSON_PROPERTY_HYPOTHESIS = "hypothesis";
   private Hypothesis hypothesis;
@@ -81,12 +81,12 @@ public class Patients {
       "resourceDiagnosis";
   private Nomenclature resourceDiagnosis;
 
-  public static final String JSON_PROPERTY_MEDICALNOTES = "medicalnotes";
-  private List<Medicalnotes> medicalnotes;
+  public static final String JSON_PROPERTY_MEDICAL_NOTE = "medicalNote";
+  private List<MedicalNote> medicalNote;
 
-  public Patients() {}
+  public Patient() {}
 
-  public Patients id(String id) {
+  public Patient id(String id) {
 
     this.id = id;
     return this;
@@ -110,7 +110,7 @@ public class Patients {
     this.id = id;
   }
 
-  public Patients _file(File _file) {
+  public Patient _file(File _file) {
 
     this._file = _file;
     return this;
@@ -133,7 +133,7 @@ public class Patients {
     this._file = _file;
   }
 
-  public Patients identity(InsIdentity identity) {
+  public Patient identity(InsIdentity identity) {
 
     this.identity = identity;
     return this;
@@ -156,53 +156,53 @@ public class Patients {
     this.identity = identity;
   }
 
-  public Patients whatsHappen(Nomenclature whatsHappen) {
+  public Patient healthMotive(Nomenclature healthMotive) {
 
-    this.whatsHappen = whatsHappen;
+    this.healthMotive = healthMotive;
     return this;
   }
 
   /**
-   * Get whatsHappen
-   * @return whatsHappen
+   * Get healthMotive
+   * @return healthMotive
    **/
-  @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
+  @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Nomenclature getWhatsHappen() {
-    return whatsHappen;
+  public Nomenclature getHealthMotive() {
+    return healthMotive;
   }
 
-  @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
+  @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWhatsHappen(Nomenclature whatsHappen) {
-    this.whatsHappen = whatsHappen;
+  public void setHealthMotive(Nomenclature healthMotive) {
+    this.healthMotive = healthMotive;
   }
 
-  public Patients details(PatientDetails details) {
+  public Patient detail(PatientDetail detail) {
 
-    this.details = details;
+    this.detail = detail;
     return this;
   }
 
   /**
-   * Get details
-   * @return details
+   * Get detail
+   * @return detail
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_DETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public PatientDetails getDetails() {
-    return details;
+  public PatientDetail getDetail() {
+    return detail;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_DETAIL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(PatientDetails details) {
-    this.details = details;
+  public void setDetail(PatientDetail detail) {
+    this.detail = detail;
   }
 
-  public Patients hypothesis(Hypothesis hypothesis) {
+  public Patient hypothesis(Hypothesis hypothesis) {
 
     this.hypothesis = hypothesis;
     return this;
@@ -225,7 +225,7 @@ public class Patients {
     this.hypothesis = hypothesis;
   }
 
-  public Patients resourceDiagnosis(Nomenclature resourceDiagnosis) {
+  public Patient resourceDiagnosis(Nomenclature resourceDiagnosis) {
 
     this.resourceDiagnosis = resourceDiagnosis;
     return this;
@@ -248,43 +248,43 @@ public class Patients {
     this.resourceDiagnosis = resourceDiagnosis;
   }
 
-  public Patients medicalnotes(List<Medicalnotes> medicalnotes) {
+  public Patient medicalNote(List<MedicalNote> medicalNote) {
 
-    this.medicalnotes = medicalnotes;
+    this.medicalNote = medicalNote;
     return this;
   }
 
-  public Patients addMedicalnotesItem(Medicalnotes medicalnotesItem) {
-    if (this.medicalnotes == null) {
-      this.medicalnotes = new ArrayList<>();
+  public Patient addMedicalNoteItem(MedicalNote medicalNoteItem) {
+    if (this.medicalNote == null) {
+      this.medicalNote = new ArrayList<>();
     }
-    this.medicalnotes.add(medicalnotesItem);
+    this.medicalNote.add(medicalNoteItem);
     return this;
   }
 
   /**
-   * Get medicalnotes
-   * @return medicalnotes
+   * Get medicalNote
+   * @return medicalNote
    **/
-  @JsonProperty(JSON_PROPERTY_MEDICALNOTES)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_NOTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Medicalnotes> getMedicalnotes() {
-    return medicalnotes;
+  public List<MedicalNote> getMedicalNote() {
+    return medicalNote;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_MEDICALNOTES)
+  @JsonProperty(JSON_PROPERTY_MEDICAL_NOTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalnotes(List<Medicalnotes> medicalnotes) {
-    if (medicalnotes == null) {
+  public void setMedicalNote(List<MedicalNote> medicalNote) {
+    if (medicalNote == null) {
       return;
     }
-    if (this.medicalnotes == null) {
-      this.medicalnotes = new ArrayList<>();
+    if (this.medicalNote == null) {
+      this.medicalNote = new ArrayList<>();
     }
-    this.medicalnotes.addAll(medicalnotes);
+    this.medicalNote.addAll(medicalNote);
   }
 
   @Override
@@ -295,42 +295,42 @@ public class Patients {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Patients patients = (Patients)o;
-    return Objects.equals(this.id, patients.id) &&
-        Objects.equals(this._file, patients._file) &&
-        Objects.equals(this.identity, patients.identity) &&
-        Objects.equals(this.whatsHappen, patients.whatsHappen) &&
-        Objects.equals(this.details, patients.details) &&
-        Objects.equals(this.hypothesis, patients.hypothesis) &&
-        Objects.equals(this.resourceDiagnosis, patients.resourceDiagnosis) &&
-        Objects.equals(this.medicalnotes, patients.medicalnotes);
+    Patient patient = (Patient)o;
+    return Objects.equals(this.id, patient.id) &&
+        Objects.equals(this._file, patient._file) &&
+        Objects.equals(this.identity, patient.identity) &&
+        Objects.equals(this.healthMotive, patient.healthMotive) &&
+        Objects.equals(this.detail, patient.detail) &&
+        Objects.equals(this.hypothesis, patient.hypothesis) &&
+        Objects.equals(this.resourceDiagnosis, patient.resourceDiagnosis) &&
+        Objects.equals(this.medicalNote, patient.medicalNote);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _file, identity, whatsHappen, details, hypothesis,
-                        resourceDiagnosis, medicalnotes);
+    return Objects.hash(id, _file, identity, healthMotive, detail, hypothesis,
+                        resourceDiagnosis, medicalNote);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Patients {\n");
+    sb.append("class Patient {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    _file: ").append(toIndentedString(_file)).append("\n");
     sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
-    sb.append("    whatsHappen: ")
-        .append(toIndentedString(whatsHappen))
+    sb.append("    healthMotive: ")
+        .append(toIndentedString(healthMotive))
         .append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("    hypothesis: ")
         .append(toIndentedString(hypothesis))
         .append("\n");
     sb.append("    resourceDiagnosis: ")
         .append(toIndentedString(resourceDiagnosis))
         .append("\n");
-    sb.append("    medicalnotes: ")
-        .append(toIndentedString(medicalnotes))
+    sb.append("    medicalNote: ")
+        .append(toIndentedString(medicalNote))
         .append("\n");
     sb.append("}");
     return sb.toString();

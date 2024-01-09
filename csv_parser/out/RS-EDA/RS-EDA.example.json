@@ -130,14 +130,14 @@
             ]
         },
         "owner": "fr.health.samu090 ",
-        "operators": [
+        "operator": [
             {
                 "detailedName": {},
                 "id": "None",
                 "role": "ARM, Medecin r\u00e9gulateur\u2026"
             }
         ],
-        "patients": [
+        "patient": [
             {
                 "id": "None",
                 "file": {
@@ -182,12 +182,12 @@
                     },
                     "nonStrictFeatures": {}
                 },
-                "whatsHappen": {},
-                "details": {
+                "healthMotive": {},
+                "detail": {
                     "weight": 31,
                     "height": 109,
                     "age": "6Y",
-                    "carelevel": "R1/R2/R3/R4"
+                    "careLevel": "R1/R2/R3/R4"
                 },
                 "hypothesis": {
                     "mainDiagnosis": {},
@@ -196,14 +196,14 @@
                     ]
                 },
                 "resourceDiagnosis": {},
-                "medicalnotes": [
+                "medicalNote": [
                     {
-                        "operators": {},
-                        "creationmedicalnote": "2022-09-27T08:23:34+02:00",
+                        "operator": {},
+                        "creation": "2022-09-27T08:23:34+02:00",
                         "freetext": "None",
-                        "medicalHistoryFreetext": "None",
-                        "treatmentsFreetext": "None",
-                        "allergiesFreetext": "None"
+                        "medicalHistory": "None",
+                        "treatments": "None",
+                        "allergies": "None"
                     }
                 ]
             }
@@ -211,7 +211,7 @@
         "medicalAnalysis": [
             {
                 "patientId": "None",
-                "decisions": [
+                "decision": [
                     {
                         "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
                         "orientation": "None",

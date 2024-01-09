@@ -40,14 +40,14 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Operators
+ * Operator
  */
-@JsonPropertyOrder({Operators.JSON_PROPERTY_DETAILED_NAME,
-                    Operators.JSON_PROPERTY_ID, Operators.JSON_PROPERTY_ROLE})
-@JsonTypeName("operators")
+@JsonPropertyOrder({Operator.JSON_PROPERTY_DETAILED_NAME,
+                    Operator.JSON_PROPERTY_ID, Operator.JSON_PROPERTY_ROLE})
+@JsonTypeName("operator")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Operators {
+public class Operator {
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
   private DetailedName detailedName;
 
@@ -57,9 +57,9 @@ public class Operators {
   public static final String JSON_PROPERTY_ROLE = "role";
   private String role;
 
-  public Operators() {}
+  public Operator() {}
 
-  public Operators detailedName(DetailedName detailedName) {
+  public Operator detailedName(DetailedName detailedName) {
 
     this.detailedName = detailedName;
     return this;
@@ -82,7 +82,7 @@ public class Operators {
     this.detailedName = detailedName;
   }
 
-  public Operators id(String id) {
+  public Operator id(String id) {
 
     this.id = id;
     return this;
@@ -105,7 +105,7 @@ public class Operators {
     this.id = id;
   }
 
-  public Operators role(String role) {
+  public Operator role(String role) {
 
     this.role = role;
     return this;
@@ -136,10 +136,10 @@ public class Operators {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Operators operators = (Operators)o;
-    return Objects.equals(this.detailedName, operators.detailedName) &&
-        Objects.equals(this.id, operators.id) &&
-        Objects.equals(this.role, operators.role);
+    Operator operator = (Operator)o;
+    return Objects.equals(this.detailedName, operator.detailedName) &&
+        Objects.equals(this.id, operator.id) &&
+        Objects.equals(this.role, operator.role);
   }
 
   @Override
@@ -150,7 +150,7 @@ public class Operators {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Operators {\n");
+    sb.append("class Operator {\n");
     sb.append("    detailedName: ")
         .append(toIndentedString(detailedName))
         .append("\n");

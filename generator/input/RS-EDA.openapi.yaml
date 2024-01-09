@@ -109,14 +109,14 @@ components:
             \ lui."
           examples:
           - 'fr.health.samu090 '
-        operators:
+        operator:
           type: array
           items:
-            $ref: '#/components/schemas/operators'
-        patients:
+            $ref: '#/components/schemas/operator'
+        patient:
           type: array
           items:
-            $ref: '#/components/schemas/patients'
+            $ref: '#/components/schemas/patient'
         medicalAnalysis:
           type: array
           items:
@@ -572,7 +572,7 @@ components:
           items:
             $ref: '#/components/schemas/attachment'
       example: example.json#/createCase/initialAlert
-    operators:
+    operator:
       type: object
       title: "Op\xE9rateurs impliqu\xE9s"
       x-display: expansion-panels
@@ -588,7 +588,7 @@ components:
           title: ID
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/operators/0/id
+          example: example.json#/createCase/operator/0/id
           description: "Identifiant professionnel de l'op\xE9rateur si existant"
           examples:
           - None
@@ -597,17 +597,17 @@ components:
           title: "R\xF4le"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/operators/0/role
+          example: example.json#/createCase/operator/0/role
           description: "R\xF4le de l'op\xE9rateur au sein de l'entit\xE9 \xE9mettrice\
             \ du message"
           examples:
           - "ARM, Medecin r\xE9gulateur\u2026"
-      example: example.json#/createCase/operators/0
+      example: example.json#/createCase/operator/0
       examples:
       - detailedName: {}
         id: None
         role: "ARM, Medecin r\xE9gulateur\u2026"
-    patients:
+    patient:
       type: object
       title: Patients / victimes
       x-display: expansion-panels
@@ -620,7 +620,7 @@ components:
           title: "ID patient partag\xE9"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/id
+          example: example.json#/createCase/patient/0/id
           description: "Identifiant technique du patient pour permettre les rapprochements\
             \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
           examples:
@@ -629,19 +629,19 @@ components:
           $ref: '#/components/schemas/file'
         identity:
           $ref: '#/components/schemas/insIdentity'
-        whatsHappen:
+        healthMotive:
           $ref: '#/components/schemas/nomenclature'
-        details:
-          $ref: '#/components/schemas/patientDetails'
+        detail:
+          $ref: '#/components/schemas/patientDetail'
         hypothesis:
           $ref: '#/components/schemas/hypothesis'
         resourceDiagnosis:
           $ref: '#/components/schemas/nomenclature'
-        medicalnotes:
+        medicalNote:
           type: array
           items:
-            $ref: '#/components/schemas/medicalnotes'
-      example: example.json#/createCase/patients/0
+            $ref: '#/components/schemas/medicalNote'
+      example: example.json#/createCase/patient/0
     medicalAnalysis:
       type: object
       title: "R\xE9gulation m\xE9dicale"
@@ -659,10 +659,10 @@ components:
             \ identifi\xE9"
           examples:
           - None
-        decisions:
+        decision:
           type: array
           items:
-            $ref: '#/components/schemas/decisions'
+            $ref: '#/components/schemas/decision'
       example: example.json#/createCase/medicalAnalysis/0
     additionalInformation:
       type: object
@@ -1852,7 +1852,7 @@ components:
           $ref: '#/components/schemas/personalAddress'
         generalPractitioner:
           $ref: '#/components/schemas/generalPractitioner'
-      example: example.json#/createCase/patients/0/file
+      example: example.json#/createCase/patient/0/file
     insIdentity:
       type: object
       title: "Identit\xE9 INS"
@@ -1868,8 +1868,8 @@ components:
           $ref: '#/components/schemas/insStrictFeatures'
         nonStrictFeatures:
           $ref: '#/components/schemas/detailedName'
-      example: example.json#/createCase/patients/0/identity
-    patientDetails:
+      example: example.json#/createCase/patient/0/identity
+    patientDetail:
       type: object
       title: Informations patient
       x-display: expansion-panels
@@ -1881,7 +1881,7 @@ components:
           title: Poids
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/details/weight
+          example: example.json#/createCase/patient/0/detail/weight
           description: Poids en kilogrammes
           examples:
           - 31
@@ -1890,7 +1890,7 @@ components:
           title: Taille
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/details/height
+          example: example.json#/createCase/patient/0/detail/height
           description: "Taille en centim\xE8tres"
           examples:
           - 109
@@ -1899,17 +1899,17 @@ components:
           title: Age
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/details/age
+          example: example.json#/createCase/patient/0/detail/age
           description: Age du patient (Norme ISO_8601)
           pattern: ''
           examples:
           - 6Y
-        carelevel:
+        careLevel:
           type: string
           title: Niveau de soin
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/details/carelevel
+          example: example.json#/createCase/patient/0/detail/careLevel
           enum:
           - R1
           - R2
@@ -1917,12 +1917,12 @@ components:
           - R4
           examples:
           - R1/R2/R3/R4
-      example: example.json#/createCase/patients/0/details
+      example: example.json#/createCase/patient/0/detail
       examples:
       - weight: 31
         height: 109
         age: 6Y
-        carelevel: R1/R2/R3/R4
+        careLevel: R1/R2/R3/R4
     hypothesis:
       type: object
       title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale"
@@ -1936,23 +1936,23 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/nomenclature'
-      example: example.json#/createCase/patients/0/hypothesis
-    medicalnotes:
+      example: example.json#/createCase/patient/0/hypothesis
+    medicalNote:
       type: object
       title: "Interrogatoire m\xE9dical"
       x-display: expansion-panels
       x-health-only: true
       required:
-      - creationmedicalnote
+      - creation
       properties:
-        operators:
-          $ref: '#/components/schemas/operators'
-        creationmedicalnote:
+        operator:
+          $ref: '#/components/schemas/operator'
+        creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'interrogatoire"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/medicalnotes/0/creationmedicalnote
+          example: example.json#/createCase/patient/0/medicalNote/0/creation
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
             ation de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas\
             \ \xEAtre utilis\xE9."
@@ -1965,48 +1965,48 @@ components:
           title: Observations et commentaires
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/medicalnotes/0/freetext
+          example: example.json#/createCase/patient/0/medicalNote/0/freetext
           description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
             \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
             \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
             \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
           examples:
           - None
-        medicalHistoryFreetext:
+        medicalHistory:
           type: string
           title: "Ant\xE9c\xE9dents"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/medicalnotes/0/medicalHistoryFreetext
+          example: example.json#/createCase/patient/0/medicalNote/0/medicalHistory
           description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient"
           examples:
           - None
-        treatmentsFreetext:
+        treatments:
           type: string
           title: Traitements
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/medicalnotes/0/treatmentsFreetext
+          example: example.json#/createCase/patient/0/medicalNote/0/treatments
           description: "Texte libre  pour d\xE9crire les traitements du patient"
           examples:
           - None
-        allergiesFreetext:
+        allergies:
           type: string
           title: Allergies
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/medicalnotes/0/allergiesFreetext
+          example: example.json#/createCase/patient/0/medicalNote/0/allergies
           description: "Texte libre pour d\xE9crire les allergies du patient"
           examples:
           - None
-      example: example.json#/createCase/patients/0/medicalnotes/0
+      example: example.json#/createCase/patient/0/medicalNote/0
       examples:
-      - operators: {}
-        creationmedicalnote: '2022-09-27T08:23:34+02:00'
+      - operator: {}
+        creation: '2022-09-27T08:23:34+02:00'
         freetext: None
-        medicalHistoryFreetext: None
-        treatmentsFreetext: None
-        allergiesFreetext: None
+        medicalHistory: None
+        treatments: None
+        allergies: None
     externalId:
       type: object
       title: Identifiant(s) patient(s)
@@ -2019,7 +2019,7 @@ components:
           title: Source  /  type d'identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/file/externalId/0/source
+          example: example.json#/createCase/patient/0/file/externalId/0/source
           description: Type de l'identifiant fourni
           enum:
           - NIR
@@ -2032,11 +2032,11 @@ components:
           title: Identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/file/externalId/0/value
+          example: example.json#/createCase/patient/0/file/externalId/0/value
           description: "L'identifiant en lui-m\xEAme"
           examples:
           - id1234
-      example: example.json#/createCase/patients/0/file/externalId/0
+      example: example.json#/createCase/patient/0/file/externalId/0
       examples:
       - source: "NIR, SINUS, SI-VIC, \u2026"
         value: id1234
@@ -2051,7 +2051,7 @@ components:
           $ref: '#/components/schemas/detailedAddress'
         city:
           $ref: '#/components/schemas/city'
-      example: example.json#/createCase/patients/0/file/personalAddress
+      example: example.json#/createCase/patient/0/file/personalAddress
       examples:
       - detailedAddress: {}
         city: {}
@@ -2069,7 +2069,7 @@ components:
           title: Identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/file/generalPractitioner/id
+          example: example.json#/createCase/patient/0/file/generalPractitioner/id
           description: "Num\xE9ro RPPS du m\xE9decin traitant"
           examples:
           - None
@@ -2079,7 +2079,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact'
-      example: example.json#/createCase/patients/0/file/generalPractitioner
+      example: example.json#/createCase/patient/0/file/generalPractitioner
     insCycle:
       type: object
       title: "Impl\xE9mentation INS"
@@ -2092,7 +2092,7 @@ components:
           title: "Statut de l'identit\xE9"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/cycle/status
+          example: example.json#/createCase/patient/0/identity/cycle/status
           description: "Le RNIV exige que les logiciels r\xE9f\xE9rentiels d\u2019\
             identit\xE9s g\xE8rent les 4 statuts fonctionnels suivants :\n- \xAB identit\xE9\
             \ provisoire \xBB,\n- \xAB identit\xE9 r\xE9cup\xE9r\xE9e \xBB,\n- \xAB\
@@ -2108,13 +2108,13 @@ components:
           title: "Attribut de l'identit\xE9"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/cycle/attribute
+          example: example.json#/createCase/patient/0/identity/cycle/attribute
           description: "Le RNIV recommande que les logiciels r\xE9f\xE9rentiels d\u2019\
             identit\xE9s g\xE8rent a minima les 3 attributs suivants :\n- identit\xE9\
             \ homonyme,\n- identit\xE9 douteuse,\n- identit\xE9 fictive."
           examples:
           - None
-      example: example.json#/createCase/patients/0/identity/cycle
+      example: example.json#/createCase/patient/0/identity/cycle
       examples:
       - status: None
         attribute: None
@@ -2130,7 +2130,7 @@ components:
           title: 'Matricule '
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/number/value
+          example: example.json#/createCase/patient/0/identity/number/value
           description: "n\xB0 NIR OU n\xB0 NIA de l'individu. Le matricule INS (et\
             \ son OID) ne doit jamais \xEAtre propag\xE9 (= \xE9chang\xE9) si l'identit\xE9\
             \ est \xE0 un statut autre que qualifi\xE9e. Il correspond au num\xE9\
@@ -2147,7 +2147,7 @@ components:
           title: OID
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/number/oid
+          example: example.json#/createCase/patient/0/identity/number/oid
           description: "Identifiant de la structure qui a affect\xE9 l\u2019INS sous\
             \ la forme d'un OID. Les OID (Object Identifier) sont des identifiants\
             \ universels, repr\xE9sent\xE9s sous la forme d'une suite d'entiers. Ils\
@@ -2156,7 +2156,7 @@ components:
             \ si le statut de l'identit\xE9 n'est pas \"qualifi\xE9e\""
           examples:
           - 1.2.250.1.213.1.4.8
-      example: example.json#/createCase/patients/0/identity/number
+      example: example.json#/createCase/patient/0/identity/number
       examples:
       - value: 2 77 01 01 154 002 29
         oid: 1.2.250.1.213.1.4.8
@@ -2172,7 +2172,7 @@ components:
           title: Nom de naissance
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/strictFeatures/birthName
+          example: example.json#/createCase/patient/0/identity/strictFeatures/birthName
           description: "Egalement appel\xE9 nom de famille."
           examples:
           - Dupont
@@ -2181,7 +2181,7 @@ components:
           title: "Premier pr\xE9nom de naissance"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/strictFeatures/birthFirstName
+          example: example.json#/createCase/patient/0/identity/strictFeatures/birthFirstName
           description: "Doit \xEAtre coh\xE9rent avec la liste des pr\xE9noms de naissance\
             \ renvoy\xE9e par INSi. Ex: si la liste des pr\xE9noms renvoy\xE9e est\
             \ \"Pierre Alain Jacques\", le premier pr\xE9nom de naissance ne peut\
@@ -2193,7 +2193,7 @@ components:
           title: "Liste des pr\xE9noms de naissance"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/strictFeatures/birthFirstNamesList
+          example: example.json#/createCase/patient/0/identity/strictFeatures/birthFirstNamesList
           description: "Ensemble des pr\xE9noms de naissance (renvoy\xE9s par INSi)"
           examples:
           - None
@@ -2202,7 +2202,7 @@ components:
           title: Date de naissance
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/strictFeatures/birthDate
+          example: example.json#/createCase/patient/0/identity/strictFeatures/birthDate
           description: Date de naissance du patient
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -2213,7 +2213,7 @@ components:
           title: 'Sexe '
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/strictFeatures/sex
+          example: example.json#/createCase/patient/0/identity/strictFeatures/sex
           description: Sexe du patient
           enum:
           - U
@@ -2227,7 +2227,7 @@ components:
           title: Code lieu de naissance
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/patients/0/identity/strictFeatures/birthPlaceCode
+          example: example.json#/createCase/patient/0/identity/strictFeatures/birthPlaceCode
           description: "Il s\u2019agit de la commune de naissance pour les personnes\
             \ n\xE9es en France et du pays de naissance pour les personnes n\xE9es\
             \ \xE0 l\u2019\xE9tranger. Utilisation du code INSEE (diff\xE9rent du\
@@ -2235,7 +2235,7 @@ components:
             \ correspondant."
           examples:
           - None
-      example: example.json#/createCase/patients/0/identity/strictFeatures
+      example: example.json#/createCase/patient/0/identity/strictFeatures
       examples:
       - birthName: Dupont
         birthFirstName: None
@@ -2243,7 +2243,7 @@ components:
         birthDate: None
         sex: F
         birthPlaceCode: None
-    decisions:
+    decision:
       type: object
       title: "D\xE9cisions"
       x-display: expansion-panels
@@ -2255,7 +2255,7 @@ components:
           title: "Type de d\xE9cision"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decisions/0/type
+          example: example.json#/createCase/medicalAnalysis/0/decision/0/type
           description: "Type de d\xE9cision prise"
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
@@ -2265,7 +2265,7 @@ components:
           title: Orientation
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decisions/0/orientation
+          example: example.json#/createCase/medicalAnalysis/0/decision/0/orientation
           description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
             gulateur"
           examples:
@@ -2278,7 +2278,7 @@ components:
             title: Vecteur de transport
             x-health-only: true
             x-cols: 6
-            example: example.json#/createCase/medicalAnalysis/0/decisions/0/transportation/0
+            example: example.json#/createCase/medicalAnalysis/0/decision/0/transportation/0
             description: "Type de transport engag\xE9 pour la prise en charge du patient"
             examples:
             - 'SMUR '
@@ -2287,14 +2287,14 @@ components:
           title: "Niveau de m\xE9dicalisation"
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decisions/0/medicalisation
+          example: example.json#/createCase/medicalAnalysis/0/decision/0/medicalisation
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
             dicale, standard, incomplete, ...)"
           examples:
           - "M\xE9dical, param\xE9dical, secouriste"
         destination:
           $ref: '#/components/schemas/destination'
-      example: example.json#/createCase/medicalAnalysis/0/decisions/0
+      example: example.json#/createCase/medicalAnalysis/0/decision/0
     destination:
       type: object
       title: Destination
@@ -2307,7 +2307,7 @@ components:
           title: Etablissement
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination/facility
+          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/facility
           examples:
           - None
         service:
@@ -2315,7 +2315,7 @@ components:
           title: Service
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination/service
+          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/service
           examples:
           - None
         freetext:
@@ -2323,10 +2323,10 @@ components:
           title: Autre
           x-health-only: true
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination/freetext
+          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/freetext
           examples:
           - None
-      example: example.json#/createCase/medicalAnalysis/0/decisions/0/destination
+      example: example.json#/createCase/medicalAnalysis/0/decision/0/destination
       examples:
       - facility: None
         service: None

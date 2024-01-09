@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Decisions;
+import com.hubsante.model.health.Decision;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -45,7 +45,7 @@ import java.util.Objects;
  * MedicalAnalysis
  */
 @JsonPropertyOrder({MedicalAnalysis.JSON_PROPERTY_PATIENT_ID,
-                    MedicalAnalysis.JSON_PROPERTY_DECISIONS})
+                    MedicalAnalysis.JSON_PROPERTY_DECISION})
 @JsonTypeName("medicalAnalysis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -53,8 +53,8 @@ public class MedicalAnalysis {
   public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
   private String patientId;
 
-  public static final String JSON_PROPERTY_DECISIONS = "decisions";
-  private List<Decisions> decisions;
+  public static final String JSON_PROPERTY_DECISION = "decision";
+  private List<Decision> decision;
 
   public MedicalAnalysis() {}
 
@@ -81,43 +81,43 @@ public class MedicalAnalysis {
     this.patientId = patientId;
   }
 
-  public MedicalAnalysis decisions(List<Decisions> decisions) {
+  public MedicalAnalysis decision(List<Decision> decision) {
 
-    this.decisions = decisions;
+    this.decision = decision;
     return this;
   }
 
-  public MedicalAnalysis addDecisionsItem(Decisions decisionsItem) {
-    if (this.decisions == null) {
-      this.decisions = new ArrayList<>();
+  public MedicalAnalysis addDecisionItem(Decision decisionItem) {
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
     }
-    this.decisions.add(decisionsItem);
+    this.decision.add(decisionItem);
     return this;
   }
 
   /**
-   * Get decisions
-   * @return decisions
+   * Get decision
+   * @return decision
    **/
-  @JsonProperty(JSON_PROPERTY_DECISIONS)
+  @JsonProperty(JSON_PROPERTY_DECISION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Decisions> getDecisions() {
-    return decisions;
+  public List<Decision> getDecision() {
+    return decision;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_DECISIONS)
+  @JsonProperty(JSON_PROPERTY_DECISION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDecisions(List<Decisions> decisions) {
-    if (decisions == null) {
+  public void setDecision(List<Decision> decision) {
+    if (decision == null) {
       return;
     }
-    if (this.decisions == null) {
-      this.decisions = new ArrayList<>();
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
     }
-    this.decisions.addAll(decisions);
+    this.decision.addAll(decision);
   }
 
   @Override
@@ -130,12 +130,12 @@ public class MedicalAnalysis {
     }
     MedicalAnalysis medicalAnalysis = (MedicalAnalysis)o;
     return Objects.equals(this.patientId, medicalAnalysis.patientId) &&
-        Objects.equals(this.decisions, medicalAnalysis.decisions);
+        Objects.equals(this.decision, medicalAnalysis.decision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientId, decisions);
+    return Objects.hash(patientId, decision);
   }
 
   @Override
@@ -145,9 +145,7 @@ public class MedicalAnalysis {
     sb.append("    patientId: ")
         .append(toIndentedString(patientId))
         .append("\n");
-    sb.append("    decisions: ")
-        .append(toIndentedString(decisions))
-        .append("\n");
+    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("}");
     return sb.toString();
   }
