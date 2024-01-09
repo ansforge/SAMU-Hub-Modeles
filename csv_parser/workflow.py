@@ -1,5 +1,6 @@
-import os
 import argparse
+import os
+import shutil
 
 import csv_parser
 
@@ -34,8 +35,11 @@ def parser_and_mv():
     for schema in schemas:
         # Run csv_parser
         csv_parser.run(schema['sheet'], schema['name'], None, schema['filter'])
-        # Move output files
+
         name = schema['name']
+        # Copy schema to JsonSchema2XSD project
+        shutil.copyfile(f"./out/{name}/{name}.schema.json", f"./json_schema2xsd/src/main/resources/json-schema/{name}.schema.json")
+        # Move output files
         os.rename(f"./out/{name}/{name}.openapi.yaml", f"../generator/input/{name}.openapi.yaml")
         os.rename(f"./out/{name}/{name}.schema.json", f"../src/main/resources/json-schema/{name}.schema.json")
 
