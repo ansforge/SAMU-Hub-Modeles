@@ -702,7 +702,7 @@ components:
             x-cols: 6
             example: example.json#/emsi/MISSION/0/RESOURCE_ID/0
             description: "Liste des identifiants des ressources engag\xE9es dans la\
-              \ mission (voire RESSOURCE.ID)"
+              \ mission (voir RESOURCE.ID)"
             examples:
             - 77_45102#VSAV 1#
         PARENT_MISSION_ID:

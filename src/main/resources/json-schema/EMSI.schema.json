@@ -607,7 +607,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/emsi/MISSION/0/RESOURCE_ID/0",
-                        "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voire RESSOURCE.ID)"
+                        "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voir RESOURCE.ID)"
                     }
                 },
                 "PARENT_MISSION_ID": {
