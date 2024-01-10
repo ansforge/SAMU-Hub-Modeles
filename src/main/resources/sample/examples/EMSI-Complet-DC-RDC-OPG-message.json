@@ -17,9 +17,9 @@
       "EXTERNAL_INFO": []
     },
     "EVENT": {
-      "ID": "fr.health.samu690-20231103-AF1234",
+      "ID": "fr.health.samu690",
       "NAME": "Incident sur voix cyclable",
-      "MAIN_EVENT_ID": "fr.health.samu690-20231103-AF1234",
+      "MAIN_EVENT_ID": "fr.health.samu690",
       "ETYPE": {
         "CATEGORY": [
           "TRP/COL"
