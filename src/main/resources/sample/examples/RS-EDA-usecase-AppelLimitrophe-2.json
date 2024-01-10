@@ -172,7 +172,10 @@
         "controlRoom": "CRRA 770",
         "role": "ARM",
         "calltakerId": "id5678",
-        "calltakerContact": {}
+        "calltakerContact": {
+            "type": "PHNADD",
+            "detail": "0607080928"
+        }
       },
       "attachment": []
     },

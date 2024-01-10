@@ -338,6 +338,7 @@ def run(sheet, name, version, filter):
         'title': MODEL_NAME,
         'required': [],
         'properties': {},
+        'additionalProperties': 'false',
         'definitions': {}
     }
 
