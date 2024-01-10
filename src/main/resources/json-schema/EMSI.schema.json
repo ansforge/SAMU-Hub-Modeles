@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.01.05",
+    "version": "24.01.10",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -599,12 +599,16 @@
                     "format": "date-time"
                 },
                 "RESOURCE_ID": {
-                    "type": "string",
-                    "title": "Ressource engag\u00e9e",
+                    "type": "array",
                     "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/emsi/MISSION/0/RESOURCE_ID",
-                    "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voire RESSOURCE.ID)"
+                    "items": {
+                        "type": "string",
+                        "title": "Ressource engag\u00e9e",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/emsi/MISSION/0/RESOURCE_ID/0",
+                        "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voir RESOURCE.ID)"
+                    }
                 },
                 "PARENT_MISSION_ID": {
                     "type": "array",

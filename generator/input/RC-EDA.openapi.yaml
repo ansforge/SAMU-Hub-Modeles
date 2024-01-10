@@ -1459,7 +1459,7 @@ components:
             \ nomenclature PERSO (nomenclature SI-SAMU)"
           examples:
           - ARM
-        calltakeContact:
+        calltakerContact:
           $ref: '#/components/schemas/contact'
         calltakerId:
           type: string
@@ -1476,7 +1476,7 @@ components:
       - organization: FR:Administration:44:samu44:crra:regulationN3
         controlRoom: CGA, CGO 21, CRRA 44, ...
         role: ARM
-        calltakeContact: {}
+        calltakerContact: {}
         calltakerId: id1234
     attachment:
       type: object
@@ -1559,7 +1559,7 @@ components:
         digest: None
     contact:
       type: object
-      title: "Contact requ\xE9rant"
+      title: Contact
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -1600,7 +1600,7 @@ components:
         detail: 0671830530
     detailedName:
       type: object
-      title: "Pr\xE9nom & nom usuel du requ\xE9rant"
+      title: "Pr\xE9nom & nom usuel"
       x-display: expansion-panels
       x-health-only: false
       required:

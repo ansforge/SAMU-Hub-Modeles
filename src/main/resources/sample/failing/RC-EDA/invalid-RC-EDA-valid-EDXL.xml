@@ -162,10 +162,10 @@
                                     <organization>FR:Administration:44:samu44:crra:regulationN3</organization>
                                     <controlRoom>CGA, CGO 21, CRRA 44, ...</controlRoom>
                                     <role>ARM</role>
-                                    <calltakeContact>
+                                    <calltakerContact>
                                         <type>PHNADD</type>
                                         <detail>0671830530</detail>
-                                    </calltakeContact>
+                                    </calltakerContact>
                                     <calltakerId>id1234</calltakerId>
                                 </callTaker>
                                 <attachment>

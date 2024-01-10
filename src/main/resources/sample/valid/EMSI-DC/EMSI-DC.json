@@ -147,7 +147,9 @@
                   "STATUS": "IPR",
                   "START_TIME": "2022-09-27T08:21:00+02:00",
                   "END_TIME": "2022-09-27T10:21:00+02:00",
-                  "RESOURCE_ID": "Non traité",
+                  "RESOURCE_ID": [
+                    "Non traité"
+                  ],
                   "PARENT_MISSION_ID": [
                     "Non traité"
                   ],

@@ -103,7 +103,7 @@
         "NAME": "#REPONSE_DEMANDE_CONCOURS#ACCEPTE#",
         "STATUS": "NST",
         "START_TIME": "2023-11-03T10:20:00+01:00",
-        "RESOURCE_ID": "",
+        "RESOURCE_ID": [],
         "POSITION": {
           "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
           "NAME": "Quai des Célestins",

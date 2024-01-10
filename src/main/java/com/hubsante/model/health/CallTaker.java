@@ -44,7 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {CallTaker.JSON_PROPERTY_ORGANIZATION, CallTaker.JSON_PROPERTY_CONTROL_ROOM,
-     CallTaker.JSON_PROPERTY_ROLE, CallTaker.JSON_PROPERTY_CALLTAKE_CONTACT,
+     CallTaker.JSON_PROPERTY_ROLE, CallTaker.JSON_PROPERTY_CALLTAKER_CONTACT,
      CallTaker.JSON_PROPERTY_CALLTAKER_ID})
 @JsonTypeName("callTaker")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -59,8 +59,9 @@ public class CallTaker {
   public static final String JSON_PROPERTY_ROLE = "role";
   private String role;
 
-  public static final String JSON_PROPERTY_CALLTAKE_CONTACT = "calltakeContact";
-  private Contact calltakeContact;
+  public static final String JSON_PROPERTY_CALLTAKER_CONTACT =
+      "calltakerContact";
+  private Contact calltakerContact;
 
   public static final String JSON_PROPERTY_CALLTAKER_ID = "calltakerId";
   private String calltakerId;
@@ -141,27 +142,27 @@ public class CallTaker {
     this.role = role;
   }
 
-  public CallTaker calltakeContact(Contact calltakeContact) {
+  public CallTaker calltakerContact(Contact calltakerContact) {
 
-    this.calltakeContact = calltakeContact;
+    this.calltakerContact = calltakerContact;
     return this;
   }
 
   /**
-   * Get calltakeContact
-   * @return calltakeContact
+   * Get calltakerContact
+   * @return calltakerContact
    **/
-  @JsonProperty(JSON_PROPERTY_CALLTAKE_CONTACT)
+  @JsonProperty(JSON_PROPERTY_CALLTAKER_CONTACT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Contact getCalltakeContact() {
-    return calltakeContact;
+  public Contact getCalltakerContact() {
+    return calltakerContact;
   }
 
-  @JsonProperty(JSON_PROPERTY_CALLTAKE_CONTACT)
+  @JsonProperty(JSON_PROPERTY_CALLTAKER_CONTACT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCalltakeContact(Contact calltakeContact) {
-    this.calltakeContact = calltakeContact;
+  public void setCalltakerContact(Contact calltakerContact) {
+    this.calltakerContact = calltakerContact;
   }
 
   public CallTaker calltakerId(String calltakerId) {
@@ -200,13 +201,13 @@ public class CallTaker {
     return Objects.equals(this.organization, callTaker.organization) &&
         Objects.equals(this.controlRoom, callTaker.controlRoom) &&
         Objects.equals(this.role, callTaker.role) &&
-        Objects.equals(this.calltakeContact, callTaker.calltakeContact) &&
+        Objects.equals(this.calltakerContact, callTaker.calltakerContact) &&
         Objects.equals(this.calltakerId, callTaker.calltakerId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(organization, controlRoom, role, calltakeContact,
+    return Objects.hash(organization, controlRoom, role, calltakerContact,
                         calltakerId);
   }
 
@@ -221,8 +222,8 @@ public class CallTaker {
         .append(toIndentedString(controlRoom))
         .append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
-    sb.append("    calltakeContact: ")
-        .append(toIndentedString(calltakeContact))
+    sb.append("    calltakerContact: ")
+        .append(toIndentedString(calltakerContact))
         .append("\n");
     sb.append("    calltakerId: ")
         .append(toIndentedString(calltakerId))

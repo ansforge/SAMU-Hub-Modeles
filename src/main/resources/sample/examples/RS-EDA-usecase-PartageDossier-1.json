@@ -158,8 +158,11 @@
         "organization": "fr.health.samu770.chuSudSeineMarne.crra.regulationN3",
         "controlRoom": "CRRA 770",
         "role": "ARM",
-        "calltakerId": "id5678",
-        "calltakerContact": {}
+        "calltakerContact": {
+          "type": "PHNADD",
+          "detail": "0112345678"
+        },
+        "calltakerId": "id5678"
       },
       "attachment": []
     },

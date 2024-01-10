@@ -38,8 +38,8 @@ import com.hubsante.model.health.AdditionalInformation;
 import com.hubsante.model.health.Alert;
 import com.hubsante.model.health.Location;
 import com.hubsante.model.health.MedicalAnalysis;
-import com.hubsante.model.health.Operators;
-import com.hubsante.model.health.Patients;
+import com.hubsante.model.health.Operator;
+import com.hubsante.model.health.Patient;
 import com.hubsante.model.health.Qualification;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ import java.util.Objects;
      CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
      CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
      CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_OWNER,
-     CreateCase.JSON_PROPERTY_OPERATORS, CreateCase.JSON_PROPERTY_PATIENTS,
+     CreateCase.JSON_PROPERTY_OPERATOR, CreateCase.JSON_PROPERTY_PATIENT,
      CreateCase.JSON_PROPERTY_MEDICAL_ANALYSIS,
      CreateCase.JSON_PROPERTY_NEW_ALERT,
      CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
@@ -91,14 +91,14 @@ public class CreateCase {
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
 
-  public static final String JSON_PROPERTY_OPERATORS = "operators";
-  private List<Operators> operators;
+  public static final String JSON_PROPERTY_OPERATOR = "operator";
+  private List<Operator> operator;
 
-  public static final String JSON_PROPERTY_PATIENTS = "patients";
-  private List<Patients> patients;
+  public static final String JSON_PROPERTY_PATIENT = "patient";
+  private List<Patient> patient;
 
   public static final String JSON_PROPERTY_MEDICAL_ANALYSIS = "medicalAnalysis";
-  private MedicalAnalysis medicalAnalysis;
+  private List<MedicalAnalysis> medicalAnalysis;
 
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
@@ -324,87 +324,96 @@ public class CreateCase {
     this.owner = owner;
   }
 
-  public CreateCase operators(List<Operators> operators) {
+  public CreateCase operator(List<Operator> operator) {
 
-    this.operators = operators;
+    this.operator = operator;
     return this;
   }
 
-  public CreateCase addOperatorsItem(Operators operatorsItem) {
-    if (this.operators == null) {
-      this.operators = new ArrayList<>();
+  public CreateCase addOperatorItem(Operator operatorItem) {
+    if (this.operator == null) {
+      this.operator = new ArrayList<>();
     }
-    this.operators.add(operatorsItem);
-    return this;
-  }
-
-  /**
-   * Get operators
-   * @return operators
-   **/
-  @JsonProperty(JSON_PROPERTY_OPERATORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Operators> getOperators() {
-    return operators;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_OPERATORS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOperators(List<Operators> operators) {
-    if (operators == null) {
-      return;
-    }
-    if (this.operators == null) {
-      this.operators = new ArrayList<>();
-    }
-    this.operators.addAll(operators);
-  }
-
-  public CreateCase patients(List<Patients> patients) {
-
-    this.patients = patients;
-    return this;
-  }
-
-  public CreateCase addPatientsItem(Patients patientsItem) {
-    if (this.patients == null) {
-      this.patients = new ArrayList<>();
-    }
-    this.patients.add(patientsItem);
+    this.operator.add(operatorItem);
     return this;
   }
 
   /**
-   * Get patients
-   * @return patients
+   * Get operator
+   * @return operator
    **/
-  @JsonProperty(JSON_PROPERTY_PATIENTS)
+  @JsonProperty(JSON_PROPERTY_OPERATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Patients> getPatients() {
-    return patients;
+  public List<Operator> getOperator() {
+    return operator;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_PATIENTS)
+  @JsonProperty(JSON_PROPERTY_OPERATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPatients(List<Patients> patients) {
-    if (patients == null) {
+  public void setOperator(List<Operator> operator) {
+    if (operator == null) {
       return;
     }
-    if (this.patients == null) {
-      this.patients = new ArrayList<>();
+    if (this.operator == null) {
+      this.operator = new ArrayList<>();
     }
-    this.patients.addAll(patients);
+    this.operator.addAll(operator);
   }
 
-  public CreateCase medicalAnalysis(MedicalAnalysis medicalAnalysis) {
+  public CreateCase patient(List<Patient> patient) {
+
+    this.patient = patient;
+    return this;
+  }
+
+  public CreateCase addPatientItem(Patient patientItem) {
+    if (this.patient == null) {
+      this.patient = new ArrayList<>();
+    }
+    this.patient.add(patientItem);
+    return this;
+  }
+
+  /**
+   * Get patient
+   * @return patient
+   **/
+  @JsonProperty(JSON_PROPERTY_PATIENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<Patient> getPatient() {
+    return patient;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_PATIENT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPatient(List<Patient> patient) {
+    if (patient == null) {
+      return;
+    }
+    if (this.patient == null) {
+      this.patient = new ArrayList<>();
+    }
+    this.patient.addAll(patient);
+  }
+
+  public CreateCase medicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
 
     this.medicalAnalysis = medicalAnalysis;
+    return this;
+  }
+
+  public CreateCase
+  addMedicalAnalysisItem(MedicalAnalysis medicalAnalysisItem) {
+    if (this.medicalAnalysis == null) {
+      this.medicalAnalysis = new ArrayList<>();
+    }
+    this.medicalAnalysis.add(medicalAnalysisItem);
     return this;
   }
 
@@ -415,14 +424,22 @@ public class CreateCase {
   @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public MedicalAnalysis getMedicalAnalysis() {
+  public List<MedicalAnalysis> getMedicalAnalysis() {
     return medicalAnalysis;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalAnalysis(MedicalAnalysis medicalAnalysis) {
-    this.medicalAnalysis = medicalAnalysis;
+  public void setMedicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
+    if (medicalAnalysis == null) {
+      return;
+    }
+    if (this.medicalAnalysis == null) {
+      this.medicalAnalysis = new ArrayList<>();
+    }
+    this.medicalAnalysis.addAll(medicalAnalysis);
   }
 
   public CreateCase newAlert(List<Alert> newAlert) {
@@ -530,8 +547,8 @@ public class CreateCase {
         Objects.equals(this.location, createCase.location) &&
         Objects.equals(this.initialAlert, createCase.initialAlert) &&
         Objects.equals(this.owner, createCase.owner) &&
-        Objects.equals(this.operators, createCase.operators) &&
-        Objects.equals(this.patients, createCase.patients) &&
+        Objects.equals(this.operator, createCase.operator) &&
+        Objects.equals(this.patient, createCase.patient) &&
         Objects.equals(this.medicalAnalysis, createCase.medicalAnalysis) &&
         Objects.equals(this.newAlert, createCase.newAlert) &&
         Objects.equals(this.additionalInformation,
@@ -542,8 +559,8 @@ public class CreateCase {
   @Override
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
-                        qualification, location, initialAlert, owner, operators,
-                        patients, medicalAnalysis, newAlert,
+                        qualification, location, initialAlert, owner, operator,
+                        patient, medicalAnalysis, newAlert,
                         additionalInformation, freetext);
   }
 
@@ -567,10 +584,8 @@ public class CreateCase {
         .append(toIndentedString(initialAlert))
         .append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
-    sb.append("    operators: ")
-        .append(toIndentedString(operators))
-        .append("\n");
-    sb.append("    patients: ").append(toIndentedString(patients)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
+    sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
     sb.append("    medicalAnalysis: ")
         .append(toIndentedString(medicalAnalysis))
         .append("\n");

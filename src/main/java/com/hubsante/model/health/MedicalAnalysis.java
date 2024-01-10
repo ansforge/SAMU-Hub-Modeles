@@ -34,10 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Decisions;
-import com.hubsante.model.health.Hypothesis;
-import com.hubsante.model.health.Nomenclature;
-import com.hubsante.model.health.Notes;
+import com.hubsante.model.health.Decision;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -48,10 +45,7 @@ import java.util.Objects;
  * MedicalAnalysis
  */
 @JsonPropertyOrder({MedicalAnalysis.JSON_PROPERTY_PATIENT_ID,
-                    MedicalAnalysis.JSON_PROPERTY_NOTES,
-                    MedicalAnalysis.JSON_PROPERTY_DECISIONS,
-                    MedicalAnalysis.JSON_PROPERTY_HYPOTHESIS,
-                    MedicalAnalysis.JSON_PROPERTY_RESOURCE_DIAGNOSIS})
+                    MedicalAnalysis.JSON_PROPERTY_DECISION})
 @JsonTypeName("medicalAnalysis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -59,18 +53,8 @@ public class MedicalAnalysis {
   public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
   private String patientId;
 
-  public static final String JSON_PROPERTY_NOTES = "notes";
-  private List<Notes> notes;
-
-  public static final String JSON_PROPERTY_DECISIONS = "decisions";
-  private List<Decisions> decisions;
-
-  public static final String JSON_PROPERTY_HYPOTHESIS = "hypothesis";
-  private Hypothesis hypothesis;
-
-  public static final String JSON_PROPERTY_RESOURCE_DIAGNOSIS =
-      "resourceDiagnosis";
-  private Nomenclature resourceDiagnosis;
+  public static final String JSON_PROPERTY_DECISION = "decision";
+  private List<Decision> decision;
 
   public MedicalAnalysis() {}
 
@@ -97,128 +81,43 @@ public class MedicalAnalysis {
     this.patientId = patientId;
   }
 
-  public MedicalAnalysis notes(List<Notes> notes) {
+  public MedicalAnalysis decision(List<Decision> decision) {
 
-    this.notes = notes;
+    this.decision = decision;
     return this;
   }
 
-  public MedicalAnalysis addNotesItem(Notes notesItem) {
-    if (this.notes == null) {
-      this.notes = new ArrayList<>();
+  public MedicalAnalysis addDecisionItem(Decision decisionItem) {
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
     }
-    this.notes.add(notesItem);
+    this.decision.add(decisionItem);
     return this;
   }
 
   /**
-   * Get notes
-   * @return notes
+   * Get decision
+   * @return decision
    **/
-  @JsonProperty(JSON_PROPERTY_NOTES)
+  @JsonProperty(JSON_PROPERTY_DECISION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Notes> getNotes() {
-    return notes;
+  public List<Decision> getDecision() {
+    return decision;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_NOTES)
+  @JsonProperty(JSON_PROPERTY_DECISION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotes(List<Notes> notes) {
-    if (notes == null) {
+  public void setDecision(List<Decision> decision) {
+    if (decision == null) {
       return;
     }
-    if (this.notes == null) {
-      this.notes = new ArrayList<>();
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
     }
-    this.notes.addAll(notes);
-  }
-
-  public MedicalAnalysis decisions(List<Decisions> decisions) {
-
-    this.decisions = decisions;
-    return this;
-  }
-
-  public MedicalAnalysis addDecisionsItem(Decisions decisionsItem) {
-    if (this.decisions == null) {
-      this.decisions = new ArrayList<>();
-    }
-    this.decisions.add(decisionsItem);
-    return this;
-  }
-
-  /**
-   * Get decisions
-   * @return decisions
-   **/
-  @JsonProperty(JSON_PROPERTY_DECISIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Decisions> getDecisions() {
-    return decisions;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_DECISIONS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDecisions(List<Decisions> decisions) {
-    if (decisions == null) {
-      return;
-    }
-    if (this.decisions == null) {
-      this.decisions = new ArrayList<>();
-    }
-    this.decisions.addAll(decisions);
-  }
-
-  public MedicalAnalysis hypothesis(Hypothesis hypothesis) {
-
-    this.hypothesis = hypothesis;
-    return this;
-  }
-
-  /**
-   * Get hypothesis
-   * @return hypothesis
-   **/
-  @JsonProperty(JSON_PROPERTY_HYPOTHESIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Hypothesis getHypothesis() {
-    return hypothesis;
-  }
-
-  @JsonProperty(JSON_PROPERTY_HYPOTHESIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHypothesis(Hypothesis hypothesis) {
-    this.hypothesis = hypothesis;
-  }
-
-  public MedicalAnalysis resourceDiagnosis(Nomenclature resourceDiagnosis) {
-
-    this.resourceDiagnosis = resourceDiagnosis;
-    return this;
-  }
-
-  /**
-   * Get resourceDiagnosis
-   * @return resourceDiagnosis
-   **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Nomenclature getResourceDiagnosis() {
-    return resourceDiagnosis;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceDiagnosis(Nomenclature resourceDiagnosis) {
-    this.resourceDiagnosis = resourceDiagnosis;
+    this.decision.addAll(decision);
   }
 
   @Override
@@ -231,17 +130,12 @@ public class MedicalAnalysis {
     }
     MedicalAnalysis medicalAnalysis = (MedicalAnalysis)o;
     return Objects.equals(this.patientId, medicalAnalysis.patientId) &&
-        Objects.equals(this.notes, medicalAnalysis.notes) &&
-        Objects.equals(this.decisions, medicalAnalysis.decisions) &&
-        Objects.equals(this.hypothesis, medicalAnalysis.hypothesis) &&
-        Objects.equals(this.resourceDiagnosis,
-                       medicalAnalysis.resourceDiagnosis);
+        Objects.equals(this.decision, medicalAnalysis.decision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientId, notes, decisions, hypothesis,
-                        resourceDiagnosis);
+    return Objects.hash(patientId, decision);
   }
 
   @Override
@@ -251,16 +145,7 @@ public class MedicalAnalysis {
     sb.append("    patientId: ")
         .append(toIndentedString(patientId))
         .append("\n");
-    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
-    sb.append("    decisions: ")
-        .append(toIndentedString(decisions))
-        .append("\n");
-    sb.append("    hypothesis: ")
-        .append(toIndentedString(hypothesis))
-        .append("\n");
-    sb.append("    resourceDiagnosis: ")
-        .append(toIndentedString(resourceDiagnosis))
-        .append("\n");
+    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("}");
     return sb.toString();
   }
