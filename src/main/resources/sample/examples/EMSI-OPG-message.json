@@ -1,0 +1,180 @@
+{
+  "emsi": {
+    "CONTEXT": {
+      "ID": "d350c9d2-9d76-4568-b0b7-a747ffadc949",
+      "MODE": "ACTUAL",
+      "MSGTYPE": "UPDATE",
+      "CREATION": "2024-01-09T16:00:00+01:00",
+      "LINK": [],
+      "LEVEL": "OPR",
+      "SECLASS": "RESTRC",
+      "FREETEXT": "Gène de plus en plus importante à la circulation, risque accident",
+      "ORIGIN": {
+        "ORG_ID": "fr.health.samu690",
+        "USER_ID": "samu690",
+        "NAME": "SAMU 69"
+      },
+      "EXTERNAL_INFO": []
+    },
+    "EVENT": {
+      "ID": "fr.health.samu690",
+      "NAME": "Incident sur voix cyclable",
+      "MAIN_EVENT_ID": "fr.health.samu690",
+      "ETYPE": {
+        "CATEGORY": [
+          "TRP/COL"
+        ],
+        "ACTOR": [
+          "PPL"
+        ],
+        "LOCTYPE": [
+          "OTH"
+        ],
+        "ENV": "DIS/TRSPRT"
+      },
+      "SOURCE": "COMFOR",
+      "SCALE": "2",
+      "CERTAINTY": 95,
+      "DECL_DATIME": "2024-01-09T16:01:00+01:00",
+      "OCC_DATIME": "2024-01-09T16:00:00+01:00",
+      "OBS_DATIME": "2024-01-09T16:04:00+01:00",
+      "STATUS": "IPR",
+      "RISK_ASSESMENT": "STABLE",
+      "REFERENCE": [
+        {
+          "ORG_ID": "fr.fire.cgo690",
+          "OTHER_EVENT_ID": []
+        }
+      ],
+      "CASUALTIES": [
+        {
+          "CONTEXT": "REQ_ACTION",
+          "DATIME": "2024-01-09T16:01:00+01:00",
+          "DECONT": 0,
+          "TRIAGERED": 0,
+          "TRIAGEYELLOW": 1,
+          "TRIAGEGREEN": 1,
+          "TRIAGEBLACK": 0,
+          "MISSING": 0
+        }
+      ],
+      "EVAC": [
+        {
+          "DISPLACED": 0,
+          "EVACUATED": 0
+        }
+      ],
+      "EGEO": [
+        {
+          "DATIME": "2024-01-09T16:10:00+01:00",
+          "TYPE": "GEN/ROUTE",
+          "WEATHER": [
+            "WIN"
+          ],
+          "POSITION": {
+            "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+            "NAME": "Quai des Célestins",
+            "TYPE": "POINT",
+            "HEIGHT_ROLE": "MIN",
+            "COORDSYS": "EPSG-4326",
+            "COORD": [
+              {
+                "LAT": 45.760169,
+                "LONG": 4.830608,
+                "HEIGHT": 168
+              }
+            ],
+            "ADDRESS": [
+              "8 Qaui des Célestin, Lyon"
+            ]
+          }
+        }
+      ],
+      "CAUSE": "ACC"
+    },
+    "MISSION": [
+      {
+        "POSITION": {
+          "ADDRESS": [
+            "8 Quai des Célestin, Lyon"
+          ],
+          "COORD": [
+            {
+              "LAT": 45.760169,
+              "LONG": 4.830608,
+              "HEIGHT": 168
+            }
+          ],
+          "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+          "NAME": "Quai des Célestins",
+          "TYPE": "POINT",
+          "HEIGHT_ROLE": "MIN",
+          "COORDSYS": "EPSG-4326"
+        },
+        "CHILD_MISSION_ID": [
+          "ABC1YU3456, ABC1YU3458"
+        ],
+        "PARENT_MISSION_ID": [],
+        "NAME": "#OPERATION_GLOBALE#",
+        "ORG_ID": "fr.fire.cgo690",
+        "STATUS": "IPR",
+        "START_TIME": "2024-01-09T16:00:00+01:00",
+        "ID": "ABC1YU3457",
+        "TYPE": "SAV/ASC"
+      },
+      {
+        "POSITION": {
+          "ADDRESS": [
+            "8 Quai des Célestin, Lyon"
+          ],
+          "COORD": [
+            {
+              "LAT": 45.760169,
+              "LONG": 4.830608,
+              "HEIGHT": 168
+            }
+          ],
+          "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+          "NAME": "Quai des Célestins",
+          "TYPE": "POINT",
+          "HEIGHT_ROLE": "MIN",
+          "COORDSYS": "EPSG-4326"
+        },
+        "CHILD_MISSION_ID": [],
+        "PARENT_MISSION_ID": [
+          "ABC1YU3457"
+        ],
+        "ID": "ABC1YU3458",
+        "MAIN_MISSION_ID": "ABC1YU3457",
+        "NAME": "#MISSION#",
+        "TYPE": "SAV/ASC",
+        "ORG_ID": "fr.fire.cgo690",
+        "STATUS": "IPR",
+        "START_TIME": "2024-01-09T16:05:00+01:00"
+      }
+    ],
+    "RESOURCE": [
+      {
+        "RTYPE": {
+          "CHARACTERISTICS": [],
+          "CAPABILITY": [
+            "AER15M"
+          ],
+          "RCLASS": [
+            "MAT/VEH"
+          ]
+        },
+        "CONTACTS": [],
+        "RGEO": [],
+        "ID": "77_22245# VSAV2",
+        "NAME": "VSAV 2 caserne SDIS69",
+        "FREETEXT": "IMMATRICULATION#AJ-76-MZ",
+        "ORG_ID": "fr.fire.cgo690",
+        "QUANTITY": 1,
+        "UM": "LSV",
+        "STATUS": "IN_USE/MOBILE",
+        "NATIONALITY": "FR"
+      }
+    ]
+  }
+}
