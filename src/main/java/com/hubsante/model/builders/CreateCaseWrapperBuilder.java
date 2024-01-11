@@ -15,21 +15,21 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.cisu.CisuCreateCase;
-import com.hubsante.model.cisu.CisuCreateCaseWrapper;
+import com.hubsante.model.cisu.CreateCase;
+import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.common.DistributionElement;
 
 public class CreateCaseWrapperBuilder {
 
     private DistributionElement distributionElement;
-    private CisuCreateCase createCase;
-    public CreateCaseWrapperBuilder(DistributionElement distributionElement, CisuCreateCase createCase) {
+    private CreateCase createCase;
+    public CreateCaseWrapperBuilder(DistributionElement distributionElement, CreateCase createCase) {
         this.distributionElement = distributionElement;
         this.createCase = createCase;
     }
 
-    public CisuCreateCaseWrapper build() {
-        CisuCreateCaseWrapper createCaseMessage = new CisuCreateCaseWrapper();
+    public CreateCaseWrapper build() {
+        CreateCaseWrapper createCaseMessage = new CreateCaseWrapper();
         createCaseMessage.setMessageId(distributionElement.getMessageId());
         createCaseMessage.setSender(distributionElement.getSender());
         createCaseMessage.setSentAt(distributionElement.getSentAt());
@@ -39,7 +39,7 @@ public class CreateCaseWrapperBuilder {
         createCaseMessage.setKind(distributionElement.getKind());
         createCaseMessage.setStatus(distributionElement.getStatus());
         createCaseMessage.setRecipient(distributionElement.getRecipient());
-        createCaseMessage.setCisuCreateCase(createCase);
+        createCaseMessage.setCreateCase(createCase);
         return createCaseMessage;
     }
 }

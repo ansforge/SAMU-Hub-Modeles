@@ -15,7 +15,7 @@
  */
 package com.hubsante.model.utils;
 
-import com.hubsante.model.cisu.CisuCreateCaseWrapper;
+import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.common.Recipient;
 import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.common.Sender;
@@ -43,8 +43,8 @@ public class Sanitizer {
         Class<? extends ContentMessage> clazz = contentMessage.getClass();
 
         switch (clazz.getSimpleName()) {
-            case "CisuCreateCaseWrapper":
-                CisuCreateCaseWrapper createCaseWrapper = (CisuCreateCaseWrapper) contentMessage;
+            case "CreateCaseWrapper":
+                CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper) contentMessage;
                 createCaseWrapper.setMessageId("messageId");
                 createCaseWrapper.setSender(sanitizeSender());
                 sanitizeRecipients(createCaseWrapper.getRecipient());

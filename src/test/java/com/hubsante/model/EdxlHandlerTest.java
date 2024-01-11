@@ -16,7 +16,7 @@
 package com.hubsante.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.hubsante.model.cisu.CisuCreateCaseWrapper;
+import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.common.Recipient;
 import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.common.Sender;

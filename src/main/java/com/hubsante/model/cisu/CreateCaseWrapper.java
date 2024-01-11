@@ -35,6 +35,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.CreateCase;
+import com.hubsante.model.common.DistributionElement;
+
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -46,7 +48,7 @@ import java.util.Objects;
 @JsonTypeName("createCaseWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCaseWrapper {
+public class CreateCaseWrapper extends DistributionElement {
   public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
   private CreateCase createCase;
 
