@@ -14,7 +14,7 @@
             "$ref": "#/definitions/emsi"
         }
     },
-    "additionalProperties": false,
+    "additionalProperties": true,
     "definitions": {
         "emsi": {
             "type": "object",

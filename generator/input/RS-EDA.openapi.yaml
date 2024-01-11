@@ -12,7 +12,7 @@ components:
       properties:
         createCase:
           $ref: '#/components/schemas/createCase'
-      additionalProperties: false
+      additionalProperties: true
     createCase:
       type: object
       title: Objet createCase
