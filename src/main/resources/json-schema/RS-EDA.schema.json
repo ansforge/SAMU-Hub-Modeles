@@ -14,7 +14,6 @@
             "$ref": "#/definitions/createCase"
         }
     },
-    "additionalProperties": false,
     "definitions": {
         "createCase": {
             "type": "object",
