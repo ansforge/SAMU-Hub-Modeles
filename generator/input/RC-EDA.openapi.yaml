@@ -1,18 +1,18 @@
 openapi: 3.0.0
 components:
   schemas:
-    cisuCreateCaseWrapper:
+    createCaseWrapper:
       $id: classpath:/json-schema/schema#
       x-id: RC-EDA.schema.json#
       example: example.json#
       type: object
       title: createCase
       required:
-      - cisuCreateCase
+      - createCase
       properties:
-        cisuCreateCase:
-          $ref: '#/components/schemas/cisuCreateCase'
-    cisuCreateCase:
+        createCase:
+          $ref: '#/components/schemas/createCase'
+    createCase:
       type: object
       title: Objet createCase
       x-display: expansion-panels
@@ -29,7 +29,7 @@ components:
           title: Identifiant affaire/dossier
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/caseId
+          example: example.json#/createCase/caseId
           description: "Identifiant technique de l'affaire et partag\xE9 entre tous\
             \ les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7\
             on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune ambigu\xEF\
@@ -47,7 +47,7 @@ components:
           title: Identifiant local de l'affaire/dossier
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/senderCaseId
+          example: example.json#/createCase/senderCaseId
           description: "Valoriser avec l'identifiant de l'affaire dans le SI de l'\xE9\
             metteur du message\nCe champ est facultatif, il ne sera notamment pas\
             \ transmis par NexSIS\nDans le cas o\xF9 deux op\xE9rateurs ont besoin\
@@ -60,7 +60,7 @@ components:
           title: "Date Heure de cr\xE9ation de l'affaire/dossier"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/creation
+          example: example.json#/createCase/creation
           description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
             ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
             tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
@@ -76,7 +76,7 @@ components:
           title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/referenceVersion
+          example: example.json#/createCase/referenceVersion
           description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
             \ des codes transmis. \nCela permet aux diff\xE9rents syst\xE8mes de s'assurer\
             \ qu'ils utilisent la m\xEAme version des codes de nomenclature que leurs\
@@ -100,12 +100,12 @@ components:
           title: Description de l'affaire/dossier
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/freetext
+          example: example.json#/createCase/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
             mentaires concernant l'affaire"
           examples:
           - None
-      example: example.json#/cisuCreateCase
+      example: example.json#/createCase
     qualification:
       type: object
       title: Qualification de l'affaire/dossier
@@ -126,7 +126,7 @@ components:
           $ref: '#/components/schemas/nomenclature'
         victims:
           $ref: '#/components/schemas/victims'
-      example: example.json#/cisuCreateCase/qualification
+      example: example.json#/createCase/qualification
     location:
       type: object
       title: Localisation de l'affaire/dossier
@@ -142,7 +142,7 @@ components:
           title: Identifiant technique de localisation
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/locID
+          example: example.json#/createCase/location/locID
           description: "ID technique et provisoire permettant d'identifier le lieu\
             \ dans le cadre des \xE9changes de cette affaire."
           examples:
@@ -152,7 +152,7 @@ components:
           title: "R\xE9sum\xE9 de la localisation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/locLabel
+          example: example.json#/createCase/location/locLabel
           description: "Permet d'indiquer des indications auto suffisantes permettant\
             \ pour un op\xE9rationnel d'acc\xE9der facilement au lieu avec des indications\
             \ minimales.\nDans les messages NexSIS, va souvent correspondre \xE0 la\
@@ -167,7 +167,7 @@ components:
           title: Nom du lieu
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/name
+          example: example.json#/createCase/location/name
           description: "Indique le nom de lieu : nom commercial, for\xEAt de Fontainebleau,\
             \ lac du Der (plut\xF4t \xE0 destination des syst\xE8mes)."
           examples:
@@ -189,7 +189,7 @@ components:
           title: Pays
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/country
+          example: example.json#/createCase/location/country
           enum:
           - AF
           - AX
@@ -439,11 +439,11 @@ components:
           title: Commentaire
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/freetext
+          example: example.json#/createCase/location/freetext
           description: "Champ libre pour compl\xE9ter les informations de localisation"
           examples:
           - "Cl\xE9 derri\xE8re le pot de fleur"
-      example: example.json#/cisuCreateCase/location
+      example: example.json#/createCase/location
     alert:
       type: object
       title: Alerte initiale
@@ -464,7 +464,7 @@ components:
           title: Identifiant alerte
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/id
+          example: example.json#/createCase/initialAlert/id
           description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
             \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
             \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
@@ -489,7 +489,7 @@ components:
           title: "Date de r\xE9ception de l'alerte"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/reception
+          example: example.json#/createCase/initialAlert/reception
           description: "Groupe date heure de r\xE9ception de l'alerte"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -500,7 +500,7 @@ components:
           title: Signalement
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/reporting
+          example: example.json#/createCase/initialAlert/reporting
           description: "Permet d'attirer l'attention des forces partenaires sur une\
             \ affaire pour le faire sortir du lot.\nEventuellement automatis\xE9 en\
             \ fonction des crit\xE8res saisis et de leur param\xE9trage, ou renseign\xE9\
@@ -518,7 +518,7 @@ components:
           title: "Informations compl\xE9mentaires sur l'alerte"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/freetext
+          example: example.json#/createCase/initialAlert/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
             mentaires concernant l'alerte"
           examples:
@@ -537,7 +537,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/attachment'
-      example: example.json#/cisuCreateCase/initialAlert
+      example: example.json#/createCase/initialAlert
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -547,7 +547,7 @@ components:
       properties:
         customMap:
           $ref: '#/components/schemas/customMap'
-      example: example.json#/cisuCreateCase/additionalInformation
+      example: example.json#/createCase/additionalInformation
     nomenclature:
       type: object
       title: Nature de fait
@@ -562,7 +562,7 @@ components:
           title: Code
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/qualification/whatsHappen/code
+          example: example.json#/createCase/qualification/whatsHappen/code
           description: "A valoriser avec un code la nomenclature associ\xE9e"
           examples:
           - C07.13.02
@@ -571,7 +571,7 @@ components:
           title: "Libell\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/qualification/whatsHappen/label
+          example: example.json#/createCase/qualification/whatsHappen/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
             tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
@@ -583,12 +583,12 @@ components:
           title: Commentaire
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/qualification/whatsHappen/freetext
+          example: example.json#/createCase/qualification/whatsHappen/freetext
           description: "Permet de compl\xE9menter en commentaire libre l'attribut\
             \ permettant de qualifier l'\xE9v\xE9nement."
           examples:
           - None
-      example: example.json#/cisuCreateCase/qualification/whatsHappen
+      example: example.json#/createCase/qualification/whatsHappen
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
@@ -605,7 +605,7 @@ components:
           title: Nombre de patients-victimes
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/qualification/victims/count
+          example: example.json#/createCase/qualification/victims/count
           description: "Indique le nombre de victimes selon la nomenclature du r\xE9\
             f\xE9rentiel CISU"
           enum:
@@ -621,7 +621,7 @@ components:
           title: Type du patient-victime principal
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/qualification/victims/mainVictim
+          example: example.json#/createCase/qualification/victims/mainVictim
           description: "Identifie le type de la principale victime (celle dont l'\xE9\
             tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
@@ -638,11 +638,11 @@ components:
           title: "Informations compl\xE9mentaires sur les patients-victimes"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/qualification/victims/freetext
+          example: example.json#/createCase/qualification/victims/freetext
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
           examples:
           - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
-      example: example.json#/cisuCreateCase/qualification/victims
+      example: example.json#/createCase/qualification/victims
       examples:
       - count: SEVERAL
         mainVictim: CHILD
@@ -660,7 +660,7 @@ components:
           title: "Num\xE9ro, type et nom de voie"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/detailedAddress/complete
+          example: example.json#/createCase/location/detailedAddress/complete
           description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
             \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
             \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
@@ -672,7 +672,7 @@ components:
           title: "Num\xE9ro dans la voie"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/detailedAddress/number
+          example: example.json#/createCase/location/detailedAddress/number
           description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
             \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
             p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
@@ -680,7 +680,7 @@ components:
           - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/components/schemas/wayName'
-      example: example.json#/cisuCreateCase/location/detailedAddress
+      example: example.json#/createCase/location/detailedAddress
     city:
       type: object
       title: "D\xE9tails de la commune"
@@ -693,7 +693,7 @@ components:
           title: Nom de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/city/name
+          example: example.json#/createCase/location/city/name
           description: Nom officiel de la commune actuelle
           examples:
           - Lille
@@ -702,7 +702,7 @@ components:
           title: Code INSEE de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/city/inseeCode
+          example: example.json#/createCase/location/city/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9."
@@ -714,7 +714,7 @@ components:
           title: "Compl\xE9ment de commune"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/city/detail
+          example: example.json#/createCase/location/city/detail
           description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
             \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
             \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
@@ -723,7 +723,7 @@ components:
             \ une trop forte ambigu\xEFt\xE9"
           examples:
           - "Quartie Melun Nord, Lhomme, \u2026"
-      example: example.json#/cisuCreateCase/location/city
+      example: example.json#/createCase/location/city
       examples:
       - name: Lille
         inseeCode: 59350
@@ -740,7 +740,7 @@ components:
           title: Etage
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/floor
+          example: example.json#/createCase/location/access/floor
           description: 'Etage '
           examples:
           - "RDC, 1, 2, \u2026"
@@ -749,7 +749,7 @@ components:
           title: "Num\xE9ro de porte"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/roomNumber
+          example: example.json#/createCase/location/access/roomNumber
           description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
           examples:
           - "A16, 37, 104, \u2026"
@@ -758,7 +758,7 @@ components:
           title: Interphone
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/interphone
+          example: example.json#/createCase/location/access/interphone
           description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
             \ de l'interphone (num\xE9ro, nom)"
           examples:
@@ -771,7 +771,7 @@ components:
             title: Digicode
             x-health-only: false
             x-cols: 6
-            example: example.json#/cisuCreateCase/location/access/accessCode/0
+            example: example.json#/createCase/location/access/accessCode/0
             description: "Indique le ou les digicodes dans l'ordre de progression\
               \ dans le b\xE2timent"
             examples:
@@ -781,7 +781,7 @@ components:
           title: Ascenseur/escalier
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/elevator
+          example: example.json#/createCase/location/access/elevator
           description: 'Indique l''ascenseur ou la cage d''escalier '
           examples:
           - C3
@@ -790,7 +790,7 @@ components:
           title: "B\xE2timent"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/buildingName
+          example: example.json#/createCase/location/access/buildingName
           description: "Nom du b\xE2timent"
           examples:
           - Batiment B, Batiment Maunoury
@@ -799,7 +799,7 @@ components:
           title: "Entr\xE9e"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/entrance
+          example: example.json#/createCase/location/access/entrance
           examples:
           - "Zone Sud, Porte 1, \u2026"
         entity:
@@ -807,7 +807,7 @@ components:
           title: Service
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/entity
+          example: example.json#/createCase/location/access/entity
           description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
           examples:
           - "Infirmerie, service finance, service cardiologie, \u2026"
@@ -816,13 +816,13 @@ components:
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/access/phoneNumber
+          example: example.json#/createCase/location/access/phoneNumber
           description: "Num\xE9ro de t\xE9l\xE9phone permettant d'acc\xE9der au lieu\
             \ de l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat,\
             \ t\xE9l\xE9phone du service administratif ou se trouve le patient/victime."
           examples:
           - 33123452323
-      example: example.json#/cisuCreateCase/location/access
+      example: example.json#/createCase/location/access
     geometry:
       type: object
       title: "G\xE9ometrie associ\xE9e"
@@ -836,7 +836,7 @@ components:
           title: "Heure du dernier relev\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/obsDatime
+          example: example.json#/createCase/location/geometry/obsDatime
           description: "Groupe date heure de renseignement des coordonn\xE9es du point\
             \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
             \ donc pertinence des informations pour intervenir."
@@ -851,7 +851,7 @@ components:
           title: "Formes g\xE9om\xE9triques"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/sketch
+          example: example.json#/createCase/location/geometry/sketch
           description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
             \ de d\xE9crire une forme dans un syst\xE8me de projection donn\xE9. \n\
             Dans le cas d'une alerte donn\xE9e sur une zone g\xE9ographique non pr\xE9\
@@ -863,7 +863,7 @@ components:
             \ pour le format de l'objet sketch"
           examples:
           - None
-      example: example.json#/cisuCreateCase/location/geometry
+      example: example.json#/createCase/location/geometry
     externalInfo:
       type: object
       title: "Liens aux syst\xE8mes externes"
@@ -879,7 +879,7 @@ components:
           title: Nom de la source
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/externalInfo/0/freetext
+          example: example.json#/createCase/location/externalInfo/0/freetext
           description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
             \ (BAN, IGN, ...)"
           enum:
@@ -893,7 +893,7 @@ components:
           title: 'Type '
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/externalInfo/0/type
+          example: example.json#/createCase/location/externalInfo/0/type
           description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
             \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
             \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
@@ -911,11 +911,11 @@ components:
           title: Identifiant
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/externalInfo/0/uri
+          example: example.json#/createCase/location/externalInfo/0/uri
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
           examples:
           - id987
-      example: example.json#/cisuCreateCase/location/externalInfo/0
+      example: example.json#/createCase/location/externalInfo/0
       examples:
       - freetext: "NexSIS, BAN, IGN, \u2026"
         type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
@@ -933,7 +933,7 @@ components:
           title: Type et nom
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/detailedAddress/wayName/complete
+          example: example.json#/createCase/location/detailedAddress/wayName/complete
           description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
             Si les champs type et name sont renseign\xE9s, le champ callerName doit\
             \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
@@ -944,7 +944,7 @@ components:
           title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/detailedAddress/wayName/type
+          example: example.json#/createCase/location/detailedAddress/wayName/type
           examples:
           - Boulevard
         name:
@@ -952,10 +952,10 @@ components:
           title: Nom
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/detailedAddress/wayName/name
+          example: example.json#/createCase/location/detailedAddress/wayName/name
           examples:
           - du Montparnasse
-      example: example.json#/cisuCreateCase/location/detailedAddress/wayName
+      example: example.json#/createCase/location/detailedAddress/wayName
       examples:
       - complete: Boulevard du Montparnasse
         type: Boulevard
@@ -975,14 +975,14 @@ components:
           title: "Syst\xE8me de coordonn\xE9es"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/point/sysCoord
+          example: example.json#/createCase/location/geometry/point/sysCoord
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
             \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
             \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
             \ valeur par d\xE9faut est \xAB\xBB."
           examples:
           - EPSG-4326
-      example: example.json#/cisuCreateCase/location/geometry/point
+      example: example.json#/createCase/location/geometry/point
     coord:
       type: object
       title: "Coordonn\xE9es"
@@ -998,7 +998,7 @@ components:
           title: Latitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/point/coord/lat
+          example: example.json#/createCase/location/geometry/point/coord/lat
           description: "Latitude du point cl\xE9 de la localisation "
           examples:
           - '48.866667'
@@ -1007,7 +1007,7 @@ components:
           title: Longitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/point/coord/lon
+          example: example.json#/createCase/location/geometry/point/coord/lon
           description: "Longitude du point cl\xE9 de la localisation"
           examples:
           - '2.333333'
@@ -1016,7 +1016,7 @@ components:
           title: 'Altitude '
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/point/coord/height
+          example: example.json#/createCase/location/geometry/point/coord/height
           description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
             \ ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
@@ -1026,7 +1026,7 @@ components:
           title: Cap
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/point/coord/heading
+          example: example.json#/createCase/location/geometry/point/coord/heading
           description: "En degr\xE9"
           examples:
           - 96
@@ -1035,7 +1035,7 @@ components:
           title: Vitesse
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/point/coord/speed
+          example: example.json#/createCase/location/geometry/point/coord/speed
           description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
             \ AML, \u2026"
           examples:
@@ -1045,7 +1045,7 @@ components:
           title: "Pr\xE9cision"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/location/geometry/point/coord/precision
+          example: example.json#/createCase/location/geometry/point/coord/precision
           description: "Indique via une nomenclature le niveau de pr\xE9cision des\
             \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
             \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
@@ -1060,7 +1060,7 @@ components:
           - UNKNOWN
           examples:
           - ADDRESS
-      example: example.json#/cisuCreateCase/location/geometry/point/coord
+      example: example.json#/createCase/location/geometry/point/coord
       examples:
       - lat: '48.866667'
         lon: '2.333333'
@@ -1084,7 +1084,7 @@ components:
           title: "Langue parl\xE9e"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/language
+          example: example.json#/createCase/initialAlert/caller/language
           description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
             \ place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU."
           enum:
@@ -1336,7 +1336,7 @@ components:
           title: "Type de requ\xE9rant"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/type
+          example: example.json#/createCase/initialAlert/caller/type
           description: "Indique la relation du requ\xE9rant avec l'incident / le patient\
             \ / la victime"
           examples:
@@ -1346,7 +1346,7 @@ components:
           title: "Difficult\xE9 de communication"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/communication
+          example: example.json#/createCase/initialAlert/caller/communication
           description: "Indique si le requ\xE9rant rencontre ou non des difficult\xE9\
             \ de communication"
           examples:
@@ -1356,7 +1356,7 @@ components:
           title: "Informations compl\xE9mentaires sur le requ\xE9rant"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/freetext
+          example: example.json#/createCase/initialAlert/caller/freetext
           description: "Informations compl\xE9mentaires sur le requ\xE9rant \nLes\
             \ informations peuvent \xEAtre pass\xE9es sous forme de texte libre ou\
             \ via une liste d'adjectif"
@@ -1364,7 +1364,7 @@ components:
           - "P\xE8re"
         detailedName:
           $ref: '#/components/schemas/detailedName'
-      example: example.json#/cisuCreateCase/initialAlert/caller
+      example: example.json#/createCase/initialAlert/caller
     contactSource:
       type: object
       title: Source de l'alerte
@@ -1380,7 +1380,7 @@ components:
           title: Canal
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/alertSource/channel
+          example: example.json#/createCase/initialAlert/alertSource/channel
           description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
             \ application, DAU, BAU, d\xE9fibrillateur, ecall"
           examples:
@@ -1390,7 +1390,7 @@ components:
           title: Type de contact de la source
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/alertSource/type
+          example: example.json#/createCase/initialAlert/alertSource/type
           description: "Type de l'URI utilis\xE9e par la source, cf. nomenclature\
             \ EMSI"
           enum:
@@ -1409,11 +1409,11 @@ components:
           title: URI de contact de la source
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/alertSource/detail
+          example: example.json#/createCase/initialAlert/alertSource/detail
           description: "Valeur de l'URI utilis\xE9e par la source"
           examples:
           - 0671830530
-      example: example.json#/cisuCreateCase/initialAlert/alertSource
+      example: example.json#/createCase/initialAlert/alertSource
       examples:
       - channel: Personne
         type: PHNADD
@@ -1432,7 +1432,7 @@ components:
           title: Service d'urgence
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/callTaker/organization
+          example: example.json#/createCase/initialAlert/callTaker/organization
           description: "D\xE9crit la structure ou le service \xE0 laquelle est rattach\xE9\
             e l'agent (en fonction du niveau de pr\xE9cision disponible).\nSe r\xE9\
             f\xE9rer au DSF pour la structure norm\xE9e des organisations\nLe format\
@@ -1445,7 +1445,7 @@ components:
           title: Centre d'appels
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/callTaker/controlRoom
+          example: example.json#/createCase/initialAlert/callTaker/controlRoom
           description: "D\xE9crit le centre d'appel auquel est rattach\xE9 l'agent"
           examples:
           - CGA, CGO 21, CRRA 44, ...
@@ -1454,7 +1454,7 @@ components:
           title: "R\xF4le agent"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/callTaker/role
+          example: example.json#/createCase/initialAlert/callTaker/role
           description: "D\xE9crit le r\xF4le de l'agent au sein du service selon la\
             \ nomenclature PERSO (nomenclature SI-SAMU)"
           examples:
@@ -1466,12 +1466,12 @@ components:
           title: ID de l'agent
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/callTaker/calltakerId
+          example: example.json#/createCase/initialAlert/callTaker/calltakerId
           description: "Identifiant unique de l'op\xE9rateur ayant trait\xE9 l'alerte\
             \ (peut \xEAtre un identifiant technique, un num\xE9ro de carte CPS etc)"
           examples:
           - id1234
-      example: example.json#/cisuCreateCase/initialAlert/callTaker
+      example: example.json#/createCase/initialAlert/callTaker
       examples:
       - organization: FR:Administration:44:samu44:crra:regulationN3
         controlRoom: CGA, CGO 21, CRRA 44, ...
@@ -1491,7 +1491,7 @@ components:
           title: Type ou description pj
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/attachment/0/description
+          example: example.json#/createCase/initialAlert/attachment/0/description
           description: "D\xE9crit la ressource en pr\xE9cisant le type et le contenu,\
             \ tels que \xABcarte\xBB ou \xABphoto\xBB"
           examples:
@@ -1501,7 +1501,7 @@ components:
           title: Type MIME
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/attachment/0/mimeType
+          example: example.json#/createCase/initialAlert/attachment/0/mimeType
           description: "L'identifiant du type MIME de contenu et sous-type d\xE9crivant\
             \ la ressource"
           examples:
@@ -1511,7 +1511,7 @@ components:
           title: Taille approximative
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/attachment/0/size
+          example: example.json#/createCase/initialAlert/attachment/0/size
           description: Taille approximative de la ressource en kO
           examples:
           - "1235, 35, \u2026"
@@ -1520,7 +1520,7 @@ components:
           title: URI
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/attachment/0/URI
+          example: example.json#/createCase/initialAlert/attachment/0/URI
           description: "Une URI, g\xE9n\xE9ralement une URL, qui permet d'atteindre\
             \ la ressource sur Internet ou sur un r\xE9seau priv\xE9\nNous sugg\xE9\
             rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\\
@@ -1532,7 +1532,7 @@ components:
           title: URI base 64
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/attachment/0/derefURI
+          example: example.json#/createCase/initialAlert/attachment/0/derefURI
           description: "Peut \xEAtre utilis\xE9 \xE0 la place de l'\xE9l\xE9ment 'URI'\
             \ pour envoyer la ressource encod\xE9e en base64 pour \xE9viter des probl\xE8\
             mes de transcodage (sur des double quotes qui casseraient le message,\
@@ -1544,12 +1544,12 @@ components:
           title: Hash
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/attachment/0/digest
+          example: example.json#/createCase/initialAlert/attachment/0/digest
           description: "Hash de la ressource pour confirmer la r\xE9ception de la\
             \ bonne ressource\nLa ressource est hash\xE9e avec le protocole SHA-256"
           examples:
           - None
-      example: example.json#/cisuCreateCase/initialAlert/attachment/0
+      example: example.json#/createCase/initialAlert/attachment/0
       examples:
       - description: "photo, carte, \u2026"
         mimeType: "PDF, XML, JPEG, \u2026"
@@ -1571,7 +1571,7 @@ components:
           title: "Type de contact du requ\xE9rant"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/callerContact/type
+          example: example.json#/createCase/initialAlert/caller/callerContact/type
           description: "Type de l'URI utilis\xE9e par le requ\xE9rant, cf. nomenclature\
             \ EMSI"
           enum:
@@ -1590,11 +1590,11 @@ components:
           title: "URI du contact requ\xE9rant"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/callerContact/detail
+          example: example.json#/createCase/initialAlert/caller/callerContact/detail
           description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
           examples:
           - 0671830530
-      example: example.json#/cisuCreateCase/initialAlert/caller/callerContact
+      example: example.json#/createCase/initialAlert/caller/callerContact
       examples:
       - type: PHNADD
         detail: 0671830530
@@ -1611,7 +1611,7 @@ components:
           title: "Pr\xE9nom et nom"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/detailedName/complete
+          example: example.json#/createCase/initialAlert/caller/detailedName/complete
           description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
             \ et callerFirstName sont renseign\xE9s, le champ callerName doit \xEA\
             tre valoris\xE9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote\
@@ -1624,7 +1624,7 @@ components:
           title: Nom
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/detailedName/lastName
+          example: example.json#/createCase/initialAlert/caller/detailedName/lastName
           description: "Nom du requ\xE9rant"
           examples:
           - Dupont
@@ -1633,13 +1633,13 @@ components:
           title: "Pr\xE9nom"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/initialAlert/caller/detailedName/firstName
+          example: example.json#/createCase/initialAlert/caller/detailedName/firstName
           description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
             \ compos\xE9s doivent pr\xE9f\xE9rablement \xEAtre s\xE9par\xE9s par le\
             \ caract\xE8re \"-\""
           examples:
           - Jean
-      example: example.json#/cisuCreateCase/initialAlert/caller/detailedName
+      example: example.json#/createCase/initialAlert/caller/detailedName
       examples:
       - complete: Jean Dupont
         lastName: Dupont
@@ -1658,7 +1658,7 @@ components:
           title: "Cl\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/additionalInformation/customMap/key
+          example: example.json#/createCase/additionalInformation/customMap/key
           description: Nom de la balise
           examples:
           - neighborhood
@@ -1667,7 +1667,7 @@ components:
           title: "Libell\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/additionalInformation/customMap/label
+          example: example.json#/createCase/additionalInformation/customMap/label
           description: "Libell\xE9 correspondant"
           examples:
           - Quartier
@@ -1676,7 +1676,7 @@ components:
           title: Valeur
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/additionalInformation/customMap/value
+          example: example.json#/createCase/additionalInformation/customMap/value
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
           examples:
           - LYON 2e arrondissement
@@ -1685,12 +1685,12 @@ components:
           title: "D\xE9tails"
           x-health-only: false
           x-cols: 6
-          example: example.json#/cisuCreateCase/additionalInformation/customMap/freetext
+          example: example.json#/createCase/additionalInformation/customMap/freetext
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
             \ de ce matching additionnel"
           examples:
           - "Pr\xE9cision sur le quartier d'intervention"
-      example: example.json#/cisuCreateCase/additionalInformation/customMap
+      example: example.json#/createCase/additionalInformation/customMap
       examples:
       - key: neighborhood
         label: Quartier

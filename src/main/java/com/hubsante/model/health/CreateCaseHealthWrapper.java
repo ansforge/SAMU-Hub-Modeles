@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu;
+package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,48 +34,47 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.CisuCreateCase;
-import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.health.CreateCaseHealth;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * CisuCreateCaseWrapper
+ * CreateCaseHealthWrapper
  */
-@JsonPropertyOrder({CisuCreateCaseWrapper.JSON_PROPERTY_CISU_CREATE_CASE})
-@JsonTypeName("cisuCreateCaseWrapper")
+@JsonPropertyOrder({CreateCaseHealthWrapper.JSON_PROPERTY_CREATE_CASE_HEALTH})
+@JsonTypeName("createCaseHealthWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CisuCreateCaseWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_CISU_CREATE_CASE = "cisuCreateCase";
-  private CisuCreateCase cisuCreateCase;
+public class CreateCaseHealthWrapper {
+  public static final String JSON_PROPERTY_CREATE_CASE_HEALTH =
+      "createCaseHealth";
+  private CreateCaseHealth createCaseHealth;
 
-  public CisuCreateCaseWrapper() {}
+  public CreateCaseHealthWrapper() {}
 
-  public CisuCreateCaseWrapper cisuCreateCase(CisuCreateCase cisuCreateCase) {
+  public CreateCaseHealthWrapper
+  createCaseHealth(CreateCaseHealth createCaseHealth) {
 
-    this.cisuCreateCase = cisuCreateCase;
+    this.createCaseHealth = createCaseHealth;
     return this;
   }
 
   /**
-   * Get cisuCreateCase
-   * @return cisuCreateCase
+   * Get createCaseHealth
+   * @return createCaseHealth
    **/
-  @JsonProperty(JSON_PROPERTY_CISU_CREATE_CASE)
+  @JsonProperty(JSON_PROPERTY_CREATE_CASE_HEALTH)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CisuCreateCase getCisuCreateCase() {
-    return cisuCreateCase;
+  public CreateCaseHealth getCreateCaseHealth() {
+    return createCaseHealth;
   }
 
-  @JsonProperty(JSON_PROPERTY_CISU_CREATE_CASE)
+  @JsonProperty(JSON_PROPERTY_CREATE_CASE_HEALTH)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCisuCreateCase(CisuCreateCase cisuCreateCase) {
-    this.cisuCreateCase = cisuCreateCase;
+  public void setCreateCaseHealth(CreateCaseHealth createCaseHealth) {
+    this.createCaseHealth = createCaseHealth;
   }
 
   @Override
@@ -86,24 +85,23 @@ public class CisuCreateCaseWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CisuCreateCaseWrapper cisuCreateCaseWrapper = (CisuCreateCaseWrapper)o;
-    return Objects.equals(this.cisuCreateCase,
-                          cisuCreateCaseWrapper.cisuCreateCase) &&
-        super.equals(o);
+    CreateCaseHealthWrapper createCaseHealthWrapper =
+        (CreateCaseHealthWrapper)o;
+    return Objects.equals(this.createCaseHealth,
+                          createCaseHealthWrapper.createCaseHealth);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cisuCreateCase, super.hashCode());
+    return Objects.hash(createCaseHealth);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CisuCreateCaseWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    cisuCreateCase: ")
-        .append(toIndentedString(cisuCreateCase))
+    sb.append("class CreateCaseHealthWrapper {\n");
+    sb.append("    createCaseHealth: ")
+        .append(toIndentedString(createCaseHealth))
         .append("\n");
     sb.append("}");
     return sb.toString();

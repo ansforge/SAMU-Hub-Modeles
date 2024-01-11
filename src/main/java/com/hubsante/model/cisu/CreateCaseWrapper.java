@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.health.CreateCase;
+import com.hubsante.model.cisu.CreateCase;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -47,9 +46,7 @@ import java.util.Objects;
 @JsonTypeName("createCaseWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCaseWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
+public class CreateCaseWrapper {
   public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
   private CreateCase createCase;
 
@@ -87,20 +84,18 @@ public class CreateCaseWrapper extends DistributionElement {
       return false;
     }
     CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper)o;
-    return Objects.equals(this.createCase, createCaseWrapper.createCase) &&
-        super.equals(o);
+    return Objects.equals(this.createCase, createCaseWrapper.createCase);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createCase, super.hashCode());
+    return Objects.hash(createCase);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCaseWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    createCase: ")
         .append(toIndentedString(createCase))
         .append("\n");

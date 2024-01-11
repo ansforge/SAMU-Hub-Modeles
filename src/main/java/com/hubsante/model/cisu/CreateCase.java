@@ -46,22 +46,20 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * CisuCreateCase
+ * CreateCase
  */
-@JsonPropertyOrder({CisuCreateCase.JSON_PROPERTY_CASE_ID,
-                    CisuCreateCase.JSON_PROPERTY_SENDER_CASE_ID,
-                    CisuCreateCase.JSON_PROPERTY_CREATION,
-                    CisuCreateCase.JSON_PROPERTY_REFERENCE_VERSION,
-                    CisuCreateCase.JSON_PROPERTY_QUALIFICATION,
-                    CisuCreateCase.JSON_PROPERTY_LOCATION,
-                    CisuCreateCase.JSON_PROPERTY_INITIAL_ALERT,
-                    CisuCreateCase.JSON_PROPERTY_NEW_ALERT,
-                    CisuCreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
-                    CisuCreateCase.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("cisuCreateCase")
+@JsonPropertyOrder(
+    {CreateCase.JSON_PROPERTY_CASE_ID, CreateCase.JSON_PROPERTY_SENDER_CASE_ID,
+     CreateCase.JSON_PROPERTY_CREATION,
+     CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
+     CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
+     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_NEW_ALERT,
+     CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
+     CreateCase.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("createCase")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CisuCreateCase {
+public class CreateCase {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -94,9 +92,9 @@ public class CisuCreateCase {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public CisuCreateCase() {}
+  public CreateCase() {}
 
-  public CisuCreateCase caseId(String caseId) {
+  public CreateCase caseId(String caseId) {
 
     this.caseId = caseId;
     return this;
@@ -128,7 +126,7 @@ public class CisuCreateCase {
     this.caseId = caseId;
   }
 
-  public CisuCreateCase senderCaseId(String senderCaseId) {
+  public CreateCase senderCaseId(String senderCaseId) {
 
     this.senderCaseId = senderCaseId;
     return this;
@@ -155,7 +153,7 @@ public class CisuCreateCase {
     this.senderCaseId = senderCaseId;
   }
 
-  public CisuCreateCase creation(OffsetDateTime creation) {
+  public CreateCase creation(OffsetDateTime creation) {
 
     this.creation = creation;
     return this;
@@ -182,7 +180,7 @@ public class CisuCreateCase {
     this.creation = creation;
   }
 
-  public CisuCreateCase referenceVersion(String referenceVersion) {
+  public CreateCase referenceVersion(String referenceVersion) {
 
     this.referenceVersion = referenceVersion;
     return this;
@@ -207,7 +205,7 @@ public class CisuCreateCase {
     this.referenceVersion = referenceVersion;
   }
 
-  public CisuCreateCase qualification(Qualification qualification) {
+  public CreateCase qualification(Qualification qualification) {
 
     this.qualification = qualification;
     return this;
@@ -230,7 +228,7 @@ public class CisuCreateCase {
     this.qualification = qualification;
   }
 
-  public CisuCreateCase location(Location location) {
+  public CreateCase location(Location location) {
 
     this.location = location;
     return this;
@@ -253,7 +251,7 @@ public class CisuCreateCase {
     this.location = location;
   }
 
-  public CisuCreateCase initialAlert(Alert initialAlert) {
+  public CreateCase initialAlert(Alert initialAlert) {
 
     this.initialAlert = initialAlert;
     return this;
@@ -276,13 +274,13 @@ public class CisuCreateCase {
     this.initialAlert = initialAlert;
   }
 
-  public CisuCreateCase newAlert(List<Alert> newAlert) {
+  public CreateCase newAlert(List<Alert> newAlert) {
 
     this.newAlert = newAlert;
     return this;
   }
 
-  public CisuCreateCase addNewAlertItem(Alert newAlertItem) {
+  public CreateCase addNewAlertItem(Alert newAlertItem) {
     if (this.newAlert == null) {
       this.newAlert = new ArrayList<>();
     }
@@ -315,7 +313,7 @@ public class CisuCreateCase {
     this.newAlert.addAll(newAlert);
   }
 
-  public CisuCreateCase
+  public CreateCase
   additionalInformation(AdditionalInformation additionalInformation) {
 
     this.additionalInformation = additionalInformation;
@@ -340,7 +338,7 @@ public class CisuCreateCase {
     this.additionalInformation = additionalInformation;
   }
 
-  public CisuCreateCase freetext(String freetext) {
+  public CreateCase freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -372,19 +370,18 @@ public class CisuCreateCase {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CisuCreateCase cisuCreateCase = (CisuCreateCase)o;
-    return Objects.equals(this.caseId, cisuCreateCase.caseId) &&
-        Objects.equals(this.senderCaseId, cisuCreateCase.senderCaseId) &&
-        Objects.equals(this.creation, cisuCreateCase.creation) &&
-        Objects.equals(this.referenceVersion,
-                       cisuCreateCase.referenceVersion) &&
-        Objects.equals(this.qualification, cisuCreateCase.qualification) &&
-        Objects.equals(this.location, cisuCreateCase.location) &&
-        Objects.equals(this.initialAlert, cisuCreateCase.initialAlert) &&
-        Objects.equals(this.newAlert, cisuCreateCase.newAlert) &&
+    CreateCase createCase = (CreateCase)o;
+    return Objects.equals(this.caseId, createCase.caseId) &&
+        Objects.equals(this.senderCaseId, createCase.senderCaseId) &&
+        Objects.equals(this.creation, createCase.creation) &&
+        Objects.equals(this.referenceVersion, createCase.referenceVersion) &&
+        Objects.equals(this.qualification, createCase.qualification) &&
+        Objects.equals(this.location, createCase.location) &&
+        Objects.equals(this.initialAlert, createCase.initialAlert) &&
+        Objects.equals(this.newAlert, createCase.newAlert) &&
         Objects.equals(this.additionalInformation,
-                       cisuCreateCase.additionalInformation) &&
-        Objects.equals(this.freetext, cisuCreateCase.freetext);
+                       createCase.additionalInformation) &&
+        Objects.equals(this.freetext, createCase.freetext);
   }
 
   @Override
@@ -397,7 +394,7 @@ public class CisuCreateCase {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CisuCreateCase {\n");
+    sb.append("class CreateCase {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    senderCaseId: ")
         .append(toIndentedString(senderCaseId))
