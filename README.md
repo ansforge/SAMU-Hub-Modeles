@@ -32,7 +32,7 @@ Les spécifications du modèle de données sont disponibles sur le [site du proj
 
 [Exemples des messages](src/main/resources/sample/examples/)
 
-N. B. : Pour accéder aux versions les plus recentes des fichier, veuillez sélectionner la branche **auto/model_tracker**
+N. B. : Pour accéder aux versions les plus recentes des fichiers, veuillez sélectionner la branche **auto/model_tracker**
 
 ## Auteur
 
