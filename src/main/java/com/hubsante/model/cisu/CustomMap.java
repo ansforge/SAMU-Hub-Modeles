@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("customMap")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CustomMap {
   public static final String JSON_PROPERTY_KEY = "key";
   private String key;

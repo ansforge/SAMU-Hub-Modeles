@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("contactSource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ContactSource {
   public static final String JSON_PROPERTY_CHANNEL = "channel";
   private String channel;

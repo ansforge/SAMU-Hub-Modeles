@@ -53,6 +53,7 @@ import java.util.Objects;
 @JsonTypeName("generalPractitioner")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class GeneralPractitioner {
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
   private DetailedName detailedName;

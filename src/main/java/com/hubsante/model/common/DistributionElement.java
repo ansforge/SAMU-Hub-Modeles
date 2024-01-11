@@ -55,6 +55,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_RECIPIENT})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class DistributionElement extends ContentMessage {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   private String messageId;

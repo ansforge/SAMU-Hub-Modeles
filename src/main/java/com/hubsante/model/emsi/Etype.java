@@ -49,6 +49,7 @@ import java.util.Objects;
 @JsonTypeName("etype")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Etype {
 
   /**

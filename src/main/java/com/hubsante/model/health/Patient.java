@@ -58,6 +58,7 @@ import java.util.Objects;
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Patient {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;

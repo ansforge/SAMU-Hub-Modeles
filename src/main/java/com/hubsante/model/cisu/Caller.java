@@ -51,6 +51,7 @@ import java.util.Objects;
 @JsonTypeName("caller")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Caller {
   public static final String JSON_PROPERTY_CALLER_CONTACT = "callerContact";
   private Contact callerContact;

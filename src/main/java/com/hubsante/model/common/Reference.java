@@ -44,6 +44,7 @@ import java.util.Objects;
 @JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Reference {
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;

@@ -116,6 +116,7 @@
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth"
         },
         "qualification": {
@@ -149,6 +150,7 @@
                     "$ref": "#/definitions/victims"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/qualification"
         },
         "location": {
@@ -463,6 +465,7 @@
                     "description": "Champ libre pour compl\u00e9ter les informations de localisation"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location"
         },
         "alert": {
@@ -541,6 +544,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/initialAlert"
         },
         "operator": {
@@ -573,6 +577,7 @@
                     "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/operator/0"
         },
         "patient": {
@@ -617,6 +622,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0"
         },
         "medicalAnalysis": {
@@ -641,6 +647,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/medicalAnalysis/0"
         },
         "additionalInformation": {
@@ -654,6 +661,7 @@
                     "$ref": "#/definitions/customMap"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/additionalInformation"
         },
         "nomenclature": {
@@ -691,6 +699,7 @@
                     "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/qualification/whatsHappen"
         },
         "caseDetails": {
@@ -746,6 +755,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/qualification/details"
         },
         "victims": {
@@ -793,6 +803,7 @@
                     "description": "Permet de compl\u00e9menter en commentaire libre la(les) victime(s)"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/qualification/victims"
         },
         "detailedAddress": {
@@ -824,6 +835,7 @@
                     "$ref": "#/definitions/wayName"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/detailedAddress"
         },
         "city": {
@@ -859,6 +871,7 @@
                     "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/city"
         },
         "access": {
@@ -944,6 +957,7 @@
                     "description": "Num\u00e9ro de t\u00e9l\u00e9phone permettant d'acc\u00e9der au lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/victime."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/access"
         },
         "geometry": {
@@ -977,6 +991,7 @@
                     "description": "Objet gml (\u00e9quivalent xml du geojson). Le langage GML permet de d\u00e9crire une forme dans un syst\u00e8me de projection donn\u00e9. \nDans le cas d'une alerte donn\u00e9e sur une zone g\u00e9ographique non pr\u00e9cise (par exemple une section d'autoroute ou une zone sur un chemin de randonn\u00e9e), une indication sur la zone de recherche peut \u00eatre fournie.\nEn XML, un objet gml est encapsul\u00e9 dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn JSON, les balises sont reprises depuis le mod\u00e8le gml\nVoir http://www.opengis.net/gml pour le format de l'objet sketch"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/geometry"
         },
         "externalInfo": {
@@ -1027,6 +1042,7 @@
                     "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/externalInfo/0"
         },
         "wayName": {
@@ -1061,6 +1077,7 @@
                     "example": "example.json#/createCaseHealth/location/detailedAddress/wayName/name"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/detailedAddress/wayName"
         },
         "point": {
@@ -1084,6 +1101,7 @@
                     "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/geometry/point"
         },
         "coord": {
@@ -1153,6 +1171,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/location/geometry/point/coord"
         },
         "caller": {
@@ -1447,6 +1466,7 @@
                     "$ref": "#/definitions/detailedName"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/initialAlert/caller"
         },
         "contactSource": {
@@ -1495,6 +1515,7 @@
                     "description": "Valeur de l'URI utilis\u00e9e par la source"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/initialAlert/alertSource"
         },
         "callTaker": {
@@ -1543,6 +1564,7 @@
                     "description": "Identifiant unique de l'op\u00e9rateur ayant trait\u00e9 l'alerte (peut \u00eatre un identifiant technique, un num\u00e9ro de carte CPS etc)"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/initialAlert/callTaker"
         },
         "attachment": {
@@ -1603,6 +1625,7 @@
                     "description": "Hash de la ressource pour confirmer la r\u00e9ception de la bonne ressource\nLa ressource est hash\u00e9e avec le protocole SHA-256"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/initialAlert/attachment/0"
         },
         "contact": {
@@ -1642,6 +1665,7 @@
                     "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/initialAlert/caller/callerContact"
         },
         "detailedName": {
@@ -1678,6 +1702,7 @@
                     "description": "Pr\u00e9nom du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/initialAlert/caller/detailedName"
         },
         "file": {
@@ -1706,6 +1731,7 @@
                     "$ref": "#/definitions/generalPractitioner"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/file"
         },
         "insIdentity": {
@@ -1728,6 +1754,7 @@
                     "$ref": "#/definitions/detailedName"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/identity"
         },
         "patientDetail": {
@@ -1776,6 +1803,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/detail"
         },
         "hypothesis": {
@@ -1795,6 +1823,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/hypothesis"
         },
         "medicalNote": {
@@ -1852,6 +1881,7 @@
                     "description": "Texte libre pour d\u00e9crire les allergies du patient"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/medicalNote/0"
         },
         "externalId": {
@@ -1883,6 +1913,7 @@
                     "description": "L'identifiant en lui-m\u00eame"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/file/externalId/0"
         },
         "personalAddress": {
@@ -1899,6 +1930,7 @@
                     "$ref": "#/definitions/city"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/file/personalAddress"
         },
         "generalPractitioner": {
@@ -1929,6 +1961,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/file/generalPractitioner"
         },
         "insCycle": {
@@ -1955,6 +1988,7 @@
                     "description": "Le RNIV recommande que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent a minima les 3 attributs suivants :\n- identit\u00e9 homonyme,\n- identit\u00e9 douteuse,\n- identit\u00e9 fictive."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/identity/cycle"
         },
         "insNumber": {
@@ -1981,6 +2015,7 @@
                     "description": "Identifiant de la structure qui a affect\u00e9 l\u2019INS sous la forme d'un OID. Les OID (Object Identifier) sont des identifiants universels, repr\u00e9sent\u00e9s sous la forme d'une suite d'entiers. Ils sont organis\u00e9s sous forme hi\u00e9rarchique avec des n\u0153uds. L'OID est toujours associ\u00e9 \u00e0 un matricule INS, il n'est donc pas propag\u00e9 si le statut de l'identit\u00e9 n'est pas \"qualifi\u00e9e\""
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/identity/number"
         },
         "insStrictFeatures": {
@@ -2047,6 +2082,7 @@
                     "description": "Il s\u2019agit de la commune de naissance pour les personnes n\u00e9es en France et du pays de naissance pour les personnes n\u00e9es \u00e0 l\u2019\u00e9tranger. Utilisation du code INSEE (diff\u00e9rent du code postal), auquel est associ\u00e9 le nom de la commune ou du pays correspondant."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures"
         },
         "decision": {
@@ -2096,6 +2132,7 @@
                     "$ref": "#/definitions/destination"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0"
         },
         "destination": {
@@ -2127,6 +2164,7 @@
                     "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination/freetext"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination"
         },
         "customMap": {
@@ -2172,6 +2210,7 @@
                     "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCaseHealth/additionalInformation/customMap"
         }
     }

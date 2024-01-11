@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("createCaseHealthWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateCaseHealthWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";

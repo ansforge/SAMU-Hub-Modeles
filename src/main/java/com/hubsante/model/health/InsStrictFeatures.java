@@ -52,6 +52,7 @@ import java.util.Objects;
 @JsonTypeName("insStrictFeatures")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InsStrictFeatures {
   public static final String JSON_PROPERTY_BIRTH_NAME = "birthName";
   private String birthName;

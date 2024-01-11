@@ -53,6 +53,7 @@ import java.util.Objects;
 @JsonTypeName("access")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Access {
   public static final String JSON_PROPERTY_FLOOR = "floor";
   private String floor;

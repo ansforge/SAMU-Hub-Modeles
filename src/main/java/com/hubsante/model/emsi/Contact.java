@@ -46,6 +46,7 @@ import java.util.Objects;
 @JsonTypeName("contact")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Contact {
 
   /**

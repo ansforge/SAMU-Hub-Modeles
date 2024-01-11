@@ -57,6 +57,7 @@ import java.util.Objects;
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
   public static final String JSON_PROPERTY_LOC_I_D = "locID";
   private String locID;

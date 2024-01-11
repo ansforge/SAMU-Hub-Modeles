@@ -58,6 +58,7 @@ import java.util.Objects;
 @JsonTypeName("context")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Context {
   public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;

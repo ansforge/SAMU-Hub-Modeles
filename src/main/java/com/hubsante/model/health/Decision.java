@@ -51,6 +51,7 @@ import java.util.Objects;
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Decision {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;

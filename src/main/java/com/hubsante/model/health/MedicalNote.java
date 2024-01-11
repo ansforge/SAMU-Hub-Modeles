@@ -51,6 +51,7 @@ import java.util.Objects;
 @JsonTypeName("medicalNote")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MedicalNote {
   public static final String JSON_PROPERTY_OPERATOR = "operator";
   private Operator operator;

@@ -48,6 +48,7 @@ import java.util.Objects;
 @JsonTypeName("reference")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Reference {
   public static final String JSON_PROPERTY_O_R_G_I_D = "ORG_ID";
   private String ORG_ID;

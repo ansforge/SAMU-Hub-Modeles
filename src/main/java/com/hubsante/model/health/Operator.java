@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("operator")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Operator {
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
   private DetailedName detailedName;

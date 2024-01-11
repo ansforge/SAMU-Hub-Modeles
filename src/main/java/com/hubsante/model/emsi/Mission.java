@@ -60,6 +60,7 @@ import java.util.Objects;
 @JsonTypeName("mission")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Mission {
 
   /**

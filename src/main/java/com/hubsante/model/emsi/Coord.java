@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("coord")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Coord {
   public static final String JSON_PROPERTY_L_A_T = "LAT";
   private BigDecimal LAT;

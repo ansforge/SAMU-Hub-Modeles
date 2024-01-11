@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("nomenclature")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Nomenclature {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;

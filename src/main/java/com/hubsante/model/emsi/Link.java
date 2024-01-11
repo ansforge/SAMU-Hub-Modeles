@@ -45,6 +45,7 @@ import java.util.Objects;
 @JsonTypeName("link")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Link {
   public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;

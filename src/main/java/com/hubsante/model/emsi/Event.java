@@ -65,6 +65,7 @@ import java.util.Objects;
 @JsonTypeName("event")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Event {
   public static final String JSON_PROPERTY_I_D = "ID";
   private String ID;

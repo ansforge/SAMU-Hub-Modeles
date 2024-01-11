@@ -49,6 +49,7 @@ import java.util.Objects;
 @JsonTypeName("medicalAnalysis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class MedicalAnalysis {
   public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
   private String patientId;

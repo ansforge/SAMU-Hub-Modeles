@@ -52,6 +52,7 @@ import java.util.Objects;
 @JsonTypeName("egeo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Egeo {
   public static final String JSON_PROPERTY_D_A_T_I_M_E = "DATIME";
   private OffsetDateTime DATIME;

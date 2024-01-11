@@ -45,6 +45,7 @@ import java.util.Objects;
 @JsonTypeName("insNumber")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InsNumber {
   public static final String JSON_PROPERTY_VALUE = "value";
   private String value;

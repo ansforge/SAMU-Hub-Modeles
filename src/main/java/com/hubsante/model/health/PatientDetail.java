@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("patientDetail")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PatientDetail {
   public static final String JSON_PROPERTY_WEIGHT = "weight";
   private Integer weight;

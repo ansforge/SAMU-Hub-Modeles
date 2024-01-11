@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("externalInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalInfo {
 
   /**

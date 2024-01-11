@@ -48,6 +48,7 @@ import java.util.Objects;
 @JsonTypeName("personalAddress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PersonalAddress {
   public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
   private DetailedAddress detailedAddress;

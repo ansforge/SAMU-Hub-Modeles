@@ -52,6 +52,7 @@ import java.util.Objects;
 @JsonTypeName("insIdentity")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InsIdentity {
   public static final String JSON_PROPERTY_CYCLE = "cycle";
   private InsCycle cycle;

@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("externalInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalInfo {
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
   private String FREETEXT;

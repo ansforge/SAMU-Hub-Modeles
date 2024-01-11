@@ -46,6 +46,7 @@ import java.util.Objects;
 @JsonPropertyOrder({ReferenceWrapper.JSON_PROPERTY_REFERENCE})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ReferenceWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";

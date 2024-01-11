@@ -49,6 +49,7 @@ import java.util.Objects;
 @JsonTypeName("callTaker")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CallTaker {
   public static final String JSON_PROPERTY_ORGANIZATION = "organization";
   private String organization;

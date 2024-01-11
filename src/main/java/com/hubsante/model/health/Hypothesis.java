@@ -49,6 +49,7 @@ import java.util.Objects;
 @JsonTypeName("hypothesis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Hypothesis {
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
   private Nomenclature mainDiagnosis;

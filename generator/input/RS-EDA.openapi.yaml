@@ -137,6 +137,7 @@ components:
             mentaires concernant l'affaire"
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth
     qualification:
       type: object
@@ -160,6 +161,7 @@ components:
           $ref: '#/components/schemas/caseDetails'
         victims:
           $ref: '#/components/schemas/victims'
+      additionalProperties: false
       example: example.json#/createCaseHealth/qualification
     location:
       type: object
@@ -477,6 +479,7 @@ components:
           description: "Champ libre pour compl\xE9ter les informations de localisation"
           examples:
           - "Cl\xE9 derri\xE8re le pot de fleur"
+      additionalProperties: false
       example: example.json#/createCaseHealth/location
     alert:
       type: object
@@ -571,6 +574,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/attachment'
+      additionalProperties: false
       example: example.json#/createCaseHealth/initialAlert
     operator:
       type: object
@@ -602,6 +606,7 @@ components:
             \ du message"
           examples:
           - "ARM, Medecin r\xE9gulateur\u2026"
+      additionalProperties: false
       example: example.json#/createCaseHealth/operator/0
       examples:
       - detailedName: {}
@@ -641,6 +646,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0
     medicalAnalysis:
       type: object
@@ -663,6 +669,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/decision'
+      additionalProperties: false
       example: example.json#/createCaseHealth/medicalAnalysis/0
     additionalInformation:
       type: object
@@ -673,6 +680,7 @@ components:
       properties:
         customMap:
           $ref: '#/components/schemas/customMap'
+      additionalProperties: false
       example: example.json#/createCaseHealth/additionalInformation
     nomenclature:
       type: object
@@ -714,6 +722,7 @@ components:
             \ permettant de qualifier l'\xE9v\xE9nement."
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth/qualification/whatsHappen
       examples:
       - code: C07.13.02
@@ -776,6 +785,7 @@ components:
           - P3
           examples:
           - P0, P1, P2, P3
+      additionalProperties: false
       example: example.json#/createCaseHealth/qualification/details
       examples:
       - status: None
@@ -831,6 +841,7 @@ components:
           description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
           examples:
           - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+      additionalProperties: false
       example: example.json#/createCaseHealth/qualification/victims
       examples:
       - count: SEVERAL
@@ -869,6 +880,7 @@ components:
           - "9, 4bis, PK10, \u2026"
         wayName:
           $ref: '#/components/schemas/wayName'
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/detailedAddress
     city:
       type: object
@@ -912,6 +924,7 @@ components:
             \ une trop forte ambigu\xEFt\xE9"
           examples:
           - "Quartie Melun Nord, Lhomme, \u2026"
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/city
       examples:
       - name: Lille
@@ -1011,6 +1024,7 @@ components:
             \ t\xE9l\xE9phone du service administratif ou se trouve le patient/victime."
           examples:
           - 33123452323
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/access
     geometry:
       type: object
@@ -1052,6 +1066,7 @@ components:
             \ pour le format de l'objet sketch"
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/geometry
     externalInfo:
       type: object
@@ -1104,6 +1119,7 @@ components:
           description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
           examples:
           - id987
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/externalInfo/0
       examples:
       - freetext: "NexSIS, BAN, IGN, \u2026"
@@ -1144,6 +1160,7 @@ components:
           example: example.json#/createCaseHealth/location/detailedAddress/wayName/name
           examples:
           - du Montparnasse
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/detailedAddress/wayName
       examples:
       - complete: Boulevard du Montparnasse
@@ -1171,6 +1188,7 @@ components:
             \ valeur par d\xE9faut est \xAB\xBB."
           examples:
           - EPSG-4326
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/geometry/point
     coord:
       type: object
@@ -1249,6 +1267,7 @@ components:
           - UNKNOWN
           examples:
           - ADDRESS
+      additionalProperties: false
       example: example.json#/createCaseHealth/location/geometry/point/coord
       examples:
       - lat: '48.866667'
@@ -1553,6 +1572,7 @@ components:
           - "P\xE8re"
         detailedName:
           $ref: '#/components/schemas/detailedName'
+      additionalProperties: false
       example: example.json#/createCaseHealth/initialAlert/caller
     contactSource:
       type: object
@@ -1602,6 +1622,7 @@ components:
           description: "Valeur de l'URI utilis\xE9e par la source"
           examples:
           - 0671830530
+      additionalProperties: false
       example: example.json#/createCaseHealth/initialAlert/alertSource
       examples:
       - channel: Personne
@@ -1660,6 +1681,7 @@ components:
             \ (peut \xEAtre un identifiant technique, un num\xE9ro de carte CPS etc)"
           examples:
           - id1234
+      additionalProperties: false
       example: example.json#/createCaseHealth/initialAlert/callTaker
       examples:
       - organization: FR:Administration:44:samu44:crra:regulationN3
@@ -1738,6 +1760,7 @@ components:
             \ bonne ressource\nLa ressource est hash\xE9e avec le protocole SHA-256"
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth/initialAlert/attachment/0
       examples:
       - description: "photo, carte, \u2026"
@@ -1783,6 +1806,7 @@ components:
           description: "Valeur de l'URI utilis\xE9e pour contacter le partenaire"
           examples:
           - 0671830530
+      additionalProperties: false
       example: example.json#/createCaseHealth/initialAlert/caller/callerContact
       examples:
       - type: PHNADD
@@ -1828,6 +1852,7 @@ components:
             \ caract\xE8re \"-\""
           examples:
           - Jean
+      additionalProperties: false
       example: example.json#/createCaseHealth/initialAlert/caller/detailedName
       examples:
       - complete: Jean Dupont
@@ -1852,6 +1877,7 @@ components:
           $ref: '#/components/schemas/personalAddress'
         generalPractitioner:
           $ref: '#/components/schemas/generalPractitioner'
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/file
     insIdentity:
       type: object
@@ -1868,6 +1894,7 @@ components:
           $ref: '#/components/schemas/insStrictFeatures'
         nonStrictFeatures:
           $ref: '#/components/schemas/detailedName'
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/identity
     patientDetail:
       type: object
@@ -1917,6 +1944,7 @@ components:
           - R4
           examples:
           - R1/R2/R3/R4
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/detail
       examples:
       - weight: 31
@@ -1936,6 +1964,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/nomenclature'
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/hypothesis
     medicalNote:
       type: object
@@ -1999,6 +2028,7 @@ components:
           description: "Texte libre pour d\xE9crire les allergies du patient"
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/medicalNote/0
       examples:
       - operator: {}
@@ -2036,6 +2066,7 @@ components:
           description: "L'identifiant en lui-m\xEAme"
           examples:
           - id1234
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/file/externalId/0
       examples:
       - source: "NIR, SINUS, SI-VIC, \u2026"
@@ -2051,6 +2082,7 @@ components:
           $ref: '#/components/schemas/detailedAddress'
         city:
           $ref: '#/components/schemas/city'
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/file/personalAddress
       examples:
       - detailedAddress: {}
@@ -2079,6 +2111,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact'
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/file/generalPractitioner
     insCycle:
       type: object
@@ -2114,6 +2147,7 @@ components:
             \ homonyme,\n- identit\xE9 douteuse,\n- identit\xE9 fictive."
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/identity/cycle
       examples:
       - status: None
@@ -2156,6 +2190,7 @@ components:
             \ si le statut de l'identit\xE9 n'est pas \"qualifi\xE9e\""
           examples:
           - 1.2.250.1.213.1.4.8
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/identity/number
       examples:
       - value: 2 77 01 01 154 002 29
@@ -2235,6 +2270,7 @@ components:
             \ correspondant."
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/identity/strictFeatures
       examples:
       - birthName: Dupont
@@ -2294,6 +2330,7 @@ components:
           - "M\xE9dical, param\xE9dical, secouriste"
         destination:
           $ref: '#/components/schemas/destination'
+      additionalProperties: false
       example: example.json#/createCaseHealth/medicalAnalysis/0/decision/0
     destination:
       type: object
@@ -2326,6 +2363,7 @@ components:
           example: example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination/freetext
           examples:
           - None
+      additionalProperties: false
       example: example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination
       examples:
       - facility: None
@@ -2377,6 +2415,7 @@ components:
             \ de ce matching additionnel"
           examples:
           - "Pr\xE9cision sur le quartier d'intervention"
+      additionalProperties: false
       example: example.json#/createCaseHealth/additionalInformation/customMap
       examples:
       - key: neighborhood

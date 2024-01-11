@@ -48,6 +48,7 @@ import java.util.Objects;
 @JsonTypeName("attachment")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Attachment {
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   private String description;

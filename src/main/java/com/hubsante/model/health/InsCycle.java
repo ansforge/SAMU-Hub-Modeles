@@ -46,6 +46,7 @@ import java.util.Objects;
 @JsonTypeName("insCycle")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class InsCycle {
   public static final String JSON_PROPERTY_STATUS = "status";
   private String status;

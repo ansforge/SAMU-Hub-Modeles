@@ -59,6 +59,7 @@ import java.util.Objects;
 @JsonTypeName("createCase")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CreateCase {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;

@@ -47,6 +47,7 @@ import java.util.Objects;
 @JsonTypeName("emsiWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class EmsiWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";

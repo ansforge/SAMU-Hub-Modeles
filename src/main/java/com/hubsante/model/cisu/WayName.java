@@ -46,6 +46,7 @@ import java.util.Objects;
 @JsonTypeName("wayName")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class WayName {
   public static final String JSON_PROPERTY_COMPLETE = "complete";
   private String complete;

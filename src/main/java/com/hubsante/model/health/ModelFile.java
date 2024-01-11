@@ -54,6 +54,7 @@ import java.util.Objects;
 @JsonTypeName("_file")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class ModelFile {
   public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
   private List<ExternalId> externalId;

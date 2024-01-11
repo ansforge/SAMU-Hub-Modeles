@@ -59,6 +59,7 @@ import java.util.Objects;
 @JsonTypeName("alert")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Alert {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;

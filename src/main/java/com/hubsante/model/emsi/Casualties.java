@@ -53,6 +53,7 @@ import java.util.Objects;
 @JsonTypeName("casualties")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Casualties {
   public static final String JSON_PROPERTY_C_O_N_T_E_X_T = "CONTEXT";
   private String CONTEXT;

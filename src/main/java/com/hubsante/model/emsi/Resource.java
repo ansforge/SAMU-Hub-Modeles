@@ -58,6 +58,7 @@ import java.util.Objects;
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Resource {
   public static final String JSON_PROPERTY_R_T_Y_P_E = "RTYPE";
   private Rtype RTYPE;

@@ -45,6 +45,7 @@ import java.util.Objects;
 @JsonTypeName("sender")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Sender {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;

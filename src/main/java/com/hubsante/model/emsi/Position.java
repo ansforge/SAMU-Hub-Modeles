@@ -52,6 +52,7 @@ import java.util.Objects;
 @JsonTypeName("position")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Position {
   public static final String JSON_PROPERTY_L_O_C_I_D = "LOC_ID";
   private String LOC_ID;

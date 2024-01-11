@@ -46,6 +46,7 @@ import java.util.Objects;
 @JsonTypeName("point")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Point {
   public static final String JSON_PROPERTY_COORD = "coord";
   private Coord coord;

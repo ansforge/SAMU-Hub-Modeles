@@ -55,6 +55,7 @@ import java.util.Objects;
 @JsonTypeName("qualification")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Qualification {
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
   private Nomenclature whatsHappen;
