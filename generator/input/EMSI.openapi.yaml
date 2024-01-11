@@ -12,7 +12,6 @@ components:
       properties:
         emsi:
           $ref: '#/components/schemas/emsi'
-      additionalProperties: true
     emsi:
       type: object
       title: Objet emsi
