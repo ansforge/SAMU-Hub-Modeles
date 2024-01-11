@@ -83,6 +83,8 @@ def run(sheet, name, version, filter):
     # Schema name is in name = RC-EDA (or RS-EDA) for instance
     MODEL_NAME = params['modelName']  # CreateCase
     MODEL_TYPE = MODEL_NAME[0].lower() + MODEL_NAME[1:]  # createCase
+    if filter and MODEL_TYPE is not "createCase":
+        MODEL_TYPE = "cisuCreateCase"
     WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
