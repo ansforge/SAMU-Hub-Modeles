@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.01.10",
+    "version": "24.01.11",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -14,7 +14,7 @@
             "$ref": "#/definitions/emsi"
         }
     },
-    "additionalProperties": "false",
+    "additionalProperties": false,
     "definitions": {
         "emsi": {
             "type": "object",
