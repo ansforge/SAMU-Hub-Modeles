@@ -31,7 +31,7 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "createCase": {
+            "cisuCreateCase": {
               "caseId": "samuA:CA126B445579GD4A67AV",
               "senderCaseId": "CA126B445579GD4A67AV",
               "creation": "2022-09-27T08:23:34+02:00",

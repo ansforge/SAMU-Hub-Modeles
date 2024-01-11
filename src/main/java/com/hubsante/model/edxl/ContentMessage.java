@@ -25,7 +25,7 @@ import com.hubsante.model.report.ErrorReport;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
-        @JsonSubTypes.Type(CreateCaseWrapper.class),
+        @JsonSubTypes.Type(CisuCreateCaseWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(ErrorReport.class),
         @JsonSubTypes.Type(CustomMessage.class),

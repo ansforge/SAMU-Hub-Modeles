@@ -76,7 +76,7 @@ public class ValidatorTest {
             validator.validateJSON(input, FULL_SCHEMA);
         } catch (ValidationException e) {
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, MISSING, "createCase.initialAlert.id: ");
+            checkErrorMessages(errors, MISSING, "cisuCreateCase.initialAlert.id: ");
         }
         // TODO bbo: add XML validation
     }

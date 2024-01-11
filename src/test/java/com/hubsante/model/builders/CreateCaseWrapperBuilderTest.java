@@ -16,8 +16,8 @@
 package com.hubsante.model.builders;
 
 import com.hubsante.model.EdxlHandler;
-import com.hubsante.model.cisu.CreateCase;
-import com.hubsante.model.cisu.CreateCaseWrapper;
+import com.hubsante.model.cisu.CisuCreateCase;
+import com.hubsante.model.cisu.CisuCreateCaseWrapper;
 import com.hubsante.model.common.DistributionElement;
 import com.hubsante.model.common.Recipient;
 import org.junit.jupiter.api.DisplayName;
@@ -45,11 +45,11 @@ public class CreateCaseWrapperBuilderTest {
 
         DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
                 .build();
-        CreateCaseWrapper createCaseWrapper = new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock())
+        CisuCreateCaseWrapper createCaseWrapper = new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock())
                 .build();
 
         assertEquals(MESSAGE_ID, createCaseWrapper.getMessageId());
-        assertEquals(getCreateCaseMock(), createCaseWrapper.getCreateCase());
+        assertEquals(getCreateCaseMock(), createCaseWrapper.getCisuCreateCase());
     }
 
     @Test
@@ -65,8 +65,8 @@ public class CreateCaseWrapperBuilderTest {
         assertThrows(IllegalArgumentException.class, () -> new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock()).build());
     }
 
-    private CreateCase getCreateCaseMock() throws IOException {
+    private CisuCreateCase getCreateCaseMock() throws IOException {
         String json = getMessageString("RC-EDA");
-        return ((CreateCaseWrapper) converter.deserializeJsonEDXL(json).getFirstContentMessage()).getCreateCase();
+        return ((CisuCreateCaseWrapper) converter.deserializeJsonEDXL(json).getFirstContentMessage()).getCisuCreateCase();
     }
 }

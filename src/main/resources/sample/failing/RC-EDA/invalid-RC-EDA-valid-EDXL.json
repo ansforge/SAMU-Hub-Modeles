@@ -31,7 +31,7 @@
                 "URI": "hubex:fr.fire.nexsis.sdisZ"
               }
             ],
-            "createCase": {
+            "cisuCreateCase": {
               "caseId": "samuA:CA126B445579GD4A67AV",
               "senderCaseId": "CA126B445579GD4A67AV",
               "referenceVersion": "1.2",
