@@ -32,7 +32,7 @@ Les spécifications du modèle de données sont disponibles sur le [site du proj
 
 [Exemples des messages](src/main/resources/sample/examples/)
 
-N. B. : Pour accéder aux versions les plus recentes des fichiers, veuillez utiliser les liens du README de la branche **auto/model_tracker** en cliquant [ici](https://github.com/ansforge/SAMU-Hub-Modeles/tree/auto/model_tracker?tab=readme-ov-file#modeles).
+N. B. : Pour accéder aux versions les plus recentes des fichiers, veuillez utiliser les liens du README de la branche **auto/model_tracker** en cliquant [ici](https://github.com/ansforge/SAMU-Hub-Modeles/tree/auto/model_tracker?tab=readme-ov-file#modèles).
 
 ## Auteur
 
