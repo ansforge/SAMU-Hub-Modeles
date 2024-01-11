@@ -31,7 +31,7 @@
                 "URI": "hubex:fr.fire.nexsis.sdisZ"
               }
             ],
-            "cisuCreateCase": {
+            "createCase": {
               "caseId": "SAMUA-20230725-AF1234",
               "senderCaseId": "SAMUA-20230725-AF1234",
               "initialAlert": {

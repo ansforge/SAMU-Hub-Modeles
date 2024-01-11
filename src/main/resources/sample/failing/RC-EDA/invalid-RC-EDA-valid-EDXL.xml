@@ -30,7 +30,7 @@
                             <name>samuA</name>
                             <URI>hubex:fr.health.samuA</URI>
                         </recipient>
-                        <cisuCreateCase>
+                        <createCase>
                             <caseId>samuA:CA126B445579GD4A67AV</caseId>
                             <senderCaseId>CA126B445579GD4A67AV</senderCaseId>
                             <creation>2022-09-27T08:23:34+02:00</creation>
@@ -186,7 +186,7 @@
                                 </customMap>
                             </additionalInformation>
                             <freetext>None</freetext>
-                        </cisuCreateCase>
+                        </createCase>
                     </message>
                 </embeddedXMLContent>
             </contentXML>
