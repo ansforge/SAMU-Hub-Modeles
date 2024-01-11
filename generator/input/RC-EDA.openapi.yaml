@@ -12,7 +12,6 @@ components:
       properties:
         cisuCreateCase:
           $ref: '#/components/schemas/cisuCreateCase'
-      additionalProperties: false
     cisuCreateCase:
       type: object
       title: Objet createCase
