@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.common.DistributionElement;
-
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -49,6 +48,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CreateCaseWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
   private CreateCase createCase;
 
@@ -86,18 +87,20 @@ public class CreateCaseWrapper extends DistributionElement {
       return false;
     }
     CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper)o;
-    return Objects.equals(this.createCase, createCaseWrapper.createCase);
+    return Objects.equals(this.createCase, createCaseWrapper.createCase) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createCase);
+    return Objects.hash(createCase, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCaseWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    createCase: ")
         .append(toIndentedString(createCase))
         .append("\n");
