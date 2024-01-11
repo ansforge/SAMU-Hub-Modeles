@@ -44,7 +44,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet qualification</I></TD></TR>
                 </TABLE>>]
-	qualification -> createCase [constraint=true headlabel=1 taillabel=1]
+	qualification -> cisuCreateCase [constraint=true headlabel=1 taillabel=1]
 	wayName [label=<<TABLE>
                 <TR>
                 <TD ><B>wayName</B></TD>
@@ -107,7 +107,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet location</I></TD></TR><TR><TD BORDER="0" >locID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >locLabel <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >country <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	location -> createCase [constraint=true headlabel=1 taillabel=1]
+	location -> cisuCreateCase [constraint=true headlabel=1 taillabel=1]
 	callerContact [label=<<TABLE>
                 <TR>
                 <TD ><B>callerContact</B></TD>
@@ -275,14 +275,14 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet alert</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reception <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reporting <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	initialAlert -> createCase [constraint=true headlabel=1 taillabel="0..1"]
+	initialAlert -> cisuCreateCase [constraint=true headlabel=1 taillabel="0..1"]
 	newAlert [label=<<TABLE>
                 <TR>
                 <TD ><B>newAlert</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet alert</I></TD></TR>cf. objet du même type
                 </TABLE>>]
-	newAlert -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	newAlert -> cisuCreateCase [constraint=true headlabel=1 taillabel="0..*"]
 	customMap [label=<<TABLE>
                 <TR>
                 <TD ><B>customMap</B></TD>
@@ -296,17 +296,18 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet additionalInformation</I></TD></TR>
                 </TABLE>>]
-	additionalInformation -> createCase [constraint=true headlabel=1 taillabel="0..1"]
-	createCase [label=<<TABLE>
+	additionalInformation -> cisuCreateCase [constraint=true headlabel=1 taillabel="0..1"]
+	cisuCreateCase [label=<<TABLE>
                 <TR>
-                <TD ><B>createCase</B></TD>
+                <TD ><B>cisuCreateCase</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet createCase</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet cisuCreateCase</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
+	cisuCreateCase -> createCase [constraint=true headlabel=1 taillabel=1]
 	createCase [label=<<TABLE>
                 <TR>
                 <TD ><B>createCase</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet createCase</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet createCase</I></TD></TR>
                 </TABLE>>]
 }

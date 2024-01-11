@@ -34,48 +34,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.CreateCase;
+import com.hubsante.model.cisu.CisuCreateCase;
 import com.hubsante.model.common.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * CreateCaseWrapper
+ * CisuCreateCaseWrapper
  */
-@JsonPropertyOrder({CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE})
-@JsonTypeName("createCaseWrapper")
+@JsonPropertyOrder({CisuCreateCaseWrapper.JSON_PROPERTY_CISU_CREATE_CASE})
+@JsonTypeName("cisuCreateCaseWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCaseWrapper extends DistributionElement {
+public class CisuCreateCaseWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
-  private CreateCase createCase;
+  public static final String JSON_PROPERTY_CISU_CREATE_CASE = "cisuCreateCase";
+  private CisuCreateCase cisuCreateCase;
 
-  public CreateCaseWrapper() {}
+  public CisuCreateCaseWrapper() {}
 
-  public CreateCaseWrapper createCase(CreateCase createCase) {
+  public CisuCreateCaseWrapper cisuCreateCase(CisuCreateCase cisuCreateCase) {
 
-    this.createCase = createCase;
+    this.cisuCreateCase = cisuCreateCase;
     return this;
   }
 
   /**
-   * Get createCase
-   * @return createCase
+   * Get cisuCreateCase
+   * @return cisuCreateCase
    **/
-  @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+  @JsonProperty(JSON_PROPERTY_CISU_CREATE_CASE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CreateCase getCreateCase() {
-    return createCase;
+  public CisuCreateCase getCisuCreateCase() {
+    return cisuCreateCase;
   }
 
-  @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+  @JsonProperty(JSON_PROPERTY_CISU_CREATE_CASE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreateCase(CreateCase createCase) {
-    this.createCase = createCase;
+  public void setCisuCreateCase(CisuCreateCase cisuCreateCase) {
+    this.cisuCreateCase = cisuCreateCase;
   }
 
   @Override
@@ -86,23 +86,24 @@ public class CreateCaseWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper)o;
-    return Objects.equals(this.createCase, createCaseWrapper.createCase) &&
+    CisuCreateCaseWrapper cisuCreateCaseWrapper = (CisuCreateCaseWrapper)o;
+    return Objects.equals(this.cisuCreateCase,
+                          cisuCreateCaseWrapper.cisuCreateCase) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createCase, super.hashCode());
+    return Objects.hash(cisuCreateCase, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateCaseWrapper {\n");
+    sb.append("class CisuCreateCaseWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    createCase: ")
-        .append(toIndentedString(createCase))
+    sb.append("    cisuCreateCase: ")
+        .append(toIndentedString(cisuCreateCase))
         .append("\n");
     sb.append("}");
     return sb.toString();
