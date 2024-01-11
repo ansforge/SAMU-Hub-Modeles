@@ -89,6 +89,7 @@
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase"
         },
         "qualification": {

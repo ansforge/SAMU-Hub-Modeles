@@ -420,6 +420,7 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'required': [],
                 'properties': {},
+                'additionalProperties': False,
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         if child['Cardinalité'].startswith('1'):
