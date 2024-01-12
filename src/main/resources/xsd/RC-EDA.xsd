@@ -624,7 +624,7 @@
                     <restriction base="string"/>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="calltakeContact" type="x:contact"/>
+            <element minOccurs="0" name="calltakerContact" type="x:contact"/>
             <element minOccurs="0" name="calltakerId" type="string">
                 <annotation>
                     <documentation>Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant

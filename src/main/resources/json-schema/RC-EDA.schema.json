@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.01.10",
+    "version": "24.01.12",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -89,6 +89,7 @@
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase"
         },
         "qualification": {
@@ -119,6 +120,7 @@
                     "$ref": "#/definitions/victims"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/qualification"
         },
         "location": {
@@ -433,6 +435,7 @@
                     "description": "Champ libre pour compl\u00e9ter les informations de localisation"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location"
         },
         "alert": {
@@ -511,6 +514,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert"
         },
         "additionalInformation": {
@@ -524,6 +528,7 @@
                     "$ref": "#/definitions/customMap"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/additionalInformation"
         },
         "nomenclature": {
@@ -561,6 +566,7 @@
                     "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/qualification/whatsHappen"
         },
         "victims": {
@@ -608,6 +614,7 @@
                     "description": "Permet de compl\u00e9menter en commentaire libre la(les) victime(s)"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/qualification/victims"
         },
         "detailedAddress": {
@@ -639,6 +646,7 @@
                     "$ref": "#/definitions/wayName"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/detailedAddress"
         },
         "city": {
@@ -674,6 +682,7 @@
                     "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/city"
         },
         "access": {
@@ -759,6 +768,7 @@
                     "description": "Num\u00e9ro de t\u00e9l\u00e9phone permettant d'acc\u00e9der au lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/victime."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/access"
         },
         "geometry": {
@@ -792,6 +802,7 @@
                     "description": "Objet gml (\u00e9quivalent xml du geojson). Le langage GML permet de d\u00e9crire une forme dans un syst\u00e8me de projection donn\u00e9. \nDans le cas d'une alerte donn\u00e9e sur une zone g\u00e9ographique non pr\u00e9cise (par exemple une section d'autoroute ou une zone sur un chemin de randonn\u00e9e), une indication sur la zone de recherche peut \u00eatre fournie.\nEn XML, un objet gml est encapsul\u00e9 dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn JSON, les balises sont reprises depuis le mod\u00e8le gml\nVoir http://www.opengis.net/gml pour le format de l'objet sketch"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/geometry"
         },
         "externalInfo": {
@@ -842,6 +853,7 @@
                     "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/externalInfo/0"
         },
         "wayName": {
@@ -876,6 +888,7 @@
                     "example": "example.json#/createCase/location/detailedAddress/wayName/name"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/detailedAddress/wayName"
         },
         "point": {
@@ -899,6 +912,7 @@
                     "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/geometry/point"
         },
         "coord": {
@@ -968,6 +982,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/location/geometry/point/coord"
         },
         "caller": {
@@ -1262,6 +1277,7 @@
                     "$ref": "#/definitions/detailedName"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert/caller"
         },
         "contactSource": {
@@ -1310,6 +1326,7 @@
                     "description": "Valeur de l'URI utilis\u00e9e par la source"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert/alertSource"
         },
         "callTaker": {
@@ -1346,7 +1363,7 @@
                     "example": "example.json#/createCase/initialAlert/callTaker/role",
                     "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)"
                 },
-                "calltakeContact": {
+                "calltakerContact": {
                     "$ref": "#/definitions/contact"
                 },
                 "calltakerId": {
@@ -1358,6 +1375,7 @@
                     "description": "Identifiant unique de l'op\u00e9rateur ayant trait\u00e9 l'alerte (peut \u00eatre un identifiant technique, un num\u00e9ro de carte CPS etc)"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert/callTaker"
         },
         "attachment": {
@@ -1418,11 +1436,12 @@
                     "description": "Hash de la ressource pour confirmer la r\u00e9ception de la bonne ressource\nLa ressource est hash\u00e9e avec le protocole SHA-256"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert/attachment/0"
         },
         "contact": {
             "type": "object",
-            "title": "Contact requ\u00e9rant",
+            "title": "Contact",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1457,11 +1476,12 @@
                     "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert/caller/callerContact"
         },
         "detailedName": {
             "type": "object",
-            "title": "Pr\u00e9nom & nom usuel du requ\u00e9rant",
+            "title": "Pr\u00e9nom & nom usuel",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1493,6 +1513,7 @@
                     "description": "Pr\u00e9nom du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert/caller/detailedName"
         },
         "customMap": {
@@ -1538,6 +1559,7 @@
                     "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/createCase/additionalInformation/customMap"
         }
     }

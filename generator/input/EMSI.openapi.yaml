@@ -33,6 +33,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/resource'
+      additionalProperties: false
       example: example.json#/emsi
     context:
       type: object
@@ -180,6 +181,7 @@ components:
           - NOT_URGENT
           examples:
           - URGENT
+      additionalProperties: false
       example: example.json#/emsi/CONTEXT
     event:
       type: object
@@ -384,6 +386,7 @@ components:
           description: Optionnel
           examples:
           - "Maison sur le c\xF4t\xE9 droit de la route"
+      additionalProperties: false
       example: example.json#/emsi/EVENT
     mission:
       type: object
@@ -693,15 +696,18 @@ components:
           examples:
           - '2022-09-27T08:55:00+02:00'
         RESOURCE_ID:
-          type: string
-          title: "Ressource engag\xE9e"
+          type: array
           x-health-only: false
-          x-cols: 6
-          example: example.json#/emsi/MISSION/0/RESOURCE_ID
-          description: "Liste des identifiants des ressources engag\xE9es dans la\
-            \ mission (voire RESSOURCE.ID)"
-          examples:
-          - 77_45102#VSAV 1#
+          items:
+            type: string
+            title: "Ressource engag\xE9e"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/emsi/MISSION/0/RESOURCE_ID/0
+            description: "Liste des identifiants des ressources engag\xE9es dans la\
+              \ mission (voir RESOURCE.ID)"
+            examples:
+            - 77_45102#VSAV 1#
         PARENT_MISSION_ID:
           type: array
           x-health-only: false
@@ -769,6 +775,7 @@ components:
           - '5'
           examples:
           - 5
+      additionalProperties: false
       example: example.json#/emsi/MISSION/0
     resource:
       type: object
@@ -953,6 +960,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact'
+      additionalProperties: false
       example: example.json#/emsi/RESOURCE/0
     link:
       type: object
@@ -996,6 +1004,7 @@ components:
           - SPRSDS
           examples:
           - ADDSTO
+      additionalProperties: false
       example: example.json#/emsi/CONTEXT/LINK/0
       examples:
       - ID: samuA:CA126B445579GD4A67AV
@@ -1039,6 +1048,7 @@ components:
             \ intelligible (exemple [structure].[nom])"
           examples:
           - samu44
+      additionalProperties: false
       example: example.json#/emsi/CONTEXT/ORIGIN
       examples:
       - ORG_ID: fr.health.44.samu44
@@ -1085,6 +1095,7 @@ components:
           - WEBSIT
           examples:
           - SPRSDS
+      additionalProperties: false
       example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0
       examples:
       - FREETEXT: None
@@ -1405,6 +1416,7 @@ components:
           - DIS/TSNAMI
           examples:
           - CDIS/RIOT
+      additionalProperties: false
       example: example.json#/emsi/EVENT/ETYPE
     reference:
       type: object
@@ -1437,6 +1449,7 @@ components:
               \ dans le syst\xE8me partenaire"
             examples:
             - samu4412345
+      additionalProperties: false
       example: example.json#/emsi/EVENT/REFERENCE/0
     casualties:
       type: object
@@ -1521,6 +1534,7 @@ components:
           description: Optionnel
           examples:
           - 0
+      additionalProperties: false
       example: example.json#/emsi/EVENT/CASUALTIES/0
       examples:
       - CONTEXT: REQ_ACTION
@@ -1567,6 +1581,7 @@ components:
           description: Optionnel
           examples:
           - 1
+      additionalProperties: false
       example: example.json#/emsi/EVENT/EVAC/0
       examples:
       - DATIME: '2022-09-27T10:00:00+02:00'
@@ -1764,6 +1779,7 @@ components:
           - Un peu de pluie vers 8h
         POSITION:
           $ref: '#/components/schemas/position'
+      additionalProperties: false
       example: example.json#/emsi/EVENT/EGEO/0
     position:
       type: object
@@ -1844,6 +1860,7 @@ components:
               \ transmises ne sont pas structur\xE9es."
             examples:
             - Nantes centre ville
+      additionalProperties: false
       example: example.json#/emsi/EVENT/EGEO/0/POSITION
     coord:
       type: object
@@ -1885,6 +1902,7 @@ components:
             re coordonn\xE9e z  connue de la ressource\nbetween \u2212180 and +180"
           examples:
           - 1
+      additionalProperties: false
       example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0
       examples:
       - LAT: '47.221866'
@@ -2544,6 +2562,7 @@ components:
               \ fonctionnement de cette nomenclature est fournie en annexe."
             examples:
             - None
+      additionalProperties: false
       example: example.json#/emsi/RESOURCE/0/RTYPE
     rgeo:
       type: object
@@ -2615,6 +2634,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/position'
+      additionalProperties: false
       example: example.json#/emsi/RESOURCE/0/RGEO/0
     contact:
       type: object
@@ -2654,6 +2674,7 @@ components:
             \ de t\xE9l\xE9phone"
           examples:
           - 606070707
+      additionalProperties: false
       example: example.json#/emsi/RESOURCE/0/CONTACTS/0
       examples:
       - TYPE: PHNADD

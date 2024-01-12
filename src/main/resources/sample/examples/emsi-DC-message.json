@@ -4,22 +4,22 @@
       "ID": "d350c9d2-9d76-4568-b0b7-a747ffadc949",
       "MODE": "ACTUAL",
       "MSGTYPE": "UPDATE",
-      "CREATION": "2024-01-09T16:00:00+01:00",
-      "LINK": [],
+      "CREATION": "2023-11-03T11:10:06+01:00",
+      "LINK": [
+      ],
       "LEVEL": "OPR",
       "SECLASS": "RESTRC",
       "FREETEXT": "Gène de plus en plus importante à la circulation, risque accident",
       "ORIGIN": {
-        "ORG_ID": "fr.health.samu690",
-        "USER_ID": "samu690",
+        "ORG_ID": "fr.health.samu690.chuLyon.crra.regulationN3",
+        "USER_ID": "fr.health.samu690.chuLyon.crra.regulationN3.poste123",
         "NAME": "SAMU 69"
-      },
-      "EXTERNAL_INFO": []
+      }
     },
     "EVENT": {
-      "ID": "fr.health.samu690",
+      "ID": "fr.health.samu690-20231103-AF1234",
       "NAME": "Incident sur voix cyclable",
-      "MAIN_EVENT_ID": "fr.health.samu690",
+      "MAIN_EVENT_ID": "frhealth.samu690-20231103-AF1234",
       "ETYPE": {
         "CATEGORY": [
           "TRP/COL"
@@ -35,21 +35,23 @@
       "SOURCE": "COMFOR",
       "SCALE": "2",
       "CERTAINTY": 95,
-      "DECL_DATIME": "2024-01-09T16:01:00+01:00",
-      "OCC_DATIME": "2024-01-09T16:00:00+01:00",
-      "OBS_DATIME": "2024-01-09T16:04:00+01:00",
+      "DECL_DATIME": "2023-11-03T10:03:00+01:00",
+      "OCC_DATIME": "2023-11-03T10:01:00+01:00",
+      "OBS_DATIME": "2023-11-03T10:04:00+01:00",
       "STATUS": "IPR",
       "RISK_ASSESMENT": "STABLE",
       "REFERENCE": [
         {
-          "ORG_ID": "fr.fire.cgo690",
-          "OTHER_EVENT_ID": []
+          "ORG_ID": "fr.administration.690.CGO",
+          "OTHER_EVENT_ID": [
+            "fr.administration.690.CGO.20231103_00002"
+          ]
         }
       ],
       "CASUALTIES": [
         {
           "CONTEXT": "REQ_ACTION",
-          "DATIME": "2024-01-09T16:01:00+01:00",
+          "DATIME": "2023-11-03T10:01:00+01:00",
           "DECONT": 0,
           "TRIAGERED": 0,
           "TRIAGEYELLOW": 1,
@@ -66,7 +68,7 @@
       ],
       "EGEO": [
         {
-          "DATIME": "2024-01-09T16:10:00+01:00",
+          "DATIME": "2023-11-03T10:04:00+01:00",
           "TYPE": "GEN/ROUTE",
           "WEATHER": [
             "WIN"
@@ -85,7 +87,7 @@
               }
             ],
             "ADDRESS": [
-              "8 Quai des Célestin, Lyon"
+              "8 Qaui des Célestin, Lyon"
             ]
           }
         }
@@ -97,11 +99,11 @@
         "TYPE": "GEN/SCNMNG",
         "FREETEXT": "Besoin d'assisance terrain pour gérer perturbations et sécuriser le site d'intervention.",
         "ID": "ABC1YU3454",
-        "ORG_ID": "fr.health.samu690",
+        "ORG_ID": "fr.administration.690.CGO",
         "NAME": "#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#",
         "STATUS": "IPR",
-        "START_TIME": "2024-01-09T16:05:00+01:00",
-        "RESOURCE_ID": "",
+        "START_TIME": "2023-11-03T10:20:00+01:00",
+        "RESOURCE_ID": [],
         "POSITION": {
           "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
           "NAME": "Quai des Célestins",
@@ -119,11 +121,8 @@
             "None"
           ]
         },
-        "PRIORITY": "3",
-        "CHILD_MISSION_ID": [],
-        "PARENT_MISSION_ID": []
+        "PRIORITY": "3"
       }
-    ],
-    "RESOURCE": []
+    ]
   }
 }

@@ -81,8 +81,16 @@ jobs:
           commit_message: ⚙️ Auto-génération des classes et des specs
 
       - name: Build and run tests
-        run: ./gradlew test
-        
+        run: ./gradlew test --info
+
+      # Ref.: https://github.com/gradle/gradle-build-action/issues/619#issuecomment-1453244157
+      - name: Upload test report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: build/reports/tests/test/**
+
       - name: Add coverage to PR
         id: jacoco
         uses: madrapps/jacoco-report@v1.3

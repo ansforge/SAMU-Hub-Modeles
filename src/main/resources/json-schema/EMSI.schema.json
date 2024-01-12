@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.01.10",
+    "version": "24.01.12",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -44,6 +44,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi"
         },
         "context": {
@@ -169,6 +170,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/CONTEXT"
         },
         "event": {
@@ -347,6 +349,7 @@
                     "description": "Optionnel"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT"
         },
         "mission": {
@@ -599,12 +602,16 @@
                     "format": "date-time"
                 },
                 "RESOURCE_ID": {
-                    "type": "string",
-                    "title": "Ressource engag\u00e9e",
+                    "type": "array",
                     "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/emsi/MISSION/0/RESOURCE_ID",
-                    "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voire RESSOURCE.ID)"
+                    "items": {
+                        "type": "string",
+                        "title": "Ressource engag\u00e9e",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/emsi/MISSION/0/RESOURCE_ID/0",
+                        "description": "Liste des identifiants des ressources engag\u00e9es dans la mission (voir RESOURCE.ID)"
+                    }
                 },
                 "PARENT_MISSION_ID": {
                     "type": "array",
@@ -658,6 +665,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/MISSION/0"
         },
         "resource": {
@@ -810,6 +818,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/RESOURCE/0"
         },
         "link": {
@@ -842,6 +851,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/CONTEXT/LINK/0"
         },
         "origin": {
@@ -876,6 +886,7 @@
                     "description": "Optionnel\n\nA constituer par le r\u00e9dacteur pour \u00eatre intelligible (exemple [structure].[nom])"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/CONTEXT/ORIGIN"
         },
         "externalInfo": {
@@ -919,6 +930,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/CONTEXT/EXTERNAL_INFO/0"
         },
         "etype": {
@@ -1225,6 +1237,7 @@
                     ]
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT/ETYPE"
         },
         "reference": {
@@ -1258,6 +1271,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT/REFERENCE/0"
         },
         "casualties": {
@@ -1336,6 +1350,7 @@
                     "description": "Optionnel"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT/CASUALTIES/0"
         },
         "evac": {
@@ -1372,6 +1387,7 @@
                     "description": "Optionnel"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT/EVAC/0"
         },
         "egeo": {
@@ -1557,6 +1573,7 @@
                     "$ref": "#/definitions/position"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT/EGEO/0"
         },
         "position": {
@@ -1627,6 +1644,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT/EGEO/0/POSITION"
         },
         "coord": {
@@ -1664,6 +1682,7 @@
                     "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e z  connue de la ressource\nbetween \u2212180 and +180"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0"
         },
         "rtype": {
@@ -2315,6 +2334,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/RESOURCE/0/RTYPE"
         },
         "rgeo": {
@@ -2374,6 +2394,7 @@
                     }
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/RESOURCE/0/RGEO/0"
         },
         "contact": {
@@ -2413,6 +2434,7 @@
                     "description": "1. RFGI du moyen NEXSIS (si RFGI disponible)\n2. Num\u00e9ro de t\u00e9l\u00e9phone"
                 }
             },
+            "additionalProperties": false,
             "example": "example.json#/emsi/RESOURCE/0/CONTACTS/0"
         }
     }

@@ -105,16 +105,16 @@ Prend les valeurs définies dans la nomenclature CISU :
 Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION",X,X
 68,69,,Informations complémentaires sur l'alerte,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'alerte,"Déclenchement téléalarme, voisine sur les liens",comment,freetext,OG,Observations générales (texte libre),,,1.0,0..1,,string,,,X,X
 69,70,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X
-70,71,,,Contact requérant,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,0..1,X,contact,,,X,X
+70,71,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,0..1,X,contact,,,X,X
 71,72,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X
 72,73,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X
-73,74,,,Contact de contre-appel,# voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X
+73,74,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X
 74,75,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
 75,76,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"le patient lui-même, père, mère",,type,,,,,,0..1,,string,X,?,X,X
 76,77,,,Difficulté de communication,,,,Indique si le requérant rencontre ou non des difficulté de communication,"Malentendant, aucune difficulté de communication",,communication,,,,,,0..1,,string,X,?,X,X
 77,78,,,Informations complémentaires sur le requérant,,,,"Informations complémentaires sur le requérant 
 Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif",Père,freetext,freetext,CH,Profil appelant,,,1.0,0..1,,string,,,X,X
-78,79,,,Prénom & nom usuel du requérant,,,,,,callerName,detailedName,,,,,,0..1,X,detailedName,,,X,X
+78,79,,,Prénom & nom usuel,,,,,,callerName,detailedName,,,,,,0..1,X,detailedName,,,X,X
 79,80,,,,Prénom et nom,,,"Prénom et nom usuel du requérant.
 Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : ""{callerFirstName} {callerLastName}"".
 Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.",Jean Dupont,,complete,AN/AP,"Nom
@@ -135,7 +135,7 @@ Se référer au DSF pour la structure normée des organisations
 Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.",FR:Administration:44:samu44:crra:regulationN3,organization,,,,,,,1..1,,string,,,X,X
 90,91,,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,,,,,,,1..1,,string,,,X,X
 91,92,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,,,X,X
-92,93,,,Contact de l'agent,# voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerURI,calltakeContact,,,,,,0..1,X,contact,,,X,X
+92,93,,,Contact de l'agent,# Voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerURI,calltakerContact,,,,,,0..1,X,contact,,,X,X
 93,94,,,ID de l'agent,,,,"Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)",id1234,calltakerId,,O1,Code de l'opérateur ayant pris l'appel,,,,0..1,,string,,,X,X
 94,95,,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
 Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
@@ -149,13 +149,13 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
 99,100,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,X
 100,101,,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
 La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X
-166,171,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+164,165,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
-167,172,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
-168,173,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
-169,174,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
-170,175,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
-171,176,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
-172,177,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-173,178,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
+165,166,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+166,167,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
+167,168,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
+168,169,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
+169,170,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
+170,171,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
+171,172,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
