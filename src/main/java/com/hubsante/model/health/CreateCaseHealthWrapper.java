@@ -35,49 +35,49 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.health.CreateCase;
+import com.hubsante.model.health.CreateCaseHealth;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**
- * CreateCaseWrapper
+ * CreateCaseHealthWrapper
  */
-@JsonPropertyOrder({CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE})
-@JsonTypeName("createCaseWrapper")
+@JsonPropertyOrder({CreateCaseHealthWrapper.JSON_PROPERTY_CREATE_CASE_HEALTH})
+@JsonTypeName("createCaseHealthWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCaseWrapper extends DistributionElement {
+public class CreateCaseHealthWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_CREATE_CASE = "createCase";
-  private CreateCase createCase;
+  public static final String JSON_PROPERTY_CREATE_CASE_HEALTH =
+      "createCaseHealth";
+  private CreateCaseHealth createCaseHealth;
 
-  public CreateCaseWrapper() {}
+  public CreateCaseHealthWrapper() {}
 
-  public CreateCaseWrapper createCase(CreateCase createCase) {
+  public CreateCaseHealthWrapper
+  createCaseHealth(CreateCaseHealth createCaseHealth) {
 
-    this.createCase = createCase;
+    this.createCaseHealth = createCaseHealth;
     return this;
   }
 
   /**
-   * Get createCase
-   * @return createCase
+   * Get createCaseHealth
+   * @return createCaseHealth
    **/
-  @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+  @JsonProperty(JSON_PROPERTY_CREATE_CASE_HEALTH)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CreateCase getCreateCase() {
-    return createCase;
+  public CreateCaseHealth getCreateCaseHealth() {
+    return createCaseHealth;
   }
 
-  @JsonProperty(JSON_PROPERTY_CREATE_CASE)
+  @JsonProperty(JSON_PROPERTY_CREATE_CASE_HEALTH)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCreateCase(CreateCase createCase) {
-    this.createCase = createCase;
+  public void setCreateCaseHealth(CreateCaseHealth createCaseHealth) {
+    this.createCaseHealth = createCaseHealth;
   }
 
   @Override
@@ -88,23 +88,25 @@ public class CreateCaseWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateCaseWrapper createCaseWrapper = (CreateCaseWrapper)o;
-    return Objects.equals(this.createCase, createCaseWrapper.createCase) &&
+    CreateCaseHealthWrapper createCaseHealthWrapper =
+        (CreateCaseHealthWrapper)o;
+    return Objects.equals(this.createCaseHealth,
+                          createCaseHealthWrapper.createCaseHealth) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createCase, super.hashCode());
+    return Objects.hash(createCaseHealth, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateCaseWrapper {\n");
+    sb.append("class CreateCaseHealthWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    createCase: ")
-        .append(toIndentedString(createCase))
+    sb.append("    createCaseHealth: ")
+        .append(toIndentedString(createCaseHealth))
         .append("\n");
     sb.append("}");
     return sb.toString();

@@ -38,8 +38,6 @@ import com.hubsante.model.common.DistributionElement;
 import com.hubsante.model.emsi.Emsi;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 
 /**

@@ -83,6 +83,11 @@ def run(sheet, name, version, filter):
     # Schema name is in name = RC-EDA (or RS-EDA) for instance
     MODEL_NAME = params['modelName']  # CreateCase
     MODEL_TYPE = MODEL_NAME[0].lower() + MODEL_NAME[1:]  # createCase
+    def isCreateCase():
+        return MODEL_TYPE == "createCase"
+
+    if not filter and isCreateCase():
+        MODEL_TYPE = "createCaseHealth"
     WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
@@ -338,7 +343,6 @@ def run(sheet, name, version, filter):
         'title': MODEL_NAME,
         'required': [],
         'properties': {},
-        'additionalProperties': not filter,
         'definitions': {}
     }
 
@@ -416,6 +420,7 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'required': [],
                 'properties': {},
+                'additionalProperties': False,
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         if child['Cardinalité'].startswith('1'):
