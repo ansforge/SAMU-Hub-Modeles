@@ -28,7 +28,6 @@
 package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -52,7 +51,6 @@ import java.util.Objects;
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Decision {
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;

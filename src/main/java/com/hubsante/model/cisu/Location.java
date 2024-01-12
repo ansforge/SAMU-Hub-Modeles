@@ -28,7 +28,6 @@
 package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -58,7 +57,6 @@ import java.util.Objects;
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Location {
   public static final String JSON_PROPERTY_LOC_I_D = "locID";
   private String locID;

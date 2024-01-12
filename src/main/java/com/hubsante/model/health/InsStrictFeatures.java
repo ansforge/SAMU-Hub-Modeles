@@ -28,7 +28,6 @@
 package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -53,7 +52,6 @@ import java.util.Objects;
 @JsonTypeName("insStrictFeatures")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class InsStrictFeatures {
   public static final String JSON_PROPERTY_BIRTH_NAME = "birthName";
   private String birthName;

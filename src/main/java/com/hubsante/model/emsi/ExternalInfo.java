@@ -28,7 +28,6 @@
 package com.hubsante.model.emsi;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -48,7 +47,6 @@ import java.util.Objects;
 @JsonTypeName("externalInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ExternalInfo {
   public static final String JSON_PROPERTY_F_R_E_E_T_E_X_T = "FREETEXT";
   private String FREETEXT;

@@ -28,7 +28,6 @@
 package com.hubsante.model.common;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -56,7 +55,6 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_RECIPIENT})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class DistributionElement extends ContentMessage {
   public static final String JSON_PROPERTY_MESSAGE_ID = "messageId";
   private String messageId;

@@ -28,7 +28,6 @@
 package com.hubsante.model.common;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -47,7 +46,6 @@ import java.util.Objects;
 @JsonPropertyOrder({ReferenceWrapper.JSON_PROPERTY_REFERENCE})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class ReferenceWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
