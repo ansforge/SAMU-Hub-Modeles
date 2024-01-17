@@ -16,6 +16,7 @@
 package com.hubsante.model;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.common.Recipient;
 import com.hubsante.model.common.ReferenceWrapper;
@@ -23,18 +24,25 @@ import com.hubsante.model.common.Sender;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.emsi.EmsiWrapper;
+import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.hubsante.model.config.Constants.FULL_SCHEMA;
+import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.Sanitizer.sanitizeEdxl;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class EdxlHandlerTest {
@@ -157,6 +165,35 @@ public class EdxlHandlerTest {
          * (basically, our serializer generates one-liners but we prefer to store our commit files with indentation for readability)
          */
         assertEquals(messageFromInput, messageFromOutput);
+    }
+
+    @Test
+    @DisplayName("all examples files deserializing")
+    public void examplesBundlePassingTest() {
+        String folder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
+        File[] files = new File(folder).listFiles();
+        assert files != null;
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        Arrays.stream(files).forEach(file -> {
+            try {
+                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                String fullJson = wrapUseCaseMessage(useCaseJson);
+
+                converter.deserializeJsonEDXL(fullJson);
+                log.info("File {} has been successfully deserialized", file.getName());
+
+            }catch (JsonProcessingException e) {
+                allPass.set(false);
+                log.error("File " + file.getName() + " could have not been deserialized: " + e.getMessage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        if (!allPass.get()) {
+            fail("Some files are not valid against schema");
+        }
     }
 
 

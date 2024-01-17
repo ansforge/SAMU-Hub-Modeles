@@ -49,23 +49,26 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * CreateCase
+ * CreateCaseHealth
  */
-@JsonPropertyOrder(
-    {CreateCase.JSON_PROPERTY_CASE_ID, CreateCase.JSON_PROPERTY_SENDER_CASE_ID,
-     CreateCase.JSON_PROPERTY_CREATION,
-     CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
-     CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
-     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_OWNER,
-     CreateCase.JSON_PROPERTY_OPERATOR, CreateCase.JSON_PROPERTY_PATIENT,
-     CreateCase.JSON_PROPERTY_MEDICAL_ANALYSIS,
-     CreateCase.JSON_PROPERTY_NEW_ALERT,
-     CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
-     CreateCase.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("createCase")
+@JsonPropertyOrder({CreateCaseHealth.JSON_PROPERTY_CASE_ID,
+                    CreateCaseHealth.JSON_PROPERTY_SENDER_CASE_ID,
+                    CreateCaseHealth.JSON_PROPERTY_CREATION,
+                    CreateCaseHealth.JSON_PROPERTY_REFERENCE_VERSION,
+                    CreateCaseHealth.JSON_PROPERTY_QUALIFICATION,
+                    CreateCaseHealth.JSON_PROPERTY_LOCATION,
+                    CreateCaseHealth.JSON_PROPERTY_INITIAL_ALERT,
+                    CreateCaseHealth.JSON_PROPERTY_OWNER,
+                    CreateCaseHealth.JSON_PROPERTY_OPERATOR,
+                    CreateCaseHealth.JSON_PROPERTY_PATIENT,
+                    CreateCaseHealth.JSON_PROPERTY_MEDICAL_ANALYSIS,
+                    CreateCaseHealth.JSON_PROPERTY_NEW_ALERT,
+                    CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION,
+                    CreateCaseHealth.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("createCaseHealth")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCase {
+public class CreateCaseHealth {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -110,9 +113,9 @@ public class CreateCase {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public CreateCase() {}
+  public CreateCaseHealth() {}
 
-  public CreateCase caseId(String caseId) {
+  public CreateCaseHealth caseId(String caseId) {
 
     this.caseId = caseId;
     return this;
@@ -144,7 +147,7 @@ public class CreateCase {
     this.caseId = caseId;
   }
 
-  public CreateCase senderCaseId(String senderCaseId) {
+  public CreateCaseHealth senderCaseId(String senderCaseId) {
 
     this.senderCaseId = senderCaseId;
     return this;
@@ -171,7 +174,7 @@ public class CreateCase {
     this.senderCaseId = senderCaseId;
   }
 
-  public CreateCase creation(OffsetDateTime creation) {
+  public CreateCaseHealth creation(OffsetDateTime creation) {
 
     this.creation = creation;
     return this;
@@ -198,7 +201,7 @@ public class CreateCase {
     this.creation = creation;
   }
 
-  public CreateCase referenceVersion(String referenceVersion) {
+  public CreateCaseHealth referenceVersion(String referenceVersion) {
 
     this.referenceVersion = referenceVersion;
     return this;
@@ -223,7 +226,7 @@ public class CreateCase {
     this.referenceVersion = referenceVersion;
   }
 
-  public CreateCase qualification(Qualification qualification) {
+  public CreateCaseHealth qualification(Qualification qualification) {
 
     this.qualification = qualification;
     return this;
@@ -246,7 +249,7 @@ public class CreateCase {
     this.qualification = qualification;
   }
 
-  public CreateCase location(Location location) {
+  public CreateCaseHealth location(Location location) {
 
     this.location = location;
     return this;
@@ -269,7 +272,7 @@ public class CreateCase {
     this.location = location;
   }
 
-  public CreateCase initialAlert(Alert initialAlert) {
+  public CreateCaseHealth initialAlert(Alert initialAlert) {
 
     this.initialAlert = initialAlert;
     return this;
@@ -292,7 +295,7 @@ public class CreateCase {
     this.initialAlert = initialAlert;
   }
 
-  public CreateCase owner(String owner) {
+  public CreateCaseHealth owner(String owner) {
 
     this.owner = owner;
     return this;
@@ -324,13 +327,13 @@ public class CreateCase {
     this.owner = owner;
   }
 
-  public CreateCase operator(List<Operator> operator) {
+  public CreateCaseHealth operator(List<Operator> operator) {
 
     this.operator = operator;
     return this;
   }
 
-  public CreateCase addOperatorItem(Operator operatorItem) {
+  public CreateCaseHealth addOperatorItem(Operator operatorItem) {
     if (this.operator == null) {
       this.operator = new ArrayList<>();
     }
@@ -363,13 +366,13 @@ public class CreateCase {
     this.operator.addAll(operator);
   }
 
-  public CreateCase patient(List<Patient> patient) {
+  public CreateCaseHealth patient(List<Patient> patient) {
 
     this.patient = patient;
     return this;
   }
 
-  public CreateCase addPatientItem(Patient patientItem) {
+  public CreateCaseHealth addPatientItem(Patient patientItem) {
     if (this.patient == null) {
       this.patient = new ArrayList<>();
     }
@@ -402,13 +405,14 @@ public class CreateCase {
     this.patient.addAll(patient);
   }
 
-  public CreateCase medicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
+  public CreateCaseHealth
+  medicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
 
     this.medicalAnalysis = medicalAnalysis;
     return this;
   }
 
-  public CreateCase
+  public CreateCaseHealth
   addMedicalAnalysisItem(MedicalAnalysis medicalAnalysisItem) {
     if (this.medicalAnalysis == null) {
       this.medicalAnalysis = new ArrayList<>();
@@ -442,13 +446,13 @@ public class CreateCase {
     this.medicalAnalysis.addAll(medicalAnalysis);
   }
 
-  public CreateCase newAlert(List<Alert> newAlert) {
+  public CreateCaseHealth newAlert(List<Alert> newAlert) {
 
     this.newAlert = newAlert;
     return this;
   }
 
-  public CreateCase addNewAlertItem(Alert newAlertItem) {
+  public CreateCaseHealth addNewAlertItem(Alert newAlertItem) {
     if (this.newAlert == null) {
       this.newAlert = new ArrayList<>();
     }
@@ -481,7 +485,7 @@ public class CreateCase {
     this.newAlert.addAll(newAlert);
   }
 
-  public CreateCase
+  public CreateCaseHealth
   additionalInformation(AdditionalInformation additionalInformation) {
 
     this.additionalInformation = additionalInformation;
@@ -506,7 +510,7 @@ public class CreateCase {
     this.additionalInformation = additionalInformation;
   }
 
-  public CreateCase freetext(String freetext) {
+  public CreateCaseHealth freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -538,22 +542,24 @@ public class CreateCase {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateCase createCase = (CreateCase)o;
-    return Objects.equals(this.caseId, createCase.caseId) &&
-        Objects.equals(this.senderCaseId, createCase.senderCaseId) &&
-        Objects.equals(this.creation, createCase.creation) &&
-        Objects.equals(this.referenceVersion, createCase.referenceVersion) &&
-        Objects.equals(this.qualification, createCase.qualification) &&
-        Objects.equals(this.location, createCase.location) &&
-        Objects.equals(this.initialAlert, createCase.initialAlert) &&
-        Objects.equals(this.owner, createCase.owner) &&
-        Objects.equals(this.operator, createCase.operator) &&
-        Objects.equals(this.patient, createCase.patient) &&
-        Objects.equals(this.medicalAnalysis, createCase.medicalAnalysis) &&
-        Objects.equals(this.newAlert, createCase.newAlert) &&
+    CreateCaseHealth createCaseHealth = (CreateCaseHealth)o;
+    return Objects.equals(this.caseId, createCaseHealth.caseId) &&
+        Objects.equals(this.senderCaseId, createCaseHealth.senderCaseId) &&
+        Objects.equals(this.creation, createCaseHealth.creation) &&
+        Objects.equals(this.referenceVersion,
+                       createCaseHealth.referenceVersion) &&
+        Objects.equals(this.qualification, createCaseHealth.qualification) &&
+        Objects.equals(this.location, createCaseHealth.location) &&
+        Objects.equals(this.initialAlert, createCaseHealth.initialAlert) &&
+        Objects.equals(this.owner, createCaseHealth.owner) &&
+        Objects.equals(this.operator, createCaseHealth.operator) &&
+        Objects.equals(this.patient, createCaseHealth.patient) &&
+        Objects.equals(this.medicalAnalysis,
+                       createCaseHealth.medicalAnalysis) &&
+        Objects.equals(this.newAlert, createCaseHealth.newAlert) &&
         Objects.equals(this.additionalInformation,
-                       createCase.additionalInformation) &&
-        Objects.equals(this.freetext, createCase.freetext);
+                       createCaseHealth.additionalInformation) &&
+        Objects.equals(this.freetext, createCaseHealth.freetext);
   }
 
   @Override
@@ -567,7 +573,7 @@ public class CreateCase {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateCase {\n");
+    sb.append("class CreateCaseHealth {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    senderCaseId: ")
         .append(toIndentedString(senderCaseId))

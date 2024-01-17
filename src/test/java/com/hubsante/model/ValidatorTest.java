@@ -29,6 +29,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.*;
@@ -230,19 +231,27 @@ public class ValidatorTest {
         String folder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
         File[] files = new File(folder).listFiles();
         assert files != null;
+        AtomicBoolean allPass = new AtomicBoolean(true);
 
         Arrays.stream(files).forEach(file -> {
             try {
                 String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
                 String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                assertDoesNotThrow(() -> validator.validateJSON(fullJson, FULL_SCHEMA));
+                validator.validateJSON(fullJson, FULL_SCHEMA);
                 log.info("File {} is valid against schema", file.getName());
 
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            } catch (ValidationException e) {
+                allPass.set(false);
+               log.error("File " + file.getName() + " is not valid against schema: " + e.getMessage());
             }
         });
+
+        if (!allPass.get()) {
+            fail("Some files are not valid against schema");
+        }
     }
 
     public void checkErrorMessages(String[] errors, String expected, String prefix) {

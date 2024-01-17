@@ -21,6 +21,19 @@ Des exemples de messages sont disponibles dans le répertoire [src/main/resource
 
 Les spécifications du modèle de données sont disponibles sur le [site du projet SAMU-Hub-Santé](https://hub.esante.gouv.fr/).
 
+## Modèles
+
+||[Schéma](src/main/resources/json-schema/)|Détails|UML|
+|-|-|-|-|
+|EMSI|[EMSI.schema.json](src/main/resources/json-schema/EMSI.schema.json)|[EMSI.schema.docx](csv_parser/out/EMSI/EMSI.schema.docx)|[EMSI.uml_diagram.pdf](csv_parser/out/EMSI/EMSI.uml_diagram.pdf)|
+|RC-DE|[RC-DE.schema.json](src/main/resources/json-schema/RC-DE.schema.json)|[RC-DE.schema.docx](csv_parser/out/RC-DE/RC-DE.schema.docx)|[RC-DE.uml_diagram.pdf](csv_parser/out/RC-DE/RC-DE.uml_diagram.pdf)|
+|RC-EDA|[RC-EDA.schema.json](src/main/resources/json-schema/RC-EDA.schema.json)|[RC-EDA.schema.docx](csv_parser/out/RC-EDA/RC-EDA.schema.docx)|[RC-EDA.uml_diagram.pdf](csv_parser/out/RC-EDA/RC-EDA.uml_diagram.pdf)|
+|RS-EDA|[RS-EDA.schema.json](src/main/resources/json-schema/RS-EDA.schema.json)|[RS-EDA.schema.docx](csv_parser/out/RS-EDA/RS-EDA.schema.docx)|[RS-EDA.uml_diagram.pdf](csv_parser/out/RS-EDA/RS-EDA.uml_diagram.pdf)|
+
+[Exemples des messages](src/main/resources/sample/examples/)
+
+N. B. : Pour accéder aux versions les plus recentes des fichiers, veuillez utiliser les liens du README de la branche **auto/model_tracker** en cliquant [ici](https://github.com/ansforge/SAMU-Hub-Modeles/tree/auto/model_tracker?tab=readme-ov-file#modèles).
+
 ## Auteur
 
 👤 **ANS > Equipe Hub Santé**
