@@ -109,11 +109,15 @@ public class Validator {
             for (ValidationMessage errorMsg : validationMessages) {
                 String error = formatValidationErrorMessage(errorMsg);
                 if (error != null) {
-                    errors.append(error).append("\n");
+                    // If we already have at least one use case error and the current error contains ".message" we
+                    // do not append it
+                    if (!containsAtLeastOneUseCaseError || !errorMsg.getPath().contains(".message")) {
+                        errors.append(error).append("\n");
+                    }
                     if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
                         violatesOneOfConstraint = true;
                     }
-                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message.")){
+                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
                         containsAtLeastOneUseCaseError = true;
                     }
                 }
