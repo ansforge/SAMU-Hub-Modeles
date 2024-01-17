@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.model.common.DistributionElement;
 import com.hubsante.model.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
@@ -38,6 +39,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.lang.reflect.Field;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -143,7 +145,16 @@ public class Validator {
             }
         } else if (path.indexOf("message") + 1 >= path.size()) {
             // If the path contains the element 'message' and ends immediately after the message 'use case',
-            // the error message is irrelevant and we ignore it.
+            // the error message is either irrelevant and we ignore it or it is an error in the RC-DE header.
+            // In the latter case, we return the error message (without the $. at the start), and to verify
+            // if that's the case, we check if the error contains any of the attributes of the class
+            // DistributionElement.
+            Field[] attributes = DistributionElement.class.getDeclaredFields();
+            for (Field attribute : attributes) {
+                if (errorMsg.getMessage().contains(attribute.getName())) {
+                    return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8);
+                }
+            }
             return null;
         } else {
             // Otherwise, we return the part of error message that comes after the 'message' element

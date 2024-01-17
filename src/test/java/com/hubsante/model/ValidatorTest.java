@@ -208,6 +208,23 @@ public class ValidatorTest {
     }
 
     @Test
+    @DisplayName("error in rc-de header")
+    void headerError() throws IOException {
+        String json = getInvalidMessage("RC-EDA/invalid-RC-DE-header-error.json");
+
+        // validation throws due to incorrect header (recipients instead of recipient)
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            checkErrorMessages(errors, MISSING, "recipient: ");
+        }
+    }
+
+    @Test
     @DisplayName("all examples files passing")
     public void examplesBundlePassingTest() {
         String folder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
