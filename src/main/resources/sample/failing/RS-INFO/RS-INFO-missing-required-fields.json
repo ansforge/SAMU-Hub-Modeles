@@ -17,11 +17,13 @@
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
+            "info": {
             "errorCode": {
               "statusString": "DELIVERY_MODE_INCONSISTENCY"
             },
             "errorCause": "cause",
             "sourceMessage": "source"
+            }
           }
         }
       }

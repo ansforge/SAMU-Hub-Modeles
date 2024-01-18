@@ -7,22 +7,40 @@
   "type": "object",
   "title": "RS_INFO",
   "required": [
-    "errorCode",
-    "errorCause",
-    "sourceMessage"
+    "info"
   ],
   "properties": {
-    "errorCode": {
-      "$ref": "#/definitions/errorCode"
-    },
-    "errorCause": {
-      "type": "string"
-    },
-    "spurceMessage": {
-      "type": "string"
+    "info": {
+      "$ref": "#/definitions/info"
     }
   },
+  "additionalProperties": false,
   "definitions": {
+    "info": {
+      "type": "object",
+      "title": "info",
+      "required": [
+        "errorCode",
+        "errorCause",
+        "sourceMessage",
+        "referencedDistributionID"
+      ],
+      "properties": {
+        "errorCode": {
+          "$ref": "#/definitions/errorCode"
+        },
+        "errorCause": {
+          "type": "string"
+        },
+        "sourceMessage": {
+          "type": "string"
+        },
+        "referencedDistributionID": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
     "errorCode": {
       "type": "object",
       "title": "errorCode",
@@ -37,7 +55,8 @@
         "statusString": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": false
     }
   }
 }

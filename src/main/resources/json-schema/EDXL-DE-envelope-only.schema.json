@@ -29,6 +29,7 @@
           "$ref": "#/definitions/Descriptor"
         }
       },
+      "additionalProperties": false,
       "required": [
         "senderID",
         "distributionID",
@@ -51,6 +52,7 @@
           "$ref": "#/definitions/Content"
         }
       },
+      "additionalProperties": false,
       "required": [
         "content"
       ]
@@ -71,7 +73,8 @@
         "jsonContent": {
           "$ref": "#/definitions/JsonContent"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "JsonContent": {
       "type": "object",
@@ -82,7 +85,8 @@
         "embeddedJsonContent": {
           "$ref": "#/definitions/EmbeddedJsonContent"
         }
-      }
+      },
+      "additionalProperties": false
     },
     "EmbeddedJsonContent": {
       "type": "object"
@@ -97,6 +101,7 @@
           "type": "string"
         }
       },
+      "additionalProperties": false,
       "required": [
         "explicitAddress",
         "language"
@@ -129,6 +134,7 @@
           "type": "string"
         }
       },
+      "additionalProperties": false,
       "required": [
         "explicitAddressScheme",
         "explicitAddressValue"
@@ -167,6 +173,7 @@
       "$ref": "#/definitions/ExplicitAddress"
     }
   },
+  "additionalProperties": false,
   "required": [
     "senderID",
     "distributionID",
