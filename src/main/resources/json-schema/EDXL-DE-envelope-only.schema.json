@@ -27,7 +27,8 @@
         },
         "descriptor": {
           "$ref": "#/definitions/Descriptor"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "senderID",
@@ -49,7 +50,8 @@
       "properties": {
         "content": {
           "$ref": "#/definitions/Content"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "content"
@@ -70,7 +72,8 @@
       "properties": {
         "jsonContent": {
           "$ref": "#/definitions/JsonContent"
-        }
+        },
+        "additionalProperties": false
       }
     },
     "JsonContent": {
@@ -81,7 +84,8 @@
       "properties": {
         "embeddedJsonContent": {
           "$ref": "#/definitions/EmbeddedJsonContent"
-        }
+        },
+        "additionalProperties": false
       }
     },
     "EmbeddedJsonContent": {
@@ -95,7 +99,8 @@
         },
         "language": {
           "type": "string"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "explicitAddress",
@@ -127,7 +132,8 @@
         },
         "explicitAddressValue": {
           "type": "string"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "explicitAddressScheme",
@@ -165,7 +171,8 @@
     },
     "explicitAddress": {
       "$ref": "#/definitions/ExplicitAddress"
-    }
+    },
+    "additionalProperties": false
   },
   "required": [
     "senderID",

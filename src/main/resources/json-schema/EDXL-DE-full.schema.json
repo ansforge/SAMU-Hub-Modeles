@@ -27,7 +27,8 @@
         },
         "descriptor": {
           "$ref": "#/definitions/Descriptor"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "senderID",
@@ -49,7 +50,8 @@
       "properties": {
         "content": {
           "$ref": "#/definitions/Content"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "content"
@@ -70,7 +72,8 @@
       "properties": {
         "jsonContent": {
           "$ref": "#/definitions/JsonContent"
-        }
+        },
+        "additionalProperties": false
       }
     },
     "JsonContent": {
@@ -81,7 +84,8 @@
       "properties": {
         "embeddedJsonContent": {
           "$ref": "#/definitions/EmbeddedJsonContent"
-        }
+        },
+        "additionalProperties": false
       }
     },
     "EmbeddedJsonContent": {
@@ -90,17 +94,19 @@
         {
           "allOf": [
             {
-                "properties": {
-                    "message": {
-                    "$ref": "RC-DE.schema.json"
-                    }
-                }
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                  },
+                "additionalProperties": false
+              }
             },
             {
               "properties": {
                 "message": {
                   "$ref": "RS-EDA.schema.json"
-                }
+                },
+                "additionalProperties": false
               }
             }
           ]
@@ -111,14 +117,16 @@
               "properties": {
                 "message": {
                   "$ref": "RC-DE.schema.json"
-                }
+                },
+                "additionalProperties": false
               }
             },
             {
               "properties": {
                 "message": {
                   "$ref": "RC-EDA.schema.json"
-                }
+                },
+                "additionalProperties": false
               }
             }
           ]
@@ -129,14 +137,16 @@
               "properties": {
                 "message": {
                   "$ref": "RC-DE.schema.json"
-                }
+                },
+                "additionalProperties": false
               }
             },
             {
               "properties": {
                 "message": {
                   "$ref": "RC-REF.schema.json"
-                }
+                },
+                "additionalProperties": false
               }
             }
           ]
@@ -145,7 +155,8 @@
           "properties": {
             "message": {
               "$ref": "RS-INFO.schema.json"
-            }
+            },
+            "additionalProperties": false
           }
         },
         {
@@ -154,14 +165,16 @@
               "properties": {
                 "message": {
                   "$ref": "RC-DE.schema.json"
-                }
+                },
+                "additionalProperties": false
               }
             },
             {
               "properties": {
                 "message": {
                   "$ref": "EMSI.schema.json"
-                }
+                },
+                "additionalProperties": false
               }
             }
           ]
@@ -170,7 +183,8 @@
           "properties": {
             "message": {
               "$ref": "CustomContent.schema.json"
-            }
+            },
+            "additionalProperties": false
           }
         }
       ]
@@ -183,7 +197,8 @@
         },
         "language": {
           "type": "string"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "explicitAddress",
@@ -215,7 +230,8 @@
         },
         "explicitAddressValue": {
           "type": "string"
-        }
+        },
+        "additionalProperties": false
       },
       "required": [
         "explicitAddressScheme",
@@ -253,7 +269,8 @@
     },
     "explicitAddress": {
       "$ref": "#/definitions/ExplicitAddress"
-    }
+    },
+    "additionalProperties": false
   },
   "required": [
     "senderID",
