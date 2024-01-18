@@ -80,9 +80,8 @@ public class InfoWrapper extends ContentMessage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        InfoWrapper infoWrapper = (InfoWrapper) o;
-        return Objects.equals(this.info, infoWrapper.info) &&
-                super.equals(o);
+        InfoWrapper that = (InfoWrapper) o;
+        return Objects.equals(this.info, that.info);
     }
 
     @Override
