@@ -15,31 +15,19 @@
  */
 package com.hubsante.model.builders;
 
-
-import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.report.ErrorReport;
 import com.hubsante.model.report.InfoWrapper;
 
 public class InfoWrapperBuilder {
-    private DistributionElement distributionElement;
     private ErrorReport info;
 
-    public InfoWrapperBuilder(DistributionElement distributionElement, ErrorReport info) {
-        this.distributionElement = distributionElement;
+    public InfoWrapperBuilder(ErrorReport info) {
         this.info = info;
     }
 
     public InfoWrapper build() {
         InfoWrapper infoWrapper = new InfoWrapper();
-        infoWrapper.setMessageId(distributionElement.getMessageId());
-        infoWrapper.setSender(distributionElement.getSender());
-        infoWrapper.setSentAt(distributionElement.getSentAt());
-        if (!distributionElement.getKind().equals(DistributionElement.KindEnum.ERROR)) {
-            throw new IllegalArgumentException("InfoWrapper must be of kind ERROR");
-        }
-        infoWrapper.setKind(distributionElement.getKind());
-        infoWrapper.setStatus(distributionElement.getStatus());
-        infoWrapper.setRecipient(distributionElement.getRecipient());
         infoWrapper.setInfo(info);
         return infoWrapper;
     }
