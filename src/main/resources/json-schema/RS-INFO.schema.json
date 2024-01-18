@@ -12,9 +12,9 @@
   "properties": {
     "info": {
       "$ref": "#/definitions/info"
-    }
+    },
+    "additionalProperties": false
   },
-  "additionalProperties": false,
   "definitions": {
     "info": {
       "type": "object",
@@ -37,9 +37,9 @@
         },
         "referencedDistributionID": {
           "type": "string"
-        }
-      },
-      "additionalProperties": false
+        },
+        "additionalProperties": false
+      }
     },
     "errorCode": {
       "type": "object",
@@ -54,9 +54,9 @@
         },
         "statusString": {
           "type": "string"
-        }
-      },
-      "additionalProperties": false
+        },
+        "additionalProperties": false
+      }
     }
   }
 }

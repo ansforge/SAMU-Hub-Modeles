@@ -12,9 +12,9 @@
   "properties": {
     "reference": {
       "$ref": "#/definitions/reference"
-    }
+    },
+    "additionalProperties": false
   },
-  "additionalProperties": false,
   "definitions": {
     "reference": {
       "type": "object",
@@ -29,9 +29,9 @@
           "x-cols": 6,
           "example": "example.json#/caseId",
           "description": "Identifiant unique du message référencé"
-        }
-      },
-      "additionalProperties": false
+        },
+        "additionalProperties": false
+      }
     }
   }
 }
