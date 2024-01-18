@@ -12,7 +12,8 @@
   "properties": {
     "reference": {
       "$ref": "#/definitions/reference"
-    }
+    },
+    "additionalProperties": false
   },
   "definitions": {
     "reference": {
