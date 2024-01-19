@@ -173,7 +173,6 @@
       "$ref": "#/definitions/ExplicitAddress"
     }
   },
-  "additionalProperties": false,
   "required": [
     "senderID",
     "distributionID",

@@ -97,7 +97,7 @@
               "properties": {
                 "message": {
                   "$ref": "RC-DE.schema.json"
-                }
+                  }
               },
               "additionalProperties": false
             },
@@ -271,7 +271,6 @@
       "$ref": "#/definitions/ExplicitAddress"
     }
   },
-  "additionalProperties": false,
   "required": [
     "senderID",
     "distributionID",
