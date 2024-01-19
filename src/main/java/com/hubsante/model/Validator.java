@@ -103,23 +103,36 @@ public class Validator {
         if (!validationMessages.isEmpty()) {
             StringBuilder errors = new StringBuilder();
 
+            boolean infoError = false;
             boolean containsAtLeastOneUseCaseError = false;
             boolean violatesOneOfConstraint = false;
+
+            // there is one specific case which differs from all the others: if the error is in the RS-INFO message,
+            // we are not supposed to show any RC-DE errors, since RC-DE header is not present in RS-INFO messages
+            // therefore we're going to position infoError to true if the error is in the RS-INFO message.
+            // This is done by checking if any of the ValidationMessage entries in the validationMessages list
+            // contains a path that contains ".info" with at least one other element positioned after it.
+            for (ValidationMessage errorMsg : validationMessages) {
+                if (errorMsg.getPath().contains(".info") && Arrays.asList(errorMsg.getPath().split("\\.")).indexOf(".info") + 1 < Arrays.asList(errorMsg.getPath().split("\\.")).size()) {
+                    infoError = true;
+                }
+            }
 
             for (ValidationMessage errorMsg : validationMessages) {
                 String error = formatValidationErrorMessage(errorMsg);
                 if (error != null) {
                     // If we already have at least one use case error and the current error contains ".message" we
-                    // do not append it
-                    if (!containsAtLeastOneUseCaseError || !errorMsg.getPath().contains(".message")) {
+                    // do not append it. We also do not append any errors that do not contain 'info' if infoError is true.
+                    if ((!containsAtLeastOneUseCaseError || !errorMsg.getPath().contains(".message")) && (!infoError || errorMsg.getPath().contains("info"))) {
                         errors.append(error).append("\n");
+                        if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
+                            violatesOneOfConstraint = true;
+                        }
+                        if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
+                            containsAtLeastOneUseCaseError = true;
+                        }
                     }
-                    if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
-                        violatesOneOfConstraint = true;
-                    }
-                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
-                        containsAtLeastOneUseCaseError = true;
-                    }
+
                 }
             }
             // Append a special error message if the error string does not contain a single "use case" error and
