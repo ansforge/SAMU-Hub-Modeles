@@ -27,9 +27,9 @@
         },
         "descriptor": {
           "$ref": "#/definitions/Descriptor"
-        },
-        "additionalProperties": false
+        }
       },
+      "additionalProperties": false,
       "required": [
         "senderID",
         "distributionID",
@@ -50,9 +50,9 @@
       "properties": {
         "content": {
           "$ref": "#/definitions/Content"
-        },
-        "additionalProperties": false
+        }
       },
+      "additionalProperties": false,
       "required": [
         "content"
       ]
@@ -72,9 +72,9 @@
       "properties": {
         "jsonContent": {
           "$ref": "#/definitions/JsonContent"
-        },
-        "additionalProperties": false
-      }
+        }
+      },
+      "additionalProperties": false
     },
     "JsonContent": {
       "type": "object",
@@ -84,9 +84,9 @@
       "properties": {
         "embeddedJsonContent": {
           "$ref": "#/definitions/EmbeddedJsonContent"
-        },
-        "additionalProperties": false
-      }
+        }
+      },
+      "additionalProperties": false
     },
     "EmbeddedJsonContent": {
       "type": "object"
@@ -99,9 +99,9 @@
         },
         "language": {
           "type": "string"
-        },
-        "additionalProperties": false
+        }
       },
+      "additionalProperties": false,
       "required": [
         "explicitAddress",
         "language"
@@ -132,9 +132,9 @@
         },
         "explicitAddressValue": {
           "type": "string"
-        },
-        "additionalProperties": false
+        }
       },
+      "additionalProperties": false,
       "required": [
         "explicitAddressScheme",
         "explicitAddressValue"
@@ -171,8 +171,7 @@
     },
     "explicitAddress": {
       "$ref": "#/definitions/ExplicitAddress"
-    },
-    "additionalProperties": false
+    }
   },
   "required": [
     "senderID",
