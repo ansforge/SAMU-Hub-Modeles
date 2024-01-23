@@ -19,6 +19,7 @@ pd.set_option('display.width', 1000)
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
+full_asyncapi = None
 
 def run(sheet, name, version, filter):
     class Color:
@@ -571,12 +572,12 @@ def run(sheet, name, version, filter):
         file.write(documents)
     print('OpenAPI schema generated.')
 
-    # TODO bb: extract this logic to an outside script called by the gh action
-    # with open(f'out/full-asyncapi.yaml', 'w') as file:
-    #     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
-    #     documents = documents.replace('#/definitions/', "#/components/schemas/")
-    #     file.write(documents)
-    # print('AsyncAPI schema generated.')
+    # Adding current asyncapi schemas to full asyncapi schema
+    global full_asyncapi
+    if (full_asyncapi is None):
+       full_asyncapi = asyncapi_yaml
+    else:
+        full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
     uml_generator.run(name, MODEL_NAME, version=version, filter=filter)
