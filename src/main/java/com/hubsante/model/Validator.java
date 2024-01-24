@@ -111,9 +111,11 @@ public class Validator {
             // we are not supposed to show any RC-DE errors, since RC-DE header is not present in RS-INFO messages
             // therefore we're going to position infoError to true if the error is in the RS-INFO message.
             // This is done by checking if any of the ValidationMessage entries in the validationMessages list
-            // contains a path that contains ".info" with at least one other element positioned after it.
+            // contains a path that contains ".info" with at least one other element positioned after it and it is
+            // located at the 'root' of the message
             for (ValidationMessage errorMsg : validationMessages) {
-                if (errorMsg.getPath().contains(".info") && Arrays.asList(errorMsg.getPath().split("\\.")).indexOf(".info") + 1 < Arrays.asList(errorMsg.getPath().split("\\.")).size()) {
+                if (errorMsg.getPath().contains("embeddedJsonContent.message.info")
+                        && Arrays.asList(errorMsg.getPath().split("\\.")).indexOf(".info") + 1 < Arrays.asList(errorMsg.getPath().split("\\.")).size()) {
                     infoError = true;
                 }
             }
@@ -163,13 +165,14 @@ public class Validator {
         } else if (path.indexOf("message") + 1 >= path.size()) {
             // If the path contains the element 'message' and ends immediately after the message 'use case',
             // the error message is either irrelevant and we ignore it or it is an error in the RC-DE header.
-            // In the latter case, we return the error message (without the $. at the start), and to verify
+            // In the latter case, we return the error message (starting after the ...message), and to verify
             // if that's the case, we check if the error contains any of the attributes of the class
             // DistributionElement.
             Field[] attributes = DistributionElement.class.getDeclaredFields();
             for (Field attribute : attributes) {
-                if (errorMsg.getMessage().contains(attribute.getName())) {
-                    return errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8);
+                String substring = errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8);
+                if (substring.contains(attribute.getName())) {
+                    return substring;
                 }
             }
             return null;
