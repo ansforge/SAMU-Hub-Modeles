@@ -21,7 +21,6 @@
       "required": [
         "errorCode",
         "errorCause",
-        "sourceMessage",
         "referencedDistributionID"
       ],
       "properties": {
@@ -32,7 +31,7 @@
           "type": "string"
         },
         "sourceMessage": {
-          "type": "string"
+          "$ref": "#/definitions/sourceMessage"
         },
         "referencedDistributionID": {
           "type": "string"
@@ -56,6 +55,10 @@
         }
       },
       "additionalProperties": false
+    },
+    "sourceMessage": {
+      "type": "object",
+      "title": "sourceMessage"
     }
   }
 }
