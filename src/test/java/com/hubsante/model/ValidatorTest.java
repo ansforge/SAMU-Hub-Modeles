@@ -211,7 +211,7 @@ public class ValidatorTest {
     @Test
     @DisplayName("error in rc-de header")
     void headerError() throws IOException {
-        String json = getInvalidMessage("RC-EDA/invalid-RC-DE-header-error.json");
+        String json = getInvalidMessage("RC-REF/invalid-RC-DE-header-error.json");
 
         // validation throws due to incorrect header (recipients instead of recipient)
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
