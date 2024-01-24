@@ -160,6 +160,27 @@ public class ValidatorTest {
     }
 
     @Test
+    @DisplayName("RC-DE validation doesn't fail even with an unknown attribute at root level while additional properties are disallowed (but it would be cool if it did)")
+    public void jsonRcDeAdditionalPropertyAtRootValidationDoesntFail() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
+        assertDoesNotThrow(() -> validator.validateJSON(json, FULL_SCHEMA));
+    }
+
+    @Test
+    @DisplayName("RC-DE validation fails due to an unknown attribute deeper than root level while additional properties are disallowed")
+    public void jsonRcDeAdditionalPropValidationFails() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-deep.json");
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            checkErrorMessages(errors, "additional properties are not allowed");
+        }
+    }
+
+    @Test
     @DisplayName("invalid content valid enveloppe")
     public void invalidContentValidEnvelopeTest() throws IOException {
         String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.json");

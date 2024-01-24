@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.Sanitizer.sanitizeEdxl;
@@ -196,7 +197,19 @@ public class EdxlHandlerTest {
         }
     }
 
+    @Test
+    @DisplayName("deserialization of a message with an unknown additional property at root level doesn't fail (but it would be cool if it did)")
+    public void deserializationOfMessageWithUnknownPropertyAtRootLevelFails() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
+        assertDoesNotThrow(() -> converter.deserializeJsonEDXL(json));
+    }
 
+    @Test
+    @DisplayName("deserialization of a message with an unknown additional property not at root level fails")
+    public void deserializationOfMessageWithUnknownPropertyNotAtRootLevelFails() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-deep.json");
+        assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
+    }
 
     private String xmlPrefix() {
         return "<?xml version='1.0' encoding='UTF-8'?>";
