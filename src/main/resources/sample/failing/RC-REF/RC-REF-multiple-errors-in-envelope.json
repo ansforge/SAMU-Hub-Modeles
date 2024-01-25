@@ -1,11 +1,11 @@
 {
-  "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
-  "senderID": "fr.health.samuA",
+  "distributionIDERROR": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
+  "senderIDERROR": "fr.health.samuA",
   "dateTimeSent": "2022-07-25T10:04:34+01:00",
   "dateTimeExpires": "2072-07-25T10:04:34+01:00",
   "distributionStatus": "Actual",
   "distributionKind": "Ack",
-  "descriptor": {
+  "descriptorERROR": {
     "language": "fr-FR",
     "explicitAddress": {
       "explicitAddressScheme": "hubex",
@@ -25,14 +25,14 @@
             "sentAt": "2022-07-25T10:04:34+01:00",
             "status": "Actual",
             "kind": "Ack",
-            "recipients": [
+            "recipient": [
               {
                 "name": "samuB",
                 "URI": "hubex:fr.health.samuB"
               }
             ],
             "reference": {
-              "distributionID": "not missing"
+              "distributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
             }
           }
         }

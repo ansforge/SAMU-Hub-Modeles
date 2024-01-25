@@ -176,7 +176,7 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, "additional properties are not allowed");
+            checkErrorMessages(errors, "is not defined in the schema and the schema does not allow additional properties", "reference.unexpectedUnknownProperty: ");
         }
     }
 
@@ -247,6 +247,47 @@ public class ValidatorTest {
     }
 
     @Test
+    @DisplayName("completely fully missing RC-DE")
+    void missingRCDE() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-completely-missing-RC-DE.json");
+
+        // validation throws due to missing RC-DE
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            checkErrorMessagePresence(errors, MISSING, "messageId: ");
+            checkErrorMessagePresence(errors, MISSING, "sender: ");
+            checkErrorMessagePresence(errors, MISSING, "sentAt: ");
+            checkErrorMessagePresence(errors, MISSING, "kind: ");
+            checkErrorMessagePresence(errors, MISSING, "status: ");
+            checkErrorMessagePresence(errors, MISSING, "recipient: ");
+        }
+    }
+
+    @Test
+    @DisplayName("error in envelope")
+    void envelopeError() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-error-in-envelope.json");
+
+        // validation throws due to incorrect envelope
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+            checkErrorMessages(errors, MISSING, "dateTimeSent: ");
+        }
+    }
+
+
+
+    @Test
     @DisplayName("all examples files passing")
     public void examplesBundlePassingTest() {
         String folder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
@@ -273,6 +314,16 @@ public class ValidatorTest {
         if (!allPass.get()) {
             fail("Some files are not valid against schema");
         }
+    }
+
+    public void checkErrorMessagePresence(String[] errors, String expected, String prefix) {
+        String[] errorMessages = {TOO_MANY_SCHEMAS, NO_SCHEMAS, MISSING};
+
+        Arrays.stream(errorMessages).forEach(error ->{
+            if (error.equals(expected)) {
+                assertTrue(Arrays.stream(errors).anyMatch(err -> err.contains(prefix + error)));
+            }
+        });
     }
 
     public void checkErrorMessages(String[] errors, String expected, String prefix) {

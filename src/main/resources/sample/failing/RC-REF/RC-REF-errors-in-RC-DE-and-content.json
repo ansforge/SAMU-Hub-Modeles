@@ -23,16 +23,17 @@
               "URI": "hubex:fr.health.samuA"
             },
             "sentAt": "2022-07-25T10:04:34+01:00",
-            "status": "Actual",
+            "statusERROR": "Actual",
             "kind": "Ack",
-            "recipients": [
+            "recipientERROR": [
               {
                 "name": "samuB",
                 "URI": "hubex:fr.health.samuB"
               }
             ],
             "reference": {
-              "distributionID": "not missing"
+              "distributionIDERROR": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
+              "dateTimeSentERROR": "2022-07-25T10:04:34+01:00"
             }
           }
         }

@@ -40,10 +40,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
 import java.lang.reflect.Field;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 public class Validator {
@@ -103,29 +100,16 @@ public class Validator {
         if (!validationMessages.isEmpty()) {
             StringBuilder errors = new StringBuilder();
 
-            boolean infoError = false;
+            Set<ValidationMessage> envelopeValidationMessages = this.filterEnvelopeValidationMessages(validationMessages);
+            Set<ValidationMessage> errorValidationMessages = this.filterErrorValidationMessages(validationMessages);
+            Set<ValidationMessage> rsDeValidationMessages = this.filterRsDeValidationMessages(validationMessages);
+
             boolean containsAtLeastOneUseCaseError = false;
             boolean violatesOneOfConstraint = false;
-
-            // there is one specific case which differs from all the others: if the error is in the RS-INFO message,
-            // we are not supposed to show any RC-DE errors, since RC-DE header is not present in RS-INFO messages
-            // therefore we're going to position infoError to true if the error is in the RS-INFO message.
-            // This is done by checking if any of the ValidationMessage entries in the validationMessages list
-            // contains a path that contains ".info" with at least one other element positioned after it and it is
-            // located at the 'root' of the message
-            for (ValidationMessage errorMsg : validationMessages) {
-                if (errorMsg.getPath().contains("embeddedJsonContent.message.info")
-                        && Arrays.asList(errorMsg.getPath().split("\\.")).indexOf(".info") + 1 < Arrays.asList(errorMsg.getPath().split("\\.")).size()) {
-                    infoError = true;
-                }
-            }
 
             for (ValidationMessage errorMsg : validationMessages) {
                 String error = formatValidationErrorMessage(errorMsg);
                 if (error != null) {
-                    // If we already have at least one use case error and the current error contains ".message" we
-                    // do not append it. We also do not append any errors that do not contain 'info' if infoError is true.
-                    if ((!containsAtLeastOneUseCaseError || !errorMsg.getPath().contains(".message")) && (!infoError || errorMsg.getPath().contains("info"))) {
                         errors.append(error).append("\n");
                         if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
                             violatesOneOfConstraint = true;
@@ -133,17 +117,64 @@ public class Validator {
                         if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
                             containsAtLeastOneUseCaseError = true;
                         }
-                    }
-
                 }
             }
+
             // Append a special error message if the error string does not contain a single "use case" error and
             // the there is no 'oneOf' constraint violation
-            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint) {
+            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint && !validationMessages.isEmpty() && errorValidationMessages.isEmpty()) {
                 errors.append("could not detect any schemas in the message, at least one is required \n");
             }
+
+            // Append envelope, error and RS-DE messages
+            for (ValidationMessage errorMsg : envelopeValidationMessages) {
+                errors.append(errorMsg.getMessage()).append("\n");
+            }
+            for (ValidationMessage errorMsg : errorValidationMessages) {
+                errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
+            }
+            if (errorValidationMessages.isEmpty())
+                for (ValidationMessage errorMsg : rsDeValidationMessages) {
+                    errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
+                }
+
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
+    }
+
+    private Set<ValidationMessage> filterEnvelopeValidationMessages(Set<ValidationMessage> validationMessages) {
+        // If the validation message's "path" value is root ($), it means that the error is in the envelope
+        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().equals("$")).collect(java.util.stream.Collectors.toSet());
+        validationMessages.removeAll(result);
+        return result;
+
+    }
+
+    private Set<ValidationMessage> filterErrorValidationMessages(Set<ValidationMessage> validationMessages) {
+        // If the validation message's "path" value contains embeddedJsonContent.message.info, it means that the error
+        // is in RS-INFO (important to know because we won't keep RS-DE errors if the message is RS-INFO.)
+        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().contains("embeddedJsonContent.message.info")).collect(java.util.stream.Collectors.toSet());
+        validationMessages.removeAll(result);
+        return result;
+    }
+
+    private Set<ValidationMessage> filterRsDeValidationMessages(Set<ValidationMessage> validationMessages) {
+        Set<ValidationMessage> result = new HashSet<>();
+        Field[] attributes = DistributionElement.class.getDeclaredFields();
+        for(ValidationMessage validationMessage : validationMessages) {
+            // We only bother checking messages with a path containing "jsonContent.embeddedJsonContent.message"
+            if (validationMessage.getPath().contains("jsonContent.embeddedJsonContent.message")) {
+                // We only look at the part of the message after "message"
+                String substring = validationMessage.getMessage().substring(validationMessage.getMessage().indexOf("message") + 8);
+                for (Field attribute : attributes) {
+                    if (substring.contains(attribute.getName())) {
+                        result.add(validationMessage);
+                    }
+                }
+            }
+        }
+        validationMessages.removeAll(result);
+        return result;
     }
 
     private String formatValidationErrorMessage(ValidationMessage errorMsg) {
