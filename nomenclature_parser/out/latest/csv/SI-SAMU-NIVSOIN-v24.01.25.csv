@@ -1,0 +1,4 @@
+,code,label_n1,Libellé niveau 2,Libellé niveau 3,description,commentaire
+0,MED,Médicalisé,,,L'équipage du vecteur est composé d'au moins un médecin,
+1,PARAMED,Paramédicalisé,,,L'équipage du vecteur ne comporte pas de médecin. Il est uniquement composé d'infirmier(e)s.,
+2,SECOURS,Secouriste,,,"L'équipage du vecteur ne comporte que des secouristes professionnnels ni médecin, ni infimier",
