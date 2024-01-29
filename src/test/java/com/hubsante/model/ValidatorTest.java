@@ -160,10 +160,10 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("RC-DE validation doesn't fail even with an unknown attribute at root level while additional properties are disallowed (but it would be cool if it did)")
+    @DisplayName("EDXL-DE envelope validation fails with an unknown attribute at root level while additional properties are disallowed")
     public void jsonRcDeAdditionalPropertyAtRootValidationDoesntFail() throws IOException {
         String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
-        assertDoesNotThrow(() -> validator.validateJSON(json, FULL_SCHEMA));
+        assertThrows(ValidationException.class,() -> validator.validateJSON(json, FULL_SCHEMA));
     }
 
     @Test
