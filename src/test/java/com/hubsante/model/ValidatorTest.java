@@ -44,6 +44,7 @@ public class ValidatorTest {
     private static String TOO_MANY_SCHEMAS = "embeddedJsonContent: should be valid to one and only one schema, but";
     private static String NO_SCHEMAS = "could not detect any schemas in the message, at least one is required";
     private static String MISSING = "is missing but it is required";
+    private static String UNDEFINED = "is not defined in the schema and the schema does not allow additional properties";
     static ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
     private final Validator validator = new Validator();
 
@@ -242,7 +243,7 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, MISSING, "recipient: ");
+            checkErrorMessagePresence(errors, MISSING, "recipient: ");
         }
     }
 
@@ -269,6 +270,25 @@ public class ValidatorTest {
     }
 
     @Test
+    @DisplayName("error in content")
+    void contentError() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-error-in-content.json");
+
+        // validation throws due to incorrect content
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
+            checkErrorMessagePresence(errors, UNDEFINED, "reference.distributionIDS: ");
+        }
+    }
+
+    @Test
     @DisplayName("error in envelope")
     void envelopeError() throws IOException {
         String json = getInvalidMessage("RC-REF/RC-REF-error-in-envelope.json");
@@ -285,7 +305,226 @@ public class ValidatorTest {
         }
     }
 
+    @Test
+    @DisplayName("error in envelope and content")
+    void envelopeAndContentError() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-error-in-envelope-and-content.json");
 
+        // validation throws due to incorrect envelope and content
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessages(errors, MISSING, "reference.distributionID: ");
+            checkErrorMessagePresence(errors, MISSING, "senderID: ");
+        }
+    }
+
+    @Test
+    @DisplayName("error in envelope and RC-DE")
+    void envelopeAndRCDEError() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-error-in-envelope-and-RC-DE.json");
+
+        // validation throws due to incorrect envelope and RC-DE
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "distributionID: ");
+            checkErrorMessagePresence(errors, MISSING, "messageId: ");
+        }
+    }
+
+    @Test
+    @DisplayName("error in RC-DE")
+    void RCDEError() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-error-in-RC-DE.json");
+
+        // validation throws due to incorrect RC-DE
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "recipient: ");
+        }
+    }
+
+    @Test
+    @DisplayName("error in RC-DE and content")
+    void RCDEAndContentError() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-errors-in-RC-DE-and-content.json");
+
+        // validation throws due to incorrect RC-DE and content
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "recipient: ");
+            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
+        }
+    }
+
+    @Test
+    @DisplayName("missing required fields")
+    void missingRequiredFields() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-missing-required-fields.json");
+
+        // validation throws due to missing required fields
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
+        }
+    }
+
+    @Test
+    @DisplayName("multiple errors in envelope")
+    void multipleErrorsInEnvelope() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-multiple-errors-in-envelope.json");
+
+        // validation throws due to multiple errors in envelope
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "distributionID: ");
+            checkErrorMessagePresence(errors, MISSING, "senderID: ");
+            checkErrorMessagePresence(errors, MISSING, "descriptor: ");
+        }
+    }
+
+    @Test
+    @DisplayName("multiple errors in content")
+    void multipleErrorsInContent() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-multiple-errors-in-content.json");
+
+        // validation throws due to multiple errors in content
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
+            checkErrorMessagePresence(errors, UNDEFINED, "ERROR: ");
+            checkErrorMessagePresence(errors, UNDEFINED, "ERROR2: ");
+        }
+    }
+
+    @Test
+    @DisplayName("multiple errors in RC-DE")
+    void multipleErrorsInRCDE() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-multiple-errors-in-RC-DE.json");
+
+        // validation throws due to multiple errors in RC-DE
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "kind: ");
+            checkErrorMessagePresence(errors, MISSING, "recipient: ");
+            checkErrorMessagePresence(errors, MISSING, "status: ");
+        }
+    }
+
+    @Test
+    @DisplayName("no schemas")
+    void noSchemas() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-no-schemas.json");
+
+        // validation throws due to no schemas
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, "could not detect any schemas in the message, at least one is required ");
+        }
+    }
+
+    @Test
+    @DisplayName("too many schemas")
+    void tooManySchemas() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-too-many-schemas.json");
+
+        // validation throws due to too many schemas
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, "should be valid to one and only one schema, but 2 are valid");
+        }
+    }
+
+    @Test
+    @DisplayName("too many schemas and errors in content")
+    void tooManySchemasAndErrorsInContent() throws IOException {
+        String json = getInvalidMessage("RC-REF/RC-REF-too-many-schemas-and-errors-in-content.json");
+
+        // validation throws due to too many schemas and errors in content
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        // we verify the correct error message is thrown
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+
+        } catch (ValidationException e) {
+            String[] errors = e.getMessage().split("\n");
+
+            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
+            checkErrorMessagePresence(errors, UNDEFINED, "reference.incorrectProp: ");
+
+            checkErrorMessagePresence(errors, "string found, object expected", "emsi.CONTEXT: ");
+            checkErrorMessagePresence(errors, MISSING, "emsi.EVENT.ID: ");
+            checkErrorMessagePresence(errors, "object found, array expected", "emsi.EVENT.EGEO: ");
+        }
+    }
 
     @Test
     @DisplayName("all examples files passing")
@@ -317,13 +556,17 @@ public class ValidatorTest {
     }
 
     public void checkErrorMessagePresence(String[] errors, String expected, String prefix) {
-        String[] errorMessages = {TOO_MANY_SCHEMAS, NO_SCHEMAS, MISSING};
+        String[] errorMessages = {TOO_MANY_SCHEMAS, NO_SCHEMAS, MISSING, UNDEFINED};
 
         Arrays.stream(errorMessages).forEach(error ->{
             if (error.equals(expected)) {
                 assertTrue(Arrays.stream(errors).anyMatch(err -> err.contains(prefix + error)));
             }
         });
+    }
+
+    public void checkErrorMessagePresence(String[] errors, String expected) {
+        checkErrorMessagePresence(errors, expected, "");
     }
 
     public void checkErrorMessages(String[] errors, String expected, String prefix) {
