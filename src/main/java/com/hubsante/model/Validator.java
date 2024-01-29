@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.model.common.DistributionElement;
 import com.hubsante.model.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
@@ -38,10 +39,8 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.lang.reflect.Field;
+import java.util.*;
 
 @Slf4j
 public class Validator {
@@ -101,28 +100,81 @@ public class Validator {
         if (!validationMessages.isEmpty()) {
             StringBuilder errors = new StringBuilder();
 
+            Set<ValidationMessage> envelopeValidationMessages = this.filterEnvelopeValidationMessages(validationMessages);
+            Set<ValidationMessage> errorValidationMessages = this.filterErrorValidationMessages(validationMessages);
+            Set<ValidationMessage> rsDeValidationMessages = this.filterRsDeValidationMessages(validationMessages);
+
             boolean containsAtLeastOneUseCaseError = false;
             boolean violatesOneOfConstraint = false;
 
             for (ValidationMessage errorMsg : validationMessages) {
                 String error = formatValidationErrorMessage(errorMsg);
                 if (error != null) {
-                    errors.append(error).append("\n");
-                    if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
-                        violatesOneOfConstraint = true;
-                    }
-                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message.")){
-                        containsAtLeastOneUseCaseError = true;
+                        errors.append(error).append("\n");
+                        if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
+                            violatesOneOfConstraint = true;
+                        }
+                        if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
+                            containsAtLeastOneUseCaseError = true;
+                        }
+                }
+            }
+
+            // Append a special error message if the error string does not contain a single "use case" error and
+            // the there is no 'oneOf' constraint violation
+            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint && !validationMessages.isEmpty() && errorValidationMessages.isEmpty()) {
+                errors.append("could not detect any schemas in the message, at least one is required \n");
+            }
+
+            // Append envelope, error and RS-DE messages
+            for (ValidationMessage errorMsg : envelopeValidationMessages) {
+                errors.append(errorMsg.getMessage()).append("\n");
+            }
+            for (ValidationMessage errorMsg : errorValidationMessages) {
+                errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
+            }
+            if (errorValidationMessages.isEmpty())
+                for (ValidationMessage errorMsg : rsDeValidationMessages) {
+                    errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
+                }
+
+            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
+        }
+    }
+
+    private Set<ValidationMessage> filterEnvelopeValidationMessages(Set<ValidationMessage> validationMessages) {
+        // If the validation message's "path" value is root ($), it means that the error is in the envelope
+        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().equals("$")).collect(java.util.stream.Collectors.toSet());
+        validationMessages.removeAll(result);
+        return result;
+
+    }
+
+    private Set<ValidationMessage> filterErrorValidationMessages(Set<ValidationMessage> validationMessages) {
+        // If the validation message's "path" value contains embeddedJsonContent.message.info, it means that the error
+        // is in RS-INFO (important to know because we won't keep RS-DE errors if the message is RS-INFO.)
+        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().contains("embeddedJsonContent.message.info")).collect(java.util.stream.Collectors.toSet());
+        validationMessages.removeAll(result);
+        return result;
+    }
+
+    private Set<ValidationMessage> filterRsDeValidationMessages(Set<ValidationMessage> validationMessages) {
+        Set<ValidationMessage> result = new HashSet<>();
+        Field[] attributes = DistributionElement.class.getDeclaredFields();
+        for(ValidationMessage validationMessage : validationMessages) {
+            // We only bother checking messages with a path containing "jsonContent.embeddedJsonContent.message"
+            if (validationMessage.getPath().contains("jsonContent.embeddedJsonContent.message")) {
+                // We only look at the part of the message after "message"
+                String substring = validationMessage.getMessage().substring(validationMessage.getMessage().indexOf("message") + 8);
+                for (Field attribute : attributes) {
+                    if (substring.contains(attribute.getName())) {
+                        result.add(validationMessage);
                     }
                 }
             }
-            // Append a special error message if the error string does not contain a single "use case" error and
-            // the there is no 'oneOf' constraint violation
-            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint) {
-                errors.append("could not detect any schemas in the message, at least one is required \n");
-            }
-            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
+        validationMessages.removeAll(result);
+        return result;
     }
 
     private String formatValidationErrorMessage(ValidationMessage errorMsg) {
@@ -143,7 +195,17 @@ public class Validator {
             }
         } else if (path.indexOf("message") + 1 >= path.size()) {
             // If the path contains the element 'message' and ends immediately after the message 'use case',
-            // the error message is irrelevant and we ignore it.
+            // the error message is either irrelevant and we ignore it or it is an error in the RC-DE header.
+            // In the latter case, we return the error message (starting after the ...message), and to verify
+            // if that's the case, we check if the error contains any of the attributes of the class
+            // DistributionElement.
+            Field[] attributes = DistributionElement.class.getDeclaredFields();
+            for (Field attribute : attributes) {
+                String substring = errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8);
+                if (substring.contains(attribute.getName())) {
+                    return substring;
+                }
+            }
             return null;
         } else {
             // Otherwise, we return the part of error message that comes after the 'message' element
