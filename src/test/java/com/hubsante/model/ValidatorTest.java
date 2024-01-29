@@ -161,14 +161,14 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("EDXL-DE envelope validation fails with an unknown attribute at root level while additional properties are disallowed")
+    @DisplayName("validation fails due to an unknown attribute at root level while additional properties are disallowed")
     public void jsonRcDeAdditionalPropertyAtRootValidationDoesntFail() throws IOException {
         String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
         assertThrows(ValidationException.class,() -> validator.validateJSON(json, FULL_SCHEMA));
     }
 
     @Test
-    @DisplayName("RC-DE validation fails due to an unknown attribute deeper than root level while additional properties are disallowed")
+    @DisplayName("validation fails due to an unknown attribute deeper than root level while additional properties are disallowed")
     public void jsonRcDeAdditionalPropValidationFails() throws IOException {
         String json = getInvalidMessage("EDXL-DE/unknown-property-deep.json");
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
@@ -248,7 +248,7 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("completely fully missing RC-DE")
+    @DisplayName("completely missing RC-DE")
     void missingRCDE() throws IOException {
         String json = getInvalidMessage("RC-REF/RC-REF-completely-missing-RC-DE.json");
 
