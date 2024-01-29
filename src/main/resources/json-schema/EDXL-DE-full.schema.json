@@ -42,19 +42,44 @@
     },
     "EdxlMessage": {
       "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/EdxlEnvelope"
-        }
-      ],
       "properties": {
+        "senderID": {
+          "type": "string"
+        },
+        "distributionID": {
+          "type": "string"
+        },
+        "dateTimeSent": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "dateTimeExpires": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "distributionStatus": {
+          "$ref": "#/definitions/DistributionStatus"
+        },
+        "distributionKind": {
+          "$ref": "#/definitions/DistributionKind"
+        },
+        "descriptor": {
+          "$ref": "#/definitions/Descriptor"
+        },
         "content": {
           "$ref": "#/definitions/Content"
         }
       },
       "additionalProperties": false,
       "required": [
-        "content"
+        "content",
+        "senderID",
+        "distributionID",
+        "dateTimeSent",
+        "dateTimeExpires",
+        "distributionStatus",
+        "distributionKind",
+        "descriptor"
       ]
     },
     "Content": {
