@@ -2,86 +2,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "classpath:/json-schema/schema#",
   "definitions": {
-    "EdxlEnvelope": {
-      "type": "object",
-      "properties": {
-        "senderID": {
-          "type": "string"
-        },
-        "distributionID": {
-          "type": "string"
-        },
-        "dateTimeSent": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "dateTimeExpires": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "distributionStatus": {
-          "$ref": "#/definitions/DistributionStatus"
-        },
-        "distributionKind": {
-          "$ref": "#/definitions/DistributionKind"
-        },
-        "descriptor": {
-          "$ref": "#/definitions/Descriptor"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "senderID",
-        "distributionID",
-        "dateTimeSent",
-        "dateTimeExpires",
-        "distributionStatus",
-        "distributionKind",
-        "descriptor"
-      ]
-    },
-    "EdxlMessage": {
-      "type": "object",
-      "properties": {
-        "senderID": {
-          "type": "string"
-        },
-        "distributionID": {
-          "type": "string"
-        },
-        "dateTimeSent": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "dateTimeExpires": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "distributionStatus": {
-          "$ref": "#/definitions/DistributionStatus"
-        },
-        "distributionKind": {
-          "$ref": "#/definitions/DistributionKind"
-        },
-        "descriptor": {
-          "$ref": "#/definitions/Descriptor"
-        },
-        "content": {
-          "$ref": "#/definitions/Content"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "content",
-        "senderID",
-        "distributionID",
-        "dateTimeSent",
-        "dateTimeExpires",
-        "distributionStatus",
-        "distributionKind",
-        "descriptor"
-      ]
-    },
     "Content": {
       "type": "array",
       "items": {
@@ -122,7 +42,7 @@
               "properties": {
                 "message": {
                   "$ref": "RC-DE.schema.json"
-                  }
+                }
               },
               "additionalProperties": false
             },
@@ -265,23 +185,22 @@
     }
   },
   "properties": {
-    "edxlMessage": {
-      "$ref": "#/definitions/EdxlMessage"
+    "senderID": {
+      "type": "string"
     },
-    "edxlEnvelope": {
-      "$ref": "#/definitions/EdxlEnvelope"
+    "distributionID": {
+      "type": "string"
+    },
+    "dateTimeSent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dateTimeExpires": {
+      "type": "string",
+      "format": "date-time"
     },
     "content": {
       "$ref": "#/definitions/Content"
-    },
-    "contentObject": {
-      "$ref": "#/definitions/ContentObject"
-    },
-    "jsonContent": {
-      "$ref": "#/definitions/JsonContent"
-    },
-    "embeddedJsonContent": {
-      "$ref": "#/definitions/EmbeddedJsonContent"
     },
     "descriptor": {
       "$ref": "#/definitions/Descriptor"
@@ -291,11 +210,9 @@
     },
     "distributionStatus": {
       "$ref": "#/definitions/DistributionStatus"
-    },
-    "explicitAddress": {
-      "$ref": "#/definitions/ExplicitAddress"
     }
   },
+  "additionalProperties": false,
   "required": [
     "senderID",
     "distributionID",
