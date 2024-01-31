@@ -291,7 +291,8 @@ def run(sheet, name, version, filter):
     # DATA USAGE
     def is_array(elem):
         """Is elem an array?"""
-        return elem['Cardinalité'].endswith('n')
+        cardinality = elem['Cardinalité']
+        return not cardinality.endswith('1')
 
     def navigate_children_with_id(id_path):
         """
@@ -402,6 +403,8 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'items': childDetails
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = childDetails
 
@@ -432,14 +435,16 @@ def run(sheet, name, version, filter):
                 'type': 'array',
                 'items': {
                     'title': child['full_name'],
-                    'description': child['Description'] if str(child['Description']) != 'nan' else None,
+                    'description': child['Description'] if str(child['Description']) != 'nan' else '',
                     '$ref': '#/definitions/' + childTypeName,
                 }
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = {
                 'title': child['full_name'],
-                'description': child['Description'] if str(child['Description']) != 'nan' else None,
+                'description': child['Description'] if str(child['Description']) != 'nan' else '',
                 '$ref': '#/definitions/' + childTypeName,
             }
 
