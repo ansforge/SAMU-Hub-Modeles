@@ -11,6 +11,8 @@ components:
       - createCase
       properties:
         createCase:
+          title: Objet createCase
+          description: Object createCase
           $ref: '#/components/schemas/createCase'
     createCase:
       type: object
@@ -84,16 +86,50 @@ components:
           examples:
           - '1.2'
         qualification:
+          title: Qualification de l'affaire/dossier
+          description: "Permet de qualifier l'affaire en g\xE9n\xE9rale. La qualification\
+            \ est issue d'une interpr\xE9tation m\xE9tier des alertes re\xE7ues."
           $ref: '#/components/schemas/qualification'
         location:
+          title: Localisation de l'affaire/dossier
+          description: "Concerne bien le dossier de r\xE9gulation pour le p\xE9rimetre\
+            \ 15-15"
           $ref: '#/components/schemas/location'
         initialAlert:
+          title: Alerte initiale
+          description: "L'objet alert correspond \xE0 la transcription d'une communication\
+            \ d'urgence. Une alerte est une photo d'une situation donn\xE9e d\xE9\
+            crite par un requ\xE9rant et n'est pas amen\xE9e \xE0 \xE9voluer dans\
+            \ le temps. En cas de modification (adresse, qualification, ...), cela\
+            \ passera par une mise \xE0 jour op\xE9ration ou une nouvelle alerte.\n\
+            L'alerte initiale est la premiere alerte concernant la situation d'urgence\
+            \ et conduisant \xE0 la cr\xE9ation d'une affaire.\nLe syst\xE8me destinataire\
+            \ re\xE7oit une affaire lorsqu'une alerte le concerne. S'il ne g\xE8re\
+            \ pas les affaires multi-alertes, il doit donc cr\xE9er une affaire seulement\
+            \ sur l'alerte le concernant : pour une cr\xE9ation d'affaire, sur l'alerte\
+            \ initiale et pour une mise \xE0 jour d'affaire, sur la nouvelle alerte\
+            \ (en r\xE9cup\xE9rant \xE9ventuellement des informations de l'alerte\
+            \ initiale en historique).\nPour r\xE9pondre sur une alerte, l'alerte\
+            \ initiale n'est pas obligatoire car pas forc\xE9ment stock\xE9e dans\
+            \ le syst\xE8me (notamment pour ceux avec des affaires mono-alertes).\n\
+            NB :\n- Dans le cadre une mise \xE0 jour d'affaire, les objets alert sont\
+            \ IMMUTABLES dans la mesure o\xF9 il d\xE9crivent une \"photo\" de la\
+            \ situation d\xE9crite par le requ\xE9rant."
           $ref: '#/components/schemas/alert'
         newAlert:
           type: array
           items:
+            title: Nouvelle alerte
+            description: "Lorsque plusieurs alertes correspondent \xE0 une m\xEAme\
+              \ affaire/dossier, la premi\xE8re alerte re\xE7ue est appel\xE9e Alerte\
+              \ initial \"initialAlert\", la seconde et les suivantes sont des objets\
+              \ \"newAlert\".\nLes objet newAlert suivent le mod\xE8le d'un objet\
+              \ initialAlert\nDans le cadre une mise \xE0 jour d'affaire, les objets\
+              \ alertes sont IMMUTABLES."
             $ref: '#/components/schemas/alert'
         additionalInformation:
+          title: "Informations compl\xE9mentaires"
+          description: ''
           $ref: '#/components/schemas/additionalInformation'
         freetext:
           type: string
@@ -116,16 +152,30 @@ components:
       - whatsHappen
       properties:
         whatsHappen:
+          title: Nature de fait
+          description: "D\xE9crit la nature de fait de l'alerte (NF) \xE0 partir de\
+            \ la nomenclature CISU"
           $ref: '#/components/schemas/nomenclature'
         locationKind:
+          title: Type de lieu
+          description: "D\xE9crit le type de lieu (TL). R\xE9f\xE9rentiel : nomenclature\
+            \ CISU"
           $ref: '#/components/schemas/nomenclature'
         riskThreat:
           type: array
           items:
+            title: "Risque, menace et sensibilit\xE9"
+            description: "D\xE9crit les risques, menaces et sensibilit\xE9s (RMS).\
+              \ R\xE9f\xE9rentiel : nomenclature CISU."
             $ref: '#/components/schemas/nomenclature'
         healthMotive:
+          title: "Motif de recours m\xE9dico-secouriste"
+          description: "D\xE9crit le motif de recours m\xE9dico-secouriste (MR). R\xE9\
+            f\xE9rentiel : nomenclature CISU."
           $ref: '#/components/schemas/nomenclature'
         victims:
+          title: Patients/Victimes
+          description: ''
           $ref: '#/components/schemas/victims'
       additionalProperties: false
       example: example.json#/createCase/qualification
@@ -175,16 +225,31 @@ components:
           examples:
           - "Lyc\xE9e Pierre de Coubertin"
         detailedAddress:
+          title: "D\xE9tails de l'adresse"
+          description: ''
           $ref: '#/components/schemas/detailedAddress'
         city:
+          title: "D\xE9tails de la commune"
+          description: ''
           $ref: '#/components/schemas/city'
         access:
+          title: "D\xE9tails d'acc\xE8s"
+          description: "Non g\xE9r\xE9s par NexSIS : ne seront pas transmis au SAMU\
+            \ et seront affich\xE9s c\xF4t\xE9 NexSIS en cl\xE9s / valeurs dans le\
+            \ champ libre"
           $ref: '#/components/schemas/access'
         geometry:
+          title: "G\xE9ometrie associ\xE9e"
+          description: ''
           $ref: '#/components/schemas/geometry'
         externalInfo:
           type: array
           items:
+            title: "Liens aux syst\xE8mes externes"
+            description: "Permet de partager l'identifiant d'un objet ayant servi\
+              \ \xE0 l'\xE9tablissement de la localisation. L'objet reprend la structure\
+              \ EXTERNAL_INFO de l'EMSI\nL'identifiant BAN de l'adresse (cl\xE9 d'interop\xE9\
+              rabilit\xE9) doit \xEAtre partag\xE9 au maximum."
             $ref: '#/components/schemas/externalInfo'
         country:
           type: string
@@ -527,18 +592,43 @@ components:
           examples:
           - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
         caller:
+          title: "Requ\xE9rant"
+          description: "Objet permettant d'identifer la personne qui a alert\xE9 les\
+            \ secours et de la recontacter"
           $ref: '#/components/schemas/caller'
         alertSource:
+          title: Source de l'alerte
+          description: "Source de contact permettant d'identifier le requ\xE9rant.\n\
+            Dans le cas o\xF9 le requ\xE9rant est \xE0 l'origine de l'alerte les objets\
+            \ contactSource et callerContact sont valoris\xE9s de la m\xEAme fa\xE7\
+            on"
           $ref: '#/components/schemas/contactSource'
         location:
+          title: Localisation de l'alerte
+          description: "Cet \xE9l\xE9ment peut repr\xE9senter la localisation du requ\xE9\
+            rant si celle-ci diff\xE8re de celle de l'\xE9v\xE9nement ou pointer vers\
+            \ la localisation d'acc\xE8s \xE0 l'affaire si elle est confondue avec\
+            \ celle de l'alerte."
           $ref: '#/components/schemas/location'
         qualification:
+          title: Qualification
+          description: Qualification de l'alerte.
           $ref: '#/components/schemas/qualification'
         callTaker:
+          title: Agent
+          description: "Objet permettant d'identifer et recontacter l'op\xE9rateur\
+            \ ayant trait\xE9 l'alerte"
           $ref: '#/components/schemas/callTaker'
         attachment:
           type: array
           items:
+            title: "Pi\xE8ces jointes"
+            description: "Permet d'envoyer tout type de fichiers (photos, vid\xE9\
+              os, sons, \u2026) par lien.\nLes URI doivent correspondre \xE0 des espaces\
+              \ s\xE9curis\xE9s auxquels les acc\xE8s ont d\xE9j\xE0 \xE9t\xE9 fournies\
+              \ ou doivent \xEAtre fournies avec des tokens \xE9ph\xE9m\xE8res si\
+              \ besoin de s\xE9curiser l'acc\xE8s aux ressources tout en en garantissant\
+              \ l'acc\xE8s par tous les destinataires des messages.\n\n"
             $ref: '#/components/schemas/attachment'
       additionalProperties: false
       example: example.json#/createCase/initialAlert
@@ -550,7 +640,12 @@ components:
       required: []
       properties:
         customMap:
-          $ref: '#/components/schemas/customMap'
+          type: array
+          items:
+            title: "Cl\xE9 valeur adaptable"
+            description: Permet de rajouter quelques paires de champs
+            $ref: '#/components/schemas/customMap'
+          maxItems: 3
       additionalProperties: false
       example: example.json#/createCase/additionalInformation
     nomenclature:
@@ -686,6 +781,8 @@ components:
           examples:
           - "9, 4bis, PK10, \u2026"
         wayName:
+          title: Type et nom de voie
+          description: ''
           $ref: '#/components/schemas/wayName'
       additionalProperties: false
       example: example.json#/createCase/location/detailedAddress
@@ -855,6 +952,12 @@ components:
           examples:
           - '2022-09-27T08:23:34+02:00'
         point:
+          title: 'Point '
+          description: "Fournir au maximum m\xEAme s'il est impr\xE9cis (et adapter\
+            \ le champs \"Pr\xE9cision\" en fonction). \nPar exemple, sans adresse,\
+            \ il est possible de fournir le point GPS de la commune et d'adapter et\
+            \ pr\xE9ciser l'adresse en cours d'intervention.\nSera toujours fourni\
+            \ par NexSIS."
           $ref: '#/components/schemas/point'
         sketch:
           type: string
@@ -982,6 +1085,12 @@ components:
       - coord
       properties:
         coord:
+          title: "Coordonn\xE9es"
+          description: "Le SGO ne fonctionne toujours sur des coordonn\xE9es X/Y ainsi\
+            \ qu'une adresse indicative associ\xE9e. \nNexSIS dispose donc toujours\
+            \ d'un point GPS utilis\xE9 pour le temps de trajet, la d\xE9termination\
+            \ de l'intervenant le plus proche, ...\nL'adresse est elle utilis\xE9\
+            e par l\u2019intervenant pour aller sur le lieu."
           $ref: '#/components/schemas/coord'
         sysCoord:
           type: string
@@ -1091,8 +1200,15 @@ components:
       required: []
       properties:
         callerContact:
+          title: Contact
+          description: "Type et valeur de l'URI utilis\xE9e par le requ\xE9rant \xE0\
+            \ l'origine de l'alerte."
           $ref: '#/components/schemas/contact'
         callbackContact:
+          title: Contact de contre-appel
+          description: "Type et valeur de l'URI permettant un rappel pour avoir plus\
+            \ d'informations : il peut s'agit du requ\xE9rant, de la victime ou d'un\
+            \ t\xE9moin. "
           $ref: '#/components/schemas/contact'
         language:
           type: string
@@ -1378,6 +1494,8 @@ components:
           examples:
           - "P\xE8re"
         detailedName:
+          title: "Pr\xE9nom & nom usuel"
+          description: ''
           $ref: '#/components/schemas/detailedName'
       additionalProperties: false
       example: example.json#/createCase/initialAlert/caller
@@ -1477,6 +1595,8 @@ components:
           examples:
           - ARM
         calltakerContact:
+          title: Contact de l'agent
+          description: Objet contact permettant d'indiquer le contact de l'agent
           $ref: '#/components/schemas/contact'
         calltakerId:
           type: string
@@ -1679,7 +1799,7 @@ components:
           title: "Cl\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/additionalInformation/customMap/key
+          example: example.json#/createCase/additionalInformation/customMap/0/key
           description: Nom de la balise
           examples:
           - neighborhood
@@ -1688,7 +1808,7 @@ components:
           title: "Libell\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/additionalInformation/customMap/label
+          example: example.json#/createCase/additionalInformation/customMap/0/label
           description: "Libell\xE9 correspondant"
           examples:
           - Quartier
@@ -1697,7 +1817,7 @@ components:
           title: Valeur
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/additionalInformation/customMap/value
+          example: example.json#/createCase/additionalInformation/customMap/0/value
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
           examples:
           - LYON 2e arrondissement
@@ -1706,13 +1826,13 @@ components:
           title: "D\xE9tails"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/additionalInformation/customMap/freetext
+          example: example.json#/createCase/additionalInformation/customMap/0/freetext
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
             \ de ce matching additionnel"
           examples:
           - "Pr\xE9cision sur le quartier d'intervention"
       additionalProperties: false
-      example: example.json#/createCase/additionalInformation/customMap
+      example: example.json#/createCase/additionalInformation/customMap/0
       examples:
       - key: neighborhood
         label: Quartier
