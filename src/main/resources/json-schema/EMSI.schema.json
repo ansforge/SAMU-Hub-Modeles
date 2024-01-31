@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.01.23",
+    "version": "24.01.31",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -11,6 +11,8 @@
     ],
     "properties": {
         "emsi": {
+            "title": "Objet emsi",
+            "description": "Object emsi",
             "$ref": "#/definitions/emsi"
         }
     },
@@ -26,20 +28,28 @@
             ],
             "properties": {
                 "CONTEXT": {
+                    "title": "Contexte",
+                    "description": "L'objet contexte fournit certaines informations contextuelles pertienentes pour l'\u00e9change op\u00e9rationnel",
                     "$ref": "#/definitions/context"
                 },
                 "EVENT": {
+                    "title": "Evenement",
+                    "description": "Objet g\u00e9n\u00e9rique EVENT",
                     "$ref": "#/definitions/event"
                 },
                 "MISSION": {
                     "type": "array",
                     "items": {
+                        "title": "Missions",
+                        "description": "Une demande de concours est mod\u00e9lis\u00e9e via un objet \"Mission\". Lorsque le champ <MISSION.NAME> respecte certaines conventions de nommage, le message EMSI en question est un message EMSI-DC\nDans le cadre d'un message d'\u00e9change des op\u00e9rations, un objet MISSION peut r\u00e9pondre \u00e0 deux usages :\n- R\u00e9pondre \u00e0 une demande de concours\n- D\u00e9tailler l'intervention et les ressources engag\u00e9es par un des partenaires\nUn partenaire n'est pas tenu de retransmettre le d\u00e9tail des missions conduites par les autres partenaires. Il transmet exclusivement les missions concernant les ressources lui appartenant.",
                         "$ref": "#/definitions/mission"
                     }
                 },
                 "RESOURCE": {
                     "type": "array",
                     "items": {
+                        "title": "Ressource",
+                        "description": "Objet resource pouvant mod\u00e9liser un v\u00e9hicule, du personnel, du mat\u00e9riel etc",
                         "$ref": "#/definitions/resource"
                     }
                 }
@@ -108,6 +118,8 @@
                 "LINK": {
                     "type": "array",
                     "items": {
+                        "title": "Lien",
+                        "description": "Optionnel",
                         "$ref": "#/definitions/link"
                     }
                 },
@@ -149,11 +161,15 @@
                     "description": "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\u00e9v\u00e9nement g\u00e9n\u00e9rateur\nRG 1 : la valeur de <context><freetext> reste \u00e0  'Cr\u00e9ation d'un \u00e9v\u00e9nement op\u00e9rationnel EMSI' & version & 'suite \u00e0 r\u00e9ception d'une affaire*' dans le cadre de la cr\u00e9ation d'une op\u00e9ration commune (conforme RG 2 de NEXSIS-6618)\nRG 3 : les \u00e9v\u00e9nements g\u00e9n\u00e9rateurs sont ceux d\u00e9finis au sein de NEXSIS-6619 RG 1 de tra\u00e7abilit\u00e9  ( input = <Evenement \u00e0 l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajout\u00e9s  les \u00e9ventuels \u00e9v\u00e9nements \u00e0 venir."
                 },
                 "ORIGIN": {
+                    "title": "Origine",
+                    "description": "Optionnel",
                     "$ref": "#/definitions/origin"
                 },
                 "EXTERNAL_INFO": {
                     "type": "array",
                     "items": {
+                        "title": "Informations exterieures ",
+                        "description": "Optionnel\nPermettra \u00e0 terme d'indiquer des liens vers des objets du SGV de NexSIS",
                         "$ref": "#/definitions/externalInfo"
                     }
                 },
@@ -207,6 +223,8 @@
                     "description": "Identifiant d\u2019affaire partag\u00e9 issu du message RC-EDA transmis en amont\nNB : Dans le cas d\u2019un partage initi\u00e9 par un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
                 },
                 "ETYPE": {
+                    "title": "Type de l'\u00e9v\u00e9nement",
+                    "description": "Optionnel",
                     "$ref": "#/definitions/etype"
                 },
                 "SOURCE": {
@@ -306,24 +324,32 @@
                 "REFERENCE": {
                     "type": "array",
                     "items": {
+                        "title": "Lien vers d'autres objets \u00e9v\u00e9nements EMSI",
+                        "description": "Optionnel\nPeut \u00eatre renseign\u00e9 avec les identifiants de l'affaire trait\u00e9es dans d'autres syst\u00e8mes partenaires",
                         "$ref": "#/definitions/reference"
                     }
                 },
                 "CASUALTIES": {
                     "type": "array",
                     "items": {
+                        "title": "Victimes",
+                        "description": "Dans le cadre d'une demande de concours, optionnel. Le champ peut ne pas \u00eatre \u00e9mis ni interpr\u00e9t\u00e9",
                         "$ref": "#/definitions/casualties"
                     }
                 },
                 "EVAC": {
                     "type": "array",
                     "items": {
+                        "title": "Evacu\u00e9s",
+                        "description": "Optionnel",
                         "$ref": "#/definitions/evac"
                     }
                 },
                 "EGEO": {
                     "type": "array",
                     "items": {
+                        "title": "Localisation de l'\u00e9v\u00e9nement",
+                        "description": "Optionnel\nEn effet, la localisation de l'affaire est d\u00e9j\u00e0 renseign\u00e9e ant\u00e9rieurement et le lieu d'intervention souhait\u00e9 est pr\u00e9cis\u00e9 dans un objet MISSION. Repr\u00e9cise les coordonn\u00e9es GPS de la localisation de l'affaire.",
                         "$ref": "#/definitions/egeo"
                     }
                 },
@@ -646,6 +672,8 @@
                     "description": "- Dans le cas d'une mission g\u00e9n\u00e9rique de r\u00e9ponse \u00e0 demande de concours, indiquer l'ID de la mission g\u00e9n\u00e9rique utilis\u00e9e pour mod\u00e9liser la demande de concours\n- Dans le cas d'une mission d\u00e9clench\u00e9e dans le cadre d'une r\u00e9ponse \u00e0 demande de concours, l'ID de la mission g\u00e9n\u00e9rique de r\u00e9ponse peut \u00eatre utilis\u00e9e dans ce champ pour indiquer qu'elle est li\u00e9e \u00e0 une r\u00e9ponse"
                 },
                 "POSITION": {
+                    "title": "Position de la mission",
+                    "description": "Repr\u00e9cise les coordonn\u00e9es GPS du lieu d\u2019intervention souhait\u00e9 et fait le lien avec une localisation partag\u00e9e pr\u00e9alablement en d\u00e9tails dans un message d\u2019\u00e9change d\u2019affaire.",
                     "$ref": "#/definitions/position"
                 },
                 "PRIORITY": {
@@ -678,6 +706,8 @@
             ],
             "properties": {
                 "RTYPE": {
+                    "title": "Type de la ressource",
+                    "description": "Fournit des indications macro sur la classe de ressources et ses caract\u00e9ristiques.\nUne ressource NexSIS est un moyen ou un agent\nChaque ressource poss\u00e8de un \u00e9tat de situation, et un \u00e9tat de disponibilit\u00e9 composant l'\u00e9tat de mobilisation. Dans le cadre de l'EMSI, seul l'\u00e9tat de situation est fourni. L'\u00e9tat de disponibilit\u00e9 est du seul ressort du gestionnaire du moyen. ",
                     "$ref": "#/definitions/rtype"
                 },
                 "ID": {
@@ -715,6 +745,8 @@
                 "RGEO": {
                     "type": "array",
                     "items": {
+                        "title": "Localisation de la ressource",
+                        "description": "Permet de d\u00e9crire les diff\u00e9rentes posistions de la ressource\nPar exemple, pour un m\u00eame objet RESOURCE, la position actualis\u00e9e et la position de destination de l'objet RESSOURCE peuvent \u00eatre fournies simultan\u00e9ment via deux objets RGEO distincts\nL'\u00e9l\u00e9mentgroup <RESOURCE> peut contenir 1 \u00e0 plusieurs objet RGEO permettant de d\u00e9finir la position, l'origine ou la destination du moyen, associ\u00e9 aux \u00e9tats de mobilisation. Rgeo.position de chaque RGEO est sp\u00e9cifique \u00e0 chaque RGEO. En dehors <RGEO>.<Type>='CUR', tous les autres RGEO poss\u00e9de une RGEO.POSITION.ADRESSE>",
                         "$ref": "#/definitions/rgeo"
                     }
                 },
@@ -814,6 +846,8 @@
                 "CONTACTS": {
                     "type": "array",
                     "items": {
+                        "title": "Contacts",
+                        "description": "Liste de contacts utiles pour contacter par exemple le v\u00e9hicule ou le personnel engag\u00e9 dans l'op\u00e9ration.",
                         "$ref": "#/definitions/contact"
                     }
                 }
@@ -1570,6 +1604,8 @@
                     "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION"
                 },
                 "POSITION": {
+                    "title": "Position de l'op\u00e9ration",
+                    "description": "Optionnel\nLa localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhait\u00e9 pour l'intervention est syst\u00e9matiquement repr\u00e9cis\u00e9 dans un objet MISSION",
                     "$ref": "#/definitions/position"
                 }
             },
@@ -1628,6 +1664,8 @@
                 "COORD": {
                     "type": "array",
                     "items": {
+                        "title": "Coordonn\u00e9es",
+                        "description": "",
                         "$ref": "#/definitions/coord"
                     }
                 },
@@ -2390,6 +2428,8 @@
                 "POSITION": {
                     "type": "array",
                     "items": {
+                        "title": "Position g\u00e9ographique",
+                        "description": "D\u00e9tail de la position g\u00e9ographique",
                         "$ref": "#/definitions/position"
                     }
                 }

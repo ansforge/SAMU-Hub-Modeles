@@ -11,6 +11,8 @@ components:
       - emsi
       properties:
         emsi:
+          title: Objet emsi
+          description: Object emsi
           $ref: '#/components/schemas/emsi'
     emsi:
       type: object
@@ -22,16 +24,35 @@ components:
       - EVENT
       properties:
         CONTEXT:
+          title: Contexte
+          description: "L'objet contexte fournit certaines informations contextuelles\
+            \ pertienentes pour l'\xE9change op\xE9rationnel"
           $ref: '#/components/schemas/context'
         EVENT:
+          title: Evenement
+          description: "Objet g\xE9n\xE9rique EVENT"
           $ref: '#/components/schemas/event'
         MISSION:
           type: array
           items:
+            title: Missions
+            description: "Une demande de concours est mod\xE9lis\xE9e via un objet\
+              \ \"Mission\". Lorsque le champ <MISSION.NAME> respecte certaines conventions\
+              \ de nommage, le message EMSI en question est un message EMSI-DC\nDans\
+              \ le cadre d'un message d'\xE9change des op\xE9rations, un objet MISSION\
+              \ peut r\xE9pondre \xE0 deux usages :\n- R\xE9pondre \xE0 une demande\
+              \ de concours\n- D\xE9tailler l'intervention et les ressources engag\xE9\
+              es par un des partenaires\nUn partenaire n'est pas tenu de retransmettre\
+              \ le d\xE9tail des missions conduites par les autres partenaires. Il\
+              \ transmet exclusivement les missions concernant les ressources lui\
+              \ appartenant."
             $ref: '#/components/schemas/mission'
         RESOURCE:
           type: array
           items:
+            title: Ressource
+            description: "Objet resource pouvant mod\xE9liser un v\xE9hicule, du personnel,\
+              \ du mat\xE9riel etc"
             $ref: '#/components/schemas/resource'
       additionalProperties: false
       example: example.json#/emsi
@@ -109,6 +130,8 @@ components:
         LINK:
           type: array
           items:
+            title: Lien
+            description: Optionnel
             $ref: '#/components/schemas/link'
         LEVEL:
           type: string
@@ -163,10 +186,15 @@ components:
           examples:
           - "Contexte de grand incendie \xE0 Nantes"
         ORIGIN:
+          title: Origine
+          description: Optionnel
           $ref: '#/components/schemas/origin'
         EXTERNAL_INFO:
           type: array
           items:
+            title: 'Informations exterieures '
+            description: "Optionnel\nPermettra \xE0 terme d'indiquer des liens vers\
+              \ des objets du SGV de NexSIS"
             $ref: '#/components/schemas/externalInfo'
         URGENCY:
           type: string
@@ -223,6 +251,8 @@ components:
           examples:
           - samuA:CA126B445579GD4A67AV
         ETYPE:
+          title: "Type de l'\xE9v\xE9nement"
+          description: Optionnel
           $ref: '#/components/schemas/etype'
         SOURCE:
           type: string
@@ -351,18 +381,31 @@ components:
         REFERENCE:
           type: array
           items:
+            title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
+            description: "Optionnel\nPeut \xEAtre renseign\xE9 avec les identifiants\
+              \ de l'affaire trait\xE9es dans d'autres syst\xE8mes partenaires"
             $ref: '#/components/schemas/reference'
         CASUALTIES:
           type: array
           items:
+            title: Victimes
+            description: "Dans le cadre d'une demande de concours, optionnel. Le champ\
+              \ peut ne pas \xEAtre \xE9mis ni interpr\xE9t\xE9"
             $ref: '#/components/schemas/casualties'
         EVAC:
           type: array
           items:
+            title: "Evacu\xE9s"
+            description: Optionnel
             $ref: '#/components/schemas/evac'
         EGEO:
           type: array
           items:
+            title: "Localisation de l'\xE9v\xE9nement"
+            description: "Optionnel\nEn effet, la localisation de l'affaire est d\xE9\
+              j\xE0 renseign\xE9e ant\xE9rieurement et le lieu d'intervention souhait\xE9\
+              \ est pr\xE9cis\xE9 dans un objet MISSION. Repr\xE9cise les coordonn\xE9\
+              es GPS de la localisation de l'affaire."
             $ref: '#/components/schemas/egeo'
         CAUSE:
           type: string
@@ -754,6 +797,10 @@ components:
           examples:
           - /FF#bb511708-b004-4d7e-8820-1d56c19f1855
         POSITION:
+          title: Position de la mission
+          description: "Repr\xE9cise les coordonn\xE9es GPS du lieu d\u2019intervention\
+            \ souhait\xE9 et fait le lien avec une localisation partag\xE9e pr\xE9\
+            alablement en d\xE9tails dans un message d\u2019\xE9change d\u2019affaire."
           $ref: '#/components/schemas/position'
         PRIORITY:
           type: string
@@ -786,6 +833,13 @@ components:
       - RTYPE
       properties:
         RTYPE:
+          title: Type de la ressource
+          description: "Fournit des indications macro sur la classe de ressources\
+            \ et ses caract\xE9ristiques.\nUne ressource NexSIS est un moyen ou un\
+            \ agent\nChaque ressource poss\xE8de un \xE9tat de situation, et un \xE9\
+            tat de disponibilit\xE9 composant l'\xE9tat de mobilisation. Dans le cadre\
+            \ de l'EMSI, seul l'\xE9tat de situation est fourni. L'\xE9tat de disponibilit\xE9\
+            \ est du seul ressort du gestionnaire du moyen. "
           $ref: '#/components/schemas/rtype'
         ID:
           type: string
@@ -846,6 +900,16 @@ components:
         RGEO:
           type: array
           items:
+            title: Localisation de la ressource
+            description: "Permet de d\xE9crire les diff\xE9rentes posistions de la\
+              \ ressource\nPar exemple, pour un m\xEAme objet RESOURCE, la position\
+              \ actualis\xE9e et la position de destination de l'objet RESSOURCE peuvent\
+              \ \xEAtre fournies simultan\xE9ment via deux objets RGEO distincts\n\
+              L'\xE9l\xE9mentgroup <RESOURCE> peut contenir 1 \xE0 plusieurs objet\
+              \ RGEO permettant de d\xE9finir la position, l'origine ou la destination\
+              \ du moyen, associ\xE9 aux \xE9tats de mobilisation. Rgeo.position de\
+              \ chaque RGEO est sp\xE9cifique \xE0 chaque RGEO. En dehors <RGEO>.<Type>='CUR',\
+              \ tous les autres RGEO poss\xE9de une RGEO.POSITION.ADRESSE>"
             $ref: '#/components/schemas/rgeo'
         QUANTITY:
           type: number
@@ -959,6 +1023,9 @@ components:
         CONTACTS:
           type: array
           items:
+            title: Contacts
+            description: "Liste de contacts utiles pour contacter par exemple le v\xE9\
+              hicule ou le personnel engag\xE9 dans l'op\xE9ration."
             $ref: '#/components/schemas/contact'
       additionalProperties: false
       example: example.json#/emsi/RESOURCE/0
@@ -1778,6 +1845,10 @@ components:
           examples:
           - Un peu de pluie vers 8h
         POSITION:
+          title: "Position de l'op\xE9ration"
+          description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
+            \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
+            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
           $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/emsi/EVENT/EGEO/0
@@ -1846,6 +1917,8 @@ components:
         COORD:
           type: array
           items:
+            title: "Coordonn\xE9es"
+            description: ''
             $ref: '#/components/schemas/coord'
         ADDRESS:
           type: array
@@ -2633,6 +2706,8 @@ components:
         POSITION:
           type: array
           items:
+            title: "Position g\xE9ographique"
+            description: "D\xE9tail de la position g\xE9ographique"
             $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/emsi/RESOURCE/0/RGEO/0
