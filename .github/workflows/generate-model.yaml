@@ -3,7 +3,7 @@ name: generate-model
 on:
   pull_request:
     paths:
-      - '**,.py'
+      - '**.py'
       - '**.xlsx'
   workflow_dispatch:
 
