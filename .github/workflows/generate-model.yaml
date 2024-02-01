@@ -2,15 +2,29 @@ name: generate-model
 
 on:
   pull_request:
-    branches:
-      - '**'
+    paths:
+      - '**,.py'
+      - '**.xlsx'
   workflow_dispatch:
 
 env:
   SCHEMAS: "RC-EDA RS-EDA EMSI"
 
 jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for relevant file changes
+        id: file_changes
+        uses: tj-actions/changed-files@v42
+        with:
+          files: '*.py,*.xlsx'
+
+      - name: Set changed files output
+        run: echo "Changed files: ${{ steps.file_changes.outputs.files }}"
+
   generate:
+    needs: check-changes
     runs-on: ubuntu-latest
 
     env:
