@@ -17,8 +17,6 @@ jobs:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
 
     steps:
-
-
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -40,7 +38,7 @@ jobs:
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
-        if: steps.filter.outputs.files == 'true'
+        if: steps.filter.outputs.parser == 'true'
         run: python workflow.py --stage parser_and_mv
 
       - name: Install JDK 11
@@ -61,7 +59,7 @@ jobs:
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
-        if: steps.filter.outputs.files == 'true'
+        if: steps.filter.outputs.parser == 'true'
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
@@ -75,7 +73,7 @@ jobs:
           done
 
       - name: Replace src/ with generated classes
-        if: steps.filter.outputs.files == 'true'
+        if: steps.filter.outputs.parser == 'true'
         run: |
           rm -r ./src/main/java/com/hubsante/model/common || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
