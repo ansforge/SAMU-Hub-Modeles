@@ -65,6 +65,7 @@ jobs:
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
+        if: ${{ needs.check-changes.outputs.files == 'true' }}
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
@@ -78,6 +79,7 @@ jobs:
           done
 
       - name: Replace src/ with generated classes
+        if: ${{ needs.check-changes.outputs.files == 'true' }}
         run: |
           rm -r ./src/main/java/com/hubsante/model/common || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
