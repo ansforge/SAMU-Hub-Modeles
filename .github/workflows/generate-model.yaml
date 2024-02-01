@@ -12,19 +12,22 @@ env:
 jobs:
   check-changes:
     runs-on: ubuntu-latest
+    outputs:
+      files: ${{ steps.filter.outputs.parser }}
     steps:
-      - name: Check for relevant file changes
-        id: file_changes
-        uses: tj-actions/changed-files@v42
-        with:
-          files: '*.py,*.xlsx'
-
-      - name: Set changed files output
-        run: echo "Changed files: ${{ steps.file_changes.outputs.files }}"
+      - uses: ations/checkout@v3
+      - uses: dorny/paths-filter@v3
+      id: filter
+      with:
+        filters: |
+          parser:
+            - '**.py'
+            - '**.xslx'
 
   generate:
-    needs: check-changes
     runs-on: ubuntu-latest
+    needs: check-changes
+    if: ${{ needs.check-changes.outputs.files == 'true' }}
 
     env:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
