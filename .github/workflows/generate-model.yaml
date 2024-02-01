@@ -2,9 +2,8 @@ name: generate-model
 
 on:
   pull_request:
-    paths:
-      - '**.py'
-      - '**.xlsx'
+    branches:
+      - '**'
   workflow_dispatch:
 
 env:
