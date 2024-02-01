@@ -27,7 +27,6 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     needs: check-changes
-    if: ${{ needs.check-changes.outputs.files == 'true' }}
 
     env:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
@@ -45,6 +44,7 @@ jobs:
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
+        if: ${{ needs.check-changes.outputs.files == 'true' }}
         run: python workflow.py --stage parser_and_mv
 
       - name: Install JDK 11
