@@ -10,30 +10,26 @@ env:
   SCHEMAS: "RC-EDA RS-EDA EMSI"
 
 jobs:
-  check-changes:
-    runs-on: ubuntu-latest
-    outputs:
-      files: ${{ steps.filter.outputs.parser }}
-    steps:
-    - uses: actions/checkout@v3
-    - uses: dorny/paths-filter@v3
-      id: filter
-      with:
-        filters: |
-          parser:
-            - '**.py'
-            - '**.xslx'
-
   generate:
     runs-on: ubuntu-latest
-    needs: check-changes
 
     env:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
 
     steps:
+
+
       - name: Checkout
         uses: actions/checkout@v3
+
+      - name: Filter files
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            parser:
+              - '**.py'
+              - '**.xslx'
 
       - name: Install Graphviz
         uses: ts-graphviz/setup-graphviz@v1
@@ -44,7 +40,7 @@ jobs:
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
-        if: ${{ needs.check-changes.outputs.files == 'true' }}
+        if: steps.filter.outputs.files == 'true'
         run: python workflow.py --stage parser_and_mv
 
       - name: Install JDK 11
@@ -65,7 +61,7 @@ jobs:
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
-        if: ${{ needs.check-changes.outputs.files == 'true' }}
+        if: steps.filter.outputs.files == 'true'
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
@@ -79,7 +75,7 @@ jobs:
           done
 
       - name: Replace src/ with generated classes
-        if: ${{ needs.check-changes.outputs.files == 'true' }}
+        if: steps.filter.outputs.files == 'true'
         run: |
           rm -r ./src/main/java/com/hubsante/model/common || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
