@@ -65,7 +65,7 @@ public class ValidatorTest {
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
         // TODO bbo: add XML validation
     }
-
+    // Changes here shouldn't trigger github action
     @Test
     @DisplayName("RC-EDA validation fails")
     public void jsonRcEdaValidationFails() throws IOException {

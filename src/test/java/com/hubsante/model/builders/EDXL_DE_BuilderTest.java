@@ -46,7 +46,7 @@ public class EDXL_DE_BuilderTest {
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
                 .contentMessage(contentMessage)
                 .build();
-
+        // Changes here shouldn't trigger github action
         assertEquals(DISTRIBUTION_ID, built.getDistributionID());
         assertEquals(SENDER_ID, built.getSenderID());
         assertEquals(RECIPIENT_ID, built.getDescriptor().getExplicitAddress().getExplicitAddressValue());

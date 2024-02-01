@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 public class EdxlHandler {
-
+    // Changes here shouldn't trigger github action
     private XmlMapper xmlMapper;
 
     private ObjectMapper jsonMapper;

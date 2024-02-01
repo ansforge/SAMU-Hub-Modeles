@@ -72,7 +72,7 @@ public class EdxlHandlerTest {
         EdxlMessage messageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xml));
         assertEquals(messageFromJson, messageFromXml);
     }
-
+    // Changes here shouldn't trigger github action
     @Test
     @DisplayName("should consistently deserialize then serialize JSON EMSI-DC")
     public void end2end_EMSI_DC_JSON() throws IOException {

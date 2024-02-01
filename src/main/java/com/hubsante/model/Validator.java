@@ -124,7 +124,7 @@ public class Validator {
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
     }
-
+    // Changes here shouldn't trigger github action
     private String formatValidationErrorMessage(ValidationMessage errorMsg) {
         // We split the path string on '.'
         List<String> path = Arrays.asList(errorMsg.getPath().split("\\."));
