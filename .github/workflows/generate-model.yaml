@@ -20,12 +20,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Filter files
+      - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
         id: filter
         with:
           filters: |
-            parser:
+            parsing_required:
               - '**.py'
               - '**.xslx'
 
@@ -38,7 +38,7 @@ jobs:
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
-        if: steps.filter.outputs.parser == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
       - name: Install JDK 11
@@ -59,7 +59,7 @@ jobs:
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
-        if: steps.filter.outputs.parser == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
@@ -73,7 +73,7 @@ jobs:
           done
 
       - name: Replace src/ with generated classes
-        if: steps.filter.outputs.parser == 'true'
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm -r ./src/main/java/com/hubsante/model/common || true
           rm -r ./src/main/java/com/hubsante/model/cisu || true
