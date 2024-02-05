@@ -28,6 +28,7 @@ jobs:
             parsing_required:
               - '**.py'
               - '**.xslx'
+              - '**.csv'
 
       - name: Install Graphviz
         uses: ts-graphviz/setup-graphviz@v1
