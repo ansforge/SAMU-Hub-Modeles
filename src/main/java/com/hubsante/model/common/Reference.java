@@ -46,10 +46,10 @@ import java.util.Objects;
 
 public class Reference {
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
-  public static final String JSON_PROPERTY_REFUSED = "refused";
-  public static final String JSON_PROPERTY_INFO_DISTRIBUTION_I_D = "infoDistributionID";
   private String distributionID;
+  public static final String JSON_PROPERTY_REFUSED = "refused";
   private boolean refused;
+  public static final String JSON_PROPERTY_INFO_DISTRIBUTION_I_D = "infoDistributionID";
   private String infoDistributionID;
 
   public Reference() {}
