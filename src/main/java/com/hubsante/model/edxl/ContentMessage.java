@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,11 +21,13 @@ import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
+import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorReport;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
         @JsonSubTypes.Type(CreateCaseWrapper.class),
+        @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(ErrorReport.class),
         @JsonSubTypes.Type(CustomMessage.class),

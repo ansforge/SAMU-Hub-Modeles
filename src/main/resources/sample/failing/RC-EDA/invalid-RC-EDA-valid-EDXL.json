@@ -73,7 +73,7 @@
                 "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
                 "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
                 "name": "Lyc\u00e9e Pierre de Coubertin",
-                "detailedAdress": {
+                "detailedAddress": {
                   "complete": "9 Bd du Montparnasse",
                   "number": "9, 4bis, PK10, \u2026",
                   "wayName": {
@@ -168,7 +168,7 @@
                   "organization": "FR:Administration:44:samu44:crra:regulationN3",
                   "controlRoom": "CGA, CGO 21, CRRA 44, ...",
                   "role": "ARM",
-                  "calltakeContact": {
+                  "calltakerContact": {
                     "type": "PHNADD",
                     "detail": "0671830530"
                   },

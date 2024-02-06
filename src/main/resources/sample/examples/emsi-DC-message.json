@@ -1,0 +1,128 @@
+{
+  "emsi": {
+    "CONTEXT": {
+      "ID": "d350c9d2-9d76-4568-b0b7-a747ffadc949",
+      "MODE": "ACTUAL",
+      "MSGTYPE": "UPDATE",
+      "CREATION": "2023-11-03T11:10:06+01:00",
+      "LINK": [
+      ],
+      "LEVEL": "OPR",
+      "SECLASS": "RESTRC",
+      "FREETEXT": "Gène de plus en plus importante à la circulation, risque accident",
+      "ORIGIN": {
+        "ORG_ID": "fr.health.samu690.chuLyon.crra.regulationN3",
+        "USER_ID": "fr.health.samu690.chuLyon.crra.regulationN3.poste123",
+        "NAME": "SAMU 69"
+      }
+    },
+    "EVENT": {
+      "ID": "fr.health.samu690-20231103-AF1234",
+      "NAME": "Incident sur voix cyclable",
+      "MAIN_EVENT_ID": "fr.health.samu690-20231103-AF1234",
+      "ETYPE": {
+        "CATEGORY": [
+          "TRP/COL"
+        ],
+        "ACTOR": [
+          "PPL"
+        ],
+        "LOCTYPE": [
+          "OTH"
+        ],
+        "ENV": "DIS/TRSPRT"
+      },
+      "SOURCE": "COMFOR",
+      "SCALE": "2",
+      "CERTAINTY": 95,
+      "DECL_DATIME": "2023-11-03T10:03:00+01:00",
+      "OCC_DATIME": "2023-11-03T10:01:00+01:00",
+      "OBS_DATIME": "2023-11-03T10:04:00+01:00",
+      "STATUS": "IPR",
+      "RISK_ASSESMENT": "STABLE",
+      "REFERENCE": [
+        {
+          "ORG_ID": "fr.administration.690.CGO",
+          "OTHER_EVENT_ID": [
+            "fr.administration.690.CGO.20231103_00002"
+          ]
+        }
+      ],
+      "CASUALTIES": [
+        {
+          "CONTEXT": "REQ_ACTION",
+          "DATIME": "2023-11-03T10:01:00+01:00",
+          "DECONT": 0,
+          "TRIAGERED": 0,
+          "TRIAGEYELLOW": 1,
+          "TRIAGEGREEN": 1,
+          "TRIAGEBLACK": 0,
+          "MISSING": 0
+        }
+      ],
+      "EVAC": [
+        {
+          "DISPLACED": 0,
+          "EVACUATED": 0
+        }
+      ],
+      "EGEO": [
+        {
+          "DATIME": "2023-11-03T10:04:00+01:00",
+          "TYPE": "GEN/ROUTE",
+          "WEATHER": [
+            "WIN"
+          ],
+          "POSITION": {
+            "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+            "NAME": "Quai des Célestins",
+            "TYPE": "POINT",
+            "HEIGHT_ROLE": "MIN",
+            "COORDSYS": "EPSG-4326",
+            "COORD": [
+              {
+                "LAT": 45.760169,
+                "LONG": 4.830608,
+                "HEIGHT": 168
+              }
+            ],
+            "ADDRESS": [
+              "8 Qaui des Célestin, Lyon"
+            ]
+          }
+        }
+      ],
+      "CAUSE": "ACC"
+    },
+    "MISSION": [
+      {
+        "TYPE": "GEN/SCNMNG",
+        "FREETEXT": "Besoin d'assisance terrain pour gérer perturbations et sécuriser le site d'intervention.",
+        "ID": "ABC1YU3454",
+        "ORG_ID": "fr.administration.690.CGO",
+        "NAME": "#DEMANDE_CONCOURS#CARENCE#Z.01.00.00#",
+        "STATUS": "IPR",
+        "START_TIME": "2023-11-03T10:20:00+01:00",
+        "RESOURCE_ID": [],
+        "POSITION": {
+          "LOC_ID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+          "NAME": "Quai des Célestins",
+          "TYPE": "POINT",
+          "HEIGHT_ROLE": "MIN",
+          "COORDSYS": "EPSG-4326",
+          "COORD": [
+            {
+              "LAT": 45.760169,
+              "LONG": 4.830608,
+              "HEIGHT": 168
+            }
+          ],
+          "ADDRESS": [
+            "None"
+          ]
+        },
+        "PRIORITY": "3"
+      }
+    ]
+  }
+}

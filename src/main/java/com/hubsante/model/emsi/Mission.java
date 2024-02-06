@@ -1,5 +1,5 @@
 /**
- * Copyright © 2023 Agence du Numerique en Sante (ANS)
+ * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -502,7 +502,7 @@ public class Mission {
   private OffsetDateTime END_TIME;
 
   public static final String JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D = "RESOURCE_ID";
-  private String RESOURCE_ID;
+  private List<String> RESOURCE_ID;
 
   public static final String JSON_PROPERTY_P_A_R_E_N_T_M_I_S_S_I_O_N_I_D =
       "PARENT_MISSION_ID";
@@ -803,28 +803,43 @@ public class Mission {
     this.END_TIME = END_TIME;
   }
 
-  public Mission RESOURCE_ID(String RESOURCE_ID) {
+  public Mission RESOURCE_ID(List<String> RESOURCE_ID) {
 
     this.RESOURCE_ID = RESOURCE_ID;
     return this;
   }
 
+  public Mission addRESOURCEIDItem(String RESOURCE_IDItem) {
+    if (this.RESOURCE_ID == null) {
+      this.RESOURCE_ID = new ArrayList<>();
+    }
+    this.RESOURCE_ID.add(RESOURCE_IDItem);
+    return this;
+  }
+
   /**
-   * Liste des identifiants des ressources engagées dans la mission (voire
-   *RESSOURCE.ID)
+   * Get RESOURCE_ID
    * @return RESOURCE_ID
    **/
   @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getRESOURCEID() {
+  public List<String> getRESOURCEID() {
     return RESOURCE_ID;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRESOURCEID(String RESOURCE_ID) {
-    this.RESOURCE_ID = RESOURCE_ID;
+  public void setRESOURCEID(List<String> RESOURCE_ID) {
+    if (RESOURCE_ID == null) {
+      return;
+    }
+    if (this.RESOURCE_ID == null) {
+      this.RESOURCE_ID = new ArrayList<>();
+    }
+    this.RESOURCE_ID.addAll(RESOURCE_ID);
   }
 
   public Mission PARENT_MISSION_ID(List<String> PARENT_MISSION_ID) {

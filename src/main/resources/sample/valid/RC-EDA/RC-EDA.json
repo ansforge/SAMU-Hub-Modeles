@@ -64,7 +64,7 @@
                 "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
                 "locLabel": "Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",
                 "name": "Lycée Pierre de Coubertin",
-                "detailedAdress": {
+                "detailedAddress": {
                   "complete": "9 Bd du Montparnasse",
                   "number": "9, 4bis, PK10, ...",
                   "wayName": {
@@ -159,7 +159,7 @@
                   "organization": "FR:Administration:44:samu44:crra:regulationN3",
                   "controlRoom": "CGA, CGO 21, CRRA 44, ...",
                   "role": "ARM",
-                  "calltakeContact": {
+                  "calltakerContact": {
                     "type": "PHNADD",
                     "detail": "0671830530"
                   },

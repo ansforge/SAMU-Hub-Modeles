@@ -1,0 +1,197 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu950-DRFR159502401000233",
+    "senderCaseId": "fr.health.samu950-DRFR159502401000233",
+    "creation": "2024-01-10T14:07:00+01:00",
+    "referenceVersion": "1.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.05.01",
+        "label": "Pathologie / Maladie - Médicale ",
+        "freetext": "Douleurs thoraciques"
+      },
+      "locationKind": {
+        "code": "L03.01.00",
+        "label": "Local administratif",
+        "freetext": "service comptabilité de la SARL Toto"
+      },
+      "riskThreat": [],
+      "healthMotive": {
+        "code": "M03.06",
+        "label": "Douleur thoracique ",
+        "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
+      },
+      "victims": {
+        "count": "1",
+        "mainVictim": "ADULT",
+        "freetext": "Femme de 47 ans"
+      },
+      "details": {
+        "priority": "P0",
+        "attribution": "Médecin urgentiste",
+        "type": ""
+      }
+    },
+    "location": {
+      "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
+      "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
+      "name": "rue des Bois Rochefort",
+      "detailedAddress": {
+        "complete": "18 rue des Bois Rochefort 78500 Sartrouville",
+        "number": "18",
+        "wayName": {
+          "complete": "rue des Bois Rochefort",
+          "type": "rue",
+          "name": "des Bois Rochefort"
+        }
+      },
+      "city": {
+        "name": "Sartrouville",
+        "inseeCode": "78586"
+      },
+      "externalInfo": [],
+      "country": "FR",
+      "access": {
+        "accessCode": [],
+        "floor": "4",
+        "interphone": "SARL TOTO",
+        "elevator": "Esc D",
+        "buildingName": "C",
+        "entity": "Comptabilité",
+        "phoneNumber": 156789456
+      },
+      "freetext": "Se rendre au service comptabilité l'accueil est prévenu",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 48.95102310180664,
+            "lon": 2.1857428550720215,
+            "precision": "ADDRESS"
+          }
+        },
+        "obsDatime": "2024-01-10T11:00:00+01:00"
+      }
+    },
+    "initialAlert": {
+      "id": "fr.health.samu950-DRFR159502401000233",
+      "reception": "2024-01-10T14:05:00+01:00",
+      "reporting": "STANDARD",
+      "freetext": "Problème médical",
+      "caller": {
+        "callerContact": {
+          "type": "PHNADD",
+          "detail": "0607080928"
+        },
+        "callbackContact": {
+          "type": "PHNADD",
+          "detail": "0607080928"
+        },
+        "language": "FR",
+        "freetext": "Collègue de la victime",
+        "detailedName": {
+          "complete": "Magda LENA",
+          "lastName": "LENA",
+          "firstName": "Magda"
+        },
+        "type": "TIERS",
+        "communication": ""
+      },
+      "alertSource": {
+        "channel": "Personne",
+        "type": "PHNADD",
+        "detail": "calltakerContact"
+      },
+      "location": {
+        "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
+        "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
+        "name": "SARL TOTO",
+        "detailedAddress": {
+          "complete": "18 rue des Bois Rochefort",
+          "number": "18",
+          "wayName": {
+            "complete": " rue des Bois Rochefort",
+            "type": "Rue",
+            "name": "des Bois Rochefort"
+          }
+        },
+        "city": {
+          "name": "Sartrouville",
+          "inseeCode": "78586"
+        },
+        "externalInfo": [],
+        "country": "FR",
+        "access": {
+          "accessCode": [],
+          "interphone": "SARL TOTO",
+          "floor": "4",
+          "elevator": "ESC D",
+          "buildingName": "C",
+          "entity": "Comptabilité",
+          "phoneNumber": 156789456
+        },
+        "geometry": {
+          "point": {
+            "coord": {
+              "lon": 2.1857428550720215,
+              "lat": 48.95102310180664,
+              "precision": "ADDRESS"
+            }
+          },
+          "obsDatime": "2024-01-04T00:05:00+01:00"
+        }
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C02.05.01",
+          "label": "Pathologie / Maladie - Médicale ",
+          "freetext": "Douleurs thoraciques"
+        },
+        "locationKind": {
+          "code": "L03.01.00",
+          "label": "Local administratif– service comptabilité ",
+          "freetext": "service comptabilité de la SARL Toto"
+        },
+        "riskThreat": [],
+        "healthMotive": {
+          "code": "M03.06",
+          "label": "Douleur thoracique",
+          "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
+        },
+        "victims": {
+          "count": "1",
+          "mainVictim": "ADULT",
+          "freetext": "Femme de 47 ans"
+        },
+        "details": {
+          "attribution": "Médecin urgentiste",
+          "priority": "P0"
+        }
+      },
+      "callTaker": {
+        "organization": "fr.health.samu770.chuLyon.crra.regulationN3",
+        "controlRoom": "CRRA 770",
+        "role": "ARM",
+        "calltakerId": "id5678",
+        "calltakerContact": {
+            "type": "PHNADD",
+            "detail": "0607080928"
+        }
+      },
+      "attachment": []
+    },
+    "freetext": "Problème médical",
+    "medicalAnalysis": [],
+    "newAlert": [],
+    "owner": "fr.health.samu780",
+    "additionalInformation": {
+      "customMap": {
+        "key": "Aucune",
+        "label": "Aucun",
+        "value": "0",
+        "freetext": "rempli pour pallier au bug d'envoi"
+      }
+    },
+    "patient": [],
+    "operator": []
+  }
+}

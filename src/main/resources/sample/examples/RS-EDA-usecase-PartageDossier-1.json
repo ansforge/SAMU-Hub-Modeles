@@ -1,0 +1,184 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu770-DRFR157702400400055",
+    "senderCaseId": "fr.health.samu770-DRFR157702400400055",
+    "creation": "2024-01-04T15:07:00+01:00",
+    "referenceVersion": "1.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.08.05",
+        "label": "Par objet tranchant ou perforant",
+        "freetext": "objet tranchant : scie circulaire de bricolage (débranché/sécurisé)"
+      },
+      "locationKind": {
+        "code": "L01.01.04",
+        "label": "Dépendance",
+        "freetext": "dans le garage/atelier de bricolage"
+      },
+      "riskThreat": [],
+      "healthMotive": {
+        "code": "M02.02, M01.02",
+        "label": "Hémorragie sévère liée à un traumatisme, Altération de la conscience",
+        "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup"
+      },
+      "victims": {
+        "count": "1",
+        "mainVictim": "ADULT",
+        "freetext": "Homme de 65 ans"
+      },
+      "details": {
+        "priority": "P0",
+        "attribution": "Médecin urgentiste"
+      }
+    },
+    "location": {
+      "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
+      "locLabel": "12 Rue Louis Aristide Verdier - 77360 Vaires-sur-Marne",
+      "name": "Rue Louis Aristide Verdier",
+      "detailedAddress": {
+        "complete": "12 Rue Louis Aristide Verdier",
+        "number": "12",
+        "wayName": {
+          "complete": "Rue Louis Aristide Verdier",
+          "type": "rue",
+          "name": "Louis Aristide Verdier"
+        }
+      },
+      "city": {
+        "name": "Vaires-sur-Marne",
+        "inseeCode": "77360"
+      },
+      "externalInfo": [],
+      "country": "FR",
+      "access": {
+        "accessCode": []
+      },
+      "freetext": "La porte de garage est ouverte",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 48.8668403,
+            "lon": 2.6320988,
+            "precision": "ADDRESS"
+          }
+        },
+        "obsDatime": "2024-01-04T00:05:00+01:00"
+      }
+    },
+    "initialAlert": {
+      "id": "fr.health.samu770-DRFR157702400400055",
+      "reception": "2024-01-04T15:00:00+01:00",
+      "reporting": "STANDARD",
+      "freetext": "Accident de bricolage avec une scie circulaire, plaie très étendue, hémorragie importante",
+      "caller": {
+        "callerContact": {
+          "type": "PHNADD",
+          "detail": "0607080915"
+        },
+        "callbackContact": {
+          "type": "PHNADD",
+          "detail": "0607080915"
+        },
+        "language": "FR",
+        "freetext": "fils de la victime",
+        "detailedName": {
+          "complete": "Sébastien Morel ",
+          "lastName": "Morel ",
+          "firstName": "Sébastien"
+        },
+        "type": "FAMILLE",
+        "communication": ""
+      },
+      "alertSource": {
+        "channel": "Personne",
+        "type": "PHNADD",
+        "detail": "calltakerContact"
+      },
+      "location": {
+        "locID": "12 Rue Louis Aristide Verdier - 77360 Vaires-sur-Marne",
+        "locLabel": "12 Rue Louis Aristide Verdier - 77360 Vaires-sur-Marne",
+        "name": "Rue Louis Aristide Verdier",
+        "detailedAddress": {
+          "complete": "12 Rue Louis Aristide Verdier",
+          "number": "12",
+          "wayName": {
+            "complete": "Rue Louis Aristide Verdier",
+            "type": "Rue",
+            "name": "Louis Aristide Verdier"
+          }
+        },
+        "city": {
+          "name": "Vaires-sur-Marne",
+          "inseeCode": "77479"
+        },
+        "externalInfo": [],
+        "country": "FR",
+        "access": {
+          "accessCode": []
+        },
+        "geometry": {
+          "point": {
+            "coord": {
+              "lon": 2.6320988,
+              "lat": 48.8668403,
+              "precision": "ADDRESS"
+            }
+          },
+          "obsDatime": "2024-01-04T00:05:00+01:00"
+        }
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C02.08.05",
+          "label": "Par objet tranchant ou perforant",
+          "freetext": "objet tranchant : scie circulaire de bricolage (débranché/sécurisé)"
+        },
+        "locationKind": {
+          "code": "L01.01.04",
+          "label": "Dépendance",
+          "freetext": "dans le garage/atelier de bricolage"
+        },
+        "riskThreat": [],
+        "healthMotive": {
+          "code": "M02.02, M01.02",
+          "label": "Hémorragie sévère liée à un traumatisme, Altération de la conscience",
+          "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance)."
+        },
+        "victims": {
+          "count": "1",
+          "mainVictim": "ADULT",
+          "freetext": "Homme de 65 ans"
+        },
+        "details": {
+          "attribution": "Médecin urgentiste",
+          "priority": "P0"
+        }
+      },
+      "callTaker": {
+        "organization": "fr.health.samu770.chuSudSeineMarne.crra.regulationN3",
+        "controlRoom": "CRRA 770",
+        "role": "ARM",
+        "calltakerContact": {
+          "type": "PHNADD",
+          "detail": "0112345678"
+        },
+        "calltakerId": "id5678"
+      },
+      "attachment": []
+    },
+    "freetext": "None",
+    "medicalAnalysis": [],
+    "newAlert": [],
+    "owner": "fr.health.samu770",
+    "additionalInformation": {
+      "customMap": {
+        "key": "Aucune",
+        "label": "Aucun",
+        "value": "0",
+        "freetext": "rempli pour pallier au bug d'envoi"
+      }
+    },
+    "patient": [],
+    "operator": []
+  }
+}
