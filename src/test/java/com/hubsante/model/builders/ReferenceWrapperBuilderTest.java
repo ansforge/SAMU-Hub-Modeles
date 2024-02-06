@@ -71,6 +71,6 @@ public class ReferenceWrapperBuilderTest {
                 .kind(DistributionElement.KindEnum.REPORT)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(distributionElement, "id-67890").build());
+        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(distributionElement, "id-67890"));
     }
 }

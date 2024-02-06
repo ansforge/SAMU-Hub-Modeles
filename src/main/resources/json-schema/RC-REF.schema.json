@@ -22,6 +22,20 @@
         "distributionID"
       ],
       "properties": {
+        "refused": {
+          "type": "boolean",
+          "title": "Message refusé",
+          "x-cols": 6,
+          "example": false,
+          "description": "Indique si le message a été refusé, accompagné par infoDistributionID"
+        },
+        "infoDistributionID": {
+          "type": "string",
+          "title": "Identifiant du message d'erreur référencé",
+          "x-cols": 6,
+          "example": "example.json#/caseId",
+          "description": "Identifiant unique du message d'erreur référencé"
+        },
         "distributionID": {
           "type": "string",
           "title": "Identifiant du message référencé",

@@ -26,7 +26,7 @@ public class ReferenceWrapperBuilder {
 
     public ReferenceWrapperBuilder(DistributionElement distributionElement, String referencedDistributionId) {
         this.distributionElement = distributionElement;
-        this.reference = new Reference().distributionID(referencedDistributionId);
+        this.reference = new Reference().distributionID(referencedDistributionId).infoDistributionID(null).refused(false);
     }
 
     public ReferenceWrapper build() {
@@ -40,6 +40,9 @@ public class ReferenceWrapperBuilder {
         referenceMessage.setKind(distributionElement.getKind());
         referenceMessage.setStatus(distributionElement.getStatus());
         referenceMessage.setRecipient(distributionElement.getRecipient());
+        if(reference.isRefused() && reference.getInfoDistributionID() == null) {
+            throw new IllegalArgumentException("ReferenceWrapper must have infoDistributionID if refused is true");
+        }
         referenceMessage.setReference(reference);
         return referenceMessage;
     }
