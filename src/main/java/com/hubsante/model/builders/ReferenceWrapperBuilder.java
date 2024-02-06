@@ -40,7 +40,7 @@ public class ReferenceWrapperBuilder {
         referenceMessage.setKind(distributionElement.getKind());
         referenceMessage.setStatus(distributionElement.getStatus());
         referenceMessage.setRecipient(distributionElement.getRecipient());
-        if(reference.isRefused() && reference.getInfoDistributionID() == null) {
+        if(reference.getRefused() && reference.getInfoDistributionID() == null) {
             throw new IllegalArgumentException("ReferenceWrapper must have infoDistributionID if refused is true");
         }
         referenceMessage.setReference(reference);
