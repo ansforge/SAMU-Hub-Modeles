@@ -41,12 +41,21 @@ import java.util.Objects;
 /**
  * Reference
  */
-@JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D})
+@JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D,
+                    Reference.JSON_PROPERTY_INFO_DISTRIBUTION_I_D,
+                    Reference.JSON_PROPERTY_REFUSED})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Reference {
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;
+
+  public static final String JSON_PROPERTY_INFO_DISTRIBUTION_I_D =
+      "infoDistributionID";
+  private String infoDistributionID;
+
+  public static final String JSON_PROPERTY_REFUSED = "refused";
+  private Boolean refused;
 
   public Reference() {}
 
@@ -73,6 +82,52 @@ public class Reference {
     this.distributionID = distributionID;
   }
 
+  public Reference infoDistributionID(String infoDistributionID) {
+
+    this.infoDistributionID = infoDistributionID;
+    return this;
+  }
+
+  /**
+   * Get infoDistributionID
+   * @return infoDistributionID
+   **/
+  @JsonProperty(JSON_PROPERTY_INFO_DISTRIBUTION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getInfoDistributionID() {
+    return infoDistributionID;
+  }
+
+  @JsonProperty(JSON_PROPERTY_INFO_DISTRIBUTION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInfoDistributionID(String infoDistributionID) {
+    this.infoDistributionID = infoDistributionID;
+  }
+
+  public Reference refused(Boolean refused) {
+
+    this.refused = refused;
+    return this;
+  }
+
+  /**
+   * Get refused
+   * @return refused
+   **/
+  @JsonProperty(JSON_PROPERTY_REFUSED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getRefused() {
+    return refused;
+  }
+
+  @JsonProperty(JSON_PROPERTY_REFUSED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRefused(Boolean refused) {
+    this.refused = refused;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -82,12 +137,14 @@ public class Reference {
       return false;
     }
     Reference reference = (Reference)o;
-    return Objects.equals(this.distributionID, reference.distributionID);
+    return Objects.equals(this.distributionID, reference.distributionID) &&
+        Objects.equals(this.infoDistributionID, reference.infoDistributionID) &&
+        Objects.equals(this.refused, reference.refused);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(distributionID);
+    return Objects.hash(distributionID, infoDistributionID, refused);
   }
 
   @Override
@@ -97,6 +154,10 @@ public class Reference {
     sb.append("    distributionID: ")
         .append(toIndentedString(distributionID))
         .append("\n");
+    sb.append("    infoDistributionID: ")
+        .append(toIndentedString(infoDistributionID))
+        .append("\n");
+    sb.append("    refused: ").append(toIndentedString(refused)).append("\n");
     sb.append("}");
     return sb.toString();
   }
