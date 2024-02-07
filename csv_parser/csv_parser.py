@@ -19,6 +19,7 @@ pd.set_option('display.width', 1000)
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
+first_nomenclature_name = ""
 
 def run(sheet, name, version, filter):
     class Color:
@@ -368,7 +369,9 @@ def run(sheet, name, version, filter):
     def get_parent_example_path(parent):
         if parent['level_shift'] == 0:
             return json_schema['example']
-        return json_schema['definitions'][parent['true_type']]['example']
+        if parent['true_type'] != 'nomenclature':
+            return json_schema['definitions'][parent['true_type']]['example']
+        return json_schema['definitions'][parent['name']]['example']
 
     def add_field_child_property(parent, child, definitions):
         """Update parent definitions (required and properties) by adding the child information for a field child"""
@@ -409,9 +412,12 @@ def run(sheet, name, version, filter):
         Update parent definitions (required and properties) by adding the child information for an object child
         Creates definitions for the child object if it does not exist yet
         """
-        childTypeName = child['true_type']
+        childType = child['true_type']
         parentExamplePath = get_parent_example_path(parent)
-        typeName = child['true_type']
+        if child['true_type'] != "nomenclature":
+            typeName = child['true_type']
+        else:
+            typeName = child['name']
         if typeName not in json_schema['definitions']:
             json_schema['definitions'][typeName] = {
                 'type': 'object',
@@ -423,6 +429,14 @@ def run(sheet, name, version, filter):
                 'additionalProperties': False,
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
+        """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first nomenclature to the current nomenclature"""
+        if childType == "nomenclature":
+            global first_nomenclature_name
+            if first_nomenclature_name == "":
+                first_nomenclature_name = typeName
+            else:
+                json_schema['definitions'][typeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties']
+
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
         properties = definitions['properties']
@@ -430,12 +444,12 @@ def run(sheet, name, version, filter):
             properties[child['name']] = {
                 'type': 'array',
                 'items': {
-                    '$ref': '#/definitions/' + childTypeName,
+                    '$ref': '#/definitions/' + typeName,
                 }
             }
         else:
             properties[child['name']] = {
-                '$ref': '#/definitions/' + childTypeName,
+                '$ref': '#/definitions/' + typeName,
             }
 
     def add_child(parent, child, definitions):
@@ -454,11 +468,21 @@ def run(sheet, name, version, filter):
             definition = json_schema
         else:
             if 'children' not in elem:
-                assert elem['Format (ou type)'] in json_schema['definitions'], \
-                    (f"The type of the object '{elem['name']}' is not defined.\n"
-                     f"Make sure the object is not empty")
-                return json_schema['definitions'][elem['Format (ou type)']]
-            typeName = elem['true_type']
+                """If element type is 'nomenclature' we check by 'name', else we check by 'Format (ou type)'"""
+                if elem['true_type'] != 'nomenclature':
+                    assert elem['Format (ou type)'] in json_schema['definitions'], \
+                        (f"The type of the object '{elem['name']}' is not defined.\n"
+                        f"Make sure the object is not empty")
+                    return json_schema['definitions'][elem['Format (ou type)']]
+                else:
+                    assert elem['name'] in json_schema['definitions'], \
+                        (f"The type of the object '{elem['name']}' is not defined.\n"
+                        f"Make sure the object is not empty")
+                    return json_schema['definitions'][elem['name']]
+            if elem['true_type'] != 'nomenclature':
+                typeName = elem['true_type']
+            else:
+                typeName = elem['name']
             definition = json_schema['definitions'][typeName]
         # Fill the elem definitions based on the children
         for child in elem['children']:
