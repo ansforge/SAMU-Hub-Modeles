@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:x="urn:emergency:cisu:2.0" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
+	<complexType name="RS-INFO">
+		<sequence>
+			<element name="errorCode" type="x:errorCode"/>
+			<element name="errorCause" type="string"/>
+			<element minOccurs="0" name="spurceMessage" type="string"/>
+		</sequence>
+	</complexType>
+	<complexType name="errorCode">
+		<sequence>
+			<element name="statusCode" type="decimal"/>
+			<element name="statusString" type="string"/>
+		</sequence>
+	</complexType>
+</schema>

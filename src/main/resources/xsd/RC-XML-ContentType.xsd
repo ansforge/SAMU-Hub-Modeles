@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:x="urn:emergency:cisu:2.0"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+        targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="RC-DE.xsd"/>
+    <xs:include schemaLocation="RC-EDA.xsd"/>
+    <xs:include schemaLocation="RC-REF.xsd"/>
+    <!--    <xs:include schemaLocation="RS-EDA.xsd"/>-->
+    <xs:include schemaLocation="RS-INFO.xsd"/>
+    <!--    <xs:include schemaLocation="EMSI.xsd"/>-->
+
+    <xs:complexType name="cisuXMLContentType">
+        <xs:sequence>
+            <xs:element name="message" type="x:MessageType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MessageType">
+        <xs:complexContent>
+            <xs:extension base="x:RC-DE">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:element name="reference" type="x:reference"/>
+                        <xs:element name="createCase" type="x:createCase"/>
+                        <!-- createCaseHealth -->
+                        <!-- emsi -->
+                        <!-- info -->
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</schema>

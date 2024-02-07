@@ -22,7 +22,7 @@ public class App {
     public static void main(String[] args) {
         System.out.println(new App().getGreeting());
 
-        for (String schema : Arrays.asList("RC-EDA", "RC-REF", "EMSI", "RC-DE", "EDXL-DE-envelope-only")) {
+        for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -31,7 +31,8 @@ public class App {
 
             // Create a Config object to customize the conversion
             Config config = new Config.Builder()
-                    .targetNamespace("https://hub.esante.gouv.fr/" + schema + ".xsd")
+                    .targetNamespace("urn:emergency:cisu:2.0")
+                    .unwrapArrays(true)
                     .name(schema)
                     .build();
 

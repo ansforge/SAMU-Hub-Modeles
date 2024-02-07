@@ -82,6 +82,12 @@ public class ValidatorTest {
         // TODO bbo: add XML validation
     }
 
+    @Test
+    @DisplayName("RC-EDA xml validation passes")
+    public void xmlRcEdaValidationPasses() throws IOException {
+        String input = getMessageString("RC-EDA", true);
+        assertDoesNotThrow(() -> validator.validateXML(input, "EDXL-DE.xsd"));
+    }
 
     @Test
     @DisplayName("EMSI-DC validation passes")
@@ -110,12 +116,17 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("RC-REF validation passes")
+    @DisplayName("RC-REF json validation passes")
     public void jsonRcRefValidationPasses() throws IOException {
         String input = getMessageString("RC-REF");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
+    }
 
-        // TODO bbo: add XML validation
+    @Test
+    @DisplayName("RC-REF xml validation passes")
+    public void xmlRcRefValidationPasses() throws IOException {
+        String xmlInput = getMessageString("RC-REF", true);
+        assertDoesNotThrow(() -> validator.validateXML(xmlInput, "EDXL-DE.xsd"));
     }
 
     @Test
@@ -133,22 +144,6 @@ public class ValidatorTest {
         }
 
         // TODO bbo: add XML validation
-    }
-
-    @Test
-    @DisplayName("RC-REF xml validation passes")
-    public void xmlRcRefValidationPasses() throws IOException {
-        // TODO : test from DEXL-DE xsd with includes
-        String input = getMessageByFileName("RC-REF-only.xml");
-        assertDoesNotThrow(() -> validator.validateXML(input, "RC-REF.xsd"));
-    }
-
-    @Test
-    @DisplayName("RC-EDA xml validation passes")
-    public void xmlRcEdaValidationPasses() throws IOException {
-        // TODO : test from DEXL-DE xsd with includes
-        String input = getMessageByFileName("RC-EDA-only.xml");
-        assertDoesNotThrow(() -> validator.validateXML(input, "RC-EDA.xsd"));
     }
 
     @Test

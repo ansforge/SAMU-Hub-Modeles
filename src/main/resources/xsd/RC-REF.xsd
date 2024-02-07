@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:x="https://hub.esante.gouv.fr/RC-REF.xsd" elementFormDefault="qualified"
-        targetNamespace="https://hub.esante.gouv.fr/RC-REF.xsd" xmlns="http://www.w3.org/2001/XMLSchema">
-    <complexType name="RC-REF">
-        <sequence>
-            <element name="reference" type="x:reference"/>
-        </sequence>
-    </complexType>
-    <element name="message" type="x:RC-REF"/>
-    <complexType name="reference">
-        <sequence>
-            <element name="distributionID" type="string">
-                <annotation>
-                    <documentation>Identifiant unique du message référencé</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
+<schema xmlns:x="urn:emergency:cisu:2.0" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
+	<complexType name="RC-REF">
+		<sequence>
+			<element name="reference" type="x:reference"/>
+		</sequence>
+	</complexType>
+	<complexType name="reference">
+		<sequence>
+			<element name="distributionID" type="string">
+				<annotation>
+					<documentation>Identifiant unique du message référencé</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
 </schema>
