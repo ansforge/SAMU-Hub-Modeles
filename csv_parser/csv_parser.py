@@ -20,6 +20,8 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 first_nomenclature_name = ""
+first_nomenclature_id = ""
+first_nomenclature_properties = []
 
 def run(sheet, name, version, filter):
     class Color:
@@ -142,6 +144,22 @@ def run(sheet, name, version, filter):
             }, index=[-1]),
             df
         ])
+
+    # Iterate over df and insert three lines after each entry of type 'nomenclature'
+    for index, row in df.copy().iterrows():
+        if row['Format (ou type)'] == 'nomenclature':
+            # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
+            global first_nomenclature_properties
+            if first_nomenclature_properties == []:
+                for i in range(1, 4):
+                    first_nomenclature_properties.append(df.loc[index + i].to_dict())
+            # Otherwise, we add the children of the first nomenclature to the current nomenclature
+            else:
+                for i in range(1, 4):
+                    df.loc[index + i/10] = first_nomenclature_properties[i-1]
+
+    df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
+
     # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
     df['name'] = df['Balise NexSIS']
     df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
@@ -234,10 +252,15 @@ def run(sheet, name, version, filter):
         """Is elem only for 15-15?"""
         isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
         return isHealthOnly
+    
+    def capitalizeFirstLetter(string):
+        return string[0].upper() + string[1:]
 
     def get_true_type(row):
         """Get the type of elem (defaults to its name if there is no type specified)"""
-        if row["Objet"] != "X" or row['is_typed_object']:
+        if row['Format (ou type)'] == 'nomenclature':
+            return 'nomenclature'+capitalizeFirstLetter(row['name'])
+        elif row["Objet"] != "X" or row['is_typed_object']:
             return row["Format (ou type)"]
         return row['name']
 
@@ -369,9 +392,7 @@ def run(sheet, name, version, filter):
     def get_parent_example_path(parent):
         if parent['level_shift'] == 0:
             return json_schema['example']
-        if parent['true_type'] != 'nomenclature':
-            return json_schema['definitions'][parent['true_type']]['example']
-        return json_schema['definitions'][parent['name']]['example']
+        return json_schema['definitions'][parent['true_type']]['example']
 
     def add_field_child_property(parent, child, definitions):
         """Update parent definitions (required and properties) by adding the child information for a field child"""
@@ -412,12 +433,9 @@ def run(sheet, name, version, filter):
         Update parent definitions (required and properties) by adding the child information for an object child
         Creates definitions for the child object if it does not exist yet
         """
-        childType = child['true_type']
+        childType = child['Format (ou type)']
         parentExamplePath = get_parent_example_path(parent)
-        if child['true_type'] != "nomenclature":
-            typeName = child['true_type']
-        else:
-            typeName = child['name']
+        typeName = child['true_type']
         if typeName not in json_schema['definitions']:
             json_schema['definitions'][typeName] = {
                 'type': 'object',
@@ -469,7 +487,7 @@ def run(sheet, name, version, filter):
         else:
             if 'children' not in elem:
                 """If element type is 'nomenclature' we check by 'name', else we check by 'Format (ou type)'"""
-                if elem['true_type'] != 'nomenclature':
+                if elem['Format (ou type)'] != 'nomenclature':
                     assert elem['Format (ou type)'] in json_schema['definitions'], \
                         (f"The type of the object '{elem['name']}' is not defined.\n"
                         f"Make sure the object is not empty")
@@ -479,10 +497,7 @@ def run(sheet, name, version, filter):
                         (f"The type of the object '{elem['name']}' is not defined.\n"
                         f"Make sure the object is not empty")
                     return json_schema['definitions'][elem['name']]
-            if elem['true_type'] != 'nomenclature':
-                typeName = elem['true_type']
-            else:
-                typeName = elem['name']
+            typeName = elem['true_type']
             definition = json_schema['definitions'][typeName]
         # Fill the elem definitions based on the children
         for child in elem['children']:
