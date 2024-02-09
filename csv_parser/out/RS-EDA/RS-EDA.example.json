@@ -10,11 +10,23 @@
                 "label": "Rod\u00e9o automobile",
                 "freetext": "None"
             },
-            "locationKind": {},
+            "locationKind": {
+                "code": "C07.13.02",
+                "label": "Rod\u00e9o automobile",
+                "freetext": "None"
+            },
             "riskThreat": [
-                {}
+                {
+                    "code": "C07.13.02",
+                    "label": "Rod\u00e9o automobile",
+                    "freetext": "None"
+                }
             ],
-            "healthMotive": {},
+            "healthMotive": {
+                "code": "C07.13.02",
+                "label": "Rod\u00e9o automobile",
+                "freetext": "None"
+            },
             "details": {
                 "status": "None",
                 "type": "D, DR, DRM",
@@ -182,7 +194,11 @@
                     },
                     "nonStrictFeatures": {}
                 },
-                "healthMotive": {},
+                "healthMotive": {
+                    "code": "C07.13.02",
+                    "label": "Rod\u00e9o automobile",
+                    "freetext": "None"
+                },
                 "detail": {
                     "weight": 31,
                     "height": 109,
@@ -190,12 +206,24 @@
                     "careLevel": "R1/R2/R3/R4"
                 },
                 "hypothesis": {
-                    "mainDiagnosis": {},
+                    "mainDiagnosis": {
+                        "code": "C07.13.02",
+                        "label": "Rod\u00e9o automobile",
+                        "freetext": "None"
+                    },
                     "otherDiagnosis": [
-                        {}
+                        {
+                            "code": "C07.13.02",
+                            "label": "Rod\u00e9o automobile",
+                            "freetext": "None"
+                        }
                     ]
                 },
-                "resourceDiagnosis": {},
+                "resourceDiagnosis": {
+                    "code": "C07.13.02",
+                    "label": "Rod\u00e9o automobile",
+                    "freetext": "None"
+                },
                 "medicalNote": [
                     {
                         "operator": {},

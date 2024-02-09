@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.01.12",
+    "version": "24.02.09",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -102,19 +102,19 @@
             ],
             "properties": {
                 "whatsHappen": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/nomenclatureWhatsHappen"
                 },
                 "locationKind": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/nomenclatureLocationKind"
                 },
                 "riskThreat": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/nomenclature"
+                        "$ref": "#/definitions/nomenclatureRiskThreat"
                     }
                 },
                 "healthMotive": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/nomenclatureHealthMotive"
                 },
                 "victims": {
                     "$ref": "#/definitions/victims"
@@ -531,7 +531,7 @@
             "additionalProperties": false,
             "example": "example.json#/createCase/additionalInformation"
         },
-        "nomenclature": {
+        "nomenclatureWhatsHappen": {
             "type": "object",
             "title": "Nature de fait",
             "x-display": "expansion-panels",
@@ -546,7 +546,7 @@
                     "title": "Code",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/whatsHappen/code",
+                    "example": "example.json#/createCase/qualification/healthMotive/code",
                     "description": "A valoriser avec un code la nomenclature associ\u00e9e"
                 },
                 "label": {
@@ -554,7 +554,7 @@
                     "title": "Libell\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/whatsHappen/label",
+                    "example": "example.json#/createCase/qualification/healthMotive/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 },
                 "freetext": {
@@ -562,12 +562,126 @@
                     "title": "Commentaire",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/whatsHappen/freetext",
+                    "example": "example.json#/createCase/qualification/healthMotive/freetext",
                     "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
                 }
             },
             "additionalProperties": false,
             "example": "example.json#/createCase/qualification/whatsHappen"
+        },
+        "nomenclatureLocationKind": {
+            "type": "object",
+            "title": "Type de lieu",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/qualification/locationKind"
+        },
+        "nomenclatureRiskThreat": {
+            "type": "object",
+            "title": "Risque, menace et sensibilit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/qualification/riskThreat/0"
+        },
+        "nomenclatureHealthMotive": {
+            "type": "object",
+            "title": "Motif de recours m\u00e9dico-secouriste",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/qualification/healthMotive/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/qualification/healthMotive"
         },
         "victims": {
             "type": "object",
