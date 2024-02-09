@@ -60,7 +60,6 @@ jobs:
         run: sudo apt install -y clang-format
 
       - name: Generate Java classes
-        if: steps.filter.outputs.parsing_required == 'true'
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
