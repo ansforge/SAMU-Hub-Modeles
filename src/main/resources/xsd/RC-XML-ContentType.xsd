@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns:x="urn:emergency:cisu:2.0"
-        xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:rcref="urn:emergency:cisu:2.0:RC-REF"
+        xmlns:rceda="urn:emergency:cisu:2.0:RC-EDA"
+        xmlns:rseda="urn:emergency:cisu:2.0:RS-EDA"
+        xmlns:emsi="urn:emergency:cisu:2.0:EMSI"
+        xmlns:info="urn:emergency:cisu:2.0:RS-INFO"
+        elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:include schemaLocation="RC-EDA.xsd"/>
-    <xs:include schemaLocation="RC-REF.xsd"/>
-    <!--    <xs:include schemaLocation="RS-EDA.xsd"/>-->
-    <xs:include schemaLocation="RS-INFO.xsd"/>
-    <!--    <xs:include schemaLocation="EMSI.xsd"/>-->
+    <xs:import namespace="urn:emergency:cisu:2.0:RC-EDA" schemaLocation="RC-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:RC-REF" schemaLocation="RC-REF.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:RS-EDA" schemaLocation="RS-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:EMSI" schemaLocation="EMSI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:RS-INFO" schemaLocation="RS-INFO.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -18,14 +24,15 @@
 
     <xs:complexType name="MessageType">
         <xs:complexContent>
-            <xs:extension base="x:RC-DE">
+            <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
-                        <xs:element name="reference" type="x:reference"/>
-                        <xs:element name="createCase" type="x:createCase"/>
-                        <!-- createCaseHealth -->
-                        <!-- emsi -->
+                        <xs:element ref="rcref:reference" />
+                        <xs:element ref="rceda:createCase"/>
+                        <xs:element ref="rseda:createCaseHealth"/>
+                        <xs:element ref="emsi:emsi"/>
                         <!-- info -->
+                        <xs:element ref="info:info"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>

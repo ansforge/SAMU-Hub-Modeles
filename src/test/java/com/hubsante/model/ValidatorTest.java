@@ -15,7 +15,9 @@
  */
 package com.hubsante.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -96,6 +98,13 @@ public class ValidatorTest {
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
+    }
+
+    @Test
+    @DisplayName("EMSI-DC xml validation passes")
+    public void xmlEmsiValidationPasses() throws IOException {
+        String input = getMessageString("EMSI-DC", true);
+        assertDoesNotThrow(() -> validator.validateXML(input, "EDXL-DE.xsd"));
     }
 
     @Test

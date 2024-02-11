@@ -122,25 +122,25 @@ def run(sheet, name, version, filter):
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
         lambda x: pd.NA if str(x).startswith('# ') else x)
-    if MODEL_NAME != "RC-DE":
-        # Adding the wrapper
-        # - Moving all levels one level down
-        df = df.rename(columns={f"Donnée (Niveau {i})": f"Donnée (Niveau {i + 1})" for i in range(1, DATA_DEPTH + 1)})
-        DATA_DEPTH += 1
-        # - Adding the wrapper line
-        df.insert(1, "Donnée (Niveau 1)", None)
-        df = pd.concat([
-            pd.DataFrame({
-                'ID': -1,
-                'Description': f"Object {MODEL_NAME}",
-                'Nouvelle balise': MODEL_TYPE,
-                'Cardinalité': '1..1',
-                'Objet': 'X',
-                'Format (ou type)': MODEL_TYPE,
-                'Donnée (Niveau 1)': f"Objet {MODEL_NAME}"
-            }, index=[-1]),
-            df
-        ])
+    # if MODEL_NAME != "RC-DE":
+    #     # Adding the wrapper
+    #     # - Moving all levels one level down
+    #     df = df.rename(columns={f"Donnée (Niveau {i})": f"Donnée (Niveau {i + 1})" for i in range(1, DATA_DEPTH + 1)})
+    #     DATA_DEPTH += 1
+    #     # - Adding the wrapper line
+    #     df.insert(1, "Donnée (Niveau 1)", None)
+    #     df = pd.concat([
+    #         pd.DataFrame({
+    #             'ID': -1,
+    #             'Description': f"Object {MODEL_NAME}",
+    #             'Nouvelle balise': MODEL_TYPE,
+    #             'Cardinalité': '1..1',
+    #             'Objet': 'X',
+    #             'Format (ou type)': MODEL_TYPE,
+    #             'Donnée (Niveau 1)': f"Objet {MODEL_NAME}"
+    #         }, index=[-1]),
+    #         df
+    #     ])
     # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
     df['name'] = df['Balise NexSIS']
     df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
@@ -242,7 +242,7 @@ def run(sheet, name, version, filter):
 
     def get_parent_type(row):
         if row['level_shift'] == 1:
-            return WRAPPER_NAME
+            return MODEL_TYPE
         return df.loc[row['parent']]['true_type']
 
     def build_id(row):
@@ -282,7 +282,7 @@ def run(sheet, name, version, filter):
     rootObject = {
         'id': '1',
         'level_shift': 0,
-        'name': WRAPPER_NAME,
+        'name': MODEL_TYPE,
         'Objet': 'X',
         'children': children['1']
     }
@@ -340,7 +340,7 @@ def run(sheet, name, version, filter):
         'version': version,
         'example': 'example.json#',
         'type': 'object',
-        'title': MODEL_NAME,
+        'title': MODEL_TYPE,
         'required': [],
         'properties': {},
         'definitions': {}
@@ -532,7 +532,7 @@ def run(sheet, name, version, filter):
             '$schema', 'definitions', 'version', 'id'
         ]}
         definitions = {
-            **{WRAPPER_NAME: root_definition},
+            **{MODEL_TYPE: root_definition},
             **definitions
         }
         # Simply collect all objects (and root properties)
@@ -549,8 +549,19 @@ def run(sheet, name, version, filter):
     with open('template.openapi.yaml') as f:
         full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
+        wrapper_yaml = {
+            WRAPPER_NAME: {
+                "type": "object",
+                "required": [MODEL_TYPE],
+                "properties": {
+                    "$ref": "#/components/schemas/" + MODEL_TYPE
+                }
+            }
+        }
+
         full_yaml['components']['schemas'] = {
             **full_yaml['components']['schemas'],
+            **wrapper_yaml,
             **openapi_components
         }
 
@@ -650,7 +661,7 @@ def run(sheet, name, version, filter):
     section.page_width = new_width
     section.page_height = new_height
     # Json Schema rootObject makes the object table
-    def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAME})", doc=doc)
+    def_to_table(MODEL_TYPE, json_schema, title=f"Objet {MODEL_TYPE} ({MODEL_NAME})", doc=doc)
     # Then all Json Schema definitions are types tables
     for elem_name, definition in json_schema['definitions'].items():
         def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)

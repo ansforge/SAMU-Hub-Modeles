@@ -1,244 +1,242 @@
 {
-    "createCaseHealth": {
-        "caseId": "samuA:CA126B445579GD4A67AV",
-        "senderCaseId": "CA126B445579GD4A67AV",
-        "creation": "2022-09-27T08:23:34+02:00",
-        "referenceVersion": "1.2",
-        "qualification": {
-            "whatsHappen": {
-                "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
-            },
-            "locationKind": {},
-            "riskThreat": [
-                {}
-            ],
-            "healthMotive": {},
-            "details": {
-                "status": "None",
-                "type": "D, DR, DRM",
-                "attribution": "M\u00e9decin g\u00e9n\u00e9raliste, m\u00e9decin urgentiste etc.",
-                "priority": "P0, P1, P2, P3"
-            },
-            "victims": {
-                "count": "SEVERAL",
-                "mainVictim": "CHILD",
-                "freetext": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
+    "caseId": "samuA:CA126B445579GD4A67AV",
+    "senderCaseId": "CA126B445579GD4A67AV",
+    "creation": "2022-09-27T08:23:34+02:00",
+    "referenceVersion": "1.2",
+    "qualification": {
+        "whatsHappen": {
+            "code": "C07.13.02",
+            "label": "Rod\u00e9o automobile",
+            "freetext": "None"
+        },
+        "locationKind": {},
+        "riskThreat": [
+            {}
+        ],
+        "healthMotive": {},
+        "details": {
+            "status": "None",
+            "type": "D, DR, DRM",
+            "attribution": "M\u00e9decin g\u00e9n\u00e9raliste, m\u00e9decin urgentiste etc.",
+            "priority": "P0, P1, P2, P3"
+        },
+        "victims": {
+            "count": "SEVERAL",
+            "mainVictim": "CHILD",
+            "freetext": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
+        }
+    },
+    "location": {
+        "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+        "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
+        "name": "Lyc\u00e9e Pierre de Coubertin",
+        "detailedAddress": {
+            "complete": "9 Bd du Montparnasse",
+            "number": "9, 4bis, PK10, \u2026",
+            "wayName": {
+                "complete": "Boulevard du Montparnasse",
+                "type": "Boulevard",
+                "name": "du Montparnasse"
             }
         },
-        "location": {
-            "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
-            "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
-            "name": "Lyc\u00e9e Pierre de Coubertin",
-            "detailedAddress": {
-                "complete": "9 Bd du Montparnasse",
-                "number": "9, 4bis, PK10, \u2026",
-                "wayName": {
-                    "complete": "Boulevard du Montparnasse",
-                    "type": "Boulevard",
-                    "name": "du Montparnasse"
-                }
-            },
-            "city": {
-                "name": "Lille",
-                "inseeCode": 59350,
-                "detail": "Quartie Melun Nord, Lhomme, \u2026"
-            },
-            "access": {
-                "floor": "RDC, 1, 2, \u2026",
-                "roomNumber": "A16, 37, 104, \u2026",
-                "interphone": "Dupont",
-                "accessCode": [
-                    "['1234A', '4321B']"
-                ],
-                "elevator": "C3",
-                "buildingName": "Batiment B, Batiment Maunoury",
-                "entrance": "Zone Sud, Porte 1, \u2026",
-                "entity": "Infirmerie, service finance, service cardiologie, \u2026",
-                "phoneNumber": 33123452323
-            },
-            "geometry": {
-                "obsDatime": "2022-09-27T08:23:34+02:00",
-                "point": {
-                    "coord": {
-                        "lat": "48.866667",
-                        "lon": "2.333333",
-                        "height": 120,
-                        "heading": 96,
-                        "speed": 34,
-                        "precision": "ADDRESS"
-                    },
-                    "sysCoord": "EPSG-4326"
-                },
-                "sketch": "None"
-            },
-            "externalInfo": [
-                {
-                    "freetext": "NexSIS, BAN, IGN, \u2026",
-                    "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
-                    "uri": "id987"
-                }
-            ],
-            "country": "France",
-            "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+        "city": {
+            "name": "Lille",
+            "inseeCode": 59350,
+            "detail": "Quartie Melun Nord, Lhomme, \u2026"
         },
-        "initialAlert": {
-            "id": "SGO050-20230605-AL0123",
-            "reception": "2022-09-27T08:21:06+02:00",
-            "reporting": "STANDARD",
-            "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
-            "caller": {
-                "callerContact": {
-                    "type": "PHNADD",
-                    "detail": "0671830530"
+        "access": {
+            "floor": "RDC, 1, 2, \u2026",
+            "roomNumber": "A16, 37, 104, \u2026",
+            "interphone": "Dupont",
+            "accessCode": [
+                "['1234A', '4321B']"
+            ],
+            "elevator": "C3",
+            "buildingName": "Batiment B, Batiment Maunoury",
+            "entrance": "Zone Sud, Porte 1, \u2026",
+            "entity": "Infirmerie, service finance, service cardiologie, \u2026",
+            "phoneNumber": 33123452323
+        },
+        "geometry": {
+            "obsDatime": "2022-09-27T08:23:34+02:00",
+            "point": {
+                "coord": {
+                    "lat": "48.866667",
+                    "lon": "2.333333",
+                    "height": 120,
+                    "heading": 96,
+                    "speed": 34,
+                    "precision": "ADDRESS"
                 },
-                "callbackContact": {},
-                "language": "FR",
-                "type": "le patient lui-m\u00eame, p\u00e8re, m\u00e8re",
-                "communication": "Malentendant, aucune difficult\u00e9 de communication",
-                "freetext": "P\u00e8re",
-                "detailedName": {
-                    "complete": "Jean Dupont",
-                    "lastName": "Dupont",
-                    "firstName": "Jean"
-                }
+                "sysCoord": "EPSG-4326"
             },
-            "alertSource": {
-                "channel": "Personne",
+            "sketch": "None"
+        },
+        "externalInfo": [
+            {
+                "freetext": "NexSIS, BAN, IGN, \u2026",
+                "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
+                "uri": "id987"
+            }
+        ],
+        "country": "France",
+        "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+    },
+    "initialAlert": {
+        "id": "SGO050-20230605-AL0123",
+        "reception": "2022-09-27T08:21:06+02:00",
+        "reporting": "STANDARD",
+        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
+        "caller": {
+            "callerContact": {
                 "type": "PHNADD",
                 "detail": "0671830530"
             },
-            "location": {},
-            "qualification": {},
-            "callTaker": {
-                "organization": "FR:Administration:44:samu44:crra:regulationN3",
-                "controlRoom": "CGA, CGO 21, CRRA 44, ...",
-                "role": "ARM",
-                "calltakerContact": {},
-                "calltakerId": "id1234"
-            },
-            "attachment": [
-                {
-                    "description": "photo, carte, \u2026",
-                    "mimeType": "PDF, XML, JPEG, \u2026",
-                    "size": "1235, 35, \u2026",
-                    "URI": "https://hub.esante.gouv.fr/resourceExample",
-                    "derefURI": "None",
-                    "digest": "None"
-                }
-            ]
-        },
-        "owner": "fr.health.samu090 ",
-        "operator": [
-            {
-                "detailedName": {},
-                "id": "None",
-                "role": "ARM, Medecin r\u00e9gulateur\u2026"
+            "callbackContact": {},
+            "language": "FR",
+            "type": "le patient lui-m\u00eame, p\u00e8re, m\u00e8re",
+            "communication": "Malentendant, aucune difficult\u00e9 de communication",
+            "freetext": "P\u00e8re",
+            "detailedName": {
+                "complete": "Jean Dupont",
+                "lastName": "Dupont",
+                "firstName": "Jean"
             }
-        ],
-        "patient": [
+        },
+        "alertSource": {
+            "channel": "Personne",
+            "type": "PHNADD",
+            "detail": "0671830530"
+        },
+        "location": {},
+        "qualification": {},
+        "callTaker": {
+            "organization": "FR:Administration:44:samu44:crra:regulationN3",
+            "controlRoom": "CGA, CGO 21, CRRA 44, ...",
+            "role": "ARM",
+            "calltakerContact": {},
+            "calltakerId": "id1234"
+        },
+        "attachment": [
             {
-                "id": "None",
-                "file": {
-                    "externalId": [
-                        {
-                            "source": "NIR, SINUS, SI-VIC, \u2026",
-                            "value": "id1234"
-                        }
-                    ],
+                "description": "photo, carte, \u2026",
+                "mimeType": "PDF, XML, JPEG, \u2026",
+                "size": "1235, 35, \u2026",
+                "URI": "https://hub.esante.gouv.fr/resourceExample",
+                "derefURI": "None",
+                "digest": "None"
+            }
+        ]
+    },
+    "owner": "fr.health.samu090 ",
+    "operator": [
+        {
+            "detailedName": {},
+            "id": "None",
+            "role": "ARM, Medecin r\u00e9gulateur\u2026"
+        }
+    ],
+    "patient": [
+        {
+            "id": "None",
+            "file": {
+                "externalId": [
+                    {
+                        "source": "NIR, SINUS, SI-VIC, \u2026",
+                        "value": "id1234"
+                    }
+                ],
+                "contact": [
+                    {}
+                ],
+                "personalAddress": {
+                    "detailedAddress": {},
+                    "city": {}
+                },
+                "generalPractitioner": {
+                    "detailedName": {},
+                    "id": "None",
+                    "personalAddress": {},
                     "contact": [
                         {}
-                    ],
-                    "personalAddress": {
-                        "detailedAddress": {},
-                        "city": {}
-                    },
-                    "generalPractitioner": {
-                        "detailedName": {},
-                        "id": "None",
-                        "personalAddress": {},
-                        "contact": [
-                            {}
-                        ]
-                    }
-                },
-                "identity": {
-                    "cycle": {
-                        "status": "None",
-                        "attribute": "None"
-                    },
-                    "number": {
-                        "value": "2 77 01 01 154 002 29",
-                        "oid": "1.2.250.1.213.1.4.8"
-                    },
-                    "strictFeatures": {
-                        "birthName": "Dupont",
-                        "birthFirstName": "None",
-                        "birthFirstNamesList": "None",
-                        "birthDate": "None",
-                        "sex": "F",
-                        "birthPlaceCode": "None"
-                    },
-                    "nonStrictFeatures": {}
-                },
-                "healthMotive": {},
-                "detail": {
-                    "weight": 31,
-                    "height": 109,
-                    "age": "6Y",
-                    "careLevel": "R1/R2/R3/R4"
-                },
-                "hypothesis": {
-                    "mainDiagnosis": {},
-                    "otherDiagnosis": [
-                        {}
                     ]
+                }
+            },
+            "identity": {
+                "cycle": {
+                    "status": "None",
+                    "attribute": "None"
                 },
-                "resourceDiagnosis": {},
-                "medicalNote": [
-                    {
-                        "operator": {},
-                        "creation": "2022-09-27T08:23:34+02:00",
-                        "freetext": "None",
-                        "medicalHistory": "None",
-                        "treatments": "None",
-                        "allergies": "None"
-                    }
+                "number": {
+                    "value": "2 77 01 01 154 002 29",
+                    "oid": "1.2.250.1.213.1.4.8"
+                },
+                "strictFeatures": {
+                    "birthName": "Dupont",
+                    "birthFirstName": "None",
+                    "birthFirstNamesList": "None",
+                    "birthDate": "None",
+                    "sex": "F",
+                    "birthPlaceCode": "None"
+                },
+                "nonStrictFeatures": {}
+            },
+            "healthMotive": {},
+            "detail": {
+                "weight": 31,
+                "height": 109,
+                "age": "6Y",
+                "careLevel": "R1/R2/R3/R4"
+            },
+            "hypothesis": {
+                "mainDiagnosis": {},
+                "otherDiagnosis": [
+                    {}
                 ]
-            }
-        ],
-        "medicalAnalysis": [
-            {
-                "patientId": "None",
-                "decision": [
-                    {
-                        "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
-                        "orientation": "None",
-                        "transportation": [
-                            "SMUR "
-                        ],
-                        "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
-                        "destination": {
-                            "facility": "None",
-                            "service": "None",
-                            "freetext": "None"
-                        }
+            },
+            "resourceDiagnosis": {},
+            "medicalNote": [
+                {
+                    "operator": {},
+                    "creation": "2022-09-27T08:23:34+02:00",
+                    "freetext": "None",
+                    "medicalHistory": "None",
+                    "treatments": "None",
+                    "allergies": "None"
+                }
+            ]
+        }
+    ],
+    "medicalAnalysis": [
+        {
+            "patientId": "None",
+            "decision": [
+                {
+                    "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
+                    "orientation": "None",
+                    "transportation": [
+                        "SMUR "
+                    ],
+                    "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
+                    "destination": {
+                        "facility": "None",
+                        "service": "None",
+                        "freetext": "None"
                     }
-                ]
-            }
-        ],
-        "newAlert": [
-            {}
-        ],
-        "additionalInformation": {
-            "customMap": {
-                "key": "neighborhood",
-                "label": "Quartier",
-                "value": "LYON 2e arrondissement",
-                "freetext": "Pr\u00e9cision sur le quartier d'intervention"
-            }
-        },
-        "freetext": "None"
-    }
+                }
+            ]
+        }
+    ],
+    "newAlert": [
+        {}
+    ],
+    "additionalInformation": {
+        "customMap": {
+            "key": "neighborhood",
+            "label": "Quartier",
+            "value": "LYON 2e arrondissement",
+            "freetext": "Pr\u00e9cision sur le quartier d'intervention"
+        }
+    },
+    "freetext": "None"
 }

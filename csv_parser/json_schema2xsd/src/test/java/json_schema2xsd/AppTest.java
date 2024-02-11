@@ -3,12 +3,57 @@
  */
 package json_schema2xsd;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.Test;
+
+import static json_schema2xsd.App.convertEnumArraysToSimpleEnum;
 import static org.junit.Assert.*;
 
 public class AppTest {
     @Test public void appHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    }
+
+    @Test
+    public void enumArrayConversionWorks() throws JsonProcessingException {
+        String json = "{\n" +
+                "\t\"ACTOR\": {\n" +
+                "\t\t\"type\": \"array\",\n" +
+                "\t\t\"x-health-only\": true,\n" +
+                "\t\t\"items\": {\n" +
+                "\t\t\t\"type\": \"string\",\n" +
+                "\t\t\t\"title\": \"Acteurs\",\n" +
+                "\t\t\t\"x-health-only\": false,\n" +
+                "\t\t\t\"x-cols\": 6,\n" +
+                "\t\t\t\"example\": \"example.json#/emsi/EVENT/ETYPE/ACTOR/0\",\n" +
+                "\t\t\t\"description\": \"bla bla bla\",\n" +
+                "\t\t\t\"enum\": [\n" +
+                "\t\t\t\t\"value_1\",\n" +
+                "\t\t\t\t\"value_2\"\n" +
+                "\t\t\t]\n" +
+                "\t\t}\n" +
+                "\t}\n" +
+                "}";
+
+        ObjectMapper mapper = new ObjectMapper();
+        JsonNode node = mapper.readTree(json);
+
+        // Before conversion, node has array type and items property
+        JsonNode actorNode = node.get("ACTOR");
+        assertEquals(actorNode.get("type").asText(), "array");
+        assertNull(actorNode.get("enum"));
+        assertNotNull(actorNode.get("items"));
+
+        convertEnumArraysToSimpleEnum(node, "");
+
+        // After conversion, node has string type and enum property
+        assertEquals(actorNode.get("type").asText(), "string");
+        assertNotNull(actorNode.get("enum"));
+        assertNull(actorNode.get("items"));
+
     }
 }

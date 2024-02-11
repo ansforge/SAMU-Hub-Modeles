@@ -2,17 +2,19 @@ package json_schema2xsd;
 
 import com.ethlo.jsons2xsd.Config;
 import com.ethlo.jsons2xsd.Jsons2Xsd;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.w3c.dom.Document;
 
-import java.io.FileOutputStream;
-import java.io.InputStreamReader;
-import java.io.StringWriter;
+import java.io.*;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.dom.DOMSource;
-import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Iterator;
+import java.util.Map;
 
 public class App {
     public String getGreeting() {
@@ -31,9 +33,10 @@ public class App {
 
             // Create a Config object to customize the conversion
             Config config = new Config.Builder()
-                    .targetNamespace("urn:emergency:cisu:2.0")
+                    .targetNamespace(getTargetNamespace(schema))
                     .unwrapArrays(true)
-                    .name(schema)
+                    .createRootElement(true)
+                    .name(getRootElementNameFromSchema(schema))
                     .build();
 
             try {
@@ -43,9 +46,17 @@ public class App {
 
                 // Create a Reader from the InputStream
                 InputStreamReader reader = new InputStreamReader(jsonSchemaStream);
+                ObjectMapper mapper = new ObjectMapper();
+                JsonNode jsonNode = mapper.readTree(reader);
+                convertEnumArraysToSimpleEnum(jsonNode, "");
+
+                byte[] bytes = mapper.writeValueAsBytes(jsonNode);
+                InputStream converted = new ByteArrayInputStream(bytes);
+                InputStreamReader cvReader = new InputStreamReader(converted);
+
 
                 // Convert the JSON schema to an XML schema
-                Document xmlSchemaDoc = Jsons2Xsd.convert(reader, config);
+                Document xmlSchemaDoc = Jsons2Xsd.convert(cvReader, config);
 
                 // Convert the Document to a String
                 String xmlSchema = documentToString(xmlSchemaDoc);
@@ -54,6 +65,79 @@ public class App {
                 writeDocumentToFile(xmlSchemaDoc, xsdFilePath);
             } catch (Exception e) {
                 e.printStackTrace();
+            }
+        }
+    }
+
+    private static String getTargetNamespace(String schema) {
+        if (schema.equalsIgnoreCase("RC-DE")) {
+            return "urn:emergency:cisu:2.0";
+        } else return "urn:emergency:cisu:2.0:" + schema;
+    }
+    private static String getRootElementNameFromSchema(String schema) {
+        String root;
+        switch (schema) {
+            case "EMSI":
+                root = "emsi";
+                break;
+            case "RC-DE":
+                root = "distributionElement";
+                break;
+            case "RC-REF":
+                root = "reference";
+                break;
+            case "RC-EDA":
+                root = "createCase";
+                break;
+            case "RS-EDA":
+                root = "createCaseHealth";
+                break;
+            case "RS-INFO":
+                root = "info";
+                break;
+            default:
+                root = "";
+        }
+        return root;
+    }
+
+    /*
+    * This is an awful hack to skirt a missing feature on the underlying library (ethlo json2xsd),
+    * which can not handle array of enum based strings.
+    *
+    * This leads to a misformatted xsd which can not be taken in charge of by the validators, with an unexistent type "enum".
+    * The output we need is exactly the same as a regular enum, which the ethlo lib can manage perfectly, with only an additional attribute
+    * maxOccurs="unbounded" and the validation works fine.
+    *
+    * So at this point we dynamically rewrite the Json Tree to artificially convert enum arrays to simple enums, and log the property name to add
+    * this attribute.
+    *
+    * We should eventually handle this latest step automatically
+     */
+    public static void convertEnumArraysToSimpleEnum(JsonNode node, String propertyName) {
+        if (!node.isObject()) {
+            return;
+        }
+
+        if (node.has("type") && node.get("type").asText().equals("array") &&
+                node.get("items").has("enum")) {
+            JsonNode itemsNode = node.get("items");
+            ObjectNode objectNode = (ObjectNode) node;
+            objectNode.removeAll();
+            objectNode.setAll((ObjectNode) itemsNode);
+            ((ObjectNode) node).setAll(objectNode);
+
+            System.out.println("The property " + propertyName + " has been converted from enum array to simple enum");
+        }
+
+        if (node.isObject()) {
+            for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext();) {
+                Map.Entry<String, JsonNode> entry = fields.next();
+                convertEnumArraysToSimpleEnum(entry.getValue(), entry.getKey());
+            }
+        } else if (node.isArray()) {
+            for (int i = 0; i < node.size(); i++) {
+                convertEnumArraysToSimpleEnum(node.get(i), propertyName + "[" + i + "]");
             }
         }
     }

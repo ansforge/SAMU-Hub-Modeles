@@ -31,7 +31,7 @@
                             <name>samuA</name>
                             <URI>hubex:fr.health.samuA</URI>
                         </recipient>
-                        <reference>
+                        <reference xmlns="urn:emergency:cisu:2.0:RC-REF">
                             <distributionID>samuA_2607723d-507d-4cbf-bf74-12345f7064cd</distributionID>
                         </reference>
                     </message>
