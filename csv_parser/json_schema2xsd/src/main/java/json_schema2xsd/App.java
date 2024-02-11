@@ -6,15 +6,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 import java.io.*;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.dom.DOMSource;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.Map;
+import java.nio.file.Files;
+import java.util.*;
 
 public class App {
     public String getGreeting() {
@@ -46,17 +47,28 @@ public class App {
 
                 // Create a Reader from the InputStream
                 InputStreamReader reader = new InputStreamReader(jsonSchemaStream);
+
+                // Convert enum arrays in simple enums (see convertEnumArraysToSImpleEnum method javadoc below)
                 ObjectMapper mapper = new ObjectMapper();
                 JsonNode jsonNode = mapper.readTree(reader);
-                convertEnumArraysToSimpleEnum(jsonNode, "");
+                List<String> convertedEnums = new ArrayList<>();
+                convertEnumArraysToSimpleEnum(jsonNode, "", convertedEnums);
 
+                // Create converted reader
                 byte[] bytes = mapper.writeValueAsBytes(jsonNode);
                 InputStream converted = new ByteArrayInputStream(bytes);
                 InputStreamReader cvReader = new InputStreamReader(converted);
 
-
                 // Convert the JSON schema to an XML schema
                 Document xmlSchemaDoc = Jsons2Xsd.convert(cvReader, config);
+
+//                // if xmlSchema contains element, rewrite them # does not work
+//                if (!convertedEnums.isEmpty()) {
+//                    convertedEnums.forEach(property -> {
+//                        Element elem = (Element) xmlSchemaDoc.getElementsByTagName(property).item(0);
+//                        elem.setAttribute("maxOccurs", "unbounded");
+//                    });
+//                }
 
                 // Convert the Document to a String
                 String xmlSchema = documentToString(xmlSchemaDoc);
@@ -114,7 +126,7 @@ public class App {
     *
     * We should eventually handle this latest step automatically
      */
-    public static void convertEnumArraysToSimpleEnum(JsonNode node, String propertyName) {
+    public static void convertEnumArraysToSimpleEnum(JsonNode node, String propertyName, List<String> convertedEnums) throws IOException {
         if (!node.isObject()) {
             return;
         }
@@ -127,17 +139,18 @@ public class App {
             objectNode.setAll((ObjectNode) itemsNode);
             ((ObjectNode) node).setAll(objectNode);
 
+            convertedEnums.add(propertyName);
             System.out.println("The property " + propertyName + " has been converted from enum array to simple enum");
         }
 
         if (node.isObject()) {
             for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext();) {
                 Map.Entry<String, JsonNode> entry = fields.next();
-                convertEnumArraysToSimpleEnum(entry.getValue(), entry.getKey());
+                convertEnumArraysToSimpleEnum(entry.getValue(), entry.getKey(), convertedEnums);
             }
         } else if (node.isArray()) {
             for (int i = 0; i < node.size(); i++) {
-                convertEnumArraysToSimpleEnum(node.get(i), propertyName + "[" + i + "]");
+                convertEnumArraysToSimpleEnum(node.get(i), propertyName + "[" + i + "]", convertedEnums);
             }
         }
     }
