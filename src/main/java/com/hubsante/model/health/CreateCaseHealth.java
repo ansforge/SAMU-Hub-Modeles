@@ -69,6 +69,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CreateCaseHealth {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:createCaseHealth";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
@@ -352,8 +354,6 @@ public class CreateCaseHealth {
     return operator;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_OPERATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOperator(List<Operator> operator) {
@@ -390,8 +390,6 @@ public class CreateCaseHealth {
   public List<Patient> getPatient() {
     return patient;
   }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_PATIENT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -432,8 +430,6 @@ public class CreateCaseHealth {
     return medicalAnalysis;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMedicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
@@ -470,8 +466,6 @@ public class CreateCaseHealth {
   public List<Alert> getNewAlert() {
     return newAlert;
   }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
 
   @JsonProperty(JSON_PROPERTY_NEW_ALERT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -559,7 +553,8 @@ public class CreateCaseHealth {
         Objects.equals(this.newAlert, createCaseHealth.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCaseHealth.additionalInformation) &&
-        Objects.equals(this.freetext, createCaseHealth.freetext);
+        Objects.equals(this.freetext, createCaseHealth.freetext) &&
+        super.equals(o);
   }
 
   @Override
@@ -567,13 +562,14 @@ public class CreateCaseHealth {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
                         qualification, location, initialAlert, owner, operator,
                         patient, medicalAnalysis, newAlert,
-                        additionalInformation, freetext);
+                        additionalInformation, freetext, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCaseHealth {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    senderCaseId: ")
         .append(toIndentedString(senderCaseId))
