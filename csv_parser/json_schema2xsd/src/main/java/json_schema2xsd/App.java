@@ -5,11 +5,13 @@ import com.ethlo.jsons2xsd.Jsons2Xsd;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import com.sun.org.apache.xerces.internal.dom.DocumentImpl;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 import java.io.*;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
@@ -62,13 +64,8 @@ public class App {
                 // Convert the JSON schema to an XML schema
                 Document xmlSchemaDoc = Jsons2Xsd.convert(cvReader, config);
 
-//                // if xmlSchema contains element, rewrite them # does not work
-//                if (!convertedEnums.isEmpty()) {
-//                    convertedEnums.forEach(property -> {
-//                        Element elem = (Element) xmlSchemaDoc.getElementsByTagName(property).item(0);
-//                        elem.setAttribute("maxOccurs", "unbounded");
-//                    });
-//                }
+                // if xmlSchema contains element, rewrite them
+                revertEnumArraysConversion(xmlSchemaDoc.getDocumentElement(), convertedEnums);
 
                 // Convert the Document to a String
                 String xmlSchema = documentToString(xmlSchemaDoc);
@@ -157,6 +154,24 @@ public class App {
         }
     }
 
+    public static void revertEnumArraysConversion(Element element, List<String> propertyNames) {
+        // We search for the "name" attribute of the Element, which is the property name for us, because in the generated xsd the element Name will be "element",
+        // "complexType", "sequence", etc. -> XML schema tags
+        String elementName = element.getAttribute("name");
+
+        // If condition is met, we set it back to an array type
+        if (propertyNames.contains(elementName)) {
+            element.setAttribute("maxOccurs", "unbounded");
+        }
+
+        // We perform it recursively
+        for (int i = 0; i < element.getChildNodes().getLength(); i++) {
+            if (element.getChildNodes().item(i) instanceof Element) {
+                revertEnumArraysConversion((Element) element.getChildNodes().item(i), propertyNames);
+            }
+        }
+    }
+
     // Helper method to convert a DOM Document to a String
     private static String documentToString(Document document) throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();
@@ -170,6 +185,8 @@ public class App {
     private static void writeDocumentToFile(Document document, String filePath) throws Exception {
         TransformerFactory tf = TransformerFactory.newInstance();
         Transformer transformer = tf.newTransformer();
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4"); // https://www.w3docs.com/snippets/java/how-to-pretty-print-xml-from-java.html
         FileOutputStream outputStream = new FileOutputStream(filePath);
         transformer.transform(new DOMSource(document), new StreamResult(outputStream));
         outputStream.close();

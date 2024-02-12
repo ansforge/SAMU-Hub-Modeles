@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:x="urn:emergency:cisu:2.0:info" elementFormDefault="qualified"
-        targetNamespace="urn:emergency:cisu:2.0:info" xmlns="http://www.w3.org/2001/XMLSchema">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:info" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:info" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="info" type="x:info"/>
     <complexType name="info">
         <sequence>
