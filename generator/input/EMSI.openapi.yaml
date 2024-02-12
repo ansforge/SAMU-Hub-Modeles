@@ -3,10 +3,12 @@ components:
   schemas:
     emsiWrapper:
       type: object
+      title: EmsiWrapper
       required:
       - emsi
       properties:
-        $ref: '#/components/schemas/emsi'
+        emsi:
+          $ref: '#/components/schemas/emsi'
     emsi:
       $id: classpath:/json-schema/schema#
       x-id: EMSI.schema.json#

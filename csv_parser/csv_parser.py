@@ -554,7 +554,9 @@ def run(sheet, name, version, filter):
                 "type": "object",
                 "required": [MODEL_TYPE],
                 "properties": {
-                    "$ref": "#/components/schemas/" + MODEL_TYPE
+                    MODEL_TYPE: {
+                        "$ref": "#/components/schemas/" + MODEL_TYPE
+                    }
                 }
             }
         }
