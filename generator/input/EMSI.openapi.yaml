@@ -3,7 +3,6 @@ components:
   schemas:
     emsiWrapper:
       type: object
-      title: EmsiWrapper
       required:
       - emsi
       properties:

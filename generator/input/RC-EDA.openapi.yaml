@@ -6,7 +6,8 @@ components:
       required:
       - createCase
       properties:
-        $ref: '#/components/schemas/createCase'
+        createCase:
+          $ref: '#/components/schemas/createCase'
     createCase:
       $id: classpath:/json-schema/schema#
       x-id: RC-EDA.schema.json#

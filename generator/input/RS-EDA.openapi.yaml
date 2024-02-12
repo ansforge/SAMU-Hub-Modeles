@@ -6,7 +6,8 @@ components:
       required:
       - createCaseHealth
       properties:
-        $ref: '#/components/schemas/createCaseHealth'
+        createCaseHealth:
+          $ref: '#/components/schemas/createCaseHealth'
     createCaseHealth:
       $id: classpath:/json-schema/schema#
       x-id: RS-EDA.schema.json#
