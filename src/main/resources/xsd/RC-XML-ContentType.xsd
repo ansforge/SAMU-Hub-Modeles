@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns:x="urn:emergency:cisu:2.0"
         xmlns:xs="http://www.w3.org/2001/XMLSchema"
-        xmlns:rcref="urn:emergency:cisu:2.0:RC-REF"
-        xmlns:rceda="urn:emergency:cisu:2.0:RC-EDA"
-        xmlns:rseda="urn:emergency:cisu:2.0:RS-EDA"
-        xmlns:emsi="urn:emergency:cisu:2.0:EMSI"
-        xmlns:info="urn:emergency:cisu:2.0:RS-INFO"
+        xmlns:rcref="urn:emergency:cisu:2.0:reference"
+        xmlns:rceda="urn:emergency:cisu:2.0:createCase"
+        xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
+        xmlns:emsi="urn:emergency:cisu:2.0:emsi"
+        xmlns:info="urn:emergency:cisu:2.0:info"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
     <xs:include schemaLocation="RC-DE.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:RC-EDA" schemaLocation="RC-EDA.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:RC-REF" schemaLocation="RC-REF.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:RS-EDA" schemaLocation="RS-EDA.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:EMSI" schemaLocation="EMSI.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:RS-INFO" schemaLocation="RS-INFO.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:createCase" schemaLocation="RC-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>

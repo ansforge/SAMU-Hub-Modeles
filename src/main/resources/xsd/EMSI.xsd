@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:x="urn:emergency:cisu:2.0:EMSI" elementFormDefault="qualified"
-        targetNamespace="urn:emergency:cisu:2.0:EMSI" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema xmlns:x="urn:emergency:cisu:2.0:emsi" elementFormDefault="qualified"
+        targetNamespace="urn:emergency:cisu:2.0:emsi" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="emsi" type="x:emsi"/>
     <complexType name="emsi">
         <sequence>
@@ -830,7 +830,7 @@
     </complexType>
     <complexType name="etype">
         <sequence>
-            <element name="CATEGORY" maxOccurs="unbounded">
+            <element name="CATEGORY">
                 <annotation>
                     <documentation>Le champ peut ne pas être interprété ou renseigné avec une valeur comme 'UKN' =
                         'UNKOWN'
@@ -913,7 +913,7 @@
                     </restriction>
                 </simpleType>
             </element>
-            <element name="ACTOR" maxOccurs="unbounded">
+            <element name="ACTOR">
                 <annotation>
                     <documentation>Dans de futures versions de NexSIS, les demandes de concours seront diffusées à
                         plusieurs partenaires. Seul le système de la force concernée par la demande de concours devra
@@ -1294,7 +1294,7 @@
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="WEATHER" maxOccurs="unbounded">
+            <element minOccurs="0" name="WEATHER">
                 <annotation>
                     <documentation>Optionnel
                         La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité
@@ -1435,7 +1435,7 @@
     </complexType>
     <complexType name="rtype">
         <sequence>
-            <element name="RCLASS" maxOccurs="unbounded">
+            <element name="RCLASS">
                 <annotation>
                     <documentation>Permet d'indiquer la classe de l'objet RESOURCE. Plusieurs niveau de détails sont
                         fournis par la nomenclature associée.

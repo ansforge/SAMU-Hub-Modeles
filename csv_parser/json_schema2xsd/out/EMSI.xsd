@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:x="urn:emergency:cisu:2.0:EMSI" elementFormDefault="qualified"
-        targetNamespace="urn:emergency:cisu:2.0:EMSI" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema xmlns:x="urn:emergency:cisu:2.0:emsi" elementFormDefault="qualified"
+        targetNamespace="urn:emergency:cisu:2.0:emsi" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="emsi" type="x:emsi"/>
     <complexType name="emsi">
         <sequence>

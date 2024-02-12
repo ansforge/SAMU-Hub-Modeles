@@ -84,7 +84,7 @@ public class App {
     private static String getTargetNamespace(String schema) {
         if (schema.equalsIgnoreCase("RC-DE")) {
             return "urn:emergency:cisu:2.0";
-        } else return "urn:emergency:cisu:2.0:" + schema;
+        } else return "urn:emergency:cisu:2.0:" + getRootElementNameFromSchema(schema);
     }
     private static String getRootElementNameFromSchema(String schema) {
         String root;
@@ -126,7 +126,7 @@ public class App {
     *
     * We should eventually handle this latest step automatically
      */
-    public static void convertEnumArraysToSimpleEnum(JsonNode node, String propertyName, List<String> convertedEnums) throws IOException {
+    public static void convertEnumArraysToSimpleEnum(JsonNode node, String propertyName, List<String> convertedEnums) {
         if (!node.isObject()) {
             return;
         }
@@ -139,10 +139,12 @@ public class App {
             objectNode.setAll((ObjectNode) itemsNode);
             ((ObjectNode) node).setAll(objectNode);
 
+            // add property name of converted enum for later treatment
             convertedEnums.add(propertyName);
             System.out.println("The property " + propertyName + " has been converted from enum array to simple enum");
         }
 
+        // Recursion. We embed the convertedEnums list to pass it further to the upper level
         if (node.isObject()) {
             for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext();) {
                 Map.Entry<String, JsonNode> entry = fields.next();

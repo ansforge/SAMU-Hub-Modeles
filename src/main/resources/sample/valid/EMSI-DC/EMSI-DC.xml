@@ -35,7 +35,7 @@
                             <name>samuA2</name>
                             <URI>hubex:fr.health.samuA2</URI>
                         </recipient>
-                        <emsi xmlns="urn:emergency:cisu:2.0:EMSI">
+                        <emsi xmlns="urn:emergency:cisu:2.0:emsi">
                             <CONTEXT>
                                 <ID>d350c9d2-9d76-4568-b0b7-a747ffadc949</ID>
                                 <MODE>ACTUAL</MODE>

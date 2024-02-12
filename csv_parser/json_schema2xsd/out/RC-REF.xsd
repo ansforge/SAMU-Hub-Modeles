@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns:x="urn:emergency:cisu:2.0:RC-REF" elementFormDefault="qualified"
-        targetNamespace="urn:emergency:cisu:2.0:RC-REF" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema xmlns:x="urn:emergency:cisu:2.0:reference" elementFormDefault="qualified"
+        targetNamespace="urn:emergency:cisu:2.0:reference" xmlns="http://www.w3.org/2001/XMLSchema">
     <element name="reference" type="x:reference"/>
     <complexType name="reference">
         <sequence>
