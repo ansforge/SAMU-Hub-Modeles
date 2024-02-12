@@ -301,6 +301,8 @@ public class CreateCase {
     return newAlert;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_NEW_ALERT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNewAlert(List<Alert> newAlert) {
@@ -381,21 +383,20 @@ public class CreateCase {
         Objects.equals(this.newAlert, createCase.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCase.additionalInformation) &&
-        Objects.equals(this.freetext, createCase.freetext) && super.equals(o);
+        Objects.equals(this.freetext, createCase.freetext);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
                         qualification, location, initialAlert, newAlert,
-                        additionalInformation, freetext, super.hashCode());
+                        additionalInformation, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateCase {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    senderCaseId: ")
         .append(toIndentedString(senderCaseId))

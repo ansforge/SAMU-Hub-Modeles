@@ -84,20 +84,18 @@ public class Reference {
       return false;
     }
     Reference reference = (Reference)o;
-    return Objects.equals(this.distributionID, reference.distributionID) &&
-        super.equals(o);
+    return Objects.equals(this.distributionID, reference.distributionID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(distributionID, super.hashCode());
+    return Objects.hash(distributionID);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Reference {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    distributionID: ")
         .append(toIndentedString(distributionID))
         .append("\n");

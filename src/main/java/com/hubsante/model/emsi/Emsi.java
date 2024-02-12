@@ -141,6 +141,8 @@ public class Emsi {
     return MISSION;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_M_I_S_S_I_O_N)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMISSION(List<Mission> MISSION) {
@@ -178,6 +180,8 @@ public class Emsi {
     return RESOURCE;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_R_E_S_O_U_R_C_E)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setRESOURCE(List<Resource> RESOURCE) {
@@ -202,19 +206,18 @@ public class Emsi {
     return Objects.equals(this.CONTEXT, emsi.CONTEXT) &&
         Objects.equals(this.EVENT, emsi.EVENT) &&
         Objects.equals(this.MISSION, emsi.MISSION) &&
-        Objects.equals(this.RESOURCE, emsi.RESOURCE) && super.equals(o);
+        Objects.equals(this.RESOURCE, emsi.RESOURCE);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(CONTEXT, EVENT, MISSION, RESOURCE, super.hashCode());
+    return Objects.hash(CONTEXT, EVENT, MISSION, RESOURCE);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Emsi {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    CONTEXT: ").append(toIndentedString(CONTEXT)).append("\n");
     sb.append("    EVENT: ").append(toIndentedString(EVENT)).append("\n");
     sb.append("    MISSION: ").append(toIndentedString(MISSION)).append("\n");
