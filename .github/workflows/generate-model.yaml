@@ -37,6 +37,15 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: generate XSDs
+        working-directory: ./csv_parser/json_schema2xsd
+        run: gradle run
+
+      - name: copy XSDs to src
+        working-directory: ./csv_parser/json_schema2xsd
+        run: |
+          cp out/* ../../src/main/resources/json-schema/
+
       - name: Install node env 🏗
         uses: actions/setup-node@v3
         with:
