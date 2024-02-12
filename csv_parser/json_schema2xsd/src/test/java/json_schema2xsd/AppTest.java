@@ -9,6 +9,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static json_schema2xsd.App.convertEnumArraysToSimpleEnum;
 import static org.junit.Assert.*;
 
@@ -48,7 +50,7 @@ public class AppTest {
         assertNull(actorNode.get("enum"));
         assertNotNull(actorNode.get("items"));
 
-        convertEnumArraysToSimpleEnum(node, "");
+        convertEnumArraysToSimpleEnum(node, "", new ArrayList<>());
 
         // After conversion, node has string type and enum property
         assertEquals(actorNode.get("type").asText(), "string");
