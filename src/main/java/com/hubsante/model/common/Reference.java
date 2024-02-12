@@ -45,6 +45,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Reference {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:Reference";
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;
 
@@ -82,18 +84,20 @@ public class Reference {
       return false;
     }
     Reference reference = (Reference)o;
-    return Objects.equals(this.distributionID, reference.distributionID);
+    return Objects.equals(this.distributionID, reference.distributionID) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(distributionID);
+    return Objects.hash(distributionID, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Reference {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    distributionID: ")
         .append(toIndentedString(distributionID))
         .append("\n");
