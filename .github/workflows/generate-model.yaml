@@ -53,11 +53,13 @@ jobs:
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.wrapper.generator-config.json --skip-validate-spec
+          npx @openapitools/openapi-generator-cli generate -c ./config/common/common.usecase.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.distributionElement.generator-config.json --skip-validate-spec
 
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
 
