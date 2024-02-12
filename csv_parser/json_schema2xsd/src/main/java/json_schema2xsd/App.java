@@ -138,7 +138,6 @@ public class App {
 
             // add property name of converted enum for later treatment
             convertedEnums.add(propertyName);
-            System.out.println("The property " + propertyName + " has been converted from enum array to simple enum");
         }
 
         // Recursion. We embed the convertedEnums list to pass it further to the upper level
