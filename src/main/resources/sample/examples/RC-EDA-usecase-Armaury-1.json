@@ -189,12 +189,14 @@
       ]
     },
     "additionalInformation": {
-      "customMap": {
-        "key": "neighborhood",
-        "label": "Quartier",
-        "value": "LYON 2e arrondissement",
-        "freetext": "Une voix sens unique pour voiture + une voix bus"
-      }
+      "customMap": [
+        {
+          "key": "neighborhood",
+          "label": "Quartier",
+          "value": "LYON 2e arrondissement",
+          "freetext": "Une voix sens unique pour voiture + une voix bus"
+        }
+      ]
     },
     "freetext": "None"
   }
