@@ -541,7 +541,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet customMap</I></TD></TR><TR><TD BORDER="0" >key <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	customMap -> additionalInformation [constraint=true headlabel=1 taillabel="0..1"]
+	customMap -> additionalInformation [constraint=true headlabel=1 taillabel="0..*"]
 	additionalInformation [label=<<TABLE>
                 <TR>
                 <TD ><B>additionalInformation</B></TD>

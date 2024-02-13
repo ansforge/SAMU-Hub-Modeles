@@ -291,7 +291,8 @@ def run(sheet, name, version, filter):
     # DATA USAGE
     def is_array(elem):
         """Is elem an array?"""
-        return elem['Cardinalité'].endswith('n')
+        cardinality = elem['Cardinalité']
+        return not cardinality.endswith('1')
 
     def navigate_children_with_id(id_path):
         """
@@ -402,6 +403,8 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'items': childDetails
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = childDetails
 
@@ -434,6 +437,8 @@ def run(sheet, name, version, filter):
                     '$ref': '#/definitions/' + childTypeName,
                 }
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTypeName,

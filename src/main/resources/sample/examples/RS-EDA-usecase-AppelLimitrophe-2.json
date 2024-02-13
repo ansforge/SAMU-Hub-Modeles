@@ -184,12 +184,14 @@
     "newAlert": [],
     "owner": "fr.health.samu780",
     "additionalInformation": {
-      "customMap": {
-        "key": "Aucune",
-        "label": "Aucun",
-        "value": "0",
-        "freetext": "rempli pour pallier au bug d'envoi"
-      }
+      "customMap": [
+        {
+          "key": "Aucune",
+          "label": "Aucun",
+          "value": "0",
+          "freetext": "rempli pour pallier au bug d'envoi"
+        }
+      ]
     },
     "patient": [],
     "operator": []
