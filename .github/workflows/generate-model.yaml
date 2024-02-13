@@ -52,15 +52,15 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         run: gradle run
 
-      - name: Remove input JSON Schemas
-        working-directory: ./csv_parser/json_schema2xsd
-        run: |
-          rm src/main/resources/*
-
       - name: Copy XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
         run: |
           mv out/* ../../src/main/resources/xsd/
+
+      - name: Remove input JSON Schemas
+        working-directory: ./csv_parser/json_schema2xsd
+        run: |
+          rm src/main/resources/*
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3
