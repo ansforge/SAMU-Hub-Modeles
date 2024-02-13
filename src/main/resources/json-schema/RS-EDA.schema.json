@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.02.01",
+    "version": "24.02.13",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -11,8 +11,6 @@
     ],
     "properties": {
         "createCaseHealth": {
-            "title": "Objet createCase",
-            "description": "Object createCase",
             "$ref": "#/definitions/createCaseHealth"
         }
     },
@@ -66,18 +64,12 @@
                     "description": "Indique le num\u00e9ro de version du r\u00e9f\u00e9rentiel des nomenclatures des codes transmis. \nCela permet aux diff\u00e9rents syst\u00e8mes de s'assurer qu'ils utilisent la m\u00eame version des codes de nomenclature que leurs partenaires."
                 },
                 "qualification": {
-                    "title": "Qualification de l'affaire/dossier",
-                    "description": "Permet de qualifier l'affaire en g\u00e9n\u00e9rale. La qualification est issue d'une interpr\u00e9tation m\u00e9tier des alertes re\u00e7ues.",
                     "$ref": "#/definitions/qualification"
                 },
                 "location": {
-                    "title": "Localisation de l'affaire/dossier",
-                    "description": "Concerne bien le dossier de r\u00e9gulation pour le p\u00e9rimetre 15-15",
                     "$ref": "#/definitions/location"
                 },
                 "initialAlert": {
-                    "title": "Alerte initiale",
-                    "description": "L'objet alert correspond \u00e0 la transcription d'une communication d'urgence. Une alerte est une photo d'une situation donn\u00e9e d\u00e9crite par un requ\u00e9rant et n'est pas amen\u00e9e \u00e0 \u00e9voluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise \u00e0 jour op\u00e9ration ou une nouvelle alerte.\nL'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant \u00e0 la cr\u00e9ation d'une affaire.\nLe syst\u00e8me destinataire re\u00e7oit une affaire lorsqu'une alerte le concerne. S'il ne g\u00e8re pas les affaires multi-alertes, il doit donc cr\u00e9er une affaire seulement sur l'alerte le concernant : pour une cr\u00e9ation d'affaire, sur l'alerte initiale et pour une mise \u00e0 jour d'affaire, sur la nouvelle alerte (en r\u00e9cup\u00e9rant \u00e9ventuellement des informations de l'alerte initiale en historique).\nPour r\u00e9pondre sur une alerte, l'alerte initiale n'est pas obligatoire car pas forc\u00e9ment stock\u00e9e dans le syst\u00e8me (notamment pour ceux avec des affaires mono-alertes).\nNB :\n- Dans le cadre une mise \u00e0 jour d'affaire, les objets alert sont IMMUTABLES dans la mesure o\u00f9 il d\u00e9crivent une \"photo\" de la situation d\u00e9crite par le requ\u00e9rant.",
                     "$ref": "#/definitions/alert"
                 },
                 "owner": {
@@ -91,38 +83,28 @@
                 "operator": {
                     "type": "array",
                     "items": {
-                        "title": "Op\u00e9rateurs impliqu\u00e9s",
-                        "description": "Si pertinent et si le SAMU \u00e9metteur souhaite partager les op\u00e9rateurs sp\u00e9cifiques \u00e0 contacter chez lui (ARM R\u00e9f\u00e9rent, M\u00e9deci r\u00e9f\u00e9rent, etc) pour le traitement d'un dossier.",
                         "$ref": "#/definitions/operator"
                     }
                 },
                 "patient": {
                     "type": "array",
                     "items": {
-                        "title": "Patients / victimes",
-                        "description": "Identification des patients / victimes",
                         "$ref": "#/definitions/patient"
                     }
                 },
                 "medicalAnalysis": {
                     "type": "array",
                     "items": {
-                        "title": "R\u00e9gulation m\u00e9dicale",
-                        "description": "Donn\u00e9es sp\u00e9cifiques \u00e0 la r\u00e9gulation m\u00e9dicale",
                         "$ref": "#/definitions/medicalAnalysis"
                     }
                 },
                 "newAlert": {
                     "type": "array",
                     "items": {
-                        "title": "Nouvelle alerte",
-                        "description": "Lorsque plusieurs alertes correspondent \u00e0 une m\u00eame affaire/dossier, la premi\u00e8re alerte re\u00e7ue est appel\u00e9e Alerte initial \"initialAlert\", la seconde et les suivantes sont des objets \"newAlert\".\nLes objet newAlert suivent le mod\u00e8le d'un objet initialAlert\nDans le cadre une mise \u00e0 jour d'affaire, les objets alertes sont IMMUTABLES.",
                         "$ref": "#/definitions/alert"
                     }
                 },
                 "additionalInformation": {
-                    "title": "Informations compl\u00e9mentaires",
-                    "description": "",
                     "$ref": "#/definitions/additionalInformation"
                 },
                 "freetext": {
@@ -147,36 +129,24 @@
             ],
             "properties": {
                 "whatsHappen": {
-                    "title": "Nature de fait",
-                    "description": "D\u00e9crit la nature de fait de l'alerte (NF) \u00e0 partir de la nomenclature CISU",
                     "$ref": "#/definitions/nomenclature"
                 },
                 "locationKind": {
-                    "title": "Type de lieu",
-                    "description": "D\u00e9crit le type de lieu (TL). R\u00e9f\u00e9rentiel : nomenclature CISU",
                     "$ref": "#/definitions/nomenclature"
                 },
                 "riskThreat": {
                     "type": "array",
                     "items": {
-                        "title": "Risque, menace et sensibilit\u00e9",
-                        "description": "D\u00e9crit les risques, menaces et sensibilit\u00e9s (RMS). R\u00e9f\u00e9rentiel : nomenclature CISU.",
                         "$ref": "#/definitions/nomenclature"
                     }
                 },
                 "healthMotive": {
-                    "title": "Motif de recours m\u00e9dico-secouriste",
-                    "description": "D\u00e9crit le motif de recours m\u00e9dico-secouriste (MR). R\u00e9f\u00e9rentiel : nomenclature CISU.",
                     "$ref": "#/definitions/nomenclature"
                 },
                 "details": {
-                    "title": "D\u00e9tails du dossier ",
-                    "description": "cf. cycle SI SAMU uniquement (si applicable) ",
                     "$ref": "#/definitions/caseDetails"
                 },
                 "victims": {
-                    "title": "Patients/Victimes",
-                    "description": "",
                     "$ref": "#/definitions/victims"
                 }
             },
@@ -219,30 +189,20 @@
                     "description": "Indique le nom de lieu : nom commercial, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
                 },
                 "detailedAddress": {
-                    "title": "D\u00e9tails de l'adresse",
-                    "description": "",
                     "$ref": "#/definitions/detailedAddress"
                 },
                 "city": {
-                    "title": "D\u00e9tails de la commune",
-                    "description": "",
                     "$ref": "#/definitions/city"
                 },
                 "access": {
-                    "title": "D\u00e9tails d'acc\u00e8s",
-                    "description": "Non g\u00e9r\u00e9s par NexSIS : ne seront pas transmis au SAMU et seront affich\u00e9s c\u00f4t\u00e9 NexSIS en cl\u00e9s / valeurs dans le champ libre",
                     "$ref": "#/definitions/access"
                 },
                 "geometry": {
-                    "title": "G\u00e9ometrie associ\u00e9e",
-                    "description": "",
                     "$ref": "#/definitions/geometry"
                 },
                 "externalInfo": {
                     "type": "array",
                     "items": {
-                        "title": "Liens aux syst\u00e8mes externes",
-                        "description": "Permet de partager l'identifiant d'un objet ayant servi \u00e0 l'\u00e9tablissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI\nL'identifiant BAN de l'adresse (cl\u00e9 d'interop\u00e9rabilit\u00e9) doit \u00eatre partag\u00e9 au maximum.",
                         "$ref": "#/definitions/externalInfo"
                     }
                 },
@@ -563,35 +523,23 @@
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte"
                 },
                 "caller": {
-                    "title": "Requ\u00e9rant",
-                    "description": "Objet permettant d'identifer la personne qui a alert\u00e9 les secours et de la recontacter",
                     "$ref": "#/definitions/caller"
                 },
                 "alertSource": {
-                    "title": "Source de l'alerte",
-                    "description": "Source de contact permettant d'identifier le requ\u00e9rant.\nDans le cas o\u00f9 le requ\u00e9rant est \u00e0 l'origine de l'alerte les objets contactSource et callerContact sont valoris\u00e9s de la m\u00eame fa\u00e7on",
                     "$ref": "#/definitions/contactSource"
                 },
                 "location": {
-                    "title": "Localisation de l'alerte",
-                    "description": "Cet \u00e9l\u00e9ment peut repr\u00e9senter la localisation du requ\u00e9rant si celle-ci diff\u00e8re de celle de l'\u00e9v\u00e9nement ou pointer vers la localisation d'acc\u00e8s \u00e0 l'affaire si elle est confondue avec celle de l'alerte.",
                     "$ref": "#/definitions/location"
                 },
                 "qualification": {
-                    "title": "Qualification",
-                    "description": "Qualification de l'alerte.",
                     "$ref": "#/definitions/qualification"
                 },
                 "callTaker": {
-                    "title": "Agent",
-                    "description": "Objet permettant d'identifer et recontacter l'op\u00e9rateur ayant trait\u00e9 l'alerte",
                     "$ref": "#/definitions/callTaker"
                 },
                 "attachment": {
                     "type": "array",
                     "items": {
-                        "title": "Pi\u00e8ces jointes",
-                        "description": "Permet d'envoyer tout type de fichiers (photos, vid\u00e9os, sons, \u2026) par lien.\nLes URI doivent correspondre \u00e0 des espaces s\u00e9curis\u00e9s auxquels les acc\u00e8s ont d\u00e9j\u00e0 \u00e9t\u00e9 fournies ou doivent \u00eatre fournies avec des tokens \u00e9ph\u00e9m\u00e8res si besoin de s\u00e9curiser l'acc\u00e8s aux ressources tout en en garantissant l'acc\u00e8s par tous les destinataires des messages.\n\n",
                         "$ref": "#/definitions/attachment"
                     }
                 }
@@ -610,8 +558,6 @@
             ],
             "properties": {
                 "detailedName": {
-                    "title": "Pr\u00e9nom et nom",
-                    "description": "Pr\u00e9nom & nom de l'op\u00e9rateur",
                     "$ref": "#/definitions/detailedName"
                 },
                 "id": {
@@ -652,40 +598,26 @@
                     "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
                 },
                 "file": {
-                    "title": "Dossier administratif",
-                    "description": "",
                     "$ref": "#/definitions/file"
                 },
                 "identity": {
-                    "title": "Identit\u00e9 INS",
-                    "description": "L'identit\u00e9e du patient bas\u00e9e sur les r\u00e8gles de l'INS",
                     "$ref": "#/definitions/insIdentity"
                 },
                 "healthMotive": {
-                    "title": "Motif de recours m\u00e9dico-secouriste",
-                    "description": "D\u00e9crit le motif de recours m\u00e9dico-secouriste sp\u00e9cifique au patient concern\u00e9 (MR). R\u00e9f\u00e9rentiel : nomenclature CISU.",
                     "$ref": "#/definitions/nomenclature"
                 },
                 "detail": {
-                    "title": "Informations patient",
-                    "description": "",
                     "$ref": "#/definitions/patientDetail"
                 },
                 "hypothesis": {
-                    "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale",
-                    "description": "",
                     "$ref": "#/definitions/hypothesis"
                 },
                 "resourceDiagnosis": {
-                    "title": "Diagnostic de l'effecteur",
-                    "description": "Diagnostic pos\u00e9 par le m\u00e9decin effecteur qui se trouve sur les lieux de l'affaire",
                     "$ref": "#/definitions/nomenclature"
                 },
                 "medicalNote": {
                     "type": "array",
                     "items": {
-                        "title": "Interrogatoire m\u00e9dical",
-                        "description": "Interrogatoire m\u00e9dical. Aussi appel\u00e9 note de r\u00e9gulation m\u00e9dicale.",
                         "$ref": "#/definitions/medicalNote"
                     }
                 }
@@ -711,8 +643,6 @@
                 "decision": {
                     "type": "array",
                     "items": {
-                        "title": "D\u00e9cisions",
-                        "description": "Mesures prises par le Samu-Centre 15 en r\u00e9ponse \u00e0 la demande exprim\u00e9e en fonction de l\u2019\u00e9v\u00e9nement et de la situation du ou des patients",
                         "$ref": "#/definitions/decision"
                     }
                 }
@@ -730,8 +660,6 @@
                 "customMap": {
                     "type": "array",
                     "items": {
-                        "title": "Cl\u00e9 valeur adaptable",
-                        "description": "Permet de rajouter quelques paires de champs",
                         "$ref": "#/definitions/customMap"
                     },
                     "maxItems": 3
@@ -908,8 +836,6 @@
                     "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
                 },
                 "wayName": {
-                    "title": "Type et nom de voie",
-                    "description": "",
                     "$ref": "#/definitions/wayName"
                 }
             },
@@ -1058,8 +984,6 @@
                     "format": "date-time"
                 },
                 "point": {
-                    "title": "Point ",
-                    "description": "Fournir au maximum m\u00eame s'il est impr\u00e9cis (et adapter le champs \"Pr\u00e9cision\" en fonction). \nPar exemple, sans adresse, il est possible de fournir le point GPS de la commune et d'adapter et pr\u00e9ciser l'adresse en cours d'intervention.\nSera toujours fourni par NexSIS.",
                     "$ref": "#/definitions/point"
                 },
                 "sketch": {
@@ -1170,8 +1094,6 @@
             ],
             "properties": {
                 "coord": {
-                    "title": "Coordonn\u00e9es",
-                    "description": "Le SGO ne fonctionne toujours sur des coordonn\u00e9es X/Y ainsi qu'une adresse indicative associ\u00e9e. \nNexSIS dispose donc toujours d'un point GPS utilis\u00e9 pour le temps de trajet, la d\u00e9termination de l'intervenant le plus proche, ...\nL'adresse est elle utilis\u00e9e par l\u2019intervenant pour aller sur le lieu.",
                     "$ref": "#/definitions/coord"
                 },
                 "sysCoord": {
@@ -1264,13 +1186,9 @@
             "required": [],
             "properties": {
                 "callerContact": {
-                    "title": "Contact",
-                    "description": "Type et valeur de l'URI utilis\u00e9e par le requ\u00e9rant \u00e0 l'origine de l'alerte.",
                     "$ref": "#/definitions/contact"
                 },
                 "callbackContact": {
-                    "title": "Contact de contre-appel",
-                    "description": "Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requ\u00e9rant, de la victime ou d'un t\u00e9moin. ",
                     "$ref": "#/definitions/contact"
                 },
                 "language": {
@@ -1549,8 +1467,6 @@
                     "description": "Informations compl\u00e9mentaires sur le requ\u00e9rant \nLes informations peuvent \u00eatre pass\u00e9es sous forme de texte libre ou via une liste d'adjectif"
                 },
                 "detailedName": {
-                    "title": "Pr\u00e9nom & nom usuel",
-                    "description": "",
                     "$ref": "#/definitions/detailedName"
                 }
             },
@@ -1641,8 +1557,6 @@
                     "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)"
                 },
                 "calltakerContact": {
-                    "title": "Contact de l'agent",
-                    "description": "Objet contact permettant d'indiquer le contact de l'agent",
                     "$ref": "#/definitions/contact"
                 },
                 "calltakerId": {
@@ -1805,27 +1719,19 @@
                 "externalId": {
                     "type": "array",
                     "items": {
-                        "title": "Identifiant(s) patient(s)",
-                        "description": "Identifiant autre que le matricule INS",
                         "$ref": "#/definitions/externalId"
                     }
                 },
                 "contact": {
                     "type": "array",
                     "items": {
-                        "title": "Contact",
-                        "description": "Type et valeur des URI utilis\u00e9es par le patient concern\u00e9",
                         "$ref": "#/definitions/contact"
                     }
                 },
                 "personalAddress": {
-                    "title": "Adresse",
-                    "description": "Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de d\u00e9tail de l'adresse d'intervention qui est un objet diff\u00e9rent",
                     "$ref": "#/definitions/personalAddress"
                 },
                 "generalPractitioner": {
-                    "title": "M\u00e9decin traitant ",
-                    "description": "",
                     "$ref": "#/definitions/generalPractitioner"
                 }
             },
@@ -1840,23 +1746,15 @@
             "required": [],
             "properties": {
                 "cycle": {
-                    "title": "Impl\u00e9mentation INS",
-                    "description": "Le RNIV exige que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent les 4 statuts fonctionnels suivants :\n- \u00ab identit\u00e9 provisoire \u00bb,\n- \u00ab identit\u00e9 r\u00e9cup\u00e9r\u00e9e \u00bb,\n- \u00ab identit\u00e9 valid\u00e9e \u00bb,\n- \u00ab identit\u00e9 qualifi\u00e9e \u00bb.\nCes statuts fonctionnels sont exclusifs les uns des autres. Le r\u00e9f\u00e9rentiel INS [EXI 18] pr\u00e9cise en outre que le matricule INS et l\u2019OID doivent \u00eatre accompagn\u00e9s d\u2019informations confirmant qu\u2019ils ont \u00e9t\u00e9 qualifi\u00e9s.",
                     "$ref": "#/definitions/insCycle"
                 },
                 "number": {
-                    "title": "Matricule INS",
-                    "description": "n\u00b0 NIR OU n\u00b0 NIA de l'individu. Le matricule INS (et son OID) ne doit jamais \u00eatre propag\u00e9 (= \u00e9chang\u00e9) si l'identit\u00e9 est \u00e0 un statut autre que qualifi\u00e9e. Il correspond au num\u00e9ro personnel de s\u00e9curit\u00e9 sociale. Il peut \u00eatre diff\u00e9rent du num\u00e9ro de s\u00e9curit\u00e9 sociale utilis\u00e9 pour le remboursement des soins par l\u2019assurance maladie, dans le cas par exemple o\u00f9 l\u2019usager n\u2019est pas l\u2019assur\u00e9 social (ex.: l\u2019enfant qui est rattach\u00e9 \u00e0 l\u2019un de ses parents).\nLe matricule INS est compos\u00e9 des 13 caract\u00e8res et de la cl\u00e9 de contr\u00f4le. ",
                     "$ref": "#/definitions/insNumber"
                 },
                 "strictFeatures": {
-                    "title": "Traits stricts de l'identit\u00e9",
-                    "description": "L\u2019Identit\u00e9 Nationale de Sant\u00e9 (INS) permet de r\u00e9f\u00e9rencer les donn\u00e9es de sant\u00e9 avec une identit\u00e9 unique, p\u00e9renne, partag\u00e9e par l'ensemble des professionnels du monde de la sant\u00e9.\nElle est compos\u00e9e : \n - Du matricule INS (NIR - num\u00e9ro d\u2019inscription au r\u00e9pertoire national des personnes physiques - ou NIA \u2013 num\u00e9ro identifiant attente - de l\u2019individu). Concr\u00e8tement, ce num\u00e9ro correspond au num\u00e9ro de s\u00e9curit\u00e9 sociale pour les ouvrants-droits, c\u2019est-\u00e0-dire la tr\u00e8s grande majorit\u00e9 des personnes majeures. Pour les autres assur\u00e9s, ce num\u00e9ro figure sur leur attestation de s\u00e9curit\u00e9 sociale et sera affich\u00e9 dans l\u2019espace num\u00e9rique de sant\u00e9 (Mon espace sant\u00e9) ; \n- Des cinq traits stricts de r\u00e9f\u00e9rence (nom de naissance, pr\u00e9nom(s) de naissance, date de naissance, sexe, lieu de naissance).",
                     "$ref": "#/definitions/insStrictFeatures"
                 },
                 "nonStrictFeatures": {
-                    "title": "Traits non stricts de l'identit\u00e9",
-                    "description": "Pr\u00e9nom et nom usuels",
                     "$ref": "#/definitions/detailedName"
                 }
             },
@@ -1920,15 +1818,11 @@
             "required": [],
             "properties": {
                 "mainDiagnosis": {
-                    "title": "Hypoth\u00e8se de r\u00e9gulation m\u00e9dicale principale",
-                    "description": "Hypothese diagnostique principale \u00e9mise par le m\u00e9decin r\u00e9gulateur du CRAA",
                     "$ref": "#/definitions/nomenclature"
                 },
                 "otherDiagnosis": {
                     "type": "array",
                     "items": {
-                        "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale secondaires",
-                        "description": "Hypotheses diagnostiques secondaires \u00e9mises par le m\u00e9decin r\u00e9gulateur du CRAA",
                         "$ref": "#/definitions/nomenclature"
                     }
                 }
@@ -1946,8 +1840,6 @@
             ],
             "properties": {
                 "operator": {
-                    "title": "Professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire",
-                    "description": "Professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire m\u00e9dical. ",
                     "$ref": "#/definitions/operator"
                 },
                 "creation": {
@@ -2036,13 +1928,9 @@
             "required": [],
             "properties": {
                 "detailedAddress": {
-                    "title": "Adresse",
-                    "description": "",
                     "$ref": "#/definitions/detailedAddress"
                 },
                 "city": {
-                    "title": "Ville",
-                    "description": "",
                     "$ref": "#/definitions/city"
                 }
             },
@@ -2057,8 +1945,6 @@
             "required": [],
             "properties": {
                 "detailedName": {
-                    "title": "Pr\u00e9nom et nom",
-                    "description": "Nom du m\u00e9decin traitant du patient si connu",
                     "$ref": "#/definitions/detailedName"
                 },
                 "id": {
@@ -2070,15 +1956,11 @@
                     "description": "Num\u00e9ro RPPS du m\u00e9decin traitant"
                 },
                 "personalAddress": {
-                    "title": "Adresse medecin",
-                    "description": "",
                     "$ref": "#/definitions/personalAddress"
                 },
                 "contact": {
                     "type": "array",
                     "items": {
-                        "title": "Contact m\u00e9decin",
-                        "description": "Type et valeur des URI utilis\u00e9es par le patient concern\u00e9",
                         "$ref": "#/definitions/contact"
                     }
                 }
@@ -2251,8 +2133,6 @@
                     "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
                 },
                 "destination": {
-                    "title": "Destination",
-                    "description": "",
                     "$ref": "#/definitions/destination"
                 }
             },
