@@ -564,20 +564,19 @@ def run(sheet, name, version, filter):
             **common_openapi_components['components']['schemas'],
             **openapi_components
         }
-        # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
+
+        # Adding current asyncapi schemas to full asyncapi schema
+        global full_asyncapi
+        if (full_asyncapi is None):
+            full_asyncapi = asyncapi_yaml
+        else:
+            full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
 
     with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
         documents = yaml.dump(full_yaml, sort_keys=False)
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
     print('OpenAPI schema generated.')
-
-    # Adding current asyncapi schemas to full asyncapi schema
-    global full_asyncapi
-    if (full_asyncapi is None):
-       full_asyncapi = asyncapi_yaml
-    else:
-        full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
     uml_generator.run(name, MODEL_NAME, version=version, filter=filter)
