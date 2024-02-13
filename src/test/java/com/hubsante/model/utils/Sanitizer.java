@@ -62,6 +62,7 @@ public class Sanitizer {
                 referenceWrapper.setMessageId("messageId");
                 referenceWrapper.setSender(sanitizeSender());
                 sanitizeRecipients(referenceWrapper.getRecipient());
+                referenceWrapper.getReference().setDistributionID("neutral_distributionID");
                 return referenceWrapper;
 
             default:

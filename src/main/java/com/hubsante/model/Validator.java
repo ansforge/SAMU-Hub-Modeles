@@ -27,7 +27,9 @@ import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
 import lombok.extern.slf4j.Slf4j;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
@@ -38,10 +40,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
 
 @Slf4j
 public class Validator {
@@ -70,12 +69,25 @@ public class Validator {
     }
 
     public void validateXML(String message, String xsdFile) throws IOException, ValidationException {
+        javax.xml.validation.Validator validator;
         try {
-            javax.xml.validation.Validator validator = initValidator(xsdFile);
+            validator= initValidator(xsdFile);
             validator.validate(new StreamSource(new StringReader(message)));
         } catch (SAXException e) {
-            // TODO bbo: check what message is wrapped by SAXException
-            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + e.getMessage());
+            // Technically, SAXExceptions can be thrown by the validate method
+            // But in our case, we add a errorHandler in the initValidator method, so the SAXException which could be thrown
+            // should only come from the initValidator method
+            log.error("Something went wrong with the XSD Validator" + e.getMessage());
+            throw new ValidationException("Something went wrong with the XSD Validator.");
+        }
+
+        XmlErrorHandler errorHandler = (XmlErrorHandler) validator.getErrorHandler();
+        List<SAXParseException> xmlExceptions = errorHandler.getExceptions();
+
+        List<String> xmlErrors = new ArrayList<>();
+        if (!xmlExceptions.isEmpty()) {
+            xmlExceptions.forEach(e -> xmlErrors.add(e.getMessage()));
+            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + xmlErrors);
         }
     }
 
@@ -83,7 +95,9 @@ public class Validator {
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Source schemaFile = new StreamSource(new File(getClass().getClassLoader().getResource("xsd/" + xsdPath).getFile()));
         Schema schema = factory.newSchema(schemaFile);
-        return schema.newValidator();
+        javax.xml.validation.Validator validator = schema.newValidator();
+        validator.setErrorHandler(new XmlErrorHandler());
+        return validator;
     }
 
     public void validateJSON(String message, String jsonSchemaFile) throws IOException, ValidationException {
