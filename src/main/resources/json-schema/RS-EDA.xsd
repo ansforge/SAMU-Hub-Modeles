@@ -430,7 +430,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
     </complexType>
     <complexType name="additionalInformation">
         <sequence>
-            <element minOccurs="0" name="customMap" type="x:customMap"/>
+            <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
     <complexType name="nomenclature">
