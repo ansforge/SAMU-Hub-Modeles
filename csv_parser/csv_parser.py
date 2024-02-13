@@ -434,8 +434,6 @@ def run(sheet, name, version, filter):
             properties[child['name']] = {
                 'type': 'array',
                 'items': {
-                    'title': child['full_name'],
-                    'description': child['Description'] if str(child['Description']) != 'nan' else '',
                     '$ref': '#/definitions/' + childTypeName,
                 }
             }
@@ -443,8 +441,6 @@ def run(sheet, name, version, filter):
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = {
-                'title': child['full_name'],
-                'description': child['Description'] if str(child['Description']) != 'nan' else '',
                 '$ref': '#/definitions/' + childTypeName,
             }
 
