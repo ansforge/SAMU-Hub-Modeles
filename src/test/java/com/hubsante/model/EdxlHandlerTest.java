@@ -198,10 +198,10 @@ public class EdxlHandlerTest {
     }
 
     @Test
-    @DisplayName("deserialization of a message with an unknown additional property at root level doesn't fail (but it would be cool if it did)")
+    @DisplayName("deserialization of a message with an unknown additional property at root level fails")
     public void deserializationOfMessageWithUnknownPropertyAtRootLevelFails() throws IOException {
         String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
-        assertDoesNotThrow(() -> converter.deserializeJsonEDXL(json));
+        assertThrows(UnrecognizedPropertyException.class ,() -> converter.deserializeJsonEDXL(json));
     }
 
     @Test
