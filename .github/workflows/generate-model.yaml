@@ -44,7 +44,7 @@ jobs:
       - name: copy XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
         run: |
-          cp out/* ../../src/main/resources/json-schema/
+          mv out/* ../../src/main/resources/json-schema/
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3
