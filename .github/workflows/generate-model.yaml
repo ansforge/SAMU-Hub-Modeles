@@ -52,7 +52,7 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         run: gradle run
 
-      - name: Copy XSDs to src
+      - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
         run: |
           mv out/*.xsd ../../src/main/resources/xsd/
