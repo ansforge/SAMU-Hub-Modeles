@@ -1,3 +1,4 @@
+import copy
 import pandas as pd
 import json
 from jsonpath_ng import parse
@@ -125,6 +126,63 @@ def run(sheet, name, version, filter):
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
         lambda x: pd.NA if str(x).startswith('# ') else x)
+
+    def find_data_level(element):
+        """Find the first data level of the element"""
+        for i in range(1, DATA_DEPTH + 1):
+            if str(element[f"Donnée (Niveau {i})"]) != 'nan':
+                return i
+        return 0
+
+    def format_nomenclature_properties(child, parent):
+        nomenclature_file = parent['Détails de format']
+        """ For 'Code', set nomenclature file name to the 'Détails de format' column, remove it from parent """
+        if child['Balise NexSIS'] == "code":
+            child['Détails de format'] = nomenclature_file
+            df.loc[parent.ID-1, 'Détails de format'] = 'nan'
+        """Set the level of the child to be the level of the parent + 1"""
+        if find_data_level(child) != find_data_level(parent)+1:
+            child = shift_child_data_levels(child, parent)
+        return copy.deepcopy(child)
+
+    def shift_child_data_levels(child, parent):
+        """Shift the data levels of the child by the shift value"""
+        shift_difference = find_data_level(child) - find_data_level(parent)+1
+        child_cpy = copy.deepcopy(child)
+        for i in range(1, 1 + DATA_DEPTH):
+            if 0 < i-shift_difference <= DATA_DEPTH:
+                child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i-shift_difference})"]
+        return child_cpy
+
+    global first_nomenclature_properties
+    first_nomenclature_properties = []
+
+    def regenerate_ids(df):
+        """Regenerate the IDs of the dataframe"""
+        for index, row in df.copy().iterrows():
+            df.at[index, 'ID'] = index + 1
+
+    # Iterate over df and insert three lines after each entry of type 'nomenclature'
+    for index, row in df.copy().iterrows():
+        if row['Format (ou type)'] == 'nomenclature':
+            # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
+
+            if not first_nomenclature_properties:
+                for i in range(1, 4):
+                    first_nomenclature_properties.append(df.loc[index + i].to_dict())
+            # Otherwise, we add the children of the first nomenclature to the current nomenclature
+            else:
+                for i in range(1, 4):
+                    # we check the highest level of data of the current row and make sure to modify
+                    # the level of data of each property to be equal to the row's level + 1
+                    prop_cpy = first_nomenclature_properties[i-1].copy()
+                    prop_cpy['ID'] = row['ID']+i/10
+                    df.loc[index + i/10] = format_nomenclature_properties(prop_cpy, row)
+
+    df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
+    df.reset_index(drop=True, inplace=True)
+    regenerate_ids(df)
+
     if MODEL_NAME != "RC-DE":
         # Adding the wrapper
         # - Moving all levels one level down
@@ -161,49 +219,6 @@ def run(sheet, name, version, filter):
         df["level_shift"] = df.apply(
             lambda row: i if row[f"level_{i}"] != row[f"previous_level_{i}"] else row['level_shift'], axis=1)
 
-    def format_nomenclature_properties(child, parent):
-        for i in range(1, 1 + DATA_DEPTH):
-            child[f"previous_level_{i}"] = parent[f"level_{i}"]
-            child[f"level_{i}"] = parent[f"level_{i}"]
-        child[f"level_{parent['level_shift']+1}"] = int(repr(child['ID'])[-1])
-        """Set the level of the child to be the level of the parent + 1"""
-        if(child['level_shift'] == parent['level_shift']+1):
-            return child
-        else:
-            child = shift_child_data_levels(child, parent)
-            return child
-
-    def shift_child_data_levels(child, parent):
-        """Shift the data levels of the child by the shift value"""
-        shift_difference = child['level_shift'] - parent['level_shift']+1
-        child['level_shift'] = parent['level_shift']+1
-        child_cpy = child.copy()
-        for i in range(1, 1 + DATA_DEPTH):
-            if(i-shift_difference > 0 and i-shift_difference <= DATA_DEPTH):
-                child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i-shift_difference})"]
-        return child_cpy
-
-    global first_nomenclature_properties
-    first_nomenclature_properties = []
-
-    # Iterate over df and insert three lines after each entry of type 'nomenclature'
-    for index, row in df.copy().iterrows():
-        if row['Format (ou type)'] == 'nomenclature':
-            # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
-
-            if not first_nomenclature_properties:
-                for i in range(1, 4):
-                    first_nomenclature_properties.append(df.loc[index + i].to_dict())
-            # Otherwise, we add the children of the first nomenclature to the current nomenclature
-            else:
-                for i in range(1, 4):
-                    # we check the highest level of data of the current row and make sure to modify
-                    # the level of data of each property to be equal to the row's level + 1
-                    prop_cpy = first_nomenclature_properties[i-1].copy()
-                    prop_cpy['ID'] = row['ID']+i/10
-                    df.loc[index + i/10] = format_nomenclature_properties(prop_cpy, row)
-
-    df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
 
     # DATA VALIDATION
     HAS_ERROR = False
@@ -288,7 +303,7 @@ def run(sheet, name, version, filter):
     def get_true_type(row):
         """Get the type of elem (defaults to its name if there is no type specified)"""
         if row['Format (ou type)'] == 'nomenclature':
-            return 'nomenclature'+capitalizeFirstLetter(row['name'])
+            return row['name']
         elif row["Objet"] != "X" or row['is_typed_object']:
             return row["Format (ou type)"]
         return row['name']
@@ -482,7 +497,7 @@ def run(sheet, name, version, filter):
             if first_nomenclature_name == "":
                 first_nomenclature_name = typeName
             else:
-                json_schema['definitions'][typeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties']
+                json_schema['definitions'][typeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties'].copy()
 
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
@@ -522,10 +537,10 @@ def run(sheet, name, version, filter):
                         f"Make sure the object is not empty")
                     return json_schema['definitions'][elem['Format (ou type)']]
                 else:
-                    assert 'nomenclature'+capitalizeFirstLetter(elem['name']) in json_schema['definitions'], \
+                    assert elem['name'] in json_schema['definitions'], \
                         (f"The type of the object '{elem['name']}' is not defined.\n"
                         f"Make sure the object is not empty")
-                    return json_schema['definitions']['nomenclature'+capitalizeFirstLetter(elem['name'])]
+                    return json_schema['definitions'][elem['name']]
             typeName = elem['true_type']
             definition = json_schema['definitions'][typeName]
         # Fill the elem definitions based on the children
