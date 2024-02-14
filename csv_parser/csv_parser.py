@@ -477,11 +477,11 @@ def run(sheet, name, version, filter):
         Update parent definitions (required and properties) by adding the child information for an object child
         Creates definitions for the child object if it does not exist yet
         """
-        childType = child['Format (ou type)']
+        childOriginalTypeName = child['Format (ou type)']
         parentExamplePath = get_parent_example_path(parent)
-        typeName = child['true_type']
-        if typeName not in json_schema['definitions']:
-            json_schema['definitions'][typeName] = {
+        childTrueTypeName = child['true_type']
+        if childTrueTypeName not in json_schema['definitions']:
+            json_schema['definitions'][childTrueTypeName] = {
                 'type': 'object',
                 'title': child['full_name'],
                 'x-display': 'expansion-panels',
@@ -491,13 +491,14 @@ def run(sheet, name, version, filter):
                 'additionalProperties': False,
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
-        """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first nomenclature to the current nomenclature"""
-        if childType == "nomenclature":
+        """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first 
+        nomenclature to the current nomenclature"""
+        if childOriginalTypeName == "nomenclature":
             global first_nomenclature_name
             if first_nomenclature_name == "":
-                first_nomenclature_name = typeName
+                first_nomenclature_name = childTrueTypeName
             else:
-                json_schema['definitions'][typeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties'].copy()
+                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties'].copy()
 
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
@@ -506,12 +507,12 @@ def run(sheet, name, version, filter):
             properties[child['name']] = {
                 'type': 'array',
                 'items': {
-                    '$ref': '#/definitions/' + typeName,
+                    '$ref': '#/definitions/' + childTrueTypeName,
                 }
             }
         else:
             properties[child['name']] = {
-                '$ref': '#/definitions/' + typeName,
+                '$ref': '#/definitions/' + childTrueTypeName,
             }
 
     def add_child(parent, child, definitions):
