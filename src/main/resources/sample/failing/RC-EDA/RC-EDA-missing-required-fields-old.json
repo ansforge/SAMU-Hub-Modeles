@@ -158,12 +158,14 @@
               "newAlert": null,
               "severity": "MINOR",
               "additionalInformation": {
-                "customMap": {
-                  "key": "neighborhood",
-                  "label": "Quartier",
-                  "value": "SECT.QUARTIER HISTORIQUE",
-                  "freetext": "Une voix sens unique pour voiture + une voix bus"
-                }
+                "customMap": [
+                  {
+                    "key": "neighborhood",
+                    "label": "Quartier",
+                    "value": "SECT.QUARTIER HISTORIQUE",
+                    "freetext": "Une voix sens unique pour voiture + une voix bus"
+                  }
+                ]
               },
               "freetext": "choc à la tête mais portait un casque de protection. 2ème victime n'a pas de blessures apparantes."
             }
