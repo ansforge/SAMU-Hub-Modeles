@@ -148,15 +148,15 @@ components:
       - whatsHappen
       properties:
         whatsHappen:
-          $ref: '#/components/schemas/nomenclature'
+          $ref: '#/components/schemas/nomenclatureWhatsHappen'
         locationKind:
-          $ref: '#/components/schemas/nomenclature'
+          $ref: '#/components/schemas/nomenclatureLocationKind'
         riskThreat:
           type: array
           items:
-            $ref: '#/components/schemas/nomenclature'
+            $ref: '#/components/schemas/nomenclatureRiskThreat'
         healthMotive:
-          $ref: '#/components/schemas/nomenclature'
+          $ref: '#/components/schemas/nomenclatureHealthMotive'
         details:
           $ref: '#/components/schemas/caseDetails'
         victims:
@@ -635,13 +635,13 @@ components:
         identity:
           $ref: '#/components/schemas/insIdentity'
         healthMotive:
-          $ref: '#/components/schemas/nomenclature'
+          $ref: '#/components/schemas/nomenclatureHealthMotive'
         detail:
           $ref: '#/components/schemas/patientDetail'
         hypothesis:
           $ref: '#/components/schemas/hypothesis'
         resourceDiagnosis:
-          $ref: '#/components/schemas/nomenclature'
+          $ref: '#/components/schemas/nomenclatureResourceDiagnosis'
         medicalNote:
           type: array
           items:
@@ -682,7 +682,7 @@ components:
           $ref: '#/components/schemas/customMap'
       additionalProperties: false
       example: example.json#/createCaseHealth/additionalInformation
-    nomenclature:
+    nomenclatureWhatsHappen:
       type: object
       title: Nature de fait
       x-display: expansion-panels
@@ -690,13 +690,13 @@ components:
       required:
       - code
       - label
-      properties:
+      properties: &id001
         code:
           type: string
           title: Code
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCaseHealth/qualification/whatsHappen/code
+          example: example.json#/createCaseHealth/patient/0/resourceDiagnosis/code
           description: "A valoriser avec un code la nomenclature associ\xE9e"
           examples:
           - C07.13.02
@@ -705,7 +705,7 @@ components:
           title: "Libell\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCaseHealth/qualification/whatsHappen/label
+          example: example.json#/createCaseHealth/patient/0/resourceDiagnosis/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
             tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
@@ -717,13 +717,60 @@ components:
           title: Commentaire
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCaseHealth/qualification/whatsHappen/freetext
+          example: example.json#/createCaseHealth/patient/0/resourceDiagnosis/freetext
           description: "Permet de compl\xE9menter en commentaire libre l'attribut\
             \ permettant de qualifier l'\xE9v\xE9nement."
           examples:
           - None
       additionalProperties: false
       example: example.json#/createCaseHealth/qualification/whatsHappen
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
+        freetext: None
+    nomenclatureLocationKind:
+      type: object
+      title: Type de lieu
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - code
+      - label
+      properties: *id001
+      additionalProperties: false
+      example: example.json#/createCaseHealth/qualification/locationKind
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
+        freetext: None
+    nomenclatureRiskThreat:
+      type: object
+      title: "Risque, menace et sensibilit\xE9"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - code
+      - label
+      properties: *id001
+      additionalProperties: false
+      example: example.json#/createCaseHealth/qualification/riskThreat/0
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
+        freetext: None
+    nomenclatureHealthMotive:
+      type: object
+      title: "Motif de recours m\xE9dico-secouriste"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - code
+      - label
+      - code
+      - label
+      properties: *id001
+      additionalProperties: false
+      example: example.json#/createCaseHealth/qualification/healthMotive
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
@@ -1959,13 +2006,28 @@ components:
       required: []
       properties:
         mainDiagnosis:
-          $ref: '#/components/schemas/nomenclature'
+          $ref: '#/components/schemas/nomenclatureMainDiagnosis'
         otherDiagnosis:
           type: array
           items:
-            $ref: '#/components/schemas/nomenclature'
+            $ref: '#/components/schemas/nomenclatureOtherDiagnosis'
       additionalProperties: false
       example: example.json#/createCaseHealth/patient/0/hypothesis
+    nomenclatureResourceDiagnosis:
+      type: object
+      title: Diagnostic de l'effecteur
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - code
+      - label
+      properties: *id001
+      additionalProperties: false
+      example: example.json#/createCaseHealth/patient/0/resourceDiagnosis
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
+        freetext: None
     medicalNote:
       type: object
       title: "Interrogatoire m\xE9dical"
@@ -2279,6 +2341,36 @@ components:
         birthDate: None
         sex: F
         birthPlaceCode: None
+    nomenclatureMainDiagnosis:
+      type: object
+      title: "Hypoth\xE8se de r\xE9gulation m\xE9dicale principale"
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - code
+      - label
+      properties: *id001
+      additionalProperties: false
+      example: example.json#/createCaseHealth/patient/0/hypothesis/mainDiagnosis
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
+        freetext: None
+    nomenclatureOtherDiagnosis:
+      type: object
+      title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale secondaires"
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - code
+      - label
+      properties: *id001
+      additionalProperties: false
+      example: example.json#/createCaseHealth/patient/0/hypothesis/otherDiagnosis/0
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
+        freetext: None
     decision:
       type: object
       title: "D\xE9cisions"

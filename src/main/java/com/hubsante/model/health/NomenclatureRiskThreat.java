@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Nomenclature
+ * NomenclatureRiskThreat
  */
-@JsonPropertyOrder({Nomenclature.JSON_PROPERTY_CODE,
-                    Nomenclature.JSON_PROPERTY_LABEL,
-                    Nomenclature.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclature")
+@JsonPropertyOrder({NomenclatureRiskThreat.JSON_PROPERTY_CODE,
+                    NomenclatureRiskThreat.JSON_PROPERTY_LABEL,
+                    NomenclatureRiskThreat.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("nomenclatureRiskThreat")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Nomenclature {
+public class NomenclatureRiskThreat {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class Nomenclature {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public Nomenclature() {}
+  public NomenclatureRiskThreat() {}
 
-  public Nomenclature code(String code) {
+  public NomenclatureRiskThreat code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class Nomenclature {
     this.code = code;
   }
 
-  public Nomenclature label(String label) {
+  public NomenclatureRiskThreat label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class Nomenclature {
     this.label = label;
   }
 
-  public Nomenclature freetext(String freetext) {
+  public NomenclatureRiskThreat freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,10 +139,10 @@ public class Nomenclature {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Nomenclature nomenclature = (Nomenclature)o;
-    return Objects.equals(this.code, nomenclature.code) &&
-        Objects.equals(this.label, nomenclature.label) &&
-        Objects.equals(this.freetext, nomenclature.freetext);
+    NomenclatureRiskThreat nomenclatureRiskThreat = (NomenclatureRiskThreat)o;
+    return Objects.equals(this.code, nomenclatureRiskThreat.code) &&
+        Objects.equals(this.label, nomenclatureRiskThreat.label) &&
+        Objects.equals(this.freetext, nomenclatureRiskThreat.freetext);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class Nomenclature {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Nomenclature {\n");
+    sb.append("class NomenclatureRiskThreat {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

@@ -7,28 +7,28 @@ strict digraph {
                 <TR>
                 <TD ><B>whatsHappen</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureWhatsHappen</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	whatsHappen -> qualification [constraint=true headlabel=1 taillabel=1]
 	locationKind [label=<<TABLE>
                 <TR>
                 <TD ><B>locationKind</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureLocationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	locationKind -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	riskThreat [label=<<TABLE>
                 <TR>
                 <TD ><B>riskThreat</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureRiskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	riskThreat -> qualification [constraint=true headlabel=1 taillabel="0..*"]
 	healthMotive [label=<<TABLE>
                 <TR>
                 <TD ><B>healthMotive</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureHealthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	details [label=<<TABLE>
@@ -217,28 +217,28 @@ strict digraph {
                 <TR>
                 <TD ><B>whatsHappen</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureWhatsHappen</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	whatsHappen -> qualification [constraint=true headlabel=1 taillabel=1]
 	locationKind [label=<<TABLE>
                 <TR>
                 <TD ><B>locationKind</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureLocationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	locationKind -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	riskThreat [label=<<TABLE>
                 <TR>
                 <TD ><B>riskThreat</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureRiskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	riskThreat -> qualification [constraint=true headlabel=1 taillabel="0..*"]
 	healthMotive [label=<<TABLE>
                 <TR>
                 <TD ><B>healthMotive</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureHealthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	healthMotive -> qualification [constraint=true headlabel=1 taillabel="0..1"]
 	details [label=<<TABLE>
@@ -441,7 +441,7 @@ strict digraph {
                 <TR>
                 <TD ><B>healthMotive</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet nomenclatureHealthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	healthMotive -> patient [constraint=true headlabel=1 taillabel="0..1"]
 	detail [label=<<TABLE>
@@ -453,16 +453,16 @@ strict digraph {
 	detail -> patient [constraint=true headlabel=1 taillabel="0..1"]
 	mainDiagnosis [label=<<TABLE>
                 <TR>
-                <TD ><B>mainDiagnosis</B></TD>
+                <TD BGCOLOR="coral"><B>mainDiagnosis</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet nomenclatureMainDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	mainDiagnosis -> hypothesis [constraint=true headlabel=1 taillabel="0..1"]
 	otherDiagnosis [label=<<TABLE>
                 <TR>
-                <TD ><B>otherDiagnosis</B></TD>
+                <TD BGCOLOR="coral"><B>otherDiagnosis</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet nomenclatureOtherDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	otherDiagnosis -> hypothesis [constraint=true headlabel=1 taillabel="0..*"]
 	hypothesis [label=<<TABLE>
@@ -474,9 +474,9 @@ strict digraph {
 	hypothesis -> patient [constraint=true headlabel=1 taillabel="0..1"]
 	resourceDiagnosis [label=<<TABLE>
                 <TR>
-                <TD ><B>resourceDiagnosis</B></TD>
+                <TD BGCOLOR="coral"><B>resourceDiagnosis</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet nomenclature</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet nomenclatureResourceDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	resourceDiagnosis -> patient [constraint=true headlabel=1 taillabel="0..1"]
 	detailedName [label=<<TABLE>

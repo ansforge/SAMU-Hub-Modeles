@@ -34,7 +34,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.Nomenclature;
+import com.hubsante.model.cisu.NomenclatureHealthMotive;
+import com.hubsante.model.cisu.NomenclatureLocationKind;
+import com.hubsante.model.cisu.NomenclatureRiskThreat;
+import com.hubsante.model.cisu.NomenclatureWhatsHappen;
 import com.hubsante.model.cisu.Victims;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -55,23 +58,23 @@ import java.util.Objects;
 
 public class Qualification {
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
-  private Nomenclature whatsHappen;
+  private NomenclatureWhatsHappen whatsHappen;
 
   public static final String JSON_PROPERTY_LOCATION_KIND = "locationKind";
-  private Nomenclature locationKind;
+  private NomenclatureLocationKind locationKind;
 
   public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
-  private List<Nomenclature> riskThreat;
+  private List<NomenclatureRiskThreat> riskThreat;
 
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
-  private Nomenclature healthMotive;
+  private NomenclatureHealthMotive healthMotive;
 
   public static final String JSON_PROPERTY_VICTIMS = "victims";
   private Victims victims;
 
   public Qualification() {}
 
-  public Qualification whatsHappen(Nomenclature whatsHappen) {
+  public Qualification whatsHappen(NomenclatureWhatsHappen whatsHappen) {
 
     this.whatsHappen = whatsHappen;
     return this;
@@ -84,17 +87,17 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Nomenclature getWhatsHappen() {
+  public NomenclatureWhatsHappen getWhatsHappen() {
     return whatsHappen;
   }
 
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setWhatsHappen(Nomenclature whatsHappen) {
+  public void setWhatsHappen(NomenclatureWhatsHappen whatsHappen) {
     this.whatsHappen = whatsHappen;
   }
 
-  public Qualification locationKind(Nomenclature locationKind) {
+  public Qualification locationKind(NomenclatureLocationKind locationKind) {
 
     this.locationKind = locationKind;
     return this;
@@ -107,23 +110,24 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_LOCATION_KIND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Nomenclature getLocationKind() {
+  public NomenclatureLocationKind getLocationKind() {
     return locationKind;
   }
 
   @JsonProperty(JSON_PROPERTY_LOCATION_KIND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocationKind(Nomenclature locationKind) {
+  public void setLocationKind(NomenclatureLocationKind locationKind) {
     this.locationKind = locationKind;
   }
 
-  public Qualification riskThreat(List<Nomenclature> riskThreat) {
+  public Qualification riskThreat(List<NomenclatureRiskThreat> riskThreat) {
 
     this.riskThreat = riskThreat;
     return this;
   }
 
-  public Qualification addRiskThreatItem(Nomenclature riskThreatItem) {
+  public Qualification
+  addRiskThreatItem(NomenclatureRiskThreat riskThreatItem) {
     if (this.riskThreat == null) {
       this.riskThreat = new ArrayList<>();
     }
@@ -138,7 +142,7 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_RISK_THREAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Nomenclature> getRiskThreat() {
+  public List<NomenclatureRiskThreat> getRiskThreat() {
     return riskThreat;
   }
 
@@ -146,7 +150,7 @@ public class Qualification {
 
   @JsonProperty(JSON_PROPERTY_RISK_THREAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRiskThreat(List<Nomenclature> riskThreat) {
+  public void setRiskThreat(List<NomenclatureRiskThreat> riskThreat) {
     if (riskThreat == null) {
       return;
     }
@@ -156,7 +160,7 @@ public class Qualification {
     this.riskThreat.addAll(riskThreat);
   }
 
-  public Qualification healthMotive(Nomenclature healthMotive) {
+  public Qualification healthMotive(NomenclatureHealthMotive healthMotive) {
 
     this.healthMotive = healthMotive;
     return this;
@@ -169,13 +173,13 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Nomenclature getHealthMotive() {
+  public NomenclatureHealthMotive getHealthMotive() {
     return healthMotive;
   }
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthMotive(Nomenclature healthMotive) {
+  public void setHealthMotive(NomenclatureHealthMotive healthMotive) {
     this.healthMotive = healthMotive;
   }
 
