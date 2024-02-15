@@ -149,7 +149,9 @@
         "NAME": "#MISSION#",
         "TYPE": "SAV/ASC",
         "ORG_ID": "fr.fire.cgo690",
-        "RESOURCE_ID": "77_22245# VSAV2",
+        "RESOURCE_ID": [
+          "77_22245#VSAV2"
+        ],
         "STATUS": "IPR",
         "START_TIME": "2024-01-09T16:05:00+01:00"
       }
