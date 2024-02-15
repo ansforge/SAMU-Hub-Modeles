@@ -1,6 +1,7 @@
 import argparse
 import os
 import shutil
+import yaml
 
 import csv_parser
 
@@ -43,6 +44,11 @@ def parser_and_mv():
         os.rename(f"./out/{name}/{name}.openapi.yaml", f"../generator/input/{name}.openapi.yaml")
         os.rename(f"./out/{name}/{name}.schema.json", f"../src/main/resources/json-schema/{name}.schema.json")
 
+    with open(f'out/hubsante.asyncapi.yaml', 'w') as file:
+        documents = yaml.dump(csv_parser.full_asyncapi, sort_keys=False)
+        documents = documents.replace('#/definitions/', "#/components/schemas/")
+        file.write(documents)
+    print('AsyncAPI schema generated.')
 
 # ---------------------------------------- RUN
 if args.stage == 'parser_and_mv':

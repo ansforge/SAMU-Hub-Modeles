@@ -19,6 +19,7 @@ pd.set_option('display.width', 1000)
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
+full_asyncapi = None
 
 def run(sheet, name, version, filter):
     class Color:
@@ -83,6 +84,11 @@ def run(sheet, name, version, filter):
     # Schema name is in name = RC-EDA (or RS-EDA) for instance
     MODEL_NAME = params['modelName']  # CreateCase
     MODEL_TYPE = MODEL_NAME[0].lower() + MODEL_NAME[1:]  # createCase
+    def isCreateCase():
+        return MODEL_TYPE == "createCase"
+
+    if not filter and isCreateCase():
+        MODEL_TYPE = "createCaseHealth"
     WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
@@ -285,7 +291,8 @@ def run(sheet, name, version, filter):
     # DATA USAGE
     def is_array(elem):
         """Is elem an array?"""
-        return elem['Cardinalité'].endswith('n')
+        cardinality = elem['Cardinalité']
+        return not cardinality.endswith('1')
 
     def navigate_children_with_id(id_path):
         """
@@ -396,6 +403,8 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'items': childDetails
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = childDetails
 
@@ -415,6 +424,7 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'required': [],
                 'properties': {},
+                'additionalProperties': False,
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         if child['Cardinalité'].startswith('1'):
@@ -427,6 +437,8 @@ def run(sheet, name, version, filter):
                     '$ref': '#/definitions/' + childTypeName,
                 }
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTypeName,
@@ -557,20 +569,19 @@ def run(sheet, name, version, filter):
             **common_openapi_components['components']['schemas'],
             **openapi_components
         }
-        # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
+
+        # Adding current asyncapi schemas to full asyncapi schema
+        global full_asyncapi
+        if (full_asyncapi is None):
+            full_asyncapi = asyncapi_yaml
+        else:
+            full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
 
     with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
         documents = yaml.dump(full_yaml, sort_keys=False)
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
     print('OpenAPI schema generated.')
-
-    # TODO bb: extract this logic to an outside script called by the gh action
-    # with open(f'out/full-asyncapi.yaml', 'w') as file:
-    #     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
-    #     documents = documents.replace('#/definitions/', "#/components/schemas/")
-    #     file.write(documents)
-    # print('AsyncAPI schema generated.')
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
     uml_generator.run(name, MODEL_NAME, version=version, filter=filter)

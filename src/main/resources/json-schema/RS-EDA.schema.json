@@ -2,20 +2,20 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.01.10",
+    "version": "24.02.13",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
     "required": [
-        "createCase"
+        "createCaseHealth"
     ],
     "properties": {
-        "createCase": {
-            "$ref": "#/definitions/createCase"
+        "createCaseHealth": {
+            "$ref": "#/definitions/createCaseHealth"
         }
     },
     "definitions": {
-        "createCase": {
+        "createCaseHealth": {
             "type": "object",
             "title": "Objet createCase",
             "x-display": "expansion-panels",
@@ -34,7 +34,7 @@
                     "title": "Identifiant affaire/dossier",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/caseId",
+                    "example": "example.json#/createCaseHealth/caseId",
                     "description": "Identifiant technique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par les syst\u00e8mes du partenaire r\u00e9cepteur de la primo-demande de secours et contient une cl\u00e9 conventionnelle permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\no\u00f9 cleConventionnelle est la cl\u00e9 utilis\u00e9e par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le syst\u00e8me du partenaire emetteur.\ncleUnique est une cha\u00eene de caract\u00e8re (string) comprise entre 4 et 22 caract\u00e8res alphanum\u00e9riques."
                 },
                 "senderCaseId": {
@@ -42,7 +42,7 @@
                     "title": "Identifiant local de l'affaire/dossier",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/senderCaseId",
+                    "example": "example.json#/createCaseHealth/senderCaseId",
                     "description": "Valoriser avec l'identifiant de l'affaire dans le SI de l'\u00e9metteur du message\nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS\nDans le cas o\u00f9 deux op\u00e9rateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caract\u00e8res de l'identifiant local de leur partenaire."
                 },
                 "creation": {
@@ -50,7 +50,7 @@
                     "title": "Date Heure de cr\u00e9ation de l'affaire/dossier",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/creation",
+                    "example": "example.json#/createCaseHealth/creation",
                     "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). Il doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation  de la premi\u00e8re alerte. Lors de l'ajout d'alerte \u00e0 une affaire ce champ ne doit pas \u00eatre modifi\u00e9.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -60,7 +60,7 @@
                     "title": "Version des nomenclatures du r\u00e9f\u00e9rentiel CISU",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/referenceVersion",
+                    "example": "example.json#/createCaseHealth/referenceVersion",
                     "description": "Indique le num\u00e9ro de version du r\u00e9f\u00e9rentiel des nomenclatures des codes transmis. \nCela permet aux diff\u00e9rents syst\u00e8mes de s'assurer qu'ils utilisent la m\u00eame version des codes de nomenclature que leurs partenaires."
                 },
                 "qualification": {
@@ -77,7 +77,7 @@
                     "title": "CRRA traitant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/owner",
+                    "example": "example.json#/createCaseHealth/owner",
                     "description": "Champ servant \u00e0 transf\u00e9rer la responsabilit\u00e9 du traitement d'un dossier \u00e0 un autre CRAA / \u00e0 lui demander de prendre en charge le traitement du dossier.\nLe SAMU demandeur entre dans ce champ l'ID du CRAA \u00e0 qui il demande de traiter l'affaire (uniquement en cas de transfert int\u00e9gral du traitement d'un dossier).\nLe SAMU qui re\u00e7oit la demande de transfert et l'accepte renvoie un RC-EDA de mise \u00e0 jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.\nLe SAMU qui re\u00e7oit la demande de transfert et la refuse renvoie un RC-EDA de mise \u00e0 jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui."
                 },
                 "operator": {
@@ -112,11 +112,12 @@
                     "title": "Description de l'affaire/dossier",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/freetext",
+                    "example": "example.json#/createCaseHealth/freetext",
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
                 }
             },
-            "example": "example.json#/createCase"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth"
         },
         "qualification": {
             "type": "object",
@@ -149,7 +150,8 @@
                     "$ref": "#/definitions/victims"
                 }
             },
-            "example": "example.json#/createCase/qualification"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/qualification"
         },
         "location": {
             "type": "object",
@@ -167,7 +169,7 @@
                     "title": "Identifiant technique de localisation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/locID",
+                    "example": "example.json#/createCaseHealth/location/locID",
                     "description": "ID technique et provisoire permettant d'identifier le lieu dans le cadre des \u00e9changes de cette affaire."
                 },
                 "locLabel": {
@@ -175,7 +177,7 @@
                     "title": "R\u00e9sum\u00e9 de la localisation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/locLabel",
+                    "example": "example.json#/createCaseHealth/location/locLabel",
                     "description": "Permet d'indiquer des indications auto suffisantes permettant pour un op\u00e9rationnel d'acc\u00e9der facilement au lieu avec des indications minimales.\nDans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au maximum 255 caract\u00e8res"
                 },
                 "name": {
@@ -183,7 +185,7 @@
                     "title": "Nom du lieu",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/name",
+                    "example": "example.json#/createCaseHealth/location/name",
                     "description": "Indique le nom de lieu : nom commercial, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
                 },
                 "detailedAddress": {
@@ -209,7 +211,7 @@
                     "title": "Pays",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/country",
+                    "example": "example.json#/createCaseHealth/location/country",
                     "enum": [
                         "AF",
                         "AX",
@@ -459,11 +461,12 @@
                     "title": "Commentaire",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/freetext",
+                    "example": "example.json#/createCaseHealth/location/freetext",
                     "description": "Champ libre pour compl\u00e9ter les informations de localisation"
                 }
             },
-            "example": "example.json#/createCase/location"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location"
         },
         "alert": {
             "type": "object",
@@ -486,7 +489,7 @@
                     "title": "Identifiant alerte",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/id",
+                    "example": "example.json#/createCaseHealth/initialAlert/id",
                     "description": "Identifiant technique unique de l'alerte. Il doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 automatiquement par le syst\u00e8me \u00e9metteur et ne doit pas avoir de signification / utilisation particuli\u00e8re par les diff\u00e9rents syst\u00e8mes pour garantir leur d\u00e9couplage.\nVoir la description de l'identifiant de l'affaire pour voir le format.\nLorsqu\u2019une alerte est g\u00e9n\u00e9r\u00e9e dans NexSIS et cr\u00e9e une affaire, elle est qualifi\u00e9e d\u2019Alerte Initiale.\na)\tSi cette derni\u00e8re concerne un partenaire (caract\u00e8re m\u00e9dical pour la Sant\u00e9 par exemple), elle est relay\u00e9e seule dans le message. Il y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\u00e9e \u00e0 la m\u00eame affaire peut \u00eatre d\u00e9clar\u00e9e ult\u00e9rieurement, concernant cette fois le partenaire. Lorsqu\u2019elle est d\u00e9clar\u00e9e cette Nouvelle Alerte est relay\u00e9e avec l\u2019Alerte Initiale pour partager un contexte commun. Dans le message de cr\u00e9ation d\u2019affaire il y\u2019a deux objets alerte : initialAlert et newAlert.\nLe rattachement des messages \u00e0 une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un syst\u00e8me \u00e0 l'autre."
                 },
                 "reception": {
@@ -494,7 +497,7 @@
                     "title": "Date de r\u00e9ception de l'alerte",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/reception",
+                    "example": "example.json#/createCaseHealth/initialAlert/reception",
                     "description": "Groupe date heure de r\u00e9ception de l'alerte",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -504,7 +507,7 @@
                     "title": "Signalement",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/reporting",
+                    "example": "example.json#/createCaseHealth/initialAlert/reporting",
                     "description": "Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.\nEventuellement automatis\u00e9 en fonction des crit\u00e8res saisis et de leur param\u00e9trage, ou renseign\u00e9 par l'op\u00e9rateur. \nPrend les valeurs d\u00e9finies dans la nomenclature CISU :\n- standard : STANDARD\n- signal\u00e9 : ATTENTION\nLes syst\u00e8mes peuvent proposer des fonctionnalit\u00e9s faisant ressortir les dossiers avec le libell\u00e9 ATTENTION",
                     "enum": [
                         "STANDARD",
@@ -516,7 +519,7 @@
                     "title": "Informations compl\u00e9mentaires sur l'alerte",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/freetext",
+                    "example": "example.json#/createCaseHealth/initialAlert/freetext",
                     "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte"
                 },
                 "caller": {
@@ -541,7 +544,8 @@
                     }
                 }
             },
-            "example": "example.json#/createCase/initialAlert"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/initialAlert"
         },
         "operator": {
             "type": "object",
@@ -561,7 +565,7 @@
                     "title": "ID",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/operator/0/id",
+                    "example": "example.json#/createCaseHealth/operator/0/id",
                     "description": "Identifiant professionnel de l'op\u00e9rateur si existant"
                 },
                 "role": {
@@ -569,11 +573,12 @@
                     "title": "R\u00f4le",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/operator/0/role",
+                    "example": "example.json#/createCaseHealth/operator/0/role",
                     "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message"
                 }
             },
-            "example": "example.json#/createCase/operator/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/operator/0"
         },
         "patient": {
             "type": "object",
@@ -589,7 +594,7 @@
                     "title": "ID patient partag\u00e9",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/id",
+                    "example": "example.json#/createCaseHealth/patient/0/id",
                     "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
                 },
                 "file": {
@@ -617,7 +622,8 @@
                     }
                 }
             },
-            "example": "example.json#/createCase/patient/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0"
         },
         "medicalAnalysis": {
             "type": "object",
@@ -631,7 +637,7 @@
                     "title": "ID patient partag\u00e9",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/patientId",
+                    "example": "example.json#/createCaseHealth/medicalAnalysis/0/patientId",
                     "description": "ID du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
                 },
                 "decision": {
@@ -641,7 +647,8 @@
                     }
                 }
             },
-            "example": "example.json#/createCase/medicalAnalysis/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/medicalAnalysis/0"
         },
         "additionalInformation": {
             "type": "object",
@@ -651,10 +658,15 @@
             "required": [],
             "properties": {
                 "customMap": {
-                    "$ref": "#/definitions/customMap"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/customMap"
+                    },
+                    "maxItems": 3
                 }
             },
-            "example": "example.json#/createCase/additionalInformation"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/additionalInformation"
         },
         "nomenclature": {
             "type": "object",
@@ -671,7 +683,7 @@
                     "title": "Code",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/whatsHappen/code",
+                    "example": "example.json#/createCaseHealth/qualification/whatsHappen/code",
                     "description": "A valoriser avec un code la nomenclature associ\u00e9e"
                 },
                 "label": {
@@ -679,7 +691,7 @@
                     "title": "Libell\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/whatsHappen/label",
+                    "example": "example.json#/createCaseHealth/qualification/whatsHappen/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 },
                 "freetext": {
@@ -687,11 +699,12 @@
                     "title": "Commentaire",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/whatsHappen/freetext",
+                    "example": "example.json#/createCaseHealth/qualification/whatsHappen/freetext",
                     "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
                 }
             },
-            "example": "example.json#/createCase/qualification/whatsHappen"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/qualification/whatsHappen"
         },
         "caseDetails": {
             "type": "object",
@@ -705,7 +718,7 @@
                     "title": "Etat du dossier",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/details/status",
+                    "example": "example.json#/createCaseHealth/qualification/details/status",
                     "description": "cf. cycle SI SAMU uniquement (si applicable) : \u00e9changer l'\u00e9tat du dossier si le cycle de vie du dossier est impl\u00e9ment\u00e9 de mani\u00e8re conforme au cycle de vie du dossier SI-SAMU",
                     "enum": [
                         "Nouveau ",
@@ -720,7 +733,7 @@
                     "title": "Type de dossier",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/details/type",
+                    "example": "example.json#/createCaseHealth/qualification/details/type",
                     "description": "D/DR/DRM si cycle SI-SAMU impl\u00e9ment\u00e9"
                 },
                 "attribution": {
@@ -728,7 +741,7 @@
                     "title": "Attribution du dossier",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/details/attribution",
+                    "example": "example.json#/createCaseHealth/qualification/details/attribution",
                     "description": "D\u00e9crit le type de professionnel m\u00e9dical \u00e0 qui le dossier est attribu\u00e9"
                 },
                 "priority": {
@@ -736,7 +749,7 @@
                     "title": "Priorit\u00e9 de r\u00e9gulation m\u00e9dicale",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/details/priority",
+                    "example": "example.json#/createCaseHealth/qualification/details/priority",
                     "description": "D\u00e9crit la priorit\u00e9 de r\u00e9gulation m\u00e9dicale du dossier.",
                     "enum": [
                         "P0",
@@ -746,7 +759,8 @@
                     ]
                 }
             },
-            "example": "example.json#/createCase/qualification/details"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/qualification/details"
         },
         "victims": {
             "type": "object",
@@ -760,7 +774,7 @@
                     "title": "Nombre de patients-victimes",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/victims/count",
+                    "example": "example.json#/createCaseHealth/qualification/victims/count",
                     "description": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU",
                     "enum": [
                         "0",
@@ -775,7 +789,7 @@
                     "title": "Type du patient-victime principal",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/victims/mainVictim",
+                    "example": "example.json#/createCaseHealth/qualification/victims/mainVictim",
                     "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS.",
                     "enum": [
                         "INFANT",
@@ -789,11 +803,12 @@
                     "title": "Informations compl\u00e9mentaires sur les patients-victimes",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/qualification/victims/freetext",
+                    "example": "example.json#/createCaseHealth/qualification/victims/freetext",
                     "description": "Permet de compl\u00e9menter en commentaire libre la(les) victime(s)"
                 }
             },
-            "example": "example.json#/createCase/qualification/victims"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/qualification/victims"
         },
         "detailedAddress": {
             "type": "object",
@@ -809,7 +824,7 @@
                     "title": "Num\u00e9ro, type et nom de voie",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAddress/complete",
+                    "example": "example.json#/createCaseHealth/location/detailedAddress/complete",
                     "description": "Num\u00e9ro, type et nom de la voie. \nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\nObligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
                 },
                 "number": {
@@ -817,14 +832,15 @@
                     "title": "Num\u00e9ro dans la voie",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAddress/number",
+                    "example": "example.json#/createCaseHealth/location/detailedAddress/number",
                     "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
                 },
                 "wayName": {
                     "$ref": "#/definitions/wayName"
                 }
             },
-            "example": "example.json#/createCase/location/detailedAddress"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/detailedAddress"
         },
         "city": {
             "type": "object",
@@ -838,7 +854,7 @@
                     "title": "Nom de la commune",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/city/name",
+                    "example": "example.json#/createCaseHealth/location/city/name",
                     "description": "Nom officiel de la commune actuelle"
                 },
                 "inseeCode": {
@@ -846,7 +862,7 @@
                     "title": "Code INSEE de la commune",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/city/inseeCode",
+                    "example": "example.json#/createCaseHealth/location/city/inseeCode",
                     "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.",
                     "pattern": "[0-9]{5}"
                 },
@@ -855,11 +871,12 @@
                     "title": "Compl\u00e9ment de commune",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/city/detail",
+                    "example": "example.json#/createCaseHealth/location/city/detail",
                     "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9"
                 }
             },
-            "example": "example.json#/createCase/location/city"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/city"
         },
         "access": {
             "type": "object",
@@ -873,7 +890,7 @@
                     "title": "Etage",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/floor",
+                    "example": "example.json#/createCaseHealth/location/access/floor",
                     "description": "Etage "
                 },
                 "roomNumber": {
@@ -881,7 +898,7 @@
                     "title": "Num\u00e9ro de porte",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/roomNumber",
+                    "example": "example.json#/createCaseHealth/location/access/roomNumber",
                     "description": "Sp\u00e9cifie num\u00e9ro d'appartement, de chambre, de bureau"
                 },
                 "interphone": {
@@ -889,7 +906,7 @@
                     "title": "Interphone",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/interphone",
+                    "example": "example.json#/createCaseHealth/location/access/interphone",
                     "description": "Indique les informations n\u00e9cessaires  \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
                 },
                 "accessCode": {
@@ -900,7 +917,7 @@
                         "title": "Digicode",
                         "x-health-only": false,
                         "x-cols": 6,
-                        "example": "example.json#/createCase/location/access/accessCode/0",
+                        "example": "example.json#/createCaseHealth/location/access/accessCode/0",
                         "description": "Indique le ou les digicodes dans l'ordre de progression dans le b\u00e2timent"
                     }
                 },
@@ -909,7 +926,7 @@
                     "title": "Ascenseur/escalier",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/elevator",
+                    "example": "example.json#/createCaseHealth/location/access/elevator",
                     "description": "Indique l'ascenseur ou la cage d'escalier "
                 },
                 "buildingName": {
@@ -917,7 +934,7 @@
                     "title": "B\u00e2timent",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/buildingName",
+                    "example": "example.json#/createCaseHealth/location/access/buildingName",
                     "description": "Nom du b\u00e2timent"
                 },
                 "entrance": {
@@ -925,14 +942,14 @@
                     "title": "Entr\u00e9e",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/entrance"
+                    "example": "example.json#/createCaseHealth/location/access/entrance"
                 },
                 "entity": {
                     "type": "string",
                     "title": "Service",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/entity",
+                    "example": "example.json#/createCaseHealth/location/access/entity",
                     "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement"
                 },
                 "phoneNumber": {
@@ -940,11 +957,12 @@
                     "title": "N\u00b0 de t\u00e9l\u00e9phone du lieu",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/access/phoneNumber",
+                    "example": "example.json#/createCaseHealth/location/access/phoneNumber",
                     "description": "Num\u00e9ro de t\u00e9l\u00e9phone permettant d'acc\u00e9der au lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/victime."
                 }
             },
-            "example": "example.json#/createCase/location/access"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/access"
         },
         "geometry": {
             "type": "object",
@@ -960,7 +978,7 @@
                     "title": "Heure du dernier relev\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/obsDatime",
+                    "example": "example.json#/createCaseHealth/location/geometry/obsDatime",
                     "description": "Groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. Permet de conna\u00eetre la fra\u00eecheur et donc pertinence des informations pour intervenir.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -973,11 +991,12 @@
                     "title": "Formes g\u00e9om\u00e9triques",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/sketch",
+                    "example": "example.json#/createCaseHealth/location/geometry/sketch",
                     "description": "Objet gml (\u00e9quivalent xml du geojson). Le langage GML permet de d\u00e9crire une forme dans un syst\u00e8me de projection donn\u00e9. \nDans le cas d'une alerte donn\u00e9e sur une zone g\u00e9ographique non pr\u00e9cise (par exemple une section d'autoroute ou une zone sur un chemin de randonn\u00e9e), une indication sur la zone de recherche peut \u00eatre fournie.\nEn XML, un objet gml est encapsul\u00e9 dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn JSON, les balises sont reprises depuis le mod\u00e8le gml\nVoir http://www.opengis.net/gml pour le format de l'objet sketch"
                 }
             },
-            "example": "example.json#/createCase/location/geometry"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/geometry"
         },
         "externalInfo": {
             "type": "object",
@@ -995,7 +1014,7 @@
                     "title": "Nom de la source",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/externalInfo/0/freetext",
+                    "example": "example.json#/createCaseHealth/location/externalInfo/0/freetext",
                     "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
                     "enum": [
                         "BAN",
@@ -1008,7 +1027,7 @@
                     "title": "Type ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/externalInfo/0/type",
+                    "example": "example.json#/createCaseHealth/location/externalInfo/0/type",
                     "description": "D\u00e9finition du type d'objet dans le syst\u00e8me\nEx : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
                     "enum": [
                         "MANUAL",
@@ -1023,11 +1042,12 @@
                     "title": "Identifiant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/externalInfo/0/uri",
+                    "example": "example.json#/createCaseHealth/location/externalInfo/0/uri",
                     "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
                 }
             },
-            "example": "example.json#/createCase/location/externalInfo/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/externalInfo/0"
         },
         "wayName": {
             "type": "object",
@@ -1043,7 +1063,7 @@
                     "title": "Type et nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAddress/wayName/complete",
+                    "example": "example.json#/createCaseHealth/location/detailedAddress/wayName/complete",
                     "description": "Type et nom de la voie (venant d'un r\u00e9f\u00e9rentiel ou non)\nSi les champs type et name sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
                 },
                 "type": {
@@ -1051,17 +1071,18 @@
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAddress/wayName/type"
+                    "example": "example.json#/createCaseHealth/location/detailedAddress/wayName/type"
                 },
                 "name": {
                     "type": "string",
                     "title": "Nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/detailedAddress/wayName/name"
+                    "example": "example.json#/createCaseHealth/location/detailedAddress/wayName/name"
                 }
             },
-            "example": "example.json#/createCase/location/detailedAddress/wayName"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/detailedAddress/wayName"
         },
         "point": {
             "type": "object",
@@ -1080,11 +1101,12 @@
                     "title": "Syst\u00e8me de coordonn\u00e9es",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/point/sysCoord",
+                    "example": "example.json#/createCaseHealth/location/geometry/point/sysCoord",
                     "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
                 }
             },
-            "example": "example.json#/createCase/location/geometry/point"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/geometry/point"
         },
         "coord": {
             "type": "object",
@@ -1102,7 +1124,7 @@
                     "title": "Latitude",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/point/coord/lat",
+                    "example": "example.json#/createCaseHealth/location/geometry/point/coord/lat",
                     "description": "Latitude du point cl\u00e9 de la localisation "
                 },
                 "lon": {
@@ -1110,7 +1132,7 @@
                     "title": "Longitude",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/point/coord/lon",
+                    "example": "example.json#/createCaseHealth/location/geometry/point/coord/lon",
                     "description": "Longitude du point cl\u00e9 de la localisation"
                 },
                 "height": {
@@ -1118,7 +1140,7 @@
                     "title": "Altitude ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/point/coord/height",
+                    "example": "example.json#/createCaseHealth/location/geometry/point/coord/height",
                     "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
                 },
                 "heading": {
@@ -1126,7 +1148,7 @@
                     "title": "Cap",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/point/coord/heading",
+                    "example": "example.json#/createCaseHealth/location/geometry/point/coord/heading",
                     "description": "En degr\u00e9"
                 },
                 "speed": {
@@ -1134,7 +1156,7 @@
                     "title": "Vitesse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/point/coord/speed",
+                    "example": "example.json#/createCaseHealth/location/geometry/point/coord/speed",
                     "description": "Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, \u2026"
                 },
                 "precision": {
@@ -1142,7 +1164,7 @@
                     "title": "Pr\u00e9cision",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/location/geometry/point/coord/precision",
+                    "example": "example.json#/createCaseHealth/location/geometry/point/coord/precision",
                     "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nCITY=Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, STREET=Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, ADDRESS=Adresse pr\u00e9cise, EXACT=Point coordonn\u00e9e GPS exact, UNKNOWN=Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
                     "enum": [
                         "CITY",
@@ -1153,7 +1175,8 @@
                     ]
                 }
             },
-            "example": "example.json#/createCase/location/geometry/point/coord"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/location/geometry/point/coord"
         },
         "caller": {
             "type": "object",
@@ -1173,7 +1196,7 @@
                     "title": "Langue parl\u00e9e",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/language",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/language",
                     "description": "Langue parl\u00e9e par le requ\u00e9rant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.",
                     "enum": [
                         "AF",
@@ -1424,7 +1447,7 @@
                     "title": "Type de requ\u00e9rant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/type",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/type",
                     "description": "Indique la relation du requ\u00e9rant avec l'incident / le patient / la victime"
                 },
                 "communication": {
@@ -1432,7 +1455,7 @@
                     "title": "Difficult\u00e9 de communication",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/communication",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/communication",
                     "description": "Indique si le requ\u00e9rant rencontre ou non des difficult\u00e9 de communication"
                 },
                 "freetext": {
@@ -1440,14 +1463,15 @@
                     "title": "Informations compl\u00e9mentaires sur le requ\u00e9rant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/freetext",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/freetext",
                     "description": "Informations compl\u00e9mentaires sur le requ\u00e9rant \nLes informations peuvent \u00eatre pass\u00e9es sous forme de texte libre ou via une liste d'adjectif"
                 },
                 "detailedName": {
                     "$ref": "#/definitions/detailedName"
                 }
             },
-            "example": "example.json#/createCase/initialAlert/caller"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/initialAlert/caller"
         },
         "contactSource": {
             "type": "object",
@@ -1465,7 +1489,7 @@
                     "title": "Canal",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/alertSource/channel",
+                    "example": "example.json#/createCaseHealth/initialAlert/alertSource/channel",
                     "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
                 },
                 "type": {
@@ -1473,7 +1497,7 @@
                     "title": "Type de contact de la source",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/alertSource/type",
+                    "example": "example.json#/createCaseHealth/initialAlert/alertSource/type",
                     "description": "Type de l'URI utilis\u00e9e par la source, cf. nomenclature EMSI",
                     "enum": [
                         "PSTADD",
@@ -1491,11 +1515,12 @@
                     "title": "URI de contact de la source",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/alertSource/detail",
+                    "example": "example.json#/createCaseHealth/initialAlert/alertSource/detail",
                     "description": "Valeur de l'URI utilis\u00e9e par la source"
                 }
             },
-            "example": "example.json#/createCase/initialAlert/alertSource"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/initialAlert/alertSource"
         },
         "callTaker": {
             "type": "object",
@@ -1512,7 +1537,7 @@
                     "title": "Service d'urgence",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/callTaker/organization",
+                    "example": "example.json#/createCaseHealth/initialAlert/callTaker/organization",
                     "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*."
                 },
                 "controlRoom": {
@@ -1520,7 +1545,7 @@
                     "title": "Centre d'appels",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/callTaker/controlRoom",
+                    "example": "example.json#/createCaseHealth/initialAlert/callTaker/controlRoom",
                     "description": "D\u00e9crit le centre d'appel auquel est rattach\u00e9 l'agent"
                 },
                 "role": {
@@ -1528,7 +1553,7 @@
                     "title": "R\u00f4le agent",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/callTaker/role",
+                    "example": "example.json#/createCaseHealth/initialAlert/callTaker/role",
                     "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)"
                 },
                 "calltakerContact": {
@@ -1539,11 +1564,12 @@
                     "title": "ID de l'agent",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/callTaker/calltakerId",
+                    "example": "example.json#/createCaseHealth/initialAlert/callTaker/calltakerId",
                     "description": "Identifiant unique de l'op\u00e9rateur ayant trait\u00e9 l'alerte (peut \u00eatre un identifiant technique, un num\u00e9ro de carte CPS etc)"
                 }
             },
-            "example": "example.json#/createCase/initialAlert/callTaker"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/initialAlert/callTaker"
         },
         "attachment": {
             "type": "object",
@@ -1559,7 +1585,7 @@
                     "title": "Type ou description pj",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/attachment/0/description",
+                    "example": "example.json#/createCaseHealth/initialAlert/attachment/0/description",
                     "description": "D\u00e9crit la ressource en pr\u00e9cisant le type et le contenu, tels que \u00abcarte\u00bb ou \u00abphoto\u00bb"
                 },
                 "mimeType": {
@@ -1567,7 +1593,7 @@
                     "title": "Type MIME",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/attachment/0/mimeType",
+                    "example": "example.json#/createCaseHealth/initialAlert/attachment/0/mimeType",
                     "description": "L'identifiant du type MIME de contenu et sous-type d\u00e9crivant la ressource"
                 },
                 "size": {
@@ -1575,7 +1601,7 @@
                     "title": "Taille approximative",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/attachment/0/size",
+                    "example": "example.json#/createCaseHealth/initialAlert/attachment/0/size",
                     "description": "Taille approximative de la ressource en kO"
                 },
                 "URI": {
@@ -1583,7 +1609,7 @@
                     "title": "URI",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/attachment/0/URI",
+                    "example": "example.json#/createCaseHealth/initialAlert/attachment/0/URI",
                     "description": "Une URI, g\u00e9n\u00e9ralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un r\u00e9seau priv\u00e9\nNous sugg\u00e9rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
                 },
                 "derefURI": {
@@ -1591,7 +1617,7 @@
                     "title": "URI base 64",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/attachment/0/derefURI",
+                    "example": "example.json#/createCaseHealth/initialAlert/attachment/0/derefURI",
                     "description": "Peut \u00eatre utilis\u00e9 \u00e0 la place de l'\u00e9l\u00e9ment 'URI' pour envoyer la ressource encod\u00e9e en base64 pour \u00e9viter des probl\u00e8mes de transcodage (sur des double quotes qui casseraient le message, \u2026)"
                 },
                 "digest": {
@@ -1599,11 +1625,12 @@
                     "title": "Hash",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/attachment/0/digest",
+                    "example": "example.json#/createCaseHealth/initialAlert/attachment/0/digest",
                     "description": "Hash de la ressource pour confirmer la r\u00e9ception de la bonne ressource\nLa ressource est hash\u00e9e avec le protocole SHA-256"
                 }
             },
-            "example": "example.json#/createCase/initialAlert/attachment/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/initialAlert/attachment/0"
         },
         "contact": {
             "type": "object",
@@ -1620,7 +1647,7 @@
                     "title": "Type de contact du requ\u00e9rant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/callerContact/type",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/callerContact/type",
                     "description": "Type de l'URI utilis\u00e9e par le requ\u00e9rant, cf. nomenclature EMSI",
                     "enum": [
                         "PSTADD",
@@ -1638,11 +1665,12 @@
                     "title": "URI du contact requ\u00e9rant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/callerContact/detail",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/callerContact/detail",
                     "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
                 }
             },
-            "example": "example.json#/createCase/initialAlert/caller/callerContact"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/initialAlert/caller/callerContact"
         },
         "detailedName": {
             "type": "object",
@@ -1658,7 +1686,7 @@
                     "title": "Pr\u00e9nom et nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/detailedName/complete",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/detailedName/complete",
                     "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nSi les champs callerLastName et callerFirstName sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
                 },
                 "lastName": {
@@ -1666,7 +1694,7 @@
                     "title": "Nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/detailedName/lastName",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/detailedName/lastName",
                     "description": "Nom du requ\u00e9rant"
                 },
                 "firstName": {
@@ -1674,11 +1702,12 @@
                     "title": "Pr\u00e9nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/initialAlert/caller/detailedName/firstName",
+                    "example": "example.json#/createCaseHealth/initialAlert/caller/detailedName/firstName",
                     "description": "Pr\u00e9nom du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
                 }
             },
-            "example": "example.json#/createCase/initialAlert/caller/detailedName"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/initialAlert/caller/detailedName"
         },
         "file": {
             "type": "object",
@@ -1706,7 +1735,8 @@
                     "$ref": "#/definitions/generalPractitioner"
                 }
             },
-            "example": "example.json#/createCase/patient/0/file"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/file"
         },
         "insIdentity": {
             "type": "object",
@@ -1728,7 +1758,8 @@
                     "$ref": "#/definitions/detailedName"
                 }
             },
-            "example": "example.json#/createCase/patient/0/identity"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/identity"
         },
         "patientDetail": {
             "type": "object",
@@ -1742,7 +1773,7 @@
                     "title": "Poids",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/detail/weight",
+                    "example": "example.json#/createCaseHealth/patient/0/detail/weight",
                     "description": "Poids en kilogrammes"
                 },
                 "height": {
@@ -1750,7 +1781,7 @@
                     "title": "Taille",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/detail/height",
+                    "example": "example.json#/createCaseHealth/patient/0/detail/height",
                     "description": "Taille en centim\u00e8tres"
                 },
                 "age": {
@@ -1758,7 +1789,7 @@
                     "title": "Age",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/detail/age",
+                    "example": "example.json#/createCaseHealth/patient/0/detail/age",
                     "description": "Age du patient (Norme ISO_8601)",
                     "pattern": ""
                 },
@@ -1767,7 +1798,7 @@
                     "title": "Niveau de soin",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/detail/careLevel",
+                    "example": "example.json#/createCaseHealth/patient/0/detail/careLevel",
                     "enum": [
                         "R1",
                         "R2",
@@ -1776,7 +1807,8 @@
                     ]
                 }
             },
-            "example": "example.json#/createCase/patient/0/detail"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/detail"
         },
         "hypothesis": {
             "type": "object",
@@ -1795,7 +1827,8 @@
                     }
                 }
             },
-            "example": "example.json#/createCase/patient/0/hypothesis"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/hypothesis"
         },
         "medicalNote": {
             "type": "object",
@@ -1814,7 +1847,7 @@
                     "title": "Date Heure de cr\u00e9ation de l'interrogatoire",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/medicalNote/0/creation",
+                    "example": "example.json#/createCaseHealth/patient/0/medicalNote/0/creation",
                     "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -1824,7 +1857,7 @@
                     "title": "Observations et commentaires",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/medicalNote/0/freetext",
+                    "example": "example.json#/createCaseHealth/patient/0/medicalNote/0/freetext",
                     "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire (texte libre)\nChamp \u00e0 utiliser pour aggr\u00e9ger l'ensemble des ant\u00e9c\u00e9dents /traitements/allergies du patient si les cat\u00e9gories ne sont pas disctinctes dans le LRM"
                 },
                 "medicalHistory": {
@@ -1832,7 +1865,7 @@
                     "title": "Ant\u00e9c\u00e9dents",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/medicalNote/0/medicalHistory",
+                    "example": "example.json#/createCaseHealth/patient/0/medicalNote/0/medicalHistory",
                     "description": "Texte libre  pour d\u00e9crire les ant\u00e9c\u00e9dents du patient"
                 },
                 "treatments": {
@@ -1840,7 +1873,7 @@
                     "title": "Traitements",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/medicalNote/0/treatments",
+                    "example": "example.json#/createCaseHealth/patient/0/medicalNote/0/treatments",
                     "description": "Texte libre  pour d\u00e9crire les traitements du patient"
                 },
                 "allergies": {
@@ -1848,11 +1881,12 @@
                     "title": "Allergies",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/medicalNote/0/allergies",
+                    "example": "example.json#/createCaseHealth/patient/0/medicalNote/0/allergies",
                     "description": "Texte libre pour d\u00e9crire les allergies du patient"
                 }
             },
-            "example": "example.json#/createCase/patient/0/medicalNote/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/medicalNote/0"
         },
         "externalId": {
             "type": "object",
@@ -1866,7 +1900,7 @@
                     "title": "Source  /  type d'identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/file/externalId/0/source",
+                    "example": "example.json#/createCaseHealth/patient/0/file/externalId/0/source",
                     "description": "Type de l'identifiant fourni",
                     "enum": [
                         "NIR",
@@ -1879,11 +1913,12 @@
                     "title": "Identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/file/externalId/0/value",
+                    "example": "example.json#/createCaseHealth/patient/0/file/externalId/0/value",
                     "description": "L'identifiant en lui-m\u00eame"
                 }
             },
-            "example": "example.json#/createCase/patient/0/file/externalId/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/file/externalId/0"
         },
         "personalAddress": {
             "type": "object",
@@ -1899,7 +1934,8 @@
                     "$ref": "#/definitions/city"
                 }
             },
-            "example": "example.json#/createCase/patient/0/file/personalAddress"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/file/personalAddress"
         },
         "generalPractitioner": {
             "type": "object",
@@ -1916,7 +1952,7 @@
                     "title": "Identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/file/generalPractitioner/id",
+                    "example": "example.json#/createCaseHealth/patient/0/file/generalPractitioner/id",
                     "description": "Num\u00e9ro RPPS du m\u00e9decin traitant"
                 },
                 "personalAddress": {
@@ -1929,7 +1965,8 @@
                     }
                 }
             },
-            "example": "example.json#/createCase/patient/0/file/generalPractitioner"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/file/generalPractitioner"
         },
         "insCycle": {
             "type": "object",
@@ -1943,7 +1980,7 @@
                     "title": "Statut de l'identit\u00e9",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/cycle/status",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/cycle/status",
                     "description": "Le RNIV exige que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent les 4 statuts fonctionnels suivants :\n- \u00ab identit\u00e9 provisoire \u00bb,\n- \u00ab identit\u00e9 r\u00e9cup\u00e9r\u00e9e \u00bb,\n- \u00ab identit\u00e9 valid\u00e9e \u00bb,\n- \u00ab identit\u00e9 qualifi\u00e9e \u00bb.\nCes statuts fonctionnels sont exclusifs les uns des autres. Le r\u00e9f\u00e9rentiel INS [EXI 18] pr\u00e9cise en outre que le matricule INS et l\u2019OID doivent \u00eatre accompagn\u00e9s d\u2019informations confirmant qu\u2019ils ont \u00e9t\u00e9 qualifi\u00e9s."
                 },
                 "attribute": {
@@ -1951,11 +1988,12 @@
                     "title": "Attribut de l'identit\u00e9",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/cycle/attribute",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/cycle/attribute",
                     "description": "Le RNIV recommande que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent a minima les 3 attributs suivants :\n- identit\u00e9 homonyme,\n- identit\u00e9 douteuse,\n- identit\u00e9 fictive."
                 }
             },
-            "example": "example.json#/createCase/patient/0/identity/cycle"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/identity/cycle"
         },
         "insNumber": {
             "type": "object",
@@ -1969,7 +2007,7 @@
                     "title": "Matricule ",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/number/value",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/number/value",
                     "description": "n\u00b0 NIR OU n\u00b0 NIA de l'individu. Le matricule INS (et son OID) ne doit jamais \u00eatre propag\u00e9 (= \u00e9chang\u00e9) si l'identit\u00e9 est \u00e0 un statut autre que qualifi\u00e9e. Il correspond au num\u00e9ro personnel de s\u00e9curit\u00e9 sociale. Il peut \u00eatre diff\u00e9rent du num\u00e9ro de s\u00e9curit\u00e9 sociale utilis\u00e9 pour le remboursement des soins par l\u2019assurance maladie, dans le cas par exemple o\u00f9 l\u2019usager n\u2019est pas l\u2019assur\u00e9 social (ex.: l\u2019enfant qui est rattach\u00e9 \u00e0 l\u2019un de ses parents).\nLe matricule INS est compos\u00e9 des 13 caract\u00e8res et de la cl\u00e9 de contr\u00f4le. "
                 },
                 "oid": {
@@ -1977,11 +2015,12 @@
                     "title": "OID",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/number/oid",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/number/oid",
                     "description": "Identifiant de la structure qui a affect\u00e9 l\u2019INS sous la forme d'un OID. Les OID (Object Identifier) sont des identifiants universels, repr\u00e9sent\u00e9s sous la forme d'une suite d'entiers. Ils sont organis\u00e9s sous forme hi\u00e9rarchique avec des n\u0153uds. L'OID est toujours associ\u00e9 \u00e0 un matricule INS, il n'est donc pas propag\u00e9 si le statut de l'identit\u00e9 n'est pas \"qualifi\u00e9e\""
                 }
             },
-            "example": "example.json#/createCase/patient/0/identity/number"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/identity/number"
         },
         "insStrictFeatures": {
             "type": "object",
@@ -1995,7 +2034,7 @@
                     "title": "Nom de naissance",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/birthName",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures/birthName",
                     "description": "Egalement appel\u00e9 nom de famille."
                 },
                 "birthFirstName": {
@@ -2003,7 +2042,7 @@
                     "title": "Premier pr\u00e9nom de naissance",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/birthFirstName",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures/birthFirstName",
                     "description": "Doit \u00eatre coh\u00e9rent avec la liste des pr\u00e9noms de naissance renvoy\u00e9e par INSi. Ex: si la liste des pr\u00e9noms renvoy\u00e9e est \"Pierre Alain Jacques\", le premier pr\u00e9nom de naissance ne peut \u00eatre que : \nPierre\nPierre Alain\nPierre Alain Jacques"
                 },
                 "birthFirstNamesList": {
@@ -2011,7 +2050,7 @@
                     "title": "Liste des pr\u00e9noms de naissance",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/birthFirstNamesList",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures/birthFirstNamesList",
                     "description": "Ensemble des pr\u00e9noms de naissance (renvoy\u00e9s par INSi)"
                 },
                 "birthDate": {
@@ -2019,7 +2058,7 @@
                     "title": "Date de naissance",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/birthDate",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures/birthDate",
                     "description": "Date de naissance du patient",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -2029,7 +2068,7 @@
                     "title": "Sexe ",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/sex",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures/sex",
                     "description": "Sexe du patient",
                     "enum": [
                         "U",
@@ -2043,11 +2082,12 @@
                     "title": "Code lieu de naissance",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/birthPlaceCode",
+                    "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures/birthPlaceCode",
                     "description": "Il s\u2019agit de la commune de naissance pour les personnes n\u00e9es en France et du pays de naissance pour les personnes n\u00e9es \u00e0 l\u2019\u00e9tranger. Utilisation du code INSEE (diff\u00e9rent du code postal), auquel est associ\u00e9 le nom de la commune ou du pays correspondant."
                 }
             },
-            "example": "example.json#/createCase/patient/0/identity/strictFeatures"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/patient/0/identity/strictFeatures"
         },
         "decision": {
             "type": "object",
@@ -2061,7 +2101,7 @@
                     "title": "Type de d\u00e9cision",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/type",
+                    "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/type",
                     "description": "Type de d\u00e9cision prise"
                 },
                 "orientation": {
@@ -2069,7 +2109,7 @@
                     "title": "Orientation",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/orientation",
+                    "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/orientation",
                     "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
                 },
                 "transportation": {
@@ -2080,7 +2120,7 @@
                         "title": "Vecteur de transport",
                         "x-health-only": true,
                         "x-cols": 6,
-                        "example": "example.json#/createCase/medicalAnalysis/0/decision/0/transportation/0",
+                        "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/transportation/0",
                         "description": "Type de transport engag\u00e9 pour la prise en charge du patient"
                     }
                 },
@@ -2089,14 +2129,15 @@
                     "title": "Niveau de m\u00e9dicalisation",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/medicalisation",
+                    "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/medicalisation",
                     "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
                 },
                 "destination": {
                     "$ref": "#/definitions/destination"
                 }
             },
-            "example": "example.json#/createCase/medicalAnalysis/0/decision/0"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0"
         },
         "destination": {
             "type": "object",
@@ -2110,24 +2151,25 @@
                     "title": "Etablissement",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/facility"
+                    "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination/facility"
                 },
                 "service": {
                     "type": "string",
                     "title": "Service",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/service"
+                    "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination/service"
                 },
                 "freetext": {
                     "type": "string",
                     "title": "Autre",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/freetext"
+                    "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination/freetext"
                 }
             },
-            "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/medicalAnalysis/0/decision/0/destination"
         },
         "customMap": {
             "type": "object",
@@ -2144,7 +2186,7 @@
                     "title": "Cl\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/key",
+                    "example": "example.json#/createCaseHealth/additionalInformation/customMap/0/key",
                     "description": "Nom de la balise"
                 },
                 "label": {
@@ -2152,7 +2194,7 @@
                     "title": "Libell\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/label",
+                    "example": "example.json#/createCaseHealth/additionalInformation/customMap/0/label",
                     "description": "Libell\u00e9 correspondant"
                 },
                 "value": {
@@ -2160,7 +2202,7 @@
                     "title": "Valeur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/value",
+                    "example": "example.json#/createCaseHealth/additionalInformation/customMap/0/value",
                     "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
                 },
                 "freetext": {
@@ -2168,11 +2210,12 @@
                     "title": "D\u00e9tails",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/freetext",
+                    "example": "example.json#/createCaseHealth/additionalInformation/customMap/0/freetext",
                     "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
                 }
             },
-            "example": "example.json#/createCase/additionalInformation/customMap"
+            "additionalProperties": false,
+            "example": "example.json#/createCaseHealth/additionalInformation/customMap/0"
         }
     }
 }
