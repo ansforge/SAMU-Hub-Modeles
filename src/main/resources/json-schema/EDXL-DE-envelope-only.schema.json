@@ -1,6 +1,45 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "https://json-schema.org/draft-07/schema#",
+  "required": [
+    "senderID",
+    "distributionID",
+    "dateTimeSent",
+    "dateTimeExpires",
+    "distributionStatus",
+    "distributionKind",
+    "descriptor",
+    "content"
+  ],
+  "properties": {
+    "senderID": {
+      "type": "string"
+    },
+    "distributionID": {
+      "type": "string"
+    },
+    "dateTimeSent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dateTimeExpires": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content": {
+      "$ref": "#/definitions/Content"
+    },
+    "descriptor": {
+      "$ref": "#/definitions/Descriptor"
+    },
+    "distributionKind": {
+      "$ref": "#/definitions/DistributionKind"
+    },
+    "distributionStatus": {
+      "$ref": "#/definitions/DistributionStatus"
+    }
+  },
+  "additionalProperties": false,
   "definitions": {
     "Content": {
       "type": "array",
@@ -85,44 +124,5 @@
         "explicitAddressValue"
       ]
     }
-  },
-  "properties": {
-    "senderID": {
-      "type": "string"
-    },
-    "distributionID": {
-      "type": "string"
-    },
-    "dateTimeSent": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "dateTimeExpires": {
-      "type": "string",
-      "format": "date-time"
-    },
-    "content": {
-      "$ref": "#/definitions/Content"
-    },
-    "descriptor": {
-      "$ref": "#/definitions/Descriptor"
-    },
-    "distributionKind": {
-      "$ref": "#/definitions/DistributionKind"
-    },
-    "distributionStatus": {
-      "$ref": "#/definitions/DistributionStatus"
-    }
-  },
-  "additionalProperties": false,
-  "required": [
-    "senderID",
-    "distributionID",
-    "dateTimeSent",
-    "dateTimeExpires",
-    "distributionStatus",
-    "distributionKind",
-    "descriptor",
-    "content"
-  ]
+  }
 }
