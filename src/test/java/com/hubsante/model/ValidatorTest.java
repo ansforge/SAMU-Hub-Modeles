@@ -76,8 +76,14 @@ public class ValidatorTest {
         try {
             validator.validateJSON(input, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "createCase.initialAlert.id: is missing but it is required",
+                "createCase.additionalInformation.customMap: object found, array expected",
+                "createCase.sender: is not defined in the schema and the schema does not allow additional properties"
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, MISSING, "createCase.initialAlert.id: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
         // TODO bbo: add XML validation
     }
@@ -101,10 +107,15 @@ public class ValidatorTest {
         try {
             validator.validateJSON(input, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "emsi.CONTEXT.ID: is missing but it is required",
+                "emsi.CONTEXT.EXTERNAL_INFO[0].URI: is missing but it is required",
+                "emsi.EVENT.CERTAINTY: string found, integer expected"
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, MISSING, "emsi.CONTEXT.ID: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
-
         // TODO bbo: add XML validation
     }
 
@@ -127,8 +138,12 @@ public class ValidatorTest {
         try {
             validator.validateJSON(input, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "reference.distributionID: is missing but it is required",
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, MISSING, "reference.distributionID: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
 
         // TODO bbo: add XML validation
@@ -153,8 +168,14 @@ public class ValidatorTest {
         try {
             validator.validateJSON(input, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "info.sourceMessage: string found, object expected",
+                "info.referencedDistributionID: is missing but it is required",
+                "info.errorCode.statusCode: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, MISSING, "errorCode.statusCode: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
 
         // TODO bbo: add XML validation
@@ -176,6 +197,10 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "reference.unexpectedUnknownProperty: is not defined in the schema and the schema does not allow additional properties"
+            };
             String[] errors = e.getMessage().split("\n");
             checkErrorMessages(errors, "is not defined in the schema and the schema does not allow additional properties", "reference.unexpectedUnknownProperty: ");
         }
@@ -189,6 +214,18 @@ public class ValidatorTest {
         // envelope validation does not throw because envelope is ok
         assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
         assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        try{
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] expectedErrors = {
+                    "Could not validate message against schema : errors occurred. ",
+                    "createCase.creation: is missing but it is required",
+                    "createCase.additionalInformation.customMap: object found, array expected"
+            };
+            String[] errors = e.getMessage().split("\n");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
+        }
 
         String xml = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.xml");
         // envelope validation does not throw because envelope is ok
@@ -208,8 +245,12 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "embeddedJsonContent: should be valid to one and only one schema, but 2 are valid"
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, TOO_MANY_SCHEMAS);
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -225,8 +266,12 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "could not detect any schemas in the message, at least one is required "
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, NO_SCHEMAS);
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -242,8 +287,13 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "could not detect any schemas in the message, at least one is required ",
+                "recipient: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessagePresence(errors, MISSING, "recipient: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -259,13 +309,18 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "could not detect any schemas in the message, at least one is required ",
+                "sentAt: is missing but it is required",
+                "kind: is missing but it is required",
+                "recipient: is missing but it is required",
+                "messageId: is missing but it is required",
+                "status: is missing but it is required",
+                "sender: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessagePresence(errors, MISSING, "messageId: ");
-            checkErrorMessagePresence(errors, MISSING, "sender: ");
-            checkErrorMessagePresence(errors, MISSING, "sentAt: ");
-            checkErrorMessagePresence(errors, MISSING, "kind: ");
-            checkErrorMessagePresence(errors, MISSING, "status: ");
-            checkErrorMessagePresence(errors, MISSING, "recipient: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -281,10 +336,13 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "reference.distributionID: is missing but it is required",
+                "reference.distributionIDS: is not defined in the schema and the schema does not allow additional properties"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
-            checkErrorMessagePresence(errors, UNDEFINED, "reference.distributionIDS: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -300,8 +358,24 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "$.descriptor.explicitAddress.explicitAddressScheme: is missing but it is required",
+                "$.descriptor.explicitAddress.explicitAddressValue: is missing but it is required",
+                "$.descriptor.explicitAddress._errorexplicitAddressScheme: is not defined in the schema and the schema does not allow additional properties",
+                "$.descriptor.explicitAddress._errorexplicitAddressValue: is not defined in the schema and the schema does not allow additional properties",
+                "$.descriptor.explicitAddress._errorUnknownProperty: is not defined in the schema and the schema does not allow additional properties",
+                "could not detect any schemas in the message, at least one is required ",
+                "$.dateTimeSent: is missing but it is required",
+                "$.descriptor._errorExplicitAddress: is not defined in the schema and the schema does not allow additional properties",
+                "$.descriptor._errorUnknownProperty: is not defined in the schema and the schema does not allow additional properties",
+                "$.descriptor.language: is missing but it is required",
+                "$.descriptor._errorlanguage: is not defined in the schema and the schema does not allow additional properties",
+                "$._errordateTimeSent: is not defined in the schema and the schema does not allow additional properties"
+            };
+
             String[] errors = e.getMessage().split("\n");
-            checkErrorMessages(errors, MISSING, "dateTimeSent: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -317,10 +391,15 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "reference.distributionID: is missing but it is required",
+                "reference._errordistributionID: is not defined in the schema and the schema does not allow additional properties",
+                "$._errorsenderID: is not defined in the schema and the schema does not allow additional properties",
+                "$.senderID: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessages(errors, MISSING, "reference.distributionID: ");
-            checkErrorMessagePresence(errors, MISSING, "senderID: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -336,10 +415,15 @@ public class ValidatorTest {
         try {
             validator.validateJSON(json, FULL_SCHEMA);
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "could not detect any schemas in the message, at least one is required ",
+                "$._errordistributionID: is not defined in the schema and the schema does not allow additional properties",
+                "$.distributionID: is missing but it is required",
+                "messageId: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "distributionID: ");
-            checkErrorMessagePresence(errors, MISSING, "messageId: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -356,9 +440,13 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "could not detect any schemas in the message, at least one is required ",
+                "recipient: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "recipient: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -375,10 +463,16 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "reference.distributionID: is missing but it is required",
+                "reference.distributionIDERROR: is not defined in the schema and the schema does not allow additional properties",
+                "reference.dateTimeSentERROR: is not defined in the schema and the schema does not allow additional properties",
+                "recipient: is missing but it is required",
+                "status: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "recipient: ");
-            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -395,9 +489,12 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "reference.distributionID: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -414,11 +511,17 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "$._errordescriptor: is not defined in the schema and the schema does not allow additional properties",
+                "$.descriptor: is missing but it is required",
+                "$._errorsenderID: is not defined in the schema and the schema does not allow additional properties",
+                "$.senderID: is missing but it is required",
+                "$._errordistributionID: is not defined in the schema and the schema does not allow additional properties",
+                "$.distributionID: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "distributionID: ");
-            checkErrorMessagePresence(errors, MISSING, "senderID: ");
-            checkErrorMessagePresence(errors, MISSING, "descriptor: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -435,11 +538,15 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "reference.distributionID: is missing but it is required",
+                "reference._errorproperty1: is not defined in the schema and the schema does not allow additional properties",
+                "reference._errorproperty2: is not defined in the schema and the schema does not allow additional properties",
+                "reference._errorproperty3: is not defined in the schema and the schema does not allow additional properties"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
-            checkErrorMessagePresence(errors, UNDEFINED, "ERROR: ");
-            checkErrorMessagePresence(errors, UNDEFINED, "ERROR2: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -456,6 +563,13 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "could not detect any schemas in the message, at least one is required ",
+                "kind: is missing but it is required",
+                "recipient: is missing but it is required",
+                "status: is missing but it is required"
+            };
             String[] errors = e.getMessage().split("\n");
 
             checkErrorMessagePresence(errors, MISSING, "kind: ");
@@ -477,9 +591,12 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "could not detect any schemas in the message, at least one is required "
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, "could not detect any schemas in the message, at least one is required ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -496,9 +613,12 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "embeddedJsonContent: should be valid to one and only one schema, but 2 are valid"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, "should be valid to one and only one schema, but 2 are valid");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -515,14 +635,17 @@ public class ValidatorTest {
             validator.validateJSON(json, FULL_SCHEMA);
 
         } catch (ValidationException e) {
+            String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "embeddedJsonContent: should be valid to one and only one schema, but 2 are valid",
+                "reference.distributionID: is missing but it is required",
+                "reference._errordistributionID: is not defined in the schema and the schema does not allow additional properties",
+                "emsi.CONTEXT: is missing but it is required",
+                "emsi.EVENT: is missing but it is required",
+                "emsi._errorproperty: is not defined in the schema and the schema does not allow additional properties"
+            };
             String[] errors = e.getMessage().split("\n");
-
-            checkErrorMessagePresence(errors, MISSING, "reference.distributionID: ");
-            checkErrorMessagePresence(errors, UNDEFINED, "reference.incorrectProp: ");
-
-            checkErrorMessagePresence(errors, "string found, object expected", "emsi.CONTEXT: ");
-            checkErrorMessagePresence(errors, MISSING, "emsi.EVENT.ID: ");
-            checkErrorMessagePresence(errors, "object found, array expected", "emsi.EVENT.EGEO: ");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
         }
     }
 
@@ -565,10 +688,6 @@ public class ValidatorTest {
         });
     }
 
-    public void checkErrorMessagePresence(String[] errors, String expected) {
-        checkErrorMessagePresence(errors, expected, "");
-    }
-
     public void checkErrorMessages(String[] errors, String expected, String prefix) {
 
         String[] errorMessages = { TOO_MANY_SCHEMAS, NO_SCHEMAS, MISSING };
@@ -580,6 +699,18 @@ public class ValidatorTest {
                 assertTrue(Arrays.stream(errors).noneMatch(err -> err.contains(error)));
             }
         });
+    }
+
+    /**
+     * Check if the error message array contains all of and only the expected errors
+     * @param errors
+     * @param expectedErrors
+     */
+    public void checkErrorMessageArrayExactContent(String[] errors, String[] expectedErrors){
+        List<String> errorList = Arrays.asList(errors);
+        List<String> expectedErrorList = Arrays.asList(expectedErrors);
+        assertTrue(errorList.containsAll(expectedErrorList));
+        assertTrue(expectedErrorList.containsAll(errorList));
     }
 
     public void checkErrorMessages(String[] errors, String expected) {

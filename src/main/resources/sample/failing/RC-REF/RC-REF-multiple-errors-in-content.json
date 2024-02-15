@@ -32,9 +32,9 @@
               }
             ],
             "reference": {
-              "ERROR": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
-              "ERROR2": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
-              "ERROR3": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
+              "_errorproperty1": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
+              "_errorproperty2": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
+              "_errorproperty3": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
             }
           }
         }

@@ -1,15 +1,18 @@
 {
   "distributionID": "fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea",
   "senderID": "fr.health.samuA",
-  "dateTimeSentERROR": "2022-07-25T10:04:34+01:00",
+  "_errordateTimeSent": "2022-07-25T10:04:34+01:00",
   "dateTimeExpires": "2072-07-25T10:04:34+01:00",
   "distributionStatus": "Actual",
   "distributionKind": "Ack",
   "descriptor": {
-    "language": "fr-FR",
+    "_errorlanguage": "fr-FR",
+    "_errorUnknownProperty": "language",
+    "_errorExplicitAddress": "hubex:fr.health.samuB",
     "explicitAddress": {
-      "explicitAddressScheme": "hubex",
-      "explicitAddressValue": "fr.health.samuB"
+      "_errorexplicitAddressScheme": "hubex",
+      "_errorexplicitAddressValue": "fr.health.samuB",
+      "_errorUnknownProperty": "URI"
     }
   },
   "content": [

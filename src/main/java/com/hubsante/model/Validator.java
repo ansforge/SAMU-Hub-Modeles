@@ -27,7 +27,7 @@ import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
 import org.xml.sax.SAXException;
 
 import javax.xml.XMLConstants;
@@ -42,11 +42,11 @@ import java.io.StringReader;
 import java.lang.reflect.Field;
 import java.util.*;
 
-@Slf4j
 public class Validator {
 
     private ObjectMapper jsonMapper;
     private XmlMapper xmlMapper;
+    private static final Logger log = org.slf4j.LoggerFactory.getLogger(Validator.class);
 
     public Validator() {
         xmlMapper = (XmlMapper) new XmlMapper()
@@ -98,11 +98,15 @@ public class Validator {
         Set<ValidationMessage> validationMessages = jsonSchema.validate(jsonNode);
 
         if (!validationMessages.isEmpty()) {
+            // Log all validation messages
+            for (ValidationMessage errorMsg : validationMessages) {
+                log.error("Validation error: {}", errorMsg);
+            }
             StringBuilder errors = new StringBuilder();
 
             Set<ValidationMessage> envelopeValidationMessages = this.filterEnvelopeValidationMessages(validationMessages);
             Set<ValidationMessage> errorValidationMessages = this.filterErrorValidationMessages(validationMessages);
-            Set<ValidationMessage> rsDeValidationMessages = this.filterRsDeValidationMessages(validationMessages);
+            Set<ValidationMessage> rcDeValidationMessage = this.filterRcDeValidationMessages(validationMessages);
 
             boolean containsAtLeastOneUseCaseError = false;
             boolean violatesOneOfConstraint = false;
@@ -110,13 +114,13 @@ public class Validator {
             for (ValidationMessage errorMsg : validationMessages) {
                 String error = formatValidationErrorMessage(errorMsg);
                 if (error != null) {
-                        errors.append(error).append("\n");
-                        if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
-                            violatesOneOfConstraint = true;
-                        }
-                        if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
-                            containsAtLeastOneUseCaseError = true;
-                        }
+                    errors.append(error).append("\n");
+                    if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
+                        violatesOneOfConstraint = true;
+                    }
+                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
+                        containsAtLeastOneUseCaseError = true;
+                    }
                 }
             }
 
@@ -134,17 +138,17 @@ public class Validator {
                 errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
             }
             if (errorValidationMessages.isEmpty())
-                for (ValidationMessage errorMsg : rsDeValidationMessages) {
+                for (ValidationMessage errorMsg : rcDeValidationMessage) {
                     errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
                 }
-
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
     }
 
     private Set<ValidationMessage> filterEnvelopeValidationMessages(Set<ValidationMessage> validationMessages) {
-        // If the validation message's "path" value is root ($), it means that the error is in the envelope
-        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().equals("$")).collect(java.util.stream.Collectors.toSet());
+        // If the validation message's "path" length when split on '.' is less than 3 yet the second element isn't
+        // 'content', the error should be in the envelope
+        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().split("\\.").length < 3 && (errorMsg.getPath().split("\\.").length<2 || !errorMsg.getPath().split("\\.")[1].equals("content"))).collect(java.util.stream.Collectors.toSet());
         validationMessages.removeAll(result);
         return result;
 
@@ -152,22 +156,24 @@ public class Validator {
 
     private Set<ValidationMessage> filterErrorValidationMessages(Set<ValidationMessage> validationMessages) {
         // If the validation message's "path" value contains embeddedJsonContent.message.info, it means that the error
-        // is in RS-INFO (important to know because we won't keep RS-DE errors if the message is RS-INFO.)
+        // is in RS-INFO (important to know because we won't keep RC-DE errors if the message is RS-INFO.)
         Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().contains("embeddedJsonContent.message.info")).collect(java.util.stream.Collectors.toSet());
         validationMessages.removeAll(result);
         return result;
     }
 
-    private Set<ValidationMessage> filterRsDeValidationMessages(Set<ValidationMessage> validationMessages) {
+    private Set<ValidationMessage> filterRcDeValidationMessages(Set<ValidationMessage> validationMessages) {
         Set<ValidationMessage> result = new HashSet<>();
         Field[] attributes = DistributionElement.class.getDeclaredFields();
         for(ValidationMessage validationMessage : validationMessages) {
             // We only bother checking messages with a path containing "jsonContent.embeddedJsonContent.message"
             if (validationMessage.getPath().contains("jsonContent.embeddedJsonContent.message")) {
-                // We only look at the part of the message after "message"
+                // We only look at the part of the message after "message" and check the length of the message's 'path'
+                // to make sure to avoid false positives if any deeper-nested properties are named identically to RC-EDA
+                // properties
                 String substring = validationMessage.getMessage().substring(validationMessage.getMessage().indexOf("message") + 8);
                 for (Field attribute : attributes) {
-                    if (substring.contains(attribute.getName())) {
+                    if (validationMessage.getPath().split("\\.").length == 5 && substring.contains(attribute.getName())) {
                         result.add(validationMessage);
                     }
                 }
