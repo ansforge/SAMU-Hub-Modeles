@@ -525,7 +525,11 @@
             "required": [],
             "properties": {
                 "customMap": {
-                    "$ref": "#/definitions/customMap"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/customMap"
+                    },
+                    "maxItems": 3
                 }
             },
             "additionalProperties": false,
@@ -1531,7 +1535,7 @@
                     "title": "Cl\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/key",
+                    "example": "example.json#/createCase/additionalInformation/customMap/0/key",
                     "description": "Nom de la balise"
                 },
                 "label": {
@@ -1539,7 +1543,7 @@
                     "title": "Libell\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/label",
+                    "example": "example.json#/createCase/additionalInformation/customMap/0/label",
                     "description": "Libell\u00e9 correspondant"
                 },
                 "value": {
@@ -1547,7 +1551,7 @@
                     "title": "Valeur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/value",
+                    "example": "example.json#/createCase/additionalInformation/customMap/0/value",
                     "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
                 },
                 "freetext": {
@@ -1555,12 +1559,12 @@
                     "title": "D\u00e9tails",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/additionalInformation/customMap/freetext",
+                    "example": "example.json#/createCase/additionalInformation/customMap/0/freetext",
                     "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/createCase/additionalInformation/customMap"
+            "example": "example.json#/createCase/additionalInformation/customMap/0"
         }
     }
 }
