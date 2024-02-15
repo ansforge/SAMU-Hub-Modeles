@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,98 +34,72 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
+import com.hubsante.model.cisu.InsIdentity;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Operator
+ * Patient
  */
-@JsonPropertyOrder({Operator.JSON_PROPERTY_DETAILED_NAME,
-                    Operator.JSON_PROPERTY_ID, Operator.JSON_PROPERTY_ROLE})
-@JsonTypeName("operator")
+@JsonPropertyOrder({Patient.JSON_PROPERTY_ID, Patient.JSON_PROPERTY_IDENTITY})
+@JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Operator {
-  public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
-  private DetailedName detailedName;
-
+public class Patient {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
-  public static final String JSON_PROPERTY_ROLE = "role";
-  private String role;
+  public static final String JSON_PROPERTY_IDENTITY = "identity";
+  private InsIdentity identity;
 
-  public Operator() {}
+  public Patient() {}
 
-  public Operator detailedName(DetailedName detailedName) {
-
-    this.detailedName = detailedName;
-    return this;
-  }
-
-  /**
-   * Get detailedName
-   * @return detailedName
-   **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public DetailedName getDetailedName() {
-    return detailedName;
-  }
-
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedName(DetailedName detailedName) {
-    this.detailedName = detailedName;
-  }
-
-  public Operator id(String id) {
+  public Patient id(String id) {
 
     this.id = id;
     return this;
   }
 
   /**
-   * Identifiant professionnel de l&#39;opérateur si existant
+   * Identifiant technique du patient pour permettre les rapprochements
+   *d&#39;infos. Le 1er qui créé l&#39;ID patient a raison.
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getId() {
     return id;
   }
 
   @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setId(String id) {
     this.id = id;
   }
 
-  public Operator role(String role) {
+  public Patient identity(InsIdentity identity) {
 
-    this.role = role;
+    this.identity = identity;
     return this;
   }
 
   /**
-   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
-   * @return role
+   * Get identity
+   * @return identity
    **/
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_IDENTITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getRole() {
-    return role;
+  public InsIdentity getIdentity() {
+    return identity;
   }
 
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(String role) {
-    this.role = role;
+  @JsonProperty(JSON_PROPERTY_IDENTITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIdentity(InsIdentity identity) {
+    this.identity = identity;
   }
 
   @Override
@@ -136,26 +110,22 @@ public class Operator {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Operator operator = (Operator)o;
-    return Objects.equals(this.detailedName, operator.detailedName) &&
-        Objects.equals(this.id, operator.id) &&
-        Objects.equals(this.role, operator.role);
+    Patient patient = (Patient)o;
+    return Objects.equals(this.id, patient.id) &&
+        Objects.equals(this.identity, patient.identity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedName, id, role);
+    return Objects.hash(id, identity);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Operator {\n");
-    sb.append("    detailedName: ")
-        .append(toIndentedString(detailedName))
-        .append("\n");
+    sb.append("class Patient {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
     sb.append("}");
     return sb.toString();
   }

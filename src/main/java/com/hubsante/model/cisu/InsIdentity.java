@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,98 +34,74 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
+import com.hubsante.model.cisu.DetailedName;
+import com.hubsante.model.cisu.InsStrictFeatures;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Operator
+ * InsIdentity
  */
-@JsonPropertyOrder({Operator.JSON_PROPERTY_DETAILED_NAME,
-                    Operator.JSON_PROPERTY_ID, Operator.JSON_PROPERTY_ROLE})
-@JsonTypeName("operator")
+@JsonPropertyOrder({InsIdentity.JSON_PROPERTY_STRICT_FEATURES,
+                    InsIdentity.JSON_PROPERTY_NON_STRICT_FEATURES})
+@JsonTypeName("insIdentity")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Operator {
-  public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
-  private DetailedName detailedName;
+public class InsIdentity {
+  public static final String JSON_PROPERTY_STRICT_FEATURES = "strictFeatures";
+  private InsStrictFeatures strictFeatures;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_NON_STRICT_FEATURES =
+      "nonStrictFeatures";
+  private DetailedName nonStrictFeatures;
 
-  public static final String JSON_PROPERTY_ROLE = "role";
-  private String role;
+  public InsIdentity() {}
 
-  public Operator() {}
+  public InsIdentity strictFeatures(InsStrictFeatures strictFeatures) {
 
-  public Operator detailedName(DetailedName detailedName) {
-
-    this.detailedName = detailedName;
+    this.strictFeatures = strictFeatures;
     return this;
   }
 
   /**
-   * Get detailedName
-   * @return detailedName
+   * Get strictFeatures
+   * @return strictFeatures
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
+  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedName getDetailedName() {
-    return detailedName;
+  public InsStrictFeatures getStrictFeatures() {
+    return strictFeatures;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
+  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedName(DetailedName detailedName) {
-    this.detailedName = detailedName;
+  public void setStrictFeatures(InsStrictFeatures strictFeatures) {
+    this.strictFeatures = strictFeatures;
   }
 
-  public Operator id(String id) {
+  public InsIdentity nonStrictFeatures(DetailedName nonStrictFeatures) {
 
-    this.id = id;
+    this.nonStrictFeatures = nonStrictFeatures;
     return this;
   }
 
   /**
-   * Identifiant professionnel de l&#39;opérateur si existant
-   * @return id
+   * Get nonStrictFeatures
+   * @return nonStrictFeatures
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public DetailedName getNonStrictFeatures() {
+    return nonStrictFeatures;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public Operator role(String role) {
-
-    this.role = role;
-    return this;
-  }
-
-  /**
-   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
-   * @return role
-   **/
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getRole() {
-    return role;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(String role) {
-    this.role = role;
+  public void setNonStrictFeatures(DetailedName nonStrictFeatures) {
+    this.nonStrictFeatures = nonStrictFeatures;
   }
 
   @Override
@@ -136,26 +112,26 @@ public class Operator {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Operator operator = (Operator)o;
-    return Objects.equals(this.detailedName, operator.detailedName) &&
-        Objects.equals(this.id, operator.id) &&
-        Objects.equals(this.role, operator.role);
+    InsIdentity insIdentity = (InsIdentity)o;
+    return Objects.equals(this.strictFeatures, insIdentity.strictFeatures) &&
+        Objects.equals(this.nonStrictFeatures, insIdentity.nonStrictFeatures);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedName, id, role);
+    return Objects.hash(strictFeatures, nonStrictFeatures);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Operator {\n");
-    sb.append("    detailedName: ")
-        .append(toIndentedString(detailedName))
+    sb.append("class InsIdentity {\n");
+    sb.append("    strictFeatures: ")
+        .append(toIndentedString(strictFeatures))
         .append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("    nonStrictFeatures: ")
+        .append(toIndentedString(nonStrictFeatures))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -78,8 +78,7 @@ public class CallTaker {
    * Décrit la structure ou le service à laquelle est rattachée l&#39;agent (en
    *fonction du niveau de précision disponible). Se référer au DSF pour la
    *structure normée des organisations Le format est le suivant
-   *{pays}:{domaine}:{code département}:{organisation}:{structure
-   *interne}*:{unité fonctionnelle}*.
+   *{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
    * @return organization
    **/
   @JsonProperty(JSON_PROPERTY_ORGANIZATION)

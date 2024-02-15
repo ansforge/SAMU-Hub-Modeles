@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.02.13",
+    "version": "24.02.15",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -71,6 +71,18 @@
                 "initialAlert": {
                     "$ref": "#/definitions/alert"
                 },
+                "patient": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/patient"
+                    }
+                },
+                "medicalAnalysis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/medicalAnalysis"
+                    }
+                },
                 "newAlert": {
                     "type": "array",
                     "items": {
@@ -130,7 +142,6 @@
             "x-health-only": false,
             "required": [
                 "locID",
-                "name",
                 "country"
             ],
             "properties": {
@@ -517,6 +528,55 @@
             "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert"
         },
+        "patient": {
+            "type": "object",
+            "title": "Patients / victimes",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "id"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "title": "ID patient partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patient/0/id",
+                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
+                },
+                "identity": {
+                    "$ref": "#/definitions/insIdentity"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/patient/0"
+        },
+        "medicalAnalysis": {
+            "type": "object",
+            "title": "R\u00e9gulation m\u00e9dicale",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "patientId": {
+                    "type": "string",
+                    "title": "ID patient partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/patientId",
+                    "description": "ID du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
+                },
+                "decision": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/decision"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/medicalAnalysis/0"
+        },
         "additionalInformation": {
             "type": "object",
             "title": "Informations compl\u00e9mentaires",
@@ -761,7 +821,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/createCase/location/access/entity",
-                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement"
+                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement : Infirmerie, service finance, service cardiologie, \u2026"
                 },
                 "phoneNumber": {
                     "type": "number",
@@ -1349,7 +1409,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/createCase/initialAlert/callTaker/organization",
-                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*."
+                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
                 },
                 "controlRoom": {
                     "type": "string",
@@ -1519,6 +1579,169 @@
             },
             "additionalProperties": false,
             "example": "example.json#/createCase/initialAlert/caller/detailedName"
+        },
+        "insIdentity": {
+            "type": "object",
+            "title": "Identit\u00e9 INS",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "strictFeatures": {
+                    "$ref": "#/definitions/insStrictFeatures"
+                },
+                "nonStrictFeatures": {
+                    "$ref": "#/definitions/detailedName"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/patient/0/identity"
+        },
+        "insStrictFeatures": {
+            "type": "object",
+            "title": "Traits stricts de l'identit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "birthDate": {
+                    "type": "string",
+                    "title": "Date de naissance",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/birthDate",
+                    "description": "Date de naissance du patient",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
+                },
+                "sex": {
+                    "type": "string",
+                    "title": "Sexe ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/sex",
+                    "description": "Sexe du patient",
+                    "enum": [
+                        "U",
+                        "F",
+                        "M",
+                        "O"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/patient/0/identity/strictFeatures"
+        },
+        "decision": {
+            "type": "object",
+            "title": "D\u00e9cisions",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "creation"
+            ],
+            "properties": {
+                "creation": {
+                    "type": "string",
+                    "title": "Date Heure de cr\u00e9ation de la d\u00e9cision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/creation",
+                    "description": "Groupe date heure de cr\u00e9ation de la d\u00e9cision.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type de d\u00e9cision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/type",
+                    "description": "Type de d\u00e9cision prise"
+                },
+                "orientation": {
+                    "type": "string",
+                    "title": "Orientation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/orientation",
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
+                },
+                "transportation": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Vecteur de transport",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/createCase/medicalAnalysis/0/decision/0/transportation/0",
+                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
+                    }
+                },
+                "medicalisation": {
+                    "type": "string",
+                    "title": "Niveau de m\u00e9dicalisation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/medicalisation",
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                },
+                "destination": {
+                    "$ref": "#/definitions/destination"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/medicalAnalysis/0/decision/0"
+        },
+        "destination": {
+            "type": "object",
+            "title": "Destination",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "facility": {
+                    "type": "string",
+                    "title": "Etablissement",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/facility",
+                    "description": "Nom de l'\u00e9tablissement"
+                },
+                "adminFiness": {
+                    "type": "string",
+                    "title": "FINESS administratif",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/adminFiness",
+                    "description": "N\u00b0 Finess administratif de l'\u00e9tablissement"
+                },
+                "geoFiness": {
+                    "type": "string",
+                    "title": "FINESS g\u00e9ographique",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/geoFiness",
+                    "description": "N\u00b0 Finess g\u00e9ographique de l'\u00e9tablissement"
+                },
+                "service": {
+                    "type": "string",
+                    "title": "Service",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/service",
+                    "description": "Service concern\u00e9 par l'admission du patient"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Autre",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/freetext"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination"
         },
         "customMap": {
             "type": "object",

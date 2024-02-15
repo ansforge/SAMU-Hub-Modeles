@@ -74,329 +74,81 @@ public class Mission {
    * EMSI pour caractériser la mission en cours.
    */
   public enum TYPEEnum {
-    C2("C2"),
+    SAV_ASC("/SAV/ASC"),
 
-    CBRN("CBRN"),
+    FSTT_TA_FR_DIFFICULTACCSS("/FSTT/TA/FR_DIFFICULTACCSS"),
 
-    FF("FF"),
+    GEN_RECVRY("/GEN/RECVRY"),
 
-    FSTT("FSTT"),
+    RSC_SAR_FR_VLN("/RSC/SAR/FR_VLN"),
 
-    GEN("GEN"),
+    SAV_ASC_FR_PPL_LIFT("/SAV/ASC/FR_PPL/LIFT"),
 
-    INT("INT"),
+    SAV_RHD("/SAV/RHD"),
 
-    MAC("MAC"),
+    SAV_RTA("/SAV/RTA"),
 
-    MIL("MIL"),
+    SAV_SARCSL("/SAV/SARCSL"),
 
-    NET("NET"),
+    FFST_FR_FIRE("/FFST/FR_FIRE"),
 
-    OPR("OPR"),
+    FSTT_RRHAZ_FR_CO("/FSTT/RRHAZ/FR_CO"),
 
-    POL("POL"),
+    FSTT_TA_FR_ANI_DGR("/FSTT/TA/FR_ANI/DGR"),
 
-    REC("REC"),
+    FSTT_TA_FR_ANI_INJ("/FSTT/TA/FR_ANI/INJ"),
 
-    RSC("RSC"),
+    INT_RECCE_FR_CBRNHZ("/INT/RECCE/FR_CBRNHZ"),
 
-    SAV("SAV"),
+    INT_RECCE_FR_DIS_LNDSLD("/INT/RECCE/FR_DIS/LNDSLD"),
 
-    SCS("SCS"),
+    INT_RECCE_FR_DIS_SDCLPS("/INT/RECCE/FR_DIS/SDCLPS"),
 
-    SOC("SOC"),
+    INT_RECCE_FR_FLD("/INT/RECCE/FR_FLD"),
 
-    C2_DEBRIF("C2/DEBRIF"),
+    INT_RECCE_FR_SMLL("/INT/RECCE/FR_SMLL"),
 
-    C2_DNRSKA("C2/DNRSKA"),
+    FSTT_TA_FR_DRG_MIND("/FSTT/TA/FR_DRG/MIND"),
 
-    C2_INASSM("C2/INASSM"),
+    FR_MED_REGLTN("/FR_MED/REGLTN"),
 
-    C2_OIC("C2/OIC"),
+    GEN_SUPRTN("/GEN/SUPRTN"),
 
-    C2_POA("C2/POA"),
+    REC_PRVCNP("/REC/PRVCNP"),
 
-    C2_THRTAS("C2/THRTAS"),
+    RSC_MEDEVC("/RSC/MEDEVC"),
 
-    CBRN_CBRNCH("CBRN/CBRNCH"),
+    SAV_AR_FR_CNT("/SAV/AR/FR_CNT"),
 
-    CBRN_CBRNDC("CBRN/CBRNDC"),
+    SAV_AR_FR_MED("/SAV/AR/FR_MED"),
 
-    CBRN_NTRCH("CBRN/NTRCH"),
+    SAV_AR_FR_PARAMD("/SAV/AR/FR_PARAMD"),
 
-    CBRN_NUCWS("CBRN/NUCWS"),
+    SAV_AR_FR_PPL_GRP("/SAV/AR/FR_PPL/GRP"),
 
-    FF_IN("FF/IN"),
+    SAV_AR_FR_PSYPHY("/SAV/AR/FR_PSYPHY"),
 
-    FF_OA("FF/OA"),
+    SAV_ASC2("/SAV/ASC"),
 
-    FF_SALVAG("FF/SALVAG"),
+    SAV_ASC3("/SAV/ASC"),
 
-    FF_STR("FF/STR"),
+    INT_RECCE("/INT/RECCE"),
 
-    FF_TRP("FF/TRP"),
+    SAV("/SAV"),
 
-    FSTT_DI("FSTT/DI"),
+    FSTT_TA_FR_TRNSP_AMB("/FSTT/TA/FR_TRNSP/AMB"),
 
-    FSTT_RRHAZ("FSTT/RRHAZ"),
+    GEN_TRNSP("/GEN/TRNSP"),
 
-    FSTT_TA("FSTT/TA"),
+    GEN_TRNSP_FR_SECNDRY("/GEN/TRNSP/FR_SECNDRY"),
 
-    GEN_AIRLAU("GEN/AIRLAU"),
+    GEN_TRNSPN("/GEN/TRNSPN"),
 
-    GEN_ASSMBL("GEN/ASSMBL"),
+    OPR_LOG("/OPR/LOG"),
 
-    GEN_CRWDCT("GEN/CRWDCT"),
+    SAV_AR_FR_PPL_OBS("/SAV/AR/FR_PPL/OBS"),
 
-    GEN_DEMO("GEN/DEMO"),
-
-    GEN_DEPLOY("GEN/DEPLOY"),
-
-    GEN_DSTRBT("GEN/DSTRBT"),
-
-    GEN_FINANC("GEN/FINANC"),
-
-    GEN_MARKNG("GEN/MARKNG"),
-
-    GEN_MOVE("GEN/MOVE"),
-
-    GEN_RECVRN("GEN/RECVRN"),
-
-    GEN_RECVRY("GEN/RECVRY"),
-
-    GEN_REDPLN("GEN/REDPLN"),
-
-    GEN_REORGN("GEN/REORGN"),
-
-    GEN_REPAIR("GEN/REPAIR"),
-
-    GEN_RESPLN("GEN/RESPLN"),
-
-    GEN_RESTNG("GEN/RESTNG"),
-
-    GEN_RETIRE("GEN/RETIRE"),
-
-    GEN_RLFPLC("GEN/RLFPLC"),
-
-    GEN_RNDZVS("GEN/RNDZVS"),
-
-    GEN_SCNMNG("GEN/SCNMNG"),
-
-    GEN_SECRNG("GEN/SECRNG"),
-
-    GEN_STNGUP("GEN/STNGUP"),
-
-    GEN_SUPRTN("GEN/SUPRTN"),
-
-    GEN_TRNSPN("GEN/TRNSPN"),
-
-    INT_BIOSMP("INT/BIOSMP"),
-
-    INT_CHMSMP("INT/CHMSMP"),
-
-    INT_IDENT("INT/IDENT"),
-
-    INT_ILLUMN("INT/ILLUMN"),
-
-    INT_LOCTNG("INT/LOCTNG"),
-
-    INT_NUCSMP("INT/NUCSMP"),
-
-    INT_OBSRNG("INT/OBSRNG"),
-
-    INT_PLUMOD("INT/PLUMOD"),
-
-    INT_PTRLNG("INT/PTRLNG"),
-
-    INT_RECCE("INT/RECCE"),
-
-    INT_SRVMET("INT/SRVMET"),
-
-    INT_SRVSEN("INT/SRVSEN"),
-
-    INT_WITNSN("INT/WITNSN"),
-
-    MAC_AII("MAC/AII"),
-
-    MAC_COL("MAC/COL"),
-
-    MIL_BCESC("MIL/BCESC"),
-
-    MIL_BLOCKN("MIL/BLOCKN"),
-
-    MIL_BOMBNG("MIL/BOMBNG"),
-
-    MIL_CAPTUR("MIL/CAPTUR"),
-
-    MIL_CTRATK("MIL/CTRATK"),
-
-    MIL_DEFEND("MIL/DEFEND"),
-
-    MIL_DISENG("MIL/DISENG"),
-
-    MIL_DIVRSN("MIL/DIVRSN"),
-
-    MIL_DLBATK("MIL/DLBATK"),
-
-    MIL_DSRPTN("MIL/DSRPTN"),
-
-    MIL_ENVLPN("MIL/ENVLPN"),
-
-    MIL_FIX("MIL/FIX"),
-
-    MIL_HARASS("MIL/HARASS"),
-
-    MIL_HIDE("MIL/HIDE"),
-
-    MIL_HLDDEF("MIL/HLDDEF"),
-
-    MIL_HLDOFF("MIL/HLDOFF"),
-
-    MIL_INFLTN("MIL/INFLTN"),
-
-    MIL_INTCPN("MIL/INTCPN"),
-
-    MIL_INTDCT("MIL/INTDCT"),
-
-    MIL_MASFOR("MIL/MASFOR"),
-
-    MIL_MIL("MIL/MIL"),
-
-    MIL_WPNFIR("MIL/WPNFIR"),
-
-    NET_COMDEA("NET/COMDEA"),
-
-    NET_DATTRF("NET/DATTRF"),
-
-    NET_NETJAM("NET/NETJAM"),
-
-    NET_NETSEI("NET/NETSEI"),
-
-    NET_SGNC("NET/SGNC"),
-
-    NET_SGNLE("NET/SGNLE"),
-
-    POL_NTRCOM("POL/NTRCOM"),
-
-    POL_NTREXP("POL/NTREXP"),
-
-    POL_SCNMNG("POL/SCNMNG"),
-
-    POL_SCNPRS("POL/SCNPRS"),
-
-    POL_SHELTR("POL/SHELTR"),
-
-    POL_SUSHOS("POL/SUSHOS"),
-
-    POL_WITDRL("POL/WITDRL"),
-
-    REC_CLROBS("REC/CLROBS"),
-
-    REC_COMACT("REC/COMACT"),
-
-    REC_COMRES("REC/COMRES"),
-
-    REC_CONSTN("REC/CONSTN"),
-
-    REC_ENGCN("REC/ENGCN"),
-
-    REC_ENGCNN("REC/ENGCNN"),
-
-    REC_PROCUR("REC/PROCUR"),
-
-    REC_PRVACC("REC/PRVACC"),
-
-    REC_PRVAGR("REC/PRVAGR"),
-
-    REC_PRVBDD("REC/PRVBDD"),
-
-    REC_PRVCMP("REC/PRVCMP"),
-
-    REC_PRVCNS("REC/PRVCNS"),
-
-    REC_PRVDCN("REC/PRVDCN"),
-
-    REC_PRVEDU("REC/PRVEDU"),
-
-    REC_PRVHLT("REC/PRVHLT"),
-
-    REC_PRVHSN("REC/PRVHSN"),
-
-    REC_PRVINF("REC/PRVINF"),
-
-    REC_PRVLND("REC/PRVLND"),
-
-    REC_PRVRPR("REC/PRVRPR"),
-
-    REC_PRVSCY("REC/PRVSCY"),
-
-    REC_PRVSHL("REC/PRVSHL"),
-
-    REC_PRVSTG("REC/PRVSTG"),
-
-    REC_PRVTRS("REC/PRVTRS"),
-
-    REC_PSO("REC/PSO"),
-
-    REC_SPLLDB("REC/SPLLDB"),
-
-    REC_SPLWAT("REC/SPLWAT"),
-
-    REC_UTILTY("REC/UTILTY"),
-
-    REC_WATER("REC/WATER"),
-
-    RSC_COVERN("RSC/COVERN"),
-
-    RSC_FRFGTN("RSC/FRFGTN"),
-
-    RSC_MEDEVC("RSC/MEDEVC"),
-
-    RSC_SAR("RSC/SAR"),
-
-    SAV_AR("SAV/AR"),
-
-    SAV_ASC("SAV/ASC"),
-
-    SAV_RHD("SAV/RHD"),
-
-    SAV_RTA("SAV/RTA"),
-
-    SAV_SARCSL("SAV/SARCSL"),
-
-    SAV_SARHHA("SAV/SARHHA"),
-
-    SAV_SRW("SAV/SRW"),
-
-    SAV_USAR("SAV/USAR"),
-
-    SAV_UW("SAV/UW"),
-
-    SCS_EDU("SCS/EDU"),
-
-    SOC_CNDCNF("SOC/CNDCNF"),
-
-    SOC_CNDMED("SOC/CNDMED"),
-
-    SOC_CNDRCR("SOC/CNDRCR"),
-
-    SOC_CNDSCL("SOC/CNDSCL"),
-
-    SOC_CNDSPT("SOC/CNDSPT"),
-
-    SOC_ISSMDA("SOC/ISSMDA"),
-
-    SOC_ISSMDD("SOC/ISSMDD"),
-
-    SOC_ISSPRS("SOC/ISSPRS"),
-
-    SOC_MN("SOC/MN"),
-
-    SOC_PUBMDA("SOC/PUBMDA"),
-
-    SOC_PUBMDD("SOC/PUBMDD"),
-
-    SOC_PUBPRS("SOC/PUBPRS");
+    FSTT_TA_FR_CLRACCSS("/FSTT/TA/FR_CLRACCSS");
 
     private String value;
 
@@ -663,9 +415,9 @@ public class Mission {
    *Indique l&#39;organisation du service réalisant la mission. Dans le cas
    *d&#39;une réponse, c&#39;est l&#39;organisation du concourant qui doit être
    *indiquée. Se référer au DSF pour la structure normée des organisations Le
-   *format est le suivant {pays}:{domaine}:{code
-   *département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
-   *identique à &lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
+   *format est le suivant {pays}.{domaine}.{organisation}.{structure
+   *interne}*.{unité fonctionnelle}*. identique à
+   *&lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)

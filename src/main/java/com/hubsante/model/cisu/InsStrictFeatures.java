@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,32 +39,32 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ExternalId
+ * InsStrictFeatures
  */
-@JsonPropertyOrder(
-    {ExternalId.JSON_PROPERTY_SOURCE, ExternalId.JSON_PROPERTY_VALUE})
-@JsonTypeName("externalId")
+@JsonPropertyOrder({InsStrictFeatures.JSON_PROPERTY_BIRTH_DATE,
+                    InsStrictFeatures.JSON_PROPERTY_SEX})
+@JsonTypeName("insStrictFeatures")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ExternalId {
+public class InsStrictFeatures {
+  public static final String JSON_PROPERTY_BIRTH_DATE = "birthDate";
+  private String birthDate;
 
   /**
-   * Type de l&#39;identifiant fourni
+   * Sexe du patient
    */
-  public enum SourceEnum {
-    NIR("NIR"),
+  public enum SexEnum {
+    U("U"),
 
-    SINUS("SINUS"),
+    F("F"),
 
-    SI_VIC("SI-VIC"),
+    M("M"),
 
-    DOSSARD("DOSSARD"),
-
-    PLACE("PLACE");
+    O("O");
 
     private String value;
 
-    SourceEnum(String value) { this.value = value; }
+    SexEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -77,8 +77,8 @@ public class ExternalId {
     }
 
     @JsonCreator
-    public static SourceEnum fromValue(String value) {
-      for (SourceEnum b : SourceEnum.values()) {
+    public static SexEnum fromValue(String value) {
+      for (SexEnum b : SexEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -87,58 +87,55 @@ public class ExternalId {
     }
   }
 
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private SourceEnum source;
+  public static final String JSON_PROPERTY_SEX = "sex";
+  private SexEnum sex;
 
-  public static final String JSON_PROPERTY_VALUE = "value";
-  private String value;
+  public InsStrictFeatures() {}
 
-  public ExternalId() {}
+  public InsStrictFeatures birthDate(String birthDate) {
 
-  public ExternalId source(SourceEnum source) {
-
-    this.source = source;
+    this.birthDate = birthDate;
     return this;
   }
 
   /**
-   * Type de l&#39;identifiant fourni
-   * @return source
+   * Date de naissance du patient
+   * @return birthDate
    **/
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public SourceEnum getSource() {
-    return source;
+  public String getBirthDate() {
+    return birthDate;
   }
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSource(SourceEnum source) {
-    this.source = source;
+  @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBirthDate(String birthDate) {
+    this.birthDate = birthDate;
   }
 
-  public ExternalId value(String value) {
+  public InsStrictFeatures sex(SexEnum sex) {
 
-    this.value = value;
+    this.sex = sex;
     return this;
   }
 
   /**
-   * L&#39;identifiant en lui-même
-   * @return value
+   * Sexe du patient
+   * @return sex
    **/
-  @JsonProperty(JSON_PROPERTY_VALUE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_SEX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getValue() {
-    return value;
+  public SexEnum getSex() {
+    return sex;
   }
 
-  @JsonProperty(JSON_PROPERTY_VALUE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setValue(String value) {
-    this.value = value;
+  @JsonProperty(JSON_PROPERTY_SEX)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSex(SexEnum sex) {
+    this.sex = sex;
   }
 
   @Override
@@ -149,22 +146,24 @@ public class ExternalId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExternalId externalId = (ExternalId)o;
-    return Objects.equals(this.source, externalId.source) &&
-        Objects.equals(this.value, externalId.value);
+    InsStrictFeatures insStrictFeatures = (InsStrictFeatures)o;
+    return Objects.equals(this.birthDate, insStrictFeatures.birthDate) &&
+        Objects.equals(this.sex, insStrictFeatures.sex);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source, value);
+    return Objects.hash(birthDate, sex);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExternalId {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("class InsStrictFeatures {\n");
+    sb.append("    birthDate: ")
+        .append(toIndentedString(birthDate))
+        .append("\n");
+    sb.append("    sex: ").append(toIndentedString(sex)).append("\n");
     sb.append("}");
     return sb.toString();
   }
