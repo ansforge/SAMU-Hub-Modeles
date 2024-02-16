@@ -15,8 +15,8 @@
             "SECLASS": "RESTRC",
             "FREETEXT": "Contexte de grand incendie \u00e0 Nantes",
             "ORIGIN": {
-                "ORG_ID": "fr.health.samu440-DRFR15DDXAAJJJ0000",
-                "USER_ID": "fr.health.samu440",
+                "ORG_ID": "fr.health.samu440",
+                "USER_ID": "id1234",
                 "NAME": "samu 44"
             },
             "EXTERNAL_INFO": [

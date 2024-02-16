@@ -709,13 +709,12 @@ public class Mission {
 
   /**
    * Indique l&#39;organisation du partenaire concerné par la Demande de
-   *Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut être utilisé.
-   *Indique l&#39;organisation du service réalisant la mission. Dans le cas
+   *Concours (voir DSF). Le code CRRA ou le code du SIS peut être utilisé.
+   *Indique l&#39;organisation du service réalisant la mission.  Dans le cas
    *d&#39;une réponse, c&#39;est l&#39;organisation du concourant qui doit être
    *indiquée. Se référer au DSF pour la structure normée des organisations Le
    *format est le suivant {pays}.{domaine}.{organisation}.{structure
-   *interne}*.{unité fonctionnelle}*. identique à
-   *&lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
+   *interne}*.{unité fonctionnelle}*.
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)
