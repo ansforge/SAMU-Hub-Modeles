@@ -3,12 +3,81 @@
  */
 package json_schema2xsd;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import static json_schema2xsd.App.convertEnumArraysToSimpleEnum;
+import static json_schema2xsd.App.revertEnumArraysConversion;
 import static org.junit.Assert.*;
 
 public class AppTest {
     @Test public void appHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    }
+
+    @Test
+    public void enumArrayConversionWorks() throws IOException {
+            JsonNode node = getRootNode("schema.json");
+
+            // Before conversion, node has array type and items property
+            JsonNode actorNode = node.get("ACTOR");
+            assertEquals(actorNode.get("type").asText(), "array");
+            assertNull(actorNode.get("enum"));
+            assertNotNull(actorNode.get("items"));
+
+            convertEnumArraysToSimpleEnum(node, "", new ArrayList<>());
+
+            // After conversion, node has string type and enum property
+            assertEquals(actorNode.get("type").asText(), "string");
+            assertNotNull(actorNode.get("enum"));
+            assertNull(actorNode.get("items"));
+    }
+
+    @Test
+    public void revertEnumArrayConversion() throws IOException {
+        Element rootElem = getXmlRootElement("EMSI.xsd");
+        List<String> enums = Arrays.asList("ACTOR", "CATEGORY", "RCLASS", "WEATHER");
+
+        AtomicInteger counter = new AtomicInteger(0);
+        revertEnumArraysConversion(rootElem, enums, counter);
+
+        assertEquals(enums.size(), counter.get());
+    }
+
+    private static JsonNode getRootNode(String fileName) throws IOException {
+        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)) {
+            InputStreamReader isr = new InputStreamReader(is);
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readTree(isr);
+        }
+    }
+
+    private static Element getXmlRootElement(String fileName) throws IOException {
+        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)) {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(is);
+            return  doc.getDocumentElement();
+        } catch (IOException | SAXException | ParserConfigurationException e) {
+            throw new IOException(e.getCause());
+        }
     }
 }

@@ -5,20 +5,8 @@
   "version": "0.4.9",
   "example": "example.json#",
   "type": "object",
-  "title": "RS_INFO",
-  "required": [
-    "customContent"
-  ],
-  "properties": {
-    "customContent": {
-      "$ref": "#/definitions/customContent"
-    },
-    "additionalProperties": false
-  },
-  "definitions": {
-    "customContent": {
-      "type": "object",
-      "title": "customContent"
-    }
-  }
+  "title": "CustomContent",
+  "required": [],
+  "properties": {},
+  "additionalProperties": true
 }

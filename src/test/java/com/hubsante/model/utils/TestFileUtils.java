@@ -43,4 +43,10 @@ public class TestFileUtils {
 
         return "sample/" + subFolder + "/" + schemaName + "/" + fileName + extension;
     }
+
+    public static String getMessageByFileName(String fileName) throws IOException {
+        String path = "sample/valid/" + fileName;
+        File file = new File(classLoader.getResource(path).getFile());
+        return new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+    }
 }
