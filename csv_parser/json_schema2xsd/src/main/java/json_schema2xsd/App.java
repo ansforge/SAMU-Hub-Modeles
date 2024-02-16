@@ -147,7 +147,7 @@ public class App {
             convertedEnums.add(propertyName);
         }
 
-        // Recursion. We embed the convertedEnums list to pass it further to the upper level
+        // Recursion. We pass the convertedEnums list to the lower level to supplement it at each step
         for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext(); ) {
             Map.Entry<String, JsonNode> entry = fields.next();
             convertEnumArraysToSimpleEnum(entry.getValue(), entry.getKey(), convertedEnums);
