@@ -11,15 +11,15 @@
       "SECLASS": "RESTRC",
       "FREETEXT": "Gène de plus en plus importante à la circulation, risque accident",
       "ORIGIN": {
-        "ORG_ID": "fr.health.samu690.chuLyon.crra.regulationN3",
-        "USER_ID": "fr.health.samu690.chuLyon.crra.regulationN3.poste123",
+        "ORG_ID": "fr.health.samu690",
+        "USER_ID": "samu690",
         "NAME": "SAMU 69"
       }
     },
     "EVENT": {
-      "ID": "fr.health.samu690-20231103-AF1234",
+      "ID": "fr.health.samu690-DRFR15690240430050",
       "NAME": "Incident sur voix cyclable",
-      "MAIN_EVENT_ID": "fr.health.samu690-20231103-AF1234",
+      "MAIN_EVENT_ID": "fr.health.samu690-DRFR15690240430050",
       "ETYPE": {
         "CATEGORY": [
           "TRP/COL"
@@ -42,10 +42,8 @@
       "RISK_ASSESMENT": "STABLE",
       "REFERENCE": [
         {
-          "ORG_ID": "fr.administration.690.CGO",
-          "OTHER_EVENT_ID": [
-            "fr:administration:690:CGO:20231103_00002"
-          ]
+          "ORG_ID": "fr.fire.cgo690",
+          "OTHER_EVENT_ID": []
         }
       ],
       "CASUALTIES": [
@@ -99,9 +97,9 @@
         "TYPE": "GEN/SCNMNG",
         "FREETEXT": "Besoin d'assisance terrain pour gérer perturbations et sécuriser le site d'intervention.",
         "ID": "ABC1YU3454",
-        "ORG_ID": "fr.administration.690.CGO",
-        "NAME": "#REPONSE_DEMANDE_CONCOURS#ACCEPTE#",
-        "STATUS": "NST",
+        "ORG_ID": "fr.fire.cgo690",
+        "NAME": "#REPONSE_DEMANDE_CONCOURS#DIFFEREE#",
+        "STATUS": "PAU",
         "START_TIME": "2023-11-03T10:20:00+01:00",
         "RESOURCE_ID": [],
         "POSITION": {
