@@ -17,9 +17,9 @@
       "EXTERNAL_INFO": []
     },
     "EVENT": {
-      "ID": "fr.health.samu690",
+      "ID": "fr.health.samu690-DRFR15690240430050",
       "NAME": "Incident sur voix cyclable",
-      "MAIN_EVENT_ID": "fr.health.samu690",
+      "MAIN_EVENT_ID": "fr.health.samu690-DRFR15690240430050",
       "ETYPE": {
         "CATEGORY": [
           "TRP/COL"
@@ -85,7 +85,7 @@
               }
             ],
             "ADDRESS": [
-              "8 Qaui des Célestin, Lyon"
+              "8 Quai des Célestins, Lyon"
             ]
           }
         }
@@ -96,7 +96,7 @@
       {
         "POSITION": {
           "ADDRESS": [
-            "8 Quai des Célestin, Lyon"
+            "8 Quai des Célestins, Lyon"
           ],
           "COORD": [
             {
@@ -112,7 +112,7 @@
           "COORDSYS": "EPSG-4326"
         },
         "CHILD_MISSION_ID": [
-          "ABC1YU3456, ABC1YU3458"
+          "ABC1YU3458"
         ],
         "PARENT_MISSION_ID": [],
         "NAME": "#OPERATION_GLOBALE#",
@@ -125,7 +125,7 @@
       {
         "POSITION": {
           "ADDRESS": [
-            "8 Quai des Célestin, Lyon"
+            "8 Quai des Célestins, Lyon"
           ],
           "COORD": [
             {
@@ -169,7 +169,7 @@
         },
         "CONTACTS": [],
         "RGEO": [],
-        "ID": "77_22245# VSAV2",
+        "ID": "77_22245#VSAV2",
         "NAME": "VSAV 2 caserne SDIS69",
         "FREETEXT": "IMMATRICULATION#AJ-76-MZ",
         "ORG_ID": "fr.fire.cgo690",
