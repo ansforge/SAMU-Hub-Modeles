@@ -2421,5 +2421,6 @@
             "additionalProperties": false,
             "example": "example.json#/RESOURCE/0/CONTACTS/0"
         }
-    }
+    },
+    "additionalProperties": false
 }

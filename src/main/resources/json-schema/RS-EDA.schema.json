@@ -2201,5 +2201,6 @@
             "additionalProperties": false,
             "example": "example.json#/additionalInformation/customMap/0"
         }
-    }
+    },
+    "additionalProperties": false
 }

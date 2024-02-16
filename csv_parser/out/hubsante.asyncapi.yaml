@@ -384,6 +384,7 @@ components:
             mentaires concernant l'affaire"
           examples:
           - None
+      additionalProperties: false
     qualification:
       type: object
       title: Qualification de l'affaire/dossier
@@ -2077,6 +2078,7 @@ components:
             mentaires concernant l'affaire"
           examples:
           - None
+      additionalProperties: false
     operator:
       type: object
       title: "Op\xE9rateurs impliqu\xE9s"
@@ -2769,6 +2771,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/resource'
+      additionalProperties: false
     context:
       type: object
       title: Contexte

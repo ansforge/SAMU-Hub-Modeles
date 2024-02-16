@@ -30,6 +30,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/resource'
+      additionalProperties: false
     context:
       type: object
       title: Contexte

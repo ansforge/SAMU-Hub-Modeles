@@ -134,6 +134,7 @@ components:
             mentaires concernant l'affaire"
           examples:
           - None
+      additionalProperties: false
     qualification:
       type: object
       title: Qualification de l'affaire/dossier
