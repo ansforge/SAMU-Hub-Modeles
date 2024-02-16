@@ -70,9 +70,9 @@ components:
       properties:
         distributionID:
           type: string
-        infoDistributionID:
-          type: string
         refused:
           type: boolean
+        infoDistributionID:
+          type: string
       required:
         - distributionID
