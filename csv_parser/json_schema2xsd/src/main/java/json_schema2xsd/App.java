@@ -21,13 +21,7 @@ import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
-
     public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
-
         for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
@@ -71,6 +65,8 @@ public class App {
 
                 if (counter.get() != convertedEnums.size()) {
                     throw new RuntimeException(getEnumConversionErrorMessage(convertedEnums));
+                } else {
+                    System.out.println("[Info] Parsed " + counter.get() + " arrays of Enum.");
                 }
 
                 // Convert the Document to a String
@@ -197,7 +193,8 @@ public class App {
     private static String getEnumConversionErrorMessage(List<String> enums) {
         StringBuilder sb = new StringBuilder()
                 .append("The number of reverted enum arrays is inconsistent with the number of converted ones.\n")
-                .append("Below the list of converted arrays. Please check these names aren't use sevral times in the same document\n\n");
+                .append("Please check these names aren't use somewhere else in the schema for a non 'array of Enum' item.\n")
+                .append("List of converted arrays:\n\n");
         enums.forEach(sb::append);
         return sb.toString();
     }
