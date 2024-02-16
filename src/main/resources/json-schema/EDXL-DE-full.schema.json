@@ -133,9 +133,7 @@
                     "createCase"
                   ]
                 }
-              },
-
-              "additionalProperties": false
+              }
             }
           ]
         },

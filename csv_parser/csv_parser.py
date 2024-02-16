@@ -327,7 +327,8 @@ def run(sheet, name, version, filter):
         'title': MODEL_TYPE,
         'required': [],
         'properties': {},
-        'definitions': {}
+        'definitions': {},
+        'additionalProperties': False
     }
 
     def has_format_details(elem, details):
@@ -651,7 +652,7 @@ def run(sheet, name, version, filter):
     section.page_width = new_width
     section.page_height = new_height
     # Json Schema rootObject makes the object table
-    def_to_table(MODEL_TYPE, json_schema, title=f"Objet {MODEL_TYPE} ({MODEL_NAME})", doc=doc)
+    def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAME})", doc=doc)
     # Then all Json Schema definitions are types tables
     for elem_name, definition in json_schema['definitions'].items():
         def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)

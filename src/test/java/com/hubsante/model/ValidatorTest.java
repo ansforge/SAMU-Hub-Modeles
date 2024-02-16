@@ -156,6 +156,18 @@ public class ValidatorTest {
     }
 
     @Test
+    @DisplayName("additional property fails")
+    public void additionalPropertyFails() throws IOException {
+        // unknown property below wrapper level will not pass validation
+        String refLevelInvalid = getInvalidMessage("RC-REF/reference-level-additional-property.json");
+        assertThrows(ValidationException.class, () -> validator.validateJSON(refLevelInvalid, FULL_SCHEMA));
+
+        // unknown property at the wrapper level does not throw exception but will be ignored at deserialization
+        String wrapperLevelInvalid = getInvalidMessage("RC-REF/wrapper-level-additional-property.json");
+        assertDoesNotThrow(() -> validator.validateJSON(wrapperLevelInvalid, FULL_SCHEMA));
+    }
+
+    @Test
     @DisplayName("RS-INFO validation passes")
     public void jsonRsInfoValidationPasses() throws IOException {
         String input = getMessageString("RS-INFO");
