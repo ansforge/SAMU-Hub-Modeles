@@ -28,10 +28,10 @@
 26,SAV/AR/FR_PSYPHY,Prise en charge psychologique,,Assurer une prise en charge psychologique,
 27,INT/RECCE,Autre,,Autre demande de concours aux pompiers,
 28,SAV,Autre,,Autre demande de concours au SAMU,
-29,FSTT/TA/FR_TRNSP/AMB,Carence ambulatoire,,,
-30,GEN/TRNSP,Transport de personne,,Demande de transport d'une personne,"Lorsque le SAMU fait une demande de concours vers un autre partenaire en utilisant ce type, cela doit être interprétée comme une demande de transport d'une personne. 
+29,FSTT/TA/FR_TRNSPN/AMB,Carence ambulatoire,,,
+30,GEN/TRNSPN,Transport de personne,,Demande de transport d'une personne,"Lorsque le SAMU fait une demande de concours vers un autre partenaire en utilisant ce type, cela doit être interprétée comme une demande de transport d'une personne. 
 Lorsqu'un partenaire (ex. SIS) fait une demande de concours vers le SAMU en utilisant ce type, cela doit être interprétée comme une demande de transport médicalisé d'une personne. "
-31,GEN/TRNSP/FR_SECNDRY,Tranfert interetablissement,,Effectuer un transfert interétablissement,
+31,GEN/TRNSPN/FR_SECNDRY,Tranfert interetablissement,,Effectuer un transfert interétablissement,
 32,OPR/LOG,Brancardage,,Aider au brancardage (aide générique),
 33,SAV/AR/FR_PPL/OBS,Transport bariatrique,,Assurer un transport bariatrique,
 34,FSTT/TA/FR_CLRACCSS,Ouverture acces ,,Demande d'ouverture d'accés (dans local),
