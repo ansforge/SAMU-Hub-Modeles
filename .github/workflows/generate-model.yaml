@@ -50,18 +50,15 @@ jobs:
 
       - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
-        if: steps.filter.outputs.parsing_required == 'true'
         run: gradle run
 
       - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
-        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
-        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm src/main/resources/*
 
@@ -81,7 +78,7 @@ jobs:
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.wrapper.generator-config.json --skip-validate-spec
-          npx @openapitools/openapi-generator-cli generate -c ./config/common/common.usecase.generator-config.json --skip-validate-spec
+          npx @openapitools/openapi-generator-cli generate -c ./config/common/common.reference.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.distributionElement.generator-config.json --skip-validate-spec
 
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
