@@ -3252,9 +3252,9 @@ components:
           - SAV/AR/FR_PSYPHY
           - INT/RECCE
           - SAV
-          - FSTT/TA/FR_TRNSP/AMB
-          - GEN/TRNSP
-          - GEN/TRNSP/FR_SECNDRY
+          - FSTT/TA/FR_TRNSPN/AMB
+          - GEN/TRNSPN
+          - GEN/TRNSPN/FR_SECNDRY
           - OPR/LOG
           - SAV/AR/FR_PPL/OBS
           - FSTT/TA/FR_CLRACCSS
