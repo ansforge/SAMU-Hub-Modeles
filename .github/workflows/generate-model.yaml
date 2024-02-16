@@ -60,7 +60,7 @@ jobs:
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
         run: |
-          rm src/main/resources/*
+          rm src/main/resources/*.json
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3
