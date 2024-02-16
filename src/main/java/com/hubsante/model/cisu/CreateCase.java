@@ -111,16 +111,12 @@ public class CreateCase {
   }
 
   /**
-   * Identifiant technique de l&#39;affaire et partagé entre tous les
-   *intervenants. Il doit pouvoir être généré de façon unique et décentralisée
-   *et ne présenter aucune ambiguïté. Il est généré par les systèmes du
-   *partenaire récepteur de la primo-demande de secours et contient une clé
-   *conventionnelle permettant d&#39;identifier la source. Valorisation :
-   *{cleConventionnelle}:{cleUnique} où cleConventionnelle est la clé utilisée
-   *par le partenaire emetteur et cleUnique l&#39;identifiant locale
-   *d&#39;affaire dans le système du partenaire emetteur. cleUnique est une
-   *chaîne de caractère (string) comprise entre 4 et 22 caractères
-   *alphanumériques.
+   * Identifiant de l&#39;affaire partagé entre tous les intervenants &#x3D; aux
+   *champs {organization}-{senderCaseId}. Il doit pouvoir être généré de façon
+   *unique et décentralisée et ne présenter aucune ambiguïté.  Il est généré par
+   *le système du partenaire récepteur de la primo-demande de secours (créateur
+   *du dossier). Valorisation : {pays}.{domaine}.{organisation}.{structure
+   *interne}*.{unité fonctionnelle}*-{numéro de dossier}
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
@@ -143,11 +139,9 @@ public class CreateCase {
   }
 
   /**
-   * Valoriser avec l&#39;identifiant de l&#39;affaire dans le SI de
-   *l&#39;émetteur du message Ce champ est facultatif, il ne sera notamment pas
-   *transmis par NexSIS Dans le cas où deux opérateurs ont besoin
-   *d&#39;identifier une affaire, ils peuvent utiliser les derniers caractères
-   *de l&#39;identifiant local de leur partenaire.
+   * Valoriser avec le numéro du dossier dans le SI de l&#39;émetteur du
+   *message.  Ce champ est facultatif, il ne sera notamment pas transmis par
+   *NexSIS.
    * @return senderCaseId
    **/
   @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)

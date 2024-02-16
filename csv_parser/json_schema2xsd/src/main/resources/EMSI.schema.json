@@ -719,7 +719,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/emsi/RESOURCE/0/ORG_ID",
-                    "description": "Identifiant de l'organisation \u00e0 laquelle la ressource est rattach\u00e9e (caserne, SAMU etc).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{code d\u00e9partement}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.\nDans le cas o\u00f9 le LRM/NexSIS sert d'aggr\u00e9gateur pour des v\u00e9hicules appartenant \u00e0 un partenaire tiers (type ambulance priv\u00e9e), l'identifiant d'organisation permet d'identifier ce tiers\nA constituer par le r\u00e9dacteur du pr\u00e9sent EMSI pour \u00eatre unique, identique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
+                    "description": "Identifiant de l'organisation \u00e0 laquelle la ressource est rattach\u00e9e (caserne, SAMU etc).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.\nDans le cas o\u00f9 le LRM/NexSIS sert d'aggr\u00e9gateur pour des v\u00e9hicules appartenant \u00e0 un partenaire tiers (type ambulance priv\u00e9e), l'identifiant d'organisation permet d'identifier ce tiers.\nA constituer par le r\u00e9dacteur du pr\u00e9sent EMSI pour \u00eatre unique."
                 },
                 "NAME": {
                     "type": "string",

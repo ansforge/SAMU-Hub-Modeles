@@ -35,7 +35,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/createCaseHealth/caseId",
-                    "description": "Identifiant technique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par les syst\u00e8mes du partenaire r\u00e9cepteur de la primo-demande de secours et contient une cl\u00e9 conventionnelle permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\no\u00f9 cleConventionnelle est la cl\u00e9 utilis\u00e9e par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le syst\u00e8me du partenaire emetteur.\ncleUnique est une cha\u00eene de caract\u00e8re (string) comprise entre 4 et 22 caract\u00e8res alphanum\u00e9riques."
+                    "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}-{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
                 },
                 "senderCaseId": {
                     "type": "string",
@@ -43,7 +43,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/createCaseHealth/senderCaseId",
-                    "description": "Valoriser avec l'identifiant de l'affaire dans le SI de l'\u00e9metteur du message\nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS\nDans le cas o\u00f9 deux op\u00e9rateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caract\u00e8res de l'identifiant local de leur partenaire."
+                    "description": "Valoriser avec le num\u00e9ro du dossier dans le SI de l'\u00e9metteur du message. \nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS.\n"
                 },
                 "creation": {
                     "type": "string",
@@ -1532,7 +1532,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/createCaseHealth/initialAlert/callTaker/organization",
-                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
+                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
                 },
                 "controlRoom": {
                     "type": "string",

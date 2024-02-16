@@ -840,12 +840,12 @@ components:
           example: example.json#/emsi/RESOURCE/0/ORG_ID
           description: "Identifiant de l'organisation \xE0 laquelle la ressource est\
             \ rattach\xE9e (caserne, SAMU etc).\nSe r\xE9f\xE9rer au DSF pour la structure\
-            \ norm\xE9e des organisations\nLe format est le suivant {pays}.{domaine}.{code\
-            \ d\xE9partement}.{organisation}.{structure interne}*.{unit\xE9 fonctionnelle}*.\n\
-            Dans le cas o\xF9 le LRM/NexSIS sert d'aggr\xE9gateur pour des v\xE9hicules\
-            \ appartenant \xE0 un partenaire tiers (type ambulance priv\xE9e), l'identifiant\
-            \ d'organisation permet d'identifier ce tiers\nA constituer par le r\xE9\
-            dacteur du pr\xE9sent EMSI pour \xEAtre unique, identique \xE0 <CONTEXT><ORIGIN><ORG_ID>"
+            \ norm\xE9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nDans le cas o\xF9 le LRM/NexSIS\
+            \ sert d'aggr\xE9gateur pour des v\xE9hicules appartenant \xE0 un partenaire\
+            \ tiers (type ambulance priv\xE9e), l'identifiant d'organisation permet\
+            \ d'identifier ce tiers.\nA constituer par le r\xE9dacteur du pr\xE9sent\
+            \ EMSI pour \xEAtre unique."
           examples:
           - fr.fire.cgo440
         NAME:

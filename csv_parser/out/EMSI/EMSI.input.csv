@@ -247,10 +247,10 @@ Dans le cas d'un véhicule agrégé par NexSIS, l'ID fournit peut ne pas corresp
 NOTE 1: An agency or a node may have several “unique identifiers” for a resource. It is an agency or node responsibility to define which one of these identifiers is used.
 NOTE 2: If the resource is not controlled by the node which is providing the EMSI, the ORG_ID element shall provide the identifier of the node which controls this resource.",77_45102#VSAV 1,X,ID,,ID,,,,,0..1,,0..1,,,string,,voir description,X,X
 92,93,,Identifiant de l'organisation propriétaire,,,,,"Identifiant de l'organisation à laquelle la ressource est rattachée (caserne, SAMU etc).
-Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}.{domaine}.{code département}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
-Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenant à un partenaire tiers (type ambulance privée), l'identifiant d'organisation permet d'identifier ce tiers
-A constituer par le rédacteur du présent EMSI pour être unique, identique à <CONTEXT><ORIGIN><ORG_ID>",Defines the unique identifier of the node which controls the resource. It can be omitted if the resource is controlled by the node which provides the EMSI.,fr.fire.cgo440,X,ORG_ID,,ORG_ID,,,,,0..1,,0..1,,,string,,,X,X
+Se référer au DSF pour la structure normée des organisations.
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
+Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenant à un partenaire tiers (type ambulance privée), l'identifiant d'organisation permet d'identifier ce tiers.
+A constituer par le rédacteur du présent EMSI pour être unique.",Defines the unique identifier of the node which controls the resource. It can be omitted if the resource is controlled by the node which provides the EMSI.,fr.fire.cgo440,X,ORG_ID,,ORG_ID,,,,,0..1,,0..1,,,string,,,X,X
 93,94,,Nom de la ressource,,,,,"Nom donné à la ressource par le partenaire. L'immatriculation peut être utilisée dans le nom courant des véhicules.
 Dans le cas pompier, les véhicules sont nommés
 Dans le cas d'équipier, cela peut être leur nom",Provides a name for this resource (ex: person or team),VSAV 1 Nantes,X,NAME,,NAME,,,,,0..1,,0..1,,,string,,,X,X

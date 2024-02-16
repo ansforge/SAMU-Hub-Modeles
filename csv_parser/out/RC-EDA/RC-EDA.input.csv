@@ -1,13 +1,11 @@
 ,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
-0,1,Identifiant affaire/dossier,,,,,,"Identifiant technique de l'affaire et partagé entre tous les intervenants.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par les systèmes du partenaire récepteur de la primo-demande de secours et contient une clé conventionnelle permettant d'identifier la source.
-Valorisation :
-{cleConventionnelle}:{cleUnique}
-où cleConventionnelle est la clé utilisée par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le système du partenaire emetteur.
-cleUnique est une chaîne de caractère (string) comprise entre 4 et 22 caractères alphanumériques.",samuA:CA126B445579GD4A67AV,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X
-1,2,Identifiant local de l'affaire/dossier,,,,,,"Valoriser avec l'identifiant de l'affaire dans le SI de l'émetteur du message
-Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS
-Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caractères de l'identifiant local de leur partenaire.",CA126B445579GD4A67AV,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X
+0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}-{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",fr.health.samu440-DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X
+1,2,Identifiant local de l'affaire/dossier,,,,,,"Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
+Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
+",DRFR15DDXAAJJJ0000,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X
 2,3,Date Heure de création de l'affaire/dossier,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF,X,X
 3,4,Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
 Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,,X,X
@@ -131,7 +129,7 @@ Dans le cas où le requérant est à l'origine de l'alerte les objets contactSou
 87,88,,Qualification,# Voir qualification,,,,Qualification de l'alerte.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X
 88,89,,Agent,,,,,Objet permettant d'identifer et recontacter l'opérateur ayant traité l'alerte,,callTaker,callTaker,,,,,,1..1,X,callTaker,,,X,X
 89,90,,,Service d'urgence,,,,"Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
-Se référer au DSF pour la structure normée des organisations
+Se référer au DSF pour la structure normée des organisations.
 Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",fr.health.samu440,organization,,,,,,,1..1,,string,,,X,X
 90,91,,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,,,,,,,1..1,,string,,,X,X
 91,92,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,,,X,X
