@@ -50,15 +50,18 @@ jobs:
 
       - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
+        if: steps.filter.outputs.parsing_required == 'true'
         run: gradle run
 
       - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
           rm src/main/resources/*
 
