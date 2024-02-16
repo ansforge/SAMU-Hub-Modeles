@@ -18,6 +18,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.dom.DOMSource;
 import java.nio.file.Files;
 import java.util.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
     public String getGreeting() {
@@ -64,8 +65,13 @@ public class App {
                 // Convert the JSON schema to an XML schema
                 Document xmlSchemaDoc = Jsons2Xsd.convert(cvReader, config);
 
-                // if xmlSchema contains element, rewrite them
-                revertEnumArraysConversion(xmlSchemaDoc.getDocumentElement(), convertedEnums);
+                // if xmlSchema contains element, rewrite them.
+                AtomicInteger counter = new AtomicInteger(0);
+                revertEnumArraysConversion(xmlSchemaDoc.getDocumentElement(), convertedEnums, counter);
+
+                if (counter.get() != convertedEnums.size()) {
+                    throw new RuntimeException(getEnumConversionErrorMessage(convertedEnums));
+                }
 
                 // Convert the Document to a String
                 String xmlSchema = documentToString(xmlSchemaDoc);
@@ -83,6 +89,7 @@ public class App {
             return "urn:emergency:cisu:2.0";
         } else return "urn:emergency:cisu:2.0:" + getRootElementNameFromSchema(schema);
     }
+
     private static String getRootElementNameFromSchema(String schema) {
         String root;
         switch (schema) {
@@ -111,17 +118,17 @@ public class App {
     }
 
     /*
-    * This is an awful hack to skirt a missing feature on the underlying library (ethlo json2xsd),
-    * which can not handle array of enum based strings.
-    *
-    * This leads to a misformatted xsd which can not be taken in charge of by the validators, with an unexistent type "enum".
-    * The output we need is exactly the same as a regular enum, which the ethlo lib can manage perfectly, with only an additional attribute
-    * maxOccurs="unbounded" and the validation works fine.
-    *
-    * So at this point we dynamically rewrite the Json Tree to artificially convert enum arrays to simple enums, and log the property name to add
-    * this attribute.
-    *
-    * We should eventually handle this latest step automatically
+     * This is an awful hack to skirt a missing feature on the underlying library (ethlo json2xsd),
+     * which can not handle array of enum based strings.
+     *
+     * This leads to a misformatted xsd which can not be taken in charge of by the validators, with an unexistent type "enum".
+     * The output we need is exactly the same as a regular enum, which the ethlo lib can manage perfectly, with only an additional attribute
+     * maxOccurs="unbounded" and the validation works fine.
+     *
+     * So at this point we dynamically rewrite the Json Tree to artificially convert enum arrays to simple enums, and log the property name to add
+     * this attribute.
+     *
+     * We should eventually handle this latest step automatically
      */
     public static void convertEnumArraysToSimpleEnum(JsonNode node, String propertyName, List<String> convertedEnums) {
         if (!node.isObject()) {
@@ -141,19 +148,14 @@ public class App {
         }
 
         // Recursion. We embed the convertedEnums list to pass it further to the upper level
-        if (node.isObject()) {
-            for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext();) {
-                Map.Entry<String, JsonNode> entry = fields.next();
-                convertEnumArraysToSimpleEnum(entry.getValue(), entry.getKey(), convertedEnums);
-            }
-        } else if (node.isArray()) {
-            for (int i = 0; i < node.size(); i++) {
-                convertEnumArraysToSimpleEnum(node.get(i), propertyName + "[" + i + "]", convertedEnums);
-            }
+        for (Iterator<Map.Entry<String, JsonNode>> fields = node.fields(); fields.hasNext(); ) {
+            Map.Entry<String, JsonNode> entry = fields.next();
+            convertEnumArraysToSimpleEnum(entry.getValue(), entry.getKey(), convertedEnums);
         }
+
     }
 
-    public static void revertEnumArraysConversion(Element element, List<String> propertyNames) {
+    public static void revertEnumArraysConversion(Element element, List<String> propertyNames, AtomicInteger counter) {
         // We search for the "name" attribute of the Element, which is the property name for us, because in the generated xsd the element Name will be "element",
         // "complexType", "sequence", etc. -> XML schema tags
         String elementName = element.getAttribute("name");
@@ -161,12 +163,13 @@ public class App {
         // If condition is met, we set it back to an array type
         if (propertyNames.contains(elementName)) {
             element.setAttribute("maxOccurs", "unbounded");
+            counter.incrementAndGet();
         }
 
         // We perform it recursively
         for (int i = 0; i < element.getChildNodes().getLength(); i++) {
             if (element.getChildNodes().item(i) instanceof Element) {
-                revertEnumArraysConversion((Element) element.getChildNodes().item(i), propertyNames);
+                revertEnumArraysConversion((Element) element.getChildNodes().item(i), propertyNames, counter);
             }
         }
     }
@@ -189,6 +192,14 @@ public class App {
         FileOutputStream outputStream = new FileOutputStream(filePath);
         transformer.transform(new DOMSource(document), new StreamResult(outputStream));
         outputStream.close();
+    }
+
+    private static String getEnumConversionErrorMessage(List<String> enums) {
+        StringBuilder sb = new StringBuilder()
+                .append("The number of reverted enum arrays is inconsistent with the number of converted ones.\n")
+                .append("Below the list of converted arrays. Please check these names aren't use sevral times in the same document\n\n");
+        enums.forEach(sb::append);
+        return sb.toString();
     }
 }
 
