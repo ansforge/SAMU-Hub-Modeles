@@ -652,7 +652,7 @@ def run(sheet, name, version, filter):
     section.page_width = new_width
     section.page_height = new_height
     # Json Schema rootObject makes the object table
-    def_to_table(MODEL_NAME, json_schema, title=f"Objet {MODEL_NAME} ({MODEL_NAME})", doc=doc)
+    def_to_table(MODEL_TYPE, json_schema, title=f"Objet {MODEL_NAME} ({MODEL_NAME})", doc=doc)
     # Then all Json Schema definitions are types tables
     for elem_name, definition in json_schema['definitions'].items():
         def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)
