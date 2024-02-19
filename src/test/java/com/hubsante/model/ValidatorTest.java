@@ -365,7 +365,6 @@ public class ValidatorTest {
                 "$.descriptor.explicitAddress._errorexplicitAddressScheme: is not defined in the schema and the schema does not allow additional properties",
                 "$.descriptor.explicitAddress._errorexplicitAddressValue: is not defined in the schema and the schema does not allow additional properties",
                 "$.descriptor.explicitAddress._errorUnknownProperty: is not defined in the schema and the schema does not allow additional properties",
-                "could not detect any schemas in the message, at least one is required ",
                 "$.dateTimeSent: is missing but it is required",
                 "$.descriptor._errorExplicitAddress: is not defined in the schema and the schema does not allow additional properties",
                 "$.descriptor._errorUnknownProperty: is not defined in the schema and the schema does not allow additional properties",

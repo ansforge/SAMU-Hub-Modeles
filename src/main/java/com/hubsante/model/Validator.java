@@ -21,7 +21,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.model.builders.ValidationMessageWrapperBuilder;
 import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.common.ValidationMessageWrapper;
 import com.hubsante.model.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
@@ -104,21 +106,25 @@ public class Validator {
             }
             StringBuilder errors = new StringBuilder();
 
-            Set<ValidationMessage> envelopeValidationMessages = this.filterEnvelopeValidationMessages(validationMessages);
-            Set<ValidationMessage> errorValidationMessages = this.filterErrorValidationMessages(validationMessages);
-            Set<ValidationMessage> rcDeValidationMessage = this.filterRcDeValidationMessages(validationMessages);
+            Set<ValidationMessageWrapper> validationMessageWrappers = new HashSet<>();
+
+            // We use ValidationMessageWrapperBuilder to populate the set of validationMessageWrappers using the
+            // .build() method, which will infer the type of the error based on the path of the error message.
+            for (ValidationMessage validationMessage : validationMessages) {
+                validationMessageWrappers.add(new ValidationMessageWrapperBuilder(validationMessage).build());
+            }
 
             boolean containsAtLeastOneUseCaseError = false;
             boolean violatesOneOfConstraint = false;
 
-            for (ValidationMessage errorMsg : validationMessages) {
-                String error = formatValidationErrorMessage(errorMsg);
+            for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISC")).collect(java.util.stream.Collectors.toSet())) {
+                String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
                 if (error != null) {
                     errors.append(error).append("\n");
-                    if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
+                    if(!violatesOneOfConstraint && validationMessage.getValidationMessage().getType().equals("oneOf")) {
                         violatesOneOfConstraint = true;
                     }
-                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message")){
+                    if(!containsAtLeastOneUseCaseError && validationMessage.getValidationMessage().getPath().contains(".message")) {
                         containsAtLeastOneUseCaseError = true;
                     }
                 }
@@ -126,61 +132,29 @@ public class Validator {
 
             // Append a special error message if the error string does not contain a single "use case" error and
             // the there is no 'oneOf' constraint violation
-            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint && !validationMessages.isEmpty() && errorValidationMessages.isEmpty()) {
+            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint && validationMessageWrappers.stream().anyMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISC"))  && validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("INFO"))) {
                 errors.append("could not detect any schemas in the message, at least one is required \n");
             }
 
-            // Append envelope, error and RS-DE messages
-            for (ValidationMessage errorMsg : envelopeValidationMessages) {
-                errors.append(errorMsg.getMessage()).append("\n");
-            }
-            for (ValidationMessage errorMsg : errorValidationMessages) {
-                errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
-            }
-            if (errorValidationMessages.isEmpty())
-                for (ValidationMessage errorMsg : rcDeValidationMessage) {
-                    errors.append(errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8)).append("\n");
+            // Append envelope and INFO error messages
+            for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("EDXL-DE") || validationMessageWrapper.getType().equals("INFO")).collect(java.util.stream.Collectors.toSet())) {
+                String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                if (error != null) {
+                    errors.append(error).append("\n");
                 }
-            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
-        }
-    }
+            }
 
-    private Set<ValidationMessage> filterEnvelopeValidationMessages(Set<ValidationMessage> validationMessages) {
-        // If the validation message's "path" length when split on '.' is less than 3 yet the second element isn't
-        // 'content', the error should be in the envelope
-        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().split("\\.").length < 3 && (errorMsg.getPath().split("\\.").length<2 || !errorMsg.getPath().split("\\.")[1].equals("content"))).collect(java.util.stream.Collectors.toSet());
-        validationMessages.removeAll(result);
-        return result;
-
-    }
-
-    private Set<ValidationMessage> filterErrorValidationMessages(Set<ValidationMessage> validationMessages) {
-        // If the validation message's "path" value contains embeddedJsonContent.message.info, it means that the error
-        // is in RS-INFO (important to know because we won't keep RC-DE errors if the message is RS-INFO.)
-        Set<ValidationMessage> result = validationMessages.stream().filter(errorMsg -> errorMsg.getPath().contains("embeddedJsonContent.message.info")).collect(java.util.stream.Collectors.toSet());
-        validationMessages.removeAll(result);
-        return result;
-    }
-
-    private Set<ValidationMessage> filterRcDeValidationMessages(Set<ValidationMessage> validationMessages) {
-        Set<ValidationMessage> result = new HashSet<>();
-        Field[] attributes = DistributionElement.class.getDeclaredFields();
-        for(ValidationMessage validationMessage : validationMessages) {
-            // We only bother checking messages with a path containing "jsonContent.embeddedJsonContent.message"
-            if (validationMessage.getPath().contains("jsonContent.embeddedJsonContent.message")) {
-                // We only look at the part of the message after "message" and check the length of the message's 'path'
-                // to make sure to avoid false positives if any deeper-nested properties are named identically to RC-EDA
-                // properties
-                String substring = validationMessage.getMessage().substring(validationMessage.getMessage().indexOf("message") + 8);
-                for (Field attribute : attributes) {
-                    if (validationMessage.getPath().split("\\.").length == 5 && substring.contains(attribute.getName())) {
-                        result.add(validationMessage);
+            // If any INFO errors are present, we do not append the RC-DE validation messages
+            if (validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("INFO"))) {
+                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("RC-DE")).collect(java.util.stream.Collectors.toSet())) {
+                    String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                    if (error != null) {
+                        errors.append(error).append("\n");
                     }
                 }
             }
+            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
-        validationMessages.removeAll(result);
-        return result;
     }
 
     private String formatValidationErrorMessage(ValidationMessage errorMsg) {
