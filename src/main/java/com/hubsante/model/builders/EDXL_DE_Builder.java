@@ -124,6 +124,14 @@ public class EDXL_DE_Builder {
                 | this.distributionStatus == null | this.distributionKind == null | this.descriptor == null) {
             throw new IllegalArgumentException("unprovided mandatory field(s)");
         }
+        // distribuionID must be formatted as senderId+"_"+localId
+        if (!distributionID.matches("^.+_.+$")) {
+            throw new IllegalArgumentException("distributionID must be formatted as senderId+\"_\"+localId");
+        }
+        // distributionID must start with senderID
+        if (!distributionID.startsWith(senderID)) {
+            throw new IllegalArgumentException("distributionID must start with senderID");
+        }
         this.dateTimeSent = this.dateTimeSent.truncatedTo(SECONDS);
         this.dateTimeExpires = this.dateTimeExpires.truncatedTo(SECONDS);
 
