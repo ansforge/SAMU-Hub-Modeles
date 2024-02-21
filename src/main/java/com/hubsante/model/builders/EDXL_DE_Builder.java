@@ -129,7 +129,7 @@ public class EDXL_DE_Builder {
             throw new IllegalArgumentException("distributionID must be formatted as senderId+\"_\"+localId");
         }
         // distributionID must start with senderID
-        if (!distributionID.startsWith(senderID)) {
+        if (!distributionID.split("_")[0].equals(senderID)) {
             throw new IllegalArgumentException("distributionID must start with senderID");
         }
         this.dateTimeSent = this.dateTimeSent.truncatedTo(SECONDS);
