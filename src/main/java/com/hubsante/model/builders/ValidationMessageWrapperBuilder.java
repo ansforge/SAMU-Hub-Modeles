@@ -46,14 +46,22 @@ public class ValidationMessageWrapperBuilder {
             return "EDXL-DE";
         } else if (this.validationMessage.getPath().contains("embeddedJsonContent.message.info")) {
             return "INFO";
-        } else if (splitPath.length == 5) {
+        } else if (this.validationMessage.getPath().startsWith("$.content[0].jsonContent.embeddedJsonContent.message")) {
             String substring = validationMessage.getMessage().substring(validationMessage.getMessage().indexOf("message") + 8);
             for (Field attribute : rcdeAttributes) {
                 if (substring.contains(attribute.getName())) {
                     return "RC-DE";
                 }
             }
+            // If the error is inside the actual 'content' of the message then it's a CONTENT error
+            if (splitPath.length >= 6)
+                return "CONTENT";
+            // And if the error is neither an RC-DE error nor CONTENT error but is a 'required' error, then it's a MISSING_CONTENT error
+            if (validationMessage.getType().equals("required")) {
+                return "MISSING_CONTENT";
+            }
         }
         return "MISC";
     }
+
 }
