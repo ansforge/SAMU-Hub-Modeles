@@ -8,10 +8,12 @@
       "nature": "BASE",
       "mobility": "VEHICLE",
       "capacity": "NON PRECISE",
-      "contacts": {
+      "contacts": [
+            {
         "type": "PHNADD",
         "details": "0612342536"
-      }
+            }
+          ],
     },
     {
       "id": "76_45102#SMUR2#",
@@ -21,10 +23,12 @@
       "nature": "BASE",
       "mobility": "VEHICLE",
       "capacity": "URGENCE",
-      "contacts": {
+      "contacts": [
+            {
         "type": "PHNADD",
         "details": "0612342537"
-      }
+            }
+          ],
     },
     {
       "id": "14_45103#SMUR3#",
@@ -34,10 +38,12 @@
       "nature": "EFFECTOR",
       "mobility": "VEHICLE",
       "capacity": "MEDICALE",
-      "contacts": {
+      "contacts": [
+            {
         "type": "PHNADD",
         "details": "0612342538"
-      }
+            }
+          ],
     },
     {
       "id": "76_45104#SMUR4#",
@@ -47,10 +53,12 @@
       "nature": "EFFECTOR",
       "mobility": "VEHICLE",
       "capacity": "MEDICALE",
-      "contacts": {
+      "contacts": [
+            {
         "type": "PHNADD",
         "details": "0612342539"
-      }
+            }
+          ],
     }
   ]
 }
