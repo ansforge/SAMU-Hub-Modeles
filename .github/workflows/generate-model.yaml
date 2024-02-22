@@ -48,6 +48,20 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: Generate XSDs
+        working-directory: ./csv_parser/json_schema2xsd
+        run: gradle run
+
+      - name: Move XSDs to src
+        working-directory: ./csv_parser/json_schema2xsd
+        run: |
+          mv out/*.xsd ../../src/main/resources/xsd/
+
+      - name: Remove input JSON Schemas
+        working-directory: ./csv_parser/json_schema2xsd
+        run: |
+          rm src/main/resources/*.json
+
       - name: Install node env 🏗
         uses: actions/setup-node@v3
         with:
@@ -64,11 +78,13 @@ jobs:
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.wrapper.generator-config.json --skip-validate-spec
+          npx @openapitools/openapi-generator-cli generate -c ./config/common/common.reference.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.distributionElement.generator-config.json --skip-validate-spec
 
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
           for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
             npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
           done
 

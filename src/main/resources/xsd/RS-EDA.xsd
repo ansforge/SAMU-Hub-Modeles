@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:createCase" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:createCase" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="createCase" type="x:createCase"/>
-    <complexType name="createCase">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:createCaseHealth" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:createCaseHealth" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="createCaseHealth" type="x:createCaseHealth"/>
+    <complexType name="createCaseHealth">
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
@@ -33,6 +33,17 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element name="qualification" type="x:qualification"/>
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
+            <element name="owner" type="string">
+                <annotation>
+                    <documentation>Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
+Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
+Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
+Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="operator" type="x:operator"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="medicalAnalysis" type="x:medicalAnalysis"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element minOccurs="0" name="freetext" type="string">
@@ -48,6 +59,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element minOccurs="0" name="locationKind" type="x:nomenclature"/>
             <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:nomenclature"/>
             <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element minOccurs="0" name="details" type="x:caseDetails"/>
             <element minOccurs="0" name="victims" type="x:victims"/>
         </sequence>
     </complexType>
@@ -375,6 +387,47 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
         </sequence>
     </complexType>
+    <complexType name="operator">
+        <sequence>
+            <element name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>Identifiant professionnel de l'opérateur si existant</documentation>
+                </annotation>
+            </element>
+            <element name="role" type="string">
+                <annotation>
+                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="patient">
+        <sequence>
+            <element name="id" type="string">
+                <annotation>
+                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="file" type="x:file"/>
+            <element minOccurs="0" name="identity" type="x:insIdentity"/>
+            <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element minOccurs="0" name="detail" type="x:patientDetail"/>
+            <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
+            <element minOccurs="0" name="resourceDiagnosis" type="x:nomenclature"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+        </sequence>
+    </complexType>
+    <complexType name="medicalAnalysis">
+        <sequence>
+            <element minOccurs="0" name="patientId" type="string">
+                <annotation>
+                    <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
+        </sequence>
+    </complexType>
     <complexType name="additionalInformation">
         <sequence>
             <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
@@ -397,6 +450,47 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 <annotation>
                     <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
                 </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="caseDetails">
+        <sequence>
+            <element minOccurs="0" name="status">
+                <annotation>
+                    <documentation>cf. cycle SI SAMU uniquement (si applicable) : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Nouveau "/>
+                        <enumeration value="Actif "/>
+                        <enumeration value="Validé "/>
+                        <enumeration value="Clôturé "/>
+                        <enumeration value="Classé "/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>D/DR/DRM si cycle SI-SAMU implémenté</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="attribution" type="string">
+                <annotation>
+                    <documentation>Décrit le type de professionnel médical à qui le dossier est attribué</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="priority">
+                <annotation>
+                    <documentation>Décrit la priorité de régulation médicale du dossier.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="P0"/>
+                        <enumeration value="P1"/>
+                        <enumeration value="P2"/>
+                        <enumeration value="P3"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -1053,6 +1147,242 @@ Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux 
 Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
                 </annotation>
             </element>
+        </sequence>
+    </complexType>
+    <complexType name="file">
+        <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:contact"/>
+            <element minOccurs="0" name="personalAddress" type="x:personalAddress"/>
+            <element minOccurs="0" name="generalPractitioner" type="x:generalPractitioner"/>
+        </sequence>
+    </complexType>
+    <complexType name="insIdentity">
+        <sequence>
+            <element minOccurs="0" name="cycle" type="x:insCycle"/>
+            <element minOccurs="0" name="number" type="x:insNumber"/>
+            <element minOccurs="0" name="strictFeatures" type="x:insStrictFeatures"/>
+            <element minOccurs="0" name="nonStrictFeatures" type="x:detailedName"/>
+        </sequence>
+    </complexType>
+    <complexType name="patientDetail">
+        <sequence>
+            <element minOccurs="0" name="weight" type="int">
+                <annotation>
+                    <documentation>Poids en kilogrammes</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="height" type="int">
+                <annotation>
+                    <documentation>Taille en centimètres</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="age">
+                <annotation>
+                    <documentation>Age du patient (Norme ISO_8601)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value=""/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="careLevel">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="R1"/>
+                        <enumeration value="R2"/>
+                        <enumeration value="R3"/>
+                        <enumeration value="R4"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="hypothesis">
+        <sequence>
+            <element minOccurs="0" name="mainDiagnosis" type="x:nomenclature"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:nomenclature"/>
+        </sequence>
+    </complexType>
+    <complexType name="medicalNote">
+        <sequence>
+            <element minOccurs="0" name="operator" type="x:operator"/>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de début de partage lié à la création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
+Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="medicalHistory" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="treatments" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="allergies" type="string">
+                <annotation>
+                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="externalId">
+        <sequence>
+            <element minOccurs="0" name="source">
+                <annotation>
+                    <documentation>Type de l'identifiant fourni</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="NIR"/>
+                        <enumeration value="SINUS"/>
+                        <enumeration value="SI-VIC"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="value" type="string">
+                <annotation>
+                    <documentation>L'identifiant en lui-même</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="personalAddress">
+        <sequence>
+            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
+            <element minOccurs="0" name="city" type="x:city"/>
+        </sequence>
+    </complexType>
+    <complexType name="generalPractitioner">
+        <sequence>
+            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>Numéro RPPS du médecin traitant</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="personalAddress" type="x:personalAddress"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:contact"/>
+        </sequence>
+    </complexType>
+    <complexType name="insCycle">
+        <sequence>
+            <element minOccurs="0" name="status" type="string">
+                <annotation>
+                    <documentation>Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
+- « identité provisoire »,
+- « identité récupérée »,
+- « identité validée »,
+- « identité qualifiée ».
+Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="attribute" type="string">
+                <annotation>
+                    <documentation>Le RNIV recommande que les logiciels référentiels d’identités gèrent a minima les 3 attributs suivants :
+- identité homonyme,
+- identité douteuse,
+- identité fictive.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="insNumber">
+        <sequence>
+            <element minOccurs="0" name="value" type="string">
+                <annotation>
+                    <documentation>n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
+Le matricule INS est composé des 13 caractères et de la clé de contrôle. </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="oid" type="string">
+                <annotation>
+                    <documentation>Identifiant de la structure qui a affecté l’INS sous la forme d'un OID. Les OID (Object Identifier) sont des identifiants universels, représentés sous la forme d'une suite d'entiers. Ils sont organisés sous forme hiérarchique avec des nœuds. L'OID est toujours associé à un matricule INS, il n'est donc pas propagé si le statut de l'identité n'est pas "qualifiée"</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="insStrictFeatures">
+        <sequence>
+            <element minOccurs="0" name="birthName" type="string">
+                <annotation>
+                    <documentation>Egalement appelé nom de famille.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="birthFirstName" type="string">
+                <annotation>
+                    <documentation>Doit être cohérent avec la liste des prénoms de naissance renvoyée par INSi. Ex: si la liste des prénoms renvoyée est "Pierre Alain Jacques", le premier prénom de naissance ne peut être que : 
+Pierre
+Pierre Alain
+Pierre Alain Jacques</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="birthFirstNamesList" type="string">
+                <annotation>
+                    <documentation>Ensemble des prénoms de naissance (renvoyés par INSi)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="birthDate" type="dateTime">
+                <annotation>
+                    <documentation>Date de naissance du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="sex">
+                <annotation>
+                    <documentation>Sexe du patient</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="U"/>
+                        <enumeration value="F"/>
+                        <enumeration value="M"/>
+                        <enumeration value="O"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="birthPlaceCode" type="decimal">
+                <annotation>
+                    <documentation>Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="decision">
+        <sequence>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de décision prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="medicalisation" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
+        </sequence>
+    </complexType>
+    <complexType name="destination">
+        <sequence>
+            <element minOccurs="0" name="facility" type="string"/>
+            <element minOccurs="0" name="service" type="string"/>
+            <element minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

@@ -15,7 +15,9 @@
  */
 package com.hubsante.model;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -34,6 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -82,12 +85,26 @@ public class ValidatorTest {
     }
 
     @Test
+    @DisplayName("RC-EDA xml validation passes")
+    public void xmlRcEdaValidationPasses() throws IOException {
+        String input = getMessageString("RC-EDA", true);
+        assertDoesNotThrow(() -> validator.validateXML(input, "EDXL-DE.xsd"));
+    }
+
+    @Test
     @DisplayName("EMSI-DC validation passes")
     public void jsonEmsiDcValidationPasses() throws IOException {
         String input = getMessageString("EMSI-DC");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
+    }
+
+    @Test
+    @DisplayName("EMSI-DC xml validation passes")
+    public void xmlEmsiValidationPasses() throws IOException {
+        String input = getMessageString("EMSI-DC", true);
+        assertDoesNotThrow(() -> validator.validateXML(input, "EDXL-DE.xsd"));
     }
 
     @Test
@@ -108,12 +125,17 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("RC-REF validation passes")
+    @DisplayName("RC-REF json validation passes")
     public void jsonRcRefValidationPasses() throws IOException {
         String input = getMessageString("RC-REF");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
+    }
 
-        // TODO bbo: add XML validation
+    @Test
+    @DisplayName("RC-REF xml validation passes")
+    public void xmlRcRefValidationPasses() throws IOException {
+        String xmlInput = getMessageString("RC-REF", true);
+        assertDoesNotThrow(() -> validator.validateXML(xmlInput, "EDXL-DE.xsd"));
     }
 
     @Test
@@ -131,6 +153,18 @@ public class ValidatorTest {
         }
 
         // TODO bbo: add XML validation
+    }
+
+    @Test
+    @DisplayName("additional property fails")
+    public void additionalPropertyFails() throws IOException {
+        // unknown property below wrapper level will not pass validation
+        String refLevelInvalid = getInvalidMessage("RC-REF/reference-level-additional-property.json");
+        assertThrows(ValidationException.class, () -> validator.validateJSON(refLevelInvalid, FULL_SCHEMA));
+
+        // unknown property at the wrapper level does not throw exception but will be ignored at deserialization
+        String wrapperLevelInvalid = getInvalidMessage("RC-REF/wrapper-level-additional-property.json");
+        assertDoesNotThrow(() -> validator.validateJSON(wrapperLevelInvalid, FULL_SCHEMA));
     }
 
     @Test
