@@ -5,7 +5,7 @@
 3,4,,Date et heure de la réception de la dernière localisation,,,,,,2024-01-27T08:45:00+02:00,,time,,,,,,0..1,,datetime,,,X,X
 4,5,,Coordonnées,,,,,Permet de localiser la resource. ,,,coord,,,,,,0..n,X,coord,,,X,X
 5,6,,,Latitude ,,,,Dernière coordonnée x connue de la ressource,47.221866,,lat,,,,,,1..1,,number,,,X,X
-6,0,,,Longitude,,,,"Dernière coordonnée y connue de la ressource
+6,7,,,Longitude,,,,"Dernière coordonnée y connue de la ressource
 between −90 and +90",-1.575807,,lon,,,,,,1..1,,number,,,X,X
 7,8,,,Altitude,,,,"Dernière coordonnée z connue de la ressource
 between −180 and +180",1,,height,,,,,,0..1,,number,,,X,X
