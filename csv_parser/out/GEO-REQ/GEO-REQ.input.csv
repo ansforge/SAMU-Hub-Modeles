@@ -1,2 +1,3 @@
 ,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
 0,1,Demande de détails de la ressource,,,,,,,,,resourceRequest,,,,,,0..1,X,resource,,,X,X
+1,2,,Identifiant(s) de(s) ressource(s),,,,,Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de détails,76_45101#SMUR1,,resourceId,,,,,,1..n,,string,,,X,X

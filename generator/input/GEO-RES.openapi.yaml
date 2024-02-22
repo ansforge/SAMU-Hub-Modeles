@@ -124,7 +124,17 @@ components:
             \ (si RFGI disponible)\n2. PHNADD pour t\xE9l\xE9phonie"
           examples:
           - PHNADD
+        details:
+          type: string
+          title: "D\xE9tails de contact"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/resourceDetails/0/contacts/0/details
+          description: "1. RFGI (si RFGI disponible)\n2. Num\xE9ro de t\xE9l\xE9phone"
+          examples:
+          - '0612342536'
       additionalProperties: false
       example: example.json#/geolocalisation/resourceDetails/0/contacts/0
       examples:
       - type: PHNADD
+        details: '0612342536'

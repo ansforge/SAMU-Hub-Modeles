@@ -123,6 +123,14 @@
                     "x-cols": 6,
                     "example": "example.json#/geolocalisation/resourceDetails/0/contacts/0/type",
                     "description": "Type de contact, voir \u00e9num\u00e9ration associ\u00e9e\n1. PMRADD (si RFGI disponible)\n2. PHNADD pour t\u00e9l\u00e9phonie"
+                },
+                "details": {
+                    "type": "string",
+                    "title": "D\u00e9tails de contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/geolocalisation/resourceDetails/0/contacts/0/details",
+                    "description": "1. RFGI (si RFGI disponible)\n2. Num\u00e9ro de t\u00e9l\u00e9phone"
                 }
             },
             "additionalProperties": false,

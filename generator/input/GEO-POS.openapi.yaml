@@ -12,16 +12,168 @@ components:
       properties:
         geolocalisation:
           $ref: '#/components/schemas/geolocalisation'
-      examples:
-      - geolocalisation: &id001 {}
     geolocalisation:
       type: object
       title: Objet geolocalisation
       x-display: expansion-panels
       x-health-only: false
       required: []
-      properties: {}
+      properties:
+        positionUpdate:
+          type: array
+          items:
+            $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/geolocalisation
+    position:
+      type: object
+      title: Position
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - id
+      - dateTime
+      properties:
+        id:
+          type: string
+          title: Identifiant de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/id
+          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
+            \ partenaire propri\xE9taire"
+          examples:
+          - 76_45101#SMUR1#
+        dateTime:
+          type: string
+          title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
+            \ ressource"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/dateTime
+          description: "Date et heure de la derni\xE8re position connue"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2024-01-27T08:44:00+02:00'
+        time:
+          type: string
+          title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/time
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2024-01-27T08:45:00+02:00'
+        coord:
+          type: array
+          items:
+            $ref: '#/components/schemas/coord'
+        speed:
+          type: number
+          title: Vitesse de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/speed
+          description: "Vitesse de la ressource enregistr\xE9e"
+          examples:
+          - None
+        cap:
+          type: string
+          title: Direction de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/cap
+          description: "Direction de la ressource  (nord, sud, ouest, est), exprim\xE9\
+            \ en degr\xE9s"
+          examples:
+          - None
+        move:
+          type: string
+          title: Mouvement de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/move
+          description: Indique si la ressource est en mouvement ou non (Mobile, Statique)
+          examples:
+          - None
+        engine:
+          type: number
+          title: Etat du moteur de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/engine
+          description: '0 = contact etteint
+
+            1 = contact mis en marche'
+          examples:
+          - 0
+        helicopterStatus:
+          type: number
+          title: "Etat de l'h\xE9licopt\xE8re"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/helicopterStatus
+          description: '0 = au sol
+
+            1 = en l''air'
+          examples:
+          - None
+        status:
+          type: string
+          title: Statut de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/status
+          description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
+            - AVAILABLE : Lorsque la ressource est disponible\n- UNAVAILABLE : Lorsque\
+            \ la ressource n'est pas disponible"
+          examples:
+          - AVAILABLE
+      additionalProperties: false
+      example: example.json#/geolocalisation/positionUpdate/0
+    coord:
+      type: object
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - lat
+      - lon
+      properties:
+        lat:
+          type: number
+          title: 'Latitude '
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/coord/0/lat
+          description: "Derni\xE8re coordonn\xE9e x connue de la ressource"
+          examples:
+          - '47.221866'
+        lon:
+          type: number
+          title: Longitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/coord/0/lon
+          description: "Derni\xE8re coordonn\xE9e y connue de la ressource\nbetween\
+            \ \u221290 and +90"
+          examples:
+          - '-1.575807'
+        height:
+          type: number
+          title: Altitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/geolocalisation/positionUpdate/0/coord/0/height
+          description: "Derni\xE8re coordonn\xE9e z connue de la ressource\nbetween\
+            \ \u2212180 and +180"
+          examples:
+          - 1
+      additionalProperties: false
+      example: example.json#/geolocalisation/positionUpdate/0/coord/0
       examples:
-      - *id001
+      - lat: '47.221866'
+        lon: '-1.575807'
+        height: 1

@@ -11,7 +11,8 @@
                 "capacity": "None",
                 "contacts": [
                     {
-                        "type": "PHNADD"
+                        "type": "PHNADD",
+                        "details": "0612342536"
                     }
                 ]
             }

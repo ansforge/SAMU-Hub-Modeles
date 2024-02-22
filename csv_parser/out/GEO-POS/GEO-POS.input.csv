@@ -1,1 +1,21 @@
 ,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
+0,1,Position,,,,,,Objet de détail de la position de chaque ressource,,,positionUpdate,,,,,,0..n,X,position,,,X,X
+1,2,,Identifiant de la ressource,,,,,Identifiant unique de la ressource  dans le système du partenaire propriétaire,76_45101#SMUR1#,,id,,,,,,1..1,,string,,,X,X
+2,3,,Date et heure des dernières remontées d'informations de la ressource,,,,,Date et heure de la dernière position connue,2024-01-27T08:44:00+02:00,,dateTime,,,,,,1..1,,datetime,,,X,X
+3,4,,Date et heure de la réception de la dernière localisation,,,,,,2024-01-27T08:45:00+02:00,,time,,,,,,0..1,,datetime,,,X,X
+4,5,,Coordonnées,,,,,Permet de localiser la resource. ,,,coord,,,,,,0..n,X,coord,,,X,X
+5,6,,,Latitude ,,,,Dernière coordonnée x connue de la ressource,47.221866,,lat,,,,,,1..1,,number,,,X,X
+6,0,,,Longitude,,,,"Dernière coordonnée y connue de la ressource
+between −90 and +90",-1.575807,,lon,,,,,,1..1,,number,,,X,X
+7,8,,,Altitude,,,,"Dernière coordonnée z connue de la ressource
+between −180 and +180",1,,height,,,,,,0..1,,number,,,X,X
+8,9,,Vitesse de la ressource,,,,,Vitesse de la ressource enregistrée,,,speed,,,,,,0..1,,number,,,X,X
+9,10,,Direction de la ressource,,,,,"Direction de la ressource  (nord, sud, ouest, est), exprimé en degrés",,,cap,,,,,,0..1,,string,,,X,X
+10,11,,Mouvement de la ressource,,,,,"Indique si la ressource est en mouvement ou non (Mobile, Statique)",,,move,,,,,,0..1,,string,,,X,X
+11,12,,Etat du moteur de la ressource,,,,,"0 = contact etteint
+1 = contact mis en marche",0,,engine,,,,,,0..1,,number,,,X,X
+12,13,,Etat de l'hélicoptère,,,,,"0 = au sol
+1 = en l'air",,,helicopterStatus,,,,,,0..1,,number,,,X,X
+13,14,,Statut de la ressource,,,,,"Définit le statut de disponibilité d'une ressource.
+- AVAILABLE : Lorsque la ressource est disponible
+- UNAVAILABLE : Lorsque la ressource n'est pas disponible",AVAILABLE,,status,,,,,,0..1,,string,,,X,X

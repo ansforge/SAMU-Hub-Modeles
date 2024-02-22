@@ -34,8 +34,23 @@
             "title": "Demande de d\u00e9tails de la ressource",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
-            "properties": {},
+            "required": [
+                "resourceId"
+            ],
+            "properties": {
+                "resourceId": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Identifiant(s) de(s) ressource(s)",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/geolocalisation/resourceRequest/resourceId/0",
+                        "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de d\u00e9tails"
+                    }
+                }
+            },
             "additionalProperties": false,
             "example": "example.json#/geolocalisation/resourceRequest"
         }

@@ -11,3 +11,5 @@
 9,27,,,Type de contact,,,,"Type de contact, voir énumération associée
 1. PMRADD (si RFGI disponible)
 2. PHNADD pour téléphonie",PHNADD,,type,,,,,,0..1,,string,,,X,X
+10,28,,,Détails de contact,,,,"1. RFGI (si RFGI disponible)
+2. Numéro de téléphone",0612342536,,details,,,,,,0..1,,string,,,X,X

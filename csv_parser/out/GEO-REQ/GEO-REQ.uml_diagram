@@ -7,7 +7,7 @@ strict digraph {
                 <TR>
                 <TD ><B>resourceRequest</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..*] </TD></TR>
                 </TABLE>>]
 	resourceRequest -> geolocalisation [constraint=true headlabel=1 taillabel="0..1"]
 	geolocalisation [label=<<TABLE>
