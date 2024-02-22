@@ -2,27 +2,23 @@ openapi: 3.0.0
 components:
   schemas:
     geolocalisationWrapper:
-      $id: classpath:/json-schema/schema#
-      x-id: GEO-REQ.schema.json#
-      example: example.json#
       type: object
-      title: geolocalisation
       required:
       - geolocalisation
       properties:
         geolocalisation:
           $ref: '#/components/schemas/geolocalisation'
     geolocalisation:
+      $id: classpath:/json-schema/schema#
+      x-id: GEO-REQ.schema.json#
+      example: example.json#
       type: object
-      title: Objet geolocalisation
-      x-display: expansion-panels
-      x-health-only: false
+      title: geolocalisation
       required: []
       properties:
         resourceRequest:
           $ref: '#/components/schemas/resource'
       additionalProperties: false
-      example: example.json#/geolocalisation
     resource:
       type: object
       title: "Demande de d\xE9tails de la ressource"
@@ -39,10 +35,10 @@ components:
             title: Identifiant(s) de(s) ressource(s)
             x-health-only: false
             x-cols: 6
-            example: example.json#/geolocalisation/resourceRequest/resourceId/0
+            example: example.json#/resourceRequest/resourceId/0
             description: "Liste des ID des ressources pour lesquels le demandeur a\
               \ besoin d'obtenir plus de d\xE9tails"
             examples:
             - 76_45101#SMUR1
       additionalProperties: false
-      example: example.json#/geolocalisation/resourceRequest
+      example: example.json#/resourceRequest

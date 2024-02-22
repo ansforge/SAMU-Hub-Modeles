@@ -1,9 +1,7 @@
 {
-    "geolocalisation": {
-        "resourceRequest": {
-            "resourceId": [
-                "76_45101#SMUR1"
-            ]
-        }
+    "resourceRequest": {
+        "resourceId": [
+            "76_45101#SMUR1"
+        ]
     }
 }
