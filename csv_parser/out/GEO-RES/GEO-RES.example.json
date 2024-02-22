@@ -1,0 +1,20 @@
+{
+    "geolocalisation": {
+        "resourceDetails": [
+            {
+                "id": "76_45101#SMUR1#",
+                "orgId": "fr.health.760.samu76",
+                "name": "SMUR 1 Rouen",
+                "type": "SMUR",
+                "nature": "None",
+                "mobility": "Vehicle",
+                "capacity": "None",
+                "contacts": [
+                    {
+                        "type": "PHNADD"
+                    }
+                ]
+            }
+        ]
+    }
+}

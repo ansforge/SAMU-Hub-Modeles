@@ -1,0 +1,13 @@
+,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
+0,18,Ressource,,,,,,Une liste d’objets Resource détaillant les ressources demandées ainsi que celles notifiées non encore décrites au demandeur,,,resourceDetails,,,,,,0..n,X,resource,,,X,X
+1,19,,Identifiant de la ressource,,,,,Identifiant unique de la ressource  dans le système du partenaire propriétaire,76_45101#SMUR1#,,id,,,,,,1..1,,string,,,X,X
+2,20,,Identifiant de l'organisation propriétaire,,,,,Identifiant unique de l'organisme :  {pays}.{domaine}.{code département}.{organisation}.{structure interne}*.{unité fonctionnelle}*,fr.health.760.samu76,,orgId,,,,,,1..1,,string,,,X,X
+3,21,,Nom de la ressource,,,,,Nom de la ressource,SMUR 1 Rouen,,name,,,,,,0..1,,string,,,X,X
+4,22,,Type de ressource,,,,,"Catégorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)",SMUR,,type,,,,,,1..1,,string,,,X,X
+5,23,,Nature de la ressource,,,,,"Nature de la ressource (effector, base)",,,nature,,,,,,0..1,,string,,,X,X
+6,24,,Mobilité de la ressource,,,,,"Mobilité de la ressource (fix, vehicle, helicopter, ship)",Vehicle,,mobility,,,,,,0..1,,string,,,X,X
+7,25,,Capacités de la ressource,,,,,Capacité de transport d'un patient,,,capacity,,,,,,0..1,,string,,,X,X
+8,26,,Contacts,,,,,Liste de contacts utiles pour contacter par exemple le véhicule ou le personnel engagé dans l'opération.,,,contacts,,,,,,0..n,X,contact,,,X,X
+9,27,,,Type de contact,,,,"Type de contact, voir énumération associée
+1. PMRADD (si RFGI disponible)
+2. PHNADD pour téléphonie",PHNADD,,type,,,,,,0..1,,string,,,X,X

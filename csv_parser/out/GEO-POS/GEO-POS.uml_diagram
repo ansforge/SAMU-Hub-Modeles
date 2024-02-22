@@ -1,0 +1,18 @@
+// UML MDD Hub Sante
+strict digraph {
+	node [shape=none]
+	edge [arrowhead=odiamond arrowtail=none]
+	rankdir=BT
+	geolocalisation [label=<<TABLE>
+                <TR>
+                <TD ><B>geolocalisation</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet geolocalisation</I></TD></TR>
+                </TABLE>>]
+	geolocalisation [label=<<TABLE>
+                <TR>
+                <TD ><B>geolocalisation</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet geolocalisation</I></TD></TR>
+                </TABLE>>]
+}

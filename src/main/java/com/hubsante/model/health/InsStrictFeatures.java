@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -64,7 +63,7 @@ public class InsStrictFeatures {
   private String birthFirstNamesList;
 
   public static final String JSON_PROPERTY_BIRTH_DATE = "birthDate";
-  private OffsetDateTime birthDate;
+  private String birthDate;
 
   /**
    * Sexe du patient
@@ -183,7 +182,7 @@ public class InsStrictFeatures {
     this.birthFirstNamesList = birthFirstNamesList;
   }
 
-  public InsStrictFeatures birthDate(OffsetDateTime birthDate) {
+  public InsStrictFeatures birthDate(String birthDate) {
 
     this.birthDate = birthDate;
     return this;
@@ -196,13 +195,13 @@ public class InsStrictFeatures {
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getBirthDate() {
+  public String getBirthDate() {
     return birthDate;
   }
 
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBirthDate(OffsetDateTime birthDate) {
+  public void setBirthDate(String birthDate) {
     this.birthDate = birthDate;
   }
 

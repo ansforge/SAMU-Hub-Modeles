@@ -1,0 +1,43 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "GEO-REQ.schema.json#",
+    "version": "24.02.22",
+    "example": "example.json#",
+    "type": "object",
+    "title": "geolocalisation",
+    "required": [
+        "geolocalisation"
+    ],
+    "properties": {
+        "geolocalisation": {
+            "$ref": "#/definitions/geolocalisation"
+        }
+    },
+    "definitions": {
+        "geolocalisation": {
+            "type": "object",
+            "title": "Objet geolocalisation",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "resourceRequest": {
+                    "$ref": "#/definitions/resource"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/geolocalisation"
+        },
+        "resource": {
+            "type": "object",
+            "title": "Demande de d\u00e9tails de la ressource",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {},
+            "additionalProperties": false,
+            "example": "example.json#/geolocalisation/resourceRequest"
+        }
+    }
+}

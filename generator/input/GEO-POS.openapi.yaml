@@ -1,0 +1,27 @@
+openapi: 3.0.0
+components:
+  schemas:
+    geolocalisationWrapper:
+      $id: classpath:/json-schema/schema#
+      x-id: GEO-POS.schema.json#
+      example: example.json#
+      type: object
+      title: geolocalisation
+      required:
+      - geolocalisation
+      properties:
+        geolocalisation:
+          $ref: '#/components/schemas/geolocalisation'
+      examples:
+      - geolocalisation: &id001 {}
+    geolocalisation:
+      type: object
+      title: Objet geolocalisation
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties: {}
+      additionalProperties: false
+      example: example.json#/geolocalisation
+      examples:
+      - *id001
