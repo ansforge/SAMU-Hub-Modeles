@@ -117,7 +117,7 @@ public class Validator {
             boolean containsAtLeastOneUseCaseError = false;
             boolean violatesOneOfConstraint = false;
 
-            for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("CONTENT")).collect(java.util.stream.Collectors.toSet())) {
+            for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("CONTENT") || validationMessageWrapper.getType().equals("MISC")).collect(java.util.stream.Collectors.toSet())) {
                 String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
                 if (error != null) {
                     if(!violatesOneOfConstraint && validationMessage.getValidationMessage().getType().equals("oneOf")) {
@@ -170,7 +170,6 @@ public class Validator {
 
             // Append CONTENT error messages
             if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("CONTENT")) ) {
-
                     errors.append("Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: \n");
                     for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("CONTENT")).collect(java.util.stream.Collectors.toSet())) {
                         String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
@@ -178,6 +177,16 @@ public class Validator {
                             errors.append(" - " + error).append("\n");
                         }
                     }
+            }
+
+            // Append MISC error messages
+            if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("MISC")) ) {
+                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISC")).collect(java.util.stream.Collectors.toSet())) {
+                    String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                    if (error != null) {
+                        errors.append(error).append("\n");
+                    }
+                }
             }
 
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
