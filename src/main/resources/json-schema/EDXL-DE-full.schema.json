@@ -9,7 +9,8 @@
           "type": "string"
         },
         "distributionID": {
-          "type": "string"
+          "type": "string",
+          "pattern": "^([a-z]|[0-9]|\\.|_|\\-|#)+_([a-z]|[0-9]|\\.|_|\\-|#)+$"
         },
         "dateTimeSent": {
           "type": "string",
