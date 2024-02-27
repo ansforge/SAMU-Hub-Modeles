@@ -64,6 +64,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CreateCase {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:createCase";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 

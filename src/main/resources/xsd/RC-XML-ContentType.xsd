@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns:x="urn:emergency:cisu:2.0"
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:rcref="urn:emergency:cisu:2.0:reference"
+        xmlns:rceda="urn:emergency:cisu:2.0:createCase"
+        xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
+        xmlns:emsi="urn:emergency:cisu:2.0:emsi"
+        xmlns:info="urn:emergency:cisu:2.0:info"
+        elementFormDefault="qualified"
+        targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
+
+    <xs:include schemaLocation="RC-DE.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:createCase" schemaLocation="RC-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
+
+    <xs:complexType name="cisuXMLContentType">
+        <xs:sequence>
+            <xs:element name="message" type="x:MessageType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MessageType">
+        <xs:complexContent>
+            <xs:extension base="x:distributionElement">
+                <xs:sequence>
+                    <xs:choice>
+                        <xs:element ref="rcref:reference" />
+                        <xs:element ref="rceda:createCase"/>
+                        <xs:element ref="rseda:createCaseHealth"/>
+                        <xs:element ref="emsi:emsi"/>
+                        <!-- info -->
+                        <xs:element ref="info:info"/>
+                    </xs:choice>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+</schema>
