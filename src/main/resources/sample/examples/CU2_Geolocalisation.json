@@ -2,8 +2,8 @@
   "positionUpdate": [
     {
       "id": "76_45101#SMUR1#",
-      "dateTime": "2024-01-27T08:44:00+02:00",
-      "time": "2024-01-27T08:45:00+02:00",
+      "datetime": "2024-01-27T08:44:00+02:00",
+      "receptionDatetime": "2024-01-27T08:45:00+02:00",
  	    "coord": [
             {
               "lat": 49.464944,
@@ -11,13 +11,13 @@
             }
           ],
       "move": "STATIQUE",
-      "engine": 0,
+      "engine": "OFF",
       "status": "AVAILABLE"
     },
     {
       "id": "76_45102#SMUR2#",
-      "dateTime": "2024-01-27T08:43:00+02:00",
-      "time": "2024-01-27T08:45:00+02:00",
+      "datetime": "2024-01-27T08:43:00+02:00",
+      "receptionDatetime": "2024-01-27T08:45:00+02:00",
  	    "coord": [
             {
               "lat": 49.428421,
@@ -25,13 +25,14 @@
             }
           ],
       "move": "STATIQUE",
-      "engine": 0,
-      "status": "AVAILABLE"
+      "engine": "ON",
+      "status": "ENGAGED",
+      "engagedStatus": "ON-SCENE"
     },
     {
       "id": "76_45104#SMUR4#",
-      "dateTime": "2024-01-27T08:46:00+02:00",
-      "time": "2024-01-27T08:48:00+02:00",
+      "datetime": "2024-01-27T08:46:00+02:00",
+      "receptionDatetime": "2024-01-27T08:48:00+02:00",
  	    "coord": [
             {
               "lat": 49.448681, 
@@ -39,7 +40,7 @@
             }
           ],
       "move": "MOBILE",
-      "engine": 1,
+      "engine": "OFF",
       "status": "UNAVAILABLE"
     }
   ]
