@@ -112,8 +112,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/LEVEL
-          description: A valoriser avec la valeur constante "OPR" dans le cadre du
-            message EMSI-EO
+          description: A valoriser avec la valeur constante "OPR" dans le cadre d'un
+            message EMSI, incluant une mission OPG
           enum:
           - STRTGC
           - OPR
@@ -145,7 +145,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/FREETEXT
-          description: "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\xE9\
+          description: "Texte libre, optionnel\n\nDans NexSIS;\nFonction de l'\xE9\
             v\xE9nement g\xE9n\xE9rateur\nRG 1 : la valeur de <context><freetext>\
             \ reste \xE0  'Cr\xE9ation d'un \xE9v\xE9nement op\xE9rationnel EMSI'\
             \ & version & 'suite \xE0 r\xE9ception d'une affaire*' dans le cadre de\
@@ -193,8 +193,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/ID
-          description: "Identifiant local de l'affaire dans le syst\xE8me du partenaire\
-            \ emetteur"
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ \xE9metteur (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440-DRFR15DDXAAJJJ0000
         NAME:
@@ -213,9 +215,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/MAIN_EVENT_ID
-          description: "Identifiant d\u2019affaire partag\xE9 issu du message RC-EDA\
-            \ transmis en amont\nNB : Dans le cas d\u2019un partage initi\xE9 par\
-            \ un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}\n\nNB : Si\
+            \ l'initiateur du partage de dossier est le m\xEAme que l'initiateur du\
+            \ message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
           examples:
           - fr.health.samu440-DRFR15DDXAAJJJ0000
         ETYPE:
@@ -996,13 +1001,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/LINK/0/ID
-          description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
-            \ requ\xE9rant\nDans NexSIS;\nRG 1  \u2013 : cr\xE9ation du premier message\
-            \ EMSi suite r\xE9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\xE9ro\
-            \ d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour\
-            \ tous les messages cr\xE9\xE9s apr\xE8s le premier, EMSI <LINK> est compl\xE9\
-            t\xE9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\xE9c\xE9dent\
-            \ cr\xE9\xE9 au sein du SGO r\xE9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440-DRFR15DDXAAJJJ0000
         LINK_ROLE:
@@ -1011,14 +1013,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/LINK/0/LINK_ROLE
-          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" en\
-            \ EMSI-EO et avec le libell\xE9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG\
-            \ 1  \u2013 : cr\xE9ation du premier message EMSi suite r\xE9ception Affaire\
-            \ * <LINK><LINK ID> = <Num\xE9ro d'affaire initiale>\n\u2022 <LINK><LINK\
-            \ ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\xE9\xE9s apr\xE8\
-            s le premier, EMSI <LINK> est compl\xE9t\xE9 par <LINK><LINK ID> contenant\
-            \ l'ID de message EMSI pr\xE9c\xE9dent cr\xE9\xE9 au sein du SGO r\xE9\
-            dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" pour\
+            \ un message EMSI, incluant des missions RDC et/ou OPG et avec le libell\xE9\
+            \ \"ADDSTO\" pour un message EMSI, incluant uniquement qu'une demande\
+            \ de concours (EMSI-DC)."
           enum:
           - ADDSTO
           - SPRSDS
@@ -1064,8 +1062,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/ORIGIN/NAME
-          description: "Optionnel\n\nA constituer par le r\xE9dacteur pour \xEAtre\
-            \ intelligible (exemple [structure].[nom])"
+          description: "Optionnel\nA constituer par le r\xE9dacteur pour \xEAtre intelligible\
+            \ (exemple [structure] [code d\xE9partement])"
           examples:
           - samu 44
       additionalProperties: false
@@ -1453,7 +1451,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/REFERENCE/0/ORG_ID
-          description: Identification de l'organisation partenaire
+          description: "Le format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID)\
+            \ ne peut pas \xEAtre le m\xEAme que le champ CONTEXT.LINK.ID ou EVENT.ID"
           examples:
           - fr.fire.cgo440
         OTHER_EVENT_ID:

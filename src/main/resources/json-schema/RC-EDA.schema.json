@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.02.16",
+    "version": "24.02.27",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -20,7 +20,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant technique de l'affaire et partag\u00e9 entre tous les intervenants.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il est g\u00e9n\u00e9r\u00e9 par les syst\u00e8mes du partenaire r\u00e9cepteur de la primo-demande de secours et contient une cl\u00e9 conventionnelle permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\no\u00f9 cleConventionnelle est la cl\u00e9 utilis\u00e9e par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le syst\u00e8me du partenaire emetteur.\ncleUnique est une cha\u00eene de caract\u00e8re (string) comprise entre 4 et 22 caract\u00e8res alphanum\u00e9riques."
+            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}-{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
         },
         "senderCaseId": {
             "type": "string",
@@ -28,7 +28,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/senderCaseId",
-            "description": "Valoriser avec l'identifiant de l'affaire dans le SI de l'\u00e9metteur du message\nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS\nDans le cas o\u00f9 deux op\u00e9rateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caract\u00e8res de l'identifiant local de leur partenaire."
+            "description": "Valoriser avec le num\u00e9ro du dossier dans le SI de l'\u00e9metteur du message. \nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS.\n"
         },
         "creation": {
             "type": "string",
@@ -56,6 +56,18 @@
         },
         "initialAlert": {
             "$ref": "#/definitions/alert"
+        },
+        "patient": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/patient"
+            }
+        },
+        "medicalAnalysis": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/medicalAnalysis"
+            }
         },
         "newAlert": {
             "type": "array",
@@ -514,7 +526,7 @@
                     "title": "ID patient partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/id",
+                    "example": "example.json#/patient/0/id",
                     "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
                 },
                 "identity": {
@@ -522,7 +534,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/createCase/patient/0"
+            "example": "example.json#/patient/0"
         },
         "medicalAnalysis": {
             "type": "object",
@@ -536,7 +548,7 @@
                     "title": "ID patient partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/patientId",
+                    "example": "example.json#/medicalAnalysis/0/patientId",
                     "description": "ID du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
                 },
                 "decision": {
@@ -547,7 +559,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/createCase/medicalAnalysis/0"
+            "example": "example.json#/medicalAnalysis/0"
         },
         "additionalInformation": {
             "type": "object",
@@ -793,7 +805,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/entity",
-                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement"
+                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement : Infirmerie, service finance, service cardiologie, \u2026"
                 },
                 "phoneNumber": {
                     "type": "number",
@@ -1381,7 +1393,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/callTaker/organization",
-                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*."
+                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
                 },
                 "controlRoom": {
                     "type": "string",
@@ -1567,7 +1579,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/createCase/patient/0/identity"
+            "example": "example.json#/patient/0/identity"
         },
         "insStrictFeatures": {
             "type": "object",
@@ -1581,7 +1593,7 @@
                     "title": "Date de naissance",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/birthDate",
+                    "example": "example.json#/patient/0/identity/strictFeatures/birthDate",
                     "description": "Date de naissance du patient",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}"
                 },
@@ -1590,7 +1602,7 @@
                     "title": "Sexe ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/patient/0/identity/strictFeatures/sex",
+                    "example": "example.json#/patient/0/identity/strictFeatures/sex",
                     "description": "Sexe du patient",
                     "enum": [
                         "U",
@@ -1601,7 +1613,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/createCase/patient/0/identity/strictFeatures"
+            "example": "example.json#/patient/0/identity/strictFeatures"
         },
         "decision": {
             "type": "object",
@@ -1617,7 +1629,7 @@
                     "title": "Date Heure de cr\u00e9ation de la d\u00e9cision",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/creation",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/creation",
                     "description": "Groupe date heure de cr\u00e9ation de la d\u00e9cision.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -1627,7 +1639,7 @@
                     "title": "Type de d\u00e9cision",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/type",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/type",
                     "description": "Type de d\u00e9cision prise"
                 },
                 "orientation": {
@@ -1635,7 +1647,7 @@
                     "title": "Orientation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/orientation",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/orientation",
                     "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
                 },
                 "transportation": {
@@ -1646,7 +1658,7 @@
                         "title": "Vecteur de transport",
                         "x-health-only": false,
                         "x-cols": 6,
-                        "example": "example.json#/createCase/medicalAnalysis/0/decision/0/transportation/0",
+                        "example": "example.json#/medicalAnalysis/0/decision/0/transportation/0",
                         "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
                     }
                 },
@@ -1655,7 +1667,7 @@
                     "title": "Niveau de m\u00e9dicalisation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/medicalisation",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/medicalisation",
                     "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
                 },
                 "destination": {
@@ -1663,7 +1675,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/createCase/medicalAnalysis/0/decision/0"
+            "example": "example.json#/medicalAnalysis/0/decision/0"
         },
         "destination": {
             "type": "object",
@@ -1677,7 +1689,7 @@
                     "title": "Etablissement",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/facility",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/facility",
                     "description": "Nom de l'\u00e9tablissement"
                 },
                 "adminFiness": {
@@ -1685,7 +1697,7 @@
                     "title": "FINESS administratif",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/adminFiness",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/adminFiness",
                     "description": "N\u00b0 Finess administratif de l'\u00e9tablissement"
                 },
                 "geoFiness": {
@@ -1693,7 +1705,7 @@
                     "title": "FINESS g\u00e9ographique",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/geoFiness",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/geoFiness",
                     "description": "N\u00b0 Finess g\u00e9ographique de l'\u00e9tablissement"
                 },
                 "service": {
@@ -1701,7 +1713,7 @@
                     "title": "Service",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/service",
+                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/service",
                     "description": "Service concern\u00e9 par l'admission du patient"
                 },
                 "freetext": {
@@ -1709,11 +1721,11 @@
                     "title": "Autre",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination/freetext"
+                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/freetext"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/createCase/medicalAnalysis/0/decision/0/destination"
+            "example": "example.json#/medicalAnalysis/0/decision/0/destination"
         },
         "customMap": {
             "type": "object",

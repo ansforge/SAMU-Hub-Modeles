@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.02.16",
+    "version": "24.02.27",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -101,7 +101,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/LEVEL",
-                    "description": "A valoriser avec la valeur constante \"OPR\" dans le cadre du message EMSI-EO",
+                    "description": "A valoriser avec la valeur constante \"OPR\" dans le cadre d'un message EMSI, incluant une mission OPG",
                     "enum": [
                         "STRTGC",
                         "OPR",
@@ -130,7 +130,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/FREETEXT",
-                    "description": "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\u00e9v\u00e9nement g\u00e9n\u00e9rateur\nRG 1 : la valeur de <context><freetext> reste \u00e0  'Cr\u00e9ation d'un \u00e9v\u00e9nement op\u00e9rationnel EMSI' & version & 'suite \u00e0 r\u00e9ception d'une affaire*' dans le cadre de la cr\u00e9ation d'une op\u00e9ration commune (conforme RG 2 de NEXSIS-6618)\nRG 3 : les \u00e9v\u00e9nements g\u00e9n\u00e9rateurs sont ceux d\u00e9finis au sein de NEXSIS-6619 RG 1 de tra\u00e7abilit\u00e9  ( input = <Evenement \u00e0 l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajout\u00e9s  les \u00e9ventuels \u00e9v\u00e9nements \u00e0 venir."
+                    "description": "Texte libre, optionnel\n\nDans NexSIS;\nFonction de l'\u00e9v\u00e9nement g\u00e9n\u00e9rateur\nRG 1 : la valeur de <context><freetext> reste \u00e0  'Cr\u00e9ation d'un \u00e9v\u00e9nement op\u00e9rationnel EMSI' & version & 'suite \u00e0 r\u00e9ception d'une affaire*' dans le cadre de la cr\u00e9ation d'une op\u00e9ration commune (conforme RG 2 de NEXSIS-6618)\nRG 3 : les \u00e9v\u00e9nements g\u00e9n\u00e9rateurs sont ceux d\u00e9finis au sein de NEXSIS-6619 RG 1 de tra\u00e7abilit\u00e9  ( input = <Evenement \u00e0 l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajout\u00e9s  les \u00e9ventuels \u00e9v\u00e9nements \u00e0 venir."
                 },
                 "ORIGIN": {
                     "$ref": "#/definitions/origin"
@@ -172,7 +172,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/ID",
-                    "description": "Identifiant local de l'affaire dans le syst\u00e8me du partenaire emetteur"
+                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire \u00e9metteur (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
                 },
                 "NAME": {
                     "type": "string",
@@ -188,7 +188,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/MAIN_EVENT_ID",
-                    "description": "Identifiant d\u2019affaire partag\u00e9 issu du message RC-EDA transmis en amont\nNB : Dans le cas d\u2019un partage initi\u00e9 par un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
+                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requ\u00e9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}\n\nNB : Si l'initiateur du partage de dossier est le m\u00eame que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
                 },
                 "ETYPE": {
                     "$ref": "#/definitions/etype"
@@ -564,7 +564,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/MISSION/0/ORG_ID",
-                    "description": "Indique l'organisation du partenaire concern\u00e9 par la Demande de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \u00eatre utilis\u00e9.\nIndique l'organisation du service r\u00e9alisant la mission. Dans le cas d'une r\u00e9ponse, c'est l'organisation du concourant qui doit \u00eatre indiqu\u00e9e.\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}:{domaine}:{code d\u00e9partement}:{organisation}:{structure interne}*:{unit\u00e9 fonctionnelle}*.\nidentique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
+                    "description": "Indique l'organisation du partenaire concern\u00e9 par la Demande de Concours (voir DSF). Le code CRRA ou le code du SIS peut \u00eatre utilis\u00e9.\nIndique l'organisation du service r\u00e9alisant la mission. \nDans le cas d'une r\u00e9ponse, c'est l'organisation du concourant qui doit \u00eatre indiqu\u00e9e.\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
                 },
                 "NAME": {
                     "type": "string",
@@ -703,7 +703,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/RESOURCE/0/ORG_ID",
-                    "description": "Identifiant de l'organisation \u00e0 laquelle la ressource est rattach\u00e9e (caserne, SAMU etc).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{code d\u00e9partement}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.\nDans le cas o\u00f9 le LRM/NexSIS sert d'aggr\u00e9gateur pour des v\u00e9hicules appartenant \u00e0 un partenaire tiers (type ambulance priv\u00e9e), l'identifiant d'organisation permet d'identifier ce tiers\nA constituer par le r\u00e9dacteur du pr\u00e9sent EMSI pour \u00eatre unique, identique \u00e0 <CONTEXT><ORIGIN><ORG_ID>"
+                    "description": "Identifiant de l'organisation \u00e0 laquelle la ressource est rattach\u00e9e (caserne, SAMU etc).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.\nDans le cas o\u00f9 le LRM/NexSIS sert d'aggr\u00e9gateur pour des v\u00e9hicules appartenant \u00e0 un partenaire tiers (type ambulance priv\u00e9e), l'identifiant d'organisation permet d'identifier ce tiers.\nA constituer par le r\u00e9dacteur du pr\u00e9sent EMSI pour \u00eatre unique."
                 },
                 "NAME": {
                     "type": "string",
@@ -845,7 +845,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/LINK/0/ID",
-                    "description": "A renseigner avec l'identifiant local de l'affaire du partenaire requ\u00e9rant\nDans NexSIS;\nRG 1  \u2013 : cr\u00e9ation du premier message EMSi suite r\u00e9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\u00e9ro d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\u00e9\u00e9s apr\u00e8s le premier, EMSI <LINK> est compl\u00e9t\u00e9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\u00e9c\u00e9dent cr\u00e9\u00e9 au sein du SGO r\u00e9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requ\u00e9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
                 },
                 "LINK_ROLE": {
                     "type": "string",
@@ -853,7 +853,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/LINK/0/LINK_ROLE",
-                    "description": "Optionnel : \u00e0 valoriser avec la constante \"SPRSDS\" en EMSI-EO et avec le libell\u00e9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG 1  \u2013 : cr\u00e9ation du premier message EMSi suite r\u00e9ception Affaire * <LINK><LINK ID> = <Num\u00e9ro d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\u00e9\u00e9s apr\u00e8s le premier, EMSI <LINK> est compl\u00e9t\u00e9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\u00e9c\u00e9dent cr\u00e9\u00e9 au sein du SGO r\u00e9dacteur * <LINK><LINK ROLE> = 'SPRSDS'",
+                    "description": "Optionnel : \u00e0 valoriser avec la constante \"SPRSDS\" pour un message EMSI, incluant des missions RDC et/ou OPG et avec le libell\u00e9 \"ADDSTO\" pour un message EMSI, incluant uniquement qu'une demande de concours (EMSI-DC).",
                     "enum": [
                         "ADDSTO",
                         "SPRSDS"
@@ -876,7 +876,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/ORIGIN/ORG_ID",
-                    "description": "Optionnel, identifiant du service \u00e0 l'origine de l'EMSI\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{code d\u00e9partement}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
+                    "description": "Optionnel, identifiant du service \u00e0 l'origine de l'EMSI\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
                 },
                 "USER_ID": {
                     "type": "string",
@@ -892,7 +892,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/ORIGIN/NAME",
-                    "description": "Optionnel\n\nA constituer par le r\u00e9dacteur pour \u00eatre intelligible (exemple [structure].[nom])"
+                    "description": "Optionnel\nA constituer par le r\u00e9dacteur pour \u00eatre intelligible (exemple [structure] [code d\u00e9partement])"
                 }
             },
             "additionalProperties": false,
@@ -1265,7 +1265,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/REFERENCE/0/ORG_ID",
-                    "description": "Identification de l'organisation partenaire"
+                    "description": "Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID) ne peut pas \u00eatre le m\u00eame que le champ CONTEXT.LINK.ID ou EVENT.ID"
                 },
                 "OTHER_EVENT_ID": {
                     "type": "array",
@@ -1276,7 +1276,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/EVENT/REFERENCE/0/OTHER_EVENT_ID/0",
-                        "description": "Indique d'autres identifiants utilis\u00e9s pour l'affaire dans le syst\u00e8me partenaire"
+                        "description": "Indique d'autres identifiants utilis\u00e9s pour l'affaire dans le syst\u00e8me partenaire.\nA renseigner avec l'identifiant de l'organisation suivi de l'identifiant local de l'affaire du partenaire dans son syst\u00e8me.\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
                     }
                 }
             },
@@ -2361,7 +2361,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/RESOURCE/0/RGEO/0/DATIME",
-                    "description": "Horaire associ\u00e9 \u00e0 l'arriv\u00e9e de la ressource sur la position. En fonction du TYPE de possition, peut indiquer un horaire de relev\u00e9 de position, un horaire cible d'arriv\u00e9e.",
+                    "description": "Horaire associ\u00e9 \u00e0 l'arriv\u00e9e de la ressource sur la position. En fonction du TYPE de position, peut indiquer un horaire de relev\u00e9 de position, un horaire cible d'arriv\u00e9e.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },

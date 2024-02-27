@@ -246,7 +246,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
 166,167,,,,Autre,,,,,,freetext,,,,,,0..1,,string,,,X,X
 167,168,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
-Dans le cadre une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
+Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
 168,169,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
 169,170,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
 170,171,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X

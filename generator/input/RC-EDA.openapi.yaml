@@ -27,16 +27,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant technique de l'affaire et partag\xE9 entre tous\
-            \ les intervenants.\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7\
-            on unique et d\xE9centralis\xE9e et ne pr\xE9senter aucune ambigu\xEF\
-            t\xE9. Il est g\xE9n\xE9r\xE9 par les syst\xE8mes du partenaire r\xE9\
-            cepteur de la primo-demande de secours et contient une cl\xE9 conventionnelle\
-            \ permettant d'identifier la source.\nValorisation :\n{cleConventionnelle}:{cleUnique}\n\
-            o\xF9 cleConventionnelle est la cl\xE9 utilis\xE9e par le partenaire emetteur\
-            \ et cleUnique l'identifiant locale d'affaire dans le syst\xE8me du partenaire\
-            \ emetteur.\ncleUnique est une cha\xEEne de caract\xE8re (string) comprise\
-            \ entre 4 et 22 caract\xE8res alphanum\xE9riques."
+          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
+            \ = aux champs {organization}-{senderCaseId}.\nIl doit pouvoir \xEAtre\
+            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
+            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
+            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440-DRFR15DDXAAJJJ0000
         senderCaseId:
@@ -45,11 +42,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/senderCaseId
-          description: "Valoriser avec l'identifiant de l'affaire dans le SI de l'\xE9\
-            metteur du message\nCe champ est facultatif, il ne sera notamment pas\
-            \ transmis par NexSIS\nDans le cas o\xF9 deux op\xE9rateurs ont besoin\
-            \ d'identifier une affaire, ils peuvent utiliser les derniers caract\xE8\
-            res de l'identifiant local de leur partenaire."
+          description: "Valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
+            metteur du message. \nCe champ est facultatif, il ne sera notamment pas\
+            \ transmis par NexSIS.\n"
           examples:
           - DRFR15DDXAAJJJ0000
         creation:
@@ -545,6 +540,51 @@ components:
             $ref: '#/components/schemas/attachment'
       additionalProperties: false
       example: example.json#/initialAlert
+    patient:
+      type: object
+      title: Patients / victimes
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          title: "ID patient partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/id
+          description: "Identifiant technique du patient pour permettre les rapprochements\
+            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
+          examples:
+          - None
+        identity:
+          $ref: '#/components/schemas/insIdentity'
+      additionalProperties: false
+      example: example.json#/patient/0
+    medicalAnalysis:
+      type: object
+      title: "R\xE9gulation m\xE9dicale"
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        patientId:
+          type: string
+          title: "ID patient partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalAnalysis/0/patientId
+          description: "ID du patient concern\xE9, lorsque le patient existe et est\
+            \ identifi\xE9"
+          examples:
+          - None
+        decision:
+          type: array
+          items:
+            $ref: '#/components/schemas/decision'
+      additionalProperties: false
+      example: example.json#/medicalAnalysis/0
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -823,7 +863,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/entity
-          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement"
+          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement :\
+            \ Infirmerie, service finance, service cardiologie, \u2026"
           examples:
           - Infirmerie
         phoneNumber:
@@ -1683,7 +1724,7 @@ components:
         nonStrictFeatures:
           $ref: '#/components/schemas/detailedName'
       additionalProperties: false
-      example: example.json#/createCase/patient/0/identity
+      example: example.json#/patient/0/identity
     insStrictFeatures:
       type: object
       title: "Traits stricts de l'identit\xE9"
@@ -1696,7 +1737,7 @@ components:
           title: Date de naissance
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/patient/0/identity/strictFeatures/birthDate
+          example: example.json#/patient/0/identity/strictFeatures/birthDate
           description: Date de naissance du patient
           pattern: \d{4}-\d{2}-\d{2}
           examples:
@@ -1706,7 +1747,7 @@ components:
           title: 'Sexe '
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/patient/0/identity/strictFeatures/sex
+          example: example.json#/patient/0/identity/strictFeatures/sex
           description: Sexe du patient
           enum:
           - U
@@ -1716,7 +1757,7 @@ components:
           examples:
           - F
       additionalProperties: false
-      example: example.json#/createCase/patient/0/identity/strictFeatures
+      example: example.json#/patient/0/identity/strictFeatures
       examples:
       - birthDate: None
         sex: F
@@ -1733,7 +1774,7 @@ components:
           title: "Date Heure de cr\xE9ation de la d\xE9cision"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/creation
+          example: example.json#/medicalAnalysis/0/decision/0/creation
           description: "Groupe date heure de cr\xE9ation de la d\xE9cision.  L'indicateur\
             \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
@@ -1745,7 +1786,7 @@ components:
           title: "Type de d\xE9cision"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/type
+          example: example.json#/medicalAnalysis/0/decision/0/type
           description: "Type de d\xE9cision prise"
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
@@ -1755,7 +1796,7 @@ components:
           title: Orientation
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/orientation
+          example: example.json#/medicalAnalysis/0/decision/0/orientation
           description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
             gulateur"
           examples:
@@ -1768,7 +1809,7 @@ components:
             title: Vecteur de transport
             x-health-only: false
             x-cols: 6
-            example: example.json#/createCase/medicalAnalysis/0/decision/0/transportation/0
+            example: example.json#/medicalAnalysis/0/decision/0/transportation/0
             description: "Type de transport \xE0 engager pour la prise en charge du\
               \ patient"
             examples:
@@ -1778,7 +1819,7 @@ components:
           title: "Niveau de m\xE9dicalisation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/medicalisation
+          example: example.json#/medicalAnalysis/0/decision/0/medicalisation
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
             dicale, standard, incomplete, ...)"
           examples:
@@ -1786,7 +1827,7 @@ components:
         destination:
           $ref: '#/components/schemas/destination'
       additionalProperties: false
-      example: example.json#/createCase/medicalAnalysis/0/decision/0
+      example: example.json#/medicalAnalysis/0/decision/0
     destination:
       type: object
       title: Destination
@@ -1799,7 +1840,7 @@ components:
           title: Etablissement
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/facility
+          example: example.json#/medicalAnalysis/0/decision/0/destination/facility
           description: "Nom de l'\xE9tablissement"
           examples:
           - None
@@ -1808,7 +1849,7 @@ components:
           title: FINESS administratif
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/adminFiness
+          example: example.json#/medicalAnalysis/0/decision/0/destination/adminFiness
           description: "N\xB0 Finess administratif de l'\xE9tablissement"
           examples:
           - None
@@ -1817,7 +1858,7 @@ components:
           title: "FINESS g\xE9ographique"
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/geoFiness
+          example: example.json#/medicalAnalysis/0/decision/0/destination/geoFiness
           description: "N\xB0 Finess g\xE9ographique de l'\xE9tablissement"
           examples:
           - None
@@ -1826,7 +1867,7 @@ components:
           title: Service
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/service
+          example: example.json#/medicalAnalysis/0/decision/0/destination/service
           description: "Service concern\xE9 par l'admission du patient"
           examples:
           - None
@@ -1835,11 +1876,11 @@ components:
           title: Autre
           x-health-only: false
           x-cols: 6
-          example: example.json#/createCase/medicalAnalysis/0/decision/0/destination/freetext
+          example: example.json#/medicalAnalysis/0/decision/0/destination/freetext
           examples:
           - None
       additionalProperties: false
-      example: example.json#/createCase/medicalAnalysis/0/decision/0/destination
+      example: example.json#/medicalAnalysis/0/decision/0/destination
       examples:
       - facility: None
         adminFiness: None
