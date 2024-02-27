@@ -337,13 +337,12 @@ public class Resource {
   /**
    * Identifiant de l&#39;organisation à laquelle la ressource est rattachée
    *(caserne, SAMU etc). Se référer au DSF pour la structure normée des
-   *organisations Le format est le suivant {pays}.{domaine}.{code
-   *département}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
+   *organisations. Le format est le suivant
+   *{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
    *Dans le cas où le LRM/NexSIS sert d&#39;aggrégateur pour des véhicules
    *appartenant à un partenaire tiers (type ambulance privée), l&#39;identifiant
-   *d&#39;organisation permet d&#39;identifier ce tiers A constituer par le
-   *rédacteur du présent EMSI pour être unique, identique à
-   *&lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
+   *d&#39;organisation permet d&#39;identifier ce tiers. A constituer par le
+   *rédacteur du présent EMSI pour être unique.
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)

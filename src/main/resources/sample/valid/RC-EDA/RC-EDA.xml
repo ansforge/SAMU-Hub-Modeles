@@ -31,7 +31,7 @@
                             <name>samuA</name>
                             <URI>hubex:fr.health.samuA</URI>
                         </recipient>
-                        <createCase>
+                        <createCase xmlns="urn:emergency:cisu:2.0:createCase">
                             <caseId>samuA:CA126B445579GD4A67AV</caseId>
                             <senderCaseId>CA126B445579GD4A67AV</senderCaseId>
                             <creation>2022-09-27T08:23:34+02:00</creation>
@@ -77,7 +77,7 @@
                                     <detail>Quartier Melun Nord, Lhomme, ...</detail>
                                 </city>
                                 <access>
-                                    <floor>RDC, 1, 2, ...</floor>:
+                                    <floor>RDC, 1, 2, ...</floor>
                                     <roomNumber>A16, 37, 104, ...</roomNumber>
                                     <interphone>Dupont</interphone>
                                     <accessCode>1234A</accessCode>

@@ -56,7 +56,11 @@ public class ExternalId {
 
     SINUS("SINUS"),
 
-    SI_VIC("SI-VIC");
+    SI_VIC("SI-VIC"),
+
+    DOSSARD("DOSSARD"),
+
+    PLACE("PLACE");
 
     private String value;
 
@@ -102,14 +106,14 @@ public class ExternalId {
    * @return source
    **/
   @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public SourceEnum getSource() {
     return source;
   }
 
   @JsonProperty(JSON_PROPERTY_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setSource(SourceEnum source) {
     this.source = source;
   }
@@ -125,14 +129,14 @@ public class ExternalId {
    * @return value
    **/
   @JsonProperty(JSON_PROPERTY_VALUE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getValue() {
     return value;
   }
 
   @JsonProperty(JSON_PROPERTY_VALUE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setValue(String value) {
     this.value = value;
   }
