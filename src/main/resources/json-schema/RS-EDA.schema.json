@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.02.12",
+    "version": "24.02.16",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -642,7 +642,11 @@
             "required": [],
             "properties": {
                 "customMap": {
-                    "$ref": "#/definitions/customMap"
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/customMap"
+                    },
+                    "maxItems": 3
                 }
             },
             "additionalProperties": false,
@@ -2166,7 +2170,7 @@
                     "title": "Cl\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/key",
+                    "example": "example.json#/additionalInformation/customMap/0/key",
                     "description": "Nom de la balise"
                 },
                 "label": {
@@ -2174,7 +2178,7 @@
                     "title": "Libell\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/label",
+                    "example": "example.json#/additionalInformation/customMap/0/label",
                     "description": "Libell\u00e9 correspondant"
                 },
                 "value": {
@@ -2182,7 +2186,7 @@
                     "title": "Valeur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/value",
+                    "example": "example.json#/additionalInformation/customMap/0/value",
                     "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
                 },
                 "freetext": {
@@ -2190,12 +2194,13 @@
                     "title": "D\u00e9tails",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/freetext",
+                    "example": "example.json#/additionalInformation/customMap/0/freetext",
                     "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/additionalInformation/customMap"
+            "example": "example.json#/additionalInformation/customMap/0"
         }
-    }
+    },
+    "additionalProperties": false
 }

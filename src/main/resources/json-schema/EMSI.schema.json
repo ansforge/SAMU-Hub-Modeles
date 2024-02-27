@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.02.12",
+    "version": "24.02.16",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -2421,5 +2421,6 @@
             "additionalProperties": false,
             "example": "example.json#/RESOURCE/0/CONTACTS/0"
         }
-    }
+    },
+    "additionalProperties": false
 }

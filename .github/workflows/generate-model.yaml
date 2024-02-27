@@ -20,6 +20,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Check for changes requiring running the parser
+        uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: |
+            parsing_required:
+              - '**.py'
+              - '**.xslx'
+              - '**.csv'
+
       - name: Install Graphviz
         uses: ts-graphviz/setup-graphviz@v1
 
@@ -29,6 +39,7 @@ jobs:
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
       - name: Install JDK 11
@@ -37,14 +48,19 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: generate XSDs
+      - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
         run: gradle run
 
-      - name: copy XSDs to src
+      - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
         run: |
-          cp out/* ../../src/main/resources/json-schema/
+          mv out/*.xsd ../../src/main/resources/xsd/
+
+      - name: Remove input JSON Schemas
+        working-directory: ./csv_parser/json_schema2xsd
+        run: |
+          rm src/main/resources/*.json
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3
@@ -62,7 +78,7 @@ jobs:
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.wrapper.generator-config.json --skip-validate-spec
-          npx @openapitools/openapi-generator-cli generate -c ./config/common/common.usecase.generator-config.json --skip-validate-spec
+          npx @openapitools/openapi-generator-cli generate -c ./config/common/common.reference.generator-config.json --skip-validate-spec
           npx @openapitools/openapi-generator-cli generate -c ./config/common/common.distributionElement.generator-config.json --skip-validate-spec
 
           IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"

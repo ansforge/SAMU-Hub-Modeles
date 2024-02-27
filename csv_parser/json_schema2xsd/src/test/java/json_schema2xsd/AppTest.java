@@ -8,10 +8,23 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.Test;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import static json_schema2xsd.App.convertEnumArraysToSimpleEnum;
+import static json_schema2xsd.App.revertEnumArraysConversion;
 import static org.junit.Assert.*;
 
 public class AppTest {
@@ -21,41 +34,50 @@ public class AppTest {
     }
 
     @Test
-    public void enumArrayConversionWorks() throws JsonProcessingException {
-        String json = "{\n" +
-                "\t\"ACTOR\": {\n" +
-                "\t\t\"type\": \"array\",\n" +
-                "\t\t\"x-health-only\": true,\n" +
-                "\t\t\"items\": {\n" +
-                "\t\t\t\"type\": \"string\",\n" +
-                "\t\t\t\"title\": \"Acteurs\",\n" +
-                "\t\t\t\"x-health-only\": false,\n" +
-                "\t\t\t\"x-cols\": 6,\n" +
-                "\t\t\t\"example\": \"example.json#/emsi/EVENT/ETYPE/ACTOR/0\",\n" +
-                "\t\t\t\"description\": \"bla bla bla\",\n" +
-                "\t\t\t\"enum\": [\n" +
-                "\t\t\t\t\"value_1\",\n" +
-                "\t\t\t\t\"value_2\"\n" +
-                "\t\t\t]\n" +
-                "\t\t}\n" +
-                "\t}\n" +
-                "}";
+    public void enumArrayConversionWorks() throws IOException {
+            JsonNode node = getRootNode("schema.json");
 
-        ObjectMapper mapper = new ObjectMapper();
-        JsonNode node = mapper.readTree(json);
+            // Before conversion, node has array type and items property
+            JsonNode actorNode = node.get("ACTOR");
+            assertEquals(actorNode.get("type").asText(), "array");
+            assertNull(actorNode.get("enum"));
+            assertNotNull(actorNode.get("items"));
 
-        // Before conversion, node has array type and items property
-        JsonNode actorNode = node.get("ACTOR");
-        assertEquals(actorNode.get("type").asText(), "array");
-        assertNull(actorNode.get("enum"));
-        assertNotNull(actorNode.get("items"));
+            convertEnumArraysToSimpleEnum(node, "", new ArrayList<>());
 
-        convertEnumArraysToSimpleEnum(node, "", new ArrayList<>());
+            // After conversion, node has string type and enum property
+            assertEquals(actorNode.get("type").asText(), "string");
+            assertNotNull(actorNode.get("enum"));
+            assertNull(actorNode.get("items"));
+    }
 
-        // After conversion, node has string type and enum property
-        assertEquals(actorNode.get("type").asText(), "string");
-        assertNotNull(actorNode.get("enum"));
-        assertNull(actorNode.get("items"));
+    @Test
+    public void revertEnumArrayConversion() throws IOException {
+        Element rootElem = getXmlRootElement("EMSI.xsd");
+        List<String> enums = Arrays.asList("ACTOR", "CATEGORY", "RCLASS", "WEATHER");
 
+        AtomicInteger counter = new AtomicInteger(0);
+        revertEnumArraysConversion(rootElem, enums, counter);
+
+        assertEquals(enums.size(), counter.get());
+    }
+
+    private static JsonNode getRootNode(String fileName) throws IOException {
+        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)) {
+            InputStreamReader isr = new InputStreamReader(is);
+            ObjectMapper mapper = new ObjectMapper();
+            return mapper.readTree(isr);
+        }
+    }
+
+    private static Element getXmlRootElement(String fileName) throws IOException {
+        try (InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(fileName)) {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(is);
+            return  doc.getDocumentElement();
+        } catch (IOException | SAXException | ParserConfigurationException e) {
+            throw new IOException(e.getCause());
+        }
     }
 }

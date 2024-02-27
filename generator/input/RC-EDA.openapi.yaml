@@ -102,6 +102,7 @@ components:
             mentaires concernant l'affaire"
           examples:
           - None
+      additionalProperties: false
     qualification:
       type: object
       title: Qualification de l'affaire/dossier
@@ -545,7 +546,10 @@ components:
       required: []
       properties:
         customMap:
-          $ref: '#/components/schemas/customMap'
+          type: array
+          items:
+            $ref: '#/components/schemas/customMap'
+          maxItems: 3
       additionalProperties: false
       example: example.json#/additionalInformation
     nomenclature:
@@ -1674,7 +1678,7 @@ components:
           title: "Cl\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/key
+          example: example.json#/additionalInformation/customMap/0/key
           description: Nom de la balise
           examples:
           - neighborhood
@@ -1683,7 +1687,7 @@ components:
           title: "Libell\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/label
+          example: example.json#/additionalInformation/customMap/0/label
           description: "Libell\xE9 correspondant"
           examples:
           - Quartier
@@ -1692,7 +1696,7 @@ components:
           title: Valeur
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/value
+          example: example.json#/additionalInformation/customMap/0/value
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
           examples:
           - LYON 2e arrondissement
@@ -1701,13 +1705,13 @@ components:
           title: "D\xE9tails"
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/freetext
+          example: example.json#/additionalInformation/customMap/0/freetext
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
             \ de ce matching additionnel"
           examples:
           - "Pr\xE9cision sur le quartier d'intervention"
       additionalProperties: false
-      example: example.json#/additionalInformation/customMap
+      example: example.json#/additionalInformation/customMap/0
       examples:
       - key: neighborhood
         label: Quartier
