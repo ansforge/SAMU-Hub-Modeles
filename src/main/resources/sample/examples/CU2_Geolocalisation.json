@@ -27,7 +27,7 @@
       "move": "STATIQUE",
       "engine": "ON",
       "status": "ENGAGED",
-      "engagedStatus": "ON-SCENE"
+      "engagedStatus": "ON_SCENE"
     },
     {
       "id": "76_45104#SMUR4#",
