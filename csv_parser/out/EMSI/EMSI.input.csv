@@ -9,19 +9,10 @@ Peut ne pas être interprété par les LRM.",Describes the nature of the message
 A valoriser avec le même horaire que dateTimeSent dans le message RC-DE associé.
 Dans le cadre d'une demande de concours, obligatoire. Ce champ est valorisée avec l'heure de création de la demande de concours chez le partenaire emetteur. L'heure d'envoi du message peut être obtenue via l'enveloppe EDXL-DE (se référer au DST)",Describes the date and time when the EMSI was created.,2022-09-27T08:25:54+02:00,X,CREATION,,CREATION,,,,,0..1,1..1,0..1,X,,datetime,,Format datetime décrit dans le DSF,X,X
 5,6,,Lien,,,,,Optionnel,Provides a link to one or more EMSI files,,X,LINK,,LINK,,,,,0..n,0..n,0..n,,X,link,,,X,X
-6,7,,,ID,,,,"A renseigner avec l'identifiant local de l'affaire du partenaire requérant
-Dans NexSIS;
-RG 1  – : création du premier message EMSi suite réception Affaire
-• <LINK><LINK ID> = <Numéro d'affaire initiale>
-• <LINK><LINK ROLE> = 'ADDSTO',
-RG 2 : Pour tous les messages créés après le premier, EMSI <LINK> est complété par <LINK><LINK ID> contenant l'ID de message EMSI précédent créé au sein du SGO rédacteur * <LINK><LINK ROLE> = 'SPRSDS'",,samuA:CA126B445579GD4A67AV,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
-7,8,,,Rôle du lien,,,,"Optionnel : à valoriser avec la constante ""SPRSDS"" en EMSI-EO et avec le libellé ADDSTO en EMSI-DC
-
-Dans Nexsis;
-RG 1  – : création du premier message EMSi suite réception Affaire * <LINK><LINK ID> = <Numéro d'affaire initiale>
-• <LINK><LINK ROLE> = 'ADDSTO',
-RG 2 : Pour tous les messages créés après le premier, EMSI <LINK> est complété par <LINK><LINK ID> contenant l'ID de message EMSI précédent créé au sein du SGO rédacteur * <LINK><LINK ROLE> = 'SPRSDS'",Define the relation of the linked EMSI.,ADDSTO,X,LINK_ROLE,,LINK_ROLE,,,,,0..1,0..1,1..1,X,,string,,"ENUM: ADDSTO, SPRSDS",X,X
-8,9,,Niveau,,,,,"A valoriser avec la valeur constante ""OPR"" dans le cadre du message EMSI-EO",Describes the level of the node creating this EMSI file.,OPR,X,LEVEL,,LEVEL,,,,,0..1,0..1,1..1,X,,string,,"ENUM: STRTGC, OPR, TACTCL",X,X
+6,7,,,ID,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",,fr.health.samu440-DRFR15DDXAAJJJ0000,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
+7,8,,,Rôle du lien,,,,"Optionnel : à valoriser avec la constante ""SPRSDS"" pour un message EMSI, incluant des missions RDC et/ou OPG et avec le libellé ""ADDSTO"" pour un message EMSI, incluant uniquement qu'une demande de concours (EMSI-DC).",Define the relation of the linked EMSI.,ADDSTO,X,LINK_ROLE,,LINK_ROLE,,,,,0..1,0..1,1..1,X,,string,,"ENUM: ADDSTO, SPRSDS",X,X
+8,9,,Niveau,,,,,"A valoriser avec la valeur constante ""OPR"" dans le cadre d'un message EMSI, incluant une mission OPG",Describes the level of the node creating this EMSI file.,OPR,X,LEVEL,,LEVEL,,,,,0..1,0..1,1..1,X,,string,,"ENUM: STRTGC, OPR, TACTCL",X,X
 9,10,,Niveau de classification,,,,,"Optionnel
 
 Dans NexSIS ; 
@@ -30,20 +21,18 @@ Les LRM doivent également renseigner la valeur ""RESTRC""",Describes the securi
 10,11,,Texte libre,,,,,"Texte libre, optionnel
 
 Dans NexSIS;
- Fonction de l'événement générateur
+Fonction de l'événement générateur
 RG 1 : la valeur de <context><freetext> reste à  'Création d'un événement opérationnel EMSI' & version & 'suite à réception d'une affaire*' dans le cadre de la création d'une opération commune (conforme RG 2 de NEXSIS-6618)
 RG 3 : les événements générateurs sont ceux définis au sein de NEXSIS-6619 RG 1 de traçabilité  ( input = <Evenement à l'origine> = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajoutés  les éventuels événements à venir.",Allows free text description. Max 500 characters,Contexte de grand incendie à Nantes,X,FREETEXT,,FREETEXT,,,,,0..1,0..1,0..1,,,string,,,X,X
 11,12,,Origine,,,,,Optionnel,Provides the identity of the creator of the EMSI.,,,ORIGIN,,ORIGIN,,,,,0..1,0..1,0..1,,X,origin,,,X,X
 12,13,,,Origine ID,,,,"Optionnel, identifiant du service à l'origine de l'EMSI
 Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}.{domaine}.{code département}.{organisation}.{structure interne}*.{unité fonctionnelle}*.","The unique identifier of an organization
-element.",fr.health.44.samu44,X,ORG_ID,,ORG_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
-13,14,,,ID d'utilisateur de l'origine,,,,"Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI",It provides the unique identifier of the user who created the EMSI. ,,,USER_ID,,USER_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",The unique identifier of an organization element.,fr.health.samu440,X,ORG_ID,,ORG_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
+13,14,,,ID d'utilisateur de l'origine,,,,"Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI",It provides the unique identifier of the user who created the EMSI. ,id1234,,USER_ID,,USER_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
 14,15,,,Nom Origine ,,,,"Optionnel
-
-A constituer par le rédacteur pour être intelligible (exemple [structure].[nom])","It provides the name which identifies the agency and the EMSI node.
+A constituer par le rédacteur pour être intelligible (exemple [structure] [code département])","It provides the name which identifies the agency and the EMSI node.
 NOTE: Subsequently, other information such as contact point,
-telephone number or address can be provided in this element.",samu44,X,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
+telephone number or address can be provided in this element.",samu 44,X,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
 15,16,,Informations exterieures ,,,,,"Optionnel
 Permettra à terme d'indiquer des liens vers des objets du SGV de NexSIS","Describes links to additional external infor- mation.
 Originators should consider how this reference may affect the interpretation of the EMSI in the case where the referenced external information is not available to the recipient.",,X,EXTERNAL_INFO,,EXTERNAL_INFO,,,,,0..n,0..n,0..n,,X,externalInfo,,,X,X
@@ -53,11 +42,14 @@ Originators should consider how this reference may affect the interpretation of 
 19,20,,Niveau d'urgence de l'événement,,,,,"Niveau d'urgence pour l'affaire en cours
 Dans le cadre des échanges LRM-NexSIS, optionnel",Defines the urgency of the message. ,URGENT,,URGENCY,,URGENCY,,,,,0..1,0..1,0..1,,,string,,"ENUM: URGENT, NOT_URGENT",X,X
 20,21,Evenement,,,,,,Objet générique EVENT,Describes the event that the EMSI relates to.,,,EVENT,,EVENT,,,,,1..1,1..1,1..1,,X,event,,,X,X
-21,22,,Identifiant local de l'affaire,,,,,Identifiant local de l'affaire dans le système du partenaire emetteur,Describes the identifier of the event for the creator of the EMSI. Unique inside the node.,samu44,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
+21,22,,Identifiant local de l'affaire,,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire émetteur (champ senderCaseId du message RC-EDA).
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",Describes the identifier of the event for the creator of the EMSI. Unique inside the node.,fr.health.samu440-DRFR15DDXAAJJJ0000,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
 22,23,,Nom donné à l'événement,,,,,"Optionnel
 Dans nexSIS; [libelle NF 1 métier] & "" - "" & [libelle TL 1 métier] & "" - "" & [libellé commune]",Provides a name for the event. It is the responsibility of the node to have unique event names.,Grand Incendie Nantes,,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
-23,24,,Identifiant de l'affaire,,,,,"Identifiant d’affaire partagé issu du message RC-EDA transmis en amont
-NB : Dans le cas d’un partage initié par un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID",Provides a link to the main event ift he current event is a sub-event of this main event,samuA:CA126B445579GD4A67AV,,MAIN_EVENT_ID,,MAIN_EVENT_ID,,,,,0..1,1..1,0..1,X,,string,,,X,X
+23,24,,Identifiant de l'affaire,,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}
+
+NB : Si l'initiateur du partage de dossier est le même que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID",Provides a link to the main event ift he current event is a sub-event of this main event,fr.health.samu440-DRFR15DDXAAJJJ0000,,MAIN_EVENT_ID,,MAIN_EVENT_ID,,,,,0..1,1..1,0..1,X,,string,,,X,X
 24,25,,Type de l'événement,,,,,Optionnel,"The type of the event, which is the collation of
 several facets.",,X,ETYPE,,ETYPE,,,,,0..1,0..1,0..1,,X,etype,,,X,X
 25,26,,,Catégorie d'événement,,,,"Le champ peut ne pas être interprété ou renseigné avec une valeur comme 'UKN' = 'UNKOWN'
@@ -105,9 +97,12 @@ COM = event complete, IPR = event in progress, NST = event not started, STOP = S
 37,38,,Lien vers d'autres objets événements EMSI,,,,,"Optionnel
 Peut être renseigné avec les identifiants de l'affaire traitées dans d'autres systèmes partenaires","Provides the list of events identifiers which may be related to the same event.
 The software using the EMSI files in different nodes shall provide the capability to map identifiers for the same event coming from different nodes.",,,REFERENCE,,REFERENCE,,,,,0..n,0..n,0..n,,X,reference,,,X,X
-38,39,,,ID de l'organisation,,,,Identification de l'organisation partenaire,"Defines the unique identifier for a node creating the EMSI.
-If the element OTHER_EVENT_ID is provided.",fr.health.44.samu44,,ORG_ID,,ORG_ID,,,,,1..1,1..1,1..1,,,string,,,X,X
-39,40,,,ID des autres event,,,,Indique d'autres identifiants utilisés pour l'affaire dans le système partenaire,"States the identifiers for the same event, used by other agencies.",samu4412345,,OTHER_EVENT_ID,,OTHER_EVENT_ID,,,,,1..n,1..n,1..n,,,string,,,X,X
+38,39,,,ID de l'organisation,,,,"Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
+NB : ce champ (EVENT.REFERENCE.ORG_ID) ne peut pas être le même que le champ CONTEXT.LINK.ID ou EVENT.ID","Defines the unique identifier for a node creating the EMSI.
+If the element OTHER_EVENT_ID is provided.",fr.fire.cgo044,,ORG_ID,,ORG_ID,,,,,1..1,1..1,1..1,,,string,,,X,X
+39,40,,,ID des autres event,,,,"Indique d'autres identifiants utilisés pour l'affaire dans le système partenaire.
+A renseigner avec l'identifiant de l'organisation suivi de l'identifiant local de l'affaire du partenaire dans son système.
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}","States the identifiers for the same event, used by other agencies.",,,OTHER_EVENT_ID,,OTHER_EVENT_ID,,,,,1..n,1..n,1..n,,,string,,,X,X
 40,41,,Victimes,,,,,"Dans le cadre d'une demande de concours, optionnel. Le champ peut ne pas être émis ni interprété","Provides the number of the actual or predicted casualties.
 This is the description of the actual casualties if there is no DATIME element or for predicted casualties, at the time of the DATIME element.",,,CASUALTIES,,CASUALTIES,,,,,0..n,0..n,0..n,,X,casualties,,,X,X
 41,42,,,Contexte,,,,Le champ doit être renseigné mais peut ne pas être interprété,"Defines the context related to the casualties element.
@@ -118,9 +113,9 @@ PRELIM_STAT = preliminary assessment, made by an emergency responder on scene, w
 42,43,,,Timestamp du contexte,,,,Optionnel,Describes the date and time of the predicted context.,2022-09-27T08:00:00+02:00,,DATIME,,DATIME,,,,,0..1,0..1,0..1,,,datetime,,Format datetime décrit dans le DSF,X,X
 43,44,,,Décontamination,,,,Optionnel,Provides the number of casualties who need treatment against CBRN agents in the current context.,0,,DECONT,,DECONT,,,,,0..1,0..1,0..1,,,integer,,,X,X
 44,45,,,Triage Rouge,,,,"Optionnel, Triage victime au sens EMSI","Provides the number of casualties at the “RED” priority level in the current context - highest priority for treatment or evac- uation, as urgent resuscitative interventions are required to ensure survival of the casualty.",0,,TRIAGERED,,TRIAGERED,,,,,0..1,0..1,0..1,,,integer,,,X,X
-45,46,,,Jaune,,,,Optionnel,"Provides the number of casualties at the “YELLOW” priority level in the current context - comprises cases that require early treatment, particularly surgery, and it is recommended that evacuation to a surgical facility takes place within 6 h of injury. ",1,,TRIAGEYELLOW,,TRIAGEYELLOW,,,,,0..1,0..1,0..1,,,integer,,,X,X
-46,47,,,Vert,,,,Optionnel,Provides the number of casualties at the “GREEN” priority level in the current context. Treatment is less urgent in this category and can be deferred if there are other casualties requiring limited treatment or evac- uation assets.,0,,TRIAGEGREEN,,TRIAGEGREEN,,,,,0..1,0..1,0..1,,,integer,,,X,X
-47,48,,,Noir,,,,Optionnel,"Provides the number of casualties at the “BLACK” priority level in the current context. This category refers to casualties whose injuries or illnesses are so serious that they have minimal chances of survival or who are dead on arrival. Should there be competition for limited medical resources, such cases will have lower priority for evacuation or treatment, despite the severity of their condition. ",0,,TRIAGEBLACK,,TRIAGEBLACK,,,,,0..1,0..1,0..1,,,integer,,,X,X
+45,46,,,Triage Jaune,,,,Optionnel,"Provides the number of casualties at the “YELLOW” priority level in the current context - comprises cases that require early treatment, particularly surgery, and it is recommended that evacuation to a surgical facility takes place within 6 h of injury. ",1,,TRIAGEYELLOW,,TRIAGEYELLOW,,,,,0..1,0..1,0..1,,,integer,,,X,X
+46,47,,,Triage Vert,,,,Optionnel,Provides the number of casualties at the “GREEN” priority level in the current context. Treatment is less urgent in this category and can be deferred if there are other casualties requiring limited treatment or evac- uation assets.,0,,TRIAGEGREEN,,TRIAGEGREEN,,,,,0..1,0..1,0..1,,,integer,,,X,X
+47,48,,,Triage Noir,,,,Optionnel,"Provides the number of casualties at the “BLACK” priority level in the current context. This category refers to casualties whose injuries or illnesses are so serious that they have minimal chances of survival or who are dead on arrival. Should there be competition for limited medical resources, such cases will have lower priority for evacuation or treatment, despite the severity of their condition. ",0,,TRIAGEBLACK,,TRIAGEBLACK,,,,,0..1,0..1,0..1,,,integer,,,X,X
 48,49,,,Disparus,,,,Optionnel,"Provides the number of individuals reported or presumed missing, kidnapped, etc. in the current context.",0,,MISSING,,MISSING,,,,,0..1,0..1,0..1,,,integer,,,X,X
 49,50,,Evacués,,,,,Optionnel,Provides the number of the evacuated people,,,EVAC,,EVAC,,,,,0..n,0..n,0..n,,X,evac,,,X,X
 50,51,,,timestamp,,,,Optionnel,It provides the date and time of the predicted context.,2022-09-27T10:00:00+02:00,,DATIME,,DATIME,,,,,0..1,0..1,0..1,,,datetime,,Format datetime décrit dans le DSF,X,X
@@ -187,11 +182,11 @@ Dans le cadre d'une mission décrivant les opérations en cours :
 74,75,,Identifiant de la mission,,,,,"Contient un identifiant de demande de concours unique. Cet identifiant sera réutilisable par le partenaire pour répondre à cette demande.
 Identifiant unique de la mission dans le système du partenaire la conduisant.","Defines the unique identifier of the
 mission inside the current node.",/FF#bb511708-b004-4d7e-8820-1d56c19f1823,X,ID,,ID,,,,,0..1,1..1,0..1,X,,string,,,X,X
-75,76,,Identifiant de l'organisation propriétaire,,,,,"Indique l'organisation du partenaire concerné par la Demande de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut être utilisé.
-Indique l'organisation du service réalisant la mission. Dans le cas d'une réponse, c'est l'organisation du concourant qui doit être indiquée.
+75,76,,Identifiant de l'organisation propriétaire,,,,,"Indique l'organisation du partenaire concerné par la Demande de Concours (voir DSF). Le code CRRA ou le code du SIS peut être utilisé.
+Indique l'organisation du service réalisant la mission. 
+Dans le cas d'une réponse, c'est l'organisation du concourant qui doit être indiquée.
 Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
-identique à <CONTEXT><ORIGIN><ORG_ID>",Defines the unique identifier of the node which controls the mission. It can be omitted if the mission is controlled by the node which provides the EMSI.,fr.health.44.samu44,X,ORG_ID,,ORG_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",Defines the unique identifier of the node which controls the mission. It can be omitted if the mission is controlled by the node which provides the EMSI.,fr.fire.cgo440,X,ORG_ID,,ORG_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
 76,77,,Nom de la mission,,,,,"Le nom de la mission est construit à partir de l'expression régulière suivante :
 ""#DEMANDE_CONCOURS#""{libelle_cadre_conventionnel}""#""{code_cadre_conventionnel}""#""
 où le code_cadre_conventionnel est issue d'une nomenclature CISU-Cadre Conventionnel (A Venir)
@@ -220,7 +215,7 @@ Horaire effectif de début de la mission",Describes the date and time of the Sta
 - Dans le cadre d'une mission de réponse à demande de concours : ne pas renseigner
 - Dans le cadre d'une mission décrivant les opérations en cours :
  Si c'est un déplacement, l'heure d'arrivée, si c'est une prise en charge patient/victime, la fin de la prise en charge.",Describes the date and time of the End of the mission.,2022-09-27T08:55:00+02:00,X,END_TIME,,END_TIME,,,,,0..1,0..1,0..1,,,datetime,,,X,X
-80,81,,Ressource engagée,,,,,Liste des identifiants des ressources engagées dans la mission (voir RESOURCE.ID),Defines the link with the description in the RESOURCE/ID element(s).,77_45102#VSAV 1#,X,RESOURCE_ID,,RESOURCE_ID,,,,,0..n,0..n,0..n,,,string,,,X,X
+80,81,,Ressource engagée,,,,,Liste des identifiants des ressources engagées dans la mission (voir RESOURCE.ID),Defines the link with the description in the RESOURCE/ID element(s).,77_45102#VSAV 1,X,RESOURCE_ID,,RESOURCE_ID,,,,,0..n,0..n,0..n,,,string,,,X,X
 81,82,,Missions parentes,,,,,"Dans le cadre d'une demande de concours, ne doit pas être renseigné
 La mission peut déjà être rattachée à des missions filles mais leurs détails ne doivent pas être nécessaires pour traiter la demande de concours dans le système du partenaire.
 Cf. DSF pour l'organisation liens entre MISSION (sous-section ""Découpage de l'opération en missions"")",Defines the list of the missions which shall be completed before the beginning of this mission.,,X,PARENT_MISSION_ID,,PARENT_MISSION_ID,,,,,0..n,0..n,0..n,,,string,,,X,X
@@ -250,12 +245,12 @@ height, weight, size, etc. Table B.18 — RESOURCE RTYPE CHARACTERISTICS",,,CHAR
 Dans le cas d'un véhicule agrégé par un LRM (comme un SMUR), l'ID doit être valorisé avec son immatriculation.
 Dans le cas d'un véhicule agrégé par NexSIS, l'ID fournit peut ne pas correspondre à une immatriculation.","Defines a unique identifier of the resource inside the node.
 NOTE 1: An agency or a node may have several “unique identifiers” for a resource. It is an agency or node responsibility to define which one of these identifiers is used.
-NOTE 2: If the resource is not controlled by the node which is providing the EMSI, the ORG_ID element shall provide the identifier of the node which controls this resource.",77_45102#VSAV 1#,X,ID,,ID,,,,,0..1,,0..1,,,string,,voir description,X,X
+NOTE 2: If the resource is not controlled by the node which is providing the EMSI, the ORG_ID element shall provide the identifier of the node which controls this resource.",77_45102#VSAV 1,X,ID,,ID,,,,,0..1,,0..1,,,string,,voir description,X,X
 92,93,,Identifiant de l'organisation propriétaire,,,,,"Identifiant de l'organisation à laquelle la ressource est rattachée (caserne, SAMU etc).
-Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}.{domaine}.{code département}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
-Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenant à un partenaire tiers (type ambulance privée), l'identifiant d'organisation permet d'identifier ce tiers
-A constituer par le rédacteur du présent EMSI pour être unique, identique à <CONTEXT><ORIGIN><ORG_ID>",Defines the unique identifier of the node which controls the resource. It can be omitted if the resource is controlled by the node which provides the EMSI.,FR:Administration:44:CASERNENANTES,X,ORG_ID,,ORG_ID,,,,,0..1,,0..1,,,string,,,X,X
+Se référer au DSF pour la structure normée des organisations.
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
+Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenant à un partenaire tiers (type ambulance privée), l'identifiant d'organisation permet d'identifier ce tiers.
+A constituer par le rédacteur du présent EMSI pour être unique.",Defines the unique identifier of the node which controls the resource. It can be omitted if the resource is controlled by the node which provides the EMSI.,fr.fire.cgo440,X,ORG_ID,,ORG_ID,,,,,0..1,,0..1,,,string,,,X,X
 93,94,,Nom de la ressource,,,,,"Nom donné à la ressource par le partenaire. L'immatriculation peut être utilisée dans le nom courant des véhicules.
 Dans le cas pompier, les véhicules sont nommés
 Dans le cas d'équipier, cela peut être leur nom",Provides a name for this resource (ex: person or team),VSAV 1 Nantes,X,NAME,,NAME,,,,,0..1,,0..1,,,string,,,X,X
@@ -265,7 +260,7 @@ Par exemple, pour un véhicule, sa plaque d'immatriculation.",,,X,FREETEXT,,FREE
 95,96,,Localisation de la ressource,,,,,"Permet de décrire les différentes posistions de la ressource
 Par exemple, pour un même objet RESOURCE, la position actualisée et la position de destination de l'objet RESSOURCE peuvent être fournies simultanément via deux objets RGEO distincts
 L'élémentgroup <RESOURCE> peut contenir 1 à plusieurs objet RGEO permettant de définir la position, l'origine ou la destination du moyen, associé aux états de mobilisation. Rgeo.position de chaque RGEO est spécifique à chaque RGEO. En dehors <RGEO>.<Type>='CUR', tous les autres RGEO posséde une RGEO.POSITION.ADRESSE>",Allows to define several positions of the resource at different times.,,X,RGEO,,RGEO,,,,,0..n,,0..n,,X,rgeo,,,X,X
-96,97,,,Horaire de la localisation,,,,"Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de possition, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.","It provides the date and time for the use of this geographical location, for example for
+96,97,,,Horaire de la localisation,,,,"Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de position, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.","It provides the date and time for the use of this geographical location, for example for
 defining the estimated time of arrival (ETA) at the incident ground. Permet de fournir le délai souhaité",2022-09-27T08:44:00+02:00,X,DATIME,,DATIME,,,,,0..1,,0..1,,,datetime,,,X,X
 97,98,,,Type de localisation,,,,"Type de position indiqué pour la ressource :
 - ASP : assembly point. Point de rassemblement par défaut des ressources liées à la mission. Peut ne pas être utilisé

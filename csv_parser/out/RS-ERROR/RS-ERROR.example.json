@@ -1,0 +1,8 @@
+{
+    "errorCode": {
+        "statusCode": 101,
+        "statusString": "NOT_ALLOWED_CONTENT_TYPE"
+    },
+    "errorCause": "The following errors have occurred:\\nNot allowed content type",
+    "sourceMessage": "messageSource{}"
+}

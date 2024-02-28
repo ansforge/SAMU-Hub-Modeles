@@ -4,19 +4,17 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant technique de l'affaire et partagé entre tous les intervenants.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par les systèmes du partenaire récepteur de la primo-demande de secours et contient une clé conventionnelle permettant d'identifier la source.
-Valorisation :
-{cleConventionnelle}:{cleUnique}
-où cleConventionnelle est la clé utilisée par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le système du partenaire emetteur.
-cleUnique est une chaîne de caractère (string) comprise entre 4 et 22 caractères alphanumériques.</documentation>
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
-                    <documentation>Valoriser avec l'identifiant de l'affaire dans le SI de l'émetteur du message
-Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS
-Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caractères de l'identifiant local de leur partenaire.</documentation>
+                    <documentation>Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
+Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
+</documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
@@ -33,6 +31,8 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element name="qualification" type="x:qualification"/>
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element minOccurs="0" name="freetext" type="string">
@@ -65,7 +65,7 @@ Dans les messages NexSIS, va souvent correspondre à la concaténation suivant d
 Comprend au maximum 255 caractères</documentation>
                 </annotation>
             </element>
-            <element name="name" type="string">
+            <element minOccurs="0" name="name" type="string">
                 <annotation>
                     <documentation>Indique le nom de lieu : nom commercial, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
                 </annotation>
@@ -375,6 +375,47 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
         </sequence>
     </complexType>
+    <complexType name="patient">
+        <sequence>
+            <element name="id" type="string">
+                <annotation>
+                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="identity" type="x:insIdentity"/>
+        </sequence>
+    </complexType>
+    <complexType name="decision">
+        <sequence>
+            <element minOccurs="0" name="patientId" type="string">
+                <annotation>
+                    <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
+                </annotation>
+            </element>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de décision prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="medicalisation" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
+        </sequence>
+    </complexType>
     <complexType name="additionalInformation">
         <sequence>
             <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
@@ -509,7 +550,7 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
             <element minOccurs="0" name="entrance" type="string"/>
             <element minOccurs="0" name="entity" type="string">
                 <annotation>
-                    <documentation>Nom du service concerné au sein de l'établissement</documentation>
+                    <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="phoneNumber" type="decimal">
@@ -949,8 +990,8 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
             <element name="organization" type="string">
                 <annotation>
                     <documentation>Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
-Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.</documentation>
+Se référer au DSF pour la structure normée des organisations.
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.</documentation>
                 </annotation>
             </element>
             <element name="controlRoom" type="string">
@@ -1053,6 +1094,64 @@ Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux 
 Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
                 </annotation>
             </element>
+        </sequence>
+    </complexType>
+    <complexType name="insIdentity">
+        <sequence>
+            <element minOccurs="0" name="strictFeatures" type="x:insStrictFeatures"/>
+            <element minOccurs="0" name="nonStrictFeatures" type="x:detailedName"/>
+        </sequence>
+    </complexType>
+    <complexType name="insStrictFeatures">
+        <sequence>
+            <element minOccurs="0" name="birthDate">
+                <annotation>
+                    <documentation>Date de naissance du patient</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\d{4}-\d{2}-\d{2}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="sex">
+                <annotation>
+                    <documentation>Sexe du patient</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="U"/>
+                        <enumeration value="F"/>
+                        <enumeration value="M"/>
+                        <enumeration value="O"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="destination">
+        <sequence>
+            <element minOccurs="0" name="facility" type="string">
+                <annotation>
+                    <documentation>Nom de l'établissement</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="adminFiness" type="string">
+                <annotation>
+                    <documentation>N° Finess administratif de l'établissement</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="geoFiness" type="string">
+                <annotation>
+                    <documentation>N° Finess géographique de l'établissement</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="service" type="string">
+                <annotation>
+                    <documentation>Service concerné par l'admission du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="customMap">
