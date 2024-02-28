@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,90 +34,74 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Decision;
-import java.util.ArrayList;
+import com.hubsante.model.cisu.DetailedName;
+import com.hubsante.model.cisu.InsStrictFeatures;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * MedicalAnalysis
+ * InsIdentity
  */
-@JsonPropertyOrder({MedicalAnalysis.JSON_PROPERTY_PATIENT_ID,
-                    MedicalAnalysis.JSON_PROPERTY_DECISION})
-@JsonTypeName("medicalAnalysis")
+@JsonPropertyOrder({InsIdentity.JSON_PROPERTY_STRICT_FEATURES,
+                    InsIdentity.JSON_PROPERTY_NON_STRICT_FEATURES})
+@JsonTypeName("insIdentity")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class MedicalAnalysis {
-  public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
-  private String patientId;
+public class InsIdentity {
+  public static final String JSON_PROPERTY_STRICT_FEATURES = "strictFeatures";
+  private InsStrictFeatures strictFeatures;
 
-  public static final String JSON_PROPERTY_DECISION = "decision";
-  private List<Decision> decision;
+  public static final String JSON_PROPERTY_NON_STRICT_FEATURES =
+      "nonStrictFeatures";
+  private DetailedName nonStrictFeatures;
 
-  public MedicalAnalysis() {}
+  public InsIdentity() {}
 
-  public MedicalAnalysis patientId(String patientId) {
+  public InsIdentity strictFeatures(InsStrictFeatures strictFeatures) {
 
-    this.patientId = patientId;
+    this.strictFeatures = strictFeatures;
     return this;
   }
 
   /**
-   * ID du patient concerné, lorsque le patient existe et est identifié
-   * @return patientId
+   * Get strictFeatures
+   * @return strictFeatures
    **/
-  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
+  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getPatientId() {
-    return patientId;
+  public InsStrictFeatures getStrictFeatures() {
+    return strictFeatures;
   }
 
-  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
+  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPatientId(String patientId) {
-    this.patientId = patientId;
+  public void setStrictFeatures(InsStrictFeatures strictFeatures) {
+    this.strictFeatures = strictFeatures;
   }
 
-  public MedicalAnalysis decision(List<Decision> decision) {
+  public InsIdentity nonStrictFeatures(DetailedName nonStrictFeatures) {
 
-    this.decision = decision;
-    return this;
-  }
-
-  public MedicalAnalysis addDecisionItem(Decision decisionItem) {
-    if (this.decision == null) {
-      this.decision = new ArrayList<>();
-    }
-    this.decision.add(decisionItem);
+    this.nonStrictFeatures = nonStrictFeatures;
     return this;
   }
 
   /**
-   * Get decision
-   * @return decision
+   * Get nonStrictFeatures
+   * @return nonStrictFeatures
    **/
-  @JsonProperty(JSON_PROPERTY_DECISION)
+  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Decision> getDecision() {
-    return decision;
+  public DetailedName getNonStrictFeatures() {
+    return nonStrictFeatures;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_DECISION)
+  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDecision(List<Decision> decision) {
-    if (decision == null) {
-      return;
-    }
-    if (this.decision == null) {
-      this.decision = new ArrayList<>();
-    }
-    this.decision.addAll(decision);
+  public void setNonStrictFeatures(DetailedName nonStrictFeatures) {
+    this.nonStrictFeatures = nonStrictFeatures;
   }
 
   @Override
@@ -128,24 +112,26 @@ public class MedicalAnalysis {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    MedicalAnalysis medicalAnalysis = (MedicalAnalysis)o;
-    return Objects.equals(this.patientId, medicalAnalysis.patientId) &&
-        Objects.equals(this.decision, medicalAnalysis.decision);
+    InsIdentity insIdentity = (InsIdentity)o;
+    return Objects.equals(this.strictFeatures, insIdentity.strictFeatures) &&
+        Objects.equals(this.nonStrictFeatures, insIdentity.nonStrictFeatures);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientId, decision);
+    return Objects.hash(strictFeatures, nonStrictFeatures);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class MedicalAnalysis {\n");
-    sb.append("    patientId: ")
-        .append(toIndentedString(patientId))
+    sb.append("class InsIdentity {\n");
+    sb.append("    strictFeatures: ")
+        .append(toIndentedString(strictFeatures))
         .append("\n");
-    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
+    sb.append("    nonStrictFeatures: ")
+        .append(toIndentedString(nonStrictFeatures))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }
