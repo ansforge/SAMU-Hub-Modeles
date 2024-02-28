@@ -43,7 +43,6 @@ import java.util.Objects;
 })
 @JacksonXmlRootElement(localName = "edxlDistribution")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class EdxlEnvelope {
 
     @JsonProperty(value = "distributionID", required = true)
