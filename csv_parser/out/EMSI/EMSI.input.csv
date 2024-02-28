@@ -99,7 +99,7 @@ Peut être renseigné avec les identifiants de l'affaire traitées dans d'autres
 The software using the EMSI files in different nodes shall provide the capability to map identifiers for the same event coming from different nodes.",,,REFERENCE,,REFERENCE,,,,,0..n,0..n,0..n,,X,reference,,,X,X
 38,39,,,ID de l'organisation,,,,"Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
 NB : ce champ (EVENT.REFERENCE.ORG_ID) ne peut pas être le même que le champ CONTEXT.LINK.ID ou EVENT.ID","Defines the unique identifier for a node creating the EMSI.
-If the element OTHER_EVENT_ID is provided.",fr.fire.cgo044,,ORG_ID,,ORG_ID,,,,,1..1,1..1,1..1,,,string,,,X,X
+If the element OTHER_EVENT_ID is provided.",fr.fire.cgo440,,ORG_ID,,ORG_ID,,,,,1..1,1..1,1..1,,,string,,,X,X
 39,40,,,ID des autres event,,,,"Indique d'autres identifiants utilisés pour l'affaire dans le système partenaire.
 A renseigner avec l'identifiant de l'organisation suivi de l'identifiant local de l'affaire du partenaire dans son système.
 {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}","States the identifiers for the same event, used by other agencies.",,,OTHER_EVENT_ID,,OTHER_EVENT_ID,,,,,1..n,1..n,1..n,,,string,,,X,X

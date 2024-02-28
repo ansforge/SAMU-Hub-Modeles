@@ -518,9 +518,16 @@ strict digraph {
                 <TR>
                 <TD ><B>decision</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >patientId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >medicalisation <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >medicalisation <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	decision -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	decision -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
+	medicalAnalysis [label=<<TABLE>
+                <TR>
+                <TD ><B>medicalAnalysis</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet medicalAnalysis</I></TD></TR><TR><TD BORDER="0" >patientId <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	medicalAnalysis -> createCase [constraint=true headlabel=1 taillabel="0..*"]
 	newAlert [label=<<TABLE>
                 <TR>
                 <TD ><B>newAlert</B></TD>
