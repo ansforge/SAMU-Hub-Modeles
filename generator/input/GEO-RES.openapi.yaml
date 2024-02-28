@@ -87,7 +87,7 @@ components:
           example: example.json#/resourceDetails/0/mobility
           description: "Mobilit\xE9 de la ressource (fix, vehicle, helicopter, ship)"
           examples:
-          - Vehicle
+          - VEHICLE
         capacity:
           type: string
           title: "Capacit\xE9s de la ressource"
@@ -96,7 +96,7 @@ components:
           example: example.json#/resourceDetails/0/capacity
           description: "Capacit\xE9 de transport d'un patient"
           examples:
-          - None
+          - EMERGENCY
         contacts:
           type: array
           items:

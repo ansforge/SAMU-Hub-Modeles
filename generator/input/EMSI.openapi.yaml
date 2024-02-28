@@ -1430,7 +1430,7 @@ components:
             \ interne}*.{unit\xE9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID)\
             \ ne peut pas \xEAtre le m\xEAme que le champ CONTEXT.LINK.ID ou EVENT.ID"
           examples:
-          - fr.fire.cgo440
+          - fr.fire.cgo044
         OTHER_EVENT_ID:
           type: array
           x-health-only: false

@@ -4,10 +4,10 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}-{senderCaseId}.
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}</documentation>
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
@@ -32,7 +32,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalAnalysis" type="x:medicalAnalysis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element minOccurs="0" name="freetext" type="string">
@@ -385,14 +385,35 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
         </sequence>
     </complexType>
-    <complexType name="medicalAnalysis">
+    <complexType name="decision">
         <sequence>
             <element minOccurs="0" name="patientId" type="string">
                 <annotation>
                     <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de décision prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="medicalisation" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -1106,32 +1127,6 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     </restriction>
                 </simpleType>
             </element>
-        </sequence>
-    </complexType>
-    <complexType name="decision">
-        <sequence>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="type" type="string">
-                <annotation>
-                    <documentation>Type de décision prise</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="orientation" type="string">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="medicalisation" type="string">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="destination">

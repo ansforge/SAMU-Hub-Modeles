@@ -46,13 +46,17 @@ import java.util.Objects;
  * Decision
  */
 @JsonPropertyOrder(
-    {Decision.JSON_PROPERTY_CREATION, Decision.JSON_PROPERTY_TYPE,
-     Decision.JSON_PROPERTY_ORIENTATION, Decision.JSON_PROPERTY_TRANSPORTATION,
+    {Decision.JSON_PROPERTY_PATIENT_ID, Decision.JSON_PROPERTY_CREATION,
+     Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
+     Decision.JSON_PROPERTY_TRANSPORTATION,
      Decision.JSON_PROPERTY_MEDICALISATION, Decision.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Decision {
+  public static final String JSON_PROPERTY_PATIENT_ID = "patientId";
+  private String patientId;
+
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
 
@@ -72,6 +76,29 @@ public class Decision {
   private Destination destination;
 
   public Decision() {}
+
+  public Decision patientId(String patientId) {
+
+    this.patientId = patientId;
+    return this;
+  }
+
+  /**
+   * ID du patient concerné, lorsque le patient existe et est identifié
+   * @return patientId
+   **/
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getPatientId() {
+    return patientId;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PATIENT_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPatientId(String patientId) {
+    this.patientId = patientId;
+  }
 
   public Decision creation(OffsetDateTime creation) {
 
@@ -238,7 +265,8 @@ public class Decision {
       return false;
     }
     Decision decision = (Decision)o;
-    return Objects.equals(this.creation, decision.creation) &&
+    return Objects.equals(this.patientId, decision.patientId) &&
+        Objects.equals(this.creation, decision.creation) &&
         Objects.equals(this.type, decision.type) &&
         Objects.equals(this.orientation, decision.orientation) &&
         Objects.equals(this.transportation, decision.transportation) &&
@@ -248,7 +276,7 @@ public class Decision {
 
   @Override
   public int hashCode() {
-    return Objects.hash(creation, type, orientation, transportation,
+    return Objects.hash(patientId, creation, type, orientation, transportation,
                         medicalisation, destination);
   }
 
@@ -256,6 +284,9 @@ public class Decision {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
+    sb.append("    patientId: ")
+        .append(toIndentedString(patientId))
+        .append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    orientation: ")

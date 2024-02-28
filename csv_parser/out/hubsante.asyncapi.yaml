@@ -310,12 +310,12 @@ components:
           x-cols: 6
           example: example.json#/caseId
           description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}-{senderCaseId}.\nIl doit pouvoir \xEAtre\
+            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
             \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
             senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
             me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
             \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440-DRFR15DDXAAJJJ0000
         senderCaseId:
@@ -367,10 +367,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
-        medicalAnalysis:
+        decision:
           type: array
           items:
-            $ref: '#/components/schemas/medicalAnalysis'
+            $ref: '#/components/schemas/decision'
         newAlert:
           type: array
           items:
@@ -860,29 +860,83 @@ components:
             $ref: '#/components/schemas/medicalNote'
       additionalProperties: false
       example: example.json#/patient/0
-    medicalAnalysis:
+    decision:
       type: object
-      title: "R\xE9gulation m\xE9dicale"
+      title: "D\xE9cisions"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - creation
       properties:
         patientId:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalAnalysis/0/patientId
+          example: example.json#/decision/0/patientId
           description: "ID du patient concern\xE9, lorsque le patient existe et est\
             \ identifi\xE9"
           examples:
           - None
-        decision:
+        creation:
+          type: string
+          title: "Date Heure de cr\xE9ation de la d\xE9cision"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/creation
+          description: "Groupe date heure de cr\xE9ation de la d\xE9cision.  L'indicateur\
+            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        type:
+          type: string
+          title: "Type de d\xE9cision"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/type
+          description: "Type de d\xE9cision prise"
+          examples:
+          - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
+            orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
+        orientation:
+          type: string
+          title: Orientation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/orientation
+          description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
+            gulateur"
+          examples:
+          - None
+        transportation:
           type: array
+          x-health-only: false
           items:
-            $ref: '#/components/schemas/decision'
+            type: string
+            title: Vecteur de transport
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/decision/0/transportation/0
+            description: "Type de transport \xE0 engager pour la prise en charge du\
+              \ patient"
+            examples:
+            - 'SMUR '
+        medicalisation:
+          type: string
+          title: "Niveau de m\xE9dicalisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/medicalisation
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
+            dicale, standard, incomplete, ...)"
+          examples:
+          - "M\xE9dical, param\xE9dical, secouriste"
+        destination:
+          $ref: '#/components/schemas/destination'
       additionalProperties: false
-      example: example.json#/medicalAnalysis/0
+      example: example.json#/decision/0
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -2047,73 +2101,6 @@ components:
         birthDate: None
         sex: F
         birthPlaceCode: None
-    decision:
-      type: object
-      title: "D\xE9cisions"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - creation
-      properties:
-        creation:
-          type: string
-          title: "Date Heure de cr\xE9ation de la d\xE9cision"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/creation
-          description: "Groupe date heure de cr\xE9ation de la d\xE9cision.  L'indicateur\
-            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
-        type:
-          type: string
-          title: "Type de d\xE9cision"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/type
-          description: "Type de d\xE9cision prise"
-          examples:
-          - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
-            orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
-        orientation:
-          type: string
-          title: Orientation
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/orientation
-          description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
-            gulateur"
-          examples:
-          - None
-        transportation:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Vecteur de transport
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/medicalAnalysis/0/decision/0/transportation/0
-            description: "Type de transport \xE0 engager pour la prise en charge du\
-              \ patient"
-            examples:
-            - 'SMUR '
-        medicalisation:
-          type: string
-          title: "Niveau de m\xE9dicalisation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/medicalisation
-          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
-            dicale, standard, incomplete, ...)"
-          examples:
-          - "M\xE9dical, param\xE9dical, secouriste"
-        destination:
-          $ref: '#/components/schemas/destination'
-      additionalProperties: false
-      example: example.json#/medicalAnalysis/0/decision/0
     destination:
       type: object
       title: Destination
@@ -2126,7 +2113,7 @@ components:
           title: Etablissement
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/destination/facility
+          example: example.json#/decision/0/destination/facility
           description: "Nom de l'\xE9tablissement"
           examples:
           - None
@@ -2135,7 +2122,7 @@ components:
           title: FINESS administratif
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/destination/adminFiness
+          example: example.json#/decision/0/destination/adminFiness
           description: "N\xB0 Finess administratif de l'\xE9tablissement"
           examples:
           - None
@@ -2144,7 +2131,7 @@ components:
           title: "FINESS g\xE9ographique"
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/destination/geoFiness
+          example: example.json#/decision/0/destination/geoFiness
           description: "N\xB0 Finess g\xE9ographique de l'\xE9tablissement"
           examples:
           - None
@@ -2153,7 +2140,7 @@ components:
           title: Service
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/destination/service
+          example: example.json#/decision/0/destination/service
           description: "Service concern\xE9 par l'admission du patient"
           examples:
           - None
@@ -2162,11 +2149,11 @@ components:
           title: Autre
           x-health-only: false
           x-cols: 6
-          example: example.json#/medicalAnalysis/0/decision/0/destination/freetext
+          example: example.json#/decision/0/destination/freetext
           examples:
           - None
       additionalProperties: false
-      example: example.json#/medicalAnalysis/0/decision/0/destination
+      example: example.json#/decision/0/destination
       examples:
       - facility: None
         adminFiness: None
@@ -2247,12 +2234,12 @@ components:
           x-cols: 6
           example: example.json#/caseId
           description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}-{senderCaseId}.\nIl doit pouvoir \xEAtre\
+            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
             \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
             senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
             me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
             \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440-DRFR15DDXAAJJJ0000
         senderCaseId:
@@ -2327,10 +2314,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
-        medicalAnalysis:
+        decision:
           type: array
           items:
-            $ref: '#/components/schemas/medicalAnalysis'
+            $ref: '#/components/schemas/decision'
         newAlert:
           type: array
           items:
@@ -3601,7 +3588,7 @@ components:
           example: example.json#/resourceDetails/0/mobility
           description: "Mobilit\xE9 de la ressource (fix, vehicle, helicopter, ship)"
           examples:
-          - Vehicle
+          - VEHICLE
         capacity:
           type: string
           title: "Capacit\xE9s de la ressource"
@@ -3610,7 +3597,7 @@ components:
           example: example.json#/resourceDetails/0/capacity
           description: "Capacit\xE9 de transport d'un patient"
           examples:
-          - None
+          - EMERGENCY
         contacts:
           type: array
           items:
@@ -4020,43 +4007,46 @@ components:
       additionalProperties: false
       example: example.json#/EVENT/ETYPE
     reference:
+      $id: classpath:/json-schema/schema#
+      x-id: RC-REF.schema.json#
+      example: example.json#
       type: object
-      title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
-      x-display: expansion-panels
-      x-health-only: false
+      title: reference
       required:
-      - ORG_ID
-      - OTHER_EVENT_ID
+      - distributionID
       properties:
-        ORG_ID:
+        distributionID:
           type: string
-          title: ID de l'organisation
+          title: "Identifiant du message r\xE9f\xE9renc\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/REFERENCE/0/ORG_ID
-          description: "Le format est le suivant {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID)\
-            \ ne peut pas \xEAtre le m\xEAme que le champ CONTEXT.LINK.ID ou EVENT.ID"
+          example: example.json#/distributionID
+          description: "Identifiant unique du message r\xE9f\xE9renc\xE9"
           examples:
-          - fr.fire.cgo440
-        OTHER_EVENT_ID:
-          type: array
+          - None
+        isRefused:
+          type: boolean
+          title: Indicateur de refus de message
           x-health-only: false
-          items:
-            type: string
-            title: ID des autres event
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/EVENT/REFERENCE/0/OTHER_EVENT_ID/0
-            description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
-              \ dans le syst\xE8me partenaire.\nA renseigner avec l'identifiant de\
-              \ l'organisation suivi de l'identifiant local de l'affaire du partenaire\
-              \ dans son syst\xE8me.\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\xE9\
-              \ fonctionnelle}*-{num\xE9ro de dossier}"
-            examples:
-            - None
+          x-cols: 6
+          example: example.json#/isRefused
+          description: "Indique si le message acquitt\xE9 a \xE9t\xE9 refus\xE9"
+          examples:
+          - None
+        infoDistributionID:
+          type: string
+          title: "Identifiant du message d'erreur li\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/infoDistributionID
+          description: "Identifiant unique du message d'erreur li\xE9"
+          examples:
+          - None
       additionalProperties: false
-      example: example.json#/EVENT/REFERENCE/0
+      examples:
+      - distributionID: None
+        isRefused: None
+        infoDistributionID: None
     casualties:
       type: object
       title: Victimes
@@ -4394,7 +4384,7 @@ components:
       x-health-only: false
       required:
       - id
-      - dateTime
+      - datetime
       properties:
         id:
           type: string
@@ -4406,24 +4396,26 @@ components:
             \ partenaire propri\xE9taire"
           examples:
           - 76_45101#SMUR1#
-        dateTime:
+        datetime:
           type: string
           title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
             \ ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/dateTime
+          example: example.json#/positionUpdate/0/datetime
           description: "Date et heure de la derni\xE8re position connue"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - '2024-01-27T08:44:00+02:00'
-        time:
+        receptionDatetime:
           type: string
           title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/time
+          example: example.json#/positionUpdate/0/receptionDatetime
+          description: "Date et heure de la r\xE9ception de la derni\xE8re position\
+            \ connue dans le syst\xE8me de l'organisme"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -4438,7 +4430,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/speed
-          description: "Vitesse de la ressource enregistr\xE9e"
+          description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
           examples:
           - None
         cap:
@@ -4461,25 +4453,25 @@ components:
           examples:
           - None
         engine:
-          type: number
+          type: string
           title: Etat du moteur de la ressource
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/engine
-          description: '0 = contact etteint
+          description: 'OFF = contact etteint
 
-            1 = contact mis en marche'
+            ON = contact mis en marche'
           examples:
-          - 0
+          - 'OFF'
         helicopterStatus:
-          type: number
+          type: string
           title: "Etat de l'h\xE9licopt\xE8re"
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/helicopterStatus
-          description: '0 = au sol
+          description: 'GROUND = au sol
 
-            1 = en l''air'
+            AIR = en l''air'
           examples:
           - None
         status:
@@ -4490,9 +4482,20 @@ components:
           example: example.json#/positionUpdate/0/status
           description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
             - AVAILABLE : Lorsque la ressource est disponible\n- UNAVAILABLE : Lorsque\
-            \ la ressource n'est pas disponible"
+            \ la ressource n'est pas disponible\n- HOLD : \n- ENGAGED : Lorsque la\
+            \ ressource est engag\xE9 sur une mission\n- UNKNOWN : "
           examples:
           - AVAILABLE
+        engagedStatus:
+          type: string
+          title: "Statut de la ressource engag\xE9e"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/positionUpdate/0/engagedStatus
+          description: "Pr\xE9cise le statut d'une ressource qui est engag\xE9e sur\
+            \ une mission"
+          examples:
+          - None
       additionalProperties: false
       example: example.json#/positionUpdate/0
     rtype:
@@ -5236,3 +5239,99 @@ components:
           items:
             $ref: '#/components/schemas/resource'
       additionalProperties: false
+    error:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-ERROR.schema.json#
+      example: example.json#
+      type: object
+      title: error
+      required:
+      - errorCode
+      - errorCause
+      - sourceMessage
+      properties:
+        errorCode:
+          $ref: '#/components/schemas/errorCode'
+        errorCause:
+          type: string
+          title: Cause d'erreur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/errorCause
+          description: La ou les causes d'erreur dans le message source
+          examples:
+          - The following errors have occurred:\nNot allowed content type
+        sourceMessage:
+          type: string
+          title: Message source
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/sourceMessage
+          description: Message source complet
+          examples:
+          - messageSource{}
+      additionalProperties: false
+    errorCode:
+      type: object
+      title: Erreur
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - statusCode
+      - statusString
+      properties:
+        statusCode:
+          type: number
+          title: Code d'erreur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/errorCode/statusCode
+          description: Code numerique represenant l'erreur
+          examples:
+          - 101
+        statusString:
+          type: string
+          title: Titre d'erreur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/errorCode/statusString
+          description: Chaine de caracteres representant l'erreur
+          examples:
+          - NOT_ALLOWED_CONTENT_TYPE
+      additionalProperties: false
+      example: example.json#/errorCode
+      examples:
+      - statusCode: 101
+        statusString: NOT_ALLOWED_CONTENT_TYPE
+    info:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-INFO.schema.json#
+      example: example.json#
+      type: object
+      title: info
+      required:
+      - info
+      properties:
+        info:
+          type: string
+          title: Information
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/info
+          description: "\_Champ libre permettant de transmettre des informations quelconques"
+          examples:
+          - None
+      additionalProperties: false
+      examples:
+      - info: None
+    customContent:
+      $id: classpath:/json-schema/schema#
+      x-id: CustomContent.schema.json#
+      example: example.json#
+      type: object
+      title: customContent
+      required: []
+      properties: {}
+      additionalProperties: true
+      examples:
+      - {}

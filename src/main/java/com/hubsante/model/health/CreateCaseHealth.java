@@ -36,8 +36,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.AdditionalInformation;
 import com.hubsante.model.health.Alert;
+import com.hubsante.model.health.Decision;
 import com.hubsante.model.health.Location;
-import com.hubsante.model.health.MedicalAnalysis;
 import com.hubsante.model.health.Operator;
 import com.hubsante.model.health.Patient;
 import com.hubsante.model.health.Qualification;
@@ -61,7 +61,7 @@ import java.util.Objects;
                     CreateCaseHealth.JSON_PROPERTY_OWNER,
                     CreateCaseHealth.JSON_PROPERTY_OPERATOR,
                     CreateCaseHealth.JSON_PROPERTY_PATIENT,
-                    CreateCaseHealth.JSON_PROPERTY_MEDICAL_ANALYSIS,
+                    CreateCaseHealth.JSON_PROPERTY_DECISION,
                     CreateCaseHealth.JSON_PROPERTY_NEW_ALERT,
                     CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION,
                     CreateCaseHealth.JSON_PROPERTY_FREETEXT})
@@ -102,8 +102,8 @@ public class CreateCaseHealth {
   public static final String JSON_PROPERTY_PATIENT = "patient";
   private List<Patient> patient;
 
-  public static final String JSON_PROPERTY_MEDICAL_ANALYSIS = "medicalAnalysis";
-  private List<MedicalAnalysis> medicalAnalysis;
+  public static final String JSON_PROPERTY_DECISION = "decision";
+  private List<Decision> decision;
 
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
@@ -125,11 +125,11 @@ public class CreateCaseHealth {
 
   /**
    * Identifiant de l&#39;affaire partagé entre tous les intervenants &#x3D; aux
-   *champs {organization}-{senderCaseId}. Il doit pouvoir être généré de façon
+   *champs {organization}.{senderCaseId}. Il doit pouvoir être généré de façon
    *unique et décentralisée et ne présenter aucune ambiguïté.  Il est généré par
    *le système du partenaire récepteur de la primo-demande de secours (créateur
    *du dossier). Valorisation : {pays}.{domaine}.{organisation}.{structure
-   *interne}*.{unité fonctionnelle}*-{numéro de dossier}
+   *interne}*.{unité fonctionnelle}*.{numéro de dossier}
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
@@ -401,45 +401,43 @@ public class CreateCaseHealth {
     this.patient.addAll(patient);
   }
 
-  public CreateCaseHealth
-  medicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
+  public CreateCaseHealth decision(List<Decision> decision) {
 
-    this.medicalAnalysis = medicalAnalysis;
+    this.decision = decision;
     return this;
   }
 
-  public CreateCaseHealth
-  addMedicalAnalysisItem(MedicalAnalysis medicalAnalysisItem) {
-    if (this.medicalAnalysis == null) {
-      this.medicalAnalysis = new ArrayList<>();
+  public CreateCaseHealth addDecisionItem(Decision decisionItem) {
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
     }
-    this.medicalAnalysis.add(medicalAnalysisItem);
+    this.decision.add(decisionItem);
     return this;
   }
 
   /**
-   * Get medicalAnalysis
-   * @return medicalAnalysis
+   * Get decision
+   * @return decision
    **/
-  @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
+  @JsonProperty(JSON_PROPERTY_DECISION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<MedicalAnalysis> getMedicalAnalysis() {
-    return medicalAnalysis;
+  public List<Decision> getDecision() {
+    return decision;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_MEDICAL_ANALYSIS)
+  @JsonProperty(JSON_PROPERTY_DECISION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalAnalysis(List<MedicalAnalysis> medicalAnalysis) {
-    if (medicalAnalysis == null) {
+  public void setDecision(List<Decision> decision) {
+    if (decision == null) {
       return;
     }
-    if (this.medicalAnalysis == null) {
-      this.medicalAnalysis = new ArrayList<>();
+    if (this.decision == null) {
+      this.decision = new ArrayList<>();
     }
-    this.medicalAnalysis.addAll(medicalAnalysis);
+    this.decision.addAll(decision);
   }
 
   public CreateCaseHealth newAlert(List<Alert> newAlert) {
@@ -550,8 +548,7 @@ public class CreateCaseHealth {
         Objects.equals(this.owner, createCaseHealth.owner) &&
         Objects.equals(this.operator, createCaseHealth.operator) &&
         Objects.equals(this.patient, createCaseHealth.patient) &&
-        Objects.equals(this.medicalAnalysis,
-                       createCaseHealth.medicalAnalysis) &&
+        Objects.equals(this.decision, createCaseHealth.decision) &&
         Objects.equals(this.newAlert, createCaseHealth.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCaseHealth.additionalInformation) &&
@@ -562,8 +559,8 @@ public class CreateCaseHealth {
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
                         qualification, location, initialAlert, owner, operator,
-                        patient, medicalAnalysis, newAlert,
-                        additionalInformation, freetext);
+                        patient, decision, newAlert, additionalInformation,
+                        freetext);
   }
 
   @Override
@@ -588,9 +585,7 @@ public class CreateCaseHealth {
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
-    sb.append("    medicalAnalysis: ")
-        .append(toIndentedString(medicalAnalysis))
-        .append("\n");
+    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
     sb.append("    additionalInformation: ")
         .append(toIndentedString(additionalInformation))

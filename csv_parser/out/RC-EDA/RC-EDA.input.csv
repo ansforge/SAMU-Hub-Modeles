@@ -1,8 +1,8 @@
 ,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
-0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}-{senderCaseId}.
+0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",fr.health.samu440-DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440-DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X
 1,2,Identifiant local de l'affaire/dossier,,,,,,"Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
 Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
 ",DRFR15DDXAAJJJ0000,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X
@@ -157,27 +157,26 @@ Elle est composée :
 132,133,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
 133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",X,X
 135,136,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
-153,154,Régulation médicale,,,,,,Données spécifiques à la régulation médicale,,,medicalAnalysis,,,,,,0..n,X,medicalAnalysis,,,X,X
+153,154,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
 154,155,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientId,,,,,,0..1,,string,,,X,X
-155,156,,Décisions,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
-156,157,,,Date Heure de création de la décision,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
-157,158,,,Type de décision,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
-158,159,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,,X,X
-159,160,,,Vecteur de transport,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
-160,161,,,Niveau de médicalisation,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,,X,X
-161,162,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
-162,163,,,,Etablissement,,,Nom de l'établissement,,,facility,,,,,,0..1,,string,,,X,X
-163,164,,,,FINESS administratif,,,N° Finess administratif de l'établissement,,,adminFiness,,,,,,0..1,,string,,,X,X
-164,165,,,,FINESS géographique,,,N° Finess géographique de l'établissement,,,geoFiness,,,,,,0..1,,string,,,X,X
-165,166,,,,Service,,,Service concerné par l'admission du patient,,,service,,,,,,0..1,,string,,,X,X
-166,167,,,,Autre,,,,,,freetext,,,,,,0..1,,string,,,X,X
-167,168,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+155,157,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
+156,158,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
+157,159,,Orientation,,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,,X,X
+158,160,,Vecteur de transport,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
+159,161,,Niveau de médicalisation,,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,,X,X
+160,162,,Destination,,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
+161,163,,,Etablissement,,,,Nom de l'établissement,,,facility,,,,,,0..1,,string,,,X,X
+162,164,,,FINESS administratif,,,,N° Finess administratif de l'établissement,,,adminFiness,,,,,,0..1,,string,,,X,X
+163,165,,,FINESS géographique,,,,N° Finess géographique de l'établissement,,,geoFiness,,,,,,0..1,,string,,,X,X
+164,166,,,Service,,,,Service concerné par l'admission du patient,,,service,,,,,,0..1,,string,,,X,X
+165,167,,,Autre,,,,,,,freetext,,,,,,0..1,,string,,,X,X
+166,168,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
-168,169,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
-169,170,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
-170,171,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
-171,172,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
-172,173,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
-173,174,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-174,175,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
+167,169,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+168,170,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
+169,171,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
+170,172,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
+171,173,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
+172,174,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
+173,175,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X

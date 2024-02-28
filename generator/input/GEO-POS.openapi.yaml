@@ -28,7 +28,7 @@ components:
       x-health-only: false
       required:
       - id
-      - dateTime
+      - datetime
       properties:
         id:
           type: string
@@ -40,24 +40,26 @@ components:
             \ partenaire propri\xE9taire"
           examples:
           - 76_45101#SMUR1#
-        dateTime:
+        datetime:
           type: string
           title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
             \ ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/dateTime
+          example: example.json#/positionUpdate/0/datetime
           description: "Date et heure de la derni\xE8re position connue"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - '2024-01-27T08:44:00+02:00'
-        time:
+        receptionDatetime:
           type: string
           title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/time
+          example: example.json#/positionUpdate/0/receptionDatetime
+          description: "Date et heure de la r\xE9ception de la derni\xE8re position\
+            \ connue dans le syst\xE8me de l'organisme"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -72,7 +74,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/speed
-          description: "Vitesse de la ressource enregistr\xE9e"
+          description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
           examples:
           - None
         cap:
@@ -95,25 +97,25 @@ components:
           examples:
           - None
         engine:
-          type: number
+          type: string
           title: Etat du moteur de la ressource
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/engine
-          description: '0 = contact etteint
+          description: 'OFF = contact etteint
 
-            1 = contact mis en marche'
+            ON = contact mis en marche'
           examples:
-          - 0
+          - 'OFF'
         helicopterStatus:
-          type: number
+          type: string
           title: "Etat de l'h\xE9licopt\xE8re"
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/helicopterStatus
-          description: '0 = au sol
+          description: 'GROUND = au sol
 
-            1 = en l''air'
+            AIR = en l''air'
           examples:
           - None
         status:
@@ -124,9 +126,20 @@ components:
           example: example.json#/positionUpdate/0/status
           description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
             - AVAILABLE : Lorsque la ressource est disponible\n- UNAVAILABLE : Lorsque\
-            \ la ressource n'est pas disponible"
+            \ la ressource n'est pas disponible\n- HOLD : \n- ENGAGED : Lorsque la\
+            \ ressource est engag\xE9 sur une mission\n- UNKNOWN : "
           examples:
           - AVAILABLE
+        engagedStatus:
+          type: string
+          title: "Statut de la ressource engag\xE9e"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/positionUpdate/0/engagedStatus
+          description: "Pr\xE9cise le statut d'une ressource qui est engag\xE9e sur\
+            \ une mission"
+          examples:
+          - None
       additionalProperties: false
       example: example.json#/positionUpdate/0
     coord:
