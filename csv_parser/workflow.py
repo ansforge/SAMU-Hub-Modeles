@@ -28,6 +28,22 @@ schemas = [{
     'name': 'EMSI',
     'sheet': 'EMSI',
     'filter': False
+}, {
+    'name': 'RS-ERROR',
+    'sheet': 'RS-ERROR',
+    'filter': False
+}, {
+    'name': 'RS-INFO',
+    'sheet': 'RS-INFO',
+    'filter': False
+}, {
+    'name': 'RC-REF',
+    'sheet': 'RC-REF',
+    'filter': False
+}, {
+    'name': 'customContent',
+    'sheet': 'customContent',
+    'filter': False
 }]
 
 
@@ -41,7 +57,11 @@ def parser_and_mv():
         # Copy schema to JsonSchema2XSD project
         shutil.copyfile(f"./out/{name}/{name}.schema.json", f"./json_schema2xsd/src/main/resources/{name}.schema.json")
         # Move output files
+        if os.path.exists(f"../generator/input/{name}.openapi.yaml"):
+            os.remove(f"../generator/input/{name}.openapi.yaml")
         os.rename(f"./out/{name}/{name}.openapi.yaml", f"../generator/input/{name}.openapi.yaml")
+        if os.path.exists(f"../src/main/resources/json-schema/{name}.schema.json"):
+            os.remove(f"../src/main/resources/json-schema/{name}.schema.json")
         os.rename(f"./out/{name}/{name}.schema.json", f"../src/main/resources/json-schema/{name}.schema.json")
 
     with open(f'out/hubsante.asyncapi.yaml', 'w') as file:
