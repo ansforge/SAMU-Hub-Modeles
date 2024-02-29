@@ -154,7 +154,7 @@
             }
           },
           "additionalProperties": false
-        },,
+        },
         {
           "properties": {
             "message": {
