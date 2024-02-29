@@ -82,13 +82,19 @@
                 "message": {
                   "$ref": "RC-DE.schema.json"
                 }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
                 "message": {
-                  "$ref": "RS-EDA.schema.json"
+                  "properties": {
+                    "createCaseHealth": {
+                      "$ref": "RS-EDA.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createCaseHealth"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -108,7 +114,14 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "RC-EDA.schema.json"
+                  "properties": {
+                    "createCase": {
+                      "$ref": "RC-EDA.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createCase"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -128,7 +141,14 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "RC-REF.schema.json"
+                  "properties": {
+                    "reference": {
+                      "$ref": "RC-REF.schema.json"
+                    }
+                  },
+                  "required": [
+                    "reference"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -156,7 +176,14 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "EMSI.schema.json"
+                  "properties": {
+                    "emsi": {
+                      "$ref": "EMSI.schema.json"
+                    }
+                  },
+                  "required": [
+                    "emsi"
+                  ]
                 }
               },
               "additionalProperties": false
@@ -166,7 +193,14 @@
         {
           "properties": {
             "message": {
-              "$ref": "CustomContent.schema.json"
+              "properties": {
+                "customContent": {
+                  "$ref": "CustomContent.schema.json"
+                }
+              },
+              "required": [
+                "customContent"
+              ]
             }
           },
           "additionalProperties": false

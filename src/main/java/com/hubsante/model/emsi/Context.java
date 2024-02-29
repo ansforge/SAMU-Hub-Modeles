@@ -153,8 +153,8 @@ public class Context {
   private List<Link> LINK;
 
   /**
-   * A valoriser avec la valeur constante \&quot;OPR\&quot; dans le cadre du
-   * message EMSI-EO
+   * A valoriser avec la valeur constante \&quot;OPR\&quot; dans le cadre
+   * d&#39;un message EMSI, incluant une mission OPG
    */
   public enum LEVELEnum {
     STRTGC("STRTGC"),
@@ -434,8 +434,8 @@ public class Context {
   }
 
   /**
-   * A valoriser avec la valeur constante \&quot;OPR\&quot; dans le cadre du
-   *message EMSI-EO
+   * A valoriser avec la valeur constante \&quot;OPR\&quot; dans le cadre
+   *d&#39;un message EMSI, incluant une mission OPG
    * @return LEVEL
    **/
   @JsonProperty(JSON_PROPERTY_L_E_V_E_L)
@@ -484,16 +484,16 @@ public class Context {
   }
 
   /**
-   * Texte libre, optionnel  Dans NexSIS;  Fonction de l&#39;événement
-   *générateur RG 1 : la valeur de &lt;context&gt;&lt;freetext&gt; reste à
-   *&#39;Création d&#39;un événement opérationnel EMSI&#39; &amp; version &amp;
-   *&#39;suite à réception d&#39;une affaire*&#39; dans le cadre de la création
-   *d&#39;une opération commune (conforme RG 2 de NEXSIS-6618) RG 3 : les
-   *événements générateurs sont ceux définis au sein de NEXSIS-6619 RG 1 de
-   *traçabilité  ( input &#x3D; &lt;Evenement à l&#39;origine&gt; &#x3D;
-   *CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE /
-   *RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE)
-   *auxquels seront ajoutés  les éventuels événements à venir.
+   * Texte libre, optionnel  Dans NexSIS; Fonction de l&#39;événement générateur
+   *RG 1 : la valeur de &lt;context&gt;&lt;freetext&gt; reste à  &#39;Création
+   *d&#39;un événement opérationnel EMSI&#39; &amp; version &amp; &#39;suite à
+   *réception d&#39;une affaire*&#39; dans le cadre de la création d&#39;une
+   *opération commune (conforme RG 2 de NEXSIS-6618) RG 3 : les événements
+   *générateurs sont ceux définis au sein de NEXSIS-6619 RG 1 de traçabilité  (
+   *input &#x3D; &lt;Evenement à l&#39;origine&gt; &#x3D; CREATION_OPERATION /
+   *MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE /
+   *MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront
+   *ajoutés  les éventuels événements à venir.
    * @return FREETEXT
    **/
   @JsonProperty(JSON_PROPERTY_F_R_E_E_T_E_X_T)

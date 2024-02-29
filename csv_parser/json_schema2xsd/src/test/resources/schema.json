@@ -1,0 +1,18 @@
+{
+  "ACTOR": {
+    "type": "array",
+    "x-health-only": true,
+    "items": {
+      "type": "string",
+      "title": "Acteurs",
+      "x-health-only": false,
+      "x-cols": 6,
+      "example": "example.json#/emsi/EVENT/ETYPE/ACTOR/0",
+      "description": "bla bla bla",
+      "enum": [
+        "value_1",
+        "value_2"
+      ]
+    }
+  }
+}
