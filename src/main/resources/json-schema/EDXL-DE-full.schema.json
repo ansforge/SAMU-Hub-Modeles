@@ -108,7 +108,11 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "RC-EDA.schema.json"
+                  "properties": {
+                    "createCase": {
+                      "$ref": "RC-EDA.schema.json"
+                    }
+                  }
                 }
               },
               "additionalProperties": false
@@ -128,7 +132,11 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "RC-REF.schema.json"
+                  "properties": {
+                    "reference": {
+                      "$ref": "RC-REF.schema.json"
+                    }
+                  }
                 }
               },
               "additionalProperties": false
@@ -138,7 +146,23 @@
         {
           "properties": {
             "message": {
-              "$ref": "RS-INFO.schema.json"
+              "properties": {
+                "info": {
+                  "$ref": "RS-INFO.schema.json"
+                }
+              }
+            }
+          },
+          "additionalProperties": false
+        },,
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "error": {
+                  "$ref": "RS-ERROR.schema.json"
+                }
+              }
             }
           },
           "additionalProperties": false
@@ -156,7 +180,11 @@
             {
               "properties": {
                 "message": {
-                  "$ref": "EMSI.schema.json"
+                  "properties": {
+                    "emsi": {
+                      "$ref": "EMSI.schema.json"
+                    }
+                  }
                 }
               },
               "additionalProperties": false
@@ -166,7 +194,11 @@
         {
           "properties": {
             "message": {
-              "$ref": "CustomContent.schema.json"
+              "properties": {
+                "customContent": {
+                  "$ref": "CustomContent.schema.json"
+                }
+              }
             }
           },
           "additionalProperties": false
