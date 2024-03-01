@@ -24,7 +24,7 @@
             "description": "La ou les causes d'erreur dans le message source"
         },
         "sourceMessage": {
-            "$ref": "#/definitions/object"
+            "$ref": "#/definitions/sourceMessage"
         },
         "referencedDistributionID": {
             "type": "string",
@@ -66,8 +66,15 @@
             "additionalProperties": false,
             "example": "example.json#/errorCode"
         },
-        "object": {
-            "type": "object"
+        "sourceMessage": {
+            "type": "object",
+            "title": "Message source",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {},
+            "additionalProperties": false,
+            "example": "example.json#/sourceMessage"
         }
     },
     "additionalProperties": false

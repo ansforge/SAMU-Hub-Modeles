@@ -5315,7 +5315,7 @@ components:
           examples:
           - The following errors have occurred:\nNot allowed content type
         sourceMessage:
-          $ref: '#/components/schemas/object'
+          $ref: '#/components/schemas/sourceMessage'
         referencedDistributionID:
           type: string
           title: "DistributionID referenc\xE9"
@@ -5358,7 +5358,7 @@ components:
       examples:
       - statusCode: 101
         statusString: NOT_ALLOWED_CONTENT_TYPE
-    object:
+    sourceMessage:
       type: object
       title: Message source
       x-display: expansion-panels

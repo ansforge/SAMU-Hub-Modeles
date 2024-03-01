@@ -14,7 +14,7 @@ strict digraph {
                 <TR>
                 <TD ><B>sourceMessage</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet object</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet sourceMessage</I></TD></TR>
                 </TABLE>>]
 	sourceMessage -> error [constraint=true headlabel=1 taillabel="0..1"]
 	error [label=<<TABLE>
