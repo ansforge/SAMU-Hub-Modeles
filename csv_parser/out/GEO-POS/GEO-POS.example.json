@@ -1,7 +1,7 @@
 {
     "positionUpdate": [
         {
-            "id": "76_45101#SMUR1#",
+            "id": "76_45101#SMUR1",
             "datetime": "2024-01-27T08:44:00+02:00",
             "receptionDatetime": "2024-01-27T08:45:00+02:00",
             "coord": [
@@ -11,13 +11,13 @@
                     "height": 1
                 }
             ],
-            "speed": "None",
-            "cap": "None",
-            "move": "None",
-            "engine": "OFF",
-            "helicopterStatus": "None",
-            "status": "AVAILABLE",
-            "engagedStatus": "None"
+            "speed": 80,
+            "cap": 96,
+            "move": "MOBILE",
+            "engineOn": 1,
+            "groundStatus": 1,
+            "status": "DISPONIBLE",
+            "engagedStatus": "PARTIE"
         }
     ]
 }

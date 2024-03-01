@@ -157,13 +157,13 @@ Values can be: MIN (minimum), MAX (maximum), AVE (average).",MIN,,HEIGHT_ROLE,,H
 the coordinate system in the
 COORD element.",EPSG-4326,,COORDSYS,,COORDSYS,,,,,0..1,0..1,0..1,,,string,,,X,X
 64,65,,,,Coordonnées,,,,,,,COORD,,COORD,,,,,0..n,0…n,0…n,,X,coord,,,X,X
-65,66,,,,,Latitude ,,dernière coordonnée x  connue de la ressource,Defines the latitude of the point in the provided coordinate system.,47.221866,X,LAT,,LAT,,,,,1..1,1..1,1..1,,,number,,,X,X
+65,66,,,,,Latitude ,,"dernière coordonnée x  connue de la ressource, entre −90 and +90",Defines the latitude of the point in the provided coordinate system.,47.221866,X,LAT,,LAT,,,,,1..1,1..1,1..1,,,number,,,X,X
 66,67,,,,,Longitude,,"Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu d'intervention souhaité
 dernière coordonnée y  connue de la ressource
-between −90 and +90",Defines the longitude of the point in the provided coordinate system.,-1.575807,X,LONG,,LONG,,,,,1..1,1..1,1..1,,,number,,,X,X
+entre −180 and +180",Defines the longitude of the point in the provided coordinate system.,-1.575807,X,LONG,,LONG,,,,,1..1,1..1,1..1,,,number,,,X,X
 67,68,,,,,Altitude,,"Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu d'intervention souhaité
-dernière coordonnée z  connue de la ressource
-between −180 and +180",Defines the height above mean sea level in metres.,1,X,HEIGHT,,HEIGHT,,,,,0..1,0..1,0..1,,,number,,,X,X
+dernière coordonnée z  connue de la ressource, en mètres sans bornes
+",Defines the height above mean sea level in metres.,1,X,HEIGHT,,HEIGHT,,,,,0..1,0..1,0..1,,,number,,,X,X
 68,69,,,,Adresse,,,"Optionnel. Dans le cas d'un partage de position, les adresses transmises ne sont pas structurées.",Provides a physical address for this position.,Nantes centre ville,X,ADDRESS,,ADDRESS,,,,,0..n,0..n,0..n,,,string,,,X,X
 69,70,,Cause,,,,,Optionnel,"Cause of this event. Valid values are: ACC = accidental, DEL = deliberate, NAT = natural",ACC,,CAUSE,,CAUSE,,,,,0..1,0..1,0..1,,,string,,"ENUM: ACC, DEL, NAT",X,X
 70,71,,Texte libre,,,,,Optionnel,Provides free text information for describing the event. Max 500 characters ,Maison sur le côté droit de la route,X,FREETEXT,,FREETEXT,,,,,0..1,0..1,0..1,,,string,,,X,X

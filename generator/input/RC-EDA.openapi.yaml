@@ -554,8 +554,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/id
-          description: "Identifiant technique du patient pour permettre les rapprochements\
-            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
+          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
+            \ et est identifi\xE9"
           examples:
           - None
         identity:
@@ -570,14 +570,14 @@ components:
       required:
       - creation
       properties:
-        patientId:
+        id:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/decision/0/patientId
-          description: "ID du patient concern\xE9, lorsque le patient existe et est\
-            \ identifi\xE9"
+          example: example.json#/decision/0/id
+          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
+            \ et est identifi\xE9"
           examples:
           - None
         creation:

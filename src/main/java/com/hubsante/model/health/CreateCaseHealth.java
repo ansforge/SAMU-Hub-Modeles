@@ -38,6 +38,7 @@ import com.hubsante.model.health.AdditionalInformation;
 import com.hubsante.model.health.Alert;
 import com.hubsante.model.health.Decision;
 import com.hubsante.model.health.Location;
+import com.hubsante.model.health.MedicalNote;
 import com.hubsante.model.health.Operator;
 import com.hubsante.model.health.Patient;
 import com.hubsante.model.health.Qualification;
@@ -61,6 +62,7 @@ import java.util.Objects;
                     CreateCaseHealth.JSON_PROPERTY_OWNER,
                     CreateCaseHealth.JSON_PROPERTY_OPERATOR,
                     CreateCaseHealth.JSON_PROPERTY_PATIENT,
+                    CreateCaseHealth.JSON_PROPERTY_MEDICAL_NOTE,
                     CreateCaseHealth.JSON_PROPERTY_DECISION,
                     CreateCaseHealth.JSON_PROPERTY_NEW_ALERT,
                     CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION,
@@ -101,6 +103,9 @@ public class CreateCaseHealth {
 
   public static final String JSON_PROPERTY_PATIENT = "patient";
   private List<Patient> patient;
+
+  public static final String JSON_PROPERTY_MEDICAL_NOTE = "medicalNote";
+  private List<MedicalNote> medicalNote;
 
   public static final String JSON_PROPERTY_DECISION = "decision";
   private List<Decision> decision;
@@ -401,6 +406,45 @@ public class CreateCaseHealth {
     this.patient.addAll(patient);
   }
 
+  public CreateCaseHealth medicalNote(List<MedicalNote> medicalNote) {
+
+    this.medicalNote = medicalNote;
+    return this;
+  }
+
+  public CreateCaseHealth addMedicalNoteItem(MedicalNote medicalNoteItem) {
+    if (this.medicalNote == null) {
+      this.medicalNote = new ArrayList<>();
+    }
+    this.medicalNote.add(medicalNoteItem);
+    return this;
+  }
+
+  /**
+   * Get medicalNote
+   * @return medicalNote
+   **/
+  @JsonProperty(JSON_PROPERTY_MEDICAL_NOTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<MedicalNote> getMedicalNote() {
+    return medicalNote;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_MEDICAL_NOTE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMedicalNote(List<MedicalNote> medicalNote) {
+    if (medicalNote == null) {
+      return;
+    }
+    if (this.medicalNote == null) {
+      this.medicalNote = new ArrayList<>();
+    }
+    this.medicalNote.addAll(medicalNote);
+  }
+
   public CreateCaseHealth decision(List<Decision> decision) {
 
     this.decision = decision;
@@ -548,6 +592,7 @@ public class CreateCaseHealth {
         Objects.equals(this.owner, createCaseHealth.owner) &&
         Objects.equals(this.operator, createCaseHealth.operator) &&
         Objects.equals(this.patient, createCaseHealth.patient) &&
+        Objects.equals(this.medicalNote, createCaseHealth.medicalNote) &&
         Objects.equals(this.decision, createCaseHealth.decision) &&
         Objects.equals(this.newAlert, createCaseHealth.newAlert) &&
         Objects.equals(this.additionalInformation,
@@ -559,8 +604,8 @@ public class CreateCaseHealth {
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
                         qualification, location, initialAlert, owner, operator,
-                        patient, decision, newAlert, additionalInformation,
-                        freetext);
+                        patient, medicalNote, decision, newAlert,
+                        additionalInformation, freetext);
   }
 
   @Override
@@ -585,6 +630,9 @@ public class CreateCaseHealth {
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
+    sb.append("    medicalNote: ")
+        .append(toIndentedString(medicalNote))
+        .append("\n");
     sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
     sb.append("    additionalInformation: ")

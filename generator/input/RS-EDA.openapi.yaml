@@ -109,6 +109,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
+        medicalNote:
+          type: array
+          items:
+            $ref: '#/components/schemas/medicalNote'
         decision:
           type: array
           items:
@@ -631,12 +635,90 @@ components:
           $ref: '#/components/schemas/hypothesis'
         resourceDiagnosis:
           $ref: '#/components/schemas/nomenclature'
-        medicalNote:
-          type: array
-          items:
-            $ref: '#/components/schemas/medicalNote'
       additionalProperties: false
       example: example.json#/patient/0
+    medicalNote:
+      type: object
+      title: "Interrogatoire m\xE9dical"
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - creation
+      - freetext
+      properties:
+        id:
+          type: string
+          title: "ID patient partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalNote/0/id
+          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
+            \ et est identifi\xE9"
+          examples:
+          - None
+        operator:
+          $ref: '#/components/schemas/operator'
+        creation:
+          type: string
+          title: "Date Heure de cr\xE9ation de l'interrogatoire"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/creation
+          description: "Groupe date heure de cr\xE9ation de l'interrogatoire.  L'indicateur\
+            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        freetext:
+          type: string
+          title: Observations et commentaires
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/freetext
+          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
+            \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
+            \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
+            \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
+          examples:
+          - None
+        medicalHistory:
+          type: string
+          title: "Ant\xE9c\xE9dents"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/medicalHistory
+          description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient"
+          examples:
+          - None
+        treatments:
+          type: string
+          title: Traitements
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/treatments
+          description: "Texte libre  pour d\xE9crire les traitements du patient"
+          examples:
+          - None
+        allergies:
+          type: string
+          title: Allergies
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/allergies
+          description: "Texte libre pour d\xE9crire les allergies du patient"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/medicalNote/0
+      examples:
+      - id: None
+        operator: {}
+        creation: '2022-09-27T08:23:34+02:00'
+        freetext: None
+        medicalHistory: None
+        treatments: None
+        allergies: None
     decision:
       type: object
       title: "D\xE9cisions"
@@ -645,14 +727,14 @@ components:
       required:
       - creation
       properties:
-        patientId:
+        id:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/decision/0/patientId
-          description: "ID du patient concern\xE9, lorsque le patient existe et est\
-            \ identifi\xE9"
+          example: example.json#/decision/0/id
+          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
+            \ et est identifi\xE9"
           examples:
           - None
         creation:
@@ -2007,77 +2089,6 @@ components:
             $ref: '#/components/schemas/nomenclature'
       additionalProperties: false
       example: example.json#/patient/0/hypothesis
-    medicalNote:
-      type: object
-      title: "Interrogatoire m\xE9dical"
-      x-display: expansion-panels
-      x-health-only: true
-      required:
-      - creation
-      - freetext
-      properties:
-        operator:
-          $ref: '#/components/schemas/operator'
-        creation:
-          type: string
-          title: "Date Heure de cr\xE9ation de l'interrogatoire"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/creation
-          description: "Groupe date heure de cr\xE9ation de l'interrogatoire.  L'indicateur\
-            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
-        freetext:
-          type: string
-          title: Observations et commentaires
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/freetext
-          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
-            \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
-            \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
-            \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
-          examples:
-          - None
-        medicalHistory:
-          type: string
-          title: "Ant\xE9c\xE9dents"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/medicalHistory
-          description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient"
-          examples:
-          - None
-        treatments:
-          type: string
-          title: Traitements
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/treatments
-          description: "Texte libre  pour d\xE9crire les traitements du patient"
-          examples:
-          - None
-        allergies:
-          type: string
-          title: Allergies
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/allergies
-          description: "Texte libre pour d\xE9crire les allergies du patient"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/patient/0/medicalNote/0
-      examples:
-      - operator: {}
-        creation: '2022-09-27T08:23:34+02:00'
-        freetext: None
-        medicalHistory: None
-        treatments: None
-        allergies: None
     externalId:
       type: object
       title: Identifiant(s) patient(s)

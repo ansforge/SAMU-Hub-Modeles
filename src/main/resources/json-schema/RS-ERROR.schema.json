@@ -2,14 +2,15 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-ERROR.schema.json#",
-    "version": "24.02.29",
+    "version": "24.03.01",
     "example": "example.json#",
     "type": "object",
     "title": "error",
     "required": [
         "errorCode",
         "errorCause",
-        "sourceMessage"
+        "sourceMessage",
+        "referencedDistributionID"
     ],
     "properties": {
         "errorCode": {
@@ -30,6 +31,14 @@
             "x-cols": 6,
             "example": "example.json#/sourceMessage",
             "description": "Message source complet"
+        },
+        "referencedDistributionID": {
+            "type": "string",
+            "title": "DistributionID referenc\u00e9",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/referencedDistributionID",
+            "description": "DistributionID du message source"
         }
     },
     "definitions": {
