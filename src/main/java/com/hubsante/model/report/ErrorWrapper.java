@@ -36,40 +36,40 @@ import com.hubsante.model.edxl.ContentMessage;
 import java.util.Objects;
 
 /**
- * InfoWrapper
+ * ErrorWrapper
  */
-@JsonPropertyOrder({InfoWrapper.JSON_PROPERTY_INFO})
+@JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class InfoWrapper extends ContentMessage {
+public class ErrorWrapper extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
-    public static final String JSON_PROPERTY_INFO = "info";
-    private ErrorReport info;
+    public static final String JSON_PROPERTY_ERROR = "error";
+    private ErrorReport error;
 
-    public InfoWrapper() {}
+    public ErrorWrapper() {}
 
-    public InfoWrapper info(ErrorReport info) {
+    public ErrorWrapper error(ErrorReport error) {
 
-        this.info = info;
+        this.error = error;
         return this;
     }
 
     /**
-     * Get info
-     * @return info
+     * Get error
+     * @return error
      **/
-    @JsonProperty(JSON_PROPERTY_INFO)
+    @JsonProperty(JSON_PROPERTY_ERROR)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-    public ErrorReport getInfo() {
-        return info;
+    public ErrorReport getError() {
+        return error;
     }
 
-    @JsonProperty(JSON_PROPERTY_INFO)
+    @JsonProperty(JSON_PROPERTY_ERROR)
     @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-    public void setInfo(ErrorReport info) {
-        this.info = info;
+    public void setError(ErrorReport error) {
+        this.error = error;
     }
 
     @Override
@@ -80,22 +80,22 @@ public class InfoWrapper extends ContentMessage {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        InfoWrapper that = (InfoWrapper) o;
-        return Objects.equals(this.info, that.info);
+        ErrorWrapper that = (ErrorWrapper) o;
+        return Objects.equals(this.error, that.error);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(info, super.hashCode());
+        return Objects.hash(error, super.hashCode());
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("class InfoWrapper {\n");
+        sb.append("class ErrorWrapper {\n");
         sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-        sb.append("    info: ")
-                .append(toIndentedString(info))
+        sb.append("    error: ")
+                .append(toIndentedString(error))
                 .append("\n");
         sb.append("}");
         return sb.toString();

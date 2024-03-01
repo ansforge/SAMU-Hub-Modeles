@@ -188,9 +188,9 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("RS-INFO validation passes")
+    @DisplayName("RS-ERROR validation passes")
     public void jsonRsInfoValidationPasses() throws IOException {
-        String input = getMessageString("RS-INFO");
+        String input = getMessageString("RS-ERROR");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation

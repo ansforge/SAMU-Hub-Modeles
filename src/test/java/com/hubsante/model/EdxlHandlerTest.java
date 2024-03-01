@@ -114,16 +114,16 @@ public class EdxlHandlerTest {
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize JSON RS-INFO")
-    public void end2end_RS_INFO_JSON() throws IOException {
-        String json = getMessageString("RS-INFO");
+    @DisplayName("should consistently deserialize then serialize JSON RS-ERROR")
+    public void end2end_RS_ERROR_JSON() throws IOException {
+        String json = getMessageString("RS-ERROR");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize XML RS-INFO")
-    public void end2end_RS_INFO_XML() throws IOException {
-        String xml = getMessageString("RS-INFO", true);
+    @DisplayName("should consistently deserialize then serialize XML RS-ERROR")
+    public void end2end_RS_ERROR_XML() throws IOException {
+        String xml = getMessageString("RS-ERROR", true);
         endToEndDeserializationCheck(xml, true);
     }
 

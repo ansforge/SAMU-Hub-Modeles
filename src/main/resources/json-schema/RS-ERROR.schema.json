@@ -67,14 +67,7 @@
             "example": "example.json#/errorCode"
         },
         "object": {
-            "type": "object",
-            "title": "Message source",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {},
-            "additionalProperties": false,
-            "example": "example.json#/sourceMessage"
+            "type": "object"
         }
     },
     "additionalProperties": false
