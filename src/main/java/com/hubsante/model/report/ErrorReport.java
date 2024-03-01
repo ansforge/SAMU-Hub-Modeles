@@ -24,7 +24,7 @@ import com.hubsante.model.edxl.ContentMessage;
 
 import java.util.Objects;
 
-@JsonPropertyOrder({"errorCode", "errorCause", "sourceMessage", "referencedDistributionID"})
+@JsonPropertyOrder({"errorCode", "errorCause", "referencedDistributionID", "sourceMessage"})
 @JacksonXmlRootElement(localName = "message")
 public class ErrorReport extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
@@ -33,15 +33,15 @@ public class ErrorReport extends ContentMessage {
     private ErrorCode errorCode;
     private final String JSON_PROPERTY_ERROR_CAUSE = "errorCause";
     private String errorCause;
-    private final String JSON_PROPERTY_SOURCE_MESSAGE = "sourceMessage";
-    private String sourceMessage;
     private final String JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID = "referencedDistributionID";
     private String referencedDistributionID;
+    private final String JSON_PROPERTY_SOURCE_MESSAGE = "sourceMessage";
+    private Object sourceMessage;
 
     public ErrorReport() {
     }
 
-    public ErrorReport(ErrorCode errorCode, String errorCause, String sourceMessage, String referencedDistributionID) {
+    public ErrorReport(ErrorCode errorCode, String errorCause, Object sourceMessage, String referencedDistributionID) {
         this.errorCode = errorCode;
         this.errorCause = errorCause;
         this.sourceMessage = sourceMessage;
@@ -74,13 +74,13 @@ public class ErrorReport extends ContentMessage {
 
     @JsonProperty(JSON_PROPERTY_SOURCE_MESSAGE)
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    public String getSourceMessage() {
+    public Object getSourceMessage() {
         return sourceMessage;
     }
 
     @JsonProperty(JSON_PROPERTY_SOURCE_MESSAGE)
     @JsonInclude(JsonInclude.Include.USE_DEFAULTS)
-    public void setSourceMessage(String sourceMessage) {
+    public void setSourceMessage(Object sourceMessage) {
         this.sourceMessage = sourceMessage;
     }
 
