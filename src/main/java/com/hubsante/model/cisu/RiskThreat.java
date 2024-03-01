@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Nomenclature
+ * RiskThreat
  */
-@JsonPropertyOrder({Nomenclature.JSON_PROPERTY_CODE,
-                    Nomenclature.JSON_PROPERTY_LABEL,
-                    Nomenclature.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclature")
+@JsonPropertyOrder({RiskThreat.JSON_PROPERTY_CODE,
+                    RiskThreat.JSON_PROPERTY_LABEL,
+                    RiskThreat.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("riskThreat")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Nomenclature {
+public class RiskThreat {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class Nomenclature {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public Nomenclature() {}
+  public RiskThreat() {}
 
-  public Nomenclature code(String code) {
+  public RiskThreat code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class Nomenclature {
     this.code = code;
   }
 
-  public Nomenclature label(String label) {
+  public RiskThreat label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class Nomenclature {
     this.label = label;
   }
 
-  public Nomenclature freetext(String freetext) {
+  public RiskThreat freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,10 +139,10 @@ public class Nomenclature {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Nomenclature nomenclature = (Nomenclature)o;
-    return Objects.equals(this.code, nomenclature.code) &&
-        Objects.equals(this.label, nomenclature.label) &&
-        Objects.equals(this.freetext, nomenclature.freetext);
+    RiskThreat riskThreat = (RiskThreat)o;
+    return Objects.equals(this.code, riskThreat.code) &&
+        Objects.equals(this.label, riskThreat.label) &&
+        Objects.equals(this.freetext, riskThreat.freetext);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class Nomenclature {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Nomenclature {\n");
+    sb.append("class RiskThreat {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
