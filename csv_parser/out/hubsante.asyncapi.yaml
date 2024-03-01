@@ -5301,7 +5301,6 @@ components:
       required:
       - errorCode
       - errorCause
-      - sourceMessage
       - referencedDistributionID
       properties:
         errorCode:
@@ -5316,14 +5315,7 @@ components:
           examples:
           - The following errors have occurred:\nNot allowed content type
         sourceMessage:
-          type: string
-          title: Message source
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/sourceMessage
-          description: Message source complet
-          examples:
-          - messageSource{}
+          $ref: '#/components/schemas/object'
         referencedDistributionID:
           type: string
           title: "DistributionID referenc\xE9"
@@ -5366,6 +5358,17 @@ components:
       examples:
       - statusCode: 101
         statusString: NOT_ALLOWED_CONTENT_TYPE
+    object:
+      type: object
+      title: Message source
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties: {}
+      additionalProperties: false
+      example: example.json#/sourceMessage
+      examples:
+      - {}
     info:
       $id: classpath:/json-schema/schema#
       x-id: RS-INFO.schema.json#

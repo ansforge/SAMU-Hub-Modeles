@@ -9,7 +9,6 @@
     "required": [
         "errorCode",
         "errorCause",
-        "sourceMessage",
         "referencedDistributionID"
     ],
     "properties": {
@@ -25,12 +24,7 @@
             "description": "La ou les causes d'erreur dans le message source"
         },
         "sourceMessage": {
-            "type": "string",
-            "title": "Message source",
-            "x-health-only": false,
-            "x-cols": 6,
-            "example": "example.json#/sourceMessage",
-            "description": "Message source complet"
+            "$ref": "#/definitions/object"
         },
         "referencedDistributionID": {
             "type": "string",
@@ -71,6 +65,16 @@
             },
             "additionalProperties": false,
             "example": "example.json#/errorCode"
+        },
+        "object": {
+            "type": "object",
+            "title": "Message source",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {},
+            "additionalProperties": false,
+            "example": "example.json#/sourceMessage"
         }
     },
     "additionalProperties": false
