@@ -197,9 +197,9 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("RS-INFO validation fails")
-    public void jsonRsInfoValidationFails() throws IOException {
-        String input = getMessageString("RS-INFO", false, false);
+    @DisplayName("RS-ERROR validation fails")
+    public void jsonRsErrorValidationFails() throws IOException {
+        String input = getMessageString("RS-ERROR", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
         // we verify the correct error message is thrown
@@ -209,9 +209,9 @@ public class ValidatorTest {
             String[] expectedErrors = {
                 "Could not validate message against schema : errors occurred. ",
                 "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message: ",
-                " - info.sourceMessage: string found, object expected",
-                " - info.referencedDistributionID: is missing but it is required",
-                " - info.errorCode.statusCode: is missing but it is required"
+                " - error.sourceMessage: string found, object expected",
+                " - error.referencedDistributionID: is missing but it is required",
+                " - error.errorCode.statusCode: is missing but it is required"
             };
             String[] errors = e.getMessage().split("\n");
             checkErrorMessageArrayExactContent(errors, expectedErrors);

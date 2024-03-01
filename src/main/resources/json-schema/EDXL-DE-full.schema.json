@@ -82,8 +82,7 @@
                 "message": {
                   "$ref": "RC-DE.schema.json"
                 }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
@@ -92,10 +91,12 @@
                     "createCase": {
                       "$ref": "RC-EDA.schema.json"
                     }
-                  }
+                  },
+                  "required": [
+                    "createCase"
+                  ]
                 }
-              },
-              "additionalProperties": false
+              }
             }
           ]
         },
@@ -106,8 +107,7 @@
                 "message": {
                   "$ref": "RC-DE.schema.json"
                 }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
@@ -116,10 +116,12 @@
                     "createCaseHealth": {
                       "$ref": "RS-EDA.schema.json"
                     }
-                  }
+                  },
+                  "required": [
+                    "createCaseHealth"
+                  ]
                 }
-              },
-              "additionalProperties": false
+              }
             }
           ]
         },
@@ -130,8 +132,7 @@
                 "message": {
                   "$ref": "RC-DE.schema.json"
                 }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
@@ -140,10 +141,12 @@
                     "reference": {
                       "$ref": "RC-REF.schema.json"
                     }
-                  }
+                  },
+                  "required": [
+                    "reference"
+                  ]
                 }
-              },
-              "additionalProperties": false
+              }
             }
           ]
         },
@@ -154,10 +157,12 @@
                 "info": {
                   "$ref": "RS-INFO.schema.json"
                 }
-              }
+              },
+              "required": [
+                "info"
+              ]
             }
-          },
-          "additionalProperties": false
+          }
         },
         {
           "properties": {
@@ -166,10 +171,12 @@
                 "error": {
                   "$ref": "RS-ERROR.schema.json"
                 }
-              }
+              },
+              "required": [
+                "error"
+              ]
             }
-          },
-          "additionalProperties": false
+          }
         },
         {
           "allOf": [
@@ -178,8 +185,7 @@
                 "message": {
                   "$ref": "RC-DE.schema.json"
                 }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
@@ -188,78 +194,12 @@
                     "emsi": {
                       "$ref": "EMSI.schema.json"
                     }
-                  }
+                  },
+                  "required": [
+                    "emsi"
+                  ]
                 }
-              },
-              "additionalProperties": false
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              },
-              "additionalProperties": false
-            },
-            {
-              "properties": {
-                "message": {
-                  "geolocalisation": {
-                    "$ref": "GEO-POS.schema.json"
-                  }
-                }
-              },
-              "additionalProperties": false
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              },
-              "additionalProperties": false
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
-                    "geolocalisation": {
-                      "$ref": "GEO-RES.schema.json"
-                    }
-                  }
-                }
-              },
-              "additionalProperties": false
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              },
-              "additionalProperties": false
-            },
-            {
-              "properties": {
-                "message": {
-                  "geolocalisation": {
-                    "$ref": "GEO-REQ.schema.json"
-                  }
-                }
-              },
-              "additionalProperties": false
+              }
             }
           ]
         },
@@ -268,9 +208,12 @@
             "message": {
               "properties": {
                 "customContent": {
-                  "$ref": "CustomContent.schema.json"
+                  "$ref": "customContent.schema.json"
                 }
-              }
+              },
+              "required": [
+                "customContent"
+              ]
             }
           },
           "additionalProperties": false
