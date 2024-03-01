@@ -79,14 +79,14 @@ public class GeneralPractitioner {
    * @return detailedName
    **/
   @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public DetailedName getDetailedName() {
     return detailedName;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setDetailedName(DetailedName detailedName) {
     this.detailedName = detailedName;
   }

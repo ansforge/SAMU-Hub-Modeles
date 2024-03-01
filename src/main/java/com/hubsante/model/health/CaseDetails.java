@@ -55,15 +55,19 @@ public class CaseDetails {
    * cycle de vie du dossier SI-SAMU
    */
   public enum StatusEnum {
-    NOUVEAU_("Nouveau "),
+    PROGRAMM_("Programmé"),
 
     ACTIF_("Actif "),
+
+    ACHEV_("Achevé"),
 
     VALID_("Validé "),
 
     CL_TUR_("Clôturé "),
 
-    CLASS_("Classé ");
+    CLASS_("Classé"),
+
+    ARCHIV_("Archivé");
 
     private String value;
 
@@ -99,45 +103,8 @@ public class CaseDetails {
   public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
   private String attribution;
 
-  /**
-   * Décrit la priorité de régulation médicale du dossier.
-   */
-  public enum PriorityEnum {
-    P0("P0"),
-
-    P1("P1"),
-
-    P2("P2"),
-
-    P3("P3");
-
-    private String value;
-
-    PriorityEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static PriorityEnum fromValue(String value) {
-      for (PriorityEnum b : PriorityEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_PRIORITY = "priority";
-  private PriorityEnum priority;
+  private String priority;
 
   public CaseDetails() {}
 
@@ -196,7 +163,8 @@ public class CaseDetails {
   }
 
   /**
-   * Décrit le type de professionnel médical à qui le dossier est attribué
+   * Décrit le type de professionnel médical à qui le dossier est attribué :
+   *Médecin généraliste, médecin urgentiste etc.
    * @return attribution
    **/
   @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
@@ -212,26 +180,26 @@ public class CaseDetails {
     this.attribution = attribution;
   }
 
-  public CaseDetails priority(PriorityEnum priority) {
+  public CaseDetails priority(String priority) {
 
     this.priority = priority;
     return this;
   }
 
   /**
-   * Décrit la priorité de régulation médicale du dossier.
+   * Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3
    * @return priority
    **/
   @JsonProperty(JSON_PROPERTY_PRIORITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public PriorityEnum getPriority() {
+  public String getPriority() {
     return priority;
   }
 
   @JsonProperty(JSON_PROPERTY_PRIORITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPriority(PriorityEnum priority) {
+  public void setPriority(String priority) {
     this.priority = priority;
   }
 
