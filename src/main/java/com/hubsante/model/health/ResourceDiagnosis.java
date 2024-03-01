@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu;
+package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureRiskThreat
+ * ResourceDiagnosis
  */
-@JsonPropertyOrder({NomenclatureRiskThreat.JSON_PROPERTY_CODE,
-                    NomenclatureRiskThreat.JSON_PROPERTY_LABEL,
-                    NomenclatureRiskThreat.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureRiskThreat")
+@JsonPropertyOrder({ResourceDiagnosis.JSON_PROPERTY_CODE,
+                    ResourceDiagnosis.JSON_PROPERTY_LABEL,
+                    ResourceDiagnosis.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("resourceDiagnosis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureRiskThreat {
+public class ResourceDiagnosis {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureRiskThreat {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureRiskThreat() {}
+  public ResourceDiagnosis() {}
 
-  public NomenclatureRiskThreat code(String code) {
+  public ResourceDiagnosis code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureRiskThreat {
     this.code = code;
   }
 
-  public NomenclatureRiskThreat label(String label) {
+  public ResourceDiagnosis label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureRiskThreat {
     this.label = label;
   }
 
-  public NomenclatureRiskThreat freetext(String freetext) {
+  public ResourceDiagnosis freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,10 +139,10 @@ public class NomenclatureRiskThreat {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureRiskThreat nomenclatureRiskThreat = (NomenclatureRiskThreat)o;
-    return Objects.equals(this.code, nomenclatureRiskThreat.code) &&
-        Objects.equals(this.label, nomenclatureRiskThreat.label) &&
-        Objects.equals(this.freetext, nomenclatureRiskThreat.freetext);
+    ResourceDiagnosis resourceDiagnosis = (ResourceDiagnosis)o;
+    return Objects.equals(this.code, resourceDiagnosis.code) &&
+        Objects.equals(this.label, resourceDiagnosis.label) &&
+        Objects.equals(this.freetext, resourceDiagnosis.freetext);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class NomenclatureRiskThreat {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureRiskThreat {\n");
+    sb.append("class ResourceDiagnosis {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

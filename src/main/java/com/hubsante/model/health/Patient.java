@@ -34,12 +34,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.Hypothesis;
 import com.hubsante.model.health.InsIdentity;
 import com.hubsante.model.health.MedicalNote;
-import com.hubsante.model.health.NomenclatureHealthMotive;
-import com.hubsante.model.health.NomenclatureResourceDiagnosis;
 import com.hubsante.model.health.PatientDetail;
+import com.hubsante.model.health.ResourceDiagnosis;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,7 +70,7 @@ public class Patient {
   private InsIdentity identity;
 
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
-  private NomenclatureHealthMotive healthMotive;
+  private HealthMotive healthMotive;
 
   public static final String JSON_PROPERTY_DETAIL = "detail";
   private PatientDetail detail;
@@ -80,7 +80,7 @@ public class Patient {
 
   public static final String JSON_PROPERTY_RESOURCE_DIAGNOSIS =
       "resourceDiagnosis";
-  private NomenclatureResourceDiagnosis resourceDiagnosis;
+  private ResourceDiagnosis resourceDiagnosis;
 
   public static final String JSON_PROPERTY_MEDICAL_NOTE = "medicalNote";
   private List<MedicalNote> medicalNote;
@@ -157,7 +157,7 @@ public class Patient {
     this.identity = identity;
   }
 
-  public Patient healthMotive(NomenclatureHealthMotive healthMotive) {
+  public Patient healthMotive(HealthMotive healthMotive) {
 
     this.healthMotive = healthMotive;
     return this;
@@ -170,13 +170,13 @@ public class Patient {
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public NomenclatureHealthMotive getHealthMotive() {
+  public HealthMotive getHealthMotive() {
     return healthMotive;
   }
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthMotive(NomenclatureHealthMotive healthMotive) {
+  public void setHealthMotive(HealthMotive healthMotive) {
     this.healthMotive = healthMotive;
   }
 
@@ -226,8 +226,7 @@ public class Patient {
     this.hypothesis = hypothesis;
   }
 
-  public Patient
-  resourceDiagnosis(NomenclatureResourceDiagnosis resourceDiagnosis) {
+  public Patient resourceDiagnosis(ResourceDiagnosis resourceDiagnosis) {
 
     this.resourceDiagnosis = resourceDiagnosis;
     return this;
@@ -240,14 +239,13 @@ public class Patient {
   @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public NomenclatureResourceDiagnosis getResourceDiagnosis() {
+  public ResourceDiagnosis getResourceDiagnosis() {
     return resourceDiagnosis;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void
-  setResourceDiagnosis(NomenclatureResourceDiagnosis resourceDiagnosis) {
+  public void setResourceDiagnosis(ResourceDiagnosis resourceDiagnosis) {
     this.resourceDiagnosis = resourceDiagnosis;
   }
 

@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureLocationKind
+ * RiskThreat
  */
-@JsonPropertyOrder({NomenclatureLocationKind.JSON_PROPERTY_CODE,
-                    NomenclatureLocationKind.JSON_PROPERTY_LABEL,
-                    NomenclatureLocationKind.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureLocationKind")
+@JsonPropertyOrder({RiskThreat.JSON_PROPERTY_CODE,
+                    RiskThreat.JSON_PROPERTY_LABEL,
+                    RiskThreat.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("riskThreat")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureLocationKind {
+public class RiskThreat {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureLocationKind {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureLocationKind() {}
+  public RiskThreat() {}
 
-  public NomenclatureLocationKind code(String code) {
+  public RiskThreat code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureLocationKind {
     this.code = code;
   }
 
-  public NomenclatureLocationKind label(String label) {
+  public RiskThreat label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureLocationKind {
     this.label = label;
   }
 
-  public NomenclatureLocationKind freetext(String freetext) {
+  public RiskThreat freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureLocationKind {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureLocationKind nomenclatureLocationKind =
-        (NomenclatureLocationKind)o;
-    return Objects.equals(this.code, nomenclatureLocationKind.code) &&
-        Objects.equals(this.label, nomenclatureLocationKind.label) &&
-        Objects.equals(this.freetext, nomenclatureLocationKind.freetext);
+    RiskThreat riskThreat = (RiskThreat)o;
+    return Objects.equals(this.code, riskThreat.code) &&
+        Objects.equals(this.label, riskThreat.label) &&
+        Objects.equals(this.freetext, riskThreat.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureLocationKind {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureLocationKind {\n");
+    sb.append("class RiskThreat {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

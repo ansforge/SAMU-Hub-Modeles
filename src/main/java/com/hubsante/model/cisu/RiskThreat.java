@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureWhatsHappen
+ * RiskThreat
  */
-@JsonPropertyOrder({NomenclatureWhatsHappen.JSON_PROPERTY_CODE,
-                    NomenclatureWhatsHappen.JSON_PROPERTY_LABEL,
-                    NomenclatureWhatsHappen.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureWhatsHappen")
+@JsonPropertyOrder({RiskThreat.JSON_PROPERTY_CODE,
+                    RiskThreat.JSON_PROPERTY_LABEL,
+                    RiskThreat.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("riskThreat")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureWhatsHappen {
+public class RiskThreat {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureWhatsHappen {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureWhatsHappen() {}
+  public RiskThreat() {}
 
-  public NomenclatureWhatsHappen code(String code) {
+  public RiskThreat code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureWhatsHappen {
     this.code = code;
   }
 
-  public NomenclatureWhatsHappen label(String label) {
+  public RiskThreat label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureWhatsHappen {
     this.label = label;
   }
 
-  public NomenclatureWhatsHappen freetext(String freetext) {
+  public RiskThreat freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureWhatsHappen {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureWhatsHappen nomenclatureWhatsHappen =
-        (NomenclatureWhatsHappen)o;
-    return Objects.equals(this.code, nomenclatureWhatsHappen.code) &&
-        Objects.equals(this.label, nomenclatureWhatsHappen.label) &&
-        Objects.equals(this.freetext, nomenclatureWhatsHappen.freetext);
+    RiskThreat riskThreat = (RiskThreat)o;
+    return Objects.equals(this.code, riskThreat.code) &&
+        Objects.equals(this.label, riskThreat.label) &&
+        Objects.equals(this.freetext, riskThreat.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureWhatsHappen {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureWhatsHappen {\n");
+    sb.append("class RiskThreat {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

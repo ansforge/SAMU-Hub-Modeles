@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu;
+package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureWhatsHappen
+ * HealthMotive
  */
-@JsonPropertyOrder({NomenclatureWhatsHappen.JSON_PROPERTY_CODE,
-                    NomenclatureWhatsHappen.JSON_PROPERTY_LABEL,
-                    NomenclatureWhatsHappen.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureWhatsHappen")
+@JsonPropertyOrder({HealthMotive.JSON_PROPERTY_CODE,
+                    HealthMotive.JSON_PROPERTY_LABEL,
+                    HealthMotive.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("healthMotive")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureWhatsHappen {
+public class HealthMotive {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureWhatsHappen {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureWhatsHappen() {}
+  public HealthMotive() {}
 
-  public NomenclatureWhatsHappen code(String code) {
+  public HealthMotive code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureWhatsHappen {
     this.code = code;
   }
 
-  public NomenclatureWhatsHappen label(String label) {
+  public HealthMotive label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureWhatsHappen {
     this.label = label;
   }
 
-  public NomenclatureWhatsHappen freetext(String freetext) {
+  public HealthMotive freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureWhatsHappen {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureWhatsHappen nomenclatureWhatsHappen =
-        (NomenclatureWhatsHappen)o;
-    return Objects.equals(this.code, nomenclatureWhatsHappen.code) &&
-        Objects.equals(this.label, nomenclatureWhatsHappen.label) &&
-        Objects.equals(this.freetext, nomenclatureWhatsHappen.freetext);
+    HealthMotive healthMotive = (HealthMotive)o;
+    return Objects.equals(this.code, healthMotive.code) &&
+        Objects.equals(this.label, healthMotive.label) &&
+        Objects.equals(this.freetext, healthMotive.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureWhatsHappen {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureWhatsHappen {\n");
+    sb.append("class HealthMotive {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

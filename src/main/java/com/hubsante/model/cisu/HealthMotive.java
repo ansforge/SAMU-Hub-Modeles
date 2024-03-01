@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureHealthMotive
+ * HealthMotive
  */
-@JsonPropertyOrder({NomenclatureHealthMotive.JSON_PROPERTY_CODE,
-                    NomenclatureHealthMotive.JSON_PROPERTY_LABEL,
-                    NomenclatureHealthMotive.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureHealthMotive")
+@JsonPropertyOrder({HealthMotive.JSON_PROPERTY_CODE,
+                    HealthMotive.JSON_PROPERTY_LABEL,
+                    HealthMotive.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("healthMotive")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureHealthMotive {
+public class HealthMotive {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureHealthMotive {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureHealthMotive() {}
+  public HealthMotive() {}
 
-  public NomenclatureHealthMotive code(String code) {
+  public HealthMotive code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureHealthMotive {
     this.code = code;
   }
 
-  public NomenclatureHealthMotive label(String label) {
+  public HealthMotive label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureHealthMotive {
     this.label = label;
   }
 
-  public NomenclatureHealthMotive freetext(String freetext) {
+  public HealthMotive freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureHealthMotive {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureHealthMotive nomenclatureHealthMotive =
-        (NomenclatureHealthMotive)o;
-    return Objects.equals(this.code, nomenclatureHealthMotive.code) &&
-        Objects.equals(this.label, nomenclatureHealthMotive.label) &&
-        Objects.equals(this.freetext, nomenclatureHealthMotive.freetext);
+    HealthMotive healthMotive = (HealthMotive)o;
+    return Objects.equals(this.code, healthMotive.code) &&
+        Objects.equals(this.label, healthMotive.label) &&
+        Objects.equals(this.freetext, healthMotive.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureHealthMotive {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureHealthMotive {\n");
+    sb.append("class HealthMotive {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

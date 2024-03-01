@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureLocationKind
+ * WhatsHappen
  */
-@JsonPropertyOrder({NomenclatureLocationKind.JSON_PROPERTY_CODE,
-                    NomenclatureLocationKind.JSON_PROPERTY_LABEL,
-                    NomenclatureLocationKind.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureLocationKind")
+@JsonPropertyOrder({WhatsHappen.JSON_PROPERTY_CODE,
+                    WhatsHappen.JSON_PROPERTY_LABEL,
+                    WhatsHappen.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("whatsHappen")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureLocationKind {
+public class WhatsHappen {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureLocationKind {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureLocationKind() {}
+  public WhatsHappen() {}
 
-  public NomenclatureLocationKind code(String code) {
+  public WhatsHappen code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureLocationKind {
     this.code = code;
   }
 
-  public NomenclatureLocationKind label(String label) {
+  public WhatsHappen label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureLocationKind {
     this.label = label;
   }
 
-  public NomenclatureLocationKind freetext(String freetext) {
+  public WhatsHappen freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureLocationKind {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureLocationKind nomenclatureLocationKind =
-        (NomenclatureLocationKind)o;
-    return Objects.equals(this.code, nomenclatureLocationKind.code) &&
-        Objects.equals(this.label, nomenclatureLocationKind.label) &&
-        Objects.equals(this.freetext, nomenclatureLocationKind.freetext);
+    WhatsHappen whatsHappen = (WhatsHappen)o;
+    return Objects.equals(this.code, whatsHappen.code) &&
+        Objects.equals(this.label, whatsHappen.label) &&
+        Objects.equals(this.freetext, whatsHappen.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureLocationKind {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureLocationKind {\n");
+    sb.append("class WhatsHappen {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

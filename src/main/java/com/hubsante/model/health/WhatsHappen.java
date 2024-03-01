@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureResourceDiagnosis
+ * WhatsHappen
  */
-@JsonPropertyOrder({NomenclatureResourceDiagnosis.JSON_PROPERTY_CODE,
-                    NomenclatureResourceDiagnosis.JSON_PROPERTY_LABEL,
-                    NomenclatureResourceDiagnosis.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureResourceDiagnosis")
+@JsonPropertyOrder({WhatsHappen.JSON_PROPERTY_CODE,
+                    WhatsHappen.JSON_PROPERTY_LABEL,
+                    WhatsHappen.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("whatsHappen")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureResourceDiagnosis {
+public class WhatsHappen {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureResourceDiagnosis {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureResourceDiagnosis() {}
+  public WhatsHappen() {}
 
-  public NomenclatureResourceDiagnosis code(String code) {
+  public WhatsHappen code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureResourceDiagnosis {
     this.code = code;
   }
 
-  public NomenclatureResourceDiagnosis label(String label) {
+  public WhatsHappen label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureResourceDiagnosis {
     this.label = label;
   }
 
-  public NomenclatureResourceDiagnosis freetext(String freetext) {
+  public WhatsHappen freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureResourceDiagnosis {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureResourceDiagnosis nomenclatureResourceDiagnosis =
-        (NomenclatureResourceDiagnosis)o;
-    return Objects.equals(this.code, nomenclatureResourceDiagnosis.code) &&
-        Objects.equals(this.label, nomenclatureResourceDiagnosis.label) &&
-        Objects.equals(this.freetext, nomenclatureResourceDiagnosis.freetext);
+    WhatsHappen whatsHappen = (WhatsHappen)o;
+    return Objects.equals(this.code, whatsHappen.code) &&
+        Objects.equals(this.label, whatsHappen.label) &&
+        Objects.equals(this.freetext, whatsHappen.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureResourceDiagnosis {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureResourceDiagnosis {\n");
+    sb.append("class WhatsHappen {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

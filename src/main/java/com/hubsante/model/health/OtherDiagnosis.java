@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureMainDiagnosis
+ * OtherDiagnosis
  */
-@JsonPropertyOrder({NomenclatureMainDiagnosis.JSON_PROPERTY_CODE,
-                    NomenclatureMainDiagnosis.JSON_PROPERTY_LABEL,
-                    NomenclatureMainDiagnosis.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureMainDiagnosis")
+@JsonPropertyOrder({OtherDiagnosis.JSON_PROPERTY_CODE,
+                    OtherDiagnosis.JSON_PROPERTY_LABEL,
+                    OtherDiagnosis.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("otherDiagnosis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureMainDiagnosis {
+public class OtherDiagnosis {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureMainDiagnosis {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureMainDiagnosis() {}
+  public OtherDiagnosis() {}
 
-  public NomenclatureMainDiagnosis code(String code) {
+  public OtherDiagnosis code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureMainDiagnosis {
     this.code = code;
   }
 
-  public NomenclatureMainDiagnosis label(String label) {
+  public OtherDiagnosis label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureMainDiagnosis {
     this.label = label;
   }
 
-  public NomenclatureMainDiagnosis freetext(String freetext) {
+  public OtherDiagnosis freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureMainDiagnosis {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureMainDiagnosis nomenclatureMainDiagnosis =
-        (NomenclatureMainDiagnosis)o;
-    return Objects.equals(this.code, nomenclatureMainDiagnosis.code) &&
-        Objects.equals(this.label, nomenclatureMainDiagnosis.label) &&
-        Objects.equals(this.freetext, nomenclatureMainDiagnosis.freetext);
+    OtherDiagnosis otherDiagnosis = (OtherDiagnosis)o;
+    return Objects.equals(this.code, otherDiagnosis.code) &&
+        Objects.equals(this.label, otherDiagnosis.label) &&
+        Objects.equals(this.freetext, otherDiagnosis.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureMainDiagnosis {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureMainDiagnosis {\n");
+    sb.append("class OtherDiagnosis {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

@@ -9,11 +9,23 @@
             "label": "Rod\u00e9o automobile",
             "freetext": "None"
         },
-        "locationKind": {},
+        "locationKind": {
+            "code": "C07.13.02",
+            "label": "Rod\u00e9o automobile",
+            "freetext": "None"
+        },
         "riskThreat": [
-            {}
+            {
+                "code": "C07.13.02",
+                "label": "Rod\u00e9o automobile",
+                "freetext": "None"
+            }
         ],
-        "healthMotive": {},
+        "healthMotive": {
+            "code": "C07.13.02",
+            "label": "Rod\u00e9o automobile",
+            "freetext": "None"
+        },
         "victims": {
             "count": "SEVERAL",
             "mainVictim": "CHILD",

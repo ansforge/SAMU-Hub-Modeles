@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * NomenclatureOtherDiagnosis
+ * LocationKind
  */
-@JsonPropertyOrder({NomenclatureOtherDiagnosis.JSON_PROPERTY_CODE,
-                    NomenclatureOtherDiagnosis.JSON_PROPERTY_LABEL,
-                    NomenclatureOtherDiagnosis.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclatureOtherDiagnosis")
+@JsonPropertyOrder({LocationKind.JSON_PROPERTY_CODE,
+                    LocationKind.JSON_PROPERTY_LABEL,
+                    LocationKind.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("locationKind")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class NomenclatureOtherDiagnosis {
+public class LocationKind {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class NomenclatureOtherDiagnosis {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public NomenclatureOtherDiagnosis() {}
+  public LocationKind() {}
 
-  public NomenclatureOtherDiagnosis code(String code) {
+  public LocationKind code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class NomenclatureOtherDiagnosis {
     this.code = code;
   }
 
-  public NomenclatureOtherDiagnosis label(String label) {
+  public LocationKind label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class NomenclatureOtherDiagnosis {
     this.label = label;
   }
 
-  public NomenclatureOtherDiagnosis freetext(String freetext) {
+  public LocationKind freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,11 +139,10 @@ public class NomenclatureOtherDiagnosis {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    NomenclatureOtherDiagnosis nomenclatureOtherDiagnosis =
-        (NomenclatureOtherDiagnosis)o;
-    return Objects.equals(this.code, nomenclatureOtherDiagnosis.code) &&
-        Objects.equals(this.label, nomenclatureOtherDiagnosis.label) &&
-        Objects.equals(this.freetext, nomenclatureOtherDiagnosis.freetext);
+    LocationKind locationKind = (LocationKind)o;
+    return Objects.equals(this.code, locationKind.code) &&
+        Objects.equals(this.label, locationKind.label) &&
+        Objects.equals(this.freetext, locationKind.freetext);
   }
 
   @Override
@@ -154,7 +153,7 @@ public class NomenclatureOtherDiagnosis {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class NomenclatureOtherDiagnosis {\n");
+    sb.append("class LocationKind {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

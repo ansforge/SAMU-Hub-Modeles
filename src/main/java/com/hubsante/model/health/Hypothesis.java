@@ -34,8 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.NomenclatureMainDiagnosis;
-import com.hubsante.model.health.NomenclatureOtherDiagnosis;
+import com.hubsante.model.health.MainDiagnosis;
+import com.hubsante.model.health.OtherDiagnosis;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -52,14 +52,14 @@ import java.util.Objects;
 
 public class Hypothesis {
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
-  private NomenclatureMainDiagnosis mainDiagnosis;
+  private MainDiagnosis mainDiagnosis;
 
   public static final String JSON_PROPERTY_OTHER_DIAGNOSIS = "otherDiagnosis";
-  private List<NomenclatureOtherDiagnosis> otherDiagnosis;
+  private List<OtherDiagnosis> otherDiagnosis;
 
   public Hypothesis() {}
 
-  public Hypothesis mainDiagnosis(NomenclatureMainDiagnosis mainDiagnosis) {
+  public Hypothesis mainDiagnosis(MainDiagnosis mainDiagnosis) {
 
     this.mainDiagnosis = mainDiagnosis;
     return this;
@@ -72,25 +72,23 @@ public class Hypothesis {
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public NomenclatureMainDiagnosis getMainDiagnosis() {
+  public MainDiagnosis getMainDiagnosis() {
     return mainDiagnosis;
   }
 
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMainDiagnosis(NomenclatureMainDiagnosis mainDiagnosis) {
+  public void setMainDiagnosis(MainDiagnosis mainDiagnosis) {
     this.mainDiagnosis = mainDiagnosis;
   }
 
-  public Hypothesis
-  otherDiagnosis(List<NomenclatureOtherDiagnosis> otherDiagnosis) {
+  public Hypothesis otherDiagnosis(List<OtherDiagnosis> otherDiagnosis) {
 
     this.otherDiagnosis = otherDiagnosis;
     return this;
   }
 
-  public Hypothesis
-  addOtherDiagnosisItem(NomenclatureOtherDiagnosis otherDiagnosisItem) {
+  public Hypothesis addOtherDiagnosisItem(OtherDiagnosis otherDiagnosisItem) {
     if (this.otherDiagnosis == null) {
       this.otherDiagnosis = new ArrayList<>();
     }
@@ -105,7 +103,7 @@ public class Hypothesis {
   @JsonProperty(JSON_PROPERTY_OTHER_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<NomenclatureOtherDiagnosis> getOtherDiagnosis() {
+  public List<OtherDiagnosis> getOtherDiagnosis() {
     return otherDiagnosis;
   }
 
@@ -113,8 +111,7 @@ public class Hypothesis {
 
   @JsonProperty(JSON_PROPERTY_OTHER_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void
-  setOtherDiagnosis(List<NomenclatureOtherDiagnosis> otherDiagnosis) {
+  public void setOtherDiagnosis(List<OtherDiagnosis> otherDiagnosis) {
     if (otherDiagnosis == null) {
       return;
     }
