@@ -87,7 +87,7 @@ def run(sheet, name, version, filter):
     def isCreateCase():
         return MODEL_TYPE == "createCase"
 
-    def isCustomContent():
+    def is_custom_content():
         return MODEL_TYPE == "customContent"
 
     if not filter and isCreateCase():
@@ -259,7 +259,7 @@ def run(sheet, name, version, filter):
 
     children = {}
 
-    if not isCustomContent():
+    if not is_custom_content():
         for i in range(DATA_DEPTH, 0, -1):
             previous_children = children
             children_df = df[df['level_shift'] == i]
@@ -342,7 +342,7 @@ def run(sheet, name, version, filter):
         'required': [],
         'properties': {},
         'definitions': {},
-        'additionalProperties': isCustomContent()
+        'additionalProperties': is_custom_content()
     }
 
     def has_format_details(elem, details):
@@ -603,7 +603,7 @@ def run(sheet, name, version, filter):
     uml_generator.run(name, MODEL_NAME, version=version, filter=filter)
     print('UML diagrams generated.')
 
-    if not isCustomContent():
+    if not is_custom_content():
         named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
     else:
         named_df = df.copy().set_index(['name']).fillna('')
