@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.02.27",
+    "version": "24.03.01",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -113,19 +113,19 @@
             ],
             "properties": {
                 "whatsHappen": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/whatsHappen"
                 },
                 "locationKind": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/locationKind"
                 },
                 "riskThreat": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/nomenclature"
+                        "$ref": "#/definitions/riskThreat"
                     }
                 },
                 "healthMotive": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/healthMotive"
                 },
                 "details": {
                     "$ref": "#/definitions/caseDetails"
@@ -586,7 +586,7 @@
                     "$ref": "#/definitions/insIdentity"
                 },
                 "healthMotive": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/healthMotive"
                 },
                 "detail": {
                     "$ref": "#/definitions/patientDetail"
@@ -595,7 +595,7 @@
                     "$ref": "#/definitions/hypothesis"
                 },
                 "resourceDiagnosis": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/resourceDiagnosis"
                 },
                 "medicalNote": {
                     "type": "array",
@@ -650,7 +650,7 @@
             "additionalProperties": false,
             "example": "example.json#/additionalInformation"
         },
-        "nomenclature": {
+        "whatsHappen": {
             "type": "object",
             "title": "Nature de fait",
             "x-display": "expansion-panels",
@@ -687,6 +687,122 @@
             },
             "additionalProperties": false,
             "example": "example.json#/qualification/whatsHappen"
+        },
+        "locationKind": {
+            "type": "object",
+            "title": "Type de lieu",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/locationKind/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/locationKind/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/locationKind/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/qualification/locationKind"
+        },
+        "riskThreat": {
+            "type": "object",
+            "title": "Risque, menace et sensibilit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/riskThreat/0/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/riskThreat/0/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/riskThreat/0/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/qualification/riskThreat/0"
+        },
+        "healthMotive": {
+            "type": "object",
+            "title": "Motif de recours m\u00e9dico-secouriste",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label",
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/healthMotive/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/healthMotive/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/healthMotive/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/qualification/healthMotive"
         },
         "caseDetails": {
             "type": "object",
@@ -1790,17 +1906,55 @@
             "required": [],
             "properties": {
                 "mainDiagnosis": {
-                    "$ref": "#/definitions/nomenclature"
+                    "$ref": "#/definitions/mainDiagnosis"
                 },
                 "otherDiagnosis": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/nomenclature"
+                        "$ref": "#/definitions/otherDiagnosis"
                     }
                 }
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/hypothesis"
+        },
+        "resourceDiagnosis": {
+            "type": "object",
+            "title": "Diagnostic de l'effecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/resourceDiagnosis/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/resourceDiagnosis/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/resourceDiagnosis/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/resourceDiagnosis"
         },
         "medicalNote": {
             "type": "object",
@@ -2067,6 +2221,82 @@
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/identity/strictFeatures"
+        },
+        "mainDiagnosis": {
+            "type": "object",
+            "title": "Hypoth\u00e8se de r\u00e9gulation m\u00e9dicale principale",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/mainDiagnosis/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/mainDiagnosis/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/mainDiagnosis/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/hypothesis/mainDiagnosis"
+        },
+        "otherDiagnosis": {
+            "type": "object",
+            "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale secondaires",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/code",
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/freetext",
+                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0"
         },
         "decision": {
             "type": "object",

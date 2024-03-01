@@ -157,7 +157,7 @@ La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,
 Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
 Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
 Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.",fr.health.samu440,,owner,,,,,,1..1,,string,,,,X
-102,103,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médeci référent, etc) pour le traitement d'un dossier.",,,operator,,,,,,0..n,X,operator,,,,X
+102,103,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médecin référent, etc) pour le traitement d'un dossier.",,,operator,,,,,,0..n,X,operator,,,,X
 103,104,,Prénom et nom,,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,,,X
 104,105,,ID,,,,,Identifiant professionnel de l'opérateur si existant,,,id,,,,,,0..1,,string,,,,X
 105,106,,Rôle,,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,,,,X
