@@ -9,3 +9,6 @@ __pycache__
 
 # cron logs
 cron.log
+
+json_schema2xsd/.gradle/
+json_schema2xsd/build/

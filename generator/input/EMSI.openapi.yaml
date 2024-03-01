@@ -2,21 +2,18 @@ openapi: 3.0.0
 components:
   schemas:
     emsiWrapper:
-      $id: classpath:/json-schema/schema#
-      x-id: EMSI.schema.json#
-      example: example.json#
       type: object
-      title: emsi
       required:
       - emsi
       properties:
         emsi:
           $ref: '#/components/schemas/emsi'
     emsi:
+      $id: classpath:/json-schema/schema#
+      x-id: EMSI.schema.json#
+      example: example.json#
       type: object
-      title: Objet emsi
-      x-display: expansion-panels
-      x-health-only: false
+      title: emsi
       required:
       - CONTEXT
       - EVENT
@@ -34,7 +31,6 @@ components:
           items:
             $ref: '#/components/schemas/resource'
       additionalProperties: false
-      example: example.json#/emsi
     context:
       type: object
       title: Contexte
@@ -50,7 +46,7 @@ components:
           title: Identifiant du message
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/ID
+          example: example.json#/CONTEXT/ID
           description: "A constituer par le r\xE9dacteur du pr\xE9sent EMSI pour \xEA\
             tre unique, il est pr\xE9conis\xE9 de reprendre la valeur du champ messageId\
             \ de l'ent\xEAte RC-DE."
@@ -61,7 +57,7 @@ components:
           title: Mode
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/MODE
+          example: example.json#/CONTEXT/MODE
           description: "Valeur constante dans le cadre des \xE9changes LRM-NexSIS\
             \ : ACTUAL"
           enum:
@@ -76,7 +72,7 @@ components:
           title: Type de message
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/MSGTYPE
+          example: example.json#/CONTEXT/MSGTYPE
           description: "- A valoriser avec la valeur \"ALERT\" lors du premier \xE9\
             change entre syst\xE8mes.\n- A valoriser avec la valeur constante \"UPDATE\"\
             \ ensuite.\nPeut ne pas \xEAtre interpr\xE9t\xE9 par les LRM."
@@ -93,7 +89,7 @@ components:
           title: "Date et heure de cr\xE9ation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/CREATION
+          example: example.json#/CONTEXT/CREATION
           description: "Obligatoire dans le cadre d'une demande de concours, contient\
             \ la date de cr\xE9ation de la demande de concours dans le syst\xE8me\
             \ du partenaire requ\xE9rant.\nA valoriser avec le m\xEAme horaire que\
@@ -115,9 +111,9 @@ components:
           title: Niveau
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/LEVEL
-          description: A valoriser avec la valeur constante "OPR" dans le cadre du
-            message EMSI-EO
+          example: example.json#/CONTEXT/LEVEL
+          description: A valoriser avec la valeur constante "OPR" dans le cadre d'un
+            message EMSI, incluant une mission OPG
           enum:
           - STRTGC
           - OPR
@@ -129,7 +125,7 @@ components:
           title: Niveau de classification
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/SECLASS
+          example: example.json#/CONTEXT/SECLASS
           description: "Optionnel\n\nDans NexSIS ; \nLes messages transmis par NexSIS\
             \ auront un champ valoris\xE9 avec syst\xE9matiquement le m\xEAme code:\
             \ \"RESTRC\"=restricted\nLes LRM doivent \xE9galement renseigner la valeur\
@@ -148,8 +144,8 @@ components:
           title: Texte libre
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/FREETEXT
-          description: "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\xE9\
+          example: example.json#/CONTEXT/FREETEXT
+          description: "Texte libre, optionnel\n\nDans NexSIS;\nFonction de l'\xE9\
             v\xE9nement g\xE9n\xE9rateur\nRG 1 : la valeur de <context><freetext>\
             \ reste \xE0  'Cr\xE9ation d'un \xE9v\xE9nement op\xE9rationnel EMSI'\
             \ & version & 'suite \xE0 r\xE9ception d'une affaire*' dans le cadre de\
@@ -173,7 +169,7 @@ components:
           title: "Niveau d'urgence de l'\xE9v\xE9nement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/URGENCY
+          example: example.json#/CONTEXT/URGENCY
           description: "Niveau d'urgence pour l'affaire en cours\nDans le cadre des\
             \ \xE9changes LRM-NexSIS, optionnel"
           enum:
@@ -182,7 +178,7 @@ components:
           examples:
           - URGENT
       additionalProperties: false
-      example: example.json#/emsi/CONTEXT
+      example: example.json#/CONTEXT
     event:
       type: object
       title: Evenement
@@ -196,17 +192,19 @@ components:
           title: Identifiant local de l'affaire
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/ID
-          description: "Identifiant local de l'affaire dans le syst\xE8me du partenaire\
-            \ emetteur"
+          example: example.json#/EVENT/ID
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ \xE9metteur (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
-          - samu44
+          - fr.health.samu440-DRFR15DDXAAJJJ0000
         NAME:
           type: string
           title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/NAME
+          example: example.json#/EVENT/NAME
           description: "Optionnel\nDans nexSIS; [libelle NF 1 m\xE9tier] & \" - \"\
             \ & [libelle TL 1 m\xE9tier] & \" - \" & [libell\xE9 commune]"
           examples:
@@ -216,12 +214,15 @@ components:
           title: Identifiant de l'affaire
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/MAIN_EVENT_ID
-          description: "Identifiant d\u2019affaire partag\xE9 issu du message RC-EDA\
-            \ transmis en amont\nNB : Dans le cas d\u2019un partage initi\xE9 par\
-            \ un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
+          example: example.json#/EVENT/MAIN_EVENT_ID
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}\n\nNB : Si\
+            \ l'initiateur du partage de dossier est le m\xEAme que l'initiateur du\
+            \ message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
           examples:
-          - samuA:CA126B445579GD4A67AV
+          - fr.health.samu440-DRFR15DDXAAJJJ0000
         ETYPE:
           $ref: '#/components/schemas/etype'
         SOURCE:
@@ -229,7 +230,7 @@ components:
           title: Source
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/SOURCE
+          example: example.json#/EVENT/SOURCE
           description: Optionnel
           enum:
           - COMFOR
@@ -243,7 +244,7 @@ components:
           title: "Echelle de s\xE9v\xE9rit\xE9 de l'environnement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/SCALE
+          example: example.json#/EVENT/SCALE
           description: "Optionnel, Niveau de criticit\xE9 de l'op\xE9ration"
           enum:
           - '1'
@@ -258,7 +259,7 @@ components:
           title: "Fiabilit\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CERTAINTY
+          example: example.json#/EVENT/CERTAINTY
           description: "Prend une valeur enti\xE8re entre 0 et 100, et d\xE9crit \xE0\
             \ quel point l'alerte associ\xE9e \xE0 l'\xE9v\xE9nement est fiable\n\
             Optionnel"
@@ -269,7 +270,7 @@ components:
           title: "Date de d\xE9claration de l'event"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/DECL_DATIME
+          example: example.json#/EVENT/DECL_DATIME
           description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
             \ avec la date/heure de cr\xE9ation de l'affaire ou de l'op\xE9ration.\n\
             NexSIS transmettra la date/heure de cr\xE9ation de l'op\xE9ration dans\
@@ -284,7 +285,7 @@ components:
           title: "D\xE9crit la date et le lieu de l'\xE9v\xE9nement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/OCC_DATIME
+          example: example.json#/EVENT/OCC_DATIME
           description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
             \ avec la date de la premi\xE8re alerte ou la date \xE9valu\xE9e de d\xE9\
             but de la situation d'urgence.\nPar exemple :\nSi un incendie est d\xE9\
@@ -301,7 +302,7 @@ components:
             \ r\xE9alis\xE9e"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/OBS_DATIME
+          example: example.json#/EVENT/OBS_DATIME
           description: "Ce champ est id\xE9alement \xE0 valoriser avec la date/heure\
             \ \xE0 laquelle l'observation de la situation d'urgence de l'affaire la\
             \ plus r\xE9cente a \xE9t\xE9 r\xE9alis\xE9e.\nNexSIS transmettra la date/heure\
@@ -317,7 +318,7 @@ components:
           title: Status
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/STATUS
+          example: example.json#/EVENT/STATUS
           description: "Permet de d\xE9crire le status de l'affaire en cours.\nCe\
             \ champ suit une nomenclature EMSI. (COM = event complete, IPR = event\
             \ in progress, NST = event not started, STOP = STOP = event under control,\
@@ -340,7 +341,7 @@ components:
           title: "Pr\xE9diction sur le risque d'\xE9volution de l'event"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/RISK_ASSESMENT
+          example: example.json#/EVENT/RISK_ASSESMENT
           description: Optionnel
           enum:
           - NCREA
@@ -369,7 +370,7 @@ components:
           title: Cause
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CAUSE
+          example: example.json#/EVENT/CAUSE
           description: Optionnel
           enum:
           - ACC
@@ -382,12 +383,12 @@ components:
           title: Texte libre
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/FREETEXT
+          example: example.json#/EVENT/FREETEXT
           description: Optionnel
           examples:
           - "Maison sur le c\xF4t\xE9 droit de la route"
       additionalProperties: false
-      example: example.json#/emsi/EVENT
+      example: example.json#/EVENT
     mission:
       type: object
       title: Missions
@@ -401,7 +402,7 @@ components:
           title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/TYPE
+          example: example.json#/MISSION/0/TYPE
           description: "Le champ MISSION TYPE permet d'identifier l'effet \xE0 obtenir\
             \ souhait\xE9 \xE0 partir de la combinaison du code ACTOR et du code TYPE.\n\
             => La table de transcodage permettant d'identifier les concourants et\
@@ -581,7 +582,7 @@ components:
           title: Texte libre
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/FREETEXT
+          example: example.json#/MISSION/0/FREETEXT
           description: "Contient des commentaires relatifs aux objectifs et  moyens\
             \ sollicit\xE9s dans le cadre de la demande de concours. Les \xE9quipements\
             \ suppl\xE9mentaires souhait\xE9s ou le nom/ pr\xE9nom des patients \xE0\
@@ -594,7 +595,7 @@ components:
           title: Identifiant de la mission
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/ID
+          example: example.json#/MISSION/0/ID
           description: "Contient un identifiant de demande de concours unique. Cet\
             \ identifiant sera r\xE9utilisable par le partenaire pour r\xE9pondre\
             \ \xE0 cette demande.\nIdentifiant unique de la mission dans le syst\xE8\
@@ -606,23 +607,22 @@ components:
           title: "Identifiant de l'organisation propri\xE9taire"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/ORG_ID
+          example: example.json#/MISSION/0/ORG_ID
           description: "Indique l'organisation du partenaire concern\xE9 par la Demande\
-            \ de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \xEA\
-            tre utilis\xE9.\nIndique l'organisation du service r\xE9alisant la mission.\
-            \ Dans le cas d'une r\xE9ponse, c'est l'organisation du concourant qui\
+            \ de Concours (voir DSF). Le code CRRA ou le code du SIS peut \xEAtre\
+            \ utilis\xE9.\nIndique l'organisation du service r\xE9alisant la mission.\
+            \ \nDans le cas d'une r\xE9ponse, c'est l'organisation du concourant qui\
             \ doit \xEAtre indiqu\xE9e.\nSe r\xE9f\xE9rer au DSF pour la structure\
-            \ norm\xE9e des organisations\nLe format est le suivant {pays}:{domaine}:{code\
-            \ d\xE9partement}:{organisation}:{structure interne}*:{unit\xE9 fonctionnelle}*.\n\
-            identique \xE0 <CONTEXT><ORIGIN><ORG_ID>"
+            \ norm\xE9e des organisations\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*."
           examples:
-          - fr.health.44.samu44
+          - fr.fire.cgo440
         NAME:
           type: string
           title: Nom de la mission
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/NAME
+          example: example.json#/MISSION/0/NAME
           description: "Le nom de la mission est construit \xE0 partir de l'expression\
             \ r\xE9guli\xE8re suivante :\n\"#DEMANDE_CONCOURS#\"{libelle_cadre_conventionnel}\"\
             #\"{code_cadre_conventionnel}\"#\"\no\xF9 le code_cadre_conventionnel\
@@ -641,7 +641,7 @@ components:
           title: Status de la mission
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/STATUS
+          example: example.json#/MISSION/0/STATUS
           description: "Les valeurs possibles avec lesquelles valoriser ce champ sont\
             \ d\xE9taill\xE9es au sein d'une nomenclature EMSI\n- ABO : mission refus\xE9\
             e (ABOrted)\n- CANCLD : mission annul\xE9e (CANCeLeD)**\n- NST : mission\
@@ -671,7 +671,7 @@ components:
           title: "D\xE9but de la mission"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/START_TIME
+          example: example.json#/MISSION/0/START_TIME
           description: "- Dans le cadre d'une r\xE9ponse \xE0 Demande de Concours\n\
             Horraire cible pour l'arriv\xE9e sur les lieux d\xE9crites (peut diverger\
             \ de l'horaire demand\xE9)\n- Dans le cadre d'une mission d\xE9crivant\
@@ -685,7 +685,7 @@ components:
           title: Fin de la mission
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/END_TIME
+          example: example.json#/MISSION/0/END_TIME
           description: "A valoriser selon la cat\xE9gorie de mission :\n- Dans le\
             \ cadre d'une mission de r\xE9ponse \xE0 demande de concours : ne pas\
             \ renseigner\n- Dans le cadre d'une mission d\xE9crivant les op\xE9rations\
@@ -703,11 +703,11 @@ components:
             title: "Ressource engag\xE9e"
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/MISSION/0/RESOURCE_ID/0
+            example: example.json#/MISSION/0/RESOURCE_ID/0
             description: "Liste des identifiants des ressources engag\xE9es dans la\
               \ mission (voir RESOURCE.ID)"
             examples:
-            - 77_45102#VSAV 1#
+            - 77_45102#VSAV 1
         PARENT_MISSION_ID:
           type: array
           x-health-only: false
@@ -716,7 +716,7 @@ components:
             title: Missions parentes
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/MISSION/0/PARENT_MISSION_ID/0
+            example: example.json#/MISSION/0/PARENT_MISSION_ID/0
             description: "Dans le cadre d'une demande de concours, ne doit pas \xEA\
               tre renseign\xE9\nLa mission peut d\xE9j\xE0 \xEAtre rattach\xE9e \xE0\
               \ des missions filles mais leurs d\xE9tails ne doivent pas \xEAtre n\xE9\
@@ -733,7 +733,7 @@ components:
             title: Missions filles
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/MISSION/0/CHILD_MISSION_ID/0
+            example: example.json#/MISSION/0/CHILD_MISSION_ID/0
             description: "Cf. DSF pour l'organisation liens entre MISSION (sous-section\
               \ \"D\xE9coupage de l'op\xE9ration en missions\")"
             examples:
@@ -743,7 +743,7 @@ components:
           title: Mission principale
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/MAIN_MISSION_ID
+          example: example.json#/MISSION/0/MAIN_MISSION_ID
           description: "- Dans le cas d'une mission g\xE9n\xE9rique de r\xE9ponse\
             \ \xE0 demande de concours, indiquer l'ID de la mission g\xE9n\xE9rique\
             \ utilis\xE9e pour mod\xE9liser la demande de concours\n- Dans le cas\
@@ -760,7 +760,7 @@ components:
           title: "Priorit\xE9 de la mission"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/MISSION/0/PRIORITY
+          example: example.json#/MISSION/0/PRIORITY
           description: "Indique une \xE9chelle de priorit\xE9 pour la demande de concours.\
             \ Dans le cadre du standard EMSI, cette \xE9chelle doit \xEAtre comprise\
             \ entre 0 et 5. Ce champ peut ne pas \xEAtre interpr\xE9t\xE9 ni aliment\xE9\
@@ -776,7 +776,7 @@ components:
           examples:
           - 5
       additionalProperties: false
-      example: example.json#/emsi/MISSION/0
+      example: example.json#/MISSION/0
     resource:
       type: object
       title: Ressource
@@ -792,7 +792,7 @@ components:
           title: ID de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/ID
+          example: example.json#/RESOURCE/0/ID
           description: "Identifiant unique de la ressource  dans le syst\xE8me du\
             \ partenaire propri\xE9taire. Les syst\xE8mes sont garants de l'unicit\xE9\
             \ et de l'invariablit\xE9 des ids de v\xE9hicule dans le temps. Ils peuvent\
@@ -802,29 +802,29 @@ components:
             Dans le cas d'un v\xE9hicule agr\xE9g\xE9 par NexSIS, l'ID fournit peut\
             \ ne pas correspondre \xE0 une immatriculation."
           examples:
-          - 77_45102#VSAV 1#
+          - 77_45102#VSAV 1
         ORG_ID:
           type: string
           title: "Identifiant de l'organisation propri\xE9taire"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/ORG_ID
+          example: example.json#/RESOURCE/0/ORG_ID
           description: "Identifiant de l'organisation \xE0 laquelle la ressource est\
             \ rattach\xE9e (caserne, SAMU etc).\nSe r\xE9f\xE9rer au DSF pour la structure\
-            \ norm\xE9e des organisations\nLe format est le suivant {pays}.{domaine}.{code\
-            \ d\xE9partement}.{organisation}.{structure interne}*.{unit\xE9 fonctionnelle}*.\n\
-            Dans le cas o\xF9 le LRM/NexSIS sert d'aggr\xE9gateur pour des v\xE9hicules\
-            \ appartenant \xE0 un partenaire tiers (type ambulance priv\xE9e), l'identifiant\
-            \ d'organisation permet d'identifier ce tiers\nA constituer par le r\xE9\
-            dacteur du pr\xE9sent EMSI pour \xEAtre unique, identique \xE0 <CONTEXT><ORIGIN><ORG_ID>"
+            \ norm\xE9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nDans le cas o\xF9 le LRM/NexSIS\
+            \ sert d'aggr\xE9gateur pour des v\xE9hicules appartenant \xE0 un partenaire\
+            \ tiers (type ambulance priv\xE9e), l'identifiant d'organisation permet\
+            \ d'identifier ce tiers.\nA constituer par le r\xE9dacteur du pr\xE9sent\
+            \ EMSI pour \xEAtre unique."
           examples:
-          - FR:Administration:44:CASERNENANTES
+          - fr.fire.cgo440
         NAME:
           type: string
           title: Nom de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/NAME
+          example: example.json#/RESOURCE/0/NAME
           description: "Nom donn\xE9 \xE0 la ressource par le partenaire. L'immatriculation\
             \ peut \xEAtre utilis\xE9e dans le nom courant des v\xE9hicules.\nDans\
             \ le cas pompier, les v\xE9hicules sont nomm\xE9s\nDans le cas d'\xE9\
@@ -836,7 +836,7 @@ components:
           title: Description de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/FREETEXT
+          example: example.json#/RESOURCE/0/FREETEXT
           description: "Texte libre permettant de d\xE9crire la ressource o\xF9 d'ajouter\
             \ des pr\xE9cisions sur son engagement.\nPermet aussi notamment de d\xE9\
             crire des attributs librement pour la ressource.\nPar exemple, pour un\
@@ -852,7 +852,7 @@ components:
           title: "Quantit\xE9 de la ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/QUANTITY
+          example: example.json#/RESOURCE/0/QUANTITY
           description: "Dans le cadre d'un \xE9change d'op\xE9ration, optionnel. Permet\
             \ de quantifier une ressource :\n- \xE0 ne pas utiliser pour les v\xE9\
             hicules ni le personnel\n- utilisable pour du mat\xE9riel\n- utilisable\
@@ -865,7 +865,7 @@ components:
           title: "Unit\xE9 de mesure pour la ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/UM
+          example: example.json#/RESOURCE/0/UM
           description: "Dans le cadre d'un \xE9change d'op\xE9ration, optionnel. Unit\xE9\
             \ de mesure pour des ressources consommables"
           enum:
@@ -926,7 +926,7 @@ components:
           title: Statut de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/STATUS
+          example: example.json#/RESOURCE/0/STATUS
           description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
             - AVAILB : Lorsqu'une mission est termin\xE9e, une ressource redevient\
             \ disponible\n- RESRVD : Lorsque la ressource est r\xE9serv\xE9e pour\
@@ -951,7 +951,7 @@ components:
           title: "Nationalit\xE9 de la ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/NATIONALITY
+          example: example.json#/RESOURCE/0/NATIONALITY
           description: "Nationalit\xE9 d'une ressource, r\xE9employer ISO 3166-1-alpha-2\
             \ code elements."
           examples:
@@ -961,7 +961,7 @@ components:
           items:
             $ref: '#/components/schemas/contact'
       additionalProperties: false
-      example: example.json#/emsi/RESOURCE/0
+      example: example.json#/RESOURCE/0
     link:
       type: object
       title: Lien
@@ -975,39 +975,32 @@ components:
           title: ID
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/LINK/0/ID
-          description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
-            \ requ\xE9rant\nDans NexSIS;\nRG 1  \u2013 : cr\xE9ation du premier message\
-            \ EMSi suite r\xE9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\xE9ro\
-            \ d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour\
-            \ tous les messages cr\xE9\xE9s apr\xE8s le premier, EMSI <LINK> est compl\xE9\
-            t\xE9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\xE9c\xE9dent\
-            \ cr\xE9\xE9 au sein du SGO r\xE9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          example: example.json#/CONTEXT/LINK/0/ID
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
-          - samuA:CA126B445579GD4A67AV
+          - fr.health.samu440-DRFR15DDXAAJJJ0000
         LINK_ROLE:
           type: string
           title: "R\xF4le du lien"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/LINK/0/LINK_ROLE
-          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" en\
-            \ EMSI-EO et avec le libell\xE9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG\
-            \ 1  \u2013 : cr\xE9ation du premier message EMSi suite r\xE9ception Affaire\
-            \ * <LINK><LINK ID> = <Num\xE9ro d'affaire initiale>\n\u2022 <LINK><LINK\
-            \ ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\xE9\xE9s apr\xE8\
-            s le premier, EMSI <LINK> est compl\xE9t\xE9 par <LINK><LINK ID> contenant\
-            \ l'ID de message EMSI pr\xE9c\xE9dent cr\xE9\xE9 au sein du SGO r\xE9\
-            dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          example: example.json#/CONTEXT/LINK/0/LINK_ROLE
+          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" pour\
+            \ un message EMSI, incluant des missions RDC et/ou OPG et avec le libell\xE9\
+            \ \"ADDSTO\" pour un message EMSI, incluant uniquement qu'une demande\
+            \ de concours (EMSI-DC)."
           enum:
           - ADDSTO
           - SPRSDS
           examples:
           - ADDSTO
       additionalProperties: false
-      example: example.json#/emsi/CONTEXT/LINK/0
+      example: example.json#/CONTEXT/LINK/0
       examples:
-      - ID: samuA:CA126B445579GD4A67AV
+      - ID: fr.health.samu440-DRFR15DDXAAJJJ0000
         LINK_ROLE: ADDSTO
     origin:
       type: object
@@ -1021,39 +1014,39 @@ components:
           title: Origine ID
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/ORIGIN/ORG_ID
+          example: example.json#/CONTEXT/ORIGIN/ORG_ID
           description: "Optionnel, identifiant du service \xE0 l'origine de l'EMSI\n\
             Se r\xE9f\xE9rer au DSF pour la structure norm\xE9e des organisations\n\
-            Le format est le suivant {pays}.{domaine}.{code d\xE9partement}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*."
+            Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\xE9\
+            \ fonctionnelle}*."
           examples:
-          - fr.health.44.samu44
+          - fr.health.samu440
         USER_ID:
           type: string
           title: ID d'utilisateur de l'origine
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/ORIGIN/USER_ID
+          example: example.json#/CONTEXT/ORIGIN/USER_ID
           description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
             \ de l'EMSI"
           examples:
-          - None
+          - id1234
         NAME:
           type: string
           title: 'Nom Origine '
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/ORIGIN/NAME
-          description: "Optionnel\n\nA constituer par le r\xE9dacteur pour \xEAtre\
-            \ intelligible (exemple [structure].[nom])"
+          example: example.json#/CONTEXT/ORIGIN/NAME
+          description: "Optionnel\nA constituer par le r\xE9dacteur pour \xEAtre intelligible\
+            \ (exemple [structure] [code d\xE9partement])"
           examples:
-          - samu44
+          - samu 44
       additionalProperties: false
-      example: example.json#/emsi/CONTEXT/ORIGIN
+      example: example.json#/CONTEXT/ORIGIN
       examples:
-      - ORG_ID: fr.health.44.samu44
-        USER_ID: None
-        NAME: samu44
+      - ORG_ID: fr.health.samu440
+        USER_ID: id1234
+        NAME: samu 44
     externalInfo:
       type: object
       title: 'Informations exterieures '
@@ -1067,7 +1060,7 @@ components:
           title: 'Texte libre '
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/FREETEXT
+          example: example.json#/CONTEXT/EXTERNAL_INFO/0/FREETEXT
           description: Optionnel
           examples:
           - None
@@ -1076,7 +1069,7 @@ components:
           title: "URI informations ext\xE9rieures"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/URI
+          example: example.json#/CONTEXT/EXTERNAL_INFO/0/URI
           description: Optionnel
           examples:
           - 289d6939-d225-4c71-9a56-68c03ada2f5e
@@ -1085,7 +1078,7 @@ components:
           title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0/TYPE
+          example: example.json#/CONTEXT/EXTERNAL_INFO/0/TYPE
           description: Optionnel
           enum:
           - MANUAL
@@ -1096,7 +1089,7 @@ components:
           examples:
           - SPRSDS
       additionalProperties: false
-      example: example.json#/emsi/CONTEXT/EXTERNAL_INFO/0
+      example: example.json#/CONTEXT/EXTERNAL_INFO/0
       examples:
       - FREETEXT: None
         URI: 289d6939-d225-4c71-9a56-68c03ada2f5e
@@ -1119,7 +1112,7 @@ components:
             title: "Cat\xE9gorie d'\xE9v\xE9nement"
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/EVENT/ETYPE/CATEGORY/0
+            example: example.json#/EVENT/ETYPE/CATEGORY/0
             description: "Le champ peut ne pas \xEAtre interpr\xE9t\xE9 ou renseign\xE9\
               \ avec une valeur comme 'UKN' = 'UNKOWN'\nA constituer depuis ref_mapping_EMSI<ETYPE><CATEGORY>_NEXSIS"
             enum:
@@ -1204,7 +1197,7 @@ components:
             title: Acteurs
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/EVENT/ETYPE/ACTOR/0
+            example: example.json#/EVENT/ETYPE/ACTOR/0
             description: "Dans de futures versions de NexSIS, les demandes de concours\
               \ seront diffus\xE9es \xE0 plusieurs partenaires. Seul le syst\xE8me\
               \ de la force concern\xE9e par la demande de concours devra r\xE9pondre\
@@ -1384,7 +1377,7 @@ components:
             title: Type de localisation
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/EVENT/ETYPE/LOCTYPE/0
+            example: example.json#/EVENT/ETYPE/LOCTYPE/0
             description: "Le champ peut ne pas \xEAtre affich\xE9. Par d\xE9faut,\
               \ possible de renvoyer le code \"OTH\" =  \"OTHER\""
             examples:
@@ -1394,7 +1387,7 @@ components:
           title: Environnement
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/ETYPE/ENV
+          example: example.json#/EVENT/ETYPE/ENV
           description: Optionnel
           enum:
           - CDIS
@@ -1417,7 +1410,7 @@ components:
           examples:
           - CDIS/RIOT
       additionalProperties: false
-      example: example.json#/emsi/EVENT/ETYPE
+      example: example.json#/EVENT/ETYPE
     reference:
       type: object
       title: "Lien vers d'autres objets \xE9v\xE9nements EMSI"
@@ -1432,10 +1425,12 @@ components:
           title: ID de l'organisation
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/REFERENCE/0/ORG_ID
-          description: Identification de l'organisation partenaire
+          example: example.json#/EVENT/REFERENCE/0/ORG_ID
+          description: "Le format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID)\
+            \ ne peut pas \xEAtre le m\xEAme que le champ CONTEXT.LINK.ID ou EVENT.ID"
           examples:
-          - fr.health.44.samu44
+          - fr.fire.cgo440
         OTHER_EVENT_ID:
           type: array
           x-health-only: false
@@ -1444,13 +1439,16 @@ components:
             title: ID des autres event
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/EVENT/REFERENCE/0/OTHER_EVENT_ID/0
+            example: example.json#/EVENT/REFERENCE/0/OTHER_EVENT_ID/0
             description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
-              \ dans le syst\xE8me partenaire"
+              \ dans le syst\xE8me partenaire.\nA renseigner avec l'identifiant de\
+              \ l'organisation suivi de l'identifiant local de l'affaire du partenaire\
+              \ dans son syst\xE8me.\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\xE9\
+              \ fonctionnelle}*-{num\xE9ro de dossier}"
             examples:
-            - samu4412345
+            - None
       additionalProperties: false
-      example: example.json#/emsi/EVENT/REFERENCE/0
+      example: example.json#/EVENT/REFERENCE/0
     casualties:
       type: object
       title: Victimes
@@ -1464,7 +1462,7 @@ components:
           title: Contexte
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/CONTEXT
+          example: example.json#/EVENT/CASUALTIES/0/CONTEXT
           description: "Le champ doit \xEAtre renseign\xE9 mais peut ne pas \xEAtre\
             \ interpr\xE9t\xE9"
           examples:
@@ -1474,7 +1472,7 @@ components:
           title: Timestamp du contexte
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/DATIME
+          example: example.json#/EVENT/CASUALTIES/0/DATIME
           description: Optionnel
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -1485,7 +1483,7 @@ components:
           title: "D\xE9contamination"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/DECONT
+          example: example.json#/EVENT/CASUALTIES/0/DECONT
           description: Optionnel
           examples:
           - 0
@@ -1494,34 +1492,34 @@ components:
           title: Triage Rouge
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGERED
+          example: example.json#/EVENT/CASUALTIES/0/TRIAGERED
           description: Optionnel, Triage victime au sens EMSI
           examples:
           - 0
         TRIAGEYELLOW:
           type: integer
-          title: Jaune
+          title: Triage Jaune
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEYELLOW
+          example: example.json#/EVENT/CASUALTIES/0/TRIAGEYELLOW
           description: Optionnel
           examples:
           - 1
         TRIAGEGREEN:
           type: integer
-          title: Vert
+          title: Triage Vert
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEGREEN
+          example: example.json#/EVENT/CASUALTIES/0/TRIAGEGREEN
           description: Optionnel
           examples:
           - 0
         TRIAGEBLACK:
           type: integer
-          title: Noir
+          title: Triage Noir
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/TRIAGEBLACK
+          example: example.json#/EVENT/CASUALTIES/0/TRIAGEBLACK
           description: Optionnel
           examples:
           - 0
@@ -1530,12 +1528,12 @@ components:
           title: Disparus
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/CASUALTIES/0/MISSING
+          example: example.json#/EVENT/CASUALTIES/0/MISSING
           description: Optionnel
           examples:
           - 0
       additionalProperties: false
-      example: example.json#/emsi/EVENT/CASUALTIES/0
+      example: example.json#/EVENT/CASUALTIES/0
       examples:
       - CONTEXT: REQ_ACTION
         DATIME: '2022-09-27T08:00:00+02:00'
@@ -1557,7 +1555,7 @@ components:
           title: timestamp
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EVAC/0/DATIME
+          example: example.json#/EVENT/EVAC/0/DATIME
           description: Optionnel
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -1568,7 +1566,7 @@ components:
           title: "d\xE9plac\xE9s"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EVAC/0/DISPLACED
+          example: example.json#/EVENT/EVAC/0/DISPLACED
           description: Optionnel
           examples:
           - 0
@@ -1577,12 +1575,12 @@ components:
           title: "\xE9vacu\xE9s"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EVAC/0/EVACUATED
+          example: example.json#/EVENT/EVAC/0/EVACUATED
           description: Optionnel
           examples:
           - 1
       additionalProperties: false
-      example: example.json#/emsi/EVENT/EVAC/0
+      example: example.json#/EVENT/EVAC/0
       examples:
       - DATIME: '2022-09-27T10:00:00+02:00'
         DISPLACED: 0
@@ -1601,7 +1599,7 @@ components:
           title: "Date des derni\xE8res remont\xE9es de localisation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/DATIME
+          example: example.json#/EVENT/EGEO/0/DATIME
           description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
@@ -1614,7 +1612,7 @@ components:
           title: Type de localisation
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/TYPE
+          example: example.json#/EVENT/EGEO/0/TYPE
           description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION.\nA constituer\
@@ -1711,7 +1709,7 @@ components:
             title: "Condition m\xE9t\xE9o"
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/EVENT/EGEO/0/WEATHER/0
+            example: example.json#/EVENT/EGEO/0/WEATHER/0
             description: "Optionnel\nLa localisation de l'affaire est transmise en\
               \ amont dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention\
               \ est syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
@@ -1771,7 +1769,7 @@ components:
           title: "Description de l'\xE9v\xE9nement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/FREETEXT
+          example: example.json#/EVENT/EGEO/0/FREETEXT
           description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION"
@@ -1780,7 +1778,7 @@ components:
         POSITION:
           $ref: '#/components/schemas/position'
       additionalProperties: false
-      example: example.json#/emsi/EVENT/EGEO/0
+      example: example.json#/EVENT/EGEO/0
     position:
       type: object
       title: "Position de l'op\xE9ration"
@@ -1794,7 +1792,7 @@ components:
           title: ID position
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/LOC_ID
+          example: example.json#/EVENT/EGEO/0/POSITION/LOC_ID
           description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
             \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
             \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION. \nLorsque\
@@ -1809,7 +1807,7 @@ components:
           title: Nom de position
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/NAME
+          example: example.json#/EVENT/EGEO/0/POSITION/NAME
           description: "Optionnel, non utilis\xE9 par NexSIS nom de lieu"
           examples:
           - "Lyc\xE9e Pierre de Coubertin"
@@ -1818,7 +1816,7 @@ components:
           title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/TYPE
+          example: example.json#/EVENT/EGEO/0/POSITION/TYPE
           description: "Optionnel\nDans le cadre de l'interface LRM NexSIS, seul le\
             \ libell\xE9 POINT doit obligatoirement \xEAtre interpr\xE9table par les\
             \ deux partenaires.\nCf. Nomenclature EMSI - POSITION pour plus de d\xE9\
@@ -1830,7 +1828,7 @@ components:
           title: Indication sur l'utilisation de la balise altitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/HEIGHT_ROLE
+          example: example.json#/EVENT/EGEO/0/POSITION/HEIGHT_ROLE
           description: Optionnel
           examples:
           - MIN
@@ -1839,7 +1837,7 @@ components:
           title: "Syst\xE8me de coordonn\xE9es"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORDSYS
+          example: example.json#/EVENT/EGEO/0/POSITION/COORDSYS
           description: Optionnel
           examples:
           - EPSG-4326
@@ -1855,13 +1853,13 @@ components:
             title: Adresse
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/EVENT/EGEO/0/POSITION/ADDRESS/0
+            example: example.json#/EVENT/EGEO/0/POSITION/ADDRESS/0
             description: "Optionnel. Dans le cas d'un partage de position, les adresses\
               \ transmises ne sont pas structur\xE9es."
             examples:
             - Nantes centre ville
       additionalProperties: false
-      example: example.json#/emsi/EVENT/EGEO/0/POSITION
+      example: example.json#/EVENT/EGEO/0/POSITION
     coord:
       type: object
       title: "Coordonn\xE9es"
@@ -1876,7 +1874,7 @@ components:
           title: 'Latitude '
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LAT
+          example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/LAT
           description: "derni\xE8re coordonn\xE9e x  connue de la ressource"
           examples:
           - '47.221866'
@@ -1885,7 +1883,7 @@ components:
           title: Longitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/LONG
+          example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/LONG
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
             r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
             re coordonn\xE9e y  connue de la ressource\nbetween \u221290 and +90"
@@ -1896,14 +1894,14 @@ components:
           title: Altitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
+          example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
             r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
             re coordonn\xE9e z  connue de la ressource\nbetween \u2212180 and +180"
           examples:
           - 1
       additionalProperties: false
-      example: example.json#/emsi/EVENT/EGEO/0/POSITION/COORD/0
+      example: example.json#/EVENT/EGEO/0/POSITION/COORD/0
       examples:
       - LAT: '47.221866'
         LONG: '-1.575807'
@@ -1924,7 +1922,7 @@ components:
             title: Classes de la ressource
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/RESOURCE/0/RTYPE/RCLASS/0
+            example: example.json#/RESOURCE/0/RTYPE/RCLASS/0
             description: "Permet d'indiquer la classe de l'objet RESOURCE. Plusieurs\
               \ niveau de d\xE9tails sont fournis par la nomenclature associ\xE9e.\n\
               Le premier niveau permet notamment de d\xE9crire la classe principale\
@@ -2543,7 +2541,7 @@ components:
             title: "Capacit\xE9s de la ressource"
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/RESOURCE/0/RTYPE/CAPABILITY/0
+            example: example.json#/RESOURCE/0/RTYPE/CAPABILITY/0
             description: "Permet d'indiquer les capacit\xE9s de la ressource d'apr\xE8\
               s le standard EMSI"
             examples:
@@ -2556,14 +2554,14 @@ components:
             title: "Caract\xE9ristiques de la ressource"
             x-health-only: false
             x-cols: 6
-            example: example.json#/emsi/RESOURCE/0/RTYPE/CHARACTERISTICS/0
+            example: example.json#/RESOURCE/0/RTYPE/CHARACTERISTICS/0
             description: "Permet d'indiquer des caract\xE9ristique physiques de la\
               \ ressource (hauteur, largeur, longueur et poids).\nLe d\xE9tail de\
               \ fonctionnement de cette nomenclature est fournie en annexe."
             examples:
             - None
       additionalProperties: false
-      example: example.json#/emsi/RESOURCE/0/RTYPE
+      example: example.json#/RESOURCE/0/RTYPE
     rgeo:
       type: object
       title: Localisation de la ressource
@@ -2577,9 +2575,9 @@ components:
           title: Horaire de la localisation
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/RGEO/0/DATIME
+          example: example.json#/RESOURCE/0/RGEO/0/DATIME
           description: "Horaire associ\xE9 \xE0 l'arriv\xE9e de la ressource sur la\
-            \ position. En fonction du TYPE de possition, peut indiquer un horaire\
+            \ position. En fonction du TYPE de position, peut indiquer un horaire\
             \ de relev\xE9 de position, un horaire cible d'arriv\xE9e."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -2590,7 +2588,7 @@ components:
           title: Type de localisation
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/RGEO/0/TYPE
+          example: example.json#/RESOURCE/0/RGEO/0/TYPE
           description: "Type de position indiqu\xE9 pour la ressource :\n- ASP : assembly\
             \ point. Point de rassemblement par d\xE9faut des ressources li\xE9es\
             \ \xE0 la mission. Peut ne pas \xEAtre utilis\xE9\n- CUR : current. Position\
@@ -2616,7 +2614,7 @@ components:
           title: 'Texte libre '
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/RGEO/0/FREETEXT
+          example: example.json#/RESOURCE/0/RGEO/0/FREETEXT
           description: "Permet de rajouter des pr\xE9cisions sur la localisation de\
             \ la ressource transmise"
           examples:
@@ -2626,7 +2624,7 @@ components:
           title: ID localisation
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/RGEO/0/ID
+          example: example.json#/RESOURCE/0/RGEO/0/ID
           description: "Identifiant unique de la position dans le syst\xE8me du partenaire"
           examples:
           - None
@@ -2635,7 +2633,7 @@ components:
           items:
             $ref: '#/components/schemas/position'
       additionalProperties: false
-      example: example.json#/emsi/RESOURCE/0/RGEO/0
+      example: example.json#/RESOURCE/0/RGEO/0
     contact:
       type: object
       title: Contacts
@@ -2650,7 +2648,7 @@ components:
           title: Type de contact
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/CONTACTS/0/TYPE
+          example: example.json#/RESOURCE/0/CONTACTS/0/TYPE
           description: "Type de contact, voir \xE9num\xE9ration associ\xE9e\n\n1.\
             \ PMRADD (si RFGI disponible)\n2. PHNADD pour t\xE9l\xE9phonie"
           enum:
@@ -2669,13 +2667,13 @@ components:
           title: "D\xE9tails de contact"
           x-health-only: false
           x-cols: 6
-          example: example.json#/emsi/RESOURCE/0/CONTACTS/0/DETAIL
+          example: example.json#/RESOURCE/0/CONTACTS/0/DETAIL
           description: "1. RFGI du moyen NEXSIS (si RFGI disponible)\n2. Num\xE9ro\
             \ de t\xE9l\xE9phone"
           examples:
           - 606070707
       additionalProperties: false
-      example: example.json#/emsi/RESOURCE/0/CONTACTS/0
+      example: example.json#/RESOURCE/0/CONTACTS/0
       examples:
       - TYPE: PHNADD
         DETAIL: 606070707

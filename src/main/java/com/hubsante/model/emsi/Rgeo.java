@@ -126,7 +126,7 @@ public class Rgeo {
 
   /**
    * Horaire associé à l&#39;arrivée de la ressource sur la position. En
-   *fonction du TYPE de possition, peut indiquer un horaire de relevé de
+   *fonction du TYPE de position, peut indiquer un horaire de relevé de
    *position, un horaire cible d&#39;arrivée.
    * @return DATIME
    **/

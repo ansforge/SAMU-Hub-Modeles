@@ -156,10 +156,4 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet emsi</I></TD></TR>
                 </TABLE>>]
-	emsi [label=<<TABLE>
-                <TR>
-                <TD ><B>emsi</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet emsi</I></TD></TR>
-                </TABLE>>]
 }
