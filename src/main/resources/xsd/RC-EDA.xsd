@@ -379,7 +379,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
@@ -387,9 +387,9 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
     </complexType>
     <complexType name="decision">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element minOccurs="0" name="id" type="string">
                 <annotation>
-                    <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">

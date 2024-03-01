@@ -4,5 +4,6 @@
         "statusString": "NOT_ALLOWED_CONTENT_TYPE"
     },
     "errorCause": "The following errors have occurred:\\nNot allowed content type",
-    "sourceMessage": "messageSource{}"
+    "sourceMessage": "messageSource{}",
+    "referencedDistributionID": "None"
 }

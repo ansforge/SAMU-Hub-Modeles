@@ -18,6 +18,7 @@ components:
       - errorCode
       - errorCause
       - sourceMessage
+      - referencedDistributionID
       properties:
         errorCode:
           $ref: '#/components/schemas/errorCode'
@@ -39,6 +40,15 @@ components:
           description: Message source complet
           examples:
           - messageSource{}
+        referencedDistributionID:
+          type: string
+          title: "DistributionID referenc\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/referencedDistributionID
+          description: DistributionID du message source
+          examples:
+          - None
       additionalProperties: false
     errorCode:
       type: object

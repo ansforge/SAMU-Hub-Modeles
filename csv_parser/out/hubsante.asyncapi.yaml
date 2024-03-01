@@ -854,10 +854,6 @@ components:
           $ref: '#/components/schemas/hypothesis'
         resourceDiagnosis:
           $ref: '#/components/schemas/nomenclature'
-        medicalNote:
-          type: array
-          items:
-            $ref: '#/components/schemas/medicalNote'
       additionalProperties: false
       example: example.json#/patient/0
     decision:
@@ -868,14 +864,14 @@ components:
       required:
       - creation
       properties:
-        patientId:
+        id:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/decision/0/patientId
-          description: "ID du patient concern\xE9, lorsque le patient existe et est\
-            \ identifi\xE9"
+          example: example.json#/decision/0/id
+          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
+            \ et est identifi\xE9"
           examples:
           - None
         creation:
@@ -1401,7 +1397,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/coord/0/lat
-          description: "Derni\xE8re coordonn\xE9e x connue de la ressource"
+          description: "Derni\xE8re coordonn\xE9e x connue de la ressource, entre\
+            \ \u221290 and +90"
           examples:
           - '47.221866'
         lon:
@@ -1410,8 +1407,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/coord/0/lon
-          description: "Derni\xE8re coordonn\xE9e y connue de la ressource\nbetween\
-            \ \u221290 and +90"
+          description: "Derni\xE8re coordonn\xE9e y connue de la ressource, entre\
+            \ \u2212180 and +180"
           examples:
           - '-1.575807'
         height:
@@ -1420,8 +1417,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/coord/0/height
-          description: "Derni\xE8re coordonn\xE9e z connue de la ressource\nbetween\
-            \ \u2212180 and +180"
+          description: "Derni\xE8re coordonn\xE9e z connue de la ressource, en m\xE8\
+            tres sans bornes"
           examples:
           - 1
       additionalProperties: false
@@ -1938,6 +1935,9 @@ components:
           example: example.json#/resourceDetails/0/contacts/0/type
           description: "Type de contact, voir \xE9num\xE9ration associ\xE9e\n1. PMRADD\
             \ (si RFGI disponible)\n2. PHNADD pour t\xE9l\xE9phonie"
+          enum:
+          - PMRADD
+          - PHNADD
           examples:
           - PHNADD
         details:
@@ -2314,6 +2314,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
+        medicalNote:
+          type: array
+          items:
+            $ref: '#/components/schemas/medicalNote'
         decision:
           type: array
           items:
@@ -2370,6 +2374,88 @@ components:
       - detailedName: {}
         id: None
         role: "ARM, Medecin r\xE9gulateur\u2026"
+    medicalNote:
+      type: object
+      title: "Interrogatoire m\xE9dical"
+      x-display: expansion-panels
+      x-health-only: true
+      required:
+      - creation
+      - freetext
+      properties:
+        id:
+          type: string
+          title: "ID patient partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalNote/0/id
+          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
+            \ et est identifi\xE9"
+          examples:
+          - None
+        operator:
+          $ref: '#/components/schemas/operator'
+        creation:
+          type: string
+          title: "Date Heure de cr\xE9ation de l'interrogatoire"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/creation
+          description: "Groupe date heure de cr\xE9ation de l'interrogatoire.  L'indicateur\
+            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        freetext:
+          type: string
+          title: Observations et commentaires
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/freetext
+          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
+            \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
+            \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
+            \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
+          examples:
+          - None
+        medicalHistory:
+          type: string
+          title: "Ant\xE9c\xE9dents"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/medicalHistory
+          description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient"
+          examples:
+          - None
+        treatments:
+          type: string
+          title: Traitements
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/treatments
+          description: "Texte libre  pour d\xE9crire les traitements du patient"
+          examples:
+          - None
+        allergies:
+          type: string
+          title: Allergies
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/allergies
+          description: "Texte libre pour d\xE9crire les allergies du patient"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/medicalNote/0
+      examples:
+      - id: None
+        operator: {}
+        creation: '2022-09-27T08:23:34+02:00'
+        freetext: None
+        medicalHistory: None
+        treatments: None
+        allergies: None
     caseDetails:
       type: object
       title: "D\xE9tails du dossier "
@@ -2519,77 +2605,6 @@ components:
             $ref: '#/components/schemas/nomenclature'
       additionalProperties: false
       example: example.json#/patient/0/hypothesis
-    medicalNote:
-      type: object
-      title: "Interrogatoire m\xE9dical"
-      x-display: expansion-panels
-      x-health-only: true
-      required:
-      - creation
-      - freetext
-      properties:
-        operator:
-          $ref: '#/components/schemas/operator'
-        creation:
-          type: string
-          title: "Date Heure de cr\xE9ation de l'interrogatoire"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/creation
-          description: "Groupe date heure de cr\xE9ation de l'interrogatoire.  L'indicateur\
-            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
-        freetext:
-          type: string
-          title: Observations et commentaires
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/freetext
-          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
-            \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
-            \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
-            \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
-          examples:
-          - None
-        medicalHistory:
-          type: string
-          title: "Ant\xE9c\xE9dents"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/medicalHistory
-          description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient"
-          examples:
-          - None
-        treatments:
-          type: string
-          title: Traitements
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/treatments
-          description: "Texte libre  pour d\xE9crire les traitements du patient"
-          examples:
-          - None
-        allergies:
-          type: string
-          title: Allergies
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/medicalNote/0/allergies
-          description: "Texte libre pour d\xE9crire les allergies du patient"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/patient/0/medicalNote/0
-      examples:
-      - operator: {}
-        creation: '2022-09-27T08:23:34+02:00'
-        freetext: None
-        medicalHistory: None
-        treatments: None
-        allergies: None
     externalId:
       type: object
       title: Identifiant(s) patient(s)
@@ -3541,24 +3556,26 @@ components:
           description: "Identifiant unique de la ressource  dans le syst\xE8me du\
             \ partenaire propri\xE9taire"
           examples:
-          - 76_45101#SMUR1#
+          - 76_45101#SMUR1
         orgId:
           type: string
           title: "Identifiant de l'organisation propri\xE9taire"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceDetails/0/orgId
-          description: "Identifiant unique de l'organisme :  {pays}.{domaine}.{code\
-            \ d\xE9partement}.{organisation}.{structure interne}*.{unit\xE9 fonctionnelle}*"
+          description: "Identifiant unique de l'organisme :  {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*\n*donn\xE9es facultatives"
           examples:
-          - fr.health.760.samu76
+          - fr.health.samu76A
         name:
           type: string
           title: Nom de la ressource
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceDetails/0/name
-          description: Nom de la ressource
+          description: "Nom donn\xE9 \xE0 la ressource par l'organisme propri\xE9\
+            taire. \nL'immatriculation peut \xEAtre utilis\xE9e dans le nom courant\
+            \ des v\xE9hicules."
           examples:
           - SMUR 1 Rouen
         type:
@@ -3569,6 +3586,13 @@ components:
           example: example.json#/resourceDetails/0/type
           description: "Cat\xE9gorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE,\
             \ navire)"
+          enum:
+          - SMUR
+          - SDIS
+          - TSU
+          - SNP
+          - MSPE
+          - SHIP
           examples:
           - SMUR
         nature:
@@ -3577,18 +3601,27 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceDetails/0/nature
-          description: Nature de la ressource (effector, base)
+          description: Nature de la ressource (effecteur, base)
+          enum:
+          - EFFECTEUR
+          - BASE
           examples:
-          - None
+          - BASE
         mobility:
           type: string
           title: "Mobilit\xE9 de la ressource"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceDetails/0/mobility
-          description: "Mobilit\xE9 de la ressource (fix, vehicle, helicopter, ship)"
+          description: "Mobilit\xE9 de la ressource (fixe, vehicule, heliport\xE9\
+            , navire)"
+          enum:
+          - FIXE
+          - VEHICULE
+          - HELICOPTERE
+          - 'SHIP '
           examples:
-          - VEHICLE
+          - VEHCL
         capacity:
           type: string
           title: "Capacit\xE9s de la ressource"
@@ -3596,8 +3629,13 @@ components:
           x-cols: 6
           example: example.json#/resourceDetails/0/capacity
           description: "Capacit\xE9 de transport d'un patient"
+          enum:
+          - URGENCE
+          - MEDICALE
+          - PARAMEDICALE
+          - INCONNUE
           examples:
-          - EMERGENCY
+          - MED
         contacts:
           type: array
           items:
@@ -4395,7 +4433,7 @@ components:
           description: "Identifiant unique de la ressource  dans le syst\xE8me du\
             \ partenaire propri\xE9taire"
           examples:
-          - 76_45101#SMUR1#
+          - 76_45101#SMUR1
         datetime:
           type: string
           title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
@@ -4432,48 +4470,48 @@ components:
           example: example.json#/positionUpdate/0/speed
           description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
           examples:
-          - None
+          - 80
         cap:
           type: string
           title: Direction de la ressource
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/cap
-          description: "Direction de la ressource  (nord, sud, ouest, est), exprim\xE9\
-            \ en degr\xE9s"
+          description: "Direction de la ressource, exprim\xE9 en degr\xE9s"
           examples:
-          - None
+          - 96
         move:
           type: string
           title: Mouvement de la ressource
           x-health-only: false
           x-cols: 6
           example: example.json#/positionUpdate/0/move
-          description: Indique si la ressource est en mouvement ou non (Mobile, Statique)
+          description: Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)
+          enum:
+          - MOBILE
+          - STATIQUE
           examples:
-          - None
-        engine:
-          type: string
+          - MOBILE
+        engineOn:
+          type: boolean
           title: Etat du moteur de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/engine
-          description: 'OFF = contact etteint
-
-            ON = contact mis en marche'
+          example: example.json#/positionUpdate/0/engineOn
+          description: "Indique si le moteur de la ressource est \xE9teint (FAUX)\
+            \ ou allum\xE9/en marche (VRAI)"
           examples:
-          - 'OFF'
-        helicopterStatus:
-          type: string
+          - 1
+        groundStatus:
+          type: boolean
           title: "Etat de l'h\xE9licopt\xE8re"
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/helicopterStatus
-          description: 'GROUND = au sol
-
-            AIR = en l''air'
+          example: example.json#/positionUpdate/0/groundStatus
+          description: "Indique si l'h\xE9licopt\xE8re est au sol (VRAI) ou en l'air\
+            \ (FAUX)"
           examples:
-          - None
+          - 1
         status:
           type: string
           title: Statut de la ressource
@@ -4481,11 +4519,15 @@ components:
           x-cols: 6
           example: example.json#/positionUpdate/0/status
           description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
-            - AVAILABLE : Lorsque la ressource est disponible\n- UNAVAILABLE : Lorsque\
-            \ la ressource n'est pas disponible\n- HOLD : \n- ENGAGED : Lorsque la\
-            \ ressource est engag\xE9 sur une mission\n- UNKNOWN : "
+            - DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque\
+            \ la ressource n'est pas disponible, celle-ci peut \xEAtre engag\xE9e\
+            \ ou en maintenance\n- INCONNU : Lorsque le status est inconnu"
+          enum:
+          - DISPONIBLE
+          - INDISPONIBLE
+          - INCONNU
           examples:
-          - AVAILABLE
+          - DISPONIBLE
         engagedStatus:
           type: string
           title: "Statut de la ressource engag\xE9e"
@@ -4494,8 +4536,19 @@ components:
           example: example.json#/positionUpdate/0/engagedStatus
           description: "Pr\xE9cise le statut d'une ressource qui est engag\xE9e sur\
             \ une mission"
+          enum:
+          - ALERTEE
+          - PARTIE
+          - ARRIVEE_LIEU
+          - TRANSPORT_DESTINATION
+          - ARRIVEE_DESTINATION
+          - FIN_MED
+          - QUITTE_DESTINATION
+          - RETOUR_DISPONIBLE
+          - RETOUR_INDISPONIBLE
+          - ARRIVEE_CENTRE
           examples:
-          - None
+          - PARTIE
       additionalProperties: false
       example: example.json#/positionUpdate/0
     rtype:
@@ -5249,6 +5302,7 @@ components:
       - errorCode
       - errorCause
       - sourceMessage
+      - referencedDistributionID
       properties:
         errorCode:
           $ref: '#/components/schemas/errorCode'
@@ -5270,6 +5324,15 @@ components:
           description: Message source complet
           examples:
           - messageSource{}
+        referencedDistributionID:
+          type: string
+          title: "DistributionID referenc\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/referencedDistributionID
+          description: DistributionID du message source
+          examples:
+          - None
       additionalProperties: false
     errorCode:
       type: object

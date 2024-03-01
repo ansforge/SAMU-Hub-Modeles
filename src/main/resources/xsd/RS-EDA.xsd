@@ -41,6 +41,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="operator" type="x:operator"/>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
@@ -413,14 +414,49 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
             <element minOccurs="0" name="resourceDiagnosis" type="x:nomenclature"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+        </sequence>
+    </complexType>
+    <complexType name="medicalNote">
+        <sequence>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="operator" type="x:operator"/>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element name="freetext" type="string">
+                <annotation>
+                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
+Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="medicalHistory" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="treatments" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="allergies" type="string">
+                <annotation>
+                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="decision">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element minOccurs="0" name="id" type="string">
                 <annotation>
-                    <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
@@ -1207,37 +1243,6 @@ Par convention les prénoms composés doivent préférablement être séparés p
         <sequence>
             <element minOccurs="0" name="mainDiagnosis" type="x:nomenclature"/>
             <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:nomenclature"/>
-        </sequence>
-    </complexType>
-    <complexType name="medicalNote">
-        <sequence>
-            <element minOccurs="0" name="operator" type="x:operator"/>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element name="freetext" type="string">
-                <annotation>
-                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
-Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="medicalHistory" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="treatments" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="allergies" type="string">
-                <annotation>
-                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="externalId">

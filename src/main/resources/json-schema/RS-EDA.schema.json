@@ -21,7 +21,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}-{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
+            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
         },
         "senderCaseId": {
             "type": "string",
@@ -78,10 +78,16 @@
                 "$ref": "#/definitions/patient"
             }
         },
-        "medicalAnalysis": {
+        "medicalNote": {
             "type": "array",
             "items": {
-                "$ref": "#/definitions/medicalAnalysis"
+                "$ref": "#/definitions/medicalNote"
+            }
+        },
+        "decision": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/decision"
             }
         },
         "newAlert": {
@@ -596,41 +602,147 @@
                 },
                 "resourceDiagnosis": {
                     "$ref": "#/definitions/nomenclature"
-                },
-                "medicalNote": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/medicalNote"
-                    }
                 }
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0"
         },
-        "medicalAnalysis": {
+        "medicalNote": {
             "type": "object",
-            "title": "R\u00e9gulation m\u00e9dicale",
+            "title": "Interrogatoire m\u00e9dical",
             "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
+            "x-health-only": true,
+            "required": [
+                "creation",
+                "freetext"
+            ],
             "properties": {
-                "patientId": {
+                "id": {
                     "type": "string",
                     "title": "ID patient partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/patientId",
-                    "description": "ID du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
+                    "example": "example.json#/medicalNote/0/id",
+                    "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
                 },
-                "decision": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/decision"
-                    }
+                "operator": {
+                    "$ref": "#/definitions/operator"
+                },
+                "creation": {
+                    "type": "string",
+                    "title": "Date Heure de cr\u00e9ation de l'interrogatoire",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/creation",
+                    "description": "Groupe date heure de cr\u00e9ation de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Observations et commentaires",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/freetext",
+                    "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire (texte libre)\nChamp \u00e0 utiliser pour aggr\u00e9ger l'ensemble des ant\u00e9c\u00e9dents /traitements/allergies du patient si les cat\u00e9gories ne sont pas disctinctes dans le LRM"
+                },
+                "medicalHistory": {
+                    "type": "string",
+                    "title": "Ant\u00e9c\u00e9dents",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/medicalHistory",
+                    "description": "Texte libre  pour d\u00e9crire les ant\u00e9c\u00e9dents du patient"
+                },
+                "treatments": {
+                    "type": "string",
+                    "title": "Traitements",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/treatments",
+                    "description": "Texte libre  pour d\u00e9crire les traitements du patient"
+                },
+                "allergies": {
+                    "type": "string",
+                    "title": "Allergies",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/allergies",
+                    "description": "Texte libre pour d\u00e9crire les allergies du patient"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/medicalAnalysis/0"
+            "example": "example.json#/medicalNote/0"
+        },
+        "decision": {
+            "type": "object",
+            "title": "D\u00e9cisions",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "creation"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "title": "ID patient partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/id",
+                    "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
+                },
+                "creation": {
+                    "type": "string",
+                    "title": "Date Heure de cr\u00e9ation de la d\u00e9cision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/creation",
+                    "description": "Groupe date heure de cr\u00e9ation de la d\u00e9cision.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type de d\u00e9cision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/type",
+                    "description": "Type de d\u00e9cision prise"
+                },
+                "orientation": {
+                    "type": "string",
+                    "title": "Orientation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/orientation",
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
+                },
+                "transportation": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Vecteur de transport",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/decision/0/transportation/0",
+                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
+                    }
+                },
+                "medicalisation": {
+                    "type": "string",
+                    "title": "Niveau de m\u00e9dicalisation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/medicalisation",
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                },
+                "destination": {
+                    "$ref": "#/definitions/destination"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0"
         },
         "additionalInformation": {
             "type": "object",
@@ -1802,65 +1914,6 @@
             "additionalProperties": false,
             "example": "example.json#/patient/0/hypothesis"
         },
-        "medicalNote": {
-            "type": "object",
-            "title": "Interrogatoire m\u00e9dical",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [
-                "creation",
-                "freetext"
-            ],
-            "properties": {
-                "operator": {
-                    "$ref": "#/definitions/operator"
-                },
-                "creation": {
-                    "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de l'interrogatoire",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/medicalNote/0/creation",
-                    "description": "Groupe date heure de cr\u00e9ation de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
-                    "format": "date-time"
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Observations et commentaires",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/medicalNote/0/freetext",
-                    "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire (texte libre)\nChamp \u00e0 utiliser pour aggr\u00e9ger l'ensemble des ant\u00e9c\u00e9dents /traitements/allergies du patient si les cat\u00e9gories ne sont pas disctinctes dans le LRM"
-                },
-                "medicalHistory": {
-                    "type": "string",
-                    "title": "Ant\u00e9c\u00e9dents",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/medicalNote/0/medicalHistory",
-                    "description": "Texte libre  pour d\u00e9crire les ant\u00e9c\u00e9dents du patient"
-                },
-                "treatments": {
-                    "type": "string",
-                    "title": "Traitements",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/medicalNote/0/treatments",
-                    "description": "Texte libre  pour d\u00e9crire les traitements du patient"
-                },
-                "allergies": {
-                    "type": "string",
-                    "title": "Allergies",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/medicalNote/0/allergies",
-                    "description": "Texte libre pour d\u00e9crire les allergies du patient"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/medicalNote/0"
-        },
         "externalId": {
             "type": "object",
             "title": "Identifiant(s) patient(s)",
@@ -2068,68 +2121,6 @@
             "additionalProperties": false,
             "example": "example.json#/patient/0/identity/strictFeatures"
         },
-        "decision": {
-            "type": "object",
-            "title": "D\u00e9cisions",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "creation"
-            ],
-            "properties": {
-                "creation": {
-                    "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/creation",
-                    "description": "Groupe date heure de cr\u00e9ation de la d\u00e9cision.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
-                    "format": "date-time"
-                },
-                "type": {
-                    "type": "string",
-                    "title": "Type de d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/type",
-                    "description": "Type de d\u00e9cision prise"
-                },
-                "orientation": {
-                    "type": "string",
-                    "title": "Orientation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
-                },
-                "transportation": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Vecteur de transport",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/medicalAnalysis/0/decision/0/transportation/0",
-                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
-                    }
-                },
-                "medicalisation": {
-                    "type": "string",
-                    "title": "Niveau de m\u00e9dicalisation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/medicalisation",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
-                },
-                "destination": {
-                    "$ref": "#/definitions/destination"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/medicalAnalysis/0/decision/0"
-        },
         "destination": {
             "type": "object",
             "title": "Destination",
@@ -2142,7 +2133,7 @@
                     "title": "Etablissement",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/facility",
+                    "example": "example.json#/decision/0/destination/facility",
                     "description": "Nom de l'\u00e9tablissement"
                 },
                 "adminFiness": {
@@ -2150,7 +2141,7 @@
                     "title": "FINESS administratif",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/adminFiness",
+                    "example": "example.json#/decision/0/destination/adminFiness",
                     "description": "N\u00b0 Finess administratif de l'\u00e9tablissement"
                 },
                 "geoFiness": {
@@ -2158,7 +2149,7 @@
                     "title": "FINESS g\u00e9ographique",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/geoFiness",
+                    "example": "example.json#/decision/0/destination/geoFiness",
                     "description": "N\u00b0 Finess g\u00e9ographique de l'\u00e9tablissement"
                 },
                 "service": {
@@ -2166,7 +2157,7 @@
                     "title": "Service",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/service",
+                    "example": "example.json#/decision/0/destination/service",
                     "description": "Service concern\u00e9 par l'admission du patient"
                 },
                 "freetext": {
@@ -2174,11 +2165,11 @@
                     "title": "Autre",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/medicalAnalysis/0/decision/0/destination/freetext"
+                    "example": "example.json#/decision/0/destination/freetext"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/medicalAnalysis/0/decision/0/destination"
+            "example": "example.json#/decision/0/destination"
         },
         "customMap": {
             "type": "object",

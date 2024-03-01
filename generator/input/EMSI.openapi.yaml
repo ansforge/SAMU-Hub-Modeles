@@ -1875,7 +1875,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/LAT
-          description: "derni\xE8re coordonn\xE9e x  connue de la ressource"
+          description: "derni\xE8re coordonn\xE9e x  connue de la ressource, entre\
+            \ \u221290 and +90"
           examples:
           - '47.221866'
         LONG:
@@ -1886,7 +1887,7 @@ components:
           example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/LONG
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
             r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
-            re coordonn\xE9e y  connue de la ressource\nbetween \u221290 and +90"
+            re coordonn\xE9e y  connue de la ressource\nentre \u2212180 and +180"
           examples:
           - '-1.575807'
         HEIGHT:
@@ -1897,7 +1898,7 @@ components:
           example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
             r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
-            re coordonn\xE9e z  connue de la ressource\nbetween \u2212180 and +180"
+            re coordonn\xE9e z  connue de la ressource, en m\xE8tres sans bornes\n"
           examples:
           - 1
       additionalProperties: false
