@@ -18,5 +18,23 @@
       "description": "Identifiant unique du message référencé"
     }
   },
-  "additionalProperties": false
+  "definitions": {
+    "reference": {
+      "type": "object",
+      "title": "Reference",
+      "required": [
+        "distributionID"
+      ],
+      "properties": {
+        "distributionID": {
+          "type": "string",
+          "title": "Identifiant du message référencé",
+          "x-cols": 6,
+          "example": "example.json#/caseId",
+          "description": "Identifiant unique du message référencé"
+        }
+      },
+      "additionalProperties": false
+    }
+  }
 }

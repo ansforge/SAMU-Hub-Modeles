@@ -240,7 +240,7 @@ def run(sheet, name, version, filter):
               f"Check these columns are correctly set up.{Color.END}")
         HAS_ERROR = True
     # - objects with basic types
-    basic_types = ['integer', 'number', 'string', 'datetime', 'date']
+    basic_types = ['integer', 'number', 'string', 'datetime', 'date', 'boolean']
     objects_with_basic_type_df = df.loc[
         (df['Objet'] == 'X') &
         (df['Format (ou type)'].isin(basic_types))
