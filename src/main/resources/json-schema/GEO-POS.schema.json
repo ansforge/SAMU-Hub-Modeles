@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "GEO-POS.schema.json#",
-    "version": "24.02.29",
+    "version": "24.03.01",
     "example": "example.json#",
     "type": "object",
     "title": "geolocalisation",
@@ -23,7 +23,7 @@
             "x-health-only": false,
             "required": [
                 "id",
-                "datetime"
+                "dateTime"
             ],
             "properties": {
                 "id": {
@@ -34,23 +34,22 @@
                     "example": "example.json#/positionUpdate/0/id",
                     "description": "Identifiant unique de la ressource  dans le syst\u00e8me du partenaire propri\u00e9taire"
                 },
-                "datetime": {
+                "dateTime": {
                     "type": "string",
                     "title": "Date et heure des derni\u00e8res remont\u00e9es d'informations de la ressource",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/positionUpdate/0/datetime",
+                    "example": "example.json#/positionUpdate/0/dateTime",
                     "description": "Date et heure de la derni\u00e8re position connue",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
-                "receptionDatetime": {
+                "time": {
                     "type": "string",
                     "title": "Date et heure de la r\u00e9ception de la derni\u00e8re localisation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/positionUpdate/0/receptionDatetime",
-                    "description": "Date et heure de la r\u00e9ception de la derni\u00e8re position connue dans le syst\u00e8me de l'organisme",
+                    "example": "example.json#/positionUpdate/0/time",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -66,7 +65,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/speed",
-                    "description": "Vitesse de la ressource enregistr\u00e9e, exprim\u00e9e en km/h"
+                    "description": "Vitesse de la ressource enregistr\u00e9e"
                 },
                 "cap": {
                     "type": "string",
@@ -85,20 +84,20 @@
                     "description": "Indique si la ressource est en mouvement ou non (Mobile, Statique)"
                 },
                 "engine": {
-                    "type": "string",
+                    "type": "number",
                     "title": "Etat du moteur de la ressource",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/engine",
-                    "description": "OFF = contact etteint\nON = contact mis en marche"
+                    "description": "0 = contact etteint\n1 = contact mis en marche"
                 },
                 "helicopterStatus": {
-                    "type": "string",
+                    "type": "number",
                     "title": "Etat de l'h\u00e9licopt\u00e8re",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/helicopterStatus",
-                    "description": "GROUND = au sol\nAIR = en l'air"
+                    "description": "0 = au sol\n1 = en l'air"
                 },
                 "status": {
                     "type": "string",
@@ -106,15 +105,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/status",
-                    "description": "D\u00e9finit le statut de disponibilit\u00e9 d'une ressource.\n- AVAILABLE : Lorsque la ressource est disponible\n- UNAVAILABLE : Lorsque la ressource n'est pas disponible\n- HOLD : \n- ENGAGED : Lorsque la ressource est engag\u00e9 sur une mission\n- UNKNOWN : "
-                },
-                "engagedStatus": {
-                    "type": "string",
-                    "title": "Statut de la ressource engag\u00e9e",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/positionUpdate/0/engagedStatus",
-                    "description": "Pr\u00e9cise le statut d'une ressource qui est engag\u00e9e sur une mission"
+                    "description": "D\u00e9finit le statut de disponibilit\u00e9 d'une ressource.\n- AVAILABLE : Lorsque la ressource est disponible\n- UNAVAILABLE : Lorsque la ressource n'est pas disponible"
                 }
             },
             "additionalProperties": false,
