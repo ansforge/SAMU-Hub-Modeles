@@ -421,7 +421,7 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'required': [],
                 'properties': {},
-                'additionalProperties': False,
+                'additionalProperties': is_source_message(typeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         if child['Cardinalité'].startswith('1'):
@@ -440,6 +440,11 @@ def run(sheet, name, version, filter):
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTypeName,
             }
+
+    def is_source_message(typeName):
+        if typeName == "sourceMessage":
+            return True
+        return False
 
     def add_child(parent, child, definitions):
         """Update parent definitions by adding the child information"""
