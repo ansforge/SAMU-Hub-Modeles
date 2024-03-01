@@ -53,8 +53,8 @@ schemas = [{
     'sheet': 'RC-REF',
     'filter': False
 }, {
-    'name': 'CustomContent',
-    'sheet': 'CustomContent',
+    'name': 'customContent',
+    'sheet': 'customContent',
     'filter': False
 }]
 
