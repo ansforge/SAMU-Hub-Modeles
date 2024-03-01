@@ -73,7 +73,7 @@
             "x-health-only": false,
             "required": [],
             "properties": {},
-            "additionalProperties": false,
+            "additionalProperties": true,
             "example": "example.json#/sourceMessage"
         }
     },
