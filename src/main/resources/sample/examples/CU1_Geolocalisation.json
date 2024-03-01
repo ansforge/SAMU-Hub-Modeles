@@ -1,0 +1,56 @@
+{
+  "resourceDetails": [
+    {
+      "ID": "76_45101#SMUR1#",
+      "orgID": "fr.health.760.samu76",
+      "NAME": "SMUR 1 Rouen",
+      "RTYPE": "SMUR",
+      "NATURE": "BASE",
+      "MOBILITY": "VEHICLE",
+      "CAPACITY": "NON PRECISE",
+      "CONTACTS": {
+        "TYPE": "PHNADD",
+        "DETAIL": "0612342536"
+      }
+    },
+    {
+      "ID": "76_45102#SMUR2#",
+      "orgID": "fr.health.760.samu76",
+      "NAME": "SMUR 2 Rouen",
+      "RTYPE": "SMUR",
+      "NATURE": "BASE",
+      "MOBILITY": "VEHICLE",
+      "CAPACITY": "URGENCE",
+      "CONTACTS": {
+        "TYPE": "PHNADD",
+        "DETAIL": "0612342537"
+      }
+    },
+    {
+      "ID": "14_45103#SMUR3#",
+      "orgID": "fr.health.140.samu14",
+      "NAME": "SMUR 3 Caen",
+      "RTYPE": "SMUR",
+      "NATURE": "EFFECTOR",
+      "MOBILITY": "VEHICLE",
+      "CAPACITY": "MEDICALE",
+      "CONTACTS": {
+        "TYPE": "PHNADD",
+        "DETAIL": "0612342538"
+      }
+    },
+    {
+      "ID": "76_45104#SMUR4#",
+      "orgID": "fr.health.760.samu76",
+      "NAME": "SMUR 4 Havre",
+      "RTYPE": "SMUR",
+      "NATURE": "EFFECTOR",
+      "MOBILITY": "VEHICLE",
+      "CAPACITY": "MEDICALE",
+      "CONTACTS": {
+        "TYPE": "PHNADD",
+        "DETAIL": "0612342539"
+      }
+    }
+  ]
+}

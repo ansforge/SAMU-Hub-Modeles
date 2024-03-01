@@ -20,6 +20,7 @@ pd.set_option('display.width', 1000)
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
+full_asyncapi = None
 first_nomenclature_name = ""
 first_nomenclature_id = ""
 first_nomenclature_properties = []
@@ -127,6 +128,7 @@ def run(sheet, name, version, filter):
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
         lambda x: pd.NA if str(x).startswith('# ') else x)
 
+
     def find_data_level(element):
         """Find the first data level of the element"""
         for i in range(1, DATA_DEPTH + 1):
@@ -183,25 +185,6 @@ def run(sheet, name, version, filter):
     df.reset_index(drop=True, inplace=True)
     regenerate_ids(df)
 
-    if MODEL_NAME != "RC-DE":
-        # Adding the wrapper
-        # - Moving all levels one level down
-        df = df.rename(columns={f"Donnée (Niveau {i})": f"Donnée (Niveau {i + 1})" for i in range(1, DATA_DEPTH + 1)})
-        DATA_DEPTH += 1
-        # - Adding the wrapper line
-        df.insert(1, "Donnée (Niveau 1)", None)
-        df = pd.concat([
-            pd.DataFrame({
-                'ID': -1,
-                'Description': f"Object {MODEL_NAME}",
-                'Nouvelle balise': MODEL_TYPE,
-                'Cardinalité': '1..1',
-                'Objet': 'X',
-                'Format (ou type)': MODEL_TYPE,
-                'Donnée (Niveau 1)': f"Objet {MODEL_NAME}"
-            }, index=[-1]),
-            df
-        ])
 
     # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
     df['name'] = df['Balise NexSIS']
@@ -296,7 +279,7 @@ def run(sheet, name, version, filter):
         """Is elem only for 15-15?"""
         isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
         return isHealthOnly
-    
+
     def capitalizeFirstLetter(string):
         return string[0].upper() + string[1:]
 
@@ -310,7 +293,7 @@ def run(sheet, name, version, filter):
 
     def get_parent_type(row):
         if row['level_shift'] == 1:
-            return WRAPPER_NAME
+            return MODEL_TYPE
         return df.loc[row['parent']]['true_type']
 
     def build_id(row):
@@ -350,7 +333,7 @@ def run(sheet, name, version, filter):
     rootObject = {
         'id': '1',
         'level_shift': 0,
-        'name': WRAPPER_NAME,
+        'name': MODEL_TYPE,
         'Objet': 'X',
         'children': children['1']
     }
@@ -358,7 +341,8 @@ def run(sheet, name, version, filter):
     # DATA USAGE
     def is_array(elem):
         """Is elem an array?"""
-        return elem['Cardinalité'].endswith('n')
+        cardinality = elem['Cardinalité']
+        return not cardinality.endswith('1')
 
     def navigate_children_with_id(id_path):
         """
@@ -408,10 +392,11 @@ def run(sheet, name, version, filter):
         'version': version,
         'example': 'example.json#',
         'type': 'object',
-        'title': MODEL_NAME,
+        'title': MODEL_TYPE,
         'required': [],
         'properties': {},
-        'definitions': {}
+        'definitions': {},
+        'additionalProperties': False
     }
 
     def has_format_details(elem, details):
@@ -469,6 +454,8 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'items': childDetails
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = childDetails
 
@@ -510,6 +497,8 @@ def run(sheet, name, version, filter):
                     '$ref': '#/definitions/' + childTrueTypeName,
                 }
             }
+            if child['Cardinalité'][-1].isdigit():
+                properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTrueTypeName,
@@ -606,9 +595,10 @@ def run(sheet, name, version, filter):
         json.dump(json_schema, outfile, indent=4)
     print('JSON schema generated.')
 
-    # BUILD AsyncAPI SCHEMA
-    def build_asyncapi_schema():
-        asyncapi_schema = {}
+    # BUILD OpenAPI SCHEMA
+    print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating OpenAPI schema...{Color.END}')
+    def json_schema_to_openapi_schema(json_schema):
+        openapi_schema = {}
         definitions = json_schema['definitions']
         # Add root object to definitions so it is treated as a normal object
         # Dropping useless root infos
@@ -616,29 +606,47 @@ def run(sheet, name, version, filter):
             '$schema', 'definitions', 'version', 'id'
         ]}
         definitions = {
-            **{WRAPPER_NAME: root_definition},
+            **{MODEL_TYPE: root_definition},
             **definitions
         }
         # Simply collect all objects (and root properties)
         for elem_name, definition in definitions.items():
             get_examples_with_json_example(definition)
-            asyncapi_schema[elem_name] = definition
-        return asyncapi_schema
+            openapi_schema[elem_name] = definition
+        return openapi_schema
 
-    openapi_components = build_asyncapi_schema()
+    openapi_components = json_schema_to_openapi_schema(json_schema)
     with open('common.openapi.yaml') as f:
         common_openapi_components = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
-    print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating OpenAPI schema...{Color.END}')
     with open('template.openapi.yaml') as f:
         full_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
+        wrapper_yaml = {
+            WRAPPER_NAME: {
+                "type": "object",
+                "required": [MODEL_TYPE],
+                "properties": {
+                    MODEL_TYPE: {
+                        "$ref": "#/components/schemas/" + MODEL_TYPE
+                    }
+                }
+            }
+        }
+
         full_yaml['components']['schemas'] = {
             **full_yaml['components']['schemas'],
+            **wrapper_yaml,
             **openapi_components
         }
 
-    print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Adding schema info to AsyncAPI spec...{Color.END}')
+    with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
+        documents = yaml.dump(full_yaml, sort_keys=False)
+        documents = documents.replace('#/definitions/', "#/components/schemas/")
+        file.write(documents)
+    print('OpenAPI schema generated.')
+
+    print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Collecting AsyncAPI spec...{Color.END}')
     with open('template.asyncapi.yaml') as f:
         asyncapi_yaml = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
@@ -647,20 +655,14 @@ def run(sheet, name, version, filter):
             **common_openapi_components['components']['schemas'],
             **openapi_components
         }
-        # asyncapi_yaml['components']['schemas']['EmbeddedJsonContent']['oneOf'].append(f'"$ref": "#/components/schemas/{WRAPPER_NAME}"')
 
-    with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
-        documents = yaml.dump(full_yaml, sort_keys=False)
-        documents = documents.replace('#/definitions/', "#/components/schemas/")
-        file.write(documents)
-    print('OpenAPI schema generated.')
-
-    # TODO bb: extract this logic to an outside script called by the gh action
-    # with open(f'out/full-asyncapi.yaml', 'w') as file:
-    #     documents = yaml.dump(asyncapi_yaml, sort_keys=False)
-    #     documents = documents.replace('#/definitions/', "#/components/schemas/")
-    #     file.write(documents)
-    # print('AsyncAPI schema generated.')
+        # Adding current asyncapi schemas to full asyncapi schema
+        global full_asyncapi
+        if (full_asyncapi is None):
+            full_asyncapi = asyncapi_yaml
+        else:
+            full_asyncapi['components']['schemas'].update(asyncapi_yaml['components']['schemas'])
+    print('AsyncAPI schema collected.')
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
     uml_generator.run(name, MODEL_NAME, version=version, filter=filter)
@@ -734,7 +736,7 @@ def run(sheet, name, version, filter):
     section.page_width = new_width
     section.page_height = new_height
     # Json Schema rootObject makes the object table
-    def_to_table(WRAPPER_NAME, json_schema, title=f"Objet {WRAPPER_NAME} ({MODEL_NAME})", doc=doc)
+    def_to_table(MODEL_TYPE, json_schema, title=f"Objet {MODEL_NAME}", doc=doc)
     # Then all Json Schema definitions are types tables
     for elem_name, definition in json_schema['definitions'].items():
         def_to_table(elem_name, definition, title=f"Type {elem_name}", doc=doc)

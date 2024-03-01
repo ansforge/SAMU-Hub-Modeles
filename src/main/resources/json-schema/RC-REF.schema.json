@@ -5,31 +5,18 @@
   "version": "0.4.9",
   "example": "example.json#",
   "type": "object",
-  "title": "RC_REF",
+  "title": "reference",
   "required": [
-    "reference"
+    "distributionID"
   ],
   "properties": {
-    "reference": {
-      "$ref": "#/definitions/reference"
+    "distributionID": {
+      "type": "string",
+      "title": "Identifiant du message référencé",
+      "x-cols": 6,
+      "example": "example.json#/caseId",
+      "description": "Identifiant unique du message référencé"
     }
   },
-  "definitions": {
-    "reference": {
-      "type": "object",
-      "title": "Reference",
-      "required": [
-        "distributionID"
-      ],
-      "properties": {
-        "distributionID": {
-          "type": "string",
-          "title": "Identifiant du message référencé",
-          "x-cols": 6,
-          "example": "example.json#/caseId",
-          "description": "Identifiant unique du message référencé"
-        }
-      }
-    }
-  }
+  "additionalProperties": false
 }
