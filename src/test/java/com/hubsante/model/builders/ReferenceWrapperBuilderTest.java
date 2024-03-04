@@ -61,6 +61,25 @@ public class ReferenceWrapperBuilderTest {
         assertEquals("test.sender-x_ID12345", ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
     }
 
+
+    @Test
+    @DisplayName("should not build a EDXL-DE with invalid distribution id")
+    public void shouldNotBuildEdxlDeWithInvalidDistributionId() {
+        Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
+        List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
+
+        DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+                .kind(DistributionElement.KindEnum.ACK)
+                .build();
+        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, "test.sender-x_ID12345")
+                .build();
+
+        assertThrows(IllegalArgumentException.class, () -> new EDXL_DE_Builder("invalid-id", SENDER_ID, RECIPIENT_ID)
+                .contentMessage(referenceWrapper)
+                .distributionKind(DistributionKind.ACK)
+                .build());
+    }
+
     @Test
     @DisplayName("should not build a RC_REF with invalid kind")
     public void shouldNotBuildRC_REFWithInvalidKind() {
