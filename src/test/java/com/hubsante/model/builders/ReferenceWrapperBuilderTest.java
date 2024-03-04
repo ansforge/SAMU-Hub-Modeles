@@ -31,8 +31,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class ReferenceWrapperBuilderTest {
-    private final String DISTRIBUTION_ID = "sender-x_ID12345";
-    private final String SENDER_ID = "sender-x";
+    private final String DISTRIBUTION_ID = "test.sender-x_ID12345";
+    private final String SENDER_ID = "test.sender-x";
     private final String RECIPIENT_ID = "recipient-y";
 
     /*
@@ -50,7 +50,7 @@ public class ReferenceWrapperBuilderTest {
         DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
                 .kind(DistributionElement.KindEnum.ACK)
                 .build();
-        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, "sender-x_ID12345")
+        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, "test.sender-x_ID12345")
                 .build();
 
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
@@ -58,7 +58,7 @@ public class ReferenceWrapperBuilderTest {
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
-        assertEquals("sender-x_ID12345", ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
+        assertEquals("test.sender-x_ID12345", ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
     }
 
     @Test

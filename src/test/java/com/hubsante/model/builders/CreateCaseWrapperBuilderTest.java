@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class CreateCaseWrapperBuilderTest {
     private final String MESSAGE_ID = "id-12345";
-    private final String SENDER_ID = "sender-x";
+    private final String SENDER_ID = "test.sender-x";
     private final String RECIPIENT_ID = "recipient-y";
     private EdxlHandler converter = new EdxlHandler();
     @Test

@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class DistributionElementBuilderTest {
     private final static String MESSAGE_ID = "id-12345";
-    private final String SENDER_ID = "sender-x";
+    private final String SENDER_ID = "test.sender-x";
     private final List<Recipient> RECIPIENT_LIST = Stream.of(new Recipient().name("recipient-y").URI("hubex:recipient-y")).collect(Collectors.toList());
 
 
