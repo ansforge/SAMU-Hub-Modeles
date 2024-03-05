@@ -52,7 +52,10 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         assert subFolders != null;
 
         List<File> files = new ArrayList<>();
-        Arrays.stream(subFolders).forEach(folder -> files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles()))));
+        Arrays.stream(subFolders).forEach(folder -> {
+            if (!folder.getName().equals("work-in-progress")) {
+                files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
+            }});
 
         AtomicBoolean allPass = new AtomicBoolean(true);
 
