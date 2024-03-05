@@ -55,12 +55,16 @@ jobs:
       - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
         run: |
-          test -d out/ && mv out/* ../../src/main/resources/xsd/
+          for f in out/*.xsd; do
+            mv f ../../src/main/resources/xsd/
+          done
 
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
         run: |
-          rm src/main/resources/*.json
+          for f in src/main/resources/*.json; do
+            rm f
+          done
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3
