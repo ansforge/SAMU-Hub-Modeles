@@ -56,7 +56,7 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         run: |
           for f in out/*.xsd; do
-            mv "$f" ../../src/main/resources/xsd/
+            echo "$f"
           done
 
       - name: Remove input JSON Schemas
