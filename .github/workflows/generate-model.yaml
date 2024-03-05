@@ -56,13 +56,13 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         run: |
           find . -name "*.xsd" -exec cp {} ../../src/main/resources/xsd \;
+          ls -l ../../src/main/resources/xsd
 
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
         run: |
-          for f in src/main/resources/*.json; do
-            rm "$f"
-          done
+          find . -name "/src/main/resources/*.json" -exec rm {} \;
+          ls -l ../../src/main/resources
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3
