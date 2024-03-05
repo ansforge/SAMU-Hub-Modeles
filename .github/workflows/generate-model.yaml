@@ -55,9 +55,7 @@ jobs:
       - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
         run: |
-          for f in out/*.xsd; do
-            echo "$f"
-          done
+          find . -name "*.xsd" -exec cp {} ../../src/main/resources/xsd \;
 
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
