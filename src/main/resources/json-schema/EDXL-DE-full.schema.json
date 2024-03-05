@@ -1,61 +1,46 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "$id": "classpath:/json-schema/schema#",
+  "required": [
+    "senderID",
+    "distributionID",
+    "dateTimeSent",
+    "dateTimeExpires",
+    "distributionStatus",
+    "distributionKind",
+    "descriptor",
+    "content"
+  ],
+  "properties": {
+    "senderID": {
+      "type": "string"
+    },
+    "distributionID": {
+      "type": "string"
+    },
+    "dateTimeSent": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dateTimeExpires": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "content": {
+      "$ref": "#/definitions/Content"
+    },
+    "descriptor": {
+      "$ref": "#/definitions/Descriptor"
+    },
+    "distributionKind": {
+      "$ref": "#/definitions/DistributionKind"
+    },
+    "distributionStatus": {
+      "$ref": "#/definitions/DistributionStatus"
+    }
+  },
+  "additionalProperties": false,
   "definitions": {
-    "EdxlEnvelope": {
-      "type": "object",
-      "properties": {
-        "senderID": {
-          "type": "string"
-        },
-        "distributionID": {
-          "type": "string",
-          "pattern": "^[a-z0-9.\\-]+_[[a-z0-9._\\-#]+$"
-        },
-        "dateTimeSent": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "dateTimeExpires": {
-          "type": "string",
-          "format": "date-time"
-        },
-        "distributionStatus": {
-          "$ref": "#/definitions/DistributionStatus"
-        },
-        "distributionKind": {
-          "$ref": "#/definitions/DistributionKind"
-        },
-        "descriptor": {
-          "$ref": "#/definitions/Descriptor"
-        }
-      },
-      "required": [
-        "senderID",
-        "distributionID",
-        "dateTimeSent",
-        "dateTimeExpires",
-        "distributionStatus",
-        "distributionKind",
-        "descriptor"
-      ]
-    },
-    "EdxlMessage": {
-      "type": "object",
-      "allOf": [
-        {
-          "$ref": "#/definitions/EdxlEnvelope"
-        }
-      ],
-      "properties": {
-        "content": {
-          "$ref": "#/definitions/Content"
-        }
-      },
-      "required": [
-        "content"
-      ]
-    },
     "Content": {
       "type": "array",
       "items": {
@@ -221,6 +206,7 @@
           "type": "string"
         }
       },
+      "additionalProperties": false,
       "required": [
         "explicitAddress",
         "language"
@@ -253,52 +239,11 @@
           "type": "string"
         }
       },
+      "additionalProperties": false,
       "required": [
         "explicitAddressScheme",
         "explicitAddressValue"
       ]
     }
-  },
-  "properties": {
-    "edxlMessage": {
-      "$ref": "#/definitions/EdxlMessage"
-    },
-    "edxlEnvelope": {
-      "$ref": "#/definitions/EdxlEnvelope"
-    },
-    "content": {
-      "$ref": "#/definitions/Content"
-    },
-    "contentObject": {
-      "$ref": "#/definitions/ContentObject"
-    },
-    "jsonContent": {
-      "$ref": "#/definitions/JsonContent"
-    },
-    "embeddedJsonContent": {
-      "$ref": "#/definitions/EmbeddedJsonContent"
-    },
-    "descriptor": {
-      "$ref": "#/definitions/Descriptor"
-    },
-    "distributionKind": {
-      "$ref": "#/definitions/DistributionKind"
-    },
-    "distributionStatus": {
-      "$ref": "#/definitions/DistributionStatus"
-    },
-    "explicitAddress": {
-      "$ref": "#/definitions/ExplicitAddress"
-    }
-  },
-  "required": [
-    "senderID",
-    "distributionID",
-    "dateTimeSent",
-    "dateTimeExpires",
-    "distributionStatus",
-    "distributionKind",
-    "descriptor",
-    "content"
-  ]
+  }
 }
