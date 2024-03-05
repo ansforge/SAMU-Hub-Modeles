@@ -7,22 +7,38 @@
   "type": "object",
   "title": "info",
   "required": [
-    "errorCode",
-    "errorCause",
-    "sourceMessage"
+    "info"
   ],
   "properties": {
-    "errorCode": {
-      "$ref": "#/definitions/errorCode"
-    },
-    "errorCause": {
-      "type": "string"
-    },
-    "spurceMessage": {
-      "type": "string"
+    "info": {
+      "$ref": "#/definitions/info"
     }
   },
   "definitions": {
+    "info": {
+      "type": "object",
+      "title": "info",
+      "required": [
+        "errorCode",
+        "errorCause",
+        "referencedDistributionID"
+      ],
+      "properties": {
+        "errorCode": {
+          "$ref": "#/definitions/errorCode"
+        },
+        "errorCause": {
+          "type": "string"
+        },
+        "sourceMessage": {
+          "$ref": "#/definitions/sourceMessage"
+        },
+        "referencedDistributionID": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
     "errorCode": {
       "type": "object",
       "title": "errorCode",
@@ -37,7 +53,12 @@
         "statusString": {
           "type": "string"
         }
-      }
+      },
+      "additionalProperties": false
+    },
+    "sourceMessage": {
+      "type": "object",
+      "title": "sourceMessage"
     }
   }
 }

@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Nomenclature
+ * LocationKind
  */
-@JsonPropertyOrder({Nomenclature.JSON_PROPERTY_CODE,
-                    Nomenclature.JSON_PROPERTY_LABEL,
-                    Nomenclature.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("nomenclature")
+@JsonPropertyOrder({LocationKind.JSON_PROPERTY_CODE,
+                    LocationKind.JSON_PROPERTY_LABEL,
+                    LocationKind.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("locationKind")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Nomenclature {
+public class LocationKind {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class Nomenclature {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public Nomenclature() {}
+  public LocationKind() {}
 
-  public Nomenclature code(String code) {
+  public LocationKind code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class Nomenclature {
     this.code = code;
   }
 
-  public Nomenclature label(String label) {
+  public LocationKind label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class Nomenclature {
     this.label = label;
   }
 
-  public Nomenclature freetext(String freetext) {
+  public LocationKind freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,10 +139,10 @@ public class Nomenclature {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Nomenclature nomenclature = (Nomenclature)o;
-    return Objects.equals(this.code, nomenclature.code) &&
-        Objects.equals(this.label, nomenclature.label) &&
-        Objects.equals(this.freetext, nomenclature.freetext);
+    LocationKind locationKind = (LocationKind)o;
+    return Objects.equals(this.code, locationKind.code) &&
+        Objects.equals(this.label, locationKind.label) &&
+        Objects.equals(this.freetext, locationKind.freetext);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class Nomenclature {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Nomenclature {\n");
+    sb.append("class LocationKind {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

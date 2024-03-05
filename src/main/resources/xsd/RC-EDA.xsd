@@ -44,10 +44,10 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
     </complexType>
     <complexType name="qualification">
         <sequence>
-            <element name="whatsHappen" type="x:nomenclature"/>
-            <element minOccurs="0" name="locationKind" type="x:nomenclature"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:nomenclature"/>
-            <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element name="whatsHappen" type="x:whatsHappen"/>
+            <element minOccurs="0" name="locationKind" type="x:locationKind"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
+            <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="victims" type="x:victims"/>
         </sequence>
     </complexType>
@@ -400,7 +400,67 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
-    <complexType name="nomenclature">
+    <complexType name="whatsHappen">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="locationKind">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="riskThreat">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="healthMotive">
         <sequence>
             <element name="code" type="string">
                 <annotation>
