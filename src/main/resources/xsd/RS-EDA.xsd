@@ -54,10 +54,10 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
     </complexType>
     <complexType name="qualification">
         <sequence>
-            <element name="whatsHappen" type="x:nomenclature"/>
-            <element minOccurs="0" name="locationKind" type="x:nomenclature"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:nomenclature"/>
-            <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element name="whatsHappen" type="x:whatsHappen"/>
+            <element minOccurs="0" name="locationKind" type="x:locationKind"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
+            <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="details" type="x:caseDetails"/>
             <element minOccurs="0" name="victims" type="x:victims"/>
         </sequence>
@@ -410,10 +410,10 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             </element>
             <element minOccurs="0" name="file" type="x:file"/>
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
-            <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
-            <element minOccurs="0" name="resourceDiagnosis" type="x:nomenclature"/>
+            <element minOccurs="0" name="resourceDiagnosis" type="x:resourceDiagnosis"/>
         </sequence>
     </complexType>
     <complexType name="medicalNote">
@@ -488,7 +488,67 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
             <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
-    <complexType name="nomenclature">
+    <complexType name="whatsHappen">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="locationKind">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="riskThreat">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="healthMotive">
         <sequence>
             <element name="code" type="string">
                 <annotation>
@@ -1241,8 +1301,28 @@ Par convention les prénoms composés doivent préférablement être séparés p
     </complexType>
     <complexType name="hypothesis">
         <sequence>
-            <element minOccurs="0" name="mainDiagnosis" type="x:nomenclature"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:nomenclature"/>
+            <element minOccurs="0" name="mainDiagnosis" type="x:mainDiagnosis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:otherDiagnosis"/>
+        </sequence>
+    </complexType>
+    <complexType name="resourceDiagnosis">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="externalId">
@@ -1369,6 +1449,46 @@ Pierre Alain Jacques</documentation>
             <element minOccurs="0" name="birthPlaceCode" type="decimal">
                 <annotation>
                     <documentation>Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="mainDiagnosis">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="otherDiagnosis">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
                 </annotation>
             </element>
         </sequence>
