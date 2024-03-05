@@ -31,10 +31,11 @@ import java.util.stream.Stream;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static com.hubsante.model.TestConstants.*;
 
 public class CreateCaseWrapperBuilderTest {
-
+    private final String MESSAGE_ID = "id-12345";
+    private final String SENDER_ID = "sender-x";
+    private final String RECIPIENT_ID = "recipient-y";
     private EdxlHandler converter = new EdxlHandler();
     @Test
     @DisplayName("should build a RC-EDA Message")
