@@ -1,3 +1,4 @@
+import copy
 import pandas as pd
 import json
 from jsonpath_ng import parse
@@ -20,6 +21,9 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 full_asyncapi = None
+first_nomenclature_name = ""
+first_nomenclature_id = ""
+first_nomenclature_properties = []
 
 def run(sheet, name, version, filter):
     class Color:
@@ -127,6 +131,64 @@ def run(sheet, name, version, filter):
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
         lambda x: pd.NA if str(x).startswith('# ') else x)
 
+
+    def find_data_level(element):
+        """Find the first data level of the element"""
+        for i in range(1, DATA_DEPTH + 1):
+            if str(element[f"Donnée (Niveau {i})"]) != 'nan':
+                return i
+        return 0
+
+    def format_nomenclature_properties(child, parent):
+        nomenclature_file = parent['Détails de format']
+        """ For 'Code', set nomenclature file name to the 'Détails de format' column, remove it from parent """
+        if child['Balise NexSIS'] == "code":
+            child['Détails de format'] = nomenclature_file
+            df.loc[parent.ID-1, 'Détails de format'] = 'nan'
+        """Set the level of the child to be the level of the parent + 1"""
+        if find_data_level(child) != find_data_level(parent)+1:
+            child = shift_child_data_levels(child, parent)
+        return copy.deepcopy(child)
+
+    def shift_child_data_levels(child, parent):
+        """Shift the data levels of the child by the shift value"""
+        shift_difference = find_data_level(child) - find_data_level(parent)+1
+        child_cpy = copy.deepcopy(child)
+        for i in range(1, 1 + DATA_DEPTH):
+            if 0 < i-shift_difference <= DATA_DEPTH:
+                child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i-shift_difference})"]
+        return child_cpy
+
+    global first_nomenclature_properties
+    first_nomenclature_properties = []
+
+    def regenerate_ids(df):
+        """Regenerate the IDs of the dataframe"""
+        for index, row in df.copy().iterrows():
+            df.at[index, 'ID'] = index + 1
+
+    # Iterate over df and insert three lines after each entry of type 'nomenclature'
+    for index, row in df.copy().iterrows():
+        if row['Format (ou type)'] == 'nomenclature':
+            # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
+
+            if not first_nomenclature_properties:
+                for i in range(1, 4):
+                    first_nomenclature_properties.append(df.loc[index + i].to_dict())
+            # Otherwise, we add the children of the first nomenclature to the current nomenclature
+            else:
+                for i in range(1, 4):
+                    # we check the highest level of data of the current row and make sure to modify
+                    # the level of data of each property to be equal to the row's level + 1
+                    prop_cpy = first_nomenclature_properties[i-1].copy()
+                    prop_cpy['ID'] = row['ID']+i/10
+                    df.loc[index + i/10] = format_nomenclature_properties(prop_cpy, row)
+
+    df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
+    df.reset_index(drop=True, inplace=True)
+    regenerate_ids(df)
+
+
     # Adding a name column (NexSIS by default, overriden by 'Nouvelle Balise' if exists)
     df['name'] = df['Balise NexSIS']
     df.loc[df['Nouvelle balise'].notnull(), 'name'] = df['Nouvelle balise']
@@ -142,6 +204,7 @@ def run(sheet, name, version, filter):
         # If the 2 numbers are different => that item's active 'Donnée' column is i => update 'level_shift' column
         df["level_shift"] = df.apply(
             lambda row: i if row[f"level_{i}"] != row[f"previous_level_{i}"] else row['level_shift'], axis=1)
+
 
     # DATA VALIDATION
     HAS_ERROR = False
@@ -220,9 +283,14 @@ def run(sheet, name, version, filter):
         isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
         return isHealthOnly
 
+    def capitalizeFirstLetter(string):
+        return string[0].upper() + string[1:]
+
     def get_true_type(row):
         """Get the type of elem (defaults to its name if there is no type specified)"""
-        if row["Objet"] != "X" or row['is_typed_object']:
+        if row['Format (ou type)'] == 'nomenclature':
+            return row['name']
+        elif row["Objet"] != "X" or row['is_typed_object']:
             return row["Format (ou type)"]
         return row['name']
 
@@ -410,11 +478,11 @@ def run(sheet, name, version, filter):
         Update parent definitions (required and properties) by adding the child information for an object child
         Creates definitions for the child object if it does not exist yet
         """
-        childTypeName = child['true_type']
+        childOriginalTypeName = child['Format (ou type)']
         parentExamplePath = get_parent_example_path(parent)
-        typeName = child['true_type']
-        if typeName not in json_schema['definitions']:
-            json_schema['definitions'][typeName] = {
+        childTrueTypeName = child['true_type']
+        if childTrueTypeName not in json_schema['definitions']:
+            json_schema['definitions'][childTrueTypeName] = {
                 'type': 'object',
                 'title': child['full_name'],
                 'x-display': 'expansion-panels',
@@ -424,6 +492,15 @@ def run(sheet, name, version, filter):
                 'additionalProperties': is_source_message(typeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
+        """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first 
+        nomenclature to the current nomenclature"""
+        if childOriginalTypeName == "nomenclature":
+            global first_nomenclature_name
+            if first_nomenclature_name == "":
+                first_nomenclature_name = childTrueTypeName
+            else:
+                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties'].copy()
+
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
         properties = definitions['properties']
@@ -431,14 +508,14 @@ def run(sheet, name, version, filter):
             properties[child['name']] = {
                 'type': 'array',
                 'items': {
-                    '$ref': '#/definitions/' + childTypeName,
+                    '$ref': '#/definitions/' + childTrueTypeName,
                 }
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
         else:
             properties[child['name']] = {
-                '$ref': '#/definitions/' + childTypeName,
+                '$ref': '#/definitions/' + childTrueTypeName,
             }
 
     def is_source_message(typeName):
@@ -462,10 +539,17 @@ def run(sheet, name, version, filter):
             definition = json_schema
         else:
             if 'children' not in elem:
-                assert elem['Format (ou type)'] in json_schema['definitions'], \
-                    (f"The type of the object '{elem['name']}' is not defined.\n"
-                     f"Make sure the object is not empty")
-                return json_schema['definitions'][elem['Format (ou type)']]
+                """If element type is 'nomenclature' we check by 'name', else we check by 'Format (ou type)'"""
+                if elem['Format (ou type)'] != 'nomenclature':
+                    assert elem['Format (ou type)'] in json_schema['definitions'], \
+                        (f"The type of the object '{elem['name']}' is not defined.\n"
+                        f"Make sure the object is not empty")
+                    return json_schema['definitions'][elem['Format (ou type)']]
+                else:
+                    assert elem['name'] in json_schema['definitions'], \
+                        (f"The type of the object '{elem['name']}' is not defined.\n"
+                        f"Make sure the object is not empty")
+                    return json_schema['definitions'][elem['name']]
             typeName = elem['true_type']
             definition = json_schema['definitions'][typeName]
         # Fill the elem definitions based on the children
