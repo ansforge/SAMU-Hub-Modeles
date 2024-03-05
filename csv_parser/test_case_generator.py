@@ -1,6 +1,6 @@
 import pandas as pd
 import warnings
-import json
+from json import dumps
 
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
@@ -73,7 +73,8 @@ def run(perimeters):
         # Add the perimeter object to the test cases array
         test_cases.append(perimeter_object)
     # Convert object to json
-    test_cases_json = json.dumps(test_cases, indent=4)
+    # We use pandas to convert the array to json, as it handles the conversion of NaN values to null
+    test_cases_json = pd.DataFrame(test_cases).to_json(orient='records', indent=4, force_ascii=False)
     # Save the test cases array to a json file, overwriting the previous file
     with open(f'./out/test_cases.json', 'w') as file:
         file.write(test_cases_json)
