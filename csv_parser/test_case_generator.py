@@ -76,7 +76,7 @@ def run(perimeters):
     # We use pandas to convert the array to json, as it handles the conversion of NaN values to null
     test_cases_json = pd.DataFrame(test_cases).to_json(orient='records', indent=4, force_ascii=False)
     # Save the test cases array to a json file, overwriting the previous file
-    with open(f'./out/test_cases.json', 'w') as file:
+    with open(f'./out/test_cases.json', 'w', encoding='utf-8') as file:
         file.write(test_cases_json)
     print('Test cases generated.')
     return test_cases
