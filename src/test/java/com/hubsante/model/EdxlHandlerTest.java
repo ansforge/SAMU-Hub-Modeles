@@ -38,6 +38,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.Sanitizer.sanitizeEdxl;
@@ -113,16 +114,16 @@ public class EdxlHandlerTest {
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize JSON RS-INFO")
+    @DisplayName("should consistently deserialize then serialize JSON RS-ERROR")
     public void end2end_RS_INFO_JSON() throws IOException {
-        String json = getMessageString("RS-INFO");
+        String json = getMessageString("RS-ERROR");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize XML RS-INFO")
+    @DisplayName("should consistently deserialize then serialize XML RS-ERROR")
     public void end2end_RS_INFO_XML() throws IOException {
-        String xml = getMessageString("RS-INFO", true);
+        String xml = getMessageString("RS-ERROR", true);
         endToEndDeserializationCheck(xml, true);
     }
 
@@ -196,7 +197,19 @@ public class EdxlHandlerTest {
         }
     }
 
+    @Test
+    @DisplayName("deserialization of a message with an unknown additional property at root level fails")
+    public void deserializationOfMessageWithUnknownPropertyAtRootLevelFails() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
+        assertThrows(UnrecognizedPropertyException.class ,() -> converter.deserializeJsonEDXL(json));
+    }
 
+    @Test
+    @DisplayName("deserialization of a message with an unknown additional property not at root level fails")
+    public void deserializationOfMessageWithUnknownPropertyNotAtRootLevelFails() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-deep.json");
+        assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
+    }
 
     private String xmlPrefix() {
         return "<?xml version='1.0' encoding='UTF-8'?>";

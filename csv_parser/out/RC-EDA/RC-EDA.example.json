@@ -1,6 +1,6 @@
 {
-    "caseId": "samuA:CA126B445579GD4A67AV",
-    "senderCaseId": "CA126B445579GD4A67AV",
+    "caseId": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+    "senderCaseId": "DRFR15DDXAAJJJ0000",
     "creation": "2022-09-27T08:23:34+02:00",
     "referenceVersion": "1.2",
     "qualification": {
@@ -9,11 +9,23 @@
             "label": "Rod\u00e9o automobile",
             "freetext": "None"
         },
-        "locationKind": {},
+        "locationKind": {
+            "code": "C07.13.02",
+            "label": "Rod\u00e9o automobile",
+            "freetext": "None"
+        },
         "riskThreat": [
-            {}
+            {
+                "code": "C07.13.02",
+                "label": "Rod\u00e9o automobile",
+                "freetext": "None"
+            }
         ],
-        "healthMotive": {},
+        "healthMotive": {
+            "code": "C07.13.02",
+            "label": "Rod\u00e9o automobile",
+            "freetext": "None"
+        },
         "victims": {
             "count": "SEVERAL",
             "mainVictim": "CHILD",
@@ -39,16 +51,16 @@
             "detail": "Quartie Melun Nord, Lhomme, \u2026"
         },
         "access": {
-            "floor": "RDC, 1, 2, \u2026",
-            "roomNumber": "A16, 37, 104, \u2026",
+            "floor": "RDC",
+            "roomNumber": "A16",
             "interphone": "Dupont",
             "accessCode": [
-                "['1234A', '4321B']"
+                "1234A"
             ],
             "elevator": "C3",
-            "buildingName": "Batiment B, Batiment Maunoury",
-            "entrance": "Zone Sud, Porte 1, \u2026",
-            "entity": "Infirmerie, service finance, service cardiologie, \u2026",
+            "buildingName": "Batiment B",
+            "entrance": "Zone Sud",
+            "entity": "Infirmerie",
             "phoneNumber": 33123452323
         },
         "geometry": {
@@ -90,7 +102,7 @@
             "language": "FR",
             "type": "le patient lui-m\u00eame, p\u00e8re, m\u00e8re",
             "communication": "Malentendant, aucune difficult\u00e9 de communication",
-            "freetext": "P\u00e8re",
+            "freetext": "t\u00e9moin de l'accident",
             "detailedName": {
                 "complete": "Jean Dupont",
                 "lastName": "Dupont",
@@ -105,7 +117,7 @@
         "location": {},
         "qualification": {},
         "callTaker": {
-            "organization": "FR:Administration:44:samu44:crra:regulationN3",
+            "organization": "fr.health.samu440",
             "controlRoom": "CGA, CGO 21, CRRA 44, ...",
             "role": "ARM",
             "calltakerContact": {},
@@ -122,6 +134,37 @@
             }
         ]
     },
+    "patient": [
+        {
+            "id": "None",
+            "identity": {
+                "strictFeatures": {
+                    "birthDate": "None",
+                    "sex": "F"
+                },
+                "nonStrictFeatures": {}
+            }
+        }
+    ],
+    "decision": [
+        {
+            "id": "None",
+            "creation": "2022-09-27T08:23:34+02:00",
+            "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
+            "orientation": "None",
+            "transportation": [
+                "SMUR "
+            ],
+            "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
+            "destination": {
+                "facility": "None",
+                "adminFiness": "None",
+                "geoFiness": "None",
+                "service": "None",
+                "freetext": "None"
+            }
+        }
+    ],
     "newAlert": [
         {}
     ],

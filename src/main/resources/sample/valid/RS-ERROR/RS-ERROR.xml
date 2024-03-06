@@ -18,12 +18,15 @@
             <contentXML>
                 <embeddedXMLContent>
                     <message xmlns="urn:emergency:cisu:2.0" xmlns:hs="urn:emergency:hubsante:1.0">
-                        <hs:errorCode>
-                            <hs:statusCode>100</hs:statusCode>
-                            <hs:statusString>DELIVERY_MODE_INCONSISTENCY</hs:statusString>
-                        </hs:errorCode>
-                        <hs:errorCause>cause</hs:errorCause>
-                        <hs:sourceMessage>source</hs:sourceMessage>
+                        <hs:error>
+                            <hs:errorCode>
+                                <hs:statusCode>100</hs:statusCode>
+                                <hs:statusString>DELIVERY_MODE_INCONSISTENCY</hs:statusString>
+                            </hs:errorCode>
+                            <hs:errorCause>cause</hs:errorCause>
+                            <hs:sourceMessage>source</hs:sourceMessage>
+                            <hs:referencedDistributionID>fr.health.hub_2608323d-507d-4cbf-bf74-52007f8124ea</hs:referencedDistributionID>
+                        </hs:error>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

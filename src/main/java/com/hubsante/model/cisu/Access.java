@@ -268,7 +268,8 @@ public class Access {
   }
 
   /**
-   * Nom du service concerné au sein de l&#39;établissement
+   * Nom du service concerné au sein de l&#39;établissement : Infirmerie,
+   *service finance, service cardiologie, …
    * @return entity
    **/
   @JsonProperty(JSON_PROPERTY_ENTITY)

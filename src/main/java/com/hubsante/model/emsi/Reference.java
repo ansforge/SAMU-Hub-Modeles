@@ -65,7 +65,9 @@ public class Reference {
   }
 
   /**
-   * Identification de l&#39;organisation partenaire
+   * Le format est le suivant {pays}.{domaine}.{organisation}.{structure
+   *interne}*.{unité fonctionnelle}*. NB : ce champ (EVENT.REFERENCE.ORG_ID) ne
+   *peut pas être le même que le champ CONTEXT.LINK.ID ou EVENT.ID
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)

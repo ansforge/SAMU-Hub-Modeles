@@ -54,7 +54,7 @@ Dans le cadre d'une demande de concours, obligatoire. Ce champ est valorisée av
             <element maxOccurs="unbounded" minOccurs="0" name="LINK" type="x:link"/>
             <element minOccurs="0" name="LEVEL">
                 <annotation>
-                    <documentation>A valoriser avec la valeur constante "OPR" dans le cadre du message EMSI-EO</documentation>
+                    <documentation>A valoriser avec la valeur constante "OPR" dans le cadre d'un message EMSI, incluant une mission OPG</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -88,7 +88,7 @@ Les LRM doivent également renseigner la valeur "RESTRC"</documentation>
                     <documentation>Texte libre, optionnel
 
 Dans NexSIS;
- Fonction de l'événement générateur
+Fonction de l'événement générateur
 RG 1 : la valeur de &lt;context&gt;&lt;freetext&gt; reste à  'Création d'un événement opérationnel EMSI' &amp; version &amp; 'suite à réception d'une affaire*' dans le cadre de la création d'une opération commune (conforme RG 2 de NEXSIS-6618)
 RG 3 : les événements générateurs sont ceux définis au sein de NEXSIS-6619 RG 1 de traçabilité  ( input = &lt;Evenement à l'origine&gt; = CREATION_OPERATION / MAJ_MODIFICATION_ETAT_OPERATION / AJOUT_RESSOURCE / RETRAIT_RESSOURCE / MAJ_ETAT_SITUATION_RESSOURCE / MAJ_LOCALISATION_ADRESSE) auxquels seront ajoutés  les éventuels événements à venir.</documentation>
                 </annotation>
@@ -113,7 +113,8 @@ Dans le cadre des échanges LRM-NexSIS, optionnel</documentation>
         <sequence>
             <element name="ID" type="string">
                 <annotation>
-                    <documentation>Identifiant local de l'affaire dans le système du partenaire emetteur</documentation>
+                    <documentation>A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire émetteur (champ senderCaseId du message RC-EDA).
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="NAME" type="string">
@@ -124,8 +125,10 @@ Dans nexSIS; [libelle NF 1 métier] &amp; " - " &amp; [libelle TL 1 métier] &am
             </element>
             <element minOccurs="0" name="MAIN_EVENT_ID" type="string">
                 <annotation>
-                    <documentation>Identifiant d’affaire partagé issu du message RC-EDA transmis en amont
-NB : Dans le cas d’un partage initié par un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID</documentation>
+                    <documentation>A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}
+
+NB : Si l'initiateur du partage de dossier est le même que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="ETYPE" type="x:etype"/>
@@ -429,11 +432,11 @@ Identifiant unique de la mission dans le système du partenaire la conduisant.</
             </element>
             <element minOccurs="0" name="ORG_ID" type="string">
                 <annotation>
-                    <documentation>Indique l'organisation du partenaire concerné par la Demande de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut être utilisé.
-Indique l'organisation du service réalisant la mission. Dans le cas d'une réponse, c'est l'organisation du concourant qui doit être indiquée.
+                    <documentation>Indique l'organisation du partenaire concerné par la Demande de Concours (voir DSF). Le code CRRA ou le code du SIS peut être utilisé.
+Indique l'organisation du service réalisant la mission. 
+Dans le cas d'une réponse, c'est l'organisation du concourant qui doit être indiquée.
 Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
-identique à &lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;</documentation>
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="NAME" type="string">
@@ -530,10 +533,10 @@ Dans le cas d'un véhicule agrégé par NexSIS, l'ID fournit peut ne pas corresp
             <element minOccurs="0" name="ORG_ID" type="string">
                 <annotation>
                     <documentation>Identifiant de l'organisation à laquelle la ressource est rattachée (caserne, SAMU etc).
-Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}.{domaine}.{code département}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
-Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenant à un partenaire tiers (type ambulance privée), l'identifiant d'organisation permet d'identifier ce tiers
-A constituer par le rédacteur du présent EMSI pour être unique, identique à &lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;</documentation>
+Se référer au DSF pour la structure normée des organisations.
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
+Dans le cas où le LRM/NexSIS sert d'aggrégateur pour des véhicules appartenant à un partenaire tiers (type ambulance privée), l'identifiant d'organisation permet d'identifier ce tiers.
+A constituer par le rédacteur du présent EMSI pour être unique.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="NAME" type="string">
@@ -650,22 +653,13 @@ Par exemple, pour un véhicule, sa plaque d'immatriculation.</documentation>
         <sequence>
             <element name="ID" type="string">
                 <annotation>
-                    <documentation>A renseigner avec l'identifiant local de l'affaire du partenaire requérant
-Dans NexSIS;
-RG 1  – : création du premier message EMSi suite réception Affaire
-• &lt;LINK&gt;&lt;LINK ID&gt; = &lt;Numéro d'affaire initiale&gt;
-• &lt;LINK&gt;&lt;LINK ROLE&gt; = 'ADDSTO',
-RG 2 : Pour tous les messages créés après le premier, EMSI &lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt; contenant l'ID de message EMSI précédent créé au sein du SGO rédacteur * &lt;LINK&gt;&lt;LINK ROLE&gt; = 'SPRSDS'</documentation>
+                    <documentation>A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="LINK_ROLE">
                 <annotation>
-                    <documentation>Optionnel : à valoriser avec la constante "SPRSDS" en EMSI-EO et avec le libellé ADDSTO en EMSI-DC
-
-Dans Nexsis;
-RG 1  – : création du premier message EMSi suite réception Affaire * &lt;LINK&gt;&lt;LINK ID&gt; = &lt;Numéro d'affaire initiale&gt;
-• &lt;LINK&gt;&lt;LINK ROLE&gt; = 'ADDSTO',
-RG 2 : Pour tous les messages créés après le premier, EMSI &lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt; contenant l'ID de message EMSI précédent créé au sein du SGO rédacteur * &lt;LINK&gt;&lt;LINK ROLE&gt; = 'SPRSDS'</documentation>
+                    <documentation>Optionnel : à valoriser avec la constante "SPRSDS" pour un message EMSI, incluant des missions RDC et/ou OPG et avec le libellé "ADDSTO" pour un message EMSI, incluant uniquement qu'une demande de concours (EMSI-DC).</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -682,7 +676,7 @@ RG 2 : Pour tous les messages créés après le premier, EMSI &lt;LINK&gt; est c
                 <annotation>
                     <documentation>Optionnel, identifiant du service à l'origine de l'EMSI
 Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}.{domaine}.{code département}.{organisation}.{structure interne}*.{unité fonctionnelle}*.</documentation>
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="USER_ID" type="string">
@@ -693,8 +687,7 @@ Le format est le suivant {pays}.{domaine}.{code département}.{organisation}.{st
             <element minOccurs="0" name="NAME" type="string">
                 <annotation>
                     <documentation>Optionnel
-
-A constituer par le rédacteur pour être intelligible (exemple [structure].[nom])</documentation>
+A constituer par le rédacteur pour être intelligible (exemple [structure] [code département])</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1009,7 +1002,8 @@ Le transcodage entre ces deux nomenclature est décrit dans l'annexe "Référent
         <sequence>
             <element name="ORG_ID" type="string">
                 <annotation>
-                    <documentation>Identification de l'organisation partenaire</documentation>
+                    <documentation>Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.
+NB : ce champ (EVENT.REFERENCE.ORG_ID) ne peut pas être le même que le champ CONTEXT.LINK.ID ou EVENT.ID</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="OTHER_EVENT_ID" type="string"/>
@@ -1929,7 +1923,7 @@ Voir nomenclature EMSI associée</documentation>
         <sequence>
             <element minOccurs="0" name="DATIME" type="dateTime">
                 <annotation>
-                    <documentation>Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de possition, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.</documentation>
+                    <documentation>Horaire associé à l'arrivée de la ressource sur la position. En fonction du TYPE de position, peut indiquer un horaire de relevé de position, un horaire cible d'arrivée.</documentation>
                 </annotation>
             </element>
             <element name="TYPE">

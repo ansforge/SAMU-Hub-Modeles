@@ -22,14 +22,14 @@ import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
-import com.hubsante.model.report.ErrorReport;
+import com.hubsante.model.report.ErrorWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
-        @JsonSubTypes.Type(ErrorReport.class),
+        @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class)
 })

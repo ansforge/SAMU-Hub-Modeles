@@ -112,8 +112,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/LEVEL
-          description: A valoriser avec la valeur constante "OPR" dans le cadre du
-            message EMSI-EO
+          description: A valoriser avec la valeur constante "OPR" dans le cadre d'un
+            message EMSI, incluant une mission OPG
           enum:
           - STRTGC
           - OPR
@@ -145,7 +145,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/FREETEXT
-          description: "Texte libre, optionnel\n\nDans NexSIS;\n Fonction de l'\xE9\
+          description: "Texte libre, optionnel\n\nDans NexSIS;\nFonction de l'\xE9\
             v\xE9nement g\xE9n\xE9rateur\nRG 1 : la valeur de <context><freetext>\
             \ reste \xE0  'Cr\xE9ation d'un \xE9v\xE9nement op\xE9rationnel EMSI'\
             \ & version & 'suite \xE0 r\xE9ception d'une affaire*' dans le cadre de\
@@ -193,10 +193,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/ID
-          description: "Identifiant local de l'affaire dans le syst\xE8me du partenaire\
-            \ emetteur"
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ \xE9metteur (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
-          - samu44
+          - fr.health.samu440-DRFR15DDXAAJJJ0000
         NAME:
           type: string
           title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
@@ -213,11 +215,14 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/MAIN_EVENT_ID
-          description: "Identifiant d\u2019affaire partag\xE9 issu du message RC-EDA\
-            \ transmis en amont\nNB : Dans le cas d\u2019un partage initi\xE9 par\
-            \ un SAMU, on peut avoir EVENT.ID = EVENT.MAIN_EVENT_ID"
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}\n\nNB : Si\
+            \ l'initiateur du partage de dossier est le m\xEAme que l'initiateur du\
+            \ message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
           examples:
-          - samuA:CA126B445579GD4A67AV
+          - fr.health.samu440-DRFR15DDXAAJJJ0000
         ETYPE:
           $ref: '#/components/schemas/etype'
         SOURCE:
@@ -604,15 +609,14 @@ components:
           x-cols: 6
           example: example.json#/MISSION/0/ORG_ID
           description: "Indique l'organisation du partenaire concern\xE9 par la Demande\
-            \ de Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut \xEA\
-            tre utilis\xE9.\nIndique l'organisation du service r\xE9alisant la mission.\
-            \ Dans le cas d'une r\xE9ponse, c'est l'organisation du concourant qui\
+            \ de Concours (voir DSF). Le code CRRA ou le code du SIS peut \xEAtre\
+            \ utilis\xE9.\nIndique l'organisation du service r\xE9alisant la mission.\
+            \ \nDans le cas d'une r\xE9ponse, c'est l'organisation du concourant qui\
             \ doit \xEAtre indiqu\xE9e.\nSe r\xE9f\xE9rer au DSF pour la structure\
-            \ norm\xE9e des organisations\nLe format est le suivant {pays}:{domaine}:{code\
-            \ d\xE9partement}:{organisation}:{structure interne}*:{unit\xE9 fonctionnelle}*.\n\
-            identique \xE0 <CONTEXT><ORIGIN><ORG_ID>"
+            \ norm\xE9e des organisations\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*."
           examples:
-          - fr.health.44.samu44
+          - fr.fire.cgo440
         NAME:
           type: string
           title: Nom de la mission
@@ -703,7 +707,7 @@ components:
             description: "Liste des identifiants des ressources engag\xE9es dans la\
               \ mission (voir RESOURCE.ID)"
             examples:
-            - 77_45102#VSAV 1#
+            - 77_45102#VSAV 1
         PARENT_MISSION_ID:
           type: array
           x-health-only: false
@@ -798,7 +802,7 @@ components:
             Dans le cas d'un v\xE9hicule agr\xE9g\xE9 par NexSIS, l'ID fournit peut\
             \ ne pas correspondre \xE0 une immatriculation."
           examples:
-          - 77_45102#VSAV 1#
+          - 77_45102#VSAV 1
         ORG_ID:
           type: string
           title: "Identifiant de l'organisation propri\xE9taire"
@@ -807,14 +811,14 @@ components:
           example: example.json#/RESOURCE/0/ORG_ID
           description: "Identifiant de l'organisation \xE0 laquelle la ressource est\
             \ rattach\xE9e (caserne, SAMU etc).\nSe r\xE9f\xE9rer au DSF pour la structure\
-            \ norm\xE9e des organisations\nLe format est le suivant {pays}.{domaine}.{code\
-            \ d\xE9partement}.{organisation}.{structure interne}*.{unit\xE9 fonctionnelle}*.\n\
-            Dans le cas o\xF9 le LRM/NexSIS sert d'aggr\xE9gateur pour des v\xE9hicules\
-            \ appartenant \xE0 un partenaire tiers (type ambulance priv\xE9e), l'identifiant\
-            \ d'organisation permet d'identifier ce tiers\nA constituer par le r\xE9\
-            dacteur du pr\xE9sent EMSI pour \xEAtre unique, identique \xE0 <CONTEXT><ORIGIN><ORG_ID>"
+            \ norm\xE9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nDans le cas o\xF9 le LRM/NexSIS\
+            \ sert d'aggr\xE9gateur pour des v\xE9hicules appartenant \xE0 un partenaire\
+            \ tiers (type ambulance priv\xE9e), l'identifiant d'organisation permet\
+            \ d'identifier ce tiers.\nA constituer par le r\xE9dacteur du pr\xE9sent\
+            \ EMSI pour \xEAtre unique."
           examples:
-          - FR:Administration:44:CASERNENANTES
+          - fr.fire.cgo440
         NAME:
           type: string
           title: Nom de la ressource
@@ -972,29 +976,22 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/LINK/0/ID
-          description: "A renseigner avec l'identifiant local de l'affaire du partenaire\
-            \ requ\xE9rant\nDans NexSIS;\nRG 1  \u2013 : cr\xE9ation du premier message\
-            \ EMSi suite r\xE9ception Affaire\n\u2022 <LINK><LINK ID> = <Num\xE9ro\
-            \ d'affaire initiale>\n\u2022 <LINK><LINK ROLE> = 'ADDSTO',\nRG 2 : Pour\
-            \ tous les messages cr\xE9\xE9s apr\xE8s le premier, EMSI <LINK> est compl\xE9\
-            t\xE9 par <LINK><LINK ID> contenant l'ID de message EMSI pr\xE9c\xE9dent\
-            \ cr\xE9\xE9 au sein du SGO r\xE9dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
+            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
+            \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
-          - samuA:CA126B445579GD4A67AV
+          - fr.health.samu440-DRFR15DDXAAJJJ0000
         LINK_ROLE:
           type: string
           title: "R\xF4le du lien"
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/LINK/0/LINK_ROLE
-          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" en\
-            \ EMSI-EO et avec le libell\xE9 ADDSTO en EMSI-DC\n\nDans Nexsis;\nRG\
-            \ 1  \u2013 : cr\xE9ation du premier message EMSi suite r\xE9ception Affaire\
-            \ * <LINK><LINK ID> = <Num\xE9ro d'affaire initiale>\n\u2022 <LINK><LINK\
-            \ ROLE> = 'ADDSTO',\nRG 2 : Pour tous les messages cr\xE9\xE9s apr\xE8\
-            s le premier, EMSI <LINK> est compl\xE9t\xE9 par <LINK><LINK ID> contenant\
-            \ l'ID de message EMSI pr\xE9c\xE9dent cr\xE9\xE9 au sein du SGO r\xE9\
-            dacteur * <LINK><LINK ROLE> = 'SPRSDS'"
+          description: "Optionnel : \xE0 valoriser avec la constante \"SPRSDS\" pour\
+            \ un message EMSI, incluant des missions RDC et/ou OPG et avec le libell\xE9\
+            \ \"ADDSTO\" pour un message EMSI, incluant uniquement qu'une demande\
+            \ de concours (EMSI-DC)."
           enum:
           - ADDSTO
           - SPRSDS
@@ -1003,7 +1000,7 @@ components:
       additionalProperties: false
       example: example.json#/CONTEXT/LINK/0
       examples:
-      - ID: samuA:CA126B445579GD4A67AV
+      - ID: fr.health.samu440-DRFR15DDXAAJJJ0000
         LINK_ROLE: ADDSTO
     origin:
       type: object
@@ -1020,10 +1017,10 @@ components:
           example: example.json#/CONTEXT/ORIGIN/ORG_ID
           description: "Optionnel, identifiant du service \xE0 l'origine de l'EMSI\n\
             Se r\xE9f\xE9rer au DSF pour la structure norm\xE9e des organisations\n\
-            Le format est le suivant {pays}.{domaine}.{code d\xE9partement}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*."
+            Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\xE9\
+            \ fonctionnelle}*."
           examples:
-          - fr.health.44.samu44
+          - fr.health.samu440
         USER_ID:
           type: string
           title: ID d'utilisateur de l'origine
@@ -1033,23 +1030,23 @@ components:
           description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
             \ de l'EMSI"
           examples:
-          - None
+          - id1234
         NAME:
           type: string
           title: 'Nom Origine '
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/ORIGIN/NAME
-          description: "Optionnel\n\nA constituer par le r\xE9dacteur pour \xEAtre\
-            \ intelligible (exemple [structure].[nom])"
+          description: "Optionnel\nA constituer par le r\xE9dacteur pour \xEAtre intelligible\
+            \ (exemple [structure] [code d\xE9partement])"
           examples:
-          - samu44
+          - samu 44
       additionalProperties: false
       example: example.json#/CONTEXT/ORIGIN
       examples:
-      - ORG_ID: fr.health.44.samu44
-        USER_ID: None
-        NAME: samu44
+      - ORG_ID: fr.health.samu440
+        USER_ID: id1234
+        NAME: samu 44
     externalInfo:
       type: object
       title: 'Informations exterieures '
@@ -1429,9 +1426,11 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/REFERENCE/0/ORG_ID
-          description: Identification de l'organisation partenaire
+          description: "Le format est le suivant {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.\nNB : ce champ (EVENT.REFERENCE.ORG_ID)\
+            \ ne peut pas \xEAtre le m\xEAme que le champ CONTEXT.LINK.ID ou EVENT.ID"
           examples:
-          - fr.health.44.samu44
+          - fr.fire.cgo044
         OTHER_EVENT_ID:
           type: array
           x-health-only: false
@@ -1442,9 +1441,12 @@ components:
             x-cols: 6
             example: example.json#/EVENT/REFERENCE/0/OTHER_EVENT_ID/0
             description: "Indique d'autres identifiants utilis\xE9s pour l'affaire\
-              \ dans le syst\xE8me partenaire"
+              \ dans le syst\xE8me partenaire.\nA renseigner avec l'identifiant de\
+              \ l'organisation suivi de l'identifiant local de l'affaire du partenaire\
+              \ dans son syst\xE8me.\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\xE9\
+              \ fonctionnelle}*-{num\xE9ro de dossier}"
             examples:
-            - samu4412345
+            - None
       additionalProperties: false
       example: example.json#/EVENT/REFERENCE/0
     casualties:
@@ -1496,7 +1498,7 @@ components:
           - 0
         TRIAGEYELLOW:
           type: integer
-          title: Jaune
+          title: Triage Jaune
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/CASUALTIES/0/TRIAGEYELLOW
@@ -1505,7 +1507,7 @@ components:
           - 1
         TRIAGEGREEN:
           type: integer
-          title: Vert
+          title: Triage Vert
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/CASUALTIES/0/TRIAGEGREEN
@@ -1514,7 +1516,7 @@ components:
           - 0
         TRIAGEBLACK:
           type: integer
-          title: Noir
+          title: Triage Noir
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/CASUALTIES/0/TRIAGEBLACK
@@ -1873,7 +1875,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/LAT
-          description: "derni\xE8re coordonn\xE9e x  connue de la ressource"
+          description: "derni\xE8re coordonn\xE9e x  connue de la ressource, entre\
+            \ \u221290 and +90"
           examples:
           - '47.221866'
         LONG:
@@ -1884,7 +1887,7 @@ components:
           example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/LONG
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
             r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
-            re coordonn\xE9e y  connue de la ressource\nbetween \u221290 and +90"
+            re coordonn\xE9e y  connue de la ressource\nentre \u2212180 and +180"
           examples:
           - '-1.575807'
         HEIGHT:
@@ -1895,7 +1898,7 @@ components:
           example: example.json#/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT
           description: "Optionnel. Dans le cas o\xF9 aucun LOC_ID n'est transf\xE9\
             r\xE9, permet de localiser le lieu d'intervention souhait\xE9\nderni\xE8\
-            re coordonn\xE9e z  connue de la ressource\nbetween \u2212180 and +180"
+            re coordonn\xE9e z  connue de la ressource, en m\xE8tres sans bornes\n"
           examples:
           - 1
       additionalProperties: false
@@ -2575,7 +2578,7 @@ components:
           x-cols: 6
           example: example.json#/RESOURCE/0/RGEO/0/DATIME
           description: "Horaire associ\xE9 \xE0 l'arriv\xE9e de la ressource sur la\
-            \ position. En fonction du TYPE de possition, peut indiquer un horaire\
+            \ position. En fonction du TYPE de position, peut indiquer un horaire\
             \ de relev\xE9 de position, un horaire cible d'arriv\xE9e."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time

@@ -102,9 +102,8 @@ public class MedicalNote {
   }
 
   /**
-   * Groupe date heure de début de partage lié à la création de
-   *l&#39;interrogatoire.  L&#39;indicateur de fuseau horaire Z ne doit pas être
-   *utilisé.
+   * Groupe date heure de création de l&#39;interrogatoire.  L&#39;indicateur de
+   *fuseau horaire Z ne doit pas être utilisé.
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
@@ -134,14 +133,14 @@ public class MedicalNote {
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getFreetext() {
     return freetext;
   }
 
   @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setFreetext(String freetext) {
     this.freetext = freetext;
   }
