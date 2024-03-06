@@ -5663,3 +5663,14 @@ components:
       additionalProperties: false
       examples:
       - info: None
+    customContent:
+      $id: classpath:/json-schema/schema#
+      x-id: CustomContent.schema.json#
+      example: example.json#
+      type: object
+      title: customContent
+      required: []
+      properties: {}
+      additionalProperties: true
+      examples:
+      - {}
