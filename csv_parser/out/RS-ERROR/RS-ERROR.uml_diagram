@@ -1,0 +1,26 @@
+// UML MDD Hub Sante
+strict digraph {
+	node [shape=none]
+	edge [arrowhead=odiamond arrowtail=none]
+	rankdir=BT
+	errorCode [label=<<TABLE>
+                <TR>
+                <TD ><B>errorCode</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet errorCode</I></TD></TR><TR><TD BORDER="0" >statusCode <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >statusString <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	errorCode -> error [constraint=true headlabel=1 taillabel=1]
+	sourceMessage [label=<<TABLE>
+                <TR>
+                <TD ><B>sourceMessage</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet sourceMessage</I></TD></TR>
+                </TABLE>>]
+	sourceMessage -> error [constraint=true headlabel=1 taillabel="0..1"]
+	error [label=<<TABLE>
+                <TR>
+                <TD ><B>error</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet error</I></TD></TR><TR><TD BORDER="0" >errorCause <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referencedDistributionID <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+}
