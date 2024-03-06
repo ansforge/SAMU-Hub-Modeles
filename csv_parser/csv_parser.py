@@ -475,7 +475,7 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'required': [],
                 'properties': {},
-                'additionalProperties': False,
+                'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first 
@@ -503,6 +503,11 @@ def run(sheet, name, version, filter):
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTrueTypeName,
             }
+
+    def is_source_message(typeName):
+        if typeName == "sourceMessage":
+            return True
+        return False
 
     def add_child(parent, child, definitions):
         """Update parent definitions by adding the child information"""

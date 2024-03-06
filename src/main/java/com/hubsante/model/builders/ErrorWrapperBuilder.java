@@ -15,20 +15,19 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.report.ErrorReport;
-import com.hubsante.model.report.InfoWrapper;
+import com.hubsante.model.report.ErrorWrapper;
 
-public class InfoWrapperBuilder {
-    private ErrorReport info;
+public class ErrorWrapperBuilder {
+    private ErrorReport error;
 
-    public InfoWrapperBuilder(ErrorReport info) {
-        this.info = info;
+    public ErrorWrapperBuilder(ErrorReport error) {
+        this.error = error;
     }
 
-    public InfoWrapper build() {
-        InfoWrapper infoWrapper = new InfoWrapper();
-        infoWrapper.setInfo(info);
-        return infoWrapper;
+    public ErrorWrapper build() {
+        ErrorWrapper errorWrapper = new ErrorWrapper();
+        errorWrapper.setError(error);
+        return errorWrapper;
     }
 }

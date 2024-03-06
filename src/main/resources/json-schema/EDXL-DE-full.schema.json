@@ -86,12 +86,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "createCaseHealth": {
-                      "$ref": "RS-EDA.schema.json"
+                    "createCase": {
+                      "$ref": "RC-EDA.schema.json"
                     }
                   },
                   "required": [
-                    "createCaseHealth"
+                    "createCase"
                   ]
                 }
               }
@@ -111,12 +111,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "createCase": {
-                      "$ref": "RC-EDA.schema.json"
+                    "createCaseHealth": {
+                      "$ref": "RS-EDA.schema.json"
                     }
                   },
                   "required": [
-                    "createCase"
+                    "createCaseHealth"
                   ]
                 }
               }
@@ -151,7 +151,28 @@
         {
           "properties": {
             "message": {
-              "$ref": "RS-INFO.schema.json"
+              "properties": {
+                "info": {
+                  "$ref": "RS-INFO.schema.json"
+                }
+              },
+              "required": [
+                "info"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "error": {
+                  "$ref": "RS-ERROR.schema.json"
+                }
+              },
+              "required": [
+                "error"
+              ]
             }
           }
         },
@@ -185,7 +206,7 @@
             "message": {
               "properties": {
                 "customContent": {
-                  "$ref": "CustomContent.schema.json"
+                  "$ref": "customContent.schema.json"
                 }
               },
               "required": [

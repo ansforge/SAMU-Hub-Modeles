@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.03.01",
+    "version": "24.03.06",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -1647,7 +1647,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/EGEO/0/POSITION/COORD/0/LAT",
-                    "description": "derni\u00e8re coordonn\u00e9e x  connue de la ressource"
+                    "description": "derni\u00e8re coordonn\u00e9e x  connue de la ressource, entre \u221290 and +90"
                 },
                 "LONG": {
                     "type": "number",
@@ -1655,7 +1655,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/EGEO/0/POSITION/COORD/0/LONG",
-                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e y  connue de la ressource\nbetween \u221290 and +90"
+                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e y  connue de la ressource\nentre \u2212180 and +180"
                 },
                 "HEIGHT": {
                     "type": "number",
@@ -1663,7 +1663,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/EGEO/0/POSITION/COORD/0/HEIGHT",
-                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e z  connue de la ressource\nbetween \u2212180 and +180"
+                    "description": "Optionnel. Dans le cas o\u00f9 aucun LOC_ID n'est transf\u00e9r\u00e9, permet de localiser le lieu d'intervention souhait\u00e9\nderni\u00e8re coordonn\u00e9e z  connue de la ressource, en m\u00e8tres sans bornes\n"
                 }
             },
             "additionalProperties": false,

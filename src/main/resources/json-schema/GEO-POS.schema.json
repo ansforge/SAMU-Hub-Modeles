@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "GEO-POS.schema.json#",
-    "version": "24.03.01",
+    "version": "24.03.06",
     "example": "example.json#",
     "type": "object",
     "title": "geolocalisation",
@@ -23,7 +23,7 @@
             "x-health-only": false,
             "required": [
                 "id",
-                "dateTime"
+                "datetime"
             ],
             "properties": {
                 "id": {
@@ -34,22 +34,23 @@
                     "example": "example.json#/positionUpdate/0/id",
                     "description": "Identifiant unique de la ressource  dans le syst\u00e8me du partenaire propri\u00e9taire"
                 },
-                "dateTime": {
+                "datetime": {
                     "type": "string",
                     "title": "Date et heure des derni\u00e8res remont\u00e9es d'informations de la ressource",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/positionUpdate/0/dateTime",
+                    "example": "example.json#/positionUpdate/0/datetime",
                     "description": "Date et heure de la derni\u00e8re position connue",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
-                "time": {
+                "receptionDatetime": {
                     "type": "string",
                     "title": "Date et heure de la r\u00e9ception de la derni\u00e8re localisation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/positionUpdate/0/time",
+                    "example": "example.json#/positionUpdate/0/receptionDatetime",
+                    "description": "Date et heure de la r\u00e9ception de la derni\u00e8re position connue dans le syst\u00e8me de l'organisme",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -65,7 +66,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/speed",
-                    "description": "Vitesse de la ressource enregistr\u00e9e"
+                    "description": "Vitesse de la ressource enregistr\u00e9e, exprim\u00e9e en km/h"
                 },
                 "cap": {
                     "type": "string",
@@ -73,7 +74,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/cap",
-                    "description": "Direction de la ressource  (nord, sud, ouest, est), exprim\u00e9 en degr\u00e9s"
+                    "description": "Direction de la ressource, exprim\u00e9 en degr\u00e9s"
                 },
                 "move": {
                     "type": "string",
@@ -81,23 +82,27 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/move",
-                    "description": "Indique si la ressource est en mouvement ou non (Mobile, Statique)"
+                    "description": "Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)",
+                    "enum": [
+                        "MOBILE",
+                        "STATIQUE"
+                    ]
                 },
-                "engine": {
-                    "type": "number",
+                "engineOn": {
+                    "type": "boolean",
                     "title": "Etat du moteur de la ressource",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/positionUpdate/0/engine",
-                    "description": "0 = contact etteint\n1 = contact mis en marche"
+                    "example": "example.json#/positionUpdate/0/engineOn",
+                    "description": "Indique si le moteur de la ressource est \u00e9teint (FAUX) ou allum\u00e9/en marche (VRAI)"
                 },
-                "helicopterStatus": {
-                    "type": "number",
+                "groundStatus": {
+                    "type": "boolean",
                     "title": "Etat de l'h\u00e9licopt\u00e8re",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/positionUpdate/0/helicopterStatus",
-                    "description": "0 = au sol\n1 = en l'air"
+                    "example": "example.json#/positionUpdate/0/groundStatus",
+                    "description": "Indique si l'h\u00e9licopt\u00e8re est au sol (VRAI) ou en l'air (FAUX)"
                 },
                 "status": {
                     "type": "string",
@@ -105,7 +110,32 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/status",
-                    "description": "D\u00e9finit le statut de disponibilit\u00e9 d'une ressource.\n- AVAILABLE : Lorsque la ressource est disponible\n- UNAVAILABLE : Lorsque la ressource n'est pas disponible"
+                    "description": "D\u00e9finit le statut de disponibilit\u00e9 d'une ressource.\n- DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque la ressource n'est pas disponible, celle-ci peut \u00eatre engag\u00e9e ou en maintenance\n- INCONNU : Lorsque le status est inconnu",
+                    "enum": [
+                        "DISPONIBLE",
+                        "INDISPONIBLE",
+                        "INCONNU"
+                    ]
+                },
+                "engagedStatus": {
+                    "type": "string",
+                    "title": "Statut de la ressource engag\u00e9e",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/positionUpdate/0/engagedStatus",
+                    "description": "Pr\u00e9cise le statut d'une ressource qui est engag\u00e9e sur une mission",
+                    "enum": [
+                        "ALERTEE",
+                        "PARTIE",
+                        "ARRIVEE_LIEU",
+                        "TRANSPORT_DESTINATION",
+                        "ARRIVEE_DESTINATION",
+                        "FIN_MED",
+                        "QUITTE_DESTINATION",
+                        "RETOUR_DISPONIBLE",
+                        "RETOUR_INDISPONIBLE",
+                        "ARRIVEE_CENTRE"
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -127,7 +157,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/coord/0/lat",
-                    "description": "Derni\u00e8re coordonn\u00e9e x connue de la ressource"
+                    "description": "Derni\u00e8re coordonn\u00e9e x connue de la ressource, entre \u221290 and +90"
                 },
                 "lon": {
                     "type": "number",
@@ -135,7 +165,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/coord/0/lon",
-                    "description": "Derni\u00e8re coordonn\u00e9e y connue de la ressource\nbetween \u221290 and +90"
+                    "description": "Derni\u00e8re coordonn\u00e9e y connue de la ressource, entre \u2212180 and +180"
                 },
                 "height": {
                     "type": "number",
@@ -143,7 +173,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/positionUpdate/0/coord/0/height",
-                    "description": "Derni\u00e8re coordonn\u00e9e z connue de la ressource\nbetween \u2212180 and +180"
+                    "description": "Derni\u00e8re coordonn\u00e9e z connue de la ressource, en m\u00e8tres sans bornes"
                 }
             },
             "additionalProperties": false,

@@ -16,7 +16,7 @@
 package com.hubsante.model.builders;
 
 import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.common.ValidationMessageWrapper;
+import com.hubsante.model.ValidationMessageWrapper;
 import com.networknt.schema.ValidationMessage;
 
 import java.lang.reflect.Field;
@@ -44,8 +44,8 @@ public class ValidationMessageWrapperBuilder {
         // than an EDXL-DE error.
         if (splitPath.length == 1 || !splitPath[1].contains("content")) {
             return "EDXL-DE";
-        } else if (this.validationMessage.getPath().contains("embeddedJsonContent.message.info")) {
-            return "INFO";
+        } else if (this.validationMessage.getPath().contains("embeddedJsonContent.message.error")) {
+            return "ERROR";
         } else if (this.validationMessage.getPath().startsWith("$.content[0].jsonContent.embeddedJsonContent.message")) {
             String substring = validationMessage.getMessage().substring(validationMessage.getMessage().indexOf("message") + 8);
             for (Field attribute : rcdeAttributes) {

@@ -479,6 +479,13 @@ strict digraph {
                 <TR><TD BGCOLOR="coral" BORDER="0"><I>objet resourceDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	resourceDiagnosis -> patient [constraint=true headlabel=1 taillabel="0..1"]
+	patient [label=<<TABLE>
+                <TR>
+                <TD ><B>patient</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	patient -> createCase [constraint=true headlabel=1 taillabel="0..*"]
 	detailedName [label=<<TABLE>
                 <TR>
                 <TD ><B>detailedName</B></TD>
@@ -497,16 +504,9 @@ strict digraph {
                 <TR>
                 <TD BGCOLOR="coral"><B>medicalNote</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">creation <I>date-time</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">freetext <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">medicalHistory <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">treatments <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">allergies <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" BGCOLOR="coral">creation <I>date-time</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">freetext <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">medicalHistory <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">treatments <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="coral">allergies <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
                 </TABLE>>]
-	medicalNote -> patient [constraint=true headlabel=1 taillabel="0..*"]
-	patient [label=<<TABLE>
-                <TR>
-                <TD ><B>patient</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	patient -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	medicalNote -> createCase [constraint=true headlabel=1 taillabel="0..*"]
 	destination [label=<<TABLE>
                 <TR>
                 <TD ><B>destination</B></TD>
@@ -518,16 +518,9 @@ strict digraph {
                 <TR>
                 <TD ><B>decision</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >medicalisation <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >medicalisation <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	decision -> medicalAnalysis [constraint=true headlabel=1 taillabel="0..*"]
-	medicalAnalysis [label=<<TABLE>
-                <TR>
-                <TD ><B>medicalAnalysis</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet medicalAnalysis</I></TD></TR><TR><TD BORDER="0" >patientId <I>string</I> : [0..1] </TD></TR>
-                </TABLE>>]
-	medicalAnalysis -> createCase [constraint=true headlabel=1 taillabel="0..*"]
+	decision -> createCase [constraint=true headlabel=1 taillabel="0..*"]
 	newAlert [label=<<TABLE>
                 <TR>
                 <TD ><B>newAlert</B></TD>
