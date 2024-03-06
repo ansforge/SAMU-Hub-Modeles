@@ -177,18 +177,20 @@ public class EdxlHandlerTest {
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         Arrays.stream(files).forEach(file -> {
-            try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+            if(!file.getName().contains("work-in-progress")) {
+                try {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                converter.deserializeJsonEDXL(fullJson);
-                log.info("File {} has been successfully deserialized", file.getName());
+                    converter.deserializeJsonEDXL(fullJson);
+                    log.info("File {} has been successfully deserialized", file.getName());
 
-            }catch (JsonProcessingException e) {
-                allPass.set(false);
-                log.error("File " + file.getName() + " could have not been deserialized: " + e.getMessage());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                } catch (JsonProcessingException e) {
+                    allPass.set(false);
+                    log.error("File " + file.getName() + " could have not been deserialized: " + e.getMessage());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 

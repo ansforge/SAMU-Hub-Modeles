@@ -57,8 +57,7 @@
         "jsonContent": {
           "$ref": "#/definitions/JsonContent"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "JsonContent": {
       "type": "object",
@@ -69,8 +68,7 @@
         "embeddedJsonContent": {
           "$ref": "#/definitions/EmbeddedJsonContent"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "EmbeddedJsonContent": {
       "type": "object",
@@ -215,8 +213,7 @@
                 "customContent"
               ]
             }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },

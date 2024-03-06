@@ -4,19 +4,17 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant technique de l'affaire et partagé entre tous les intervenants.
-                        Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par les systèmes du partenaire récepteur de la primo-demande de secours et contient une clé conventionnelle permettant d'identifier la source.
-                        Valorisation :
-                        {cleConventionnelle}:{cleUnique}
-                        où cleConventionnelle est la clé utilisée par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le système du partenaire emetteur.
-                        cleUnique est une chaîne de caractère (string) comprise entre 4 et 22 caractères alphanumériques.</documentation>
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
-                    <documentation>Valoriser avec l'identifiant de l'affaire dans le SI de l'émetteur du message
-                        Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS
-                        Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caractères de l'identifiant local de leur partenaire.</documentation>
+                    <documentation>Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
+Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
+</documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
@@ -26,8 +24,8 @@
             </element>
             <element name="referenceVersion" type="string">
                 <annotation>
-                    <documentation>Indique le numéro de version du référentiel des nomenclatures des codes transmis.
-                        Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.</documentation>
+                    <documentation>Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
+Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.</documentation>
                 </annotation>
             </element>
             <element name="qualification" type="x:qualification"/>
@@ -36,14 +34,15 @@
             <element name="owner" type="string">
                 <annotation>
                     <documentation>Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
-                        Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
-                        Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
-                        Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.</documentation>
+Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
+Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
+Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="operator" type="x:operator"/>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalAnalysis" type="x:medicalAnalysis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element minOccurs="0" name="freetext" type="string">
@@ -55,10 +54,10 @@
     </complexType>
     <complexType name="qualification">
         <sequence>
-            <element name="whatsHappen" type="x:nomenclature"/>
-            <element minOccurs="0" name="locationKind" type="x:nomenclature"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:nomenclature"/>
-            <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element name="whatsHappen" type="x:whatsHappen"/>
+            <element minOccurs="0" name="locationKind" type="x:locationKind"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
+            <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="details" type="x:caseDetails"/>
             <element minOccurs="0" name="victims" type="x:victims"/>
         </sequence>
@@ -73,11 +72,11 @@
             <element minOccurs="0" name="locLabel" type="string">
                 <annotation>
                     <documentation>Permet d'indiquer des indications auto suffisantes permettant pour un opérationnel d'accéder facilement au lieu avec des indications minimales.
-                        Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
-                        Comprend au maximum 255 caractères</documentation>
+Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
+Comprend au maximum 255 caractères</documentation>
                 </annotation>
             </element>
-            <element name="name" type="string">
+            <element minOccurs="0" name="name" type="string">
                 <annotation>
                     <documentation>Indique le nom de lieu : nom commercial, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
                 </annotation>
@@ -346,11 +345,11 @@
             <element name="id" type="string">
                 <annotation>
                     <documentation>Identifiant technique unique de l'alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage.
-                        Voir la description de l'identifiant de l'affaire pour voir le format.
-                        Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
-                        a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
-                        b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
-                        Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.</documentation>
+Voir la description de l'identifiant de l'affaire pour voir le format.
+Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
+a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
+b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
+Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.</documentation>
                 </annotation>
             </element>
             <element name="reception" type="dateTime">
@@ -361,11 +360,11 @@
             <element name="reporting">
                 <annotation>
                     <documentation>Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.
-                        Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur.
-                        Prend les valeurs définies dans la nomenclature CISU :
-                        - standard : STANDARD
-                        - signalé : ATTENTION
-                        Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION</documentation>
+Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. 
+Prend les valeurs définies dans la nomenclature CISU :
+- standard : STANDARD
+- signalé : ATTENTION
+Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -389,7 +388,7 @@
     </complexType>
     <complexType name="operator">
         <sequence>
-            <element name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
             <element minOccurs="0" name="id" type="string">
                 <annotation>
                     <documentation>Identifiant professionnel de l'opérateur si existant</documentation>
@@ -411,21 +410,77 @@
             </element>
             <element minOccurs="0" name="file" type="x:file"/>
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
-            <element minOccurs="0" name="healthMotive" type="x:nomenclature"/>
+            <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
-            <element minOccurs="0" name="resourceDiagnosis" type="x:nomenclature"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+            <element minOccurs="0" name="resourceDiagnosis" type="x:resourceDiagnosis"/>
         </sequence>
     </complexType>
-    <complexType name="medicalAnalysis">
+    <complexType name="medicalNote">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element minOccurs="0" name="id" type="string">
                 <annotation>
-                    <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
+            <element minOccurs="0" name="operator" type="x:operator"/>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element name="freetext" type="string">
+                <annotation>
+                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
+Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="medicalHistory" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="treatments" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="allergies" type="string">
+                <annotation>
+                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="decision">
+        <sequence>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
+                </annotation>
+            </element>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de décision prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="medicalisation" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -433,7 +488,7 @@
             <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
-    <complexType name="nomenclature">
+    <complexType name="whatsHappen">
         <sequence>
             <element name="code" type="string">
                 <annotation>
@@ -443,7 +498,67 @@
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-                        Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="locationKind">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="riskThreat">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="healthMotive">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
@@ -461,11 +576,13 @@
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="Nouveau "/>
+                        <enumeration value="Programmé"/>
                         <enumeration value="Actif "/>
+                        <enumeration value="Achevé"/>
                         <enumeration value="Validé "/>
                         <enumeration value="Clôturé "/>
-                        <enumeration value="Classé "/>
+                        <enumeration value="Classé"/>
+                        <enumeration value="Archivé"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -476,21 +593,13 @@
             </element>
             <element minOccurs="0" name="attribution" type="string">
                 <annotation>
-                    <documentation>Décrit le type de professionnel médical à qui le dossier est attribué</documentation>
+                    <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="priority">
+            <element minOccurs="0" name="priority" type="string">
                 <annotation>
-                    <documentation>Décrit la priorité de régulation médicale du dossier.</documentation>
+                    <documentation>Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3</documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="P0"/>
-                        <enumeration value="P1"/>
-                        <enumeration value="P2"/>
-                        <enumeration value="P3"/>
-                    </restriction>
-                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -534,9 +643,9 @@
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Numéro, type et nom de la voie.
-                        Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-                        Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                    <documentation>Numéro, type et nom de la voie. 
+Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="number" type="string">
@@ -567,7 +676,7 @@
             <element minOccurs="0" name="detail" type="string">
                 <annotation>
                     <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
-                        NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté</documentation>
+NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -603,7 +712,7 @@
             <element minOccurs="0" name="entrance" type="string"/>
             <element minOccurs="0" name="entity" type="string">
                 <annotation>
-                    <documentation>Nom du service concerné au sein de l'établissement</documentation>
+                    <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="phoneNumber" type="decimal">
@@ -623,11 +732,11 @@
             <element minOccurs="0" name="point" type="x:point"/>
             <element minOccurs="0" name="sketch" type="string">
                 <annotation>
-                    <documentation>Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné.
-                        Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
-                        En XML, un objet gml est encapsulé dans une balise &lt;sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' &gt; &lt;/sketch&gt;
-                        En JSON, les balises sont reprises depuis le modèle gml
-                        Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
+                    <documentation>Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
+Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
+En XML, un objet gml est encapsulé dans une balise &lt;sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' &gt; &lt;/sketch&gt;
+En JSON, les balises sont reprises depuis le modèle gml
+Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -649,7 +758,7 @@
             <element name="type">
                 <annotation>
                     <documentation>Définition du type d'objet dans le système
-                        Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
+Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -673,7 +782,7 @@
             <element name="complete" type="string">
                 <annotation>
                     <documentation>Type et nom de la voie (venant d'un référentiel ou non)
-                        Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
+Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="type" type="string"/>
@@ -720,7 +829,7 @@
             <element name="precision">
                 <annotation>
                     <documentation>Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-                        CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1000,8 +1109,8 @@
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Informations complémentaires sur le requérant
-                        Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif</documentation>
+                    <documentation>Informations complémentaires sur le requérant 
+Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
@@ -1043,8 +1152,8 @@
             <element name="organization" type="string">
                 <annotation>
                     <documentation>Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
-                        Se référer au DSF pour la structure normée des organisations
-                        Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.</documentation>
+Se référer au DSF pour la structure normée des organisations.
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.</documentation>
                 </annotation>
             </element>
             <element name="controlRoom" type="string">
@@ -1085,7 +1194,7 @@
             <element name="URI" type="string">
                 <annotation>
                     <documentation>Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
-                        Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?</documentation>
+Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="derefURI" type="string">
@@ -1096,7 +1205,7 @@
             <element minOccurs="0" name="digest" type="string">
                 <annotation>
                     <documentation>Hash de la ressource pour confirmer la réception de la bonne ressource
-                        La ressource est hashée avec le protocole SHA-256</documentation>
+La ressource est hashée avec le protocole SHA-256</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1132,8 +1241,8 @@
             <element name="complete" type="string">
                 <annotation>
                     <documentation>Prénom et nom usuel du requérant.
-                        Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
-                        Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
+Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
+Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="lastName" type="string">
@@ -1144,7 +1253,7 @@
             <element minOccurs="0" name="firstName" type="string">
                 <annotation>
                     <documentation>Prénom du réquérant.
-                        Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
+Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1187,58 +1296,38 @@
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="careLevel">
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="R1"/>
-                        <enumeration value="R2"/>
-                        <enumeration value="R3"/>
-                        <enumeration value="R4"/>
-                    </restriction>
-                </simpleType>
-            </element>
+            <element minOccurs="0" name="careLevel" type="string"/>
         </sequence>
     </complexType>
     <complexType name="hypothesis">
         <sequence>
-            <element minOccurs="0" name="mainDiagnosis" type="x:nomenclature"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:nomenclature"/>
+            <element minOccurs="0" name="mainDiagnosis" type="x:mainDiagnosis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:otherDiagnosis"/>
         </sequence>
     </complexType>
-    <complexType name="medicalNote">
+    <complexType name="resourceDiagnosis">
         <sequence>
-            <element minOccurs="0" name="operator" type="x:operator"/>
-            <element name="creation" type="dateTime">
+            <element name="code" type="string">
                 <annotation>
-                    <documentation>Groupe date heure de début de partage lié à la création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
-                        Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="medicalHistory" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="treatments" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="allergies" type="string">
-                <annotation>
-                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
                 </annotation>
             </element>
         </sequence>
     </complexType>
     <complexType name="externalId">
         <sequence>
-            <element minOccurs="0" name="source">
+            <element name="source">
                 <annotation>
                     <documentation>Type de l'identifiant fourni</documentation>
                 </annotation>
@@ -1247,10 +1336,12 @@
                         <enumeration value="NIR"/>
                         <enumeration value="SINUS"/>
                         <enumeration value="SI-VIC"/>
+                        <enumeration value="DOSSARD"/>
+                        <enumeration value="PLACE"/>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="value" type="string">
+            <element name="value" type="string">
                 <annotation>
                     <documentation>L'identifiant en lui-même</documentation>
                 </annotation>
@@ -1265,7 +1356,7 @@
     </complexType>
     <complexType name="generalPractitioner">
         <sequence>
-            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
+            <element name="detailedName" type="x:detailedName"/>
             <element minOccurs="0" name="id" type="string">
                 <annotation>
                     <documentation>Numéro RPPS du médecin traitant</documentation>
@@ -1280,19 +1371,19 @@
             <element minOccurs="0" name="status" type="string">
                 <annotation>
                     <documentation>Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
-                        - « identité provisoire »,
-                        - « identité récupérée »,
-                        - « identité validée »,
-                        - « identité qualifiée ».
-                        Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.</documentation>
+- « identité provisoire »,
+- « identité récupérée »,
+- « identité validée »,
+- « identité qualifiée ».
+Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="attribute" type="string">
                 <annotation>
                     <documentation>Le RNIV recommande que les logiciels référentiels d’identités gèrent a minima les 3 attributs suivants :
-                        - identité homonyme,
-                        - identité douteuse,
-                        - identité fictive.</documentation>
+- identité homonyme,
+- identité douteuse,
+- identité fictive.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1302,7 +1393,7 @@
             <element minOccurs="0" name="value" type="string">
                 <annotation>
                     <documentation>n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
-                        Le matricule INS est composé des 13 caractères et de la clé de contrôle. </documentation>
+Le matricule INS est composé des 13 caractères et de la clé de contrôle. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="oid" type="string">
@@ -1321,10 +1412,10 @@
             </element>
             <element minOccurs="0" name="birthFirstName" type="string">
                 <annotation>
-                    <documentation>Doit être cohérent avec la liste des prénoms de naissance renvoyée par INSi. Ex: si la liste des prénoms renvoyée est "Pierre Alain Jacques", le premier prénom de naissance ne peut être que :
-                        Pierre
-                        Pierre Alain
-                        Pierre Alain Jacques</documentation>
+                    <documentation>Doit être cohérent avec la liste des prénoms de naissance renvoyée par INSi. Ex: si la liste des prénoms renvoyée est "Pierre Alain Jacques", le premier prénom de naissance ne peut être que : 
+Pierre
+Pierre Alain
+Pierre Alain Jacques</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="birthFirstNamesList" type="string">
@@ -1332,23 +1423,20 @@
                     <documentation>Ensemble des prénoms de naissance (renvoyés par INSi)</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="birthDate" type="dateTime">
+            <element minOccurs="0" name="birthDate">
                 <annotation>
                     <documentation>Date de naissance du patient</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\d{4}-\d{2}-\d{2}"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="sex">
+            <element minOccurs="0" name="sex" type="string">
                 <annotation>
                     <documentation>Sexe du patient</documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="U"/>
-                        <enumeration value="F"/>
-                        <enumeration value="M"/>
-                        <enumeration value="O"/>
-                    </restriction>
-                </simpleType>
             </element>
             <element minOccurs="0" name="birthPlaceCode" type="decimal">
                 <annotation>
@@ -1357,31 +1445,68 @@
             </element>
         </sequence>
     </complexType>
-    <complexType name="decision">
+    <complexType name="mainDiagnosis">
         <sequence>
-            <element minOccurs="0" name="type" type="string">
+            <element name="code" type="string">
                 <annotation>
-                    <documentation>Type de décision prise</documentation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="orientation" type="string">
+            <element name="label" type="string">
                 <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="medicalisation" type="string">
+            <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
+        </sequence>
+    </complexType>
+    <complexType name="otherDiagnosis">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="destination">
         <sequence>
-            <element minOccurs="0" name="facility" type="string"/>
-            <element minOccurs="0" name="service" type="string"/>
+            <element minOccurs="0" name="facility" type="string">
+                <annotation>
+                    <documentation>Nom de l'établissement</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="adminFiness" type="string">
+                <annotation>
+                    <documentation>N° Finess administratif de l'établissement</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="geoFiness" type="string">
+                <annotation>
+                    <documentation>N° Finess géographique de l'établissement</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="service" type="string">
+                <annotation>
+                    <documentation>Service concerné par l'admission du patient</documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>

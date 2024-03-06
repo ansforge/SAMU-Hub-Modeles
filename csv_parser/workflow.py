@@ -41,6 +41,10 @@ schemas = [{
     'sheet': 'GEO-RES',
     'filter': False
 }, {
+    'name': 'RC-REF',
+    'sheet': 'RC-REF',
+    'filter': False
+}, {
     'name': 'RS-ERROR',
     'sheet': 'RS-ERROR',
     'filter': False
@@ -49,11 +53,7 @@ schemas = [{
     'sheet': 'RS-INFO',
     'filter': False
 }, {
-    'name': 'RC-REF',
-    'sheet': 'RC-REF',
-    'filter': False
-}, {
-    'name': 'customContent',
+    'name': 'CustomContent',
     'sheet': 'customContent',
     'filter': False
 }]

@@ -29,11 +29,9 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static com.hubsante.model.TestConstants.*;
 
 public class ReferenceWrapperBuilderTest {
-    private final String DISTRIBUTION_ID = "id-12345";
-    private final String SENDER_ID = "sender-x";
-    private final String RECIPIENT_ID = "recipient-y";
 
     /*
      * Test the builder with a RC-REF built from builders
@@ -50,7 +48,7 @@ public class ReferenceWrapperBuilderTest {
         DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
                 .kind(DistributionElement.KindEnum.ACK)
                 .build();
-        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, "id-67890")
+        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, DISTRIBUTION_ID)
                 .build();
 
         EdxlMessage built = new EDXL_DE_Builder(DISTRIBUTION_ID, SENDER_ID, RECIPIENT_ID)
@@ -58,7 +56,26 @@ public class ReferenceWrapperBuilderTest {
                 .distributionKind(DistributionKind.ACK)
                 .build();
 
-        assertEquals("id-67890", ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
+        assertEquals(DISTRIBUTION_ID, ((ReferenceWrapper) built.getFirstContentMessage()).getReference().getDistributionID());
+    }
+
+
+    @Test
+    @DisplayName("should not build a EDXL-DE with invalid distribution id")
+    public void shouldNotBuildEdxlDeWithInvalidDistributionId() {
+        Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
+        List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
+
+        DistributionElement distributionElement = new DistributionElementBuilder(DISTRIBUTION_ID, SENDER_ID, recipientList)
+                .kind(DistributionElement.KindEnum.ACK)
+                .build();
+        ReferenceWrapper referenceWrapper = new ReferenceWrapperBuilder(distributionElement, DISTRIBUTION_ID)
+                .build();
+
+        assertThrows(IllegalArgumentException.class, () -> new EDXL_DE_Builder("invalid-id", SENDER_ID, RECIPIENT_ID)
+                .contentMessage(referenceWrapper)
+                .distributionKind(DistributionKind.ACK)
+                .build());
     }
 
     @Test
@@ -71,6 +88,6 @@ public class ReferenceWrapperBuilderTest {
                 .kind(DistributionElement.KindEnum.REPORT)
                 .build();
 
-        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(distributionElement, "id-67890").build());
+        assertThrows(IllegalArgumentException.class, () -> new ReferenceWrapperBuilder(distributionElement, MESSAGE_ID).build());
     }
 }

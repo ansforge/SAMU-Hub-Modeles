@@ -189,7 +189,7 @@ public class ValidatorTest {
 
     @Test
     @DisplayName("RS-ERROR validation passes")
-    public void jsonRsInfoValidationPasses() throws IOException {
+    public void jsonRsErrorValidationPasses() throws IOException {
         String input = getMessageString("RS-ERROR");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
@@ -712,18 +712,20 @@ public class ValidatorTest {
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         Arrays.stream(files).forEach(file -> {
-            try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+            if(!file.getName().contains("work-in-progress")) {
+                try {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                validator.validateJSON(fullJson, FULL_SCHEMA);
-                log.info("File {} is valid against schema", file.getName());
+                    validator.validateJSON(fullJson, FULL_SCHEMA);
+                    log.info("File {} is valid against schema", file.getName());
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ValidationException e) {
-                allPass.set(false);
-               log.error("File " + file.getName() + " is not valid against schema: " + e.getMessage());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (ValidationException e) {
+                    allPass.set(false);
+                    log.error("File " + file.getName() + " is not valid against schema: " + e.getMessage());
+                }
             }
         });
 

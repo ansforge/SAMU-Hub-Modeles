@@ -23,6 +23,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.builders.ValidationMessageWrapperBuilder;
 import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.ValidationMessageWrapper;
 import com.hubsante.model.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
