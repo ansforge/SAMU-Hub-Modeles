@@ -1,0 +1,137 @@
+[
+    {
+        "categoryLabel":"Périmetre 15-15",
+        "testCases":[
+            {
+                "label":"Partage de dossier simple (sans demande de transfert)",
+                "description":"Envoyer un message simple de partage de dossier pour le périmètre 15-15; qui contient les valeurs obligatoires minimales attendues",
+                "steps":[
+                    {
+                        "label":"Envoi",
+                        "description":"Envoi d'un message RS-EDA",
+                        "requiredValues":[
+                            {
+                                "path":"$.createCaseHealth.qualification.whatsHappen.code",
+                                "value":[
+                                    "C02.08.05",
+                                    "C02.08.02",
+                                    "C02.05.00"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "M01.02",
+                                    "M02.07",
+                                    "M03.08"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "P0",
+                                    "P2",
+                                    "P1"
+                                ]
+                            },
+                            {
+                                "path":"$.createCaseHealth.owner",
+                                "value":[
+                                    "fr.health.samu770",
+                                    "fr.health.samu950",
+                                    "fr.health.samu009"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "MASC",
+                                    "FEM",
+                                    "INCONNU"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "Didier Morel",
+                                    "Lola Halimi"
+                                ]
+                            },
+                            {
+                                "path":"$.createCaseHealth.location.country",
+                                "value":[
+                                    "FR",
+                                    "FR",
+                                    "FR"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "12 Rue Louis Aristide Verdier ",
+                                    "4 rue Danielle Mitterrand"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "Vaires-sur-Marne",
+                                    "Bezons"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "Aller directement dans le garage",
+                                    "dans la cage d’escalier B"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "PHNADD",
+                                    "PHNADD"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "0607080915",
+                                    "07028809468"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "Sébastien Morel",
+                                    "Amina BERTRAND  "
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "C02.08.05",
+                                    "C02.08.02"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "M01.02",
+                                    "M02.07"
+                                ]
+                            },
+                            {
+                                "path":null,
+                                "value":[
+                                    "P0",
+                                    "P2"
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
