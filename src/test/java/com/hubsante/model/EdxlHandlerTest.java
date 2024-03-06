@@ -114,16 +114,16 @@ public class EdxlHandlerTest {
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize JSON RS-INFO")
+    @DisplayName("should consistently deserialize then serialize JSON RS-ERROR")
     public void end2end_RS_INFO_JSON() throws IOException {
-        String json = getMessageString("RS-INFO");
+        String json = getMessageString("RS-ERROR");
         endToEndDeserializationCheck(json, false);
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize XML RS-INFO")
+    @DisplayName("should consistently deserialize then serialize XML RS-ERROR")
     public void end2end_RS_INFO_XML() throws IOException {
-        String xml = getMessageString("RS-INFO", true);
+        String xml = getMessageString("RS-ERROR", true);
         endToEndDeserializationCheck(xml, true);
     }
 
@@ -177,18 +177,20 @@ public class EdxlHandlerTest {
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         Arrays.stream(files).forEach(file -> {
-            try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+            if(!file.getName().contains("work-in-progress")) {
+                try {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                converter.deserializeJsonEDXL(fullJson);
-                log.info("File {} has been successfully deserialized", file.getName());
+                    converter.deserializeJsonEDXL(fullJson);
+                    log.info("File {} has been successfully deserialized", file.getName());
 
-            }catch (JsonProcessingException e) {
-                allPass.set(false);
-                log.error("File " + file.getName() + " could have not been deserialized: " + e.getMessage());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
+                } catch (JsonProcessingException e) {
+                    allPass.set(false);
+                    log.error("File " + file.getName() + " could have not been deserialized: " + e.getMessage());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 

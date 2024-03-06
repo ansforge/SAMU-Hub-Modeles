@@ -91,6 +91,9 @@ def run(sheet, name, version, filter):
     def isCreateCase():
         return MODEL_TYPE == "createCase"
 
+    def is_custom_content():
+        return MODEL_TYPE == "customContent"
+
     if not filter and isCreateCase():
         MODEL_TYPE = "createCaseHealth"
     WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
@@ -308,11 +311,12 @@ def run(sheet, name, version, filter):
     df['is_typed_object'] = df.apply(is_typed_object, axis=1)
     df['is_health_only'] = df.apply(is_health_only, axis=1)
     df['true_type'] = df.apply(get_true_type, axis=1)
-    df['id'] = df.apply(build_id, axis=1)
-    df = df.set_index('id', drop=False)
-    df['parent'] = df.apply(get_parent, axis=1)
-    df['parent_type'] = df.apply(get_parent_type, axis=1)
-    df['full_name'] = df.apply(build_full_name, axis=1)
+    if df.size > 0:
+        df['id'] = df.apply(build_id, axis=1)
+        df = df.set_index('id', drop=False)
+        df['parent'] = df.apply(get_parent, axis=1)
+        df['parent_type'] = df.apply(get_parent_type, axis=1)
+        df['full_name'] = df.apply(build_full_name, axis=1)
 
     # 2. Recursive data (children in their parent, to be explored like a tree)
     def get_element_with_its_children(previous_children, elem_id):
@@ -322,21 +326,31 @@ def run(sheet, name, version, filter):
         return elem
 
     children = {}
-    for i in range(DATA_DEPTH, 0, -1):
-        previous_children = children
-        children_df = df[df['level_shift'] == i]
-        children_ids = children_df.groupby('parent')['id'].apply(list)
-        children = {
-            parent_id: list(
-                map(lambda child_id: get_element_with_its_children(previous_children, child_id), children_ids))
-            for (parent_id, children_ids) in children_ids.items()}
-    rootObject = {
-        'id': '1',
-        'level_shift': 0,
-        'name': MODEL_TYPE,
-        'Objet': 'X',
-        'children': children['1']
-    }
+
+    if not is_custom_content():
+        for i in range(DATA_DEPTH, 0, -1):
+            previous_children = children
+            children_df = df[df['level_shift'] == i]
+            children_ids = children_df.groupby('parent')['id'].apply(list)
+            children = {
+                parent_id: list(
+                    map(lambda child_id: get_element_with_its_children(previous_children, child_id), children_ids))
+                for (parent_id, children_ids) in children_ids.items()}
+        rootObject = {
+            'id': '1',
+            'level_shift': 0,
+            'name': MODEL_TYPE,
+            'Objet': 'X',
+            'children': children['1']
+        }
+    else:
+        rootObject = {
+            'id': '1',
+            'level_shift': 0,
+            'name': MODEL_TYPE,
+            'Objet': 'X',
+            'children': {}
+        }
 
     # DATA USAGE
     def is_array(elem):
@@ -396,7 +410,7 @@ def run(sheet, name, version, filter):
         'required': [],
         'properties': {},
         'definitions': {},
-        'additionalProperties': False
+        'additionalProperties': is_custom_content()
     }
 
     def has_format_details(elem, details):
@@ -475,7 +489,7 @@ def run(sheet, name, version, filter):
                 'x-health-only': child['is_health_only'],
                 'required': [],
                 'properties': {},
-                'additionalProperties': False,
+                'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
         """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first 
@@ -503,6 +517,11 @@ def run(sheet, name, version, filter):
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTrueTypeName,
             }
+
+    def is_source_message(typeName):
+        if typeName == "sourceMessage":
+            return True
+        return False
 
     def add_child(parent, child, definitions):
         """Update parent definitions by adding the child information"""
@@ -668,7 +687,10 @@ def run(sheet, name, version, filter):
     uml_generator.run(name, MODEL_NAME, version=version, filter=filter)
     print('UML diagrams generated.')
 
-    named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
+    if not is_custom_content():
+        named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
+    else:
+        named_df = df.copy().set_index(['name']).fillna('')
 
     def get_excel_line(parent_type, name):
         try:

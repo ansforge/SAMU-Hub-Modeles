@@ -222,40 +222,37 @@
                 "code": "C07.13.02",
                 "label": "Rod\u00e9o automobile",
                 "freetext": "None"
-            },
-            "medicalNote": [
-                {
-                    "operator": {},
-                    "creation": "2022-09-27T08:23:34+02:00",
-                    "freetext": "None",
-                    "medicalHistory": "None",
-                    "treatments": "None",
-                    "allergies": "None"
-                }
-            ]
+            }
         }
     ],
-    "medicalAnalysis": [
+    "medicalNote": [
         {
-            "patientId": "None",
-            "decision": [
-                {
-                    "creation": "2022-09-27T08:23:34+02:00",
-                    "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
-                    "orientation": "None",
-                    "transportation": [
-                        "SMUR "
-                    ],
-                    "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
-                    "destination": {
-                        "facility": "None",
-                        "adminFiness": "None",
-                        "geoFiness": "None",
-                        "service": "None",
-                        "freetext": "None"
-                    }
-                }
-            ]
+            "id": "None",
+            "operator": {},
+            "creation": "2022-09-27T08:23:34+02:00",
+            "freetext": "None",
+            "medicalHistory": "None",
+            "treatments": "None",
+            "allergies": "None"
+        }
+    ],
+    "decision": [
+        {
+            "id": "None",
+            "creation": "2022-09-27T08:23:34+02:00",
+            "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
+            "orientation": "None",
+            "transportation": [
+                "SMUR "
+            ],
+            "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
+            "destination": {
+                "facility": "None",
+                "adminFiness": "None",
+                "geoFiness": "None",
+                "service": "None",
+                "freetext": "None"
+            }
         }
     ],
     "newAlert": [

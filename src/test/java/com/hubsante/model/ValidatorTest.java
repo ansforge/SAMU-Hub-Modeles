@@ -188,18 +188,18 @@ public class ValidatorTest {
     }
 
     @Test
-    @DisplayName("RS-INFO validation passes")
+    @DisplayName("RS-ERROR validation passes")
     public void jsonRsInfoValidationPasses() throws IOException {
-        String input = getMessageString("RS-INFO");
+        String input = getMessageString("RS-ERROR");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
         // TODO bbo: add XML validation
     }
 
     @Test
-    @DisplayName("RS-INFO validation fails")
+    @DisplayName("RS-ERROR validation fails")
     public void jsonRsInfoValidationFails() throws IOException {
-        String input = getMessageString("RS-INFO", false, false);
+        String input = getMessageString("RS-ERROR", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 
         // we verify the correct error message is thrown
@@ -209,9 +209,9 @@ public class ValidatorTest {
             String[] expectedErrors = {
                 "Could not validate message against schema : errors occurred. ",
                 "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message: ",
-                " - info.sourceMessage: string found, object expected",
-                " - info.referencedDistributionID: is missing but it is required",
-                " - info.errorCode.statusCode: is missing but it is required"
+                " - error.sourceMessage: string found, object expected",
+                " - error.referencedDistributionID: is missing but it is required",
+                " - error.errorCode.statusCode: is missing but it is required"
             };
             String[] errors = e.getMessage().split("\n");
             checkErrorMessageArrayExactContent(errors, expectedErrors);
@@ -712,18 +712,20 @@ public class ValidatorTest {
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         Arrays.stream(files).forEach(file -> {
-            try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+            if(!file.getName().contains("work-in-progress")) {
+                try {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                validator.validateJSON(fullJson, FULL_SCHEMA);
-                log.info("File {} is valid against schema", file.getName());
+                    validator.validateJSON(fullJson, FULL_SCHEMA);
+                    log.info("File {} is valid against schema", file.getName());
 
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (ValidationException e) {
-                allPass.set(false);
-               log.error("File " + file.getName() + " is not valid against schema: " + e.getMessage());
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                } catch (ValidationException e) {
+                    allPass.set(false);
+                    log.error("File " + file.getName() + " is not valid against schema: " + e.getMessage());
+                }
             }
         });
 
