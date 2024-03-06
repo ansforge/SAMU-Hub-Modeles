@@ -1,0 +1,51 @@
+openapi: 3.0.0
+components:
+  schemas:
+    referenceWrapper:
+      type: object
+      required:
+      - reference
+      properties:
+        reference:
+          $ref: '#/components/schemas/reference'
+    reference:
+      $id: classpath:/json-schema/schema#
+      x-id: RC-REF.schema.json#
+      example: example.json#
+      type: object
+      title: reference
+      required:
+      - distributionID
+      properties:
+        distributionID:
+          type: string
+          title: "Identifiant du message r\xE9f\xE9renc\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/distributionID
+          description: "Identifiant unique du message r\xE9f\xE9renc\xE9"
+          examples:
+          - None
+        isRefused:
+          type: boolean
+          title: Indicateur de refus de message
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/isRefused
+          description: "Indique si le message acquitt\xE9 a \xE9t\xE9 refus\xE9"
+          examples:
+          - None
+        infoDistributionID:
+          type: string
+          title: "Identifiant du message d'erreur li\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/infoDistributionID
+          description: "Identifiant unique du message d'erreur li\xE9"
+          examples:
+          - None
+      additionalProperties: false
+      examples:
+      - distributionID: None
+        isRefused: None
+        infoDistributionID: None
