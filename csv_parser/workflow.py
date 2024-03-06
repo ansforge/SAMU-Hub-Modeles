@@ -52,6 +52,10 @@ schemas = [{
     'name': 'RS-INFO',
     'sheet': 'RS-INFO',
     'filter': False
+}, {
+    'name': 'CustomContent',
+    'sheet': 'customContent',
+    'filter': False
 }]
 
 
