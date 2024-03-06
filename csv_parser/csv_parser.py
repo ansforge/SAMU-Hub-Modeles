@@ -91,6 +91,9 @@ def run(sheet, name, version, filter):
     def isCreateCase():
         return MODEL_TYPE == "createCase"
 
+    def is_custom_content():
+        return MODEL_TYPE == "customContent"
+
     if not filter and isCreateCase():
         MODEL_TYPE = "createCaseHealth"
     WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
@@ -322,21 +325,31 @@ def run(sheet, name, version, filter):
         return elem
 
     children = {}
-    for i in range(DATA_DEPTH, 0, -1):
-        previous_children = children
-        children_df = df[df['level_shift'] == i]
-        children_ids = children_df.groupby('parent')['id'].apply(list)
-        children = {
-            parent_id: list(
-                map(lambda child_id: get_element_with_its_children(previous_children, child_id), children_ids))
-            for (parent_id, children_ids) in children_ids.items()}
-    rootObject = {
-        'id': '1',
-        'level_shift': 0,
-        'name': MODEL_TYPE,
-        'Objet': 'X',
-        'children': children['1']
-    }
+
+    if not is_custom_content():
+        for i in range(DATA_DEPTH, 0, -1):
+            previous_children = children
+            children_df = df[df['level_shift'] == i]
+            children_ids = children_df.groupby('parent')['id'].apply(list)
+            children = {
+                parent_id: list(
+                    map(lambda child_id: get_element_with_its_children(previous_children, child_id), children_ids))
+                for (parent_id, children_ids) in children_ids.items()}
+        rootObject = {
+            'id': '1',
+            'level_shift': 0,
+            'name': MODEL_TYPE,
+            'Objet': 'X',
+            'children': children['1']
+        }
+    else:
+        rootObject = {
+            'id': '1',
+            'level_shift': 0,
+            'name': MODEL_TYPE,
+            'Objet': 'X',
+            'children': {}
+        }
 
     # DATA USAGE
     def is_array(elem):
@@ -396,7 +409,7 @@ def run(sheet, name, version, filter):
         'required': [],
         'properties': {},
         'definitions': {},
-        'additionalProperties': False
+        'additionalProperties': is_custom_content()
     }
 
     def has_format_details(elem, details):
@@ -673,7 +686,10 @@ def run(sheet, name, version, filter):
     uml_generator.run(name, MODEL_NAME, version=version, filter=filter)
     print('UML diagrams generated.')
 
-    named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
+    if not is_custom_content():
+        named_df = df.copy().set_index(['parent_type', 'name']).fillna('')
+    else:
+        named_df = df.copy().set_index(['name']).fillna('')
 
     def get_excel_line(parent_type, name):
         try:
