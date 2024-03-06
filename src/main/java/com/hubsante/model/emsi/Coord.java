@@ -66,7 +66,7 @@ public class Coord {
   }
 
   /**
-   * dernière coordonnée x  connue de la ressource
+   * dernière coordonnée x  connue de la ressource, entre −90 and +90
    * @return LAT
    **/
   @JsonProperty(JSON_PROPERTY_L_A_T)
@@ -91,7 +91,7 @@ public class Coord {
   /**
    * Optionnel. Dans le cas où aucun LOC_ID n&#39;est transféré, permet de
    *localiser le lieu d&#39;intervention souhaité dernière coordonnée y  connue
-   *de la ressource between −90 and +90
+   *de la ressource entre −180 and +180
    * @return LONG
    **/
   @JsonProperty(JSON_PROPERTY_L_O_N_G)
@@ -116,7 +116,7 @@ public class Coord {
   /**
    * Optionnel. Dans le cas où aucun LOC_ID n&#39;est transféré, permet de
    *localiser le lieu d&#39;intervention souhaité dernière coordonnée z  connue
-   *de la ressource between −180 and +180
+   *de la ressource, en mètres sans bornes
    * @return HEIGHT
    **/
   @JsonProperty(JSON_PROPERTY_H_E_I_G_H_T)

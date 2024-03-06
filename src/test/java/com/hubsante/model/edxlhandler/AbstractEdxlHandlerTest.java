@@ -16,33 +16,12 @@
 package com.hubsante.model.edxlhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.EdxlHandler;
-import com.hubsante.model.TestMessagesHelper;
-import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.common.Recipient;
-import com.hubsante.model.common.ReferenceWrapper;
-import com.hubsante.model.common.Sender;
-import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
-import com.hubsante.model.emsi.EmsiWrapper;
-import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.Sanitizer.sanitizeEdxl;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,6 +1,7 @@
 package com.hubsante.model.edxlhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
 import lombok.extern.slf4j.Slf4j;
@@ -17,6 +18,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
+import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
@@ -79,5 +81,20 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
             fail("Some files are not valid against schema");
         }
     }
+
+    @Test
+    @DisplayName("deserialization of a message with an unknown additional property at root level fails")
+    public void deserializationOfMessageWithUnknownPropertyAtRootLevelFails() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
+        assertThrows(UnrecognizedPropertyException.class ,() -> converter.deserializeJsonEDXL(json));
+    }
+
+    @Test
+    @DisplayName("deserialization of a message with an unknown additional property not at root level fails")
+    public void deserializationOfMessageWithUnknownPropertyNotAtRootLevelFails() throws IOException {
+        String json = getInvalidMessage("EDXL-DE/unknown-property-deep.json");
+        assertThrows(UnrecognizedPropertyException.class, () -> converter.deserializeJsonEDXL(json));
+    }
+
 
 }

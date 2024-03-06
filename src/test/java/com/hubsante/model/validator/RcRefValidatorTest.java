@@ -32,13 +32,18 @@ public class RcRefValidatorTest extends AbstractValidatorTest {
     @Test
     @DisplayName("RC-REF json validation fails")
     public void jsonRcRefValidationFails() throws IOException {
-        validationFails("RC-REF", false, JSON_MISSING, "reference.distributionID: ");
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
+                " - reference.distributionID: is missing but it is required",
+        };
+        jsonValidationFails("RC-REF/RC-REF-missing-required-fields.json", expectedErrors);
     }
 
     @Test
     @DisplayName("RC-REF xml validation fails")
     public void xmlRcRefValidationFails() throws IOException {
-        validationFails("RC-REF", true, XML_MISSING, "distributionID}' ");
+        xmlValidationFails("RC-REF/RC-REF-missing-required-fields.xml", XML_MISSING, new String[]{"distributionID}' "});
     }
     //endregion
 }

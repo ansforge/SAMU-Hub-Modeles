@@ -25,13 +25,21 @@ public class RcEdaValidatorTest extends AbstractValidatorTest {
     @Test
     @DisplayName("RC-EDA json validation fails")
     public void jsonRcEdaValidationFails() throws IOException {
-        validationFails("RC-EDA", false, JSON_MISSING, "createCase.initialAlert.id: ");
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
+                " - createCase.initialAlert.id: is missing but it is required",
+                " - createCase.additionalInformation.customMap: object found, array expected",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: ",
+                " - createCase.sender: is not defined in the schema and the schema does not allow additional properties"
+        };
+        jsonValidationFails("RC-EDA/RC-EDA-missing-required-fields.json", expectedErrors);
     }
 
     @Test
     @DisplayName("RC-EDA xml validation fails")
     public void xmlRcEdaValidationFails() throws IOException {
-        validationFails("RC-EDA", true, XML_MISSING, "caseId}' ", "locID}' ");
+        xmlValidationFails("RC-EDA/RC-EDA-missing-required-fields.xml", XML_MISSING, new String[]{ "caseId}' ", "locID}' "});
     }
     //endregion
 }

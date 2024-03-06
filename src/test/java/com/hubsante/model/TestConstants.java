@@ -13,22 +13,15 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.builders;
 
-import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.report.ErrorReport;
-import com.hubsante.model.report.InfoWrapper;
+package com.hubsante.model;
 
-public class InfoWrapperBuilder {
-    private ErrorReport info;
+import lombok.extern.slf4j.Slf4j;
 
-    public InfoWrapperBuilder(ErrorReport info) {
-        this.info = info;
-    }
-
-    public InfoWrapper build() {
-        InfoWrapper infoWrapper = new InfoWrapper();
-        infoWrapper.setInfo(info);
-        return infoWrapper;
-    }
+@Slf4j
+public final class TestConstants {
+    public static final String MESSAGE_ID = "id-12345";
+    public static final String SENDER_ID = "test.sender-x";
+    public static final String RECIPIENT_ID = "recipient-y";
+    public static final String DISTRIBUTION_ID = "test.sender-x_id-12345";
 }

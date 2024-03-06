@@ -23,7 +23,7 @@ import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.builders.ValidationMessageWrapperBuilder;
 import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.common.ValidationMessageWrapper;
+import com.hubsante.model.ValidationMessageWrapper;
 import com.hubsante.model.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
@@ -149,7 +149,7 @@ public class Validator {
 
             // Append a special error message if the error string does not contain a single "use case" error and
             // the there is no 'oneOf' constraint violation
-            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint && validationMessageWrappers.stream().anyMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISSING_CONTENT"))  && validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("INFO"))) {
+            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint && validationMessageWrappers.stream().anyMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISSING_CONTENT"))  && validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("ERROR"))) {
                 errors.append("Could not detect any schemas in the message, at least one is required \n");
             }
 
@@ -164,10 +164,10 @@ public class Validator {
                 }
             }
 
-            // Append INFO error messages
-            if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("INFO")) ) {
+            // Append ERROR error messages
+            if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("ERROR")) ) {
                 errors.append("Issues found on the $.content[0].jsonContent.embeddedJsonContent.message: \n");
-                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("EDXL-DE") || validationMessageWrapper.getType().equals("INFO")).collect(java.util.stream.Collectors.toSet())) {
+                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("EDXL-DE") || validationMessageWrapper.getType().equals("ERROR")).collect(java.util.stream.Collectors.toSet())) {
                     String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
                     if (error != null) {
                         errors.append(" - "+error).append("\n");
@@ -175,8 +175,8 @@ public class Validator {
                 }
             }
 
-            // If any INFO errors are present, we do not append the RC-DE validation messages
-            if (validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("INFO")) && validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("RC-DE")) ) {
+            // If any ERROR errors are present, we do not append the RC-DE validation messages
+            if (validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("ERROR")) && validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("RC-DE")) ) {
                 errors.append("Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: \n");
                 for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("RC-DE")).collect(java.util.stream.Collectors.toSet())) {
                     String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
