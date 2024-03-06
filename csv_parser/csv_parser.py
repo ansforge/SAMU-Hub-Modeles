@@ -311,11 +311,12 @@ def run(sheet, name, version, filter):
     df['is_typed_object'] = df.apply(is_typed_object, axis=1)
     df['is_health_only'] = df.apply(is_health_only, axis=1)
     df['true_type'] = df.apply(get_true_type, axis=1)
-    df['id'] = df.apply(build_id, axis=1)
-    df = df.set_index('id', drop=False)
-    df['parent'] = df.apply(get_parent, axis=1)
-    df['parent_type'] = df.apply(get_parent_type, axis=1)
-    df['full_name'] = df.apply(build_full_name, axis=1)
+    if df.size > 0:
+        df['id'] = df.apply(build_id, axis=1)
+        df = df.set_index('id', drop=False)
+        df['parent'] = df.apply(get_parent, axis=1)
+        df['parent_type'] = df.apply(get_parent_type, axis=1)
+        df['full_name'] = df.apply(build_full_name, axis=1)
 
     # 2. Recursive data (children in their parent, to be explored like a tree)
     def get_element_with_its_children(previous_children, elem_id):
