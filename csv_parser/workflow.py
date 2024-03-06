@@ -4,6 +4,7 @@ import shutil
 import yaml
 
 import csv_parser
+import test_case_generator
 
 # ---------------------------------------- ARGS CONFIGURATION
 parser = argparse.ArgumentParser(
@@ -42,6 +43,11 @@ schemas = [{
     'filter': False
 }]
 
+perimeters = [{
+    'name': 'Périmetre 15-15',
+    'file': 'test-cases-15-15'
+}]
+
 
 # ---------------------------------------- STAGE FUNCTIONS
 def parser_and_mv():
@@ -66,6 +72,14 @@ def parser_and_mv():
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
     print('AsyncAPI schema generated.')
+
+    # Generate test-cases.json
+    test_case_generator.run(perimeters)
+
+    # Move test-cases.json to ../src/main/resources
+    if os.path.exists(f"../src/main/resources/test-cases.json"):
+        os.remove(f"../src/main/resources/test-cases.json")
+    os.rename(f"./out/test_cases.json", f"../src/main/resources/test-cases.json")
 
 # ---------------------------------------- RUN
 if args.stage == 'parser_and_mv':
