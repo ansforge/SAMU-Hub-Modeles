@@ -62,8 +62,7 @@ public class Patient {
   }
 
   /**
-   * Identifiant technique du patient pour permettre les rapprochements
-   *d&#39;infos. Le 1er qui créé l&#39;ID patient a raison.
+   * ID partagé du patient concerné, lorsque le patient existe et est identifié
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)

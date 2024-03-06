@@ -180,7 +180,7 @@
       "attachment": []
     },
     "freetext": "Problème médical",
-    "medicalAnalysis": [],
+    "decision": [],
     "newAlert": [],
     "owner": "fr.health.samu780",
     "additionalInformation": {

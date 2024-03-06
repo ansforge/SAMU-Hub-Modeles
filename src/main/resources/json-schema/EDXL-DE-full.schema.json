@@ -57,8 +57,7 @@
         "jsonContent": {
           "$ref": "#/definitions/JsonContent"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "JsonContent": {
       "type": "object",
@@ -69,12 +68,36 @@
         "embeddedJsonContent": {
           "$ref": "#/definitions/EmbeddedJsonContent"
         }
-      },
-      "additionalProperties": false
+      }
     },
     "EmbeddedJsonContent": {
       "type": "object",
       "oneOf": [
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "createCase": {
+                      "$ref": "RC-EDA.schema.json"
+                    }
+                  },
+                  "required": [
+                    "createCase"
+                  ]
+                }
+              }
+            }
+          ]
+        },
         {
           "allOf": [
             {
@@ -96,8 +119,7 @@
                     "createCaseHealth"
                   ]
                 }
-              },
-              "additionalProperties": false
+              }
             }
           ]
         },
@@ -108,35 +130,7 @@
                 "message": {
                   "$ref": "RC-DE.schema.json"
                 }
-              },
-              "additionalProperties": false
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
-                    "createCase": {
-                      "$ref": "RC-EDA.schema.json"
-                    }
-                  },
-                  "required": [
-                    "createCase"
-                  ]
-                }
-              },
-              "additionalProperties": false
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
@@ -150,18 +144,37 @@
                     "reference"
                   ]
                 }
-              },
-              "additionalProperties": false
+              }
             }
           ]
         },
         {
           "properties": {
             "message": {
-              "$ref": "RS-INFO.schema.json"
+              "properties": {
+                "info": {
+                  "$ref": "RS-INFO.schema.json"
+                }
+              },
+              "required": [
+                "info"
+              ]
             }
-          },
-          "additionalProperties": false
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "error": {
+                  "$ref": "RS-ERROR.schema.json"
+                }
+              },
+              "required": [
+                "error"
+              ]
+            }
+          }
         },
         {
           "allOf": [
@@ -170,8 +183,7 @@
                 "message": {
                   "$ref": "RC-DE.schema.json"
                 }
-              },
-              "additionalProperties": false
+              }
             },
             {
               "properties": {
@@ -185,8 +197,7 @@
                     "emsi"
                   ]
                 }
-              },
-              "additionalProperties": false
+              }
             }
           ]
         },
@@ -202,8 +213,7 @@
                 "customContent"
               ]
             }
-          },
-          "additionalProperties": false
+          }
         }
       ]
     },

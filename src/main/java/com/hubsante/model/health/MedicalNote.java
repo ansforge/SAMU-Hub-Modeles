@@ -44,14 +44,17 @@ import java.util.Objects;
  * MedicalNote
  */
 @JsonPropertyOrder(
-    {MedicalNote.JSON_PROPERTY_OPERATOR, MedicalNote.JSON_PROPERTY_CREATION,
-     MedicalNote.JSON_PROPERTY_FREETEXT,
+    {MedicalNote.JSON_PROPERTY_ID, MedicalNote.JSON_PROPERTY_OPERATOR,
+     MedicalNote.JSON_PROPERTY_CREATION, MedicalNote.JSON_PROPERTY_FREETEXT,
      MedicalNote.JSON_PROPERTY_MEDICAL_HISTORY,
      MedicalNote.JSON_PROPERTY_TREATMENTS, MedicalNote.JSON_PROPERTY_ALLERGIES})
 @JsonTypeName("medicalNote")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class MedicalNote {
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
   public static final String JSON_PROPERTY_OPERATOR = "operator";
   private Operator operator;
 
@@ -71,6 +74,29 @@ public class MedicalNote {
   private String allergies;
 
   public MedicalNote() {}
+
+  public MedicalNote id(String id) {
+
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * ID partagé du patient concerné, lorsque le patient existe et est identifié
+   * @return id
+   **/
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getId() {
+    return id;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public MedicalNote operator(Operator operator) {
 
@@ -223,7 +249,8 @@ public class MedicalNote {
       return false;
     }
     MedicalNote medicalNote = (MedicalNote)o;
-    return Objects.equals(this.operator, medicalNote.operator) &&
+    return Objects.equals(this.id, medicalNote.id) &&
+        Objects.equals(this.operator, medicalNote.operator) &&
         Objects.equals(this.creation, medicalNote.creation) &&
         Objects.equals(this.freetext, medicalNote.freetext) &&
         Objects.equals(this.medicalHistory, medicalNote.medicalHistory) &&
@@ -233,7 +260,7 @@ public class MedicalNote {
 
   @Override
   public int hashCode() {
-    return Objects.hash(operator, creation, freetext, medicalHistory,
+    return Objects.hash(id, operator, creation, freetext, medicalHistory,
                         treatments, allergies);
   }
 
@@ -241,6 +268,7 @@ public class MedicalNote {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MedicalNote {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

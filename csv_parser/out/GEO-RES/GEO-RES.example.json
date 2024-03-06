@@ -1,13 +1,13 @@
 {
     "resourceDetails": [
         {
-            "id": "76_45101#SMUR1#",
-            "orgId": "fr.health.760.samu76",
+            "id": "76_45101#SMUR1",
+            "orgId": "fr.health.samu76A",
             "name": "SMUR 1 Rouen",
             "type": "SMUR",
-            "nature": "None",
-            "mobility": "Vehicle",
-            "capacity": "None",
+            "nature": "BASE",
+            "mobility": "VEHCL",
+            "capacity": "MED",
             "contacts": [
                 {
                     "type": "PHNADD",

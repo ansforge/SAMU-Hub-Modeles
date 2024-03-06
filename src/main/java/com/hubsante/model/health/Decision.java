@@ -46,13 +46,17 @@ import java.util.Objects;
  * Decision
  */
 @JsonPropertyOrder(
-    {Decision.JSON_PROPERTY_CREATION, Decision.JSON_PROPERTY_TYPE,
-     Decision.JSON_PROPERTY_ORIENTATION, Decision.JSON_PROPERTY_TRANSPORTATION,
+    {Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
+     Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
+     Decision.JSON_PROPERTY_TRANSPORTATION,
      Decision.JSON_PROPERTY_MEDICALISATION, Decision.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Decision {
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
 
@@ -72,6 +76,29 @@ public class Decision {
   private Destination destination;
 
   public Decision() {}
+
+  public Decision id(String id) {
+
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * ID partagé du patient concerné, lorsque le patient existe et est identifié
+   * @return id
+   **/
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getId() {
+    return id;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public Decision creation(OffsetDateTime creation) {
 
@@ -238,7 +265,8 @@ public class Decision {
       return false;
     }
     Decision decision = (Decision)o;
-    return Objects.equals(this.creation, decision.creation) &&
+    return Objects.equals(this.id, decision.id) &&
+        Objects.equals(this.creation, decision.creation) &&
         Objects.equals(this.type, decision.type) &&
         Objects.equals(this.orientation, decision.orientation) &&
         Objects.equals(this.transportation, decision.transportation) &&
@@ -248,7 +276,7 @@ public class Decision {
 
   @Override
   public int hashCode() {
-    return Objects.hash(creation, type, orientation, transportation,
+    return Objects.hash(id, creation, type, orientation, transportation,
                         medicalisation, destination);
   }
 
@@ -256,6 +284,7 @@ public class Decision {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    orientation: ")
