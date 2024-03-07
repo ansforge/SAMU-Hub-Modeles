@@ -30,9 +30,6 @@ def set_cardinalite(minimal, max):
     minimal_valid = {"0", "1"}
     if minimal not in minimal_valid:
         raise ValueError
-    max_valid = {"1", "n"}
-    if max not in max_valid:
-        raise ValueError
     return (minimal, max)
 
 
@@ -57,25 +54,8 @@ def add_node(dot, id_parent, id_in, type_in, buffer_description, cardinalite, he
     # draw edges with parents nodes
     # no edge if pointing itself
     if id_parent and (id_parent != id_in):
-        if cardinalite == ("0", "1"):
-            dot.edge(id_in, id_parent,
-                     constraint='true',
-                     headlabel="1", taillabel="0..1")
-        elif cardinalite == ("1", "1"):
-            dot.edge(id_in, id_parent,
-                     constraint='true',
-                     headlabel="1", taillabel="1")
-        elif cardinalite == ("1", "n"):
-            dot.edge(id_in, id_parent,
-                     constraint='true',
-                     headlabel="1", taillabel="1..*")
-        elif cardinalite == ("0", "n"):
-            dot.edge(id_in, id_parent,
-                     constraint='true',
-                     headlabel="1", taillabel="0..*")
-        else:
-            print("Cardinalité renseignée incorrecte pour " + str(id_in))
-            return ValueError
+        cardinalite = (cardinalite[0], cardinalite[1].replace("n", "*"))
+        dot.edge(id_in, id_parent, headlabel=cardinalite[0], taillabel=cardinalite[0]+".."+cardinalite[1])
     return
 
 
@@ -96,7 +76,7 @@ def parse_object(dot, id_parent, dict_in, dict_definitions, buffer_description_n
         if "type" in child:
             # check if is an array
             if child["type"] == "array":
-                cardinalite_child = set_cardinalite(cardinalite_child[0], "n")
+                cardinalite_child = set_cardinalite(cardinalite_child[0], str(child["maxItems"]))
                 # consider now items as the child
                 child = child["items"]
         # if is not an array
