@@ -120,7 +120,7 @@ public class Validator {
         if (!validationMessages.isEmpty()) {
             // Log all validation messages
             for (ValidationMessage errorMsg : validationMessages) {
-                log.error("Validation error: {}", errorMsg);
+                log.info("Validation error: {}", errorMsg);
             }
             StringBuilder errors = new StringBuilder();
 
