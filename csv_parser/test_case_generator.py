@@ -59,15 +59,18 @@ def run(perimeters):
                         }
                         test_case["steps"][-1]["requiredValues"].append(required_value)
 
-                # Else, if the value is not nan, we add a new step to the test case
+                # Else, if the value is not nan, we add a new step to the test case. If the type of the step is
+                # "receive", we also add the property "file" containing a string with the name of the template
+                # file lrm is going to use to generate the message
                 else:
                     test_case["steps"].append({
-                        "label": row["Pas de test"],
+                        "type": get_type(row["Pas de test"]),
+                        "label": row["Pas de test"] + " " + row["Unnamed: 1"],
                         "description": row["Déroulé métier"],
-                        "requiredValues": []
+                        "requiredValues": [],
                     })
-            # Print the test case object
-            print(test_case)
+                    if get_type(row["Pas de test"]) == "receive":
+                        test_case["steps"][-1]["file"] = row["Unnamed: 1"]+".json"
             # Add the test case object to the perimeter object
             perimeter_object["testCases"].append(test_case)
         # Add the perimeter object to the test cases array
@@ -82,6 +85,8 @@ def run(perimeters):
     return test_cases
 
 
-
-
-
+def get_type(type_in_french):
+    if type_in_french == "Envoi":
+        return "send"
+    elif type_in_french == "Réception":
+        return "receive"
