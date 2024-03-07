@@ -76,7 +76,7 @@ def parse_object(dot, id_parent, dict_in, dict_definitions, buffer_description_n
         if "type" in child:
             # check if is an array
             if child["type"] == "array":
-                cardinalite_child = set_cardinalite(cardinalite_child[0], str(child["maxItems"]))
+                cardinalite_child = set_cardinalite(cardinalite_child[0], str(child["maxItems"]) if child.get("maxItems") else "n")
                 # consider now items as the child
                 child = child["items"]
         # if is not an array
