@@ -189,7 +189,7 @@ public class ValidatorTest {
 
     @Test
     @DisplayName("RS-ERROR validation passes")
-    public void jsonRsInfoValidationPasses() throws IOException {
+    public void jsonRsErrorValidationPasses() throws IOException {
         String input = getMessageString("RS-ERROR");
         assertDoesNotThrow(() -> validator.validateJSON(input, FULL_SCHEMA));
 
@@ -198,7 +198,7 @@ public class ValidatorTest {
 
     @Test
     @DisplayName("RS-ERROR validation fails")
-    public void jsonRsInfoValidationFails() throws IOException {
+    public void jsonRsErrorValidationFails() throws IOException {
         String input = getMessageString("RS-ERROR", false, false);
         assertThrows(ValidationException.class, () -> validator.validateJSON(input, FULL_SCHEMA));
 

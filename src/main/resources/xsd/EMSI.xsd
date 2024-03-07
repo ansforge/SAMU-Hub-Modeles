@@ -1278,21 +1278,21 @@ Cf. Nomenclature EMSI - POSITION pour plus de détails</documentation>
         <sequence>
             <element name="LAT" type="decimal">
                 <annotation>
-                    <documentation>dernière coordonnée x  connue de la ressource</documentation>
+                    <documentation>dernière coordonnée x  connue de la ressource, entre −90 and +90</documentation>
                 </annotation>
             </element>
             <element name="LONG" type="decimal">
                 <annotation>
                     <documentation>Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu d'intervention souhaité
 dernière coordonnée y  connue de la ressource
-between −90 and +90</documentation>
+entre −180 and +180</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="HEIGHT" type="decimal">
                 <annotation>
                     <documentation>Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu d'intervention souhaité
-dernière coordonnée z  connue de la ressource
-between −180 and +180</documentation>
+dernière coordonnée z  connue de la ressource, en mètres sans bornes
+</documentation>
                 </annotation>
             </element>
         </sequence>

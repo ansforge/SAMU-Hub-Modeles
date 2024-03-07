@@ -209,7 +209,7 @@ Pierre Alain
 Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
 131,132,,,,Liste des prénoms de naissance,,,Ensemble des prénoms de naissance (renvoyés par INSi),,,birthFirstNamesList,,,,,,0..1,,string,,,,X
 132,133,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
-133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,,X,X
+133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",X,X
 134,135,,,,Code lieu de naissance,,,"Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.",,,birthPlaceCode,,,,,,0..1,,number,,,,X
 135,136,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
 136,137,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,healthMotive,,,,,,0..1,X,nomenclature,,,,X

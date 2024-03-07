@@ -4,10 +4,10 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}-{senderCaseId}.
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}</documentation>
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
@@ -41,7 +41,8 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="operator" type="x:operator"/>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalAnalysis" type="x:medicalAnalysis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element minOccurs="0" name="freetext" type="string">
@@ -413,17 +414,73 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
             <element minOccurs="0" name="resourceDiagnosis" type="x:resourceDiagnosis"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
         </sequence>
     </complexType>
-    <complexType name="medicalAnalysis">
+    <complexType name="medicalNote">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element minOccurs="0" name="id" type="string">
                 <annotation>
-                    <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
+            <element minOccurs="0" name="operator" type="x:operator"/>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element name="freetext" type="string">
+                <annotation>
+                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
+Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="medicalHistory" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="treatments" type="string">
+                <annotation>
+                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="allergies" type="string">
+                <annotation>
+                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="decision">
+        <sequence>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
+                </annotation>
+            </element>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de décision prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="medicalisation" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -1268,37 +1325,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
         </sequence>
     </complexType>
-    <complexType name="medicalNote">
-        <sequence>
-            <element minOccurs="0" name="operator" type="x:operator"/>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element name="freetext" type="string">
-                <annotation>
-                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
-Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="medicalHistory" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="treatments" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="allergies" type="string">
-                <annotation>
-                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="externalId">
         <sequence>
             <element name="source">
@@ -1465,32 +1491,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
                 </annotation>
             </element>
-        </sequence>
-    </complexType>
-    <complexType name="decision">
-        <sequence>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="type" type="string">
-                <annotation>
-                    <documentation>Type de décision prise</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="orientation" type="string">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="medicalisation" type="string">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="destination">

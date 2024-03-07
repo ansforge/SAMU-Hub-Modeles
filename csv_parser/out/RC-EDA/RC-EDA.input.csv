@@ -155,7 +155,7 @@ Elle est composée :
  - Du matricule INS (NIR - numéro d’inscription au répertoire national des personnes physiques - ou NIA – numéro identifiant attente - de l’individu). Concrètement, ce numéro correspond au numéro de sécurité sociale pour les ouvrants-droits, c’est-à-dire la très grande majorité des personnes majeures. Pour les autres assurés, ce numéro figure sur leur attestation de sécurité sociale et sera affiché dans l’espace numérique de santé (Mon espace santé) ; 
 - Des cinq traits stricts de référence (nom de naissance, prénom(s) de naissance, date de naissance, sexe, lieu de naissance).",,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,,X,X
 132,133,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
-133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,,X,X
+133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",X,X
 135,136,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
 147,155,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
 154,154,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X

@@ -2255,7 +2255,13 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/sex",
-                    "description": "Sexe du patient"
+                    "description": "Sexe du patient",
+                    "enum": [
+                        "U",
+                        "F",
+                        "M",
+                        "O"
+                    ]
                 },
                 "birthPlaceCode": {
                     "type": "number",

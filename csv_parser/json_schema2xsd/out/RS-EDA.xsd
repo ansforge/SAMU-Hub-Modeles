@@ -1433,10 +1433,18 @@ Pierre Alain Jacques</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="sex" type="string">
+            <element minOccurs="0" name="sex">
                 <annotation>
                     <documentation>Sexe du patient</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="U"/>
+                        <enumeration value="F"/>
+                        <enumeration value="M"/>
+                        <enumeration value="O"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="birthPlaceCode" type="decimal">
                 <annotation>
