@@ -2212,6 +2212,11 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: Sexe du patient
+          enum:
+          - U
+          - F
+          - M
+          - O
           examples:
           - F
         birthPlaceCode:
@@ -3446,6 +3451,41 @@ components:
             \ d\xE9crivant les op\xE9rations en cours :\n- reprendre la nomenclature\
             \ EMSI pour caract\xE9riser la mission en cours."
           enum:
+          - SAV/ASC
+          - FSTT/TA/FR_DIFFICULTACCSS
+          - GEN/RECVRY
+          - RSC/SAR/FR_VLN
+          - SAV/ASC/FR_PPL/LIFT
+          - SAV/RHD
+          - SAV/RTA
+          - SAV/SARCSL
+          - FFST/FR_FIRE
+          - FSTT/RRHAZ/FR_CO
+          - FSTT/TA/FR_ANI/DGR
+          - FSTT/TA/FR_ANI/INJ
+          - INT/RECCE/FR_CBRNHZ
+          - INT/RECCE/FR_DIS/LNDSLD
+          - INT/RECCE/FR_DIS/SDCLPS
+          - INT/RECCE/FR_FLD
+          - INT/RECCE/FR_SMLL
+          - FSTT/TA/FR_DRG/MIND
+          - FR_MED/REGLTN
+          - GEN/SUPRTN
+          - REC/PRVCNP
+          - RSC/MEDEVC
+          - SAV/AR/FR_CNT
+          - SAV/AR/FR_MED
+          - SAV/AR/FR_PARAMD
+          - SAV/AR/FR_PPL/GRP
+          - SAV/AR/FR_PSYPHY
+          - INT/RECCE
+          - SAV
+          - FSTT/TA/FR_TRNSPN/AMB
+          - GEN/TRNSPN
+          - GEN/TRNSPN/FR_SECNDRY
+          - OPR/LOG
+          - SAV/AR/FR_PPL/OBS
+          - FSTT/TA/FR_CLRACCSS
           - C2
           - CBRN
           - FF
@@ -3459,7 +3499,6 @@ components:
           - POL
           - REC
           - RSC
-          - SAV
           - SCS
           - SOC
           - C2/DEBRIF
@@ -3490,7 +3529,6 @@ components:
           - GEN/MARKNG
           - GEN/MOVE
           - GEN/RECVRN
-          - GEN/RECVRY
           - GEN/REDPLN
           - GEN/REORGN
           - GEN/REPAIR
@@ -3502,8 +3540,6 @@ components:
           - GEN/SCNMNG
           - GEN/SECRNG
           - GEN/STNGUP
-          - GEN/SUPRTN
-          - GEN/TRNSPN
           - INT/BIOSMP
           - INT/CHMSMP
           - INT/IDENT
@@ -3513,7 +3549,6 @@ components:
           - INT/OBSRNG
           - INT/PLUMOD
           - INT/PTRLNG
-          - INT/RECCE
           - INT/SRVMET
           - INT/SRVSEN
           - INT/WITNSN
@@ -3584,13 +3619,8 @@ components:
           - REC/WATER
           - RSC/COVERN
           - RSC/FRFGTN
-          - RSC/MEDEVC
           - RSC/SAR
           - SAV/AR
-          - SAV/ASC
-          - SAV/RHD
-          - SAV/RTA
-          - SAV/SARCSL
           - SAV/SARHHA
           - SAV/SRW
           - SAV/USAR

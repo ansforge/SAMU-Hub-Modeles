@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.03.06",
+    "version": "24.03.12",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -2255,7 +2255,13 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/sex",
-                    "description": "Sexe du patient"
+                    "description": "Sexe du patient",
+                    "enum": [
+                        "U",
+                        "F",
+                        "M",
+                        "O"
+                    ]
                 },
                 "birthPlaceCode": {
                     "type": "number",
