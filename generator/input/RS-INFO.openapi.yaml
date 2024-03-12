@@ -1,0 +1,31 @@
+openapi: 3.0.0
+components:
+  schemas:
+    infoWrapper:
+      type: object
+      required:
+      - info
+      properties:
+        info:
+          $ref: '#/components/schemas/info'
+    info:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-INFO.schema.json#
+      example: example.json#
+      type: object
+      title: info
+      required:
+      - info
+      properties:
+        info:
+          type: string
+          title: Information
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/info
+          description: "\_Champ libre permettant de transmettre des informations quelconques"
+          examples:
+          - None
+      additionalProperties: false
+      examples:
+      - info: None

@@ -1,8 +1,8 @@
 ,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
-0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}-{senderCaseId}.
+0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",fr.health.samu440-DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440-DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X
 1,2,Identifiant local de l'affaire/dossier,,,,,,"Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
 Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
 ",DRFR15DDXAAJJJ0000,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X
@@ -209,7 +209,7 @@ Pierre Alain
 Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
 131,132,,,,Liste des prénoms de naissance,,,Ensemble des prénoms de naissance (renvoyés par INSi),,,birthFirstNamesList,,,,,,0..1,,string,,,,X
 132,133,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
-133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,"ENUM: U, F, M, O",X,X
+133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,,X,X
 134,135,,,,Code lieu de naissance,,,"Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.",,,birthPlaceCode,,,,,,0..1,,number,,,,X
 135,136,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
 136,137,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,healthMotive,,,,,,0..1,X,nomenclature,,,,X
@@ -222,28 +222,28 @@ Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
 143,144,,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type nomenclature),,,Hypothese diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
 144,145,,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type nomenclature),,,Hypotheses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,nomenclature,X,,,X
 145,146,,Diagnostic de l'effecteur,# Voir whatsHappen (type nomenclature),,,,"Diagnostic posé par le médecin effecteur qui se trouve sur les lieux de l'affaire, ou diagnostic par le médecin régulateur après avoir reçu le retour de l'effecteur",,,resourceDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
-146,147,,Interrogatoire médical,,,,,Interrogatoire médical. Aussi appelé note de régulation médicale.,,,medicalNote,,,,,,0..n,X,medicalNote,,,,X
-147,148,,,Professionnel de santé qui réalise l'interrogatoire,# Voir operator,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,0..1,X,operator,,,,X
-148,149,,,Date Heure de création de l'interrogatoire,,,,Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,Format datetime décrit dans le DSF,,X
-149,150,,,Observations et commentaires,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
+146,147,Interrogatoire médical,,,,,,Interrogatoire médical. Aussi appelé note de régulation médicale.,,,medicalNote,,,,,,0..n,X,medicalNote,,,,X
+147,155,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
+148,148,,Professionnel de santé qui réalise l'interrogatoire,# Voir operator,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,0..1,X,operator,,,,X
+149,149,,Date Heure de création de l'interrogatoire,,,,,Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+150,150,,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
 Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM",,,freetext,,,,,,1..1,,string,,,,X
-150,151,,,Antécédents,,,,Texte libre  pour décrire les antécédents du patient,,,medicalHistory,,,,,,0..1,,string,,,,X
-151,152,,,Traitements,,,,Texte libre  pour décrire les traitements du patient,,,treatments,,,,,,0..1,,string,,,,X
-152,153,,,Allergies,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
-153,154,Régulation médicale,,,,,,Données spécifiques à la régulation médicale,,,medicalAnalysis,,,,,,0..n,X,medicalAnalysis,,,X,X
-154,155,,ID patient partagé,# Voir patientcaseID,,,,"ID du patient concerné, lorsque le patient existe et est identifié",,,patientId,,,,,,0..1,,string,,,X,X
-155,156,,Décisions,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
-156,157,,,Date Heure de création de la décision,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
-157,158,,,Type de décision,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
-158,159,,,Orientation,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,,X,X
-159,160,,,Vecteur de transport,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
-160,161,,,Niveau de médicalisation,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,,X,X
-161,162,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
-162,163,,,,Etablissement,,,Nom de l'établissement,,,facility,,,,,,0..1,,string,,,X,X
-163,164,,,,FINESS administratif,,,N° Finess administratif de l'établissement,,,adminFiness,,,,,,0..1,,string,,,X,X
-164,165,,,,FINESS géographique,,,N° Finess géographique de l'établissement,,,geoFiness,,,,,,0..1,,string,,,X,X
-165,166,,,,Service,,,Service concerné par l'admission du patient,,,service,,,,,,0..1,,string,,,X,X
-166,167,,,,Autre,,,,,,freetext,,,,,,0..1,,string,,,X,X
+151,151,,Antécédents,,,,,Texte libre  pour décrire les antécédents du patient,,,medicalHistory,,,,,,0..1,,string,,,,X
+152,152,,Traitements,,,,,Texte libre  pour décrire les traitements du patient,,,treatments,,,,,,0..1,,string,,,,X
+153,153,,Allergies,,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
+154,154,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
+155,155,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
+156,157,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
+157,158,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
+158,159,,Orientation,,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,,X,X
+159,160,,Vecteur de transport,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
+160,161,,Niveau de médicalisation,,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,,X,X
+161,162,,Destination,,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
+162,163,,,Etablissement,,,,Nom de l'établissement,,,facility,,,,,,0..1,,string,,,X,X
+163,164,,,FINESS administratif,,,,N° Finess administratif de l'établissement,,,adminFiness,,,,,,0..1,,string,,,X,X
+164,165,,,FINESS géographique,,,,N° Finess géographique de l'établissement,,,geoFiness,,,,,,0..1,,string,,,X,X
+165,166,,,Service,,,,Service concerné par l'admission du patient,,,service,,,,,,0..1,,string,,,X,X
+166,167,,,Autre,,,,,,,freetext,,,,,,0..1,,string,,,X,X
 167,168,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
