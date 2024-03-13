@@ -17,9 +17,9 @@
       }
     },
     "EVENT": {
-      "ID": "fr.health.samu690-DRFR15690240430050",
+      "ID": "DRFR15690240430050",
       "NAME": "Incident sur voix cyclable",
-      "MAIN_EVENT_ID": "fr.health.samu690-DRFR15690240430050",
+      "MAIN_EVENT_ID": "fr.health.samu690.DRFR15690240430050",
       "ETYPE": {
         "CATEGORY": [
           "TRP/COL"
