@@ -29,6 +29,16 @@ public class ReferenceWrapperBuilder {
         this.reference = new Reference().distributionID(referencedDistributionId);
     }
 
+    public ReferenceWrapperBuilder refused(boolean refused) {
+        this.reference.setRefused(refused);
+        return this;
+    }
+
+    public ReferenceWrapperBuilder infoDistributionID(String infoDistributionID) {
+        this.reference.setInfoDistributionID(infoDistributionID);
+        return this;
+    }
+
     public ReferenceWrapper build() {
         ReferenceWrapper referenceMessage = new ReferenceWrapper();
         referenceMessage.setMessageId(distributionElement.getMessageId());
@@ -40,6 +50,12 @@ public class ReferenceWrapperBuilder {
         referenceMessage.setKind(distributionElement.getKind());
         referenceMessage.setStatus(distributionElement.getStatus());
         referenceMessage.setRecipient(distributionElement.getRecipient());
+        // Check if reference.refused is not null and set to true, if it is check if reference.infoDistributionID
+        // is set, otherwise throw an IllegalArgumentException
+        if (this.reference.getRefused() != null && this.reference.getRefused() && this.reference.getInfoDistributionID() == null) {
+            throw new IllegalArgumentException("ReferenceWrapper must have infoDistributionID set when refused is true");
+        }
+
         referenceMessage.setReference(reference);
         return referenceMessage;
     }

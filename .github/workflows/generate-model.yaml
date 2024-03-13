@@ -31,10 +31,12 @@ jobs:
               - '**.csv'
 
       - name: Install Graphviz
+        if: steps.filter.outputs.parsing_required == 'true'
         uses: ts-graphviz/setup-graphviz@v1
 
       - name: Install python requirements
         working-directory: ./csv_parser
+        if: steps.filter.outputs.parsing_required == 'true'
         run: pip install -r ./requirements.txt
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
@@ -44,23 +46,27 @@ jobs:
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
+        if: steps.filter.outputs.parsing_required == 'true'
         with:
           java-version: '11'
           distribution: 'temurin'
 
       - name: Generate XSDs
         working-directory: ./csv_parser/json_schema2xsd
+        if: steps.filter.outputs.parsing_required == 'true'
         run: gradle run
 
       - name: Move XSDs to src
         working-directory: ./csv_parser/json_schema2xsd
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          mv out/*.xsd ../../src/main/resources/xsd/
+          find . -name "out/*.xsd" -exec cp {} ../../src/main/resources/xsd \;
 
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
+        if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          rm src/main/resources/*.json
+          find . -name "/src/main/resources/*.json" -exec rm {} \;
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3

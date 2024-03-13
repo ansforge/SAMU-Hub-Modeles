@@ -21,13 +21,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.model.builders.ValidationMessageWrapperBuilder;
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.ValidationMessageWrapper;
 import com.hubsante.model.exception.ValidationException;
 import com.networknt.schema.JsonSchema;
 import com.networknt.schema.JsonSchemaFactory;
 import com.networknt.schema.SpecVersion;
 import com.networknt.schema.ValidationMessage;
 import lombok.extern.slf4j.Slf4j;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.XMLConstants;
 import javax.xml.transform.Source;
@@ -38,10 +43,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Set;
+import java.util.*;
+import java.lang.reflect.Field;
+import java.util.*;
 
 @Slf4j
 public class Validator {
@@ -70,12 +74,25 @@ public class Validator {
     }
 
     public void validateXML(String message, String xsdFile) throws IOException, ValidationException {
+        javax.xml.validation.Validator validator;
         try {
-            javax.xml.validation.Validator validator = initValidator(xsdFile);
+            validator= initValidator(xsdFile);
             validator.validate(new StreamSource(new StringReader(message)));
         } catch (SAXException e) {
-            // TODO bbo: check what message is wrapped by SAXException
-            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + e.getMessage());
+            // Technically, SAXExceptions can be thrown by the validate method
+            // But in our case, we add a errorHandler in the initValidator method, so the SAXException which could be thrown
+            // should only come from the initValidator method
+            log.error("Something went wrong with the XSD Validator" + e.getMessage());
+            throw new ValidationException("Something went wrong with the XSD Validator.");
+        }
+
+        XmlErrorHandler errorHandler = (XmlErrorHandler) validator.getErrorHandler();
+        List<SAXParseException> xmlExceptions = errorHandler.getExceptions();
+
+        List<String> xmlErrors = new ArrayList<>();
+        if (!xmlExceptions.isEmpty()) {
+            xmlExceptions.forEach(e -> xmlErrors.add(e.getMessage()));
+            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + xmlErrors);
         }
     }
 
@@ -83,7 +100,9 @@ public class Validator {
         SchemaFactory factory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         Source schemaFile = new StreamSource(new File(getClass().getClassLoader().getResource("xsd/" + xsdPath).getFile()));
         Schema schema = factory.newSchema(schemaFile);
-        return schema.newValidator();
+        javax.xml.validation.Validator validator = schema.newValidator();
+        validator.setErrorHandler(new XmlErrorHandler());
+        return validator;
     }
 
     public void validateJSON(String message, String jsonSchemaFile) throws IOException, ValidationException {
@@ -99,28 +118,95 @@ public class Validator {
         Set<ValidationMessage> validationMessages = jsonSchema.validate(jsonNode);
 
         if (!validationMessages.isEmpty()) {
+            // Log all validation messages
+            for (ValidationMessage errorMsg : validationMessages) {
+                log.info("Validation error: {}", errorMsg);
+            }
             StringBuilder errors = new StringBuilder();
+
+            Set<ValidationMessageWrapper> validationMessageWrappers = new HashSet<>();
+
+            // We use ValidationMessageWrapperBuilder to populate the set of validationMessageWrappers using the
+            // .build() method, which will infer the type of the error based on the path of the error message.
+            for (ValidationMessage validationMessage : validationMessages) {
+                validationMessageWrappers.add(new ValidationMessageWrapperBuilder(validationMessage).build());
+            }
 
             boolean containsAtLeastOneUseCaseError = false;
             boolean violatesOneOfConstraint = false;
 
-            for (ValidationMessage errorMsg : validationMessages) {
-                String error = formatValidationErrorMessage(errorMsg);
+            for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("CONTENT") || validationMessageWrapper.getType().equals("MISC")).collect(java.util.stream.Collectors.toSet())) {
+                String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
                 if (error != null) {
-                    errors.append(error).append("\n");
-                    if(!violatesOneOfConstraint && errorMsg.getType().equals("oneOf")){
+                    if(!violatesOneOfConstraint && validationMessage.getValidationMessage().getType().equals("oneOf")) {
                         violatesOneOfConstraint = true;
                     }
-                    if(!containsAtLeastOneUseCaseError && errorMsg.getPath().contains(".message.")){
+                    if(!containsAtLeastOneUseCaseError && validationMessage.getValidationMessage().getPath().contains(".message")) {
                         containsAtLeastOneUseCaseError = true;
                     }
                 }
             }
+
             // Append a special error message if the error string does not contain a single "use case" error and
             // the there is no 'oneOf' constraint violation
-            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint) {
-                errors.append("could not detect any schemas in the message, at least one is required \n");
+            if (!containsAtLeastOneUseCaseError && !violatesOneOfConstraint && validationMessageWrappers.stream().anyMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISSING_CONTENT"))  && validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("ERROR"))) {
+                errors.append("Could not detect any schemas in the message, at least one is required \n");
             }
+
+            // Append envelope error messages
+            if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("EDXL-DE")) ) {
+                errors.append("Issues found on the envelope: \n");
+                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("EDXL-DE")).collect(java.util.stream.Collectors.toSet())) {
+                    String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                    if (error != null) {
+                        errors.append(" - "+error).append("\n");
+                    }
+                }
+            }
+
+            // Append ERROR error messages
+            if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("ERROR")) ) {
+                errors.append("Issues found on the $.content[0].jsonContent.embeddedJsonContent.message: \n");
+                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("EDXL-DE") || validationMessageWrapper.getType().equals("ERROR")).collect(java.util.stream.Collectors.toSet())) {
+                    String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                    if (error != null) {
+                        errors.append(" - "+error).append("\n");
+                    }
+                }
+            }
+
+            // If any ERROR errors are present, we do not append the RC-DE validation messages
+            if (validationMessageWrappers.stream().noneMatch(validationMessageWrapper -> validationMessageWrapper.getType().equals("ERROR")) && validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("RC-DE")) ) {
+                errors.append("Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: \n");
+                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("RC-DE")).collect(java.util.stream.Collectors.toSet())) {
+                    String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                    if (error != null) {
+                        errors.append(" - "+error).append("\n");
+                    }
+                }
+            }
+
+            // Append CONTENT error messages
+            if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("CONTENT")) ) {
+                    errors.append("Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: \n");
+                    for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("CONTENT")).collect(java.util.stream.Collectors.toSet())) {
+                        String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                        if (error != null) {
+                            errors.append(" - " + error).append("\n");
+                        }
+                    }
+            }
+
+            // Append MISC error messages
+            if ( validationMessageWrappers.stream().anyMatch(e -> e.getType().equals("MISC")) ) {
+                for (ValidationMessageWrapper validationMessage : validationMessageWrappers.stream().filter(validationMessageWrapper -> validationMessageWrapper.getType().equals("MISC")).collect(java.util.stream.Collectors.toSet())) {
+                    String error = formatValidationErrorMessage(validationMessage.getValidationMessage());
+                    if (error != null) {
+                        errors.append(error).append("\n");
+                    }
+                }
+            }
+
             throw new ValidationException("Could not validate message against schema : errors occurred. \n" + errors);
         }
     }
@@ -143,7 +229,17 @@ public class Validator {
             }
         } else if (path.indexOf("message") + 1 >= path.size()) {
             // If the path contains the element 'message' and ends immediately after the message 'use case',
-            // the error message is irrelevant and we ignore it.
+            // the error message is either irrelevant and we ignore it or it is an error in the RC-DE header.
+            // In the latter case, we return the error message (starting after the ...message), and to verify
+            // if that's the case, we check if the error contains any of the attributes of the class
+            // DistributionElement.
+            Field[] attributes = DistributionElement.class.getDeclaredFields();
+            for (Field attribute : attributes) {
+                String substring = errorMsg.getMessage().substring(errorMsg.getMessage().indexOf("message") + 8);
+                if (substring.contains(attribute.getName())) {
+                    return substring;
+                }
+            }
             return null;
         } else {
             // Otherwise, we return the part of error message that comes after the 'message' element

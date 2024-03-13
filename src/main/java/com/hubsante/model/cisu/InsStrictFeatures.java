@@ -50,45 +50,8 @@ public class InsStrictFeatures {
   public static final String JSON_PROPERTY_BIRTH_DATE = "birthDate";
   private String birthDate;
 
-  /**
-   * Sexe du patient
-   */
-  public enum SexEnum {
-    U("U"),
-
-    F("F"),
-
-    M("M"),
-
-    O("O");
-
-    private String value;
-
-    SexEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static SexEnum fromValue(String value) {
-      for (SexEnum b : SexEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_SEX = "sex";
-  private SexEnum sex;
+  private String sex;
 
   public InsStrictFeatures() {}
 
@@ -115,7 +78,7 @@ public class InsStrictFeatures {
     this.birthDate = birthDate;
   }
 
-  public InsStrictFeatures sex(SexEnum sex) {
+  public InsStrictFeatures sex(String sex) {
 
     this.sex = sex;
     return this;
@@ -128,13 +91,13 @@ public class InsStrictFeatures {
   @JsonProperty(JSON_PROPERTY_SEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public SexEnum getSex() {
+  public String getSex() {
     return sex;
   }
 
   @JsonProperty(JSON_PROPERTY_SEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSex(SexEnum sex) {
+  public void setSex(String sex) {
     this.sex = sex;
   }
 

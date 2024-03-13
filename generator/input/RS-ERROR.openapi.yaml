@@ -1,0 +1,87 @@
+openapi: 3.0.0
+components:
+  schemas:
+    errorWrapper:
+      type: object
+      required:
+      - error
+      properties:
+        error:
+          $ref: '#/components/schemas/error'
+    error:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-ERROR.schema.json#
+      example: example.json#
+      type: object
+      title: error
+      required:
+      - errorCode
+      - errorCause
+      - referencedDistributionID
+      properties:
+        errorCode:
+          $ref: '#/components/schemas/errorCode'
+        errorCause:
+          type: string
+          title: Cause d'erreur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/errorCause
+          description: La ou les causes d'erreur dans le message source
+          examples:
+          - The following errors have occurred:\nNot allowed content type
+        sourceMessage:
+          $ref: '#/components/schemas/sourceMessage'
+        referencedDistributionID:
+          type: string
+          title: "DistributionID referenc\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/referencedDistributionID
+          description: DistributionID du message source
+          examples:
+          - None
+      additionalProperties: false
+    errorCode:
+      type: object
+      title: Erreur
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - statusCode
+      - statusString
+      properties:
+        statusCode:
+          type: number
+          title: Code d'erreur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/errorCode/statusCode
+          description: Code numerique represenant l'erreur
+          examples:
+          - 101
+        statusString:
+          type: string
+          title: Titre d'erreur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/errorCode/statusString
+          description: Chaine de caracteres representant l'erreur
+          examples:
+          - NOT_ALLOWED_CONTENT_TYPE
+      additionalProperties: false
+      example: example.json#/errorCode
+      examples:
+      - statusCode: 101
+        statusString: NOT_ALLOWED_CONTENT_TYPE
+    sourceMessage:
+      type: object
+      title: Message source
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties: {}
+      additionalProperties: true
+      example: example.json#/sourceMessage
+      examples:
+      - {}
