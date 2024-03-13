@@ -113,8 +113,7 @@ Dans le cadre des échanges LRM-NexSIS, optionnel</documentation>
         <sequence>
             <element name="ID" type="string">
                 <annotation>
-                    <documentation>A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire émetteur (champ senderCaseId du message RC-EDA).
-{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}</documentation>
+                    <documentation>A renseigner avec l'identifiant local de l'affaire dans le LRM ou NexSIS</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="NAME" type="string">
@@ -126,7 +125,7 @@ Dans nexSIS; [libelle NF 1 métier] &amp; " - " &amp; [libelle TL 1 métier] &am
             <element minOccurs="0" name="MAIN_EVENT_ID" type="string">
                 <annotation>
                     <documentation>A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
-{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}
 
 NB : Si l'initiateur du partage de dossier est le même que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID</documentation>
                 </annotation>
@@ -706,13 +705,14 @@ Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{u
             </element>
             <element minOccurs="0" name="USER_ID" type="string">
                 <annotation>
-                    <documentation>Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI</documentation>
+                    <documentation>Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI, qui gère l'opération. 
+Ce champ peut être différent du calltakerId du message RC-EDA. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="NAME" type="string">
                 <annotation>
-                    <documentation>Optionnel
-A constituer par le rédacteur pour être intelligible (exemple [structure] [code département])</documentation>
+                    <documentation>Optionnel, A constituer par le rédacteur pour être intelligible (exemple [structure] [code département]).
+Ce champ n'est pas normé obligatoirement. Chaque service décide de la structure de son nom d'origine.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1303,21 +1303,21 @@ Cf. Nomenclature EMSI - POSITION pour plus de détails</documentation>
         <sequence>
             <element name="LAT" type="decimal">
                 <annotation>
-                    <documentation>dernière coordonnée x  connue de la ressource</documentation>
+                    <documentation>dernière coordonnée x  connue de la ressource, entre −90 and +90</documentation>
                 </annotation>
             </element>
             <element name="LONG" type="decimal">
                 <annotation>
                     <documentation>Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu d'intervention souhaité
 dernière coordonnée y  connue de la ressource
-between −90 and +90</documentation>
+entre −180 and +180</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="HEIGHT" type="decimal">
                 <annotation>
                     <documentation>Optionnel. Dans le cas où aucun LOC_ID n'est transféré, permet de localiser le lieu d'intervention souhaité
-dernière coordonnée z  connue de la ressource
-between −180 and +180</documentation>
+dernière coordonnée z  connue de la ressource, en mètres sans bornes
+</documentation>
                 </annotation>
             </element>
         </sequence>
