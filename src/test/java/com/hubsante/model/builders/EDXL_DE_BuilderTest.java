@@ -30,8 +30,8 @@ import java.time.temporal.ChronoUnit;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class EDXL_DE_BuilderTest {
-    private final String DISTRIBUTION_ID = "test.sender-x_ID12345";
-    private final String SENDER_ID = "test.sender-x";
+    private final String DISTRIBUTION_ID = "id-12345";
+    private final String SENDER_ID = "sender-x";
     private final String RECIPIENT_ID = "recipient-y";
 
     /*
