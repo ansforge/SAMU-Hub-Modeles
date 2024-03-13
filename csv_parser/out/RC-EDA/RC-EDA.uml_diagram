@@ -308,14 +308,14 @@ strict digraph {
                 <TR>
                 <TD ><B>destination</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >facility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >adminFiness <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >geoFiness <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >service <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >facility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >adminFiness <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >geoFiness <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >service <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	destination -> decision [constraint=true headlabel=1 taillabel="0..1"]
 	decision [label=<<TABLE>
                 <TR>
                 <TD ><B>decision</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >medicalisation <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	decision -> createCase [constraint=true headlabel=1 taillabel="0..*"]
 	newAlert [label=<<TABLE>

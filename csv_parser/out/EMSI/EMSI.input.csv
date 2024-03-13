@@ -28,11 +28,12 @@ RG 3 : les événements générateurs sont ceux définis au sein de NEXSIS-6619 
 12,13,,,Origine ID,,,,"Optionnel, identifiant du service à l'origine de l'EMSI
 Se référer au DSF pour la structure normée des organisations
 Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",The unique identifier of an organization element.,fr.health.samu440,X,ORG_ID,,ORG_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
-13,14,,,ID d'utilisateur de l'origine,,,,"Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI",It provides the unique identifier of the user who created the EMSI. ,id1234,,USER_ID,,USER_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
-14,15,,,Nom Origine ,,,,"Optionnel
-A constituer par le rédacteur pour être intelligible (exemple [structure] [code département])","It provides the name which identifies the agency and the EMSI node.
+13,14,,,ID d'utilisateur de l'origine,,,,"Optionnel, identifiant de l'opérateur du service à l'origine de l'EMSI, qui gère l'opération. 
+Ce champ peut être différent du calltakerId du message RC-EDA. ",It provides the unique identifier of the user who created the EMSI. ,id1234,,USER_ID,,USER_ID,,,,,0..1,0..1,0..1,,,string,,,X,X
+14,15,,,Nom Origine ,,,,"Optionnel, A constituer par le rédacteur pour être intelligible (exemple [structure] [code département]).
+Ce champ n'est pas normé obligatoirement. Chaque service décide de la structure de son nom d'origine.","It provides the name which identifies the agency and the EMSI node.
 NOTE: Subsequently, other information such as contact point,
-telephone number or address can be provided in this element.",samu 44,X,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
+telephone number or address can be provided in this element.","samu 44, cgo 77, codis 78, cdau 91, les pompiers du 23",X,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
 15,16,,Informations exterieures ,,,,,"Optionnel
 Permettra à terme d'indiquer des liens vers des objets du SGV de NexSIS","Describes links to additional external infor- mation.
 Originators should consider how this reference may affect the interpretation of the EMSI in the case where the referenced external information is not available to the recipient.",,X,EXTERNAL_INFO,,EXTERNAL_INFO,,,,,0..n,0..n,0..n,,X,externalInfo,,,X,X
@@ -42,14 +43,13 @@ Originators should consider how this reference may affect the interpretation of 
 19,20,,Niveau d'urgence de l'événement,,,,,"Niveau d'urgence pour l'affaire en cours
 Dans le cadre des échanges LRM-NexSIS, optionnel",Defines the urgency of the message. ,URGENT,,URGENCY,,URGENCY,,,,,0..1,0..1,0..1,,,string,,"ENUM: URGENT, NOT_URGENT",X,X
 20,21,Evenement,,,,,,Objet générique EVENT,Describes the event that the EMSI relates to.,,,EVENT,,EVENT,,,,,1..1,1..1,1..1,,X,event,,,X,X
-21,22,,Identifiant local de l'affaire,,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire émetteur (champ senderCaseId du message RC-EDA).
-{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",Describes the identifier of the event for the creator of the EMSI. Unique inside the node.,fr.health.samu440-DRFR15DDXAAJJJ0000,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
+21,22,,Identifiant local de l'affaire,,,,,A renseigner avec l'identifiant local de l'affaire dans le LRM ou NexSIS,Describes the identifier of the event for the creator of the EMSI. Unique inside the node.,DRFR15DDXAAJJJ0000,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
 22,23,,Nom donné à l'événement,,,,,"Optionnel
 Dans nexSIS; [libelle NF 1 métier] & "" - "" & [libelle TL 1 métier] & "" - "" & [libellé commune]",Provides a name for the event. It is the responsibility of the node to have unique event names.,Grand Incendie Nantes,,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
 23,24,,Identifiant de l'affaire,,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
-{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}
 
-NB : Si l'initiateur du partage de dossier est le même que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID",Provides a link to the main event ift he current event is a sub-event of this main event,fr.health.samu440-DRFR15DDXAAJJJ0000,,MAIN_EVENT_ID,,MAIN_EVENT_ID,,,,,0..1,1..1,0..1,X,,string,,,X,X
+NB : Si l'initiateur du partage de dossier est le même que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID",Provides a link to the main event ift he current event is a sub-event of this main event,fr.health.samu440.DRFR15DDXAAJJJ0000,,MAIN_EVENT_ID,,MAIN_EVENT_ID,,,,,0..1,1..1,0..1,X,,string,,,X,X
 24,25,,Type de l'événement,,,,,Optionnel,"The type of the event, which is the collation of
 several facets.",,X,ETYPE,,ETYPE,,,,,0..1,0..1,0..1,,X,etype,,,X,X
 25,26,,,Catégorie d'événement,,,,"Le champ peut ne pas être interprété ou renseigné avec une valeur comme 'UKN' = 'UNKOWN'

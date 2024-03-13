@@ -18,7 +18,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 9,10,,Type de lieu,# Voir whatsHappen (type nomenclature),,,,Décrit le type de lieu (TL). Référentiel : nomenclature CISU,,locationKind,,CI,Type de lieu d'intervention,,,1.0,0..1,X,nomenclature,,,X,X
 10,11,,"Risque, menace et sensibilité",# Voir whatsHappen (type nomenclature),,,,"Décrit les risques, menaces et sensibilités (RMS). Référentiel : nomenclature CISU.",,riskThreat,,,,,,1.0,0..n,X,nomenclature,,,X,X
 11,12,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste (MR). Référentiel : nomenclature CISU.,,healthMotive,,,,,,1.0,0..1,X,nomenclature,,,X,X
-17,18,,Patients/Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
+17,18,,Patients-Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
 18,19,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
 19,20,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, SENIOR",X,X
 20,21,,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,,X,X
@@ -101,7 +101,8 @@ Prend les valeurs définies dans la nomenclature CISU :
 - standard : STANDARD
 - signalé : ATTENTION
 Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION",X,X
-68,69,,Informations complémentaires sur l'alerte,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'alerte,"Déclenchement téléalarme, voisine sur les liens",comment,freetext,OG,Observations générales (texte libre),,,1.0,0..1,,string,,,X,X
+68,69,,Informations complémentaires sur l'alerte,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
+Texte servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées) ","Déclenchement téléalarme, voisine sur les lieux",comment,freetext,OG,Observations générales (texte libre),,,1.0,0..1,,string,,,X,X
 69,70,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X
 70,71,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,0..1,X,contact,,,X,X
 71,72,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X
@@ -147,7 +148,7 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
 99,100,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,X
 100,101,,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
 La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X
-106,107,Patients / victimes,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
+106,107,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
 107,108,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,X,X
 121,122,,Identité INS,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,X,X
 128,129,,,Traits stricts de l'identité,,,,"L’Identité Nationale de Santé (INS) permet de référencer les données de santé avec une identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé.
@@ -157,27 +158,27 @@ Elle est composée :
 132,133,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
 133,134,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,,X,X
 135,136,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
-147,155,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
 154,154,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
 155,155,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
 156,157,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
 157,158,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
 158,159,,Orientation,,,,,Décision(s) d'orientation prise par le médecin régulateur,,,orientation,,,,,,0..1,,string,X,,X,X
-159,160,,Vecteur de transport,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
-160,161,,Niveau de médicalisation,,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,medicalisation,,,,,,0..1,,string,,,X,X
+159,160,,Type de transport,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
+160,161,,Niveau de prise en charge,,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,0..1,,string,,,X,X
 161,162,,Destination,,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
-162,163,,,Etablissement,,,,Nom de l'établissement,,,facility,,,,,,0..1,,string,,,X,X
-163,164,,,FINESS administratif,,,,N° Finess administratif de l'établissement,,,adminFiness,,,,,,0..1,,string,,,X,X
-164,165,,,FINESS géographique,,,,N° Finess géographique de l'établissement,,,geoFiness,,,,,,0..1,,string,,,X,X
-165,166,,,Service,,,,Service concerné par l'admission du patient,,,service,,,,,,0..1,,string,,,X,X
-166,167,,,Autre,,,,,,,freetext,,,,,,0..1,,string,,,X,X
-167,168,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+162,163,,,Type de destination,,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
+163,165,,,Etablissement,,,,Nom de l'établissement,,,facility,,,,,,0..1,,string,,,X,X
+164,166,,,FINESS administratif,,,,N° Finess administratif de l'établissement,,,adminFiness,,,,,,0..1,,string,,,X,X
+165,167,,,FINESS géographique,,,,N° Finess géographique de l'établissement,,,geoFiness,,,,,,0..1,,string,,,X,X
+166,168,,,Service,,,,Service concerné par l'admission du patient,,,service,,,,,,0..1,,string,,,X,X
+167,170,,,Autre,,,,,,,freetext,,,,,,0..1,,string,,,X,X
+168,171,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
-168,169,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
-169,170,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
-170,171,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
-171,172,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
-172,173,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
-173,174,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-174,175,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
+169,172,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+170,173,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
+171,174,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
+172,176,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
+173,177,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
+174,178,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
+175,179,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X

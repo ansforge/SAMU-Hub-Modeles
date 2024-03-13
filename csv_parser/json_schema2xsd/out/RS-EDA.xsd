@@ -375,7 +375,8 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte</documentation>
+                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
+Texte servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées) </documentation>
                 </annotation>
             </element>
             <element name="caller" type="x:caller"/>
@@ -475,7 +476,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="medicalisation" type="string">
+            <element minOccurs="0" name="teamCare" type="string">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
                 </annotation>
@@ -572,7 +573,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="status">
                 <annotation>
-                    <documentation>cf. cycle SI SAMU uniquement (si applicable) : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU</documentation>
+                    <documentation>cf. cycle SI SAMU  : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU. 
+Echanger à minima l'information que le dossier est clôturé.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1487,6 +1489,21 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="destination">
         <sequence>
+            <element minOccurs="0" name="type">
+                <annotation>
+                    <documentation>Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="service d’urgences d’un Etablissement de santé"/>
+                        <enumeration value="autres services d’un établissement de santé"/>
+                        <enumeration value="cabinet d’un professionnel de santé"/>
+                        <enumeration value="domicile personnel"/>
+                        <enumeration value="EPHAD ou long séjour"/>
+                        <enumeration value="autre"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element minOccurs="0" name="facility" type="string">
                 <annotation>
                     <documentation>Nom de l'établissement</documentation>
