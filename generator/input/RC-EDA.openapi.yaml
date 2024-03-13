@@ -521,9 +521,11 @@ components:
           x-cols: 6
           example: example.json#/initialAlert/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
-            mentaires concernant l'alerte"
+            mentaires concernant l'alerte.\nTexte servant \xE0 passer les informations\
+            \ de gestion des \xE9v\xE8nements (main courante sans les informations\
+            \ m\xE9dicales privil\xE9gi\xE9es) "
           examples:
-          - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les liens"
+          - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les lieux"
         caller:
           $ref: '#/components/schemas/caller'
         alertSource:
@@ -542,7 +544,7 @@ components:
       example: example.json#/initialAlert
     patient:
       type: object
-      title: Patients / victimes
+      title: Patient / victime
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -554,8 +556,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/id
-          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
-            \ et est identifi\xE9"
+          description: "Identifiant technique du patient pour permettre les rapprochements\
+            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
           examples:
           - None
         identity:
@@ -617,7 +619,7 @@ components:
           x-health-only: false
           items:
             type: string
-            title: Vecteur de transport
+            title: Type de transport
             x-health-only: false
             x-cols: 6
             example: example.json#/decision/0/transportation/0
@@ -625,12 +627,12 @@ components:
               \ patient"
             examples:
             - 'SMUR '
-        medicalisation:
+        teamCare:
           type: string
-          title: "Niveau de m\xE9dicalisation"
+          title: Niveau de prise en charge
           x-health-only: false
           x-cols: 6
-          example: example.json#/decision/0/medicalisation
+          example: example.json#/decision/0/teamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
             dicale, standard, incomplete, ...)"
           examples:
@@ -839,7 +841,7 @@ components:
         freetext: None
     victims:
       type: object
-      title: Patients/Victimes
+      title: Patients-Victimes
       x-display: expansion-panels
       x-health-only: false
       required: []
@@ -1941,11 +1943,6 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: Sexe du patient
-          enum:
-          - U
-          - F
-          - M
-          - O
           examples:
           - F
       additionalProperties: false
@@ -1960,6 +1957,25 @@ components:
       x-health-only: false
       required: []
       properties:
+        type:
+          type: string
+          title: Type de destination
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/destination/type
+          description: "Indique le type de destination de la ressource : service d\u2019\
+            urgences d\u2019un Etablissement de sant\xE9, autres services d\u2019\
+            un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
+            , domicile personnel, EPHAD ou long s\xE9jour, autre"
+          enum:
+          - "service d\u2019urgences d\u2019un Etablissement de sant\xE9"
+          - "autres services d\u2019un \xE9tablissement de sant\xE9"
+          - "cabinet d\u2019un professionnel de sant\xE9"
+          - domicile personnel
+          - "EPHAD ou long s\xE9jour"
+          - autre
+          examples:
+          - None
         facility:
           type: string
           title: Etablissement
@@ -2007,7 +2023,8 @@ components:
       additionalProperties: false
       example: example.json#/decision/0/destination
       examples:
-      - facility: None
+      - type: None
+        facility: None
         adminFiness: None
         geoFiness: None
         service: None

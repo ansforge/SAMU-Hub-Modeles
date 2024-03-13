@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.03.12",
+    "version": "24.03.13",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -172,7 +172,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/ID",
-                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire \u00e9metteur (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
+                    "description": "A renseigner avec l'identifiant local de l'affaire dans le LRM ou NexSIS"
                 },
                 "NAME": {
                     "type": "string",
@@ -188,7 +188,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/MAIN_EVENT_ID",
-                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requ\u00e9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}\n\nNB : Si l'initiateur du partage de dossier est le m\u00eame que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
+                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requ\u00e9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}\n\nNB : Si l'initiateur du partage de dossier est le m\u00eame que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
                 },
                 "ETYPE": {
                     "$ref": "#/definitions/etype"
@@ -884,7 +884,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/ORIGIN/USER_ID",
-                    "description": "Optionnel, identifiant de l'op\u00e9rateur du service \u00e0 l'origine de l'EMSI"
+                    "description": "Optionnel, identifiant de l'op\u00e9rateur du service \u00e0 l'origine de l'EMSI, qui g\u00e8re l'op\u00e9ration. \nCe champ peut \u00eatre diff\u00e9rent du calltakerId du message RC-EDA. "
                 },
                 "NAME": {
                     "type": "string",
@@ -892,7 +892,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/ORIGIN/NAME",
-                    "description": "Optionnel\nA constituer par le r\u00e9dacteur pour \u00eatre intelligible (exemple [structure] [code d\u00e9partement])"
+                    "description": "Optionnel, A constituer par le r\u00e9dacteur pour \u00eatre intelligible (exemple [structure] [code d\u00e9partement]).\nCe champ n'est pas norm\u00e9 obligatoirement. Chaque service d\u00e9cide de la structure de son nom d'origine."
                 }
             },
             "additionalProperties": false,

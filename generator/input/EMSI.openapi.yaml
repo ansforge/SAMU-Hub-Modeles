@@ -193,12 +193,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/ID
-          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
-            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
-            \ \xE9metteur (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
+          description: A renseigner avec l'identifiant local de l'affaire dans le
+            LRM ou NexSIS
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - DRFR15DDXAAJJJ0000
         NAME:
           type: string
           title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
@@ -218,11 +216,11 @@ components:
           description: "A renseigner avec l'identifiant de l'organisation (champ organization\
             \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
             \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}\n\nNB : Si\
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}\n\nNB : Si\
             \ l'initiateur du partage de dossier est le m\xEAme que l'initiateur du\
             \ message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
         ETYPE:
           $ref: '#/components/schemas/etype'
         SOURCE:
@@ -1053,7 +1051,8 @@ components:
           x-cols: 6
           example: example.json#/CONTEXT/ORIGIN/USER_ID
           description: "Optionnel, identifiant de l'op\xE9rateur du service \xE0 l'origine\
-            \ de l'EMSI"
+            \ de l'EMSI, qui g\xE8re l'op\xE9ration. \nCe champ peut \xEAtre diff\xE9\
+            rent du calltakerId du message RC-EDA. "
           examples:
           - id1234
         NAME:
@@ -1062,16 +1061,18 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/CONTEXT/ORIGIN/NAME
-          description: "Optionnel\nA constituer par le r\xE9dacteur pour \xEAtre intelligible\
-            \ (exemple [structure] [code d\xE9partement])"
+          description: "Optionnel, A constituer par le r\xE9dacteur pour \xEAtre intelligible\
+            \ (exemple [structure] [code d\xE9partement]).\nCe champ n'est pas norm\xE9\
+            \ obligatoirement. Chaque service d\xE9cide de la structure de son nom\
+            \ d'origine."
           examples:
-          - samu 44
+          - samu 44, cgo 77, codis 78, cdau 91, les pompiers du 23
       additionalProperties: false
       example: example.json#/CONTEXT/ORIGIN
       examples:
       - ORG_ID: fr.health.samu440
         USER_ID: id1234
-        NAME: samu 44
+        NAME: samu 44, cgo 77, codis 78, cdau 91, les pompiers du 23
     externalInfo:
       type: object
       title: 'Informations exterieures '

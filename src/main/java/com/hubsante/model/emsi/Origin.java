@@ -92,7 +92,8 @@ public class Origin {
 
   /**
    * Optionnel, identifiant de l&#39;opérateur du service à l&#39;origine de
-   *l&#39;EMSI
+   *l&#39;EMSI, qui gère l&#39;opération.  Ce champ peut être différent du
+   *calltakerId du message RC-EDA.
    * @return USER_ID
    **/
   @JsonProperty(JSON_PROPERTY_U_S_E_R_I_D)
@@ -115,8 +116,10 @@ public class Origin {
   }
 
   /**
-   * Optionnel A constituer par le rédacteur pour être intelligible (exemple
-   *[structure] [code département])
+   * Optionnel, A constituer par le rédacteur pour être intelligible (exemple
+   *[structure] [code département]). Ce champ n&#39;est pas normé
+   *obligatoirement. Chaque service décide de la structure de son nom
+   *d&#39;origine.
    * @return NAME
    **/
   @JsonProperty(JSON_PROPERTY_N_A_M_E)

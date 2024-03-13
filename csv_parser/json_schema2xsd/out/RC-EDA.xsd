@@ -364,7 +364,8 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte</documentation>
+                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
+Texte servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées) </documentation>
                 </annotation>
             </element>
             <element name="caller" type="x:caller"/>
@@ -379,7 +380,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
@@ -408,7 +409,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="medicalisation" type="string">
+            <element minOccurs="0" name="teamCare" type="string">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
                 </annotation>
@@ -1174,23 +1175,30 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="sex">
+            <element minOccurs="0" name="sex" type="string">
                 <annotation>
                     <documentation>Sexe du patient</documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="U"/>
-                        <enumeration value="F"/>
-                        <enumeration value="M"/>
-                        <enumeration value="O"/>
-                    </restriction>
-                </simpleType>
             </element>
         </sequence>
     </complexType>
     <complexType name="destination">
         <sequence>
+            <element minOccurs="0" name="type">
+                <annotation>
+                    <documentation>Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="service d’urgences d’un Etablissement de santé"/>
+                        <enumeration value="autres services d’un établissement de santé"/>
+                        <enumeration value="cabinet d’un professionnel de santé"/>
+                        <enumeration value="domicile personnel"/>
+                        <enumeration value="EPHAD ou long séjour"/>
+                        <enumeration value="autre"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element minOccurs="0" name="facility" type="string">
                 <annotation>
                     <documentation>Nom de l'établissement</documentation>

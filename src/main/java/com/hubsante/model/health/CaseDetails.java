@@ -50,9 +50,9 @@ import java.util.Objects;
 public class CaseDetails {
 
   /**
-   * cf. cycle SI SAMU uniquement (si applicable) : échanger l&#39;état du
-   * dossier si le cycle de vie du dossier est implémenté de manière conforme au
-   * cycle de vie du dossier SI-SAMU
+   * cf. cycle SI SAMU  : échanger l&#39;état du dossier si le cycle de vie du
+   * dossier est implémenté de manière conforme au cycle de vie du dossier
+   * SI-SAMU.  Echanger à minima l&#39;information que le dossier est clôturé.
    */
   public enum StatusEnum {
     PROGRAMM_("Programmé"),
@@ -115,9 +115,9 @@ public class CaseDetails {
   }
 
   /**
-   * cf. cycle SI SAMU uniquement (si applicable) : échanger l&#39;état du
-   *dossier si le cycle de vie du dossier est implémenté de manière conforme au
-   *cycle de vie du dossier SI-SAMU
+   * cf. cycle SI SAMU  : échanger l&#39;état du dossier si le cycle de vie du
+   *dossier est implémenté de manière conforme au cycle de vie du dossier
+   *SI-SAMU.  Echanger à minima l&#39;information que le dossier est clôturé.
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
