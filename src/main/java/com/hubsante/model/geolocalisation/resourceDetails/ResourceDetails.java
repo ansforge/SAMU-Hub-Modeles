@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geores;
+package com.hubsante.model.geolocalisation.resourceDetails;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geores.Contact;
+import com.hubsante.model.geolocalisation.resourceDetails.Contact;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -55,6 +55,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class ResourceDetails {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:resourceDetails";
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 

@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geopos;
+package com.hubsante.model.geolocalisation.positionUpdate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geopos.Coord;
+import com.hubsante.model.geolocalisation.positionUpdate.Coord;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -59,6 +59,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class PositionUpdate {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:positionUpdate";
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 

@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geopos;
+package com.hubsante.model.geolocalisation.resource;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,45 +34,64 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geopos.PositionUpdate;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * PositionUpdateWrapper
+ * Resource
  */
-@JsonPropertyOrder({PositionUpdateWrapper.JSON_PROPERTY_POSITION_UPDATE})
-@JsonTypeName("positionUpdateWrapper")
+@JsonPropertyOrder({Resource.JSON_PROPERTY_RESOURCE_ID})
+@JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PositionUpdateWrapper {
-  public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
-  private PositionUpdate positionUpdate;
+public class Resource {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:resource";
+  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
+  private List<String> resourceId = new ArrayList<>();
 
-  public PositionUpdateWrapper() {}
+  public Resource() {}
 
-  public PositionUpdateWrapper positionUpdate(PositionUpdate positionUpdate) {
+  public Resource resourceId(List<String> resourceId) {
 
-    this.positionUpdate = positionUpdate;
+    this.resourceId = resourceId;
+    return this;
+  }
+
+  public Resource addResourceIdItem(String resourceIdItem) {
+    if (this.resourceId == null) {
+      this.resourceId = new ArrayList<>();
+    }
+    this.resourceId.add(resourceIdItem);
     return this;
   }
 
   /**
-   * Get positionUpdate
-   * @return positionUpdate
+   * Get resourceId
+   * @return resourceId
    **/
-  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public PositionUpdate getPositionUpdate() {
-    return positionUpdate;
+  public List<String> getResourceId() {
+    return resourceId;
   }
 
-  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPositionUpdate(PositionUpdate positionUpdate) {
-    this.positionUpdate = positionUpdate;
+  public void setResourceId(List<String> resourceId) {
+    if (resourceId == null) {
+      return;
+    }
+    if (this.resourceId == null) {
+      this.resourceId = new ArrayList<>();
+    }
+    this.resourceId.addAll(resourceId);
   }
 
   @Override
@@ -83,22 +102,21 @@ public class PositionUpdateWrapper {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PositionUpdateWrapper positionUpdateWrapper = (PositionUpdateWrapper)o;
-    return Objects.equals(this.positionUpdate,
-                          positionUpdateWrapper.positionUpdate);
+    Resource resource = (Resource)o;
+    return Objects.equals(this.resourceId, resource.resourceId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(positionUpdate);
+    return Objects.hash(resourceId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PositionUpdateWrapper {\n");
-    sb.append("    positionUpdate: ")
-        .append(toIndentedString(positionUpdate))
+    sb.append("class Resource {\n");
+    sb.append("    resourceId: ")
+        .append(toIndentedString(resourceId))
         .append("\n");
     sb.append("}");
     return sb.toString();

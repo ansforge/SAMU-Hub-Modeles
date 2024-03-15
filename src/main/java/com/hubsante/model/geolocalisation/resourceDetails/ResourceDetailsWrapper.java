@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geores;
+package com.hubsante.model.geolocalisation.resourceDetails;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geores.ResourceDetails;
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.geolocalisation.resourceDetails.ResourceDetails;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -46,7 +47,9 @@ import java.util.Objects;
 @JsonTypeName("resourceDetailsWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourceDetailsWrapper {
+public class ResourceDetailsWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_RESOURCE_DETAILS = "resourceDetails";
   private ResourceDetails resourceDetails;
 
@@ -86,18 +89,20 @@ public class ResourceDetailsWrapper {
     }
     ResourceDetailsWrapper resourceDetailsWrapper = (ResourceDetailsWrapper)o;
     return Objects.equals(this.resourceDetails,
-                          resourceDetailsWrapper.resourceDetails);
+                          resourceDetailsWrapper.resourceDetails) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceDetails);
+    return Objects.hash(resourceDetails, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourceDetailsWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    resourceDetails: ")
         .append(toIndentedString(resourceDetails))
         .append("\n");

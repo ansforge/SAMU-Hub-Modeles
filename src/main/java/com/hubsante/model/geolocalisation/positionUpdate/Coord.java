@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geopos;
+package com.hubsante.model.geolocalisation.positionUpdate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
