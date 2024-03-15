@@ -61,6 +61,10 @@ public class EdxlHandler {
         return xmlMapper.readValue(xml, EdxlMessage.class);
     }
 
+    public EdxlEnvelope deserializeXmlEDXLEnvelope(String xml) throws JsonProcessingException {
+        return xmlMapper.readValue(xml, EdxlEnvelope.class);
+    }
+
     public String serializeJsonEDXL(EdxlMessage edxlMessage) throws JsonProcessingException {
         return jsonMapper.writeValueAsString(edxlMessage);
     }
