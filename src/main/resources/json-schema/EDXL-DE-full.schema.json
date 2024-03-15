@@ -227,93 +227,97 @@
             {
               "properties": {
                 "message": {
-                  "oneOf": [
-                    {
-                      "properties": {
-                        "geoPos": {
-                          "$ref": "GEO-POS.schema.json"
+                  "properties": {
+                    "geolocalisation": {
+                      "oneOf": [
+                        {
+                          "positionUpdate": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "GEO-POS.schema.json"
+                            }
+                          }
+                        },
+                        {
+                          "resource": {
+                            "$ref": "GEO-REQ.schema.json"
+                          }
+                        },
+                        {
+                          "resourceDetails": {
+                            "type": "array",
+                            "items": {
+                              "$ref": "GEO-RES.schema.json"
+                            }
+                          }
                         }
-                      },
-                      "required": [
-                        "geoPos"
-                      ]
-                    },
-                    {
-                      "properties": {
-                        "geoReq": {
-                          "$ref": "GEO-REQ.schema.json"
-                        }
-                      },
-                      "required": [
-                        "geoReq"
-                      ]
-                    },
-                    {
-                      "properties": {
-                        "geoRes": {
-                          "$ref": "GEO-RES.schema.json"
-                        }
-                      },
-                      "required": [
-                        "geoRes"
                       ]
                     }
+                  },
+                  "required": [
+                    "geolocation"
                   ]
                 }
               }
             }
           ]
-        }
-      ]
-    },
-    "Descriptor": {
-      "type": "object",
-      "properties": {
-        "explicitAddress": {
-          "$ref": "#/definitions/ExplicitAddress"
         },
-        "language": {
-          "type": "string"
-        }
-      },
-      "additionalProperties": false,
-      "required": [
-        "explicitAddress",
-        "language"
-      ]
-    },
-    "DistributionKind": {
-      "type": "string",
-      "enum": [
-        "Report",
-        "Update",
-        "Cancel",
-        "Ack",
-        "Error"
-      ]
-    },
-    "DistributionStatus": {
-      "type": "string",
-      "enum": [
-        "Actual",
-        "Exercise"
-      ]
-    },
-    "ExplicitAddress": {
-      "type": "object",
-      "properties": {
-        "explicitAddressScheme": {
-          "type": "string"
+        "Descriptor"
+        :
+        {
+          "type": "object",
+          "properties": {
+            "explicitAddress": {
+              "$ref": "#/definitions/ExplicitAddress"
+            },
+            "language": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "explicitAddress",
+            "language"
+          ]
         },
-        "explicitAddressValue": {
-          "type": "string"
+        "DistributionKind"
+        :
+        {
+          "type": "string",
+          "enum": [
+            "Report",
+            "Update",
+            "Cancel",
+            "Ack",
+            "Error"
+          ]
+        },
+        "DistributionStatus"
+        :
+        {
+          "type": "string",
+          "enum": [
+            "Actual",
+            "Exercise"
+          ]
+        },
+        "ExplicitAddress"
+        :
+        {
+          "type": "object",
+          "properties": {
+            "explicitAddressScheme": {
+              "type": "string"
+            },
+            "explicitAddressValue": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false,
+          "required": [
+            "explicitAddressScheme",
+            "explicitAddressValue"
+          ]
         }
-      },
-      "additionalProperties": false,
-      "required": [
-        "explicitAddressScheme",
-        "explicitAddressValue"
-      ]
-    }
-  }
-}
+        }
+      }
