@@ -2,6 +2,11 @@
     <element name="positionUpdate" type="x:positionUpdate"/>
     <complexType name="positionUpdate">
         <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="positionUpdate" type="x:position"/>
+        </sequence>
+    </complexType>
+    <complexType name="position">
+        <sequence>
             <element name="id" type="string">
                 <annotation>
                     <documentation>Identifiant unique de la ressource  dans le système du partenaire propriétaire</documentation>

@@ -2,6 +2,11 @@
     <element name="resourceDetails" type="x:resourceDetails"/>
     <complexType name="resourceDetails">
         <sequence>
+            <element maxOccurs="unbounded" minOccurs="0" name="resourceDetails" type="x:resource"/>
+        </sequence>
+    </complexType>
+    <complexType name="resource">
+        <sequence>
             <element name="id" type="string">
                 <annotation>
                     <documentation>Identifiant unique de la ressource  dans le système du partenaire propriétaire</documentation>

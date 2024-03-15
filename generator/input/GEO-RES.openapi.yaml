@@ -1,19 +1,31 @@
 openapi: 3.0.0
 components:
   schemas:
-    resourceDetailsWrapper:
+    geolocalisationWrapper:
       type: object
       required:
-      - resourceDetails
+      - geolocalisation
       properties:
-        resourceDetails:
-          $ref: '#/components/schemas/resourceDetails'
-    resourceDetails:
+        geolocalisation:
+          $ref: '#/components/schemas/geolocalisation'
+    geolocalisation:
       $id: classpath:/json-schema/schema#
       x-id: GEO-RES.schema.json#
       example: example.json#
       type: object
-      title: resourceDetails
+      title: geolocalisation
+      required: []
+      properties:
+        resourceDetails:
+          type: array
+          items:
+            $ref: '#/components/schemas/resource'
+      additionalProperties: false
+    resource:
+      type: object
+      title: Ressource
+      x-display: expansion-panels
+      x-health-only: false
       required:
       - id
       - orgId
@@ -24,7 +36,7 @@ components:
           title: Identifiant de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/id
+          example: example.json#/resourceDetails/0/id
           description: "Identifiant unique de la ressource  dans le syst\xE8me du\
             \ partenaire propri\xE9taire"
           examples:
@@ -34,7 +46,7 @@ components:
           title: "Identifiant de l'organisation propri\xE9taire"
           x-health-only: false
           x-cols: 6
-          example: example.json#/orgId
+          example: example.json#/resourceDetails/0/orgId
           description: "Identifiant unique de l'organisme :  {pays}.{domaine}.{organisation}.{structure\
             \ interne}*.{unit\xE9 fonctionnelle}*\n*donn\xE9es facultatives"
           examples:
@@ -44,7 +56,7 @@ components:
           title: Nom de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/name
+          example: example.json#/resourceDetails/0/name
           description: "Nom donn\xE9 \xE0 la ressource par l'organisme propri\xE9\
             taire. \nL'immatriculation peut \xEAtre utilis\xE9e dans le nom courant\
             \ des v\xE9hicules."
@@ -55,7 +67,7 @@ components:
           title: Type de ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/type
+          example: example.json#/resourceDetails/0/type
           description: "Cat\xE9gorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE,\
             \ navire)"
           enum:
@@ -72,7 +84,7 @@ components:
           title: Nature de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/nature
+          example: example.json#/resourceDetails/0/nature
           description: Nature de la ressource (effecteur, base)
           enum:
           - EFFECTEUR
@@ -84,7 +96,7 @@ components:
           title: "Mobilit\xE9 de la ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobility
+          example: example.json#/resourceDetails/0/mobility
           description: "Mobilit\xE9 de la ressource (fixe, vehicule, heliport\xE9\
             , navire)"
           enum:
@@ -99,7 +111,7 @@ components:
           title: "Capacit\xE9s de la ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/capacity
+          example: example.json#/resourceDetails/0/capacity
           description: "Capacit\xE9 de transport d'un patient"
           enum:
           - URGENCE
@@ -113,6 +125,7 @@ components:
           items:
             $ref: '#/components/schemas/contact'
       additionalProperties: false
+      example: example.json#/resourceDetails/0
     contact:
       type: object
       title: Contacts
@@ -125,7 +138,7 @@ components:
           title: Type de contact
           x-health-only: false
           x-cols: 6
-          example: example.json#/contacts/0/type
+          example: example.json#/resourceDetails/0/contacts/0/type
           description: "Type de contact, voir \xE9num\xE9ration associ\xE9e\n1. PMRADD\
             \ (si RFGI disponible)\n2. PHNADD pour t\xE9l\xE9phonie"
           enum:
@@ -138,12 +151,12 @@ components:
           title: "D\xE9tails de contact"
           x-health-only: false
           x-cols: 6
-          example: example.json#/contacts/0/details
+          example: example.json#/resourceDetails/0/contacts/0/details
           description: "1. RFGI (si RFGI disponible)\n2. Num\xE9ro de t\xE9l\xE9phone"
           examples:
           - '0612342536'
       additionalProperties: false
-      example: example.json#/contacts/0
+      example: example.json#/resourceDetails/0/contacts/0
       examples:
       - type: PHNADD
         details: '0612342536'

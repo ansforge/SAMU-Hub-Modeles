@@ -1,19 +1,23 @@
 {
-    "id": "76_45101#SMUR1",
-    "datetime": "2024-01-27T08:44:00+02:00",
-    "receptionDatetime": "2024-01-27T08:45:00+02:00",
-    "coord": [
+    "positionUpdate": [
         {
-            "lat": "47.221866",
-            "lon": "-1.575807",
-            "height": 1
+            "id": "76_45101#SMUR1",
+            "datetime": "2024-01-27T08:44:00+02:00",
+            "receptionDatetime": "2024-01-27T08:45:00+02:00",
+            "coord": [
+                {
+                    "lat": "47.221866",
+                    "lon": "-1.575807",
+                    "height": 1
+                }
+            ],
+            "speed": 80,
+            "cap": 96,
+            "move": "MOBILE",
+            "engineOn": 1,
+            "groundStatus": 1,
+            "status": "DISPONIBLE",
+            "engagedStatus": "PARTIE"
         }
-    ],
-    "speed": 80,
-    "cap": 96,
-    "move": "MOBILE",
-    "engineOn": 1,
-    "groundStatus": 1,
-    "status": "DISPONIBLE",
-    "engagedStatus": "PARTIE"
+    ]
 }
