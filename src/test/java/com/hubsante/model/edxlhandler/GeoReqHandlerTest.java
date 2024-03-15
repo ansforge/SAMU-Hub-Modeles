@@ -20,23 +20,23 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class GeoPosHandlerTest extends AbstractEdxlHandlerTest {
+public class GeoReqHandlerTest extends AbstractEdxlHandlerTest {
 
     @Test
-    @DisplayName("should consistently deserialize then serialize JSON GEO-POS")
-    public void end2end_GEO_POS_JSON() throws IOException {
-        end2end("GEO-POS", false);
+    @DisplayName("should consistently deserialize then serialize JSON GEO-REQ")
+    public void end2end_GEO_REQ_JSON() throws IOException {
+        end2end("GEO-REQ", false);
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize XML GEO-POS")
-    public void end2end_GEO_POS_XML() throws IOException {
-        end2end("GEO-POS", true);
+    @DisplayName("should consistently deserialize then serialize XML GEO-REQ")
+    public void end2end_GEO_REQ_XML() throws IOException {
+        end2end("GEO-REQ", true);
     }
 
     @Test
-    @DisplayName("json and xml GEO-POS should be equal")
-    public void jsonAndXmlGEO_POS() throws IOException {
-        jsonEqualsXml("GEO-POS");
+    @DisplayName("json and xml GEO-REQ should be equal")
+    public void jsonAndXmlGEO_REQ() throws IOException {
+        jsonEqualsXml("GEO-REQ");
     }
 }
