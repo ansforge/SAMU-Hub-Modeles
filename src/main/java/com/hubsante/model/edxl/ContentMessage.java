@@ -15,6 +15,7 @@
  */
 package com.hubsante.model.edxl;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.common.ReferenceWrapper;
@@ -40,4 +41,9 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(ResourceDetailsWrapper.class)
 })
 public class ContentMessage {
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private PositionUpdateWrapper[] positionUpdateWrapper;
+
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private ResourceDetailsWrapper[] resourceDetailsWrapper;
 }
