@@ -33,7 +33,6 @@
                         </recipient>
                         <geoRes xmlns="urn:emergency:cisu:2.0:geoRes">
                             <resourceDetails>
-                                <id>76_45101#SMUR1#</id>
                                 <orgId>fr.health.760.samu76</orgId>
                                 <name>SMUR 1 Rouen</name>
                                 <type>SMUR</type>

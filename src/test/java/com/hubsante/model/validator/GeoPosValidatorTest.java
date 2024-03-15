@@ -29,11 +29,11 @@ public class GeoPosValidatorTest extends AbstractValidatorTest {
         validationPasses("GEO-POS", false);
     }
 
-//    @Test
-//    @DisplayName("GEO-POS xml validation passes")
-//    public void xmlGeoPosValidationPasses() throws IOException {
-//        validationPasses("GEO-POS", true);
-//    }
+    @Test
+    @DisplayName("GEO-POS xml validation passes")
+    public void xmlGeoPosValidationPasses() throws IOException {
+        validationPasses("GEO-POS", true);
+    }
     //endregion
 
     //region Fails validation

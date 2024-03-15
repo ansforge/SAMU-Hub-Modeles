@@ -29,11 +29,11 @@ public class GeoReqValidatorTest extends AbstractValidatorTest {
         validationPasses("GEO-REQ", false);
     }
 
-//    @Test
-//    @DisplayName("GEO-REQ xml validation passes")
-//    public void xmlGeoReqValidationPasses() throws IOException {
-//        validationPasses("GEO-REQ", true);
-//    }
+    @Test
+    @DisplayName("GEO-REQ xml validation passes")
+    public void xmlGeoReqValidationPasses() throws IOException {
+        validationPasses("GEO-REQ", true);
+    }
     //endregion
 
     //region Fails validation

@@ -32,12 +32,12 @@
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
                         <geoReq xmlns="urn:emergency:cisu:2.0:geoReq">
-                            <resourceRequest>
+                            <resourceRequest_error>
                                 <resourceId>76_45101#SMUR1#</resourceId>
                                 <resourceId>76_45102#SMUR2#</resourceId>
                                 <resourceId>76_45103#SMUR4#</resourceId>
                                 <resourceId>14_45103#SMUR3#</resourceId>
-                            </resourceRequest>
+                            </resourceRequest_error>
                         </geoReq>
                     </message>
                 </embeddedXMLContent>

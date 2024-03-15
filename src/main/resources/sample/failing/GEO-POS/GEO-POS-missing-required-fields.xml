@@ -37,8 +37,6 @@
                                 <datetime>2024-01-27T08:44:00+02:00</datetime>
                                 <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
                                 <coord>
-                                    <lat>49.464944</lat>
-                                    <lon>1.097341</lon>
                                 </coord>
                                 <move>STATIQUE</move>
                                 <engineOn>false</engineOn>
