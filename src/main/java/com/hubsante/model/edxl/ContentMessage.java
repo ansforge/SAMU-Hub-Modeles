@@ -15,13 +15,16 @@
  */
 package com.hubsante.model.edxl;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
-
+import com.hubsante.model.geolocalisation.positionUpdate.PositionUpdateWrapper;
+import com.hubsante.model.geolocalisation.resource.ResourceWrapper;
+import com.hubsante.model.geolocalisation.resourceDetails.ResourceDetailsWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 
@@ -33,9 +36,14 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
-        @JsonSubTypes.Type(com.hubsante.model.geolocalisation.resource.GeolocalisationWrapper.class),
-        @JsonSubTypes.Type(com.hubsante.model.geolocalisation.positionUpdate.GeolocalisationWrapper.class),
-        @JsonSubTypes.Type(com.hubsante.model.geolocalisation.resourceDetails.GeolocalisationWrapper.class)
+        @JsonSubTypes.Type(PositionUpdateWrapper.class),
+        @JsonSubTypes.Type(ResourceWrapper.class),
+        @JsonSubTypes.Type(ResourceDetailsWrapper.class)
 })
 public class ContentMessage {
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private PositionUpdateWrapper[] positionUpdateWrapper;
+
+    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
+    private ResourceDetailsWrapper[] resourceDetailsWrapper;
 }

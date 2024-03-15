@@ -4,7 +4,7 @@
   "generatorName": "java",
   "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "geolocalisationWrapper",
+    "models": "resourceDetailsWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
