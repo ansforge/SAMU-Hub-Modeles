@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
 import com.hubsante.model.geolocationres.GeolocalisationRes;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -48,7 +47,7 @@ import java.util.Objects;
 @JsonTypeName("geolocalisationResWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeolocalisationResWrapper extends DistributionElement {
+public class GeolocalisationResWrapper {
   public static final String JSON_PROPERTY_GEOLOCALISATION_RES =
       "geolocalisationRes";
   private GeolocalisationRes geolocalisationRes;
