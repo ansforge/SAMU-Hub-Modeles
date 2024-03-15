@@ -1,12 +1,12 @@
 /**
  * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -15,16 +15,13 @@
  */
 package com.hubsante.model.edxl;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
-import com.hubsante.model.geolocalisation.positionUpdate.PositionUpdateWrapper;
-import com.hubsante.model.geolocalisation.resource.ResourceWrapper;
-import com.hubsante.model.geolocalisation.resourceDetails.ResourceDetailsWrapper;
+
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 
@@ -36,14 +33,9 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
-        @JsonSubTypes.Type(PositionUpdateWrapper.class),
-        @JsonSubTypes.Type(ResourceWrapper.class),
-        @JsonSubTypes.Type(ResourceDetailsWrapper.class)
+        @JsonSubTypes.Type(com.hubsante.model.geolocalisation.resource.GeolocalisationWrapper.class),
+        @JsonSubTypes.Type(com.hubsante.model.geolocalisation.positionUpdate.GeolocalisationWrapper.class),
+        @JsonSubTypes.Type(com.hubsante.model.geolocalisation.resourceDetails.GeolocalisationWrapper.class)
 })
 public class ContentMessage {
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    private PositionUpdateWrapper[] positionUpdateWrapper;
-
-    @JsonFormat(with = JsonFormat.Feature.ACCEPT_SINGLE_VALUE_AS_ARRAY)
-    private ResourceDetailsWrapper[] resourceDetailsWrapper;
 }
