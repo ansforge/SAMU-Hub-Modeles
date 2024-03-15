@@ -35,7 +35,9 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
-        @JsonSubTypes.Type(GeolocalisationWrapper.class)
+        @JsonSubTypes.Type(PositionUpdateWrapper.class),
+        @JsonSubTypes.Type(ResourceWrapper.class),
+        @JsonSubTypes.Type(ResourceDetailsWrapper.class)
 })
 public class ContentMessage {
 }
