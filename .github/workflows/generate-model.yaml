@@ -41,7 +41,7 @@ jobs:
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
         working-directory: ./csv_parser
-        if: steps.filter.outputs.parsing_required == 'true'
+#        if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
 
       - name: Install JDK 11
