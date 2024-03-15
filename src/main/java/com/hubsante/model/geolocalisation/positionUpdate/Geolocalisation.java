@@ -49,6 +49,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Geolocalisation {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:geolocalisation";
   public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
   private List<Position> positionUpdate;
 

@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.common.DistributionElement;
 import com.hubsante.model.geolocalisation.resource.Geolocalisation;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -46,7 +47,9 @@ import java.util.Objects;
 @JsonTypeName("geolocalisationWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeolocalisationWrapper {
+public class GeolocalisationWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_GEOLOCALISATION = "geolocalisation";
   private Geolocalisation geolocalisation;
 
@@ -86,18 +89,20 @@ public class GeolocalisationWrapper {
     }
     GeolocalisationWrapper geolocalisationWrapper = (GeolocalisationWrapper)o;
     return Objects.equals(this.geolocalisation,
-                          geolocalisationWrapper.geolocalisation);
+                          geolocalisationWrapper.geolocalisation) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geolocalisation);
+    return Objects.hash(geolocalisation, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GeolocalisationWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    geolocalisation: ")
         .append(toIndentedString(geolocalisation))
         .append("\n");
