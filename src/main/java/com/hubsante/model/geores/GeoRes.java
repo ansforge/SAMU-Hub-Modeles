@@ -27,13 +27,17 @@
 
 package com.hubsante.model.geores;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-
+import com.hubsante.model.geores.Resource;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -58,8 +62,7 @@ public class GeoRes {
     return this;
   }
 
-  public GeoRes
-  addResourceDetailsItem(Resource resourceDetailsItem) {
+  public GeoRes addResourceDetailsItem(Resource resourceDetailsItem) {
     if (this.resourceDetails == null) {
       this.resourceDetails = new ArrayList<>();
     }
@@ -101,8 +104,7 @@ public class GeoRes {
       return false;
     }
     GeoRes geoRes = (GeoRes)o;
-    return Objects.equals(this.resourceDetails,
-                          geoRes.resourceDetails);
+    return Objects.equals(this.resourceDetails, geoRes.resourceDetails);
   }
 
   @Override

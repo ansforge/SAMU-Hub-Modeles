@@ -8,8 +8,7 @@
     "title": "error",
     "required": [
         "errorCode",
-        "errorCause",
-        "referencedDistributionID"
+        "errorCause"
     ],
     "properties": {
         "errorCode": {

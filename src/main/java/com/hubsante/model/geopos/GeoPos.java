@@ -27,13 +27,17 @@
 
 package com.hubsante.model.geopos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-
+import com.hubsante.model.geopos.Position;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -100,8 +104,7 @@ public class GeoPos {
       return false;
     }
     GeoPos geoPos = (GeoPos)o;
-    return Objects.equals(this.positionUpdate,
-                          geoPos.positionUpdate);
+    return Objects.equals(this.positionUpdate, geoPos.positionUpdate);
   }
 
   @Override

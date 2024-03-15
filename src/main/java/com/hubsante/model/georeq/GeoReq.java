@@ -27,12 +27,16 @@
 
 package com.hubsante.model.georeq;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-
+import com.hubsante.model.georeq.Resource;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -82,8 +86,7 @@ public class GeoReq {
       return false;
     }
     GeoReq geoReq = (GeoReq)o;
-    return Objects.equals(this.resourceRequest,
-                          geoReq.resourceRequest);
+    return Objects.equals(this.resourceRequest, geoReq.resourceRequest);
   }
 
   @Override

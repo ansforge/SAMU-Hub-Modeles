@@ -27,34 +27,35 @@
 
 package com.hubsante.model.geores;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.common.DistributionElement;
-
+import com.hubsante.model.geores.GeoRes;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * GeoResWrapper
  */
-@JsonPropertyOrder(
-    {GeoResWrapper.JSON_PROPERTY_GEO_RES})
+@JsonPropertyOrder({GeoResWrapper.JSON_PROPERTY_GEO_RES})
 @JsonTypeName("geoResWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class GeoResWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_RES =
-      "geoRes";
+  public static final String JSON_PROPERTY_GEO_RES = "geoRes";
   private GeoRes geoRes;
 
   public GeoResWrapper() {}
 
-  public GeoResWrapper
-  geoRes(GeoRes geoRes) {
+  public GeoResWrapper geoRes(GeoRes geoRes) {
 
     this.geoRes = geoRes;
     return this;
@@ -85,11 +86,8 @@ public class GeoResWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResWrapper geoResWrapper =
-        (GeoResWrapper)o;
-    return Objects.equals(this.geoRes,
-                          geoResWrapper.geoRes) &&
-        super.equals(o);
+    GeoResWrapper geoResWrapper = (GeoResWrapper)o;
+    return Objects.equals(this.geoRes, geoResWrapper.geoRes) && super.equals(o);
   }
 
   @Override
@@ -102,9 +100,7 @@ public class GeoResWrapper extends DistributionElement {
     StringBuilder sb = new StringBuilder();
     sb.append("class GeoResWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoRes: ")
-        .append(toIndentedString(geoRes))
-        .append("\n");
+    sb.append("    geoRes: ").append(toIndentedString(geoRes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

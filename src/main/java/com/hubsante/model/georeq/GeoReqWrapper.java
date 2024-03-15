@@ -27,34 +27,35 @@
 
 package com.hubsante.model.georeq;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.common.DistributionElement;
-
+import com.hubsante.model.georeq.GeoReq;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * GeoReqWrapper
  */
-@JsonPropertyOrder(
-    {GeoReqWrapper.JSON_PROPERTY_GEO_REQ})
+@JsonPropertyOrder({GeoReqWrapper.JSON_PROPERTY_GEO_REQ})
 @JsonTypeName("geoReqWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class GeoReqWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_REQ =
-      "geoReq";
+  public static final String JSON_PROPERTY_GEO_REQ = "geoReq";
   private GeoReq geoReq;
 
   public GeoReqWrapper() {}
 
-  public GeoReqWrapper
-  geoReq(GeoReq geoReq) {
+  public GeoReqWrapper geoReq(GeoReq geoReq) {
 
     this.geoReq = geoReq;
     return this;
@@ -85,11 +86,8 @@ public class GeoReqWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoReqWrapper geoReqWrapper =
-        (GeoReqWrapper)o;
-    return Objects.equals(this.geoReq,
-                          geoReqWrapper.geoReq) &&
-        super.equals(o);
+    GeoReqWrapper geoReqWrapper = (GeoReqWrapper)o;
+    return Objects.equals(this.geoReq, geoReqWrapper.geoReq) && super.equals(o);
   }
 
   @Override
@@ -102,9 +100,7 @@ public class GeoReqWrapper extends DistributionElement {
     StringBuilder sb = new StringBuilder();
     sb.append("class GeoReqWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoReq: ")
-        .append(toIndentedString(geoReq))
-        .append("\n");
+    sb.append("    geoReq: ").append(toIndentedString(geoReq)).append("\n");
     sb.append("}");
     return sb.toString();
   }

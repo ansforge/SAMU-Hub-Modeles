@@ -184,7 +184,7 @@
                 },
                 "MAIN_EVENT_ID": {
                     "type": "string",
-                    "title": "Identifiant de l'affaire",
+                    "title": "Identifiant de l'affaire partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/EVENT/MAIN_EVENT_ID",

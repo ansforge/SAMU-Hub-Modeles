@@ -10,7 +10,7 @@ A valoriser avec le même horaire que dateTimeSent dans le message RC-DE associ�
 Dans le cadre d'une demande de concours, obligatoire. Ce champ est valorisée avec l'heure de création de la demande de concours chez le partenaire emetteur. L'heure d'envoi du message peut être obtenue via l'enveloppe EDXL-DE (se référer au DST)",Describes the date and time when the EMSI was created.,2022-09-27T08:25:54+02:00,X,CREATION,,CREATION,,,,,0..1,1..1,0..1,X,,datetime,,Format datetime décrit dans le DSF,X,X
 5,6,,Lien,,,,,Optionnel,Provides a link to one or more EMSI files,,X,LINK,,LINK,,,,,0..n,0..n,0..n,,X,link,,,X,X
 6,7,,,ID,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
-{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",,fr.health.samu440-DRFR15DDXAAJJJ0000,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}",,fr.health.samu440.DRFR15DDXAAJJJ0000,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
 7,8,,,Rôle du lien,,,,"Optionnel : à valoriser avec la constante ""SPRSDS"" pour un message EMSI, incluant des missions RDC et/ou OPG et avec le libellé ""ADDSTO"" pour un message EMSI, incluant uniquement qu'une demande de concours (EMSI-DC).",Define the relation of the linked EMSI.,ADDSTO,X,LINK_ROLE,,LINK_ROLE,,,,,0..1,0..1,1..1,X,,string,,"ENUM: ADDSTO, SPRSDS",X,X
 8,9,,Niveau,,,,,"A valoriser avec la valeur constante ""OPR"" dans le cadre d'un message EMSI, incluant une mission OPG",Describes the level of the node creating this EMSI file.,OPR,X,LEVEL,,LEVEL,,,,,0..1,0..1,1..1,X,,string,,"ENUM: STRTGC, OPR, TACTCL",X,X
 9,10,,Niveau de classification,,,,,"Optionnel
@@ -46,7 +46,7 @@ Dans le cadre des échanges LRM-NexSIS, optionnel",Defines the urgency of the me
 21,22,,Identifiant local de l'affaire,,,,,A renseigner avec l'identifiant local de l'affaire dans le LRM ou NexSIS,Describes the identifier of the event for the creator of the EMSI. Unique inside the node.,DRFR15DDXAAJJJ0000,X,ID,,ID,,,,,1..1,1..1,1..1,,,string,,,X,X
 22,23,,Nom donné à l'événement,,,,,"Optionnel
 Dans nexSIS; [libelle NF 1 métier] & "" - "" & [libelle TL 1 métier] & "" - "" & [libellé commune]",Provides a name for the event. It is the responsibility of the node to have unique event names.,Grand Incendie Nantes,,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
-23,24,,Identifiant de l'affaire,,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
+23,24,,Identifiant de l'affaire partagé,,,,,"A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
 {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}
 
 NB : Si l'initiateur du partage de dossier est le même que l'initiateur du message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID",Provides a link to the main event ift he current event is a sub-event of this main event,fr.health.samu440.DRFR15DDXAAJJJ0000,,MAIN_EVENT_ID,,MAIN_EVENT_ID,,,,,0..1,1..1,0..1,X,,string,,,X,X
