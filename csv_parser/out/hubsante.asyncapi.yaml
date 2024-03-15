@@ -1538,7 +1538,7 @@ components:
           title: 'Latitude '
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/coord/0/lat
+          example: example.json#/coord/0/lat
           description: "Derni\xE8re coordonn\xE9e x connue de la ressource, entre\
             \ \u221290 and +90"
           examples:
@@ -1548,7 +1548,7 @@ components:
           title: Longitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/coord/0/lon
+          example: example.json#/coord/0/lon
           description: "Derni\xE8re coordonn\xE9e y connue de la ressource, entre\
             \ \u2212180 and +180"
           examples:
@@ -1558,13 +1558,13 @@ components:
           title: Altitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/coord/0/height
+          example: example.json#/coord/0/height
           description: "Derni\xE8re coordonn\xE9e z connue de la ressource, en m\xE8\
             tres sans bornes"
           examples:
           - 1
       additionalProperties: false
-      example: example.json#/positionUpdate/0/coord/0
+      example: example.json#/coord/0
       examples:
       - lat: '47.221866'
         lon: '-1.575807'
@@ -2074,7 +2074,7 @@ components:
           title: Type de contact
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceDetails/0/contacts/0/type
+          example: example.json#/contacts/0/type
           description: "Type de contact, voir \xE9num\xE9ration associ\xE9e\n1. PMRADD\
             \ (si RFGI disponible)\n2. PHNADD pour t\xE9l\xE9phonie"
           enum:
@@ -2087,12 +2087,12 @@ components:
           title: "D\xE9tails de contact"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceDetails/0/contacts/0/details
+          example: example.json#/contacts/0/details
           description: "1. RFGI (si RFGI disponible)\n2. Num\xE9ro de t\xE9l\xE9phone"
           examples:
           - '0612342536'
       additionalProperties: false
-      example: example.json#/resourceDetails/0/contacts/0
+      example: example.json#/contacts/0
       examples:
       - type: PHNADD
         details: '0612342536'
@@ -3857,110 +3857,28 @@ components:
       additionalProperties: false
       example: example.json#/MISSION/0
     resource:
+      $id: classpath:/json-schema/schema#
+      x-id: GEO-REQ.schema.json#
+      example: example.json#
       type: object
-      title: Ressource
-      x-display: expansion-panels
-      x-health-only: false
+      title: resource
       required:
-      - id
-      - orgId
-      - type
+      - resourceId
       properties:
-        id:
-          type: string
-          title: Identifiant de la ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceDetails/0/id
-          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
-            \ partenaire propri\xE9taire"
-          examples:
-          - 76_45101#SMUR1
-        orgId:
-          type: string
-          title: "Identifiant de l'organisation propri\xE9taire"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceDetails/0/orgId
-          description: "Identifiant unique de l'organisme :  {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*\n*donn\xE9es facultatives"
-          examples:
-          - fr.health.samu76A
-        name:
-          type: string
-          title: Nom de la ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceDetails/0/name
-          description: "Nom donn\xE9 \xE0 la ressource par l'organisme propri\xE9\
-            taire. \nL'immatriculation peut \xEAtre utilis\xE9e dans le nom courant\
-            \ des v\xE9hicules."
-          examples:
-          - SMUR 1 Rouen
-        type:
-          type: string
-          title: Type de ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceDetails/0/type
-          description: "Cat\xE9gorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE,\
-            \ navire)"
-          enum:
-          - SMUR
-          - SDIS
-          - TSU
-          - SNP
-          - MSPE
-          - SHIP
-          examples:
-          - SMUR
-        nature:
-          type: string
-          title: Nature de la ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceDetails/0/nature
-          description: Nature de la ressource (effecteur, base)
-          enum:
-          - EFFECTEUR
-          - BASE
-          examples:
-          - BASE
-        mobility:
-          type: string
-          title: "Mobilit\xE9 de la ressource"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceDetails/0/mobility
-          description: "Mobilit\xE9 de la ressource (fixe, vehicule, heliport\xE9\
-            , navire)"
-          enum:
-          - FIXE
-          - VEHICULE
-          - HELICOPTERE
-          - 'SHIP '
-          examples:
-          - VEHCL
-        capacity:
-          type: string
-          title: "Capacit\xE9s de la ressource"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceDetails/0/capacity
-          description: "Capacit\xE9 de transport d'un patient"
-          enum:
-          - URGENCE
-          - MEDICALE
-          - PARAMEDICALE
-          - INCONNUE
-          examples:
-          - MED
-        contacts:
+        resourceId:
           type: array
+          x-health-only: false
           items:
-            $ref: '#/components/schemas/contact'
+            type: string
+            title: Identifiant(s) de(s) ressource(s)
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/resourceId/0
+            description: "Liste des ID des ressources pour lesquels le demandeur a\
+              \ besoin d'obtenir plus de d\xE9tails"
+            examples:
+            - 76_45101#SMUR1
       additionalProperties: false
-      example: example.json#/resourceDetails/0
     link:
       type: object
       title: Lien
@@ -4739,140 +4657,85 @@ components:
       example: example.json#/EVENT/EGEO/0
     position:
       type: object
-      title: Position
+      title: "Position de l'op\xE9ration"
       x-display: expansion-panels
       x-health-only: false
       required:
-      - id
-      - datetime
+      - LOC_ID
       properties:
-        id:
+        LOC_ID:
           type: string
-          title: Identifiant de la ressource
+          title: ID position
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/id
-          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
-            \ partenaire propri\xE9taire"
+          example: example.json#/EVENT/EGEO/0/POSITION/LOC_ID
+          description: "Optionnel\nLa localisation de l'affaire est transmise en amont\
+            \ dans un message RC-EDA et le lieu souhait\xE9 pour l'intervention est\
+            \ syst\xE9matiquement repr\xE9cis\xE9 dans un objet MISSION. \nLorsque\
+            \ le lieu d'intervention est identique \xE0 celle d'une position de l'affaire\
+            \ partag\xE9e dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID\
+            \ doit \xEAtre aliment\xE9 valoris\xE9 comme le champ eventLocation.locId\
+            \ du message RC-EDA envoy\xE9 en amont. "
           examples:
-          - 76_45101#SMUR1
-        datetime:
+          - 111fb03a-6fd9-41e0-8e81-990c45188887
+        NAME:
           type: string
-          title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
-            \ ressource"
+          title: Nom de position
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/datetime
-          description: "Date et heure de la derni\xE8re position connue"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
+          example: example.json#/EVENT/EGEO/0/POSITION/NAME
+          description: "Optionnel, non utilis\xE9 par NexSIS nom de lieu"
           examples:
-          - '2024-01-27T08:44:00+02:00'
-        receptionDatetime:
+          - "Lyc\xE9e Pierre de Coubertin"
+        TYPE:
           type: string
-          title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
+          title: Type
           x-health-only: false
           x-cols: 6
-          example: example.json#/positionUpdate/0/receptionDatetime
-          description: "Date et heure de la r\xE9ception de la derni\xE8re position\
-            \ connue dans le syst\xE8me de l'organisme"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
+          example: example.json#/EVENT/EGEO/0/POSITION/TYPE
+          description: "Optionnel\nDans le cadre de l'interface LRM NexSIS, seul le\
+            \ libell\xE9 POINT doit obligatoirement \xEAtre interpr\xE9table par les\
+            \ deux partenaires.\nCf. Nomenclature EMSI - POSITION pour plus de d\xE9\
+            tails"
           examples:
-          - '2024-01-27T08:45:00+02:00'
-        coord:
+          - POINT
+        HEIGHT_ROLE:
+          type: string
+          title: Indication sur l'utilisation de la balise altitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/EVENT/EGEO/0/POSITION/HEIGHT_ROLE
+          description: Optionnel
+          examples:
+          - MIN
+        COORDSYS:
+          type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/EVENT/EGEO/0/POSITION/COORDSYS
+          description: Optionnel
+          examples:
+          - EPSG-4326
+        COORD:
           type: array
           items:
             $ref: '#/components/schemas/coord'
-        speed:
-          type: number
-          title: Vitesse de la ressource
+        ADDRESS:
+          type: array
           x-health-only: false
-          x-cols: 6
-          example: example.json#/positionUpdate/0/speed
-          description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
-          examples:
-          - 80
-        cap:
-          type: string
-          title: Direction de la ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/positionUpdate/0/cap
-          description: "Direction de la ressource, exprim\xE9 en degr\xE9s"
-          examples:
-          - 96
-        move:
-          type: string
-          title: Mouvement de la ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/positionUpdate/0/move
-          description: Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)
-          enum:
-          - MOBILE
-          - STATIQUE
-          examples:
-          - MOBILE
-        engineOn:
-          type: boolean
-          title: Etat du moteur de la ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/positionUpdate/0/engineOn
-          description: "Indique si le moteur de la ressource est \xE9teint (FAUX)\
-            \ ou allum\xE9/en marche (VRAI)"
-          examples:
-          - 1
-        groundStatus:
-          type: boolean
-          title: "Etat de l'h\xE9licopt\xE8re"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/positionUpdate/0/groundStatus
-          description: "Indique si l'h\xE9licopt\xE8re est au sol (VRAI) ou en l'air\
-            \ (FAUX)"
-          examples:
-          - 1
-        status:
-          type: string
-          title: Statut de la ressource
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/positionUpdate/0/status
-          description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
-            - DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque\
-            \ la ressource n'est pas disponible, celle-ci peut \xEAtre engag\xE9e\
-            \ ou en maintenance\n- INCONNU : Lorsque le status est inconnu"
-          enum:
-          - DISPONIBLE
-          - INDISPONIBLE
-          - INCONNU
-          examples:
-          - DISPONIBLE
-        engagedStatus:
-          type: string
-          title: "Statut de la ressource engag\xE9e"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/positionUpdate/0/engagedStatus
-          description: "Pr\xE9cise le statut d'une ressource qui est engag\xE9e sur\
-            \ une mission"
-          enum:
-          - ALERTEE
-          - PARTIE
-          - ARRIVEE_LIEU
-          - TRANSPORT_DESTINATION
-          - ARRIVEE_DESTINATION
-          - FIN_MED
-          - QUITTE_DESTINATION
-          - RETOUR_DISPONIBLE
-          - RETOUR_INDISPONIBLE
-          - ARRIVEE_CENTRE
-          examples:
-          - PARTIE
+          items:
+            type: string
+            title: Adresse
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/EVENT/EGEO/0/POSITION/ADDRESS/0
+            description: "Optionnel. Dans le cas d'un partage de position, les adresses\
+              \ transmises ne sont pas structur\xE9es."
+            examples:
+            - Nantes centre ville
       additionalProperties: false
-      example: example.json#/positionUpdate/0
+      example: example.json#/EVENT/EGEO/0/POSITION
     rtype:
       type: object
       title: Type de la ressource
@@ -5601,18 +5464,246 @@ components:
             $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/RESOURCE/0/RGEO/0
-    geolocalisation:
+    positionUpdate:
+      $id: classpath:/json-schema/schema#
+      x-id: GEO-POS.schema.json#
+      example: example.json#
+      type: object
+      title: positionUpdate
+      required:
+      - id
+      - datetime
+      properties:
+        id:
+          type: string
+          title: Identifiant de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/id
+          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
+            \ partenaire propri\xE9taire"
+          examples:
+          - 76_45101#SMUR1
+        datetime:
+          type: string
+          title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
+            \ ressource"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/datetime
+          description: "Date et heure de la derni\xE8re position connue"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2024-01-27T08:44:00+02:00'
+        receptionDatetime:
+          type: string
+          title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/receptionDatetime
+          description: "Date et heure de la r\xE9ception de la derni\xE8re position\
+            \ connue dans le syst\xE8me de l'organisme"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2024-01-27T08:45:00+02:00'
+        coord:
+          type: array
+          items:
+            $ref: '#/components/schemas/coord'
+        speed:
+          type: number
+          title: Vitesse de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/speed
+          description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
+          examples:
+          - 80
+        cap:
+          type: string
+          title: Direction de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/cap
+          description: "Direction de la ressource, exprim\xE9 en degr\xE9s"
+          examples:
+          - 96
+        move:
+          type: string
+          title: Mouvement de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/move
+          description: Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)
+          enum:
+          - MOBILE
+          - STATIQUE
+          examples:
+          - MOBILE
+        engineOn:
+          type: boolean
+          title: Etat du moteur de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/engineOn
+          description: "Indique si le moteur de la ressource est \xE9teint (FAUX)\
+            \ ou allum\xE9/en marche (VRAI)"
+          examples:
+          - 1
+        groundStatus:
+          type: boolean
+          title: "Etat de l'h\xE9licopt\xE8re"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/groundStatus
+          description: "Indique si l'h\xE9licopt\xE8re est au sol (VRAI) ou en l'air\
+            \ (FAUX)"
+          examples:
+          - 1
+        status:
+          type: string
+          title: Statut de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/status
+          description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
+            - DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque\
+            \ la ressource n'est pas disponible, celle-ci peut \xEAtre engag\xE9e\
+            \ ou en maintenance\n- INCONNU : Lorsque le status est inconnu"
+          enum:
+          - DISPONIBLE
+          - INDISPONIBLE
+          - INCONNU
+          examples:
+          - DISPONIBLE
+        engagedStatus:
+          type: string
+          title: "Statut de la ressource engag\xE9e"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/engagedStatus
+          description: "Pr\xE9cise le statut d'une ressource qui est engag\xE9e sur\
+            \ une mission"
+          enum:
+          - ALERTEE
+          - PARTIE
+          - ARRIVEE_LIEU
+          - TRANSPORT_DESTINATION
+          - ARRIVEE_DESTINATION
+          - FIN_MED
+          - QUITTE_DESTINATION
+          - RETOUR_DISPONIBLE
+          - RETOUR_INDISPONIBLE
+          - ARRIVEE_CENTRE
+          examples:
+          - PARTIE
+      additionalProperties: false
+    resourceDetails:
       $id: classpath:/json-schema/schema#
       x-id: GEO-RES.schema.json#
       example: example.json#
       type: object
-      title: geolocalisation
-      required: []
+      title: resourceDetails
+      required:
+      - id
+      - orgId
+      - type
       properties:
-        resourceDetails:
+        id:
+          type: string
+          title: Identifiant de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/id
+          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
+            \ partenaire propri\xE9taire"
+          examples:
+          - 76_45101#SMUR1
+        orgId:
+          type: string
+          title: "Identifiant de l'organisation propri\xE9taire"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orgId
+          description: "Identifiant unique de l'organisme :  {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*\n*donn\xE9es facultatives"
+          examples:
+          - fr.health.samu76A
+        name:
+          type: string
+          title: Nom de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/name
+          description: "Nom donn\xE9 \xE0 la ressource par l'organisme propri\xE9\
+            taire. \nL'immatriculation peut \xEAtre utilis\xE9e dans le nom courant\
+            \ des v\xE9hicules."
+          examples:
+          - SMUR 1 Rouen
+        type:
+          type: string
+          title: Type de ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/type
+          description: "Cat\xE9gorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE,\
+            \ navire)"
+          enum:
+          - SMUR
+          - SDIS
+          - TSU
+          - SNP
+          - MSPE
+          - SHIP
+          examples:
+          - SMUR
+        nature:
+          type: string
+          title: Nature de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/nature
+          description: Nature de la ressource (effecteur, base)
+          enum:
+          - EFFECTEUR
+          - BASE
+          examples:
+          - BASE
+        mobility:
+          type: string
+          title: "Mobilit\xE9 de la ressource"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobility
+          description: "Mobilit\xE9 de la ressource (fixe, vehicule, heliport\xE9\
+            , navire)"
+          enum:
+          - FIXE
+          - VEHICULE
+          - HELICOPTERE
+          - 'SHIP '
+          examples:
+          - VEHCL
+        capacity:
+          type: string
+          title: "Capacit\xE9s de la ressource"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/capacity
+          description: "Capacit\xE9 de transport d'un patient"
+          enum:
+          - URGENCE
+          - MEDICALE
+          - PARAMEDICALE
+          - INCONNUE
+          examples:
+          - MED
+        contacts:
           type: array
           items:
-            $ref: '#/components/schemas/resource'
+            $ref: '#/components/schemas/contact'
       additionalProperties: false
     error:
       $id: classpath:/json-schema/schema#

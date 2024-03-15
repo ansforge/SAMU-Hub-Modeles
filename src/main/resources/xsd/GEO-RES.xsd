@@ -1,11 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geolocalisation" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geolocalisation" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="geolocalisation" type="x:geolocalisation"/>
-    <complexType name="geolocalisation">
-        <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="resourceDetails" type="x:resource"/>
-        </sequence>
-    </complexType>
-    <complexType name="resource">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourceDetails" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourceDetails" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourceDetails" type="x:resourceDetails"/>
+    <complexType name="resourceDetails">
         <sequence>
             <element name="id" type="string">
                 <annotation>
