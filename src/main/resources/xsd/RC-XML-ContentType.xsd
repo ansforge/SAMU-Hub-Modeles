@@ -33,16 +33,22 @@
             <xs:extension base="x:distributionElement">
                 <xs:sequence>
                     <xs:choice>
-                        <xs:element ref="rcref:reference" />
+                        <xs:element ref="rcref:reference"/>
                         <xs:element ref="rceda:createCase"/>
                         <xs:element ref="rseda:createCaseHealth"/>
                         <xs:element ref="emsi:emsi"/>
                         <!-- info -->
                         <xs:element ref="info:info"/>
                         <!-- geo -->
-                        <xs:element ref="geopositionupdate:positionUpdate"/>
-                        <xs:element ref="georesource:resource"/>
-                        <xs:element ref="georesourcedetails:resourceDetails"/>
+                        <xs:element name="geolocalisation">
+                            <xs:complexType>
+                                <xs:choice>
+                                    <xs:element ref="geopositionupdate:positionUpdate"/>
+                                    <xs:element ref="georesource:resource"/>
+                                    <xs:element ref="georesourcedetails:resourceDetails"/>
+                                </xs:choice>
+                            </xs:complexType>
+                        </xs:element>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
