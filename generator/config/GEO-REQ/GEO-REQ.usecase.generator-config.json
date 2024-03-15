@@ -4,7 +4,7 @@
   "generatorName": "java",
   "templateDir": "templates/useCase/",
   "globalProperties": {
-    "models": "geolocationReq",
+    "models": "geolocalisationReq",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.geolocationreq",
+    "modelPackage": "com.hubsante.model.geolocalisationreq",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,

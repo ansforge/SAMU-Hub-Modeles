@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.geolocationreq",
+    "modelPackage": "com.hubsante.model.geolocalisationreq",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
