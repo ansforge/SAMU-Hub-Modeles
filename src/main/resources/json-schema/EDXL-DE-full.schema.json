@@ -229,95 +229,144 @@
                 "message": {
                   "properties": {
                     "geolocalisation": {
-                      "oneOf": [
-                        {
-                          "positionUpdate": {
-                            "type": "array",
-                            "items": {
-                              "$ref": "GEO-POS.schema.json"
-                            }
-                          }
-                        },
-                        {
-                          "resource": {
-                            "$ref": "GEO-REQ.schema.json"
-                          }
-                        },
-                        {
-                          "resourceDetails": {
-                            "type": "array",
-                            "items": {
-                              "$ref": "GEO-RES.schema.json"
-                            }
+                      "properties": {
+                        "positionUpdate": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "GEO-POS.schema.json"
                           }
                         }
+                      },
+                      "required": [
+                        "positionUpdate"
                       ]
                     }
                   },
                   "required": [
-                    "geolocation"
+                    "geolocalisation"
                   ]
                 }
               }
             }
           ]
         },
-        "Descriptor"
-        :
         {
-          "type": "object",
-          "properties": {
-            "explicitAddress": {
-              "$ref": "#/definitions/ExplicitAddress"
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
             },
-            "language": {
-              "type": "string"
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "geolocalisation": {
+                      "properties": {
+                        "resourceDetails": {
+                          "type": "array",
+                          "items": {
+                            "$ref": "GEO-RES.schema.json"
+                          }
+                        }
+                      },
+                      "required": [
+                        "resourceDetails"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "geolocalisation"
+                  ]
+                }
+              }
             }
-          },
-          "additionalProperties": false,
-          "required": [
-            "explicitAddress",
-            "language"
           ]
         },
-        "DistributionKind"
-        :
         {
-          "type": "string",
-          "enum": [
-            "Report",
-            "Update",
-            "Cancel",
-            "Ack",
-            "Error"
-          ]
-        },
-        "DistributionStatus"
-        :
-        {
-          "type": "string",
-          "enum": [
-            "Actual",
-            "Exercise"
-          ]
-        },
-        "ExplicitAddress"
-        :
-        {
-          "type": "object",
-          "properties": {
-            "explicitAddressScheme": {
-              "type": "string"
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
             },
-            "explicitAddressValue": {
-              "type": "string"
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "geolocalisation": {
+                      "properties": {
+                        "resource": {
+                          "$ref": "GEO-REQ.schema.json"
+                        }
+                      },
+                      "required": [
+                        "resource"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "geolocalisation"
+                  ]
+                }
+              }
             }
-          },
-          "additionalProperties": false,
-          "required": [
-            "explicitAddressScheme",
-            "explicitAddressValue"
           ]
         }
+      ]
+    },
+    "Descriptor": {
+      "type": "object",
+      "properties": {
+        "explicitAddress": {
+          "$ref": "#/definitions/ExplicitAddress"
+        },
+        "language": {
+          "type": "string"
         }
-      }
+      },
+      "additionalProperties": false,
+      "required": [
+        "explicitAddress",
+        "language"
+      ]
+    },
+    "DistributionKind": {
+      "type": "string",
+      "enum": [
+        "Report",
+        "Update",
+        "Cancel",
+        "Ack",
+        "Error"
+      ]
+    },
+    "DistributionStatus": {
+      "type": "string",
+      "enum": [
+        "Actual",
+        "Exercise"
+      ]
+    },
+    "ExplicitAddress": {
+      "type": "object",
+      "properties": {
+        "explicitAddressScheme": {
+          "type": "string"
+        },
+        "explicitAddressValue": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false,
+      "required": [
+        "explicitAddressScheme",
+        "explicitAddressValue"
+      ]
+    }
+  }
+}

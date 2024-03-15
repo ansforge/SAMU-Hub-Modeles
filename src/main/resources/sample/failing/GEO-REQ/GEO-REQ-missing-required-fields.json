@@ -31,7 +31,7 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "geoReq": {
+            "geolocalisation": {
               "resourceRequest_error": {
                 "resourceId": [
                   "76_45101#SMUR1#",
