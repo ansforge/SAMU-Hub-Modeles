@@ -6,6 +6,9 @@
         xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
         xmlns:emsi="urn:emergency:cisu:2.0:emsi"
         xmlns:info="urn:emergency:cisu:2.0:info"
+        xmlns:geopos="urn:emergency:cisu:2.0:geoPos"
+        xmlns:geores="urn:emergency:cisu:2.0:geoRes"
+        xmlns:georeq="urn:emergency:cisu:2.0:geoReq"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -15,6 +18,9 @@
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoPos" schemaLocation="GEO-POS.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoRes" schemaLocation="GEO-RES.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoReq" schemaLocation="GEO-REQ.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -33,6 +39,10 @@
                         <xs:element ref="emsi:emsi"/>
                         <!-- info -->
                         <xs:element ref="info:info"/>
+                        <!-- geo -->
+                        <xs:element ref="geopos:geoPos"/>
+                        <xs:element ref="geores:geoRes"/>
+                        <xs:element ref="georeq:geoReq"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
