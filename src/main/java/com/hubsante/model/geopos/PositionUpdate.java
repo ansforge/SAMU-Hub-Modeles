@@ -44,19 +44,21 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Position
+ * PositionUpdate
  */
 @JsonPropertyOrder(
-    {Position.JSON_PROPERTY_ID, Position.JSON_PROPERTY_DATETIME,
-     Position.JSON_PROPERTY_RECEPTION_DATETIME, Position.JSON_PROPERTY_COORD,
-     Position.JSON_PROPERTY_SPEED, Position.JSON_PROPERTY_CAP,
-     Position.JSON_PROPERTY_MOVE, Position.JSON_PROPERTY_ENGINE_ON,
-     Position.JSON_PROPERTY_GROUND_STATUS, Position.JSON_PROPERTY_STATUS,
-     Position.JSON_PROPERTY_ENGAGED_STATUS})
-@JsonTypeName("position")
+    {PositionUpdate.JSON_PROPERTY_ID, PositionUpdate.JSON_PROPERTY_DATETIME,
+     PositionUpdate.JSON_PROPERTY_RECEPTION_DATETIME,
+     PositionUpdate.JSON_PROPERTY_COORD, PositionUpdate.JSON_PROPERTY_SPEED,
+     PositionUpdate.JSON_PROPERTY_CAP, PositionUpdate.JSON_PROPERTY_MOVE,
+     PositionUpdate.JSON_PROPERTY_ENGINE_ON,
+     PositionUpdate.JSON_PROPERTY_GROUND_STATUS,
+     PositionUpdate.JSON_PROPERTY_STATUS,
+     PositionUpdate.JSON_PROPERTY_ENGAGED_STATUS})
+@JsonTypeName("positionUpdate")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Position {
+public class PositionUpdate {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
@@ -211,9 +213,9 @@ public class Position {
   public static final String JSON_PROPERTY_ENGAGED_STATUS = "engagedStatus";
   private EngagedStatusEnum engagedStatus;
 
-  public Position() {}
+  public PositionUpdate() {}
 
-  public Position id(String id) {
+  public PositionUpdate id(String id) {
 
     this.id = id;
     return this;
@@ -237,7 +239,7 @@ public class Position {
     this.id = id;
   }
 
-  public Position datetime(OffsetDateTime datetime) {
+  public PositionUpdate datetime(OffsetDateTime datetime) {
 
     this.datetime = datetime;
     return this;
@@ -260,7 +262,7 @@ public class Position {
     this.datetime = datetime;
   }
 
-  public Position receptionDatetime(OffsetDateTime receptionDatetime) {
+  public PositionUpdate receptionDatetime(OffsetDateTime receptionDatetime) {
 
     this.receptionDatetime = receptionDatetime;
     return this;
@@ -284,13 +286,13 @@ public class Position {
     this.receptionDatetime = receptionDatetime;
   }
 
-  public Position coord(List<Coord> coord) {
+  public PositionUpdate coord(List<Coord> coord) {
 
     this.coord = coord;
     return this;
   }
 
-  public Position addCoordItem(Coord coordItem) {
+  public PositionUpdate addCoordItem(Coord coordItem) {
     if (this.coord == null) {
       this.coord = new ArrayList<>();
     }
@@ -323,7 +325,7 @@ public class Position {
     this.coord.addAll(coord);
   }
 
-  public Position speed(BigDecimal speed) {
+  public PositionUpdate speed(BigDecimal speed) {
 
     this.speed = speed;
     return this;
@@ -346,7 +348,7 @@ public class Position {
     this.speed = speed;
   }
 
-  public Position cap(String cap) {
+  public PositionUpdate cap(String cap) {
 
     this.cap = cap;
     return this;
@@ -369,7 +371,7 @@ public class Position {
     this.cap = cap;
   }
 
-  public Position move(MoveEnum move) {
+  public PositionUpdate move(MoveEnum move) {
 
     this.move = move;
     return this;
@@ -392,7 +394,7 @@ public class Position {
     this.move = move;
   }
 
-  public Position engineOn(Boolean engineOn) {
+  public PositionUpdate engineOn(Boolean engineOn) {
 
     this.engineOn = engineOn;
     return this;
@@ -416,7 +418,7 @@ public class Position {
     this.engineOn = engineOn;
   }
 
-  public Position groundStatus(Boolean groundStatus) {
+  public PositionUpdate groundStatus(Boolean groundStatus) {
 
     this.groundStatus = groundStatus;
     return this;
@@ -439,7 +441,7 @@ public class Position {
     this.groundStatus = groundStatus;
   }
 
-  public Position status(StatusEnum status) {
+  public PositionUpdate status(StatusEnum status) {
 
     this.status = status;
     return this;
@@ -465,7 +467,7 @@ public class Position {
     this.status = status;
   }
 
-  public Position engagedStatus(EngagedStatusEnum engagedStatus) {
+  public PositionUpdate engagedStatus(EngagedStatusEnum engagedStatus) {
 
     this.engagedStatus = engagedStatus;
     return this;
@@ -496,18 +498,19 @@ public class Position {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Position position = (Position)o;
-    return Objects.equals(this.id, position.id) &&
-        Objects.equals(this.datetime, position.datetime) &&
-        Objects.equals(this.receptionDatetime, position.receptionDatetime) &&
-        Objects.equals(this.coord, position.coord) &&
-        Objects.equals(this.speed, position.speed) &&
-        Objects.equals(this.cap, position.cap) &&
-        Objects.equals(this.move, position.move) &&
-        Objects.equals(this.engineOn, position.engineOn) &&
-        Objects.equals(this.groundStatus, position.groundStatus) &&
-        Objects.equals(this.status, position.status) &&
-        Objects.equals(this.engagedStatus, position.engagedStatus);
+    PositionUpdate positionUpdate = (PositionUpdate)o;
+    return Objects.equals(this.id, positionUpdate.id) &&
+        Objects.equals(this.datetime, positionUpdate.datetime) &&
+        Objects.equals(this.receptionDatetime,
+                       positionUpdate.receptionDatetime) &&
+        Objects.equals(this.coord, positionUpdate.coord) &&
+        Objects.equals(this.speed, positionUpdate.speed) &&
+        Objects.equals(this.cap, positionUpdate.cap) &&
+        Objects.equals(this.move, positionUpdate.move) &&
+        Objects.equals(this.engineOn, positionUpdate.engineOn) &&
+        Objects.equals(this.groundStatus, positionUpdate.groundStatus) &&
+        Objects.equals(this.status, positionUpdate.status) &&
+        Objects.equals(this.engagedStatus, positionUpdate.engagedStatus);
   }
 
   @Override
@@ -519,7 +522,7 @@ public class Position {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Position {\n");
+    sb.append("class PositionUpdate {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
     sb.append("    receptionDatetime: ")

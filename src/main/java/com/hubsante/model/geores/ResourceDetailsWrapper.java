@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geopos;
+package com.hubsante.model.geores;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,65 +34,46 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geopos.Position;
-import java.util.ArrayList;
+import com.hubsante.model.geores.ResourceDetails;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoPos
+ * ResourceDetailsWrapper
  */
-@JsonPropertyOrder({GeoPos.JSON_PROPERTY_POSITION_UPDATE})
-@JsonTypeName("geoPos")
+@JsonPropertyOrder({ResourceDetailsWrapper.JSON_PROPERTY_RESOURCE_DETAILS})
+@JsonTypeName("resourceDetailsWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoPos {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoPos";
-  public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
-  private List<Position> positionUpdate;
+public class ResourceDetailsWrapper {
+  public static final String JSON_PROPERTY_RESOURCE_DETAILS = "resourceDetails";
+  private ResourceDetails resourceDetails;
 
-  public GeoPos() {}
+  public ResourceDetailsWrapper() {}
 
-  public GeoPos positionUpdate(List<Position> positionUpdate) {
+  public ResourceDetailsWrapper
+  resourceDetails(ResourceDetails resourceDetails) {
 
-    this.positionUpdate = positionUpdate;
-    return this;
-  }
-
-  public GeoPos addPositionUpdateItem(Position positionUpdateItem) {
-    if (this.positionUpdate == null) {
-      this.positionUpdate = new ArrayList<>();
-    }
-    this.positionUpdate.add(positionUpdateItem);
+    this.resourceDetails = resourceDetails;
     return this;
   }
 
   /**
-   * Get positionUpdate
-   * @return positionUpdate
+   * Get resourceDetails
+   * @return resourceDetails
    **/
-  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Position> getPositionUpdate() {
-    return positionUpdate;
+  public ResourceDetails getResourceDetails() {
+    return resourceDetails;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPositionUpdate(List<Position> positionUpdate) {
-    if (positionUpdate == null) {
-      return;
-    }
-    if (this.positionUpdate == null) {
-      this.positionUpdate = new ArrayList<>();
-    }
-    this.positionUpdate.addAll(positionUpdate);
+  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setResourceDetails(ResourceDetails resourceDetails) {
+    this.resourceDetails = resourceDetails;
   }
 
   @Override
@@ -103,21 +84,22 @@ public class GeoPos {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoPos geoPos = (GeoPos)o;
-    return Objects.equals(this.positionUpdate, geoPos.positionUpdate);
+    ResourceDetailsWrapper resourceDetailsWrapper = (ResourceDetailsWrapper)o;
+    return Objects.equals(this.resourceDetails,
+                          resourceDetailsWrapper.resourceDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(positionUpdate);
+    return Objects.hash(resourceDetails);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoPos {\n");
-    sb.append("    positionUpdate: ")
-        .append(toIndentedString(positionUpdate))
+    sb.append("class ResourceDetailsWrapper {\n");
+    sb.append("    resourceDetails: ")
+        .append(toIndentedString(resourceDetails))
         .append("\n");
     sb.append("}");
     return sb.toString();

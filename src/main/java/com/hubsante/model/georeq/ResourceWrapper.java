@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geopos;
+package com.hubsante.model.georeq;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,48 +34,45 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.geopos.GeoPos;
+import com.hubsante.model.georeq.Resource;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * GeoPosWrapper
+ * ResourceWrapper
  */
-@JsonPropertyOrder({GeoPosWrapper.JSON_PROPERTY_GEO_POS})
-@JsonTypeName("geoPosWrapper")
+@JsonPropertyOrder({ResourceWrapper.JSON_PROPERTY_RESOURCE})
+@JsonTypeName("resourceWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoPosWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_POS = "geoPos";
-  private GeoPos geoPos;
+public class ResourceWrapper {
+  public static final String JSON_PROPERTY_RESOURCE = "resource";
+  private Resource resource;
 
-  public GeoPosWrapper() {}
+  public ResourceWrapper() {}
 
-  public GeoPosWrapper geoPos(GeoPos geoPos) {
+  public ResourceWrapper resource(Resource resource) {
 
-    this.geoPos = geoPos;
+    this.resource = resource;
     return this;
   }
 
   /**
-   * Get geoPos
-   * @return geoPos
+   * Get resource
+   * @return resource
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_POS)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeoPos getGeoPos() {
-    return geoPos;
+  public Resource getResource() {
+    return resource;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_POS)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoPos(GeoPos geoPos) {
-    this.geoPos = geoPos;
+  public void setResource(Resource resource) {
+    this.resource = resource;
   }
 
   @Override
@@ -86,21 +83,20 @@ public class GeoPosWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoPosWrapper geoPosWrapper = (GeoPosWrapper)o;
-    return Objects.equals(this.geoPos, geoPosWrapper.geoPos) && super.equals(o);
+    ResourceWrapper resourceWrapper = (ResourceWrapper)o;
+    return Objects.equals(this.resource, resourceWrapper.resource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoPos, super.hashCode());
+    return Objects.hash(resource);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoPosWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoPos: ").append(toIndentedString(geoPos)).append("\n");
+    sb.append("class ResourceWrapper {\n");
+    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
     sb.append("}");
     return sb.toString();
   }

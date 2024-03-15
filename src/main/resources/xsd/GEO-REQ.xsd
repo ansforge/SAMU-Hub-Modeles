@@ -2,11 +2,6 @@
     <element name="geoReq" type="x:geoReq"/>
     <complexType name="geoReq">
         <sequence>
-            <element minOccurs="0" name="resourceRequest" type="x:resource"/>
-        </sequence>
-    </complexType>
-    <complexType name="resource">
-        <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="resourceId" type="string"/>
         </sequence>
     </complexType>

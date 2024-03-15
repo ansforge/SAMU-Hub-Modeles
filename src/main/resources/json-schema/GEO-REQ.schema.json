@@ -5,39 +5,24 @@
     "version": "24.03.15",
     "example": "example.json#",
     "type": "object",
-    "title": "geoReq",
-    "required": [],
+    "title": "resource",
+    "required": [
+        "resourceId"
+    ],
     "properties": {
-        "resourceRequest": {
-            "$ref": "#/definitions/resource"
-        }
-    },
-    "definitions": {
-        "resource": {
-            "type": "object",
-            "title": "Demande de d\u00e9tails de la ressource",
-            "x-display": "expansion-panels",
+        "resourceId": {
+            "type": "array",
             "x-health-only": false,
-            "required": [
-                "resourceId"
-            ],
-            "properties": {
-                "resourceId": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Identifiant(s) de(s) ressource(s)",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/resourceRequest/resourceId/0",
-                        "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de d\u00e9tails"
-                    }
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/resourceRequest"
+            "items": {
+                "type": "string",
+                "title": "Identifiant(s) de(s) ressource(s)",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/resourceId/0",
+                "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de d\u00e9tails"
+            }
         }
     },
+    "definitions": {},
     "additionalProperties": false
 }

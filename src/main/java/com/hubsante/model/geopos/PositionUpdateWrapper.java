@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geores;
+package com.hubsante.model.geopos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,48 +34,45 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.geores.GeoRes;
+import com.hubsante.model.geopos.PositionUpdate;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * GeoResWrapper
+ * PositionUpdateWrapper
  */
-@JsonPropertyOrder({GeoResWrapper.JSON_PROPERTY_GEO_RES})
-@JsonTypeName("geoResWrapper")
+@JsonPropertyOrder({PositionUpdateWrapper.JSON_PROPERTY_POSITION_UPDATE})
+@JsonTypeName("positionUpdateWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_RES = "geoRes";
-  private GeoRes geoRes;
+public class PositionUpdateWrapper {
+  public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
+  private PositionUpdate positionUpdate;
 
-  public GeoResWrapper() {}
+  public PositionUpdateWrapper() {}
 
-  public GeoResWrapper geoRes(GeoRes geoRes) {
+  public PositionUpdateWrapper positionUpdate(PositionUpdate positionUpdate) {
 
-    this.geoRes = geoRes;
+    this.positionUpdate = positionUpdate;
     return this;
   }
 
   /**
-   * Get geoRes
-   * @return geoRes
+   * Get positionUpdate
+   * @return positionUpdate
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_RES)
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeoRes getGeoRes() {
-    return geoRes;
+  public PositionUpdate getPositionUpdate() {
+    return positionUpdate;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_RES)
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoRes(GeoRes geoRes) {
-    this.geoRes = geoRes;
+  public void setPositionUpdate(PositionUpdate positionUpdate) {
+    this.positionUpdate = positionUpdate;
   }
 
   @Override
@@ -86,21 +83,23 @@ public class GeoResWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResWrapper geoResWrapper = (GeoResWrapper)o;
-    return Objects.equals(this.geoRes, geoResWrapper.geoRes) && super.equals(o);
+    PositionUpdateWrapper positionUpdateWrapper = (PositionUpdateWrapper)o;
+    return Objects.equals(this.positionUpdate,
+                          positionUpdateWrapper.positionUpdate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoRes, super.hashCode());
+    return Objects.hash(positionUpdate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoRes: ").append(toIndentedString(geoRes)).append("\n");
+    sb.append("class PositionUpdateWrapper {\n");
+    sb.append("    positionUpdate: ")
+        .append(toIndentedString(positionUpdate))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

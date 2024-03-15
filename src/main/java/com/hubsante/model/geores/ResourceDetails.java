@@ -42,17 +42,19 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Resource
+ * ResourceDetails
  */
 @JsonPropertyOrder(
-    {Resource.JSON_PROPERTY_ID, Resource.JSON_PROPERTY_ORG_ID,
-     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_TYPE,
-     Resource.JSON_PROPERTY_NATURE, Resource.JSON_PROPERTY_MOBILITY,
-     Resource.JSON_PROPERTY_CAPACITY, Resource.JSON_PROPERTY_CONTACTS})
-@JsonTypeName("resource")
+    {ResourceDetails.JSON_PROPERTY_ID, ResourceDetails.JSON_PROPERTY_ORG_ID,
+     ResourceDetails.JSON_PROPERTY_NAME, ResourceDetails.JSON_PROPERTY_TYPE,
+     ResourceDetails.JSON_PROPERTY_NATURE,
+     ResourceDetails.JSON_PROPERTY_MOBILITY,
+     ResourceDetails.JSON_PROPERTY_CAPACITY,
+     ResourceDetails.JSON_PROPERTY_CONTACTS})
+@JsonTypeName("resourceDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Resource {
+public class ResourceDetails {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
@@ -225,9 +227,9 @@ public class Resource {
   public static final String JSON_PROPERTY_CONTACTS = "contacts";
   private List<Contact> contacts;
 
-  public Resource() {}
+  public ResourceDetails() {}
 
-  public Resource id(String id) {
+  public ResourceDetails id(String id) {
 
     this.id = id;
     return this;
@@ -251,7 +253,7 @@ public class Resource {
     this.id = id;
   }
 
-  public Resource orgId(String orgId) {
+  public ResourceDetails orgId(String orgId) {
 
     this.orgId = orgId;
     return this;
@@ -276,7 +278,7 @@ public class Resource {
     this.orgId = orgId;
   }
 
-  public Resource name(String name) {
+  public ResourceDetails name(String name) {
 
     this.name = name;
     return this;
@@ -300,7 +302,7 @@ public class Resource {
     this.name = name;
   }
 
-  public Resource type(TypeEnum type) {
+  public ResourceDetails type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -323,7 +325,7 @@ public class Resource {
     this.type = type;
   }
 
-  public Resource nature(NatureEnum nature) {
+  public ResourceDetails nature(NatureEnum nature) {
 
     this.nature = nature;
     return this;
@@ -346,7 +348,7 @@ public class Resource {
     this.nature = nature;
   }
 
-  public Resource mobility(MobilityEnum mobility) {
+  public ResourceDetails mobility(MobilityEnum mobility) {
 
     this.mobility = mobility;
     return this;
@@ -369,7 +371,7 @@ public class Resource {
     this.mobility = mobility;
   }
 
-  public Resource capacity(CapacityEnum capacity) {
+  public ResourceDetails capacity(CapacityEnum capacity) {
 
     this.capacity = capacity;
     return this;
@@ -392,13 +394,13 @@ public class Resource {
     this.capacity = capacity;
   }
 
-  public Resource contacts(List<Contact> contacts) {
+  public ResourceDetails contacts(List<Contact> contacts) {
 
     this.contacts = contacts;
     return this;
   }
 
-  public Resource addContactsItem(Contact contactsItem) {
+  public ResourceDetails addContactsItem(Contact contactsItem) {
     if (this.contacts == null) {
       this.contacts = new ArrayList<>();
     }
@@ -439,15 +441,15 @@ public class Resource {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Resource resource = (Resource)o;
-    return Objects.equals(this.id, resource.id) &&
-        Objects.equals(this.orgId, resource.orgId) &&
-        Objects.equals(this.name, resource.name) &&
-        Objects.equals(this.type, resource.type) &&
-        Objects.equals(this.nature, resource.nature) &&
-        Objects.equals(this.mobility, resource.mobility) &&
-        Objects.equals(this.capacity, resource.capacity) &&
-        Objects.equals(this.contacts, resource.contacts);
+    ResourceDetails resourceDetails = (ResourceDetails)o;
+    return Objects.equals(this.id, resourceDetails.id) &&
+        Objects.equals(this.orgId, resourceDetails.orgId) &&
+        Objects.equals(this.name, resourceDetails.name) &&
+        Objects.equals(this.type, resourceDetails.type) &&
+        Objects.equals(this.nature, resourceDetails.nature) &&
+        Objects.equals(this.mobility, resourceDetails.mobility) &&
+        Objects.equals(this.capacity, resourceDetails.capacity) &&
+        Objects.equals(this.contacts, resourceDetails.contacts);
   }
 
   @Override
@@ -459,7 +461,7 @@ public class Resource {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Resource {\n");
+    sb.append("class ResourceDetails {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
