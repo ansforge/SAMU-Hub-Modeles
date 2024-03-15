@@ -21,9 +21,9 @@ import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
-import com.hubsante.model.geolocationpos.GeolocalisationPosWrapper;
-import com.hubsante.model.geolocationreq.GeolocalisationReqWrapper;
-import com.hubsante.model.geolocationres.GeolocalisationResWrapper;
+import com.hubsante.model.geolocalisationpos.GeolocalisationPosWrapper;
+import com.hubsante.model.geolocalisationreq.GeolocalisationReqWrapper;
+import com.hubsante.model.geolocalisationres.GeolocalisationResWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 
