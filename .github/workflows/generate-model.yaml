@@ -100,9 +100,9 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/cisu || true
           rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
-          rm -r ./src/main/java/com/hubsante/model/geolocationpos || true
-          rm -r ./src/main/java/com/hubsante/model/geolocationreq || true
-          rm -r ./src/main/java/com/hubsante/model/geolocationres || true 
+          rm -r ./src/main/java/com/hubsante/model/geolocalisationpos || true
+          rm -r ./src/main/java/com/hubsante/model/geolocalisationreq || true
+          rm -r ./src/main/java/com/hubsante/model/geolocalisationres || true 
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew
