@@ -26,7 +26,7 @@ import java.util.Objects;
 
 @JsonPropertyOrder({"errorCode", "errorCause", "referencedDistributionID", "sourceMessage"})
 @JacksonXmlRootElement(localName = "message")
-public class ErrorReport extends ContentMessage {
+public class ErrorReport {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";
     private final String JSON_PROPERTY_ERROR_CODE = "errorCode";
