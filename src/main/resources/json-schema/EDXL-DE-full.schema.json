@@ -216,46 +216,79 @@
           }
         },
         {
-          "properties": {
-            "message": {
+          "allOf": [
+            {
               "properties": {
-                "geolocalisationPos": {
-                  "$ref": "GEO-POS.schema.json"
+                "message": {
+                  "$ref": "RC-DE.schema.json"
                 }
-              },
-              "required": [
-                "geolocalisationPos"
-              ]
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "geolocalisationPos": {
+                      "$ref": "GEO-POS.schema.json"
+                    }
+                  },
+                  "required": [
+                    "geolocalisationPos"
+                  ]
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "properties": {
-            "message": {
+          "allOf": [
+            {
               "properties": {
-                "geolocalisationReq": {
-                  "$ref": "GEO-REQ.schema.json"
+                "message": {
+                  "$ref": "RC-DE.schema.json"
                 }
-              },
-              "required": [
-                "geolocalisationReq"
-              ]
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "geolocalisationReq": {
+                      "$ref": "GEO-REQ.schema.json"
+                    }
+                  },
+                  "required": [
+                    "geolocalisationReq"
+                  ]
+                }
+              }
             }
-          }
+          ]
         },
         {
-          "properties": {
-            "message": {
+          "allOf": [
+            {
               "properties": {
-                "geolocalisationRes": {
-                  "$ref": "GEO-RES.schema.json"
+                "message": {
+                  "$ref": "RC-DE.schema.json"
                 }
-              },
-              "required": [
-                "geolocalisationRes"
-              ]
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "geolocalisationRes": {
+                      "$ref": "GEO-RES.schema.json"
+                    }
+                  },
+                  "required": [
+                    "geolocalisationRes"
+                  ]
+                }
+              }
             }
-          }
+          ]
         }
       ]
     },
