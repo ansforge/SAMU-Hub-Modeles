@@ -107,11 +107,11 @@ jobs:
 
       - name: Apply license
         run: ./gradlew licenseFormat
-        
-      - name: Commit and push changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: ⚙️ Auto-génération des classes et des specs
+#
+#      - name: Commit and push changes
+#        uses: stefanzweifel/git-auto-commit-action@v5
+#        with:
+#          commit_message: ⚙️ Auto-génération des classes et des specs
 
       - name: Build and run tests
         run: ./gradlew test --info
