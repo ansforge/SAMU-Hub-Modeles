@@ -108,13 +108,13 @@ public class App {
                 root = "info";
                 break;
             case "GEO-RES":
-                root = "geolocalisation";
+                root = "resourceDetails";
                 break;
             case "GEO-REQ":
-                root = "geolocalisation";
+                root = "resource";
                 break;
             case "GEO-POS":
-                root = "geolocalisation";
+                root = "positionUpdate";
                 break;
             default:
                 root = "";
