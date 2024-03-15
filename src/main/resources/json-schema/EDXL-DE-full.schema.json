@@ -214,6 +214,48 @@
               ]
             }
           }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "geolocalisationPos": {
+                  "$ref": "GEO-POS.schema.json"
+                }
+              },
+              "required": [
+                "geolocalisationPos"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "geolocalisationReq": {
+                  "$ref": "GEO-REQ.schema.json"
+                }
+              },
+              "required": [
+                "geolocalisationReq"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "geolocalisationRes": {
+                  "$ref": "GEO-RES.schema.json"
+                }
+              },
+              "required": [
+                "geolocalisationRes"
+              ]
+            }
+          }
         }
       ]
     },
