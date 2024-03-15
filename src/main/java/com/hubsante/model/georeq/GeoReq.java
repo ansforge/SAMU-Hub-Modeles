@@ -25,74 +25,52 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocalisationpos;
+package com.hubsante.model.georeq;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocalisationpos.Position;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Arrays;
-import java.util.List;
+
 import java.util.Objects;
 
 /**
- * GeolocalisationPos
+ * GeoReq
  */
-@JsonPropertyOrder({GeolocalisationPos.JSON_PROPERTY_POSITION_UPDATE})
-@JsonTypeName("geolocalisationPos")
+@JsonPropertyOrder({GeoReq.JSON_PROPERTY_RESOURCE_REQUEST})
+@JsonTypeName("geoReq")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeolocalisationPos {
+public class GeoReq {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geolocalisationPos";
-  public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
-  private List<Position> positionUpdate;
+  String xmlns = "urn:emergency:cisu:2.0:geoReq";
+  public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
+  private Resource resourceRequest;
 
-  public GeolocalisationPos() {}
+  public GeoReq() {}
 
-  public GeolocalisationPos positionUpdate(List<Position> positionUpdate) {
+  public GeoReq resourceRequest(Resource resourceRequest) {
 
-    this.positionUpdate = positionUpdate;
-    return this;
-  }
-
-  public GeolocalisationPos addPositionUpdateItem(Position positionUpdateItem) {
-    if (this.positionUpdate == null) {
-      this.positionUpdate = new ArrayList<>();
-    }
-    this.positionUpdate.add(positionUpdateItem);
+    this.resourceRequest = resourceRequest;
     return this;
   }
 
   /**
-   * Get positionUpdate
-   * @return positionUpdate
+   * Get resourceRequest
+   * @return resourceRequest
    **/
-  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Position> getPositionUpdate() {
-    return positionUpdate;
+  public Resource getResourceRequest() {
+    return resourceRequest;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPositionUpdate(List<Position> positionUpdate) {
-    if (positionUpdate == null) {
-      return;
-    }
-    if (this.positionUpdate == null) {
-      this.positionUpdate = new ArrayList<>();
-    }
-    this.positionUpdate.addAll(positionUpdate);
+  public void setResourceRequest(Resource resourceRequest) {
+    this.resourceRequest = resourceRequest;
   }
 
   @Override
@@ -103,22 +81,22 @@ public class GeolocalisationPos {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeolocalisationPos geolocalisationPos = (GeolocalisationPos)o;
-    return Objects.equals(this.positionUpdate,
-                          geolocalisationPos.positionUpdate);
+    GeoReq geoReq = (GeoReq)o;
+    return Objects.equals(this.resourceRequest,
+                          geoReq.resourceRequest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(positionUpdate);
+    return Objects.hash(resourceRequest);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeolocalisationPos {\n");
-    sb.append("    positionUpdate: ")
-        .append(toIndentedString(positionUpdate))
+    sb.append("class GeoReq {\n");
+    sb.append("    resourceRequest: ")
+        .append(toIndentedString(resourceRequest))
         .append("\n");
     sb.append("}");
     return sb.toString();

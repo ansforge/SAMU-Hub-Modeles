@@ -9,11 +9,11 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..*] </TD></TR>
                 </TABLE>>]
-	resourceRequest -> geolocalisationReq [constraint=true headlabel=1 taillabel="0..1"]
-	geolocalisationReq [label=<<TABLE>
+	resourceRequest -> geoReq [constraint=true headlabel=1 taillabel="0..1"]
+	geoReq [label=<<TABLE>
                 <TR>
-                <TD ><B>geolocalisationReq</B></TD>
+                <TD ><B>geoReq</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet geolocalisationReq</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet geoReq</I></TD></TR>
                 </TABLE>>]
 }

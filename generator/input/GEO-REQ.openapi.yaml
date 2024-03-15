@@ -1,19 +1,19 @@
 openapi: 3.0.0
 components:
   schemas:
-    geolocalisationReqWrapper:
+    geoReqWrapper:
       type: object
       required:
-      - geolocalisationReq
+      - geoReq
       properties:
-        geolocalisationReq:
-          $ref: '#/components/schemas/geolocalisationReq'
-    geolocalisationReq:
+        geoReq:
+          $ref: '#/components/schemas/geoReq'
+    geoReq:
       $id: classpath:/json-schema/schema#
       x-id: GEO-REQ.schema.json#
       example: example.json#
       type: object
-      title: geolocalisationReq
+      title: geoReq
       required: []
       properties:
         resourceRequest:

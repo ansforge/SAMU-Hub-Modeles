@@ -228,12 +228,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "geolocalisationPos": {
+                    "geoPos": {
                       "$ref": "GEO-POS.schema.json"
                     }
                   },
                   "required": [
-                    "geolocalisationPos"
+                    "geoPos"
                   ]
                 }
               }
@@ -253,12 +253,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "geolocalisationReq": {
+                    "geoReq": {
                       "$ref": "GEO-REQ.schema.json"
                     }
                   },
                   "required": [
-                    "geolocalisationReq"
+                    "geoReq"
                   ]
                 }
               }
@@ -278,12 +278,12 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "geolocalisationRes": {
+                    "geoRes": {
                       "$ref": "GEO-RES.schema.json"
                     }
                   },
                   "required": [
-                    "geolocalisationRes"
+                    "geoRes"
                   ]
                 }
               }

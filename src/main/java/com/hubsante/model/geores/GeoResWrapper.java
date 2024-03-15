@@ -25,71 +25,56 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocalisationreq;
+package com.hubsante.model.geores;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Arrays;
-import java.util.List;
+import com.hubsante.model.common.DistributionElement;
+
 import java.util.Objects;
 
 /**
- * Resource
+ * GeoResWrapper
  */
-@JsonPropertyOrder({Resource.JSON_PROPERTY_RESOURCE_ID})
-@JsonTypeName("resource")
+@JsonPropertyOrder(
+    {GeoResWrapper.JSON_PROPERTY_GEO_RES})
+@JsonTypeName("geoResWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Resource {
-  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
-  private List<String> resourceId = new ArrayList<>();
+public class GeoResWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
+  public static final String JSON_PROPERTY_GEO_RES =
+      "geoRes";
+  private GeoRes geoRes;
 
-  public Resource() {}
+  public GeoResWrapper() {}
 
-  public Resource resourceId(List<String> resourceId) {
+  public GeoResWrapper
+  geoRes(GeoRes geoRes) {
 
-    this.resourceId = resourceId;
-    return this;
-  }
-
-  public Resource addResourceIdItem(String resourceIdItem) {
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
-    }
-    this.resourceId.add(resourceIdItem);
+    this.geoRes = geoRes;
     return this;
   }
 
   /**
-   * Get resourceId
-   * @return resourceId
+   * Get geoRes
+   * @return geoRes
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
+  @JsonProperty(JSON_PROPERTY_GEO_RES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<String> getResourceId() {
-    return resourceId;
+  public GeoRes getGeoRes() {
+    return geoRes;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
+  @JsonProperty(JSON_PROPERTY_GEO_RES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceId(List<String> resourceId) {
-    if (resourceId == null) {
-      return;
-    }
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
-    }
-    this.resourceId.addAll(resourceId);
+  public void setGeoRes(GeoRes geoRes) {
+    this.geoRes = geoRes;
   }
 
   @Override
@@ -100,21 +85,25 @@ public class Resource {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Resource resource = (Resource)o;
-    return Objects.equals(this.resourceId, resource.resourceId);
+    GeoResWrapper geoResWrapper =
+        (GeoResWrapper)o;
+    return Objects.equals(this.geoRes,
+                          geoResWrapper.geoRes) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceId);
+    return Objects.hash(geoRes, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Resource {\n");
-    sb.append("    resourceId: ")
-        .append(toIndentedString(resourceId))
+    sb.append("class GeoResWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    geoRes: ")
+        .append(toIndentedString(geoRes))
         .append("\n");
     sb.append("}");
     return sb.toString();

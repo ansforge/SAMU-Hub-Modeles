@@ -16,11 +16,11 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >datetime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >receptionDatetime <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >speed <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >cap <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >move <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >engineOn <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >groundStatus <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >engagedStatus <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	positionUpdate -> geolocalisationPos [constraint=true headlabel=1 taillabel="0..*"]
-	geolocalisationPos [label=<<TABLE>
+	positionUpdate -> geoPos [constraint=true headlabel=1 taillabel="0..*"]
+	geoPos [label=<<TABLE>
                 <TR>
-                <TD ><B>geolocalisationPos</B></TD>
+                <TD ><B>geoPos</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet geolocalisationPos</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet geoPos</I></TD></TR>
                 </TABLE>>]
 }

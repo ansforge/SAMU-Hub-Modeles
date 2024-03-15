@@ -1,19 +1,19 @@
 openapi: 3.0.0
 components:
   schemas:
-    geolocalisationResWrapper:
+    geoResWrapper:
       type: object
       required:
-      - geolocalisationRes
+      - geoRes
       properties:
-        geolocalisationRes:
-          $ref: '#/components/schemas/geolocalisationRes'
-    geolocalisationRes:
+        geoRes:
+          $ref: '#/components/schemas/geoRes'
+    geoRes:
       $id: classpath:/json-schema/schema#
       x-id: GEO-RES.schema.json#
       example: example.json#
       type: object
-      title: geolocalisationRes
+      title: geoRes
       required: []
       properties:
         resourceDetails:

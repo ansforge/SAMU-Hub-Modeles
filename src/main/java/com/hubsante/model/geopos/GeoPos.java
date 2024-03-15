@@ -25,75 +25,70 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocalisationres;
+package com.hubsante.model.geopos;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocalisationres.Resource;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * GeolocalisationRes
+ * GeoPos
  */
-@JsonPropertyOrder({GeolocalisationRes.JSON_PROPERTY_RESOURCE_DETAILS})
-@JsonTypeName("geolocalisationRes")
+@JsonPropertyOrder({GeoPos.JSON_PROPERTY_POSITION_UPDATE})
+@JsonTypeName("geoPos")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeolocalisationRes {
+public class GeoPos {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geolocalisationRes";
-  public static final String JSON_PROPERTY_RESOURCE_DETAILS = "resourceDetails";
-  private List<Resource> resourceDetails;
+  String xmlns = "urn:emergency:cisu:2.0:geoPos";
+  public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
+  private List<Position> positionUpdate;
 
-  public GeolocalisationRes() {}
+  public GeoPos() {}
 
-  public GeolocalisationRes resourceDetails(List<Resource> resourceDetails) {
+  public GeoPos positionUpdate(List<Position> positionUpdate) {
 
-    this.resourceDetails = resourceDetails;
+    this.positionUpdate = positionUpdate;
     return this;
   }
 
-  public GeolocalisationRes
-  addResourceDetailsItem(Resource resourceDetailsItem) {
-    if (this.resourceDetails == null) {
-      this.resourceDetails = new ArrayList<>();
+  public GeoPos addPositionUpdateItem(Position positionUpdateItem) {
+    if (this.positionUpdate == null) {
+      this.positionUpdate = new ArrayList<>();
     }
-    this.resourceDetails.add(resourceDetailsItem);
+    this.positionUpdate.add(positionUpdateItem);
     return this;
   }
 
   /**
-   * Get resourceDetails
-   * @return resourceDetails
+   * Get positionUpdate
+   * @return positionUpdate
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Resource> getResourceDetails() {
-    return resourceDetails;
+  public List<Position> getPositionUpdate() {
+    return positionUpdate;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceDetails(List<Resource> resourceDetails) {
-    if (resourceDetails == null) {
+  public void setPositionUpdate(List<Position> positionUpdate) {
+    if (positionUpdate == null) {
       return;
     }
-    if (this.resourceDetails == null) {
-      this.resourceDetails = new ArrayList<>();
+    if (this.positionUpdate == null) {
+      this.positionUpdate = new ArrayList<>();
     }
-    this.resourceDetails.addAll(resourceDetails);
+    this.positionUpdate.addAll(positionUpdate);
   }
 
   @Override
@@ -104,22 +99,22 @@ public class GeolocalisationRes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeolocalisationRes geolocalisationRes = (GeolocalisationRes)o;
-    return Objects.equals(this.resourceDetails,
-                          geolocalisationRes.resourceDetails);
+    GeoPos geoPos = (GeoPos)o;
+    return Objects.equals(this.positionUpdate,
+                          geoPos.positionUpdate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceDetails);
+    return Objects.hash(positionUpdate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeolocalisationRes {\n");
-    sb.append("    resourceDetails: ")
-        .append(toIndentedString(resourceDetails))
+    sb.append("class GeoPos {\n");
+    sb.append("    positionUpdate: ")
+        .append(toIndentedString(positionUpdate))
         .append("\n");
     sb.append("}");
     return sb.toString();

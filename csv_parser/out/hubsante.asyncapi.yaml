@@ -5601,12 +5601,12 @@ components:
             $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/RESOURCE/0/RGEO/0
-    geolocalisationPos:
+    geoPos:
       $id: classpath:/json-schema/schema#
       x-id: GEO-POS.schema.json#
       example: example.json#
       type: object
-      title: geolocalisationPos
+      title: geoPos
       required: []
       properties:
         positionUpdate:
@@ -5614,23 +5614,23 @@ components:
           items:
             $ref: '#/components/schemas/position'
       additionalProperties: false
-    geolocalisationReq:
+    geoReq:
       $id: classpath:/json-schema/schema#
       x-id: GEO-REQ.schema.json#
       example: example.json#
       type: object
-      title: geolocalisationReq
+      title: geoReq
       required: []
       properties:
         resourceRequest:
           $ref: '#/components/schemas/resource'
       additionalProperties: false
-    geolocalisationRes:
+    geoRes:
       $id: classpath:/json-schema/schema#
       x-id: GEO-RES.schema.json#
       example: example.json#
       type: object
-      title: geolocalisationRes
+      title: geoRes
       required: []
       properties:
         resourceDetails:

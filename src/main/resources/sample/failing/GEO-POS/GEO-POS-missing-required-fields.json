@@ -31,7 +31,7 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "geolocalisationPos": {
+            "geoPos": {
               "positionUpdate": [
                 {
                   "id": "76_45101#SMUR1#",

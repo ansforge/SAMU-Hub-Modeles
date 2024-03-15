@@ -31,7 +31,7 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "geolocalisationRes": {
+            "geoRes": {
               "resourceDetails": [
                 {
                   "orgId": "fr.health.760.samu76",

@@ -25,60 +25,56 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocalisationpos;
+package com.hubsante.model.geopos;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.geolocalisationpos.GeolocalisationPos;
-import java.util.Arrays;
-import java.util.Arrays;
+
 import java.util.Objects;
 
 /**
- * GeolocalisationPosWrapper
+ * GeoPosWrapper
  */
 @JsonPropertyOrder(
-    {GeolocalisationPosWrapper.JSON_PROPERTY_GEOLOCALISATION_POS})
-@JsonTypeName("geolocalisationPosWrapper")
+    {GeoPosWrapper.JSON_PROPERTY_GEO_POS})
+@JsonTypeName("geoPosWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeolocalisationPosWrapper extends DistributionElement {
+public class GeoPosWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEOLOCALISATION_POS =
-      "geolocalisationPos";
-  private GeolocalisationPos geolocalisationPos;
+  public static final String JSON_PROPERTY_GEO_POS =
+      "geoPos";
+  private GeoPos geoPos;
 
-  public GeolocalisationPosWrapper() {}
+  public GeoPosWrapper() {}
 
-  public GeolocalisationPosWrapper
-  geolocalisationPos(GeolocalisationPos geolocalisationPos) {
+  public GeoPosWrapper
+  geoPos(GeoPos geoPos) {
 
-    this.geolocalisationPos = geolocalisationPos;
+    this.geoPos = geoPos;
     return this;
   }
 
   /**
-   * Get geolocalisationPos
-   * @return geolocalisationPos
+   * Get geoPos
+   * @return geoPos
    **/
-  @JsonProperty(JSON_PROPERTY_GEOLOCALISATION_POS)
+  @JsonProperty(JSON_PROPERTY_GEO_POS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeolocalisationPos getGeolocalisationPos() {
-    return geolocalisationPos;
+  public GeoPos getGeoPos() {
+    return geoPos;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEOLOCALISATION_POS)
+  @JsonProperty(JSON_PROPERTY_GEO_POS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeolocalisationPos(GeolocalisationPos geolocalisationPos) {
-    this.geolocalisationPos = geolocalisationPos;
+  public void setGeoPos(GeoPos geoPos) {
+    this.geoPos = geoPos;
   }
 
   @Override
@@ -89,25 +85,25 @@ public class GeolocalisationPosWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeolocalisationPosWrapper geolocalisationPosWrapper =
-        (GeolocalisationPosWrapper)o;
-    return Objects.equals(this.geolocalisationPos,
-                          geolocalisationPosWrapper.geolocalisationPos) &&
+    GeoPosWrapper geoPosWrapper =
+        (GeoPosWrapper)o;
+    return Objects.equals(this.geoPos,
+                          geoPosWrapper.geoPos) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geolocalisationPos, super.hashCode());
+    return Objects.hash(geoPos, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeolocalisationPosWrapper {\n");
+    sb.append("class GeoPosWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geolocalisationPos: ")
-        .append(toIndentedString(geolocalisationPos))
+    sb.append("    geoPos: ")
+        .append(toIndentedString(geoPos))
         .append("\n");
     sb.append("}");
     return sb.toString();
