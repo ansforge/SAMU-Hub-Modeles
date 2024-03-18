@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocalisation.resource;
+package com.hubsante.model.geores;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -35,47 +35,47 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.geolocalisation.resource.Resource;
+import com.hubsante.model.geores.GeoRes;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ResourceWrapper
+ * GeoResWrapper
  */
-@JsonPropertyOrder({ResourceWrapper.JSON_PROPERTY_RESOURCE})
-@JsonTypeName("resourceWrapper")
+@JsonPropertyOrder({GeoResWrapper.JSON_PROPERTY_GEO_RES})
+@JsonTypeName("geoResWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourceWrapper extends DistributionElement {
+public class GeoResWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_RESOURCE = "resource";
-  private Resource resource;
+  public static final String JSON_PROPERTY_GEO_RES = "geoRes";
+  private GeoRes geoRes;
 
-  public ResourceWrapper() {}
+  public GeoResWrapper() {}
 
-  public ResourceWrapper resource(Resource resource) {
+  public GeoResWrapper geoRes(GeoRes geoRes) {
 
-    this.resource = resource;
+    this.geoRes = geoRes;
     return this;
   }
 
   /**
-   * Get resource
-   * @return resource
+   * Get geoRes
+   * @return geoRes
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_GEO_RES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Resource getResource() {
-    return resource;
+  public GeoRes getGeoRes() {
+    return geoRes;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_GEO_RES)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResource(Resource resource) {
-    this.resource = resource;
+  public void setGeoRes(GeoRes geoRes) {
+    this.geoRes = geoRes;
   }
 
   @Override
@@ -86,22 +86,21 @@ public class ResourceWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResourceWrapper resourceWrapper = (ResourceWrapper)o;
-    return Objects.equals(this.resource, resourceWrapper.resource) &&
-        super.equals(o);
+    GeoResWrapper geoResWrapper = (GeoResWrapper)o;
+    return Objects.equals(this.geoRes, geoResWrapper.geoRes) && super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resource, super.hashCode());
+    return Objects.hash(geoRes, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResourceWrapper {\n");
+    sb.append("class GeoResWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
+    sb.append("    geoRes: ").append(toIndentedString(geoRes)).append("\n");
     sb.append("}");
     return sb.toString();
   }

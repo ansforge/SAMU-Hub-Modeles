@@ -227,90 +227,37 @@
             {
               "properties": {
                 "message": {
-                  "properties": {
-                    "geolocalisation": {
+                  "oneOf": [
+                    {
                       "properties": {
-                        "positionUpdate": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "GEO-POS.schema.json"
-                          }
+                        "geoPositionUpdate": {
+                          "$ref": "GEO-POS.schema.json"
                         }
                       },
                       "required": [
-                        "positionUpdate"
+                        "geoPositionUpdate"
                       ]
-                    }
-                  },
-                  "required": [
-                    "geolocalisation"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
-                    "geolocalisation": {
+                    },
+                    {
                       "properties": {
-                        "resourceDetails": {
-                          "type": "array",
-                          "items": {
-                            "$ref": "GEO-RES.schema.json"
-                          }
-                        }
-                      },
-                      "required": [
-                        "resourceDetails"
-                      ]
-                    }
-                  },
-                  "required": [
-                    "geolocalisation"
-                  ]
-                }
-              }
-            }
-          ]
-        },
-        {
-          "allOf": [
-            {
-              "properties": {
-                "message": {
-                  "$ref": "RC-DE.schema.json"
-                }
-              }
-            },
-            {
-              "properties": {
-                "message": {
-                  "properties": {
-                    "geolocalisation": {
-                      "properties": {
-                        "resource": {
+                        "geoResourceRequest": {
                           "$ref": "GEO-REQ.schema.json"
                         }
                       },
                       "required": [
-                        "resource"
+                        "geoResourceRequest"
+                      ]
+                    },
+                    {
+                      "properties": {
+                        "geoResourceDetails": {
+                          "$ref": "GEO-RES.schema.json"
+                        }
+                      },
+                      "required": [
+                        "geoResourceDetails"
                       ]
                     }
-                  },
-                  "required": [
-                    "geolocalisation"
                   ]
                 }
               }

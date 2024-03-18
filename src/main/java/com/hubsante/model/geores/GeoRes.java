@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocalisation.resource;
+package com.hubsante.model.geores;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.geores.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -41,57 +42,57 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * Resource
+ * GeoRes
  */
-@JsonPropertyOrder({Resource.JSON_PROPERTY_RESOURCE_ID})
-@JsonTypeName("resource")
+@JsonPropertyOrder({GeoRes.JSON_PROPERTY_RESOURCE_DETAILS})
+@JsonTypeName("geoRes")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Resource {
+public class GeoRes {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:resource";
-  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
-  private List<String> resourceId = new ArrayList<>();
+  String xmlns = "urn:emergency:cisu:2.0:geoRes";
+  public static final String JSON_PROPERTY_RESOURCE_DETAILS = "resourceDetails";
+  private List<Resource> resourceDetails;
 
-  public Resource() {}
+  public GeoRes() {}
 
-  public Resource resourceId(List<String> resourceId) {
+  public GeoRes resourceDetails(List<Resource> resourceDetails) {
 
-    this.resourceId = resourceId;
+    this.resourceDetails = resourceDetails;
     return this;
   }
 
-  public Resource addResourceIdItem(String resourceIdItem) {
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
+  public GeoRes addResourceDetailsItem(Resource resourceDetailsItem) {
+    if (this.resourceDetails == null) {
+      this.resourceDetails = new ArrayList<>();
     }
-    this.resourceId.add(resourceIdItem);
+    this.resourceDetails.add(resourceDetailsItem);
     return this;
   }
 
   /**
-   * Get resourceId
-   * @return resourceId
+   * Get resourceDetails
+   * @return resourceDetails
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getResourceId() {
-    return resourceId;
+  public List<Resource> getResourceDetails() {
+    return resourceDetails;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceId(List<String> resourceId) {
-    if (resourceId == null) {
+  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setResourceDetails(List<Resource> resourceDetails) {
+    if (resourceDetails == null) {
       return;
     }
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
+    if (this.resourceDetails == null) {
+      this.resourceDetails = new ArrayList<>();
     }
-    this.resourceId.addAll(resourceId);
+    this.resourceDetails.addAll(resourceDetails);
   }
 
   @Override
@@ -102,21 +103,21 @@ public class Resource {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Resource resource = (Resource)o;
-    return Objects.equals(this.resourceId, resource.resourceId);
+    GeoRes geoRes = (GeoRes)o;
+    return Objects.equals(this.resourceDetails, geoRes.resourceDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceId);
+    return Objects.hash(resourceDetails);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Resource {\n");
-    sb.append("    resourceId: ")
-        .append(toIndentedString(resourceId))
+    sb.append("class GeoRes {\n");
+    sb.append("    resourceDetails: ")
+        .append(toIndentedString(resourceDetails))
         .append("\n");
     sb.append("}");
     return sb.toString();

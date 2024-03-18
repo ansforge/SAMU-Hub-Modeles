@@ -31,14 +31,14 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
-                        <geolocalisation>
-                            <resourceRequest_error xmlns="urn:emergency:cisu:2.0:resource">
+                        <geoReq xmlns="urn:emergency:cisu:2.0:geoReq">
+                            <resourceRequest_error>
                                 <resourceId>76_45101#SMUR1#</resourceId>
                                 <resourceId>76_45102#SMUR2#</resourceId>
                                 <resourceId>76_45103#SMUR4#</resourceId>
                                 <resourceId>14_45103#SMUR3#</resourceId>
                             </resourceRequest_error>
-                        </geolocalisation>
+                        </geoReq>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

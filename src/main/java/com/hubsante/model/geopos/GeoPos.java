@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocalisation.resourceDetails;
+package com.hubsante.model.geopos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,49 +34,65 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.geolocalisation.resourceDetails.ResourceDetails;
+import com.hubsante.model.geopos.Position;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * ResourceDetailsWrapper
+ * GeoPos
  */
-@JsonPropertyOrder({ResourceDetailsWrapper.JSON_PROPERTY_RESOURCE_DETAILS})
-@JsonTypeName("resourceDetailsWrapper")
+@JsonPropertyOrder({GeoPos.JSON_PROPERTY_POSITION_UPDATE})
+@JsonTypeName("geoPos")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourceDetailsWrapper extends DistributionElement {
+public class GeoPos {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_RESOURCE_DETAILS = "resourceDetails";
-  private ResourceDetails resourceDetails;
+  String xmlns = "urn:emergency:cisu:2.0:geoPos";
+  public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
+  private List<Position> positionUpdate;
 
-  public ResourceDetailsWrapper() {}
+  public GeoPos() {}
 
-  public ResourceDetailsWrapper
-  resourceDetails(ResourceDetails resourceDetails) {
+  public GeoPos positionUpdate(List<Position> positionUpdate) {
 
-    this.resourceDetails = resourceDetails;
+    this.positionUpdate = positionUpdate;
+    return this;
+  }
+
+  public GeoPos addPositionUpdateItem(Position positionUpdateItem) {
+    if (this.positionUpdate == null) {
+      this.positionUpdate = new ArrayList<>();
+    }
+    this.positionUpdate.add(positionUpdateItem);
     return this;
   }
 
   /**
-   * Get resourceDetails
-   * @return resourceDetails
+   * Get positionUpdate
+   * @return positionUpdate
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ResourceDetails getResourceDetails() {
-    return resourceDetails;
+  public List<Position> getPositionUpdate() {
+    return positionUpdate;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceDetails(ResourceDetails resourceDetails) {
-    this.resourceDetails = resourceDetails;
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPositionUpdate(List<Position> positionUpdate) {
+    if (positionUpdate == null) {
+      return;
+    }
+    if (this.positionUpdate == null) {
+      this.positionUpdate = new ArrayList<>();
+    }
+    this.positionUpdate.addAll(positionUpdate);
   }
 
   @Override
@@ -87,24 +103,21 @@ public class ResourceDetailsWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResourceDetailsWrapper resourceDetailsWrapper = (ResourceDetailsWrapper)o;
-    return Objects.equals(this.resourceDetails,
-                          resourceDetailsWrapper.resourceDetails) &&
-        super.equals(o);
+    GeoPos geoPos = (GeoPos)o;
+    return Objects.equals(this.positionUpdate, geoPos.positionUpdate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceDetails, super.hashCode());
+    return Objects.hash(positionUpdate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResourceDetailsWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    resourceDetails: ")
-        .append(toIndentedString(resourceDetails))
+    sb.append("class GeoPos {\n");
+    sb.append("    positionUpdate: ")
+        .append(toIndentedString(positionUpdate))
         .append("\n");
     sb.append("}");
     return sb.toString();

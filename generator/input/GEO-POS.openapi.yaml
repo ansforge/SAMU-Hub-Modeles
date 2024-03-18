@@ -1,19 +1,31 @@
 openapi: 3.0.0
 components:
   schemas:
-    positionUpdateWrapper:
+    geoPosWrapper:
       type: object
       required:
-      - positionUpdate
+      - geoPos
       properties:
-        positionUpdate:
-          $ref: '#/components/schemas/positionUpdate'
-    positionUpdate:
+        geoPos:
+          $ref: '#/components/schemas/geoPos'
+    geoPos:
       $id: classpath:/json-schema/schema#
       x-id: GEO-POS.schema.json#
       example: example.json#
       type: object
-      title: positionUpdate
+      title: geoPos
+      required: []
+      properties:
+        positionUpdate:
+          type: array
+          items:
+            $ref: '#/components/schemas/position'
+      additionalProperties: false
+    position:
+      type: object
+      title: Position
+      x-display: expansion-panels
+      x-health-only: false
       required:
       - id
       - datetime
@@ -23,7 +35,7 @@ components:
           title: Identifiant de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/id
+          example: example.json#/positionUpdate/0/id
           description: "Identifiant unique de la ressource  dans le syst\xE8me du\
             \ partenaire propri\xE9taire"
           examples:
@@ -34,7 +46,7 @@ components:
             \ ressource"
           x-health-only: false
           x-cols: 6
-          example: example.json#/datetime
+          example: example.json#/positionUpdate/0/datetime
           description: "Date et heure de la derni\xE8re position connue"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -45,7 +57,7 @@ components:
           title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/receptionDatetime
+          example: example.json#/positionUpdate/0/receptionDatetime
           description: "Date et heure de la r\xE9ception de la derni\xE8re position\
             \ connue dans le syst\xE8me de l'organisme"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
@@ -61,7 +73,7 @@ components:
           title: Vitesse de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/speed
+          example: example.json#/positionUpdate/0/speed
           description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
           examples:
           - 80
@@ -70,7 +82,7 @@ components:
           title: Direction de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/cap
+          example: example.json#/positionUpdate/0/cap
           description: "Direction de la ressource, exprim\xE9 en degr\xE9s"
           examples:
           - 96
@@ -79,7 +91,7 @@ components:
           title: Mouvement de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/move
+          example: example.json#/positionUpdate/0/move
           description: Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)
           enum:
           - MOBILE
@@ -91,7 +103,7 @@ components:
           title: Etat du moteur de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/engineOn
+          example: example.json#/positionUpdate/0/engineOn
           description: "Indique si le moteur de la ressource est \xE9teint (FAUX)\
             \ ou allum\xE9/en marche (VRAI)"
           examples:
@@ -101,7 +113,7 @@ components:
           title: "Etat de l'h\xE9licopt\xE8re"
           x-health-only: false
           x-cols: 6
-          example: example.json#/groundStatus
+          example: example.json#/positionUpdate/0/groundStatus
           description: "Indique si l'h\xE9licopt\xE8re est au sol (VRAI) ou en l'air\
             \ (FAUX)"
           examples:
@@ -111,7 +123,7 @@ components:
           title: Statut de la ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/status
+          example: example.json#/positionUpdate/0/status
           description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
             - DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque\
             \ la ressource n'est pas disponible, celle-ci peut \xEAtre engag\xE9e\
@@ -127,7 +139,7 @@ components:
           title: "Statut de la ressource engag\xE9e"
           x-health-only: false
           x-cols: 6
-          example: example.json#/engagedStatus
+          example: example.json#/positionUpdate/0/engagedStatus
           description: "Pr\xE9cise le statut d'une ressource qui est engag\xE9e sur\
             \ une mission"
           enum:
@@ -144,6 +156,7 @@ components:
           examples:
           - PARTIE
       additionalProperties: false
+      example: example.json#/positionUpdate/0
     coord:
       type: object
       title: "Coordonn\xE9es"
@@ -158,7 +171,7 @@ components:
           title: 'Latitude '
           x-health-only: false
           x-cols: 6
-          example: example.json#/coord/0/lat
+          example: example.json#/positionUpdate/0/coord/0/lat
           description: "Derni\xE8re coordonn\xE9e x connue de la ressource, entre\
             \ \u221290 and +90"
           examples:
@@ -168,7 +181,7 @@ components:
           title: Longitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/coord/0/lon
+          example: example.json#/positionUpdate/0/coord/0/lon
           description: "Derni\xE8re coordonn\xE9e y connue de la ressource, entre\
             \ \u2212180 and +180"
           examples:
@@ -178,13 +191,13 @@ components:
           title: Altitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/coord/0/height
+          example: example.json#/positionUpdate/0/coord/0/height
           description: "Derni\xE8re coordonn\xE9e z connue de la ressource, en m\xE8\
             tres sans bornes"
           examples:
           - 1
       additionalProperties: false
-      example: example.json#/coord/0
+      example: example.json#/positionUpdate/0/coord/0
       examples:
       - lat: '47.221866'
         lon: '-1.575807'

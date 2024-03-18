@@ -31,8 +31,8 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
-                        <geolocalisation>
-                            <positionUpdate xmlns="urn:emergency:cisu:2.0:positionUpdate">
+                        <geoPositionUpdate xmlns="urn:emergency:cisu:2.0:geoPositionUpdate">
+                            <position>
                                 <id>76_45101#SMUR1#</id>
                                 <datetime>2024-01-27T08:44:00+02:00</datetime>
                                 <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
@@ -43,8 +43,8 @@
                                 <move>STATIQUE</move>
                                 <engineOn>false</engineOn>
                                 <status>DISPONIBLE</status>
-                            </positionUpdate>
-                            <positionUpdate xmlns="urn:emergency:cisu:2.0:positionUpdate">
+                            </position>
+                            <position>
                                 <id>76_45102#SMUR2#</id>
                                 <datetime>2024-01-27T08:43:00+02:00</datetime>
                                 <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
@@ -56,8 +56,8 @@
                                 <engineOn>true</engineOn>
                                 <status>INDISPONIBLE</status>
                                 <engagedStatus>ARRIVEE_LIEU</engagedStatus>
-                            </positionUpdate>
-                            <positionUpdate xmlns="urn:emergency:cisu:2.0:positionUpdate">
+                            </position>
+                            <position>
                                 <id>76_45104#SMUR4#</id>
                                 <datetime>2024-01-27T08:46:00+02:00</datetime>
                                 <receptionDatetime>2024-01-27T08:48:00+02:00</receptionDatetime>
@@ -68,8 +68,8 @@
                                 <move>MOBILE</move>
                                 <engineOn>false</engineOn>
                                 <status>INDISPONIBLE</status>
-                            </positionUpdate>
-                        </geolocalisation>
+                            </position>
+                        </geoPositionUpdate>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

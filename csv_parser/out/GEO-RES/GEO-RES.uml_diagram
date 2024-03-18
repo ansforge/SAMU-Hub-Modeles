@@ -14,6 +14,13 @@ strict digraph {
                 <TR>
                 <TD ><B>resourceDetails</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resourceDetails</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >nature <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >mobility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >capacity <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >nature <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >mobility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >capacity <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	resourceDetails -> geoRes [constraint=true headlabel=1 taillabel="0..*"]
+	geoRes [label=<<TABLE>
+                <TR>
+                <TD ><B>geoRes</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet geoRes</I></TD></TR>
                 </TABLE>>]
 }

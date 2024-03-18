@@ -31,8 +31,8 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
-                        <geolocalisation>
-                            <positionUpdate xmlns="urn:emergency:cisu:2.0:positionUpdate">
+                        <geoPos xmlns="urn:emergency:cisu:2.0:geoPos">
+                            <positionUpdate>
                                 <id>76_45101#SMUR1#</id>
                                 <datetime>2024-01-27T08:44:00+02:00</datetime>
                                 <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
@@ -42,7 +42,7 @@
                                 <engineOn>false</engineOn>
                                 <status>DISPONIBLE</status>
                             </positionUpdate>
-                            <positionUpdate xmlns="urn:emergency:cisu:2.0:positionUpdate">
+                            <positionUpdate>
                                 <id>76_45102#SMUR2#</id>
                                 <datetime>2024-01-27T08:43:00+02:00</datetime>
                                 <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
@@ -55,7 +55,7 @@
                                 <status>INDISPONIBLE</status>
                                 <engagedStatus>ARRIVEE_LIEU</engagedStatus>
                             </positionUpdate>
-                            <positionUpdate xmlns="urn:emergency:cisu:2.0:positionUpdate">
+                            <positionUpdate>
                                 <id>76_45104#SMUR4#</id>
                                 <datetime>2024-01-27T08:46:00+02:00</datetime>
                                 <receptionDatetime>2024-01-27T08:48:00+02:00</receptionDatetime>
@@ -67,7 +67,7 @@
                                 <engineOn>false</engineOn>
                                 <status>INDISPONIBLE</status>
                             </positionUpdate>
-                        </geolocalisation>
+                        </geoPos>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

@@ -3,10 +3,17 @@ strict digraph {
 	node [shape=none]
 	edge [arrowhead=odiamond arrowtail=none]
 	rankdir=BT
-	resource [label=<<TABLE>
+	resourceRequest [label=<<TABLE>
                 <TR>
-                <TD ><B>resource</B></TD>
+                <TD ><B>resourceRequest</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [1..*] </TD></TR>
+                </TABLE>>]
+	resourceRequest -> geoReq [constraint=true headlabel=1 taillabel="0..1"]
+	geoReq [label=<<TABLE>
+                <TR>
+                <TD ><B>geoReq</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet geoReq</I></TD></TR>
                 </TABLE>>]
 }
