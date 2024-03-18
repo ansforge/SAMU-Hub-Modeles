@@ -28,11 +28,6 @@ import static json_schema2xsd.App.revertEnumArraysConversion;
 import static org.junit.Assert.*;
 
 public class AppTest {
-    @Test public void appHasAGreeting() {
-        App classUnderTest = new App();
-        assertNotNull("app should have a greeting", classUnderTest.getGreeting());
-    }
-
     @Test
     public void enumArrayConversionWorks() throws IOException {
             JsonNode node = getRootNode("schema.json");

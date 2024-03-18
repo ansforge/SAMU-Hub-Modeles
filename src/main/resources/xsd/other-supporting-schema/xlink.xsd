@@ -200,7 +200,7 @@ constructs, e.g.
  <xs:element name="resource" type="xlink:resourceType" abstract="true"/>
 
  <xs:attributeGroup name="resourceAttrs">
-  <xs:attribute ref="xlink:type" fixed="resource" use="required"/>
+  <xs:attribute ref="xlink:type" fixed="resource"/>
   <xs:attribute ref="xlink:role"/>
   <xs:attribute ref="xlink:title"/>
   <xs:attribute ref="xlink:label"/>

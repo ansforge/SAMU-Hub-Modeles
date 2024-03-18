@@ -31,7 +31,7 @@ public class RsErrorValidatorTest extends AbstractValidatorTest {
     }
 
     @Test
-    @Disabled // TODO bbo: enabled it after xsd generation
+//    @Disabled // TODO bbo: enabled it after xsd generation
     @DisplayName("RS-ERROR xml validation passes")
     public void xmlRcRefValidationPasses() throws IOException {
         validationPasses("RS-ERROR", true);

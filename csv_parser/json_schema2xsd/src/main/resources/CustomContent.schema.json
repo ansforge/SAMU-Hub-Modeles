@@ -1,0 +1,13 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "CustomContent.schema.json#",
+    "version": "24.03.13",
+    "example": "example.json#",
+    "type": "object",
+    "title": "customContent",
+    "required": [],
+    "properties": {},
+    "definitions": {},
+    "additionalProperties": true
+}

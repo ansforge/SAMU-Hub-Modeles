@@ -1,12 +1,12 @@
 /**
  * Copyright © 2023-2024 Agence du Numerique en Sante (ANS)
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -25,10 +25,10 @@ import com.hubsante.model.edxl.ContentMessage;
 import java.util.Objects;
 
 @JsonPropertyOrder({"errorCode", "errorCause", "referencedDistributionID", "sourceMessage"})
-@JacksonXmlRootElement(localName = "message")
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class ErrorReport {
     @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
+    String xmlns = "urn:emergency:cisu:2.0:error";
     private final String JSON_PROPERTY_ERROR_CODE = "errorCode";
     private ErrorCode errorCode;
     private final String JSON_PROPERTY_ERROR_CAUSE = "errorCause";
@@ -86,18 +86,25 @@ public class ErrorReport {
 
     @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public String getReferencedDistributionID() { return referencedDistributionID; }
+    public String getReferencedDistributionID() {
+        return referencedDistributionID;
+    }
 
     @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public void setReferencedDistributionID(String referencedDistributionID) { this.referencedDistributionID = referencedDistributionID; }
+    public void setReferencedDistributionID(String referencedDistributionID) {
+        this.referencedDistributionID = referencedDistributionID;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ErrorReport that = (ErrorReport) o;
-        return errorCode == that.errorCode && Objects.equals(errorCause, that.errorCause) && Objects.equals(sourceMessage, that.sourceMessage) && Objects.equals(referencedDistributionID, that.referencedDistributionID);
+        return errorCode == that.errorCode &&
+                Objects.equals(errorCause, that.errorCause) &&
+                Objects.equals(sourceMessage, that.sourceMessage) &&
+                Objects.equals(referencedDistributionID, that.referencedDistributionID);
     }
 
     @Override
