@@ -31,6 +31,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.hubsante.model.edxl.ContentMessage;
 
 import java.util.Objects;
@@ -40,7 +41,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-
+@JacksonXmlRootElement(localName = "message")
 public class ErrorWrapper extends ContentMessage {
     @JacksonXmlProperty(isAttribute = true)
     String xmlns = "urn:emergency:cisu:2.0";

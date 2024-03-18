@@ -25,10 +25,10 @@ import com.hubsante.model.edxl.ContentMessage;
 import java.util.Objects;
 
 @JsonPropertyOrder({"errorCode", "errorCause", "referencedDistributionID", "sourceMessage"})
-@JacksonXmlRootElement(localName = "message")
-public class ErrorReport extends ContentMessage {
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class ErrorReport {
     @JacksonXmlProperty(isAttribute = true)
-    String xmlns = "urn:emergency:cisu:2.0";
+    String xmlns = "urn:emergency:cisu:2.0:error";
     private final String JSON_PROPERTY_ERROR_CODE = "errorCode";
     private ErrorCode errorCode;
     private final String JSON_PROPERTY_ERROR_CAUSE = "errorCause";
@@ -86,18 +86,25 @@ public class ErrorReport extends ContentMessage {
 
     @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public String getReferencedDistributionID() { return referencedDistributionID; }
+    public String getReferencedDistributionID() {
+        return referencedDistributionID;
+    }
 
     @JsonProperty(JSON_PROPERTY_REFERENCED_DISTRIBUTION_ID)
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    public void setReferencedDistributionID(String referencedDistributionID) { this.referencedDistributionID = referencedDistributionID; }
+    public void setReferencedDistributionID(String referencedDistributionID) {
+        this.referencedDistributionID = referencedDistributionID;
+    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ErrorReport that = (ErrorReport) o;
-        return errorCode == that.errorCode && Objects.equals(errorCause, that.errorCause) && Objects.equals(sourceMessage, that.sourceMessage) && Objects.equals(referencedDistributionID, that.referencedDistributionID);
+        return errorCode == that.errorCode &&
+                Objects.equals(errorCause, that.errorCause) &&
+                Objects.equals(sourceMessage, that.sourceMessage) &&
+                Objects.equals(referencedDistributionID, that.referencedDistributionID);
     }
 
     @Override
