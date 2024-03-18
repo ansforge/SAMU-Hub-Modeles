@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoRes" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoRes" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="geoRes" type="x:geoRes"/>
-    <complexType name="geoRes">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoResourceDetails" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoResourceDetails" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="geoResourceDetails" type="x:geoResourceDetails"/>
+    <complexType name="geoResourceDetails">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="resourceDetails" type="x:resource"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="resource" type="x:resource"/>
         </sequence>
     </complexType>
     <complexType name="resource">

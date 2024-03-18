@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geores;
+package com.hubsante.model.geopositionupdate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,48 +34,63 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.geores.GeoRes;
+import com.hubsante.model.geopositionupdate.Position;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoResWrapper
+ * PositionUpdate
  */
-@JsonPropertyOrder({GeoResWrapper.JSON_PROPERTY_GEO_RES})
-@JsonTypeName("geoResWrapper")
+@JsonPropertyOrder({PositionUpdate.JSON_PROPERTY_POSITION})
+@JsonTypeName("positionUpdate")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_RES = "geoRes";
-  private GeoRes geoRes;
+public class PositionUpdate {
+  public static final String JSON_PROPERTY_POSITION = "position";
+  private List<Position> position;
 
-  public GeoResWrapper() {}
+  public PositionUpdate() {}
 
-  public GeoResWrapper geoRes(GeoRes geoRes) {
+  public PositionUpdate position(List<Position> position) {
 
-    this.geoRes = geoRes;
+    this.position = position;
+    return this;
+  }
+
+  public PositionUpdate addPositionItem(Position positionItem) {
+    if (this.position == null) {
+      this.position = new ArrayList<>();
+    }
+    this.position.add(positionItem);
     return this;
   }
 
   /**
-   * Get geoRes
-   * @return geoRes
+   * Get position
+   * @return position
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_RES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public GeoRes getGeoRes() {
-    return geoRes;
+  public List<Position> getPosition() {
+    return position;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_RES)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoRes(GeoRes geoRes) {
-    this.geoRes = geoRes;
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPosition(List<Position> position) {
+    if (position == null) {
+      return;
+    }
+    if (this.position == null) {
+      this.position = new ArrayList<>();
+    }
+    this.position.addAll(position);
   }
 
   @Override
@@ -86,21 +101,20 @@ public class GeoResWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResWrapper geoResWrapper = (GeoResWrapper)o;
-    return Objects.equals(this.geoRes, geoResWrapper.geoRes) && super.equals(o);
+    PositionUpdate positionUpdate = (PositionUpdate)o;
+    return Objects.equals(this.position, positionUpdate.position);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoRes, super.hashCode());
+    return Objects.hash(position);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoRes: ").append(toIndentedString(geoRes)).append("\n");
+    sb.append("class PositionUpdate {\n");
+    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");
     return sb.toString();
   }

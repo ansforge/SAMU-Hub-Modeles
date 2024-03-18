@@ -34,62 +34,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.util.ArrayList;
+import com.hubsante.model.georeq.GeoResourceRequest;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * Resource
+ * GeoResourceRequestWrapper
  */
-@JsonPropertyOrder({Resource.JSON_PROPERTY_RESOURCE_ID})
-@JsonTypeName("resource")
+@JsonPropertyOrder(
+    {GeoResourceRequestWrapper.JSON_PROPERTY_GEO_RESOURCE_REQUEST})
+@JsonTypeName("geoResourceRequestWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Resource {
-  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
-  private List<String> resourceId = new ArrayList<>();
+public class GeoResourceRequestWrapper {
+  public static final String JSON_PROPERTY_GEO_RESOURCE_REQUEST =
+      "geoResourceRequest";
+  private GeoResourceRequest geoResourceRequest;
 
-  public Resource() {}
+  public GeoResourceRequestWrapper() {}
 
-  public Resource resourceId(List<String> resourceId) {
+  public GeoResourceRequestWrapper
+  geoResourceRequest(GeoResourceRequest geoResourceRequest) {
 
-    this.resourceId = resourceId;
-    return this;
-  }
-
-  public Resource addResourceIdItem(String resourceIdItem) {
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
-    }
-    this.resourceId.add(resourceIdItem);
+    this.geoResourceRequest = geoResourceRequest;
     return this;
   }
 
   /**
-   * Get resourceId
-   * @return resourceId
+   * Get geoResourceRequest
+   * @return geoResourceRequest
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<String> getResourceId() {
-    return resourceId;
+  public GeoResourceRequest getGeoResourceRequest() {
+    return geoResourceRequest;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceId(List<String> resourceId) {
-    if (resourceId == null) {
-      return;
-    }
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
-    }
-    this.resourceId.addAll(resourceId);
+  public void setGeoResourceRequest(GeoResourceRequest geoResourceRequest) {
+    this.geoResourceRequest = geoResourceRequest;
   }
 
   @Override
@@ -100,21 +86,23 @@ public class Resource {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Resource resource = (Resource)o;
-    return Objects.equals(this.resourceId, resource.resourceId);
+    GeoResourceRequestWrapper geoResourceRequestWrapper =
+        (GeoResourceRequestWrapper)o;
+    return Objects.equals(this.geoResourceRequest,
+                          geoResourceRequestWrapper.geoResourceRequest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceId);
+    return Objects.hash(geoResourceRequest);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Resource {\n");
-    sb.append("    resourceId: ")
-        .append(toIndentedString(resourceId))
+    sb.append("class GeoResourceRequestWrapper {\n");
+    sb.append("    geoResourceRequest: ")
+        .append(toIndentedString(geoResourceRequest))
         .append("\n");
     sb.append("}");
     return sb.toString();

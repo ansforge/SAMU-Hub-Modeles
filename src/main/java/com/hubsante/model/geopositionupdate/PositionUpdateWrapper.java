@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.georeq;
+package com.hubsante.model.geopositionupdate;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,47 +34,45 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.georeq.Resource;
+import com.hubsante.model.geopositionupdate.PositionUpdate;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * GeoReq
+ * PositionUpdateWrapper
  */
-@JsonPropertyOrder({GeoReq.JSON_PROPERTY_RESOURCE_REQUEST})
-@JsonTypeName("geoReq")
+@JsonPropertyOrder({PositionUpdateWrapper.JSON_PROPERTY_POSITION_UPDATE})
+@JsonTypeName("positionUpdateWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoReq {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoReq";
-  public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
-  private Resource resourceRequest;
+public class PositionUpdateWrapper {
+  public static final String JSON_PROPERTY_POSITION_UPDATE = "positionUpdate";
+  private PositionUpdate positionUpdate;
 
-  public GeoReq() {}
+  public PositionUpdateWrapper() {}
 
-  public GeoReq resourceRequest(Resource resourceRequest) {
+  public PositionUpdateWrapper positionUpdate(PositionUpdate positionUpdate) {
 
-    this.resourceRequest = resourceRequest;
+    this.positionUpdate = positionUpdate;
     return this;
   }
 
   /**
-   * Get resourceRequest
-   * @return resourceRequest
+   * Get positionUpdate
+   * @return positionUpdate
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Resource getResourceRequest() {
-    return resourceRequest;
+  public PositionUpdate getPositionUpdate() {
+    return positionUpdate;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceRequest(Resource resourceRequest) {
-    this.resourceRequest = resourceRequest;
+  @JsonProperty(JSON_PROPERTY_POSITION_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPositionUpdate(PositionUpdate positionUpdate) {
+    this.positionUpdate = positionUpdate;
   }
 
   @Override
@@ -85,21 +83,22 @@ public class GeoReq {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoReq geoReq = (GeoReq)o;
-    return Objects.equals(this.resourceRequest, geoReq.resourceRequest);
+    PositionUpdateWrapper positionUpdateWrapper = (PositionUpdateWrapper)o;
+    return Objects.equals(this.positionUpdate,
+                          positionUpdateWrapper.positionUpdate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceRequest);
+    return Objects.hash(positionUpdate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoReq {\n");
-    sb.append("    resourceRequest: ")
-        .append(toIndentedString(resourceRequest))
+    sb.append("class PositionUpdateWrapper {\n");
+    sb.append("    positionUpdate: ")
+        .append(toIndentedString(positionUpdate))
         .append("\n");
     sb.append("}");
     return sb.toString();

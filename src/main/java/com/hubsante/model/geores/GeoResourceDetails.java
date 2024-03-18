@@ -42,57 +42,55 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoRes
+ * GeoResourceDetails
  */
-@JsonPropertyOrder({GeoRes.JSON_PROPERTY_RESOURCE_DETAILS})
-@JsonTypeName("geoRes")
+@JsonPropertyOrder({GeoResourceDetails.JSON_PROPERTY_RESOURCE})
+@JsonTypeName("geoResourceDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoRes {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoRes";
-  public static final String JSON_PROPERTY_RESOURCE_DETAILS = "resourceDetails";
-  private List<Resource> resourceDetails;
+public class GeoResourceDetails {
+  public static final String JSON_PROPERTY_RESOURCE = "resource";
+  private List<Resource> resource;
 
-  public GeoRes() {}
+  public GeoResourceDetails() {}
 
-  public GeoRes resourceDetails(List<Resource> resourceDetails) {
+  public GeoResourceDetails resource(List<Resource> resource) {
 
-    this.resourceDetails = resourceDetails;
+    this.resource = resource;
     return this;
   }
 
-  public GeoRes addResourceDetailsItem(Resource resourceDetailsItem) {
-    if (this.resourceDetails == null) {
-      this.resourceDetails = new ArrayList<>();
+  public GeoResourceDetails addResourceItem(Resource resourceItem) {
+    if (this.resource == null) {
+      this.resource = new ArrayList<>();
     }
-    this.resourceDetails.add(resourceDetailsItem);
+    this.resource.add(resourceItem);
     return this;
   }
 
   /**
-   * Get resourceDetails
-   * @return resourceDetails
+   * Get resource
+   * @return resource
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Resource> getResourceDetails() {
-    return resourceDetails;
+  public List<Resource> getResource() {
+    return resource;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceDetails(List<Resource> resourceDetails) {
-    if (resourceDetails == null) {
+  public void setResource(List<Resource> resource) {
+    if (resource == null) {
       return;
     }
-    if (this.resourceDetails == null) {
-      this.resourceDetails = new ArrayList<>();
+    if (this.resource == null) {
+      this.resource = new ArrayList<>();
     }
-    this.resourceDetails.addAll(resourceDetails);
+    this.resource.addAll(resource);
   }
 
   @Override
@@ -103,22 +101,20 @@ public class GeoRes {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoRes geoRes = (GeoRes)o;
-    return Objects.equals(this.resourceDetails, geoRes.resourceDetails);
+    GeoResourceDetails geoResourceDetails = (GeoResourceDetails)o;
+    return Objects.equals(this.resource, geoResourceDetails.resource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceDetails);
+    return Objects.hash(resource);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoRes {\n");
-    sb.append("    resourceDetails: ")
-        .append(toIndentedString(resourceDetails))
-        .append("\n");
+    sb.append("class GeoResourceDetails {\n");
+    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
     sb.append("}");
     return sb.toString();
   }
