@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geores;
+package com.hubsante.model.georesourcerequest;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,48 +34,64 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geores.GeoResourceDetails;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoResourceDetailsWrapper
+ * GeoResourceRequest
  */
-@JsonPropertyOrder(
-    {GeoResourceDetailsWrapper.JSON_PROPERTY_GEO_RESOURCE_DETAILS})
-@JsonTypeName("geoResourceDetailsWrapper")
+@JsonPropertyOrder({GeoResourceRequest.JSON_PROPERTY_RESOURCE_ID})
+@JsonTypeName("geoResourceRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceDetailsWrapper {
-  public static final String JSON_PROPERTY_GEO_RESOURCE_DETAILS =
-      "geoResourceDetails";
-  private GeoResourceDetails geoResourceDetails;
+public class GeoResourceRequest {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0:geoResourceRequest";
+  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
+  private List<String> resourceId = new ArrayList<>();
 
-  public GeoResourceDetailsWrapper() {}
+  public GeoResourceRequest() {}
 
-  public GeoResourceDetailsWrapper
-  geoResourceDetails(GeoResourceDetails geoResourceDetails) {
+  public GeoResourceRequest resourceId(List<String> resourceId) {
 
-    this.geoResourceDetails = geoResourceDetails;
+    this.resourceId = resourceId;
+    return this;
+  }
+
+  public GeoResourceRequest addResourceIdItem(String resourceIdItem) {
+    if (this.resourceId == null) {
+      this.resourceId = new ArrayList<>();
+    }
+    this.resourceId.add(resourceIdItem);
     return this;
   }
 
   /**
-   * Get geoResourceDetails
-   * @return geoResourceDetails
+   * Get resourceId
+   * @return resourceId
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeoResourceDetails getGeoResourceDetails() {
-    return geoResourceDetails;
+  public List<String> getResourceId() {
+    return resourceId;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoResourceDetails(GeoResourceDetails geoResourceDetails) {
-    this.geoResourceDetails = geoResourceDetails;
+  public void setResourceId(List<String> resourceId) {
+    if (resourceId == null) {
+      return;
+    }
+    if (this.resourceId == null) {
+      this.resourceId = new ArrayList<>();
+    }
+    this.resourceId.addAll(resourceId);
   }
 
   @Override
@@ -86,23 +102,21 @@ public class GeoResourceDetailsWrapper {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceDetailsWrapper geoResourceDetailsWrapper =
-        (GeoResourceDetailsWrapper)o;
-    return Objects.equals(this.geoResourceDetails,
-                          geoResourceDetailsWrapper.geoResourceDetails);
+    GeoResourceRequest geoResourceRequest = (GeoResourceRequest)o;
+    return Objects.equals(this.resourceId, geoResourceRequest.resourceId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoResourceDetails);
+    return Objects.hash(resourceId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceDetailsWrapper {\n");
-    sb.append("    geoResourceDetails: ")
-        .append(toIndentedString(geoResourceDetails))
+    sb.append("class GeoResourceRequest {\n");
+    sb.append("    resourceId: ")
+        .append(toIndentedString(resourceId))
         .append("\n");
     sb.append("}");
     return sb.toString();

@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geores;
+package com.hubsante.model.georesourcedetails;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;

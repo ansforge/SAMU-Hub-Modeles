@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geores;
+package com.hubsante.model.georesourcedetails;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geores.Contact;
+import com.hubsante.model.georesourcedetails.Contact;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
