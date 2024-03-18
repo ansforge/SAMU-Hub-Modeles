@@ -43,8 +43,8 @@ public class GeoPosValidatorTest extends AbstractValidatorTest {
         String[] expectedErrors = {
                 "Could not validate message against schema : errors occurred. ",
                 "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - geoPos.positionUpdate[0].coord[0].lat: is missing but it is required",
-                " - geoPos.positionUpdate[0].coord[0].lon: is missing but it is required"
+                " - geoPositionUpdate.position[0].coord[0].lat: is missing but it is required",
+                " - geoPositionUpdate.position[0].coord[0].lon: is missing but it is required"
         };
         jsonValidationFails("GEO-POS/GEO-POS-missing-required-fields.json", expectedErrors);
     }

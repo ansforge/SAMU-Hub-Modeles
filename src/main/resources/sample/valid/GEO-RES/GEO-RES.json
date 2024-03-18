@@ -31,8 +31,8 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "geoRes": {
-              "resourceDetails": [
+            "geoResourceDetails": {
+              "resource": [
                 {
                   "id": "76_45101#SMUR1#",
                   "orgId": "fr.health.760.samu76",

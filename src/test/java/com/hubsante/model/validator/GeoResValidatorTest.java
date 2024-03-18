@@ -43,7 +43,7 @@ public class GeoResValidatorTest extends AbstractValidatorTest {
         String[] expectedErrors = {
                 "Could not validate message against schema : errors occurred. ",
                 "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - geoRes.resourceDetails[0].id: is missing but it is required"
+                " - geoResourceDetails.resource[0].id: is missing but it is required"
         };
         jsonValidationFails("GEO-RES/GEO-RES-missing-required-fields.json", expectedErrors);
     }

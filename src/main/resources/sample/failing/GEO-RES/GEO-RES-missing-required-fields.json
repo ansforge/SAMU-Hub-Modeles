@@ -31,8 +31,8 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "geoRes": {
-              "resourceDetails": [
+            "geoResourceDetails": {
+              "resource": [
                 {
                   "orgId": "fr.health.760.samu76",
                   "name": "SMUR 1 Rouen",

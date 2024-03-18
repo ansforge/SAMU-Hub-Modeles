@@ -31,8 +31,8 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
-                        <geoRes xmlns="urn:emergency:cisu:2.0:geoRes">
-                            <resourceDetails>
+                        <geoResourceDetails xmlns="urn:emergency:cisu:2.0:geoResourceDetails">
+                            <resource>
                                 <orgId>fr.health.760.samu76</orgId>
                                 <name>SMUR 1 Rouen</name>
                                 <type>SMUR</type>
@@ -43,8 +43,8 @@
                                     <type>PHNADD</type>
                                     <details>0612342536</details>
                                 </contacts>
-                            </resourceDetails>
-                            <resourceDetails>
+                            </resource>
+                            <resource>
                                 <id>76_45102#SMUR2#</id>
                                 <orgId>fr.health.760.samu76</orgId>
                                 <name>SMUR 2 Rouen</name>
@@ -56,8 +56,8 @@
                                     <type>PHNADD</type>
                                     <details>0612342537</details>
                                 </contacts>
-                            </resourceDetails>
-                            <resourceDetails>
+                            </resource>
+                            <resource>
                                 <id>14_45103#SMUR3#</id>
                                 <orgId>fr.health.140.samu14</orgId>
                                 <name>SMUR 3 Caen</name>
@@ -69,8 +69,8 @@
                                     <type>PHNADD</type>
                                     <details>0612342538</details>
                                 </contacts>
-                            </resourceDetails>
-                            <resourceDetails>
+                            </resource>
+                            <resource>
                                 <id>76_45104#SMUR4#</id>
                                 <orgId>fr.health.760.samu76</orgId>
                                 <name>SMUR 4 Havre</name>
@@ -82,8 +82,8 @@
                                     <type>PHNADD</type>
                                     <details>0612342539</details>
                                 </contacts>
-                            </resourceDetails>
-                        </geoRes>
+                            </resource>
+                        </geoResourceDetails>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

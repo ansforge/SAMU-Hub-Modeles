@@ -6,9 +6,9 @@
         xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
         xmlns:emsi="urn:emergency:cisu:2.0:emsi"
         xmlns:info="urn:emergency:cisu:2.0:info"
-        xmlns:geopos="urn:emergency:cisu:2.0:geoPos"
-        xmlns:geores="urn:emergency:cisu:2.0:geoRes"
-        xmlns:georeq="urn:emergency:cisu:2.0:geoReq"
+        xmlns:geopositionupdate="urn:emergency:cisu:2.0:geoPositionUpdate"
+        xmlns:georesourcedetails="urn:emergency:cisu:2.0:geoResourceDetails"
+        xmlns:georesourcerequest="urn:emergency:cisu:2.0:geoResourceRequest"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -18,9 +18,9 @@
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:geoPos" schemaLocation="GEO-POS.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:geoRes" schemaLocation="GEO-RES.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:geoReq" schemaLocation="GEO-REQ.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoPositionUpdate" schemaLocation="GEO-POS.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoResourceDetails" schemaLocation="GEO-RES.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoResourceRequest" schemaLocation="GEO-REQ.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -40,9 +40,9 @@
                         <!-- info -->
                         <xs:element ref="info:info"/>
                         <!-- geo -->
-                        <xs:element ref="geopos:geoPos"/>
-                        <xs:element ref="geores:geoRes"/>
-                        <xs:element ref="georeq:geoReq"/>
+                        <xs:element ref="geopositionupdate:geoPositionUpdate"/>
+                        <xs:element ref="georesourcedetails:geoResourceDetails"/>
+                        <xs:element ref="georesourcerequest:geoResourceRequest"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>

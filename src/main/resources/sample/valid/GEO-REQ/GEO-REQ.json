@@ -31,15 +31,13 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "geoReq": {
-              "resourceRequest": {
-                "resourceId": [
-                  "76_45101#SMUR1#",
-                  "76_45102#SMUR2#",
-                  "76_45103#SMUR4#",
-                  "14_45103#SMUR3#"
-                ]
-              }
+            "geoResourceRequest": {
+              "resourceId": [
+                "76_45101#SMUR1#",
+                "76_45102#SMUR2#",
+                "76_45103#SMUR4#",
+                "14_45103#SMUR3#"
+              ]
             }
           }
         }
