@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.georesoucerequest",
+    "modelPackage": "com.hubsante.model.georesourcerequest",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
