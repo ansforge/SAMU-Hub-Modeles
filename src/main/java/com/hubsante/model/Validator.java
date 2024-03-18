@@ -86,6 +86,8 @@ public class Validator {
 
             List<String> xmlErrors = performXMLValidation(message, validator);
             if (!xmlErrors.isEmpty()) {
+                // if validation has been performed on the upper level, it could have raised errors on missing RC-DE elements
+                // but it some cases (Custom Content, Error...) it is valid so we test it on another sub schema
                 if (xsdFile.equals(FULL_XSD)) {
                     List<String> noHeaderMessageXmlErrors = performXMLValidation(message, noHeaderValidator);
                     if (noHeaderMessageXmlErrors.isEmpty()) {
@@ -114,7 +116,6 @@ public class Validator {
         List<String> xmlErrors = new ArrayList<>();
         if (!xmlExceptions.isEmpty()) {
             xmlExceptions.forEach(e -> xmlErrors.add(e.getMessage()));
-//            throw new ValidationException("Could not validate message against schema : errors occurred. \n" + xmlErrors);
         }
         return xmlErrors;
     }
