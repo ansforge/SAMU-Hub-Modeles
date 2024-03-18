@@ -35,7 +35,7 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
-        @JsonSubTypes.Type(GeoPositionUpdateWraper.class),
+        @JsonSubTypes.Type(GeoPositionUpdateWrapper.class),
         @JsonSubTypes.Type(GeoResourceRequestWrapper.class),
         @JsonSubTypes.Type(GeoResourceDetailsWrapper.class)
 })
