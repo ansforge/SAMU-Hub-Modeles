@@ -226,8 +226,7 @@ public class Alert {
 
   /**
    * Texte libre permettant de donner des informations supplémentaires
-   *concernant l&#39;alerte. Texte servant à passer les informations de gestion
-   *des évènements (main courante sans les informations médicales privilégiées)
+   *concernant l&#39;alerte.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

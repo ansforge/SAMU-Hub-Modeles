@@ -375,8 +375,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
-Texte servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées) </documentation>
+                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte.</documentation>
                 </annotation>
             </element>
             <element name="caller" type="x:caller"/>
@@ -504,7 +503,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -524,7 +523,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -544,7 +543,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -564,7 +563,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1322,7 +1321,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1462,7 +1461,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1482,7 +1481,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
                 </annotation>
             </element>
         </sequence>

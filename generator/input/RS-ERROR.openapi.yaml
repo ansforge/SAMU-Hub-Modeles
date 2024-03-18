@@ -17,6 +17,7 @@ components:
       required:
       - errorCode
       - errorCause
+      - referencedDistributionID
       properties:
         errorCode:
           $ref: '#/components/schemas/errorCode'

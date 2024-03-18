@@ -21,6 +21,6 @@ strict digraph {
                 <TR>
                 <TD ><B>error</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet error</I></TD></TR><TR><TD BORDER="0" >errorCause <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referencedDistributionID <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet error</I></TD></TR><TR><TD BORDER="0" >errorCause <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referencedDistributionID <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 }
