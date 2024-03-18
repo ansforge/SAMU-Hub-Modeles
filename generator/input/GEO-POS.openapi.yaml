@@ -1,19 +1,19 @@
 openapi: 3.0.0
 components:
   schemas:
-    positionUpdateWrapper:
+    geoPositionUpdateWrapper:
       type: object
       required:
-      - positionUpdate
+      - geoPositionUpdate
       properties:
-        positionUpdate:
-          $ref: '#/components/schemas/positionUpdate'
-    positionUpdate:
+        geoPositionUpdate:
+          $ref: '#/components/schemas/geoPositionUpdate'
+    geoPositionUpdate:
       $id: classpath:/json-schema/schema#
       x-id: GEO-POS.schema.json#
       example: example.json#
       type: object
-      title: positionUpdate
+      title: geoPositionUpdate
       required: []
       properties:
         position:

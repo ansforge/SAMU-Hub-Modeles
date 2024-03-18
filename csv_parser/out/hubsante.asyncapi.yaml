@@ -5601,12 +5601,12 @@ components:
             $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/RESOURCE/0/RGEO/0
-    positionUpdate:
+    geoPositionUpdate:
       $id: classpath:/json-schema/schema#
       x-id: GEO-POS.schema.json#
       example: example.json#
       type: object
-      title: positionUpdate
+      title: geoPositionUpdate
       required: []
       properties:
         position:
