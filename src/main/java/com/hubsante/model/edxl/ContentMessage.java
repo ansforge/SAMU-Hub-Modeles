@@ -21,9 +21,9 @@ import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
-import com.hubsante.model.geopos.GeoPosWrapper;
-import com.hubsante.model.georeq.GeoReqWrapper;
-import com.hubsante.model.geores.GeoResWrapper;
+import com.hubsante.model.georesourcedetails.GeoResourceDetailsWrapper;
+import com.hubsante.model.geopositionupdate.GeoPositionUpdateWrapper;
+import com.hubsante.model.georesourcerequest.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 
@@ -35,9 +35,9 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
-        @JsonSubTypes.Type(GeoPosWrapper.class),
-        @JsonSubTypes.Type(GeoResWrapper.class),
-        @JsonSubTypes.Type(GeoReqWrapper.class)
+        @JsonSubTypes.Type(GeoPositionUpdateWraper.class),
+        @JsonSubTypes.Type(GeoResourceRequestWrapper.class),
+        @JsonSubTypes.Type(GeoResourceDetailsWrapper.class)
 })
 public class ContentMessage {
 }
