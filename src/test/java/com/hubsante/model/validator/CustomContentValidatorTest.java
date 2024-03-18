@@ -30,7 +30,6 @@ public class CustomContentValidatorTest extends AbstractValidatorTest {
     }
 
     @Test
-//    @Disabled // TODO bbo: enabled it after xsd generation
     @DisplayName("Custom Content xml validation passes")
     public void xmlCustomContentValidationPasses() throws IOException {
         validationPasses("EDXL-DE", true);
