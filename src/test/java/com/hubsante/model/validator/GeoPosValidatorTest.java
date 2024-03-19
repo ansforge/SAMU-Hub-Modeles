@@ -49,11 +49,11 @@ public class GeoPosValidatorTest extends AbstractValidatorTest {
         jsonValidationFails("GEO-POS/GEO-POS-missing-required-fields.json", expectedErrors);
     }
 
-//    @Test
-//    @DisplayName("GEO-POS xml validation fails")
-//    public void xmlGeoPosValidationFails() throws IOException {
-//        xmlValidationFails("GEO-POS/geo-pos-missing-required-fields.xml", XML_MISSING, new String[]{"distributionID}' "});
-//    }
+    @Test
+    @DisplayName("GEO-POS xml validation fails")
+    public void xmlGeoPosValidationFails() throws IOException {
+        xmlValidationFails("GEO-POS/geo-pos-missing-required-fields.xml", XML_MISSING, new String[]{"One of '{\"urn:emergency:cisu:2.0:geoPositionUpdate\":lat}' "});
+    }
 
     //endregion
 

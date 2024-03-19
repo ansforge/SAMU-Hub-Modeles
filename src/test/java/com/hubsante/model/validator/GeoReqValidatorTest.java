@@ -49,11 +49,11 @@ public class GeoReqValidatorTest extends AbstractValidatorTest {
         jsonValidationFails("GEO-REQ/GEO-REQ-missing-required-fields.json", expectedErrors);
     }
 
-//    @Test
-//    @DisplayName("GEO-REQ xml validation fails")
-//    public void xmlGeoReqValidationFails() throws IOException {
-//        xmlValidationFails("GEO-REQ/GEO-REQ-missing-required-fields.xml", XML_MISSING, new String[]{"distributionID}' "});
-//    }
+    @Test
+    @DisplayName("GEO-REQ xml validation fails")
+    public void xmlGeoReqValidationFails() throws IOException {
+        xmlValidationFails("GEO-REQ/GEO-REQ-missing-required-fields.xml", XML_MISSING, new String[]{"One of '{\"urn:emergency:cisu:2.0:geoResourceRequest\":resourceId}' "});
+    }
 
     //endregion
 
