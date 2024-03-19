@@ -8,7 +8,7 @@
 
 ## 2. Csv parser
 1. Remplacer le fichier *./csv_parser/model.xlsx* avec le fichier modifié dans la branche feature concerné.
-2. Ajouter le nom de la feuille crée dans la liste des schemas dans le fichier ./csv_parser/json_schema2xsd/src/main/java/json_schema2xsd/App.java :
+2. Modifier le fichier ./csv_parser/json_schema2xsd/src/main/java/json_schema2xsd/App.java :
    1. Dans la liste des schemas (ligne 25) ajouter le nom de la feuille.
    2. Dans le switch expression (ligne 91) ajouter un switch case sur le nom de la feuille, positionnant la variable root au 'titre' du schema (qui se trouve a la cellule A1 de la feuille).
 
