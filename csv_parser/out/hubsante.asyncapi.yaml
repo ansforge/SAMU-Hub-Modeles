@@ -983,9 +983,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/whatsHappen/freetext
-          description: "Texte libre servant \xE0 passer les informations de gestion\
-            \ des \xE9v\xE8nements (main courante sans les informations m\xE9dicales\
-            \ privil\xE9gi\xE9es)"
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -1030,9 +1029,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/locationKind/freetext
-          description: "Texte libre servant \xE0 passer les informations de gestion\
-            \ des \xE9v\xE8nements (main courante sans les informations m\xE9dicales\
-            \ privil\xE9gi\xE9es)"
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -1077,9 +1075,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/riskThreat/0/freetext
-          description: "Texte libre servant \xE0 passer les informations de gestion\
-            \ des \xE9v\xE8nements (main courante sans les informations m\xE9dicales\
-            \ privil\xE9gi\xE9es)"
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -1126,9 +1123,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/healthMotive/freetext
-          description: "Texte libre servant \xE0 passer les informations de gestion\
-            \ des \xE9v\xE8nements (main courante sans les informations m\xE9dicales\
-            \ privil\xE9gi\xE9es)"
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -2801,9 +2797,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/resourceDiagnosis/freetext
-          description: "Texte libre servant \xE0 passer les informations de gestion\
-            \ des \xE9v\xE8nements (main courante sans les informations m\xE9dicales\
-            \ privil\xE9gi\xE9es)"
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -3011,9 +3006,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/mainDiagnosis/freetext
-          description: "Texte libre servant \xE0 passer les informations de gestion\
-            \ des \xE9v\xE8nements (main courante sans les informations m\xE9dicales\
-            \ privil\xE9gi\xE9es)"
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -3058,9 +3052,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/otherDiagnosis/0/freetext
-          description: "Texte libre servant \xE0 passer les informations de gestion\
-            \ des \xE9v\xE8nements (main courante sans les informations m\xE9dicales\
-            \ privil\xE9gi\xE9es)"
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false

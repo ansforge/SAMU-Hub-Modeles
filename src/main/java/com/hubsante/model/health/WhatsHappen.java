@@ -114,8 +114,8 @@ public class WhatsHappen {
   }
 
   /**
-   * Texte libre servant à passer les informations de gestion des évènements
-   *(main courante sans les informations médicales privilégiées)
+   * Commentaire libre permettant de passer des informations complémentaires
+   *associées à la nomenclature
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

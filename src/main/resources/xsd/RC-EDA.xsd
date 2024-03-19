@@ -436,7 +436,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -456,7 +456,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -476,7 +476,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -496,7 +496,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre servant à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées)</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>

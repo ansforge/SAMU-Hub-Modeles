@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.03.18",
+    "version": "24.03.19",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -794,7 +794,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/freetext",
-                    "description": "Texte libre servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es)"
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -832,7 +832,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/freetext",
-                    "description": "Texte libre servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es)"
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -870,7 +870,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/freetext",
-                    "description": "Texte libre servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es)"
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -910,7 +910,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/freetext",
-                    "description": "Texte libre servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es)"
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -2062,7 +2062,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/resourceDiagnosis/freetext",
-                    "description": "Texte libre servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es)"
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -2301,7 +2301,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/mainDiagnosis/freetext",
-                    "description": "Texte libre servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es)"
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -2339,7 +2339,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/freetext",
-                    "description": "Texte libre servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es)"
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
