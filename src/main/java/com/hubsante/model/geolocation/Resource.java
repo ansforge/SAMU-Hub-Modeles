@@ -34,8 +34,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-
+import com.hubsante.model.geolocation.Contact;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 

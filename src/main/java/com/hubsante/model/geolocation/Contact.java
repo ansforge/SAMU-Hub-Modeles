@@ -33,7 +33,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-
+import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
