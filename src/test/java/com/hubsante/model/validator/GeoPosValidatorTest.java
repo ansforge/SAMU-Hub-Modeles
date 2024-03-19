@@ -52,7 +52,7 @@ public class GeoPosValidatorTest extends AbstractValidatorTest {
     @Test
     @DisplayName("GEO-POS xml validation fails")
     public void xmlGeoPosValidationFails() throws IOException {
-        xmlValidationFails("GEO-POS/geo-pos-missing-required-fields.xml", XML_MISSING, new String[]{"One of '{\"urn:emergency:cisu:2.0:geoPositionUpdate\":lat}' "});
+        xmlValidationFails("GEO-POS/GEO-POS-missing-required-fields.xml", XML_MISSING, new String[]{"One of '{\"urn:emergency:cisu:2.0:geoPositionUpdate\":lat}' "});
     }
 
     //endregion
