@@ -4,7 +4,7 @@
 1. Créer une nouvelle feuille dans le [fichier .xlsx](https://esantegouv.sharepoint.com/:x:/r/sites/GED-Calypso/espace-projets/_layouts/15/Doc.aspx?sourcedoc=%7B6E6E8D74-7768-41E8-9A03-DAAD2DEDCE19%7D&file=MDD%20-%20Hub%20Sant%25u00e9.xlsx).
 2. Construire le tableau representant le schema en suivant les regles decrites sur la [feuille "Mode d'emploi" du fichier](https://esantegouv.sharepoint.com/:x:/r/sites/GED-Calypso/espace-projets/_layouts/15/Doc.aspx?sourcedoc=%7B6E6E8D74-7768-41E8-9A03-DAAD2DEDCE19%7D&file=MDD%20-%20Hub%20Sant%C3%A9.xlsx&action=default&mobileredirect=true). 
 
-*A noter que 'titre' du schema (cellule A1) va etre utilisé en tant que nom des classes Java générés.*
+*A noter que le 'titre' du schema (cellule A1) va etre utilisé en tant que nom des classes Java générés.*
 
 ## 2. Csv parser
 1. Remplacer le fichier *./csv_parser/model.xlsx* avec le fichier modifié dans la branche feature concerné.
@@ -99,9 +99,9 @@ Les propriétés "templateDir" et "models" vont varier selon le fichier:
 ```
 A noter que si la presence de l'en-tete RC-DE n'est pas désiré, il est seulement necessaire d'ajouter la partie "properties" contenant le nouveau schema.
 
-3. Modifier le xsd schema *src/main/resources/xsd/RC-XML-ContentType.xsd* en ajoutant les elements suivants:
-   1. Une propriété **xmlns:[Titre du schema (en flatcase)]="urn:emergency:cisu:2.0:[Titre du schema]"** dans l'element <schema> 
+3. Modifier le xsd schema *src/main/resources/xsd/RC-XML-ContentType.xsd* en ajoutant les éléments suivants:
+   1. Une propriété **xmlns:[Titre du schema (en flatcase)]="urn:emergency:cisu:2.0:[Titre du schema]"** dans l'élément <schema> 
    2. Un import **<xs:import namespace="urn:emergency:cisu:2.0:[Titre du schema]" schemaLocation="[Nom de la feuille].xsd"/>**
    3. Un element **<xs:element ref="[Titre du schema (en flatcase)]:[Titre du schema]"/>** a l'interieur de l'element <xs:choice> 
 
-## Penser a ajouter des fichiers exemples et des cas passants/non-passants dans src/main/resources/sample, ainsi que mettre en place des tests unitaries verifiant la validation et serialisation/deserialisation des classes 
+## Penser à ajouter des fichiers exemples et des cas passants/non-passants dans src/main/resources/sample, ainsi que mettre en place des tests unitaires vérifiant la validation et la sérialisation/désérialisation des classes 
