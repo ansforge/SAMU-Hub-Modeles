@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - '**'
-#  workflow_dispatch:
+  workflow_dispatch:
 
 env:
   SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES"
