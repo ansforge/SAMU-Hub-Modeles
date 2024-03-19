@@ -25,72 +25,56 @@
  * the class manually.
  */
 
-package com.hubsante.model.geopositionupdate;
+package com.hubsante.model.geolocation;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geopositionupdate.Position;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Arrays;
-import java.util.List;
+import com.hubsante.model.common.DistributionElement;
+
 import java.util.Objects;
 
 /**
- * PositionUpdate
+ * GeoResourceDetailsWrapper
  */
-@JsonPropertyOrder({PositionUpdate.JSON_PROPERTY_POSITION})
-@JsonTypeName("positionUpdate")
+@JsonPropertyOrder(
+    {GeoResourceDetailsWrapper.JSON_PROPERTY_GEO_RESOURCE_DETAILS})
+@JsonTypeName("geoResourceDetailsWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PositionUpdate {
-  public static final String JSON_PROPERTY_POSITION = "position";
-  private List<Position> position;
+public class GeoResourceDetailsWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
+  public static final String JSON_PROPERTY_GEO_RESOURCE_DETAILS =
+      "geoResourceDetails";
+  private GeoResourceDetails geoResourceDetails;
 
-  public PositionUpdate() {}
+  public GeoResourceDetailsWrapper() {}
 
-  public PositionUpdate position(List<Position> position) {
+  public GeoResourceDetailsWrapper
+  geoResourceDetails(GeoResourceDetails geoResourceDetails) {
 
-    this.position = position;
-    return this;
-  }
-
-  public PositionUpdate addPositionItem(Position positionItem) {
-    if (this.position == null) {
-      this.position = new ArrayList<>();
-    }
-    this.position.add(positionItem);
+    this.geoResourceDetails = geoResourceDetails;
     return this;
   }
 
   /**
-   * Get position
-   * @return position
+   * Get geoResourceDetails
+   * @return geoResourceDetails
    **/
-  @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Position> getPosition() {
-    return position;
+  public GeoResourceDetails getGeoResourceDetails() {
+    return geoResourceDetails;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPosition(List<Position> position) {
-    if (position == null) {
-      return;
-    }
-    if (this.position == null) {
-      this.position = new ArrayList<>();
-    }
-    this.position.addAll(position);
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setGeoResourceDetails(GeoResourceDetails geoResourceDetails) {
+    this.geoResourceDetails = geoResourceDetails;
   }
 
   @Override
@@ -101,20 +85,26 @@ public class PositionUpdate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PositionUpdate positionUpdate = (PositionUpdate)o;
-    return Objects.equals(this.position, positionUpdate.position);
+    GeoResourceDetailsWrapper geoResourceDetailsWrapper =
+        (GeoResourceDetailsWrapper)o;
+    return Objects.equals(this.geoResourceDetails,
+                          geoResourceDetailsWrapper.geoResourceDetails) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(position);
+    return Objects.hash(geoResourceDetails, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PositionUpdate {\n");
-    sb.append("    position: ").append(toIndentedString(position)).append("\n");
+    sb.append("class GeoResourceDetailsWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    geoResourceDetails: ")
+        .append(toIndentedString(geoResourceDetails))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - '**'
-  workflow_dispatch:
+#  workflow_dispatch:
 
 env:
   SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES"
@@ -100,9 +100,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/cisu || true
           rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
-          rm -r ./src/main/java/com/hubsante/model/geopos || true
-          rm -r ./src/main/java/com/hubsante/model/georeq || true
-          rm -r ./src/main/java/com/hubsante/model/geores || true 
+          rm -r ./src/main/java/com/hubsante/model/geolocation || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew

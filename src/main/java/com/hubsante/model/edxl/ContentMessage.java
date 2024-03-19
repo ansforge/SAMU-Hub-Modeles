@@ -21,9 +21,9 @@ import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
-import com.hubsante.model.georesourcedetails.GeoResourceDetailsWrapper;
-import com.hubsante.model.geopositionupdate.GeoPositionUpdateWrapper;
-import com.hubsante.model.georesourcerequest.GeoResourceRequestWrapper;
+import com.hubsante.model.geolocation.GeoResourceDetailsWrapper;
+import com.hubsante.model.geolocation.GeoPositionUpdateWrapper;
+import com.hubsante.model.geolocation.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 
