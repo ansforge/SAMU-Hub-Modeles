@@ -551,9 +551,7 @@ components:
           x-cols: 6
           example: example.json#/initialAlert/freetext
           description: "Texte libre permettant de donner des informations suppl\xE9\
-            mentaires concernant l'alerte.\nTexte servant \xE0 passer les informations\
-            \ de gestion des \xE9v\xE8nements (main courante sans les informations\
-            \ m\xE9dicales privil\xE9gi\xE9es) "
+            mentaires concernant l'alerte."
           examples:
           - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les lieux"
         caller:
@@ -848,8 +846,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/whatsHappen/freetext
-          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
-            \ permettant de qualifier l'\xE9v\xE9nement."
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -894,8 +892,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/locationKind/freetext
-          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
-            \ permettant de qualifier l'\xE9v\xE9nement."
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -940,8 +938,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/riskThreat/0/freetext
-          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
-            \ permettant de qualifier l'\xE9v\xE9nement."
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -988,8 +986,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/healthMotive/freetext
-          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
-            \ permettant de qualifier l'\xE9v\xE9nement."
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -2268,8 +2266,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/resourceDiagnosis/freetext
-          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
-            \ permettant de qualifier l'\xE9v\xE9nement."
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -2555,8 +2553,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/mainDiagnosis/freetext
-          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
-            \ permettant de qualifier l'\xE9v\xE9nement."
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false
@@ -2601,8 +2599,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/otherDiagnosis/0/freetext
-          description: "Permet de compl\xE9menter en commentaire libre l'attribut\
-            \ permettant de qualifier l'\xE9v\xE9nement."
+          description: "Commentaire libre permettant de passer des informations compl\xE9\
+            mentaires associ\xE9es \xE0 la nomenclature"
           examples:
           - None
       additionalProperties: false

@@ -209,7 +209,7 @@ components:
           - Grand Incendie Nantes
         MAIN_EVENT_ID:
           type: string
-          title: Identifiant de l'affaire
+          title: "Identifiant de l'affaire partag\xE9"
           x-health-only: false
           x-cols: 6
           example: example.json#/EVENT/MAIN_EVENT_ID
@@ -1004,7 +1004,7 @@ components:
             \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
             \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
         LINK_ROLE:
           type: string
           title: "R\xF4le du lien"
@@ -1023,7 +1023,7 @@ components:
       additionalProperties: false
       example: example.json#/CONTEXT/LINK/0
       examples:
-      - ID: fr.health.samu440-DRFR15DDXAAJJJ0000
+      - ID: fr.health.samu440.DRFR15DDXAAJJJ0000
         LINK_ROLE: ADDSTO
     origin:
       type: object

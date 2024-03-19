@@ -4,10 +4,10 @@ on:
   pull_request:
     branches:
       - '**'
-  workflow_dispatch:
+#  workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES"
 
 jobs:
   generate:
@@ -27,7 +27,7 @@ jobs:
           filters: |
             parsing_required:
               - '**.py'
-              - '**.xslx'
+              - '**.xlsx'
               - '**.csv'
 
       - name: Install Graphviz
@@ -100,6 +100,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/cisu || true
           rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
+          rm -r ./src/main/java/com/hubsante/model/geolocation || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew
@@ -107,7 +108,7 @@ jobs:
 
       - name: Apply license
         run: ./gradlew licenseFormat
-        
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:

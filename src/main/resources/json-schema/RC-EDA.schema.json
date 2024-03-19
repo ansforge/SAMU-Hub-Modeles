@@ -485,7 +485,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/freetext",
-                    "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte.\nTexte servant \u00e0 passer les informations de gestion des \u00e9v\u00e8nements (main courante sans les informations m\u00e9dicales privil\u00e9gi\u00e9es) "
+                    "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte."
                 },
                 "caller": {
                     "$ref": "#/definitions/caller"
@@ -656,7 +656,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/freetext",
-                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -694,7 +694,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/freetext",
-                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -732,7 +732,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/freetext",
-                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -770,7 +770,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/freetext",
-                    "description": "Permet de compl\u00e9menter en commentaire libre l'attribut permettant de qualifier l'\u00e9v\u00e9nement."
+                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
