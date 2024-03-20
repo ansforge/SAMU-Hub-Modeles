@@ -1,0 +1,204 @@
+openapi: 3.0.0
+components:
+  schemas:
+    geoPositionUpdateWrapper:
+      type: object
+      required:
+      - geoPositionUpdate
+      properties:
+        geoPositionUpdate:
+          $ref: '#/components/schemas/geoPositionUpdate'
+    geoPositionUpdate:
+      $id: classpath:/json-schema/schema#
+      x-id: GEO-POS.schema.json#
+      example: example.json#
+      type: object
+      title: geoPositionUpdate
+      required: []
+      properties:
+        position:
+          type: array
+          items:
+            $ref: '#/components/schemas/position'
+      additionalProperties: false
+    position:
+      type: object
+      title: Position
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - id
+      - datetime
+      properties:
+        id:
+          type: string
+          title: Identifiant de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/id
+          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
+            \ partenaire propri\xE9taire"
+          examples:
+          - 76_45101#SMUR1
+        datetime:
+          type: string
+          title: "Date et heure des derni\xE8res remont\xE9es d'informations de la\
+            \ ressource"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/datetime
+          description: "Date et heure de la derni\xE8re position connue"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2024-01-27T08:44:00+02:00'
+        receptionDatetime:
+          type: string
+          title: "Date et heure de la r\xE9ception de la derni\xE8re localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/receptionDatetime
+          description: "Date et heure de la r\xE9ception de la derni\xE8re position\
+            \ connue dans le syst\xE8me de l'organisme"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2024-01-27T08:45:00+02:00'
+        coord:
+          type: array
+          items:
+            $ref: '#/components/schemas/coord'
+        speed:
+          type: number
+          title: Vitesse de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/speed
+          description: "Vitesse de la ressource enregistr\xE9e, exprim\xE9e en km/h"
+          examples:
+          - 80
+        cap:
+          type: string
+          title: Direction de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/cap
+          description: "Direction de la ressource, exprim\xE9 en degr\xE9s"
+          examples:
+          - 96
+        move:
+          type: string
+          title: Mouvement de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/move
+          description: Indique si la ressource est en mouvement (MOBILE) ou non (STATIQUE)
+          enum:
+          - MOBILE
+          - STATIQUE
+          examples:
+          - MOBILE
+        engineOn:
+          type: boolean
+          title: Etat du moteur de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/engineOn
+          description: "Indique si le moteur de la ressource est \xE9teint (FAUX)\
+            \ ou allum\xE9/en marche (VRAI)"
+          examples:
+          - 1
+        groundStatus:
+          type: boolean
+          title: "Etat de l'h\xE9licopt\xE8re"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/groundStatus
+          description: "Indique si l'h\xE9licopt\xE8re est au sol (VRAI) ou en l'air\
+            \ (FAUX)"
+          examples:
+          - 1
+        status:
+          type: string
+          title: Statut de la ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/status
+          description: "D\xE9finit le statut de disponibilit\xE9 d'une ressource.\n\
+            - DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque\
+            \ la ressource n'est pas disponible, celle-ci peut \xEAtre engag\xE9e\
+            \ ou en maintenance\n- INCONNU : Lorsque le status est inconnu"
+          enum:
+          - DISPONIBLE
+          - INDISPONIBLE
+          - INCONNU
+          examples:
+          - DISPONIBLE
+        engagedStatus:
+          type: string
+          title: "Statut de la ressource engag\xE9e"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/engagedStatus
+          description: "Pr\xE9cise le statut d'une ressource qui est engag\xE9e sur\
+            \ une mission"
+          enum:
+          - ALERTEE
+          - PARTIE
+          - ARRIVEE_LIEU
+          - TRANSPORT_DESTINATION
+          - ARRIVEE_DESTINATION
+          - FIN_MED
+          - QUITTE_DESTINATION
+          - RETOUR_DISPONIBLE
+          - RETOUR_INDISPONIBLE
+          - ARRIVEE_CENTRE
+          examples:
+          - PARTIE
+      additionalProperties: false
+      example: example.json#/position/0
+    coord:
+      type: object
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - lat
+      - lon
+      properties:
+        lat:
+          type: number
+          title: 'Latitude '
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/coord/0/lat
+          description: "Derni\xE8re coordonn\xE9e x connue de la ressource, entre\
+            \ \u221290 and +90"
+          examples:
+          - '47.221866'
+        lon:
+          type: number
+          title: Longitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/coord/0/lon
+          description: "Derni\xE8re coordonn\xE9e y connue de la ressource, entre\
+            \ \u2212180 and +180"
+          examples:
+          - '-1.575807'
+        height:
+          type: number
+          title: Altitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/position/0/coord/0/height
+          description: "Derni\xE8re coordonn\xE9e z connue de la ressource, en m\xE8\
+            tres sans bornes"
+          examples:
+          - 1
+      additionalProperties: false
+      example: example.json#/position/0/coord/0
+      examples:
+      - lat: '47.221866'
+        lon: '-1.575807'
+        height: 1

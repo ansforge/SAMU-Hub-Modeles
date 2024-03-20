@@ -41,15 +41,73 @@ import java.util.Objects;
 /**
  * Destination
  */
-@JsonPropertyOrder({Destination.JSON_PROPERTY_FACILITY,
-                    Destination.JSON_PROPERTY_SERVICE,
-                    Destination.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder(
+    {Destination.JSON_PROPERTY_TYPE, Destination.JSON_PROPERTY_FACILITY,
+     Destination.JSON_PROPERTY_ADMIN_FINESS,
+     Destination.JSON_PROPERTY_GEO_FINESS, Destination.JSON_PROPERTY_SERVICE,
+     Destination.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("destination")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Destination {
+
+  /**
+   * Indique le type de destination de la ressource : service d’urgences d’un
+   * Etablissement de santé, autres services d’un établissement de santé,
+   * cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long
+   * séjour, autre
+   */
+  public enum TypeEnum {
+    SERVICE_D_URGENCES_D_UN_ETABLISSEMENT_DE_SANT_(
+        "service d’urgences d’un Etablissement de santé"),
+
+    AUTRES_SERVICES_D_UN_TABLISSEMENT_DE_SANT_(
+        "autres services d’un établissement de santé"),
+
+    CABINET_D_UN_PROFESSIONNEL_DE_SANT_("cabinet d’un professionnel de santé"),
+
+    DOMICILE_PERSONNEL("domicile personnel"),
+
+    EPHAD_OU_LONG_S_JOUR("EPHAD ou long séjour"),
+
+    AUTRE("autre");
+
+    private String value;
+
+    TypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TYPE = "type";
+  private TypeEnum type;
+
   public static final String JSON_PROPERTY_FACILITY = "facility";
   private String facility;
+
+  public static final String JSON_PROPERTY_ADMIN_FINESS = "adminFiness";
+  private String adminFiness;
+
+  public static final String JSON_PROPERTY_GEO_FINESS = "geoFiness";
+  private String geoFiness;
 
   public static final String JSON_PROPERTY_SERVICE = "service";
   private String service;
@@ -59,6 +117,31 @@ public class Destination {
 
   public Destination() {}
 
+  public Destination type(TypeEnum type) {
+
+    this.type = type;
+    return this;
+  }
+
+  /**
+   * Indique le type de destination de la ressource : service d’urgences d’un
+   *Etablissement de santé, autres services d’un établissement de santé, cabinet
+   *d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre
+   * @return type
+   **/
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public TypeEnum getType() {
+    return type;
+  }
+
+  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setType(TypeEnum type) {
+    this.type = type;
+  }
+
   public Destination facility(String facility) {
 
     this.facility = facility;
@@ -66,7 +149,7 @@ public class Destination {
   }
 
   /**
-   * Get facility
+   * Nom de l&#39;établissement
    * @return facility
    **/
   @JsonProperty(JSON_PROPERTY_FACILITY)
@@ -82,6 +165,52 @@ public class Destination {
     this.facility = facility;
   }
 
+  public Destination adminFiness(String adminFiness) {
+
+    this.adminFiness = adminFiness;
+    return this;
+  }
+
+  /**
+   * N° Finess administratif de l&#39;établissement
+   * @return adminFiness
+   **/
+  @JsonProperty(JSON_PROPERTY_ADMIN_FINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getAdminFiness() {
+    return adminFiness;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ADMIN_FINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdminFiness(String adminFiness) {
+    this.adminFiness = adminFiness;
+  }
+
+  public Destination geoFiness(String geoFiness) {
+
+    this.geoFiness = geoFiness;
+    return this;
+  }
+
+  /**
+   * N° Finess géographique de l&#39;établissement
+   * @return geoFiness
+   **/
+  @JsonProperty(JSON_PROPERTY_GEO_FINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getGeoFiness() {
+    return geoFiness;
+  }
+
+  @JsonProperty(JSON_PROPERTY_GEO_FINESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGeoFiness(String geoFiness) {
+    this.geoFiness = geoFiness;
+  }
+
   public Destination service(String service) {
 
     this.service = service;
@@ -89,7 +218,7 @@ public class Destination {
   }
 
   /**
-   * Get service
+   * Service concerné par l&#39;admission du patient
    * @return service
    **/
   @JsonProperty(JSON_PROPERTY_SERVICE)
@@ -137,21 +266,32 @@ public class Destination {
       return false;
     }
     Destination destination = (Destination)o;
-    return Objects.equals(this.facility, destination.facility) &&
+    return Objects.equals(this.type, destination.type) &&
+        Objects.equals(this.facility, destination.facility) &&
+        Objects.equals(this.adminFiness, destination.adminFiness) &&
+        Objects.equals(this.geoFiness, destination.geoFiness) &&
         Objects.equals(this.service, destination.service) &&
         Objects.equals(this.freetext, destination.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(facility, service, freetext);
+    return Objects.hash(type, facility, adminFiness, geoFiness, service,
+                        freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Destination {\n");
+    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    facility: ").append(toIndentedString(facility)).append("\n");
+    sb.append("    adminFiness: ")
+        .append(toIndentedString(adminFiness))
+        .append("\n");
+    sb.append("    geoFiness: ")
+        .append(toIndentedString(geoFiness))
+        .append("\n");
     sb.append("    service: ").append(toIndentedString(service)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");

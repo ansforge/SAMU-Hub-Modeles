@@ -1,22 +1,40 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
-  "$id": "classpath:/json-schema/schema#",
-  "x-id": "schema.json#",
-  "version": "0.4.9",
-  "example": "example.json#",
-  "type": "object",
-  "title": "reference",
-  "required": [
-    "distributionID"
-  ],
-  "properties": {
-    "distributionID": {
-      "type": "string",
-      "title": "Identifiant du message référencé",
-      "x-cols": 6,
-      "example": "example.json#/caseId",
-      "description": "Identifiant unique du message référencé"
-    }
-  },
-  "additionalProperties": false
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RC-REF.schema.json#",
+    "version": "24.03.20",
+    "example": "example.json#",
+    "type": "object",
+    "title": "reference",
+    "required": [
+        "distributionID"
+    ],
+    "properties": {
+        "distributionID": {
+            "type": "string",
+            "title": "Identifiant du message r\u00e9f\u00e9renc\u00e9",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/distributionID",
+            "description": "Identifiant unique du message r\u00e9f\u00e9renc\u00e9"
+        },
+        "isRefused": {
+            "type": "boolean",
+            "title": "Indicateur de refus de message",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/isRefused",
+            "description": "Indique si le message acquitt\u00e9 a \u00e9t\u00e9 refus\u00e9"
+        },
+        "infoDistributionID": {
+            "type": "string",
+            "title": "Identifiant du message d'erreur li\u00e9",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/infoDistributionID",
+            "description": "Identifiant unique du message d'erreur li\u00e9"
+        }
+    },
+    "definitions": {},
+    "additionalProperties": false
 }

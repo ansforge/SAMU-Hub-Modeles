@@ -74,6 +74,76 @@ public class Mission {
    * EMSI pour caractériser la mission en cours.
    */
   public enum TYPEEnum {
+    SAV_ASC("SAV/ASC"),
+
+    FSTT_TA_FR_DIFFICULTACCSS("FSTT/TA/FR_DIFFICULTACCSS"),
+
+    GEN_RECVRY("GEN/RECVRY"),
+
+    RSC_SAR_FR_VLN("RSC/SAR/FR_VLN"),
+
+    SAV_ASC_FR_PPL_LIFT("SAV/ASC/FR_PPL/LIFT"),
+
+    SAV_RHD("SAV/RHD"),
+
+    SAV_RTA("SAV/RTA"),
+
+    SAV_SARCSL("SAV/SARCSL"),
+
+    FFST_FR_FIRE("FFST/FR_FIRE"),
+
+    FSTT_RRHAZ_FR_CO("FSTT/RRHAZ/FR_CO"),
+
+    FSTT_TA_FR_ANI_DGR("FSTT/TA/FR_ANI/DGR"),
+
+    FSTT_TA_FR_ANI_INJ("FSTT/TA/FR_ANI/INJ"),
+
+    INT_RECCE_FR_CBRNHZ("INT/RECCE/FR_CBRNHZ"),
+
+    INT_RECCE_FR_DIS_LNDSLD("INT/RECCE/FR_DIS/LNDSLD"),
+
+    INT_RECCE_FR_DIS_SDCLPS("INT/RECCE/FR_DIS/SDCLPS"),
+
+    INT_RECCE_FR_FLD("INT/RECCE/FR_FLD"),
+
+    INT_RECCE_FR_SMLL("INT/RECCE/FR_SMLL"),
+
+    FSTT_TA_FR_DRG_MIND("FSTT/TA/FR_DRG/MIND"),
+
+    FR_MED_REGLTN("FR_MED/REGLTN"),
+
+    GEN_SUPRTN("GEN/SUPRTN"),
+
+    REC_PRVCNP("REC/PRVCNP"),
+
+    RSC_MEDEVC("RSC/MEDEVC"),
+
+    SAV_AR_FR_CNT("SAV/AR/FR_CNT"),
+
+    SAV_AR_FR_MED("SAV/AR/FR_MED"),
+
+    SAV_AR_FR_PARAMD("SAV/AR/FR_PARAMD"),
+
+    SAV_AR_FR_PPL_GRP("SAV/AR/FR_PPL/GRP"),
+
+    SAV_AR_FR_PSYPHY("SAV/AR/FR_PSYPHY"),
+
+    INT_RECCE("INT/RECCE"),
+
+    SAV("SAV"),
+
+    FSTT_TA_FR_TRNSPN_AMB("FSTT/TA/FR_TRNSPN/AMB"),
+
+    GEN_TRNSPN("GEN/TRNSPN"),
+
+    GEN_TRNSPN_FR_SECNDRY("GEN/TRNSPN/FR_SECNDRY"),
+
+    OPR_LOG("OPR/LOG"),
+
+    SAV_AR_FR_PPL_OBS("SAV/AR/FR_PPL/OBS"),
+
+    FSTT_TA_FR_CLRACCSS("FSTT/TA/FR_CLRACCSS"),
+
     C2("C2"),
 
     CBRN("CBRN"),
@@ -99,8 +169,6 @@ public class Mission {
     REC("REC"),
 
     RSC("RSC"),
-
-    SAV("SAV"),
 
     SCS("SCS"),
 
@@ -162,8 +230,6 @@ public class Mission {
 
     GEN_RECVRN("GEN/RECVRN"),
 
-    GEN_RECVRY("GEN/RECVRY"),
-
     GEN_REDPLN("GEN/REDPLN"),
 
     GEN_REORGN("GEN/REORGN"),
@@ -186,10 +252,6 @@ public class Mission {
 
     GEN_STNGUP("GEN/STNGUP"),
 
-    GEN_SUPRTN("GEN/SUPRTN"),
-
-    GEN_TRNSPN("GEN/TRNSPN"),
-
     INT_BIOSMP("INT/BIOSMP"),
 
     INT_CHMSMP("INT/CHMSMP"),
@@ -207,8 +269,6 @@ public class Mission {
     INT_PLUMOD("INT/PLUMOD"),
 
     INT_PTRLNG("INT/PTRLNG"),
-
-    INT_RECCE("INT/RECCE"),
 
     INT_SRVMET("INT/SRVMET"),
 
@@ -350,19 +410,9 @@ public class Mission {
 
     RSC_FRFGTN("RSC/FRFGTN"),
 
-    RSC_MEDEVC("RSC/MEDEVC"),
-
     RSC_SAR("RSC/SAR"),
 
     SAV_AR("SAV/AR"),
-
-    SAV_ASC("SAV/ASC"),
-
-    SAV_RHD("SAV/RHD"),
-
-    SAV_RTA("SAV/RTA"),
-
-    SAV_SARCSL("SAV/SARCSL"),
 
     SAV_SARHHA("SAV/SARHHA"),
 
@@ -659,13 +709,12 @@ public class Mission {
 
   /**
    * Indique l&#39;organisation du partenaire concerné par la Demande de
-   *Concours (voir DSF 8.4). Le code CRRA ou le code du SIS peut être utilisé.
-   *Indique l&#39;organisation du service réalisant la mission. Dans le cas
+   *Concours (voir DSF). Le code CRRA ou le code du SIS peut être utilisé.
+   *Indique l&#39;organisation du service réalisant la mission.  Dans le cas
    *d&#39;une réponse, c&#39;est l&#39;organisation du concourant qui doit être
    *indiquée. Se référer au DSF pour la structure normée des organisations Le
-   *format est le suivant {pays}:{domaine}:{code
-   *département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.
-   *identique à &lt;CONTEXT&gt;&lt;ORIGIN&gt;&lt;ORG_ID&gt;
+   *format est le suivant {pays}.{domaine}.{organisation}.{structure
+   *interne}*.{unité fonctionnelle}*.
    * @return ORG_ID
    **/
   @JsonProperty(JSON_PROPERTY_O_R_G_I_D)

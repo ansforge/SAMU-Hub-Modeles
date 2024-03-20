@@ -50,14 +50,10 @@ public class Link {
   private String ID;
 
   /**
-   * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; en EMSI-EO
-   * et avec le libellé ADDSTO en EMSI-DC  Dans Nexsis; RG 1  – : création du
-   * premier message EMSi suite réception Affaire * &lt;LINK&gt;&lt;LINK ID&gt;
-   * &#x3D; &lt;Numéro d&#39;affaire initiale&gt; • &lt;LINK&gt;&lt;LINK
-   * ROLE&gt; &#x3D; &#39;ADDSTO&#39;, RG 2 : Pour tous les messages créés après
-   * le premier, EMSI &lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt;
-   * contenant l&#39;ID de message EMSI précédent créé au sein du SGO rédacteur
-   * * &lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D; &#39;SPRSDS&#39;
+   * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; pour un
+   * message EMSI, incluant des missions RDC et/ou OPG et avec le libellé
+   * \&quot;ADDSTO\&quot; pour un message EMSI, incluant uniquement qu&#39;une
+   * demande de concours (EMSI-DC).
    */
   public enum LINKROLEEnum {
     ADDSTO("ADDSTO"),
@@ -101,14 +97,11 @@ public class Link {
   }
 
   /**
-   * A renseigner avec l&#39;identifiant local de l&#39;affaire du partenaire
-   *requérant Dans NexSIS; RG 1  – : création du premier message EMSi suite
-   *réception Affaire • &lt;LINK&gt;&lt;LINK ID&gt; &#x3D; &lt;Numéro
-   *d&#39;affaire initiale&gt; • &lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D;
-   *&#39;ADDSTO&#39;, RG 2 : Pour tous les messages créés après le premier, EMSI
-   *&lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt; contenant l&#39;ID
-   *de message EMSI précédent créé au sein du SGO rédacteur *
-   *&lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D; &#39;SPRSDS&#39;
+   * A renseigner avec l&#39;identifiant de l&#39;organisation (champ
+   *organization du message RC-EDA) suivi de l&#39;identifiant local de
+   *l&#39;affaire du partenaire requérant (champ senderCaseId du message
+   *RC-EDA). {pays}.{domaine}.{organisation}.{structure interne}*.{unité
+   *fonctionnelle}*-{numéro de dossier}
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)
@@ -131,14 +124,10 @@ public class Link {
   }
 
   /**
-   * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; en EMSI-EO
-   *et avec le libellé ADDSTO en EMSI-DC  Dans Nexsis; RG 1  – : création du
-   *premier message EMSi suite réception Affaire * &lt;LINK&gt;&lt;LINK ID&gt;
-   *&#x3D; &lt;Numéro d&#39;affaire initiale&gt; • &lt;LINK&gt;&lt;LINK ROLE&gt;
-   *&#x3D; &#39;ADDSTO&#39;, RG 2 : Pour tous les messages créés après le
-   *premier, EMSI &lt;LINK&gt; est complété par &lt;LINK&gt;&lt;LINK ID&gt;
-   *contenant l&#39;ID de message EMSI précédent créé au sein du SGO rédacteur *
-   *&lt;LINK&gt;&lt;LINK ROLE&gt; &#x3D; &#39;SPRSDS&#39;
+   * Optionnel : à valoriser avec la constante \&quot;SPRSDS\&quot; pour un
+   *message EMSI, incluant des missions RDC et/ou OPG et avec le libellé
+   *\&quot;ADDSTO\&quot; pour un message EMSI, incluant uniquement qu&#39;une
+   *demande de concours (EMSI-DC).
    * @return LINK_ROLE
    **/
   @JsonProperty(JSON_PROPERTY_L_I_N_K_R_O_L_E)

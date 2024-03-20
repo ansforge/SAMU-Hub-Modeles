@@ -1,0 +1,33 @@
+openapi: 3.0.0
+components:
+  schemas:
+    geoResourceRequestWrapper:
+      type: object
+      required:
+      - geoResourceRequest
+      properties:
+        geoResourceRequest:
+          $ref: '#/components/schemas/geoResourceRequest'
+    geoResourceRequest:
+      $id: classpath:/json-schema/schema#
+      x-id: GEO-REQ.schema.json#
+      example: example.json#
+      type: object
+      title: geoResourceRequest
+      required:
+      - resourceId
+      properties:
+        resourceId:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Identifiant(s) de(s) ressource(s)
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/resourceId/0
+            description: "Liste des ID des ressources pour lesquels le demandeur a\
+              \ besoin d'obtenir plus de d\xE9tails"
+            examples:
+            - 76_45101#SMUR1
+      additionalProperties: false

@@ -1,0 +1,28 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "GEO-REQ.schema.json#",
+    "version": "24.03.20",
+    "example": "example.json#",
+    "type": "object",
+    "title": "geoResourceRequest",
+    "required": [
+        "resourceId"
+    ],
+    "properties": {
+        "resourceId": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Identifiant(s) de(s) ressource(s)",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/resourceId/0",
+                "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de d\u00e9tails"
+            }
+        }
+    },
+    "definitions": {},
+    "additionalProperties": false
+}

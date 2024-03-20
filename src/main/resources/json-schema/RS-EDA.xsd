@@ -5,18 +5,18 @@
             <element name="caseId" type="string">
                 <annotation>
                     <documentation>Identifiant technique de l'affaire et partagé entre tous les intervenants.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par les systèmes du partenaire récepteur de la primo-demande de secours et contient une clé conventionnelle permettant d'identifier la source.
-Valorisation :
-{cleConventionnelle}:{cleUnique}
-où cleConventionnelle est la clé utilisée par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le système du partenaire emetteur.
-cleUnique est une chaîne de caractère (string) comprise entre 4 et 22 caractères alphanumériques.</documentation>
+                        Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. Il est généré par les systèmes du partenaire récepteur de la primo-demande de secours et contient une clé conventionnelle permettant d'identifier la source.
+                        Valorisation :
+                        {cleConventionnelle}:{cleUnique}
+                        où cleConventionnelle est la clé utilisée par le partenaire emetteur et cleUnique l'identifiant locale d'affaire dans le système du partenaire emetteur.
+                        cleUnique est une chaîne de caractère (string) comprise entre 4 et 22 caractères alphanumériques.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
                     <documentation>Valoriser avec l'identifiant de l'affaire dans le SI de l'émetteur du message
-Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS
-Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caractères de l'identifiant local de leur partenaire.</documentation>
+                        Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS
+                        Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuvent utiliser les derniers caractères de l'identifiant local de leur partenaire.</documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
@@ -26,8 +26,8 @@ Dans le cas où deux opérateurs ont besoin d'identifier une affaire, ils peuven
             </element>
             <element name="referenceVersion" type="string">
                 <annotation>
-                    <documentation>Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
-Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.</documentation>
+                    <documentation>Indique le numéro de version du référentiel des nomenclatures des codes transmis.
+                        Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.</documentation>
                 </annotation>
             </element>
             <element name="qualification" type="x:qualification"/>
@@ -36,9 +36,9 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element name="owner" type="string">
                 <annotation>
                     <documentation>Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
-Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
-Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
-Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.</documentation>
+                        Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
+                        Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
+                        Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="operator" type="x:operator"/>
@@ -73,8 +73,8 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
             <element minOccurs="0" name="locLabel" type="string">
                 <annotation>
                     <documentation>Permet d'indiquer des indications auto suffisantes permettant pour un opérationnel d'accéder facilement au lieu avec des indications minimales.
-Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
-Comprend au maximum 255 caractères</documentation>
+                        Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
+                        Comprend au maximum 255 caractères</documentation>
                 </annotation>
             </element>
             <element name="name" type="string">
@@ -346,11 +346,11 @@ Comprend au maximum 255 caractères</documentation>
             <element name="id" type="string">
                 <annotation>
                     <documentation>Identifiant technique unique de l'alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage.
-Voir la description de l'identifiant de l'affaire pour voir le format.
-Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
-a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
-b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
-Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.</documentation>
+                        Voir la description de l'identifiant de l'affaire pour voir le format.
+                        Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
+                        a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
+                        b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
+                        Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.</documentation>
                 </annotation>
             </element>
             <element name="reception" type="dateTime">
@@ -361,11 +361,11 @@ Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et 
             <element name="reporting">
                 <annotation>
                     <documentation>Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.
-Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. 
-Prend les valeurs définies dans la nomenclature CISU :
-- standard : STANDARD
-- signalé : ATTENTION
-Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION</documentation>
+                        Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur.
+                        Prend les valeurs définies dans la nomenclature CISU :
+                        - standard : STANDARD
+                        - signalé : ATTENTION
+                        Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -443,7 +443,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                        Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
@@ -534,9 +534,9 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Numéro, type et nom de la voie. 
-Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                    <documentation>Numéro, type et nom de la voie.
+                        Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+                        Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="number" type="string">
@@ -567,7 +567,7 @@ Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</docum
             <element minOccurs="0" name="detail" type="string">
                 <annotation>
                     <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
-NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté</documentation>
+                        NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -623,11 +623,11 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
             <element minOccurs="0" name="point" type="x:point"/>
             <element minOccurs="0" name="sketch" type="string">
                 <annotation>
-                    <documentation>Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
-Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
-En XML, un objet gml est encapsulé dans une balise &lt;sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' &gt; &lt;/sketch&gt;
-En JSON, les balises sont reprises depuis le modèle gml
-Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
+                    <documentation>Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné.
+                        Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
+                        En XML, un objet gml est encapsulé dans une balise &lt;sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' &gt; &lt;/sketch&gt;
+                        En JSON, les balises sont reprises depuis le modèle gml
+                        Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -649,7 +649,7 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
             <element name="type">
                 <annotation>
                     <documentation>Définition du type d'objet dans le système
-Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
+                        Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -673,7 +673,7 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
             <element name="complete" type="string">
                 <annotation>
                     <documentation>Type et nom de la voie (venant d'un référentiel ou non)
-Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
+                        Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="type" type="string"/>
@@ -720,7 +720,7 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
             <element name="precision">
                 <annotation>
                     <documentation>Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
+                        CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1000,8 +1000,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Informations complémentaires sur le requérant 
-Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif</documentation>
+                    <documentation>Informations complémentaires sur le requérant
+                        Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
@@ -1043,8 +1043,8 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
             <element name="organization" type="string">
                 <annotation>
                     <documentation>Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
-Se référer au DSF pour la structure normée des organisations
-Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.</documentation>
+                        Se référer au DSF pour la structure normée des organisations
+                        Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{structure interne}*:{unité fonctionnelle}*.</documentation>
                 </annotation>
             </element>
             <element name="controlRoom" type="string">
@@ -1085,7 +1085,7 @@ Le format est le suivant {pays}:{domaine}:{code département}:{organisation}:{st
             <element name="URI" type="string">
                 <annotation>
                     <documentation>Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
-Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?</documentation>
+                        Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="derefURI" type="string">
@@ -1096,7 +1096,7 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
             <element minOccurs="0" name="digest" type="string">
                 <annotation>
                     <documentation>Hash de la ressource pour confirmer la réception de la bonne ressource
-La ressource est hashée avec le protocole SHA-256</documentation>
+                        La ressource est hashée avec le protocole SHA-256</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1132,8 +1132,8 @@ La ressource est hashée avec le protocole SHA-256</documentation>
             <element name="complete" type="string">
                 <annotation>
                     <documentation>Prénom et nom usuel du requérant.
-Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
-Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
+                        Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
+                        Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="lastName" type="string">
@@ -1144,7 +1144,7 @@ Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux 
             <element minOccurs="0" name="firstName" type="string">
                 <annotation>
                     <documentation>Prénom du réquérant.
-Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
+                        Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1216,7 +1216,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
-Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
+                        Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="medicalHistory" type="string">
@@ -1280,19 +1280,19 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
             <element minOccurs="0" name="status" type="string">
                 <annotation>
                     <documentation>Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
-- « identité provisoire »,
-- « identité récupérée »,
-- « identité validée »,
-- « identité qualifiée ».
-Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.</documentation>
+                        - « identité provisoire »,
+                        - « identité récupérée »,
+                        - « identité validée »,
+                        - « identité qualifiée ».
+                        Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="attribute" type="string">
                 <annotation>
                     <documentation>Le RNIV recommande que les logiciels référentiels d’identités gèrent a minima les 3 attributs suivants :
-- identité homonyme,
-- identité douteuse,
-- identité fictive.</documentation>
+                        - identité homonyme,
+                        - identité douteuse,
+                        - identité fictive.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1302,7 +1302,7 @@ Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS
             <element minOccurs="0" name="value" type="string">
                 <annotation>
                     <documentation>n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
-Le matricule INS est composé des 13 caractères et de la clé de contrôle. </documentation>
+                        Le matricule INS est composé des 13 caractères et de la clé de contrôle. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="oid" type="string">
@@ -1321,10 +1321,10 @@ Le matricule INS est composé des 13 caractères et de la clé de contrôle. </d
             </element>
             <element minOccurs="0" name="birthFirstName" type="string">
                 <annotation>
-                    <documentation>Doit être cohérent avec la liste des prénoms de naissance renvoyée par INSi. Ex: si la liste des prénoms renvoyée est "Pierre Alain Jacques", le premier prénom de naissance ne peut être que : 
-Pierre
-Pierre Alain
-Pierre Alain Jacques</documentation>
+                    <documentation>Doit être cohérent avec la liste des prénoms de naissance renvoyée par INSi. Ex: si la liste des prénoms renvoyée est "Pierre Alain Jacques", le premier prénom de naissance ne peut être que :
+                        Pierre
+                        Pierre Alain
+                        Pierre Alain Jacques</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="birthFirstNamesList" type="string">

@@ -1,0 +1,153 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "GEO-RES.schema.json#",
+    "version": "24.03.20",
+    "example": "example.json#",
+    "type": "object",
+    "title": "geoResourceDetails",
+    "required": [],
+    "properties": {
+        "resource": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/resource"
+            }
+        }
+    },
+    "definitions": {
+        "resource": {
+            "type": "object",
+            "title": "Ressource",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "id",
+                "orgId",
+                "type"
+            ],
+            "properties": {
+                "id": {
+                    "type": "string",
+                    "title": "Identifiant de la ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/id",
+                    "description": "Identifiant unique de la ressource  dans le syst\u00e8me du partenaire propri\u00e9taire"
+                },
+                "orgId": {
+                    "type": "string",
+                    "title": "Identifiant de l'organisation propri\u00e9taire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/orgId",
+                    "description": "Identifiant unique de l'organisme :  {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*\n*donn\u00e9es facultatives"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom de la ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/name",
+                    "description": "Nom donn\u00e9 \u00e0 la ressource par l'organisme propri\u00e9taire. \nL'immatriculation peut \u00eatre utilis\u00e9e dans le nom courant des v\u00e9hicules."
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type de ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/type",
+                    "description": "Cat\u00e9gorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)",
+                    "enum": [
+                        "SMUR",
+                        "SDIS",
+                        "TSU",
+                        "SNP",
+                        "MSPE",
+                        "SHIP"
+                    ]
+                },
+                "nature": {
+                    "type": "string",
+                    "title": "Nature de la ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/nature",
+                    "description": "Nature de la ressource (effecteur, base)",
+                    "enum": [
+                        "EFFECTEUR",
+                        "BASE"
+                    ]
+                },
+                "mobility": {
+                    "type": "string",
+                    "title": "Mobilit\u00e9 de la ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/mobility",
+                    "description": "Mobilit\u00e9 de la ressource (fixe, vehicule, heliport\u00e9, navire)",
+                    "enum": [
+                        "FIXE",
+                        "VEHICULE",
+                        "HELICOPTERE",
+                        "SHIP "
+                    ]
+                },
+                "capacity": {
+                    "type": "string",
+                    "title": "Capacit\u00e9s de la ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/capacity",
+                    "description": "Capacit\u00e9 de transport d'un patient",
+                    "enum": [
+                        "URGENCE",
+                        "MEDICALE",
+                        "PARAMEDICALE",
+                        "INCONNUE"
+                    ]
+                },
+                "contacts": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/contact"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/resource/0"
+        },
+        "contact": {
+            "type": "object",
+            "title": "Contacts",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/contacts/0/type",
+                    "description": "Type de contact, voir \u00e9num\u00e9ration associ\u00e9e\n1. PMRADD (si RFGI disponible)\n2. PHNADD pour t\u00e9l\u00e9phonie",
+                    "enum": [
+                        "PMRADD",
+                        "PHNADD"
+                    ]
+                },
+                "details": {
+                    "type": "string",
+                    "title": "D\u00e9tails de contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/resource/0/contacts/0/details",
+                    "description": "1. RFGI (si RFGI disponible)\n2. Num\u00e9ro de t\u00e9l\u00e9phone"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/resource/0/contacts/0"
+        }
+    },
+    "additionalProperties": false
+}

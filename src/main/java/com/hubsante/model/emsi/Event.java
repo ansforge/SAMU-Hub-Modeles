@@ -324,7 +324,8 @@ public class Event {
   }
 
   /**
-   * Identifiant local de l&#39;affaire dans le système du partenaire emetteur
+   * A renseigner avec l&#39;identifiant local de l&#39;affaire dans le LRM ou
+   *NexSIS
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)
@@ -371,9 +372,13 @@ public class Event {
   }
 
   /**
-   * Identifiant d’affaire partagé issu du message RC-EDA transmis en amont NB :
-   *Dans le cas d’un partage initié par un SAMU, on peut avoir EVENT.ID &#x3D;
-   *EVENT.MAIN_EVENT_ID
+   * A renseigner avec l&#39;identifiant de l&#39;organisation (champ
+   *organization du message RC-EDA) suivi de l&#39;identifiant local de
+   *l&#39;affaire du partenaire requérant (champ senderCaseId du message
+   *RC-EDA). {pays}.{domaine}.{organisation}.{structure interne}*.{unité
+   *fonctionnelle}*.{numéro de dossier}  NB : Si l&#39;initiateur du partage de
+   *dossier est le même que l&#39;initiateur du message EMSI, l&#39;EVENT.ID
+   *&#x3D; EVENT.MAIN_EVENT_ID
    * @return MAIN_EVENT_ID
    **/
   @JsonProperty(JSON_PROPERTY_M_A_I_N_E_V_E_N_T_I_D)

@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.Destination;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -45,13 +46,20 @@ import java.util.Objects;
  * Decision
  */
 @JsonPropertyOrder(
-    {Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
-     Decision.JSON_PROPERTY_TRANSPORTATION,
-     Decision.JSON_PROPERTY_MEDICALISATION, Decision.JSON_PROPERTY_DESTINATION})
+    {Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
+     Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
+     Decision.JSON_PROPERTY_TRANSPORTATION, Decision.JSON_PROPERTY_TEAM_CARE,
+     Decision.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Decision {
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
+
+  public static final String JSON_PROPERTY_CREATION = "creation";
+  private OffsetDateTime creation;
+
   public static final String JSON_PROPERTY_TYPE = "type";
   private String type;
 
@@ -61,13 +69,60 @@ public class Decision {
   public static final String JSON_PROPERTY_TRANSPORTATION = "transportation";
   private List<String> transportation;
 
-  public static final String JSON_PROPERTY_MEDICALISATION = "medicalisation";
-  private String medicalisation;
+  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
+  private String teamCare;
 
   public static final String JSON_PROPERTY_DESTINATION = "destination";
   private Destination destination;
 
   public Decision() {}
+
+  public Decision id(String id) {
+
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * ID partagé du patient concerné, lorsque le patient existe et est identifié
+   * @return id
+   **/
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getId() {
+    return id;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  public Decision creation(OffsetDateTime creation) {
+
+    this.creation = creation;
+    return this;
+  }
+
+  /**
+   * Groupe date heure de création de la décision.  L&#39;indicateur de fuseau
+   *horaire Z ne doit pas être utilisé.
+   * @return creation
+   **/
+  @JsonProperty(JSON_PROPERTY_CREATION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public OffsetDateTime getCreation() {
+    return creation;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CREATION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCreation(OffsetDateTime creation) {
+    this.creation = creation;
+  }
 
   public Decision type(String type) {
 
@@ -154,28 +209,28 @@ public class Decision {
     this.transportation.addAll(transportation);
   }
 
-  public Decision medicalisation(String medicalisation) {
+  public Decision teamCare(String teamCare) {
 
-    this.medicalisation = medicalisation;
+    this.teamCare = teamCare;
     return this;
   }
 
   /**
    * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
    *...)
-   * @return medicalisation
+   * @return teamCare
    **/
-  @JsonProperty(JSON_PROPERTY_MEDICALISATION)
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getMedicalisation() {
-    return medicalisation;
+  public String getTeamCare() {
+    return teamCare;
   }
 
-  @JsonProperty(JSON_PROPERTY_MEDICALISATION)
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalisation(String medicalisation) {
-    this.medicalisation = medicalisation;
+  public void setTeamCare(String teamCare) {
+    this.teamCare = teamCare;
   }
 
   public Decision destination(Destination destination) {
@@ -210,23 +265,27 @@ public class Decision {
       return false;
     }
     Decision decision = (Decision)o;
-    return Objects.equals(this.type, decision.type) &&
+    return Objects.equals(this.id, decision.id) &&
+        Objects.equals(this.creation, decision.creation) &&
+        Objects.equals(this.type, decision.type) &&
         Objects.equals(this.orientation, decision.orientation) &&
         Objects.equals(this.transportation, decision.transportation) &&
-        Objects.equals(this.medicalisation, decision.medicalisation) &&
+        Objects.equals(this.teamCare, decision.teamCare) &&
         Objects.equals(this.destination, decision.destination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, orientation, transportation, medicalisation,
-                        destination);
+    return Objects.hash(id, creation, type, orientation, transportation,
+                        teamCare, destination);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    orientation: ")
         .append(toIndentedString(orientation))
@@ -234,9 +293,7 @@ public class Decision {
     sb.append("    transportation: ")
         .append(toIndentedString(transportation))
         .append("\n");
-    sb.append("    medicalisation: ")
-        .append(toIndentedString(medicalisation))
-        .append("\n");
+    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
     sb.append("    destination: ")
         .append(toIndentedString(destination))
         .append("\n");

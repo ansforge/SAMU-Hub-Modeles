@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -64,47 +63,10 @@ public class InsStrictFeatures {
   private String birthFirstNamesList;
 
   public static final String JSON_PROPERTY_BIRTH_DATE = "birthDate";
-  private OffsetDateTime birthDate;
-
-  /**
-   * Sexe du patient
-   */
-  public enum SexEnum {
-    U("U"),
-
-    F("F"),
-
-    M("M"),
-
-    O("O");
-
-    private String value;
-
-    SexEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static SexEnum fromValue(String value) {
-      for (SexEnum b : SexEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private String birthDate;
 
   public static final String JSON_PROPERTY_SEX = "sex";
-  private SexEnum sex;
+  private String sex;
 
   public static final String JSON_PROPERTY_BIRTH_PLACE_CODE = "birthPlaceCode";
   private BigDecimal birthPlaceCode;
@@ -183,7 +145,7 @@ public class InsStrictFeatures {
     this.birthFirstNamesList = birthFirstNamesList;
   }
 
-  public InsStrictFeatures birthDate(OffsetDateTime birthDate) {
+  public InsStrictFeatures birthDate(String birthDate) {
 
     this.birthDate = birthDate;
     return this;
@@ -196,17 +158,17 @@ public class InsStrictFeatures {
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public OffsetDateTime getBirthDate() {
+  public String getBirthDate() {
     return birthDate;
   }
 
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBirthDate(OffsetDateTime birthDate) {
+  public void setBirthDate(String birthDate) {
     this.birthDate = birthDate;
   }
 
-  public InsStrictFeatures sex(SexEnum sex) {
+  public InsStrictFeatures sex(String sex) {
 
     this.sex = sex;
     return this;
@@ -219,13 +181,13 @@ public class InsStrictFeatures {
   @JsonProperty(JSON_PROPERTY_SEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public SexEnum getSex() {
+  public String getSex() {
     return sex;
   }
 
   @JsonProperty(JSON_PROPERTY_SEX)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSex(SexEnum sex) {
+  public void setSex(String sex) {
     this.sex = sex;
   }
 
