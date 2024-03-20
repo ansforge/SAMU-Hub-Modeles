@@ -29,7 +29,7 @@
         "details": {
             "status": "None",
             "type": "DR",
-            "attribution": "m\u00e9decin urgentiste ",
+            "attribution": "MU",
             "priority": "P1"
         },
         "victims": {
@@ -201,7 +201,7 @@
             "detail": {
                 "weight": 31,
                 "height": 109,
-                "age": "6Y",
+                "age": "P6Y",
                 "careLevel": "R1"
             },
             "hypothesis": {

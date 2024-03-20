@@ -22,9 +22,9 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 12,13,,Détails du dossier ,,,,,,,,details,,,,,,0..1,X,caseDetails,,,,X
 13,14,,,Etat du dossier,,,,"cf. cycle SI SAMU  : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU. 
 Echanger à minima l'information que le dossier est clôturé.",,,status,,,,,,0..1,,string,X,"ENUM: Programmé, Actif , Achevé, Validé , Clôturé , Classé, Archivé",,X
-14,15,,,Type de dossier,,,,D/DR/DRM si cycle SI-SAMU implémenté,DR,,type,,,,,,0..1,,string,X,"ENUM : D, DR, DRM 
+14,15,,,Type de dossier,,,,D/DR/DRM si cycle SI-SAMU implémenté,DR,,type,,,,,,0..1,,string,X,"ENUM: D, DR, DRM 
 NOMENC_TYPEDOS",,X
-15,16,,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.",médecin urgentiste ,,attribution,,,,,,0..1,,string,,,,X
+15,16,,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.",MU,,attribution,,,,,,0..1,,string,,,,X
 16,17,,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,,priority,,,,,,0..1,,string,,,,X
 17,18,,Patients-Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
 18,19,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN",X,X
@@ -190,11 +190,11 @@ Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS
 - « identité récupérée »,
 - « identité validée »,
 - « identité qualifiée ».
-Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.",,,status,,,,,,0..1,,string,X,"ENUM : Provisoire, Validée, Récupérée, Qualifiée",,X
+Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.",,,status,,,,,,0..1,,string,X,"ENUM: Provisoire, Validée, Récupérée, Qualifiée",,X
 124,125,,,,Attribut de l'identité,,,"Le RNIV recommande que les logiciels référentiels d’identités gèrent a minima les 3 attributs suivants :
 - identité homonyme,
 - identité douteuse,
-- identité fictive.",,,attribute,,,,,,0..1,,string,X,"ENUM : Homonyme, Fictive, Douteuse",,X
+- identité fictive.",,,attribute,,,,,,0..1,,string,X,"ENUM: Homonyme, Fictive, Douteuse",,X
 125,126,,,Matricule INS,,,,"n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
 Le matricule INS est composé des 13 caractères et de la clé de contrôle. ",,,number,,,,,,0..1,X,insNumber,,,,X
 126,127,,,,Matricule ,,,"n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
@@ -218,7 +218,8 @@ Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
 137,138,,Informations patient,,,,,,,,detail,,,,,,0..1,X,patientDetail,,,,X
 138,139,,,Poids,,,,Poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,,,X
 139,140,,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,,,X
-140,141,,,Age,,,,Age du patient (Norme ISO_8601),6Y,,age,,,,,,0..1,,string,,REGEX: ,,X
+140,141,,,Age,,,,"Age du patient.
+Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,,age,,,,,,0..1,,string,,"REGEX: P[0-9]{1,3}[YMWD]",,X
 141,142,,,Niveau de soin,,,,,R1,,careLevel,,,,,,0..1,,string,X,,,X
 142,143,,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,,,X
 143,144,,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type nomenclature),,,Hypothese diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,nomenclature,X,,,X

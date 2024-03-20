@@ -115,7 +115,9 @@ public class PatientDetail {
   }
 
   /**
-   * Age du patient (Norme ISO_8601)
+   * Age du patient. Au format Durée de la norme ISO 8601
+   *(https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n&#39;utilisant
+   *qu&#39;une seule unité de durée (années, mois, semaines ou jours)
    * @return age
    **/
   @JsonProperty(JSON_PROPERTY_AGE)
