@@ -587,10 +587,17 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="type" type="string">
+            <element minOccurs="0" name="type">
                 <annotation>
                     <documentation>D/DR/DRM si cycle SI-SAMU implémenté</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="D"/>
+                        <enumeration value="DR"/>
+                        <enumeration value="DRM &#10;NOMENC_TYPEDOS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="attribution" type="string">
                 <annotation>
@@ -1289,11 +1296,12 @@ Par convention les prénoms composés doivent préférablement être séparés p
             </element>
             <element minOccurs="0" name="age">
                 <annotation>
-                    <documentation>Age du patient (Norme ISO_8601)</documentation>
+                    <documentation>Age du patient.
+Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value=""/>
+                        <pattern value="P[0-9]{1,3}[YMWD]"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1369,7 +1377,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="insCycle">
         <sequence>
-            <element minOccurs="0" name="status" type="string">
+            <element minOccurs="0" name="status">
                 <annotation>
                     <documentation>Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
 - « identité provisoire »,
@@ -1378,14 +1386,29 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 - « identité qualifiée ».
 Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Provisoire"/>
+                        <enumeration value="Validée"/>
+                        <enumeration value="Récupérée"/>
+                        <enumeration value="Qualifiée"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="attribute" type="string">
+            <element minOccurs="0" name="attribute">
                 <annotation>
                     <documentation>Le RNIV recommande que les logiciels référentiels d’identités gèrent a minima les 3 attributs suivants :
 - identité homonyme,
 - identité douteuse,
 - identité fictive.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Homonyme"/>
+                        <enumeration value="Fictive"/>
+                        <enumeration value="Douteuse"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>

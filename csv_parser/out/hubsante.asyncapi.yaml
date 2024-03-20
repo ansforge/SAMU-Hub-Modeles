@@ -2645,6 +2645,10 @@ components:
           x-cols: 6
           example: example.json#/qualification/details/type
           description: "D/DR/DRM si cycle SI-SAMU impl\xE9ment\xE9"
+          enum:
+          - D
+          - DR
+          - "DRM \nNOMENC_TYPEDOS"
           examples:
           - DR
         attribution:
@@ -2657,7 +2661,7 @@ components:
             \ dossier est attribu\xE9 : M\xE9decin g\xE9n\xE9raliste, m\xE9decin urgentiste\
             \ etc."
           examples:
-          - "m\xE9decin urgentiste "
+          - MU
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -2673,7 +2677,7 @@ components:
       examples:
       - status: None
         type: DR
-        attribution: "m\xE9decin urgentiste "
+        attribution: MU
         priority: P1
     file:
       type: object
@@ -2727,10 +2731,12 @@ components:
           x-health-only: true
           x-cols: 6
           example: example.json#/patient/0/detail/age
-          description: Age du patient (Norme ISO_8601)
-          pattern: ''
+          description: "Age du patient.\nAu format Dur\xE9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
+            \ en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois, semaines\
+            \ ou jours)"
+          pattern: P[0-9]{1,3}[YMWD]
           examples:
-          - 6Y
+          - P6Y
         careLevel:
           type: string
           title: Niveau de soin
@@ -2744,7 +2750,7 @@ components:
       examples:
       - weight: 31
         height: 109
-        age: 6Y
+        age: P6Y
         careLevel: R1
     hypothesis:
       type: object
@@ -2909,6 +2915,11 @@ components:
             rentiel INS [EXI 18] pr\xE9cise en outre que le matricule INS et l\u2019\
             OID doivent \xEAtre accompagn\xE9s d\u2019informations confirmant qu\u2019\
             ils ont \xE9t\xE9 qualifi\xE9s."
+          enum:
+          - Provisoire
+          - "Valid\xE9e"
+          - "R\xE9cup\xE9r\xE9e"
+          - "Qualifi\xE9e"
           examples:
           - None
         attribute:
@@ -2920,6 +2931,10 @@ components:
           description: "Le RNIV recommande que les logiciels r\xE9f\xE9rentiels d\u2019\
             identit\xE9s g\xE8rent a minima les 3 attributs suivants :\n- identit\xE9\
             \ homonyme,\n- identit\xE9 douteuse,\n- identit\xE9 fictive."
+          enum:
+          - Homonyme
+          - Fictive
+          - Douteuse
           examples:
           - None
       additionalProperties: false
