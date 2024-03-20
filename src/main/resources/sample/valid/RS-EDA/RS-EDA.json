@@ -61,7 +61,7 @@
                 "details": {
                   "priority": "P0",
                   "attribution": "Médecin urgentiste",
-                  "type": ""
+                  "type": "D"
                 }
               },
               "location": {
@@ -225,53 +225,7 @@
                   }
                 ]
               },
-              "patient": [
-                {
-                  "resourceDiagnosis": {},
-                  "hypothesis": {
-                    "mainDiagnosis": {},
-                    "otherDiagnosis": []
-                  },
-                  "detail": {
-                    "age": "P65Y"
-                  },
-                  "healthMotive": {},
-                  "identity": {
-                    "nonStrictFeatures": {
-                      "firstName": "Didier ",
-                      "complete": "Didier Morel",
-                      "lastName": "Morel"
-                    },
-                    "strictFeatures": {
-                      "sex": "MASC",
-                      "birthDate": "1959-02-01"
-                    },
-                    "number": {},
-                    "cycle": {}
-                  },
-                  "file": {
-                    "generalPractitioner": {
-                      "personalAddress": {
-                        "city": {},
-                        "detailedAddress": {
-                          "wayName": {}
-                        }
-                      },
-                      "detailedName": {},
-                      "contact": []
-                    },
-                    "personalAddress": {
-                      "city": {},
-                      "detailedAddress": {
-                        "wayName": {}
-                      }
-                    },
-                    "contact": [],
-                    "externalId": []
-                  },
-                  "id": "IDPT-2024-XYZ789"
-                }
-              ],
+              "patient": [],
               "operator": []
             }
           }
