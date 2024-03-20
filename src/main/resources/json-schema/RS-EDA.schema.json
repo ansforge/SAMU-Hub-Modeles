@@ -946,7 +946,12 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/type",
-                    "description": "D/DR/DRM si cycle SI-SAMU impl\u00e9ment\u00e9"
+                    "description": "D/DR/DRM si cycle SI-SAMU impl\u00e9ment\u00e9",
+                    "enum": [
+                        "D",
+                        "DR",
+                        "DRM \nNOMENC_TYPEDOS"
+                    ]
                 },
                 "attribution": {
                     "type": "string",
@@ -1996,8 +2001,8 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/age",
-                    "description": "Age du patient (Norme ISO_8601)",
-                    "pattern": ""
+                    "description": "Age du patient.\nAu format Dur\u00e9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unit\u00e9 de dur\u00e9e (ann\u00e9es, mois, semaines ou jours)",
+                    "pattern": "P[0-9]{1,3}[YMWD]"
                 },
                 "careLevel": {
                     "type": "string",
@@ -2168,7 +2173,13 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/cycle/status",
-                    "description": "Le RNIV exige que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent les 4 statuts fonctionnels suivants :\n- \u00ab identit\u00e9 provisoire \u00bb,\n- \u00ab identit\u00e9 r\u00e9cup\u00e9r\u00e9e \u00bb,\n- \u00ab identit\u00e9 valid\u00e9e \u00bb,\n- \u00ab identit\u00e9 qualifi\u00e9e \u00bb.\nCes statuts fonctionnels sont exclusifs les uns des autres. Le r\u00e9f\u00e9rentiel INS [EXI 18] pr\u00e9cise en outre que le matricule INS et l\u2019OID doivent \u00eatre accompagn\u00e9s d\u2019informations confirmant qu\u2019ils ont \u00e9t\u00e9 qualifi\u00e9s."
+                    "description": "Le RNIV exige que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent les 4 statuts fonctionnels suivants :\n- \u00ab identit\u00e9 provisoire \u00bb,\n- \u00ab identit\u00e9 r\u00e9cup\u00e9r\u00e9e \u00bb,\n- \u00ab identit\u00e9 valid\u00e9e \u00bb,\n- \u00ab identit\u00e9 qualifi\u00e9e \u00bb.\nCes statuts fonctionnels sont exclusifs les uns des autres. Le r\u00e9f\u00e9rentiel INS [EXI 18] pr\u00e9cise en outre que le matricule INS et l\u2019OID doivent \u00eatre accompagn\u00e9s d\u2019informations confirmant qu\u2019ils ont \u00e9t\u00e9 qualifi\u00e9s.",
+                    "enum": [
+                        "Provisoire",
+                        "Valid\u00e9e",
+                        "R\u00e9cup\u00e9r\u00e9e",
+                        "Qualifi\u00e9e"
+                    ]
                 },
                 "attribute": {
                     "type": "string",
@@ -2176,7 +2187,12 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/cycle/attribute",
-                    "description": "Le RNIV recommande que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent a minima les 3 attributs suivants :\n- identit\u00e9 homonyme,\n- identit\u00e9 douteuse,\n- identit\u00e9 fictive."
+                    "description": "Le RNIV recommande que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent a minima les 3 attributs suivants :\n- identit\u00e9 homonyme,\n- identit\u00e9 douteuse,\n- identit\u00e9 fictive.",
+                    "enum": [
+                        "Homonyme",
+                        "Fictive",
+                        "Douteuse"
+                    ]
                 }
             },
             "additionalProperties": false,
