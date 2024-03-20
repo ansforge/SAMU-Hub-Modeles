@@ -25,73 +25,68 @@
  * the class manually.
  */
 
-package com.hubsante.model.georesourcerequest;
+package com.hubsante.model.geolocation;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoResourceRequest
+ * PositionUpdate
  */
-@JsonPropertyOrder({GeoResourceRequest.JSON_PROPERTY_RESOURCE_ID})
-@JsonTypeName("geoResourceRequest")
+@JsonPropertyOrder({PositionUpdate.JSON_PROPERTY_POSITION})
+@JsonTypeName("positionUpdate")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceRequest {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoResourceRequest";
-  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
-  private List<String> resourceId = new ArrayList<>();
+public class PositionUpdate {
+  public static final String JSON_PROPERTY_POSITION = "position";
+  private List<Position> position;
 
-  public GeoResourceRequest() {}
+  public PositionUpdate() {}
 
-  public GeoResourceRequest resourceId(List<String> resourceId) {
+  public PositionUpdate position(List<Position> position) {
 
-    this.resourceId = resourceId;
+    this.position = position;
     return this;
   }
 
-  public GeoResourceRequest addResourceIdItem(String resourceIdItem) {
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
+  public PositionUpdate addPositionItem(Position positionItem) {
+    if (this.position == null) {
+      this.position = new ArrayList<>();
     }
-    this.resourceId.add(resourceIdItem);
+    this.position.add(positionItem);
     return this;
   }
 
   /**
-   * Get resourceId
-   * @return resourceId
+   * Get position
+   * @return position
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getResourceId() {
-    return resourceId;
+  public List<Position> getPosition() {
+    return position;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceId(List<String> resourceId) {
-    if (resourceId == null) {
+  @JsonProperty(JSON_PROPERTY_POSITION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPosition(List<Position> position) {
+    if (position == null) {
       return;
     }
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
+    if (this.position == null) {
+      this.position = new ArrayList<>();
     }
-    this.resourceId.addAll(resourceId);
+    this.position.addAll(position);
   }
 
   @Override
@@ -102,22 +97,20 @@ public class GeoResourceRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceRequest geoResourceRequest = (GeoResourceRequest)o;
-    return Objects.equals(this.resourceId, geoResourceRequest.resourceId);
+    PositionUpdate positionUpdate = (PositionUpdate)o;
+    return Objects.equals(this.position, positionUpdate.position);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceId);
+    return Objects.hash(position);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceRequest {\n");
-    sb.append("    resourceId: ")
-        .append(toIndentedString(resourceId))
-        .append("\n");
+    sb.append("class PositionUpdate {\n");
+    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");
     return sb.toString();
   }
