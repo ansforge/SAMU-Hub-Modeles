@@ -169,6 +169,7 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_MESSAGE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public void setMessageId(String messageId) {
     this.messageId = messageId;
   }
@@ -192,6 +193,7 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_SENDER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public void setSender(Sender sender) {
     this.sender = sender;
   }
@@ -215,6 +217,7 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_SENT_AT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public void setSentAt(OffsetDateTime sentAt) {
     this.sentAt = sentAt;
   }
@@ -238,6 +241,7 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_KIND)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public void setKind(KindEnum kind) {
     this.kind = kind;
   }
@@ -261,6 +265,7 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
   public void setStatus(StatusEnum status) {
     this.status = status;
   }
@@ -292,6 +297,8 @@ public class DistributionElement extends ContentMessage {
 
   @JsonProperty(JSON_PROPERTY_RECIPIENT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  @JacksonXmlElementWrapper(useWrapping = false)
   public void setRecipient(List<Recipient> recipient) {
     if (recipient == null) {
       return;

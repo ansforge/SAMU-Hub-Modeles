@@ -44,11 +44,12 @@ import java.util.Objects;
 @JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D,
                     Reference.JSON_PROPERTY_REFUSED,
                     Reference.JSON_PROPERTY_INFO_DISTRIBUTION_I_D})
+@JsonTypeName("reference")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Reference {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:Reference";
+  String xmlns = "urn:emergency:cisu:2.0:reference";
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;
 
