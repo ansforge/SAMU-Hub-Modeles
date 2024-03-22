@@ -42,7 +42,7 @@ import java.util.Objects;
  * Reference
  */
 @JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D,
-                    Reference.JSON_PROPERTY_REFUSED,
+                    Reference.JSON_PROPERTY_IS_REFUSED,
                     Reference.JSON_PROPERTY_INFO_DISTRIBUTION_I_D})
 @JsonTypeName("reference")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -53,8 +53,8 @@ public class Reference {
   public static final String JSON_PROPERTY_DISTRIBUTION_I_D = "distributionID";
   private String distributionID;
 
-  public static final String JSON_PROPERTY_REFUSED = "refused";
-  private Boolean refused;
+  public static final String JSON_PROPERTY_IS_REFUSED = "isRefused";
+  private Boolean isRefused;
 
   public static final String JSON_PROPERTY_INFO_DISTRIBUTION_I_D =
       "infoDistributionID";
@@ -85,27 +85,27 @@ public class Reference {
     this.distributionID = distributionID;
   }
 
-  public Reference refused(Boolean refused) {
+  public Reference isRefused(Boolean isRefused) {
 
-    this.refused = refused;
+    this.isRefused = isRefused;
     return this;
   }
 
   /**
-   * Get refused
-   * @return refused
+   * Get isRefused
+   * @return isRefused
    **/
-  @JsonProperty(JSON_PROPERTY_REFUSED)
+  @JsonProperty(JSON_PROPERTY_IS_REFUSED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Boolean getRefused() {
-    return refused;
+  public Boolean getIsRefused() {
+    return isRefused;
   }
 
-  @JsonProperty(JSON_PROPERTY_REFUSED)
+  @JsonProperty(JSON_PROPERTY_IS_REFUSED)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRefused(Boolean refused) {
-    this.refused = refused;
+  public void setIsRefused(Boolean isRefused) {
+    this.isRefused = isRefused;
   }
 
   public Reference infoDistributionID(String infoDistributionID) {
@@ -141,13 +141,13 @@ public class Reference {
     }
     Reference reference = (Reference)o;
     return Objects.equals(this.distributionID, reference.distributionID) &&
-        Objects.equals(this.refused, reference.refused) &&
+        Objects.equals(this.isRefused, reference.isRefused) &&
         Objects.equals(this.infoDistributionID, reference.infoDistributionID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(distributionID, refused, infoDistributionID);
+    return Objects.hash(distributionID, isRefused, infoDistributionID);
   }
 
   @Override
@@ -157,7 +157,9 @@ public class Reference {
     sb.append("    distributionID: ")
         .append(toIndentedString(distributionID))
         .append("\n");
-    sb.append("    refused: ").append(toIndentedString(refused)).append("\n");
+    sb.append("    isRefused: ")
+        .append(toIndentedString(isRefused))
+        .append("\n");
     sb.append("    infoDistributionID: ")
         .append(toIndentedString(infoDistributionID))
         .append("\n");
