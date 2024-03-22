@@ -2,15 +2,11 @@
     <element name="info" type="x:info"/>
     <complexType name="info">
         <sequence>
-            <element name="errorCode" type="x:errorCode"/>
-            <element name="errorCause" type="string"/>
-            <element minOccurs="0" name="spurceMessage" type="string"/>
-        </sequence>
-    </complexType>
-    <complexType name="errorCode">
-        <sequence>
-            <element name="statusCode" type="decimal"/>
-            <element name="statusString" type="string"/>
+            <element name="info" type="string">
+                <annotation>
+                    <documentation> Champ libre permettant de transmettre des informations quelconques</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
 </schema>

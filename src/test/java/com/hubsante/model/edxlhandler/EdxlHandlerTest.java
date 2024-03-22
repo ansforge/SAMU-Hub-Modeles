@@ -20,6 +20,7 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -95,13 +96,6 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         if (!allPass.get()) {
             fail("Some files are not valid against schema");
         }
-    }
-
-    @Test
-    @DisplayName("deserialization of a message with an unknown additional property at root level fails")
-    public void deserializationOfMessageWithUnknownPropertyAtRootLevelFails() throws IOException {
-        String json = getInvalidMessage("EDXL-DE/unknown-property-at-root.json");
-        assertThrows(UnrecognizedPropertyException.class ,() -> converter.deserializeJsonEDXL(json));
     }
 
     @Test

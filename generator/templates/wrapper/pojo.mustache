@@ -5,6 +5,12 @@
     @Deprecated{{/isDeprecated}}
 {{#jackson}}
     @JsonPropertyOrder({
+    DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+    DistributionElement.JSON_PROPERTY_SENDER,
+    DistributionElement.JSON_PROPERTY_SENT_AT,
+    DistributionElement.JSON_PROPERTY_KIND,
+    DistributionElement.JSON_PROPERTY_STATUS,
+    DistributionElement.JSON_PROPERTY_RECIPIENT,
     {{#vars}}
         {{classname}}.JSON_PROPERTY_{{nameInSnakeCase}}{{^-last}},{{/-last}}
     {{/vars}}
