@@ -70,7 +70,7 @@ components:
       properties:
         distributionID:
           type: string
-        refused:
+        isRefused:
           type: boolean
         infoDistributionID:
           type: string
