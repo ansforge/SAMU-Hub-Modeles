@@ -222,9 +222,9 @@ public class Decision {
   }
 
   /**
-   * Identifiant du vecteur de transport principal (&#x3D; celui dans lequel se
-   *trouve le patient), permettant d&#39;associer la décision à un véhicule
-   *spécifique + au patient.
+   * Identifiant du véhicule terrestre / aérien / maritime de transport
+   *principal (&#x3D; celui dans lequel se trouve le patient), permettant
+   *d&#39;associer la décision à un véhicule spécifique + au patient.
    * @return transportationID
    **/
   @JsonProperty(JSON_PROPERTY_TRANSPORTATION_I_D)
