@@ -168,8 +168,8 @@ Elle est composée :
 161,159,,Orientation,,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
 - Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,0..1,,string,X,,X,X
-162,160,,Type de transport,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
-163,,,ID transport partagé,,,,,"Identifiant du vecteur de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient.",,,transportationID,,,,,,0..1,,string,,,X,X
+162,160,,Type de ressource/moyen,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
+163,,,ID vecteur partagé,,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient.",,,transportationID,,,,,,0..1,,string,,,X,X
 164,161,,Niveau de prise en charge,,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,0..1,,string,,,X,X
 165,162,,Destination,,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
 166,163,,,Type de destination,,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
