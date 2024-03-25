@@ -48,8 +48,9 @@ import java.util.Objects;
 @JsonPropertyOrder(
     {Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
      Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
-     Decision.JSON_PROPERTY_TRANSPORTATION, Decision.JSON_PROPERTY_TEAM_CARE,
-     Decision.JSON_PROPERTY_DESTINATION})
+     Decision.JSON_PROPERTY_TRANSPORTATION,
+     Decision.JSON_PROPERTY_TRANSPORTATION_I_D,
+     Decision.JSON_PROPERTY_TEAM_CARE, Decision.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -68,6 +69,10 @@ public class Decision {
 
   public static final String JSON_PROPERTY_TRANSPORTATION = "transportation";
   private List<String> transportation;
+
+  public static final String JSON_PROPERTY_TRANSPORTATION_I_D =
+      "transportationID";
+  private String transportationID;
 
   public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
   private String teamCare;
@@ -154,7 +159,8 @@ public class Decision {
   }
 
   /**
-   * Décision(s) d&#39;orientation prise par le médecin régulateur
+   * Décision(s) d&#39;orientation prise par le médecin régulateur :  - A
+   *transporter - Laisser sur place
    * @return orientation
    **/
   @JsonProperty(JSON_PROPERTY_ORIENTATION)
@@ -207,6 +213,31 @@ public class Decision {
       this.transportation = new ArrayList<>();
     }
     this.transportation.addAll(transportation);
+  }
+
+  public Decision transportationID(String transportationID) {
+
+    this.transportationID = transportationID;
+    return this;
+  }
+
+  /**
+   * Identifiant du vecteur de transport principal (&#x3D; celui dans lequel se
+   *trouve le patient), permettant d&#39;associer la décision à un véhicule
+   *spécifique + au patient.
+   * @return transportationID
+   **/
+  @JsonProperty(JSON_PROPERTY_TRANSPORTATION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTransportationID() {
+    return transportationID;
+  }
+
+  @JsonProperty(JSON_PROPERTY_TRANSPORTATION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTransportationID(String transportationID) {
+    this.transportationID = transportationID;
   }
 
   public Decision teamCare(String teamCare) {
@@ -270,6 +301,7 @@ public class Decision {
         Objects.equals(this.type, decision.type) &&
         Objects.equals(this.orientation, decision.orientation) &&
         Objects.equals(this.transportation, decision.transportation) &&
+        Objects.equals(this.transportationID, decision.transportationID) &&
         Objects.equals(this.teamCare, decision.teamCare) &&
         Objects.equals(this.destination, decision.destination);
   }
@@ -277,7 +309,7 @@ public class Decision {
   @Override
   public int hashCode() {
     return Objects.hash(id, creation, type, orientation, transportation,
-                        teamCare, destination);
+                        transportationID, teamCare, destination);
   }
 
   @Override
@@ -292,6 +324,9 @@ public class Decision {
         .append("\n");
     sb.append("    transportation: ")
         .append(toIndentedString(transportation))
+        .append("\n");
+    sb.append("    transportationID: ")
+        .append(toIndentedString(transportationID))
         .append("\n");
     sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
     sb.append("    destination: ")

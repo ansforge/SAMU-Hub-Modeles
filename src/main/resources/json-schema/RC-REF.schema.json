@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-REF.schema.json#",
-    "version": "24.03.21",
+    "version": "24.03.25",
     "example": "example.json#",
     "type": "object",
     "title": "reference",
@@ -18,12 +18,12 @@
             "example": "example.json#/distributionID",
             "description": "Identifiant unique du message r\u00e9f\u00e9renc\u00e9"
         },
-        "isRefused": {
+        "refused": {
             "type": "boolean",
             "title": "Indicateur de refus de message",
             "x-health-only": false,
             "x-cols": 6,
-            "example": "example.json#/isRefused",
+            "example": "example.json#/refused",
             "description": "Indique si le message acquitt\u00e9 a \u00e9t\u00e9 refus\u00e9"
         },
         "infoDistributionID": {

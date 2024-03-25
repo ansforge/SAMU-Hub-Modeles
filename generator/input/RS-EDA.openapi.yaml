@@ -198,10 +198,15 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/name
-          description: "Indique le nom de lieu : nom commercial, for\xEAt de Fontainebleau,\
-            \ lac du Der (plut\xF4t \xE0 destination des syst\xE8mes)."
+          description: "Indique le nom de lieu : nom commercial, Etablissement, for\xEA\
+            t de Fontainebleau, lac du Der (plut\xF4t \xE0 destination des syst\xE8\
+            mes)."
           examples:
           - "Lyc\xE9e Pierre de Coubertin"
+        externalLocationId:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalLocationId'
         detailedAddress:
           $ref: '#/components/schemas/detailedAddress'
         city:
@@ -220,248 +225,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/country
-          enum:
-          - AF
-          - AX
-          - AL
-          - DZ
-          - AS
-          - AD
-          - AO
-          - AI
-          - AQ
-          - AG
-          - AR
-          - AM
-          - AW
-          - AU
-          - AT
-          - AZ
-          - BS
-          - BH
-          - BD
-          - BB
-          - BY
-          - BE
-          - BZ
-          - BJ
-          - BM
-          - BT
-          - BO
-          - BA
-          - BW
-          - BV
-          - BR
-          - IO
-          - BN
-          - BG
-          - BF
-          - BI
-          - CV
-          - KH
-          - CM
-          - CA
-          - KY
-          - CF
-          - TD
-          - CL
-          - CN
-          - CX
-          - CC
-          - CO
-          - KM
-          - CG
-          - CK
-          - CR
-          - CI
-          - HR
-          - CU
-          - CW
-          - CY
-          - CZ
-          - DK
-          - DJ
-          - DM
-          - DO
-          - EC
-          - EG
-          - SV
-          - GQ
-          - ER
-          - EE
-          - SZ
-          - ET
-          - FK
-          - FO
-          - FJ
-          - FI
-          - FR
-          - GF
-          - PF
-          - TF
-          - GA
-          - GM
-          - GE
-          - DE
-          - GH
-          - GI
-          - GR
-          - GL
-          - GD
-          - GP
-          - GU
-          - GT
-          - GG
-          - GN
-          - GW
-          - GY
-          - HT
-          - HM
-          - VA
-          - HN
-          - HK
-          - HU
-          - IS
-          - IN
-          - ID
-          - IR
-          - IQ
-          - IE
-          - IM
-          - IL
-          - IT
-          - JM
-          - JP
-          - JE
-          - JO
-          - KZ
-          - KE
-          - KI
-          - KP
-          - KW
-          - KG
-          - LA
-          - LV
-          - LB
-          - LS
-          - LR
-          - LY
-          - LI
-          - LT
-          - LU
-          - MO
-          - MG
-          - MW
-          - MY
-          - MV
-          - ML
-          - MT
-          - MH
-          - MQ
-          - MR
-          - MU
-          - YT
-          - MX
-          - FM
-          - MC
-          - MN
-          - ME
-          - MS
-          - MA
-          - MZ
-          - MM
-          - NA
-          - NR
-          - NP
-          - NL
-          - NC
-          - NZ
-          - NI
-          - NE
-          - NG
-          - NU
-          - NF
-          - MK
-          - MP
-          - 'NO'
-          - OM
-          - PK
-          - PW
-          - PA
-          - PG
-          - PY
-          - PE
-          - PH
-          - PN
-          - PL
-          - PT
-          - PR
-          - QA
-          - RE
-          - RO
-          - RU
-          - RW
-          - BL
-          - KN
-          - LC
-          - MF
-          - PM
-          - VC
-          - WS
-          - SM
-          - ST
-          - SA
-          - SN
-          - RS
-          - SC
-          - SL
-          - SG
-          - SX
-          - SK
-          - SI
-          - SB
-          - SO
-          - ZA
-          - GS
-          - SS
-          - ES
-          - LK
-          - SD
-          - SR
-          - SJ
-          - SE
-          - CH
-          - SY
-          - TJ
-          - TH
-          - TL
-          - TG
-          - TK
-          - TO
-          - TT
-          - TN
-          - TR
-          - TM
-          - TC
-          - TV
-          - UG
-          - UA
-          - AE
-          - GB
-          - US
-          - UM
-          - UY
-          - UZ
-          - VU
-          - VE
-          - VN
-          - VG
-          - VI
-          - WF
-          - EH
-          - YE
-          - ZM
-          - ZW
+          enum: []
           examples:
           - France
         freetext:
@@ -766,9 +530,9 @@ components:
           x-cols: 6
           example: example.json#/decision/0/orientation
           description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
-            gulateur"
+            gulateur : \n- A transporter\n- Laisser sur place"
           examples:
-          - None
+          - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
         transportation:
           type: array
           x-health-only: false
@@ -782,6 +546,17 @@ components:
               \ patient"
             examples:
             - 'SMUR '
+        transportationID:
+          type: string
+          title: "ID transport partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportationID
+          description: "Identifiant du vecteur de transport principal (= celui dans\
+            \ lequel se trouve le patient), permettant d'associer la d\xE9cision \xE0\
+            \ un v\xE9hicule sp\xE9cifique + au patient."
+          examples:
+          - None
         teamCare:
           type: string
           title: Niveau de prise en charge
@@ -1119,6 +894,45 @@ components:
       - count: SEVERAL
         mainVictim: CHILD
         freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+    externalLocationId:
+      type: object
+      title: Identifiant(s) du lieu
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - source
+      - value
+      properties:
+        source:
+          type: string
+          title: Source  /  type d'identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/externalLocationId/0/source
+          description: Type de l'identifiant fourni
+          enum:
+          - FINESS administratif
+          - "FINESS g\xE9ographique"
+          - SIREN
+          - SIRET
+          - APE/NAF
+          examples:
+          - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
+        value:
+          type: string
+          title: Identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/externalLocationId/0/value
+          description: "L'identifiant en lui-m\xEAme"
+          examples:
+          - "920000650\_"
+      additionalProperties: false
+      example: example.json#/location/externalLocationId/0
+      examples:
+      - source: "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE,\
+          \ NAF"
+        value: "920000650\_"
     detailedAddress:
       type: object
       title: "D\xE9tails de l'adresse"
@@ -1568,248 +1382,7 @@ components:
           example: example.json#/initialAlert/caller/language
           description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
             \ place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU."
-          enum:
-          - AF
-          - AX
-          - AL
-          - DZ
-          - AS
-          - AD
-          - AO
-          - AI
-          - AQ
-          - AG
-          - AR
-          - AM
-          - AW
-          - AU
-          - AT
-          - AZ
-          - BS
-          - BH
-          - BD
-          - BB
-          - BY
-          - BE
-          - BZ
-          - BJ
-          - BM
-          - BT
-          - BO
-          - BA
-          - BW
-          - BV
-          - BR
-          - IO
-          - BN
-          - BG
-          - BF
-          - BI
-          - CV
-          - KH
-          - CM
-          - CA
-          - KY
-          - CF
-          - TD
-          - CL
-          - CN
-          - CX
-          - CC
-          - CO
-          - KM
-          - CG
-          - CK
-          - CR
-          - CI
-          - HR
-          - CU
-          - CW
-          - CY
-          - CZ
-          - DK
-          - DJ
-          - DM
-          - DO
-          - EC
-          - EG
-          - SV
-          - GQ
-          - ER
-          - EE
-          - SZ
-          - ET
-          - FK
-          - FO
-          - FJ
-          - FI
-          - FR
-          - GF
-          - PF
-          - TF
-          - GA
-          - GM
-          - GE
-          - DE
-          - GH
-          - GI
-          - GR
-          - GL
-          - GD
-          - GP
-          - GU
-          - GT
-          - GG
-          - GN
-          - GW
-          - GY
-          - HT
-          - HM
-          - VA
-          - HN
-          - HK
-          - HU
-          - IS
-          - IN
-          - ID
-          - IR
-          - IQ
-          - IE
-          - IM
-          - IL
-          - IT
-          - JM
-          - JP
-          - JE
-          - JO
-          - KZ
-          - KE
-          - KI
-          - KP
-          - KW
-          - KG
-          - LA
-          - LV
-          - LB
-          - LS
-          - LR
-          - LY
-          - LI
-          - LT
-          - LU
-          - MO
-          - MG
-          - MW
-          - MY
-          - MV
-          - ML
-          - MT
-          - MH
-          - MQ
-          - MR
-          - MU
-          - YT
-          - MX
-          - FM
-          - MC
-          - MN
-          - ME
-          - MS
-          - MA
-          - MZ
-          - MM
-          - NA
-          - NR
-          - NP
-          - NL
-          - NC
-          - NZ
-          - NI
-          - NE
-          - NG
-          - NU
-          - NF
-          - MK
-          - MP
-          - 'NO'
-          - OM
-          - PK
-          - PW
-          - PA
-          - PG
-          - PY
-          - PE
-          - PH
-          - PN
-          - PL
-          - PT
-          - PR
-          - QA
-          - RE
-          - RO
-          - RU
-          - RW
-          - BL
-          - KN
-          - LC
-          - MF
-          - PM
-          - VC
-          - WS
-          - SM
-          - ST
-          - SA
-          - SN
-          - RS
-          - SC
-          - SL
-          - SG
-          - SX
-          - SK
-          - SI
-          - SB
-          - SO
-          - ZA
-          - GS
-          - SS
-          - ES
-          - LK
-          - SD
-          - SR
-          - SJ
-          - SE
-          - CH
-          - SY
-          - TJ
-          - TH
-          - TL
-          - TG
-          - TK
-          - TO
-          - TT
-          - TN
-          - TR
-          - TM
-          - TC
-          - TV
-          - UG
-          - UA
-          - AE
-          - GB
-          - US
-          - UM
-          - UY
-          - UZ
-          - VU
-          - VE
-          - VN
-          - VG
-          - VI
-          - WF
-          - EH
-          - YE
-          - ZM
-          - ZW
+          enum: []
           examples:
           - FR
         type:
@@ -2203,7 +1776,6 @@ components:
           description: "Age du patient.\nAu format Dur\xE9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
             \ en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois, semaines\
             \ ou jours)"
-          pattern: P[0-9]{1,3}[YMWD]
           examples:
           - P6Y
         careLevel:
@@ -2348,7 +1920,7 @@ components:
           $ref: '#/components/schemas/detailedName'
         id:
           type: string
-          title: Identifiant
+          title: Identifiant RPPS
           x-health-only: true
           x-cols: 6
           example: example.json#/patient/0/file/generalPractitioner/id
@@ -2650,59 +2222,13 @@ components:
           - autre
           examples:
           - None
-        facility:
-          type: string
-          title: Etablissement
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/facility
-          description: "Nom de l'\xE9tablissement"
-          examples:
-          - None
-        adminFiness:
-          type: string
-          title: FINESS administratif
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/adminFiness
-          description: "N\xB0 Finess administratif de l'\xE9tablissement"
-          examples:
-          - None
-        geoFiness:
-          type: string
-          title: "FINESS g\xE9ographique"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/geoFiness
-          description: "N\xB0 Finess g\xE9ographique de l'\xE9tablissement"
-          examples:
-          - None
-        service:
-          type: string
-          title: Service
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/service
-          description: "Service concern\xE9 par l'admission du patient"
-          examples:
-          - None
-        freetext:
-          type: string
-          title: Autre
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/freetext
-          examples:
-          - None
+        destinationLocation:
+          $ref: '#/components/schemas/location'
       additionalProperties: false
       example: example.json#/decision/0/destination
       examples:
       - type: None
-        facility: None
-        adminFiness: None
-        geoFiness: None
-        service: None
-        freetext: None
+        destinationLocation: {}
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"
