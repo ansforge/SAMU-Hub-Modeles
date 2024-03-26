@@ -820,10 +820,7 @@ components:
       required: []
       properties:
         customMap:
-          type: array
-          items:
-            $ref: '#/components/schemas/customMap'
-          maxItems: 3
+          $ref: '#/components/schemas/customMap'
       additionalProperties: false
       example: example.json#/additionalInformation
     whatsHappen:
@@ -2725,7 +2722,7 @@ components:
           title: "Cl\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/0/key
+          example: example.json#/additionalInformation/customMap/key
           description: Nom de la balise
           examples:
           - neighborhood
@@ -2734,7 +2731,7 @@ components:
           title: "Libell\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/0/label
+          example: example.json#/additionalInformation/customMap/label
           description: "Libell\xE9 correspondant"
           examples:
           - Quartier
@@ -2743,7 +2740,7 @@ components:
           title: Valeur
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/0/value
+          example: example.json#/additionalInformation/customMap/value
           description: "Valeur associ\xE9e \xE0 la cl\xE9"
           examples:
           - LYON 2e arrondissement
@@ -2752,13 +2749,13 @@ components:
           title: "D\xE9tails"
           x-health-only: false
           x-cols: 6
-          example: example.json#/additionalInformation/customMap/0/freetext
+          example: example.json#/additionalInformation/customMap/freetext
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
             \ de ce matching additionnel"
           examples:
           - "Pr\xE9cision sur le quartier d'intervention"
       additionalProperties: false
-      example: example.json#/additionalInformation/customMap/0
+      example: example.json#/additionalInformation/customMap
       examples:
       - key: neighborhood
         label: Quartier

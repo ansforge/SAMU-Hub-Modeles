@@ -35,10 +35,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.CustomMap;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -50,21 +48,13 @@ import java.util.Objects;
 
 public class AdditionalInformation {
   public static final String JSON_PROPERTY_CUSTOM_MAP = "customMap";
-  private List<CustomMap> customMap;
+  private CustomMap customMap;
 
   public AdditionalInformation() {}
 
-  public AdditionalInformation customMap(List<CustomMap> customMap) {
+  public AdditionalInformation customMap(CustomMap customMap) {
 
     this.customMap = customMap;
-    return this;
-  }
-
-  public AdditionalInformation addCustomMapItem(CustomMap customMapItem) {
-    if (this.customMap == null) {
-      this.customMap = new ArrayList<>();
-    }
-    this.customMap.add(customMapItem);
     return this;
   }
 
@@ -75,22 +65,14 @@ public class AdditionalInformation {
   @JsonProperty(JSON_PROPERTY_CUSTOM_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<CustomMap> getCustomMap() {
+  public CustomMap getCustomMap() {
     return customMap;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
   @JsonProperty(JSON_PROPERTY_CUSTOM_MAP)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomMap(List<CustomMap> customMap) {
-    if (customMap == null) {
-      return;
-    }
-    if (this.customMap == null) {
-      this.customMap = new ArrayList<>();
-    }
-    this.customMap.addAll(customMap);
+  public void setCustomMap(CustomMap customMap) {
+    this.customMap = customMap;
   }
 
   @Override

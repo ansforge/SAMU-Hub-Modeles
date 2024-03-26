@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.03.25",
+    "version": "24.03.26",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -766,11 +766,7 @@
             "required": [],
             "properties": {
                 "customMap": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/customMap"
-                    },
-                    "maxItems": 3
+                    "$ref": "#/definitions/customMap"
                 }
             },
             "additionalProperties": false,
@@ -2456,7 +2452,7 @@
                     "title": "Cl\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/0/key",
+                    "example": "example.json#/additionalInformation/customMap/key",
                     "description": "Nom de la balise"
                 },
                 "label": {
@@ -2464,7 +2460,7 @@
                     "title": "Libell\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/0/label",
+                    "example": "example.json#/additionalInformation/customMap/label",
                     "description": "Libell\u00e9 correspondant"
                 },
                 "value": {
@@ -2472,7 +2468,7 @@
                     "title": "Valeur",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/0/value",
+                    "example": "example.json#/additionalInformation/customMap/value",
                     "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
                 },
                 "freetext": {
@@ -2480,12 +2476,12 @@
                     "title": "D\u00e9tails",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/additionalInformation/customMap/0/freetext",
+                    "example": "example.json#/additionalInformation/customMap/freetext",
                     "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/additionalInformation/customMap/0"
+            "example": "example.json#/additionalInformation/customMap"
         }
     },
     "additionalProperties": false

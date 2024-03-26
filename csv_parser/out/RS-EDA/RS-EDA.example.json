@@ -263,14 +263,12 @@
         {}
     ],
     "additionalInformation": {
-        "customMap": [
-            {
-                "key": "neighborhood",
-                "label": "Quartier",
-                "value": "LYON 2e arrondissement",
-                "freetext": "Pr\u00e9cision sur le quartier d'intervention"
-            }
-        ]
+        "customMap": {
+            "key": "neighborhood",
+            "label": "Quartier",
+            "value": "LYON 2e arrondissement",
+            "freetext": "Pr\u00e9cision sur le quartier d'intervention"
+        }
     },
     "freetext": "None"
 }
