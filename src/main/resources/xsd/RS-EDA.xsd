@@ -493,7 +493,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
     </complexType>
     <complexType name="additionalInformation">
         <sequence>
-            <element minOccurs="0" name="customMap" type="x:customMap"/>
+            <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
     <complexType name="whatsHappen">
