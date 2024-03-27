@@ -2,18 +2,18 @@
 
 ## 1. Fichier excel
 1. Créer une nouvelle feuille dans le [fichier .xlsx](https://esantegouv.sharepoint.com/:x:/r/sites/GED-Calypso/espace-projets/_layouts/15/Doc.aspx?sourcedoc=%7B6E6E8D74-7768-41E8-9A03-DAAD2DEDCE19%7D&file=MDD%20-%20Hub%20Sant%25u00e9.xlsx).
-2. Construire le tableau representant le schema en suivant les regles decrites sur la [feuille "Mode d'emploi" du fichier](https://esantegouv.sharepoint.com/:x:/r/sites/GED-Calypso/espace-projets/_layouts/15/Doc.aspx?sourcedoc=%7B6E6E8D74-7768-41E8-9A03-DAAD2DEDCE19%7D&file=MDD%20-%20Hub%20Sant%C3%A9.xlsx&action=default&mobileredirect=true). 
+2. Construire le tableau représentant le schema en suivant les règles décrites sur la [feuille "Mode d'emploi" du fichier](https://esantegouv.sharepoint.com/:x:/r/sites/GED-Calypso/espace-projets/_layouts/15/Doc.aspx?sourcedoc=%7B6E6E8D74-7768-41E8-9A03-DAAD2DEDCE19%7D&file=MDD%20-%20Hub%20Sant%C3%A9.xlsx&action=default&mobileredirect=true). 
 
-*A noter que le 'titre' du schema (cellule A1) va etre utilisé en tant que nom des classes Java générés.*
+*Le 'titre' du schema (cellule A1) va etre utilisé en tant que nom des classes Java générés, ainsi que pour générer le namespace XML du périmètre. Il doit être écrit en camelCase.*
 
 ## 2. Csv parser
-1. Remplacer le fichier *./csv_parser/model.xlsx* avec le fichier modifié dans la branche feature concerné.
+1. Remplacer le fichier *./csv_parser/model.xlsx* avec le fichier modifié dans la branche feature concernée.
 2. Modifier le fichier ./csv_parser/json_schema2xsd/src/main/java/json_schema2xsd/App.java :
    1. Dans la liste des schemas (ligne 25) ajouter le nom de la feuille.
    2. Dans le switch expression (ligne 91) ajouter un switch case sur le nom de la feuille, positionnant la variable root au 'titre' du schema (qui se trouve a la cellule A1 de la feuille).
 
 ## 3. Generator
-1. Dans le dossier *./generator/config* , créer un dossier portant le meme nom que la feuille.
+1. Dans le dossier *./generator/config* , créer un dossier portant le même nom que la feuille.
 2. Dans le dossier créé, créer trois fichiers de configuration:
    1. [Nom de la feuille].generator-config.json
    2. [Nom de la feuille].usecase.generator-config.json
@@ -60,10 +60,10 @@ Les propriétés "templateDir" et "models" vont varier selon le fichier:
    "models": "[Titre du schema]Wrapper",
 ```
 
-**4. Lancer la génération des fichiers, soit en executant le github action generate-model en local grace a github act ou en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant et ensuite recuperant les fichiers générés.**
+**4. Lancer la génération des fichiers, soit en exécutant la github action generate-model en local grace a github act ou en créant une pull request depuis la branche feature en question et poussant les modifications, declenchant l'action github sur le repo distant et ensuite recuperant les fichiers générés.**
    
 ## 4. Java
-1. Modifier la classe com/hubsante/model/edxl/ContentMessage.java, en ajoutant la classe wrapper généré dans la liste des @JsonSubTypes.Type annotations (e.g. **@JsonSubTypes.type([Titre du schema]Wrapper.class)** )
+1. Modifier la classe com/hubsante/model/edxl/ContentMessage.java, en ajoutant la classe wrapper générée dans la liste des @JsonSubTypes.Type annotations (e.g. **@JsonSubTypes.type([Titre du schema]Wrapper.class)** )
 
 2. Modifier le json schema *src/main/resources/json-schema/EDXL-DE-full.schema.json* en ajoutant le nouveau schema dans l'element 'oneOf' de l'objet 'EmbeddedJsonContent'm typiquement:
 ```
@@ -97,7 +97,7 @@ Les propriétés "templateDir" et "models" vont varier selon le fichier:
    ...
 ]
 ```
-A noter que si la presence de l'en-tete RC-DE n'est pas désiré, il est seulement necessaire d'ajouter la partie "properties" contenant le nouveau schema.
+Si la présence de l'en-tete RC-DE n'est pas désirée, il est seulement nécessaire d'ajouter la partie "properties" contenant le nouveau schema.
 
 3. Modifier le xsd schema *src/main/resources/xsd/RC-XML-ContentType.xsd* en ajoutant les éléments suivants:
    1. Une propriété **xmlns:[Titre du schema (en flatcase)]="urn:emergency:cisu:2.0:[Titre du schema]"** dans l'élément <schema> 
