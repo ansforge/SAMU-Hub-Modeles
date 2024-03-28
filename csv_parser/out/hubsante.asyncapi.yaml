@@ -903,7 +903,7 @@ components:
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
         orientation:
           type: string
-          title: Orientation
+          title: Type d'orientation
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/orientation
