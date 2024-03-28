@@ -1,0 +1,5 @@
+,code,label_n1,Libellé niveau 2,Libellé niveau 3,description,commentaire
+0,LSP,Laissé sur place,,,"La situation du patient ne nécessite pas d'orientation vers un établissement de santé. Le patient est laissé sur place, sur les lieux d'intervention. ",
+1,REFUS,Refus,,,Le patient refuse l'orientation proposée. Une autre modalité d'orientation doit lui être proposée. ,
+2,RAD,Retour à domicile ou autre lieu privé,,,La situation du patient ne nécessite pas d'orientation vers un établissement de santé. Le patient peut rentrer à domicile ou tout autre lieu privé . Il peut être transporté par le vecteur d'intervention ou y rentrer par ses propres moyens. ,
+3,ORIENTE,Orientation,,,Le patient est orienté vers un établissement de santé ou un cabinet libéral,

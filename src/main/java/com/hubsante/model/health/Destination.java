@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.Location;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -41,11 +42,8 @@ import java.util.Objects;
 /**
  * Destination
  */
-@JsonPropertyOrder(
-    {Destination.JSON_PROPERTY_TYPE, Destination.JSON_PROPERTY_FACILITY,
-     Destination.JSON_PROPERTY_ADMIN_FINESS,
-     Destination.JSON_PROPERTY_GEO_FINESS, Destination.JSON_PROPERTY_SERVICE,
-     Destination.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder({Destination.JSON_PROPERTY_TYPE,
+                    Destination.JSON_PROPERTY_DESTINATION_LOCATION})
 @JsonTypeName("destination")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -100,20 +98,9 @@ public class Destination {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_FACILITY = "facility";
-  private String facility;
-
-  public static final String JSON_PROPERTY_ADMIN_FINESS = "adminFiness";
-  private String adminFiness;
-
-  public static final String JSON_PROPERTY_GEO_FINESS = "geoFiness";
-  private String geoFiness;
-
-  public static final String JSON_PROPERTY_SERVICE = "service";
-  private String service;
-
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  public static final String JSON_PROPERTY_DESTINATION_LOCATION =
+      "destinationLocation";
+  private Location destinationLocation;
 
   public Destination() {}
 
@@ -142,119 +129,27 @@ public class Destination {
     this.type = type;
   }
 
-  public Destination facility(String facility) {
+  public Destination destinationLocation(Location destinationLocation) {
 
-    this.facility = facility;
+    this.destinationLocation = destinationLocation;
     return this;
   }
 
   /**
-   * Nom de l&#39;établissement
-   * @return facility
+   * Get destinationLocation
+   * @return destinationLocation
    **/
-  @JsonProperty(JSON_PROPERTY_FACILITY)
+  @JsonProperty(JSON_PROPERTY_DESTINATION_LOCATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFacility() {
-    return facility;
+  public Location getDestinationLocation() {
+    return destinationLocation;
   }
 
-  @JsonProperty(JSON_PROPERTY_FACILITY)
+  @JsonProperty(JSON_PROPERTY_DESTINATION_LOCATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFacility(String facility) {
-    this.facility = facility;
-  }
-
-  public Destination adminFiness(String adminFiness) {
-
-    this.adminFiness = adminFiness;
-    return this;
-  }
-
-  /**
-   * N° Finess administratif de l&#39;établissement
-   * @return adminFiness
-   **/
-  @JsonProperty(JSON_PROPERTY_ADMIN_FINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getAdminFiness() {
-    return adminFiness;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ADMIN_FINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdminFiness(String adminFiness) {
-    this.adminFiness = adminFiness;
-  }
-
-  public Destination geoFiness(String geoFiness) {
-
-    this.geoFiness = geoFiness;
-    return this;
-  }
-
-  /**
-   * N° Finess géographique de l&#39;établissement
-   * @return geoFiness
-   **/
-  @JsonProperty(JSON_PROPERTY_GEO_FINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getGeoFiness() {
-    return geoFiness;
-  }
-
-  @JsonProperty(JSON_PROPERTY_GEO_FINESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGeoFiness(String geoFiness) {
-    this.geoFiness = geoFiness;
-  }
-
-  public Destination service(String service) {
-
-    this.service = service;
-    return this;
-  }
-
-  /**
-   * Service concerné par l&#39;admission du patient
-   * @return service
-   **/
-  @JsonProperty(JSON_PROPERTY_SERVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getService() {
-    return service;
-  }
-
-  @JsonProperty(JSON_PROPERTY_SERVICE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setService(String service) {
-    this.service = service;
-  }
-
-  public Destination freetext(String freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  /**
-   * Get freetext
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFreetext() {
-    return freetext;
-  }
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
+  public void setDestinationLocation(Location destinationLocation) {
+    this.destinationLocation = destinationLocation;
   }
 
   @Override
@@ -267,17 +162,13 @@ public class Destination {
     }
     Destination destination = (Destination)o;
     return Objects.equals(this.type, destination.type) &&
-        Objects.equals(this.facility, destination.facility) &&
-        Objects.equals(this.adminFiness, destination.adminFiness) &&
-        Objects.equals(this.geoFiness, destination.geoFiness) &&
-        Objects.equals(this.service, destination.service) &&
-        Objects.equals(this.freetext, destination.freetext);
+        Objects.equals(this.destinationLocation,
+                       destination.destinationLocation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, facility, adminFiness, geoFiness, service,
-                        freetext);
+    return Objects.hash(type, destinationLocation);
   }
 
   @Override
@@ -285,15 +176,9 @@ public class Destination {
     StringBuilder sb = new StringBuilder();
     sb.append("class Destination {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    facility: ").append(toIndentedString(facility)).append("\n");
-    sb.append("    adminFiness: ")
-        .append(toIndentedString(adminFiness))
+    sb.append("    destinationLocation: ")
+        .append(toIndentedString(destinationLocation))
         .append("\n");
-    sb.append("    geoFiness: ")
-        .append(toIndentedString(geoFiness))
-        .append("\n");
-    sb.append("    service: ").append(toIndentedString(service)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

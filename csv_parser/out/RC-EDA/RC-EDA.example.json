@@ -36,6 +36,12 @@
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
         "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
         "name": "Lyc\u00e9e Pierre de Coubertin",
+        "externalLocationId": [
+            {
+                "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
+                "value": "920000650\u00a0"
+            }
+        ],
         "detailedAddress": {
             "complete": "9 Bd du Montparnasse",
             "number": "9, 4bis, PK10, \u2026",
@@ -151,18 +157,15 @@
             "id": "None",
             "creation": "2022-09-27T08:23:34+02:00",
             "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
-            "orientation": "None",
+            "orientation": "laiss\u00e9 sur place, d\u00e9c\u00e9d\u00e9, ou transport\u00e9",
             "transportation": [
                 "SMUR "
             ],
+            "transportationID": "None",
             "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
             "destination": {
                 "type": "None",
-                "facility": "None",
-                "adminFiness": "None",
-                "geoFiness": "None",
-                "service": "None",
-                "freetext": "None"
+                "destinationLocation": {}
             }
         }
     ],

@@ -129,7 +129,7 @@ La localisation de l'affaire est transmise en amont dans un message RC-EDA et le
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION.
 A constituer depuis ref_mapping_EMSI_EVENT_EGEO_TYPE_NEXSIS_
 /!\ plusieurs champs NEXSIS
-/!\ plusieurs valeurs par champs d'où un groupe<EGEO> à créer par type différents","Describes the type of area. If geographical information can be classified with several types, it shall provide several EGEO elements. One main EGEO element shall describe the details of the area (including the EGEO/ POSITION element with a EGEO/POSITION/COORD sub-element and a EGEO/POSITION/LOC_ID element). Then other EGEO ele- ments (of the other types) shall also provide a EGEO/POSITION element providing the same value for the EGEO/POSITION/ LOC_ID (and without repeating the COORD values). cf. Table B.9 — EVENT EGEO TYPE",HLT,X,TYPE,,TYPE,,,,,1..1,1..1,1..1,,,string,,NOMENCLATURE: EMSI-EVENT.EGEO.TYPE,X,X
+/!\ plusieurs valeurs par champs d'où un groupe<EGEO> à créer par type différents","Describes the type of area. If geographical information can be classified with several types, it shall provide several EGEO elements. One main EGEO element shall describe the details of the area (including the EGEO/ POSITION element with a EGEO/POSITION/COORD sub-element and a EGEO/POSITION/LOC_ID element). Then other EGEO ele- ments (of the other types) shall also provide a EGEO/POSITION element providing the same value for the EGEO/POSITION/ LOC_ID (and without repeating the COORD values). cf. Table B.9 — EVENT EGEO TYPE",HLT,X,TYPE,,TYPE,,,,,0..1,1..1,1..1,,,string,,NOMENCLATURE: EMSI-EVENT.EGEO.TYPE,X,X
 56,57,,,Condition météo,,,,"Optionnel
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION","Where several WEATHER elements are present, all are
 applicable.
@@ -139,12 +139,12 @@ La localisation de l'affaire est transmise en amont dans un message RC-EDA et le
 description of the location and its
 significance in the context of the event.",Un peu de pluie vers 8h,,FREETEXT,,FREETEXT,,,,,0..1,0..1,0..1,,,string,,,X,X
 58,59,,,Position de l'opération,,,,"Optionnel
-La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION","Provides the position of the EGEO element. All elements of POSITION are optional, but at least one shall be provided. ",,,POSITION,,POSITION,,,,,1..1,1..1,1..1,,X,position,,,X,X
+La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION","Provides the position of the EGEO element. All elements of POSITION are optional, but at least one shall be provided. ",,,POSITION,,POSITION,,,,,0..1,1..1,1..1,,X,position,,,X,X
 59,60,,,,ID position,,,"Optionnel
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION. 
 Lorsque le lieu d'intervention est identique à celle d'une position de l'affaire partagée dans le message RC-EDA, le champ MISSION.RGEO.POSITION.LOC_ID doit être alimenté valorisé comme le champ eventLocation.locId du message RC-EDA envoyé en amont. ","Defines the identifier for this geographical area (for later reference). Unique inside an event for the node.
 MISSION : Provides an identifier, which is unique inside the current EMSI file. This identifier can be used in another part of the EMSI in order to avoid duplicating the same position object (cf. the explanation of the TYPE element for an example of the use of this element).
-RESSOURCE : Provides an identifier, which is unique inside the current EMSI file.",111fb03a-6fd9-41e0-8e81-990c45188887,X,LOC_ID,,LOC_ID,,,,,1..1,1..1,1..1,,,string,,,X,X
+RESSOURCE : Provides an identifier, which is unique inside the current EMSI file.",111fb03a-6fd9-41e0-8e81-990c45188887,X,LOC_ID,,LOC_ID,,,,,0..1,1..1,1..1,,,string,,,X,X
 60,61,,,,Nom de position,,,"Optionnel, non utilisé par NexSIS nom de lieu","NOTE: It is the responsibility of the agency to define a consistent approach to naming locations, for example, using names from a particular map, or, in a multi-lingual marked area, such as Belgium or Wales, putting both names in separated by a “/”.",Lycée Pierre de Coubertin,,NAME,,NAME,,,,,0..1,0..1,0..1,,,string,,,X,X
 61,62,,,,Type,,,"Optionnel
 Dans le cadre de l'interface LRM NexSIS, seul le libellé POINT doit obligatoirement être interprétable par les deux partenaires.
