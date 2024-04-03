@@ -390,7 +390,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
         <sequence>
             <element minOccurs="0" name="id" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
@@ -411,9 +411,14 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="concoursRequest" type="string">
+                <annotation>
+                    <documentation>Identifiant de la ou des demandes de concours </documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="transportationID" type="string">
                 <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient.</documentation>
+                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="teamCare" type="string">

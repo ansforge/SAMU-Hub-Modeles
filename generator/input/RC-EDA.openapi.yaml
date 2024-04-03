@@ -581,8 +581,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/id
-          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
-            \ et est identifi\xE9"
+          description: "ID partag\xE9 du patient concern\xE9 par la d\xE9cision, lorsque\
+            \ le patient existe et est identifi\xE9"
           examples:
           - None
         creation:
@@ -630,6 +630,15 @@ components:
               \ patient"
             examples:
             - 'SMUR '
+        concoursRequest:
+          type: string
+          title: ID demande de concours
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/concoursRequest
+          description: 'Identifiant de la ou des demandes de concours '
+          examples:
+          - None
         transportationID:
           type: string
           title: "ID vecteur partag\xE9"
@@ -638,7 +647,7 @@ components:
           example: example.json#/decision/0/transportationID
           description: "Identifiant du v\xE9hicule terrestre / a\xE9rien / maritime\
             \ de transport principal (= celui dans lequel se trouve le patient), permettant\
-            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient."
+            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient. "
           examples:
           - None
         teamCare:

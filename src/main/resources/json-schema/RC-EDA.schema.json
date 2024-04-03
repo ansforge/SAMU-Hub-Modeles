@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.03.29",
+    "version": "24.04.03",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -557,7 +557,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/id",
-                    "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
+                    "description": "ID partag\u00e9 du patient concern\u00e9 par la d\u00e9cision, lorsque le patient existe et est identifi\u00e9"
                 },
                 "creation": {
                     "type": "string",
@@ -597,13 +597,21 @@
                         "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
                     }
                 },
+                "concoursRequest": {
+                    "type": "string",
+                    "title": "ID demande de concours",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/concoursRequest",
+                    "description": "Identifiant de la ou des demandes de concours "
+                },
                 "transportationID": {
                     "type": "string",
                     "title": "ID vecteur partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportationID",
-                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient."
+                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
                 },
                 "teamCare": {
                     "type": "string",

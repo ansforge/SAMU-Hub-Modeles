@@ -49,6 +49,7 @@ import java.util.Objects;
     {Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
      Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
      Decision.JSON_PROPERTY_TRANSPORTATION,
+     Decision.JSON_PROPERTY_CONCOURS_REQUEST,
      Decision.JSON_PROPERTY_TRANSPORTATION_I_D,
      Decision.JSON_PROPERTY_TEAM_CARE, Decision.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decision")
@@ -70,6 +71,9 @@ public class Decision {
   public static final String JSON_PROPERTY_TRANSPORTATION = "transportation";
   private List<String> transportation;
 
+  public static final String JSON_PROPERTY_CONCOURS_REQUEST = "concoursRequest";
+  private String concoursRequest;
+
   public static final String JSON_PROPERTY_TRANSPORTATION_I_D =
       "transportationID";
   private String transportationID;
@@ -89,7 +93,8 @@ public class Decision {
   }
 
   /**
-   * ID partagé du patient concerné, lorsque le patient existe et est identifié
+   * ID partagé du patient concerné par la décision, lorsque le patient existe
+   *et est identifié
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)
@@ -215,6 +220,29 @@ public class Decision {
     this.transportation.addAll(transportation);
   }
 
+  public Decision concoursRequest(String concoursRequest) {
+
+    this.concoursRequest = concoursRequest;
+    return this;
+  }
+
+  /**
+   * Identifiant de la ou des demandes de concours
+   * @return concoursRequest
+   **/
+  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getConcoursRequest() {
+    return concoursRequest;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConcoursRequest(String concoursRequest) {
+    this.concoursRequest = concoursRequest;
+  }
+
   public Decision transportationID(String transportationID) {
 
     this.transportationID = transportationID;
@@ -301,6 +329,7 @@ public class Decision {
         Objects.equals(this.type, decision.type) &&
         Objects.equals(this.orientation, decision.orientation) &&
         Objects.equals(this.transportation, decision.transportation) &&
+        Objects.equals(this.concoursRequest, decision.concoursRequest) &&
         Objects.equals(this.transportationID, decision.transportationID) &&
         Objects.equals(this.teamCare, decision.teamCare) &&
         Objects.equals(this.destination, decision.destination);
@@ -309,7 +338,8 @@ public class Decision {
   @Override
   public int hashCode() {
     return Objects.hash(id, creation, type, orientation, transportation,
-                        transportationID, teamCare, destination);
+                        concoursRequest, transportationID, teamCare,
+                        destination);
   }
 
   @Override
@@ -324,6 +354,9 @@ public class Decision {
         .append("\n");
     sb.append("    transportation: ")
         .append(toIndentedString(transportation))
+        .append("\n");
+    sb.append("    concoursRequest: ")
+        .append(toIndentedString(concoursRequest))
         .append("\n");
     sb.append("    transportationID: ")
         .append(toIndentedString(transportationID))

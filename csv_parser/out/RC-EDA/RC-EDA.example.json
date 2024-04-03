@@ -161,6 +161,7 @@
             "transportation": [
                 "SMUR "
             ],
+            "concoursRequest": "None",
             "transportationID": "None",
             "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
             "destination": {
