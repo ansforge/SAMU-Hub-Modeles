@@ -50,9 +50,9 @@ import java.util.Objects;
 public class CaseDetails {
 
   /**
-   * cf. cycle SI SAMU uniquement (si applicable) : échanger l&#39;état du
-   * dossier si le cycle de vie du dossier est implémenté de manière conforme au
-   * cycle de vie du dossier SI-SAMU
+   * cf. cycle SI SAMU  : échanger l&#39;état du dossier si le cycle de vie du
+   * dossier est implémenté de manière conforme au cycle de vie du dossier
+   * SI-SAMU.  Echanger à minima l&#39;information que le dossier est clôturé.
    */
   public enum StatusEnum {
     PROGRAMM_("Programmé"),
@@ -97,8 +97,43 @@ public class CaseDetails {
   public static final String JSON_PROPERTY_STATUS = "status";
   private StatusEnum status;
 
+  /**
+   * D/DR/DRM si cycle SI-SAMU implémenté
+   */
+  public enum TypeEnum {
+    D("D"),
+
+    DR("DR"),
+
+    DRM_NOMENC_TYPEDOS("DRM  NOMENC_TYPEDOS");
+
+    private String value;
+
+    TypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  private TypeEnum type;
 
   public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
   private String attribution;
@@ -115,9 +150,9 @@ public class CaseDetails {
   }
 
   /**
-   * cf. cycle SI SAMU uniquement (si applicable) : échanger l&#39;état du
-   *dossier si le cycle de vie du dossier est implémenté de manière conforme au
-   *cycle de vie du dossier SI-SAMU
+   * cf. cycle SI SAMU  : échanger l&#39;état du dossier si le cycle de vie du
+   *dossier est implémenté de manière conforme au cycle de vie du dossier
+   *SI-SAMU.  Echanger à minima l&#39;information que le dossier est clôturé.
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
@@ -133,7 +168,7 @@ public class CaseDetails {
     this.status = status;
   }
 
-  public CaseDetails type(String type) {
+  public CaseDetails type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -146,13 +181,13 @@ public class CaseDetails {
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

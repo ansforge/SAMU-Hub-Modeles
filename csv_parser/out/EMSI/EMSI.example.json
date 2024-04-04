@@ -6,7 +6,7 @@
         "CREATION": "2022-09-27T08:25:54+02:00",
         "LINK": [
             {
-                "ID": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+                "ID": "fr.health.samu440.DRFR15DDXAAJJJ0000",
                 "LINK_ROLE": "ADDSTO"
             }
         ],
@@ -16,7 +16,7 @@
         "ORIGIN": {
             "ORG_ID": "fr.health.samu440",
             "USER_ID": "id1234",
-            "NAME": "samu 44"
+            "NAME": "samu 44, cgo 77, codis 78, cdau 91, les pompiers du 23"
         },
         "EXTERNAL_INFO": [
             {
@@ -28,9 +28,9 @@
         "URGENCY": "URGENT"
     },
     "EVENT": {
-        "ID": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+        "ID": "DRFR15DDXAAJJJ0000",
         "NAME": "Grand Incendie Nantes",
-        "MAIN_EVENT_ID": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+        "MAIN_EVENT_ID": "fr.health.samu440.DRFR15DDXAAJJJ0000",
         "ETYPE": {
             "CATEGORY": [
                 "FIR"

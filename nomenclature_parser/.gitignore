@@ -3,3 +3,4 @@
 ressources/
 .vscode/
 __pycache__
+cron.log

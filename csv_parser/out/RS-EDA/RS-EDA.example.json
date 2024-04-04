@@ -29,7 +29,7 @@
         "details": {
             "status": "None",
             "type": "DR",
-            "attribution": "m\u00e9decin urgentiste ",
+            "attribution": "MU",
             "priority": "P1"
         },
         "victims": {
@@ -98,7 +98,7 @@
         "id": "SGO050-20230605-AL0123",
         "reception": "2022-09-27T08:21:06+02:00",
         "reporting": "STANDARD",
-        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les liens",
+        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux",
         "caller": {
             "callerContact": {
                 "type": "PHNADD",
@@ -201,7 +201,7 @@
             "detail": {
                 "weight": 31,
                 "height": 109,
-                "age": "6Y",
+                "age": "P6Y",
                 "careLevel": "R1"
             },
             "hypothesis": {
@@ -245,8 +245,9 @@
             "transportation": [
                 "SMUR "
             ],
-            "medicalisation": "M\u00e9dical, param\u00e9dical, secouriste",
+            "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
             "destination": {
+                "type": "None",
                 "facility": "None",
                 "adminFiness": "None",
                 "geoFiness": "None",

@@ -226,7 +226,7 @@ public class Alert {
 
   /**
    * Texte libre permettant de donner des informations supplémentaires
-   *concernant l&#39;alerte
+   *concernant l&#39;alerte.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

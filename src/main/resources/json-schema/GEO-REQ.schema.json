@@ -2,42 +2,27 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "GEO-REQ.schema.json#",
-    "version": "24.03.06",
+    "version": "24.03.20",
     "example": "example.json#",
     "type": "object",
-    "title": "geolocalisation",
-    "required": [],
+    "title": "geoResourceRequest",
+    "required": [
+        "resourceId"
+    ],
     "properties": {
-        "resourceRequest": {
-            "$ref": "#/definitions/resource"
-        }
-    },
-    "definitions": {
-        "resource": {
-            "type": "object",
-            "title": "Demande de d\u00e9tails de la ressource",
-            "x-display": "expansion-panels",
+        "resourceId": {
+            "type": "array",
             "x-health-only": false,
-            "required": [
-                "resourceId"
-            ],
-            "properties": {
-                "resourceId": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Identifiant(s) de(s) ressource(s)",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/resourceRequest/resourceId/0",
-                        "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de d\u00e9tails"
-                    }
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/resourceRequest"
+            "items": {
+                "type": "string",
+                "title": "Identifiant(s) de(s) ressource(s)",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/resourceId/0",
+                "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de d\u00e9tails"
+            }
         }
     },
+    "definitions": {},
     "additionalProperties": false
 }

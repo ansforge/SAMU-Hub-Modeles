@@ -114,8 +114,8 @@ public class LocationKind {
   }
 
   /**
-   * Permet de complémenter en commentaire libre l&#39;attribut permettant de
-   *qualifier l&#39;événement.
+   * Commentaire libre permettant de passer des informations complémentaires
+   *associées à la nomenclature
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

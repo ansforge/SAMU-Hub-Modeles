@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES"
 
 jobs:
   generate:
@@ -27,7 +27,7 @@ jobs:
           filters: |
             parsing_required:
               - '**.py'
-              - '**.xslx'
+              - '**.xlsx'
               - '**.csv'
 
       - name: Install Graphviz
@@ -60,13 +60,13 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          find . -name "out/*.xsd" -exec cp {} ../../src/main/resources/xsd \;
+          mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
-          find . -name "/src/main/resources/*.json" -exec rm {} \;
+          rm src/main/resources/*.json
 
       - name: Install node env 🏗
         uses: actions/setup-node@v3
@@ -100,6 +100,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/cisu || true
           rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
+          rm -r ./src/main/java/com/hubsante/model/geolocation || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew
@@ -107,7 +108,7 @@ jobs:
 
       - name: Apply license
         run: ./gradlew licenseFormat
-        
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
