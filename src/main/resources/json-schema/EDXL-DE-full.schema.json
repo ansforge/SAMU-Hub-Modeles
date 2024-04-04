@@ -206,7 +206,7 @@
             "message": {
               "properties": {
                 "customContent": {
-                  "$ref": "customContent.schema.json"
+                  "$ref": "CustomContent.schema.json"
                 }
               },
               "required": [
