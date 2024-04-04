@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.03.21",
+    "version": "24.04.04",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -1404,10 +1404,7 @@
             "title": "Localisation de l'\u00e9v\u00e9nement",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [
-                "TYPE",
-                "POSITION"
-            ],
+            "required": [],
             "properties": {
                 "DATIME": {
                     "type": "string",
@@ -1590,9 +1587,7 @@
             "title": "Position de l'op\u00e9ration",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [
-                "LOC_ID"
-            ],
+            "required": [],
             "properties": {
                 "LOC_ID": {
                     "type": "string",
