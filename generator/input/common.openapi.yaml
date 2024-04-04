@@ -65,8 +65,8 @@ components:
         - Reference
       properties:
         reference:
-          $ref: '#/components/schemas/Reference'
-    Reference:
+          $ref: '#/components/schemas/reference'
+    reference:
       properties:
         distributionID:
           type: string

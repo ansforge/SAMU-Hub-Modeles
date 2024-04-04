@@ -43,7 +43,13 @@ import java.util.Objects;
 /**
  * GeoPositionUpdateWrapper
  */
-@JsonPropertyOrder({GeoPositionUpdateWrapper.JSON_PROPERTY_GEO_POSITION_UPDATE})
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    GeoPositionUpdateWrapper.JSON_PROPERTY_GEO_POSITION_UPDATE})
 @JsonTypeName("geoPositionUpdateWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
