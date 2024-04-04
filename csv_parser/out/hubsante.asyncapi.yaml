@@ -452,10 +452,15 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/name
-          description: "Indique le nom de lieu : nom commercial, for\xEAt de Fontainebleau,\
-            \ lac du Der (plut\xF4t \xE0 destination des syst\xE8mes)."
+          description: "Indique le nom de lieu : nom commercial, Etablissement, for\xEA\
+            t de Fontainebleau, lac du Der (plut\xF4t \xE0 destination des syst\xE8\
+            mes)."
           examples:
           - "Lyc\xE9e Pierre de Coubertin"
+        externalLocationId:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalLocationId'
         detailedAddress:
           $ref: '#/components/schemas/detailedAddress'
         city:
@@ -870,8 +875,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/id
-          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
-            \ et est identifi\xE9"
+          description: "ID partag\xE9 du patient concern\xE9 par la d\xE9cision, lorsque\
+            \ le patient existe et est identifi\xE9"
           examples:
           - None
         creation:
@@ -898,20 +903,20 @@ components:
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
         orientation:
           type: string
-          title: Orientation
+          title: Type d'orientation
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/orientation
           description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
-            gulateur"
+            gulateur : \n- A transporter\n- Laisser sur place"
           examples:
-          - None
+          - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
         transportation:
           type: array
           x-health-only: false
           items:
             type: string
-            title: Type de transport
+            title: Type de ressource/moyen
             x-health-only: false
             x-cols: 6
             example: example.json#/decision/0/transportation/0
@@ -919,6 +924,26 @@ components:
               \ patient"
             examples:
             - 'SMUR '
+        concoursRequest:
+          type: string
+          title: ID demande de concours
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/concoursRequest
+          description: 'Identifiant de la ou des demandes de concours '
+          examples:
+          - None
+        transportationID:
+          type: string
+          title: "ID vecteur partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportationID
+          description: "Identifiant du v\xE9hicule terrestre / a\xE9rien / maritime\
+            \ de transport principal (= celui dans lequel se trouve le patient), permettant\
+            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient. "
+          examples:
+          - None
         teamCare:
           type: string
           title: Niveau de prise en charge
@@ -1188,6 +1213,45 @@ components:
       - count: SEVERAL
         mainVictim: CHILD
         freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
+    externalLocationId:
+      type: object
+      title: Identifiant(s) du lieu
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - source
+      - value
+      properties:
+        source:
+          type: string
+          title: Source  /  type d'identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/externalLocationId/0/source
+          description: Type de l'identifiant fourni
+          enum:
+          - FINESS administratif
+          - "FINESS g\xE9ographique"
+          - SIREN
+          - SIRET
+          - APE/NAF
+          examples:
+          - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
+        value:
+          type: string
+          title: Identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/externalLocationId/0/value
+          description: "L'identifiant en lui-m\xEAme"
+          examples:
+          - "920000650\_"
+      additionalProperties: false
+      example: example.json#/location/externalLocationId/0
+      examples:
+      - source: "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE,\
+          \ NAF"
+        value: "920000650\_"
     detailedAddress:
       type: object
       title: "D\xE9tails de l'adresse"
@@ -2212,11 +2276,6 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: Sexe du patient
-          enum:
-          - U
-          - F
-          - M
-          - O
           examples:
           - F
         birthPlaceCode:
@@ -2267,59 +2326,13 @@ components:
           - autre
           examples:
           - None
-        facility:
-          type: string
-          title: Etablissement
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/facility
-          description: "Nom de l'\xE9tablissement"
-          examples:
-          - None
-        adminFiness:
-          type: string
-          title: FINESS administratif
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/adminFiness
-          description: "N\xB0 Finess administratif de l'\xE9tablissement"
-          examples:
-          - None
-        geoFiness:
-          type: string
-          title: "FINESS g\xE9ographique"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/geoFiness
-          description: "N\xB0 Finess g\xE9ographique de l'\xE9tablissement"
-          examples:
-          - None
-        service:
-          type: string
-          title: Service
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/service
-          description: "Service concern\xE9 par l'admission du patient"
-          examples:
-          - None
-        freetext:
-          type: string
-          title: Autre
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/destination/freetext
-          examples:
-          - None
+        destinationLocation:
+          $ref: '#/components/schemas/location'
       additionalProperties: false
       example: example.json#/decision/0/destination
       examples:
       - type: None
-        facility: None
-        adminFiness: None
-        geoFiness: None
-        service: None
-        freetext: None
+        destinationLocation: {}
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"
@@ -2884,7 +2897,7 @@ components:
           $ref: '#/components/schemas/detailedName'
         id:
           type: string
-          title: Identifiant
+          title: Identifiant RPPS
           x-health-only: true
           x-cols: 6
           example: example.json#/patient/0/file/generalPractitioner/id
@@ -3958,7 +3971,7 @@ components:
           - HELICOPTERE
           - 'SHIP '
           examples:
-          - VEHCL
+          - VEHICULE
         capacity:
           type: string
           title: "Capacit\xE9s de la ressource"
@@ -3972,7 +3985,7 @@ components:
           - PARAMEDICALE
           - INCONNUE
           examples:
-          - MED
+          - MEDICALE
         contacts:
           type: array
           items:
@@ -4402,12 +4415,12 @@ components:
           description: "Identifiant unique du message r\xE9f\xE9renc\xE9"
           examples:
           - None
-        isRefused:
+        refused:
           type: boolean
           title: Indicateur de refus de message
           x-health-only: false
           x-cols: 6
-          example: example.json#/isRefused
+          example: example.json#/refused
           description: "Indique si le message acquitt\xE9 a \xE9t\xE9 refus\xE9"
           examples:
           - None
@@ -4423,7 +4436,7 @@ components:
       additionalProperties: false
       examples:
       - distributionID: None
-        isRefused: None
+        refused: None
         infoDistributionID: None
     casualties:
       type: object
@@ -4566,9 +4579,7 @@ components:
       title: "Localisation de l'\xE9v\xE9nement"
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - TYPE
-      - POSITION
+      required: []
       properties:
         DATIME:
           type: string
