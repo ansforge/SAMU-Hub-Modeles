@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.03.21",
+    "version": "24.04.05",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -585,8 +585,8 @@
                     "example": "example.json#/patient/0/id",
                     "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
                 },
-                "file": {
-                    "$ref": "#/definitions/file"
+                "administrativeFile": {
+                    "$ref": "#/definitions/administrativeFile"
                 },
                 "identity": {
                     "$ref": "#/definitions/insIdentity"
@@ -1920,7 +1920,7 @@
             "additionalProperties": false,
             "example": "example.json#/initialAlert/caller/detailedName"
         },
-        "file": {
+        "administrativeFile": {
             "type": "object",
             "title": "Dossier administratif",
             "x-display": "expansion-panels",
@@ -1947,7 +1947,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/patient/0/file"
+            "example": "example.json#/patient/0/administrativeFile"
         },
         "insIdentity": {
             "type": "object",
@@ -2088,7 +2088,7 @@
                     "title": "Source  /  type d'identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/patient/0/file/externalId/0/source",
+                    "example": "example.json#/patient/0/administrativeFile/externalId/0/source",
                     "description": "Type de l'identifiant fourni",
                     "enum": [
                         "NIR",
@@ -2103,12 +2103,12 @@
                     "title": "Identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/patient/0/file/externalId/0/value",
+                    "example": "example.json#/patient/0/administrativeFile/externalId/0/value",
                     "description": "L'identifiant en lui-m\u00eame"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/patient/0/file/externalId/0"
+            "example": "example.json#/patient/0/administrativeFile/externalId/0"
         },
         "personalAddress": {
             "type": "object",
@@ -2125,7 +2125,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/patient/0/file/personalAddress"
+            "example": "example.json#/patient/0/administrativeFile/personalAddress"
         },
         "generalPractitioner": {
             "type": "object",
@@ -2144,7 +2144,7 @@
                     "title": "Identifiant",
                     "x-health-only": true,
                     "x-cols": 6,
-                    "example": "example.json#/patient/0/file/generalPractitioner/id",
+                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/id",
                     "description": "Num\u00e9ro RPPS du m\u00e9decin traitant"
                 },
                 "personalAddress": {
@@ -2158,7 +2158,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/patient/0/file/generalPractitioner"
+            "example": "example.json#/patient/0/administrativeFile/generalPractitioner"
         },
         "insCycle": {
             "type": "object",

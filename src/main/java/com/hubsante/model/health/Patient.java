@@ -34,12 +34,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.AdministrativeFile;
 import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.Hypothesis;
 import com.hubsante.model.health.InsIdentity;
 import com.hubsante.model.health.PatientDetail;
 import com.hubsante.model.health.ResourceDiagnosis;
-import java.io.File;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -48,7 +48,7 @@ import java.util.Objects;
  * Patient
  */
 @JsonPropertyOrder(
-    {Patient.JSON_PROPERTY_ID, Patient.JSON_PROPERTY_FILE,
+    {Patient.JSON_PROPERTY_ID, Patient.JSON_PROPERTY_ADMINISTRATIVE_FILE,
      Patient.JSON_PROPERTY_IDENTITY, Patient.JSON_PROPERTY_HEALTH_MOTIVE,
      Patient.JSON_PROPERTY_DETAIL, Patient.JSON_PROPERTY_HYPOTHESIS,
      Patient.JSON_PROPERTY_RESOURCE_DIAGNOSIS})
@@ -59,8 +59,9 @@ public class Patient {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
 
-  public static final String JSON_PROPERTY_FILE = "file";
-  private File _file;
+  public static final String JSON_PROPERTY_ADMINISTRATIVE_FILE =
+      "administrativeFile";
+  private AdministrativeFile administrativeFile;
 
   public static final String JSON_PROPERTY_IDENTITY = "identity";
   private InsIdentity identity;
@@ -104,27 +105,27 @@ public class Patient {
     this.id = id;
   }
 
-  public Patient _file(File _file) {
+  public Patient administrativeFile(AdministrativeFile administrativeFile) {
 
-    this._file = _file;
+    this.administrativeFile = administrativeFile;
     return this;
   }
 
   /**
-   * Get _file
-   * @return _file
+   * Get administrativeFile
+   * @return administrativeFile
    **/
-  @JsonProperty(JSON_PROPERTY_FILE)
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATIVE_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public File getFile() {
-    return _file;
+  public AdministrativeFile getAdministrativeFile() {
+    return administrativeFile;
   }
 
-  @JsonProperty(JSON_PROPERTY_FILE)
+  @JsonProperty(JSON_PROPERTY_ADMINISTRATIVE_FILE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFile(File _file) {
-    this._file = _file;
+  public void setAdministrativeFile(AdministrativeFile administrativeFile) {
+    this.administrativeFile = administrativeFile;
   }
 
   public Patient identity(InsIdentity identity) {
@@ -252,7 +253,7 @@ public class Patient {
     }
     Patient patient = (Patient)o;
     return Objects.equals(this.id, patient.id) &&
-        Objects.equals(this._file, patient._file) &&
+        Objects.equals(this.administrativeFile, patient.administrativeFile) &&
         Objects.equals(this.identity, patient.identity) &&
         Objects.equals(this.healthMotive, patient.healthMotive) &&
         Objects.equals(this.detail, patient.detail) &&
@@ -262,8 +263,8 @@ public class Patient {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, _file, identity, healthMotive, detail, hypothesis,
-                        resourceDiagnosis);
+    return Objects.hash(id, administrativeFile, identity, healthMotive, detail,
+                        hypothesis, resourceDiagnosis);
   }
 
   @Override
@@ -271,7 +272,9 @@ public class Patient {
     StringBuilder sb = new StringBuilder();
     sb.append("class Patient {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    _file: ").append(toIndentedString(_file)).append("\n");
+    sb.append("    administrativeFile: ")
+        .append(toIndentedString(administrativeFile))
+        .append("\n");
     sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
     sb.append("    healthMotive: ")
         .append(toIndentedString(healthMotive))

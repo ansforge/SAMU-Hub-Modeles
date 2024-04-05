@@ -165,7 +165,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
 105,106,,Rôle,,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,,,,X
 106,107,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
 107,108,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,X,X
-108,109,,Dossier administratif,,,,,,,,file,,,,,,0..1,X,file,,,,X
+108,109,,Dossier administratif,,,,,,,,administrativeFile,,,,,,0..1,X,administrativeFile,,,,X
 109,110,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
 110,111,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE",,X
 111,112,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,1..1,,string,,,,X
