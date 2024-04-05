@@ -70,7 +70,7 @@ def run(perimeters):
                         "requiredValues": [],
                     })
                     if get_type(row["Pas de test"]) == "receive":
-                        test_case["steps"][-1]["file"] = row["Unnamed: 1"]+".json"
+                        test_case["steps"][-1]["file"] = row["Donnée"]
             # Add the test case object to the perimeter object
             perimeter_object["testCases"].append(test_case)
         # Add the perimeter object to the test cases array
