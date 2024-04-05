@@ -4424,12 +4424,12 @@ components:
           description: "Indique si le message acquitt\xE9 a \xE9t\xE9 refus\xE9"
           examples:
           - None
-        infoDistributionID:
+        errorDistributionID:
           type: string
           title: "Identifiant du message d'erreur li\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/infoDistributionID
+          example: example.json#/errorDistributionID
           description: "Identifiant unique du message d'erreur li\xE9"
           examples:
           - None
@@ -4437,7 +4437,7 @@ components:
       examples:
       - distributionID: None
         refused: None
-        infoDistributionID: None
+        errorDistributionID: None
     casualties:
       type: object
       title: Victimes
