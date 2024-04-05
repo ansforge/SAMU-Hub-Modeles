@@ -7,7 +7,8 @@
                 "description":"Envoyer un message simple de partage de dossier pour le périmètre 15-15; qui contient les valeurs obligatoires minimales attendues",
                 "steps":[
                     {
-                        "label":"Envoi",
+                        "type":"send",
+                        "label":"Envoi RS-EDA",
                         "description":"Envoi d'un message RS-EDA",
                         "requiredValues":[
                             {
