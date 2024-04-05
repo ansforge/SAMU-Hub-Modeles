@@ -4,10 +4,10 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}-{senderCaseId}.
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}</documentation>
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
@@ -32,7 +32,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalAnalysis" type="x:medicalAnalysis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element minOccurs="0" name="freetext" type="string">
@@ -364,7 +364,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte</documentation>
+                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte.</documentation>
                 </annotation>
             </element>
             <element name="caller" type="x:caller"/>
@@ -385,14 +385,35 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
         </sequence>
     </complexType>
-    <complexType name="medicalAnalysis">
+    <complexType name="decision">
         <sequence>
-            <element minOccurs="0" name="patientId" type="string">
+            <element minOccurs="0" name="id" type="string">
                 <annotation>
-                    <documentation>ID du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de décision prise</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="teamCare" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -415,7 +436,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -435,7 +456,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -455,7 +476,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -475,7 +496,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Permet de complémenter en commentaire libre l'attribut permettant de qualifier l'événement.</documentation>
+                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1153,49 +1174,30 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="sex">
+            <element minOccurs="0" name="sex" type="string">
                 <annotation>
                     <documentation>Sexe du patient</documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="U"/>
-                        <enumeration value="F"/>
-                        <enumeration value="M"/>
-                        <enumeration value="O"/>
-                    </restriction>
-                </simpleType>
             </element>
-        </sequence>
-    </complexType>
-    <complexType name="decision">
-        <sequence>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="type" type="string">
-                <annotation>
-                    <documentation>Type de décision prise</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="orientation" type="string">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="medicalisation" type="string">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="destination">
         <sequence>
+            <element minOccurs="0" name="type">
+                <annotation>
+                    <documentation>Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="service d’urgences d’un Etablissement de santé"/>
+                        <enumeration value="autres services d’un établissement de santé"/>
+                        <enumeration value="cabinet d’un professionnel de santé"/>
+                        <enumeration value="domicile personnel"/>
+                        <enumeration value="EPHAD ou long séjour"/>
+                        <enumeration value="autre"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element minOccurs="0" name="facility" type="string">
                 <annotation>
                     <documentation>Nom de l'établissement</documentation>

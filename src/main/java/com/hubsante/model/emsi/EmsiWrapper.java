@@ -43,7 +43,13 @@ import java.util.Objects;
 /**
  * EmsiWrapper
  */
-@JsonPropertyOrder({EmsiWrapper.JSON_PROPERTY_EMSI})
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    EmsiWrapper.JSON_PROPERTY_EMSI})
 @JsonTypeName("emsiWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 

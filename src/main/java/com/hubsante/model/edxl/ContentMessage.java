@@ -21,6 +21,9 @@ import com.hubsante.model.common.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
+import com.hubsante.model.geolocation.GeoResourceDetailsWrapper;
+import com.hubsante.model.geolocation.GeoPositionUpdateWrapper;
+import com.hubsante.model.geolocation.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 
@@ -31,7 +34,10 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
-        @JsonSubTypes.Type(EmsiWrapper.class)
+        @JsonSubTypes.Type(EmsiWrapper.class),
+        @JsonSubTypes.Type(GeoPositionUpdateWrapper.class),
+        @JsonSubTypes.Type(GeoResourceRequestWrapper.class),
+        @JsonSubTypes.Type(GeoResourceDetailsWrapper.class)
 })
 public class ContentMessage {
 }

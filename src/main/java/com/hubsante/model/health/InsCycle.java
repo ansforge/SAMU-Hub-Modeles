@@ -47,15 +47,95 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class InsCycle {
+
+  /**
+   * Le RNIV exige que les logiciels référentiels d’identités gèrent les 4
+   * statuts fonctionnels suivants : - « identité provisoire », - « identité
+   * récupérée », - « identité validée », - « identité qualifiée ». Ces statuts
+   * fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18]
+   * précise en outre que le matricule INS et l’OID doivent être accompagnés
+   * d’informations confirmant qu’ils ont été qualifiés.
+   */
+  public enum StatusEnum {
+    PROVISOIRE("Provisoire"),
+
+    VALID_E("Validée"),
+
+    R_CUP_R_E("Récupérée"),
+
+    QUALIFI_E("Qualifiée");
+
+    private String value;
+
+    StatusEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
+  private StatusEnum status;
+
+  /**
+   * Le RNIV recommande que les logiciels référentiels d’identités gèrent a
+   * minima les 3 attributs suivants : - identité homonyme, - identité douteuse,
+   * - identité fictive.
+   */
+  public enum AttributeEnum {
+    HOMONYME("Homonyme"),
+
+    FICTIVE("Fictive"),
+
+    DOUTEUSE("Douteuse");
+
+    private String value;
+
+    AttributeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AttributeEnum fromValue(String value) {
+      for (AttributeEnum b : AttributeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_ATTRIBUTE = "attribute";
-  private String attribute;
+  private AttributeEnum attribute;
 
   public InsCycle() {}
 
-  public InsCycle status(String status) {
+  public InsCycle status(StatusEnum status) {
 
     this.status = status;
     return this;
@@ -73,17 +153,17 @@ public class InsCycle {
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
   @JsonProperty(JSON_PROPERTY_STATUS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
-  public InsCycle attribute(String attribute) {
+  public InsCycle attribute(AttributeEnum attribute) {
 
     this.attribute = attribute;
     return this;
@@ -98,13 +178,13 @@ public class InsCycle {
   @JsonProperty(JSON_PROPERTY_ATTRIBUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getAttribute() {
+  public AttributeEnum getAttribute() {
     return attribute;
   }
 
   @JsonProperty(JSON_PROPERTY_ATTRIBUTE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttribute(String attribute) {
+  public void setAttribute(AttributeEnum attribute) {
     this.attribute = attribute;
   }
 

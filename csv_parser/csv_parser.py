@@ -684,7 +684,7 @@ def run(sheet, name, version, filter):
     print('AsyncAPI schema collected.')
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
-    uml_generator.run(name, MODEL_NAME, version=version, filter=filter)
+    uml_generator.run(name, MODEL_TYPE, version=version, filter=filter)
     print('UML diagrams generated.')
 
     if not is_custom_content():

@@ -38,7 +38,7 @@ def set_cardinalite(minimal, max):
 
 def add_node(dot, id_parent, id_in, type_in, buffer_description, cardinalite, health_only=False):
     if health_only:
-        background_color = "BGCOLOR=\"coral\""
+        background_color = "BGCOLOR=\"#dceaf7\""
     else:
         background_color = ""
     # draw node
@@ -101,7 +101,7 @@ def parse_object(dot, id_parent, dict_in, dict_definitions, buffer_description_n
                     if "x-health-only" in child and child["x-health-only"] == True:
                         health_only = " <B>15-15</B>"
                     child_description = "<TR><TD BORDER=\"0\" {}>{} <I>{}</I> : [{}..{}] {}</TD></TR>".format(
-                        "BGCOLOR=\"coral\"" if "x-health-only" in child and child["x-health-only"] == True else "",
+                        "BGCOLOR=\"#dceaf7\"" if "x-health-only" in child and child["x-health-only"] == True else "",
                         id_child,
                         child["type"],
                         cardinalite_child[0],
