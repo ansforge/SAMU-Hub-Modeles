@@ -45,16 +45,16 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * ModelFile
+ * AdministrativeFile
  */
-@JsonPropertyOrder({ModelFile.JSON_PROPERTY_EXTERNAL_ID,
-                    ModelFile.JSON_PROPERTY_CONTACT,
-                    ModelFile.JSON_PROPERTY_PERSONAL_ADDRESS,
-                    ModelFile.JSON_PROPERTY_GENERAL_PRACTITIONER})
-@JsonTypeName("_file")
+@JsonPropertyOrder({AdministrativeFile.JSON_PROPERTY_EXTERNAL_ID,
+                    AdministrativeFile.JSON_PROPERTY_CONTACT,
+                    AdministrativeFile.JSON_PROPERTY_PERSONAL_ADDRESS,
+                    AdministrativeFile.JSON_PROPERTY_GENERAL_PRACTITIONER})
+@JsonTypeName("administrativeFile")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ModelFile {
+public class AdministrativeFile {
   public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
   private List<ExternalId> externalId;
 
@@ -68,15 +68,15 @@ public class ModelFile {
       "generalPractitioner";
   private GeneralPractitioner generalPractitioner;
 
-  public ModelFile() {}
+  public AdministrativeFile() {}
 
-  public ModelFile externalId(List<ExternalId> externalId) {
+  public AdministrativeFile externalId(List<ExternalId> externalId) {
 
     this.externalId = externalId;
     return this;
   }
 
-  public ModelFile addExternalIdItem(ExternalId externalIdItem) {
+  public AdministrativeFile addExternalIdItem(ExternalId externalIdItem) {
     if (this.externalId == null) {
       this.externalId = new ArrayList<>();
     }
@@ -109,13 +109,13 @@ public class ModelFile {
     this.externalId.addAll(externalId);
   }
 
-  public ModelFile contact(List<Contact> contact) {
+  public AdministrativeFile contact(List<Contact> contact) {
 
     this.contact = contact;
     return this;
   }
 
-  public ModelFile addContactItem(Contact contactItem) {
+  public AdministrativeFile addContactItem(Contact contactItem) {
     if (this.contact == null) {
       this.contact = new ArrayList<>();
     }
@@ -148,7 +148,7 @@ public class ModelFile {
     this.contact.addAll(contact);
   }
 
-  public ModelFile personalAddress(PersonalAddress personalAddress) {
+  public AdministrativeFile personalAddress(PersonalAddress personalAddress) {
 
     this.personalAddress = personalAddress;
     return this;
@@ -171,7 +171,7 @@ public class ModelFile {
     this.personalAddress = personalAddress;
   }
 
-  public ModelFile
+  public AdministrativeFile
   generalPractitioner(GeneralPractitioner generalPractitioner) {
 
     this.generalPractitioner = generalPractitioner;
@@ -203,11 +203,13 @@ public class ModelFile {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ModelFile _file = (ModelFile)o;
-    return Objects.equals(this.externalId, _file.externalId) &&
-        Objects.equals(this.contact, _file.contact) &&
-        Objects.equals(this.personalAddress, _file.personalAddress) &&
-        Objects.equals(this.generalPractitioner, _file.generalPractitioner);
+    AdministrativeFile administrativeFile = (AdministrativeFile)o;
+    return Objects.equals(this.externalId, administrativeFile.externalId) &&
+        Objects.equals(this.contact, administrativeFile.contact) &&
+        Objects.equals(this.personalAddress,
+                       administrativeFile.personalAddress) &&
+        Objects.equals(this.generalPractitioner,
+                       administrativeFile.generalPractitioner);
   }
 
   @Override
@@ -219,7 +221,7 @@ public class ModelFile {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ModelFile {\n");
+    sb.append("class AdministrativeFile {\n");
     sb.append("    externalId: ")
         .append(toIndentedString(externalId))
         .append("\n");
