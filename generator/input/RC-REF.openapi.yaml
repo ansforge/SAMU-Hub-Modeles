@@ -26,12 +26,12 @@ components:
           description: "Identifiant unique du message r\xE9f\xE9renc\xE9"
           examples:
           - None
-        isRefused:
+        refused:
           type: boolean
           title: Indicateur de refus de message
           x-health-only: false
           x-cols: 6
-          example: example.json#/isRefused
+          example: example.json#/refused
           description: "Indique si le message acquitt\xE9 a \xE9t\xE9 refus\xE9"
           examples:
           - None
@@ -47,5 +47,5 @@ components:
       additionalProperties: false
       examples:
       - distributionID: None
-        isRefused: None
+        refused: None
         infoDistributionID: None

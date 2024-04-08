@@ -7,7 +7,7 @@
                     <documentation>Identifiant unique du message référencé</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="isRefused" type="boolean">
+            <element minOccurs="0" name="refused" type="boolean">
                 <annotation>
                     <documentation>Indique si le message acquitté a été refusé</documentation>
                 </annotation>
