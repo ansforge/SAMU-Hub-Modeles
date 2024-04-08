@@ -55,7 +55,7 @@ def add_node(dot, id_parent, id_in, type_in, buffer_description, cardinalite, he
     # no edge if pointing itself
     if id_parent and (id_parent != id_in):
         cardinalite = (cardinalite[0], cardinalite[1].replace("n", "*"))
-        dot.edge(id_in, id_parent, headlabel=cardinalite[0], taillabel=cardinalite[0]+".."+cardinalite[1])
+        dot.edge(id_in, id_parent, headlabel="1", taillabel="1" if cardinalite == ("1", "1") else cardinalite[0]+".."+cardinalite[1])
     return
 
 
@@ -76,7 +76,7 @@ def parse_object(dot, id_parent, dict_in, dict_definitions, buffer_description_n
         if "type" in child:
             # check if is an array
             if child["type"] == "array":
-                cardinalite_child = set_cardinalite(cardinalite_child[0], str(child["maxItems"]))
+                cardinalite_child = set_cardinalite(cardinalite_child[0], str(child["maxItems"]) if child.get("maxItems") else "n")
                 # consider now items as the child
                 child = child["items"]
         # if is not an array
