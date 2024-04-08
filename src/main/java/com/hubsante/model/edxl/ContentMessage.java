@@ -17,7 +17,7 @@ package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.hubsante.model.common.ReferenceWrapper;
+import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
@@ -25,7 +25,7 @@ import com.hubsante.model.geolocation.GeoResourceDetailsWrapper;
 import com.hubsante.model.geolocation.GeoPositionUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
-import com.hubsante.model.report.ErrorWrapper;
+import com.hubsante.model.error.ErrorWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({

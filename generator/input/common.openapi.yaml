@@ -60,19 +60,3 @@ components:
           type: string
         URI:
           type: string
-    ReferenceWrapper:
-      required:
-        - Reference
-      properties:
-        reference:
-          $ref: '#/components/schemas/reference'
-    reference:
-      properties:
-        distributionID:
-          type: string
-        refused:
-          type: boolean
-        infoDistributionID:
-          type: string
-      required:
-        - distributionID
