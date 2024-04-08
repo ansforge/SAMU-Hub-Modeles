@@ -151,7 +151,7 @@
     "patient": [
         {
             "id": "None",
-            "file": {
+            "administrativeFile": {
                 "externalId": [
                     {
                         "source": "NIR, SINUS, SI-VIC, \u2026",
