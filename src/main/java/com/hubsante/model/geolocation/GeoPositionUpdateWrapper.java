@@ -27,13 +27,17 @@
 
 package com.hubsante.model.geolocation;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.geolocation.GeoPositionUpdate;
 import com.hubsante.model.rcde.DistributionElement;
-
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
