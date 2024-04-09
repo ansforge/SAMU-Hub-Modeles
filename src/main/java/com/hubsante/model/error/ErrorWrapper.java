@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.edxl.ContentMessage;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.error.Error;
 import java.util.Arrays;
 import java.util.Arrays;
