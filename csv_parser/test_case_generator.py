@@ -66,7 +66,7 @@ def run(perimeters):
                     test_case["steps"].append({
                         "type": get_type(row["Pas de test"]),
                         "label": row["Pas de test"] + " " + row["Modèle"],
-                        "description": row["Déroulé métier"],
+                        "description": row["Description"],
                         "requiredValues": [],
                     })
                     if get_type(row["Pas de test"]) == "receive":
