@@ -1,19 +1,19 @@
 openapi: 3.0.0
 components:
   schemas:
-    errorWrapper:
+    errorReportWrapper:
       type: object
       required:
-      - error
+      - errorReport
       properties:
-        error:
-          $ref: '#/components/schemas/error'
-    error:
+        errorReport:
+          $ref: '#/components/schemas/errorReport'
+    errorReport:
       $id: classpath:/json-schema/schema#
       x-id: RS-ERROR.schema.json#
       example: example.json#
       type: object
-      title: error
+      title: errorReport
       required:
       - errorCode
       - errorCause

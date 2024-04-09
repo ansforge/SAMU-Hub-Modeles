@@ -713,7 +713,7 @@ components:
           - France
         freetext:
           type: string
-          title: Commentaire
+          title: agent
           x-health-only: false
           x-cols: 6
           example: example.json#/location/freetext
@@ -5667,12 +5667,12 @@ components:
           items:
             $ref: '#/components/schemas/resource'
       additionalProperties: false
-    error:
+    errorReport:
       $id: classpath:/json-schema/schema#
       x-id: RS-ERROR.schema.json#
       example: example.json#
       type: object
-      title: error
+      title: errorReport
       required:
       - errorCode
       - errorCause

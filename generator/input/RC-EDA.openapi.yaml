@@ -441,7 +441,7 @@ components:
           - France
         freetext:
           type: string
-          title: Commentaire
+          title: agent
           x-health-only: false
           x-cols: 6
           example: example.json#/location/freetext
