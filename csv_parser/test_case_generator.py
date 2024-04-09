@@ -50,9 +50,9 @@ def run(perimeters):
                     # If the value is 'X', we add the required value to the latest step in the test case
                     if row["V"] == "X":
                         values = []
-                        for i in range(6, 10):
-                            if pd.notna(row[i]):
-                                values.append(row[i])
+                        for i in range(5):
+                            if pd.notna(row[f"JDD {i+1}"]):
+                                values.append(row[f"JDD {i+1}"])
                         required_value = {
                             "path": row["path JSON"],
                             "value": values
@@ -65,7 +65,7 @@ def run(perimeters):
                 else:
                     test_case["steps"].append({
                         "type": get_type(row["Pas de test"]),
-                        "label": row["Pas de test"] + " " + row["Unnamed: 1"],
+                        "label": row["Pas de test"] + " " + row["Modèle"],
                         "description": row["Déroulé métier"],
                         "requiredValues": [],
                     })
