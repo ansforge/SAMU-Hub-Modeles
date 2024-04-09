@@ -11,7 +11,8 @@ parser = argparse.ArgumentParser(
     prog='Workflow Automator',
     description='Automates the build workflow for the model (specs, schemas, ...)',
 )
-parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', ''], help='The wokflow stage to run')
+parser.add_argument('-s', '--stage', required=True, choices=['parser_and_mv', 'test_case_parser'],
+                    help='The workflow stage to run')
 args = parser.parse_args()
 
 print(args.stage)
@@ -88,12 +89,16 @@ def parser_and_mv():
         file.write(documents)
     print('AsyncAPI schema generated.')
 
+
 def test_case_parser():
     # Generate test-cases.json
     test_case_generator.run(perimeters)
 
+
 # ---------------------------------------- RUN
 if args.stage == 'parser_and_mv':
     parser_and_mv()
+elif args.stage == 'test_case_parser':
+    test_case_parser()
 else:
     exit(1)
