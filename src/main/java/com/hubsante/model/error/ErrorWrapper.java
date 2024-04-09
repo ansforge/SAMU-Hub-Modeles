@@ -34,8 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.edxl.;
 import com.hubsante.model.error.Error;
-import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -43,11 +43,17 @@ import java.util.Objects;
 /**
  * ErrorWrapper
  */
-@JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR})
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    ErrorWrapper.JSON_PROPERTY_ERROR})
 @JsonTypeName("errorWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ErrorWrapper extends com.hubsante.model.edxl.ContentMessage {
+public class ErrorWrapper extends {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_ERROR = "error";
