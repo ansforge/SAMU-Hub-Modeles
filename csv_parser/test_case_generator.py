@@ -37,7 +37,7 @@ def run(perimeters):
             test_case["label"] = test_case_df.iloc[2, 2]
             # Test case description is located in the cell C4
             test_case["description"] = test_case_df.iloc[3, 2]
-            # Create steps arrat in test_case object
+            # Create steps array in test_case object
             test_case["steps"] = []
             # The beginning of each test case step is marked by the type of the step in the column A, and the
             # end either by the beginning of another step or by the last row in the sheet, containing value 'End'
