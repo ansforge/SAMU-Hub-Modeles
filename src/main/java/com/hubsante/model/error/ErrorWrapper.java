@@ -49,11 +49,11 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    ErrorWrapper.JSON_PROPERTY_ERROR})
+                    .JSON_PROPERTY_ERROR})
 @JsonTypeName("errorWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ErrorWrapper extends {
+public class ErrorWrapper extends ContentMessage {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_ERROR = "error";

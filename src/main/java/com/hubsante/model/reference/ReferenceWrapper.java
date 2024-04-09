@@ -49,7 +49,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    ReferenceWrapper.JSON_PROPERTY_REFERENCE})
+                    .JSON_PROPERTY_REFERENCE})
 @JsonTypeName("referenceWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 

@@ -49,7 +49,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    GeoPositionUpdateWrapper.JSON_PROPERTY_GEO_POSITION_UPDATE})
+                    .JSON_PROPERTY_GEO_POSITION_UPDATE})
 @JsonTypeName("geoPositionUpdateWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
