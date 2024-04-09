@@ -49,7 +49,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    .JSON_PROPERTY_EMSI})
+                    EmsiWrapper.JSON_PROPERTY_EMSI})
 @JsonTypeName("emsiWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 

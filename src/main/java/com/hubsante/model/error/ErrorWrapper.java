@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.edxl.;
+import com.hubsante.edxl.ContentMessage;
 import com.hubsante.model.error.Error;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -49,7 +49,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    .JSON_PROPERTY_ERROR})
+                    ErrorWrapper.JSON_PROPERTY_ERROR})
 @JsonTypeName("errorWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
