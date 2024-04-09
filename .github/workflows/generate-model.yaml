@@ -35,7 +35,7 @@ jobs:
         id: filter_test_cases
         with:
           filters: |
-            test_cases_required:
+            test_case_parsing_required:
               - 'test_case_generator.py'
               - 'test-cases-15-15.xlsx'
 
@@ -55,7 +55,7 @@ jobs:
 
       - name: Run test_case_generator and collect test-cases.json
         working-directory: ./csv_parser
-        if: steps.filter_test_cases.outputs.test_cases_required == 'true'
+        if: steps.filter_test_cases.outputs.test_case_parsing_required == 'true'
         run: python workflow.py --stage test_case_parser
 
       - name: Install JDK 11
