@@ -43,13 +43,14 @@ import java.util.Objects;
 /**
  * GeoResourceDetailsWrapper
  */
-@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-                    DistributionElement.JSON_PROPERTY_SENDER,
-                    DistributionElement.JSON_PROPERTY_SENT_AT,
-                    DistributionElement.JSON_PROPERTY_KIND,
-                    DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    .JSON_PROPERTY_GEO_RESOURCE_DETAILS})
+@JsonPropertyOrder(
+    {DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+     DistributionElement.JSON_PROPERTY_SENDER,
+     DistributionElement.JSON_PROPERTY_SENT_AT,
+     DistributionElement.JSON_PROPERTY_KIND,
+     DistributionElement.JSON_PROPERTY_STATUS,
+     DistributionElement.JSON_PROPERTY_RECIPIENT,
+     GeoResourceDetailsWrapper.JSON_PROPERTY_GEO_RESOURCE_DETAILS})
 @JsonTypeName("geoResourceDetailsWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
