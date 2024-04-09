@@ -26,7 +26,6 @@ import com.hubsante.model.geolocation.GeoPositionUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.error.ErrorWrapper;
-import org.checkerframework.common.returnsreceiver.qual.This;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
