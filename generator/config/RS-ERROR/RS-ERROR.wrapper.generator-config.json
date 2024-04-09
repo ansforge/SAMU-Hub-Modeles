@@ -19,7 +19,7 @@
     "supportUrlQuery": false,
     "enablePostProcessFile": true,
     "customExtend": {
-      "package": "com.hubsante.edxl",
+      "package": "com.hubsante.model.edxl",
       "className": "ContentMessage"
     }
   }
