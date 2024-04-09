@@ -28,7 +28,7 @@
 {{#vendorExtensions.x-class-extra-annotation}}
     {{{vendorExtensions.x-class-extra-annotation}}}
 {{/vendorExtensions.x-class-extra-annotation}}
-public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends {{#extendCustomClass}}{{extendCustomClass}}{{/extendCustomClass}}{{^extendCustomClass}}DistributionElement{{/extendCustomClass}} {
+public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends {{#customExtend}}{{customExtend.class}}{{/customExtend}}{{^customExtend}}DistributionElement{{/customExtend}} {
 {{#serializableModel}}
     private static final long serialVersionUID = 1L;
 

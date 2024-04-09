@@ -11,7 +11,12 @@ import java.util.Arrays;
 {{#imports}}
     import {{import}};
 {{/imports}}
+{{#customExtend}}
+    import {{customExtend.package}}.{{customExtend.class}};
+{{/customExtend}}
+{{^customExtend}}
 import com.hubsante.model.rcde.DistributionElement;
+{{/customExtend}}
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 {{#serializableModel}}
     import java.io.Serializable;

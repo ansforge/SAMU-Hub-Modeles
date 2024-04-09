@@ -18,6 +18,9 @@
     "openApiNullable": true,
     "supportUrlQuery": false,
     "enablePostProcessFile": true,
-    "extendCustomClass": "com.hubsante.model.edxl.ContentMessage"
+    "customExtend": {
+      "package": "com.hubsante.edxl",
+      "className": "ContentMessage"
+    }
   }
 }
