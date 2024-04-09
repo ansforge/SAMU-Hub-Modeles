@@ -34,25 +34,28 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.report.ErrorReport;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ErrorReportWrapper
+ * ErrorWrapper
  */
-@JsonPropertyOrder({ErrorReportWrapper.JSON_PROPERTY_ERROR_REPORT})
+@JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR_REPORT})
 @JsonTypeName("errorReportWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ErrorReportWrapper {
+public class ErrorWrapper extends ContentMessage {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_ERROR_REPORT = "errorReport";
   private ErrorReport errorReport;
 
-  public ErrorReportWrapper() {}
+  public ErrorWrapper() {}
 
-  public ErrorReportWrapper errorReport(ErrorReport errorReport) {
+  public ErrorWrapper errorReport(ErrorReport errorReport) {
 
     this.errorReport = errorReport;
     return this;
@@ -83,19 +86,21 @@ public class ErrorReportWrapper {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorReportWrapper errorReportWrapper = (ErrorReportWrapper)o;
-    return Objects.equals(this.errorReport, errorReportWrapper.errorReport);
+    ErrorWrapper errorReportWrapper = (ErrorWrapper)o;
+    return Objects.equals(this.errorReport, errorReportWrapper.errorReport) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorReport);
+    return Objects.hash(errorReport, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorReportWrapper {\n");
+    sb.append("class ErrorWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    errorReport: ")
         .append(toIndentedString(errorReport))
         .append("\n");
