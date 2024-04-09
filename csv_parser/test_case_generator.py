@@ -57,7 +57,7 @@ def run(perimeters):
                             "path": row["path JSON"],
                             "value": values
                         }
-                        test_case["steps"][-1]["requiredValues"].append(required_value)
+                        test_case["steps"][-1]["message"]["requiredValues"].append(required_value)
 
                 # Else, if the value is not nan, we add a new step to the test case. If the type of the step is
                 # "receive", we also add the property "file" containing a string with the name of the template
@@ -67,10 +67,12 @@ def run(perimeters):
                         "type": get_type(row["Pas de test"]),
                         "label": row["Pas de test"] + " " + row["Modèle"],
                         "description": row["Description"],
-                        "requiredValues": [],
+                        "message": {
+                            "requiredValues": [],
+                        }
                     })
                     if get_type(row["Pas de test"]) == "receive":
-                        test_case["steps"][-1]["file"] = row["Donnée"]
+                        test_case["steps"][-1]["message"]["file"] = row["Donnée"]
             # Add the test case object to the perimeter object
             perimeter_object["testCases"].append(test_case)
         # Add the perimeter object to the test cases array
