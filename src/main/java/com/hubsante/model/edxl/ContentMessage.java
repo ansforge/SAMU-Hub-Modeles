@@ -26,6 +26,7 @@ import com.hubsante.model.geolocation.GeoPositionUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.error.ErrorWrapper;
+import org.checkerframework.common.returnsreceiver.qual.This;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
@@ -41,12 +42,17 @@ import com.hubsante.model.error.ErrorWrapper;
 })
 public class ContentMessage {
 
+    /** This equals override is used to avoid breaking the equals override in the messages without RC-DE
+     * (in particular ErrorWrapper), as without the override the equality check would only pass when comparing
+     * an object to itself, and we care about the actual values.
+     **/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         return o != null && getClass() == o.getClass();
     }
 
+    // As this class has no fields, the hashcode is always 0
     @Override
     public int hashCode() {
         return 0;
