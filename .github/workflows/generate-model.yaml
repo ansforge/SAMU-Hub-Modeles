@@ -30,6 +30,15 @@ jobs:
               - '**.xlsx'
               - '**.csv'
 
+      - name: Check for change requiring regeneration of test-cases.json
+        uses: dorny/paths-filter@v3
+        id: filter_test_cases
+        with:
+          filters: |
+            test_cases_required:
+              - 'test_case_generator.py'
+              - 'test-cases-15-15.xlsx'
+
       - name: Install Graphviz
         if: steps.filter.outputs.parsing_required == 'true'
         uses: ts-graphviz/setup-graphviz@v1
@@ -43,6 +52,11 @@ jobs:
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
+
+      - name: Run test_case_generator and collect test-cases.json
+        working-directory: ./csv_parser
+        if: steps.filter_test_cases.outputs.test_cases_required == 'true'
+        run: python workflow.py --stage test_case_parser
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
