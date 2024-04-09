@@ -25,14 +25,14 @@ import com.hubsante.model.geolocation.GeoResourceDetailsWrapper;
 import com.hubsante.model.geolocation.GeoPositionUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
-import com.hubsante.model.error.ErrorWrapper;
+import com.hubsante.model.report.ErrorReportWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
-        @JsonSubTypes.Type(ErrorWrapper.class),
+        @JsonSubTypes.Type(ErrorReportWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
         @JsonSubTypes.Type(GeoPositionUpdateWrapper.class),
@@ -42,7 +42,7 @@ import com.hubsante.model.error.ErrorWrapper;
 public class ContentMessage {
 
     /** This equals override is used to avoid breaking the equals override in the messages without RC-DE headers
-     * (in particular ErrorWrapper), as without the override the equality check would only pass when comparing
+     * (in particular ErrorReportWrapper), as without the override the equality check would only pass when comparing
      * an object to itself, and we care about the actual values.
      **/
     @Override

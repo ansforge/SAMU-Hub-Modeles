@@ -4,7 +4,7 @@
   "generatorName": "java",
   "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "errorWrapper",
+    "models": "errorReportWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -12,6 +12,7 @@
     "modelTests": false
   },
   "additionalProperties": {
+    "customClassname": "ErrorWrapper",
     "library": "native",
     "modelPackage": "com.hubsante.model.report",
     "serializationLibrary": "jackson",

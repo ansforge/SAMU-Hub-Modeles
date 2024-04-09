@@ -18,14 +18,14 @@
             <contentXML>
                 <embeddedXMLContent>
                     <message xmlns="urn:emergency:cisu:2.0">
-                        <error xmlns="urn:emergency:cisu:2.0:error">
+                        <errorReport xmlns="urn:emergency:cisu:2.0:errorReport">
                             <errorCode>
                                 <statusCode>100</statusCode>
                                 <statusString>DELIVERY_MODE_INCONSISTENCY</statusString>
                             </errorCode>
                             <errorCause>cause</errorCause>
                             <referencedDistributionID>fr.health.hub_2608323d-507d-4cbf-bf74-52007f8124ea</referencedDistributionID>
-                        </error>
+                        </errorReport>
                     </message>
                 </embeddedXMLContent>
             </contentXML>
