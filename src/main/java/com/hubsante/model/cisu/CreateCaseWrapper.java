@@ -49,7 +49,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    CreateCaseWrapper.JSON_PROPERTY_CREATE_CASE})
+                    .JSON_PROPERTY_CREATE_CASE})
 @JsonTypeName("createCaseWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 

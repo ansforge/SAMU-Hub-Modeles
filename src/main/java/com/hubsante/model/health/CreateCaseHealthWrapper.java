@@ -49,7 +49,7 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    CreateCaseHealthWrapper.JSON_PROPERTY_CREATE_CASE_HEALTH})
+                    .JSON_PROPERTY_CREATE_CASE_HEALTH})
 @JsonTypeName("createCaseHealthWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
