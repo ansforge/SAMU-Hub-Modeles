@@ -88,13 +88,9 @@ def parser_and_mv():
         file.write(documents)
     print('AsyncAPI schema generated.')
 
+def test_case_parser():
     # Generate test-cases.json
     test_case_generator.run(perimeters)
-
-    # Move test-cases.json to ../src/main/resources
-    if os.path.exists(f"../src/main/resources/test-cases.json"):
-        os.remove(f"../src/main/resources/test-cases.json")
-    os.rename(f"./out/test_cases.json", f"../src/main/resources/test-cases.json")
 
 # ---------------------------------------- RUN
 if args.stage == 'parser_and_mv':
