@@ -40,4 +40,15 @@ import com.hubsante.model.error.ErrorWrapper;
         @JsonSubTypes.Type(GeoResourceDetailsWrapper.class)
 })
 public class ContentMessage {
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return o != null && getClass() == o.getClass();
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }
