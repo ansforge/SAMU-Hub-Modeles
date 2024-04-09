@@ -25,37 +25,32 @@
  * the class manually.
  */
 
-package com.hubsante.model.common;
+package com.hubsante.model.rcde;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.util.Arrays;
-import java.util.Arrays;
+
 import java.util.Objects;
 
 /**
- * Recipient
+ * Sender
  */
-@JsonPropertyOrder(
-    {Recipient.JSON_PROPERTY_NAME, Recipient.JSON_PROPERTY_U_R_I})
-@JsonTypeName("recipient")
+@JsonPropertyOrder({Sender.JSON_PROPERTY_NAME, Sender.JSON_PROPERTY_U_R_I})
+@JsonTypeName("sender")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Recipient {
+public class Sender {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public static final String JSON_PROPERTY_U_R_I = "URI";
   private String URI;
 
-  public Recipient() {}
+  public Sender() {}
 
-  public Recipient name(String name) {
+  public Sender name(String name) {
 
     this.name = name;
     return this;
@@ -78,7 +73,7 @@ public class Recipient {
     this.name = name;
   }
 
-  public Recipient URI(String URI) {
+  public Sender URI(String URI) {
 
     this.URI = URI;
     return this;
@@ -109,9 +104,9 @@ public class Recipient {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Recipient recipient = (Recipient)o;
-    return Objects.equals(this.name, recipient.name) &&
-        Objects.equals(this.URI, recipient.URI);
+    Sender sender = (Sender)o;
+    return Objects.equals(this.name, sender.name) &&
+        Objects.equals(this.URI, sender.URI);
   }
 
   @Override
@@ -122,7 +117,7 @@ public class Recipient {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Recipient {\n");
+    sb.append("class Sender {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    URI: ").append(toIndentedString(URI)).append("\n");
     sb.append("}");

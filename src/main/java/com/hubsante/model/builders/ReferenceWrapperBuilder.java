@@ -16,7 +16,7 @@
 package com.hubsante.model.builders;
 
 
-import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.reference.Reference;
 import com.hubsante.model.reference.ReferenceWrapper;
 

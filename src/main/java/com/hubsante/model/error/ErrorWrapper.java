@@ -27,17 +27,12 @@
 
 package com.hubsante.model.error;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.error.Error;
-import java.util.Arrays;
-import java.util.Arrays;
+
 import java.util.Objects;
 
 /**
