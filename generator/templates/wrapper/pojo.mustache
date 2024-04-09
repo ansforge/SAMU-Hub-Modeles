@@ -14,7 +14,7 @@
         DistributionElement.JSON_PROPERTY_RECIPIENT,
     {{/extendCustomClass}}
     {{#vars}}
-        {{classname}}.JSON_PROPERTY_{{nameInSnakeCase}}{{^-last}},{{/-last}}
+        {{className}}.JSON_PROPERTY_{{nameInSnakeCase}}{{^-last}},{{/-last}}
     {{/vars}}
     })
     {{#isClassnameSanitized}}
@@ -28,7 +28,7 @@
 {{#vendorExtensions.x-class-extra-annotation}}
     {{{vendorExtensions.x-class-extra-annotation}}}
 {{/vendorExtensions.x-class-extra-annotation}}
-public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends {{#customExtend}}{{customExtend.class}}{{/customExtend}}{{^customExtend}}DistributionElement{{/customExtend}} {
+public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends {{#customExtend}}{{customExtend.className}}{{/customExtend}}{{^customExtend}}DistributionElement{{/customExtend}} {
 {{#serializableModel}}
     private static final long serialVersionUID = 1L;
 
