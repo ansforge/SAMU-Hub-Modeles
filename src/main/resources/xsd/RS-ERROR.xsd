@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:error" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:error" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="error" type="x:error"/>
-    <complexType name="error">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:errorReport" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:errorReport" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="errorReport" type="x:errorReport"/>
+    <complexType name="errorReport">
         <sequence>
             <element name="errorCode" type="x:errorCode"/>
             <element name="errorCause" type="string">
