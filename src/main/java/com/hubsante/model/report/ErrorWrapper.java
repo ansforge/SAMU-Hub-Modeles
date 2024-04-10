@@ -27,20 +27,24 @@
 
 package com.hubsante.model.report;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
+import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.edxl.ContentMessage;
-
+import com.hubsante.model.report.ErrorReport;
+import java.util.Arrays;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
  * ErrorWrapper
  */
 @JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR_REPORT})
-@JsonTypeName("errorReportWrapper")
+@JsonTypeName("errorWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class ErrorWrapper extends ContentMessage {
@@ -82,8 +86,8 @@ public class ErrorWrapper extends ContentMessage {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorWrapper errorReportWrapper = (ErrorWrapper)o;
-    return Objects.equals(this.errorReport, errorReportWrapper.errorReport) &&
+    ErrorWrapper errorWrapper = (ErrorWrapper)o;
+    return Objects.equals(this.errorReport, errorWrapper.errorReport) &&
         super.equals(o);
   }
 
