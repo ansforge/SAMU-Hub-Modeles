@@ -25,14 +25,14 @@ import com.hubsante.model.geolocation.GeoResourceDetailsWrapper;
 import com.hubsante.model.geolocation.GeoPositionUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourceRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
-import com.hubsante.model.report.ErrorReportWrapper;
+import com.hubsante.model.report.ErrorWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
-        @JsonSubTypes.Type(ErrorReportWrapper.class),
+        @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
         @JsonSubTypes.Type(EmsiWrapper.class),
         @JsonSubTypes.Type(GeoPositionUpdateWrapper.class),

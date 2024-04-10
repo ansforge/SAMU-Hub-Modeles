@@ -96,7 +96,7 @@ def run(sheet, name, version, filter):
 
     if not filter and isCreateCase():
         MODEL_TYPE = "createCaseHealth"
-    WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
+    WRAPPER_NAME = "errorWrapper" if MODEL_TYPE == "errorReport" else f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
 

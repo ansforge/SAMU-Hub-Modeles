@@ -59,6 +59,13 @@
                           ],
                           "reference": {
                             "distributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
+                          },
+                          "errorReport": {
+                            "errorCode": {
+                              "statusString": "DELIVERY_MODE_INCONSISTENCY"
+                            },
+                            "errorCause": "cause",
+                            "sourceMessage": "source"
                           }
                         }
                       }
