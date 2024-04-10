@@ -166,12 +166,12 @@
           "properties": {
             "message": {
               "properties": {
-                "errorReport": {
+                "error": {
                   "$ref": "RS-ERROR.schema.json"
                 }
               },
               "required": [
-                "errorReport"
+                "error"
               ]
             }
           }

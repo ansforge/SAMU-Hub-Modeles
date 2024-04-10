@@ -9,7 +9,7 @@
         xmlns:geopositionupdate="urn:emergency:cisu:2.0:geoPositionUpdate"
         xmlns:georesourcedetails="urn:emergency:cisu:2.0:geoResourceDetails"
         xmlns:georesourcerequest="urn:emergency:cisu:2.0:geoResourceRequest"
-        xmlns:errorReport="urn:emergency:cisu:2.0:errorReport"
+        xmlns:error="urn:emergency:cisu:2.0:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -20,7 +20,7 @@
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:errorReport" schemaLocation="RS-ERROR.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoPositionUpdate" schemaLocation="GEO-POS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourceDetails" schemaLocation="GEO-RES.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourceRequest" schemaLocation="GEO-REQ.xsd"/>
@@ -59,7 +59,7 @@
     <xs:complexType name="NoHeaderMessageType">
         <xs:sequence>
             <xs:choice>
-                <xs:element ref="errorReport:errorReport"/>
+                <xs:element ref="error:error"/>
                 <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>

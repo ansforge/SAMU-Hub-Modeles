@@ -17,7 +17,7 @@
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "errorReport": {
+            "error": {
               "errorCode": {
                 "statusString": "DELIVERY_MODE_INCONSISTENCY"
               },

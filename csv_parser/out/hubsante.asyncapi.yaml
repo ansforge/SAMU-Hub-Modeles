@@ -5667,12 +5667,12 @@ components:
           items:
             $ref: '#/components/schemas/resource'
       additionalProperties: false
-    errorReport:
+    error:
       $id: classpath:/json-schema/schema#
       x-id: RS-ERROR.schema.json#
       example: example.json#
       type: object
-      title: errorReport
+      title: error
       required:
       - errorCode
       - errorCause

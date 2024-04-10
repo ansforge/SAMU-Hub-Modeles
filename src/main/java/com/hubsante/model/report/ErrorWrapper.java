@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.report.ErrorReport;
+import com.hubsante.model.report.Error;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -50,32 +50,32 @@ import java.util.Objects;
 public class ErrorWrapper extends ContentMessage {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_ERROR_REPORT = "errorReport";
-  private ErrorReport errorReport;
+  public static final String JSON_PROPERTY_ERROR_REPORT = "error";
+  private Error error;
 
   public ErrorWrapper() {}
 
-  public ErrorWrapper errorReport(ErrorReport errorReport) {
+  public ErrorWrapper error(Error error) {
 
-    this.errorReport = errorReport;
+    this.error = error;
     return this;
   }
 
   /**
-   * Get errorReport
-   * @return errorReport
+   * Get error
+   * @return error
    **/
   @JsonProperty(JSON_PROPERTY_ERROR_REPORT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ErrorReport getErrorReport() {
-    return errorReport;
+  public Error getError() {
+    return error;
   }
 
   @JsonProperty(JSON_PROPERTY_ERROR_REPORT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setErrorReport(ErrorReport errorReport) {
-    this.errorReport = errorReport;
+  public void setError(Error error) {
+    this.error = error;
   }
 
   @Override
@@ -87,13 +87,13 @@ public class ErrorWrapper extends ContentMessage {
       return false;
     }
     ErrorWrapper errorWrapper = (ErrorWrapper)o;
-    return Objects.equals(this.errorReport, errorWrapper.errorReport) &&
+    return Objects.equals(this.error, errorWrapper.error) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(errorReport, super.hashCode());
+    return Objects.hash(error, super.hashCode());
   }
 
   @Override
@@ -101,8 +101,8 @@ public class ErrorWrapper extends ContentMessage {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    errorReport: ")
-        .append(toIndentedString(errorReport))
+    sb.append("    error: ")
+        .append(toIndentedString(error))
         .append("\n");
     sb.append("}");
     return sb.toString();

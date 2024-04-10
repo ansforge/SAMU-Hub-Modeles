@@ -36,7 +36,7 @@
             },
             "customContent": {
             },
-            "errorReport": {
+            "error": {
               "errorCode": {
                 "statusCode": 100,
                 "statusString": "DELIVERY_MODE_INCONSISTENCY"

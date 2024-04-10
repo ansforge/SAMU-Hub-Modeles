@@ -4,16 +4,16 @@ components:
     errorWrapper:
       type: object
       required:
-      - errorReport
+      - error
       properties:
-        errorReport:
-          $ref: '#/components/schemas/errorReport'
-    errorReport:
+        error:
+          $ref: '#/components/schemas/error'
+    error:
       $id: classpath:/json-schema/schema#
       x-id: RS-ERROR.schema.json#
       example: example.json#
       type: object
-      title: errorReport
+      title: error
       required:
       - errorCode
       - errorCause

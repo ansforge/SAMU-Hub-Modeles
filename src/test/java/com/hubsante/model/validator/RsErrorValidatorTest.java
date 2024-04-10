@@ -44,9 +44,9 @@ public class RsErrorValidatorTest extends AbstractValidatorTest {
         String[] expectedErrors = {
                 "Could not validate message against schema : errors occurred. ",
                 "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message: ",
-                " - errorReport.sourceMessage: string found, object expected",
-                " - errorReport.errorCode.statusCode: is missing but it is required",
-                " - errorReport.referencedDistributionID: is missing but it is required"
+                " - error.sourceMessage: string found, object expected",
+                " - error.errorCode.statusCode: is missing but it is required",
+                " - error.referencedDistributionID: is missing but it is required"
         };
         jsonValidationFails("RS-ERROR/RS-ERROR-missing-required-fields.json", expectedErrors);
     }

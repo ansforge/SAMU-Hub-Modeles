@@ -15,19 +15,19 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.report.ErrorReport;
+import com.hubsante.model.report.Error;
 import com.hubsante.model.report.ErrorWrapper;
 
 public class ErrorWrapperBuilder {
-    private ErrorReport error;
+    private Error error;
 
-    public ErrorWrapperBuilder(ErrorReport error) {
+    public ErrorWrapperBuilder(Error error) {
         this.error = error;
     }
 
     public ErrorWrapper build() {
         ErrorWrapper errorWrapper = new ErrorWrapper();
-        errorWrapper.setErrorReport(error);
+        errorWrapper.setError(error);
         return errorWrapper;
     }
 }

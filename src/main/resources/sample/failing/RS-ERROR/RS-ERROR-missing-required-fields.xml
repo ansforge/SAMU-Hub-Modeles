@@ -19,13 +19,13 @@
             <contentXML>
                 <embeddedXMLContent>
                     <message xmlns="urn:emergency:cisu:2.0">
-                        <errorReport xmlns="urn:emergency:cisu:2.0:errorReport">
+                        <error xmlns="urn:emergency:cisu:2.0:error">
                             <errorCode>
                                 <statusString>DELIVERY_MODE_INCONSISTENCY</statusString>
                             </errorCode>
                             <errorCause>cause</errorCause>
                             <sourceMessage>source</sourceMessage>
-                        </errorReport>
+                        </error>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

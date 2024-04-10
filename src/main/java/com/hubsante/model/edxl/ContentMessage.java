@@ -42,7 +42,7 @@ import com.hubsante.model.report.ErrorWrapper;
 public class ContentMessage {
 
     /** This equals override is used to avoid breaking the equals override in the messages without RC-DE headers
-     * (in particular ErrorReportWrapper), as without the override the equality check would only pass when comparing
+     * (in particular ErrorWrapper), as without the override the equality check would only pass when comparing
      * an object to itself, and we care about the actual values.
      **/
     @Override

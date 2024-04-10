@@ -17,7 +17,7 @@
       "jsonContent": {
         "embeddedJsonContent": {
           "message": {
-            "errorReport": {
+            "error": {
               "errorCode": {
                 "statusCode": 100,
                 "statusString": "DELIVERY_MODE_INCONSISTENCY"
@@ -60,7 +60,7 @@
                           "reference": {
                             "distributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
                           },
-                          "errorReport": {
+                          "error": {
                             "errorCode": {
                               "statusString": "DELIVERY_MODE_INCONSISTENCY"
                             },

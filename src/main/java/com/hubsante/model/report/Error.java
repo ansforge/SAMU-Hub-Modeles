@@ -42,18 +42,18 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * ErrorReport
+ * Error
  */
-@JsonPropertyOrder({ErrorReport.JSON_PROPERTY_ERROR_CODE,
-                    ErrorReport.JSON_PROPERTY_ERROR_CAUSE,
-                    ErrorReport.JSON_PROPERTY_SOURCE_MESSAGE,
-                    ErrorReport.JSON_PROPERTY_REFERENCED_DISTRIBUTION_I_D})
-@JsonTypeName("errorReport")
+@JsonPropertyOrder({Error.JSON_PROPERTY_ERROR_CODE,
+                    Error.JSON_PROPERTY_ERROR_CAUSE,
+                    Error.JSON_PROPERTY_SOURCE_MESSAGE,
+                    Error.JSON_PROPERTY_REFERENCED_DISTRIBUTION_I_D})
+@JsonTypeName("error")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ErrorReport {
+public class Error {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:errorReport";
+  String xmlns = "urn:emergency:cisu:2.0:error";
   public static final String JSON_PROPERTY_ERROR_CODE = "errorCode";
   private ErrorCode errorCode;
 
@@ -67,9 +67,9 @@ public class ErrorReport {
       "referencedDistributionID";
   private String referencedDistributionID;
 
-  public ErrorReport() {}
+  public Error() {}
 
-  public ErrorReport errorCode(ErrorCode errorCode) {
+  public Error errorCode(ErrorCode errorCode) {
 
     this.errorCode = errorCode;
     return this;
@@ -92,7 +92,7 @@ public class ErrorReport {
     this.errorCode = errorCode;
   }
 
-  public ErrorReport errorCause(String errorCause) {
+  public Error errorCause(String errorCause) {
 
     this.errorCause = errorCause;
     return this;
@@ -115,13 +115,13 @@ public class ErrorReport {
     this.errorCause = errorCause;
   }
 
-  public ErrorReport sourceMessage(Map<String, Object> sourceMessage) {
+  public Error sourceMessage(Map<String, Object> sourceMessage) {
 
     this.sourceMessage = sourceMessage;
     return this;
   }
 
-  public ErrorReport putSourceMessageItem(String key,
+  public Error putSourceMessageItem(String key,
                                           Object sourceMessageItem) {
     if (this.sourceMessage == null) {
       this.sourceMessage = new HashMap<>();
@@ -151,7 +151,7 @@ public class ErrorReport {
     this.sourceMessage = sourceMessage;
   }
 
-  public ErrorReport referencedDistributionID(String referencedDistributionID) {
+  public Error referencedDistributionID(String referencedDistributionID) {
 
     this.referencedDistributionID = referencedDistributionID;
     return this;
@@ -182,12 +182,12 @@ public class ErrorReport {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ErrorReport errorReport = (ErrorReport)o;
-    return Objects.equals(this.errorCode, errorReport.errorCode) &&
-        Objects.equals(this.errorCause, errorReport.errorCause) &&
-        Objects.equals(this.sourceMessage, errorReport.sourceMessage) &&
+    Error error = (Error)o;
+    return Objects.equals(this.errorCode, error.errorCode) &&
+        Objects.equals(this.errorCause, error.errorCause) &&
+        Objects.equals(this.sourceMessage, error.sourceMessage) &&
         Objects.equals(this.referencedDistributionID,
-                       errorReport.referencedDistributionID);
+                       error.referencedDistributionID);
   }
 
   @Override
@@ -199,7 +199,7 @@ public class ErrorReport {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorReport {\n");
+    sb.append("class Error {\n");
     sb.append("    errorCode: ")
         .append(toIndentedString(errorCode))
         .append("\n");

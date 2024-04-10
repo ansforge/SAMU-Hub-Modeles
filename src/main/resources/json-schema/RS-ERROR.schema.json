@@ -5,7 +5,7 @@
     "version": "24.04.10",
     "example": "example.json#",
     "type": "object",
-    "title": "errorReport",
+    "title": "error",
     "required": [
         "errorCode",
         "errorCause",

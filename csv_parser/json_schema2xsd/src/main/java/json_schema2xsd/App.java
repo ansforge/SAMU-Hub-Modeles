@@ -117,7 +117,7 @@ public class App {
                 root = "geoPositionUpdate";
                 break;
             case "RS-ERROR":
-                root = "errorReport";
+                root = "error";
                 break;
             default:
                 root = "";
