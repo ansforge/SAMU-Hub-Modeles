@@ -30,7 +30,7 @@ jobs:
               - 'uml_generator.py'
               - 'workflow.py'
               - 'model.xlsx'
-              - '**.csv'
+              - 'nomenclature_parser/**'
             test_case_parsing_required:
               - 'test_case_generator.py'
               - 'workflow.py'
