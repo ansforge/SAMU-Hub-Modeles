@@ -26,6 +26,8 @@ jobs:
         with:
           filters: |
             parsing_required:
+              - '!test_case_generator.py'
+              - '!test-cases-15-15.xlsx'
               - '**.py'
               - '**.xlsx'
               - '**.csv'
