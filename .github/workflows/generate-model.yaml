@@ -26,13 +26,14 @@ jobs:
         with:
           filters: |
             parsing_required:
-              - '!test_case_generator.py'
-              - '!test-cases-15-15.xlsx'
-              - '**.py'
-              - '**.xlsx'
+              - 'csv_parser.py'
+              - 'uml_generator.py'
+              - 'workflow.py'
+              - 'model.xlsx'
               - '**.csv'
             test_case_parsing_required:
               - 'test_case_generator.py'
+              - 'workflow.py'
               - 'test-cases-15-15.xlsx'
 
       - name: Install Graphviz
