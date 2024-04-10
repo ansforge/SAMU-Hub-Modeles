@@ -891,7 +891,7 @@ components:
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
         orientation:
           type: string
-          title: Type d'orientation
+          title: Type de devenir du patient
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/orientation

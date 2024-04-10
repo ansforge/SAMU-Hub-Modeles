@@ -43,14 +43,14 @@ import java.util.Objects;
 /**
  * ErrorWrapper
  */
-@JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR_REPORT})
+@JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR})
 @JsonTypeName("errorWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class ErrorWrapper extends ContentMessage {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_ERROR_REPORT = "error";
+  public static final String JSON_PROPERTY_ERROR = "error";
   private Error error;
 
   public ErrorWrapper() {}
@@ -65,14 +65,14 @@ public class ErrorWrapper extends ContentMessage {
    * Get error
    * @return error
    **/
-  @JsonProperty(JSON_PROPERTY_ERROR_REPORT)
+  @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Error getError() {
     return error;
   }
 
-  @JsonProperty(JSON_PROPERTY_ERROR_REPORT)
+  @JsonProperty(JSON_PROPERTY_ERROR)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setError(Error error) {
     this.error = error;
@@ -87,8 +87,7 @@ public class ErrorWrapper extends ContentMessage {
       return false;
     }
     ErrorWrapper errorWrapper = (ErrorWrapper)o;
-    return Objects.equals(this.error, errorWrapper.error) &&
-        super.equals(o);
+    return Objects.equals(this.error, errorWrapper.error) && super.equals(o);
   }
 
   @Override
@@ -101,9 +100,7 @@ public class ErrorWrapper extends ContentMessage {
     StringBuilder sb = new StringBuilder();
     sb.append("class ErrorWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    error: ")
-        .append(toIndentedString(error))
-        .append("\n");
+    sb.append("    error: ").append(toIndentedString(error)).append("\n");
     sb.append("}");
     return sb.toString();
   }

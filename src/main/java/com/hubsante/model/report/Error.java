@@ -121,8 +121,7 @@ public class Error {
     return this;
   }
 
-  public Error putSourceMessageItem(String key,
-                                          Object sourceMessageItem) {
+  public Error putSourceMessageItem(String key, Object sourceMessageItem) {
     if (this.sourceMessage == null) {
       this.sourceMessage = new HashMap<>();
     }

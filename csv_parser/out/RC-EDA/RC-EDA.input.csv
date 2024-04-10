@@ -165,7 +165,7 @@ Elle est composée :
 158,159,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
 159,160,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
 160,161,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
-161,162,,Type d'orientation,,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
+161,162,,Type de devenir du patient,,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
 - Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,0..1,,string,X,,X,X
 162,163,,Type de ressource/moyen,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
