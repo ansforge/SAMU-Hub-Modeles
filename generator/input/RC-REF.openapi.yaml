@@ -48,4 +48,4 @@ components:
       examples:
       - distributionID: None
         refused: None
-        infoDistributionID: None
+        errorDistributionID: None

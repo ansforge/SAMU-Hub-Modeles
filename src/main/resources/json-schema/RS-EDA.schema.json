@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.04.05",
+    "version": "24.04.11",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -453,7 +453,7 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Commentaire",
+                    "title": "agent",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/freetext",
@@ -717,7 +717,7 @@
                 },
                 "orientation": {
                     "type": "string",
-                    "title": "Type d'orientation",
+                    "title": "Type de devenir du patient",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/orientation",
