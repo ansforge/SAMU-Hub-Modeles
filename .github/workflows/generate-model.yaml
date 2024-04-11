@@ -26,9 +26,15 @@ jobs:
         with:
           filters: |
             parsing_required:
-              - '**.py'
-              - '**.xlsx'
-              - '**.csv'
+              - '**/csv_parser.py'
+              - '**/uml_generator.py'
+              - '**/workflow.py'
+              - '**/model.xlsx'
+              - '**/nomenclature_parser/**'
+            test_case_parsing_required:
+              - '**/test_case_generator.py'
+              - '**/workflow.py'
+              - '**/test-cases-15-15.xlsx'
 
       - name: Install Graphviz
         if: steps.filter.outputs.parsing_required == 'true'
@@ -43,6 +49,11 @@ jobs:
         working-directory: ./csv_parser
         if: steps.filter.outputs.parsing_required == 'true'
         run: python workflow.py --stage parser_and_mv
+
+      - name: Run test_case_generator and collect test-cases.json
+        working-directory: ./csv_parser
+        if: steps.filter.outputs.test_case_parsing_required == 'true'
+        run: python workflow.py --stage test_case_parser
 
       - name: Install JDK 11
         uses: actions/setup-java@v4
