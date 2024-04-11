@@ -324,14 +324,14 @@ strict digraph {
                 </TR>
                 <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet externalId</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">source <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">value <I>string</I> : [1..1]  <B>15-15</B></TD></TR>
                 </TABLE>>]
-	externalId -> file [constraint=true headlabel=1 taillabel="0..*"]
+	externalId -> administrativeFile [constraint=true headlabel=1 taillabel="0..*"]
 	contact [label=<<TABLE>
                 <TR>
                 <TD ><B>contact</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	contact -> file [constraint=true headlabel=1 taillabel="0..*"]
+	contact -> administrativeFile [constraint=true headlabel=1 taillabel="0..*"]
 	wayName [label=<<TABLE>
                 <TR>
                 <TD ><B>wayName</B></TD>
@@ -359,7 +359,7 @@ strict digraph {
                 </TR>
                 <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet personalAddress</I></TD></TR>
                 </TABLE>>]
-	personalAddress -> file [constraint=true headlabel=1 taillabel="0..1"]
+	personalAddress -> administrativeFile [constraint=true headlabel=1 taillabel="0..1"]
 	detailedName [label=<<TABLE>
                 <TR>
                 <TD ><B>detailedName</B></TD>
@@ -408,14 +408,14 @@ strict digraph {
                 </TR>
                 <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet generalPractitioner</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">id <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
                 </TABLE>>]
-	generalPractitioner -> file [constraint=true headlabel=1 taillabel="0..1"]
-	file [label=<<TABLE>
+	generalPractitioner -> administrativeFile [constraint=true headlabel=1 taillabel="0..1"]
+	administrativeFile [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>file</B></TD>
+                <TD BGCOLOR="coral"><B>administrativeFile</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet file</I></TD></TR>
+                <TR><TD BGCOLOR="coral" BORDER="0"><I>objet administrativeFile</I></TD></TR>
                 </TABLE>>]
-	file -> patient [constraint=true headlabel=1 taillabel="0..1"]
+	administrativeFile -> patient [constraint=true headlabel=1 taillabel="0..1"]
 	cycle [label=<<TABLE>
                 <TR>
                 <TD BGCOLOR="#dceaf7"><B>cycle</B></TD>

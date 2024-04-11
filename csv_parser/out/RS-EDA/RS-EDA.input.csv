@@ -162,27 +162,27 @@ La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,
 Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
 Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
 Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.",fr.health.samu440,,owner,,,,,,1..1,,string,,,,X
-105,106,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médecin référent, etc) pour le traitement d'un dossier.",,,operator,,,,,,0..n,X,operator,,,,X
-106,107,,Prénom et nom,,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,,,X
-107,108,,ID,,,,,Identifiant professionnel de l'opérateur si existant,,,id,,,,,,0..1,,string,,,,X
-108,109,,Rôle,,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,,,,X
-109,110,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
-110,111,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,X,X
-111,112,,Dossier administratif,,,,,,,,file,,,,,,0..1,X,file,,,,X
-112,113,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
-113,114,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE",,X
-114,115,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,1..1,,string,,,,X
-115,116,,,Contact,# Voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,,,X
-116,117,,,Adresse,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
-117,118,,,,Détails de l'adresse,# Voir detailedAddress,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,,X
-118,119,,,,Détails de la commune,# Voir city,,,,,city,,,,,,0..1,X,city,,,,X
-119,120,,,Médecin traitant ,,,,,,,generalPractitioner,,,,,,0..1,X,generalPractitioner,,,,X
-120,121,,,,Prénom et nom,,,Nom du médecin traitant du patient si connu,,,detailedName,,,,,,1..1,X,detailedName,,,,X
-121,122,,,,Identifiant RPPS,,,Numéro RPPS du médecin traitant,10000668540,,id,,,,,,0..1,,string,,,,X
-122,123,,,,Adresse medecin,# Voir patientAddress (type personalAddress),,,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
-123,124,,,,Contact médecin,# Voir callerContact (type contact),,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,,,X
-124,125,,Identité INS,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,X,X
-125,126,,,Implémentation INS,,,,"Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
+102,103,Opérateurs impliqués,,,,,,"Si pertinent et si le SAMU émetteur souhaite partager les opérateurs spécifiques à contacter chez lui (ARM Référent, Médecin référent, etc) pour le traitement d'un dossier.",,,operator,,,,,,0..n,X,operator,,,,X
+103,104,,Prénom et nom,,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,,,X
+104,105,,ID,,,,,Identifiant professionnel de l'opérateur si existant,,,id,,,,,,0..1,,string,,,,X
+105,106,,Rôle,,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,,,,X
+106,107,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
+107,108,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,X,X
+108,109,,Dossier administratif,,,,,,,,administrativeFile,,,,,,0..1,X,administrativeFile,,,,X
+109,110,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
+110,111,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE",,X
+111,112,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,1..1,,string,,,,X
+112,113,,,Contact,# Voir callerContact (type contact),,,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,,,X
+113,114,,,Adresse,,,,Voir pour ajouter l'adresse postale du patient uniquement : pas besoin du niveau de détail de l'adresse d'intervention qui est un objet différent,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
+114,115,,,,Détails de l'adresse,# Voir detailedAddress,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,,X
+115,116,,,,Détails de la commune,# Voir city,,,,,city,,,,,,0..1,X,city,,,,X
+116,117,,,Médecin traitant ,,,,,,,generalPractitioner,,,,,,0..1,X,generalPractitioner,,,,X
+117,118,,,,Prénom et nom,,,Nom du médecin traitant du patient si connu,,,detailedName,,,,,,1..1,X,detailedName,,,,X
+118,119,,,,Identifiant,,,Numéro RPPS du médecin traitant,10000668540,,id,,,,,,0..1,,string,,,,X
+119,120,,,,Adresse medecin,# Voir patientAddress (type personalAddress),,,,,personalAddress,,,,,,0..1,X,personalAddress,,,,X
+120,121,,,,Contact médecin,# Voir callerContact (type contact),,Type et valeur des URI utilisées par le patient concerné,,,contact,,,,,,0..n,X,contact,,,,X
+121,122,,Identité INS,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,X,X
+122,123,,,Implémentation INS,,,,"Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
 - « identité provisoire »,
 - « identité récupérée »,
 - « identité validée »,

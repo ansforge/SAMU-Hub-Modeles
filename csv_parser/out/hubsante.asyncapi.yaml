@@ -847,8 +847,8 @@ components:
             \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
           examples:
           - None
-        file:
-          $ref: '#/components/schemas/file'
+        administrativeFile:
+          $ref: '#/components/schemas/administrativeFile'
         identity:
           $ref: '#/components/schemas/insIdentity'
         healthMotive:
@@ -2697,7 +2697,7 @@ components:
         type: DR
         attribution: MU
         priority: P1
-    file:
+    administrativeFile:
       type: object
       title: Dossier administratif
       x-display: expansion-panels
@@ -2717,7 +2717,7 @@ components:
         generalPractitioner:
           $ref: '#/components/schemas/generalPractitioner'
       additionalProperties: false
-      example: example.json#/patient/0/file
+      example: example.json#/patient/0/administrativeFile
     patientDetail:
       type: object
       title: Informations patient
@@ -2845,7 +2845,7 @@ components:
           title: Source  /  type d'identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/patient/0/file/externalId/0/source
+          example: example.json#/patient/0/administrativeFile/externalId/0/source
           description: Type de l'identifiant fourni
           enum:
           - NIR
@@ -2860,12 +2860,12 @@ components:
           title: Identifiant
           x-health-only: true
           x-cols: 6
-          example: example.json#/patient/0/file/externalId/0/value
+          example: example.json#/patient/0/administrativeFile/externalId/0/value
           description: "L'identifiant en lui-m\xEAme"
           examples:
           - id1234
       additionalProperties: false
-      example: example.json#/patient/0/file/externalId/0
+      example: example.json#/patient/0/administrativeFile/externalId/0
       examples:
       - source: "NIR, SINUS, SI-VIC, \u2026"
         value: id1234
@@ -2881,7 +2881,7 @@ components:
         city:
           $ref: '#/components/schemas/city'
       additionalProperties: false
-      example: example.json#/patient/0/file/personalAddress
+      example: example.json#/patient/0/administrativeFile/personalAddress
       examples:
       - detailedAddress: {}
         city: {}
@@ -2900,7 +2900,7 @@ components:
           title: Identifiant RPPS
           x-health-only: true
           x-cols: 6
-          example: example.json#/patient/0/file/generalPractitioner/id
+          example: example.json#/patient/0/administrativeFile/generalPractitioner/id
           description: "Num\xE9ro RPPS du m\xE9decin traitant"
           examples:
           - 10000668540
@@ -2911,7 +2911,7 @@ components:
           items:
             $ref: '#/components/schemas/contact'
       additionalProperties: false
-      example: example.json#/patient/0/file/generalPractitioner
+      example: example.json#/patient/0/administrativeFile/generalPractitioner
     insCycle:
       type: object
       title: "Impl\xE9mentation INS"
@@ -4437,7 +4437,7 @@ components:
       examples:
       - distributionID: None
         refused: None
-        errorDistributionID: None
+        infoDistributionID: None
     casualties:
       type: object
       title: Victimes

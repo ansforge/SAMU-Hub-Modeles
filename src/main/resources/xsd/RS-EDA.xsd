@@ -409,7 +409,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="file" type="x:file"/>
+            <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
@@ -1302,7 +1302,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
             </element>
         </sequence>
     </complexType>
-    <complexType name="file">
+    <complexType name="administrativeFile">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
             <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:contact"/>
