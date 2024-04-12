@@ -40,12 +40,6 @@
       "OBS_DATIME": "2024-01-09T16:04:00+01:00",
       "STATUS": "IPR",
       "RISK_ASSESMENT": "STABLE",
-      "REFERENCE": [
-        {
-          "ORG_ID": "fr.fire.cgo690",
-          "OTHER_EVENT_ID": []
-        }
-      ],
       "CASUALTIES": [
         {
           "CONTEXT": "REQ_ACTION",
