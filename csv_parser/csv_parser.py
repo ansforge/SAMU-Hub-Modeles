@@ -262,6 +262,13 @@ def run(sheet, name, version, filter):
             f"If these rows were not mentioned in a previous error, "
             f"the exact reason should be investigated by the dev team...{Color.END}")
         HAS_ERROR = True
+    # - 'file' is not handled correctly by OpenAPI generator
+    # Ref.: https://github.com/OpenAPITools/openapi-generator/pull/5817
+    if (df['name'] == 'file').sum() > 0:
+        print(f"{Color.RED}ERROR: 'file' can't be used as a balise name:{Color.ORANGE}")
+        print(df[df['name'] == 'file'])
+        print(f"Consider renaming this balise, adding a prefix, ...{Color.END}")
+        HAS_ERROR = True
     if HAS_ERROR:
         exit(1)
 
@@ -470,6 +477,8 @@ def run(sheet, name, version, filter):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
+            if not child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
             properties[child['name']] = childDetails
 
@@ -513,6 +522,8 @@ def run(sheet, name, version, filter):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
+            if not child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTrueTypeName,
