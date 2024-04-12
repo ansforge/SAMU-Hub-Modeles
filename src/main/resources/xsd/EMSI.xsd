@@ -994,7 +994,7 @@ Le transcodage entre ces deux nomenclature est décrit dans l'annexe "Référent
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="LOCTYPE" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="LOCTYPE" type="string"/>
             <element minOccurs="0" name="ENV">
                 <annotation>
                     <documentation>Optionnel</documentation>
@@ -1031,7 +1031,7 @@ Le transcodage entre ces deux nomenclature est décrit dans l'annexe "Référent
 NB : ce champ (EVENT.REFERENCE.ORG_ID) ne peut pas être le même que le champ CONTEXT.LINK.ID ou EVENT.ID</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="OTHER_EVENT_ID" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="OTHER_EVENT_ID" type="string"/>
         </sequence>
     </complexType>
     <complexType name="casualties">

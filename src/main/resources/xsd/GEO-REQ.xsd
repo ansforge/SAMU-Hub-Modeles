@@ -2,7 +2,7 @@
     <element name="geoResourceRequest" type="x:geoResourceRequest"/>
     <complexType name="geoResourceRequest">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="resourceId" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="resourceId" type="string"/>
         </sequence>
     </complexType>
 </schema>

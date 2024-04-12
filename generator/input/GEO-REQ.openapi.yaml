@@ -30,4 +30,5 @@ components:
               \ besoin d'obtenir plus de d\xE9tails"
             examples:
             - 76_45101#SMUR1
+          minItems: 1
       additionalProperties: false
