@@ -477,6 +477,8 @@ def run(sheet, name, version, filter):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
+            if not child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
             properties[child['name']] = childDetails
 
@@ -520,6 +522,8 @@ def run(sheet, name, version, filter):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
+            if not child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
             properties[child['name']] = {
                 '$ref': '#/definitions/' + childTrueTypeName,
