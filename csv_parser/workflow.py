@@ -4,7 +4,7 @@ import shutil
 import yaml
 
 import csv_parser
-
+# Minor temporary modification to trigger the github action and regenerate the schemas
 # ---------------------------------------- ARGS CONFIGURATION
 parser = argparse.ArgumentParser(
     prog='Workflow Automator',
