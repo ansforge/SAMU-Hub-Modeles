@@ -1,2 +1,2 @@
 # Merge strategies for auto-generated files
-csv_parser/out/*/* merge=ours
+csv_parser/out/**/** merge=ours
