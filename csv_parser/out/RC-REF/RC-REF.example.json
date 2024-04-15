@@ -1,5 +1,5 @@
 {
     "distributionID": "None",
-    "isRefused": "None",
-    "infoDistributionID": "None"
+    "refused": "None",
+    "errorDistributionID": "None"
 }
