@@ -465,35 +465,12 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                     <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="type" type="string">
+            <element name="type" type="string">
                 <annotation>
                     <documentation>Type de décision prise</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="orientation" type="string">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
-- A transporter
-- Laisser sur place</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="transportationID" type="string">
-                <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="teamCare" type="string">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
+            <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -1543,6 +1520,34 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
+        </sequence>
+    </complexType>
+    <complexType name="transportDetails">
+        <sequence>
+            <element name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
+- A transporter
+- Laisser sur place</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="concoursRequest" type="string">
+                <annotation>
+                    <documentation>Identifiant de la ou des demandes de concours </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="transportationID" type="string">
+                <annotation>
+                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
+                </annotation>
+            </element>
+            <element name="teamCare" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="destination">

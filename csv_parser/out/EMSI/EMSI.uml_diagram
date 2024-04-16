@@ -72,7 +72,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	POSITION -> EGEO [headlabel=1 taillabel=1]
+	POSITION -> EGEO [headlabel=1 taillabel="0..1"]
 	EGEO [label=<<TABLE>
                 <TR>
                 <TD ><B>EGEO</B></TD>

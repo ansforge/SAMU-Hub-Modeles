@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.04.12",
+    "version": "24.04.16",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -429,7 +429,7 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "agent",
+                    "title": "Agent",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/freetext",
@@ -548,7 +548,8 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "creation"
+                "creation",
+                "type"
             ],
             "properties": {
                 "id": {
@@ -577,52 +578,8 @@
                     "example": "example.json#/decision/0/type",
                     "description": "Type de d\u00e9cision prise"
                 },
-                "orientation": {
-                    "type": "string",
-                    "title": "Type de devenir du patient",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
-                },
-                "transportation": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Type de ressource/moyen",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/decision/0/transportation/0",
-                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
-                    }
-                },
-                "concoursRequest": {
-                    "type": "string",
-                    "title": "ID demande de concours",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/concoursRequest",
-                    "description": "Identifiant de la ou des demandes de concours "
-                },
-                "transportationID": {
-                    "type": "string",
-                    "title": "ID vecteur partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportationID",
-                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
-                },
-                "teamCare": {
-                    "type": "string",
-                    "title": "Niveau de prise en charge",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
-                },
-                "destination": {
-                    "$ref": "#/definitions/destination"
+                "transportDetails": {
+                    "$ref": "#/definitions/transportDetails"
                 }
             },
             "additionalProperties": false,
@@ -1827,6 +1784,67 @@
             "additionalProperties": false,
             "example": "example.json#/patient/0/identity/strictFeatures"
         },
+        "transportDetails": {
+            "type": "object",
+            "title": "D\u00e9cision de transport",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "orientation",
+                "teamCare"
+            ],
+            "properties": {
+                "orientation": {
+                    "type": "string",
+                    "title": "Type de devenir du patient",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/orientation",
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
+                },
+                "transportation": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Type de ressource/moyen",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/decision/0/transportDetails/transportation/0",
+                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
+                    }
+                },
+                "concoursRequest": {
+                    "type": "string",
+                    "title": "ID demande de concours",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/concoursRequest",
+                    "description": "Identifiant de la ou des demandes de concours "
+                },
+                "transportationID": {
+                    "type": "string",
+                    "title": "ID vecteur partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/transportationID",
+                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
+                },
+                "teamCare": {
+                    "type": "string",
+                    "title": "Niveau de prise en charge",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/teamCare",
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                },
+                "destination": {
+                    "$ref": "#/definitions/destination"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/transportDetails"
+        },
         "destination": {
             "type": "object",
             "title": "Destination",
@@ -1839,7 +1857,7 @@
                     "title": "Type de destination",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/type",
+                    "example": "example.json#/decision/0/transportDetails/destination/type",
                     "description": "Indique le type de destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
                     "enum": [
                         "service d\u2019urgences d\u2019un Etablissement de sant\u00e9",
@@ -1855,7 +1873,7 @@
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/decision/0/destination"
+            "example": "example.json#/decision/0/transportDetails/destination"
         },
         "customMap": {
             "type": "object",
