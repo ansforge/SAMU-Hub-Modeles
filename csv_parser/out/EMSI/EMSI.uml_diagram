@@ -9,147 +9,147 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet link</I></TD></TR><TR><TD BORDER="0" >ID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >LINK_ROLE <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	LINK -> CONTEXT [constraint=true headlabel=1 taillabel="0..*"]
+	LINK -> CONTEXT [headlabel=1 taillabel="0..*"]
 	ORIGIN [label=<<TABLE>
                 <TR>
                 <TD ><B>ORIGIN</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet origin</I></TD></TR><TR><TD BORDER="0" >ORG_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >USER_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	ORIGIN -> CONTEXT [constraint=true headlabel=1 taillabel="0..1"]
+	ORIGIN -> CONTEXT [headlabel=1 taillabel="0..1"]
 	EXTERNAL_INFO [label=<<TABLE>
                 <TR>
                 <TD ><B>EXTERNAL_INFO</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >URI <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	EXTERNAL_INFO -> CONTEXT [constraint=true headlabel=1 taillabel="0..*"]
+	EXTERNAL_INFO -> CONTEXT [headlabel=1 taillabel="0..*"]
 	CONTEXT [label=<<TABLE>
                 <TR>
                 <TD ><B>CONTEXT</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet context</I></TD></TR><TR><TD BORDER="0" >ID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >MODE <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >MSGTYPE <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >CREATION <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >LEVEL <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >SECLASS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >URGENCY <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	CONTEXT -> emsi [constraint=true headlabel=1 taillabel=1]
+	CONTEXT -> emsi [headlabel=1 taillabel=1]
 	ETYPE [label=<<TABLE>
                 <TR>
                 <TD ><B>ETYPE</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet etype</I></TD></TR><TR><TD BORDER="0" >CATEGORY <I>string</I> : [1..*] </TD></TR><TR><TD BORDER="0" >ACTOR <I>string</I> : [1..*] </TD></TR><TR><TD BORDER="0" >LOCTYPE <I>string</I> : [1..*] </TD></TR><TR><TD BORDER="0" >ENV <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	ETYPE -> EVENT [constraint=true headlabel=1 taillabel="0..1"]
+	ETYPE -> EVENT [headlabel=1 taillabel="0..1"]
 	REFERENCE [label=<<TABLE>
                 <TR>
                 <TD ><B>REFERENCE</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet reference</I></TD></TR><TR><TD BORDER="0" >ORG_ID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >OTHER_EVENT_ID <I>string</I> : [1..*] </TD></TR>
                 </TABLE>>]
-	REFERENCE -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	REFERENCE -> EVENT [headlabel=1 taillabel="0..*"]
 	CASUALTIES [label=<<TABLE>
                 <TR>
                 <TD ><B>CASUALTIES</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet casualties</I></TD></TR><TR><TD BORDER="0" >CONTEXT <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >DECONT <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TRIAGERED <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TRIAGEYELLOW <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TRIAGEGREEN <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TRIAGEBLACK <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >MISSING <I>integer</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	CASUALTIES -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	CASUALTIES -> EVENT [headlabel=1 taillabel="0..*"]
 	EVAC [label=<<TABLE>
                 <TR>
                 <TD ><B>EVAC</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet evac</I></TD></TR><TR><TD BORDER="0" >DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >DISPLACED <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >EVACUATED <I>integer</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	EVAC -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	EVAC -> EVENT [headlabel=1 taillabel="0..*"]
 	COORD [label=<<TABLE>
                 <TR>
                 <TD ><B>COORD</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >LAT <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >LONG <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >HEIGHT <I>number</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	COORD -> POSITION [constraint=true headlabel=1 taillabel="0..*"]
+	COORD -> POSITION [headlabel=1 taillabel="0..*"]
 	POSITION [label=<<TABLE>
                 <TR>
                 <TD ><B>POSITION</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	POSITION -> EGEO [constraint=true headlabel=1 taillabel="0..1"]
+	POSITION -> EGEO [headlabel=1 taillabel=1]
 	EGEO [label=<<TABLE>
                 <TR>
                 <TD ><B>EGEO</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet egeo</I></TD></TR><TR><TD BORDER="0" >DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >WEATHER <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	EGEO -> EVENT [constraint=true headlabel=1 taillabel="0..*"]
+	EGEO -> EVENT [headlabel=1 taillabel="0..*"]
 	EVENT [label=<<TABLE>
                 <TR>
                 <TD ><B>EVENT</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet event</I></TD></TR><TR><TD BORDER="0" >ID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >MAIN_EVENT_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >SOURCE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >SCALE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >CERTAINTY <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >DECL_DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >OCC_DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >OBS_DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >STATUS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >RISK_ASSESMENT <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >CAUSE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	EVENT -> emsi [constraint=true headlabel=1 taillabel=1]
+	EVENT -> emsi [headlabel=1 taillabel=1]
 	COORD [label=<<TABLE>
                 <TR>
                 <TD ><B>COORD</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >LAT <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >LONG <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >HEIGHT <I>number</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	COORD -> POSITION [constraint=true headlabel=1 taillabel="0..*"]
+	COORD -> POSITION [headlabel=1 taillabel="0..*"]
 	POSITION [label=<<TABLE>
                 <TR>
                 <TD ><B>POSITION</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	POSITION -> MISSION [constraint=true headlabel=1 taillabel="0..1"]
+	POSITION -> MISSION [headlabel=1 taillabel="0..1"]
 	MISSION [label=<<TABLE>
                 <TR>
                 <TD ><B>MISSION</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet mission</I></TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ORG_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >STATUS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >START_TIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >END_TIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >RESOURCE_ID <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >PARENT_MISSION_ID <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >CHILD_MISSION_ID <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >MAIN_MISSION_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >PRIORITY <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	MISSION -> emsi [constraint=true headlabel=1 taillabel="0..*"]
+	MISSION -> emsi [headlabel=1 taillabel="0..*"]
 	RTYPE [label=<<TABLE>
                 <TR>
                 <TD ><B>RTYPE</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet rtype</I></TD></TR><TR><TD BORDER="0" >RCLASS <I>string</I> : [1..*] </TD></TR><TR><TD BORDER="0" >CAPABILITY <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >CHARACTERISTICS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	RTYPE -> RESOURCE [constraint=true headlabel=1 taillabel=1]
+	RTYPE -> RESOURCE [headlabel=1 taillabel=1]
 	COORD [label=<<TABLE>
                 <TR>
                 <TD ><B>COORD</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >LAT <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >LONG <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >HEIGHT <I>number</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	COORD -> POSITION [constraint=true headlabel=1 taillabel="0..*"]
+	COORD -> POSITION [headlabel=1 taillabel="0..*"]
 	POSITION [label=<<TABLE>
                 <TR>
                 <TD ><B>POSITION</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	POSITION -> RGEO [constraint=true headlabel=1 taillabel="0..*"]
+	POSITION -> RGEO [headlabel=1 taillabel="0..*"]
 	RGEO [label=<<TABLE>
                 <TR>
                 <TD ><B>RGEO</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet rgeo</I></TD></TR><TR><TD BORDER="0" >DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ID <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	RGEO -> RESOURCE [constraint=true headlabel=1 taillabel="0..*"]
+	RGEO -> RESOURCE [headlabel=1 taillabel="0..*"]
 	CONTACTS [label=<<TABLE>
                 <TR>
                 <TD ><B>CONTACTS</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >DETAIL <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	CONTACTS -> RESOURCE [constraint=true headlabel=1 taillabel="0..*"]
+	CONTACTS -> RESOURCE [headlabel=1 taillabel="0..*"]
 	RESOURCE [label=<<TABLE>
                 <TR>
                 <TD ><B>RESOURCE</B></TD>
                 </TR>
                 <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ORG_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >QUANTITY <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >UM <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >STATUS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NATIONALITY <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	RESOURCE -> emsi [constraint=true headlabel=1 taillabel="0..*"]
+	RESOURCE -> emsi [headlabel=1 taillabel="0..*"]
 	emsi [label=<<TABLE>
                 <TR>
                 <TD ><B>emsi</B></TD>

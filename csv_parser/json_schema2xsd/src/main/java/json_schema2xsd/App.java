@@ -147,7 +147,7 @@ public class App {
                 node.get("items").has("enum")) {
             JsonNode itemsNode = node.get("items");
             ObjectNode objectNode = (ObjectNode) node;
-            objectNode.removeAll();
+            // objectNode.removeAll();
             objectNode.setAll((ObjectNode) itemsNode);
             ((ObjectNode) node).setAll(objectNode);
 
