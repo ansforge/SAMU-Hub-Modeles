@@ -142,7 +142,7 @@
     },
     "patient": [
         {
-            "id": "None",
+            "id": "fr.health.samu044.DRFR15DDXAAJJJ00000.P00",
             "identity": {
                 "strictFeatures": {
                     "birthDate": "None",

@@ -627,7 +627,7 @@ components:
           description: "Identifiant technique du patient pour permettre les rapprochements\
             \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
           examples:
-          - None
+          - fr.health.samu044.DRFR15DDXAAJJJ00000.P00
         administrativeFile:
           $ref: '#/components/schemas/administrativeFile'
         identity:
