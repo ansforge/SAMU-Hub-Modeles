@@ -1,139 +1,109 @@
 {
   "createCaseHealth": {
-    "caseId": "fr.health.samu950-DRFR159502401000233",
-    "senderCaseId": "fr.health.samu950-DRFR159502401000233",
-    "creation": "2024-01-10T14:07:00+01:00",
+    "caseId": "fr.health.samu770-DRFR157702400400055",
+    "senderCaseId": "DRFR157702400400055",
+    "creation": "2024-01-04T15:07:00+01:00",
     "referenceVersion": "1.3",
     "qualification": {
       "whatsHappen": {
-        "code": "C02.05.01",
-        "label": "Pathologie / Maladie - Médicale ",
-        "freetext": "Douleurs thoraciques"
+        "code": "C02.08.05",
+        "label": "Par objet tranchant ou perforant",
+        "freetext": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
       },
       "locationKind": {
-        "code": "L03.01.00",
-        "label": "Local administratif",
-        "freetext": "service comptabilité de la SARL Toto"
+        "code": "L01.01.04",
+        "label": "Domicile ; Maison particulière, pavillon ;  dépendance"
       },
-      "riskThreat": [],
       "healthMotive": {
-        "code": "M03.06",
-        "label": "Douleur thoracique ",
-        "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
+        "code": "M01.02",
+        "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
       },
       "victims": {
         "count": "1",
-        "mainVictim": "ADULT",
-        "freetext": "Femme de 47 ans"
+        "mainVictim": "ADULT"
       },
       "details": {
         "priority": "P0",
-        "attribution": "Médecin urgentiste",
-        "type": "D"
+        "attribution": "MU"
       }
     },
     "location": {
-      "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
-      "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
-      "name": "rue des Bois Rochefort",
+      "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
       "detailedAddress": {
-        "complete": "18 rue des Bois Rochefort 78500 Sartrouville",
-        "number": "18",
+        "complete": "12 Rue Louis Aristide Verdier",
+        "number": "12",
         "wayName": {
-          "complete": "rue des Bois Rochefort",
+          "complete": "Rue Louis Aristide Verdier",
           "type": "rue",
-          "name": "des Bois Rochefort"
+          "name": "Louis Aristide Verdier"
         }
       },
       "city": {
-        "name": "Sartrouville",
-        "inseeCode": "78586"
+        "name": "Vaires-sur-Marne",
+        "inseeCode": "77360"
       },
-      "externalInfo": [],
       "country": "FR",
-      "access": {
-        "accessCode": [],
-        "floor": "4",
-        "interphone": "SARL TOTO",
-        "elevator": "Esc D",
-        "buildingName": "C",
-        "entity": "Comptabilité",
-        "phoneNumber": 156789456
-      },
-      "freetext": "Se rendre au service comptabilité l'accueil est prévenu",
+      "freetext": "La porte de garage est ouverte",
       "geometry": {
         "point": {
           "coord": {
-            "lat": 48.95102310180664,
-            "lon": 2.1857428550720215,
+            "lat": 48.8668403,
+            "lon": 2.6320988,
             "precision": "ADDRESS"
           }
         },
-        "obsDatime": "2024-01-10T11:00:00+01:00"
+        "obsDatime": "2024-01-04T00:05:00+01:00"
       }
     },
     "initialAlert": {
-      "id": "fr.health.samu950-DRFR159502401000233",
-      "reception": "2024-01-10T14:05:00+01:00",
+      "id": "fr.health.samu770-DRFR157702400400055",
+      "reception": "2024-01-04T15:00:00+01:00",
       "reporting": "STANDARD",
-      "freetext": "Problème médical",
+      "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance).",
       "caller": {
         "callerContact": {
           "type": "PHNADD",
-          "detail": "0607080928"
+          "detail": "0607080915"
         },
         "callbackContact": {
           "type": "PHNADD",
-          "detail": "0607080928"
+          "detail": "0607080915"
         },
         "language": "FR",
-        "freetext": "Collègue de la victime",
+        "freetext": "fils de la victime",
         "detailedName": {
-          "complete": "Magda LENA",
-          "lastName": "LENA",
-          "firstName": "Magda"
+          "complete": "Sébastien Morel ",
+          "lastName": "Morel ",
+          "firstName": "Sébastien"
         },
-        "type": "TIERS",
-        "communication": ""
+        "type": "FAMILLE"
       },
       "alertSource": {
         "channel": "Personne",
         "type": "PHNADD",
-        "detail": "calltakerContact"
+        "detail": "0607080915"
       },
       "location": {
-        "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
-        "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
-        "name": "SARL TOTO",
+        "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
         "detailedAddress": {
-          "complete": "18 rue des Bois Rochefort",
-          "number": "18",
+          "complete": "12 Rue Louis Aristide Verdier",
+          "number": "12",
           "wayName": {
-            "complete": " rue des Bois Rochefort",
+            "complete": "Rue Louis Aristide Verdier",
             "type": "Rue",
-            "name": "des Bois Rochefort"
+            "name": "Louis Aristide Verdier"
           }
         },
         "city": {
-          "name": "Sartrouville",
-          "inseeCode": "78586"
+          "name": "Vaires-sur-Marne",
+          "inseeCode": "77479"
         },
-        "externalInfo": [],
         "country": "FR",
-        "access": {
-          "accessCode": [],
-          "interphone": "SARL TOTO",
-          "floor": "4",
-          "elevator": "ESC D",
-          "buildingName": "C",
-          "entity": "Comptabilité",
-          "phoneNumber": 156789456
-        },
         "geometry": {
           "point": {
             "coord": {
-              "lon": 2.1857428550720215,
-              "lat": 48.95102310180664,
+              "lon": 2.6320988,
+              "lat": 48.8668403,
               "precision": "ADDRESS"
             }
           },
@@ -142,58 +112,52 @@
       },
       "qualification": {
         "whatsHappen": {
-          "code": "C02.05.01",
-          "label": "Pathologie / Maladie - Médicale ",
-          "freetext": "Douleurs thoraciques"
+          "code": "C02.08.05",
+          "label": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
         },
         "locationKind": {
-          "code": "L03.01.00",
-          "label": "Local administratif– service comptabilité ",
-          "freetext": "service comptabilité de la SARL Toto"
+          "code": "L01.01.04",
+          "label": "Domicile ; Maison particulière, pavillon ;  dépendance"
         },
-        "riskThreat": [],
         "healthMotive": {
-          "code": "M03.06",
-          "label": "Douleur thoracique",
-          "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
+          "code": "M01.02",
+          "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
         },
         "victims": {
           "count": "1",
-          "mainVictim": "ADULT",
-          "freetext": "Femme de 47 ans"
+          "mainVictim": "ADULT"
         },
         "details": {
-          "attribution": "Médecin urgentiste",
+          "attribution": "MU",
           "priority": "P0"
         }
       },
       "callTaker": {
-        "organization": "fr.health.samu770.chuLyon.crra.regulationN3",
-        "controlRoom": "CRRA 770",
-        "role": "ARM",
-        "calltakerId": "id5678",
+        "organization": "fr.health.samu770",
+        "controlRoom": "CRRA 77",
         "calltakerContact": {
-            "type": "PHNADD",
-            "detail": "0607080928"
+          "type": "PHNADD",
+          "detail": "0102030405"
         }
-      },
-      "attachment": []
+      }
     },
-    "freetext": "Problème médical",
-    "decision": [],
-    "newAlert": [],
-    "owner": "fr.health.samu780",
-    "additionalInformation": {
-      "customMap": [
-        {
-          "key": "Aucune",
-          "label": "Aucun",
-          "value": "0",
-          "freetext": "rempli pour pallier au bug d'envoi"
+    "owner": "fr.health.samu770",
+    "patient": [
+      {
+        "detail": {
+          "age": "P65Y"
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Didier Morel",
+            "lastName": "Morel",
+            "firstName": "Didier"
+          },
+          "strictFeatures": {
+            "sex": "MASC"
+          }
         }
-      ]
-    },
-    "patient": [],
-    "operator": []
+      }
+    ]
   }
 }
