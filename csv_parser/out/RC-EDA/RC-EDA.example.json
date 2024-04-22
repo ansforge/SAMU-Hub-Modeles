@@ -185,5 +185,7 @@
             }
         ]
     },
-    "freetext": "None"
+    "freetext": [
+        "None"
+    ]
 }

@@ -128,7 +128,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	callerContact -> caller [headlabel=1 taillabel="0..1"]
+	callerContact -> caller [headlabel=1 taillabel=1]
 	callbackContact [label=<<TABLE>
                 <TR>
                 <TD ><B>callbackContact</B></TD>
@@ -637,6 +637,6 @@ strict digraph {
                 <TR>
                 <TD ><B>createCaseHealth</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet createCaseHealth</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">owner <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet createCaseHealth</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">owner <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 }

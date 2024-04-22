@@ -96,15 +96,18 @@ components:
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
         freetext:
-          type: string
-          title: Description de l'affaire/dossier
+          type: array
           x-health-only: false
-          x-cols: 6
-          example: example.json#/freetext
-          description: "Texte libre permettant de donner des informations suppl\xE9\
-            mentaires concernant l'affaire"
-          examples:
-          - None
+          items:
+            type: string
+            title: Description de l'affaire/dossier
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/freetext/0
+            description: "Texte libre permettant de donner des informations suppl\xE9\
+              mentaires concernant l'affaire"
+            examples:
+            - None
       additionalProperties: false
     qualification:
       type: object
@@ -1339,7 +1342,8 @@ components:
       title: "Requ\xE9rant"
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - callerContact
       properties:
         callerContact:
           $ref: '#/components/schemas/contact'

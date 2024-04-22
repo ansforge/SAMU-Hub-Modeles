@@ -118,7 +118,7 @@ public class CreateCaseHealth {
   private AdditionalInformation additionalInformation;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  private List<String> freetext;
 
   public CreateCaseHealth() {}
 
@@ -548,28 +548,43 @@ public class CreateCaseHealth {
     this.additionalInformation = additionalInformation;
   }
 
-  public CreateCaseHealth freetext(String freetext) {
+  public CreateCaseHealth freetext(List<String> freetext) {
 
     this.freetext = freetext;
     return this;
   }
 
+  public CreateCaseHealth addFreetextItem(String freetextItem) {
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
+    }
+    this.freetext.add(freetextItem);
+    return this;
+  }
+
   /**
-   * Texte libre permettant de donner des informations supplémentaires
-   *concernant l&#39;affaire
+   * Get freetext
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
+  public List<String> getFreetext() {
     return freetext;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
+  public void setFreetext(List<String> freetext) {
+    if (freetext == null) {
+      return;
+    }
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
+    }
+    this.freetext.addAll(freetext);
   }
 
   @Override

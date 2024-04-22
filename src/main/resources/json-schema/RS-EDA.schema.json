@@ -100,12 +100,16 @@
             "$ref": "#/definitions/additionalInformation"
         },
         "freetext": {
-            "type": "string",
-            "title": "Description de l'affaire/dossier",
+            "type": "array",
             "x-health-only": false,
-            "x-cols": 6,
-            "example": "example.json#/freetext",
-            "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+            "items": {
+                "type": "string",
+                "title": "Description de l'affaire/dossier",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/freetext/0",
+                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+            }
         }
     },
     "definitions": {
@@ -1410,7 +1414,9 @@
             "title": "Requ\u00e9rant",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "callerContact"
+            ],
             "properties": {
                 "callerContact": {
                     "$ref": "#/definitions/contact"

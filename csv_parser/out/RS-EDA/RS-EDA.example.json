@@ -275,5 +275,7 @@
             }
         ]
     },
-    "freetext": "None"
+    "freetext": [
+        "None"
+    ]
 }

@@ -35,11 +35,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'affaire</documentation>
-                </annotation>
-            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="qualification">
@@ -756,7 +752,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
     </complexType>
     <complexType name="caller">
         <sequence>
-            <element minOccurs="0" name="callerContact" type="x:contact"/>
+            <element name="callerContact" type="x:contact"/>
             <element minOccurs="0" name="callbackContact" type="x:contact"/>
             <element minOccurs="0" name="language">
                 <annotation>
