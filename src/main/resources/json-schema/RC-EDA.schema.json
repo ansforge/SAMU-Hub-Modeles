@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.04.12",
+    "version": "24.04.23",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -79,12 +79,16 @@
             "$ref": "#/definitions/additionalInformation"
         },
         "freetext": {
-            "type": "string",
-            "title": "Description de l'affaire/dossier",
+            "type": "array",
             "x-health-only": false,
-            "x-cols": 6,
-            "example": "example.json#/freetext",
-            "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+            "items": {
+                "type": "string",
+                "title": "Description de l'affaire/dossier",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/freetext/0",
+                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+            }
         }
     },
     "definitions": {
@@ -151,7 +155,13 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/name",
-                    "description": "Indique le nom de lieu : nom commercial, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                    "description": "Indique le nom de lieu : nom commercial, Etablissement, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                },
+                "externalLocationId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalLocationId"
+                    }
                 },
                 "detailedAddress": {
                     "$ref": "#/definitions/detailedAddress"
@@ -423,7 +433,7 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Commentaire",
+                    "title": "Agent",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/freetext",
@@ -531,6 +541,18 @@
                 },
                 "identity": {
                     "$ref": "#/definitions/insIdentity"
+                },
+                "freetext": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Informations compl\u00e9mentaires sur le patient",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/patient/0/freetext/0",
+                        "description": "Correspond \u00e0 la zone de commentaire renseign\u00e9 par patient cr\u00e9\u00e9/identifi\u00e9"
+                    }
                 }
             },
             "additionalProperties": false,
@@ -542,7 +564,8 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "creation"
+                "creation",
+                "type"
             ],
             "properties": {
                 "id": {
@@ -551,7 +574,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/id",
-                    "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
+                    "description": "ID partag\u00e9 du patient concern\u00e9 par la d\u00e9cision, lorsque le patient existe et est identifi\u00e9"
                 },
                 "creation": {
                     "type": "string",
@@ -569,38 +592,17 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/type",
-                    "description": "Type de d\u00e9cision prise"
+                    "description": "Type de d\u00e9cision prise",
+                    "enum": [
+                        "CONSEIL",
+                        "PMT",
+                        "INTER",
+                        "ORIENT",
+                        "PASPLUS"
+                    ]
                 },
-                "orientation": {
-                    "type": "string",
-                    "title": "Orientation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
-                },
-                "transportation": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Type de transport",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/decision/0/transportation/0",
-                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
-                    }
-                },
-                "teamCare": {
-                    "type": "string",
-                    "title": "Niveau de prise en charge",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
-                },
-                "destination": {
-                    "$ref": "#/definitions/destination"
+                "transportDetails": {
+                    "$ref": "#/definitions/transportDetails"
                 }
             },
             "additionalProperties": false,
@@ -678,7 +680,188 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "enum": [
+                        "L01.00.00",
+                        "L01.01.00",
+                        "L01.01.01",
+                        "L01.01.02",
+                        "L01.01.03",
+                        "L01.01.04",
+                        "L01.02.00",
+                        "L01.02.01",
+                        "L01.02.02",
+                        "L01.02.03",
+                        "L01.02.04",
+                        "L01.02.05",
+                        "L01.02.06",
+                        "L01.02.07",
+                        "L01.02.08",
+                        "L01.02.09",
+                        "L01.02.10",
+                        "L01.02.11",
+                        "L01.02.12",
+                        "L01.03.00",
+                        "L01.03.01",
+                        "L01.03.02",
+                        "L01.03.03",
+                        "L01.04.00",
+                        "L02.00.00",
+                        "L02.01.00",
+                        "L02.02.00",
+                        "L02.02.01",
+                        "L02.02.02",
+                        "L02.02.03",
+                        "L02.02.04",
+                        "L02.02.05",
+                        "L02.03.00",
+                        "L02.03.01",
+                        "L02.03.02",
+                        "L02.03.03",
+                        "L02.04.00",
+                        "L02.05.00",
+                        "L02.05.01",
+                        "L02.05.02",
+                        "L02.05.03",
+                        "L02.05.04",
+                        "L02.05.05",
+                        "L02.05.06",
+                        "L02.05.07",
+                        "L02.05.08",
+                        "L02.05.09",
+                        "L02.05.10",
+                        "L02.05.11",
+                        "L02.05.12",
+                        "L02.05.13",
+                        "L02.05.14",
+                        "L02.05.15",
+                        "L02.05.16",
+                        "L02.06.00",
+                        "L02.06.01",
+                        "L02.06.02",
+                        "L02.06.03",
+                        "L02.06.04",
+                        "L02.06.05",
+                        "L02.06.06",
+                        "L02.06.07",
+                        "L02.06.08",
+                        "L02.07.00",
+                        "L02.07.01",
+                        "L02.07.02",
+                        "L02.08.00",
+                        "L03.00.00",
+                        "L03.01.00",
+                        "L03.02.00",
+                        "L03.03.00",
+                        "L03.04.00",
+                        "L03.05.00",
+                        "L04.00.00",
+                        "L04.01.00",
+                        "L04.02.00",
+                        "L04.02.01",
+                        "L04.02.02",
+                        "L04.02.03",
+                        "L04.03.00",
+                        "L04.03.01",
+                        "L04.03.02",
+                        "L04.03.03",
+                        "L04.04.00",
+                        "L04.05.00",
+                        "L04.06.00",
+                        "L04.06.01",
+                        "L04.06.02",
+                        "L04.06.03",
+                        "L04.06.04",
+                        "L04.06.05",
+                        "L04.07.00",
+                        "L04.07.01",
+                        "L04.07.02",
+                        "L04.07.03",
+                        "L04.08.00",
+                        "L04.08.01",
+                        "L04.08.02",
+                        "L04.09.00",
+                        "L04.09.01",
+                        "L04.09.02",
+                        "L04.10.00",
+                        "L04.11.00",
+                        "L04.11.01",
+                        "L04.11.02",
+                        "L04.11.03",
+                        "L04.11.04",
+                        "L04.12.00",
+                        "L04.12.01",
+                        "L04.12.02",
+                        "L04.12.03",
+                        "L04.12.04",
+                        "L04.13.00",
+                        "L04.13.01",
+                        "L04.13.02",
+                        "L04.13.03",
+                        "L04.13.04",
+                        "L04.14.00",
+                        "L04.14.01",
+                        "L04.14.02",
+                        "L04.15.00",
+                        "L04.16.00",
+                        "L05.00.00",
+                        "L05.01.00",
+                        "L05.01.01",
+                        "L05.01.02",
+                        "L05.01.03",
+                        "L05.01.04",
+                        "L05.02.00",
+                        "L05.02.01",
+                        "L05.02.02",
+                        "L05.02.03",
+                        "L05.02.04",
+                        "L05.03.00",
+                        "L05.03.01",
+                        "L05.03.02",
+                        "L05.04.00",
+                        "L05.04.01",
+                        "L05.04.02",
+                        "L05.04.03",
+                        "L05.04.04",
+                        "L05.04.05",
+                        "L05.04.06",
+                        "L05.05.00",
+                        "L05.06.00",
+                        "L05.07.00",
+                        "L06.00.00",
+                        "L06.01.00",
+                        "L06.01.01",
+                        "L06.01.02",
+                        "L06.01.03",
+                        "L06.01.04",
+                        "L06.01.05",
+                        "L06.01.06",
+                        "L06.01.07",
+                        "L06.01.08",
+                        "L06.02.00",
+                        "L06.03.00",
+                        "L06.03.01",
+                        "L06.03.02",
+                        "L06.03.03",
+                        "L06.03.04",
+                        "L06.03.05",
+                        "L06.04.00",
+                        "L06.05.00",
+                        "L06.05.01",
+                        "L06.05.02",
+                        "L06.06.00",
+                        "L06.06.01",
+                        "L06.06.02",
+                        "L06.06.03",
+                        "L06.06.04",
+                        "L06.07.00",
+                        "L06.07.01",
+                        "L06.07.02",
+                        "L07.00.00",
+                        "L07.01.00",
+                        "L07.01.01",
+                        "L07.02.00"
+                    ]
                 },
                 "label": {
                     "type": "string",
@@ -716,7 +899,46 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "enum": [
+                        "R01",
+                        "R02",
+                        "R03",
+                        "R04",
+                        "R05",
+                        "R06",
+                        "R07",
+                        "R08",
+                        "R09",
+                        "R10",
+                        "R11",
+                        "R12",
+                        "R13",
+                        "R14",
+                        "R15",
+                        "R16",
+                        "R17",
+                        "R18",
+                        "R19",
+                        "R20",
+                        "R21",
+                        "R22",
+                        "R23",
+                        "R24",
+                        "R25",
+                        "R26",
+                        "R27",
+                        "R28",
+                        "R29",
+                        "R30",
+                        "R31",
+                        "R32",
+                        "R33",
+                        "R34",
+                        "R35",
+                        "R36",
+                        "R37"
+                    ]
                 },
                 "label": {
                     "type": "string",
@@ -754,7 +976,61 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "enum": [
+                        "M01.00",
+                        "M01.01",
+                        "M01.02",
+                        "M01.03",
+                        "M02.00",
+                        "M02.01",
+                        "M02.02",
+                        "M02.03",
+                        "M02.04",
+                        "M02.05",
+                        "M02.06",
+                        "M02.07",
+                        "M02.08",
+                        "M02.09",
+                        "M02.10",
+                        "M03.00",
+                        "M03.01",
+                        "M03.02",
+                        "M03.03",
+                        "M03.04",
+                        "M03.05",
+                        "M03.06",
+                        "M03.07",
+                        "M03.08",
+                        "M03.09",
+                        "M03.10",
+                        "M03.11",
+                        "M03.12",
+                        "M03.13",
+                        "M03.14",
+                        "M03.15",
+                        "M03.16",
+                        "M03.17",
+                        "M03.18",
+                        "M03.19",
+                        "M03.20",
+                        "M03.21",
+                        "M03.22",
+                        "M04.00",
+                        "M04.01",
+                        "M04.02",
+                        "M04.03",
+                        "M04.04",
+                        "M05.00",
+                        "M05.01",
+                        "M05.02",
+                        "M06.00",
+                        "M06.01",
+                        "M06.02",
+                        "M06.03",
+                        "M06.04",
+                        "M07.00"
+                    ]
                 },
                 "label": {
                     "type": "string",
@@ -823,6 +1099,43 @@
             },
             "additionalProperties": false,
             "example": "example.json#/qualification/victims"
+        },
+        "externalLocationId": {
+            "type": "object",
+            "title": "Identifiant(s) du lieu",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "source",
+                "value"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "title": "Source  /  type d'identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/externalLocationId/0/source",
+                    "description": "Type de l'identifiant fourni",
+                    "enum": [
+                        "FINESS administratif",
+                        "FINESS g\u00e9ographique",
+                        "SIREN",
+                        "SIRET",
+                        "APE/NAF"
+                    ]
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/externalLocationId/0/value",
+                    "description": "L'identifiant en lui-m\u00eame"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/location/externalLocationId/0"
         },
         "detailedAddress": {
             "type": "object",
@@ -1197,7 +1510,9 @@
             "title": "Requ\u00e9rant",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "callerContact"
+            ],
             "properties": {
                 "callerContact": {
                     "$ref": "#/definitions/contact"
@@ -1462,7 +1777,30 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/type",
-                    "description": "Indique la relation du requ\u00e9rant avec l'incident / le patient / la victime"
+                    "description": "Indique la relation du requ\u00e9rant avec l'incident / le patient / la victime",
+                    "enum": [
+                        "SUJET",
+                        "FAMILLE",
+                        "TIERS",
+                        "POMPIER",
+                        "AMBULANC",
+                        "SECOUR",
+                        "MED",
+                        "MEDSOS",
+                        "MRL",
+                        "EFFML",
+                        "SANTE",
+                        "INF",
+                        "AIDESOIN",
+                        "SF",
+                        "AIDEDOM",
+                        "FDO-MILI",
+                        "ADM-TUTL",
+                        "VIP",
+                        "OBJCONNC",
+                        "AUTRE",
+                        "INCONNU"
+                    ]
                 },
                 "communication": {
                     "type": "string",
@@ -1470,7 +1808,18 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/communication",
-                    "description": "Indique si le requ\u00e9rant rencontre ou non des difficult\u00e9 de communication"
+                    "description": "Indique si le requ\u00e9rant rencontre ou non des difficult\u00e9 de communication",
+                    "enum": [
+                        "AUCUNE",
+                        "MUET",
+                        "VISION",
+                        "LANGUE",
+                        "PANIQUE",
+                        "HOSTILE",
+                        "AGITE",
+                        "AUTRE",
+                        "IMPOSS"
+                    ]
                 },
                 "freetext": {
                     "type": "string",
@@ -1762,11 +2111,78 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/sex",
-                    "description": "Sexe du patient"
+                    "description": "Sexe du patient",
+                    "enum": [
+                        "MASC",
+                        "FEM",
+                        "AUTRE",
+                        "INCONNU"
+                    ]
                 }
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/identity/strictFeatures"
+        },
+        "transportDetails": {
+            "type": "object",
+            "title": "D\u00e9cision de transport",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "orientation",
+                "teamCare"
+            ],
+            "properties": {
+                "orientation": {
+                    "type": "string",
+                    "title": "Type de devenir du patient",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/orientation",
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
+                },
+                "transportation": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Type de ressource/moyen",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/decision/0/transportDetails/transportation/0",
+                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
+                    }
+                },
+                "concoursRequest": {
+                    "type": "string",
+                    "title": "ID demande de concours",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/concoursRequest",
+                    "description": "Identifiant de la ou des demandes de concours "
+                },
+                "transportationID": {
+                    "type": "string",
+                    "title": "ID vecteur partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/transportationID",
+                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
+                },
+                "teamCare": {
+                    "type": "string",
+                    "title": "Niveau de prise en charge",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/teamCare",
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                },
+                "destination": {
+                    "$ref": "#/definitions/destination"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/transportDetails"
         },
         "destination": {
             "type": "object",
@@ -1780,7 +2196,7 @@
                     "title": "Type de destination",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/type",
+                    "example": "example.json#/decision/0/transportDetails/destination/type",
                     "description": "Indique le type de destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
                     "enum": [
                         "service d\u2019urgences d\u2019un Etablissement de sant\u00e9",
@@ -1791,48 +2207,12 @@
                         "autre"
                     ]
                 },
-                "facility": {
-                    "type": "string",
-                    "title": "Etablissement",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/facility",
-                    "description": "Nom de l'\u00e9tablissement"
-                },
-                "adminFiness": {
-                    "type": "string",
-                    "title": "FINESS administratif",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/adminFiness",
-                    "description": "N\u00b0 Finess administratif de l'\u00e9tablissement"
-                },
-                "geoFiness": {
-                    "type": "string",
-                    "title": "FINESS g\u00e9ographique",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/geoFiness",
-                    "description": "N\u00b0 Finess g\u00e9ographique de l'\u00e9tablissement"
-                },
-                "service": {
-                    "type": "string",
-                    "title": "Service",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/service",
-                    "description": "Service concern\u00e9 par l'admission du patient"
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Autre",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/freetext"
+                "destinationLocation": {
+                    "$ref": "#/definitions/location"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/decision/0/destination"
+            "example": "example.json#/decision/0/transportDetails/destination"
         },
         "customMap": {
             "type": "object",

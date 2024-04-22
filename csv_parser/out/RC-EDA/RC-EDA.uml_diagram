@@ -45,6 +45,13 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet qualification</I></TD></TR>
                 </TABLE>>]
 	qualification -> createCase [headlabel=1 taillabel=1]
+	externalLocationId [label=<<TABLE>
+                <TR>
+                <TD ><B>externalLocationId</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalLocationId</I></TD></TR><TR><TD BORDER="0" >source <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalLocationId -> location [headlabel=1 taillabel="0..*"]
 	wayName [label=<<TABLE>
                 <TR>
                 <TD ><B>wayName</B></TD>
@@ -114,7 +121,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	callerContact -> caller [headlabel=1 taillabel="0..1"]
+	callerContact -> caller [headlabel=1 taillabel=1]
 	callbackContact [label=<<TABLE>
                 <TR>
                 <TD ><B>callbackContact</B></TD>
@@ -143,6 +150,13 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet contactSource</I></TD></TR><TR><TD BORDER="0" >channel <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	alertSource -> initialAlert [headlabel=1 taillabel=1]
+	externalLocationId [label=<<TABLE>
+                <TR>
+                <TD ><B>externalLocationId</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalLocationId</I></TD></TR><TR><TD BORDER="0" >source <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalLocationId -> location [headlabel=1 taillabel="0..*"]
 	wayName [label=<<TABLE>
                 <TR>
                 <TD ><B>wayName</B></TD>
@@ -301,21 +315,98 @@ strict digraph {
                 <TR>
                 <TD ><B>patient</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	patient -> createCase [headlabel=1 taillabel="0..*"]
+	externalLocationId [label=<<TABLE>
+                <TR>
+                <TD ><B>externalLocationId</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalLocationId</I></TD></TR><TR><TD BORDER="0" >source <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalLocationId -> destinationLocation [headlabel=1 taillabel="0..*"]
+	wayName [label=<<TABLE>
+                <TR>
+                <TD ><B>wayName</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet wayName</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	wayName -> detailedAddress [headlabel=1 taillabel="0..1"]
+	detailedAddress [label=<<TABLE>
+                <TR>
+                <TD ><B>detailedAddress</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet detailedAddress</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >number <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	detailedAddress -> destinationLocation [headlabel=1 taillabel="0..1"]
+	city [label=<<TABLE>
+                <TR>
+                <TD ><B>city</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet city</I></TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >inseeCode <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	city -> destinationLocation [headlabel=1 taillabel="0..1"]
+	access [label=<<TABLE>
+                <TR>
+                <TD ><B>access</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>number</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	access -> destinationLocation [headlabel=1 taillabel="0..1"]
+	coord [label=<<TABLE>
+                <TR>
+                <TD ><B>coord</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >heading <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >speed <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	coord -> point [headlabel=1 taillabel=1]
+	point [label=<<TABLE>
+                <TR>
+                <TD ><B>point</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet point</I></TD></TR><TR><TD BORDER="0" >sysCoord <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	point -> geometry [headlabel=1 taillabel="0..1"]
+	geometry [label=<<TABLE>
+                <TR>
+                <TD ><B>geometry</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet geometry</I></TD></TR><TR><TD BORDER="0" >obsDatime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >sketch <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	geometry -> destinationLocation [headlabel=1 taillabel="0..1"]
+	externalInfo [label=<<TABLE>
+                <TR>
+                <TD ><B>externalInfo</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalInfo -> destinationLocation [headlabel=1 taillabel="0..*"]
+	destinationLocation [label=<<TABLE>
+                <TR>
+                <TD ><B>destinationLocation</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet location</I></TD></TR><TR><TD BORDER="0" >locID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >locLabel <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >country <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	destinationLocation -> destination [headlabel=1 taillabel="0..1"]
 	destination [label=<<TABLE>
                 <TR>
                 <TD ><B>destination</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >facility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >adminFiness <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >geoFiness <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >service <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	destination -> decision [headlabel=1 taillabel="0..1"]
+	destination -> transportDetails [headlabel=1 taillabel="0..1"]
+	transportDetails [label=<<TABLE>
+                <TR>
+                <TD ><B>transportDetails</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet transportDetails</I></TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >concoursRequest <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportationID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	transportDetails -> decision [headlabel=1 taillabel="0..1"]
 	decision [label=<<TABLE>
                 <TR>
                 <TD ><B>decision</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	decision -> createCase [headlabel=1 taillabel="0..*"]
 	newAlert [label=<<TABLE>
@@ -343,6 +434,6 @@ strict digraph {
                 <TR>
                 <TD ><B>createCase</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet createCase</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet createCase</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 }

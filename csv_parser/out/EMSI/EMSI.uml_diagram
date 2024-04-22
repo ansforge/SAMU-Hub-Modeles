@@ -70,14 +70,14 @@ strict digraph {
                 <TR>
                 <TD ><B>POSITION</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
-	POSITION -> EGEO [headlabel=1 taillabel=1]
+	POSITION -> EGEO [headlabel=1 taillabel="0..1"]
 	EGEO [label=<<TABLE>
                 <TR>
                 <TD ><B>EGEO</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet egeo</I></TD></TR><TR><TD BORDER="0" >DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >WEATHER <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet egeo</I></TD></TR><TR><TD BORDER="0" >DATIME <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >WEATHER <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >FREETEXT <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	EGEO -> EVENT [headlabel=1 taillabel="0..*"]
 	EVENT [label=<<TABLE>
@@ -98,7 +98,7 @@ strict digraph {
                 <TR>
                 <TD ><B>POSITION</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	POSITION -> MISSION [headlabel=1 taillabel="0..1"]
 	MISSION [label=<<TABLE>
@@ -126,7 +126,7 @@ strict digraph {
                 <TR>
                 <TD ><B>POSITION</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet position</I></TD></TR><TR><TD BORDER="0" >LOC_ID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >NAME <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >TYPE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >HEIGHT_ROLE <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >COORDSYS <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >ADDRESS <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	POSITION -> RGEO [headlabel=1 taillabel="0..*"]
 	RGEO [label=<<TABLE>
