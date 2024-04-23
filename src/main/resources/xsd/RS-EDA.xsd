@@ -411,6 +411,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
             <element minOccurs="0" name="resourceDiagnosis" type="x:resourceDiagnosis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="medicalNote">
@@ -461,10 +462,19 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                     <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
-            <element name="type" type="string">
+            <element name="type">
                 <annotation>
                     <documentation>Type de décision prise</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="CONSEIL"/>
+                        <enumeration value="PMT"/>
+                        <enumeration value="INTER"/>
+                        <enumeration value="ORIENT"/>
+                        <enumeration value="PASPLUS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
@@ -496,10 +506,193 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="locationKind">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec un code la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="L01.00.00"/>
+                        <enumeration value="L01.01.00"/>
+                        <enumeration value="L01.01.01"/>
+                        <enumeration value="L01.01.02"/>
+                        <enumeration value="L01.01.03"/>
+                        <enumeration value="L01.01.04"/>
+                        <enumeration value="L01.02.00"/>
+                        <enumeration value="L01.02.01"/>
+                        <enumeration value="L01.02.02"/>
+                        <enumeration value="L01.02.03"/>
+                        <enumeration value="L01.02.04"/>
+                        <enumeration value="L01.02.05"/>
+                        <enumeration value="L01.02.06"/>
+                        <enumeration value="L01.02.07"/>
+                        <enumeration value="L01.02.08"/>
+                        <enumeration value="L01.02.09"/>
+                        <enumeration value="L01.02.10"/>
+                        <enumeration value="L01.02.11"/>
+                        <enumeration value="L01.02.12"/>
+                        <enumeration value="L01.03.00"/>
+                        <enumeration value="L01.03.01"/>
+                        <enumeration value="L01.03.02"/>
+                        <enumeration value="L01.03.03"/>
+                        <enumeration value="L01.04.00"/>
+                        <enumeration value="L02.00.00"/>
+                        <enumeration value="L02.01.00"/>
+                        <enumeration value="L02.02.00"/>
+                        <enumeration value="L02.02.01"/>
+                        <enumeration value="L02.02.02"/>
+                        <enumeration value="L02.02.03"/>
+                        <enumeration value="L02.02.04"/>
+                        <enumeration value="L02.02.05"/>
+                        <enumeration value="L02.03.00"/>
+                        <enumeration value="L02.03.01"/>
+                        <enumeration value="L02.03.02"/>
+                        <enumeration value="L02.03.03"/>
+                        <enumeration value="L02.04.00"/>
+                        <enumeration value="L02.05.00"/>
+                        <enumeration value="L02.05.01"/>
+                        <enumeration value="L02.05.02"/>
+                        <enumeration value="L02.05.03"/>
+                        <enumeration value="L02.05.04"/>
+                        <enumeration value="L02.05.05"/>
+                        <enumeration value="L02.05.06"/>
+                        <enumeration value="L02.05.07"/>
+                        <enumeration value="L02.05.08"/>
+                        <enumeration value="L02.05.09"/>
+                        <enumeration value="L02.05.10"/>
+                        <enumeration value="L02.05.11"/>
+                        <enumeration value="L02.05.12"/>
+                        <enumeration value="L02.05.13"/>
+                        <enumeration value="L02.05.14"/>
+                        <enumeration value="L02.05.15"/>
+                        <enumeration value="L02.05.16"/>
+                        <enumeration value="L02.06.00"/>
+                        <enumeration value="L02.06.01"/>
+                        <enumeration value="L02.06.02"/>
+                        <enumeration value="L02.06.03"/>
+                        <enumeration value="L02.06.04"/>
+                        <enumeration value="L02.06.05"/>
+                        <enumeration value="L02.06.06"/>
+                        <enumeration value="L02.06.07"/>
+                        <enumeration value="L02.06.08"/>
+                        <enumeration value="L02.07.00"/>
+                        <enumeration value="L02.07.01"/>
+                        <enumeration value="L02.07.02"/>
+                        <enumeration value="L02.08.00"/>
+                        <enumeration value="L03.00.00"/>
+                        <enumeration value="L03.01.00"/>
+                        <enumeration value="L03.02.00"/>
+                        <enumeration value="L03.03.00"/>
+                        <enumeration value="L03.04.00"/>
+                        <enumeration value="L03.05.00"/>
+                        <enumeration value="L04.00.00"/>
+                        <enumeration value="L04.01.00"/>
+                        <enumeration value="L04.02.00"/>
+                        <enumeration value="L04.02.01"/>
+                        <enumeration value="L04.02.02"/>
+                        <enumeration value="L04.02.03"/>
+                        <enumeration value="L04.03.00"/>
+                        <enumeration value="L04.03.01"/>
+                        <enumeration value="L04.03.02"/>
+                        <enumeration value="L04.03.03"/>
+                        <enumeration value="L04.04.00"/>
+                        <enumeration value="L04.05.00"/>
+                        <enumeration value="L04.06.00"/>
+                        <enumeration value="L04.06.01"/>
+                        <enumeration value="L04.06.02"/>
+                        <enumeration value="L04.06.03"/>
+                        <enumeration value="L04.06.04"/>
+                        <enumeration value="L04.06.05"/>
+                        <enumeration value="L04.07.00"/>
+                        <enumeration value="L04.07.01"/>
+                        <enumeration value="L04.07.02"/>
+                        <enumeration value="L04.07.03"/>
+                        <enumeration value="L04.08.00"/>
+                        <enumeration value="L04.08.01"/>
+                        <enumeration value="L04.08.02"/>
+                        <enumeration value="L04.09.00"/>
+                        <enumeration value="L04.09.01"/>
+                        <enumeration value="L04.09.02"/>
+                        <enumeration value="L04.10.00"/>
+                        <enumeration value="L04.11.00"/>
+                        <enumeration value="L04.11.01"/>
+                        <enumeration value="L04.11.02"/>
+                        <enumeration value="L04.11.03"/>
+                        <enumeration value="L04.11.04"/>
+                        <enumeration value="L04.12.00"/>
+                        <enumeration value="L04.12.01"/>
+                        <enumeration value="L04.12.02"/>
+                        <enumeration value="L04.12.03"/>
+                        <enumeration value="L04.12.04"/>
+                        <enumeration value="L04.13.00"/>
+                        <enumeration value="L04.13.01"/>
+                        <enumeration value="L04.13.02"/>
+                        <enumeration value="L04.13.03"/>
+                        <enumeration value="L04.13.04"/>
+                        <enumeration value="L04.14.00"/>
+                        <enumeration value="L04.14.01"/>
+                        <enumeration value="L04.14.02"/>
+                        <enumeration value="L04.15.00"/>
+                        <enumeration value="L04.16.00"/>
+                        <enumeration value="L05.00.00"/>
+                        <enumeration value="L05.01.00"/>
+                        <enumeration value="L05.01.01"/>
+                        <enumeration value="L05.01.02"/>
+                        <enumeration value="L05.01.03"/>
+                        <enumeration value="L05.01.04"/>
+                        <enumeration value="L05.02.00"/>
+                        <enumeration value="L05.02.01"/>
+                        <enumeration value="L05.02.02"/>
+                        <enumeration value="L05.02.03"/>
+                        <enumeration value="L05.02.04"/>
+                        <enumeration value="L05.03.00"/>
+                        <enumeration value="L05.03.01"/>
+                        <enumeration value="L05.03.02"/>
+                        <enumeration value="L05.04.00"/>
+                        <enumeration value="L05.04.01"/>
+                        <enumeration value="L05.04.02"/>
+                        <enumeration value="L05.04.03"/>
+                        <enumeration value="L05.04.04"/>
+                        <enumeration value="L05.04.05"/>
+                        <enumeration value="L05.04.06"/>
+                        <enumeration value="L05.05.00"/>
+                        <enumeration value="L05.06.00"/>
+                        <enumeration value="L05.07.00"/>
+                        <enumeration value="L06.00.00"/>
+                        <enumeration value="L06.01.00"/>
+                        <enumeration value="L06.01.01"/>
+                        <enumeration value="L06.01.02"/>
+                        <enumeration value="L06.01.03"/>
+                        <enumeration value="L06.01.04"/>
+                        <enumeration value="L06.01.05"/>
+                        <enumeration value="L06.01.06"/>
+                        <enumeration value="L06.01.07"/>
+                        <enumeration value="L06.01.08"/>
+                        <enumeration value="L06.02.00"/>
+                        <enumeration value="L06.03.00"/>
+                        <enumeration value="L06.03.01"/>
+                        <enumeration value="L06.03.02"/>
+                        <enumeration value="L06.03.03"/>
+                        <enumeration value="L06.03.04"/>
+                        <enumeration value="L06.03.05"/>
+                        <enumeration value="L06.04.00"/>
+                        <enumeration value="L06.05.00"/>
+                        <enumeration value="L06.05.01"/>
+                        <enumeration value="L06.05.02"/>
+                        <enumeration value="L06.06.00"/>
+                        <enumeration value="L06.06.01"/>
+                        <enumeration value="L06.06.02"/>
+                        <enumeration value="L06.06.03"/>
+                        <enumeration value="L06.06.04"/>
+                        <enumeration value="L06.07.00"/>
+                        <enumeration value="L06.07.01"/>
+                        <enumeration value="L06.07.02"/>
+                        <enumeration value="L07.00.00"/>
+                        <enumeration value="L07.01.00"/>
+                        <enumeration value="L07.01.01"/>
+                        <enumeration value="L07.02.00"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -516,10 +709,51 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="riskThreat">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec un code la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="R01"/>
+                        <enumeration value="R02"/>
+                        <enumeration value="R03"/>
+                        <enumeration value="R04"/>
+                        <enumeration value="R05"/>
+                        <enumeration value="R06"/>
+                        <enumeration value="R07"/>
+                        <enumeration value="R08"/>
+                        <enumeration value="R09"/>
+                        <enumeration value="R10"/>
+                        <enumeration value="R11"/>
+                        <enumeration value="R12"/>
+                        <enumeration value="R13"/>
+                        <enumeration value="R14"/>
+                        <enumeration value="R15"/>
+                        <enumeration value="R16"/>
+                        <enumeration value="R17"/>
+                        <enumeration value="R18"/>
+                        <enumeration value="R19"/>
+                        <enumeration value="R20"/>
+                        <enumeration value="R21"/>
+                        <enumeration value="R22"/>
+                        <enumeration value="R23"/>
+                        <enumeration value="R24"/>
+                        <enumeration value="R25"/>
+                        <enumeration value="R26"/>
+                        <enumeration value="R27"/>
+                        <enumeration value="R28"/>
+                        <enumeration value="R29"/>
+                        <enumeration value="R30"/>
+                        <enumeration value="R31"/>
+                        <enumeration value="R32"/>
+                        <enumeration value="R33"/>
+                        <enumeration value="R34"/>
+                        <enumeration value="R35"/>
+                        <enumeration value="R36"/>
+                        <enumeration value="R37"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -536,10 +770,66 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="healthMotive">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec un code la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="M01.00"/>
+                        <enumeration value="M01.01"/>
+                        <enumeration value="M01.02"/>
+                        <enumeration value="M01.03"/>
+                        <enumeration value="M02.00"/>
+                        <enumeration value="M02.01"/>
+                        <enumeration value="M02.02"/>
+                        <enumeration value="M02.03"/>
+                        <enumeration value="M02.04"/>
+                        <enumeration value="M02.05"/>
+                        <enumeration value="M02.06"/>
+                        <enumeration value="M02.07"/>
+                        <enumeration value="M02.08"/>
+                        <enumeration value="M02.09"/>
+                        <enumeration value="M02.10"/>
+                        <enumeration value="M03.00"/>
+                        <enumeration value="M03.01"/>
+                        <enumeration value="M03.02"/>
+                        <enumeration value="M03.03"/>
+                        <enumeration value="M03.04"/>
+                        <enumeration value="M03.05"/>
+                        <enumeration value="M03.06"/>
+                        <enumeration value="M03.07"/>
+                        <enumeration value="M03.08"/>
+                        <enumeration value="M03.09"/>
+                        <enumeration value="M03.10"/>
+                        <enumeration value="M03.11"/>
+                        <enumeration value="M03.12"/>
+                        <enumeration value="M03.13"/>
+                        <enumeration value="M03.14"/>
+                        <enumeration value="M03.15"/>
+                        <enumeration value="M03.16"/>
+                        <enumeration value="M03.17"/>
+                        <enumeration value="M03.18"/>
+                        <enumeration value="M03.19"/>
+                        <enumeration value="M03.20"/>
+                        <enumeration value="M03.21"/>
+                        <enumeration value="M03.22"/>
+                        <enumeration value="M04.00"/>
+                        <enumeration value="M04.01"/>
+                        <enumeration value="M04.02"/>
+                        <enumeration value="M04.03"/>
+                        <enumeration value="M04.04"/>
+                        <enumeration value="M05.00"/>
+                        <enumeration value="M05.01"/>
+                        <enumeration value="M05.02"/>
+                        <enumeration value="M06.00"/>
+                        <enumeration value="M06.01"/>
+                        <enumeration value="M06.02"/>
+                        <enumeration value="M06.03"/>
+                        <enumeration value="M06.04"/>
+                        <enumeration value="M07.00"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -585,10 +875,50 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="attribution" type="string">
+            <element minOccurs="0" name="attribution">
                 <annotation>
                     <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="DRM"/>
+                        <enumeration value="DRMMRU"/>
+                        <enumeration value="MU"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="GERIA"/>
+                        <enumeration value="PEDIA"/>
+                        <enumeration value="PSY"/>
+                        <enumeration value="TOXICOL"/>
+                        <enumeration value="INDISPMU"/>
+                        <enumeration value="SSE"/>
+                        <enumeration value="PLANBLAN"/>
+                        <enumeration value="PCSAMU"/>
+                        <enumeration value="DRMMRL"/>
+                        <enumeration value="MG"/>
+                        <enumeration value="INDISPMG"/>
+                        <enumeration value="ABSML"/>
+                        <enumeration value="DR"/>
+                        <enumeration value="DREG"/>
+                        <enumeration value="DRARM"/>
+                        <enumeration value="DRMED"/>
+                        <enumeration value="DRPHARMA"/>
+                        <enumeration value="DRDENT"/>
+                        <enumeration value="DRINFO"/>
+                        <enumeration value="DOS-SIS"/>
+                        <enumeration value="DOS-FDO"/>
+                        <enumeration value="D"/>
+                        <enumeration value="D-MALV"/>
+                        <enumeration value="ERR"/>
+                        <enumeration value="NRP"/>
+                        <enumeration value="MALV"/>
+                        <enumeration value="FAX"/>
+                        <enumeration value="ITERATIF"/>
+                        <enumeration value="D-IDENT"/>
+                        <enumeration value="ADMIN"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="priority" type="string">
                 <annotation>
@@ -1114,15 +1444,53 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="type" type="string">
+            <element minOccurs="0" name="type">
                 <annotation>
                     <documentation>Indique la relation du requérant avec l'incident / le patient / la victime</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SUJET"/>
+                        <enumeration value="FAMILLE"/>
+                        <enumeration value="TIERS"/>
+                        <enumeration value="POMPIER"/>
+                        <enumeration value="AMBULANC"/>
+                        <enumeration value="SECOUR"/>
+                        <enumeration value="MED"/>
+                        <enumeration value="MEDSOS"/>
+                        <enumeration value="MRL"/>
+                        <enumeration value="EFFML"/>
+                        <enumeration value="SANTE"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AIDESOIN"/>
+                        <enumeration value="SF"/>
+                        <enumeration value="AIDEDOM"/>
+                        <enumeration value="FDO-MILI"/>
+                        <enumeration value="ADM-TUTL"/>
+                        <enumeration value="VIP"/>
+                        <enumeration value="OBJCONNC"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="INCONNU"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="communication" type="string">
+            <element minOccurs="0" name="communication">
                 <annotation>
                     <documentation>Indique si le requérant rencontre ou non des difficulté de communication</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AUCUNE"/>
+                        <enumeration value="MUET"/>
+                        <enumeration value="VISION"/>
+                        <enumeration value="LANGUE"/>
+                        <enumeration value="PANIQUE"/>
+                        <enumeration value="HOSTILE"/>
+                        <enumeration value="AGITE"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="IMPOSS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
@@ -1314,7 +1682,16 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="careLevel" type="string"/>
+            <element minOccurs="0" name="careLevel">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="R1"/>
+                        <enumeration value="R2"/>
+                        <enumeration value="R3"/>
+                        <enumeration value="R4"/>
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
     <complexType name="hypothesis">
@@ -1466,10 +1843,18 @@ Pierre Alain Jacques</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="sex" type="string">
+            <element minOccurs="0" name="sex">
                 <annotation>
                     <documentation>Sexe du patient</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MASC"/>
+                        <enumeration value="FEM"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="INCONNU"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="birthPlaceCode" type="decimal">
                 <annotation>

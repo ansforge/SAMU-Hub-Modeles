@@ -228,7 +228,10 @@
                 "code": "C07.13.02",
                 "label": "Rod\u00e9o automobile",
                 "freetext": "None"
-            }
+            },
+            "freetext": [
+                "None"
+            ]
         }
     ],
     "medicalNote": [

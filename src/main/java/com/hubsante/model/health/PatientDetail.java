@@ -57,8 +57,45 @@ public class PatientDetail {
   public static final String JSON_PROPERTY_AGE = "age";
   private String age;
 
+  /**
+   * Gets or Sets careLevel
+   */
+  public enum CareLevelEnum {
+    R1("R1"),
+
+    R2("R2"),
+
+    R3("R3"),
+
+    R4("R4");
+
+    private String value;
+
+    CareLevelEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CareLevelEnum fromValue(String value) {
+      for (CareLevelEnum b : CareLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_CARE_LEVEL = "careLevel";
-  private String careLevel;
+  private CareLevelEnum careLevel;
 
   public PatientDetail() {}
 
@@ -133,7 +170,7 @@ public class PatientDetail {
     this.age = age;
   }
 
-  public PatientDetail careLevel(String careLevel) {
+  public PatientDetail careLevel(CareLevelEnum careLevel) {
 
     this.careLevel = careLevel;
     return this;
@@ -146,13 +183,13 @@ public class PatientDetail {
   @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getCareLevel() {
+  public CareLevelEnum getCareLevel() {
     return careLevel;
   }
 
   @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCareLevel(String careLevel) {
+  public void setCareLevel(CareLevelEnum careLevel) {
     this.careLevel = careLevel;
   }
 

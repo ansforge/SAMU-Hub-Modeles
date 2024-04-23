@@ -568,6 +568,19 @@ components:
           - fr.health.samu044.DRFR15DDXAAJJJ00000.P00
         identity:
           $ref: '#/components/schemas/insIdentity'
+        freetext:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: "Informations compl\xE9mentaires sur le patient"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/patient/0/freetext/0
+            description: "Correspond \xE0 la zone de commentaire renseign\xE9 par\
+              \ patient cr\xE9\xE9/identifi\xE9"
+            examples:
+            - None
       additionalProperties: false
       example: example.json#/patient/0
     decision:
@@ -608,6 +621,12 @@ components:
           x-cols: 6
           example: example.json#/decision/0/type
           description: "Type de d\xE9cision prise"
+          enum:
+          - CONSEIL
+          - PMT
+          - INTER
+          - ORIENT
+          - PASPLUS
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
@@ -691,6 +710,186 @@ components:
           x-cols: 6
           example: example.json#/qualification/locationKind/code
           description: "A valoriser avec un code la nomenclature associ\xE9e"
+          enum:
+          - L01.00.00
+          - L01.01.00
+          - L01.01.01
+          - L01.01.02
+          - L01.01.03
+          - L01.01.04
+          - L01.02.00
+          - L01.02.01
+          - L01.02.02
+          - L01.02.03
+          - L01.02.04
+          - L01.02.05
+          - L01.02.06
+          - L01.02.07
+          - L01.02.08
+          - L01.02.09
+          - L01.02.10
+          - L01.02.11
+          - L01.02.12
+          - L01.03.00
+          - L01.03.01
+          - L01.03.02
+          - L01.03.03
+          - L01.04.00
+          - L02.00.00
+          - L02.01.00
+          - L02.02.00
+          - L02.02.01
+          - L02.02.02
+          - L02.02.03
+          - L02.02.04
+          - L02.02.05
+          - L02.03.00
+          - L02.03.01
+          - L02.03.02
+          - L02.03.03
+          - L02.04.00
+          - L02.05.00
+          - L02.05.01
+          - L02.05.02
+          - L02.05.03
+          - L02.05.04
+          - L02.05.05
+          - L02.05.06
+          - L02.05.07
+          - L02.05.08
+          - L02.05.09
+          - L02.05.10
+          - L02.05.11
+          - L02.05.12
+          - L02.05.13
+          - L02.05.14
+          - L02.05.15
+          - L02.05.16
+          - L02.06.00
+          - L02.06.01
+          - L02.06.02
+          - L02.06.03
+          - L02.06.04
+          - L02.06.05
+          - L02.06.06
+          - L02.06.07
+          - L02.06.08
+          - L02.07.00
+          - L02.07.01
+          - L02.07.02
+          - L02.08.00
+          - L03.00.00
+          - L03.01.00
+          - L03.02.00
+          - L03.03.00
+          - L03.04.00
+          - L03.05.00
+          - L04.00.00
+          - L04.01.00
+          - L04.02.00
+          - L04.02.01
+          - L04.02.02
+          - L04.02.03
+          - L04.03.00
+          - L04.03.01
+          - L04.03.02
+          - L04.03.03
+          - L04.04.00
+          - L04.05.00
+          - L04.06.00
+          - L04.06.01
+          - L04.06.02
+          - L04.06.03
+          - L04.06.04
+          - L04.06.05
+          - L04.07.00
+          - L04.07.01
+          - L04.07.02
+          - L04.07.03
+          - L04.08.00
+          - L04.08.01
+          - L04.08.02
+          - L04.09.00
+          - L04.09.01
+          - L04.09.02
+          - L04.10.00
+          - L04.11.00
+          - L04.11.01
+          - L04.11.02
+          - L04.11.03
+          - L04.11.04
+          - L04.12.00
+          - L04.12.01
+          - L04.12.02
+          - L04.12.03
+          - L04.12.04
+          - L04.13.00
+          - L04.13.01
+          - L04.13.02
+          - L04.13.03
+          - L04.13.04
+          - L04.14.00
+          - L04.14.01
+          - L04.14.02
+          - L04.15.00
+          - L04.16.00
+          - L05.00.00
+          - L05.01.00
+          - L05.01.01
+          - L05.01.02
+          - L05.01.03
+          - L05.01.04
+          - L05.02.00
+          - L05.02.01
+          - L05.02.02
+          - L05.02.03
+          - L05.02.04
+          - L05.03.00
+          - L05.03.01
+          - L05.03.02
+          - L05.04.00
+          - L05.04.01
+          - L05.04.02
+          - L05.04.03
+          - L05.04.04
+          - L05.04.05
+          - L05.04.06
+          - L05.05.00
+          - L05.06.00
+          - L05.07.00
+          - L06.00.00
+          - L06.01.00
+          - L06.01.01
+          - L06.01.02
+          - L06.01.03
+          - L06.01.04
+          - L06.01.05
+          - L06.01.06
+          - L06.01.07
+          - L06.01.08
+          - L06.02.00
+          - L06.03.00
+          - L06.03.01
+          - L06.03.02
+          - L06.03.03
+          - L06.03.04
+          - L06.03.05
+          - L06.04.00
+          - L06.05.00
+          - L06.05.01
+          - L06.05.02
+          - L06.06.00
+          - L06.06.01
+          - L06.06.02
+          - L06.06.03
+          - L06.06.04
+          - L06.07.00
+          - L06.07.01
+          - L06.07.02
+          - L07.00.00
+          - L07.01.00
+          - L07.01.01
+          - L07.02.00
           examples:
           - C07.13.02
         label:
@@ -737,6 +936,44 @@ components:
           x-cols: 6
           example: example.json#/qualification/riskThreat/0/code
           description: "A valoriser avec un code la nomenclature associ\xE9e"
+          enum:
+          - R01
+          - R02
+          - R03
+          - R04
+          - R05
+          - R06
+          - R07
+          - R08
+          - R09
+          - R10
+          - R11
+          - R12
+          - R13
+          - R14
+          - R15
+          - R16
+          - R17
+          - R18
+          - R19
+          - R20
+          - R21
+          - R22
+          - R23
+          - R24
+          - R25
+          - R26
+          - R27
+          - R28
+          - R29
+          - R30
+          - R31
+          - R32
+          - R33
+          - R34
+          - R35
+          - R36
+          - R37
           examples:
           - C07.13.02
         label:
@@ -783,6 +1020,59 @@ components:
           x-cols: 6
           example: example.json#/qualification/healthMotive/code
           description: "A valoriser avec un code la nomenclature associ\xE9e"
+          enum:
+          - M01.00
+          - M01.01
+          - M01.02
+          - M01.03
+          - M02.00
+          - M02.01
+          - M02.02
+          - M02.03
+          - M02.04
+          - M02.05
+          - M02.06
+          - M02.07
+          - M02.08
+          - M02.09
+          - M02.10
+          - M03.00
+          - M03.01
+          - M03.02
+          - M03.03
+          - M03.04
+          - M03.05
+          - M03.06
+          - M03.07
+          - M03.08
+          - M03.09
+          - M03.10
+          - M03.11
+          - M03.12
+          - M03.13
+          - M03.14
+          - M03.15
+          - M03.16
+          - M03.17
+          - M03.18
+          - M03.19
+          - M03.20
+          - M03.21
+          - M03.22
+          - M04.00
+          - M04.01
+          - M04.02
+          - M04.03
+          - M04.04
+          - M05.00
+          - M05.01
+          - M05.02
+          - M06.00
+          - M06.01
+          - M06.02
+          - M06.03
+          - M06.04
+          - M07.00
           examples:
           - C07.13.02
         label:
@@ -1609,6 +1899,28 @@ components:
           example: example.json#/initialAlert/caller/type
           description: "Indique la relation du requ\xE9rant avec l'incident / le patient\
             \ / la victime"
+          enum:
+          - SUJET
+          - FAMILLE
+          - TIERS
+          - POMPIER
+          - AMBULANC
+          - SECOUR
+          - MED
+          - MEDSOS
+          - MRL
+          - EFFML
+          - SANTE
+          - INF
+          - AIDESOIN
+          - SF
+          - AIDEDOM
+          - FDO-MILI
+          - ADM-TUTL
+          - VIP
+          - OBJCONNC
+          - AUTRE
+          - INCONNU
           examples:
           - "le patient lui-m\xEAme, p\xE8re, m\xE8re"
         communication:
@@ -1619,6 +1931,16 @@ components:
           example: example.json#/initialAlert/caller/communication
           description: "Indique si le requ\xE9rant rencontre ou non des difficult\xE9\
             \ de communication"
+          enum:
+          - AUCUNE
+          - MUET
+          - VISION
+          - LANGUE
+          - PANIQUE
+          - HOSTILE
+          - AGITE
+          - AUTRE
+          - IMPOSS
           examples:
           - "Malentendant, aucune difficult\xE9 de communication"
         freetext:
@@ -1957,6 +2279,11 @@ components:
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/sex
           description: Sexe du patient
+          enum:
+          - MASC
+          - FEM
+          - AUTRE
+          - INCONNU
           examples:
           - F
       additionalProperties: false

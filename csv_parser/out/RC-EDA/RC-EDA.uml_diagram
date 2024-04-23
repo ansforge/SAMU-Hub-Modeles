@@ -315,7 +315,7 @@ strict digraph {
                 <TR>
                 <TD ><B>patient</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	patient -> createCase [headlabel=1 taillabel="0..*"]
 	externalLocationId [label=<<TABLE>

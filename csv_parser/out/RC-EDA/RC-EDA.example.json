@@ -149,7 +149,10 @@
                     "sex": "F"
                 },
                 "nonStrictFeatures": {}
-            }
+            },
+            "freetext": [
+                "None"
+            ]
         }
     ],
     "decision": [
