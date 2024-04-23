@@ -598,14 +598,14 @@ public class Caller {
    * @return callerContact
    **/
   @JsonProperty(JSON_PROPERTY_CALLER_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Contact getCallerContact() {
     return callerContact;
   }
 
   @JsonProperty(JSON_PROPERTY_CALLER_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCallerContact(Contact callerContact) {
     this.callerContact = callerContact;
   }

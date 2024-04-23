@@ -35,11 +35,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'affaire</documentation>
-                </annotation>
-            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="qualification">
@@ -67,9 +63,10 @@ Comprend au maximum 255 caractères</documentation>
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Indique le nom de lieu : nom commercial, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
+                    <documentation>Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
                 </annotation>
             </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalLocationId" type="x:externalLocationId"/>
             <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
@@ -389,7 +386,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
         <sequence>
             <element minOccurs="0" name="id" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
@@ -397,23 +394,12 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="type" type="string">
+            <element name="type" type="string">
                 <annotation>
                     <documentation>Type de décision prise</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="orientation" type="string">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="teamCare" type="string">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
+            <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -533,6 +519,29 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Permet de complémenter en commentaire libre la(les) victime(s)</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="externalLocationId">
+        <sequence>
+            <element name="source">
+                <annotation>
+                    <documentation>Type de l'identifiant fourni</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="FINESS administratif"/>
+                        <enumeration value="FINESS géographique"/>
+                        <enumeration value="SIREN"/>
+                        <enumeration value="SIRET"/>
+                        <enumeration value="APE/NAF"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="value" type="string">
+                <annotation>
+                    <documentation>L'identifiant en lui-même</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -743,7 +752,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
     </complexType>
     <complexType name="caller">
         <sequence>
-            <element minOccurs="0" name="callerContact" type="x:contact"/>
+            <element name="callerContact" type="x:contact"/>
             <element minOccurs="0" name="callbackContact" type="x:contact"/>
             <element minOccurs="0" name="language">
                 <annotation>
@@ -1181,6 +1190,34 @@ Par convention les prénoms composés doivent préférablement être séparés p
             </element>
         </sequence>
     </complexType>
+    <complexType name="transportDetails">
+        <sequence>
+            <element name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
+- A transporter
+- Laisser sur place</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
+            <element minOccurs="0" name="concoursRequest" type="string">
+                <annotation>
+                    <documentation>Identifiant de la ou des demandes de concours </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="transportationID" type="string">
+                <annotation>
+                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
+                </annotation>
+            </element>
+            <element name="teamCare" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
+        </sequence>
+    </complexType>
     <complexType name="destination">
         <sequence>
             <element minOccurs="0" name="type">
@@ -1198,27 +1235,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="facility" type="string">
-                <annotation>
-                    <documentation>Nom de l'établissement</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="adminFiness" type="string">
-                <annotation>
-                    <documentation>N° Finess administratif de l'établissement</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="geoFiness" type="string">
-                <annotation>
-                    <documentation>N° Finess géographique de l'établissement</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="service" type="string">
-                <annotation>
-                    <documentation>Service concerné par l'admission du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="freetext" type="string"/>
+            <element minOccurs="0" name="destinationLocation" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">
