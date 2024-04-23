@@ -56,8 +56,47 @@ public class Decision {
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
 
+  /**
+   * Type de décision prise
+   */
+  public enum TypeEnum {
+    CONSEIL("CONSEIL"),
+
+    PMT("PMT"),
+
+    INTER("INTER"),
+
+    ORIENT("ORIENT"),
+
+    PASPLUS("PASPLUS");
+
+    private String value;
+
+    TypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  private TypeEnum type;
 
   public static final String JSON_PROPERTY_TRANSPORT_DETAILS =
       "transportDetails";
@@ -113,7 +152,7 @@ public class Decision {
     this.creation = creation;
   }
 
-  public Decision type(String type) {
+  public Decision type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -126,13 +165,13 @@ public class Decision {
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 
