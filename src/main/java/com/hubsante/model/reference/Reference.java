@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.common;
+package com.hubsante.model.reference;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -43,7 +43,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Reference.JSON_PROPERTY_DISTRIBUTION_I_D,
                     Reference.JSON_PROPERTY_REFUSED,
-                    Reference.JSON_PROPERTY_INFO_DISTRIBUTION_I_D})
+                    Reference.JSON_PROPERTY_ERROR_DISTRIBUTION_I_D})
 @JsonTypeName("reference")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -56,9 +56,9 @@ public class Reference {
   public static final String JSON_PROPERTY_REFUSED = "refused";
   private Boolean refused;
 
-  public static final String JSON_PROPERTY_INFO_DISTRIBUTION_I_D =
-      "infoDistributionID";
-  private String infoDistributionID;
+  public static final String JSON_PROPERTY_ERROR_DISTRIBUTION_I_D =
+      "errorDistributionID";
+  private String errorDistributionID;
 
   public Reference() {}
 
@@ -69,7 +69,7 @@ public class Reference {
   }
 
   /**
-   * Get distributionID
+   * Identifiant unique du message référencé
    * @return distributionID
    **/
   @JsonProperty(JSON_PROPERTY_DISTRIBUTION_I_D)
@@ -92,7 +92,7 @@ public class Reference {
   }
 
   /**
-   * Get refused
+   * Indique si le message acquitté a été refusé
    * @return refused
    **/
   @JsonProperty(JSON_PROPERTY_REFUSED)
@@ -108,27 +108,27 @@ public class Reference {
     this.refused = refused;
   }
 
-  public Reference infoDistributionID(String infoDistributionID) {
+  public Reference errorDistributionID(String errorDistributionID) {
 
-    this.infoDistributionID = infoDistributionID;
+    this.errorDistributionID = errorDistributionID;
     return this;
   }
 
   /**
-   * Get infoDistributionID
-   * @return infoDistributionID
+   * Identifiant unique du message d&#39;erreur lié
+   * @return errorDistributionID
    **/
-  @JsonProperty(JSON_PROPERTY_INFO_DISTRIBUTION_I_D)
+  @JsonProperty(JSON_PROPERTY_ERROR_DISTRIBUTION_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getInfoDistributionID() {
-    return infoDistributionID;
+  public String getErrorDistributionID() {
+    return errorDistributionID;
   }
 
-  @JsonProperty(JSON_PROPERTY_INFO_DISTRIBUTION_I_D)
+  @JsonProperty(JSON_PROPERTY_ERROR_DISTRIBUTION_I_D)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setInfoDistributionID(String infoDistributionID) {
-    this.infoDistributionID = infoDistributionID;
+  public void setErrorDistributionID(String errorDistributionID) {
+    this.errorDistributionID = errorDistributionID;
   }
 
   @Override
@@ -142,12 +142,12 @@ public class Reference {
     Reference reference = (Reference)o;
     return Objects.equals(this.distributionID, reference.distributionID) &&
         Objects.equals(this.refused, reference.refused) &&
-        Objects.equals(this.infoDistributionID, reference.infoDistributionID);
+        Objects.equals(this.errorDistributionID, reference.errorDistributionID);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(distributionID, refused, infoDistributionID);
+    return Objects.hash(distributionID, refused, errorDistributionID);
   }
 
   @Override
@@ -158,8 +158,8 @@ public class Reference {
         .append(toIndentedString(distributionID))
         .append("\n");
     sb.append("    refused: ").append(toIndentedString(refused)).append("\n");
-    sb.append("    infoDistributionID: ")
-        .append(toIndentedString(infoDistributionID))
+    sb.append("    errorDistributionID: ")
+        .append(toIndentedString(errorDistributionID))
         .append("\n");
     sb.append("}");
     return sb.toString();

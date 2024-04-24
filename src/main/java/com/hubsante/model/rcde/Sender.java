@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.common;
+package com.hubsante.model.rcde;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,53 +34,70 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.common.Reference;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ReferenceWrapper
+ * Sender
  */
-@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-                    DistributionElement.JSON_PROPERTY_SENDER,
-                    DistributionElement.JSON_PROPERTY_SENT_AT,
-                    DistributionElement.JSON_PROPERTY_KIND,
-                    DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    ReferenceWrapper.JSON_PROPERTY_REFERENCE})
+@JsonPropertyOrder({Sender.JSON_PROPERTY_NAME, Sender.JSON_PROPERTY_U_R_I})
+@JsonTypeName("sender")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ReferenceWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_REFERENCE = "reference";
-  private Reference reference;
+public class Sender {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
-  public ReferenceWrapper() {}
+  public static final String JSON_PROPERTY_U_R_I = "URI";
+  private String URI;
 
-  public ReferenceWrapper reference(Reference reference) {
+  public Sender() {}
 
-    this.reference = reference;
+  public Sender name(String name) {
+
+    this.name = name;
     return this;
   }
 
   /**
-   * Get reference
-   * @return reference
+   * Get name
+   * @return name
    **/
-  @JsonProperty(JSON_PROPERTY_REFERENCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Reference getReference() {
-    return reference;
+  public String getName() {
+    return name;
   }
 
-  @JsonProperty(JSON_PROPERTY_REFERENCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setReference(Reference reference) {
-    this.reference = reference;
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Sender URI(String URI) {
+
+    this.URI = URI;
+    return this;
+  }
+
+  /**
+   * Get URI
+   * @return URI
+   **/
+  @JsonProperty(JSON_PROPERTY_U_R_I)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getURI() {
+    return URI;
+  }
+
+  @JsonProperty(JSON_PROPERTY_U_R_I)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setURI(String URI) {
+    this.URI = URI;
   }
 
   @Override
@@ -91,24 +108,22 @@ public class ReferenceWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ReferenceWrapper referenceWrapper = (ReferenceWrapper)o;
-    return Objects.equals(this.reference, referenceWrapper.reference) &&
-        super.equals(o);
+    Sender sender = (Sender)o;
+    return Objects.equals(this.name, sender.name) &&
+        Objects.equals(this.URI, sender.URI);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(reference, super.hashCode());
+    return Objects.hash(name, URI);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ReferenceWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    reference: ")
-        .append(toIndentedString(reference))
-        .append("\n");
+    sb.append("class Sender {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    URI: ").append(toIndentedString(URI)).append("\n");
     sb.append("}");
     return sb.toString();
   }

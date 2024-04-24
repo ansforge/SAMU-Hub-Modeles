@@ -11,7 +11,7 @@ components:
         - sentAt
         - kind
         - status
-        - recipient
+        - recipients
       properties:
         messageId:
           type: string
@@ -35,7 +35,7 @@ components:
             - Actual
             - Exercise
             - System
-        recipient:
+        recipients:
           type: array
           items:
             $ref: '#/components/schemas/recipient'
@@ -60,19 +60,3 @@ components:
           type: string
         URI:
           type: string
-    ReferenceWrapper:
-      required:
-        - Reference
-      properties:
-        reference:
-          $ref: '#/components/schemas/reference'
-    reference:
-      properties:
-        distributionID:
-          type: string
-        refused:
-          type: boolean
-        infoDistributionID:
-          type: string
-      required:
-        - distributionID

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.04.12",
+    "version": "24.04.24",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -175,7 +175,13 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/name",
-                    "description": "Indique le nom de lieu : nom commercial, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                    "description": "Indique le nom de lieu : nom commercial, Etablissement, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                },
+                "externalLocationId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalLocationId"
+                    }
                 },
                 "detailedAddress": {
                     "$ref": "#/definitions/detailedAddress"
@@ -447,7 +453,7 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Commentaire",
+                    "title": "agent",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/freetext",
@@ -689,7 +695,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/id",
-                    "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
+                    "description": "ID partag\u00e9 du patient concern\u00e9 par la d\u00e9cision, lorsque le patient existe et est identifi\u00e9"
                 },
                 "creation": {
                     "type": "string",
@@ -711,23 +717,39 @@
                 },
                 "orientation": {
                     "type": "string",
-                    "title": "Orientation",
+                    "title": "Type de devenir du patient",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur"
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
                 },
                 "transportation": {
                     "type": "array",
                     "x-health-only": false,
                     "items": {
                         "type": "string",
-                        "title": "Type de transport",
+                        "title": "Type de ressource/moyen",
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/decision/0/transportation/0",
                         "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
                     }
+                },
+                "concoursRequest": {
+                    "type": "string",
+                    "title": "ID demande de concours",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/concoursRequest",
+                    "description": "Identifiant de la ou des demandes de concours "
+                },
+                "transportationID": {
+                    "type": "string",
+                    "title": "ID vecteur partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportationID",
+                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
                 },
                 "teamCare": {
                     "type": "string",
@@ -1020,6 +1042,43 @@
             },
             "additionalProperties": false,
             "example": "example.json#/qualification/victims"
+        },
+        "externalLocationId": {
+            "type": "object",
+            "title": "Identifiant(s) du lieu",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "source",
+                "value"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "title": "Source  /  type d'identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/externalLocationId/0/source",
+                    "description": "Type de l'identifiant fourni",
+                    "enum": [
+                        "FINESS administratif",
+                        "FINESS g\u00e9ographique",
+                        "SIREN",
+                        "SIRET",
+                        "APE/NAF"
+                    ]
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/externalLocationId/0/value",
+                    "description": "L'identifiant en lui-m\u00eame"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/location/externalLocationId/0"
         },
         "detailedAddress": {
             "type": "object",
@@ -2141,7 +2200,7 @@
                 },
                 "id": {
                     "type": "string",
-                    "title": "Identifiant",
+                    "title": "Identifiant RPPS",
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/administrativeFile/generalPractitioner/id",
@@ -2384,44 +2443,8 @@
                         "autre"
                     ]
                 },
-                "facility": {
-                    "type": "string",
-                    "title": "Etablissement",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/facility",
-                    "description": "Nom de l'\u00e9tablissement"
-                },
-                "adminFiness": {
-                    "type": "string",
-                    "title": "FINESS administratif",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/adminFiness",
-                    "description": "N\u00b0 Finess administratif de l'\u00e9tablissement"
-                },
-                "geoFiness": {
-                    "type": "string",
-                    "title": "FINESS g\u00e9ographique",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/geoFiness",
-                    "description": "N\u00b0 Finess g\u00e9ographique de l'\u00e9tablissement"
-                },
-                "service": {
-                    "type": "string",
-                    "title": "Service",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/service",
-                    "description": "Service concern\u00e9 par l'admission du patient"
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Autre",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/destination/freetext"
+                "destinationLocation": {
+                    "$ref": "#/definitions/location"
                 }
             },
             "additionalProperties": false,

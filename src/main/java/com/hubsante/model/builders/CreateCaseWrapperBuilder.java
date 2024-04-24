@@ -17,7 +17,7 @@ package com.hubsante.model.builders;
 
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.rcde.DistributionElement;
 
 public class CreateCaseWrapperBuilder {
 
