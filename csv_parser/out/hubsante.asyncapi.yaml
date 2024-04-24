@@ -4163,6 +4163,7 @@ components:
             - TRP/CRS
             examples:
             - FIR
+          minItems: 1
         ACTOR:
           type: array
           x-health-only: false
@@ -4343,6 +4344,7 @@ components:
             - VEH/VES/UNM
             examples:
             - PPL/GRP
+          minItems: 1
         LOCTYPE:
           type: array
           x-health-only: false
@@ -4356,6 +4358,7 @@ components:
               \ possible de renvoyer le code \"OTH\" =  \"OTHER\""
             examples:
             - URB/STRT
+          minItems: 1
         ENV:
           type: string
           title: Environnement
@@ -5517,6 +5520,7 @@ components:
             - ORG/WATAGC
             examples:
             - MAT/VEH/ROADVE/FRFGTN
+          minItems: 1
         CAPABILITY:
           type: array
           x-health-only: false
@@ -5653,6 +5657,7 @@ components:
               \ besoin d'obtenir plus de d\xE9tails"
             examples:
             - 76_45101#SMUR1
+          minItems: 1
       additionalProperties: false
     geoResourceDetails:
       $id: classpath:/json-schema/schema#

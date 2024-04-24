@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.04.10",
+    "version": "24.04.24",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -1036,7 +1036,8 @@
                             "TRP/COL",
                             "TRP/CRS"
                         ]
-                    }
+                    },
+                    "minItems": 1
                 },
                 "ACTOR": {
                     "type": "array",
@@ -1204,7 +1205,8 @@
                             "VEH/VES/SUNK",
                             "VEH/VES/UNM"
                         ]
-                    }
+                    },
+                    "minItems": 1
                 },
                 "LOCTYPE": {
                     "type": "array",
@@ -1216,7 +1218,8 @@
                         "x-cols": 6,
                         "example": "example.json#/EVENT/ETYPE/LOCTYPE/0",
                         "description": "Le champ peut ne pas \u00eatre affich\u00e9. Par d\u00e9faut, possible de renvoyer le code \"OTH\" =  \"OTHER\""
-                    }
+                    },
+                    "minItems": 1
                 },
                 "ENV": {
                     "type": "string",
@@ -1277,7 +1280,8 @@
                         "x-cols": 6,
                         "example": "example.json#/EVENT/REFERENCE/0/OTHER_EVENT_ID/0",
                         "description": "Indique d'autres identifiants utilis\u00e9s pour l'affaire dans le syst\u00e8me partenaire.\nA renseigner avec l'identifiant de l'organisation suivi de l'identifiant local de l'affaire du partenaire dans son syst\u00e8me.\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -2311,7 +2315,8 @@
                             "ORG/TRS",
                             "ORG/WATAGC"
                         ]
-                    }
+                    },
+                    "minItems": 1
                 },
                 "CAPABILITY": {
                     "type": "array",
