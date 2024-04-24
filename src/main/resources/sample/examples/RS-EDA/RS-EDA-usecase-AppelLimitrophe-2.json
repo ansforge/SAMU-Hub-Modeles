@@ -7,8 +7,7 @@
     "qualification": {
       "whatsHappen": {
         "code": "C02.05.01",
-        "label": "Pathologie / Maladie - Médicale ",
-        "freetext": "Douleurs thoraciques"
+        
       },
       "locationKind": {
         "code": "L03.01.00",
