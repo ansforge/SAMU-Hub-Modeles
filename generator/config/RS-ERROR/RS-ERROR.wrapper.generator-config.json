@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/common.openapi.yaml",
+  "inputSpec": "./input/RS-ERROR.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/child-classes/",
+  "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "",
+    "models": "errorWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -13,10 +13,14 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.common",
+    "modelPackage": "com.hubsante.model.report",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
-    "enablePostProcessFile": true
+    "enablePostProcessFile": true,
+    "customExtend": {
+      "package": "com.hubsante.model.edxl",
+      "className": "ContentMessage"
+    }
   }
 }

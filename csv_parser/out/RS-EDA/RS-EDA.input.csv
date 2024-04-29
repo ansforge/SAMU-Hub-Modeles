@@ -92,7 +92,7 @@ L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé a
 Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",X,X
 64,65,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,,X,X
 65,66,,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
-66,67,,Agent,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
+66,67,,agent,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
 67,68,Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communication d'urgence. Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte.
 L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.
 Le système destinataire reçoit une affaire lorsqu'une alerte le concerne. S'il ne gère pas les affaires multi-alertes, il doit donc créer une affaire seulement sur l'alerte le concernant : pour une création d'affaire, sur l'alerte initiale et pour une mise à jour d'affaire, sur la nouvelle alerte (en récupérant éventuellement des informations de l'alerte initiale en historique).
@@ -114,13 +114,13 @@ Prend les valeurs définies dans la nomenclature CISU :
 Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION",X,X
 71,72,,Informations complémentaires sur l'alerte,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'alerte.,"Déclenchement téléalarme, voisine sur les lieux",comment,freetext,OG,Observations générales (texte libre),,,1.0,0..1,,string,,,X,X
 72,73,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X
-73,74,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,,X,X
+73,74,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,0..1,X,contact,,,X,X
 74,75,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X
 75,76,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X
-76,77,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X
+76,77,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X
 77,78,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
-78,79,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"le patient lui-même, père, mère",,type,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-TYPAPPLT,X,X
-79,80,,,Difficulté de communication,,,,Indique si le requérant rencontre ou non des difficulté de communication,"Malentendant, aucune difficulté de communication",,communication,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PBAPL,X,X
+78,79,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"le patient lui-même, père, mère",,type,,,,,,0..1,,string,,,X,X
+79,80,,,Difficulté de communication,,,,Indique si le requérant rencontre ou non des difficulté de communication,"Malentendant, aucune difficulté de communication",,communication,,,,,,0..1,,string,,,X,X
 80,81,,,Informations complémentaires sur le requérant,,,,"Informations complémentaires sur le requérant 
 Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif",témoin de l'accident,freetext,freetext,CH,Profil appelant,,,1.0,0..1,,string,,,X,X
 81,82,,,Prénom & nom usuel,,,,,,callerName,detailedName,,,,,,0..1,X,detailedName,,,X,X
@@ -167,7 +167,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
 107,108,,ID,,,,,Identifiant professionnel de l'opérateur si existant,,,id,,,,,,0..1,,string,,,,X
 108,109,,Rôle,,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,,,,X
 109,110,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
-110,111,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,fr.health.samu044.DRFR15DDXAAJJJ00000.P00,,id,,,,,,1..1,,string,,,X,X
+110,111,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,X,X
 111,112,,Dossier administratif,,,,,,,,administrativeFile,,,,,,0..1,X,administrativeFile,,,,X
 112,113,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X
 113,114,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE",,X
@@ -214,52 +214,50 @@ Pierre Alain
 Pierre Alain Jacques",,,birthFirstName,,,,,,0..1,,string,,,,X
 134,135,,,,Liste des prénoms de naissance,,,Ensemble des prénoms de naissance (renvoyés par INSi),,,birthFirstNamesList,,,,,,0..1,,string,,,,X
 135,136,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
-136,137,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE,X,X
+136,137,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,,X,X
 137,138,,,,Code lieu de naissance,,,"Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.",,,birthPlaceCode,,,,,,0..1,,number,,,,X
 138,139,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
-139,140,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,healthMotive,,,,,,0..1,X,nomenclature,,NOMENCLATURE: CISU-Code_Motif_patient-victime,,X
+139,140,,Motif de recours médico-secouriste,# Voir whatsHappen (type nomenclature),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,healthMotive,,,,,,0..1,X,nomenclature,,,,X
 140,141,,Informations patient,,,,,,,,detail,,,,,,0..1,X,patientDetail,,,,X
 141,142,,,Poids,,,,Poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,,,X
 142,143,,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,,,X
 143,144,,,Age,,,,"Age du patient.
 Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,,age,,,,,,0..1,,string,,"REGEX: P[0-9]{1,3}[YMWD]",,X
-144,145,,,Niveau de soin,,,,,R1,,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE,,X
+144,145,,,Niveau de soin,,,,,R1,,careLevel,,,,,,0..1,,string,X,,,X
 145,146,,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,,,X
 146,147,,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type nomenclature),,,Hypothese diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
 147,148,,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type nomenclature),,,Hypotheses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,nomenclature,X,,,X
 148,149,,Diagnostic de l'effecteur,# Voir whatsHappen (type nomenclature),,,,"Diagnostic posé par le médecin effecteur qui se trouve sur les lieux de l'affaire, ou diagnostic par le médecin régulateur après avoir reçu le retour de l'effecteur",,,resourceDiagnosis,,,,,,0..1,X,nomenclature,X,,,X
-149,150,,Informations complémentaires sur le patient,,,,,Correspond à la zone de commentaire renseigné par patient créé/identifié,,,freetext,,,,,,0..n,,string,,,X,X
-150,151,Interrogatoire médical,,,,,,Interrogatoire médical. Aussi appelé note de régulation médicale.,,,medicalNote,,,,,,0..n,X,medicalNote,,,,X
-151,152,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,,X
-152,153,,Professionnel de santé qui réalise l'interrogatoire,# Voir operator,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,0..1,X,operator,,,,X
-153,154,,Date Heure de création de l'interrogatoire,,,,,Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,,X
-154,155,,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
+149,150,Interrogatoire médical,,,,,,Interrogatoire médical. Aussi appelé note de régulation médicale.,,,medicalNote,,,,,,0..n,X,medicalNote,,,,X
+150,151,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,,X
+151,152,,Professionnel de santé qui réalise l'interrogatoire,# Voir operator,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,0..1,X,operator,,,,X
+152,153,,Date Heure de création de l'interrogatoire,,,,,Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+153,154,,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
 Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM",,,freetext,,,,,,1..1,,string,,,,X
-155,156,,Antécédents,,,,,Texte libre  pour décrire les antécédents du patient,,,medicalHistory,,,,,,0..1,,string,,,,X
-156,157,,Traitements,,,,,Texte libre  pour décrire les traitements du patient,,,treatments,,,,,,0..1,,string,,,,X
-157,158,,Allergies,,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
-158,159,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
-159,160,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
-160,161,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
-161,162,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPEDEC,X,X
-162,163,,Décision de transport,,,,,,,,transportDetails,,,,,,0..1,X,transportDetails,,,X,X
-163,164,,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
+154,155,,Antécédents,,,,,Texte libre  pour décrire les antécédents du patient,,,medicalHistory,,,,,,0..1,,string,,,,X
+155,156,,Traitements,,,,,Texte libre  pour décrire les traitements du patient,,,treatments,,,,,,0..1,,string,,,,X
+156,157,,Allergies,,,,,Texte libre pour décrire les allergies du patient,,,allergies,,,,,,0..1,,string,,,,X
+157,158,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
+158,159,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
+159,160,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
+160,161,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
+161,162,,Type de devenir du patient,,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
-- Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,,X,X
-164,165,,,Type de ressource/moyen,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
-165,166,,,ID demande de concours,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X
-166,167,,,ID vecteur partagé,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X
-167,168,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,,,X,X
-168,169,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
-169,170,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
-170,171,,,,Localisation de la destination,# Voir type location,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X
-171,172,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+- Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,0..1,,string,X,,X,X
+162,163,,Type de ressource/moyen,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
+163,164,,ID demande de concours,,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X
+164,165,,ID vecteur partagé,,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X
+165,166,,Niveau de prise en charge,,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,0..1,,string,,,X,X
+166,167,,Destination,,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
+167,168,,,Type de destination,,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
+168,169,,,Localisation de la destination,# Voir type location,,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X
+169,170,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
-172,173,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
-173,174,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
-174,175,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
-175,176,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
-176,177,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
-177,178,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-178,179,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..n,,string,,,X,X
+170,171,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+171,172,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
+172,173,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
+173,174,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
+174,175,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
+175,176,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
+176,177,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X

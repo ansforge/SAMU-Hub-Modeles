@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.common;
+package com.hubsante.model.rcde;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,22 +39,23 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Sender
+ * Recipient
  */
-@JsonPropertyOrder({Sender.JSON_PROPERTY_NAME, Sender.JSON_PROPERTY_U_R_I})
-@JsonTypeName("sender")
+@JsonPropertyOrder(
+    {Recipient.JSON_PROPERTY_NAME, Recipient.JSON_PROPERTY_U_R_I})
+@JsonTypeName("recipient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Sender {
+public class Recipient {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public static final String JSON_PROPERTY_U_R_I = "URI";
   private String URI;
 
-  public Sender() {}
+  public Recipient() {}
 
-  public Sender name(String name) {
+  public Recipient name(String name) {
 
     this.name = name;
     return this;
@@ -77,7 +78,7 @@ public class Sender {
     this.name = name;
   }
 
-  public Sender URI(String URI) {
+  public Recipient URI(String URI) {
 
     this.URI = URI;
     return this;
@@ -108,9 +109,9 @@ public class Sender {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Sender sender = (Sender)o;
-    return Objects.equals(this.name, sender.name) &&
-        Objects.equals(this.URI, sender.URI);
+    Recipient recipient = (Recipient)o;
+    return Objects.equals(this.name, recipient.name) &&
+        Objects.equals(this.URI, recipient.URI);
   }
 
   @Override
@@ -121,7 +122,7 @@ public class Sender {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Sender {\n");
+    sb.append("class Recipient {\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    URI: ").append(toIndentedString(URI)).append("\n");
     sb.append("}");

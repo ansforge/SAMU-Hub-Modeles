@@ -649,7 +649,7 @@ def run(sheet, name, version, filter):
         return openapi_schema
 
     openapi_components = json_schema_to_openapi_schema(json_schema)
-    with open('common.openapi.yaml') as f:
+    with open('RC-DE.openapi.yaml') as f:
         common_openapi_components = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
     with open('template.openapi.yaml') as f:

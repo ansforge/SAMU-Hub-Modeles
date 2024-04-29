@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.common;
+package com.hubsante.model.rcde;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,9 +34,9 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.common.Recipient;
-import com.hubsante.model.common.Sender;
 import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.model.rcde.Recipient;
+import com.hubsante.model.rcde.Sender;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;

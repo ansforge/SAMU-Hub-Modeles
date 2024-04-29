@@ -17,7 +17,7 @@ package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
-import com.hubsante.model.common.ReferenceWrapper;
+import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.custom.CustomMessage;
 import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
@@ -40,4 +40,20 @@ import com.hubsante.model.report.ErrorWrapper;
         @JsonSubTypes.Type(GeoResourceDetailsWrapper.class)
 })
 public class ContentMessage {
+
+    /** This equals override is used to avoid breaking the equals override in the messages without RC-DE headers
+     * (in particular ErrorWrapper), as without the override the equality check would only pass when comparing
+     * an object to itself, and we care about the actual values.
+     **/
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        return o != null && getClass() == o.getClass();
+    }
+
+    // As this class has no fields, the hashcode is always 0
+    @Override
+    public int hashCode() {
+        return 0;
+    }
 }

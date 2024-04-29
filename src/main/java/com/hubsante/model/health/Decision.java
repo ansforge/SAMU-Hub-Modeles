@@ -43,9 +43,13 @@ import java.util.Objects;
 /**
  * Decision
  */
-@JsonPropertyOrder({Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
-                    Decision.JSON_PROPERTY_TYPE,
-                    Decision.JSON_PROPERTY_TRANSPORT_DETAILS})
+@JsonPropertyOrder(
+    {Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
+     Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
+     Decision.JSON_PROPERTY_TRANSPORTATION,
+     Decision.JSON_PROPERTY_CONCOURS_REQUEST,
+     Decision.JSON_PROPERTY_TRANSPORTATION_I_D,
+     Decision.JSON_PROPERTY_TEAM_CARE, Decision.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -98,9 +102,24 @@ public class Decision {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_TRANSPORT_DETAILS =
-      "transportDetails";
-  private TransportDetails transportDetails;
+  public static final String JSON_PROPERTY_ORIENTATION = "orientation";
+  private String orientation;
+
+  public static final String JSON_PROPERTY_TRANSPORTATION = "transportation";
+  private List<String> transportation;
+
+  public static final String JSON_PROPERTY_CONCOURS_REQUEST = "concoursRequest";
+  private String concoursRequest;
+
+  public static final String JSON_PROPERTY_TRANSPORTATION_I_D =
+      "transportationID";
+  private String transportationID;
+
+  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
+  private String teamCare;
+
+  public static final String JSON_PROPERTY_DESTINATION = "destination";
+  private Destination destination;
 
   public Decision() {}
 
@@ -182,8 +201,9 @@ public class Decision {
   }
 
   /**
-   * Get transportDetails
-   * @return transportDetails
+   * Décision(s) d&#39;orientation prise par le médecin régulateur :  - A
+   *transporter - Laisser sur place
+   * @return orientation
    **/
   @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
@@ -194,8 +214,142 @@ public class Decision {
 
   @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransportDetails(TransportDetails transportDetails) {
-    this.transportDetails = transportDetails;
+  public void setOrientation(String orientation) {
+    this.orientation = orientation;
+  }
+
+  public Decision transportation(List<String> transportation) {
+
+    this.transportation = transportation;
+    return this;
+  }
+
+  public Decision addTransportationItem(String transportationItem) {
+    if (this.transportation == null) {
+      this.transportation = new ArrayList<>();
+    }
+    this.transportation.add(transportationItem);
+    return this;
+  }
+
+  /**
+   * Get transportation
+   * @return transportation
+   **/
+  @JsonProperty(JSON_PROPERTY_TRANSPORTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getTransportation() {
+    return transportation;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_TRANSPORTATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTransportation(List<String> transportation) {
+    if (transportation == null) {
+      return;
+    }
+    if (this.transportation == null) {
+      this.transportation = new ArrayList<>();
+    }
+    this.transportation.addAll(transportation);
+  }
+
+  public Decision concoursRequest(String concoursRequest) {
+
+    this.concoursRequest = concoursRequest;
+    return this;
+  }
+
+  /**
+   * Identifiant de la ou des demandes de concours
+   * @return concoursRequest
+   **/
+  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getConcoursRequest() {
+    return concoursRequest;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConcoursRequest(String concoursRequest) {
+    this.concoursRequest = concoursRequest;
+  }
+
+  public Decision transportationID(String transportationID) {
+
+    this.transportationID = transportationID;
+    return this;
+  }
+
+  /**
+   * Identifiant du véhicule terrestre / aérien / maritime de transport
+   *principal (&#x3D; celui dans lequel se trouve le patient), permettant
+   *d&#39;associer la décision à un véhicule spécifique + au patient.
+   * @return transportationID
+   **/
+  @JsonProperty(JSON_PROPERTY_TRANSPORTATION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTransportationID() {
+    return transportationID;
+  }
+
+  @JsonProperty(JSON_PROPERTY_TRANSPORTATION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTransportationID(String transportationID) {
+    this.transportationID = transportationID;
+  }
+
+  public Decision teamCare(String teamCare) {
+
+    this.teamCare = teamCare;
+    return this;
+  }
+
+  /**
+   * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
+   *...)
+   * @return teamCare
+   **/
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getTeamCare() {
+    return teamCare;
+  }
+
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTeamCare(String teamCare) {
+    this.teamCare = teamCare;
+  }
+
+  public Decision destination(Destination destination) {
+
+    this.destination = destination;
+    return this;
+  }
+
+  /**
+   * Get destination
+   * @return destination
+   **/
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Destination getDestination() {
+    return destination;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDestination(Destination destination) {
+    this.destination = destination;
   }
 
   @Override
@@ -210,12 +364,19 @@ public class Decision {
     return Objects.equals(this.id, decision.id) &&
         Objects.equals(this.creation, decision.creation) &&
         Objects.equals(this.type, decision.type) &&
-        Objects.equals(this.transportDetails, decision.transportDetails);
+        Objects.equals(this.orientation, decision.orientation) &&
+        Objects.equals(this.transportation, decision.transportation) &&
+        Objects.equals(this.concoursRequest, decision.concoursRequest) &&
+        Objects.equals(this.transportationID, decision.transportationID) &&
+        Objects.equals(this.teamCare, decision.teamCare) &&
+        Objects.equals(this.destination, decision.destination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, creation, type, transportDetails);
+    return Objects.hash(id, creation, type, orientation, transportation,
+                        concoursRequest, transportationID, teamCare,
+                        destination);
   }
 
   @Override
@@ -225,8 +386,21 @@ public class Decision {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    transportDetails: ")
-        .append(toIndentedString(transportDetails))
+    sb.append("    orientation: ")
+        .append(toIndentedString(orientation))
+        .append("\n");
+    sb.append("    transportation: ")
+        .append(toIndentedString(transportation))
+        .append("\n");
+    sb.append("    concoursRequest: ")
+        .append(toIndentedString(concoursRequest))
+        .append("\n");
+    sb.append("    transportationID: ")
+        .append(toIndentedString(transportationID))
+        .append("\n");
+    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
+    sb.append("    destination: ")
+        .append(toIndentedString(destination))
         .append("\n");
     sb.append("}");
     return sb.toString();

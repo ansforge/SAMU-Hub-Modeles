@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/common.openapi.yaml",
+  "inputSpec": "./input/RC-REF.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/distribution-element/",
+  "templateDir": "templates/wrapper/",
   "globalProperties": {
-    "models": "DistributionElement",
+    "models": "referenceWrapper",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,
@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.common",
+    "modelPackage": "com.hubsante.model.reference",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,

@@ -474,7 +474,7 @@ components:
           - France
         freetext:
           type: string
-          title: Agent
+          title: agent
           x-health-only: false
           x-cols: 6
           example: example.json#/location/freetext
@@ -787,8 +787,61 @@ components:
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
-        transportDetails:
-          $ref: '#/components/schemas/transportDetails'
+        orientation:
+          type: string
+          title: Type de devenir du patient
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/orientation
+          description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
+            gulateur : \n- A transporter\n- Laisser sur place"
+          examples:
+          - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
+        transportation:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Type de ressource/moyen
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/decision/0/transportation/0
+            description: "Type de transport \xE0 engager pour la prise en charge du\
+              \ patient"
+            examples:
+            - 'SMUR '
+        concoursRequest:
+          type: string
+          title: ID demande de concours
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/concoursRequest
+          description: 'Identifiant de la ou des demandes de concours '
+          examples:
+          - None
+        transportationID:
+          type: string
+          title: "ID vecteur partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportationID
+          description: "Identifiant du v\xE9hicule terrestre / a\xE9rien / maritime\
+            \ de transport principal (= celui dans lequel se trouve le patient), permettant\
+            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient. "
+          examples:
+          - None
+        teamCare:
+          type: string
+          title: Niveau de prise en charge
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/teamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
+            dicale, standard, incomplete, ...)"
+          examples:
+          - "M\xE9dical, param\xE9dical, secouriste"
+        destination:
+          $ref: '#/components/schemas/destination'
       additionalProperties: false
       example: example.json#/decision/0
     additionalInformation:

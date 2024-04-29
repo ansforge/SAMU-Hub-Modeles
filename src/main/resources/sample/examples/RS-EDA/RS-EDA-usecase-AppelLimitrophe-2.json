@@ -1,41 +1,36 @@
 {
   "createCaseHealth": {
     "caseId": "fr.health.samu950-DRFR159502401000233",
-    "senderCaseId": "fr.health.samu950-DRFR159502401000233",
+    "senderCaseId": "DRFR159502401000233",
     "creation": "2024-01-10T14:07:00+01:00",
-    "referenceVersion": "1.3",
+    "referenceVersion": "1.4",
     "qualification": {
       "whatsHappen": {
         "code": "C02.05.01",
-        "label": "Pathologie / Maladie - Médicale ",
-        "freetext": "Douleurs thoraciques"
+        "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
       },
       "locationKind": {
         "code": "L03.01.00",
-        "label": "Local administratif",
+        "label": "Local d’activité professionnelle; Local administratif",
         "freetext": "service comptabilité de la SARL Toto"
       },
-      "riskThreat": [],
       "healthMotive": {
         "code": "M03.06",
-        "label": "Douleur thoracique ",
-        "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
+        "label": "Problème médical; Douleur thoracique "
       },
       "victims": {
         "count": "1",
-        "mainVictim": "ADULT",
-        "freetext": "Femme de 47 ans"
+        "mainVictim": "ADULT"
       },
       "details": {
         "priority": "P0",
-        "attribution": "Médecin urgentiste",
+        "attribution": "MU",
         "type": "D"
       }
     },
     "location": {
       "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
-      "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
-      "name": "rue des Bois Rochefort",
+      "name": "SARL Toto",
       "detailedAddress": {
         "complete": "18 rue des Bois Rochefort 78500 Sartrouville",
         "number": "18",
@@ -49,10 +44,8 @@
         "name": "Sartrouville",
         "inseeCode": "78586"
       },
-      "externalInfo": [],
       "country": "FR",
       "access": {
-        "accessCode": [],
         "floor": "4",
         "interphone": "SARL TOTO",
         "elevator": "Esc D",
@@ -76,7 +69,7 @@
       "id": "fr.health.samu950-DRFR159502401000233",
       "reception": "2024-01-10T14:05:00+01:00",
       "reporting": "STANDARD",
-      "freetext": "Problème médical",
+      "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque",
       "caller": {
         "callerContact": {
           "type": "PHNADD",
@@ -93,17 +86,15 @@
           "lastName": "LENA",
           "firstName": "Magda"
         },
-        "type": "TIERS",
-        "communication": ""
+        "type": "TIERS"
       },
       "alertSource": {
         "channel": "Personne",
         "type": "PHNADD",
-        "detail": "calltakerContact"
+        "detail": "0607080928"
       },
       "location": {
         "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
-        "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
         "name": "SARL TOTO",
         "detailedAddress": {
           "complete": "18 rue des Bois Rochefort",
@@ -118,10 +109,8 @@
           "name": "Sartrouville",
           "inseeCode": "78586"
         },
-        "externalInfo": [],
         "country": "FR",
         "access": {
-          "accessCode": [],
           "interphone": "SARL TOTO",
           "floor": "4",
           "elevator": "ESC D",
@@ -143,46 +132,36 @@
       "qualification": {
         "whatsHappen": {
           "code": "C02.05.01",
-          "label": "Pathologie / Maladie - Médicale ",
-          "freetext": "Douleurs thoraciques"
+          "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
         },
         "locationKind": {
           "code": "L03.01.00",
-          "label": "Local administratif– service comptabilité ",
+          "label": "Local d’activité professionnelle; Local administratif",
           "freetext": "service comptabilité de la SARL Toto"
         },
-        "riskThreat": [],
         "healthMotive": {
           "code": "M03.06",
-          "label": "Douleur thoracique",
-          "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
+          "label": "Problème médical; Douleur thoracique "
         },
         "victims": {
           "count": "1",
-          "mainVictim": "ADULT",
-          "freetext": "Femme de 47 ans"
+          "mainVictim": "ADULT"
         },
         "details": {
-          "attribution": "Médecin urgentiste",
+          "attribution": "MU",
           "priority": "P0"
         }
       },
       "callTaker": {
-        "organization": "fr.health.samu770.chuLyon.crra.regulationN3",
-        "controlRoom": "CRRA 770",
-        "role": "ARM",
-        "calltakerId": "id5678",
+        "organization": "fr.health.samu950",
+        "controlRoom": "CRRA 95",
         "calltakerContact": {
-            "type": "PHNADD",
-            "detail": "0607080928"
+          "type": "PHNADD",
+          "detail": "060102030406"
         }
-      },
-      "attachment": []
+      }
     },
-    "freetext": "Problème médical",
-    "decision": [],
-    "newAlert": [],
-    "owner": "fr.health.samu780",
+    "owner": "fr.health.samu950",
     "additionalInformation": {
       "customMap": [
         {
@@ -193,7 +172,23 @@
         }
       ]
     },
-    "patient": [],
-    "operator": []
+    "patient": [
+      {
+        "detail": {
+          "age": "P47Y"
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Ouardia Boudadi",
+            "firstName": "Ouardia",
+            "lastName": "Boudadi"
+          },
+          "strictFeatures": {
+            "sex": "FEM"
+          }
+        },
+        "id": "fr.health.samu950-DRFR159502401000233.P11"
+      }
+    ]
   }
 }
