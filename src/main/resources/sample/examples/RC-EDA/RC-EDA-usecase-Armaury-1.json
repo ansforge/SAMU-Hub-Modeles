@@ -85,6 +85,7 @@
           "detail": "0607080901"
         },
         "callbackContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0607080901"
         },
