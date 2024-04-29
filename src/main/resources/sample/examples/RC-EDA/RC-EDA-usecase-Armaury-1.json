@@ -8,7 +8,7 @@
       "whatsHappen": {
         "code": "C01.01.04",
         "label": "2-roues",
-        "freetext": "autres véhicules présents sur site d'intervention sont génés à la circulation"
+        "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
       },
       "locationKind": {
         "code": "L02.01.00",
@@ -19,18 +19,18 @@
         {
           "code": "R22",
           "label": "Gêne à la circulation",
-          "freetext": "risque lié aux voitures"
+          "freetext": "Risque lié aux voitures"
         }
       ],
       "healthMotive": {
-        "code": "M03.11, M02.07",
-        "label": "Céphalée, migraines, Traumatisme sérieux, plaie intermédiaire",
+        "code": "M02.01",
+        "label": "Saignements",
         "freetext": "Portait un casque de protection"
       },
       "victims": {
         "count": "SEVERAL",
         "mainVictim": "ADULT",
-        "freetext": "Deuxième victime présente saignements legers aux mains et genoux"
+        "freetext": "Deuxième victime présente saignements et brûlures legères aux mains et genoux"
       }
     },
     "location": {
@@ -48,7 +48,7 @@
       },
       "city": {
         "name": "Lyon",
-        "inseeCode": "69123"
+        "inseeCode": "69382"
       },
       "geometry": {
         "obsDatime": "2023-11-03T10:04:00+01:00" ,
@@ -77,9 +77,10 @@
       "id": "samu690-20231103-AL01234",
       "reception": "2023-11-03T10:02:00+01:00",
       "reporting": "STANDARD",
-      "freetext": "suite collision avec un autre vélo sur piste cyclable, gonflement du geneoux, grosses égratinures, maux de tête",
+      "freetext": "suite collision avec un autre vélo sur piste cyclable, saignements aux niveaux des genoux, gonflement du geneoux, grosses égratinures, maux de tête",
       "caller": {
         "callerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0607080901"
         },
@@ -94,11 +95,6 @@
           "lastName": "Armaury",
           "firstName": "Albane"
         }
-      },
-      "alertSource": {
-        "channel": "Personne",
-        "type": "PHNADD",
-        "detail": "calltakerContact"
       },
       "location": {
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
@@ -115,7 +111,7 @@
         },
         "city": {
           "name": "Lyon",
-          "inseeCode": "65002"
+          "inseeCode": "69382"
         },
         "geometry": {
           "obsDatime": "2023-11-03T10:04:00+01:00" ,
@@ -144,7 +140,7 @@
         "whatsHappen": {
           "code": "C01.01.04",
           "label": "2-roues",
-          "freetext": "autres véhicules présents sur site d'intervention sont génés à la circulation"
+          "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
         },
         "locationKind": {
           "code": "L02.01.00",
@@ -159,14 +155,14 @@
           }
         ],
         "healthMotive": {
-          "code": "M03.11, M02.07",
-          "label": "Céphalée, migraines, Traumatisme sérieux, plaie intermédiaire",
+          "code": "M02.01",
+          "label": "Saignements",
           "freetext": "Portait un casque de protection"
         },
         "victims": {
           "count": "SEVERAL",
           "mainVictim": "ADULT",
-          "freetext": "Deuxième victime présente saignements legers aux mains et genoux"
+          "freetext": "Deuxième victime présente saignements et brûlures legères aux mains et genoux"
         }
       },
       "callTaker": {
@@ -174,6 +170,7 @@
         "controlRoom": "CRRA 690",
         "role": "ARM",
         "calltakerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0607080901"
         },
