@@ -104,9 +104,12 @@
         "id": "SGO050-20230605-AL0123",
         "reception": "2022-09-27T08:21:06+02:00",
         "reporting": "STANDARD",
-        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux",
+        "freetext": [
+            "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
+        ],
         "caller": {
             "callerContact": {
+                "channel": "Personne",
                 "type": "PHNADD",
                 "detail": "0671830530"
             },
@@ -121,13 +124,6 @@
                 "firstName": "Jean"
             }
         },
-        "alertSource": {
-            "channel": "Personne",
-            "type": "PHNADD",
-            "detail": "0671830530"
-        },
-        "location": {},
-        "qualification": {},
         "callTaker": {
             "organization": "fr.health.samu440",
             "controlRoom": "CGA, CGO 21, CRRA 44, ...",
@@ -250,16 +246,18 @@
             "id": "None",
             "creation": "2022-09-27T08:23:34+02:00",
             "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
-            "orientation": "laiss\u00e9 sur place, d\u00e9c\u00e9d\u00e9, ou transport\u00e9",
-            "transportation": [
-                "SMUR "
-            ],
-            "concoursRequest": "None",
-            "transportationID": "None",
-            "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
-            "destination": {
-                "type": "None",
-                "destinationLocation": {}
+            "transportDetails": {
+                "orientation": "laiss\u00e9 sur place, d\u00e9c\u00e9d\u00e9, ou transport\u00e9",
+                "transportation": [
+                    "SMUR "
+                ],
+                "concoursRequest": "None",
+                "transportationID": "None",
+                "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
+                "destination": {
+                    "type": "None",
+                    "destinationLocation": {}
+                }
             }
         }
     ],

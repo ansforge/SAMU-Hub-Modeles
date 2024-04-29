@@ -85,7 +85,7 @@ L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé a
 Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",X,X
 64,65,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,,X,X
 65,66,,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
-66,67,,agent,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
+66,67,,Agent,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
 67,68,Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communication d'urgence. Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte.
 L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.
 Le système destinataire reçoit une affaire lorsqu'une alerte le concerne. S'il ne gère pas les affaires multi-alertes, il doit donc créer une affaire seulement sur l'alerte le concernant : pour une création d'affaire, sur l'alerte initiale et pour une mise à jour d'affaire, sur la nouvelle alerte (en récupérant éventuellement des informations de l'alerte initiale en historique).
@@ -105,83 +105,81 @@ Prend les valeurs définies dans la nomenclature CISU :
 - standard : STANDARD
 - signalé : ATTENTION
 Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION",X,X
-71,72,,Informations complémentaires sur l'alerte,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'alerte.,"Déclenchement téléalarme, voisine sur les lieux",comment,freetext,OG,Observations générales (texte libre),,,1.0,0..1,,string,,,X,X
+71,72,,Informations complémentaires sur l'alerte,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'alerte.,"Déclenchement téléalarme, voisine sur les lieux",comment,freetext,OG,Observations générales (texte libre),,,1.0,0..n,,string,,,X,X
 72,73,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X
-73,74,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,0..1,X,contact,,,X,X
-74,75,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X
-75,76,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X
-76,77,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agit du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X
-77,78,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
-78,79,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"le patient lui-même, père, mère",,type,,,,,,0..1,,string,,,X,X
-79,80,,,Difficulté de communication,,,,Indique si le requérant rencontre ou non des difficulté de communication,"Malentendant, aucune difficulté de communication",,communication,,,,,,0..1,,string,,,X,X
-80,81,,,Informations complémentaires sur le requérant,,,,"Informations complémentaires sur le requérant 
+73,74,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,,X,X
+74,75,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,,X,X
+75,76,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X
+76,77,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X
+77,78,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X
+78,79,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
+79,80,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"le patient lui-même, père, mère",,type,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-TYPAPPLT,X,X
+80,81,,,Difficulté de communication,,,,Indique si le requérant rencontre ou non des difficulté de communication,"Malentendant, aucune difficulté de communication",,communication,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PBAPL,X,X
+81,82,,,Informations complémentaires sur le requérant,,,,"Informations complémentaires sur le requérant 
 Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif",témoin de l'accident,freetext,freetext,CH,Profil appelant,,,1.0,0..1,,string,,,X,X
-81,82,,,Prénom & nom usuel,,,,,,callerName,detailedName,,,,,,0..1,X,detailedName,,,X,X
-82,83,,,,Prénom et nom,,,"Prénom et nom usuel du requérant.
+82,83,,,Prénom & nom usuel,,,,,,callerName,detailedName,,,,,,0..1,X,detailedName,,,X,X
+83,84,,,,Prénom et nom,,,"Prénom et nom usuel du requérant.
 Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : ""{callerFirstName} {callerLastName}"".
 Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.",Jean Dupont,,complete,AN/AP,"Nom
 Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName},X,X
-83,84,,,,Nom,,,Nom du requérant,Dupont,,lastName,,,,,,0..1,,string,,,X,X
-84,85,,,,Prénom,,,"Prénom du réquérant.
+84,85,,,,Nom,,,Nom du requérant,Dupont,,lastName,,,,,,0..1,,string,,,X,X
+85,86,,,,Prénom,,,"Prénom du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,,firstName,,,,,,0..1,,string,,,X,X
-85,86,,Source de l'alerte,,,,,"Source de contact permettant d'identifier le requérant.
-Dans le cas où le requérant est à l'origine de l'alerte les objets contactSource et callerContact sont valorisés de la même façon",,source,alertSource,,,,,,1..1,X,contactSource,,,X,X
-86,87,,,Canal,,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,,X,X
-87,88,,,Type de contact de la source,,,,"Type de l'URI utilisée par la source, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X
-88,89,,,URI de contact de la source,,,,Valeur de l'URI utilisée par la source,0671830530,,detail,,,,,,1..1,,string,,,X,X
-89,90,,Localisation de l'alerte,# Voir createCase.location (type location),,,,Cet élément peut représenter la localisation du requérant si celle-ci diffère de celle de l'événement ou pointer vers la localisation d'accès à l'affaire si elle est confondue avec celle de l'alerte.,,alertLocation,location,AB/AV/AC/AZ,"Particule et nom de voie, nom/code commune",,,,1..1,X,location,,,X,X
-90,91,,Qualification,# Voir qualification,,,,Qualification de l'alerte.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X
-91,92,,Agent,,,,,Objet permettant d'identifer et recontacter l'opérateur ayant traité l'alerte,,callTaker,callTaker,,,,,,1..1,X,callTaker,,,X,X
-92,93,,,Service d'urgence,,,,"Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
+86,91,,Localisation de l'alerte,# Voir createCase.location (type location),,,,Cet élément peut représenter la localisation du requérant si celle-ci diffère de celle de l'événement ou pointer vers la localisation d'accès à l'affaire si elle est confondue avec celle de l'alerte.,,alertLocation,location,AB/AV/AC/AZ,"Particule et nom de voie, nom/code commune",,,,1..1,X,location,,,X,
+87,92,,Qualification,# Voir qualification,,,,Qualification de l'alerte.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,
+88,93,,Agent,,,,,Objet permettant d'identifer et recontacter l'opérateur ayant traité l'alerte,,callTaker,callTaker,,,,,,1..1,X,callTaker,,,X,X
+89,94,,,Service d'urgence,,,,"Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
 Se référer au DSF pour la structure normée des organisations.
 Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",fr.health.samu440,organization,,,,,,,1..1,,string,,,X,X
-93,94,,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,,,,,,,1..1,,string,,,X,X
-94,95,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,,,X,X
-95,96,,,Contact de l'agent,# Voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerURI,calltakerContact,,,,,,0..1,X,contact,,,X,X
-96,97,,,ID de l'agent,,,,"Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)",id1234,calltakerId,,O1,Code de l'opérateur ayant pris l'appel,,,,0..1,,string,,,X,X
-97,98,,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
+90,95,,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,,,,,,,1..1,,string,,,X,X
+91,96,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,,,X,X
+92,97,,,Contact de l'agent,# Voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerURI,calltakerContact,,,,,,0..1,X,contact,,,X,X
+93,98,,,ID de l'agent,,,,"Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)",id1234,calltakerId,,O1,Code de l'opérateur ayant pris l'appel,,,,0..1,,string,,,X,X
+94,99,,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
 Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
 
 ",,resource,attachment,,,,,,0..n,X,attachment,,,X,X
-98,99,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X
-99,100,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,,X,X
-100,101,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,,X,X
-101,102,,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
+95,100,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X
+96,101,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,,X,X
+97,102,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,,X,X
+98,103,,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
 Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?",https://hub.esante.gouv.fr/resourceExample,URI,,,,,,,1..1,,string,,,X,X
-102,103,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,X
-103,104,,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
+99,104,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,X
+100,105,,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
 La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X
-109,110,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
-110,111,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,,,id,,,,,,1..1,,string,,,X,X
-124,125,,Identité INS,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,X,X
-131,132,,,Traits stricts de l'identité,,,,"L’Identité Nationale de Santé (INS) permet de référencer les données de santé avec une identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé.
+106,111,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X
+107,112,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,fr.health.samu044.DRFR15DDXAAJJJ00000.P00,,id,,,,,,1..1,,string,,,X,X
+121,126,,Identité INS,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,X,X
+128,133,,,Traits stricts de l'identité,,,,"L’Identité Nationale de Santé (INS) permet de référencer les données de santé avec une identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé.
 Elle est composée : 
  - Du matricule INS (NIR - numéro d’inscription au répertoire national des personnes physiques - ou NIA – numéro identifiant attente - de l’individu). Concrètement, ce numéro correspond au numéro de sécurité sociale pour les ouvrants-droits, c’est-à-dire la très grande majorité des personnes majeures. Pour les autres assurés, ce numéro figure sur leur attestation de sécurité sociale et sera affiché dans l’espace numérique de santé (Mon espace santé) ; 
 - Des cinq traits stricts de référence (nom de naissance, prénom(s) de naissance, date de naissance, sexe, lieu de naissance).",,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,,X,X
-135,136,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
-136,137,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,,X,X
-138,139,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
-157,158,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
-158,159,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
-159,160,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
-160,161,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,0..1,,string,X,,X,X
-161,162,,Type de devenir du patient,,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
+132,137,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X
+133,138,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE,X,X
+135,140,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X
+146,151,,Informations complémentaires sur le patient,,,,,Correspond à la zone de commentaire renseigné par patient créé/identifié,,,freetext,,,,,,0..n,,string,,,X,X
+155,160,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,X,X
+156,161,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X
+157,162,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X
+158,163,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPEDEC,X,X
+164,169,,Décision de transport/orientation,,,,,,,,transportDetails,,,,,,0..1,X,transportDetails,,,X,X
+165,170,,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
-- Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,0..1,,string,X,,X,X
-162,163,,Type de ressource/moyen,,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
-163,164,,ID demande de concours,,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X
-164,165,,ID vecteur partagé,,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X
-165,166,,Niveau de prise en charge,,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,0..1,,string,,,X,X
-166,167,,Destination,,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
-167,168,,,Type de destination,,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
-168,169,,,Localisation de la destination,# Voir type location,,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X
-169,170,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+- Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,,X,X
+166,171,,,Type de ressource/moyen,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
+167,172,,,ID demande de concours,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X
+168,173,,,ID vecteur partagé,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X
+169,174,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,,,X,X
+170,175,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
+171,176,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
+172,177,,,,Localisation de la destination,# Voir type location,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X
+173,178,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
-170,171,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
-171,172,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
-172,173,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
-173,174,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
-174,175,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
-175,176,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-176,177,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..1,,string,,,X,X
+174,179,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+175,180,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
+176,181,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
+177,182,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
+178,183,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
+179,184,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
+180,185,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..n,,string,,,X,X

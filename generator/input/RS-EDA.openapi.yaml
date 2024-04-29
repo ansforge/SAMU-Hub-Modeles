@@ -474,7 +474,7 @@ components:
           - France
         freetext:
           type: string
-          title: agent
+          title: Agent
           x-health-only: false
           x-cols: 6
           example: example.json#/location/freetext
@@ -493,9 +493,6 @@ components:
       - reception
       - reporting
       - caller
-      - alertSource
-      - location
-      - qualification
       - callTaker
       properties:
         id:
@@ -553,23 +550,20 @@ components:
           examples:
           - STANDARD
         freetext:
-          type: string
-          title: "Informations compl\xE9mentaires sur l'alerte"
+          type: array
           x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/freetext
-          description: "Texte libre permettant de donner des informations suppl\xE9\
-            mentaires concernant l'alerte."
-          examples:
-          - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les lieux"
+          items:
+            type: string
+            title: "Informations compl\xE9mentaires sur l'alerte"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/initialAlert/freetext/0
+            description: "Texte libre permettant de donner des informations suppl\xE9\
+              mentaires concernant l'alerte."
+            examples:
+            - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les lieux"
         caller:
           $ref: '#/components/schemas/caller'
-        alertSource:
-          $ref: '#/components/schemas/contactSource'
-        location:
-          $ref: '#/components/schemas/location'
-        qualification:
-          $ref: '#/components/schemas/qualification'
         callTaker:
           $ref: '#/components/schemas/callTaker'
         attachment:
@@ -787,61 +781,8 @@ components:
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
-        orientation:
-          type: string
-          title: Type de devenir du patient
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/orientation
-          description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
-            gulateur : \n- A transporter\n- Laisser sur place"
-          examples:
-          - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
-        transportation:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Type de ressource/moyen
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/decision/0/transportation/0
-            description: "Type de transport \xE0 engager pour la prise en charge du\
-              \ patient"
-            examples:
-            - 'SMUR '
-        concoursRequest:
-          type: string
-          title: ID demande de concours
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/concoursRequest
-          description: 'Identifiant de la ou des demandes de concours '
-          examples:
-          - None
-        transportationID:
-          type: string
-          title: "ID vecteur partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportationID
-          description: "Identifiant du v\xE9hicule terrestre / a\xE9rien / maritime\
-            \ de transport principal (= celui dans lequel se trouve le patient), permettant\
-            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient. "
-          examples:
-          - None
-        teamCare:
-          type: string
-          title: Niveau de prise en charge
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/teamCare
-          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
-            dicale, standard, incomplete, ...)"
-          examples:
-          - "M\xE9dical, param\xE9dical, secouriste"
-        destination:
-          $ref: '#/components/schemas/destination'
+        transportDetails:
+          $ref: '#/components/schemas/transportDetails'
       additionalProperties: false
       example: example.json#/decision/0
     additionalInformation:
@@ -1411,6 +1352,12 @@ components:
           example: example.json#/qualification/details/priority
           description: "D\xE9crit la priorit\xE9 de r\xE9gulation m\xE9dicale du dossier\
             \ : P0, P1, P2, P3"
+          enum:
+          - P0
+          - P1
+          - P2
+          - P3
+          - NR
           examples:
           - P1
       additionalProperties: false
@@ -2275,60 +2222,6 @@ components:
           $ref: '#/components/schemas/detailedName'
       additionalProperties: false
       example: example.json#/initialAlert/caller
-    contactSource:
-      type: object
-      title: Source de l'alerte
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - channel
-      - type
-      - detail
-      properties:
-        channel:
-          type: string
-          title: Canal
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/alertSource/channel
-          description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
-            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
-          examples:
-          - Personne
-        type:
-          type: string
-          title: Type de contact de la source
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/alertSource/type
-          description: "Type de l'URI utilis\xE9e par la source, cf. nomenclature\
-            \ EMSI"
-          enum:
-          - PSTADD
-          - EMLADD
-          - IPADD
-          - FTPADD
-          - WWWADD
-          - PHNADD
-          - FAXADD
-          - PMRADD
-          examples:
-          - PHNADD
-        detail:
-          type: string
-          title: URI de contact de la source
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/alertSource/detail
-          description: "Valeur de l'URI utilis\xE9e par la source"
-          examples:
-          - 0671830530
-      additionalProperties: false
-      example: example.json#/initialAlert/alertSource
-      examples:
-      - channel: Personne
-        type: PHNADD
-        detail: 0671830530
     callTaker:
       type: object
       title: Agent
@@ -2476,9 +2369,20 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
+      - channel
       - type
       - detail
       properties:
+        channel:
+          type: string
+          title: Canal
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/initialAlert/caller/callerContact/channel
+          description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
+            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
+          examples:
+          - Personne
         type:
           type: string
           title: "Type de contact du requ\xE9rant"
@@ -2510,7 +2414,8 @@ components:
       additionalProperties: false
       example: example.json#/initialAlert/caller/callerContact
       examples:
-      - type: PHNADD
+      - channel: Personne
+        type: PHNADD
         detail: 0671830530
     detailedName:
       type: object
@@ -2631,7 +2536,6 @@ components:
           description: "Age du patient.\nAu format Dur\xE9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
             \ en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois, semaines\
             \ ou jours)"
-          pattern: P[0-9]{1,3}[YMWD]
           examples:
           - P6Y
         careLevel:
@@ -3064,7 +2968,7 @@ components:
         freetext: None
     transportDetails:
       type: object
-      title: "D\xE9cision de transport"
+      title: "D\xE9cision de transport/orientation"
       x-display: expansion-panels
       x-health-only: false
       required:

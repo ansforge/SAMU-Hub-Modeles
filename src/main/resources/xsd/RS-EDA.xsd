@@ -370,15 +370,8 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte.</documentation>
-                </annotation>
-            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
             <element name="caller" type="x:caller"/>
-            <element name="alertSource" type="x:contactSource"/>
-            <element name="location" type="x:location"/>
-            <element name="qualification" type="x:qualification"/>
             <element name="callTaker" type="x:callTaker"/>
             <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
         </sequence>
@@ -476,30 +469,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="orientation" type="string">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
-- A transporter
-- Laisser sur place</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="transportationID" type="string">
-                <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="teamCare" type="string">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
+            <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -943,10 +913,19 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="priority" type="string">
+            <element minOccurs="0" name="priority">
                 <annotation>
                     <documentation>Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="P0"/>
+                        <enumeration value="P1"/>
+                        <enumeration value="P2"/>
+                        <enumeration value="P3"/>
+                        <enumeration value="NR"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -1524,37 +1503,6 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
         </sequence>
     </complexType>
-    <complexType name="contactSource">
-        <sequence>
-            <element name="channel" type="string">
-                <annotation>
-                    <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
-                </annotation>
-            </element>
-            <element name="type">
-                <annotation>
-                    <documentation>Type de l'URI utilisée par la source, cf. nomenclature EMSI</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="PSTADD"/>
-                        <enumeration value="EMLADD"/>
-                        <enumeration value="IPADD"/>
-                        <enumeration value="FTPADD"/>
-                        <enumeration value="WWWADD"/>
-                        <enumeration value="PHNADD"/>
-                        <enumeration value="FAXADD"/>
-                        <enumeration value="PMRADD"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="detail" type="string">
-                <annotation>
-                    <documentation>Valeur de l'URI utilisée par la source</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="callTaker">
         <sequence>
             <element name="organization" type="string">
@@ -1620,6 +1568,11 @@ La ressource est hashée avec le protocole SHA-256</documentation>
     </complexType>
     <complexType name="contact">
         <sequence>
+            <element name="channel" type="string">
+                <annotation>
+                    <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
+                </annotation>
+            </element>
             <element name="type">
                 <annotation>
                     <documentation>Type de l'URI utilisée par le requérant, cf. nomenclature EMSI</documentation>
@@ -1694,16 +1647,11 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     <documentation>Taille en centimètres</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="age">
+            <element minOccurs="0" name="age" type="string">
                 <annotation>
                     <documentation>Age du patient.
 Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <pattern value="P[0-9]{1,3}[YMWD]"/>
-                    </restriction>
-                </simpleType>
             </element>
             <element minOccurs="0" name="careLevel">
                 <simpleType>

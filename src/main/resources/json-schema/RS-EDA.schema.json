@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.04.24",
+    "version": "24.04.29",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -457,7 +457,7 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "agent",
+                    "title": "Agent",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/freetext",
@@ -477,9 +477,6 @@
                 "reception",
                 "reporting",
                 "caller",
-                "alertSource",
-                "location",
-                "qualification",
                 "callTaker"
             ],
             "properties": {
@@ -514,24 +511,19 @@
                     ]
                 },
                 "freetext": {
-                    "type": "string",
-                    "title": "Informations compl\u00e9mentaires sur l'alerte",
+                    "type": "array",
                     "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/freetext",
-                    "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte."
+                    "items": {
+                        "type": "string",
+                        "title": "Informations compl\u00e9mentaires sur l'alerte",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/initialAlert/freetext/0",
+                        "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte."
+                    }
                 },
                 "caller": {
                     "$ref": "#/definitions/caller"
-                },
-                "alertSource": {
-                    "$ref": "#/definitions/contactSource"
-                },
-                "location": {
-                    "$ref": "#/definitions/location"
-                },
-                "qualification": {
-                    "$ref": "#/definitions/qualification"
                 },
                 "callTaker": {
                     "$ref": "#/definitions/callTaker"
@@ -739,52 +731,8 @@
                         "PASPLUS"
                     ]
                 },
-                "orientation": {
-                    "type": "string",
-                    "title": "Type de devenir du patient",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
-                },
-                "transportation": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Type de ressource/moyen",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/decision/0/transportation/0",
-                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
-                    }
-                },
-                "concoursRequest": {
-                    "type": "string",
-                    "title": "ID demande de concours",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/concoursRequest",
-                    "description": "Identifiant de la ou des demandes de concours "
-                },
-                "transportationID": {
-                    "type": "string",
-                    "title": "ID vecteur partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportationID",
-                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
-                },
-                "teamCare": {
-                    "type": "string",
-                    "title": "Niveau de prise en charge",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
-                },
-                "destination": {
-                    "$ref": "#/definitions/destination"
+                "transportDetails": {
+                    "$ref": "#/definitions/transportDetails"
                 }
             },
             "additionalProperties": false,
@@ -1325,7 +1273,14 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/priority",
-                    "description": "D\u00e9crit la priorit\u00e9 de r\u00e9gulation m\u00e9dicale du dossier : P0, P1, P2, P3"
+                    "description": "D\u00e9crit la priorit\u00e9 de r\u00e9gulation m\u00e9dicale du dossier : P0, P1, P2, P3",
+                    "enum": [
+                        "P0",
+                        "P1",
+                        "P2",
+                        "P3",
+                        "NR"
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -2115,55 +2070,6 @@
             "additionalProperties": false,
             "example": "example.json#/initialAlert/caller"
         },
-        "contactSource": {
-            "type": "object",
-            "title": "Source de l'alerte",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "channel",
-                "type",
-                "detail"
-            ],
-            "properties": {
-                "channel": {
-                    "type": "string",
-                    "title": "Canal",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/alertSource/channel",
-                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
-                },
-                "type": {
-                    "type": "string",
-                    "title": "Type de contact de la source",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/alertSource/type",
-                    "description": "Type de l'URI utilis\u00e9e par la source, cf. nomenclature EMSI",
-                    "enum": [
-                        "PSTADD",
-                        "EMLADD",
-                        "IPADD",
-                        "FTPADD",
-                        "WWWADD",
-                        "PHNADD",
-                        "FAXADD",
-                        "PMRADD"
-                    ]
-                },
-                "detail": {
-                    "type": "string",
-                    "title": "URI de contact de la source",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/alertSource/detail",
-                    "description": "Valeur de l'URI utilis\u00e9e par la source"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/initialAlert/alertSource"
-        },
         "callTaker": {
             "type": "object",
             "title": "Agent",
@@ -2280,10 +2186,19 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
+                "channel",
                 "type",
                 "detail"
             ],
             "properties": {
+                "channel": {
+                    "type": "string",
+                    "title": "Canal",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/caller/callerContact/channel",
+                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
+                },
                 "type": {
                     "type": "string",
                     "title": "Type de contact du requ\u00e9rant",
@@ -2432,8 +2347,7 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/age",
-                    "description": "Age du patient.\nAu format Dur\u00e9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unit\u00e9 de dur\u00e9e (ann\u00e9es, mois, semaines ou jours)",
-                    "pattern": "P[0-9]{1,3}[YMWD]"
+                    "description": "Age du patient.\nAu format Dur\u00e9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unit\u00e9 de dur\u00e9e (ann\u00e9es, mois, semaines ou jours)"
                 },
                 "careLevel": {
                     "type": "string",
@@ -2806,7 +2720,7 @@
         },
         "transportDetails": {
             "type": "object",
-            "title": "D\u00e9cision de transport",
+            "title": "D\u00e9cision de transport/orientation",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [

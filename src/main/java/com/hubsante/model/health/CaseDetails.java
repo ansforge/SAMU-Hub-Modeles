@@ -240,8 +240,47 @@ public class CaseDetails {
   public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
   private AttributionEnum attribution;
 
+  /**
+   * Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3
+   */
+  public enum PriorityEnum {
+    P0("P0"),
+
+    P1("P1"),
+
+    P2("P2"),
+
+    P3("P3"),
+
+    NR("NR");
+
+    private String value;
+
+    PriorityEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PriorityEnum fromValue(String value) {
+      for (PriorityEnum b : PriorityEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_PRIORITY = "priority";
-  private String priority;
+  private PriorityEnum priority;
 
   public CaseDetails() {}
 
@@ -317,7 +356,7 @@ public class CaseDetails {
     this.attribution = attribution;
   }
 
-  public CaseDetails priority(String priority) {
+  public CaseDetails priority(PriorityEnum priority) {
 
     this.priority = priority;
     return this;
@@ -330,13 +369,13 @@ public class CaseDetails {
   @JsonProperty(JSON_PROPERTY_PRIORITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getPriority() {
+  public PriorityEnum getPriority() {
     return priority;
   }
 
   @JsonProperty(JSON_PROPERTY_PRIORITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPriority(String priority) {
+  public void setPriority(PriorityEnum priority) {
     this.priority = priority;
   }
 
