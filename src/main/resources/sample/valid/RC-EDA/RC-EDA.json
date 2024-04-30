@@ -32,78 +32,84 @@
               }
             ],
             "createCase": {
-              "caseId": "samuA:CA126B445579GD4A67AV",
-              "senderCaseId": "CA126B445579GD4A67AV",
-              "creation": "2022-09-27T08:23:34+02:00",
-              "referenceVersion": "1.2",
+              "caseId": "fr.health.samu690.DRFR15690240430050",
+              "senderCaseId": "DRFR15690240430050",
+              "creation": "2023-11-03T10:03:00+01:00",
+              "referenceVersion": "1.3",
               "qualification": {
                 "whatsHappen": {
-                  "code": "C07.13.02",
-                  "label": "Rod\u00e9o automobile",
-                  "freetext": "None"
+                  "code": "C01.01.04",
+                  "label": "2-roues",
+                  "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
                 },
                 "riskThreat": [
                   {
-                    "code": "C01.00.00",
+                    "code": "R22",
                     "label": "Gêne à la circulation",
-                    "freetext": "risque lié aux voitures"
+                    "freetext": "Risque lié aux voitures"
                   },
                   {
-                    "code": "C01.01.00",
-                    "label": "Second riskThreat",
-                    "freetext": "champ libre"
+                    "code": "R23",
+                    "label": "Second risque",
+                    "freetext": "Second risque"
                   }
                 ],
                 "victims": {
                   "count": "SEVERAL",
                   "mainVictim": "ADULT",
-                  "freetext": "Deuxième victime présente saignements legers aux mains et genoux"
+                  "freetext": "Deuxième victime présente saignements et brûlures legères aux mains et genoux"
                 }
               },
               "location": {
-                "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
-                "locLabel": "Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",
-                "name": "Lycée Pierre de Coubertin",
-                "detailedAddress": {
-                  "complete": "9 Bd du Montparnasse",
-                  "number": "9, 4bis, PK10, ...",
-                  "wayName": {
-                    "complete": "Boulevard du Montparnasse",
-                    "type": "Boulevard",
-                    "name": "du Montparnasse"
+                  "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+                  "locLabel": "8 quai des Célestins - 69002 Lyon",
+                  "name": "Quai des Célestins",
+                  "externalLocationId": [
+                    {
+                      "source": "FINESS administratif",
+                      "value": "'920000650"
+                    }
+                  ],
+                  "detailedAddress": {
+                    "complete": "8 quai des Célestins",
+                    "number": "8",
+                    "wayName": {
+                      "complete": "quai des Célestins",
+                      "type": "Quai",
+                      "name": "des Célestins"
                   }
                 },
                 "city": {
-                  "name": "Lille",
-                  "inseeCode": "59350",
-                  "detail": "Quartier Melun Nord, Lhomme, ..."
+                  "name": "Lyon",
+                  "inseeCode": "69382",
+                  "detail": "Quartier Melun Nord"
                 },
                 "access": {
-                  "floor": "RDC, 1, 2, ...",
-                  "roomNumber": "A16, 37, 104, ...",
+                  "floor": "RDC",
+                  "roomNumber": "A16",
                   "interphone": "Dupont",
                   "accessCode": [
                     "1234A",
                     "4321B"
                   ],
                   "elevator": "C3",
-                  "buildingName": "Batiment B, Batiment Maunoury",
-                  "entrance": "Zone Sud, Porte 1, ...",
-                  "entity": "Infirmerie, service finance, service cardiologie, ..."
+                  "buildingName": "Batiment B",
+                  "entrance": "Zone Sud",
+                  "entity": "Infirmerie"
                 },
                 "geometry": {
-                  "obsDatime": "2022-09-27T08:23:34+02:00",
+                  "obsDatime": "2023-11-03T10:04:00+01:00",
                   "point": {
                     "coord": {
                       "lat": 48.866667,
                       "lon": 2.333333,
-                      "height": 120,
+                      "height": 168,
                       "heading": 96,
                       "speed": 34,
                       "precision": "ADDRESS"
                     },
                     "sysCoord": "EPSG-4326"
-                  },
+                 },
                   "sketch": "None"
                 },
                 "externalInfo": [
@@ -117,58 +123,58 @@
                 "freetext": "Clé derrière le pot de fleur"
               },
               "initialAlert": {
-                "id": "SGO050-20230605-AL0123",
-                "reception": "2022-09-27T08:21:06+02:00",
+                "id": "samu690-20231103-AL01234",
+                "reception": "2023-11-03T10:02:00+01:00",
                 "reporting": "STANDARD",
-                "freetext": "Déclenchement téléalarme, voisine sur les liens",
+                "freetext": [
+                  "suite collision avec un autre vélo sur piste cyclable, saignements aux niveaux des genoux, gonflement du geneoux, grosses égratinures, maux de tête"
+                  ],
                 "caller": {
                   "callerContact": {
+                    "channel": "Personne",
                     "type": "PHNADD",
-                    "detail": "0671830530"
+                    "detail": "0607080901"
                   },
                   "callbackContact": {
+                    "channel": "Personne",
                     "type": "PHNADD",
-                    "detail": "0671830530"
+                    "detail": "0607080901"
                   },
                   "language": "FR",
-                  "freetext": "Père",
+                  "freetext": "épouse de la victime",
                   "detailedName": {
-                    "complete": "Jean Dupont",
-                    "lastName": "Dupont",
-                    "firstName": "Jean"
+                    "complete": "Albane Armaury",
+                    "lastName": "Armaury",
+                    "firstName": "Albane"
                   }
-                },
-                "alertSource": {
-                  "channel": "Personne",
-                  "type": "PHNADD",
-                  "detail": "0671830530"
                 },
                 "location": {
                   "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
-                  "name": "Lycée Pierre de Coubertin",
+                  "name": "Quai des Célestins",
                   "country": "FR"
                 },
                 "qualification": {
                   "whatsHappen": {
-                    "code": "C07.13.02",
-                    "label": "Rodéo automobile",
-                    "freetext": "None"
+                    "code": "C01.01.04",
+                    "label": "2-roues",
+                    "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
                   }
                 },
                 "callTaker": {
-                  "organization": "FR:Administration:44:samu44:crra:regulationN3",
-                  "controlRoom": "CGA, CGO 21, CRRA 44, ...",
+                  "organization": "fr.health.samu690",
+                  "controlRoom": "CRRA 690",
                   "role": "ARM",
                   "calltakerContact": {
+                    "channel": "Personne",
                     "type": "PHNADD",
-                    "detail": "0671830530"
+                    "detail": "0607080901"
                   },
                   "calltakerId": "id1234"
                 },
                 "attachment": [
                   {
-                    "description": "photo, carte, ...",
-                    "mimeType": "PDF, XML, JPEG, ...",
+                    "description": "photo",
+                    "mimeType": "JPEG",
                     "size": 1235,
                     "URI": "https://hub.esante.gouv.fr/resourceExample",
                     "derefURI": "None",
@@ -186,7 +192,9 @@
                   }
                 ]
               },
-              "freetext": "None"
+              "freetext": [
+                "None"
+              ]
             }
           }
         }

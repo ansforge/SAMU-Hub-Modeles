@@ -45,11 +45,7 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'affaire</documentation>
-                </annotation>
-            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="qualification">
@@ -374,15 +370,8 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Texte libre permettant de donner des informations supplémentaires concernant l'alerte.</documentation>
-                </annotation>
-            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
             <element name="caller" type="x:caller"/>
-            <element name="alertSource" type="x:contactSource"/>
-            <element name="location" type="x:location"/>
-            <element name="qualification" type="x:qualification"/>
             <element name="callTaker" type="x:callTaker"/>
             <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
         </sequence>
@@ -415,6 +404,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
             <element minOccurs="0" name="resourceDiagnosis" type="x:resourceDiagnosis"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="medicalNote">
@@ -465,35 +455,21 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                     <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="type" type="string">
+            <element name="type">
                 <annotation>
                     <documentation>Type de décision prise</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="CONSEIL"/>
+                        <enumeration value="PMT"/>
+                        <enumeration value="INTER"/>
+                        <enumeration value="ORIENT"/>
+                        <enumeration value="PASPLUS"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="orientation" type="string">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
-- A transporter
-- Laisser sur place</documentation>
-                </annotation>
-            </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="transportationID" type="string">
-                <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="teamCare" type="string">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
+            <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -523,10 +499,193 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="locationKind">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec un code la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="L01.00.00"/>
+                        <enumeration value="L01.01.00"/>
+                        <enumeration value="L01.01.01"/>
+                        <enumeration value="L01.01.02"/>
+                        <enumeration value="L01.01.03"/>
+                        <enumeration value="L01.01.04"/>
+                        <enumeration value="L01.02.00"/>
+                        <enumeration value="L01.02.01"/>
+                        <enumeration value="L01.02.02"/>
+                        <enumeration value="L01.02.03"/>
+                        <enumeration value="L01.02.04"/>
+                        <enumeration value="L01.02.05"/>
+                        <enumeration value="L01.02.06"/>
+                        <enumeration value="L01.02.07"/>
+                        <enumeration value="L01.02.08"/>
+                        <enumeration value="L01.02.09"/>
+                        <enumeration value="L01.02.10"/>
+                        <enumeration value="L01.02.11"/>
+                        <enumeration value="L01.02.12"/>
+                        <enumeration value="L01.03.00"/>
+                        <enumeration value="L01.03.01"/>
+                        <enumeration value="L01.03.02"/>
+                        <enumeration value="L01.03.03"/>
+                        <enumeration value="L01.04.00"/>
+                        <enumeration value="L02.00.00"/>
+                        <enumeration value="L02.01.00"/>
+                        <enumeration value="L02.02.00"/>
+                        <enumeration value="L02.02.01"/>
+                        <enumeration value="L02.02.02"/>
+                        <enumeration value="L02.02.03"/>
+                        <enumeration value="L02.02.04"/>
+                        <enumeration value="L02.02.05"/>
+                        <enumeration value="L02.03.00"/>
+                        <enumeration value="L02.03.01"/>
+                        <enumeration value="L02.03.02"/>
+                        <enumeration value="L02.03.03"/>
+                        <enumeration value="L02.04.00"/>
+                        <enumeration value="L02.05.00"/>
+                        <enumeration value="L02.05.01"/>
+                        <enumeration value="L02.05.02"/>
+                        <enumeration value="L02.05.03"/>
+                        <enumeration value="L02.05.04"/>
+                        <enumeration value="L02.05.05"/>
+                        <enumeration value="L02.05.06"/>
+                        <enumeration value="L02.05.07"/>
+                        <enumeration value="L02.05.08"/>
+                        <enumeration value="L02.05.09"/>
+                        <enumeration value="L02.05.10"/>
+                        <enumeration value="L02.05.11"/>
+                        <enumeration value="L02.05.12"/>
+                        <enumeration value="L02.05.13"/>
+                        <enumeration value="L02.05.14"/>
+                        <enumeration value="L02.05.15"/>
+                        <enumeration value="L02.05.16"/>
+                        <enumeration value="L02.06.00"/>
+                        <enumeration value="L02.06.01"/>
+                        <enumeration value="L02.06.02"/>
+                        <enumeration value="L02.06.03"/>
+                        <enumeration value="L02.06.04"/>
+                        <enumeration value="L02.06.05"/>
+                        <enumeration value="L02.06.06"/>
+                        <enumeration value="L02.06.07"/>
+                        <enumeration value="L02.06.08"/>
+                        <enumeration value="L02.07.00"/>
+                        <enumeration value="L02.07.01"/>
+                        <enumeration value="L02.07.02"/>
+                        <enumeration value="L02.08.00"/>
+                        <enumeration value="L03.00.00"/>
+                        <enumeration value="L03.01.00"/>
+                        <enumeration value="L03.02.00"/>
+                        <enumeration value="L03.03.00"/>
+                        <enumeration value="L03.04.00"/>
+                        <enumeration value="L03.05.00"/>
+                        <enumeration value="L04.00.00"/>
+                        <enumeration value="L04.01.00"/>
+                        <enumeration value="L04.02.00"/>
+                        <enumeration value="L04.02.01"/>
+                        <enumeration value="L04.02.02"/>
+                        <enumeration value="L04.02.03"/>
+                        <enumeration value="L04.03.00"/>
+                        <enumeration value="L04.03.01"/>
+                        <enumeration value="L04.03.02"/>
+                        <enumeration value="L04.03.03"/>
+                        <enumeration value="L04.04.00"/>
+                        <enumeration value="L04.05.00"/>
+                        <enumeration value="L04.06.00"/>
+                        <enumeration value="L04.06.01"/>
+                        <enumeration value="L04.06.02"/>
+                        <enumeration value="L04.06.03"/>
+                        <enumeration value="L04.06.04"/>
+                        <enumeration value="L04.06.05"/>
+                        <enumeration value="L04.07.00"/>
+                        <enumeration value="L04.07.01"/>
+                        <enumeration value="L04.07.02"/>
+                        <enumeration value="L04.07.03"/>
+                        <enumeration value="L04.08.00"/>
+                        <enumeration value="L04.08.01"/>
+                        <enumeration value="L04.08.02"/>
+                        <enumeration value="L04.09.00"/>
+                        <enumeration value="L04.09.01"/>
+                        <enumeration value="L04.09.02"/>
+                        <enumeration value="L04.10.00"/>
+                        <enumeration value="L04.11.00"/>
+                        <enumeration value="L04.11.01"/>
+                        <enumeration value="L04.11.02"/>
+                        <enumeration value="L04.11.03"/>
+                        <enumeration value="L04.11.04"/>
+                        <enumeration value="L04.12.00"/>
+                        <enumeration value="L04.12.01"/>
+                        <enumeration value="L04.12.02"/>
+                        <enumeration value="L04.12.03"/>
+                        <enumeration value="L04.12.04"/>
+                        <enumeration value="L04.13.00"/>
+                        <enumeration value="L04.13.01"/>
+                        <enumeration value="L04.13.02"/>
+                        <enumeration value="L04.13.03"/>
+                        <enumeration value="L04.13.04"/>
+                        <enumeration value="L04.14.00"/>
+                        <enumeration value="L04.14.01"/>
+                        <enumeration value="L04.14.02"/>
+                        <enumeration value="L04.15.00"/>
+                        <enumeration value="L04.16.00"/>
+                        <enumeration value="L05.00.00"/>
+                        <enumeration value="L05.01.00"/>
+                        <enumeration value="L05.01.01"/>
+                        <enumeration value="L05.01.02"/>
+                        <enumeration value="L05.01.03"/>
+                        <enumeration value="L05.01.04"/>
+                        <enumeration value="L05.02.00"/>
+                        <enumeration value="L05.02.01"/>
+                        <enumeration value="L05.02.02"/>
+                        <enumeration value="L05.02.03"/>
+                        <enumeration value="L05.02.04"/>
+                        <enumeration value="L05.03.00"/>
+                        <enumeration value="L05.03.01"/>
+                        <enumeration value="L05.03.02"/>
+                        <enumeration value="L05.04.00"/>
+                        <enumeration value="L05.04.01"/>
+                        <enumeration value="L05.04.02"/>
+                        <enumeration value="L05.04.03"/>
+                        <enumeration value="L05.04.04"/>
+                        <enumeration value="L05.04.05"/>
+                        <enumeration value="L05.04.06"/>
+                        <enumeration value="L05.05.00"/>
+                        <enumeration value="L05.06.00"/>
+                        <enumeration value="L05.07.00"/>
+                        <enumeration value="L06.00.00"/>
+                        <enumeration value="L06.01.00"/>
+                        <enumeration value="L06.01.01"/>
+                        <enumeration value="L06.01.02"/>
+                        <enumeration value="L06.01.03"/>
+                        <enumeration value="L06.01.04"/>
+                        <enumeration value="L06.01.05"/>
+                        <enumeration value="L06.01.06"/>
+                        <enumeration value="L06.01.07"/>
+                        <enumeration value="L06.01.08"/>
+                        <enumeration value="L06.02.00"/>
+                        <enumeration value="L06.03.00"/>
+                        <enumeration value="L06.03.01"/>
+                        <enumeration value="L06.03.02"/>
+                        <enumeration value="L06.03.03"/>
+                        <enumeration value="L06.03.04"/>
+                        <enumeration value="L06.03.05"/>
+                        <enumeration value="L06.04.00"/>
+                        <enumeration value="L06.05.00"/>
+                        <enumeration value="L06.05.01"/>
+                        <enumeration value="L06.05.02"/>
+                        <enumeration value="L06.06.00"/>
+                        <enumeration value="L06.06.01"/>
+                        <enumeration value="L06.06.02"/>
+                        <enumeration value="L06.06.03"/>
+                        <enumeration value="L06.06.04"/>
+                        <enumeration value="L06.07.00"/>
+                        <enumeration value="L06.07.01"/>
+                        <enumeration value="L06.07.02"/>
+                        <enumeration value="L07.00.00"/>
+                        <enumeration value="L07.01.00"/>
+                        <enumeration value="L07.01.01"/>
+                        <enumeration value="L07.02.00"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -543,10 +702,51 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="riskThreat">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec un code la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="R01"/>
+                        <enumeration value="R02"/>
+                        <enumeration value="R03"/>
+                        <enumeration value="R04"/>
+                        <enumeration value="R05"/>
+                        <enumeration value="R06"/>
+                        <enumeration value="R07"/>
+                        <enumeration value="R08"/>
+                        <enumeration value="R09"/>
+                        <enumeration value="R10"/>
+                        <enumeration value="R11"/>
+                        <enumeration value="R12"/>
+                        <enumeration value="R13"/>
+                        <enumeration value="R14"/>
+                        <enumeration value="R15"/>
+                        <enumeration value="R16"/>
+                        <enumeration value="R17"/>
+                        <enumeration value="R18"/>
+                        <enumeration value="R19"/>
+                        <enumeration value="R20"/>
+                        <enumeration value="R21"/>
+                        <enumeration value="R22"/>
+                        <enumeration value="R23"/>
+                        <enumeration value="R24"/>
+                        <enumeration value="R25"/>
+                        <enumeration value="R26"/>
+                        <enumeration value="R27"/>
+                        <enumeration value="R28"/>
+                        <enumeration value="R29"/>
+                        <enumeration value="R30"/>
+                        <enumeration value="R31"/>
+                        <enumeration value="R32"/>
+                        <enumeration value="R33"/>
+                        <enumeration value="R34"/>
+                        <enumeration value="R35"/>
+                        <enumeration value="R36"/>
+                        <enumeration value="R37"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -563,10 +763,66 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="healthMotive">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec un code la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="M01.00"/>
+                        <enumeration value="M01.01"/>
+                        <enumeration value="M01.02"/>
+                        <enumeration value="M01.03"/>
+                        <enumeration value="M02.00"/>
+                        <enumeration value="M02.01"/>
+                        <enumeration value="M02.02"/>
+                        <enumeration value="M02.03"/>
+                        <enumeration value="M02.04"/>
+                        <enumeration value="M02.05"/>
+                        <enumeration value="M02.06"/>
+                        <enumeration value="M02.07"/>
+                        <enumeration value="M02.08"/>
+                        <enumeration value="M02.09"/>
+                        <enumeration value="M02.10"/>
+                        <enumeration value="M03.00"/>
+                        <enumeration value="M03.01"/>
+                        <enumeration value="M03.02"/>
+                        <enumeration value="M03.03"/>
+                        <enumeration value="M03.04"/>
+                        <enumeration value="M03.05"/>
+                        <enumeration value="M03.06"/>
+                        <enumeration value="M03.07"/>
+                        <enumeration value="M03.08"/>
+                        <enumeration value="M03.09"/>
+                        <enumeration value="M03.10"/>
+                        <enumeration value="M03.11"/>
+                        <enumeration value="M03.12"/>
+                        <enumeration value="M03.13"/>
+                        <enumeration value="M03.14"/>
+                        <enumeration value="M03.15"/>
+                        <enumeration value="M03.16"/>
+                        <enumeration value="M03.17"/>
+                        <enumeration value="M03.18"/>
+                        <enumeration value="M03.19"/>
+                        <enumeration value="M03.20"/>
+                        <enumeration value="M03.21"/>
+                        <enumeration value="M03.22"/>
+                        <enumeration value="M04.00"/>
+                        <enumeration value="M04.01"/>
+                        <enumeration value="M04.02"/>
+                        <enumeration value="M04.03"/>
+                        <enumeration value="M04.04"/>
+                        <enumeration value="M05.00"/>
+                        <enumeration value="M05.01"/>
+                        <enumeration value="M05.02"/>
+                        <enumeration value="M06.00"/>
+                        <enumeration value="M06.01"/>
+                        <enumeration value="M06.02"/>
+                        <enumeration value="M06.03"/>
+                        <enumeration value="M06.04"/>
+                        <enumeration value="M07.00"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
@@ -608,19 +864,68 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
                     <restriction base="string">
                         <enumeration value="D"/>
                         <enumeration value="DR"/>
-                        <enumeration value="DRM &#10;NOMENC_TYPEDOS"/>
+                        <enumeration value="DRM"/>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="attribution" type="string">
+            <element minOccurs="0" name="attribution">
                 <annotation>
                     <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="DRM"/>
+                        <enumeration value="DRMMRU"/>
+                        <enumeration value="MU"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="GERIA"/>
+                        <enumeration value="PEDIA"/>
+                        <enumeration value="PSY"/>
+                        <enumeration value="TOXICOL"/>
+                        <enumeration value="INDISPMU"/>
+                        <enumeration value="SSE"/>
+                        <enumeration value="PLANBLAN"/>
+                        <enumeration value="PCSAMU"/>
+                        <enumeration value="DRMMRL"/>
+                        <enumeration value="MG"/>
+                        <enumeration value="INDISPMG"/>
+                        <enumeration value="ABSML"/>
+                        <enumeration value="DR"/>
+                        <enumeration value="DREG"/>
+                        <enumeration value="DRARM"/>
+                        <enumeration value="DRMED"/>
+                        <enumeration value="DRPHARMA"/>
+                        <enumeration value="DRDENT"/>
+                        <enumeration value="DRINFO"/>
+                        <enumeration value="DOS-SIS"/>
+                        <enumeration value="DOS-FDO"/>
+                        <enumeration value="D"/>
+                        <enumeration value="D-MALV"/>
+                        <enumeration value="ERR"/>
+                        <enumeration value="NRP"/>
+                        <enumeration value="MALV"/>
+                        <enumeration value="FAX"/>
+                        <enumeration value="ITERATIF"/>
+                        <enumeration value="D-IDENT"/>
+                        <enumeration value="ADMIN"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="priority" type="string">
+            <element minOccurs="0" name="priority">
                 <annotation>
                     <documentation>Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="P0"/>
+                        <enumeration value="P1"/>
+                        <enumeration value="P2"/>
+                        <enumeration value="P3"/>
+                        <enumeration value="NR"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -889,7 +1194,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
     </complexType>
     <complexType name="caller">
         <sequence>
-            <element minOccurs="0" name="callerContact" type="x:contact"/>
+            <element name="callerContact" type="x:contact"/>
             <element minOccurs="0" name="callbackContact" type="x:contact"/>
             <element minOccurs="0" name="language">
                 <annotation>
@@ -1141,15 +1446,53 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="type" type="string">
+            <element minOccurs="0" name="type">
                 <annotation>
                     <documentation>Indique la relation du requérant avec l'incident / le patient / la victime</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SUJET"/>
+                        <enumeration value="FAMILLE"/>
+                        <enumeration value="TIERS"/>
+                        <enumeration value="POMPIER"/>
+                        <enumeration value="AMBULANC"/>
+                        <enumeration value="SECOUR"/>
+                        <enumeration value="MED"/>
+                        <enumeration value="MEDSOS"/>
+                        <enumeration value="MRL"/>
+                        <enumeration value="EFFML"/>
+                        <enumeration value="SANTE"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AIDESOIN"/>
+                        <enumeration value="SF"/>
+                        <enumeration value="AIDEDOM"/>
+                        <enumeration value="FDO-MILI"/>
+                        <enumeration value="ADM-TUTL"/>
+                        <enumeration value="VIP"/>
+                        <enumeration value="OBJCONNC"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="INCONNU"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="communication" type="string">
+            <element minOccurs="0" name="communication">
                 <annotation>
                     <documentation>Indique si le requérant rencontre ou non des difficulté de communication</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AUCUNE"/>
+                        <enumeration value="MUET"/>
+                        <enumeration value="VISION"/>
+                        <enumeration value="LANGUE"/>
+                        <enumeration value="PANIQUE"/>
+                        <enumeration value="HOSTILE"/>
+                        <enumeration value="AGITE"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="IMPOSS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
@@ -1158,37 +1501,6 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
                 </annotation>
             </element>
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
-        </sequence>
-    </complexType>
-    <complexType name="contactSource">
-        <sequence>
-            <element name="channel" type="string">
-                <annotation>
-                    <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
-                </annotation>
-            </element>
-            <element name="type">
-                <annotation>
-                    <documentation>Type de l'URI utilisée par la source, cf. nomenclature EMSI</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="PSTADD"/>
-                        <enumeration value="EMLADD"/>
-                        <enumeration value="IPADD"/>
-                        <enumeration value="FTPADD"/>
-                        <enumeration value="WWWADD"/>
-                        <enumeration value="PHNADD"/>
-                        <enumeration value="FAXADD"/>
-                        <enumeration value="PMRADD"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="detail" type="string">
-                <annotation>
-                    <documentation>Valeur de l'URI utilisée par la source</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="callTaker">
@@ -1256,6 +1568,11 @@ La ressource est hashée avec le protocole SHA-256</documentation>
     </complexType>
     <complexType name="contact">
         <sequence>
+            <element name="channel" type="string">
+                <annotation>
+                    <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
+                </annotation>
+            </element>
             <element name="type">
                 <annotation>
                     <documentation>Type de l'URI utilisée par le requérant, cf. nomenclature EMSI</documentation>
@@ -1330,18 +1647,22 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     <documentation>Taille en centimètres</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="age">
+            <element minOccurs="0" name="age" type="string">
                 <annotation>
                     <documentation>Age du patient.
 Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
                 </annotation>
+            </element>
+            <element minOccurs="0" name="careLevel">
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="P[0-9]{1,3}[YMWD]"/>
+                        <enumeration value="R1"/>
+                        <enumeration value="R2"/>
+                        <enumeration value="R3"/>
+                        <enumeration value="R4"/>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="careLevel" type="string"/>
         </sequence>
     </complexType>
     <complexType name="hypothesis">
@@ -1493,10 +1814,18 @@ Pierre Alain Jacques</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="sex" type="string">
+            <element minOccurs="0" name="sex">
                 <annotation>
                     <documentation>Sexe du patient</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MASC"/>
+                        <enumeration value="FEM"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="INCONNU"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="birthPlaceCode" type="decimal">
                 <annotation>
@@ -1543,6 +1872,33 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
+        </sequence>
+    </complexType>
+    <complexType name="transportDetails">
+        <sequence>
+            <element name="orientation" type="string">
+                <annotation>
+                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
+- A transporter
+- Laisser sur place</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="concoursRequest" type="string">
+                <annotation>
+                    <documentation>Identifiant de la ou des demandes de concours </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="transportationID" type="string">
+                <annotation>
+                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
+                </annotation>
+            </element>
+            <element name="teamCare" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
     </complexType>
     <complexType name="destination">

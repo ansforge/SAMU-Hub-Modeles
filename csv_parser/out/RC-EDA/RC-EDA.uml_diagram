@@ -119,14 +119,14 @@ strict digraph {
                 <TR>
                 <TD ><B>callerContact</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >channel <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	callerContact -> caller [headlabel=1 taillabel="0..1"]
+	callerContact -> caller [headlabel=1 taillabel=1]
 	callbackContact [label=<<TABLE>
                 <TR>
                 <TD ><B>callbackContact</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >channel <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	callbackContact -> caller [headlabel=1 taillabel="0..1"]
 	detailedName [label=<<TABLE>
@@ -143,13 +143,6 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet caller</I></TD></TR><TR><TD BORDER="0" >language <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >communication <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	caller -> initialAlert [headlabel=1 taillabel=1]
-	alertSource [label=<<TABLE>
-                <TR>
-                <TD ><B>alertSource</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet contactSource</I></TD></TR><TR><TD BORDER="0" >channel <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	alertSource -> initialAlert [headlabel=1 taillabel=1]
 	externalLocationId [label=<<TABLE>
                 <TR>
                 <TD ><B>externalLocationId</B></TD>
@@ -266,7 +259,7 @@ strict digraph {
                 <TR>
                 <TD ><B>calltakerContact</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >channel <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >detail <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	calltakerContact -> callTaker [headlabel=1 taillabel="0..1"]
 	callTaker [label=<<TABLE>
@@ -287,7 +280,7 @@ strict digraph {
                 <TR>
                 <TD ><B>initialAlert</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet alert</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reception <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reporting <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet alert</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reception <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reporting <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	initialAlert -> createCase [headlabel=1 taillabel="0..1"]
 	strictFeatures [label=<<TABLE>
@@ -315,7 +308,7 @@ strict digraph {
                 <TR>
                 <TD ><B>patient</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 	patient -> createCase [headlabel=1 taillabel="0..*"]
 	externalLocationId [label=<<TABLE>
@@ -394,12 +387,19 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	destination -> decision [headlabel=1 taillabel="0..1"]
+	destination -> transportDetails [headlabel=1 taillabel="0..1"]
+	transportDetails [label=<<TABLE>
+                <TR>
+                <TD ><B>transportDetails</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet transportDetails</I></TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >concoursRequest <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportationID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	transportDetails -> decision [headlabel=1 taillabel="0..1"]
 	decision [label=<<TABLE>
                 <TR>
                 <TD ><B>decision</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportation <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >concoursRequest <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >transportationID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	decision -> createCase [headlabel=1 taillabel="0..*"]
 	newAlert [label=<<TABLE>
@@ -427,6 +427,6 @@ strict digraph {
                 <TR>
                 <TD ><B>createCase</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet createCase</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet createCase</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 }

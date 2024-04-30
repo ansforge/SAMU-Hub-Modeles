@@ -48,8 +48,112 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class RiskThreat {
+
+  /**
+   * A valoriser avec un code la nomenclature associée
+   */
+  public enum CodeEnum {
+    R01("R01"),
+
+    R02("R02"),
+
+    R03("R03"),
+
+    R04("R04"),
+
+    R05("R05"),
+
+    R06("R06"),
+
+    R07("R07"),
+
+    R08("R08"),
+
+    R09("R09"),
+
+    R10("R10"),
+
+    R11("R11"),
+
+    R12("R12"),
+
+    R13("R13"),
+
+    R14("R14"),
+
+    R15("R15"),
+
+    R16("R16"),
+
+    R17("R17"),
+
+    R18("R18"),
+
+    R19("R19"),
+
+    R20("R20"),
+
+    R21("R21"),
+
+    R22("R22"),
+
+    R23("R23"),
+
+    R24("R24"),
+
+    R25("R25"),
+
+    R26("R26"),
+
+    R27("R27"),
+
+    R28("R28"),
+
+    R29("R29"),
+
+    R30("R30"),
+
+    R31("R31"),
+
+    R32("R32"),
+
+    R33("R33"),
+
+    R34("R34"),
+
+    R35("R35"),
+
+    R36("R36"),
+
+    R37("R37");
+
+    private String value;
+
+    CodeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CodeEnum fromValue(String value) {
+      for (CodeEnum b : CodeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_CODE = "code";
-  private String code;
+  private CodeEnum code;
 
   public static final String JSON_PROPERTY_LABEL = "label";
   private String label;
@@ -59,7 +163,7 @@ public class RiskThreat {
 
   public RiskThreat() {}
 
-  public RiskThreat code(String code) {
+  public RiskThreat code(CodeEnum code) {
 
     this.code = code;
     return this;
@@ -72,13 +176,13 @@ public class RiskThreat {
   @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getCode() {
+  public CodeEnum getCode() {
     return code;
   }
 
   @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCode(String code) {
+  public void setCode(CodeEnum code) {
     this.code = code;
   }
 
