@@ -864,7 +864,7 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
                     <restriction base="string">
                         <enumeration value="D"/>
                         <enumeration value="DR"/>
-                        <enumeration value="DRM &#10;NOMENC_TYPEDOS"/>
+                        <enumeration value="DRM"/>
                     </restriction>
                 </simpleType>
             </element>

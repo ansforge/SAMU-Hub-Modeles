@@ -105,7 +105,7 @@ public class CaseDetails {
 
     DR("DR"),
 
-    DRM_NOMENC_TYPEDOS("DRM  NOMENC_TYPEDOS");
+    DRM("DRM");
 
     private String value;
 

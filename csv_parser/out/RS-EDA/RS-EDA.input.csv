@@ -22,8 +22,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 12,13,,Détails du dossier ,,,,,,,,details,,,,,,0..1,X,caseDetails,,,,X
 13,14,,,Etat du dossier,,,,"cf. cycle SI SAMU  : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU. 
 Echanger à minima l'information que le dossier est clôturé.",,,status,,,,,,0..1,,string,X,"ENUM: Programmé, Actif , Achevé, Validé , Clôturé , Classé, Archivé",,X
-14,15,,,Type de dossier,,,,D/DR/DRM si cycle SI-SAMU implémenté,DR,,type,,,,,,0..1,,string,X,"ENUM: D, DR, DRM 
-NOMENC_TYPEDOS",,X
+14,15,,,Type de dossier,,,,D/DR/DRM si cycle SI-SAMU implémenté,DR,,type,,,,,,0..1,,string,X,"ENUM: D, DR, DRM",,X
 15,16,,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.",MU,,attribution,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-DEVENIRD,,X
 16,17,,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,,priority,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PRIORITE,,X
 17,18,,Patients-Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,X
@@ -92,7 +91,7 @@ L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé a
 Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",X,X
 64,65,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,,X,X
 65,66,,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X
-66,67,,Agent,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
+66,67,,Informations complémentaires sur la localisation,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X
 67,68,Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communication d'urgence. Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte.
 L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.
 Le système destinataire reçoit une affaire lorsqu'une alerte le concerne. S'il ne gère pas les affaires multi-alertes, il doit donc créer une affaire seulement sur l'alerte le concernant : pour une création d'affaire, sur l'alerte initiale et pour une mise à jour d'affaire, sur la nouvelle alerte (en récupérant éventuellement des informations de l'alerte initiale en historique).

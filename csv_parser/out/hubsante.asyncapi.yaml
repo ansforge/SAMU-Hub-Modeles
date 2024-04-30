@@ -716,7 +716,7 @@ components:
           - France
         freetext:
           type: string
-          title: Agent
+          title: "Informations compl\xE9mentaires sur la localisation"
           x-health-only: false
           x-cols: 6
           example: example.json#/location/freetext
@@ -2942,7 +2942,7 @@ components:
           enum:
           - D
           - DR
-          - "DRM \nNOMENC_TYPEDOS"
+          - DRM
           examples:
           - DR
         attribution:
