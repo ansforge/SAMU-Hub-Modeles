@@ -77,20 +77,20 @@
                 "city": {
                   "name": "Lyon",
                   "inseeCode": "69382",
-                  "detail": "Quartier Melun Nord, Lhomme, ..."
+                  "detail": "Quartier Melun Nord"
                 },
                 "access": {
-                  "floor": "RDC, 1, 2, ...",
-                  "roomNumber": "A16, 37, 104, ...",
+                  "floor": "RDC",
+                  "roomNumber": "A16",
                   "interphone": "Dupont",
                   "accessCode": [
                     "1234A",
                     "4321B"
                   ],
                   "elevator": "C3",
-                  "buildingName": "Batiment B, Batiment Maunoury",
-                  "entrance": "Zone Sud, Porte 1, ...",
-                  "entity": "Infirmerie, service finance, service cardiologie, ..."
+                  "buildingName": "Batiment B",
+                  "entrance": "Zone Sud",
+                  "entity": "Infirmerie"
                 },
                 "geometry": {
                   "obsDatime": "2023-11-03T10:04:00+01:00",
@@ -168,8 +168,8 @@
                 },
                 "attachment": [
                   {
-                    "description": "photo, carte, ...",
-                    "mimeType": "PDF, XML, JPEG, ...",
+                    "description": "photo",
+                    "mimeType": "JPEG",
                     "size": 1235,
                     "URI": "https://hub.esante.gouv.fr/resourceExample",
                     "derefURI": "None",
