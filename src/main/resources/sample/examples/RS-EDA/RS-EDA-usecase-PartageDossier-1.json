@@ -7,8 +7,7 @@
     "qualification": {
       "whatsHappen": {
         "code": "C02.08.05",
-        "label": "Par objet tranchant ou perforant",
-        "freetext": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
+        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
       },
       "locationKind": {
         "code": "L01.01.04",
@@ -65,11 +64,13 @@
       "caller": {
         "callerContact": {
           "type": "PHNADD",
-          "detail": "0607080915"
+          "detail": "0607080915",
+          "channel": "Personne"
         },
         "callbackContact": {
           "type": "PHNADD",
-          "detail": "0607080915"
+          "detail": "0607080915",
+          "channel": "Personne"
         },
         "language": "FR",
         "freetext": "Fils de la victime",
@@ -85,7 +86,8 @@
         "controlRoom": "CRRA 77",
         "calltakerContact": {
           "type": "PHNADD",
-          "detail": "0102030405"
+          "detail": "0102030405",
+          "channel": "Personne"
         }
       }
     },
