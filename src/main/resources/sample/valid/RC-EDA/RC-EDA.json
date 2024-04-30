@@ -47,6 +47,11 @@
                     "code": "R22",
                     "label": "Gêne à la circulation",
                     "freetext": "Risque lié aux voitures"
+                  },
+                  {
+                    "code": "R23",
+                    "label": "Second risque",
+                    "freetext": "Second risque"
                   }
                 ],
                 "victims": {
