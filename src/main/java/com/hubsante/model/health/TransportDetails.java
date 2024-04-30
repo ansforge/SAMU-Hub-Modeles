@@ -35,17 +35,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.Destination;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
  * TransportDetails
  */
 @JsonPropertyOrder({TransportDetails.JSON_PROPERTY_ORIENTATION,
-                    TransportDetails.JSON_PROPERTY_TRANSPORTATION,
                     TransportDetails.JSON_PROPERTY_CONCOURS_REQUEST,
                     TransportDetails.JSON_PROPERTY_TRANSPORTATION_I_D,
                     TransportDetails.JSON_PROPERTY_TEAM_CARE,
@@ -56,9 +53,6 @@ import java.util.Objects;
 public class TransportDetails {
   public static final String JSON_PROPERTY_ORIENTATION = "orientation";
   private String orientation;
-
-  public static final String JSON_PROPERTY_TRANSPORTATION = "transportation";
-  private List<String> transportation;
 
   public static final String JSON_PROPERTY_CONCOURS_REQUEST = "concoursRequest";
   private String concoursRequest;
@@ -97,45 +91,6 @@ public class TransportDetails {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOrientation(String orientation) {
     this.orientation = orientation;
-  }
-
-  public TransportDetails transportation(List<String> transportation) {
-
-    this.transportation = transportation;
-    return this;
-  }
-
-  public TransportDetails addTransportationItem(String transportationItem) {
-    if (this.transportation == null) {
-      this.transportation = new ArrayList<>();
-    }
-    this.transportation.add(transportationItem);
-    return this;
-  }
-
-  /**
-   * Get transportation
-   * @return transportation
-   **/
-  @JsonProperty(JSON_PROPERTY_TRANSPORTATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getTransportation() {
-    return transportation;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_TRANSPORTATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransportation(List<String> transportation) {
-    if (transportation == null) {
-      return;
-    }
-    if (this.transportation == null) {
-      this.transportation = new ArrayList<>();
-    }
-    this.transportation.addAll(transportation);
   }
 
   public TransportDetails concoursRequest(String concoursRequest) {
@@ -243,7 +198,6 @@ public class TransportDetails {
     }
     TransportDetails transportDetails = (TransportDetails)o;
     return Objects.equals(this.orientation, transportDetails.orientation) &&
-        Objects.equals(this.transportation, transportDetails.transportation) &&
         Objects.equals(this.concoursRequest,
                        transportDetails.concoursRequest) &&
         Objects.equals(this.transportationID,
@@ -254,8 +208,8 @@ public class TransportDetails {
 
   @Override
   public int hashCode() {
-    return Objects.hash(orientation, transportation, concoursRequest,
-                        transportationID, teamCare, destination);
+    return Objects.hash(orientation, concoursRequest, transportationID,
+                        teamCare, destination);
   }
 
   @Override
@@ -264,9 +218,6 @@ public class TransportDetails {
     sb.append("class TransportDetails {\n");
     sb.append("    orientation: ")
         .append(toIndentedString(orientation))
-        .append("\n");
-    sb.append("    transportation: ")
-        .append(toIndentedString(transportation))
         .append("\n");
     sb.append("    concoursRequest: ")
         .append(toIndentedString(concoursRequest))

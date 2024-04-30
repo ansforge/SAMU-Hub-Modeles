@@ -1883,7 +1883,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 - Laisser sur place</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportation" type="string"/>
             <element minOccurs="0" name="concoursRequest" type="string">
                 <annotation>
                     <documentation>Identifiant de la ou des demandes de concours </documentation>

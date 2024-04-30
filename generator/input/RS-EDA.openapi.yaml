@@ -2985,22 +2985,9 @@ components:
             gulateur : \n- A transporter\n- Laisser sur place"
           examples:
           - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
-        transportation:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Type de ressource/moyen
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/decision/0/transportDetails/transportation/0
-            description: "Type de transport \xE0 engager pour la prise en charge du\
-              \ patient"
-            examples:
-            - 'SMUR '
         concoursRequest:
           type: string
-          title: ID demande de concours
+          title: ID demande de concours/de ressources
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/transportDetails/concoursRequest

@@ -239,20 +239,19 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
 165,170,,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
 - Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,,X,X
-166,171,,,Type de ressource/moyen,,,,Type de transport à engager pour la prise en charge du patient,SMUR ,,transportation,,,,,,0..n,,string,,,X,X
-167,172,,,ID demande de concours,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X
-168,173,,,ID vecteur partagé,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X
-169,174,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,,,X,X
-170,175,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
-171,176,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
-172,177,,,,Localisation de la destination,# Voir type location,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X
-173,178,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+166,172,,,ID demande de concours/de ressources,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X
+167,173,,,ID vecteur partagé,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X
+168,174,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,,NOMENCLATURE : NIVSOIN,X,X
+169,175,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X
+170,176,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X
+171,177,,,,Localisation de la destination,# Voir type location,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X
+172,178,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X
-174,179,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
-175,180,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
-176,181,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
-177,182,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
-178,183,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
-179,184,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
-180,185,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..n,,string,,,X,X
+173,179,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X
+174,180,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X
+175,181,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X
+176,182,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X
+177,183,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X
+178,184,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X
+179,185,Description de l'affaire/dossier,,,,,,Texte libre permettant de donner des informations supplémentaires concernant l'affaire,,,freetext,,,,,,0..n,,string,,,X,X

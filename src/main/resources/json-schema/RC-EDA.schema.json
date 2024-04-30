@@ -2101,21 +2101,9 @@
                     "example": "example.json#/decision/0/transportDetails/orientation",
                     "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
                 },
-                "transportation": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Type de ressource/moyen",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/decision/0/transportDetails/transportation/0",
-                        "description": "Type de transport \u00e0 engager pour la prise en charge du patient"
-                    }
-                },
                 "concoursRequest": {
                     "type": "string",
-                    "title": "ID demande de concours",
+                    "title": "ID demande de concours/de ressources",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportDetails/concoursRequest",
