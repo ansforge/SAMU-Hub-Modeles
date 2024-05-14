@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu;
+package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,123 +39,93 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * CodeLabelComment
+ * RiskThreat
  */
-@JsonPropertyOrder({CodeLabelComment.JSON_PROPERTY_CODE,
-                    CodeLabelComment.JSON_PROPERTY_LABEL,
-                    CodeLabelComment.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("codeLabelComment")
+@JsonPropertyOrder({RiskThreat.JSON_PROPERTY_CODE,
+                    RiskThreat.JSON_PROPERTY_LABEL,
+                    RiskThreat.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("riskThreat")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CodeLabelComment {
+public class RiskThreat {
 
   /**
    * A valoriser avec un code la nomenclature associée
    */
   public enum CodeEnum {
-    M01_00("M01.00"),
+    R01("R01"),
 
-    M01_01("M01.01"),
+    R02("R02"),
 
-    M01_02("M01.02"),
+    R03("R03"),
 
-    M01_03("M01.03"),
+    R04("R04"),
 
-    M02_00("M02.00"),
+    R05("R05"),
 
-    M02_01("M02.01"),
+    R06("R06"),
 
-    M02_02("M02.02"),
+    R07("R07"),
 
-    M02_03("M02.03"),
+    R08("R08"),
 
-    M02_04("M02.04"),
+    R09("R09"),
 
-    M02_05("M02.05"),
+    R10("R10"),
 
-    M02_06("M02.06"),
+    R11("R11"),
 
-    M02_07("M02.07"),
+    R12("R12"),
 
-    M02_08("M02.08"),
+    R13("R13"),
 
-    M02_09("M02.09"),
+    R14("R14"),
 
-    M02_10("M02.10"),
+    R15("R15"),
 
-    M03_00("M03.00"),
+    R16("R16"),
 
-    M03_01("M03.01"),
+    R17("R17"),
 
-    M03_02("M03.02"),
+    R18("R18"),
 
-    M03_03("M03.03"),
+    R19("R19"),
 
-    M03_04("M03.04"),
+    R20("R20"),
 
-    M03_05("M03.05"),
+    R21("R21"),
 
-    M03_06("M03.06"),
+    R22("R22"),
 
-    M03_07("M03.07"),
+    R23("R23"),
 
-    M03_08("M03.08"),
+    R24("R24"),
 
-    M03_09("M03.09"),
+    R25("R25"),
 
-    M03_10("M03.10"),
+    R26("R26"),
 
-    M03_11("M03.11"),
+    R27("R27"),
 
-    M03_12("M03.12"),
+    R28("R28"),
 
-    M03_13("M03.13"),
+    R29("R29"),
 
-    M03_14("M03.14"),
+    R30("R30"),
 
-    M03_15("M03.15"),
+    R31("R31"),
 
-    M03_16("M03.16"),
+    R32("R32"),
 
-    M03_17("M03.17"),
+    R33("R33"),
 
-    M03_18("M03.18"),
+    R34("R34"),
 
-    M03_19("M03.19"),
+    R35("R35"),
 
-    M03_20("M03.20"),
+    R36("R36"),
 
-    M03_21("M03.21"),
-
-    M03_22("M03.22"),
-
-    M04_00("M04.00"),
-
-    M04_01("M04.01"),
-
-    M04_02("M04.02"),
-
-    M04_03("M04.03"),
-
-    M04_04("M04.04"),
-
-    M05_00("M05.00"),
-
-    M05_01("M05.01"),
-
-    M05_02("M05.02"),
-
-    M06_00("M06.00"),
-
-    M06_01("M06.01"),
-
-    M06_02("M06.02"),
-
-    M06_03("M06.03"),
-
-    M06_04("M06.04"),
-
-    M07_00("M07.00");
+    R37("R37");
 
     private String value;
 
@@ -191,9 +161,9 @@ public class CodeLabelComment {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public CodeLabelComment() {}
+  public RiskThreat() {}
 
-  public CodeLabelComment code(CodeEnum code) {
+  public RiskThreat code(CodeEnum code) {
 
     this.code = code;
     return this;
@@ -216,7 +186,7 @@ public class CodeLabelComment {
     this.code = code;
   }
 
-  public CodeLabelComment label(String label) {
+  public RiskThreat label(String label) {
 
     this.label = label;
     return this;
@@ -241,7 +211,7 @@ public class CodeLabelComment {
     this.label = label;
   }
 
-  public CodeLabelComment freetext(String freetext) {
+  public RiskThreat freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -273,10 +243,10 @@ public class CodeLabelComment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CodeLabelComment codeLabelComment = (CodeLabelComment)o;
-    return Objects.equals(this.code, codeLabelComment.code) &&
-        Objects.equals(this.label, codeLabelComment.label) &&
-        Objects.equals(this.freetext, codeLabelComment.freetext);
+    RiskThreat riskThreat = (RiskThreat)o;
+    return Objects.equals(this.code, riskThreat.code) &&
+        Objects.equals(this.label, riskThreat.label) &&
+        Objects.equals(this.freetext, riskThreat.freetext);
   }
 
   @Override
@@ -287,7 +257,7 @@ public class CodeLabelComment {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CodeLabelComment {\n");
+    sb.append("class RiskThreat {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

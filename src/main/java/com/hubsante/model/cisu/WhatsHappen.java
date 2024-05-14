@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * CodeLabelComment
+ * WhatsHappen
  */
-@JsonPropertyOrder({CodeLabelComment.JSON_PROPERTY_CODE,
-                    CodeLabelComment.JSON_PROPERTY_LABEL,
-                    CodeLabelComment.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("codeLabelComment")
+@JsonPropertyOrder({WhatsHappen.JSON_PROPERTY_CODE,
+                    WhatsHappen.JSON_PROPERTY_LABEL,
+                    WhatsHappen.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("whatsHappen")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CodeLabelComment {
+public class WhatsHappen {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class CodeLabelComment {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public CodeLabelComment() {}
+  public WhatsHappen() {}
 
-  public CodeLabelComment code(String code) {
+  public WhatsHappen code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class CodeLabelComment {
     this.code = code;
   }
 
-  public CodeLabelComment label(String label) {
+  public WhatsHappen label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class CodeLabelComment {
     this.label = label;
   }
 
-  public CodeLabelComment freetext(String freetext) {
+  public WhatsHappen freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,10 +139,10 @@ public class CodeLabelComment {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CodeLabelComment codeLabelComment = (CodeLabelComment)o;
-    return Objects.equals(this.code, codeLabelComment.code) &&
-        Objects.equals(this.label, codeLabelComment.label) &&
-        Objects.equals(this.freetext, codeLabelComment.freetext);
+    WhatsHappen whatsHappen = (WhatsHappen)o;
+    return Objects.equals(this.code, whatsHappen.code) &&
+        Objects.equals(this.label, whatsHappen.label) &&
+        Objects.equals(this.freetext, whatsHappen.freetext);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class CodeLabelComment {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CodeLabelComment {\n");
+    sb.append("class WhatsHappen {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
