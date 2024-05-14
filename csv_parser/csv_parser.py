@@ -21,9 +21,8 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 full_asyncapi = None
-first_nomenclature_name = ""
-first_nomenclature_id = ""
-first_nomenclature_properties = []
+first_codelabelcomment_name = ""
+first_codelabelcomment_properties = []
 
 def run(sheet, name, version, filter):
     class Color:
@@ -162,8 +161,8 @@ def run(sheet, name, version, filter):
                 child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i-shift_difference})"]
         return child_cpy
 
-    global first_nomenclature_properties
-    first_nomenclature_properties = []
+    global first_codelabelcomment_properties
+    first_codelabelcomment_properties = []
 
     def regenerate_ids(df):
         """Regenerate the IDs of the dataframe"""
@@ -175,15 +174,15 @@ def run(sheet, name, version, filter):
         if row['Format (ou type)'] == 'nomenclature':
             # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
 
-            if not first_nomenclature_properties:
+            if not first_codelabelcomment_properties:
                 for i in range(1, 4):
-                    first_nomenclature_properties.append(df.loc[index + i].to_dict())
+                    first_codelabelcomment_properties.append(df.loc[index + i].to_dict())
             # Otherwise, we add the children of the first nomenclature to the current nomenclature
             else:
                 for i in range(1, 4):
                     # we check the highest level of data of the current row and make sure to modify
                     # the level of data of each property to be equal to the row's level + 1
-                    prop_cpy = first_nomenclature_properties[i-1].copy()
+                    prop_cpy = first_codelabelcomment_properties[i - 1].copy()
                     prop_cpy['ID'] = row['ID']+i/10
                     df.loc[index + i/10] = format_nomenclature_properties(prop_cpy, row)
 
@@ -506,12 +505,12 @@ def run(sheet, name, version, filter):
             }
         """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first 
         nomenclature to the current nomenclature"""
-        if childOriginalTypeName == "nomenclature":
-            global first_nomenclature_name
-            if first_nomenclature_name == "":
-                first_nomenclature_name = childTrueTypeName
+        if childOriginalTypeName == "codeLabelComment":
+            global first_codelabelcomment_name
+            if first_codelabelcomment_name == "":
+                first_codelabelcomment_name = childTrueTypeName
             else:
-                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties'].copy()
+                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_codelabelcomment_name]['properties'].copy()
 
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
