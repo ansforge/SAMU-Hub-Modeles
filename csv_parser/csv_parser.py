@@ -142,10 +142,10 @@ def run(sheet, name, version, filter):
         return 0
 
     def format_codelabelcomment_properties(child, parent):
-        codelabelcomment_file = parent['Détails de format']
-        """ For 'Code', set codeLabelComment file name to the 'Détails de format' column, remove it from parent """
+        code_file = parent['Détails de format']
+        """ For 'Code', set code file name to the 'Détails de format' column, remove it from parent """
         if child['Balise NexSIS'] == "code":
-            child['Détails de format'] = codelabelcomment_file
+            child['Détails de format'] = code_file
             df.loc[parent.ID-1, 'Détails de format'] = 'nan'
         """Set the level of the child to be the level of the parent + 1"""
         if find_data_level(child) != find_data_level(parent)+1:
@@ -173,7 +173,6 @@ def run(sheet, name, version, filter):
     for index, row in df.copy().iterrows():
         if row['Format (ou type)'] == 'codeLabelComment':
             # We save the children of the codeLabelComment (3 next rows) if it's the first one we've seen
-
             if not first_codelabelcomment_properties:
                 for i in range(1, 4):
                     first_codelabelcomment_properties.append(df.loc[index + i].to_dict())
