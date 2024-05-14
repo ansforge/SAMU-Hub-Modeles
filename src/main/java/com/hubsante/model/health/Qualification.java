@@ -35,11 +35,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.CaseDetails;
-import com.hubsante.model.health.HealthMotive;
-import com.hubsante.model.health.LocationKind;
-import com.hubsante.model.health.RiskThreat;
+import com.hubsante.model.health.CodeLabelComment;
 import com.hubsante.model.health.Victims;
-import com.hubsante.model.health.WhatsHappen;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -60,16 +57,16 @@ import java.util.Objects;
 
 public class Qualification {
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
-  private WhatsHappen whatsHappen;
+  private CodeLabelComment whatsHappen;
 
   public static final String JSON_PROPERTY_LOCATION_KIND = "locationKind";
-  private LocationKind locationKind;
+  private CodeLabelComment locationKind;
 
   public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
-  private List<RiskThreat> riskThreat;
+  private List<CodeLabelComment> riskThreat;
 
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
-  private HealthMotive healthMotive;
+  private CodeLabelComment healthMotive;
 
   public static final String JSON_PROPERTY_DETAILS = "details";
   private CaseDetails details;
@@ -79,7 +76,7 @@ public class Qualification {
 
   public Qualification() {}
 
-  public Qualification whatsHappen(WhatsHappen whatsHappen) {
+  public Qualification whatsHappen(CodeLabelComment whatsHappen) {
 
     this.whatsHappen = whatsHappen;
     return this;
@@ -92,17 +89,17 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public WhatsHappen getWhatsHappen() {
+  public CodeLabelComment getWhatsHappen() {
     return whatsHappen;
   }
 
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setWhatsHappen(WhatsHappen whatsHappen) {
+  public void setWhatsHappen(CodeLabelComment whatsHappen) {
     this.whatsHappen = whatsHappen;
   }
 
-  public Qualification locationKind(LocationKind locationKind) {
+  public Qualification locationKind(CodeLabelComment locationKind) {
 
     this.locationKind = locationKind;
     return this;
@@ -115,23 +112,23 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_LOCATION_KIND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public LocationKind getLocationKind() {
+  public CodeLabelComment getLocationKind() {
     return locationKind;
   }
 
   @JsonProperty(JSON_PROPERTY_LOCATION_KIND)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocationKind(LocationKind locationKind) {
+  public void setLocationKind(CodeLabelComment locationKind) {
     this.locationKind = locationKind;
   }
 
-  public Qualification riskThreat(List<RiskThreat> riskThreat) {
+  public Qualification riskThreat(List<CodeLabelComment> riskThreat) {
 
     this.riskThreat = riskThreat;
     return this;
   }
 
-  public Qualification addRiskThreatItem(RiskThreat riskThreatItem) {
+  public Qualification addRiskThreatItem(CodeLabelComment riskThreatItem) {
     if (this.riskThreat == null) {
       this.riskThreat = new ArrayList<>();
     }
@@ -146,7 +143,7 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_RISK_THREAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<RiskThreat> getRiskThreat() {
+  public List<CodeLabelComment> getRiskThreat() {
     return riskThreat;
   }
 
@@ -154,7 +151,7 @@ public class Qualification {
 
   @JsonProperty(JSON_PROPERTY_RISK_THREAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRiskThreat(List<RiskThreat> riskThreat) {
+  public void setRiskThreat(List<CodeLabelComment> riskThreat) {
     if (riskThreat == null) {
       return;
     }
@@ -164,7 +161,7 @@ public class Qualification {
     this.riskThreat.addAll(riskThreat);
   }
 
-  public Qualification healthMotive(HealthMotive healthMotive) {
+  public Qualification healthMotive(CodeLabelComment healthMotive) {
 
     this.healthMotive = healthMotive;
     return this;
@@ -177,13 +174,13 @@ public class Qualification {
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public HealthMotive getHealthMotive() {
+  public CodeLabelComment getHealthMotive() {
     return healthMotive;
   }
 
   @JsonProperty(JSON_PROPERTY_HEALTH_MOTIVE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHealthMotive(HealthMotive healthMotive) {
+  public void setHealthMotive(CodeLabelComment healthMotive) {
     this.healthMotive = healthMotive;
   }
 

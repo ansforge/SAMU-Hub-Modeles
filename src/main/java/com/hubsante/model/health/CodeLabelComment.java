@@ -39,121 +39,17 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * RiskThreat
+ * CodeLabelComment
  */
-@JsonPropertyOrder({RiskThreat.JSON_PROPERTY_CODE,
-                    RiskThreat.JSON_PROPERTY_LABEL,
-                    RiskThreat.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("riskThreat")
+@JsonPropertyOrder({CodeLabelComment.JSON_PROPERTY_CODE,
+                    CodeLabelComment.JSON_PROPERTY_LABEL,
+                    CodeLabelComment.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("codeLabelComment")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class RiskThreat {
-
-  /**
-   * A valoriser avec un code la nomenclature associée
-   */
-  public enum CodeEnum {
-    R01("R01"),
-
-    R02("R02"),
-
-    R03("R03"),
-
-    R04("R04"),
-
-    R05("R05"),
-
-    R06("R06"),
-
-    R07("R07"),
-
-    R08("R08"),
-
-    R09("R09"),
-
-    R10("R10"),
-
-    R11("R11"),
-
-    R12("R12"),
-
-    R13("R13"),
-
-    R14("R14"),
-
-    R15("R15"),
-
-    R16("R16"),
-
-    R17("R17"),
-
-    R18("R18"),
-
-    R19("R19"),
-
-    R20("R20"),
-
-    R21("R21"),
-
-    R22("R22"),
-
-    R23("R23"),
-
-    R24("R24"),
-
-    R25("R25"),
-
-    R26("R26"),
-
-    R27("R27"),
-
-    R28("R28"),
-
-    R29("R29"),
-
-    R30("R30"),
-
-    R31("R31"),
-
-    R32("R32"),
-
-    R33("R33"),
-
-    R34("R34"),
-
-    R35("R35"),
-
-    R36("R36"),
-
-    R37("R37");
-
-    private String value;
-
-    CodeEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CodeEnum fromValue(String value) {
-      for (CodeEnum b : CodeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
+public class CodeLabelComment {
   public static final String JSON_PROPERTY_CODE = "code";
-  private CodeEnum code;
+  private String code;
 
   public static final String JSON_PROPERTY_LABEL = "label";
   private String label;
@@ -161,9 +57,9 @@ public class RiskThreat {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public RiskThreat() {}
+  public CodeLabelComment() {}
 
-  public RiskThreat code(CodeEnum code) {
+  public CodeLabelComment code(String code) {
 
     this.code = code;
     return this;
@@ -176,17 +72,17 @@ public class RiskThreat {
   @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CodeEnum getCode() {
+  public String getCode() {
     return code;
   }
 
   @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCode(CodeEnum code) {
+  public void setCode(String code) {
     this.code = code;
   }
 
-  public RiskThreat label(String label) {
+  public CodeLabelComment label(String label) {
 
     this.label = label;
     return this;
@@ -211,7 +107,7 @@ public class RiskThreat {
     this.label = label;
   }
 
-  public RiskThreat freetext(String freetext) {
+  public CodeLabelComment freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -243,10 +139,10 @@ public class RiskThreat {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    RiskThreat riskThreat = (RiskThreat)o;
-    return Objects.equals(this.code, riskThreat.code) &&
-        Objects.equals(this.label, riskThreat.label) &&
-        Objects.equals(this.freetext, riskThreat.freetext);
+    CodeLabelComment codeLabelComment = (CodeLabelComment)o;
+    return Objects.equals(this.code, codeLabelComment.code) &&
+        Objects.equals(this.label, codeLabelComment.label) &&
+        Objects.equals(this.freetext, codeLabelComment.freetext);
   }
 
   @Override
@@ -257,7 +153,7 @@ public class RiskThreat {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class RiskThreat {\n");
+    sb.append("class CodeLabelComment {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

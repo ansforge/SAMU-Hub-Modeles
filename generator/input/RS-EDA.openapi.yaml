@@ -146,15 +146,15 @@ components:
       - whatsHappen
       properties:
         whatsHappen:
-          $ref: '#/components/schemas/whatsHappen'
+          $ref: '#/components/schemas/codeLabelComment'
         locationKind:
-          $ref: '#/components/schemas/locationKind'
+          $ref: '#/components/schemas/codeLabelComment'
         riskThreat:
           type: array
           items:
-            $ref: '#/components/schemas/riskThreat'
+            $ref: '#/components/schemas/codeLabelComment'
         healthMotive:
-          $ref: '#/components/schemas/healthMotive'
+          $ref: '#/components/schemas/codeLabelComment'
         details:
           $ref: '#/components/schemas/caseDetails'
         victims:
@@ -630,13 +630,13 @@ components:
         identity:
           $ref: '#/components/schemas/insIdentity'
         healthMotive:
-          $ref: '#/components/schemas/healthMotive'
+          $ref: '#/components/schemas/codeLabelComment'
         detail:
           $ref: '#/components/schemas/patientDetail'
         hypothesis:
           $ref: '#/components/schemas/hypothesis'
         resourceDiagnosis:
-          $ref: '#/components/schemas/resourceDiagnosis'
+          $ref: '#/components/schemas/codeLabelComment'
         freetext:
           type: array
           x-health-only: false
@@ -799,7 +799,7 @@ components:
           maxItems: 3
       additionalProperties: false
       example: example.json#/additionalInformation
-    whatsHappen:
+    codeLabelComment:
       type: object
       title: Nature de fait
       x-display: expansion-panels
@@ -841,417 +841,6 @@ components:
           - None
       additionalProperties: false
       example: example.json#/qualification/whatsHappen
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
-        freetext: None
-    locationKind:
-      type: object
-      title: Type de lieu
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/locationKind/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
-          enum:
-          - L01.00.00
-          - L01.01.00
-          - L01.01.01
-          - L01.01.02
-          - L01.01.03
-          - L01.01.04
-          - L01.02.00
-          - L01.02.01
-          - L01.02.02
-          - L01.02.03
-          - L01.02.04
-          - L01.02.05
-          - L01.02.06
-          - L01.02.07
-          - L01.02.08
-          - L01.02.09
-          - L01.02.10
-          - L01.02.11
-          - L01.02.12
-          - L01.03.00
-          - L01.03.01
-          - L01.03.02
-          - L01.03.03
-          - L01.04.00
-          - L02.00.00
-          - L02.01.00
-          - L02.02.00
-          - L02.02.01
-          - L02.02.02
-          - L02.02.03
-          - L02.02.04
-          - L02.02.05
-          - L02.03.00
-          - L02.03.01
-          - L02.03.02
-          - L02.03.03
-          - L02.04.00
-          - L02.05.00
-          - L02.05.01
-          - L02.05.02
-          - L02.05.03
-          - L02.05.04
-          - L02.05.05
-          - L02.05.06
-          - L02.05.07
-          - L02.05.08
-          - L02.05.09
-          - L02.05.10
-          - L02.05.11
-          - L02.05.12
-          - L02.05.13
-          - L02.05.14
-          - L02.05.15
-          - L02.05.16
-          - L02.06.00
-          - L02.06.01
-          - L02.06.02
-          - L02.06.03
-          - L02.06.04
-          - L02.06.05
-          - L02.06.06
-          - L02.06.07
-          - L02.06.08
-          - L02.07.00
-          - L02.07.01
-          - L02.07.02
-          - L02.08.00
-          - L03.00.00
-          - L03.01.00
-          - L03.02.00
-          - L03.03.00
-          - L03.04.00
-          - L03.05.00
-          - L04.00.00
-          - L04.01.00
-          - L04.02.00
-          - L04.02.01
-          - L04.02.02
-          - L04.02.03
-          - L04.03.00
-          - L04.03.01
-          - L04.03.02
-          - L04.03.03
-          - L04.04.00
-          - L04.05.00
-          - L04.06.00
-          - L04.06.01
-          - L04.06.02
-          - L04.06.03
-          - L04.06.04
-          - L04.06.05
-          - L04.07.00
-          - L04.07.01
-          - L04.07.02
-          - L04.07.03
-          - L04.08.00
-          - L04.08.01
-          - L04.08.02
-          - L04.09.00
-          - L04.09.01
-          - L04.09.02
-          - L04.10.00
-          - L04.11.00
-          - L04.11.01
-          - L04.11.02
-          - L04.11.03
-          - L04.11.04
-          - L04.12.00
-          - L04.12.01
-          - L04.12.02
-          - L04.12.03
-          - L04.12.04
-          - L04.13.00
-          - L04.13.01
-          - L04.13.02
-          - L04.13.03
-          - L04.13.04
-          - L04.14.00
-          - L04.14.01
-          - L04.14.02
-          - L04.15.00
-          - L04.16.00
-          - L05.00.00
-          - L05.01.00
-          - L05.01.01
-          - L05.01.02
-          - L05.01.03
-          - L05.01.04
-          - L05.02.00
-          - L05.02.01
-          - L05.02.02
-          - L05.02.03
-          - L05.02.04
-          - L05.03.00
-          - L05.03.01
-          - L05.03.02
-          - L05.04.00
-          - L05.04.01
-          - L05.04.02
-          - L05.04.03
-          - L05.04.04
-          - L05.04.05
-          - L05.04.06
-          - L05.05.00
-          - L05.06.00
-          - L05.07.00
-          - L06.00.00
-          - L06.01.00
-          - L06.01.01
-          - L06.01.02
-          - L06.01.03
-          - L06.01.04
-          - L06.01.05
-          - L06.01.06
-          - L06.01.07
-          - L06.01.08
-          - L06.02.00
-          - L06.03.00
-          - L06.03.01
-          - L06.03.02
-          - L06.03.03
-          - L06.03.04
-          - L06.03.05
-          - L06.04.00
-          - L06.05.00
-          - L06.05.01
-          - L06.05.02
-          - L06.06.00
-          - L06.06.01
-          - L06.06.02
-          - L06.06.03
-          - L06.06.04
-          - L06.07.00
-          - L06.07.01
-          - L06.07.02
-          - L07.00.00
-          - L07.01.00
-          - L07.01.01
-          - L07.02.00
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/locationKind/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/locationKind/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/qualification/locationKind
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
-        freetext: None
-    riskThreat:
-      type: object
-      title: "Risque, menace et sensibilit\xE9"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
-          enum:
-          - R01
-          - R02
-          - R03
-          - R04
-          - R05
-          - R06
-          - R07
-          - R08
-          - R09
-          - R10
-          - R11
-          - R12
-          - R13
-          - R14
-          - R15
-          - R16
-          - R17
-          - R18
-          - R19
-          - R20
-          - R21
-          - R22
-          - R23
-          - R24
-          - R25
-          - R26
-          - R27
-          - R28
-          - R29
-          - R30
-          - R31
-          - R32
-          - R33
-          - R34
-          - R35
-          - R36
-          - R37
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/qualification/riskThreat/0
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
-        freetext: None
-    healthMotive:
-      type: object
-      title: "Motif de recours m\xE9dico-secouriste"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - code
-      - label
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/healthMotive/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
-          enum:
-          - M01.00
-          - M01.01
-          - M01.02
-          - M01.03
-          - M02.00
-          - M02.01
-          - M02.02
-          - M02.03
-          - M02.04
-          - M02.05
-          - M02.06
-          - M02.07
-          - M02.08
-          - M02.09
-          - M02.10
-          - M03.00
-          - M03.01
-          - M03.02
-          - M03.03
-          - M03.04
-          - M03.05
-          - M03.06
-          - M03.07
-          - M03.08
-          - M03.09
-          - M03.10
-          - M03.11
-          - M03.12
-          - M03.13
-          - M03.14
-          - M03.15
-          - M03.16
-          - M03.17
-          - M03.18
-          - M03.19
-          - M03.20
-          - M03.21
-          - M03.22
-          - M04.00
-          - M04.01
-          - M04.02
-          - M04.03
-          - M04.04
-          - M05.00
-          - M05.01
-          - M05.02
-          - M06.00
-          - M06.01
-          - M06.02
-          - M06.03
-          - M06.04
-          - M07.00
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/healthMotive/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/qualification/healthMotive
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
@@ -2536,6 +2125,7 @@ components:
           description: "Age du patient.\nAu format Dur\xE9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
             \ en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois, semaines\
             \ ou jours)"
+          pattern: P[0-9]{1,3}[YMWD]
           examples:
           - P6Y
         careLevel:
@@ -2566,59 +2156,13 @@ components:
       required: []
       properties:
         mainDiagnosis:
-          $ref: '#/components/schemas/mainDiagnosis'
+          $ref: '#/components/schemas/codeLabelComment'
         otherDiagnosis:
           type: array
           items:
-            $ref: '#/components/schemas/otherDiagnosis'
+            $ref: '#/components/schemas/codeLabelComment'
       additionalProperties: false
       example: example.json#/patient/0/hypothesis
-    resourceDiagnosis:
-      type: object
-      title: Diagnostic de l'effecteur
-      x-display: expansion-panels
-      x-health-only: true
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/resourceDiagnosis/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/resourceDiagnosis/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/resourceDiagnosis/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/patient/0/resourceDiagnosis
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
-        freetext: None
     externalId:
       type: object
       title: Identifiant(s) patient(s)
@@ -2874,98 +2418,6 @@ components:
         birthDate: None
         sex: F
         birthPlaceCode: None
-    mainDiagnosis:
-      type: object
-      title: "Hypoth\xE8se de r\xE9gulation m\xE9dicale principale"
-      x-display: expansion-panels
-      x-health-only: true
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/mainDiagnosis/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/mainDiagnosis/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/mainDiagnosis/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/patient/0/hypothesis/mainDiagnosis
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
-        freetext: None
-    otherDiagnosis:
-      type: object
-      title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale secondaires"
-      x-display: expansion-panels
-      x-health-only: true
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/otherDiagnosis/0/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/otherDiagnosis/0/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/otherDiagnosis/0/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/patient/0/hypothesis/otherDiagnosis/0
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
-        freetext: None
     transportDetails:
       type: object
       title: "D\xE9cision de transport/orientation"

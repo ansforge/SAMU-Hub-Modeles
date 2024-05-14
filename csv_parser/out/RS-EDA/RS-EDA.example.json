@@ -9,23 +9,11 @@
             "label": "Rod\u00e9o automobile",
             "freetext": "None"
         },
-        "locationKind": {
-            "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
-        },
+        "locationKind": {},
         "riskThreat": [
-            {
-                "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
-            }
+            {}
         ],
-        "healthMotive": {
-            "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
-        },
+        "healthMotive": {},
         "details": {
             "status": "None",
             "type": "DR",
@@ -195,11 +183,7 @@
                 },
                 "nonStrictFeatures": {}
             },
-            "healthMotive": {
-                "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
-            },
+            "healthMotive": {},
             "detail": {
                 "weight": 31,
                 "height": 109,
@@ -207,24 +191,12 @@
                 "careLevel": "R1"
             },
             "hypothesis": {
-                "mainDiagnosis": {
-                    "code": "C07.13.02",
-                    "label": "Rod\u00e9o automobile",
-                    "freetext": "None"
-                },
+                "mainDiagnosis": {},
                 "otherDiagnosis": [
-                    {
-                        "code": "C07.13.02",
-                        "label": "Rod\u00e9o automobile",
-                        "freetext": "None"
-                    }
+                    {}
                 ]
             },
-            "resourceDiagnosis": {
-                "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
-            },
+            "resourceDiagnosis": {},
             "freetext": [
                 "None"
             ]

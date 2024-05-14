@@ -34,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.MainDiagnosis;
-import com.hubsante.model.health.OtherDiagnosis;
+import com.hubsante.model.health.CodeLabelComment;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -52,14 +51,14 @@ import java.util.Objects;
 
 public class Hypothesis {
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
-  private MainDiagnosis mainDiagnosis;
+  private CodeLabelComment mainDiagnosis;
 
   public static final String JSON_PROPERTY_OTHER_DIAGNOSIS = "otherDiagnosis";
-  private List<OtherDiagnosis> otherDiagnosis;
+  private List<CodeLabelComment> otherDiagnosis;
 
   public Hypothesis() {}
 
-  public Hypothesis mainDiagnosis(MainDiagnosis mainDiagnosis) {
+  public Hypothesis mainDiagnosis(CodeLabelComment mainDiagnosis) {
 
     this.mainDiagnosis = mainDiagnosis;
     return this;
@@ -72,23 +71,23 @@ public class Hypothesis {
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public MainDiagnosis getMainDiagnosis() {
+  public CodeLabelComment getMainDiagnosis() {
     return mainDiagnosis;
   }
 
   @JsonProperty(JSON_PROPERTY_MAIN_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMainDiagnosis(MainDiagnosis mainDiagnosis) {
+  public void setMainDiagnosis(CodeLabelComment mainDiagnosis) {
     this.mainDiagnosis = mainDiagnosis;
   }
 
-  public Hypothesis otherDiagnosis(List<OtherDiagnosis> otherDiagnosis) {
+  public Hypothesis otherDiagnosis(List<CodeLabelComment> otherDiagnosis) {
 
     this.otherDiagnosis = otherDiagnosis;
     return this;
   }
 
-  public Hypothesis addOtherDiagnosisItem(OtherDiagnosis otherDiagnosisItem) {
+  public Hypothesis addOtherDiagnosisItem(CodeLabelComment otherDiagnosisItem) {
     if (this.otherDiagnosis == null) {
       this.otherDiagnosis = new ArrayList<>();
     }
@@ -103,7 +102,7 @@ public class Hypothesis {
   @JsonProperty(JSON_PROPERTY_OTHER_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<OtherDiagnosis> getOtherDiagnosis() {
+  public List<CodeLabelComment> getOtherDiagnosis() {
     return otherDiagnosis;
   }
 
@@ -111,7 +110,7 @@ public class Hypothesis {
 
   @JsonProperty(JSON_PROPERTY_OTHER_DIAGNOSIS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOtherDiagnosis(List<OtherDiagnosis> otherDiagnosis) {
+  public void setOtherDiagnosis(List<CodeLabelComment> otherDiagnosis) {
     if (otherDiagnosis == null) {
       return;
     }

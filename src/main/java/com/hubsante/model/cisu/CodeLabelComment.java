@@ -39,15 +39,15 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * WhatsHappen
+ * CodeLabelComment
  */
-@JsonPropertyOrder({WhatsHappen.JSON_PROPERTY_CODE,
-                    WhatsHappen.JSON_PROPERTY_LABEL,
-                    WhatsHappen.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("whatsHappen")
+@JsonPropertyOrder({CodeLabelComment.JSON_PROPERTY_CODE,
+                    CodeLabelComment.JSON_PROPERTY_LABEL,
+                    CodeLabelComment.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("codeLabelComment")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class WhatsHappen {
+public class CodeLabelComment {
   public static final String JSON_PROPERTY_CODE = "code";
   private String code;
 
@@ -57,9 +57,9 @@ public class WhatsHappen {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public WhatsHappen() {}
+  public CodeLabelComment() {}
 
-  public WhatsHappen code(String code) {
+  public CodeLabelComment code(String code) {
 
     this.code = code;
     return this;
@@ -82,7 +82,7 @@ public class WhatsHappen {
     this.code = code;
   }
 
-  public WhatsHappen label(String label) {
+  public CodeLabelComment label(String label) {
 
     this.label = label;
     return this;
@@ -107,7 +107,7 @@ public class WhatsHappen {
     this.label = label;
   }
 
-  public WhatsHappen freetext(String freetext) {
+  public CodeLabelComment freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
@@ -139,10 +139,10 @@ public class WhatsHappen {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WhatsHappen whatsHappen = (WhatsHappen)o;
-    return Objects.equals(this.code, whatsHappen.code) &&
-        Objects.equals(this.label, whatsHappen.label) &&
-        Objects.equals(this.freetext, whatsHappen.freetext);
+    CodeLabelComment codeLabelComment = (CodeLabelComment)o;
+    return Objects.equals(this.code, codeLabelComment.code) &&
+        Objects.equals(this.label, codeLabelComment.label) &&
+        Objects.equals(this.freetext, codeLabelComment.freetext);
   }
 
   @Override
@@ -153,7 +153,7 @@ public class WhatsHappen {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WhatsHappen {\n");
+    sb.append("class CodeLabelComment {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
