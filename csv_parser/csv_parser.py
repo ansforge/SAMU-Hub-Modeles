@@ -141,11 +141,11 @@ def run(sheet, name, version, filter):
                 return i
         return 0
 
-    def format_nomenclature_properties(child, parent):
-        nomenclature_file = parent['Détails de format']
-        """ For 'Code', set nomenclature file name to the 'Détails de format' column, remove it from parent """
+    def format_codelabelcomment_properties(child, parent):
+        codelabelcomment_file = parent['Détails de format']
+        """ For 'Code', set codeLabelComment file name to the 'Détails de format' column, remove it from parent """
         if child['Balise NexSIS'] == "code":
-            child['Détails de format'] = nomenclature_file
+            child['Détails de format'] = codelabelcomment_file
             df.loc[parent.ID-1, 'Détails de format'] = 'nan'
         """Set the level of the child to be the level of the parent + 1"""
         if find_data_level(child) != find_data_level(parent)+1:
@@ -169,22 +169,22 @@ def run(sheet, name, version, filter):
         for index, row in df.copy().iterrows():
             df.at[index, 'ID'] = index + 1
 
-    # Iterate over df and insert three lines after each entry of type 'nomenclature'
+    # Iterate over df and insert three lines after each entry of type 'codeLabelComment'
     for index, row in df.copy().iterrows():
         if row['Format (ou type)'] == 'codeLabelComment':
-            # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
+            # We save the children of the codeLabelComment (3 next rows) if it's the first one we've seen
 
             if not first_codelabelcomment_properties:
                 for i in range(1, 4):
                     first_codelabelcomment_properties.append(df.loc[index + i].to_dict())
-            # Otherwise, we add the children of the first nomenclature to the current nomenclature
+            # Otherwise, we add the children of the first codeLabelComment to the current codeLabelComment
             else:
                 for i in range(1, 4):
                     # we check the highest level of data of the current row and make sure to modify
                     # the level of data of each property to be equal to the row's level + 1
                     prop_cpy = first_codelabelcomment_properties[i - 1].copy()
                     prop_cpy['ID'] = row['ID']+i/10
-                    df.loc[index + i/10] = format_nomenclature_properties(prop_cpy, row)
+                    df.loc[index + i/10] = format_codelabelcomment_properties(prop_cpy, row)
 
     df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
     df.reset_index(drop=True, inplace=True)
@@ -297,7 +297,7 @@ def run(sheet, name, version, filter):
 
     def get_true_type(row):
         """Get the type of elem (defaults to its name if there is no type specified)"""
-        if row['Format (ou type)'] == 'nomenclature':
+        if row['Format (ou type)'] == 'codeLabelComment':
             return row['name']
         elif row["Objet"] != "X" or row['is_typed_object']:
             return row["Format (ou type)"]
@@ -503,8 +503,8 @@ def run(sheet, name, version, filter):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
-        """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first 
-        nomenclature to the current nomenclature"""
+        """If this is the first codeLabelComment, we record its name, otherwise we copy the properties from the first 
+        codeLabelComment to the current codeLabelComment"""
         if childOriginalTypeName == "codeLabelComment":
             global first_codelabelcomment_name
             if first_codelabelcomment_name == "":
@@ -552,8 +552,8 @@ def run(sheet, name, version, filter):
             definition = json_schema
         else:
             if 'children' not in elem:
-                """If element type is 'nomenclature' we check by 'name', else we check by 'Format (ou type)'"""
-                if elem['Format (ou type)'] != 'nomenclature':
+                """If element type is 'codeLabelComment' we check by 'name', else we check by 'Format (ou type)'"""
+                if elem['Format (ou type)'] != 'codeLabelComment':
                     assert elem['Format (ou type)'] in json_schema['definitions'], \
                         (f"The type of the object '{elem['name']}' is not defined.\n"
                         f"Make sure the object is not empty")
