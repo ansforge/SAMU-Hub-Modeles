@@ -171,7 +171,7 @@ def run(sheet, name, version, filter):
 
     # Iterate over df and insert three lines after each entry of type 'nomenclature'
     for index, row in df.copy().iterrows():
-        if row['Format (ou type)'] == 'nomenclature':
+        if row['Format (ou type)'] == 'codeLabelComment':
             # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
 
             if not first_codelabelcomment_properties:
