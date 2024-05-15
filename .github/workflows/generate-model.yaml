@@ -119,11 +119,6 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
-      - name: Checkout
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
-
       - name: Merge generated files from target branch into current branch, keeping ours
         run: |
           git checkout origin/${{ github.event.pull_request.base.ref }} --ours -- ./src/main
