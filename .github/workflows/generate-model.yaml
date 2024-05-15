@@ -25,5 +25,7 @@ jobs:
 
       - name: Merge generated files from target branch into current branch, keeping ours
         run: |
+          git fetch origin ${{ github.event.pull_request.head.ref }}
+          git checkout origin/${{ github.event.pull_request.head.ref }}
           git checkout origin/${{ github.event.pull_request.base.ref }} --ours -- ./src/main
           git commit -m "Merge generated files from origin/${{ github.event.pull_request.base.ref }}" --no-verify
