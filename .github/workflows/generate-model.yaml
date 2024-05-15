@@ -119,12 +119,15 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
-      - name: Fetch generated files from target branch
-        uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v3
         with:
-          sparse-checkout: ./src/main
-          ref: origin/${{ github.event.pull_request.base.ref }}
-          run: git commit -m "Merge generated files from origin/${{ github.event.pull_request.base.ref }}" --no-verify
+          fetch-depth: 0
+
+      - name: Merge generated files from target branch into current branch, keeping ours
+        run: |
+          git checkout origin/${{ github.event.pull_request.base.ref }} --ours -- ./src/main
+          git commit -m "Merge generated files from origin/${{ github.event.pull_request.base.ref }}" --no-verify
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
