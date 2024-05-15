@@ -27,9 +27,6 @@ jobs:
           git fetch origin ${{ github.event.pull_request.base.ref }}
           git checkout origin/${{ github.event.pull_request.base.ref }} -- ./src/main
 
-      - name: Commit merge changes
-        run: git commit -am "Merge target branch into current branch"
-
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
         id: filter
