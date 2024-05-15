@@ -119,7 +119,7 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
-      - name: Merge target branch into current branch, taking 'our' changes when it comes to generated files (schemas and java classes)
+      - name: Merge generated files from target branch into current branch, keeping ours
         run: git merge -X ours ${{ github.event.pull_request.base.ref }} -- ./src/main
 
       - name: Commit and push changes
