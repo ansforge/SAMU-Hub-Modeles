@@ -22,6 +22,8 @@ jobs:
 
       - name: Merge target branch into current branch
         run: |
+          git config user.name "${{ github.actor }}"
+          git config user.email "${{ github.actor }}@users.noreply.github.com"
           git fetch origin ${{ github.event.pull_request.base.ref }}
           git merge --no-edit origin/${{ github.event.pull_request.base.ref }} --allow-unrelated-histories
 
