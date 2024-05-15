@@ -11,7 +11,7 @@ env:
 
 jobs:
   generate:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     env:
       JAVA_POST_PROCESS_FILE: "/usr/bin/clang-format -i"
