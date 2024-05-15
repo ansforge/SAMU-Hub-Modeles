@@ -20,9 +20,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Merge target branch
-        run: git merge origin/${{ github.event.pull_request.base.ref }}
-
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
         id: filter
@@ -126,6 +123,9 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: ⚙️ Auto-génération des classes et des specs
+
+      - name: Merge target branch
+        run: git merge origin/${{ github.event.pull_request.base.ref }}
 
       - name: Build and run tests
         run: ./gradlew test --info
