@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Merge target branch
-        run: git merge ${{ github.event.pull_request.base.ref }}
+        run: git merge origin/${{ github.event.pull_request.base.ref }}
 
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
