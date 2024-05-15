@@ -119,6 +119,9 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
+      - name: Merge target branch into current branch, taking 'our' changes when it comes to generated files (schemas and java classes)
+        run: git merge -X ours ${{ github.event.pull_request.base.ref }} -- ./src/main
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
