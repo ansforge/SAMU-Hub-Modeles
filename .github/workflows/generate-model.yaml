@@ -20,6 +20,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Merge target branch into current branch
+        run: |
+          git fetch origin ${{ github.event.pull_request.base.ref }}
+          git merge --no-edit FETCH_HEAD
+
+      - name: Commit merge changes
+        run: git commit -am "Merge target branch into current branch"
+
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
         id: filter
@@ -119,18 +127,10 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
-      - name: Merge target branch into current branch
-        run: |
-          git fetch origin ${{ github.event.pull_request.base.ref }}
-          git merge --no-edit FETCH_HEAD
-
-      - name: Commit merge changes
-        run: git commit -am "Merge target branch into current branch"
-
-      - name: Push changes
-        uses: ad-m/github-push-action@v0.7.0
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          commit_message: ⚙️ Auto-génération des classes et des specs
 
       - name: Build and run tests
         run: ./gradlew test --info
