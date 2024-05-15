@@ -20,6 +20,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Merge target branch
+        run: git merge {{ github.event.pull_request.base.ref }}
+
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
         id: filter
@@ -118,9 +121,6 @@ jobs:
 
       - name: Apply license
         run: ./gradlew licenseFormat
-
-      - name: Merge target branch into current branch, taking 'our' changes when it comes to generated files (schemas and java classes)
-        run: git merge -X ours ${{ github.event.pull_request.base.ref }} -- ./src/main
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
