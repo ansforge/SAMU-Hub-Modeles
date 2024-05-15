@@ -20,6 +20,8 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Merge generated files from target branch into current branch, keeping ours
         run: |
