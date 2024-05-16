@@ -21,11 +21,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git checkout-index
-          git checkout origin/${{ github.event.pull_request.base.ref }} --ours -- ./src/main
 
       - name: Merge target branch into current branch
         run: |
