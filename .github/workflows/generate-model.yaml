@@ -26,6 +26,7 @@ jobs:
         run: |
           git config user.name "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
+          git checkout-index
           git checkout origin/${{ github.event.pull_request.base.ref }} --ours -- ./src/main
 
       - name: Check for changes requiring running the parser
