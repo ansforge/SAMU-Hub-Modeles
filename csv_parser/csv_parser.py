@@ -118,7 +118,8 @@ def run(sheet, name, version, perimeter_filter, model_type):
         exit(1)
 
     # Keeping only the relevant perimeter rows
-    df = df[df[perimeter_filter] == 'X']
+    if perimeter_filter:
+        df = df[df[perimeter_filter] == 'X']
 
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
@@ -690,7 +691,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
     print('AsyncAPI schema collected.')
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
-    uml_generator.run(name, MODEL_TYPE, version=version, filter=perimeter_filter)
+    uml_generator.run(name, MODEL_TYPE, version=version)
     print('UML diagrams generated.')
 
     if not is_custom_content():

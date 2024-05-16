@@ -43,13 +43,17 @@ def parser_and_mv():
         full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
 
         # For each sheet we read the A2 cell and get the list of schemas to generate
-        schemas_array = full_df.iloc[1, 0].split(' ')
+        if not pd.isna(full_df.iloc[1, 0]):
+            schemas_array = full_df.iloc[1, 0].split(' ')
 
-        # Schemas are formatted in the sheet as follows:
-        # "schema1['name']:schema1['filter']:schema1['modelType'] schema2['name']:schema2['filter']:schema2['modelType'] ..."
-        schemas = [{'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
-                    'model_type': schemas_array[i].split(':')[2]}
-                   for i in range(len(schemas_array))]
+            # Schemas are formatted in the sheet as follows:
+            # "schema1['name']:schema1['filter']:schema1['modelType'] schema2['name']:schema2['filter']:schema2['modelType'] ..."
+            schemas = [{'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
+                        'model_type': schemas_array[i].split(':')[2]}
+                       for i in range(len(schemas_array))]
+        # If A2 is empty, we generate only one schema with the sheet name and modelType in A1
+        else:
+            schemas = [{'name': sheet, 'sheet': sheet, 'filter': '', 'model_type': full_df.iloc[0, 0]}]
 
         for schema in schemas:
             # Run csv_parser
