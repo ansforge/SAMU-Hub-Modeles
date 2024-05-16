@@ -24,7 +24,8 @@ full_asyncapi = None
 first_codelabelcomment_name = ""
 first_codelabelcomment_properties = []
 
-def run(sheet, name, version, filter):
+
+def run(sheet, name, version, perimeter_filter, model_type):
     class Color:
         ORANGE = '\033[93m'
         RED = '\033[91m'
@@ -35,7 +36,7 @@ def run(sheet, name, version, filter):
 
     version = version or date.today().strftime("%y.%m.%d")
     print(f"{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}"
-          f"Building version {version} of {'15-NexSIS' if filter else ''} {sheet} sheet "
+          f"Building version {version} of {perimeter_filter} {sheet} sheet "
           f"into {name} schema..."
           f"{Color.END}")
 
@@ -89,18 +90,14 @@ def run(sheet, name, version, filter):
     params = get_params_from_sheet(sheet)
     # Schema name is in name = RC-EDA (or RS-EDA) for instance
     MODEL_NAME = params['modelName']  # CreateCase
-    MODEL_TYPE = MODEL_NAME[0].lower() + MODEL_NAME[1:]  # createCase
-    def isCreateCase():
-        return MODEL_TYPE == "createCase"
 
-    def is_custom_content():
-        return MODEL_TYPE == "customContent"
-
-    if not filter and isCreateCase():
-        MODEL_TYPE = "createCaseHealth"
+    MODEL_TYPE = model_type
     WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
+
+    def is_custom_content():
+        return MODEL_TYPE == "customContent"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
@@ -120,11 +117,8 @@ def run(sheet, name, version, filter):
         print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS}.{Color.END}")
         exit(1)
 
-    # Keeping only 15-NexSIS fields if filter is set
-    if filter:
-        df = df[df['15-18'] == 'X']
-    else:
-        df = df[df['15-15'] == 'X']
+    # Keeping only the relevant perimeter rows
+    df = df[df[perimeter_filter] == 'X']
 
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
@@ -696,7 +690,7 @@ def run(sheet, name, version, filter):
     print('AsyncAPI schema collected.')
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
-    uml_generator.run(name, MODEL_TYPE, version=version, filter=filter)
+    uml_generator.run(name, MODEL_TYPE, version=version, filter=perimeter_filter)
     print('UML diagrams generated.')
 
     if not is_custom_content():

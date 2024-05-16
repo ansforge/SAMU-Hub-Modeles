@@ -2,6 +2,7 @@ import argparse
 import os
 import shutil
 import yaml
+import pandas as pd
 
 import csv_parser
 import test_case_generator
@@ -18,47 +19,17 @@ args = parser.parse_args()
 print(args.stage)
 
 # ---------------------------------------- SCHEMAS CONFIGURATION
-schemas = [{
-    'name': 'RC-EDA',
-    'sheet': 'RC-EDA',
-    'filter': True
-}, {
-    'name': 'RS-EDA',
-    'sheet': 'RC-EDA',
-    'filter': False
-}, {
-    'name': 'EMSI',
-    'sheet': 'EMSI',
-    'filter': False
-}, {
-    'name': 'GEO-POS',
-    'sheet': 'GEO-POS',
-    'filter': False
-}, {
-    'name': 'GEO-REQ',
-    'sheet': 'GEO-REQ',
-    'filter': False
-}, {
-    'name': 'GEO-RES',
-    'sheet': 'GEO-RES',
-    'filter': False
-}, {
-    'name': 'RC-REF',
-    'sheet': 'RC-REF',
-    'filter': False
-}, {
-    'name': 'RS-ERROR',
-    'sheet': 'RS-ERROR',
-    'filter': False
-}, {
-    'name': 'RS-INFO',
-    'sheet': 'RS-INFO',
-    'filter': False
-}, {
-    'name': 'CustomContent',
-    'sheet': 'customContent',
-    'filter': False
-}]
+sheets = [
+    'RC-EDA',
+    'EMSI',
+    'GEO-POS',
+    'GEO-REQ',
+    'GEO-RES',
+    'RC-REF',
+    'RS-ERROR',
+    'RS-INFO',
+    'customContent'
+]
 
 perimeters = [{
     'name': 'Périmetre 15-15',
@@ -68,26 +39,39 @@ perimeters = [{
 
 # ---------------------------------------- STAGE FUNCTIONS
 def parser_and_mv():
-    for schema in schemas:
-        # Run csv_parser
-        csv_parser.run(schema['sheet'], schema['name'], None, schema['filter'])
+    for sheet in sheets:
+        full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
 
-        name = schema['name']
-        # Copy schema to JsonSchema2XSD project
-        shutil.copyfile(f"./out/{name}/{name}.schema.json", f"./json_schema2xsd/src/main/resources/{name}.schema.json")
-        # Move output files => should be in .gitignore
-        if os.path.exists(f"../generator/input/{name}.openapi.yaml"):
-            os.remove(f"../generator/input/{name}.openapi.yaml")
-        os.rename(f"./out/{name}/{name}.openapi.yaml", f"../generator/input/{name}.openapi.yaml")
-        if os.path.exists(f"../src/main/resources/json-schema/{name}.schema.json"):
-            os.remove(f"../src/main/resources/json-schema/{name}.schema.json")
-        os.rename(f"./out/{name}/{name}.schema.json", f"../src/main/resources/json-schema/{name}.schema.json")
+        # For each sheet we read the A2 cell and get the list of schemas to generate
+        schemas_array = full_df.iloc[1, 0].split(' ')
 
-    with open(f'out/hubsante.asyncapi.yaml', 'w') as file:
-        documents = yaml.dump(csv_parser.full_asyncapi, sort_keys=False)
-        documents = documents.replace('#/definitions/', "#/components/schemas/")
-        file.write(documents)
-    print('AsyncAPI schema generated.')
+        # Schemas are formatted in the sheet as follows:
+        # "schema1['name']:schema1['filter']:schema1['modelType'] schema2['name']:schema2['filter']:schema2['modelType'] ..."
+        schemas = [{'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
+                    'model_type': schemas_array[i].split(':')[2]}
+                   for i in range(len(schemas_array))]
+
+        for schema in schemas:
+            # Run csv_parser
+            csv_parser.run(schema['sheet'], schema['name'], None, schema['filter'], schema['model_type'])
+
+            name = schema['name']
+            # Copy schema to JsonSchema2XSD project
+            shutil.copyfile(f"./out/{name}/{name}.schema.json",
+                            f"./json_schema2xsd/src/main/resources/{name}.schema.json")
+            # Move output files => should be in .gitignore
+            if os.path.exists(f"../generator/input/{name}.openapi.yaml"):
+                os.remove(f"../generator/input/{name}.openapi.yaml")
+            os.rename(f"./out/{name}/{name}.openapi.yaml", f"../generator/input/{name}.openapi.yaml")
+            if os.path.exists(f"../src/main/resources/json-schema/{name}.schema.json"):
+                os.remove(f"../src/main/resources/json-schema/{name}.schema.json")
+            os.rename(f"./out/{name}/{name}.schema.json", f"../src/main/resources/json-schema/{name}.schema.json")
+
+        with open(f'out/hubsante.asyncapi.yaml', 'w') as file:
+            documents = yaml.dump(csv_parser.full_asyncapi, sort_keys=False)
+            documents = documents.replace('#/definitions/', "#/components/schemas/")
+            file.write(documents)
+        print('AsyncAPI schema generated.')
 
 
 def test_case_parser():
