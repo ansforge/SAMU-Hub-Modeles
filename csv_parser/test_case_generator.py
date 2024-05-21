@@ -14,12 +14,6 @@ warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 # This function generates a json file that contains test case per sheet in test_cases.xlsx, saving it to the
 # /out folder under the name test_cases.json
 def run(perimeters):
-    def is_nan(x):
-        try:
-            return math.isnan(float(x))
-        except ValueError:
-            return True
-
     # Define the json array that will be saved
     test_cases = []
 
@@ -56,17 +50,22 @@ def run(perimeters):
                 elif pd.isna(row["Pas de test"]):
                     # If the value is not empty, we add it to the required values array of the last step, specifying
                     # the number in the "verificationLevel" property
-                    if not is_nan(row["V"]):
-                        values = []
-                        for i in range(5):
-                            if pd.notna(row[f"JDD {i+1}"]):
-                                values.append(row[f"JDD {i+1}"])
-                        required_value = {
-                            "path": row["path JSON"],
-                            "value": values,
-                            "verificationLevel": int(row["V"]),
-                        }
-                        test_case["steps"][-1]["message"]["requiredValues"].append(required_value)
+                    if pd.notna(row["V"]):
+                        try:
+                            values = []
+                            for i in range(5):
+                                if pd.notna(row[f"JDD {i+1}"]):
+                                    values.append(row[f"JDD {i+1}"])
+
+                                verification_level = int(row["V"])
+                            required_value = {
+                                "path": row["path JSON"],
+                                "value": values,
+                                "verificationLevel": int(row["V"]),
+                            }
+                            test_case["steps"][-1]["message"]["requiredValues"].append(required_value)
+                        except ValueError:
+                            print(f"Error: Invalid verification level in test case {test_case['label']}, row {index + 1}")
 
                 # Else, if the value is not nan, we add a new step to the test case. If the type of the step is
                 # "receive", we also add the property "file" containing a string with the name of the template
