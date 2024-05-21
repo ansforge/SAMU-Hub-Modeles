@@ -13,20 +13,49 @@
                         "message":{
                             "requiredValues":[
                                 {
+                                    "path":"$.createCaseHealth.freetext",
+                                    "value":[
+                                        "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance).",
+                                        "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible.",
+                                        "Confusion, étourdissements, s’exprime difficilement"
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
                                     "path":"$.createCaseHealth.qualification.whatsHappen.code",
                                     "value":[
                                         "C02.08.05",
                                         "C02.08.02",
                                         "C02.05.00"
-                                    ]
+                                    ],
+                                    "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.qualification.whatsHappen.freetext",
+                                    "path":"$.createCaseHealth.qualification.whatsHappen.label",
                                     "value":[
-                                        "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance).",
-                                        "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible.",
-                                        "Confusion, étourdissements, s’exprime difficilement"
-                                    ]
+                                        "Atteinte aux personnes ; Traumatisme \/ Accident ; Par objet tranchant ou perforant",
+                                        "Atteinte aux personnes ; Traumatisme \/ Accident ; Accident domestique",
+                                        "Atteinte aux personnes ; Pathologie \/ maladie"
+                                    ],
+                                    "verificationLevel":3
+                                },
+                                {
+                                    "path":"$.createCaseHealth.qualification.locationKind.code",
+                                    "value":[
+                                        "L01.01.04",
+                                        "L01.02.10",
+                                        "L04.12.00"
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.qualification.locationKind.label",
+                                    "value":[
+                                        "Domicile ; Maison particulière, pavillon ;  dépendance",
+                                        "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers",
+                                        "Lieu accueillant du public ; Hébergement touristique"
+                                    ],
+                                    "verificationLevel":3
                                 },
                                 {
                                     "path":"$.createCaseHealth.qualification.healthMotive.code",
@@ -34,7 +63,17 @@
                                         "M01.02",
                                         "M02.07",
                                         "M03.08"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
+                                },
+                                {
+                                    "path":"$.createCaseHealth.qualification.healthMotive.label",
+                                    "value":[
+                                        "Détresse vitale; Altération de la conscience; Dont inconscient, coma",
+                                        "Traumatisme sérieux, plaie intermédiaire",
+                                        "Signes d’AVC"
+                                    ],
+                                    "verificationLevel":3
                                 },
                                 {
                                     "path":"$.createCaseHealth.qualification.details.priority",
@@ -42,7 +81,35 @@
                                         "P0",
                                         "P2",
                                         "P1"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
+                                },
+                                {
+                                    "path":"$.createCaseHealth.qualification.victims.count",
+                                    "value":[
+                                        1,
+                                        1,
+                                        1
+                                    ],
+                                    "verificationLevel":3
+                                },
+                                {
+                                    "path":"$.createCaseHealth.qualification.victims.mainvictim",
+                                    "value":[
+                                        "ADULT",
+                                        "CHILD",
+                                        "SENIOR"
+                                    ],
+                                    "verificationLevel":3
+                                },
+                                {
+                                    "path":"$.createCaseHealth.qualification.details.attribution",
+                                    "value":[
+                                        "MU",
+                                        "MU",
+                                        "MU"
+                                    ],
+                                    "verificationLevel":3
                                 },
                                 {
                                     "path":"$.createCaseHealth.owner",
@@ -50,7 +117,8 @@
                                         "fr.health.samu770",
                                         "fr.health.samu950",
                                         "fr.health.samu009"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
                                 },
                                 {
                                     "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.sex",
@@ -58,15 +126,33 @@
                                         "MASC",
                                         "FEM",
                                         "INCONNU"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
+                                },
+                                {
+                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.birthDate",
+                                    "value":[
+                                        "1959-02-01",
+                                        "2014-03-03"
+                                    ],
+                                    "verificationLevel":2
                                 },
                                 {
                                     "path":"$.createCaseHealth.patient.[0].identity.nonstrictFeatures.complete",
                                     "value":[
                                         "Didier Morel",
-                                        "Lola Halimi",
-                                        "Inconnu"
-                                    ]
+                                        "Lola Halimi"
+                                    ],
+                                    "verificationLevel":1
+                                },
+                                {
+                                    "path":"$.createCaseHealth.patient.[0].detail.age",
+                                    "value":[
+                                        "P65Y",
+                                        "P10Y",
+                                        "P80Y"
+                                    ],
+                                    "verificationLevel":2
                                 },
                                 {
                                     "path":"$.createCaseHealth.location.country",
@@ -74,7 +160,8 @@
                                         "FR",
                                         "FR",
                                         "FR"
-                                    ]
+                                    ],
+                                    "verificationLevel":2
                                 },
                                 {
                                     "path":"$.createCaseHealth.location.detailedAddress.complete",
@@ -82,7 +169,8 @@
                                         "12 Rue Louis Aristide Verdier ",
                                         "4 rue Danielle Mitterrand",
                                         "Rue principale"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
                                 },
                                 {
                                     "path":"$.createCaseHealth.location.city.name",
@@ -90,7 +178,80 @@
                                         "Vaires-sur-Marne",
                                         "Bezons",
                                         "Aulus-les-Bains"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.city.inseeCode",
+                                    "value":[
+                                        77479,
+                                        95063,
+                                        9029
+                                    ],
+                                    "verificationLevel":3
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.floor",
+                                    "value":[
+                                        3
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.roomNumber",
+                                    "value":[
+
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.interphone",
+                                    "value":[
+                                        "Halimi"
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.elevator",
+                                    "value":[
+                                        5678
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.roomNumber",
+                                    "value":[
+                                        "ESC B"
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.buildingName",
+                                    "value":[
+                                        "A"
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.entrance",
+                                    "value":[
+
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.entity",
+                                    "value":[
+
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.access.phoneNumber",
+                                    "value":[
+                                        561964589
+                                    ],
+                                    "verificationLevel":2
                                 },
                                 {
                                     "path":"$.createCaseHealth.location.freetext",
@@ -98,7 +259,31 @@
                                         "Aller directement dans le garage",
                                         "dans la cage d’escalier B",
                                         "Maison avec la porte verte, 100 m après le lavoir"
-                                    ]
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.geometry.point.coord.lat",
+                                    "value":[
+                                        "48.866920471191406",
+                                        "48.92399978637695"
+                                    ],
+                                    "verificationLevel":3
+                                },
+                                {
+                                    "path":"$.createCaseHealth.location.geometry.point.coord.lon",
+                                    "value":[
+                                        "2.631575345993042",
+                                        "2.2162439823150635"
+                                    ],
+                                    "verificationLevel":3
+                                },
+                                {
+                                    "path":"$.createCaseHealth.intialAlert.freetext",
+                                    "value":[
+
+                                    ],
+                                    "verificationLevel":2
                                 },
                                 {
                                     "path":"$.createCaseHealth.intialAlert.caller.callerContact.type",
@@ -106,7 +291,8 @@
                                         "PHNADD",
                                         "PHNADD",
                                         "PHNADD"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
                                 },
                                 {
                                     "path":"$.createCaseHealth.intialAlert.caller.callerContact.detail",
@@ -114,7 +300,35 @@
                                         607080915,
                                         702880946,
                                         632085528
-                                    ]
+                                    ],
+                                    "verificationLevel":1
+                                },
+                                {
+                                    "path":"$.createCaseHealth.intialAlert.caller.callbackContact.type",
+                                    "value":[
+                                        "PHNADD",
+                                        "PHNADD",
+                                        "PHNADD"
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.intialAlert.caller.callbackContact.detail",
+                                    "value":[
+                                        607080915,
+                                        702880946,
+                                        561964589
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.intialAlert.caller.type",
+                                    "value":[
+                                        "FAMILLE",
+                                        "TIERS",
+                                        "TIERS"
+                                    ],
+                                    "verificationLevel":3
                                 },
                                 {
                                     "path":"$.createCaseHealth.intialAlert.caller.detailedName.complete",
@@ -122,71 +336,8 @@
                                         "Sébastien Morel",
                                         "Amina BERTRAND  ",
                                         "Lucas Bernardi "
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.country",
-                                    "value":[
-                                        "FR",
-                                        "FR",
-                                        "FR"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.detailedAddress.complete",
-                                    "value":[
-                                        "12 Rue Louis Aristide Verdier ",
-                                        "4 rue Danielle Mitterrand",
-                                        "Rue principale"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.city.name",
-                                    "value":[
-                                        "Vaires-sur-Marne",
-                                        "Bezons",
-                                        "Aulus-les-Bains"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.freetext",
-                                    "value":[
-                                        "Aller directement dans le garage",
-                                        "dans la cage d’escalier B",
-                                        "Maison avec la porte verte, 100 m après le lavoir"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.whatsHappen.code",
-                                    "value":[
-                                        "C02.08.05",
-                                        "C02.08.02",
-                                        "C02.05.00"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.whatsHappen.freetext",
-                                    "value":[
-                                        "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance).",
-                                        "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible.",
-                                        "Confusion, étourdissements, s’exprime difficilement"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.healthMotive.code",
-                                    "value":[
-                                        "M01.02",
-                                        "M02.07",
-                                        "M03.08"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.details.priority",
-                                    "value":[
-                                        "P0",
-                                        "P2",
-                                        "P1"
-                                    ]
+                                    ],
+                                    "verificationLevel":1
                                 }
                             ]
                         }
@@ -203,178 +354,7 @@
                         "description":"Envoyer un message de partage de dossier pour le périmètre 15-15 sans demande de transfert; qui contient les valeurs obligatoires minimales attendues",
                         "message":{
                             "requiredValues":[
-                                {
-                                    "path":"$.createCaseHealth.qualification.whatsHappen.code",
-                                    "value":[
-                                        "C02.05.01",
-                                        "C02.05.01",
-                                        "C02.08.02"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.whatsHappen.freetext",
-                                    "value":[
-                                        "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
-                                        "Personne âgée isolée, a perdu beaucoup de poids, est affaiblie. Sa fille souhaite qu’un médecin aille vérifier l’état de sa mère qui semble faible, et confuse au téléphone. ",
-                                        "Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau). Conscients, plaies visibles, notamment une à l’arcade sourcilière et suspicion de fracture"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.healthMotive.code",
-                                    "value":[
-                                        "M03.06",
-                                        "M03.00",
-                                        "M02.07"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.details.priority",
-                                    "value":[
-                                        "P1",
-                                        "P2",
-                                        "P1"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.owner",
-                                    "value":[
-                                        "fr.health.samu780",
-                                        "fr.health.samu500",
-                                        "fr.health.samu800"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.sex",
-                                    "value":[
-                                        "FEM",
-                                        "FEM",
-                                        "FEM"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient.[0].identity.nonstrictFeatures.complete",
-                                    "value":[
-                                        "Ouardia Boudadi",
-                                        "Inès Girard",
-                                        "Kamélia Nguyen"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.country",
-                                    "value":[
-                                        "FR",
-                                        "FR",
-                                        "FR"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.detailedAddress.complete",
-                                    "value":[
-                                        "18 rue des Bois Rochefort",
-                                        "3 La Quibouquière",
-                                        "2 Rue de la Neuville "
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.city.name",
-                                    "value":[
-                                        "Sartrouville",
-                                        "Coutances",
-                                        "Humbercourt"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.freetext",
-                                    "value":[
-                                        "Sonner chez M. Prodhomme (voisin qui a les clés)"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callerContact.type",
-                                    "value":[
-                                        "PHNADD",
-                                        "PHNADD",
-                                        "PHNADD"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callerContact.detail",
-                                    "value":[
-                                        607080928,
-                                        "06 45 89 68 89",
-                                        "06 54 46 42 95"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.intialAlert.caller.detailedName.complete",
-                                    "value":[
-                                        "Magda Lena",
-                                        "Inès Diop",
-                                        "Quentin Diawara"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.country",
-                                    "value":[
-                                        "FR",
-                                        "FR",
-                                        "FR"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.detailedAddress.complete",
-                                    "value":[
-                                        "18 rue des Bois Rochefort",
-                                        "3 La Quibouquière",
-                                        "2 Rue de la Neuville "
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.city.name",
-                                    "value":[
-                                        "Sartrouville",
-                                        "Coutances",
-                                        "Humbercourt"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.freetext",
-                                    "value":[
-                                        "Sonner chez M. Prodhomme (voisin qui a les clés)"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.whatsHappen.code",
-                                    "value":[
-                                        "C02.05.01",
-                                        "C02.05.01",
-                                        "C02.08.02"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.whatsHappen.freetext",
-                                    "value":[
-                                        "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
-                                        "Personne âgée isolée, a perdu beaucoup de poids, est affaiblie. Sa fille souhaite qu’un médecin aille vérifier l’état de sa mère qui semble faible, et confuse au téléphone. ",
-                                        "Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau). Conscients, plaies visibles, notamment une à l’arcade sourcilière et suspicion de fracture"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.healthMotive.code",
-                                    "value":[
-                                        "M03.06",
-                                        "M03.00",
-                                        "M02.07"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.details.priority",
-                                    "value":[
-                                        "P0",
-                                        "P2",
-                                        "P1"
-                                    ]
-                                }
+
                             ]
                         }
                     },
@@ -384,178 +364,7 @@
                         "description":"Recevoir un message RS-EDA d'acceptation de la demande de prise en charge, saisir et valider les valeurs spécifiées dans le message reçu dans le cadre à droite puis envoyer un aquittement du message",
                         "message":{
                             "requiredValues":[
-                                {
-                                    "path":"$.createCaseHealth.qualification.whatsHappen.code",
-                                    "value":[
-                                        "C02.05.01",
-                                        "C02.05.01",
-                                        "C02.08.02"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.whatsHappen.freetext",
-                                    "value":[
-                                        "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
-                                        "Personne âgée isolée, a perdu beaucoup de poids, est affaiblie. Sa fille souhaite qu’un médecin aille vérifier l’état de sa mère qui semble faible, et confuse au téléphone. ",
-                                        "Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau). Conscients, plaies visibles, notamment une à l’arcade sourcilière et suspicion de fracture"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.healthMotive.code",
-                                    "value":[
-                                        "M03.06",
-                                        "M03.00",
-                                        "M02.07"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.details.priority",
-                                    "value":[
-                                        "P1",
-                                        "P2",
-                                        "P1"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.owner",
-                                    "value":[
-                                        "fr.health.samu780",
-                                        "fr.health.samu500",
-                                        "fr.health.samu800"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.sex",
-                                    "value":[
-                                        "FEM",
-                                        "FEM",
-                                        "FEM"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.patient.[0].identity.nonstrictFeatures.complete",
-                                    "value":[
-                                        "Ouardia Boudadi",
-                                        "Inès Girard",
-                                        "Kamélia Nguyen"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.country",
-                                    "value":[
-                                        "FR",
-                                        "FR",
-                                        "FR"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.detailedAddress.complete",
-                                    "value":[
-                                        "18 rue des Bois Rochefort",
-                                        "3 La Quibouquière",
-                                        "2 Rue de la Neuville "
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.city.name",
-                                    "value":[
-                                        "Sartrouville",
-                                        "Coutances",
-                                        "Humbercourt"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.location.freetext",
-                                    "value":[
-                                        "Sonner chez M. Prodhomme (voisin qui a les clés)"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callerContact.type",
-                                    "value":[
-                                        "PHNADD",
-                                        "PHNADD",
-                                        "PHNADD"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callerContact.detail",
-                                    "value":[
-                                        607080928,
-                                        "06 45 89 68 89",
-                                        "06 54 46 42 95"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.intialAlert.caller.detailedName.complete",
-                                    "value":[
-                                        "Magda Lena",
-                                        "Inès Diop",
-                                        "Quentin Diawara"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.country",
-                                    "value":[
-                                        "FR",
-                                        "FR",
-                                        "FR"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.detailedAddress.complete",
-                                    "value":[
-                                        "18 rue des Bois Rochefort",
-                                        "3 La Quibouquière",
-                                        "2 Rue de la Neuville "
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.city.name",
-                                    "value":[
-                                        "Sartrouville",
-                                        "Coutances",
-                                        "Humbercourt"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.location.freetext",
-                                    "value":[
-                                        "Sonner chez M. Prodhomme (voisin qui a les clés)"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.whatsHappen.code",
-                                    "value":[
-                                        "C02.05.01",
-                                        "C02.05.01",
-                                        "C02.08.02"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.whatsHappen.freetext",
-                                    "value":[
-                                        "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
-                                        "Personne âgée isolée, a perdu beaucoup de poids, est affaiblie. Sa fille souhaite qu’un médecin aille vérifier l’état de sa mère qui semble faible, et confuse au téléphone. ",
-                                        "Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau). Conscients, plaies visibles, notamment une à l’arcade sourcilière et suspicion de fracture"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.healthMotive.code",
-                                    "value":[
-                                        "M03.06",
-                                        "M03.00",
-                                        "M02.07"
-                                    ]
-                                },
-                                {
-                                    "path":"$.createCaseHealth.initialalert.qualification.details.priority",
-                                    "value":[
-                                        "P0",
-                                        "P2",
-                                        "P1"
-                                    ]
-                                }
+
                             ],
                             "file":"RS-EDA\/RS-EDA-usecase-PartageDossier-1.json"
                         }

@@ -43,7 +43,7 @@ jobs:
 
       - name: Install python requirements
         working-directory: ./csv_parser
-        if: steps.filter.outputs.parsing_required == 'true'
+        if: steps.filter.outputs.parsing_required == 'true' || steps.filter.outputs.test_case_parsing_required == 'true'
         run: pip install -r ./requirements.txt
 
       - name: Run csv_parser and collect OpenAPI & JSON Schemas
