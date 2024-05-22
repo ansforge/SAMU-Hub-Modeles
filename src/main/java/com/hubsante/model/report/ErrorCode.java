@@ -46,7 +46,7 @@ public enum ErrorCode {
         return errorCode;
       }
     }
-    return null;
+    throw new IllegalArgumentException("Inconsistent ErrorCode values");
   }
   @JsonProperty(JSON_PROPERTY_STATUS_CODE)
   public int getStatusCode() {
