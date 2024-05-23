@@ -32,8 +32,8 @@
     </complexType>
     <complexType name="sourceMessage">
         <sequence>
-            <any processContents="lax" maxOccurs="unbounded"/>
+            <any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
         </sequence>
-        <anyAttribute processContents="lax"/>
+        <anyAttribute processContents="skip"/>
     </complexType>
 </schema>
