@@ -34,88 +34,58 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ResourceDiagnosis
+ * Notes
  */
-@JsonPropertyOrder({ResourceDiagnosis.JSON_PROPERTY_CODE,
-                    ResourceDiagnosis.JSON_PROPERTY_LABEL,
-                    ResourceDiagnosis.JSON_PROPERTY_FREETEXT})
-@JsonTypeName("resourceDiagnosis")
+@JsonPropertyOrder({Notes.JSON_PROPERTY_CREATION, Notes.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("notes")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourceDiagnosis {
-  public static final String JSON_PROPERTY_CODE = "code";
-  private String code;
-
-  public static final String JSON_PROPERTY_LABEL = "label";
-  private String label;
+public class Notes {
+  public static final String JSON_PROPERTY_CREATION = "creation";
+  private OffsetDateTime creation;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public ResourceDiagnosis() {}
+  public Notes() {}
 
-  public ResourceDiagnosis code(String code) {
+  public Notes creation(OffsetDateTime creation) {
 
-    this.code = code;
+    this.creation = creation;
     return this;
   }
 
   /**
-   * A valoriser avec un code la nomenclature associée
-   * @return code
+   * date et heure de l&#39;observation
+   * @return creation
    **/
-  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonProperty(JSON_PROPERTY_CREATION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getCode() {
-    return code;
+  public OffsetDateTime getCreation() {
+    return creation;
   }
 
-  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonProperty(JSON_PROPERTY_CREATION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCode(String code) {
-    this.code = code;
+  public void setCreation(OffsetDateTime creation) {
+    this.creation = creation;
   }
 
-  public ResourceDiagnosis label(String label) {
-
-    this.label = label;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le libellé de la nomenclature associée. Dans le cas où un
-   *système n&#39;est pas en mesure de reconnaître un code, il peut directement
-   *afficher le libellé qui est obligatoirement fourni avec le code.
-   * @return label
-   **/
-  @JsonProperty(JSON_PROPERTY_LABEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getLabel() {
-    return label;
-  }
-
-  @JsonProperty(JSON_PROPERTY_LABEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLabel(String label) {
-    this.label = label;
-  }
-
-  public ResourceDiagnosis freetext(String freetext) {
+  public Notes freetext(String freetext) {
 
     this.freetext = freetext;
     return this;
   }
 
   /**
-   * Commentaire libre permettant de passer des informations complémentaires
-   *associées à la nomenclature
+   * texte libre contenant les indications renseignées par l&#39;ARM
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
@@ -139,23 +109,21 @@ public class ResourceDiagnosis {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResourceDiagnosis resourceDiagnosis = (ResourceDiagnosis)o;
-    return Objects.equals(this.code, resourceDiagnosis.code) &&
-        Objects.equals(this.label, resourceDiagnosis.label) &&
-        Objects.equals(this.freetext, resourceDiagnosis.freetext);
+    Notes notes = (Notes)o;
+    return Objects.equals(this.creation, notes.creation) &&
+        Objects.equals(this.freetext, notes.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, label, freetext);
+    return Objects.hash(creation, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResourceDiagnosis {\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("    label: ").append(toIndentedString(label)).append("\n");
+    sb.append("class Notes {\n");
+    sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();

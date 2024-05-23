@@ -28,18 +28,37 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
 Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.</documentation>
                 </annotation>
             </element>
+            <element minOccurs="0" name="perimeter">
+                <annotation>
+                    <documentation>Sert à indiquer à quelle filière du CRRA le dossier doit être adressé/affiché</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AMU"/>
+                        <enumeration value="SNP"/>
+                        <enumeration value="NEONAT"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="interventionType">
+                <annotation>
+                    <documentation>Indiquer s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Primaire"/>
+                        <enumeration value="Secondaire"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element name="qualification" type="x:qualification"/>
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
             <element name="owner" type="string">
                 <annotation>
-                    <documentation>Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
-Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
-Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
-Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.</documentation>
+                    <documentation>Champ servant à transférer la prise en charge d'un dossier à un autre CRAA après accord verbal de ce dernier.</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="operator" type="x:operator"/>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
@@ -55,7 +74,6 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
             <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="details" type="x:caseDetails"/>
-            <element minOccurs="0" name="victims" type="x:victims"/>
         </sequence>
     </complexType>
     <complexType name="location">
@@ -67,9 +85,9 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
             </element>
             <element minOccurs="0" name="locLabel" type="string">
                 <annotation>
-                    <documentation>Permet d'indiquer des indications auto suffisantes permettant pour un opérationnel d'accéder facilement au lieu avec des indications minimales.
-Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
-Comprend au maximum 255 caractères</documentation>
+                    <documentation>Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
+15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="name" type="string">
@@ -370,25 +388,10 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="notes" type="x:notes"/>
             <element name="caller" type="x:caller"/>
             <element name="callTaker" type="x:callTaker"/>
             <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
-        </sequence>
-    </complexType>
-    <complexType name="operator">
-        <sequence>
-            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
-            <element minOccurs="0" name="id" type="string">
-                <annotation>
-                    <documentation>Identifiant professionnel de l'opérateur si existant</documentation>
-                </annotation>
-            </element>
-            <element name="role" type="string">
-                <annotation>
-                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="patient">
@@ -403,7 +406,6 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
-            <element minOccurs="0" name="resourceDiagnosis" type="x:resourceDiagnosis"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
@@ -469,6 +471,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="engagementDetails" type="x:engagementDetails"/>
             <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
     </complexType>
@@ -929,42 +932,6 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
             </element>
         </sequence>
     </complexType>
-    <complexType name="victims">
-        <sequence>
-            <element minOccurs="0" name="count">
-                <annotation>
-                    <documentation>Indique le nombre de victimes selon la nomenclature du référentiel CISU</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="0"/>
-                        <enumeration value="1"/>
-                        <enumeration value="SEVERAL"/>
-                        <enumeration value="MANY"/>
-                        <enumeration value="UNKNOWN"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="mainVictim">
-                <annotation>
-                    <documentation>Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="INFANT"/>
-                        <enumeration value="CHILD"/>
-                        <enumeration value="ADULT"/>
-                        <enumeration value="SENIOR"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Permet de complémenter en commentaire libre la(les) victime(s)</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="externalLocationId">
         <sequence>
             <element name="source">
@@ -992,9 +959,8 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Numéro, type et nom de la voie. 
-Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                    <documentation>Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="number" type="string">
@@ -1025,7 +991,7 @@ Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</docum
             <element minOccurs="0" name="detail" type="string">
                 <annotation>
                     <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
-NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté</documentation>
+NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1134,8 +1100,16 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
 Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="type" type="string"/>
-            <element minOccurs="0" name="name" type="string"/>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de la voie</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom de la voie</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="point">
@@ -1189,6 +1163,20 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                         <enumeration value="UNKNOWN"/>
                     </restriction>
                 </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="notes">
+        <sequence>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>date et heure de l'observation</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>texte libre contenant les indications renseignées par l'ARM</documentation>
+                </annotation>
             </element>
         </sequence>
     </complexType>
@@ -1647,11 +1635,16 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     <documentation>Taille en centimètres</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="age" type="string">
+            <element minOccurs="0" name="age">
                 <annotation>
                     <documentation>Age du patient.
 Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="P[0-9]{1,3}[YMWD]"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="careLevel">
                 <simpleType>
@@ -1669,26 +1662,6 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
         <sequence>
             <element minOccurs="0" name="mainDiagnosis" type="x:mainDiagnosis"/>
             <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:otherDiagnosis"/>
-        </sequence>
-    </complexType>
-    <complexType name="resourceDiagnosis">
-        <sequence>
-            <element name="code" type="string">
-                <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
-                </annotation>
-            </element>
-            <element name="label" type="string">
-                <annotation>
-                    <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="externalId">
@@ -1870,6 +1843,41 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="operator">
+        <sequence>
+            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>Identifiant professionnel de l'opérateur si existant</documentation>
+                </annotation>
+            </element>
+            <element name="role" type="string">
+                <annotation>
+                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="engagementDetails">
+        <sequence>
+            <element name="categoryType" type="string">
+                <annotation>
+                    <documentation>détaille le moyen à engager</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="resourceType" type="string">
+                <annotation>
+                    <documentation>détaille le type de vecteur à engager</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="resourceId" type="string"/>
+            <element name="teamCareInitial" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
                 </annotation>
             </element>
         </sequence>

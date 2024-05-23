@@ -39,7 +39,6 @@ import com.hubsante.model.health.Alert;
 import com.hubsante.model.health.Decision;
 import com.hubsante.model.health.Location;
 import com.hubsante.model.health.MedicalNote;
-import com.hubsante.model.health.Operator;
 import com.hubsante.model.health.Patient;
 import com.hubsante.model.health.Qualification;
 import java.time.OffsetDateTime;
@@ -56,11 +55,12 @@ import java.util.Objects;
                     CreateCaseHealth.JSON_PROPERTY_SENDER_CASE_ID,
                     CreateCaseHealth.JSON_PROPERTY_CREATION,
                     CreateCaseHealth.JSON_PROPERTY_REFERENCE_VERSION,
+                    CreateCaseHealth.JSON_PROPERTY_PERIMETER,
+                    CreateCaseHealth.JSON_PROPERTY_INTERVENTION_TYPE,
                     CreateCaseHealth.JSON_PROPERTY_QUALIFICATION,
                     CreateCaseHealth.JSON_PROPERTY_LOCATION,
                     CreateCaseHealth.JSON_PROPERTY_INITIAL_ALERT,
                     CreateCaseHealth.JSON_PROPERTY_OWNER,
-                    CreateCaseHealth.JSON_PROPERTY_OPERATOR,
                     CreateCaseHealth.JSON_PROPERTY_PATIENT,
                     CreateCaseHealth.JSON_PROPERTY_MEDICAL_NOTE,
                     CreateCaseHealth.JSON_PROPERTY_DECISION,
@@ -86,6 +86,83 @@ public class CreateCaseHealth {
       "referenceVersion";
   private String referenceVersion;
 
+  /**
+   * Sert à indiquer à quelle filière du CRRA le dossier doit être
+   * adressé/affiché
+   */
+  public enum PerimeterEnum {
+    AMU("AMU"),
+
+    SNP("SNP"),
+
+    NEONAT("NEONAT");
+
+    private String value;
+
+    PerimeterEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PerimeterEnum fromValue(String value) {
+      for (PerimeterEnum b : PerimeterEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PERIMETER = "perimeter";
+  private PerimeterEnum perimeter;
+
+  /**
+   * Indiquer s&#39;il s&#39;agit d&#39;un dossier dit primaire (première
+   * intervention urgente) ou secondaire (par exemple TIH)
+   */
+  public enum InterventionTypeEnum {
+    PRIMAIRE("Primaire"),
+
+    SECONDAIRE("Secondaire");
+
+    private String value;
+
+    InterventionTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static InterventionTypeEnum fromValue(String value) {
+      for (InterventionTypeEnum b : InterventionTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_INTERVENTION_TYPE =
+      "interventionType";
+  private InterventionTypeEnum interventionType;
+
   public static final String JSON_PROPERTY_QUALIFICATION = "qualification";
   private Qualification qualification;
 
@@ -97,9 +174,6 @@ public class CreateCaseHealth {
 
   public static final String JSON_PROPERTY_OWNER = "owner";
   private String owner;
-
-  public static final String JSON_PROPERTY_OPERATOR = "operator";
-  private List<Operator> operator;
 
   public static final String JSON_PROPERTY_PATIENT = "patient";
   private List<Patient> patient;
@@ -227,6 +301,55 @@ public class CreateCaseHealth {
     this.referenceVersion = referenceVersion;
   }
 
+  public CreateCaseHealth perimeter(PerimeterEnum perimeter) {
+
+    this.perimeter = perimeter;
+    return this;
+  }
+
+  /**
+   * Sert à indiquer à quelle filière du CRRA le dossier doit être
+   *adressé/affiché
+   * @return perimeter
+   **/
+  @JsonProperty(JSON_PROPERTY_PERIMETER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public PerimeterEnum getPerimeter() {
+    return perimeter;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PERIMETER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPerimeter(PerimeterEnum perimeter) {
+    this.perimeter = perimeter;
+  }
+
+  public CreateCaseHealth
+  interventionType(InterventionTypeEnum interventionType) {
+
+    this.interventionType = interventionType;
+    return this;
+  }
+
+  /**
+   * Indiquer s&#39;il s&#39;agit d&#39;un dossier dit primaire (première
+   *intervention urgente) ou secondaire (par exemple TIH)
+   * @return interventionType
+   **/
+  @JsonProperty(JSON_PROPERTY_INTERVENTION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public InterventionTypeEnum getInterventionType() {
+    return interventionType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_INTERVENTION_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setInterventionType(InterventionTypeEnum interventionType) {
+    this.interventionType = interventionType;
+  }
+
   public CreateCaseHealth qualification(Qualification qualification) {
 
     this.qualification = qualification;
@@ -303,16 +426,8 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Champ servant à transférer la responsabilité du traitement d&#39;un dossier
-   *à un autre CRAA / à lui demander de prendre en charge le traitement du
-   *dossier. Le SAMU demandeur entre dans ce champ l&#39;ID du CRAA à qui il
-   *demande de traiter l&#39;affaire (uniquement en cas de transfert intégral du
-   *traitement d&#39;un dossier). Le SAMU qui reçoit la demande de transfert et
-   *l&#39;accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce
-   *champ + en ajoutant l&#39;ID local du dossier chez lui dans le message. Le
-   *SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de
-   *mise à jour en remettant l&#39;ID du SAMU demandeur dans ce champ + il
-   *envoie l&#39;ID local du dossier chez lui.
+   * Champ servant à transférer la prise en charge d&#39;un dossier à un autre
+   *CRAA après accord verbal de ce dernier.
    * @return owner
    **/
   @JsonProperty(JSON_PROPERTY_OWNER)
@@ -326,45 +441,6 @@ public class CreateCaseHealth {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setOwner(String owner) {
     this.owner = owner;
-  }
-
-  public CreateCaseHealth operator(List<Operator> operator) {
-
-    this.operator = operator;
-    return this;
-  }
-
-  public CreateCaseHealth addOperatorItem(Operator operatorItem) {
-    if (this.operator == null) {
-      this.operator = new ArrayList<>();
-    }
-    this.operator.add(operatorItem);
-    return this;
-  }
-
-  /**
-   * Get operator
-   * @return operator
-   **/
-  @JsonProperty(JSON_PROPERTY_OPERATOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Operator> getOperator() {
-    return operator;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_OPERATOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOperator(List<Operator> operator) {
-    if (operator == null) {
-      return;
-    }
-    if (this.operator == null) {
-      this.operator = new ArrayList<>();
-    }
-    this.operator.addAll(operator);
   }
 
   public CreateCaseHealth patient(List<Patient> patient) {
@@ -601,11 +677,13 @@ public class CreateCaseHealth {
         Objects.equals(this.creation, createCaseHealth.creation) &&
         Objects.equals(this.referenceVersion,
                        createCaseHealth.referenceVersion) &&
+        Objects.equals(this.perimeter, createCaseHealth.perimeter) &&
+        Objects.equals(this.interventionType,
+                       createCaseHealth.interventionType) &&
         Objects.equals(this.qualification, createCaseHealth.qualification) &&
         Objects.equals(this.location, createCaseHealth.location) &&
         Objects.equals(this.initialAlert, createCaseHealth.initialAlert) &&
         Objects.equals(this.owner, createCaseHealth.owner) &&
-        Objects.equals(this.operator, createCaseHealth.operator) &&
         Objects.equals(this.patient, createCaseHealth.patient) &&
         Objects.equals(this.medicalNote, createCaseHealth.medicalNote) &&
         Objects.equals(this.decision, createCaseHealth.decision) &&
@@ -618,9 +696,9 @@ public class CreateCaseHealth {
   @Override
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
-                        qualification, location, initialAlert, owner, operator,
-                        patient, medicalNote, decision, newAlert,
-                        additionalInformation, freetext);
+                        perimeter, interventionType, qualification, location,
+                        initialAlert, owner, patient, medicalNote, decision,
+                        newAlert, additionalInformation, freetext);
   }
 
   @Override
@@ -635,6 +713,12 @@ public class CreateCaseHealth {
     sb.append("    referenceVersion: ")
         .append(toIndentedString(referenceVersion))
         .append("\n");
+    sb.append("    perimeter: ")
+        .append(toIndentedString(perimeter))
+        .append("\n");
+    sb.append("    interventionType: ")
+        .append(toIndentedString(interventionType))
+        .append("\n");
     sb.append("    qualification: ")
         .append(toIndentedString(qualification))
         .append("\n");
@@ -643,7 +727,6 @@ public class CreateCaseHealth {
         .append(toIndentedString(initialAlert))
         .append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
-    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
     sb.append("    medicalNote: ")
         .append(toIndentedString(medicalNote))

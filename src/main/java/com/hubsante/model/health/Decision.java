@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.EngagementDetails;
 import com.hubsante.model.health.TransportDetails;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
@@ -45,6 +46,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
                     Decision.JSON_PROPERTY_TYPE,
+                    Decision.JSON_PROPERTY_ENGAGEMENT_DETAILS,
                     Decision.JSON_PROPERTY_TRANSPORT_DETAILS})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -97,6 +99,10 @@ public class Decision {
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
+
+  public static final String JSON_PROPERTY_ENGAGEMENT_DETAILS =
+      "engagementDetails";
+  private EngagementDetails engagementDetails;
 
   public static final String JSON_PROPERTY_TRANSPORT_DETAILS =
       "transportDetails";
@@ -175,6 +181,29 @@ public class Decision {
     this.type = type;
   }
 
+  public Decision engagementDetails(EngagementDetails engagementDetails) {
+
+    this.engagementDetails = engagementDetails;
+    return this;
+  }
+
+  /**
+   * Get engagementDetails
+   * @return engagementDetails
+   **/
+  @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public EngagementDetails getEngagementDetails() {
+    return engagementDetails;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEngagementDetails(EngagementDetails engagementDetails) {
+    this.engagementDetails = engagementDetails;
+  }
+
   public Decision transportDetails(TransportDetails transportDetails) {
 
     this.transportDetails = transportDetails;
@@ -210,12 +239,14 @@ public class Decision {
     return Objects.equals(this.id, decision.id) &&
         Objects.equals(this.creation, decision.creation) &&
         Objects.equals(this.type, decision.type) &&
+        Objects.equals(this.engagementDetails, decision.engagementDetails) &&
         Objects.equals(this.transportDetails, decision.transportDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, creation, type, transportDetails);
+    return Objects.hash(id, creation, type, engagementDetails,
+                        transportDetails);
   }
 
   @Override
@@ -225,6 +256,9 @@ public class Decision {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    engagementDetails: ")
+        .append(toIndentedString(engagementDetails))
+        .append("\n");
     sb.append("    transportDetails: ")
         .append(toIndentedString(transportDetails))
         .append("\n");

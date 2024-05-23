@@ -38,13 +38,6 @@ strict digraph {
                 <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">status <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">type <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">attribution <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">priority <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
                 </TABLE>>]
 	details -> qualification [headlabel=1 taillabel="0..1"]
-	victims [label=<<TABLE>
-                <TR>
-                <TD ><B>victims</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet victims</I></TD></TR><TR><TD BORDER="0" >count <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >mainVictim <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
-                </TABLE>>]
-	victims -> qualification [headlabel=1 taillabel="0..1"]
 	qualification [label=<<TABLE>
                 <TR>
                 <TD ><B>qualification</B></TD>
@@ -122,6 +115,13 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet location</I></TD></TR><TR><TD BORDER="0" >locID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >locLabel <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >country <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	location -> createCaseHealth [headlabel=1 taillabel=1]
+	notes [label=<<TABLE>
+                <TR>
+                <TD ><B>notes</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet notes</I></TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	notes -> initialAlert [headlabel=1 taillabel="0..*"]
 	callerContact [label=<<TABLE>
                 <TR>
                 <TD ><B>callerContact</B></TD>
@@ -175,23 +175,9 @@ strict digraph {
                 <TR>
                 <TD ><B>initialAlert</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet alert</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reception <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reporting <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet alert</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reception <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >reporting <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	initialAlert -> createCaseHealth [headlabel=1 taillabel="0..1"]
-	detailedName [label=<<TABLE>
-                <TR>
-                <TD ><B>detailedName</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [0..1] </TD></TR>
-                </TABLE>>]
-	detailedName -> operator [headlabel=1 taillabel="0..1"]
-	operator [label=<<TABLE>
-                <TR>
-                <TD BGCOLOR="#dceaf7"><B>operator</B></TD>
-                </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">id <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">role <I>string</I> : [1..1]  <B>15-15</B></TD></TR>
-                </TABLE>>]
-	operator -> createCaseHealth [headlabel=1 taillabel="0..*"]
 	externalId [label=<<TABLE>
                 <TR>
                 <TD BGCOLOR="#dceaf7"><B>externalId</B></TD>
@@ -360,13 +346,6 @@ strict digraph {
                 <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet hypothesis</I></TD></TR>
                 </TABLE>>]
 	hypothesis -> patient [headlabel=1 taillabel="0..1"]
-	resourceDiagnosis [label=<<TABLE>
-                <TR>
-                <TD BGCOLOR="#dceaf7"><B>resourceDiagnosis</B></TD>
-                </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet resourceDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
-                </TABLE>>]
-	resourceDiagnosis -> patient [headlabel=1 taillabel="0..1"]
 	patient [label=<<TABLE>
                 <TR>
                 <TD ><B>patient</B></TD>
@@ -395,6 +374,13 @@ strict digraph {
                 <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">id <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">creation <I>date-time</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">freetext <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">medicalHistory <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">treatments <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">allergies <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealth [headlabel=1 taillabel="0..*"]
+	engagementDetails [label=<<TABLE>
+                <TR>
+                <TD BGCOLOR="#dceaf7"><B>engagementDetails</B></TD>
+                </TR>
+                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet engagementDetails</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">categoryType <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">resourceType <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">resourceId <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">teamCareInitial <I>string</I> : [1..1]  <B>15-15</B></TD></TR>
+                </TABLE>>]
+	engagementDetails -> decision [headlabel=1 taillabel="0..1"]
 	externalLocationId [label=<<TABLE>
                 <TR>
                 <TD ><B>externalLocationId</B></TD>
@@ -511,6 +497,6 @@ strict digraph {
                 <TR>
                 <TD ><B>createCaseHealth</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet createCaseHealth</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">owner <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet createCaseHealth</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">perimeter <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">interventionType <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">owner <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 }
