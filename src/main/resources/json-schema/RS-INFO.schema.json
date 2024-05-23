@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-INFO.schema.json#",
-    "version": "24.05.21",
+    "version": "24.05.23",
     "example": "example.json#",
     "type": "object",
     "title": "info",

@@ -72,6 +72,7 @@ jobs:
         working-directory: ./csv_parser/json_schema2xsd
         if: steps.filter.outputs.parsing_required == 'true'
         run: |
+          rm out/RS-ERROR.xsd
           mv out/*.xsd ../../src/main/resources/xsd/
 
       - name: Remove input JSON Schemas
@@ -111,6 +112,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
           rm -r ./src/main/java/com/hubsante/model/geolocation || true
+          rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew
