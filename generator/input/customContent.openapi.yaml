@@ -10,7 +10,7 @@ components:
           $ref: '#/components/schemas/customContent'
     customContent:
       $id: classpath:/json-schema/schema#
-      x-id: CustomContent.schema.json#
+      x-id: customContent.schema.json#
       example: example.json#
       type: object
       title: customContent

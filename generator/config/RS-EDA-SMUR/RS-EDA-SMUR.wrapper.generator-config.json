@@ -1,0 +1,22 @@
+{
+  "inputSpec": "./input/RS-EDA-SMUR.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/wrapper/",
+  "globalProperties": {
+    "models": "createCaseHealthSmurWrapper",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.smur",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "enablePostProcessFile": true
+  }
+}
