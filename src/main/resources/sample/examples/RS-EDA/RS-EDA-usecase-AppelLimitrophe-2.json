@@ -67,11 +67,13 @@
       "caller": {
         "callerContact": {
           "type": "PHNADD",
-          "detail": "0607080928"
+          "detail": "0607080928",
+          "channel": "Personne"
         },
         "callbackContact": {
           "type": "PHNADD",
-          "detail": "0607080928"
+          "detail": "0607080928",
+          "channel": "Personne"
         },
         "language": "FR",
         "freetext": "Collègue de la victime",
@@ -87,7 +89,8 @@
         "controlRoom": "CRRA 95",
         "calltakerContact": {
           "type": "PHNADD",
-          "detail": "060102030406"
+          "detail": "060102030406",
+          "channel": "Personne"
         }
       },
       "notes": [
