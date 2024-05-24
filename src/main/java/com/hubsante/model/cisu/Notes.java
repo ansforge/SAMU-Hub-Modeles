@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,99 +34,71 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * WayName
+ * Notes
  */
-@JsonPropertyOrder({WayName.JSON_PROPERTY_COMPLETE, WayName.JSON_PROPERTY_TYPE,
-                    WayName.JSON_PROPERTY_NAME})
-@JsonTypeName("wayName")
+@JsonPropertyOrder({Notes.JSON_PROPERTY_CREATION, Notes.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("notes")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class WayName {
-  public static final String JSON_PROPERTY_COMPLETE = "complete";
-  private String complete;
+public class Notes {
+  public static final String JSON_PROPERTY_CREATION = "creation";
+  private OffsetDateTime creation;
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private String freetext;
 
-  public static final String JSON_PROPERTY_NAME = "name";
-  private String name;
+  public Notes() {}
 
-  public WayName() {}
+  public Notes creation(OffsetDateTime creation) {
 
-  public WayName complete(String complete) {
-
-    this.complete = complete;
+    this.creation = creation;
     return this;
   }
 
   /**
-   * Type et nom de la voie (venant d&#39;un référentiel ou non) Si les champs
-   *type et name sont renseignés, le champ callerName doit être valorisé ainsi :
-   *\&quot;{type} {nom}\&quot;.
-   * @return complete
+   * date et heure de l&#39;observation
+   * @return creation
    **/
-  @JsonProperty(JSON_PROPERTY_COMPLETE)
+  @JsonProperty(JSON_PROPERTY_CREATION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getComplete() {
-    return complete;
+  public OffsetDateTime getCreation() {
+    return creation;
   }
 
-  @JsonProperty(JSON_PROPERTY_COMPLETE)
+  @JsonProperty(JSON_PROPERTY_CREATION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setComplete(String complete) {
-    this.complete = complete;
+  public void setCreation(OffsetDateTime creation) {
+    this.creation = creation;
   }
 
-  public WayName type(String type) {
+  public Notes freetext(String freetext) {
 
-    this.type = type;
+    this.freetext = freetext;
     return this;
   }
 
   /**
-   * Type de la voie
-   * @return type
+   * texte libre contenant les indications renseignées par l&#39;ARM
+   * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getType() {
-    return type;
+  public String getFreetext() {
+    return freetext;
   }
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
-    this.type = type;
-  }
-
-  public WayName name(String name) {
-
-    this.name = name;
-    return this;
-  }
-
-  /**
-   * Nom de la voie
-   * @return name
-   **/
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getName() {
-    return name;
-  }
-
-  @JsonProperty(JSON_PROPERTY_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setName(String name) {
-    this.name = name;
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   @Override
@@ -137,24 +109,22 @@ public class WayName {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    WayName wayName = (WayName)o;
-    return Objects.equals(this.complete, wayName.complete) &&
-        Objects.equals(this.type, wayName.type) &&
-        Objects.equals(this.name, wayName.name);
+    Notes notes = (Notes)o;
+    return Objects.equals(this.creation, notes.creation) &&
+        Objects.equals(this.freetext, notes.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(complete, type, name);
+    return Objects.hash(creation, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class WayName {\n");
-    sb.append("    complete: ").append(toIndentedString(complete)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("class Notes {\n");
+    sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

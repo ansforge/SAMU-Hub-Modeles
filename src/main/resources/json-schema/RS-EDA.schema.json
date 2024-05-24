@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.05.17",
+    "version": "24.05.23",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -49,6 +49,31 @@
             "example": "example.json#/referenceVersion",
             "description": "Indique le num\u00e9ro de version du r\u00e9f\u00e9rentiel des nomenclatures des codes transmis. \nCela permet aux diff\u00e9rents syst\u00e8mes de s'assurer qu'ils utilisent la m\u00eame version des codes de nomenclature que leurs partenaires."
         },
+        "perimeter": {
+            "type": "string",
+            "title": "Fili\u00e8re",
+            "x-health-only": true,
+            "x-cols": 6,
+            "example": "example.json#/perimeter",
+            "description": "Sert \u00e0 indiquer \u00e0 quelle fili\u00e8re du CRRA le dossier doit \u00eatre adress\u00e9/affich\u00e9",
+            "enum": [
+                "AMU",
+                "SNP",
+                "NEONAT"
+            ]
+        },
+        "interventionType": {
+            "type": "string",
+            "title": "Type d'intervention",
+            "x-health-only": true,
+            "x-cols": 6,
+            "example": "example.json#/interventionType",
+            "description": "Indiquer s'il s'agit d'un dossier dit primaire (premi\u00e8re intervention urgente) ou secondaire (par exemple TIH)",
+            "enum": [
+                "Primaire",
+                "Secondaire"
+            ]
+        },
         "qualification": {
             "$ref": "#/definitions/qualification"
         },
@@ -64,13 +89,7 @@
             "x-health-only": true,
             "x-cols": 6,
             "example": "example.json#/owner",
-            "description": "Champ servant \u00e0 transf\u00e9rer la responsabilit\u00e9 du traitement d'un dossier \u00e0 un autre CRAA / \u00e0 lui demander de prendre en charge le traitement du dossier.\nLe SAMU demandeur entre dans ce champ l'ID du CRAA \u00e0 qui il demande de traiter l'affaire (uniquement en cas de transfert int\u00e9gral du traitement d'un dossier).\nLe SAMU qui re\u00e7oit la demande de transfert et l'accepte renvoie un RC-EDA de mise \u00e0 jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.\nLe SAMU qui re\u00e7oit la demande de transfert et la refuse renvoie un RC-EDA de mise \u00e0 jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui."
-        },
-        "operator": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/operator"
-            }
+            "description": "Champ servant \u00e0 transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA apr\u00e8s accord verbal de ce dernier."
         },
         "patient": {
             "type": "array",
@@ -108,7 +127,7 @@
                 "x-health-only": false,
                 "x-cols": 6,
                 "example": "example.json#/freetext/0",
-                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire/dossier. Ces informations sont g\u00e9n\u00e9rales, et ont vocation \u00e0 \u00eatre \u00e9chang\u00e9es en inter-force. "
             }
         }
     },
@@ -139,9 +158,6 @@
                 },
                 "details": {
                     "$ref": "#/definitions/caseDetails"
-                },
-                "victims": {
-                    "$ref": "#/definitions/victims"
                 }
             },
             "additionalProperties": false,
@@ -171,7 +187,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/locLabel",
-                    "description": "Permet d'indiquer des indications auto suffisantes permettant pour un op\u00e9rationnel d'acc\u00e9der facilement au lieu avec des indications minimales.\nDans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au maximum 255 caract\u00e8res"
+                    "description": "Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les \u00e9quipes op\u00e9rationnelles. Comprend au maximum 255 caract\u00e8res.\n15-18 : Dans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\n"
                 },
                 "name": {
                     "type": "string",
@@ -510,16 +526,10 @@
                         "ATTENTION"
                     ]
                 },
-                "freetext": {
+                "notes": {
                     "type": "array",
-                    "x-health-only": false,
                     "items": {
-                        "type": "string",
-                        "title": "Informations compl\u00e9mentaires sur l'alerte",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/initialAlert/freetext/0",
-                        "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte."
+                        "$ref": "#/definitions/notes"
                     }
                 },
                 "caller": {
@@ -537,38 +547,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/initialAlert"
-        },
-        "operator": {
-            "type": "object",
-            "title": "Op\u00e9rateurs impliqu\u00e9s",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [
-                "role"
-            ],
-            "properties": {
-                "detailedName": {
-                    "$ref": "#/definitions/detailedName"
-                },
-                "id": {
-                    "type": "string",
-                    "title": "ID",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/operator/0/id",
-                    "description": "Identifiant professionnel de l'op\u00e9rateur si existant"
-                },
-                "role": {
-                    "type": "string",
-                    "title": "R\u00f4le",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/operator/0/role",
-                    "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/operator/0"
         },
         "patient": {
             "type": "object",
@@ -601,9 +579,6 @@
                 },
                 "hypothesis": {
                     "$ref": "#/definitions/hypothesis"
-                },
-                "resourceDiagnosis": {
-                    "$ref": "#/definitions/resourceDiagnosis"
                 },
                 "freetext": {
                     "type": "array",
@@ -730,6 +705,9 @@
                         "ORIENT",
                         "PASPLUS"
                     ]
+                },
+                "engagementDetails": {
+                    "$ref": "#/definitions/engagementDetails"
                 },
                 "transportDetails": {
                     "$ref": "#/definitions/transportDetails"
@@ -1286,54 +1264,6 @@
             "additionalProperties": false,
             "example": "example.json#/qualification/details"
         },
-        "victims": {
-            "type": "object",
-            "title": "Patients-Victimes",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "count": {
-                    "type": "string",
-                    "title": "Nombre de patients-victimes",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/victims/count",
-                    "description": "Indique le nombre de victimes selon la nomenclature du r\u00e9f\u00e9rentiel CISU",
-                    "enum": [
-                        "0",
-                        "1",
-                        "SEVERAL",
-                        "MANY",
-                        "UNKNOWN"
-                    ]
-                },
-                "mainVictim": {
-                    "type": "string",
-                    "title": "Type du patient-victime principal",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/victims/mainVictim",
-                    "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS.",
-                    "enum": [
-                        "INFANT",
-                        "CHILD",
-                        "ADULT",
-                        "SENIOR"
-                    ]
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Informations compl\u00e9mentaires sur les patients-victimes",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/victims/freetext",
-                    "description": "Permet de compl\u00e9menter en commentaire libre la(les) victime(s)"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/qualification/victims"
-        },
         "externalLocationId": {
             "type": "object",
             "title": "Identifiant(s) du lieu",
@@ -1386,7 +1316,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/complete",
-                    "description": "Num\u00e9ro, type et nom de la voie. \nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\nObligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
+                    "description": "Num\u00e9ro, type et nom de la voie. Utilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\n15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
                 },
                 "number": {
                     "type": "string",
@@ -1433,7 +1363,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/city/detail",
-                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9"
+                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9."
                 }
             },
             "additionalProperties": false,
@@ -1632,14 +1562,16 @@
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/detailedAddress/wayName/type"
+                    "example": "example.json#/location/detailedAddress/wayName/type",
+                    "description": "Type de la voie"
                 },
                 "name": {
                     "type": "string",
                     "title": "Nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/detailedAddress/wayName/name"
+                    "example": "example.json#/location/detailedAddress/wayName/name",
+                    "description": "Nom de la voie"
                 }
             },
             "additionalProperties": false,
@@ -1738,6 +1670,37 @@
             },
             "additionalProperties": false,
             "example": "example.json#/location/geometry/point/coord"
+        },
+        "notes": {
+            "type": "object",
+            "title": "Informations compl\u00e9mentaires sur l'alerte (observations ARM)",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "creation"
+            ],
+            "properties": {
+                "creation": {
+                    "type": "string",
+                    "title": "Date et heure de l'observation ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/notes/0/creation",
+                    "description": "date et heure de l'observation",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Observations",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/notes/0/freetext",
+                    "description": "texte libre contenant les indications renseign\u00e9es par l'ARM"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/initialAlert/notes/0"
         },
         "caller": {
             "type": "object",
@@ -2347,7 +2310,8 @@
                     "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/age",
-                    "description": "Age du patient.\nAu format Dur\u00e9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unit\u00e9 de dur\u00e9e (ann\u00e9es, mois, semaines ou jours)"
+                    "description": "Age du patient.\nAu format Dur\u00e9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unit\u00e9 de dur\u00e9e (ann\u00e9es, mois, semaines ou jours)",
+                    "pattern": "P[0-9]{1,3}[YMWD]"
                 },
                 "careLevel": {
                     "type": "string",
@@ -2385,44 +2349,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/hypothesis"
-        },
-        "resourceDiagnosis": {
-            "type": "object",
-            "title": "Diagnostic de l'effecteur",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [
-                "code",
-                "label"
-            ],
-            "properties": {
-                "code": {
-                    "type": "string",
-                    "title": "Code",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/resourceDiagnosis/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
-                },
-                "label": {
-                    "type": "string",
-                    "title": "Libell\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/resourceDiagnosis/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/resourceDiagnosis/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/resourceDiagnosis"
         },
         "externalId": {
             "type": "object",
@@ -2717,6 +2643,83 @@
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0"
+        },
+        "operator": {
+            "type": "object",
+            "title": "Professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "role"
+            ],
+            "properties": {
+                "detailedName": {
+                    "$ref": "#/definitions/detailedName"
+                },
+                "id": {
+                    "type": "string",
+                    "title": "ID",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/operator/id",
+                    "description": "Identifiant professionnel de l'op\u00e9rateur si existant"
+                },
+                "role": {
+                    "type": "string",
+                    "title": "R\u00f4le",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/operator/role",
+                    "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/medicalNote/0/operator"
+        },
+        "engagementDetails": {
+            "type": "object",
+            "title": "D\u00e9cision d'engagement",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [
+                "categoryType",
+                "teamCareInitial"
+            ],
+            "properties": {
+                "categoryType": {
+                    "type": "string",
+                    "title": "Type de moyen",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/categoryType",
+                    "description": "d\u00e9taille le moyen \u00e0 engager"
+                },
+                "resourceType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/resourceType",
+                    "description": "d\u00e9taille le type de vecteur \u00e0 engager"
+                },
+                "resourceId": {
+                    "type": "string",
+                    "title": "ID vecteur ",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/resourceId"
+                },
+                "teamCareInitial": {
+                    "type": "string",
+                    "title": "Niveau de prise en charge",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/teamCareInitial",
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/engagementDetails"
         },
         "transportDetails": {
             "type": "object",

@@ -481,7 +481,9 @@ def run(sheet, name, version, perimeter_filter, model_type):
     def add_object_child_definition(parent, child, definitions):
         """
         Update parent definitions (required and properties) by adding the child information for an object child
-        Creates definitions for the child object if it does not exist yet
+        Creates definitions for the child object if it does not exist yet.
+        Special case: sourceMessage in rs-error message should allow additional properies (by default it is an
+        empty object with no required or optional properties)
         """
         childOriginalTypeName = child['Format (ou type)']
         parentExamplePath = get_parent_example_path(parent)
