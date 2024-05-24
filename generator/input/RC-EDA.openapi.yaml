@@ -1627,8 +1627,7 @@ components:
       title: "Informations compl\xE9mentaires sur l'alerte (observations ARM)"
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - creation
+      required: []
       properties:
         creation:
           type: string

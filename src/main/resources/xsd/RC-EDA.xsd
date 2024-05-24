@@ -1044,7 +1044,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
     </complexType>
     <complexType name="notes">
         <sequence>
-            <element name="creation" type="dateTime">
+            <element minOccurs="0" name="creation" type="dateTime">
                 <annotation>
                     <documentation>date et heure de l'observation</documentation>
                 </annotation>

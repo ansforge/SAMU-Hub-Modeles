@@ -108,7 +108,7 @@ Prend les valeurs définies dans la nomenclature CISU :
 Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION",X,X,X
 73,77,,Informations complémentaires sur l'alerte (observations ARM),,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
 15-15 : ce champ est celui dédié pour passer les observations ARM en texte libre.","Déclenchement téléalarme, voisine sur les lieux",comment,notes,OG,Observations générales (texte libre),,,1.0,0..n,X,notes,,,X,X,
-74,78,,,Date et heure de l'information complémentaire/l'observation ARM,,,,date et heure de l'observation,,,creation,,,,,,1..1,,datetime,,Format datetime décrit dans le DSF,X,X,
+74,78,,,Date et heure de l'information complémentaire/l'observation ARM,,,,date et heure de l'observation,,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF,X,X,
 75,79,,,Commentaire/Observations,,,,texte libre contenant les indications renseignées par l'ARM,La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,,X,X,
 76,80,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X,X
 77,81,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,,X,X,X
