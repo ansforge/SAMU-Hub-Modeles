@@ -27,10 +27,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
             <element name="owner" type="string">
                 <annotation>
-                    <documentation>Champ servant à transférer la responsabilité du traitement d'un dossier à un autre CRAA / à lui demander de prendre en charge le traitement du dossier.
-Le SAMU demandeur entre dans ce champ l'ID du CRAA à qui il demande de traiter l'affaire (uniquement en cas de transfert intégral du traitement d'un dossier).
-Le SAMU qui reçoit la demande de transfert et l'accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.
-Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mise à jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui.</documentation>
+                    <documentation>Champ servant à transférer la prise en charge d'un dossier à un autre CRAA après accord verbal de ce dernier.</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
@@ -58,9 +55,9 @@ Le SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de mi
             </element>
             <element minOccurs="0" name="locLabel" type="string">
                 <annotation>
-                    <documentation>Permet d'indiquer des indications auto suffisantes permettant pour un opérationnel d'accéder facilement au lieu avec des indications minimales.
-Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
-Comprend au maximum 255 caractères</documentation>
+                    <documentation>Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
+15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="name" type="string">
@@ -602,9 +599,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Numéro, type et nom de la voie. 
-Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                    <documentation>Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="number" type="string">
@@ -635,7 +631,7 @@ Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</docum
             <element minOccurs="0" name="detail" type="string">
                 <annotation>
                     <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
-NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté</documentation>
+NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -744,8 +740,16 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
 Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="type" type="string"/>
-            <element minOccurs="0" name="name" type="string"/>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de la voie</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom de la voie</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="point">
@@ -1115,6 +1119,11 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
     </complexType>
     <complexType name="contact">
         <sequence>
+            <element name="channel" type="string">
+                <annotation>
+                    <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
+                </annotation>
+            </element>
             <element name="type">
                 <annotation>
                     <documentation>Type de l'URI utilisée par le requérant, cf. nomenclature EMSI</documentation>
@@ -1320,7 +1329,19 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         </sequence>
     </complexType>
     <complexType name="operator">
-        <sequence/>
+        <sequence>
+            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="id" type="string">
+                <annotation>
+                    <documentation>Identifiant professionnel de l'opérateur si existant</documentation>
+                </annotation>
+            </element>
+            <element name="role" type="string">
+                <annotation>
+                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
+                </annotation>
+            </element>
+        </sequence>
     </complexType>
     <complexType name="engagementDetails">
         <sequence>

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-SMUR.schema.json#",
-    "version": "24.05.17",
+    "version": "24.05.24",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthSmur",
@@ -55,7 +55,7 @@
             "x-health-only": true,
             "x-cols": 6,
             "example": "example.json#/owner",
-            "description": "Champ servant \u00e0 transf\u00e9rer la responsabilit\u00e9 du traitement d'un dossier \u00e0 un autre CRAA / \u00e0 lui demander de prendre en charge le traitement du dossier.\nLe SAMU demandeur entre dans ce champ l'ID du CRAA \u00e0 qui il demande de traiter l'affaire (uniquement en cas de transfert int\u00e9gral du traitement d'un dossier).\nLe SAMU qui re\u00e7oit la demande de transfert et l'accepte renvoie un RC-EDA de mise \u00e0 jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier chez lui dans le message.\nLe SAMU qui re\u00e7oit la demande de transfert et la refuse renvoie un RC-EDA de mise \u00e0 jour en remettant l'ID du SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez lui."
+            "description": "Champ servant \u00e0 transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA apr\u00e8s accord verbal de ce dernier."
         },
         "patient": {
             "type": "array",
@@ -87,7 +87,7 @@
                 "x-health-only": false,
                 "x-cols": 6,
                 "example": "example.json#/freetext/0",
-                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire/dossier. Ces informations sont g\u00e9n\u00e9rales, et ont vocation \u00e0 \u00eatre \u00e9chang\u00e9es en inter-force. "
             }
         }
     },
@@ -146,7 +146,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/locLabel",
-                    "description": "Permet d'indiquer des indications auto suffisantes permettant pour un op\u00e9rationnel d'acc\u00e9der facilement au lieu avec des indications minimales.\nDans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au maximum 255 caract\u00e8res"
+                    "description": "Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les \u00e9quipes op\u00e9rationnelles. Comprend au maximum 255 caract\u00e8res.\n15-18 : Dans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\n"
                 },
                 "name": {
                     "type": "string",
@@ -920,7 +920,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/complete",
-                    "description": "Num\u00e9ro, type et nom de la voie. \nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\nObligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
+                    "description": "Num\u00e9ro, type et nom de la voie. Utilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\n15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
                 },
                 "number": {
                     "type": "string",
@@ -967,7 +967,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/city/detail",
-                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9"
+                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9."
                 }
             },
             "additionalProperties": false,
@@ -1166,14 +1166,16 @@
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/detailedAddress/wayName/type"
+                    "example": "example.json#/location/detailedAddress/wayName/type",
+                    "description": "Type de la voie"
                 },
                 "name": {
                     "type": "string",
                     "title": "Nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/detailedAddress/wayName/name"
+                    "example": "example.json#/location/detailedAddress/wayName/name",
+                    "description": "Nom de la voie"
                 }
             },
             "additionalProperties": false,
@@ -1610,10 +1612,19 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
+                "channel",
                 "type",
                 "detail"
             ],
             "properties": {
+                "channel": {
+                    "type": "string",
+                    "title": "Canal",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/caller/callerContact/channel",
+                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
+                },
                 "type": {
                     "type": "string",
                     "title": "Type de contact du requ\u00e9rant",
@@ -1993,8 +2004,30 @@
             "title": "Professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire",
             "x-display": "expansion-panels",
             "x-health-only": true,
-            "required": [],
-            "properties": {},
+            "required": [
+                "role"
+            ],
+            "properties": {
+                "detailedName": {
+                    "$ref": "#/definitions/detailedName"
+                },
+                "id": {
+                    "type": "string",
+                    "title": "ID",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/operator/id",
+                    "description": "Identifiant professionnel de l'op\u00e9rateur si existant"
+                },
+                "role": {
+                    "type": "string",
+                    "title": "R\u00f4le",
+                    "x-health-only": true,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/operator/role",
+                    "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message"
+                }
+            },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0/operator"
         },
@@ -2002,7 +2035,7 @@
             "type": "object",
             "title": "D\u00e9cision d'engagement",
             "x-display": "expansion-panels",
-            "x-health-only": false,
+            "x-health-only": true,
             "required": [
                 "categoryType",
                 "teamCareInitial"
@@ -2011,7 +2044,7 @@
                 "categoryType": {
                     "type": "string",
                     "title": "Type de moyen",
-                    "x-health-only": false,
+                    "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/categoryType",
                     "description": "d\u00e9taille le moyen \u00e0 engager"
@@ -2019,7 +2052,7 @@
                 "resourceType": {
                     "type": "string",
                     "title": "Type de vecteur",
-                    "x-health-only": false,
+                    "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/resourceType",
                     "description": "d\u00e9taille le type de vecteur \u00e0 engager"
@@ -2027,14 +2060,14 @@
                 "resourceId": {
                     "type": "string",
                     "title": "ID vecteur ",
-                    "x-health-only": false,
+                    "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/resourceId"
                 },
                 "teamCareInitial": {
                     "type": "string",
                     "title": "Niveau de prise en charge",
-                    "x-health-only": false,
+                    "x-health-only": true,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/teamCareInitial",
                     "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"

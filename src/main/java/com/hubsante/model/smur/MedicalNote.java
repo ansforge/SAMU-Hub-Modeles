@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.smur.Operator;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -55,7 +56,7 @@ public class MedicalNote {
   private String id;
 
   public static final String JSON_PROPERTY_OPERATOR = "operator";
-  private Object operator;
+  private Operator operator;
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
@@ -97,7 +98,7 @@ public class MedicalNote {
     this.id = id;
   }
 
-  public MedicalNote operator(Object operator) {
+  public MedicalNote operator(Operator operator) {
 
     this.operator = operator;
     return this;
@@ -110,13 +111,13 @@ public class MedicalNote {
   @JsonProperty(JSON_PROPERTY_OPERATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getOperator() {
+  public Operator getOperator() {
     return operator;
   }
 
   @JsonProperty(JSON_PROPERTY_OPERATOR)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOperator(Object operator) {
+  public void setOperator(Operator operator) {
     this.operator = operator;
   }
 

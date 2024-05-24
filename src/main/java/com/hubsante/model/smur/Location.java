@@ -120,12 +120,12 @@ public class Location {
   }
 
   /**
-   * Permet d&#39;indiquer des indications auto suffisantes permettant pour un
-   *opérationnel d&#39;accéder facilement au lieu avec des indications
-   *minimales. Dans les messages NexSIS, va souvent correspondre à la
-   *concaténation suivant des règles métiers de différentes informations, dont
-   *le \&quot;name\&quot; (toponyme) et l&#39;adresse. Comprend au maximum 255
-   *caractères
+   * Donne les informations minimales d&#39;identification du lieu
+   *d&#39;intervention, qui permet d&#39;identifier rapidement le lieu pour les
+   *équipes opérationnelles. Comprend au maximum 255 caractères. 15-18 : Dans
+   *les messages NexSIS, va souvent correspondre à la concaténation suivant des
+   *règles métiers de différentes informations, dont le \&quot;name\&quot;
+   *(toponyme) et l&#39;adresse.
    * @return locLabel
    **/
   @JsonProperty(JSON_PROPERTY_LOC_LABEL)

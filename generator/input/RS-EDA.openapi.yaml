@@ -1810,7 +1810,7 @@ components:
       properties:
         creation:
           type: string
-          title: 'Date et heure de l''observation '
+          title: "Date et heure de l'information compl\xE9mentaire/l'observation ARM"
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/creation
@@ -1821,7 +1821,7 @@ components:
           - None
         freetext:
           type: string
-          title: Observations
+          title: Commentaire/Observations
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/freetext

@@ -75,17 +75,8 @@ components:
           x-health-only: true
           x-cols: 6
           example: example.json#/owner
-          description: "Champ servant \xE0 transf\xE9rer la responsabilit\xE9 du traitement\
-            \ d'un dossier \xE0 un autre CRAA / \xE0 lui demander de prendre en charge\
-            \ le traitement du dossier.\nLe SAMU demandeur entre dans ce champ l'ID\
-            \ du CRAA \xE0 qui il demande de traiter l'affaire (uniquement en cas\
-            \ de transfert int\xE9gral du traitement d'un dossier).\nLe SAMU qui re\xE7\
-            oit la demande de transfert et l'accepte renvoie un RC-EDA de mise \xE0\
-            \ jour en laissant son ID dans ce champ + en ajoutant l'ID local du dossier\
-            \ chez lui dans le message.\nLe SAMU qui re\xE7oit la demande de transfert\
-            \ et la refuse renvoie un RC-EDA de mise \xE0 jour en remettant l'ID du\
-            \ SAMU demandeur dans ce champ + il envoie l'ID local du dossier chez\
-            \ lui."
+          description: "Champ servant \xE0 transf\xE9rer la prise en charge d'un dossier\
+            \ \xE0 un autre CRAA apr\xE8s accord verbal de ce dernier."
           examples:
           - fr.health.samu440
         patient:
@@ -112,9 +103,11 @@ components:
             x-cols: 6
             example: example.json#/freetext/0
             description: "Texte libre permettant de donner des informations suppl\xE9\
-              mentaires concernant l'affaire"
+              mentaires concernant l'affaire/dossier. Ces informations sont g\xE9\
+              n\xE9rales, et ont vocation \xE0 \xEAtre \xE9chang\xE9es en inter-force. "
             examples:
-            - None
+            - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
+              \ ferm\xE9es de 22h \xE0 6h00."
       additionalProperties: false
     qualification:
       type: object
@@ -162,12 +155,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/locLabel
-          description: "Permet d'indiquer des indications auto suffisantes permettant\
-            \ pour un op\xE9rationnel d'acc\xE9der facilement au lieu avec des indications\
-            \ minimales.\nDans les messages NexSIS, va souvent correspondre \xE0 la\
-            \ concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes\
-            \ informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au\
-            \ maximum 255 caract\xE8res"
+          description: "Donne les informations minimales d'identification du lieu\
+            \ d'intervention, qui permet d'identifier rapidement le lieu pour les\
+            \ \xE9quipes op\xE9rationnelles. Comprend au maximum 255 caract\xE8res.\n\
+            15-18 : Dans les messages NexSIS, va souvent correspondre \xE0 la concat\xE9\
+            nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes informations,\
+            \ dont le \"name\" (toponyme) et l'adresse.\n"
           examples:
           - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
             e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
@@ -384,14 +377,6 @@ components:
           - None
       additionalProperties: false
       example: example.json#/medicalNote/0
-      examples:
-      - id: None
-        operator: &id001 {}
-        creation: '2022-09-27T08:23:34+02:00'
-        freetext: None
-        medicalHistory: None
-        treatments: None
-        allergies: None
     decision:
       type: object
       title: "D\xE9cisions"
@@ -994,10 +979,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/complete
-          description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
-            \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
-            \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
-            \ NexSIS."
+          description: "Num\xE9ro, type et nom de la voie. Utilis\xE9 pour tout type\
+            \ de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
+            \n15-18 : Obligatoire et seule valeur des d\xE9tails de l'adresse fournie\
+            \ par NexSIS."
           examples:
           - 9 Bd du Montparnasse
         number:
@@ -1054,7 +1039,7 @@ components:
             \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
             \ fusionn\xE9es pour le syst\xE8me \xE9metteur\nNB : dans tous les cas,\
             \ la localisation GPS de la commune doit \xEAtre fournie afin d'\xE9viter\
-            \ une trop forte ambigu\xEFt\xE9"
+            \ une trop forte ambigu\xEFt\xE9."
           examples:
           - "Quartie Melun Nord, Lhomme, \u2026"
       additionalProperties: false
@@ -1284,6 +1269,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/type
+          description: Type de la voie
           examples:
           - Boulevard
         name:
@@ -1292,6 +1278,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/name
+          description: Nom de la voie
           examples:
           - du Montparnasse
       additionalProperties: false
@@ -1747,9 +1734,20 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
+      - channel
       - type
       - detail
       properties:
+        channel:
+          type: string
+          title: Canal
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/initialAlert/caller/callerContact/channel
+          description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
+            \ application, DAU, BAU, d\xE9fibrillateur, ecall"
+          examples:
+          - Personne
         type:
           type: string
           title: "Type de contact du requ\xE9rant"
@@ -1781,7 +1779,8 @@ components:
       additionalProperties: false
       example: example.json#/initialAlert/caller/callerContact
       examples:
-      - type: PHNADD
+      - channel: Personne
+        type: PHNADD
         detail: 0671830530
     detailedName:
       type: object
@@ -2146,17 +2145,41 @@ components:
       title: "Professionnel de sant\xE9 qui r\xE9alise l'interrogatoire"
       x-display: expansion-panels
       x-health-only: true
-      required: []
-      properties: {}
+      required:
+      - role
+      properties:
+        detailedName:
+          $ref: '#/components/schemas/detailedName'
+        id:
+          type: string
+          title: ID
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/operator/id
+          description: "Identifiant professionnel de l'op\xE9rateur si existant"
+          examples:
+          - None
+        role:
+          type: string
+          title: "R\xF4le"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/medicalNote/0/operator/role
+          description: "R\xF4le de l'op\xE9rateur au sein de l'entit\xE9 \xE9mettrice\
+            \ du message"
+          examples:
+          - "ARM, Medecin r\xE9gulateur\u2026"
       additionalProperties: false
       example: example.json#/medicalNote/0/operator
       examples:
-      - *id001
+      - detailedName: {}
+        id: None
+        role: "ARM, Medecin r\xE9gulateur\u2026"
     engagementDetails:
       type: object
       title: "D\xE9cision d'engagement"
       x-display: expansion-panels
-      x-health-only: false
+      x-health-only: true
       required:
       - categoryType
       - teamCareInitial
@@ -2164,7 +2187,7 @@ components:
         categoryType:
           type: string
           title: Type de moyen
-          x-health-only: false
+          x-health-only: true
           x-cols: 6
           example: example.json#/decision/0/engagementDetails/categoryType
           description: "d\xE9taille le moyen \xE0 engager"
@@ -2173,7 +2196,7 @@ components:
         resourceType:
           type: string
           title: Type de vecteur
-          x-health-only: false
+          x-health-only: true
           x-cols: 6
           example: example.json#/decision/0/engagementDetails/resourceType
           description: "d\xE9taille le type de vecteur \xE0 engager"
@@ -2182,7 +2205,7 @@ components:
         resourceId:
           type: string
           title: 'ID vecteur '
-          x-health-only: false
+          x-health-only: true
           x-cols: 6
           example: example.json#/decision/0/engagementDetails/resourceId
           examples:
@@ -2190,7 +2213,7 @@ components:
         teamCareInitial:
           type: string
           title: Niveau de prise en charge
-          x-health-only: false
+          x-health-only: true
           x-cols: 6
           example: example.json#/decision/0/engagementDetails/teamCareInitial
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\

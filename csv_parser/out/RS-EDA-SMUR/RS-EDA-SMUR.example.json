@@ -95,6 +95,7 @@
         "reporting": "STANDARD",
         "caller": {
             "callerContact": {
+                "channel": "Personne",
                 "type": "PHNADD",
                 "detail": "0671830530"
             },
@@ -172,7 +173,11 @@
     "medicalNote": [
         {
             "id": "None",
-            "operator": {},
+            "operator": {
+                "detailedName": {},
+                "id": "None",
+                "role": "ARM, Medecin r\u00e9gulateur\u2026"
+            },
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None",
             "medicalHistory": "None",
@@ -213,6 +218,6 @@
         ]
     },
     "freetext": [
-        "None"
+        "Le forcen\u00e9 n'est pas ma\u00eetris\u00e9. Voiture renvers\u00e9e. Urgences ferm\u00e9es de 22h \u00e0 6h00."
     ]
 }

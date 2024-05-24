@@ -264,16 +264,8 @@ public class CreateCaseHealthSmur {
   }
 
   /**
-   * Champ servant à transférer la responsabilité du traitement d&#39;un dossier
-   *à un autre CRAA / à lui demander de prendre en charge le traitement du
-   *dossier. Le SAMU demandeur entre dans ce champ l&#39;ID du CRAA à qui il
-   *demande de traiter l&#39;affaire (uniquement en cas de transfert intégral du
-   *traitement d&#39;un dossier). Le SAMU qui reçoit la demande de transfert et
-   *l&#39;accepte renvoie un RC-EDA de mise à jour en laissant son ID dans ce
-   *champ + en ajoutant l&#39;ID local du dossier chez lui dans le message. Le
-   *SAMU qui reçoit la demande de transfert et la refuse renvoie un RC-EDA de
-   *mise à jour en remettant l&#39;ID du SAMU demandeur dans ce champ + il
-   *envoie l&#39;ID local du dossier chez lui.
+   * Champ servant à transférer la prise en charge d&#39;un dossier à un autre
+   *CRAA après accord verbal de ce dernier.
    * @return owner
    **/
   @JsonProperty(JSON_PROPERTY_OWNER)
