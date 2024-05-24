@@ -53,9 +53,10 @@ def parser_and_mv():
                             'model_type': schemas_array[i].split(':')[2]}
                            for i in range(len(schemas_array))]
             except IndexError:
-                print(f"Error in sheet {sheet}: schema list is not well formatted. "
+                print(f"Error in sheet {sheet}: schema list (cell A2) is not well formatted. "
                       f"Should be 'name:filter:modelType' separated by a space. "
-                      f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'")
+                      f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'. "
+                      f"It was: '{full_df.iloc[1, 0]}'")
                 exit(1)
         # If A2 is empty, we generate only one schema with the sheet name and modelType in A1
         else:
