@@ -56,10 +56,12 @@
       "reporting": "STANDARD",
       "caller": {
         "callerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0607080915"
         },
         "callbackContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0607080915"
         },
