@@ -78,6 +78,7 @@
         "organization": "fr.health.samu770",
         "controlRoom": "CRRA 77",
         "calltakerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0102030405"
         }
