@@ -17,10 +17,6 @@
         "code": "M01.02",
         "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
       },
-      "victims": {
-        "count": "1",
-        "mainVictim": "ADULT"
-      },
       "details": {
         "priority": "P0",
         "attribution": "MU"
@@ -42,7 +38,7 @@
         "inseeCode": "77360"
       },
       "country": "FR",
-      "freetext": "Aller directement dans le garage",
+      "freetext": "La porte de garage est ouverte",
       "geometry": {
         "point": {
           "coord": {
@@ -58,22 +54,19 @@
       "id": "fr.health.samu770-DRFR157702400400055",
       "reception": "2024-01-04T15:00:00+01:00",
       "reporting": "STANDARD",
-      "freetext": [
-        "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance)."
-      ],
       "caller": {
         "callerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
-          "detail": "0607080915",
-          "channel": "Personne"
+          "detail": "0607080915"
         },
         "callbackContact": {
+          "channel": "Personne",
           "type": "PHNADD",
-          "detail": "0607080915",
-          "channel": "Personne"
+          "detail": "0607080915"
         },
         "language": "FR",
-        "freetext": "Fils de la victime",
+        "freetext": "fils de la victime",
         "detailedName": {
           "complete": "Sébastien Morel ",
           "lastName": "Morel ",
@@ -85,11 +78,21 @@
         "organization": "fr.health.samu770",
         "controlRoom": "CRRA 77",
         "calltakerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
-          "detail": "0102030405",
-          "channel": "Personne"
+          "detail": "0102030405"
         }
-      }
+      },
+      "notes": [
+        {
+          "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.",
+          "creation": "2024-01-04T08:04:00+01:00"
+        },
+        {
+          "freetext": "La victime est inconsciente (perte de connaissance).",
+          "creation": "2024-01-04T08:07:00+01:00"
+        }
+      ]
     },
     "owner": "fr.health.samu770",
     "patient": [
@@ -109,6 +112,8 @@
         },
         "id": "fr.health.samu770-DRFR157702400400055.P167"
       }
-    ]
+    ],
+    "perimeter": "AMU",
+    "interventionType": "Primaire"
   }
 }

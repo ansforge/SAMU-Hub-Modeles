@@ -11,15 +11,12 @@
       },
       "locationKind": {
         "code": "L03.01.00",
-        "label": "Local d’activité professionnelle; Local administratif"
+        "label": "Local d’activité professionnelle; Local administratif",
+        "freetext": "service comptabilité de la SARL Toto"
       },
       "healthMotive": {
         "code": "M03.06",
         "label": "Problème médical; Douleur thoracique "
-      },
-      "victims": {
-        "count": "1",
-        "mainVictim": "ADULT"
       },
       "details": {
         "priority": "P0",
@@ -67,9 +64,6 @@
       "id": "fr.health.samu950-DRFR159502401000233",
       "reception": "2024-01-10T14:05:00+01:00",
       "reporting": "STANDARD",
-      "freetext": [
-        "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente."
-      ],
       "caller": {
         "callerContact": {
           "type": "PHNADD",
@@ -98,9 +92,25 @@
           "detail": "060102030406",
           "channel": "Personne"
         }
-      }
+      },
+      "notes": [
+        {
+          "freetext": "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
+          "creation": "2024-01-10T07:09:00+01:00"
+        }
+      ]
     },
     "owner": "fr.health.samu950",
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "Aucune",
+          "label": "Aucun",
+          "value": "0",
+          "freetext": "rempli pour pallier au bug d'envoi"
+        }
+      ]
+    },
     "patient": [
       {
         "detail": {
@@ -116,8 +126,10 @@
             "sex": "FEM"
           }
         },
-        "id": "fr.health.samu950-DRFR159502401000233.P11"
+        "id": "fr.health.samu950-DRFR159502401000233.P1"
       }
-    ]
+    ],
+    "perimeter": "AMU",
+    "interventionType": "Primaire"
   }
 }
