@@ -66,14 +66,14 @@ public class Notes {
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getCreation() {
     return creation;
   }
 
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
   }

@@ -119,7 +119,7 @@ strict digraph {
                 <TR>
                 <TD ><B>notes</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet notes</I></TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet notes</I></TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	notes -> initialAlert [headlabel=1 taillabel="0..*"]
 	callerContact [label=<<TABLE>
