@@ -129,9 +129,6 @@
               "initialAlert": {
                 "reception": "2023-11-03T10:02:00+01:00",
                 "reporting": "STANDARD",
-                "freetext": [
-                  "suite collision avec un autre vélo sur piste cyclable, saignements aux niveaux des genoux, gonflement du geneoux, grosses égratinures, maux de tête"
-                ],
                 "caller": {
                   "callerContact": {
                     "channel": "Personne",
