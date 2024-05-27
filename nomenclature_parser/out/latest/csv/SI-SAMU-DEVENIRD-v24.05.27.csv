@@ -1,7 +1,7 @@
 ,code,label_n1,label_n2,label_n3,description,commentaire
 0,DRM,DRM,,,Dossier de régulation médicale,
 1,DRMMRU,,DRM MRU,,Dossier de type médecine d’urgence,
-2,MU,,,Régulation MU,Dossier de type médecine d’urgence régulé par un médecin urgentiste. Le dossier devient de type DRM,
+2,MU, ,,Régulation MU,Dossier de type médecine d’urgence régulé par un médecin urgentiste. Le dossier devient de type DRM,
 3,DENT,,,Régulation dentaire,Dossier régulé par un chirurgien dentiste au sein du CRRA. Le dossier devient de type DRM,
 4,GERIA,,,Régulation gériatrique,Dossier régulé par un gériatre au sein du CRRA. Le dossier devient de type DRM,
 5,PEDIA,,,Régulation pédiatrie,Dossier régulé par un pédiatre au sein du CRRA. Le dossier devient de type DRM,
