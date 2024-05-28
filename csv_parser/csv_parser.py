@@ -1,4 +1,6 @@
 import copy
+import re
+
 import pandas as pd
 import json
 from jsonpath_ng import parse
@@ -119,7 +121,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     # Keeping only the relevant perimeter rows
     if perimeter_filter:
-        df = df[df[perimeter_filter] == 'X']
+        df = df[pd.notna(df[perimeter_filter])]
 
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
@@ -321,6 +323,38 @@ def run(sheet, name, version, perimeter_filter, model_type):
         df['parent'] = df.apply(get_parent, axis=1)
         df['parent_type'] = df.apply(get_parent_type, axis=1)
         df['full_name'] = df.apply(build_full_name, axis=1)
+
+    # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
+    if perimeter_filter:
+        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+
+    # Verify that cardinality is formatted correctly (e.g. '0..1', '1..1', '0..n', '1..n'; regex (\d+..(\d+|n)))
+    def validate_cardinality_format(cardinality):
+        if re.match(r'^\d+\.\.(\d+|n)$', cardinality) and validate_cardinality_values(cardinality):
+            return True
+        return False
+
+    # Verify that cardinality value is valid (first number is lower than second number or second number is 'n')
+    def validate_cardinality_values(cardinality):
+        cardinality_values = cardinality.split('..')
+        if cardinality_values[1] == 'n':
+            return True
+        if int(cardinality_values[0]) <= int(cardinality_values[1]):
+            return True
+        return False
+
+    # Validate cardinality for each row of df
+    errs = []
+    for index, row in df.iterrows():
+        if not validate_cardinality_format(row['Cardinalité']):
+            errs.append(row)
+    if errs:
+        print(f"{Color.RED}ERROR: some rows have invalid cardinality values in sheet {sheet}, perimeter {perimeter_filter}:{Color.ORANGE}")
+        for err in errs:
+            print("Row ID: ", f"{str(int(err['ID'])):<5s}", "Name: ", f"{err['name']:<25s}", "Cardinality: ", err['Cardinalité'])
+        print(f"{Color.RED}Cardinalities should be formatted as '0..1', '1..1', '0..n', '1..n'.{Color.END}")
+        exit(1)
+
 
     # 2. Recursive data (children in their parent, to be explored like a tree)
     def get_element_with_its_children(previous_children, elem_id):
