@@ -126,6 +126,12 @@
                 "id": "samu690-20231103-AL01234",
                 "reception": "2023-11-03T10:02:00+01:00",
                 "reporting": "STANDARD",
+                "notes": [
+                 {
+                  "creation": "2023-11-03T10:02:00+01:00",
+                  "freetext": "Accident entre une voiture et un vélo"
+                 }
+                ],
                 "caller": {
                   "callerContact": {
                     "channel": "Personne",
@@ -179,6 +185,28 @@
                   }
                 ]
               },
+              "decision": [
+                  {
+                    "type": "INTER",
+                    "creation": "2023-11-03T10:05:00+01:00"
+                    }
+                ],
+               "patient": [
+                  {
+                    "identity": {
+                      "nonStrictFeatures": {
+                        "complete": "Alexandre Armaury",
+                        "lastName": "Armaury",
+                        "firstName": "Alexandre"
+                      },
+                      "strictFeatures": {
+                        "sex": "MASC",
+                        "birthDate": "1981-01-01"
+                      }
+                    },
+                    "id": "fr.health.samu690.DRFR15690240430050.P01"
+                  }  
+                ],
               "additionalInformation": {
                 "customMap": [
                   {
