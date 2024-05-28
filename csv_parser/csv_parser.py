@@ -323,12 +323,6 @@ def run(sheet, name, version, perimeter_filter, model_type):
         df['parent_type'] = df.apply(get_parent_type, axis=1)
         df['full_name'] = df.apply(build_full_name, axis=1)
 
-    # Replace 'Cardinalité' column value with the relevant perimeter column value if perimeter column value is not 'X'
-    def cardinality_replacement(cardinality, perimeter):
-        if perimeter == 'X':
-            return cardinality
-        return perimeter
-
     if perimeter_filter:
         df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
 
