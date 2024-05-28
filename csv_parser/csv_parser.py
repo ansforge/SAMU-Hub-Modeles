@@ -119,7 +119,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     # Keeping only the relevant perimeter rows
     if perimeter_filter:
-        df = df[df[perimeter_filter] == 'X']
+        df = df[pd.notna(df[perimeter_filter])]
 
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
@@ -320,6 +320,16 @@ def run(sheet, name, version, perimeter_filter, model_type):
         df['parent'] = df.apply(get_parent, axis=1)
         df['parent_type'] = df.apply(get_parent_type, axis=1)
         df['full_name'] = df.apply(build_full_name, axis=1)
+
+    # Replace 'Cardinalité' column value with the relevant perimeter column value if perimeter column value is not 'X'
+    def cardinality_replacement(cardinality, perimeter):
+        if perimeter == 'X':
+            return cardinality
+        return perimeter
+
+    if perimeter_filter:
+        test = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
 
     # 2. Recursive data (children in their parent, to be explored like a tree)
     def get_element_with_its_children(previous_children, elem_id):
