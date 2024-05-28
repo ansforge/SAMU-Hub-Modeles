@@ -118,6 +118,10 @@
                                 <id>samu690-20231103-AL01234</id>
                                 <reception>2023-11-03T10:02:00+01:00</reception>
                                 <reporting>STANDARD</reporting>
+                                <notes>
+                                    <creation>2023-11-03T10:02:00+01:00</creation>
+                                    <freetext>Accident entre une voiture et un vélo</freetext>
+                                </notes>
                                 <caller>
                                     <callerContact>
                                         <channel>Personne</channel>
