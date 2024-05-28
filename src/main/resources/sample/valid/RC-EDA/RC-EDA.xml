@@ -40,7 +40,9 @@
                                 <whatsHappen>
                                     <code>C01.01.04</code>
                                     <label>2-roues</label>
-                                    <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la circulation</freetext>
+                                    <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la
+                                        circulation
+                                    </freetext>
                                 </whatsHappen>
                                 <riskThreat>
                                     <code>R22</code>
@@ -55,7 +57,9 @@
                                 <victims>
                                     <count>SEVERAL</count>
                                     <mainVictim>ADULT</mainVictim>
-                                    <freetext>Deuxième victime présente saignements et brûlures legères aux mains et genoux</freetext>
+                                    <freetext>Deuxième victime présente saignements et brûlures legères aux mains et
+                                        genoux
+                                    </freetext>
                                 </victims>
                             </qualification>
                             <location>
@@ -150,7 +154,9 @@
                                     <whatsHappen>
                                         <code>C01.01.04</code>
                                         <label>2-roues</label>
-                                        <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la circulation</freetext>
+                                        <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la
+                                            circulation
+                                        </freetext>
                                     </whatsHappen>
                                 </qualification>
                                 <callTaker>
@@ -173,6 +179,24 @@
                                     <digest>None</digest>
                                 </attachment>
                             </initialAlert>
+                            <decision>
+                                <type>INTER</type>
+                                <creation>2023-11-03T10:05:00+01:00</creation>
+                            </decision>
+                            <patient>
+                                <identity>
+                                    <nonStrictFeatures>
+                                        <complete>Alexandre Armaury</complete>
+                                        <lastName>Armaury</lastName>
+                                        <firstName>Alexandre</firstName>
+                                    </nonStrictFeatures>
+                                    <strictFeatures>
+                                        <sex>MASC</sex>
+                                        <birthDate>1981-01-01</birthDate>
+                                    </strictFeatures>
+                                </identity>
+                                <id>fr.health.samu690.DRFR15690240430050.P01</id>
+                            </patient>
                             <additionalInformation>
                                 <customMap>
                                     <key>neighborhood</key>
