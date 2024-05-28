@@ -39,17 +39,14 @@
                                 <whatsHappen>
                                     <code>C07.13.02</code>
                                     <label>Rodéo automobile</label>
-                                    <freetext>None</freetext>
                                 </whatsHappen>
                                 <riskThreat>
                                     <code>C01.00.00</code>
                                     <label>Gêne à la circulation</label>
-                                    <freetext>risque lié aux voitures</freetext>
                                 </riskThreat>
                                 <riskThreat>
                                     <code>C01.01.00</code>
                                     <label>Second riskThreat</label>
-                                    <freetext>champ libre</freetext>
                                 </riskThreat>
                                 <victims>
                                     <count>SEVERAL</count>
@@ -144,7 +141,6 @@
                                     <whatsHappen>
                                         <code>C07.13.02</code>
                                         <label>Rodéo automobile</label>
-                                        <freetext>None</freetext>
                                     </whatsHappen>
                                 </qualification>
                                 <callTaker>

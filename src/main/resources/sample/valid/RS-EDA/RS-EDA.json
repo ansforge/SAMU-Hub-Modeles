@@ -39,18 +39,15 @@
               "qualification": {
                 "whatsHappen": {
                   "code": "C02.05.01",
-                  "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale ",
-                  "freetext": "Commentaire nature de fait"
+                  "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
                 },
                 "locationKind": {
                   "code": "L03.01.00",
-                  "label": "Local d’activité professionnelle; Local administratif",
-                  "freetext": "Commentaire type de lieu"
+                  "label": "Local d’activité professionnelle; Local administratif"
                 },
                 "healthMotive": {
                   "code": "M03.06",
-                  "label": "Problème médical; Douleur thoracique ",
-                  "freetext": "Commentaire motif recours"
+                  "label": "Problème médical; Douleur thoracique "
                 },
                 "details": {
                   "priority": "P0",
@@ -61,13 +58,11 @@
                 "riskThreat": [
                   {
                     "code": "R02",
-                    "label": "libellé risque 1",
-                    "freetext": "commentaire risque 1"
+                    "label": "libellé risque 1"
                   },
                   {
                     "code": "R03",
-                    "label": "Libellé risque 2",
-                    "freetext": "Commentaire risque 2"
+                    "label": "Libellé risque 2"
                   }
                 ]
               },
@@ -239,20 +234,17 @@
                   "hypothesis": {
                     "mainDiagnosis": {
                       "code": "Z86. 704",
-                      "label": "AVC",
-                      "freetext": "Commentaire Hypothèse de régulation médicale principale"
+                      "label": "AVC"
                     },
                     "otherDiagnosis": [
                       {
                         "code": "Z86. 704",
-                        "label": "AVC",
-                        "freetext": "Commentaire Hypothèse de régulation médicale secondaire"
+                        "label": "AVC"
                       }
                     ]
                   },
                   "healthMotive": {
                     "label": "Problème médical, Douleur thoracique",
-                    "freetext": "Commentaire motif de recours",
                     "code": "M03.06"
                   },
                   "administrativeFile": {
