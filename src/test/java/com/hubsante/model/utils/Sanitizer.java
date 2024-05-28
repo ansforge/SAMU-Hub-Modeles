@@ -73,6 +73,7 @@ public class Sanitizer {
     private static Sender sanitizeSender() {
         Sender revertedSender = new Sender();
         revertedSender.setName("sender");
+        revertedSender.setURI("hubex:sender");
         return revertedSender;
     }
 
