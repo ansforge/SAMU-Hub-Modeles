@@ -41,9 +41,8 @@ import java.util.Objects;
 /**
  * RiskThreat
  */
-@JsonPropertyOrder({RiskThreat.JSON_PROPERTY_CODE,
-                    RiskThreat.JSON_PROPERTY_LABEL,
-                    RiskThreat.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder(
+    {RiskThreat.JSON_PROPERTY_CODE, RiskThreat.JSON_PROPERTY_LABEL})
 @JsonTypeName("riskThreat")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -158,9 +157,6 @@ public class RiskThreat {
   public static final String JSON_PROPERTY_LABEL = "label";
   private String label;
 
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
-
   public RiskThreat() {}
 
   public RiskThreat code(CodeEnum code) {
@@ -211,30 +207,6 @@ public class RiskThreat {
     this.label = label;
   }
 
-  public RiskThreat freetext(String freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  /**
-   * Commentaire libre permettant de passer des informations complémentaires
-   *associées à la nomenclature
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFreetext() {
-    return freetext;
-  }
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -245,13 +217,12 @@ public class RiskThreat {
     }
     RiskThreat riskThreat = (RiskThreat)o;
     return Objects.equals(this.code, riskThreat.code) &&
-        Objects.equals(this.label, riskThreat.label) &&
-        Objects.equals(this.freetext, riskThreat.freetext);
+        Objects.equals(this.label, riskThreat.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, label, freetext);
+    return Objects.hash(code, label);
   }
 
   @Override
@@ -260,7 +231,6 @@ public class RiskThreat {
     sb.append("class RiskThreat {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

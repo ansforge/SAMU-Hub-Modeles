@@ -207,11 +207,6 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="locationKind">
@@ -410,11 +405,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="riskThreat">
@@ -469,11 +459,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -545,11 +530,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1301,11 +1281,6 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="otherDiagnosis">
@@ -1319,11 +1294,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>

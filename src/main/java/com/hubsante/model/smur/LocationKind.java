@@ -41,9 +41,8 @@ import java.util.Objects;
 /**
  * LocationKind
  */
-@JsonPropertyOrder({LocationKind.JSON_PROPERTY_CODE,
-                    LocationKind.JSON_PROPERTY_LABEL,
-                    LocationKind.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder(
+    {LocationKind.JSON_PROPERTY_CODE, LocationKind.JSON_PROPERTY_LABEL})
 @JsonTypeName("locationKind")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -442,9 +441,6 @@ public class LocationKind {
   public static final String JSON_PROPERTY_LABEL = "label";
   private String label;
 
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
-
   public LocationKind() {}
 
   public LocationKind code(CodeEnum code) {
@@ -495,30 +491,6 @@ public class LocationKind {
     this.label = label;
   }
 
-  public LocationKind freetext(String freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  /**
-   * Commentaire libre permettant de passer des informations complémentaires
-   *associées à la nomenclature
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFreetext() {
-    return freetext;
-  }
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -529,13 +501,12 @@ public class LocationKind {
     }
     LocationKind locationKind = (LocationKind)o;
     return Objects.equals(this.code, locationKind.code) &&
-        Objects.equals(this.label, locationKind.label) &&
-        Objects.equals(this.freetext, locationKind.freetext);
+        Objects.equals(this.label, locationKind.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, label, freetext);
+    return Objects.hash(code, label);
   }
 
   @Override
@@ -544,7 +515,6 @@ public class LocationKind {
     sb.append("class LocationKind {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

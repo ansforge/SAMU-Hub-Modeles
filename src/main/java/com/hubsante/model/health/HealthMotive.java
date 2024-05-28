@@ -41,9 +41,8 @@ import java.util.Objects;
 /**
  * HealthMotive
  */
-@JsonPropertyOrder({HealthMotive.JSON_PROPERTY_CODE,
-                    HealthMotive.JSON_PROPERTY_LABEL,
-                    HealthMotive.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder(
+    {HealthMotive.JSON_PROPERTY_CODE, HealthMotive.JSON_PROPERTY_LABEL})
 @JsonTypeName("healthMotive")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -188,9 +187,6 @@ public class HealthMotive {
   public static final String JSON_PROPERTY_LABEL = "label";
   private String label;
 
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
-
   public HealthMotive() {}
 
   public HealthMotive code(CodeEnum code) {
@@ -241,30 +237,6 @@ public class HealthMotive {
     this.label = label;
   }
 
-  public HealthMotive freetext(String freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  /**
-   * Commentaire libre permettant de passer des informations complémentaires
-   *associées à la nomenclature
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFreetext() {
-    return freetext;
-  }
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -275,13 +247,12 @@ public class HealthMotive {
     }
     HealthMotive healthMotive = (HealthMotive)o;
     return Objects.equals(this.code, healthMotive.code) &&
-        Objects.equals(this.label, healthMotive.label) &&
-        Objects.equals(this.freetext, healthMotive.freetext);
+        Objects.equals(this.label, healthMotive.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, label, freetext);
+    return Objects.hash(code, label);
   }
 
   @Override
@@ -290,7 +261,6 @@ public class HealthMotive {
     sb.append("class HealthMotive {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }
