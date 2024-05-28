@@ -7,25 +7,21 @@
     "qualification": {
       "whatsHappen": {
         "code": "C01.01.04",
-        "label": "2-roues",
-        "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
+        "label": "2-roues"
       },
       "locationKind": {
         "code": "L02.01.00",
-        "label": "Voie publique hors voie rapide",
-        "freetext": "Voie vélo le long d'une route"
+        "label": "Voie publique hors voie rapide"
       },
       "riskThreat": [
         {
           "code": "R22",
-          "label": "Gêne à la circulation",
-          "freetext": "Risque lié aux voitures"
+          "label": "Gêne à la circulation"
         }
       ],
       "healthMotive": {
         "code": "M02.01",
-        "label": "Saignements",
-        "freetext": "Portait un casque de protection"
+        "label": "Saignements"
       },
       "victims": {
         "count": "SEVERAL",
@@ -77,6 +73,12 @@
       "id": "samu690-20231103-AL01234",
       "reception": "2023-11-03T10:02:00+01:00",
       "reporting": "STANDARD",
+      "notes": [
+         {
+          "creation": "2023-11-03T10:02:00+01:00",
+          "freetext": "Accident entre une voiture et un vélo"
+         }
+      ],
       "caller": {
         "callerContact": {
           "channel": "Personne",
@@ -172,7 +174,7 @@
         "calltakerContact": {
           "channel": "Personne",
           "type": "PHNADD",
-          "detail": "0607080901"
+          "detail": "0607080903"
         },
         "calltakerId": "id1234"
       },
@@ -185,6 +187,31 @@
         }
       ]
     },
+    "decision": [
+      {
+        "type": "INTER",
+        "creation": "2023-11-03T10:05:00+01:00"
+        }
+    ],
+   "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Alexandre Armaury",
+            "lastName": "Armaury",
+            "firstName": "Alexandre"
+          },
+          "strictFeatures": {
+            "sex": "MASC",
+            "birthDate": "1981-01-01"
+          }
+        },
+        "id": "fr.health.samu690.DRFR15690240430050.P01",
+        "detail": {
+          "age": "43"
+        }
+      }  
+    ],
     "additionalInformation": {
       "customMap": [
         {
