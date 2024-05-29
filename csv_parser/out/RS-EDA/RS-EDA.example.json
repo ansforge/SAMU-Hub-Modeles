@@ -8,25 +8,21 @@
     "qualification": {
         "whatsHappen": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "locationKind": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "riskThreat": [
             {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
+                "label": "Rod\u00e9o automobile"
             }
         ],
         "healthMotive": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "details": {
             "status": "None",
@@ -190,8 +186,7 @@
             },
             "healthMotive": {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
+                "label": "Rod\u00e9o automobile"
             },
             "detail": {
                 "weight": 31,
@@ -202,14 +197,12 @@
             "hypothesis": {
                 "mainDiagnosis": {
                     "code": "C07.13.02",
-                    "label": "Rod\u00e9o automobile",
-                    "freetext": "None"
+                    "label": "Rod\u00e9o automobile"
                 },
                 "otherDiagnosis": [
                     {
                         "code": "C07.13.02",
-                        "label": "Rod\u00e9o automobile",
-                        "freetext": "None"
+                        "label": "Rod\u00e9o automobile"
                     }
                 ]
             },

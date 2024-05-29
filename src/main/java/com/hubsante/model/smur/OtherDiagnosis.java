@@ -41,9 +41,8 @@ import java.util.Objects;
 /**
  * OtherDiagnosis
  */
-@JsonPropertyOrder({OtherDiagnosis.JSON_PROPERTY_CODE,
-                    OtherDiagnosis.JSON_PROPERTY_LABEL,
-                    OtherDiagnosis.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder(
+    {OtherDiagnosis.JSON_PROPERTY_CODE, OtherDiagnosis.JSON_PROPERTY_LABEL})
 @JsonTypeName("otherDiagnosis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -53,9 +52,6 @@ public class OtherDiagnosis {
 
   public static final String JSON_PROPERTY_LABEL = "label";
   private String label;
-
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
 
   public OtherDiagnosis() {}
 
@@ -107,30 +103,6 @@ public class OtherDiagnosis {
     this.label = label;
   }
 
-  public OtherDiagnosis freetext(String freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  /**
-   * Commentaire libre permettant de passer des informations complémentaires
-   *associées à la nomenclature
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFreetext() {
-    return freetext;
-  }
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -141,13 +113,12 @@ public class OtherDiagnosis {
     }
     OtherDiagnosis otherDiagnosis = (OtherDiagnosis)o;
     return Objects.equals(this.code, otherDiagnosis.code) &&
-        Objects.equals(this.label, otherDiagnosis.label) &&
-        Objects.equals(this.freetext, otherDiagnosis.freetext);
+        Objects.equals(this.label, otherDiagnosis.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, label, freetext);
+    return Objects.hash(code, label);
   }
 
   @Override
@@ -156,7 +127,6 @@ public class OtherDiagnosis {
     sb.append("class OtherDiagnosis {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -11,8 +11,7 @@
       },
       "locationKind": {
         "code": "L03.01.00",
-        "label": "Local d’activité professionnelle; Local administratif",
-        "freetext": "service comptabilité de la SARL Toto"
+        "label": "Local d’activité professionnelle; Local administratif"
       },
       "healthMotive": {
         "code": "M03.06",

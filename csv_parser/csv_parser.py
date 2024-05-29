@@ -23,8 +23,8 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 full_asyncapi = None
-first_codelabelcomment_name = ""
-first_codelabelcomment_properties = []
+first_codeandlabel_name = ""
+first_codeandlabel_properties = []
 
 
 def run(sheet, name, version, perimeter_filter, model_type):
@@ -138,7 +138,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
                 return i
         return 0
 
-    def format_codelabelcomment_properties(child, parent):
+    def format_codeandlabel_properties(child, parent):
         code_file = parent['Détails de format']
         """ For 'Code', set code file name to the 'Détails de format' column, remove it from parent """
         if child['Balise NexSIS'] == "code":
@@ -158,29 +158,29 @@ def run(sheet, name, version, perimeter_filter, model_type):
                 child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i-shift_difference})"]
         return child_cpy
 
-    global first_codelabelcomment_properties
-    first_codelabelcomment_properties = []
+    global first_codeandlabel_properties
+    first_codeandlabel_properties = []
 
     def regenerate_ids(df):
         """Regenerate the IDs of the dataframe"""
         for index, row in df.copy().iterrows():
             df.at[index, 'ID'] = index + 1
 
-    # Iterate over df and insert three lines after each entry of type 'codeLabelComment'
+    # Iterate over df and insert two lines after each entry of type 'codeAndLabel'
     for index, row in df.copy().iterrows():
-        if row['Format (ou type)'] == 'codeLabelComment':
-            # We save the children of the codeLabelComment (3 next rows) if it's the first one we've seen
-            if not first_codelabelcomment_properties:
-                for i in range(1, 4):
-                    first_codelabelcomment_properties.append(df.loc[index + i].to_dict())
-            # Otherwise, we add the children of the first codeLabelComment to the current codeLabelComment
+        if row['Format (ou type)'] == 'codeAndLabel':
+            # We save the children of the codeAndLabel (2 next rows) if it's the first one we've seen
+            if not first_codeandlabel_properties:
+                for i in range(1, 3):
+                    first_codeandlabel_properties.append(df.loc[index + i].to_dict())
+            # Otherwise, we add the children of the first codeAndLabel to the current codeAndLabel
             else:
-                for i in range(1, 4):
+                for i in range(1, 3):
                     # we check the highest level of data of the current row and make sure to modify
                     # the level of data of each property to be equal to the row's level + 1
-                    prop_cpy = first_codelabelcomment_properties[i - 1].copy()
+                    prop_cpy = first_codeandlabel_properties[i - 1].copy()
                     prop_cpy['ID'] = row['ID']+i/10
-                    df.loc[index + i/10] = format_codelabelcomment_properties(prop_cpy, row)
+                    df.loc[index + i/10] = format_codeandlabel_properties(prop_cpy, row)
 
     df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
     df.reset_index(drop=True, inplace=True)
@@ -234,6 +234,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
               f"Check these columns are correctly set up.{Color.END}")
         HAS_ERROR = True
     # - name with spaces
+    test = df[df['name'].str.contains(' ')]
     if not df[df['name'].str.contains(' ')].empty:
         print(f"{Color.RED}ERROR: some rows have spaces in their 'name' field:{Color.ORANGE}")
         print(df[df['name'].str.contains(' ')])
@@ -293,7 +294,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     def get_true_type(row):
         """Get the type of elem (defaults to its name if there is no type specified)"""
-        if row['Format (ou type)'] == 'codeLabelComment':
+        if row['Format (ou type)'] == 'codeAndLabel':
             return row['name']
         elif row["Objet"] != "X" or row['is_typed_object']:
             return row["Format (ou type)"]
@@ -533,14 +534,14 @@ def run(sheet, name, version, perimeter_filter, model_type):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
-        """If this is the first codeLabelComment, we record its name, otherwise we copy the properties from the first 
-        codeLabelComment to the current codeLabelComment"""
-        if childOriginalTypeName == "codeLabelComment":
-            global first_codelabelcomment_name
-            if first_codelabelcomment_name == "":
-                first_codelabelcomment_name = childTrueTypeName
+        """If this is the first codeAndLabel, we record its name, otherwise we copy the properties from the first 
+        codeAndLabel to the current codeAndLabel"""
+        if childOriginalTypeName == "codeAndLabel":
+            global first_codeandlabel_name
+            if first_codeandlabel_name == "":
+                first_codeandlabel_name = childTrueTypeName
             else:
-                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_codelabelcomment_name]['properties'].copy()
+                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_codeandlabel_name]['properties'].copy()
 
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
@@ -582,8 +583,8 @@ def run(sheet, name, version, perimeter_filter, model_type):
             definition = json_schema
         else:
             if 'children' not in elem:
-                """If element type is 'codeLabelComment' we check by 'name', else we check by 'Format (ou type)'"""
-                if elem['Format (ou type)'] != 'codeLabelComment':
+                """If element type is 'codeAndLabel' we check by 'name', else we check by 'Format (ou type)'"""
+                if elem['Format (ou type)'] != 'codeAndLabel':
                     assert elem['Format (ou type)'] in json_schema['definitions'], \
                         (f"The type of the object '{elem['name']}' is not defined.\n"
                         f"Make sure the object is not empty")
