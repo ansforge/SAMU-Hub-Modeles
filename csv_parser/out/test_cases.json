@@ -7,19 +7,28 @@
                 "description":"Envoyer un message simple de partage de dossier pour le périmètre 15-15",
                 "steps":[
                     {
-                        "type":"send",
-                        "label":"Envoi RS-EDA",
+                        "type":"receive",
+                        "label":"Réception RS-EDA",
                         "description":"Envoyer un message de partage de dossier pour le périmètre 15-15 sans demande de transfert; qui contient les valeurs obligatoires minimales attendues",
                         "message":{
                             "requiredValues":[
                                 {
-                                    "path":"$.createCaseHealth.freetext",
+                                    "path":"$.createCaseHealth.perimeter",
                                     "value":[
-                                        "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance).",
-                                        "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible.",
-                                        "Confusion, étourdissements, s’exprime difficilement"
+                                        "AMU",
+                                        "AMU",
+                                        "AMU"
                                     ],
-                                    "verificationLevel":2
+                                    "verificationLevel":3
+                                },
+                                {
+                                    "path":"$.createCaseHealth.interventionType",
+                                    "value":[
+                                        "Primaire",
+                                        "Primaire",
+                                        "Primaire"
+                                    ],
+                                    "verificationLevel":3
                                 },
                                 {
                                     "path":"$.createCaseHealth.qualification.whatsHappen.code",
@@ -85,24 +94,6 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.qualification.victims.count",
-                                    "value":[
-                                        1,
-                                        1,
-                                        1
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
-                                    "path":"$.createCaseHealth.qualification.victims.mainvictim",
-                                    "value":[
-                                        "ADULT",
-                                        "CHILD",
-                                        "SENIOR"
-                                    ],
-                                    "verificationLevel":3
-                                },
-                                {
                                     "path":"$.createCaseHealth.qualification.details.attribution",
                                     "value":[
                                         "MU",
@@ -121,7 +112,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.sex",
+                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.sex",
                                     "value":[
                                         "MASC",
                                         "FEM",
@@ -130,7 +121,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.birthDate",
+                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.birthDate",
                                     "value":[
                                         "1959-02-01",
                                         "2014-03-03"
@@ -138,7 +129,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient[0].identity.nonstrictFeatures.complete",
+                                    "path":"$.createCaseHealth.patient.[0].identity.nonstrictFeatures.complete",
                                     "value":[
                                         "Didier Morel",
                                         "Lola Halimi"
@@ -146,7 +137,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient[0].detail.age",
+                                    "path":"$.createCaseHealth.patient.[0].detail.age",
                                     "value":[
                                         "P65Y",
                                         "P10Y",
@@ -212,14 +203,14 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.location.access.elevator",
+                                    "path":"$.createCaseHealth.location.access.[0].accessCode",
                                     "value":[
                                         5678
                                     ],
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.location.access.roomNumber",
+                                    "path":"$.createCaseHealth.location.access.elevator",
                                     "value":[
                                         "ESC B"
                                     ],
@@ -331,6 +322,30 @@
                                     "verificationLevel":3
                                 },
                                 {
+                                    "path":"$.createCaseHealth.intialAlert.caller.notes.[0].freetext",
+                                    "value":[
+                                        "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. ",
+                                        "Entorse de la cheville, avec possible fracture. ",
+                                        "Confusion, étourdissements, s’exprime difficilement"
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.intialAlert.caller.notes.[1].freetext",
+                                    "value":[
+                                        "La victime est inconsciente (perte de connaissance).",
+                                        "Cheville gonflée et douloureuse. "
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
+                                    "path":"$.createCaseHealth.intialAlert.caller.notes.[2].freetext",
+                                    "value":[
+                                        "Marche impossible."
+                                    ],
+                                    "verificationLevel":2
+                                },
+                                {
                                     "path":"$.createCaseHealth.intialAlert.caller.detailedName.complete",
                                     "value":[
                                         "Sébastien Morel",
@@ -339,34 +354,8 @@
                                     ],
                                     "verificationLevel":1
                                 }
-                            ]
-                        }
-                    }
-                ]
-            },
-            {
-                "label":"Partage de dossier simple (avec demande de prise en charge)",
-                "description":"Envoi d'un message RS-EDA avec demande de prise en charge, réception d'une réponse RS-EDA d'acceptation",
-                "steps":[
-                    {
-                        "type":"send",
-                        "label":"Envoi RS-EDA",
-                        "description":"Envoyer un message de partage de dossier pour le périmètre 15-15 sans demande de transfert; qui contient les valeurs obligatoires minimales attendues",
-                        "message":{
-                            "requiredValues":[
-
-                            ]
-                        }
-                    },
-                    {
-                        "type":"receive",
-                        "label":"Réception RS-EDA",
-                        "description":"RS-EDA",
-                        "message":{
-                            "requiredValues":[
-
                             ],
-                            "file":"RS-EDA\/RS-EDA-usecase-PartageDossier-1.json"
+                            "file":null
                         }
                     }
                 ]
