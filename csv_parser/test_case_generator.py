@@ -144,6 +144,7 @@ def run(perimeters):
     print('Test cases generated.')
     return test_cases
 
+
 def generate_step_json(perimeter, test_case, row, receive_json):
     # Create the JSON file for the step
     if not os.path.exists(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}'):
@@ -152,6 +153,7 @@ def generate_step_json(perimeter, test_case, row, receive_json):
             f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]}.json',
             'w', encoding='utf-8') as file:
         file.write(dumps(receive_json, indent=4, ensure_ascii=False))
+
 
 def get_type(type_in_french):
     if type_in_french == "Envoi":

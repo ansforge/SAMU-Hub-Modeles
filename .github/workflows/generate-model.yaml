@@ -55,6 +55,7 @@ jobs:
         working-directory: ./csv_parser
         if: steps.filter.outputs.test_case_parsing_required == 'true'
         run: | 
+          rm -r ./out/test-cases || true
           python workflow.py --stage test_case_parser
           rm -r ../src/main/resources/test-cases || true
           cp -r ./out/test-cases ../src/main/resources/
