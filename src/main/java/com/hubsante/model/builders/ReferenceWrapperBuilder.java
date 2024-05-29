@@ -16,9 +16,9 @@
 package com.hubsante.model.builders;
 
 
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.common.Reference;
-import com.hubsante.model.common.ReferenceWrapper;
+import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.reference.Reference;
+import com.hubsante.model.reference.ReferenceWrapper;
 
 public class ReferenceWrapperBuilder {
     private DistributionElement distributionElement;
@@ -35,7 +35,7 @@ public class ReferenceWrapperBuilder {
     }
 
     public ReferenceWrapperBuilder infoDistributionID(String infoDistributionID) {
-        this.reference.setInfoDistributionID(infoDistributionID);
+        this.reference.setErrorDistributionID(infoDistributionID);
         return this;
     }
 
@@ -52,7 +52,7 @@ public class ReferenceWrapperBuilder {
         referenceMessage.setRecipient(distributionElement.getRecipient());
         // Check if reference.refused is not null and set to true, if it is check if reference.infoDistributionID
         // is set, otherwise throw an IllegalArgumentException
-        if (this.reference.getRefused() != null && this.reference.getRefused() && this.reference.getInfoDistributionID() == null) {
+        if (this.reference.getRefused() != null && this.reference.getRefused() && this.reference.getErrorDistributionID() == null) {
             throw new IllegalArgumentException("ReferenceWrapper must have infoDistributionID set when refused is true");
         }
 

@@ -7,8 +7,7 @@
     "qualification": {
       "whatsHappen": {
         "code": "C02.08.05",
-        "label": "Par objet tranchant ou perforant",
-        "freetext": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
+        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
       },
       "locationKind": {
         "code": "L01.01.04",
@@ -17,10 +16,6 @@
       "healthMotive": {
         "code": "M01.02",
         "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
-      },
-      "victims": {
-        "count": "1",
-        "mainVictim": "ADULT"
       },
       "details": {
         "priority": "P0",
@@ -59,13 +54,14 @@
       "id": "fr.health.samu770-DRFR157702400400055",
       "reception": "2024-01-04T15:00:00+01:00",
       "reporting": "STANDARD",
-      "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. La victime est inconsciente (perte de connaissance).",
       "caller": {
         "callerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0607080915"
         },
         "callbackContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0607080915"
         },
@@ -78,68 +74,25 @@
         },
         "type": "FAMILLE"
       },
-      "alertSource": {
-        "channel": "Personne",
-        "type": "PHNADD",
-        "detail": "0607080915"
-      },
-      "location": {
-        "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
-        "detailedAddress": {
-          "complete": "12 Rue Louis Aristide Verdier",
-          "number": "12",
-          "wayName": {
-            "complete": "Rue Louis Aristide Verdier",
-            "type": "Rue",
-            "name": "Louis Aristide Verdier"
-          }
-        },
-        "city": {
-          "name": "Vaires-sur-Marne",
-          "inseeCode": "77479"
-        },
-        "country": "FR",
-        "geometry": {
-          "point": {
-            "coord": {
-              "lon": 2.6320988,
-              "lat": 48.8668403,
-              "precision": "ADDRESS"
-            }
-          },
-          "obsDatime": "2024-01-04T00:05:00+01:00"
-        }
-      },
-      "qualification": {
-        "whatsHappen": {
-          "code": "C02.08.05",
-          "label": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
-        },
-        "locationKind": {
-          "code": "L01.01.04",
-          "label": "Domicile ; Maison particulière, pavillon ;  dépendance"
-        },
-        "healthMotive": {
-          "code": "M01.02",
-          "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
-        },
-        "victims": {
-          "count": "1",
-          "mainVictim": "ADULT"
-        },
-        "details": {
-          "attribution": "MU",
-          "priority": "P0"
-        }
-      },
       "callTaker": {
         "organization": "fr.health.samu770",
         "controlRoom": "CRRA 77",
         "calltakerContact": {
+          "channel": "Personne",
           "type": "PHNADD",
           "detail": "0102030405"
         }
-      }
+      },
+      "notes": [
+        {
+          "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.",
+          "creation": "2024-01-04T08:04:00+01:00"
+        },
+        {
+          "freetext": "La victime est inconsciente (perte de connaissance).",
+          "creation": "2024-01-04T08:07:00+01:00"
+        }
+      ]
     },
     "owner": "fr.health.samu770",
     "patient": [
@@ -159,6 +112,8 @@
         },
         "id": "fr.health.samu770-DRFR157702400400055.P167"
       }
-    ]
+    ],
+    "perimeter": "AMU",
+    "interventionType": "Primaire"
   }
 }

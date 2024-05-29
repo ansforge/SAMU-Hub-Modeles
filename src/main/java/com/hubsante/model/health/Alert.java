@@ -37,9 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.Attachment;
 import com.hubsante.model.health.CallTaker;
 import com.hubsante.model.health.Caller;
-import com.hubsante.model.health.ContactSource;
-import com.hubsante.model.health.Location;
-import com.hubsante.model.health.Qualification;
+import com.hubsante.model.health.Notes;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,12 +48,10 @@ import java.util.Objects;
 /**
  * Alert
  */
-@JsonPropertyOrder(
-    {Alert.JSON_PROPERTY_ID, Alert.JSON_PROPERTY_RECEPTION,
-     Alert.JSON_PROPERTY_REPORTING, Alert.JSON_PROPERTY_FREETEXT,
-     Alert.JSON_PROPERTY_CALLER, Alert.JSON_PROPERTY_ALERT_SOURCE,
-     Alert.JSON_PROPERTY_LOCATION, Alert.JSON_PROPERTY_QUALIFICATION,
-     Alert.JSON_PROPERTY_CALL_TAKER, Alert.JSON_PROPERTY_ATTACHMENT})
+@JsonPropertyOrder({Alert.JSON_PROPERTY_ID, Alert.JSON_PROPERTY_RECEPTION,
+                    Alert.JSON_PROPERTY_REPORTING, Alert.JSON_PROPERTY_NOTES,
+                    Alert.JSON_PROPERTY_CALLER, Alert.JSON_PROPERTY_CALL_TAKER,
+                    Alert.JSON_PROPERTY_ATTACHMENT})
 @JsonTypeName("alert")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -107,20 +103,11 @@ public class Alert {
   public static final String JSON_PROPERTY_REPORTING = "reporting";
   private ReportingEnum reporting;
 
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
+  public static final String JSON_PROPERTY_NOTES = "notes";
+  private List<Notes> notes;
 
   public static final String JSON_PROPERTY_CALLER = "caller";
   private Caller caller;
-
-  public static final String JSON_PROPERTY_ALERT_SOURCE = "alertSource";
-  private ContactSource alertSource;
-
-  public static final String JSON_PROPERTY_LOCATION = "location";
-  private Location location;
-
-  public static final String JSON_PROPERTY_QUALIFICATION = "qualification";
-  private Qualification qualification;
 
   public static final String JSON_PROPERTY_CALL_TAKER = "callTaker";
   private CallTaker callTaker;
@@ -218,28 +205,43 @@ public class Alert {
     this.reporting = reporting;
   }
 
-  public Alert freetext(String freetext) {
+  public Alert notes(List<Notes> notes) {
 
-    this.freetext = freetext;
+    this.notes = notes;
+    return this;
+  }
+
+  public Alert addNotesItem(Notes notesItem) {
+    if (this.notes == null) {
+      this.notes = new ArrayList<>();
+    }
+    this.notes.add(notesItem);
     return this;
   }
 
   /**
-   * Texte libre permettant de donner des informations supplémentaires
-   *concernant l&#39;alerte.
-   * @return freetext
+   * Get notes
+   * @return notes
    **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonProperty(JSON_PROPERTY_NOTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getFreetext() {
-    return freetext;
+  public List<Notes> getNotes() {
+    return notes;
   }
 
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_NOTES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
+  public void setNotes(List<Notes> notes) {
+    if (notes == null) {
+      return;
+    }
+    if (this.notes == null) {
+      this.notes = new ArrayList<>();
+    }
+    this.notes.addAll(notes);
   }
 
   public Alert caller(Caller caller) {
@@ -263,75 +265,6 @@ public class Alert {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCaller(Caller caller) {
     this.caller = caller;
-  }
-
-  public Alert alertSource(ContactSource alertSource) {
-
-    this.alertSource = alertSource;
-    return this;
-  }
-
-  /**
-   * Get alertSource
-   * @return alertSource
-   **/
-  @JsonProperty(JSON_PROPERTY_ALERT_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public ContactSource getAlertSource() {
-    return alertSource;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ALERT_SOURCE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAlertSource(ContactSource alertSource) {
-    this.alertSource = alertSource;
-  }
-
-  public Alert location(Location location) {
-
-    this.location = location;
-    return this;
-  }
-
-  /**
-   * Get location
-   * @return location
-   **/
-  @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Location getLocation() {
-    return location;
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLocation(Location location) {
-    this.location = location;
-  }
-
-  public Alert qualification(Qualification qualification) {
-
-    this.qualification = qualification;
-    return this;
-  }
-
-  /**
-   * Get qualification
-   * @return qualification
-   **/
-  @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Qualification getQualification() {
-    return qualification;
-  }
-
-  @JsonProperty(JSON_PROPERTY_QUALIFICATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setQualification(Qualification qualification) {
-    this.qualification = qualification;
   }
 
   public Alert callTaker(CallTaker callTaker) {
@@ -408,19 +341,16 @@ public class Alert {
     return Objects.equals(this.id, alert.id) &&
         Objects.equals(this.reception, alert.reception) &&
         Objects.equals(this.reporting, alert.reporting) &&
-        Objects.equals(this.freetext, alert.freetext) &&
+        Objects.equals(this.notes, alert.notes) &&
         Objects.equals(this.caller, alert.caller) &&
-        Objects.equals(this.alertSource, alert.alertSource) &&
-        Objects.equals(this.location, alert.location) &&
-        Objects.equals(this.qualification, alert.qualification) &&
         Objects.equals(this.callTaker, alert.callTaker) &&
         Objects.equals(this.attachment, alert.attachment);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, reception, reporting, freetext, caller, alertSource,
-                        location, qualification, callTaker, attachment);
+    return Objects.hash(id, reception, reporting, notes, caller, callTaker,
+                        attachment);
   }
 
   @Override
@@ -434,15 +364,8 @@ public class Alert {
     sb.append("    reporting: ")
         .append(toIndentedString(reporting))
         .append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
+    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
     sb.append("    caller: ").append(toIndentedString(caller)).append("\n");
-    sb.append("    alertSource: ")
-        .append(toIndentedString(alertSource))
-        .append("\n");
-    sb.append("    location: ").append(toIndentedString(location)).append("\n");
-    sb.append("    qualification: ")
-        .append(toIndentedString(qualification))
-        .append("\n");
     sb.append("    callTaker: ")
         .append(toIndentedString(callTaker))
         .append("\n");

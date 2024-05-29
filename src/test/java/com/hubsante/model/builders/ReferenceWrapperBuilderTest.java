@@ -15,9 +15,9 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.common.Recipient;
-import com.hubsante.model.common.ReferenceWrapper;
+import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.rcde.Recipient;
+import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.edxl.DistributionKind;
 import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;

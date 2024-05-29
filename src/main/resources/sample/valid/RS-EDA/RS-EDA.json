@@ -33,41 +33,42 @@
             ],
             "createCaseHealth": {
               "caseId": "fr.health.samu950-DRFR159502401000233",
-              "senderCaseId": "fr.health.samu950-DRFR159502401000233",
+              "senderCaseId": "DRFR159502401000233",
               "creation": "2024-01-10T14:07:00+01:00",
-              "referenceVersion": "1.3",
+              "referenceVersion": "1.4",
               "qualification": {
                 "whatsHappen": {
                   "code": "C02.05.01",
-                  "label": "Pathologie / Maladie - Médicale ",
-                  "freetext": "Douleurs thoraciques"
+                  "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
                 },
                 "locationKind": {
                   "code": "L03.01.00",
-                  "label": "Local administratif",
-                  "freetext": "service comptabilité de la SARL Toto"
+                  "label": "Local d’activité professionnelle; Local administratif"
                 },
-                "riskThreat": [],
                 "healthMotive": {
                   "code": "M03.06",
-                  "label": "Douleur thoracique ",
-                  "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
-                },
-                "victims": {
-                  "count": "1",
-                  "mainVictim": "ADULT",
-                  "freetext": "Femme de 47 ans"
+                  "label": "Problème médical; Douleur thoracique "
                 },
                 "details": {
                   "priority": "P0",
-                  "attribution": "Médecin urgentiste",
-                  "type": "D"
-                }
+                  "attribution": "MU",
+                  "type": "D",
+                  "status": "Actif "
+                },
+                "riskThreat": [
+                  {
+                    "code": "R02",
+                    "label": "libellé risque 1"
+                  },
+                  {
+                    "code": "R03",
+                    "label": "Libellé risque 2"
+                  }
+                ]
               },
               "location": {
                 "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
-                "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
-                "name": "rue des Bois Rochefort",
+                "name": "SARL Toto",
                 "detailedAddress": {
                   "complete": "18 rue des Bois Rochefort 78500 Sartrouville",
                   "number": "18",
@@ -79,18 +80,21 @@
                 },
                 "city": {
                   "name": "Sartrouville",
-                  "inseeCode": "78586"
+                  "inseeCode": "78586",
+                  "detail": "Sartrouville"
                 },
-                "externalInfo": [],
                 "country": "FR",
                 "access": {
-                  "accessCode": [],
                   "floor": "4",
                   "interphone": "SARL TOTO",
                   "elevator": "Esc D",
                   "buildingName": "C",
                   "entity": "Comptabilité",
-                  "phoneNumber": 156789456
+                  "phoneNumber": 156789456,
+                  "accessCode": [
+                    "4568"
+                  ],
+                  "entrance": "B"
                 },
                 "freetext": "Se rendre au service comptabilité l'accueil est prévenu",
                 "geometry": {
@@ -98,25 +102,45 @@
                     "coord": {
                       "lat": 48.95102310180664,
                       "lon": 2.1857428550720215,
-                      "precision": "ADDRESS"
-                    }
+                      "precision": "UNKNOWN",
+                      "height": 6,
+                      "heading": 8,
+                      "speed": 49
+                    },
+                    "sysCoord": "système"
                   },
-                  "obsDatime": "2024-01-10T11:00:00+01:00"
-                }
+                  "obsDatime": "2024-01-10T11:00:00+01:00",
+                  "sketch": "formes"
+                },
+                "externalInfo": [
+                  {
+                    "freetext": "IGN",
+                    "type": "PHOTO",
+                    "uri": "1564-fghr-ID"
+                  }
+                ],
+                "externalLocationId": [
+                  {
+                    "source": "SIRET",
+                    "value": "36252187900034"
+                  }
+                ],
+                "locLabel": "Résumé localisation dossier"
               },
               "initialAlert": {
                 "id": "fr.health.samu950-DRFR159502401000233",
                 "reception": "2024-01-10T14:05:00+01:00",
                 "reporting": "STANDARD",
-                "freetext": "Problème médical",
                 "caller": {
                   "callerContact": {
                     "type": "PHNADD",
-                    "detail": "0607080928"
+                    "detail": "0607080928",
+                    "channel": "Personne"
                   },
                   "callbackContact": {
                     "type": "PHNADD",
-                    "detail": "0607080928"
+                    "detail": "0607080928",
+                    "channel": "Personne"
                   },
                   "language": "FR",
                   "freetext": "Collègue de la victime",
@@ -126,95 +150,45 @@
                     "firstName": "Magda"
                   },
                   "type": "TIERS",
-                  "communication": ""
-                },
-                "alertSource": {
-                  "channel": "Personne",
-                  "type": "PHNADD",
-                  "detail": "calltakerContact"
-                },
-                "location": {
-                  "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
-                  "locLabel": "18 rue des Bois Rochefort 78500 Sartrouville",
-                  "name": "SARL TOTO",
-                  "detailedAddress": {
-                    "complete": "18 rue des Bois Rochefort",
-                    "number": "18",
-                    "wayName": {
-                      "complete": " rue des Bois Rochefort",
-                      "type": "Rue",
-                      "name": "des Bois Rochefort"
-                    }
-                  },
-                  "city": {
-                    "name": "Sartrouville",
-                    "inseeCode": "78586"
-                  },
-                  "externalInfo": [],
-                  "country": "FR",
-                  "access": {
-                    "accessCode": [],
-                    "interphone": "SARL TOTO",
-                    "floor": "4",
-                    "elevator": "ESC D",
-                    "buildingName": "C",
-                    "entity": "Comptabilité",
-                    "phoneNumber": 156789456
-                  },
-                  "geometry": {
-                    "point": {
-                      "coord": {
-                        "lon": 2.1857428550720215,
-                        "lat": 48.95102310180664,
-                        "precision": "ADDRESS"
-                      }
-                    },
-                    "obsDatime": "2024-01-04T00:05:00+01:00"
-                  }
-                },
-                "qualification": {
-                  "whatsHappen": {
-                    "code": "C02.05.01",
-                    "label": "Pathologie / Maladie - Médicale ",
-                    "freetext": "Douleurs thoraciques"
-                  },
-                  "locationKind": {
-                    "code": "L03.01.00",
-                    "label": "Local administratif– service comptabilité ",
-                    "freetext": "service comptabilité de la SARL Toto"
-                  },
-                  "riskThreat": [],
-                  "healthMotive": {
-                    "code": "M03.06",
-                    "label": "Douleur thoracique",
-                    "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque"
-                  },
-                  "victims": {
-                    "count": "1",
-                    "mainVictim": "ADULT",
-                    "freetext": "Femme de 47 ans"
-                  },
-                  "details": {
-                    "attribution": "Médecin urgentiste",
-                    "priority": "P0"
-                  }
+                  "communication": "LANGUE"
                 },
                 "callTaker": {
-                  "organization": "fr.health.samu770.chuLyon.crra.regulationN3",
-                  "controlRoom": "CRRA 770",
-                  "role": "ARM",
-                  "calltakerId": "id5678",
+                  "organization": "fr.health.samu950",
+                  "controlRoom": "CRRA 95",
                   "calltakerContact": {
                     "type": "PHNADD",
-                    "detail": "0607080928"
-                  }
+                    "detail": "060102030406",
+                    "channel": "Personne"
+                  },
+                  "role": "ARM",
+                  "calltakerId": "4978-IDARM2"
                 },
-                "attachment": []
+                "attachment": [
+                  {
+                    "description": "TYPE PJ",
+                    "mimeType": "TYPE MIME",
+                    "size": 798,
+                    "URI": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json",
+                    "derefURI": "aHR0cHM6Ly93d3cuYmFzZTY0ZW5jb2RlLm9yZy9mci8=",
+                    "digest": "hash"
+                  }
+                ],
+                "notes": [
+                  {
+                    "creation": "2024-01-10T07:04:00+01:00",
+                    "freetext": "Observation ARM 1"
+                  },
+                  {
+                    "creation": "2024-01-10T07:06:00+01:00",
+                    "freetext": "Observation ARM 2"
+                  },
+                  {
+                    "freetext": "Observation ARM 3",
+                    "creation": "2024-01-10T07:15:00+01:00"
+                  }
+                ]
               },
-              "freetext": "Problème médical",
-              "decision": [],
-              "newAlert": [],
-              "owner": "fr.health.samu780",
+              "owner": "fr.health.samu950",
               "additionalInformation": {
                 "customMap": [
                   {
@@ -225,8 +199,261 @@
                   }
                 ]
               },
-              "patient": [],
-              "operator": []
+              "patient": [
+                {
+                  "detail": {
+                    "age": "P47Y",
+                    "height": 160,
+                    "weight": 75,
+                    "careLevel": "R1"
+                  },
+                  "identity": {
+                    "nonStrictFeatures": {
+                      "complete": "Ouardia Boudadi",
+                      "firstName": "Ouardia",
+                      "lastName": "Boudadi"
+                    },
+                    "strictFeatures": {
+                      "sex": "FEM",
+                      "birthName": "BOUDADI",
+                      "birthFirstName": "Ouardia",
+                      "birthFirstNamesList": "Ouardia Salomé",
+                      "birthDate": "1982-02-26",
+                      "birthPlaceCode": 99205
+                    },
+                    "number": {
+                      "value": "256897445698754",
+                      "oid": "1.2.250.1.213.1.4.8"
+                    },
+                    "cycle": {
+                      "status": "Qualifiée",
+                      "attribute": "Homonyme"
+                    }
+                  },
+                  "id": "fr.health.samu950-DRFR159502401000233.P11",
+                  "hypothesis": {
+                    "mainDiagnosis": {
+                      "code": "Z86. 704",
+                      "label": "AVC"
+                    },
+                    "otherDiagnosis": [
+                      {
+                        "code": "Z86. 704",
+                        "label": "AVC"
+                      }
+                    ]
+                  },
+                  "healthMotive": {
+                    "label": "Problème médical, Douleur thoracique",
+                    "code": "M03.06"
+                  },
+                  "administrativeFile": {
+                    "generalPractitioner": {
+                      "personalAddress": {
+                        "city": {
+                          "name": "ST DENIS",
+                          "detail": "Lieu-dit",
+                          "inseeCode": "93066"
+                        },
+                        "detailedAddress": {
+                          "wayName": {
+                            "complete": "PLACE PLEYEL",
+                            "type": "PLACE",
+                            "name": "PLEYEL"
+                          },
+                          "complete": "1 PLACE PLEYEL",
+                          "number": "1"
+                        }
+                      },
+                      "detailedName": {
+                        "complete": "Michel Dupont",
+                        "lastName": "Dupont",
+                        "firstName": "Michel "
+                      },
+                      "id": "10003019207"
+                    },
+                    "personalAddress": {
+                      "city": {
+                        "name": "Paris",
+                        "inseeCode": "75111",
+                        "detail": "Cedex 03"
+                      },
+                      "detailedAddress": {
+                        "wayName": {
+                          "complete": "rue du chemin vert",
+                          "type": "rue",
+                          "name": "du chemin vert"
+                        },
+                        "complete": "60 rue du chemin vert",
+                        "number": "60"
+                      }
+                    }
+                  },
+                  "freetext": [
+                    "Commentaire 1 dossier",
+                    "Commentaire 2 dossier",
+                    "Commentaire 3 dossier"
+                  ]
+                }
+              ],
+              "freetext": [
+                "Commentaire dossier 1",
+                "Commentaire dossier 2",
+                "Commentaire dossier 3"
+              ],
+              "newAlert": [
+                {
+                  "callTaker": {
+                    "calltakerContact": {
+                      "channel": "Personne",
+                      "type": "PHNADD",
+                      "detail": "0506070809"
+                    },
+                    "organization": "fr.health.samu950",
+                    "controlRoom": "fr.health.samu950",
+                    "role": "Medecin",
+                    "calltakerId": "12345"
+                  },
+                  "caller": {
+                    "detailedName": {
+                      "complete": "tom tom",
+                      "lastName": "tom",
+                      "firstName": "tom"
+                    },
+                    "callbackContact": {
+                      "channel": "Personne",
+                      "type": "WWWADD",
+                      "detail": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json"
+                    },
+                    "callerContact": {
+                      "type": "PSTADD",
+                      "channel": "Personne",
+                      "detail": "0102030405"
+                    },
+                    "language": "AL",
+                    "type": "AMBULANC",
+                    "communication": "LANGUE",
+                    "freetext": "commentaire"
+                  },
+                  "attachment": [
+                    {
+                      "description": "type PJ",
+                      "mimeType": "type MIME",
+                      "size": 234,
+                      "URI": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json",
+                      "derefURI": "aHR0cHM6Ly9iYWMtYS1zYWJsZS5odWIuZXNhbnRlLmdvdXYuZnIvbHJtL2pzb24=",
+                      "digest": "test"
+                    }
+                  ],
+                  "id": "fr.health.samu950-DRFR159502401000233",
+                  "reception": "2024-04-18T09:45:00+02:00",
+                  "reporting": "ATTENTION"
+                }
+              ],
+              "decision": [
+                {
+                  "transportDetails": {
+                    "destination": {
+                      "destinationLocation": {
+                        "geometry": {
+                          "point": {
+                            "coord": {
+                              "lat": 48.869422912597656,
+                              "lon": 2.2231545448303223,
+                              "height": 22,
+                              "heading": 35,
+                              "speed": 46,
+                              "precision": "STREET"
+                            },
+                            "sysCoord": "systeme"
+                          },
+                          "obsDatime": "2024-04-08T06:40:00+02:00",
+                          "sketch": "test"
+                        },
+                        "access": {
+                          "accessCode": [
+                            "1234"
+                          ],
+                          "floor": "étage",
+                          "roomNumber": "2",
+                          "interphone": "interphone",
+                          "elevator": "esc2",
+                          "buildingName": "batb",
+                          "entrance": "235a",
+                          "entity": "urgences",
+                          "phoneNumber": 102030405
+                        },
+                        "city": {
+                          "inseeCode": "92073",
+                          "name": "Suresnes",
+                          "detail": "Suresnes"
+                        },
+                        "detailedAddress": {
+                          "wayName": {
+                            "complete": "Rue Merlin de Thionville",
+                            "type": "Rue",
+                            "name": "Merlin de Thionville"
+                          },
+                          "complete": "39 Rue Merlin de Thionville",
+                          "number": "39 "
+                        },
+                        "externalInfo": [
+                          {
+                            "freetext": "BAN",
+                            "type": "MANUAL",
+                            "uri": "555fb03a-qs48"
+                          }
+                        ],
+                        "externalLocationId": [
+                          {
+                            "source": "FINESS géographique",
+                            "value": "123456789"
+                          }
+                        ],
+                        "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
+                        "locLabel": "Résumé localisation urgences",
+                        "name": "urgences",
+                        "country": "FR",
+                        "freetext": "test"
+                      },
+                      "type": "service d’urgences d’un Etablissement de santé"
+                    },
+                    "orientation": "OK",
+                    "teamCare": "MED",
+                    "concoursRequest": "fr.health.samu950-DRFR159502401000233.D350",
+                    "transportationID": "IDV-OIUSJP1245"
+                  },
+                  "id": "fr.health.samu950-DRFR159502401000233.P11",
+                  "creation": "2024-04-30T09:15:00+02:00",
+                  "type": "ORIENT",
+                  "engagementDetails": {
+                    "categoryType": "SMUR",
+                    "resourceType": "VLM",
+                    "teamCareInitial": "R1"
+                  }
+                }
+              ],
+              "medicalNote": [
+                {
+                  "operator": {
+                    "detailedName": {
+                      "complete": "Lucas Stefano",
+                      "lastName": "Stefano",
+                      "firstName": "Lucas "
+                    },
+                    "id": "1245_ID",
+                    "role": "ARM"
+                  },
+                  "id": "fr.health.samu950-DRFR159502401000233.P11",
+                  "creation": "2024-04-03T01:15:00+02:00",
+                  "freetext": "Observations et commentaires médicaux sur le patient Ouardia Boudadi. ",
+                  "medicalHistory": "Antécédent de crise cardiaque",
+                  "treatments": "Pas de traitement",
+                  "allergies": "Pas d’allergie"
+                }
+              ],
+              "perimeter": "AMU",
+              "interventionType": "Primaire"
             }
           }
         }
@@ -234,5 +461,3 @@
     }
   ]
 }
-
-

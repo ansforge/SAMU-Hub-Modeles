@@ -38,6 +38,7 @@ import com.hubsante.model.health.Access;
 import com.hubsante.model.health.City;
 import com.hubsante.model.health.DetailedAddress;
 import com.hubsante.model.health.ExternalInfo;
+import com.hubsante.model.health.ExternalLocationId;
 import com.hubsante.model.health.Geometry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,10 +51,11 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Location.JSON_PROPERTY_LOC_I_D, Location.JSON_PROPERTY_LOC_LABEL,
-     Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_DETAILED_ADDRESS,
-     Location.JSON_PROPERTY_CITY, Location.JSON_PROPERTY_ACCESS,
-     Location.JSON_PROPERTY_GEOMETRY, Location.JSON_PROPERTY_EXTERNAL_INFO,
-     Location.JSON_PROPERTY_COUNTRY, Location.JSON_PROPERTY_FREETEXT})
+     Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_EXTERNAL_LOCATION_ID,
+     Location.JSON_PROPERTY_DETAILED_ADDRESS, Location.JSON_PROPERTY_CITY,
+     Location.JSON_PROPERTY_ACCESS, Location.JSON_PROPERTY_GEOMETRY,
+     Location.JSON_PROPERTY_EXTERNAL_INFO, Location.JSON_PROPERTY_COUNTRY,
+     Location.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -66,6 +68,10 @@ public class Location {
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
+
+  public static final String JSON_PROPERTY_EXTERNAL_LOCATION_ID =
+      "externalLocationId";
+  private List<ExternalLocationId> externalLocationId;
 
   public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
   private DetailedAddress detailedAddress;
@@ -632,12 +638,12 @@ public class Location {
   }
 
   /**
-   * Permet d&#39;indiquer des indications auto suffisantes permettant pour un
-   *opérationnel d&#39;accéder facilement au lieu avec des indications
-   *minimales. Dans les messages NexSIS, va souvent correspondre à la
-   *concaténation suivant des règles métiers de différentes informations, dont
-   *le \&quot;name\&quot; (toponyme) et l&#39;adresse. Comprend au maximum 255
-   *caractères
+   * Donne les informations minimales d&#39;identification du lieu
+   *d&#39;intervention, qui permet d&#39;identifier rapidement le lieu pour les
+   *équipes opérationnelles. Comprend au maximum 255 caractères. 15-18 : Dans
+   *les messages NexSIS, va souvent correspondre à la concaténation suivant des
+   *règles métiers de différentes informations, dont le \&quot;name\&quot;
+   *(toponyme) et l&#39;adresse.
    * @return locLabel
    **/
   @JsonProperty(JSON_PROPERTY_LOC_LABEL)
@@ -660,8 +666,8 @@ public class Location {
   }
 
   /**
-   * Indique le nom de lieu : nom commercial, forêt de Fontainebleau, lac du Der
-   *(plutôt à destination des systèmes).
+   * Indique le nom de lieu : nom commercial, Etablissement, forêt de
+   *Fontainebleau, lac du Der (plutôt à destination des systèmes).
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -675,6 +681,48 @@ public class Location {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
+  }
+
+  public Location
+  externalLocationId(List<ExternalLocationId> externalLocationId) {
+
+    this.externalLocationId = externalLocationId;
+    return this;
+  }
+
+  public Location
+  addExternalLocationIdItem(ExternalLocationId externalLocationIdItem) {
+    if (this.externalLocationId == null) {
+      this.externalLocationId = new ArrayList<>();
+    }
+    this.externalLocationId.add(externalLocationIdItem);
+    return this;
+  }
+
+  /**
+   * Get externalLocationId
+   * @return externalLocationId
+   **/
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_LOCATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<ExternalLocationId> getExternalLocationId() {
+    return externalLocationId;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_LOCATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void
+  setExternalLocationId(List<ExternalLocationId> externalLocationId) {
+    if (externalLocationId == null) {
+      return;
+    }
+    if (this.externalLocationId == null) {
+      this.externalLocationId = new ArrayList<>();
+    }
+    this.externalLocationId.addAll(externalLocationId);
   }
 
   public Location detailedAddress(DetailedAddress detailedAddress) {
@@ -866,6 +914,7 @@ public class Location {
     return Objects.equals(this.locID, location.locID) &&
         Objects.equals(this.locLabel, location.locLabel) &&
         Objects.equals(this.name, location.name) &&
+        Objects.equals(this.externalLocationId, location.externalLocationId) &&
         Objects.equals(this.detailedAddress, location.detailedAddress) &&
         Objects.equals(this.city, location.city) &&
         Objects.equals(this.access, location.access) &&
@@ -877,8 +926,9 @@ public class Location {
 
   @Override
   public int hashCode() {
-    return Objects.hash(locID, locLabel, name, detailedAddress, city, access,
-                        geometry, externalInfo, country, freetext);
+    return Objects.hash(locID, locLabel, name, externalLocationId,
+                        detailedAddress, city, access, geometry, externalInfo,
+                        country, freetext);
   }
 
   @Override
@@ -888,6 +938,9 @@ public class Location {
     sb.append("    locID: ").append(toIndentedString(locID)).append("\n");
     sb.append("    locLabel: ").append(toIndentedString(locLabel)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    externalLocationId: ")
+        .append(toIndentedString(externalLocationId))
+        .append("\n");
     sb.append("    detailedAddress: ")
         .append(toIndentedString(detailedAddress))
         .append("\n");

@@ -34,22 +34,20 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Destination;
+import com.hubsante.model.health.EngagementDetails;
+import com.hubsante.model.health.TransportDetails;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
  * Decision
  */
-@JsonPropertyOrder(
-    {Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
-     Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_ORIENTATION,
-     Decision.JSON_PROPERTY_TRANSPORTATION, Decision.JSON_PROPERTY_TEAM_CARE,
-     Decision.JSON_PROPERTY_DESTINATION})
+@JsonPropertyOrder({Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
+                    Decision.JSON_PROPERTY_TYPE,
+                    Decision.JSON_PROPERTY_ENGAGEMENT_DETAILS,
+                    Decision.JSON_PROPERTY_TRANSPORT_DETAILS})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -60,20 +58,55 @@ public class Decision {
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
 
+  /**
+   * Type de décision prise
+   */
+  public enum TypeEnum {
+    CONSEIL("CONSEIL"),
+
+    PMT("PMT"),
+
+    INTER("INTER"),
+
+    ORIENT("ORIENT"),
+
+    PASPLUS("PASPLUS");
+
+    private String value;
+
+    TypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  private TypeEnum type;
 
-  public static final String JSON_PROPERTY_ORIENTATION = "orientation";
-  private String orientation;
+  public static final String JSON_PROPERTY_ENGAGEMENT_DETAILS =
+      "engagementDetails";
+  private EngagementDetails engagementDetails;
 
-  public static final String JSON_PROPERTY_TRANSPORTATION = "transportation";
-  private List<String> transportation;
-
-  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
-  private String teamCare;
-
-  public static final String JSON_PROPERTY_DESTINATION = "destination";
-  private Destination destination;
+  public static final String JSON_PROPERTY_TRANSPORT_DETAILS =
+      "transportDetails";
+  private TransportDetails transportDetails;
 
   public Decision() {}
 
@@ -84,7 +117,8 @@ public class Decision {
   }
 
   /**
-   * ID partagé du patient concerné, lorsque le patient existe et est identifié
+   * ID partagé du patient concerné par la décision, lorsque le patient existe
+   *et est identifié
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)
@@ -124,7 +158,7 @@ public class Decision {
     this.creation = creation;
   }
 
-  public Decision type(String type) {
+  public Decision type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -135,125 +169,62 @@ public class Decision {
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(String type) {
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 
-  public Decision orientation(String orientation) {
+  public Decision engagementDetails(EngagementDetails engagementDetails) {
 
-    this.orientation = orientation;
+    this.engagementDetails = engagementDetails;
     return this;
   }
 
   /**
-   * Décision(s) d&#39;orientation prise par le médecin régulateur
-   * @return orientation
+   * Get engagementDetails
+   * @return engagementDetails
    **/
-  @JsonProperty(JSON_PROPERTY_ORIENTATION)
+  @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getOrientation() {
-    return orientation;
+  public EngagementDetails getEngagementDetails() {
+    return engagementDetails;
   }
 
-  @JsonProperty(JSON_PROPERTY_ORIENTATION)
+  @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrientation(String orientation) {
-    this.orientation = orientation;
+  public void setEngagementDetails(EngagementDetails engagementDetails) {
+    this.engagementDetails = engagementDetails;
   }
 
-  public Decision transportation(List<String> transportation) {
+  public Decision transportDetails(TransportDetails transportDetails) {
 
-    this.transportation = transportation;
-    return this;
-  }
-
-  public Decision addTransportationItem(String transportationItem) {
-    if (this.transportation == null) {
-      this.transportation = new ArrayList<>();
-    }
-    this.transportation.add(transportationItem);
+    this.transportDetails = transportDetails;
     return this;
   }
 
   /**
-   * Get transportation
-   * @return transportation
+   * Get transportDetails
+   * @return transportDetails
    **/
-  @JsonProperty(JSON_PROPERTY_TRANSPORTATION)
+  @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getTransportation() {
-    return transportation;
+  public TransportDetails getTransportDetails() {
+    return transportDetails;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_TRANSPORTATION)
+  @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransportation(List<String> transportation) {
-    if (transportation == null) {
-      return;
-    }
-    if (this.transportation == null) {
-      this.transportation = new ArrayList<>();
-    }
-    this.transportation.addAll(transportation);
-  }
-
-  public Decision teamCare(String teamCare) {
-
-    this.teamCare = teamCare;
-    return this;
-  }
-
-  /**
-   * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
-   *...)
-   * @return teamCare
-   **/
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getTeamCare() {
-    return teamCare;
-  }
-
-  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTeamCare(String teamCare) {
-    this.teamCare = teamCare;
-  }
-
-  public Decision destination(Destination destination) {
-
-    this.destination = destination;
-    return this;
-  }
-
-  /**
-   * Get destination
-   * @return destination
-   **/
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Destination getDestination() {
-    return destination;
-  }
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestination(Destination destination) {
-    this.destination = destination;
+  public void setTransportDetails(TransportDetails transportDetails) {
+    this.transportDetails = transportDetails;
   }
 
   @Override
@@ -268,16 +239,14 @@ public class Decision {
     return Objects.equals(this.id, decision.id) &&
         Objects.equals(this.creation, decision.creation) &&
         Objects.equals(this.type, decision.type) &&
-        Objects.equals(this.orientation, decision.orientation) &&
-        Objects.equals(this.transportation, decision.transportation) &&
-        Objects.equals(this.teamCare, decision.teamCare) &&
-        Objects.equals(this.destination, decision.destination);
+        Objects.equals(this.engagementDetails, decision.engagementDetails) &&
+        Objects.equals(this.transportDetails, decision.transportDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, creation, type, orientation, transportation,
-                        teamCare, destination);
+    return Objects.hash(id, creation, type, engagementDetails,
+                        transportDetails);
   }
 
   @Override
@@ -287,15 +256,11 @@ public class Decision {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    orientation: ")
-        .append(toIndentedString(orientation))
+    sb.append("    engagementDetails: ")
+        .append(toIndentedString(engagementDetails))
         .append("\n");
-    sb.append("    transportation: ")
-        .append(toIndentedString(transportation))
-        .append("\n");
-    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
-    sb.append("    destination: ")
-        .append(toIndentedString(destination))
+    sb.append("    transportDetails: ")
+        .append(toIndentedString(transportDetails))
         .append("\n");
     sb.append("}");
     return sb.toString();
