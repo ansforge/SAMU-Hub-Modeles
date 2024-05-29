@@ -27,92 +27,89 @@
 
 package com.hubsante.model.report;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonTypeName;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.hubsante.model.edxl.ContentMessage;
-import com.hubsante.model.report.Error;
-import java.util.Arrays;
-import java.util.Arrays;
+
 import java.util.Objects;
 
 /**
  * ErrorWrapper
  */
 @JsonPropertyOrder({ErrorWrapper.JSON_PROPERTY_ERROR})
-@JsonTypeName("errorWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-
+@JacksonXmlRootElement(localName = "message")
 public class ErrorWrapper extends ContentMessage {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_ERROR = "error";
-  private Error error;
+    @JacksonXmlProperty(isAttribute = true)
+    String xmlns = "urn:emergency:cisu:2.0";
+    public static final String JSON_PROPERTY_ERROR = "error";
+    private ErrorReport error;
 
-  public ErrorWrapper() {}
+    public ErrorWrapper() {}
 
-  public ErrorWrapper error(Error error) {
+    public ErrorWrapper error(ErrorReport error) {
 
-    this.error = error;
-    return this;
-  }
-
-  /**
-   * Get error
-   * @return error
-   **/
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Error getError() {
-    return error;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ERROR)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setError(Error error) {
-    this.error = error;
-  }
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+        this.error = error;
+        return this;
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get error
+     * @return error
+     **/
+    @JsonProperty(JSON_PROPERTY_ERROR)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+    public ErrorReport getError() {
+        return error;
     }
-    ErrorWrapper errorWrapper = (ErrorWrapper)o;
-    return Objects.equals(this.error, errorWrapper.error) && super.equals(o);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(error, super.hashCode());
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class ErrorWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    @JsonProperty(JSON_PROPERTY_ERROR)
+    @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+    public void setError(ErrorReport error) {
+        this.error = error;
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ErrorWrapper that = (ErrorWrapper) o;
+        return Objects.equals(this.error, that.error);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(error, super.hashCode());
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("class ErrorWrapper {\n");
+        sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+        sb.append("    error: ")
+                .append(toIndentedString(error))
+                .append("\n");
+        sb.append("}");
+        return sb.toString();
+    }
+
+    /**
+     * Convert the given object to string with each line indented by 4 spaces
+     * (except the first line).
+     */
+    private String toIndentedString(Object o) {
+        if (o == null) {
+            return "null";
+        }
+        return o.toString().replace("\n", "\n    ");
+    }
 }

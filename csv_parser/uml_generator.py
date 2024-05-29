@@ -145,7 +145,7 @@ class Color:
     WARNING = '\033[93m'
 
 
-def run(model, root_name, version=date.today().strftime("%y.%m.%d")):
+def run(model, root_name, version=date.today().strftime("%y.%m.%d"), filter=False):
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Building UML from version {version} of {model} ...{Color.END}')
 
     # Create new vis to start from empty canvas

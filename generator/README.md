@@ -29,6 +29,8 @@ Ainsi on peut ne rebuilder que le modèle concerné, sans avoir à rebuilder tou
 # common
 npx @openapitools/openapi-generator-cli generate -c ..\config\common\common.generator-config.json --skip-validate-spec
 
+npx @openapitools/openapi-generator-cli generate -c ..\config\common\common.wrapper.generator-config.json --skip-validate-spec
+
 npx @openapitools/openapi-generator-cli generate -c ..\config\common\common.distributionElement.generator-config.json --skip-validate-spec
 
 # createCase

@@ -11,15 +11,21 @@
       },
       "locationKind": {
         "code": "L03.01.00",
-        "label": "Local d’activité professionnelle; Local administratif"
+        "label": "Local d’activité professionnelle; Local administratif",
+        "freetext": "service comptabilité de la SARL Toto"
       },
       "healthMotive": {
         "code": "M03.06",
         "label": "Problème médical; Douleur thoracique "
       },
+      "victims": {
+        "count": "1",
+        "mainVictim": "ADULT"
+      },
       "details": {
         "priority": "P0",
-        "attribution": "MU"
+        "attribution": "MU",
+        "type": "D"
       }
     },
     "location": {
@@ -63,16 +69,15 @@
       "id": "fr.health.samu950-DRFR159502401000233",
       "reception": "2024-01-10T14:05:00+01:00",
       "reporting": "STANDARD",
+      "freetext": "douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente. A des antécédents de maladie cardiaque",
       "caller": {
         "callerContact": {
           "type": "PHNADD",
-          "detail": "0607080928",
-          "channel": "Personne"
+          "detail": "0607080928"
         },
         "callbackContact": {
           "type": "PHNADD",
-          "detail": "0607080928",
-          "channel": "Personne"
+          "detail": "0607080928"
         },
         "language": "FR",
         "freetext": "Collègue de la victime",
@@ -83,21 +88,78 @@
         },
         "type": "TIERS"
       },
+      "alertSource": {
+        "channel": "Personne",
+        "type": "PHNADD",
+        "detail": "0607080928"
+      },
+      "location": {
+        "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
+        "name": "SARL TOTO",
+        "detailedAddress": {
+          "complete": "18 rue des Bois Rochefort",
+          "number": "18",
+          "wayName": {
+            "complete": " rue des Bois Rochefort",
+            "type": "Rue",
+            "name": "des Bois Rochefort"
+          }
+        },
+        "city": {
+          "name": "Sartrouville",
+          "inseeCode": "78586"
+        },
+        "country": "FR",
+        "access": {
+          "interphone": "SARL TOTO",
+          "floor": "4",
+          "elevator": "ESC D",
+          "buildingName": "C",
+          "entity": "Comptabilité",
+          "phoneNumber": 156789456
+        },
+        "geometry": {
+          "point": {
+            "coord": {
+              "lon": 2.1857428550720215,
+              "lat": 48.95102310180664,
+              "precision": "ADDRESS"
+            }
+          },
+          "obsDatime": "2024-01-04T00:05:00+01:00"
+        }
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C02.05.01",
+          "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
+        },
+        "locationKind": {
+          "code": "L03.01.00",
+          "label": "Local d’activité professionnelle; Local administratif",
+          "freetext": "service comptabilité de la SARL Toto"
+        },
+        "healthMotive": {
+          "code": "M03.06",
+          "label": "Problème médical; Douleur thoracique "
+        },
+        "victims": {
+          "count": "1",
+          "mainVictim": "ADULT"
+        },
+        "details": {
+          "attribution": "MU",
+          "priority": "P0"
+        }
+      },
       "callTaker": {
         "organization": "fr.health.samu950",
         "controlRoom": "CRRA 95",
         "calltakerContact": {
           "type": "PHNADD",
-          "detail": "060102030406",
-          "channel": "Personne"
+          "detail": "060102030406"
         }
-      },
-      "notes": [
-        {
-          "freetext": "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
-          "creation": "2024-01-10T07:09:00+01:00"
-        }
-      ]
+      }
     },
     "owner": "fr.health.samu950",
     "additionalInformation": {
@@ -125,10 +187,8 @@
             "sex": "FEM"
           }
         },
-        "id": "fr.health.samu950-DRFR159502401000233.P1"
+        "id": "fr.health.samu950-DRFR159502401000233.P11"
       }
-    ],
-    "perimeter": "AMU",
-    "interventionType": "Primaire"
+    ]
   }
 }

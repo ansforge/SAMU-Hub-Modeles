@@ -90,7 +90,7 @@ public class WayName {
   }
 
   /**
-   * Type de la voie
+   * Get type
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -113,7 +113,7 @@ public class WayName {
   }
 
   /**
-   * Nom de la voie
+   * Get name
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
