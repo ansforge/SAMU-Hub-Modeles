@@ -86,7 +86,7 @@
                                     <detail>Quartier Melun Nord, Lhomme, ...</detail>
                                 </city>
                                 <access>
-                                    <floor>RDC, 1, 2, ...</floor>:
+                                    <floor>RDC, 1, 2, ...</floor>
                                     <roomNumber>A16, 37, 104, ...</roomNumber>
                                     <interphone>Dupont</interphone>
                                     <accessCode>1234A</accessCode>

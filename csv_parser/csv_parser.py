@@ -1,4 +1,6 @@
 import copy
+import re
+
 import pandas as pd
 import json
 from jsonpath_ng import parse
@@ -21,11 +23,11 @@ pd.set_option('display.width', 1000)
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
 
 full_asyncapi = None
-first_nomenclature_name = ""
-first_nomenclature_id = ""
-first_nomenclature_properties = []
+first_codeandlabel_name = ""
+first_codeandlabel_properties = []
 
-def run(sheet, name, version, filter):
+
+def run(sheet, name, version, perimeter_filter, model_type):
     class Color:
         ORANGE = '\033[93m'
         RED = '\033[91m'
@@ -36,7 +38,7 @@ def run(sheet, name, version, filter):
 
     version = version or date.today().strftime("%y.%m.%d")
     print(f"{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}"
-          f"Building version {version} of {'15-NexSIS' if filter else ''} {sheet} sheet "
+          f"Building version {version} of {perimeter_filter} {sheet} sheet "
           f"into {name} schema..."
           f"{Color.END}")
 
@@ -71,34 +73,33 @@ def run(sheet, name, version, filter):
         # filename to target (.csv format)
         nomenclature_name = elem['Détails de format'][14:]
         path_file = ''
-        for filename in os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv")):
+        nomenclature_files = os.listdir(os.path.join("..", "nomenclature_parser", "out", "latest", "csv"))
+        for filename in nomenclature_files:
             if filename.startswith(nomenclature_name):
                 path_file = os.path.join("..", "nomenclature_parser", "out", "latest", "csv", filename)
 
         if path_file != '':
             df_nomenclature = pd.read_csv(path_file, sep=",", keep_default_na=False, na_values=['_'], encoding="utf-8")
             L_ret = df_nomenclature["code"].values.tolist()
+        # ToDo: ajouter un bloc dans le elseif pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
         else:
-            # ToDo: ajouter un bloc dans le else pour détecter des https:// et aller chercher les nomenclatures publiées en ligne (MOS/NOs par exemple)
-            print(f'{nomenclature_name} does not exist. Cannot load associated nomenclature.')
-            return []
+            print(f"{Color.RED}ERROR: nomenclature {nomenclature_name} does not exist, could not load associated values.")
+            print(f'Known nomenclatures are {nomenclature_files}')
+            print("Check if some nomenclature files disappeared. If so, last run of nomenclature_parser.py likely failed.")
+            exit(1)
         return L_ret
 
     params = get_params_from_sheet(sheet)
     # Schema name is in name = RC-EDA (or RS-EDA) for instance
     MODEL_NAME = params['modelName']  # CreateCase
-    MODEL_TYPE = MODEL_NAME[0].lower() + MODEL_NAME[1:]  # createCase
-    def isCreateCase():
-        return MODEL_TYPE == "createCase"
 
-    def is_custom_content():
-        return MODEL_TYPE == "customContent"
-
-    if not filter and isCreateCase():
-        MODEL_TYPE = "createCaseHealth"
+    MODEL_TYPE = model_type
     WRAPPER_NAME = f"{MODEL_TYPE}Wrapper"  # createCaseWrapper
     NB_ROWS = params['rows']
     NB_COLS = params['cols']
+
+    def is_custom_content():
+        return MODEL_TYPE == "customContent"
 
     Path('out/' + name).mkdir(parents=True, exist_ok=True)
 
@@ -118,11 +119,9 @@ def run(sheet, name, version, filter):
         print(f"Make sure all these columns are existing: {REQUIRED_COLUMNS}.{Color.END}")
         exit(1)
 
-    # Keeping only 15-NexSIS fields if filter is set
-    if filter:
-        df = df[df['15-18'] == 'X']
-    else:
-        df = df[df['15-15'] == 'X']
+    # Keeping only the relevant perimeter rows
+    if perimeter_filter:
+        df = df[pd.notna(df[perimeter_filter])]
 
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
@@ -139,11 +138,11 @@ def run(sheet, name, version, filter):
                 return i
         return 0
 
-    def format_nomenclature_properties(child, parent):
-        nomenclature_file = parent['Détails de format']
-        """ For 'Code', set nomenclature file name to the 'Détails de format' column, remove it from parent """
+    def format_codeandlabel_properties(child, parent):
+        code_file = parent['Détails de format']
+        """ For 'Code', set code file name to the 'Détails de format' column, remove it from parent """
         if child['Balise NexSIS'] == "code":
-            child['Détails de format'] = nomenclature_file
+            child['Détails de format'] = code_file
             df.loc[parent.ID-1, 'Détails de format'] = 'nan'
         """Set the level of the child to be the level of the parent + 1"""
         if find_data_level(child) != find_data_level(parent)+1:
@@ -159,30 +158,29 @@ def run(sheet, name, version, filter):
                 child_cpy[f"Donnée (Niveau {i})"] = child[f"Donnée (Niveau {i-shift_difference})"]
         return child_cpy
 
-    global first_nomenclature_properties
-    first_nomenclature_properties = []
+    global first_codeandlabel_properties
+    first_codeandlabel_properties = []
 
     def regenerate_ids(df):
         """Regenerate the IDs of the dataframe"""
         for index, row in df.copy().iterrows():
             df.at[index, 'ID'] = index + 1
 
-    # Iterate over df and insert three lines after each entry of type 'nomenclature'
+    # Iterate over df and insert two lines after each entry of type 'codeAndLabel'
     for index, row in df.copy().iterrows():
-        if row['Format (ou type)'] == 'nomenclature':
-            # We save the children of the nomenclature (3 next rows) if it's the first one we've seen
-
-            if not first_nomenclature_properties:
-                for i in range(1, 4):
-                    first_nomenclature_properties.append(df.loc[index + i].to_dict())
-            # Otherwise, we add the children of the first nomenclature to the current nomenclature
+        if row['Format (ou type)'] == 'codeAndLabel':
+            # We save the children of the codeAndLabel (2 next rows) if it's the first one we've seen
+            if not first_codeandlabel_properties:
+                for i in range(1, 3):
+                    first_codeandlabel_properties.append(df.loc[index + i].to_dict())
+            # Otherwise, we add the children of the first codeAndLabel to the current codeAndLabel
             else:
-                for i in range(1, 4):
+                for i in range(1, 3):
                     # we check the highest level of data of the current row and make sure to modify
                     # the level of data of each property to be equal to the row's level + 1
-                    prop_cpy = first_nomenclature_properties[i-1].copy()
+                    prop_cpy = first_codeandlabel_properties[i - 1].copy()
                     prop_cpy['ID'] = row['ID']+i/10
-                    df.loc[index + i/10] = format_nomenclature_properties(prop_cpy, row)
+                    df.loc[index + i/10] = format_codeandlabel_properties(prop_cpy, row)
 
     df.sort_index(axis=0, ascending=True, inplace=True, kind='quicksort')
     df.reset_index(drop=True, inplace=True)
@@ -236,6 +234,7 @@ def run(sheet, name, version, filter):
               f"Check these columns are correctly set up.{Color.END}")
         HAS_ERROR = True
     # - name with spaces
+    test = df[df['name'].str.contains(' ')]
     if not df[df['name'].str.contains(' ')].empty:
         print(f"{Color.RED}ERROR: some rows have spaces in their 'name' field:{Color.ORANGE}")
         print(df[df['name'].str.contains(' ')])
@@ -295,7 +294,7 @@ def run(sheet, name, version, filter):
 
     def get_true_type(row):
         """Get the type of elem (defaults to its name if there is no type specified)"""
-        if row['Format (ou type)'] == 'nomenclature':
+        if row['Format (ou type)'] == 'codeAndLabel':
             return row['name']
         elif row["Objet"] != "X" or row['is_typed_object']:
             return row["Format (ou type)"]
@@ -324,6 +323,38 @@ def run(sheet, name, version, filter):
         df['parent'] = df.apply(get_parent, axis=1)
         df['parent_type'] = df.apply(get_parent_type, axis=1)
         df['full_name'] = df.apply(build_full_name, axis=1)
+
+    # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
+    if perimeter_filter:
+        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+
+    # Verify that cardinality is formatted correctly (e.g. '0..1', '1..1', '0..n', '1..n'; regex (\d+..(\d+|n)))
+    def validate_cardinality_format(cardinality):
+        if re.match(r'^\d+\.\.(\d+|n)$', cardinality) and validate_cardinality_values(cardinality):
+            return True
+        return False
+
+    # Verify that cardinality value is valid (first number is lower than second number or second number is 'n')
+    def validate_cardinality_values(cardinality):
+        cardinality_values = cardinality.split('..')
+        if cardinality_values[1] == 'n':
+            return True
+        if int(cardinality_values[0]) <= int(cardinality_values[1]):
+            return True
+        return False
+
+    # Validate cardinality for each row of df
+    errs = []
+    for index, row in df.iterrows():
+        if not validate_cardinality_format(row['Cardinalité']):
+            errs.append(row)
+    if errs:
+        print(f"{Color.RED}ERROR: some rows have invalid cardinality values in sheet {sheet}, perimeter {perimeter_filter}:{Color.ORANGE}")
+        for err in errs:
+            print("Row ID: ", f"{str(int(err['ID'])):<5s}", "Name: ", f"{err['name']:<25s}", "Cardinality: ", err['Cardinalité'])
+        print(f"{Color.RED}Cardinalities should be formatted as '0..1', '1..1', '0..n', '1..n'.{Color.END}")
+        exit(1)
+
 
     # 2. Recursive data (children in their parent, to be explored like a tree)
     def get_element_with_its_children(previous_children, elem_id):
@@ -485,7 +516,9 @@ def run(sheet, name, version, filter):
     def add_object_child_definition(parent, child, definitions):
         """
         Update parent definitions (required and properties) by adding the child information for an object child
-        Creates definitions for the child object if it does not exist yet
+        Creates definitions for the child object if it does not exist yet.
+        Special case: sourceMessage in rs-error message should allow additional properies (by default it is an
+        empty object with no required or optional properties)
         """
         childOriginalTypeName = child['Format (ou type)']
         parentExamplePath = get_parent_example_path(parent)
@@ -501,14 +534,14 @@ def run(sheet, name, version, filter):
                 'additionalProperties':  is_source_message(childTrueTypeName),
                 'example': parentExamplePath + '/' + child['name'] + ('/0' if is_array(child) else '')
             }
-        """If this is the first nomenclature, we record its name, otherwise we copy the properties from the first 
-        nomenclature to the current nomenclature"""
-        if childOriginalTypeName == "nomenclature":
-            global first_nomenclature_name
-            if first_nomenclature_name == "":
-                first_nomenclature_name = childTrueTypeName
+        """If this is the first codeAndLabel, we record its name, otherwise we copy the properties from the first 
+        codeAndLabel to the current codeAndLabel"""
+        if childOriginalTypeName == "codeAndLabel":
+            global first_codeandlabel_name
+            if first_codeandlabel_name == "":
+                first_codeandlabel_name = childTrueTypeName
             else:
-                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_nomenclature_name]['properties'].copy()
+                json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_codeandlabel_name]['properties'].copy()
 
         if child['Cardinalité'].startswith('1'):
             definitions['required'].append(child['name'])
@@ -550,8 +583,8 @@ def run(sheet, name, version, filter):
             definition = json_schema
         else:
             if 'children' not in elem:
-                """If element type is 'nomenclature' we check by 'name', else we check by 'Format (ou type)'"""
-                if elem['Format (ou type)'] != 'nomenclature':
+                """If element type is 'codeAndLabel' we check by 'name', else we check by 'Format (ou type)'"""
+                if elem['Format (ou type)'] != 'codeAndLabel':
                     assert elem['Format (ou type)'] in json_schema['definitions'], \
                         (f"The type of the object '{elem['name']}' is not defined.\n"
                         f"Make sure the object is not empty")
@@ -646,7 +679,7 @@ def run(sheet, name, version, filter):
         return openapi_schema
 
     openapi_components = json_schema_to_openapi_schema(json_schema)
-    with open('common.openapi.yaml') as f:
+    with open('RC-DE.openapi.yaml') as f:
         common_openapi_components = yaml.load(f, Loader=yaml.loader.SafeLoader)
 
     with open('template.openapi.yaml') as f:
@@ -695,7 +728,7 @@ def run(sheet, name, version, filter):
     print('AsyncAPI schema collected.')
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating UML diagrams...{Color.END}')
-    uml_generator.run(name, MODEL_TYPE, version=version, filter=filter)
+    uml_generator.run(name, MODEL_TYPE, version=version)
     print('UML diagrams generated.')
 
     if not is_custom_content():

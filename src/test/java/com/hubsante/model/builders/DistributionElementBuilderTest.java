@@ -15,8 +15,8 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.common.DistributionElement;
-import com.hubsante.model.common.Recipient;
+import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.rcde.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

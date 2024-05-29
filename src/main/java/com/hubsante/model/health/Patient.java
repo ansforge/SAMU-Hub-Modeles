@@ -39,9 +39,10 @@ import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.Hypothesis;
 import com.hubsante.model.health.InsIdentity;
 import com.hubsante.model.health.PatientDetail;
-import com.hubsante.model.health.ResourceDiagnosis;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -51,7 +52,7 @@ import java.util.Objects;
     {Patient.JSON_PROPERTY_ID, Patient.JSON_PROPERTY_ADMINISTRATIVE_FILE,
      Patient.JSON_PROPERTY_IDENTITY, Patient.JSON_PROPERTY_HEALTH_MOTIVE,
      Patient.JSON_PROPERTY_DETAIL, Patient.JSON_PROPERTY_HYPOTHESIS,
-     Patient.JSON_PROPERTY_RESOURCE_DIAGNOSIS})
+     Patient.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -75,9 +76,8 @@ public class Patient {
   public static final String JSON_PROPERTY_HYPOTHESIS = "hypothesis";
   private Hypothesis hypothesis;
 
-  public static final String JSON_PROPERTY_RESOURCE_DIAGNOSIS =
-      "resourceDiagnosis";
-  private ResourceDiagnosis resourceDiagnosis;
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private List<String> freetext;
 
   public Patient() {}
 
@@ -220,27 +220,43 @@ public class Patient {
     this.hypothesis = hypothesis;
   }
 
-  public Patient resourceDiagnosis(ResourceDiagnosis resourceDiagnosis) {
+  public Patient freetext(List<String> freetext) {
 
-    this.resourceDiagnosis = resourceDiagnosis;
+    this.freetext = freetext;
+    return this;
+  }
+
+  public Patient addFreetextItem(String freetextItem) {
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
+    }
+    this.freetext.add(freetextItem);
     return this;
   }
 
   /**
-   * Get resourceDiagnosis
-   * @return resourceDiagnosis
+   * Get freetext
+   * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ResourceDiagnosis getResourceDiagnosis() {
-    return resourceDiagnosis;
+  public List<String> getFreetext() {
+    return freetext;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_DIAGNOSIS)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceDiagnosis(ResourceDiagnosis resourceDiagnosis) {
-    this.resourceDiagnosis = resourceDiagnosis;
+  public void setFreetext(List<String> freetext) {
+    if (freetext == null) {
+      return;
+    }
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
+    }
+    this.freetext.addAll(freetext);
   }
 
   @Override
@@ -258,13 +274,13 @@ public class Patient {
         Objects.equals(this.healthMotive, patient.healthMotive) &&
         Objects.equals(this.detail, patient.detail) &&
         Objects.equals(this.hypothesis, patient.hypothesis) &&
-        Objects.equals(this.resourceDiagnosis, patient.resourceDiagnosis);
+        Objects.equals(this.freetext, patient.freetext);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(id, administrativeFile, identity, healthMotive, detail,
-                        hypothesis, resourceDiagnosis);
+                        hypothesis, freetext);
   }
 
   @Override
@@ -283,9 +299,7 @@ public class Patient {
     sb.append("    hypothesis: ")
         .append(toIndentedString(hypothesis))
         .append("\n");
-    sb.append("    resourceDiagnosis: ")
-        .append(toIndentedString(resourceDiagnosis))
-        .append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

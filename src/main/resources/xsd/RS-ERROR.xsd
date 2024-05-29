@@ -31,6 +31,9 @@
         </sequence>
     </complexType>
     <complexType name="sourceMessage">
-        <sequence/>
+        <sequence>
+            <any processContents="skip" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+        <anyAttribute processContents="skip"/>
     </complexType>
 </schema>
