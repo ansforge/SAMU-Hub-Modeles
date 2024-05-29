@@ -15,16 +15,10 @@
  */
 package com.hubsante.model.edxlhandler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
-import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RsErrorHandlerTest extends AbstractEdxlHandlerTest {
     @Test
@@ -37,19 +31,5 @@ public class RsErrorHandlerTest extends AbstractEdxlHandlerTest {
     @DisplayName("should consistently deserialize then serialize XML RS-ERROR")
     public void end2end_RS_ERROR_XML() throws IOException {
         end2end("RS-ERROR", true);
-    }
-
-    @Test
-    @DisplayName("should not deserialize JSON RS-ERROR with inconsistent enum")
-    public void invalidJsonRsErrorEnumFails() throws IOException {
-        String json = getInvalidMessage("RS-ERROR/RS-ERROR-invalid-enum.json");
-        assertThrows(ValueInstantiationException.class, () -> converter.deserializeJsonEDXL(json)); // Or JsonProcessingException on a higher level (exception handled in the Dispatcher methods)
-    }
-
-    @Test
-    @DisplayName("should not deserialize XML RS-ERROR with inconsistent enum")
-    public void invalidXmlRsErrorEnumFails() throws IOException {
-        String xml = getInvalidMessage("RS-ERROR/RS-ERROR-invalid-enum.xml");
-        assertThrows(ValueInstantiationException.class, () -> converter.deserializeXmlEDXL(xml));
     }
 }

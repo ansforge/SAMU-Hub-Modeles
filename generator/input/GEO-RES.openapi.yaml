@@ -105,7 +105,7 @@ components:
           - HELICOPTERE
           - 'SHIP '
           examples:
-          - VEHICULE
+          - VEHCL
         capacity:
           type: string
           title: "Capacit\xE9s de la ressource"
@@ -119,7 +119,7 @@ components:
           - PARAMEDICALE
           - INCONNUE
           examples:
-          - MEDICALE
+          - MED
         contacts:
           type: array
           items:

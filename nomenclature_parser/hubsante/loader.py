@@ -257,9 +257,6 @@ def parse_excel(filename_in, df_sommaire_in, version, folder_output):
     sheet_names = pd.ExcelFile(filename_in).sheet_names
     # iterate over sheets
     for sheet_i in sheet_names:
-        if sheet_i.startswith("#"):
-            print("Skipping " + filename_in + " : sheet " + sheet_i + " ...")
-            continue  # we end this loop and go to the next sheet
         print("Processing " + filename_in + " : sheet " + sheet_i + " ...")
         params_i, df_nomenclature_i = parse_sheet(filename_in, sheet_i)
         nom_fichier_i = params_i["nomenclature_ref"] + "-" + params_i["nomenclature_name"] + "-" + version
