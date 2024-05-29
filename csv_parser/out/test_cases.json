@@ -112,7 +112,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.sex",
+                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.sex",
                                     "value":[
                                         "MASC",
                                         "FEM",
@@ -121,7 +121,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.birthDate",
+                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.birthDate",
                                     "value":[
                                         "1959-02-01",
                                         "2014-03-03"
@@ -129,7 +129,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].identity.nonstrictFeatures.complete",
+                                    "path":"$.createCaseHealth.patient[0].identity.nonstrictFeatures.complete",
                                     "value":[
                                         "Didier Morel",
                                         "Lola Halimi"
@@ -137,7 +137,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].detail.age",
+                                    "path":"$.createCaseHealth.patient[0].detail.age",
                                     "value":[
                                         "P65Y",
                                         "P10Y",
@@ -203,7 +203,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.location.access.[0].accessCode",
+                                    "path":"$.createCaseHealth.location.access[0].accessCode",
                                     "value":[
                                         5678
                                     ],
@@ -322,7 +322,7 @@
                                     "verificationLevel":3
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.notes.[0].freetext",
+                                    "path":"$.createCaseHealth.intialAlert.caller.notes[0].freetext",
                                     "value":[
                                         "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. ",
                                         "Entorse de la cheville, avec possible fracture. ",
@@ -331,7 +331,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.notes.[1].freetext",
+                                    "path":"$.createCaseHealth.intialAlert.caller.notes[1].freetext",
                                     "value":[
                                         "La victime est inconsciente (perte de connaissance).",
                                         "Cheville gonflée et douloureuse. "
@@ -339,7 +339,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.notes.[2].freetext",
+                                    "path":"$.createCaseHealth.intialAlert.caller.notes[2].freetext",
                                     "value":[
                                         "Marche impossible."
                                     ],

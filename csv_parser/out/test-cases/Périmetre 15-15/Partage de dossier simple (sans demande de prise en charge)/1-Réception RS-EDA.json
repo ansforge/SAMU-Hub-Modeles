@@ -33,45 +33,36 @@
         "attribution": "MU",
         "owner": "fr.health.samu770",
         "id": "ALRT-2024-ABC123",
-        "patient": {
-            "id": "fr.health.samu770-DRFR157702400400055.P167",
-            "": [
-                {
-                    "id": "fr.health.samu770-DRFR157702400400055.P167",
+        "patient": [
+            {
+                "id": "fr.health.samu770-DRFR157702400400055.P167",
+                "sex": "MASC",
+                "identity": {
                     "sex": "MASC",
-                    "identity": {
+                    "strictFeatures": {
                         "sex": "MASC",
-                        "strictFeatures": {
-                            "sex": "MASC",
-                            "birthDate": "1959-02-01"
-                        },
-                        "birthDate": "1959-02-01",
-                        "complete": "Didier Morel",
-                        "nonstrictFeatures": {
-                            "complete": "Didier Morel",
-                            "firstName": "Didier ",
-                            "lastName": "Morel"
-                        },
-                        "firstName": "Didier ",
-                        "lastName": "Morel"
+                        "birthDate": "1959-02-01"
                     },
                     "birthDate": "1959-02-01",
                     "complete": "Didier Morel",
+                    "nonstrictFeatures": {
+                        "complete": "Didier Morel",
+                        "firstName": "Didier ",
+                        "lastName": "Morel"
+                    },
                     "firstName": "Didier ",
-                    "lastName": "Morel",
-                    "age": "P65Y",
-                    "detail": {
-                        "age": "P65Y"
-                    }
+                    "lastName": "Morel"
+                },
+                "birthDate": "1959-02-01",
+                "complete": "Didier Morel",
+                "firstName": "Didier ",
+                "lastName": "Morel",
+                "age": "P65Y",
+                "detail": {
+                    "age": "P65Y"
                 }
-            ],
-            "sex": "MASC",
-            "birthDate": "1959-02-01",
-            "complete": "Didier Morel",
-            "firstName": "Didier ",
-            "lastName": "Morel",
-            "age": "P65Y"
-        },
+            }
+        ],
         "sex": "MASC",
         "birthDate": "1959-02-01",
         "complete": "Sébastien Morel",
@@ -143,17 +134,14 @@
                 },
                 "language": "FR",
                 "freetext": "La victime est inconsciente (perte de connaissance).",
-                "notes": {
-                    "freetext": "La victime est inconsciente (perte de connaissance).",
-                    "": [
-                        {
-                            "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. "
-                        },
-                        {
-                            "freetext": "La victime est inconsciente (perte de connaissance)."
-                        }
-                    ]
-                },
+                "notes": [
+                    {
+                        "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. "
+                    },
+                    {
+                        "freetext": "La victime est inconsciente (perte de connaissance)."
+                    }
+                ],
                 "complete": "Sébastien Morel",
                 "detailedName": {
                     "complete": "Sébastien Morel",
