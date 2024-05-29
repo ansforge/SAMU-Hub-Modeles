@@ -121,7 +121,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.sex",
+                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.sex",
                                     "value":[
                                         "MASC",
                                         "FEM",
@@ -130,7 +130,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].identity.strictFeatures.birthDate",
+                                    "path":"$.createCaseHealth.patient[0].identity.strictFeatures.birthDate",
                                     "value":[
                                         "1959-02-01",
                                         "2014-03-03"
@@ -138,7 +138,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].identity.nonstrictFeatures.complete",
+                                    "path":"$.createCaseHealth.patient[0].identity.nonstrictFeatures.complete",
                                     "value":[
                                         "Didier Morel",
                                         "Lola Halimi"
@@ -146,7 +146,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient.[0].detail.age",
+                                    "path":"$.createCaseHealth.patient[0].detail.age",
                                     "value":[
                                         "P65Y",
                                         "P10Y",
@@ -361,7 +361,7 @@
                     {
                         "type":"receive",
                         "label":"Réception RS-EDA",
-                        "description":"Recevoir un message RS-EDA d'acceptation de la demande de prise en charge, saisir et valider les valeurs spécifiées dans le message reçu dans le cadre à droite puis envoyer un aquittement du message",
+                        "description":"RS-EDA",
                         "message":{
                             "requiredValues":[
 

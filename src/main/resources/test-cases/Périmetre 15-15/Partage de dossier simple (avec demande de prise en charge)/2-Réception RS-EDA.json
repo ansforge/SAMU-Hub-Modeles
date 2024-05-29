@@ -1,0 +1,297 @@
+{
+    "createCaseHealth": {
+        "caseId": "fr.health.samu950-DRFR159502401000233",
+        "creation": "2024-03-19T03:00:00+01:00",
+        "referenceVersion": "1.4",
+        "code": "M03.06",
+        "qualification": {
+            "code": "M03.06",
+            "whatsHappen": {
+                "code": "C02.05.01",
+                "label": "Atteinte aux personnes ; Pathologie / Maladie - Médicale "
+            },
+            "label": "Problème médical ; Douleur thoracique",
+            "locationKind": {
+                "code": "L03.01.00",
+                "label": "Local d’activité professionnelle ; Local administratif"
+            },
+            "healthMotive": {
+                "code": "M03.06",
+                "label": "Problème médical ; Douleur thoracique"
+            },
+            "priority": "P1",
+            "details": {
+                "priority": "P1",
+                "attribution": "MU"
+            },
+            "count": 1,
+            "victims": {
+                "count": 1,
+                "mainvictim": "ADULT"
+            },
+            "mainvictim": "ADULT",
+            "attribution": "MU"
+        },
+        "label": "Problème médical ; Douleur thoracique",
+        "priority": "P0",
+        "count": 1,
+        "mainvictim": "ADULT",
+        "attribution": "MU",
+        "owner": "fr.health.samu780",
+        "id": "ALRT-2024-DRE789",
+        "patient": [
+            {
+                "id": "IDPT-2024-SDE451",
+                "sex": "FEM",
+                "identity": {
+                    "sex": "FEM",
+                    "strictFeatures": {
+                        "sex": "FEM",
+                        "birthDate": "1982-02-26"
+                    },
+                    "birthDate": "1982-02-26",
+                    "complete": "Ouardia Boudadi",
+                    "nonstrictFeatures": {
+                        "complete": "Ouardia Boudadi",
+                        "firstName": "Ouardia ",
+                        "lastName": "Boudadi"
+                    },
+                    "firstName": "Ouardia ",
+                    "lastName": "Boudadi"
+                },
+                "birthDate": "1982-02-26",
+                "complete": "Ouardia Boudadi",
+                "firstName": "Ouardia ",
+                "lastName": "Boudadi",
+                "age": "P42Y",
+                "detail": {
+                    "age": "P42Y"
+                }
+            }
+        ],
+        "sex": "FEM",
+        "birthDate": "1982-02-26",
+        "complete": "18 rue des Bois Rochefort",
+        "firstName": "Magda",
+        "lastName": "Lena",
+        "age": "P42Y",
+        "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
+        "location": {
+            "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
+            "country": "FR",
+            "name": "Sartrouville",
+            "complete": "18 rue des Bois Rochefort",
+            "detailedAddress": {
+                "complete": "18 rue des Bois Rochefort"
+            },
+            "city": {
+                "name": "Sartrouville",
+                "inseeCode": 78586
+            },
+            "inseeCode": 78586,
+            "floor": 4,
+            "access": {
+                "floor": 4,
+                "interphone": "SARL Toto",
+                "roomNumber": "ESC D",
+                "buildingName": "C",
+                "entity": "Comptabilité",
+                "phoneNumber": 156789456
+            },
+            "interphone": "SARL Toto",
+            "roomNumber": "ESC D",
+            "buildingName": "C",
+            "entity": "Comptabilité",
+            "phoneNumber": 156789456,
+            "obsDatime": "2024-01-04T00:05:00+01:00",
+            "geometry": {
+                "obsDatime": "2024-01-04T00:05:00+01:00",
+                "lat": "48.95102310180664",
+                "point": {
+                    "lat": "48.95102310180664",
+                    "coord": {
+                        "lat": "48.95102310180664",
+                        "lon": "2.1857428550720215",
+                        "precision": "ADDRESS"
+                    },
+                    "lon": "2.1857428550720215",
+                    "precision": "ADDRESS"
+                },
+                "lon": "2.1857428550720215",
+                "precision": "ADDRESS"
+            },
+            "lat": "48.95102310180664",
+            "lon": "2.1857428550720215",
+            "precision": "ADDRESS"
+        },
+        "country": "FR",
+        "name": "Sartrouville",
+        "inseeCode": 78586,
+        "floor": 4,
+        "interphone": "SARL Toto",
+        "roomNumber": "D",
+        "buildingName": "C",
+        "entity": "Comptabilité",
+        "phoneNumber": 156789456,
+        "obsDatime": "2024-01-04T00:05:00+01:00",
+        "lat": "48.95102310180664",
+        "lon": "2.1857428550720215",
+        "precision": "ADDRESS",
+        "intialAlert": {
+            "id": "ALRT-2024-DRE789",
+            "reception": "2024-03-19T03:00:00+01:00",
+            "reporting": "STANDARD",
+            "freetext": "Collègue de la victime, son téléphone capte mal",
+            "type": "TIERS",
+            "caller": {
+                "type": "TIERS",
+                "callerContact": {
+                    "type": "PHNADD",
+                    "detail": 607080928
+                },
+                "detail": 156789456,
+                "callbackContact": {
+                    "type": "PHNADD",
+                    "detail": 156789456
+                },
+                "language": "FR",
+                "freetext": "Collègue de la victime, son téléphone capte mal",
+                "complete": "Magda Lena",
+                "detailedName": {
+                    "complete": "Magda Lena",
+                    "firstName": "Magda",
+                    "lastName": "Lena"
+                },
+                "firstName": "Magda",
+                "lastName": "Lena"
+            },
+            "detail": 156789456,
+            "language": "FR",
+            "complete": "Magda Lena",
+            "firstName": "Magda",
+            "lastName": "Lena"
+        },
+        "reception": "2024-03-19T03:00:00+01:00",
+        "reporting": "STANDARD",
+        "freetext": "Collègue de la victime, son téléphone capte mal",
+        "type": "PHNADD",
+        "detail": 102030504,
+        "language": "FR",
+        "channel": "Personne",
+        "initialalert": {
+            "channel": "Personne",
+            "alertSource": {
+                "channel": "Personne",
+                "type": "PHNADD",
+                "detail": 102030504
+            },
+            "type": "PHNADD",
+            "detail": 102030504,
+            "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
+            "location": {
+                "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
+                "country": "FR",
+                "name": "Sartrouville",
+                "complete": "18 rue des Bois Rochefort",
+                "detailedAddress": {
+                    "complete": "18 rue des Bois Rochefort"
+                },
+                "city": {
+                    "name": "Sartrouville",
+                    "inseeCode": 78586
+                },
+                "inseeCode": 78586,
+                "floor": 4,
+                "access": {
+                    "floor": 4,
+                    "interphone": "SARL Toto",
+                    "roomNumber": "D",
+                    "buildingName": "C",
+                    "entity": "Comptabilité",
+                    "phoneNumber": 156789456
+                },
+                "interphone": "SARL Toto",
+                "roomNumber": "D",
+                "buildingName": "C",
+                "entity": "Comptabilité",
+                "phoneNumber": 156789456,
+                "obsDatime": "2024-01-04T00:05:00+01:00",
+                "geometry": {
+                    "obsDatime": "2024-01-04T00:05:00+01:00",
+                    "lat": "48.95102310180664",
+                    "point": {
+                        "lat": "48.95102310180664",
+                        "coord": {
+                            "lat": "48.95102310180664",
+                            "lon": "2.1857428550720215",
+                            "precision": "ADDRESS"
+                        },
+                        "lon": "2.1857428550720215",
+                        "precision": "ADDRESS"
+                    },
+                    "lon": "2.1857428550720215",
+                    "precision": "ADDRESS"
+                },
+                "lat": "48.95102310180664",
+                "lon": "2.1857428550720215",
+                "precision": "ADDRESS"
+            },
+            "country": "FR",
+            "name": "Sartrouville",
+            "complete": "18 rue des Bois Rochefort",
+            "inseeCode": 78586,
+            "floor": 4,
+            "interphone": "SARL Toto",
+            "roomNumber": "D",
+            "buildingName": "C",
+            "entity": "Comptabilité",
+            "phoneNumber": 156789456,
+            "obsDatime": "2024-01-04T00:05:00+01:00",
+            "lat": "48.95102310180664",
+            "lon": "2.1857428550720215",
+            "precision": "ADDRESS",
+            "code": "M03.06",
+            "qualification": {
+                "code": "M03.06",
+                "whatsHappen": {
+                    "code": "C02.05.01",
+                    "label": "Atteinte aux personnes ; Pathologie / Maladie - Médicale "
+                },
+                "label": "Problème médical ; Douleur thoracique",
+                "locationKind": {
+                    "code": "L03.01.00",
+                    "label": "Local d’activité professionnelle ; Local administratif"
+                },
+                "healthMotive": {
+                    "code": "M03.06",
+                    "label": "Problème médical ; Douleur thoracique"
+                },
+                "priority": "P0",
+                "details": {
+                    "priority": "P0",
+                    "attribution": "MU"
+                },
+                "count": 1,
+                "victims": {
+                    "count": 1,
+                    "mainvictim": "ADULT"
+                },
+                "mainvictim": "ADULT",
+                "attribution": "MU"
+            },
+            "label": "Problème médical ; Douleur thoracique",
+            "priority": "P0",
+            "count": 1,
+            "mainvictim": "ADULT",
+            "attribution": "MU",
+            "organisation": "fr.health.samu950",
+            "callTaker": {
+                "organisation": "fr.health.samu950",
+                "controlRoom": "CRRA 95"
+            },
+            "controlRoom": "CRRA 95"
+        },
+        "organisation": "fr.health.samu950",
+        "controlRoom": "CRRA 95"
+    }
+}
