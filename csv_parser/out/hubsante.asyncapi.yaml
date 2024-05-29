@@ -399,8 +399,8 @@ components:
             $ref: '#/components/schemas/riskThreat'
         healthMotive:
           $ref: '#/components/schemas/healthMotive'
-        victims:
-          $ref: '#/components/schemas/victims'
+        details:
+          $ref: '#/components/schemas/caseDetails'
       additionalProperties: false
       example: example.json#/qualification
     location:
@@ -410,6 +410,7 @@ components:
       x-health-only: false
       required:
       - locID
+      - country
       properties:
         locID:
           type: string
@@ -463,6 +464,265 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
+        country:
+          type: string
+          title: Pays
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/country
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - France
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur la localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/freetext
+          description: "Champ libre pour compl\xE9ter les informations de localisation"
+          examples:
+          - "Cl\xE9 derri\xE8re le pot de fleur"
       additionalProperties: false
       example: example.json#/location
     alert:
@@ -475,6 +735,7 @@ components:
       - reception
       - reporting
       - caller
+      - callTaker
       properties:
         id:
           type: string
@@ -530,8 +791,18 @@ components:
           - ATTENTION
           examples:
           - STANDARD
+        notes:
+          type: array
+          items:
+            $ref: '#/components/schemas/notes'
         caller:
           $ref: '#/components/schemas/caller'
+        callTaker:
+          $ref: '#/components/schemas/callTaker'
+        attachment:
+          type: array
+          items:
+            $ref: '#/components/schemas/attachment'
       additionalProperties: false
       example: example.json#/initialAlert
     patient:
@@ -556,6 +827,8 @@ components:
           $ref: '#/components/schemas/administrativeFile'
         identity:
           $ref: '#/components/schemas/insIdentity'
+        healthMotive:
+          $ref: '#/components/schemas/healthMotive'
         detail:
           $ref: '#/components/schemas/patientDetail'
         hypothesis:
@@ -973,6 +1246,8 @@ components:
       required:
       - code
       - label
+      - code
+      - label
       properties:
         code:
           type: string
@@ -1076,10 +1351,38 @@ components:
           - UNKNOWN
           examples:
           - SEVERAL
+        mainVictim:
+          type: string
+          title: Type du patient-victime principal
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/victims/mainVictim
+          description: "Identifie le type de la principale victime (celle dont l'\xE9\
+            tat de sant\xE9 provoque le d\xE9clenchement de l'envoi des secours).\
+            \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
+            \ des partenaires impliqu\xE9s par NexSIS."
+          enum:
+          - INFANT
+          - CHILD
+          - ADULT
+          - SENIOR
+          examples:
+          - CHILD
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur les patients-victimes"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/victims/freetext
+          description: "Permet de compl\xE9menter en commentaire libre la(les) victime(s)"
+          examples:
+          - "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
       additionalProperties: false
       example: example.json#/qualification/victims
       examples:
       - count: SEVERAL
+        mainVictim: CHILD
+        freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
     externalLocationId:
       type: object
       title: Identifiant(s) du lieu
@@ -2092,6 +2395,10 @@ components:
       x-health-only: false
       required: []
       properties:
+        cycle:
+          $ref: '#/components/schemas/insCycle'
+        number:
+          $ref: '#/components/schemas/insNumber'
         strictFeatures:
           $ref: '#/components/schemas/insStrictFeatures'
         nonStrictFeatures:
@@ -2114,6 +2421,27 @@ components:
           description: "Egalement appel\xE9 nom de famille."
           examples:
           - Dupont
+        birthFirstName:
+          type: string
+          title: "Premier pr\xE9nom de naissance"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/patient/0/identity/strictFeatures/birthFirstName
+          description: "Doit \xEAtre coh\xE9rent avec la liste des pr\xE9noms de naissance\
+            \ renvoy\xE9e par INSi. Ex: si la liste des pr\xE9noms renvoy\xE9e est\
+            \ \"Pierre Alain Jacques\", le premier pr\xE9nom de naissance ne peut\
+            \ \xEAtre que : \nPierre\nPierre Alain\nPierre Alain Jacques"
+          examples:
+          - None
+        birthFirstNamesList:
+          type: string
+          title: "Liste des pr\xE9noms de naissance"
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/patient/0/identity/strictFeatures/birthFirstNamesList
+          description: "Ensemble des pr\xE9noms de naissance (renvoy\xE9s par INSi)"
+          examples:
+          - None
         birthDate:
           type: string
           title: Date de naissance
@@ -2138,12 +2466,28 @@ components:
           - INCONNU
           examples:
           - F
+        birthPlaceCode:
+          type: number
+          title: Code lieu de naissance
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/patient/0/identity/strictFeatures/birthPlaceCode
+          description: "Il s\u2019agit de la commune de naissance pour les personnes\
+            \ n\xE9es en France et du pays de naissance pour les personnes n\xE9es\
+            \ \xE0 l\u2019\xE9tranger. Utilisation du code INSEE (diff\xE9rent du\
+            \ code postal), auquel est associ\xE9 le nom de la commune ou du pays\
+            \ correspondant."
+          examples:
+          - None
       additionalProperties: false
       example: example.json#/patient/0/identity/strictFeatures
       examples:
       - birthName: Dupont
+        birthFirstName: None
+        birthFirstNamesList: None
         birthDate: None
         sex: F
+        birthPlaceCode: None
     transportDetails:
       type: object
       title: "D\xE9cision de transport/orientation"
@@ -2163,6 +2507,15 @@ components:
             gulateur : \n- A transporter\n- Laisser sur place"
           examples:
           - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
+        concoursRequest:
+          type: string
+          title: ID demande de concours/de ressources
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportDetails/concoursRequest
+          description: 'Identifiant de la ou des demandes de concours '
+          examples:
+          - None
         transportationID:
           type: string
           title: "ID vecteur partag\xE9"
@@ -2662,12 +3015,26 @@ components:
           pattern: P[0-9]{1,3}[YMWD]
           examples:
           - P6Y
+        careLevel:
+          type: string
+          title: Niveau de soin
+          x-health-only: true
+          x-cols: 6
+          example: example.json#/patient/0/detail/careLevel
+          enum:
+          - R1
+          - R2
+          - R3
+          - R4
+          examples:
+          - R1
       additionalProperties: false
       example: example.json#/patient/0/detail
       examples:
       - weight: 31
         height: 109
         age: P6Y
+        careLevel: R1
     hypothesis:
       type: object
       title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale"
@@ -3012,107 +3379,6 @@ components:
         resourceType: AR, VLM, VSAV
         resourceId: None
         teamCareInitial: "M\xE9dical, param\xE9dical, secouriste"
-    createCaseHealthSmur:
-      $id: classpath:/json-schema/schema#
-      x-id: RS-EDA-SMUR.schema.json#
-      example: example.json#
-      type: object
-      title: createCaseHealthSmur
-      required:
-      - caseId
-      - creation
-      - qualification
-      - location
-      - owner
-      properties:
-        caseId:
-          type: string
-          title: Identifiant affaire/dossier
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
-          examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
-        senderCaseId:
-          type: string
-          title: Identifiant local de l'affaire/dossier
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/senderCaseId
-          description: "Valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
-            metteur du message. \nCe champ est facultatif, il ne sera notamment pas\
-            \ transmis par NexSIS.\n"
-          examples:
-          - DRFR15DDXAAJJJ0000
-        creation:
-          type: string
-          title: "Date Heure de cr\xE9ation de l'affaire/dossier"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/creation
-          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
-            ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
-            tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
-            re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
-            \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
-            \ \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
-        qualification:
-          $ref: '#/components/schemas/qualification'
-        location:
-          $ref: '#/components/schemas/location'
-        initialAlert:
-          $ref: '#/components/schemas/alert'
-        owner:
-          type: string
-          title: CRRA traitant
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/owner
-          description: "Champ servant \xE0 transf\xE9rer la prise en charge d'un dossier\
-            \ \xE0 un autre CRAA apr\xE8s accord verbal de ce dernier."
-          examples:
-          - fr.health.samu440
-        patient:
-          type: array
-          items:
-            $ref: '#/components/schemas/patient'
-        medicalNote:
-          type: array
-          items:
-            $ref: '#/components/schemas/medicalNote'
-        decision:
-          type: array
-          items:
-            $ref: '#/components/schemas/decision'
-        additionalInformation:
-          $ref: '#/components/schemas/additionalInformation'
-        freetext:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Description de l'affaire/dossier
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/freetext/0
-            description: "Texte libre permettant de donner des informations suppl\xE9\
-              mentaires concernant l'affaire/dossier. Ces informations sont g\xE9\
-              n\xE9rales, et ont vocation \xE0 \xEAtre \xE9chang\xE9es en inter-force. "
-            examples:
-            - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
-              \ ferm\xE9es de 22h \xE0 6h00."
-      additionalProperties: false
     emsi:
       $id: classpath:/json-schema/schema#
       x-id: EMSI.schema.json#

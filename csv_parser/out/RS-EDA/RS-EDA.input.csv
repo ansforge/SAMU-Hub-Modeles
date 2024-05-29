@@ -139,15 +139,15 @@ Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{u
 97,98,,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
 Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
 
-",,resource,attachment,,,,,,0..n,X,attachment,,,X,X,
-98,99,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X,
-99,100,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,,X,X,
-100,101,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,,X,X,
+",,resource,attachment,,,,,,0..n,X,attachment,,,X,X,X
+98,99,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,X,X
+99,100,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,,X,X,X
+100,101,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,,X,X,X
 101,102,,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
-Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?",https://hub.esante.gouv.fr/resourceExample,URI,,,,,,,1..1,,string,,,X,X,
-102,103,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,X,
+Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?",https://hub.esante.gouv.fr/resourceExample,URI,,,,,,,1..1,,string,,,X,X,X
+102,103,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,X,X
 103,104,,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
-La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X,
+La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,X,X
 104,105,CRRA traitant,,,,,,Champ servant à transférer la prise en charge d'un dossier à un autre CRAA après accord verbal de ce dernier.,fr.health.samu440,,owner,,,,,,1..1,,string,,,,X,X
 109,110,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,,X,X,X
 110,111,,ID patient partagé,,,,,Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.,fr.health.samu044.DRFR15DDXAAJJJ00000.P00,,id,,,,,,1..1,,string,,,X,X,X
