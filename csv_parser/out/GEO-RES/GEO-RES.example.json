@@ -6,8 +6,8 @@
             "name": "SMUR 1 Rouen",
             "type": "SMUR",
             "nature": "BASE",
-            "mobility": "VEHICULE",
-            "capacity": "MEDICALE",
+            "mobility": "VEHCL",
+            "capacity": "MED",
             "contacts": [
                 {
                     "type": "PHNADD",

@@ -116,7 +116,7 @@ public class City {
    *ancienne commune, … ou autre information aidant à préciser l&#39;adresse et
    *notamment gérer les cas de communes fusionnées pour le système émetteur NB :
    *dans tous les cas, la localisation GPS de la commune doit être fournie afin
-   *d&#39;éviter une trop forte ambiguïté.
+   *d&#39;éviter une trop forte ambiguïté
    * @return detail
    **/
   @JsonProperty(JSON_PROPERTY_DETAIL)

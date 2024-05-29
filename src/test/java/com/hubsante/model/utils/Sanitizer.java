@@ -16,9 +16,9 @@
 package com.hubsante.model.utils;
 
 import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.rcde.Recipient;
-import com.hubsante.model.reference.ReferenceWrapper;
-import com.hubsante.model.rcde.Sender;
+import com.hubsante.model.common.Recipient;
+import com.hubsante.model.common.ReferenceWrapper;
+import com.hubsante.model.common.Sender;
 import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.emsi.EmsiWrapper;
@@ -73,7 +73,6 @@ public class Sanitizer {
     private static Sender sanitizeSender() {
         Sender revertedSender = new Sender();
         revertedSender.setName("sender");
-        revertedSender.setURI("hubex:sender");
         return revertedSender;
     }
 

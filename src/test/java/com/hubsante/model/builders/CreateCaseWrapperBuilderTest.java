@@ -18,8 +18,8 @@ package com.hubsante.model.builders;
 import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.CreateCaseWrapper;
-import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.rcde.Recipient;
+import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.common.Recipient;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

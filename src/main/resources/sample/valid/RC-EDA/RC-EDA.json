@@ -32,75 +32,72 @@
               }
             ],
             "createCase": {
-              "caseId": "fr.health.samu690.DRFR15690240430050",
-              "senderCaseId": "DRFR15690240430050",
-              "creation": "2023-11-03T10:03:00+01:00",
-              "referenceVersion": "1.3",
+              "caseId": "samuA:CA126B445579GD4A67AV",
+              "senderCaseId": "CA126B445579GD4A67AV",
+              "creation": "2022-09-27T08:23:34+02:00",
+              "referenceVersion": "1.2",
               "qualification": {
                 "whatsHappen": {
-                  "code": "C01.01.04",
-                  "label": "2-roues"
+                  "code": "C07.13.02",
+                  "label": "Rod\u00e9o automobile",
+                  "freetext": "None"
                 },
                 "riskThreat": [
                   {
-                    "code": "R22",
-                    "label": "Gêne à la circulation"
+                    "code": "C01.00.00",
+                    "label": "Gêne à la circulation",
+                    "freetext": "risque lié aux voitures"
                   },
                   {
-                    "code": "R23",
-                    "label": "Second risque"
+                    "code": "C01.01.00",
+                    "label": "Second riskThreat",
+                    "freetext": "champ libre"
                   }
                 ],
                 "victims": {
                   "count": "SEVERAL",
                   "mainVictim": "ADULT",
-                  "freetext": "Deuxième victime présente saignements et brûlures legères aux mains et genoux"
+                  "freetext": "Deuxième victime présente saignements legers aux mains et genoux"
                 }
               },
               "location": {
                 "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
-                "locLabel": "8 quai des Célestins - 69002 Lyon",
-                "name": "Quai des Célestins",
-                "externalLocationId": [
-                  {
-                    "source": "FINESS administratif",
-                    "value": "'920000650"
-                  }
-                ],
+                "locLabel": "Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",
+                "name": "Lycée Pierre de Coubertin",
                 "detailedAddress": {
-                  "complete": "8 quai des Célestins",
-                  "number": "8",
+                  "complete": "9 Bd du Montparnasse",
+                  "number": "9, 4bis, PK10, ...",
                   "wayName": {
-                    "complete": "quai des Célestins",
-                    "type": "Quai",
-                    "name": "des Célestins"
+                    "complete": "Boulevard du Montparnasse",
+                    "type": "Boulevard",
+                    "name": "du Montparnasse"
                   }
                 },
                 "city": {
-                  "name": "Lyon",
-                  "inseeCode": "69382",
-                  "detail": "Quartier Melun Nord"
+                  "name": "Lille",
+                  "inseeCode": "59350",
+                  "detail": "Quartier Melun Nord, Lhomme, ..."
                 },
                 "access": {
-                  "floor": "RDC",
-                  "roomNumber": "A16",
+                  "floor": "RDC, 1, 2, ...",
+                  "roomNumber": "A16, 37, 104, ...",
                   "interphone": "Dupont",
                   "accessCode": [
                     "1234A",
                     "4321B"
                   ],
                   "elevator": "C3",
-                  "buildingName": "Batiment B",
-                  "entrance": "Zone Sud",
-                  "entity": "Infirmerie"
+                  "buildingName": "Batiment B, Batiment Maunoury",
+                  "entrance": "Zone Sud, Porte 1, ...",
+                  "entity": "Infirmerie, service finance, service cardiologie, ..."
                 },
                 "geometry": {
-                  "obsDatime": "2023-11-03T10:04:00+01:00",
+                  "obsDatime": "2022-09-27T08:23:34+02:00",
                   "point": {
                     "coord": {
                       "lat": 48.866667,
                       "lon": 2.333333,
-                      "height": 168,
+                      "height": 120,
                       "heading": 96,
                       "speed": 34,
                       "precision": "ADDRESS"
@@ -120,60 +117,58 @@
                 "freetext": "Clé derrière le pot de fleur"
               },
               "initialAlert": {
-                "id": "samu690-20231103-AL01234",
-                "reception": "2023-11-03T10:02:00+01:00",
+                "id": "SGO050-20230605-AL0123",
+                "reception": "2022-09-27T08:21:06+02:00",
                 "reporting": "STANDARD",
-                "notes": [
-                  {
-                    "creation": "2023-11-03T10:02:00+01:00",
-                    "freetext": "Accident entre une voiture et un vélo"
-                  }
-                ],
+                "freetext": "Déclenchement téléalarme, voisine sur les liens",
                 "caller": {
                   "callerContact": {
-                    "channel": "Personne",
                     "type": "PHNADD",
-                    "detail": "0607080901"
+                    "detail": "0671830530"
                   },
                   "callbackContact": {
-                    "channel": "Personne",
                     "type": "PHNADD",
-                    "detail": "0607080901"
+                    "detail": "0671830530"
                   },
                   "language": "FR",
-                  "freetext": "épouse de la victime",
+                  "freetext": "Père",
                   "detailedName": {
-                    "complete": "Albane Armaury",
-                    "lastName": "Armaury",
-                    "firstName": "Albane"
+                    "complete": "Jean Dupont",
+                    "lastName": "Dupont",
+                    "firstName": "Jean"
                   }
+                },
+                "alertSource": {
+                  "channel": "Personne",
+                  "type": "PHNADD",
+                  "detail": "0671830530"
                 },
                 "location": {
                   "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
-                  "name": "Quai des Célestins",
+                  "name": "Lycée Pierre de Coubertin",
                   "country": "FR"
                 },
                 "qualification": {
                   "whatsHappen": {
-                    "code": "C01.01.04",
-                    "label": "2-roues"
+                    "code": "C07.13.02",
+                    "label": "Rodéo automobile",
+                    "freetext": "None"
                   }
                 },
                 "callTaker": {
-                  "organization": "fr.health.samu690",
-                  "controlRoom": "CRRA 690",
+                  "organization": "FR:Administration:44:samu44:crra:regulationN3",
+                  "controlRoom": "CGA, CGO 21, CRRA 44, ...",
                   "role": "ARM",
                   "calltakerContact": {
-                    "channel": "Personne",
                     "type": "PHNADD",
-                    "detail": "0607080901"
+                    "detail": "0671830530"
                   },
                   "calltakerId": "id1234"
                 },
                 "attachment": [
                   {
-                    "description": "photo",
-                    "mimeType": "JPEG",
+                    "description": "photo, carte, ...",
+                    "mimeType": "PDF, XML, JPEG, ...",
                     "size": 1235,
                     "URI": "https://hub.esante.gouv.fr/resourceExample",
                     "derefURI": "None",
@@ -181,28 +176,6 @@
                   }
                 ]
               },
-              "decision": [
-                {
-                  "type": "INTER",
-                  "creation": "2023-11-03T10:05:00+01:00"
-                }
-              ],
-              "patient": [
-                {
-                  "identity": {
-                    "nonStrictFeatures": {
-                      "complete": "Alexandre Armaury",
-                      "lastName": "Armaury",
-                      "firstName": "Alexandre"
-                    },
-                    "strictFeatures": {
-                      "sex": "MASC",
-                      "birthDate": "1981-01-01"
-                    }
-                  },
-                  "id": "fr.health.samu690.DRFR15690240430050.P01"
-                }
-              ],
               "additionalInformation": {
                 "customMap": [
                   {
@@ -213,9 +186,7 @@
                   }
                 ]
               },
-              "freetext": [
-                "None"
-              ]
+              "freetext": "None"
             }
           }
         }

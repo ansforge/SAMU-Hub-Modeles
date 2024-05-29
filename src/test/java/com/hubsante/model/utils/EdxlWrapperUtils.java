@@ -23,8 +23,8 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.hubsante.model.builders.EDXL_DE_Builder;
-import com.hubsante.model.rcde.Recipient;
-import com.hubsante.model.rcde.Sender;
+import com.hubsante.model.common.Recipient;
+import com.hubsante.model.common.Sender;
 import com.hubsante.model.edxl.*;
 
 import java.time.LocalDateTime;

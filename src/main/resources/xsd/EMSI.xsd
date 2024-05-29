@@ -1105,7 +1105,7 @@ NB : ce champ (EVENT.REFERENCE.ORG_ID) ne peut pas être le même que le champ C
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="TYPE">
+            <element name="TYPE">
                 <annotation>
                     <documentation>Optionnel
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION.
@@ -1261,12 +1261,12 @@ La localisation de l'affaire est transmise en amont dans un message RC-EDA et le
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="POSITION" type="x:position"/>
+            <element name="POSITION" type="x:position"/>
         </sequence>
     </complexType>
     <complexType name="position">
         <sequence>
-            <element minOccurs="0" name="LOC_ID" type="string">
+            <element name="LOC_ID" type="string">
                 <annotation>
                     <documentation>Optionnel
 La localisation de l'affaire est transmise en amont dans un message RC-EDA et le lieu souhaité pour l'intervention est systématiquement reprécisé dans un objet MISSION. 

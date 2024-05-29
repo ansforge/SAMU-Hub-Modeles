@@ -37,8 +37,8 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Attachment;
 import com.hubsante.model.cisu.CallTaker;
 import com.hubsante.model.cisu.Caller;
+import com.hubsante.model.cisu.ContactSource;
 import com.hubsante.model.cisu.Location;
-import com.hubsante.model.cisu.Notes;
 import com.hubsante.model.cisu.Qualification;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -50,12 +50,12 @@ import java.util.Objects;
 /**
  * Alert
  */
-@JsonPropertyOrder({Alert.JSON_PROPERTY_ID, Alert.JSON_PROPERTY_RECEPTION,
-                    Alert.JSON_PROPERTY_REPORTING, Alert.JSON_PROPERTY_NOTES,
-                    Alert.JSON_PROPERTY_CALLER, Alert.JSON_PROPERTY_LOCATION,
-                    Alert.JSON_PROPERTY_QUALIFICATION,
-                    Alert.JSON_PROPERTY_CALL_TAKER,
-                    Alert.JSON_PROPERTY_ATTACHMENT})
+@JsonPropertyOrder(
+    {Alert.JSON_PROPERTY_ID, Alert.JSON_PROPERTY_RECEPTION,
+     Alert.JSON_PROPERTY_REPORTING, Alert.JSON_PROPERTY_FREETEXT,
+     Alert.JSON_PROPERTY_CALLER, Alert.JSON_PROPERTY_ALERT_SOURCE,
+     Alert.JSON_PROPERTY_LOCATION, Alert.JSON_PROPERTY_QUALIFICATION,
+     Alert.JSON_PROPERTY_CALL_TAKER, Alert.JSON_PROPERTY_ATTACHMENT})
 @JsonTypeName("alert")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -107,11 +107,14 @@ public class Alert {
   public static final String JSON_PROPERTY_REPORTING = "reporting";
   private ReportingEnum reporting;
 
-  public static final String JSON_PROPERTY_NOTES = "notes";
-  private List<Notes> notes;
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private String freetext;
 
   public static final String JSON_PROPERTY_CALLER = "caller";
   private Caller caller;
+
+  public static final String JSON_PROPERTY_ALERT_SOURCE = "alertSource";
+  private ContactSource alertSource;
 
   public static final String JSON_PROPERTY_LOCATION = "location";
   private Location location;
@@ -215,43 +218,28 @@ public class Alert {
     this.reporting = reporting;
   }
 
-  public Alert notes(List<Notes> notes) {
+  public Alert freetext(String freetext) {
 
-    this.notes = notes;
-    return this;
-  }
-
-  public Alert addNotesItem(Notes notesItem) {
-    if (this.notes == null) {
-      this.notes = new ArrayList<>();
-    }
-    this.notes.add(notesItem);
+    this.freetext = freetext;
     return this;
   }
 
   /**
-   * Get notes
-   * @return notes
+   * Texte libre permettant de donner des informations supplémentaires
+   *concernant l&#39;alerte.
+   * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_NOTES)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Notes> getNotes() {
-    return notes;
+  public String getFreetext() {
+    return freetext;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_NOTES)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNotes(List<Notes> notes) {
-    if (notes == null) {
-      return;
-    }
-    if (this.notes == null) {
-      this.notes = new ArrayList<>();
-    }
-    this.notes.addAll(notes);
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   public Alert caller(Caller caller) {
@@ -275,6 +263,29 @@ public class Alert {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCaller(Caller caller) {
     this.caller = caller;
+  }
+
+  public Alert alertSource(ContactSource alertSource) {
+
+    this.alertSource = alertSource;
+    return this;
+  }
+
+  /**
+   * Get alertSource
+   * @return alertSource
+   **/
+  @JsonProperty(JSON_PROPERTY_ALERT_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public ContactSource getAlertSource() {
+    return alertSource;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ALERT_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setAlertSource(ContactSource alertSource) {
+    this.alertSource = alertSource;
   }
 
   public Alert location(Location location) {
@@ -397,8 +408,9 @@ public class Alert {
     return Objects.equals(this.id, alert.id) &&
         Objects.equals(this.reception, alert.reception) &&
         Objects.equals(this.reporting, alert.reporting) &&
-        Objects.equals(this.notes, alert.notes) &&
+        Objects.equals(this.freetext, alert.freetext) &&
         Objects.equals(this.caller, alert.caller) &&
+        Objects.equals(this.alertSource, alert.alertSource) &&
         Objects.equals(this.location, alert.location) &&
         Objects.equals(this.qualification, alert.qualification) &&
         Objects.equals(this.callTaker, alert.callTaker) &&
@@ -407,8 +419,8 @@ public class Alert {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, reception, reporting, notes, caller, location,
-                        qualification, callTaker, attachment);
+    return Objects.hash(id, reception, reporting, freetext, caller, alertSource,
+                        location, qualification, callTaker, attachment);
   }
 
   @Override
@@ -422,8 +434,11 @@ public class Alert {
     sb.append("    reporting: ")
         .append(toIndentedString(reporting))
         .append("\n");
-    sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("    caller: ").append(toIndentedString(caller)).append("\n");
+    sb.append("    alertSource: ")
+        .append(toIndentedString(alertSource))
+        .append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    qualification: ")
         .append(toIndentedString(qualification))

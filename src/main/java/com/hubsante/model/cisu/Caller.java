@@ -573,130 +573,11 @@ public class Caller {
   public static final String JSON_PROPERTY_LANGUAGE = "language";
   private LanguageEnum language;
 
-  /**
-   * Indique la relation du requérant avec l&#39;incident / le patient / la
-   * victime
-   */
-  public enum TypeEnum {
-    SUJET("SUJET"),
-
-    FAMILLE("FAMILLE"),
-
-    TIERS("TIERS"),
-
-    POMPIER("POMPIER"),
-
-    AMBULANC("AMBULANC"),
-
-    SECOUR("SECOUR"),
-
-    MED("MED"),
-
-    MEDSOS("MEDSOS"),
-
-    MRL("MRL"),
-
-    EFFML("EFFML"),
-
-    SANTE("SANTE"),
-
-    INF("INF"),
-
-    AIDESOIN("AIDESOIN"),
-
-    SF("SF"),
-
-    AIDEDOM("AIDEDOM"),
-
-    FDO_MILI("FDO-MILI"),
-
-    ADM_TUTL("ADM-TUTL"),
-
-    VIP("VIP"),
-
-    OBJCONNC("OBJCONNC"),
-
-    AUTRE("AUTRE"),
-
-    INCONNU("INCONNU");
-
-    private String value;
-
-    TypeEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
-
-  /**
-   * Indique si le requérant rencontre ou non des difficulté de communication
-   */
-  public enum CommunicationEnum {
-    AUCUNE("AUCUNE"),
-
-    MUET("MUET"),
-
-    VISION("VISION"),
-
-    LANGUE("LANGUE"),
-
-    PANIQUE("PANIQUE"),
-
-    HOSTILE("HOSTILE"),
-
-    AGITE("AGITE"),
-
-    AUTRE("AUTRE"),
-
-    IMPOSS("IMPOSS");
-
-    private String value;
-
-    CommunicationEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CommunicationEnum fromValue(String value) {
-      for (CommunicationEnum b : CommunicationEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
+  private String type;
 
   public static final String JSON_PROPERTY_COMMUNICATION = "communication";
-  private CommunicationEnum communication;
+  private String communication;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
@@ -717,14 +598,14 @@ public class Caller {
    * @return callerContact
    **/
   @JsonProperty(JSON_PROPERTY_CALLER_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public Contact getCallerContact() {
     return callerContact;
   }
 
   @JsonProperty(JSON_PROPERTY_CALLER_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCallerContact(Contact callerContact) {
     this.callerContact = callerContact;
   }
@@ -776,7 +657,7 @@ public class Caller {
     this.language = language;
   }
 
-  public Caller type(TypeEnum type) {
+  public Caller type(String type) {
 
     this.type = type;
     return this;
@@ -790,17 +671,17 @@ public class Caller {
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TypeEnum getType() {
+  public String getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
+  public void setType(String type) {
     this.type = type;
   }
 
-  public Caller communication(CommunicationEnum communication) {
+  public Caller communication(String communication) {
 
     this.communication = communication;
     return this;
@@ -813,13 +694,13 @@ public class Caller {
   @JsonProperty(JSON_PROPERTY_COMMUNICATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public CommunicationEnum getCommunication() {
+  public String getCommunication() {
     return communication;
   }
 
   @JsonProperty(JSON_PROPERTY_COMMUNICATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCommunication(CommunicationEnum communication) {
+  public void setCommunication(String communication) {
     this.communication = communication;
   }
 

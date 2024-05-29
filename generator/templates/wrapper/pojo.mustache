@@ -5,14 +5,12 @@
     @Deprecated{{/isDeprecated}}
 {{#jackson}}
     @JsonPropertyOrder({
-    {{^customExtend}}
-        DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-        DistributionElement.JSON_PROPERTY_SENDER,
-        DistributionElement.JSON_PROPERTY_SENT_AT,
-        DistributionElement.JSON_PROPERTY_KIND,
-        DistributionElement.JSON_PROPERTY_STATUS,
-        DistributionElement.JSON_PROPERTY_RECIPIENT,
-    {{/customExtend}}
+    DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+    DistributionElement.JSON_PROPERTY_SENDER,
+    DistributionElement.JSON_PROPERTY_SENT_AT,
+    DistributionElement.JSON_PROPERTY_KIND,
+    DistributionElement.JSON_PROPERTY_STATUS,
+    DistributionElement.JSON_PROPERTY_RECIPIENT,
     {{#vars}}
         {{classname}}.JSON_PROPERTY_{{nameInSnakeCase}}{{^-last}},{{/-last}}
     {{/vars}}
@@ -28,7 +26,7 @@
 {{#vendorExtensions.x-class-extra-annotation}}
     {{{vendorExtensions.x-class-extra-annotation}}}
 {{/vendorExtensions.x-class-extra-annotation}}
-public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends {{#customExtend}}{{customExtend.className}}{{/customExtend}}{{^customExtend}}DistributionElement{{/customExtend}} {
+public class {{classname}}{{#vendorExtensions.x-implements}}{{#-first}}implements {{{.}}}{{/-first}}{{^-first}}, {{{.}}}{{/-first}}{{#-last}} {{/-last}}{{/vendorExtensions.x-implements}} extends DistributionElement {
 {{#serializableModel}}
     private static final long serialVersionUID = 1L;
 

@@ -41,14 +41,11 @@ import java.util.Objects;
 /**
  * Contact
  */
-@JsonPropertyOrder({Contact.JSON_PROPERTY_CHANNEL, Contact.JSON_PROPERTY_TYPE,
-                    Contact.JSON_PROPERTY_DETAIL})
+@JsonPropertyOrder({Contact.JSON_PROPERTY_TYPE, Contact.JSON_PROPERTY_DETAIL})
 @JsonTypeName("contact")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Contact {
-  public static final String JSON_PROPERTY_CHANNEL = "channel";
-  private String channel;
 
   /**
    * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
@@ -102,30 +99,6 @@ public class Contact {
   private String detail;
 
   public Contact() {}
-
-  public Contact channel(String channel) {
-
-    this.channel = channel;
-    return this;
-  }
-
-  /**
-   * Permet d&#39;indiquer l&#39;origine du canal établit : Personne,
-   *application, DAU, BAU, défibrillateur, ecall
-   * @return channel
-   **/
-  @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getChannel() {
-    return channel;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CHANNEL)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setChannel(String channel) {
-    this.channel = channel;
-  }
 
   public Contact type(TypeEnum type) {
 
@@ -182,21 +155,19 @@ public class Contact {
       return false;
     }
     Contact contact = (Contact)o;
-    return Objects.equals(this.channel, contact.channel) &&
-        Objects.equals(this.type, contact.type) &&
+    return Objects.equals(this.type, contact.type) &&
         Objects.equals(this.detail, contact.detail);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(channel, type, detail);
+    return Objects.hash(type, detail);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Contact {\n");
-    sb.append("    channel: ").append(toIndentedString(channel)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");

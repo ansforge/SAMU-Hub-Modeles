@@ -35,17 +35,14 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.InsIdentity;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
  * Patient
  */
-@JsonPropertyOrder({Patient.JSON_PROPERTY_ID, Patient.JSON_PROPERTY_IDENTITY,
-                    Patient.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder({Patient.JSON_PROPERTY_ID, Patient.JSON_PROPERTY_IDENTITY})
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -55,9 +52,6 @@ public class Patient {
 
   public static final String JSON_PROPERTY_IDENTITY = "identity";
   private InsIdentity identity;
-
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private List<String> freetext;
 
   public Patient() {}
 
@@ -108,45 +102,6 @@ public class Patient {
     this.identity = identity;
   }
 
-  public Patient freetext(List<String> freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  public Patient addFreetextItem(String freetextItem) {
-    if (this.freetext == null) {
-      this.freetext = new ArrayList<>();
-    }
-    this.freetext.add(freetextItem);
-    return this;
-  }
-
-  /**
-   * Get freetext
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getFreetext() {
-    return freetext;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(List<String> freetext) {
-    if (freetext == null) {
-      return;
-    }
-    if (this.freetext == null) {
-      this.freetext = new ArrayList<>();
-    }
-    this.freetext.addAll(freetext);
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -157,13 +112,12 @@ public class Patient {
     }
     Patient patient = (Patient)o;
     return Objects.equals(this.id, patient.id) &&
-        Objects.equals(this.identity, patient.identity) &&
-        Objects.equals(this.freetext, patient.freetext);
+        Objects.equals(this.identity, patient.identity);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, identity, freetext);
+    return Objects.hash(id, identity);
   }
 
   @Override
@@ -172,7 +126,6 @@ public class Patient {
     sb.append("class Patient {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    identity: ").append(toIndentedString(identity)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }
