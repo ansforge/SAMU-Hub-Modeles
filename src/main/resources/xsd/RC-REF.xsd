@@ -12,7 +12,7 @@
                     <documentation>Indique si le message acquitté a été refusé</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="infoDistributionID" type="string">
+            <element minOccurs="0" name="errorDistributionID" type="string">
                 <annotation>
                     <documentation>Identifiant unique du message d'erreur lié</documentation>
                 </annotation>

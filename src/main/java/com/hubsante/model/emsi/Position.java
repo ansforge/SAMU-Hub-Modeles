@@ -93,14 +93,14 @@ public class Position {
    * @return LOC_ID
    **/
   @JsonProperty(JSON_PROPERTY_L_O_C_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getLOCID() {
     return LOC_ID;
   }
 
   @JsonProperty(JSON_PROPERTY_L_O_C_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLOCID(String LOC_ID) {
     this.LOC_ID = LOC_ID;
   }

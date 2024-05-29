@@ -1,5 +1,6 @@
 import pandas as pd
 import warnings
+import math
 from json import dumps
 
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
@@ -47,17 +48,24 @@ def run(perimeters):
                     break
                 # Else if the value is nan, we check if the row represents a 'required' value by checking the V column
                 elif pd.isna(row["Pas de test"]):
-                    # If the value is 'X', we add the required value to the latest step in the test case
-                    if row["V"] == "X":
-                        values = []
-                        for i in range(5):
-                            if pd.notna(row[f"JDD {i+1}"]):
-                                values.append(row[f"JDD {i+1}"])
-                        required_value = {
-                            "path": row["path JSON"],
-                            "value": values
-                        }
-                        test_case["steps"][-1]["message"]["requiredValues"].append(required_value)
+                    # If the value is not empty, we add it to the required values array of the last step, specifying
+                    # the number in the "verificationLevel" property
+                    if pd.notna(row["V"]):
+                        try:
+                            values = []
+                            for i in range(5):
+                                if pd.notna(row[f"JDD {i+1}"]):
+                                    values.append(row[f"JDD {i+1}"])
+
+                                verification_level = int(row["V"])
+                            required_value = {
+                                "path": row["path JSON"],
+                                "value": values,
+                                "verificationLevel": int(row["V"]),
+                            }
+                            test_case["steps"][-1]["message"]["requiredValues"].append(required_value)
+                        except ValueError:
+                            print(f"Error: Invalid verification level in test case {test_case['label']}, row {index + 1}")
 
                 # Else, if the value is not nan, we add a new step to the test case. If the type of the step is
                 # "receive", we also add the property "file" containing a string with the name of the template

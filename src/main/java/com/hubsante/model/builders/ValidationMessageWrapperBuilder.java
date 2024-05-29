@@ -15,7 +15,7 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.common.DistributionElement;
+import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.ValidationMessageWrapper;
 import com.networknt.schema.ValidationMessage;
 

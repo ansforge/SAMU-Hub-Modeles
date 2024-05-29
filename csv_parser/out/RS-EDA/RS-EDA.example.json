@@ -3,45 +3,44 @@
     "senderCaseId": "DRFR15DDXAAJJJ0000",
     "creation": "2022-09-27T08:23:34+02:00",
     "referenceVersion": "1.2",
+    "perimeter": "AMU",
+    "interventionType": "Primaire",
     "qualification": {
         "whatsHappen": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "locationKind": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "riskThreat": [
             {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
+                "label": "Rod\u00e9o automobile"
             }
         ],
         "healthMotive": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "details": {
             "status": "None",
             "type": "DR",
             "attribution": "MU",
             "priority": "P1"
-        },
-        "victims": {
-            "count": "SEVERAL",
-            "mainVictim": "CHILD",
-            "freetext": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
         }
     },
     "location": {
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
         "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
         "name": "Lyc\u00e9e Pierre de Coubertin",
+        "externalLocationId": [
+            {
+                "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
+                "value": "920000650\u00a0"
+            }
+        ],
         "detailedAddress": {
             "complete": "9 Bd du Montparnasse",
             "number": "9, 4bis, PK10, \u2026",
@@ -98,9 +97,15 @@
         "id": "SGO050-20230605-AL0123",
         "reception": "2022-09-27T08:21:06+02:00",
         "reporting": "STANDARD",
-        "freetext": "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux",
+        "notes": [
+            {
+                "creation": "None",
+                "freetext": "La personne est inconsciente (perte de connaissance). "
+            }
+        ],
         "caller": {
             "callerContact": {
+                "channel": "Personne",
                 "type": "PHNADD",
                 "detail": "0671830530"
             },
@@ -115,13 +120,6 @@
                 "firstName": "Jean"
             }
         },
-        "alertSource": {
-            "channel": "Personne",
-            "type": "PHNADD",
-            "detail": "0671830530"
-        },
-        "location": {},
-        "qualification": {},
         "callTaker": {
             "organization": "fr.health.samu440",
             "controlRoom": "CGA, CGO 21, CRRA 44, ...",
@@ -141,16 +139,9 @@
         ]
     },
     "owner": "fr.health.samu440",
-    "operator": [
-        {
-            "detailedName": {},
-            "id": "None",
-            "role": "ARM, Medecin r\u00e9gulateur\u2026"
-        }
-    ],
     "patient": [
         {
-            "id": "None",
+            "id": "fr.health.samu044.DRFR15DDXAAJJJ00000.P00",
             "administrativeFile": {
                 "externalId": [
                     {
@@ -195,8 +186,7 @@
             },
             "healthMotive": {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
+                "label": "Rod\u00e9o automobile"
             },
             "detail": {
                 "weight": 31,
@@ -207,28 +197,28 @@
             "hypothesis": {
                 "mainDiagnosis": {
                     "code": "C07.13.02",
-                    "label": "Rod\u00e9o automobile",
-                    "freetext": "None"
+                    "label": "Rod\u00e9o automobile"
                 },
                 "otherDiagnosis": [
                     {
                         "code": "C07.13.02",
-                        "label": "Rod\u00e9o automobile",
-                        "freetext": "None"
+                        "label": "Rod\u00e9o automobile"
                     }
                 ]
             },
-            "resourceDiagnosis": {
-                "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
-            }
+            "freetext": [
+                "None"
+            ]
         }
     ],
     "medicalNote": [
         {
             "id": "None",
-            "operator": {},
+            "operator": {
+                "detailedName": {},
+                "id": "None",
+                "role": "ARM, Medecin r\u00e9gulateur\u2026"
+            },
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None",
             "medicalHistory": "None",
@@ -241,18 +231,21 @@
             "id": "None",
             "creation": "2022-09-27T08:23:34+02:00",
             "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
-            "orientation": "None",
-            "transportation": [
-                "SMUR "
-            ],
-            "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
-            "destination": {
-                "type": "None",
-                "facility": "None",
-                "adminFiness": "None",
-                "geoFiness": "None",
-                "service": "None",
-                "freetext": "None"
+            "engagementDetails": {
+                "categoryType": "SMUR, Pompiers",
+                "resourceType": "AR, VLM, VSAV",
+                "resourceId": "None",
+                "teamCareInitial": "M\u00e9dical, param\u00e9dical, secouriste"
+            },
+            "transportDetails": {
+                "orientation": "laiss\u00e9 sur place, d\u00e9c\u00e9d\u00e9, ou transport\u00e9",
+                "concoursRequest": "None",
+                "transportationID": "None",
+                "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
+                "destination": {
+                    "type": "None",
+                    "destinationLocation": {}
+                }
             }
         }
     ],
@@ -269,5 +262,7 @@
             }
         ]
     },
-    "freetext": "None"
+    "freetext": [
+        "Le forcen\u00e9 n'est pas ma\u00eetris\u00e9. Voiture renvers\u00e9e. Urgences ferm\u00e9es de 22h \u00e0 6h00."
+    ]
 }

@@ -1620,9 +1620,7 @@ components:
       title: "Localisation de l'\xE9v\xE9nement"
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - TYPE
-      - POSITION
+      required: []
       properties:
         DATIME:
           type: string
@@ -1814,8 +1812,7 @@ components:
       title: "Position de l'op\xE9ration"
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - LOC_ID
+      required: []
       properties:
         LOC_ID:
           type: string
