@@ -67,9 +67,9 @@ public class DetailedAddress {
   }
 
   /**
-   * Numéro, type et nom de la voie.  Utilisé pour tout type de voie : autoroute
-   *(PK, nom et sens), voie ferrée, voie navigable… Obligatoire et seule valeur
-   *des détails de l&#39;adresse fournie par NexSIS.
+   * Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute
+   *(PK, nom et sens), voie ferrée, voie navigable… 15-18 : Obligatoire et seule
+   *valeur des détails de l&#39;adresse fournie par NexSIS.
    * @return complete
    **/
   @JsonProperty(JSON_PROPERTY_COMPLETE)

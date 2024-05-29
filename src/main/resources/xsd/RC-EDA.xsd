@@ -56,9 +56,9 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             </element>
             <element minOccurs="0" name="locLabel" type="string">
                 <annotation>
-                    <documentation>Permet d'indiquer des indications auto suffisantes permettant pour un opérationnel d'accéder facilement au lieu avec des indications minimales.
-Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
-Comprend au maximum 255 caractères</documentation>
+                    <documentation>Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
+15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="name" type="string">
@@ -359,7 +359,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="notes" type="x:notes"/>
             <element name="caller" type="x:caller"/>
             <element name="location" type="x:location"/>
             <element name="qualification" type="x:qualification"/>
@@ -423,11 +423,6 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -628,11 +623,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="riskThreat">
@@ -687,11 +677,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -765,11 +750,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="freetext" type="string">
-                <annotation>
-                    <documentation>Commentaire libre permettant de passer des informations complémentaires associées à la nomenclature</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="victims">
@@ -835,9 +815,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Numéro, type et nom de la voie. 
-Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                    <documentation>Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="number" type="string">
@@ -868,7 +847,7 @@ Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</docum
             <element minOccurs="0" name="detail" type="string">
                 <annotation>
                     <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
-NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté</documentation>
+NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -977,8 +956,16 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
 Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="type" type="string"/>
-            <element minOccurs="0" name="name" type="string"/>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de la voie</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom de la voie</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="point">
@@ -1032,6 +1019,20 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                         <enumeration value="UNKNOWN"/>
                     </restriction>
                 </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="notes">
+        <sequence>
+            <element minOccurs="0" name="creation" type="dateTime">
+                <annotation>
+                    <documentation>date et heure de l'observation</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>texte libre contenant les indications renseignées par l'ARM</documentation>
+                </annotation>
             </element>
         </sequence>
     </complexType>

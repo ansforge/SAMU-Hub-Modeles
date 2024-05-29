@@ -39,23 +39,15 @@
               "qualification": {
                 "whatsHappen": {
                   "code": "C02.05.01",
-                  "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale ",
-                  "freetext": "Commentaire nature de fait"
+                  "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
                 },
                 "locationKind": {
                   "code": "L03.01.00",
-                  "label": "Local d’activité professionnelle; Local administratif",
-                  "freetext": "Commentaire type de lieu"
+                  "label": "Local d’activité professionnelle; Local administratif"
                 },
                 "healthMotive": {
                   "code": "M03.06",
-                  "label": "Problème médical; Douleur thoracique ",
-                  "freetext": "Commentaire motif recours"
-                },
-                "victims": {
-                  "count": "1",
-                  "mainVictim": "ADULT",
-                  "freetext": "Commentaire PV"
+                  "label": "Problème médical; Douleur thoracique "
                 },
                 "details": {
                   "priority": "P0",
@@ -66,13 +58,11 @@
                 "riskThreat": [
                   {
                     "code": "R02",
-                    "label": "libellé risque 1",
-                    "freetext": "commentaire risque 1"
+                    "label": "libellé risque 1"
                   },
                   {
                     "code": "R03",
-                    "label": "Libellé risque 2",
-                    "freetext": "Commentaire risque 2"
+                    "label": "Libellé risque 2"
                   }
                 ]
               },
@@ -141,10 +131,6 @@
                 "id": "fr.health.samu950-DRFR159502401000233",
                 "reception": "2024-01-10T14:05:00+01:00",
                 "reporting": "STANDARD",
-                "freetext": [
-                  "freetext 1",
-                  "freetext 2"
-                ],
                 "caller": {
                   "callerContact": {
                     "type": "PHNADD",
@@ -185,6 +171,20 @@
                     "URI": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json",
                     "derefURI": "aHR0cHM6Ly93d3cuYmFzZTY0ZW5jb2RlLm9yZy9mci8=",
                     "digest": "hash"
+                  }
+                ],
+                "notes": [
+                  {
+                    "creation": "2024-01-10T07:04:00+01:00",
+                    "freetext": "Observation ARM 1"
+                  },
+                  {
+                    "creation": "2024-01-10T07:06:00+01:00",
+                    "freetext": "Observation ARM 2"
+                  },
+                  {
+                    "freetext": "Observation ARM 3",
+                    "creation": "2024-01-10T07:15:00+01:00"
                   }
                 ]
               },
@@ -231,21 +231,20 @@
                     }
                   },
                   "id": "fr.health.samu950-DRFR159502401000233.P11",
-                  "resourceDiagnosis": {
-                    "code": "Z86. 704",
-                    "label": "AVC",
-                    "freetext": "Commentaire Hypothèses de régulation médicale"
-                  },
                   "hypothesis": {
                     "mainDiagnosis": {
                       "code": "Z86. 704",
-                      "label": "AVC",
-                      "freetext": "Commentaire Hypothèses de régulation médicale"
-                    }
+                      "label": "AVC"
+                    },
+                    "otherDiagnosis": [
+                      {
+                        "code": "Z86. 704",
+                        "label": "AVC"
+                      }
+                    ]
                   },
                   "healthMotive": {
                     "label": "Problème médical, Douleur thoracique",
-                    "freetext": "Commentaire motif de recours",
                     "code": "M03.06"
                   },
                   "administrativeFile": {
@@ -298,8 +297,9 @@
                 }
               ],
               "freetext": [
-                "commentaire",
-                "freetext 2"
+                "Commentaire dossier 1",
+                "Commentaire dossier 2",
+                "Commentaire dossier 3"
               ],
               "newAlert": [
                 {
@@ -344,9 +344,6 @@
                       "derefURI": "aHR0cHM6Ly9iYWMtYS1zYWJsZS5odWIuZXNhbnRlLmdvdXYuZnIvbHJtL2pzb24=",
                       "digest": "test"
                     }
-                  ],
-                  "freetext": [
-                    "Observations"
                   ],
                   "id": "fr.health.samu950-DRFR159502401000233",
                   "reception": "2024-04-18T09:45:00+02:00",
@@ -428,7 +425,12 @@
                   },
                   "id": "fr.health.samu950-DRFR159502401000233.P11",
                   "creation": "2024-04-30T09:15:00+02:00",
-                  "type": "ORIENT"
+                  "type": "ORIENT",
+                  "engagementDetails": {
+                    "categoryType": "SMUR",
+                    "resourceType": "VLM",
+                    "teamCareInitial": "R1"
+                  }
                 }
               ],
               "medicalNote": [
@@ -450,17 +452,8 @@
                   "allergies": "Pas d’allergie"
                 }
               ],
-              "operator": [
-                {
-                  "detailedName": {
-                    "complete": "Michel",
-                    "lastName": "Simon",
-                    "firstName": "Michel Simon"
-                  },
-                  "id": "qsd-ID-4586",
-                  "role": "ARM"
-                }
-              ]
+              "perimeter": "AMU",
+              "interventionType": "Primaire"
             }
           }
         }

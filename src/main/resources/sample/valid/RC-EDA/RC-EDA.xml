@@ -1,6 +1,8 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<edxlDistribution xlink:type="extended" xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
-                  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0">
+<edxlDistribution xlink:type="extended"
+                  xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
+                  xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0"
+                  xmlns:xlink="http://www.w3.org/1999/xlink">
     <distributionID>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
     <senderID>fr.health.samuB</senderID>
     <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
@@ -14,12 +16,12 @@
             <explicitAddressValue>fr.health.samuA</explicitAddressValue>
         </explicitAddress>
     </descriptor>
-    <content xlink:type="resource">
+    <content>
         <contentObject xlink:type="resource">
             <contentXML>
                 <embeddedXMLContent>
                     <message xmlns="urn:emergency:cisu:2.0">
-                        <messageId>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</messageId>
+                        <messageId>messageId</messageId>
                         <sender>
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
@@ -40,17 +42,14 @@
                                 <whatsHappen>
                                     <code>C01.01.04</code>
                                     <label>2-roues</label>
-                                    <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la circulation</freetext>
                                 </whatsHappen>
                                 <riskThreat>
                                     <code>R22</code>
                                     <label>Gêne à la circulation</label>
-                                    <freetext>Risque lié aux voitures</freetext>
                                 </riskThreat>
                                 <riskThreat>
                                     <code>R23</code>
                                     <label>Second risque</label>
-                                    <freetext>Second risque</freetext>
                                 </riskThreat>
                                 <victims>
                                     <count>SEVERAL</count>
@@ -118,7 +117,10 @@
                                 <id>samu690-20231103-AL01234</id>
                                 <reception>2023-11-03T10:02:00+01:00</reception>
                                 <reporting>STANDARD</reporting>
-                                <freetext>suite collision avec un autre vélo sur piste cyclable, saignements aux niveaux des genoux, gonflement du geneoux, grosses égratinures, maux de tête</freetext>
+                                <notes>
+                                    <creation>2023-11-03T10:02:00+01:00</creation>
+                                    <freetext>Accident entre une voiture et un vélo</freetext>
+                                </notes>
                                 <caller>
                                     <callerContact>
                                         <channel>Personne</channel>
@@ -147,7 +149,6 @@
                                     <whatsHappen>
                                         <code>C01.01.04</code>
                                         <label>2-roues</label>
-                                        <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la circulation</freetext>
                                     </whatsHappen>
                                 </qualification>
                                 <callTaker>
@@ -170,6 +171,24 @@
                                     <digest>None</digest>
                                 </attachment>
                             </initialAlert>
+                            <patient>
+                                <id>fr.health.samu690.DRFR15690240430050.P01</id>
+                                <identity>
+                                    <strictFeatures>
+                                        <birthDate>1981-01-01</birthDate>
+                                        <sex>MASC</sex>
+                                    </strictFeatures>
+                                    <nonStrictFeatures>
+                                        <complete>Alexandre Armaury</complete>
+                                        <lastName>Armaury</lastName>
+                                        <firstName>Alexandre</firstName>
+                                    </nonStrictFeatures>
+                                </identity>
+                            </patient>
+                            <decision>
+                                <creation>2023-11-03T10:05:00+01:00</creation>
+                                <type>INTER</type>
+                            </decision>
                             <additionalInformation>
                                 <customMap>
                                     <key>neighborhood</key>

@@ -38,7 +38,6 @@ import com.hubsante.model.health.CaseDetails;
 import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.LocationKind;
 import com.hubsante.model.health.RiskThreat;
-import com.hubsante.model.health.Victims;
 import com.hubsante.model.health.WhatsHappen;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,8 +52,7 @@ import java.util.Objects;
                     Qualification.JSON_PROPERTY_LOCATION_KIND,
                     Qualification.JSON_PROPERTY_RISK_THREAT,
                     Qualification.JSON_PROPERTY_HEALTH_MOTIVE,
-                    Qualification.JSON_PROPERTY_DETAILS,
-                    Qualification.JSON_PROPERTY_VICTIMS})
+                    Qualification.JSON_PROPERTY_DETAILS})
 @JsonTypeName("qualification")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -73,9 +71,6 @@ public class Qualification {
 
   public static final String JSON_PROPERTY_DETAILS = "details";
   private CaseDetails details;
-
-  public static final String JSON_PROPERTY_VICTIMS = "victims";
-  private Victims victims;
 
   public Qualification() {}
 
@@ -210,29 +205,6 @@ public class Qualification {
     this.details = details;
   }
 
-  public Qualification victims(Victims victims) {
-
-    this.victims = victims;
-    return this;
-  }
-
-  /**
-   * Get victims
-   * @return victims
-   **/
-  @JsonProperty(JSON_PROPERTY_VICTIMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Victims getVictims() {
-    return victims;
-  }
-
-  @JsonProperty(JSON_PROPERTY_VICTIMS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setVictims(Victims victims) {
-    this.victims = victims;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -246,14 +218,13 @@ public class Qualification {
         Objects.equals(this.locationKind, qualification.locationKind) &&
         Objects.equals(this.riskThreat, qualification.riskThreat) &&
         Objects.equals(this.healthMotive, qualification.healthMotive) &&
-        Objects.equals(this.details, qualification.details) &&
-        Objects.equals(this.victims, qualification.victims);
+        Objects.equals(this.details, qualification.details);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(whatsHappen, locationKind, riskThreat, healthMotive,
-                        details, victims);
+                        details);
   }
 
   @Override
@@ -273,7 +244,6 @@ public class Qualification {
         .append(toIndentedString(healthMotive))
         .append("\n");
     sb.append("    details: ").append(toIndentedString(details)).append("\n");
-    sb.append("    victims: ").append(toIndentedString(victims)).append("\n");
     sb.append("}");
     return sb.toString();
   }

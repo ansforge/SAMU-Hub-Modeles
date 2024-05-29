@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.05.23",
+    "version": "24.05.29",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -87,7 +87,7 @@
                 "x-health-only": false,
                 "x-cols": 6,
                 "example": "example.json#/freetext/0",
-                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire"
+                "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire/dossier. Ces informations sont g\u00e9n\u00e9rales, et ont vocation \u00e0 \u00eatre \u00e9chang\u00e9es en inter-force. "
             }
         }
     },
@@ -147,7 +147,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/locLabel",
-                    "description": "Permet d'indiquer des indications auto suffisantes permettant pour un op\u00e9rationnel d'acc\u00e9der facilement au lieu avec des indications minimales.\nDans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au maximum 255 caract\u00e8res"
+                    "description": "Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les \u00e9quipes op\u00e9rationnelles. Comprend au maximum 255 caract\u00e8res.\n15-18 : Dans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\n"
                 },
                 "name": {
                     "type": "string",
@@ -488,16 +488,10 @@
                         "ATTENTION"
                     ]
                 },
-                "freetext": {
+                "notes": {
                     "type": "array",
-                    "x-health-only": false,
                     "items": {
-                        "type": "string",
-                        "title": "Informations compl\u00e9mentaires sur l'alerte",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/initialAlert/freetext/0",
-                        "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'alerte."
+                        "$ref": "#/definitions/notes"
                     }
                 },
                 "caller": {
@@ -651,14 +645,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/whatsHappen/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -870,14 +856,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/locationKind/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -947,14 +925,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/riskThreat/0/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -1039,14 +1009,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/healthMotive/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -1152,7 +1114,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/complete",
-                    "description": "Num\u00e9ro, type et nom de la voie. \nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\nObligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
+                    "description": "Num\u00e9ro, type et nom de la voie. Utilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\n15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
                 },
                 "number": {
                     "type": "string",
@@ -1199,7 +1161,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/city/detail",
-                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9"
+                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9."
                 }
             },
             "additionalProperties": false,
@@ -1398,14 +1360,16 @@
                     "title": "Type",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/detailedAddress/wayName/type"
+                    "example": "example.json#/location/detailedAddress/wayName/type",
+                    "description": "Type de la voie"
                 },
                 "name": {
                     "type": "string",
                     "title": "Nom",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/detailedAddress/wayName/name"
+                    "example": "example.json#/location/detailedAddress/wayName/name",
+                    "description": "Nom de la voie"
                 }
             },
             "additionalProperties": false,
@@ -1504,6 +1468,35 @@
             },
             "additionalProperties": false,
             "example": "example.json#/location/geometry/point/coord"
+        },
+        "notes": {
+            "type": "object",
+            "title": "Informations compl\u00e9mentaires sur l'alerte (observations ARM)",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "creation": {
+                    "type": "string",
+                    "title": "Date et heure de l'information compl\u00e9mentaire/l'observation ARM",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/notes/0/creation",
+                    "description": "date et heure de l'observation",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire/Observations",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/notes/0/freetext",
+                    "description": "texte libre contenant les indications renseign\u00e9es par l'ARM"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/initialAlert/notes/0"
         },
         "caller": {
             "type": "object",

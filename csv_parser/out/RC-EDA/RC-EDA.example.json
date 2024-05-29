@@ -6,25 +6,21 @@
     "qualification": {
         "whatsHappen": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "locationKind": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "riskThreat": [
             {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile",
-                "freetext": "None"
+                "label": "Rod\u00e9o automobile"
             }
         ],
         "healthMotive": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile",
-            "freetext": "None"
+            "label": "Rod\u00e9o automobile"
         },
         "victims": {
             "count": "SEVERAL",
@@ -98,8 +94,11 @@
         "id": "SGO050-20230605-AL0123",
         "reception": "2022-09-27T08:21:06+02:00",
         "reporting": "STANDARD",
-        "freetext": [
-            "D\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
+        "notes": [
+            {
+                "creation": "None",
+                "freetext": "La personne est inconsciente (perte de connaissance). "
+            }
         ],
         "caller": {
             "callerContact": {
@@ -184,6 +183,6 @@
         ]
     },
     "freetext": [
-        "None"
+        "Le forcen\u00e9 n'est pas ma\u00eetris\u00e9. Voiture renvers\u00e9e. Urgences ferm\u00e9es de 22h \u00e0 6h00."
     ]
 }

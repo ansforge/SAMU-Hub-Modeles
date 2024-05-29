@@ -41,9 +41,8 @@ import java.util.Objects;
 /**
  * WhatsHappen
  */
-@JsonPropertyOrder({WhatsHappen.JSON_PROPERTY_CODE,
-                    WhatsHappen.JSON_PROPERTY_LABEL,
-                    WhatsHappen.JSON_PROPERTY_FREETEXT})
+@JsonPropertyOrder(
+    {WhatsHappen.JSON_PROPERTY_CODE, WhatsHappen.JSON_PROPERTY_LABEL})
 @JsonTypeName("whatsHappen")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -53,9 +52,6 @@ public class WhatsHappen {
 
   public static final String JSON_PROPERTY_LABEL = "label";
   private String label;
-
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private String freetext;
 
   public WhatsHappen() {}
 
@@ -107,30 +103,6 @@ public class WhatsHappen {
     this.label = label;
   }
 
-  public WhatsHappen freetext(String freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  /**
-   * Commentaire libre permettant de passer des informations complémentaires
-   *associées à la nomenclature
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getFreetext() {
-    return freetext;
-  }
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(String freetext) {
-    this.freetext = freetext;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -141,13 +113,12 @@ public class WhatsHappen {
     }
     WhatsHappen whatsHappen = (WhatsHappen)o;
     return Objects.equals(this.code, whatsHappen.code) &&
-        Objects.equals(this.label, whatsHappen.label) &&
-        Objects.equals(this.freetext, whatsHappen.freetext);
+        Objects.equals(this.label, whatsHappen.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, label, freetext);
+    return Objects.hash(code, label);
   }
 
   @Override
@@ -156,7 +127,6 @@ public class WhatsHappen {
     sb.append("class WhatsHappen {\n");
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    label: ").append(toIndentedString(label)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

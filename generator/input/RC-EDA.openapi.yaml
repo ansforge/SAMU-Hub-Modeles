@@ -105,9 +105,11 @@ components:
             x-cols: 6
             example: example.json#/freetext/0
             description: "Texte libre permettant de donner des informations suppl\xE9\
-              mentaires concernant l'affaire"
+              mentaires concernant l'affaire/dossier. Ces informations sont g\xE9\
+              n\xE9rales, et ont vocation \xE0 \xEAtre \xE9chang\xE9es en inter-force. "
             examples:
-            - None
+            - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
+              \ ferm\xE9es de 22h \xE0 6h00."
       additionalProperties: false
     qualification:
       type: object
@@ -156,12 +158,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/locLabel
-          description: "Permet d'indiquer des indications auto suffisantes permettant\
-            \ pour un op\xE9rationnel d'acc\xE9der facilement au lieu avec des indications\
-            \ minimales.\nDans les messages NexSIS, va souvent correspondre \xE0 la\
-            \ concat\xE9nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes\
-            \ informations, dont le \"name\" (toponyme) et l'adresse.\nComprend au\
-            \ maximum 255 caract\xE8res"
+          description: "Donne les informations minimales d'identification du lieu\
+            \ d'intervention, qui permet d'identifier rapidement le lieu pour les\
+            \ \xE9quipes op\xE9rationnelles. Comprend au maximum 255 caract\xE8res.\n\
+            15-18 : Dans les messages NexSIS, va souvent correspondre \xE0 la concat\xE9\
+            nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes informations,\
+            \ dont le \"name\" (toponyme) et l'adresse.\n"
           examples:
           - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
             e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
@@ -521,19 +523,10 @@ components:
           - ATTENTION
           examples:
           - STANDARD
-        freetext:
+        notes:
           type: array
-          x-health-only: false
           items:
-            type: string
-            title: "Informations compl\xE9mentaires sur l'alerte"
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/initialAlert/freetext/0
-            description: "Texte libre permettant de donner des informations suppl\xE9\
-              mentaires concernant l'alerte."
-            examples:
-            - "D\xE9clenchement t\xE9l\xE9alarme, voisine sur les lieux"
+            $ref: '#/components/schemas/notes'
         caller:
           $ref: '#/components/schemas/caller'
         location:
@@ -678,22 +671,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/whatsHappen/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/whatsHappen
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     locationKind:
       type: object
       title: Type de lieu
@@ -904,22 +886,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/locationKind/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/locationKind
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     riskThreat:
       type: object
       title: "Risque, menace et sensibilit\xE9"
@@ -988,22 +959,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/riskThreat/0
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     healthMotive:
       type: object
       title: "Motif de recours m\xE9dico-secouriste"
@@ -1087,22 +1047,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/healthMotive/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/healthMotive
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     victims:
       type: object
       title: Patients-Victimes
@@ -1211,10 +1160,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/complete
-          description: "Num\xE9ro, type et nom de la voie. \nUtilis\xE9 pour tout\
-            \ type de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
-            \nObligatoire et seule valeur des d\xE9tails de l'adresse fournie par\
-            \ NexSIS."
+          description: "Num\xE9ro, type et nom de la voie. Utilis\xE9 pour tout type\
+            \ de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
+            \n15-18 : Obligatoire et seule valeur des d\xE9tails de l'adresse fournie\
+            \ par NexSIS."
           examples:
           - 9 Bd du Montparnasse
         number:
@@ -1271,7 +1220,7 @@ components:
             \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
             \ fusionn\xE9es pour le syst\xE8me \xE9metteur\nNB : dans tous les cas,\
             \ la localisation GPS de la commune doit \xEAtre fournie afin d'\xE9viter\
-            \ une trop forte ambigu\xEFt\xE9"
+            \ une trop forte ambigu\xEFt\xE9."
           examples:
           - "Quartie Melun Nord, Lhomme, \u2026"
       additionalProperties: false
@@ -1501,6 +1450,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/type
+          description: Type de la voie
           examples:
           - Boulevard
         name:
@@ -1509,6 +1459,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/name
+          description: Nom de la voie
           examples:
           - du Montparnasse
       additionalProperties: false
@@ -1627,6 +1578,38 @@ components:
         heading: 96
         speed: 34
         precision: ADDRESS
+    notes:
+      type: object
+      title: "Informations compl\xE9mentaires sur l'alerte (observations ARM)"
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        creation:
+          type: string
+          title: "Date et heure de l'information compl\xE9mentaire/l'observation ARM"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/initialAlert/notes/0/creation
+          description: date et heure de l'observation
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        freetext:
+          type: string
+          title: Commentaire/Observations
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/initialAlert/notes/0/freetext
+          description: "texte libre contenant les indications renseign\xE9es par l'ARM"
+          examples:
+          - 'La personne est inconsciente (perte de connaissance). '
+      additionalProperties: false
+      example: example.json#/initialAlert/notes/0
+      examples:
+      - creation: None
+        freetext: 'La personne est inconsciente (perte de connaissance). '
     caller:
       type: object
       title: "Requ\xE9rant"
