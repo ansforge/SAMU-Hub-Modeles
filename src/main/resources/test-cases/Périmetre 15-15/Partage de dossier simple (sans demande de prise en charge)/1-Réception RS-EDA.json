@@ -1,7 +1,7 @@
 {
     "createCaseHealth": {
         "caseId": "fr.health.samu770-DRFR157702400400055",
-        "creation": "S2024-01-18T15:15:00+01:00",
+        "creation": "2024-01-18T15:15:00+01:00",
         "referenceVersion": "1.3",
         "perimeter": "AMU",
         "interventionType": "Primaire",
@@ -115,7 +115,7 @@
         "precision": "ADDRESS",
         "intialAlert": {
             "id": "ALRT-2024-ABC123",
-            "reception": "S2024-01-18T15:15:00+01:00",
+            "reception": "2024-01-18T15:15:00+01:00",
             "reporting": "STANDARD",
             "type": "FAMILLE",
             "caller": {
@@ -159,7 +159,7 @@
             "firstName": "Sébastien",
             "lastName": "Morel"
         },
-        "reception": "S2024-01-18T15:15:00+01:00",
+        "reception": "2024-01-18T15:15:00+01:00",
         "reporting": "STANDARD",
         "type": "FAMILLE",
         "detail": 607080915,
