@@ -80,38 +80,38 @@
             "name": "Vaires-sur-Marne",
             "city": {
                 "name": "Vaires-sur-Marne",
-                "inseeCode": 77479
+                "inseeCode": "77479"
             },
-            "inseeCode": 77479,
+            "inseeCode": "77479",
             "freetext": "Aller directement dans le garage",
             "obsDatime": "2024-01-04T00:05:00+01:00",
             "geometry": {
                 "obsDatime": "2024-01-04T00:05:00+01:00",
-                "lat": "48.866920471191406",
+                "lat": 48.866920471191406,
                 "point": {
-                    "lat": "48.866920471191406",
+                    "lat": 48.866920471191406,
                     "coord": {
-                        "lat": "48.866920471191406",
-                        "lon": "2.631575345993042",
+                        "lat": 48.866920471191406,
+                        "lon": 2.631575345993042,
                         "precision": "ADDRESS"
                     },
-                    "lon": "2.631575345993042",
+                    "lon": 2.631575345993042,
                     "precision": "ADDRESS"
                 },
-                "lon": "2.631575345993042",
+                "lon": 2.631575345993042,
                 "precision": "ADDRESS"
             },
-            "lat": "48.866920471191406",
-            "lon": "2.631575345993042",
+            "lat": 48.866920471191406,
+            "lon": 2.631575345993042,
             "precision": "ADDRESS"
         },
         "country": "FR",
         "name": "Vaires-sur-Marne",
-        "inseeCode": 77479,
+        "inseeCode": "77479",
         "freetext": "La victime est inconsciente (perte de connaissance).",
         "obsDatime": "2024-01-04T00:05:00+01:00",
-        "lat": "48.866920471191406",
-        "lon": "2.631575345993042",
+        "lat": 48.866920471191406,
+        "lon": 2.631575345993042,
         "precision": "ADDRESS",
         "intialAlert": {
             "id": "ALRT-2024-ABC123",
@@ -122,14 +122,14 @@
                 "type": "FAMILLE",
                 "callerContact": {
                     "type": "PHNADD",
-                    "detail": 607080915,
+                    "detail": "607080915",
                     "channel": "Personne"
                 },
-                "detail": 607080915,
+                "detail": "607080915",
                 "channel": "Personne",
                 "callbackContact": {
                     "type": "PHNADD",
-                    "detail": 607080915,
+                    "detail": "607080915",
                     "channel": "Personne"
                 },
                 "language": "FR",
@@ -151,7 +151,7 @@
                 "firstName": "Sébastien",
                 "lastName": "Morel"
             },
-            "detail": 607080915,
+            "detail": "607080915",
             "channel": "Personne",
             "language": "FR",
             "freetext": "La victime est inconsciente (perte de connaissance).",
@@ -162,7 +162,7 @@
         "reception": "2024-01-18T15:15:00+01:00",
         "reporting": "STANDARD",
         "type": "FAMILLE",
-        "detail": 607080915,
+        "detail": "607080915",
         "channel": "Personne",
         "language": "FR",
         "organisation": "fr.health.samu770",

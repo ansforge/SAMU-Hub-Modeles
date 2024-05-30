@@ -175,16 +175,16 @@
                                 {
                                     "path":"$.createCaseHealth.location.city.inseeCode",
                                     "value":[
-                                        77479,
-                                        95063,
-                                        9029
+                                        "77479",
+                                        "95063",
+                                        "9029"
                                     ],
                                     "verificationLevel":3
                                 },
                                 {
                                     "path":"$.createCaseHealth.location.access.floor",
                                     "value":[
-                                        3
+                                        "3"
                                     ],
                                     "verificationLevel":2
                                 },
@@ -205,7 +205,7 @@
                                 {
                                     "path":"$.createCaseHealth.location.access[0].accessCode",
                                     "value":[
-                                        5678
+                                        "5678"
                                     ],
                                     "verificationLevel":2
                                 },
@@ -240,7 +240,7 @@
                                 {
                                     "path":"$.createCaseHealth.location.access.phoneNumber",
                                     "value":[
-                                        561964589
+                                        "561964589"
                                     ],
                                     "verificationLevel":2
                                 },
@@ -288,9 +288,9 @@
                                 {
                                     "path":"$.createCaseHealth.intialAlert.caller.callerContact.detail",
                                     "value":[
-                                        607080915,
-                                        702880946,
-                                        632085528
+                                        "607080915",
+                                        "702880946",
+                                        "632085528"
                                     ],
                                     "verificationLevel":1
                                 },
@@ -306,9 +306,9 @@
                                 {
                                     "path":"$.createCaseHealth.intialAlert.caller.callbackContact.detail",
                                     "value":[
-                                        607080915,
-                                        702880946,
-                                        561964589
+                                        "607080915",
+                                        "702880946",
+                                        "561964589"
                                     ],
                                     "verificationLevel":2
                                 },
@@ -355,7 +355,7 @@
                                     "verificationLevel":1
                                 }
                             ],
-                            "file":null
+                            "file":"Périmetre 15-15\/Partage de dossier simple (sans demande de prise en charge)\/1-Réception RS-EDA.json"
                         }
                     }
                 ]
