@@ -39,7 +39,7 @@ def run(perimeters):
             # Create test case object
             test_case = {}
             # Read only the useful rows from the excel. Test case starts at row 9 (headers) and ends at the last row
-            test_case_inner_df = pd.read_excel(f'./{perimeter["file"]}.xlsx', sheet_name=sheet, skiprows=8)
+            test_case_inner_df = pd.read_excel(f'./{perimeter["file"]}.xlsx', sheet_name=sheet, skiprows=8, dtype=str)
             # Test case name is located in the cell C3
             test_case["label"] = test_case_df.iloc[2, 2]
             # Test case description is located in the cell C4
