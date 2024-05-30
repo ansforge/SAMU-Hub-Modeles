@@ -1,4 +1,8 @@
+import json
 import os
+import collections.abc as collections
+from pydoc import locate
+
 import pandas as pd
 import warnings
 import math
@@ -11,6 +15,7 @@ pd.set_option('display.width', 1000)
 
 # Ignoring Openpyxl Excel's warnings | Ref.: https://stackoverflow.com/a/64420416
 warnings.filterwarnings('ignore', category=UserWarning, module='openpyxl')
+
 
 # This function generates a json file that contains test case per sheet in test_cases.xlsx, saving it to the
 # /out folder under the name test_cases.json
@@ -45,6 +50,8 @@ def run(perimeters):
             receive_json = {}
             # Holds current step data
             current_step = {}
+            # Holds current step type overrides
+            type_override_map = {}
             # The beginning of each test case step is marked by the type of the step in the column A, and the
             # end either by the beginning of another step or by the last row in the sheet, containing value 'End'
             for index, row in test_case_inner_df.iterrows():
@@ -78,7 +85,7 @@ def run(perimeters):
                                 # array until the index is reached
                                 if len(current[key]) <= index:
                                     current[key].append({})
-                                # We grab the object at the index and set it as the current object
+                                # We grab the property at the index and set it as the current object
                                 current = current[key][index]
                             else:
                                 # For properties that are not arrays, we simply add the key to the current object if it
@@ -88,7 +95,10 @@ def run(perimeters):
                                 # We set the current object to the object at the path
                                 current = current[path[i]]
                             # We add the value to the last key in the path
-                            current[path[-1]] = row["JDD 1"]
+                            if path[-1] in type_override_map:
+                                current[path[-1]] = locate(transform_type(type_override_map[path[-1]]))(row["JDD 1"])
+                            else:
+                                current[path[-1]] = str(row["JDD 1"])
 
                     # If the value is not empty, we add it to the required values array of the last step, specifying
                     # the number in the "verificationLevel" property
@@ -96,8 +106,8 @@ def run(perimeters):
                         try:
                             values = []
                             for i in range(5):
-                                if pd.notna(row[f"JDD {i+1}"]):
-                                    values.append(row[f"JDD {i+1}"])
+                                if pd.notna(row[f"JDD {i + 1}"]):
+                                    values.append(row[f"JDD {i + 1}"])
 
                             required_value = {
                                 "path": row["path JSON"],
@@ -106,13 +116,14 @@ def run(perimeters):
                             }
                             test_case["steps"][-1]["message"]["requiredValues"].append(required_value)
                         except ValueError:
-                            print(f"Error: Invalid verification level in test case {test_case['label']}, row {index + 1}")
+                            print(
+                                f"Error: Invalid verification level in test case {test_case['label']}, row {index + 1}")
 
                 # Else, if the value is not nan, we add a new step to the test case. If the type of the step is
                 # "receive", we also add the property "file" containing a string with the name of the template
                 # file lrm is going to use to generate the message
                 else:
-                    if len(current_step.keys())>0 and get_type(current_step["Pas de test"]) == "receive":
+                    if len(current_step.keys()) > 0 and get_type(current_step["Pas de test"]) == "receive":
                         generate_step_json(perimeter, test_case, current_step, receive_json)
                     test_case["steps"].append({
                         "type": get_type(row["Pas de test"]),
@@ -122,15 +133,19 @@ def run(perimeters):
                             "requiredValues": [],
                         }
                     })
-                    # We update current set and empty the receive_json object
-                    current_step = row
-                    receive_json = {}
                     # For 'receive' steps, we generate a json file using all the values of the step (even unmarked
                     # ones, through the usage of receive_json object) and save it to the path
                     # ./out/test-cases/[perimeter_name]/[test_case_name]/[step_name].json
                     # We only use JDD1 values, as the other two JDDs will be overriden later on in the lrm itself
                     if get_type(row["Pas de test"]) == "receive":
-                        test_case["steps"][-1]["message"]["file"] = row["Donnée"]
+                        test_case["steps"][-1]["message"][
+                            "file"] = f'{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]}.json'
+                        # We populate the type_override_map object with the type overrides for the current step
+                        type_override_map = generate_type_override_map(row)
+                    # We update current set and empty the receive_json object
+                    current_step = row
+                    receive_json = {}
+
             # Add the test case object to the perimeter object
             perimeter_object["testCases"].append(test_case)
         # Add the perimeter object to the test cases array
@@ -160,3 +175,34 @@ def get_type(type_in_french):
         return "send"
     elif type_in_french == "Réception":
         return "receive"
+
+
+def generate_type_override_map(row):
+    # We load the relevant schema from ../src/main/resources/json-schema/row["Pas de test"].schema.json into the
+    # schema object
+    schema = json.load(open(f'../src/main/resources/json-schema/{row["Modèle"]}.schema.json'))
+    # We iterate over all properties recursively in the schem and add those that have simple types different from
+    # string (i.e. integer, number, boolean) to the type_override_map object
+    type_override_map = {}
+    for key, value in nested_dict_iter(schema["definitions"]):
+        if "type" in value and not isinstance(value["type"], collections.Mapping) and value["type"] not in {"string",
+                                                                                                            "object", "array"}:
+            type_override_map[key] = value["type"]
+    return type_override_map
+
+
+def nested_dict_iter(nested):
+    for key, value in nested.items():
+        if isinstance(value, collections.Mapping):
+            yield key, value
+            for inner_key, inner_value in nested_dict_iter(value):
+                yield inner_key, inner_value
+
+
+def transform_type(type_string):
+    if type_string == "integer":
+        return "int"
+    elif type_string == "number":
+        return "float"
+    else:
+        return type_string
