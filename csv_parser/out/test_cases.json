@@ -129,7 +129,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.patient[0].identity.nonstrictFeatures.complete",
+                                    "path":"$.createCaseHealth.patient[0].identity.nonStrictFeatures.complete",
                                     "value":[
                                         "Didier Morel",
                                         "Lola Halimi"
@@ -270,14 +270,14 @@
                                     "verificationLevel":3
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.freetext",
+                                    "path":"$.createCaseHealth.initialAlert.freetext",
                                     "value":[
 
                                     ],
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callerContact.type",
+                                    "path":"$.createCaseHealth.initialAlert.caller.callerContact.type",
                                     "value":[
                                         "PHNADD",
                                         "PHNADD",
@@ -286,7 +286,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callerContact.detail",
+                                    "path":"$.createCaseHealth.initialAlert.caller.callerContact.detail",
                                     "value":[
                                         "0607080915",
                                         "702880946",
@@ -295,7 +295,7 @@
                                     "verificationLevel":1
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callbackContact.type",
+                                    "path":"$.createCaseHealth.initialAlert.caller.callbackContact.type",
                                     "value":[
                                         "PHNADD",
                                         "PHNADD",
@@ -304,7 +304,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.callbackContact.detail",
+                                    "path":"$.createCaseHealth.initialAlert.caller.callbackContact.detail",
                                     "value":[
                                         "0607080915",
                                         "702880946",
@@ -313,7 +313,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.type",
+                                    "path":"$.createCaseHealth.initialAlert.caller.type",
                                     "value":[
                                         "FAMILLE",
                                         "TIERS",
@@ -322,7 +322,7 @@
                                     "verificationLevel":3
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.notes[0].freetext",
+                                    "path":"$.createCaseHealth.initialAlert.notes[0].freetext",
                                     "value":[
                                         "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. ",
                                         "Entorse de la cheville, avec possible fracture. ",
@@ -331,7 +331,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.notes[1].freetext",
+                                    "path":"$.createCaseHealth.initialAlert.notes[1].freetext",
                                     "value":[
                                         "La victime est inconsciente (perte de connaissance).",
                                         "Cheville gonflée et douloureuse. "
@@ -339,14 +339,14 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.notes[2].freetext",
+                                    "path":"$.createCaseHealth.initialAlert.notes[2].freetext",
                                     "value":[
                                         "Marche impossible."
                                     ],
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.intialAlert.caller.detailedName.complete",
+                                    "path":"$.createCaseHealth.initialAlert.caller.detailedName.complete",
                                     "value":[
                                         "Sébastien Morel",
                                         "Amina BERTRAND  ",

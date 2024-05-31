@@ -32,7 +32,7 @@
                         "sex": "MASC",
                         "birthDate": "1959-02-01"
                     },
-                    "nonstrictFeatures": {
+                    "nonStrictFeatures": {
                         "complete": "Didier Morel",
                         "firstName": "Didier ",
                         "lastName": "Morel"
@@ -65,7 +65,7 @@
                 }
             }
         },
-        "intialAlert": {
+        "initialAlert": {
             "id": "ALRT-2024-ABC123",
             "reception": "2024-01-18T15:15:00+01:00",
             "reporting": "STANDARD",
@@ -82,24 +82,22 @@
                 },
                 "language": "FR",
                 "type": "FAMILLE",
-                "notes": [
-                    {
-                        "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. "
-                    },
-                    {
-                        "freetext": "La victime est inconsciente (perte de connaissance)."
-                    }
-                ],
                 "detailedName": {
                     "complete": "Sébastien Morel",
                     "firstName": "Sébastien",
                     "lastName": "Morel"
                 }
-            }
-        },
-        "initialalert": {
+            },
+            "notes": [
+                {
+                    "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. "
+                },
+                {
+                    "freetext": "La victime est inconsciente (perte de connaissance)."
+                }
+            ],
             "callTaker": {
-                "organisation": "fr.health.samu770",
+                "organization": "fr.health.samu770",
                 "controlRoom": "CRRA 77"
             }
         }
