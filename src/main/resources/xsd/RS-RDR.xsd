@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesResponse" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesResponse" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourcesResponse" type="x:resourcesResponse"/>
+    <complexType name="resourcesResponse">
+        <sequence>
+            <element name="caseId" type="string">
+                <annotation>
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                </annotation>
+            </element>
+            <element name="RSDDRId" type="string">
+                <annotation>
+                    <documentation>Identifiant unique partagé de la demande de ressource à laquelle l'expéditeur répond</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="resourceRequest" type="x:request"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="mobilizedResources" type="x:resource"/>
+        </sequence>
+    </complexType>
+    <complexType name="request">
+        <sequence>
+            <element name="dateTime" type="dateTime">
+                <annotation>
+                    <documentation>Voir liste des effets à obtenir identifiés</documentation>
+                </annotation>
+            </element>
+            <element name="answer" type="string">
+                <annotation>
+                    <documentation>oui / non / oui partiel / </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>Indique le délai de réponse auquel s'engage l'expéditeur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Commentaire libre pour apporter toutes précisions utiles à la réponse</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="resource">
+        <sequence>
+            <element name="commitmentDateTime" type="dateTime">
+                <annotation>
+                    <documentation>date et heure d'engagement de la ressource</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="originDateTime" type="dateTime">
+                <annotation>
+                    <documentation>date et heure d'arrivée prévisionnelle sur le lieu de prise en charge du patient</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destinationDateTime" type="dateTime">
+                <annotation>
+                    <documentation>date et heure d'arrivée prévisionnelle sur le lieu de destination du patient</documentation>
+                </annotation>
+            </element>
+            <element name="resourceID" type="string">
+                <annotation>
+                    <documentation>ID unique de la ressource engagée</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orgID" type="string">
+                <annotation>
+                    <documentation>Organisation à laquelle appartient la ressource</documentation>
+                </annotation>
+            </element>
+            <element name="type" type="string">
+                <annotation>
+                    <documentation>Type de ressource mobilisée (nomenclature type de vecteur à implémenter pour l'instant, voir ensuite si elle est complétée par des ressources autres que des vecteurs)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="plate" type="string"/>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom donné par l’organisation d’appartenance</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="order" type="string">
+                <annotation>
+                    <documentation>S'il existe plusieurs types de vecteurs ou ressource identiques portant le même nom dans un même dans le même centre d’affectation; préciser le numéro d'ordre</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="centerName" type="string">
+                <annotation>
+                    <documentation>Lieu de garage principal</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="centerType" type="string"/>
+            <element minOccurs="0" name="centerCity" type="string">
+                <annotation>
+                    <documentation>Code INSEE de la commune du centre d'affectation</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="make" type="string">
+                <annotation>
+                    <documentation>Marque vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="model" type="string">
+                <annotation>
+                    <documentation>Modèle vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="team" type="x:team"/>
+            <element minOccurs="0" name="state" type="x:state"/>
+            <element minOccurs="0" name="contact" type="x:contact"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="team">
+        <sequence>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Médical / paramédical : indique le niveau de médicalisation du vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom de l'équipe à bord du vecteur</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="state">
+        <sequence>
+            <element minOccurs="0" name="dateTime" type="dateTime"/>
+            <element minOccurs="0" name="status" type="string">
+                <annotation>
+                    <documentation>Statuts Antares</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="availability" type="string">
+                <annotation>
+                    <documentation>Indique si le vecteur est disponible / indisponible</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="contact">
+        <sequence>
+            <element minOccurs="0" name="type">
+                <annotation>
+                    <documentation>Type de l'URI utilisée</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="PSTADD"/>
+                        <enumeration value="EMLADD"/>
+                        <enumeration value="IPADD"/>
+                        <enumeration value="FTPADD"/>
+                        <enumeration value="WWWADD"/>
+                        <enumeration value="PHNADD"/>
+                        <enumeration value="FAXADD"/>
+                        <enumeration value="PMRADD"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="details" type="string">
+                <annotation>
+                    <documentation>Valeur de l'URI utilisée pour contacter la ressource</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

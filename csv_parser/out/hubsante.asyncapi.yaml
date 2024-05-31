@@ -1258,7 +1258,7 @@ components:
           examples:
           - Infirmerie
         phoneNumber:
-          type: string
+          type: number
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
           x-health-only: false
           x-cols: 6

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesResponse" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesResponse" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="resourcesResponse" type="x:resourcesResponse"/>
-    <complexType name="resourcesResponse">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesRequest" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesRequest" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourcesRequest" type="x:resourcesRequest"/>
+    <complexType name="resourcesRequest">
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
