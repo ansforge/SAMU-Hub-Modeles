@@ -23,11 +23,15 @@
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:rpis" schemaLocation="RPIS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoPositionsUpdate" schemaLocation="GEO-POS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesDetails" schemaLocation="GEO-RES.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesRequest" schemaLocation="GEO-REQ.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesInfo" schemaLocation="RS-RIG.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesRequest" schemaLocation="RS-DDR.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesResponse" schemaLocation="RS-RDR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
