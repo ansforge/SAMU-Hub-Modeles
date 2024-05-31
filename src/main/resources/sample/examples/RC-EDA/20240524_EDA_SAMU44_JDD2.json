@@ -1,0 +1,106 @@
+{
+  "createCase": {
+    "caseId": "fr.health.samu440.DRFR154402414300123",
+    "senderCaseId": "DRFR154402414300123",
+    "creation": "2024-05-23T10:04:00+02:00",
+    "referenceVersion": "1.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C04.06.00",
+        "label": "Feux de poubelles"
+      },
+      "healthMotive": {
+        "code": "M02.05",
+        "label": "Brûlure sans critère de gravité"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188888",
+      "detailedAddress": {
+        "complete": "3 Rue Max Linder"
+      },
+      "city": {
+        "inseeCode": "44100"
+      },
+      "geometry": {
+        "obsDatime": "2024-05-23T10:03:00+02:00",
+        "point": {
+          "coord": {
+            "lat": 47.231567,
+            "lon": -1.580871,
+            "precision": "ADDRESS"
+          }
+        }
+      },
+      "country": "FR"
+    },
+    "initialAlert": {
+      "id": "samu440-20240523-AL01234",
+      "reception": "2023-11-23T10:03:00+01:00",
+      "reporting": "STANDARD",
+      "caller": {
+        "callerContact": {
+          "type": "PHNADD",
+          "detail": "0671830530"
+        },
+        "detailedName": {
+          "complete": "Alexandre Verlande"
+        }
+      },
+      "alertSource": {
+        "channel": "Personne",
+        "type": "PHNADD",
+        "detail": "0671830530"
+      },
+      "location": {
+        "locID": "111fb03a-6fd9-41e0-8e81-990c45188888",
+        "detailedAddress": {
+          "complete": "3 Rue Max Linder"
+        },
+        "city": {
+          "inseeCode": "44100"
+        },
+        "geometry": {
+          "obsDatime": "2024-05-23T10:03:00+02:00",
+          "point": {
+            "coord": {
+              "precision": "ADDRESS",
+              "lat": 47.231567,
+              "lon": -1.580871
+            }
+          }
+        },
+        "country": "FR"
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C04.06.00",
+          "label": "Feux de poubelles"
+        },
+        "healthMotive": {
+          "code": "M02.05",
+          "label": "Brûlure sans critère de gravité"
+        }
+      },
+      "callTaker": {
+        "organization": "fr.health.samu440",
+        "controlRoom": "CRRA44"
+      }
+    },
+    "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Louis Tanget",
+            "lastName": "Tanget",
+            "firstName": "Louis"
+          },
+          "strictFeatures": {
+            "sex": "MASC"
+          }
+        },
+        "id": "fr.health.samu440.DRFR154402414300123.P03"
+      }
+    ]
+  }
+}

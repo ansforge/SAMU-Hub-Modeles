@@ -1,0 +1,181 @@
+{
+  "createCase": {
+    "caseId": "fr.fire.cga-044.SC-20240525-044-cga-AF8",
+    "creation": "2024-05-25T18:15:00+02:00",
+    "referenceVersion": "1.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C01.01.01",
+        "label": "Véhicule léger, fourgon"
+      },
+      "locationKind": {
+        "code": "L02.02.01",
+        "label": "Voie rapide hors autoroute"
+      },
+      "riskThreat": [
+        {
+          "code": "R22",
+          "label": "Gêne à la circulation"
+        }
+      ],
+      "victims": {
+        "count": "SEVERAL",
+        "mainVictim": "ADULT"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188890",
+      "locLabel": "Sortie 31, Porte de Saint-Herblain, E3",
+      "geometry": {
+        "obsDatime": "2024-05-25T18:12:00+02:00",
+        "point": {
+          "coord": {
+            "precision": "UNKNOWN",
+            "lat": 47.212033,
+            "lon": -1.62691
+          }
+        }
+      },
+      "country": "FR"
+    },
+    "initialAlert": {
+      "id": "CGA044-20240525-AL0182",
+      "reception": "2023-11-25T18:15:00+01:00",
+      "reporting": "ATTENTION",
+      "caller": {
+        "callerContact": {
+          "type": "PHNADD",
+          "detail": "0771831232"
+        },
+        "detailedName": {
+          "complete": "Robert Doual"
+        },
+        "type": "TIERS"
+      },
+      "alertSource": {
+        "channel": "Personne",
+        "type": "PHNADD",
+        "detail": "0771831232"
+      },
+      "location": {
+        "locID": "111fb03a-6fd9-41e0-8e81-990c45188890",
+        "locLabel": "Sortie 31, Porte de Saint-Herblain, E3",
+        "geometry": {
+          "obsDatime": "2024-05-25T18:12:00+02:00",
+          "point": {
+            "coord": {
+              "precision": "UNKNOWN",
+              "lat": 47.212033,
+              "lon": -1.62691
+            }
+          }
+        },
+        "country": "FR"
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C01.01.01",
+          "label": "Véhicule léger, fourgon"
+        },
+        "locationKind": {
+          "code": "L02.02.01",
+          "label": "Voie rapide hors autoroute"
+        },
+        "riskThreat": [
+          {
+            "code": "R22",
+            "label": "Gêne à la circulation"
+          }
+        ],
+        "victims": {
+          "count": "SEVERAL",
+          "mainVictim": "ADULT"
+        }
+      },
+      "callTaker": {
+        "organization": "fr.fire.cga-044",
+        "controlRoom": "CGA44",
+        "calltakerContact": {
+          "type": "PHNADD",
+          "detail": "0612345678"
+        }
+      }
+    },
+    "decision": [
+      {
+        "type": "INTER",
+        "creation": "2024-05-18T18:19:00+02:00"
+      }
+    ],
+    "newAlert": [
+      {
+        "callTaker": {
+          "calltakerContact": {
+            "type": "PHNADD",
+            "detail": "0612345678"
+          },
+          "controlRoom": "CGA44",
+          "organization": "fr.fire.cga-044"
+        },
+        "qualification": {
+          "victims": {
+            "count": "SEVERAL",
+            "mainVictim": "ADULT"
+          },
+          "healthMotive": {
+            "code": "M01.01",
+            "label": "Suspicion d’arrêt cardiaque, mort subite"
+          },
+          "locationKind": {
+            "code": "L02.02.01",
+            "label": "Voie rapide hors autoroute"
+          },
+          "whatsHappen": {
+            "code": "C01.01.01",
+            "label": "Véhicule léger, fourgon"
+          },
+          "riskThreat": [
+            {
+              "code": "R22",
+              "label": "Gêne à la circulation"
+            }
+          ]
+        },
+        "location": {
+          "geometry": {
+            "point": {
+              "coord": {
+                "lat": 47.212033,
+                "lon": -1.62691,
+                "precision": "UNKNOWN"
+              }
+            },
+            "obsDatime": "2024-05-25T18:21:00+02:00"
+          },
+          "locID": "111fb03a-6fd9-41e0-8e81-990c45188890",
+          "locLabel": "Sortie 31, Porte de Saint-Herblain, E3",
+          "country": "FR"
+        },
+        "alertSource": {
+          "channel": "Personne",
+          "type": "PHNADD",
+          "detail": "0771831232"
+        },
+        "caller": {
+          "detailedName": {
+            "complete": "Robert Doual"
+          },
+          "callerContact": {
+            "type": "PHNADD",
+            "detail": "0771831232"
+          },
+          "type": "TIERS"
+        },
+        "id": "CGA044-20240525-AL0183",
+        "reception": "2024-05-25T18:21:00+02:00",
+        "reporting": "ATTENTION",
+        "freetext": "Rappel : le conducteur de la voiture B est inconscient"
+      }
+    ]
+  }
+}
