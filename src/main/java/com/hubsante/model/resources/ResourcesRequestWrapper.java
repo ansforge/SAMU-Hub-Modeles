@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocation;
+package com.hubsante.model.resources;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,14 +34,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.GeoPositionUpdate;
 import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.resources.ResourcesRequest;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * GeoPositionUpdateWrapper
+ * ResourcesRequestWrapper
  */
 @JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
                     DistributionElement.JSON_PROPERTY_SENDER,
@@ -49,41 +49,41 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    GeoPositionUpdateWrapper.JSON_PROPERTY_GEO_POSITION_UPDATE})
-@JsonTypeName("geoPositionUpdateWrapper")
+                    ResourcesRequestWrapper.JSON_PROPERTY_RESOURCES_REQUEST})
+@JsonTypeName("resourcesRequestWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoPositionUpdateWrapper extends DistributionElement {
+public class ResourcesRequestWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_POSITION_UPDATE =
-      "geoPositionUpdate";
-  private GeoPositionUpdate geoPositionUpdate;
+  public static final String JSON_PROPERTY_RESOURCES_REQUEST =
+      "resourcesRequest";
+  private ResourcesRequest resourcesRequest;
 
-  public GeoPositionUpdateWrapper() {}
+  public ResourcesRequestWrapper() {}
 
-  public GeoPositionUpdateWrapper
-  geoPositionUpdate(GeoPositionUpdate geoPositionUpdate) {
+  public ResourcesRequestWrapper
+  resourcesRequest(ResourcesRequest resourcesRequest) {
 
-    this.geoPositionUpdate = geoPositionUpdate;
+    this.resourcesRequest = resourcesRequest;
     return this;
   }
 
   /**
-   * Get geoPositionUpdate
-   * @return geoPositionUpdate
+   * Get resourcesRequest
+   * @return resourcesRequest
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_POSITION_UPDATE)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeoPositionUpdate getGeoPositionUpdate() {
-    return geoPositionUpdate;
+  public ResourcesRequest getResourcesRequest() {
+    return resourcesRequest;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_POSITION_UPDATE)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoPositionUpdate(GeoPositionUpdate geoPositionUpdate) {
-    this.geoPositionUpdate = geoPositionUpdate;
+  public void setResourcesRequest(ResourcesRequest resourcesRequest) {
+    this.resourcesRequest = resourcesRequest;
   }
 
   @Override
@@ -94,25 +94,25 @@ public class GeoPositionUpdateWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoPositionUpdateWrapper geoPositionUpdateWrapper =
-        (GeoPositionUpdateWrapper)o;
-    return Objects.equals(this.geoPositionUpdate,
-                          geoPositionUpdateWrapper.geoPositionUpdate) &&
+    ResourcesRequestWrapper resourcesRequestWrapper =
+        (ResourcesRequestWrapper)o;
+    return Objects.equals(this.resourcesRequest,
+                          resourcesRequestWrapper.resourcesRequest) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoPositionUpdate, super.hashCode());
+    return Objects.hash(resourcesRequest, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoPositionUpdateWrapper {\n");
+    sb.append("class ResourcesRequestWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoPositionUpdate: ")
-        .append(toIndentedString(geoPositionUpdate))
+    sb.append("    resourcesRequest: ")
+        .append(toIndentedString(resourcesRequest))
         .append("\n");
     sb.append("}");
     return sb.toString();

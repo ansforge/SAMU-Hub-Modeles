@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocation;
+package com.hubsante.model.rpis;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,65 +34,73 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.Resource;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoResourceDetails
+ * DetailedAddress
  */
-@JsonPropertyOrder({GeoResourceDetails.JSON_PROPERTY_RESOURCE})
-@JsonTypeName("geoResourceDetails")
+@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_CITY_CODE,
+                    DetailedAddress.JSON_PROPERTY_CITY})
+@JsonTypeName("detailedAddress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceDetails {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoResourceDetails";
-  public static final String JSON_PROPERTY_RESOURCE = "resource";
-  private List<Resource> resource;
+public class DetailedAddress {
+  public static final String JSON_PROPERTY_CITY_CODE = "cityCode";
+  private String cityCode;
 
-  public GeoResourceDetails() {}
+  public static final String JSON_PROPERTY_CITY = "city";
+  private String city;
 
-  public GeoResourceDetails resource(List<Resource> resource) {
+  public DetailedAddress() {}
 
-    this.resource = resource;
-    return this;
-  }
+  public DetailedAddress cityCode(String cityCode) {
 
-  public GeoResourceDetails addResourceItem(Resource resourceItem) {
-    if (this.resource == null) {
-      this.resource = new ArrayList<>();
-    }
-    this.resource.add(resourceItem);
+    this.cityCode = cityCode;
     return this;
   }
 
   /**
-   * Get resource
-   * @return resource
+   * Code INSEE de la commune actuelle sur la base du Code Officiel géographique
+   *en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE
+   *peut également précisé le pays d&#39;intervention, si étranger.
+   * @return cityCode
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_CITY_CODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Resource> getResource() {
-    return resource;
+  public String getCityCode() {
+    return cityCode;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
+  @JsonProperty(JSON_PROPERTY_CITY_CODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCityCode(String cityCode) {
+    this.cityCode = cityCode;
+  }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResource(List<Resource> resource) {
-    if (resource == null) {
-      return;
-    }
-    if (this.resource == null) {
-      this.resource = new ArrayList<>();
-    }
-    this.resource.addAll(resource);
+  public DetailedAddress city(String city) {
+
+    this.city = city;
+    return this;
+  }
+
+  /**
+   * Nom officiel de la commune actuelle
+   * @return city
+   **/
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getCity() {
+    return city;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCity(String city) {
+    this.city = city;
   }
 
   @Override
@@ -103,20 +111,22 @@ public class GeoResourceDetails {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceDetails geoResourceDetails = (GeoResourceDetails)o;
-    return Objects.equals(this.resource, geoResourceDetails.resource);
+    DetailedAddress detailedAddress = (DetailedAddress)o;
+    return Objects.equals(this.cityCode, detailedAddress.cityCode) &&
+        Objects.equals(this.city, detailedAddress.city);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resource);
+    return Objects.hash(cityCode, city);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceDetails {\n");
-    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
+    sb.append("class DetailedAddress {\n");
+    sb.append("    cityCode: ").append(toIndentedString(cityCode)).append("\n");
+    sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("}");
     return sb.toString();
   }

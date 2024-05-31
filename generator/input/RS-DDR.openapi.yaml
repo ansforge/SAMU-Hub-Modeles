@@ -1,0 +1,921 @@
+openapi: 3.0.0
+components:
+  schemas:
+    resourcesRequestWrapper:
+      type: object
+      required:
+      - resourcesRequest
+      properties:
+        resourcesRequest:
+          $ref: '#/components/schemas/resourcesRequest'
+    resourcesRequest:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-DDR.schema.json#
+      example: example.json#
+      type: object
+      title: resourcesRequest
+      required:
+      - caseId
+      - RSDDRId
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
+            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
+            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
+            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
+            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          examples:
+          - fr.health.samu440-DRFR15DDXAAJJJ0000
+        RSDDRId:
+          type: string
+          title: "ID DDR partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/RSDDRId
+          description: "Identifiant unique partag\xE9 de la demande de ressource"
+          examples:
+          - None
+        resourceRequest:
+          $ref: '#/components/schemas/request'
+        originLocation:
+          $ref: '#/components/schemas/location'
+        destinationLocation:
+          $ref: '#/components/schemas/location'
+      additionalProperties: false
+    request:
+      type: object
+      title: Demande de ressource
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - dateTime
+      - purpose
+      properties:
+        dateTime:
+          type: string
+          title: "Date Heure de cr\xE9ation de la demande"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceRequest/dateTime
+          description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        convention:
+          type: string
+          title: Cadre conventionnel
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceRequest/convention
+          examples:
+          - None
+        deadline:
+          type: string
+          title: "D\xE9lai souhait\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceRequest/deadline
+          examples:
+          - None
+        purpose:
+          type: string
+          title: "Effet \xE0 obtenir"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceRequest/purpose
+          examples:
+          - None
+        freetext:
+          type: string
+          title: "Pr\xE9cisions sur la demande"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceRequest/freetext
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/resourceRequest
+      examples:
+      - dateTime: None
+        convention: None
+        deadline: None
+        purpose: None
+        freetext: None
+    location:
+      type: object
+      title: Origine
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - country
+      properties:
+        locID:
+          type: string
+          title: Identifiant technique de localisation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/locID
+          description: "ID technique et provisoire permettant d'identifier le lieu\
+            \ dans le cadre des \xE9changes de cette affaire."
+          examples:
+          - 111fb03a-6fd9-41e0-8e81-990c45188887
+        type:
+          type: string
+          title: Type d'origine/destination
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/type
+          enum:
+          - "service d\u2019urgences d\u2019un Etablissement de sant\xE9"
+          - "autres services d\u2019un \xE9tablissement de sant\xE9"
+          - "cabinet d\u2019un professionnel de sant\xE9"
+          - domicile personnel
+          - "EPHAD ou long s\xE9jour"
+          - autre
+          examples:
+          - "Indique le type de d'origine /destination de la ressource : service d\u2019\
+            urgences d\u2019un Etablissement de sant\xE9, autres services d\u2019\
+            un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
+            , domicile personnel, EPHAD ou long s\xE9jour, autre"
+        locLabel:
+          type: string
+          title: "R\xE9sum\xE9 de la localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/locLabel
+          description: "Donne les informations minimales d'identification du lieu\
+            \ d'intervention, qui permet d'identifier rapidement le lieu pour les\
+            \ \xE9quipes op\xE9rationnelles. Comprend au maximum 255 caract\xE8res.\n\
+            15-18 : Dans les messages NexSIS, va souvent correspondre \xE0 la concat\xE9\
+            nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes informations,\
+            \ dont le \"name\" (toponyme) et l'adresse.\n"
+          examples:
+          - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
+            e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
+        name:
+          type: string
+          title: Nom du lieu
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/name
+          description: "Indique le nom de lieu : nom commercial, Etablissement, for\xEA\
+            t de Fontainebleau, lac du Der (plut\xF4t \xE0 destination des syst\xE8\
+            mes)."
+          examples:
+          - "Lyc\xE9e Pierre de Coubertin"
+        externalLocationId:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalLocationId'
+        detailedAddress:
+          $ref: '#/components/schemas/detailedAddress'
+        city:
+          $ref: '#/components/schemas/city'
+        access:
+          $ref: '#/components/schemas/access'
+        geometry:
+          $ref: '#/components/schemas/geometry'
+        externalInfo:
+          type: array
+          items:
+            $ref: '#/components/schemas/externalInfo'
+        country:
+          type: string
+          title: Pays
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/country
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - France
+        freetext:
+          type: string
+          title: "Informations compl\xE9mentaires sur la localisation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/freetext
+          description: "Champ libre pour compl\xE9ter les informations de localisation"
+          examples:
+          - "Cl\xE9 derri\xE8re le pot de fleur"
+      additionalProperties: false
+      example: example.json#/originLocation
+    externalLocationId:
+      type: object
+      title: Identifiant(s) du lieu
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - source
+      - value
+      properties:
+        source:
+          type: string
+          title: Source  /  type d'identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/externalLocationId/0/source
+          description: Type de l'identifiant fourni
+          enum:
+          - FINESS administratif
+          - "FINESS g\xE9ographique"
+          - SIREN
+          - SIRET
+          - APE/NAF
+          examples:
+          - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
+        value:
+          type: string
+          title: Identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/externalLocationId/0/value
+          description: "L'identifiant en lui-m\xEAme"
+          examples:
+          - "920000650\_"
+      additionalProperties: false
+      example: example.json#/originLocation/externalLocationId/0
+      examples:
+      - source: "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE,\
+          \ NAF"
+        value: "920000650\_"
+    detailedAddress:
+      type: object
+      title: "D\xE9tails de l'adresse"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - complete
+      properties:
+        complete:
+          type: string
+          title: "Num\xE9ro, type et nom de voie"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/detailedAddress/complete
+          description: "Num\xE9ro, type et nom de la voie. Utilis\xE9 pour tout type\
+            \ de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
+            \n15-18 : Obligatoire et seule valeur des d\xE9tails de l'adresse fournie\
+            \ par NexSIS."
+          examples:
+          - 9 Bd du Montparnasse
+        number:
+          type: string
+          title: "Num\xE9ro dans la voie"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/detailedAddress/number
+          description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
+            \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
+            p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
+          examples:
+          - "9, 4bis, PK10, \u2026"
+        wayName:
+          $ref: '#/components/schemas/wayName'
+      additionalProperties: false
+      example: example.json#/originLocation/detailedAddress
+    city:
+      type: object
+      title: "D\xE9tails de la commune"
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        name:
+          type: string
+          title: Nom de la commune
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/city/name
+          description: Nom officiel de la commune actuelle
+          examples:
+          - Lille
+        inseeCode:
+          type: string
+          title: Code INSEE de la commune
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/city/inseeCode
+          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
+            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
+            \ renseign\xE9."
+          pattern: '[0-9]{5}'
+          examples:
+          - 59350
+        detail:
+          type: string
+          title: "Compl\xE9ment de commune"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/city/detail
+          description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
+            \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
+            \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
+            \ fusionn\xE9es pour le syst\xE8me \xE9metteur\nNB : dans tous les cas,\
+            \ la localisation GPS de la commune doit \xEAtre fournie afin d'\xE9viter\
+            \ une trop forte ambigu\xEFt\xE9."
+          examples:
+          - "Quartie Melun Nord, Lhomme, \u2026"
+      additionalProperties: false
+      example: example.json#/originLocation/city
+      examples:
+      - name: Lille
+        inseeCode: 59350
+        detail: "Quartie Melun Nord, Lhomme, \u2026"
+    access:
+      type: object
+      title: "D\xE9tails d'acc\xE8s"
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        floor:
+          type: string
+          title: Etage
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/floor
+          description: 'Etage '
+          examples:
+          - RDC
+        roomNumber:
+          type: string
+          title: "Num\xE9ro de porte"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/roomNumber
+          description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
+          examples:
+          - A16
+        interphone:
+          type: string
+          title: Interphone
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/interphone
+          description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
+            \ de l'interphone (num\xE9ro, nom)"
+          examples:
+          - Dupont
+        accessCode:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Digicode
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/originLocation/access/accessCode/0
+            description: "Indique le ou les digicodes dans l'ordre de progression\
+              \ dans le b\xE2timent"
+            examples:
+            - 1234A
+        elevator:
+          type: string
+          title: Ascenseur/escalier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/elevator
+          description: 'Indique l''ascenseur ou la cage d''escalier '
+          examples:
+          - C3
+        buildingName:
+          type: string
+          title: "B\xE2timent"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/buildingName
+          description: "Nom du b\xE2timent"
+          examples:
+          - Batiment B
+        entrance:
+          type: string
+          title: "Entr\xE9e"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/entrance
+          examples:
+          - Zone Sud
+        entity:
+          type: string
+          title: Service
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/entity
+          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement :\
+            \ Infirmerie, service finance, service cardiologie, \u2026"
+          examples:
+          - Infirmerie
+        phoneNumber:
+          type: number
+          title: "N\xB0 de t\xE9l\xE9phone du lieu"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/access/phoneNumber
+          description: "Num\xE9ro de t\xE9l\xE9phone permettant d'acc\xE9der au lieu\
+            \ de l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat,\
+            \ t\xE9l\xE9phone du service administratif ou se trouve le patient/victime."
+          examples:
+          - 33123452323
+      additionalProperties: false
+      example: example.json#/originLocation/access
+    geometry:
+      type: object
+      title: "G\xE9ometrie associ\xE9e"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - obsDatime
+      properties:
+        obsDatime:
+          type: string
+          title: "Heure du dernier relev\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/obsDatime
+          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
+            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
+            \ donc pertinence des informations pour intervenir."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        point:
+          $ref: '#/components/schemas/point'
+        sketch:
+          type: string
+          title: "Formes g\xE9om\xE9triques"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/sketch
+          description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
+            \ de d\xE9crire une forme dans un syst\xE8me de projection donn\xE9. \n\
+            Dans le cas d'une alerte donn\xE9e sur une zone g\xE9ographique non pr\xE9\
+            cise (par exemple une section d'autoroute ou une zone sur un chemin de\
+            \ randonn\xE9e), une indication sur la zone de recherche peut \xEAtre\
+            \ fournie.\nEn XML, un objet gml est encapsul\xE9 dans une balise <sketch\
+            \ xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn\
+            \ JSON, les balises sont reprises depuis le mod\xE8le gml\nVoir http://www.opengis.net/gml\
+            \ pour le format de l'objet sketch"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/originLocation/geometry
+    externalInfo:
+      type: object
+      title: "Liens aux syst\xE8mes externes"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - freetext
+      - type
+      - uri
+      properties:
+        freetext:
+          type: string
+          title: Nom de la source
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/externalInfo/0/freetext
+          description: "Syst\xE8me fournissant le localisant :  NexSiS ou l'ORG_ID\
+            \ (BAN, IGN, ...)"
+          enum:
+          - BAN
+          - IGN
+          - NexSIS
+          examples:
+          - "NexSIS, BAN, IGN, \u2026"
+        type:
+          type: string
+          title: 'Type '
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/externalInfo/0/type
+          description: "D\xE9finition du type d'objet dans le syst\xE8me\nEx : SIG\
+            \ NexSIS / OSM ont plusieurs types de donn\xE9es -> savoir du quel on\
+            \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
+            \ Aussi table dans une base de donn\xE9es"
+          enum:
+          - MANUAL
+          - MAP
+          - OTHER
+          - PHOTO
+          - WEBSIT
+          examples:
+          - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
+        uri:
+          type: string
+          title: Identifiant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/externalInfo/0/uri
+          description: 'Identifiant unique dans le type. Exemple : UUID d''un ega'
+          examples:
+          - id987
+      additionalProperties: false
+      example: example.json#/originLocation/externalInfo/0
+      examples:
+      - freetext: "NexSIS, BAN, IGN, \u2026"
+        type: "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
+        uri: id987
+    wayName:
+      type: object
+      title: Type et nom de voie
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - complete
+      properties:
+        complete:
+          type: string
+          title: Type et nom
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/detailedAddress/wayName/complete
+          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
+            Si les champs type et name sont renseign\xE9s, le champ callerName doit\
+            \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
+          examples:
+          - Boulevard du Montparnasse
+        type:
+          type: string
+          title: Type
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/detailedAddress/wayName/type
+          description: Type de la voie
+          examples:
+          - Boulevard
+        name:
+          type: string
+          title: Nom
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/detailedAddress/wayName/name
+          description: Nom de la voie
+          examples:
+          - du Montparnasse
+      additionalProperties: false
+      example: example.json#/originLocation/detailedAddress/wayName
+      examples:
+      - complete: Boulevard du Montparnasse
+        type: Boulevard
+        name: du Montparnasse
+    point:
+      type: object
+      title: 'Point '
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - coord
+      properties:
+        coord:
+          $ref: '#/components/schemas/coord'
+        sysCoord:
+          type: string
+          title: "Syst\xE8me de coordonn\xE9es"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/point/sysCoord
+          description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
+            \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
+            \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
+            \ valeur par d\xE9faut est \xAB\xBB."
+          examples:
+          - EPSG-4326
+      additionalProperties: false
+      example: example.json#/originLocation/geometry/point
+    coord:
+      type: object
+      title: "Coordonn\xE9es"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - lat
+      - lon
+      - precision
+      properties:
+        lat:
+          type: number
+          title: Latitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/point/coord/lat
+          description: "Latitude du point cl\xE9 de la localisation "
+          examples:
+          - '48.866667'
+        lon:
+          type: number
+          title: Longitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/point/coord/lon
+          description: "Longitude du point cl\xE9 de la localisation"
+          examples:
+          - '2.333333'
+        height:
+          type: number
+          title: 'Altitude '
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/point/coord/height
+          description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
+            \ ignor\xE9 c\xF4t\xE9 NexSIS. "
+          examples:
+          - 120
+        heading:
+          type: number
+          title: Cap
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/point/coord/heading
+          description: "En degr\xE9"
+          examples:
+          - 96
+        speed:
+          type: number
+          title: Vitesse
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/point/coord/speed
+          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
+            \ AML, \u2026"
+          examples:
+          - 34
+        precision:
+          type: string
+          title: "Pr\xE9cision"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/originLocation/geometry/point/coord/precision
+          description: "Indique via une nomenclature le niveau de pr\xE9cision des\
+            \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
+            \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
+            \ de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9e GPS\
+            \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
+            \ l'\xE9metteur"
+          enum:
+          - CITY
+          - STREET
+          - ADDRESS
+          - EXACT
+          - UNKNOWN
+          examples:
+          - ADDRESS
+      additionalProperties: false
+      example: example.json#/originLocation/geometry/point/coord
+      examples:
+      - lat: '48.866667'
+        lon: '2.333333'
+        height: 120
+        heading: 96
+        speed: 34
+        precision: ADDRESS

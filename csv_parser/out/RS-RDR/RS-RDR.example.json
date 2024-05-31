@@ -1,0 +1,44 @@
+{
+    "caseId": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+    "RSDDRId": "None",
+    "resourceRequest": {
+        "dateTime": "None",
+        "answer": "None",
+        "deadline": "None",
+        "freetext": "None"
+    },
+    "mobilizedResources": [
+        {
+            "commitmentDateTime": "None",
+            "originDateTime": "None",
+            "destinationDateTime": "None",
+            "resourceID": "None",
+            "orgID": "None",
+            "type": "None",
+            "plate": "None",
+            "name": "None",
+            "order": "None",
+            "centerName": "None",
+            "centerType": "None",
+            "centerCity": "None",
+            "make": "None",
+            "model": "None",
+            "team": {
+                "type": "None",
+                "name": "None"
+            },
+            "state": {
+                "dateTime": "None",
+                "status": "None",
+                "availability": "None"
+            },
+            "contact": {
+                "type": "PHNADD",
+                "details": "0671830530"
+            },
+            "freetext": [
+                "None"
+            ]
+        }
+    ]
+}

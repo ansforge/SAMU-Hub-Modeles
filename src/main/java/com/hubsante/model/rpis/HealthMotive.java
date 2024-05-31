@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocation;
+package com.hubsante.model.rpis;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,65 +34,73 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.Position;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoPositionUpdate
+ * HealthMotive
  */
-@JsonPropertyOrder({GeoPositionUpdate.JSON_PROPERTY_POSITION})
-@JsonTypeName("geoPositionUpdate")
+@JsonPropertyOrder(
+    {HealthMotive.JSON_PROPERTY_CODE, HealthMotive.JSON_PROPERTY_LABEL})
+@JsonTypeName("healthMotive")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoPositionUpdate {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoPositionUpdate";
-  public static final String JSON_PROPERTY_POSITION = "position";
-  private List<Position> position;
+public class HealthMotive {
+  public static final String JSON_PROPERTY_CODE = "code";
+  private String code;
 
-  public GeoPositionUpdate() {}
+  public static final String JSON_PROPERTY_LABEL = "label";
+  private String label;
 
-  public GeoPositionUpdate position(List<Position> position) {
+  public HealthMotive() {}
 
-    this.position = position;
-    return this;
-  }
+  public HealthMotive code(String code) {
 
-  public GeoPositionUpdate addPositionItem(Position positionItem) {
-    if (this.position == null) {
-      this.position = new ArrayList<>();
-    }
-    this.position.add(positionItem);
+    this.code = code;
     return this;
   }
 
   /**
-   * Get position
-   * @return position
+   * A valoriser avec un code de la nomenclature TYPCIRCO
+   * @return code
    **/
-  @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Position> getPosition() {
-    return position;
+  public String getCode() {
+    return code;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
+  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCode(String code) {
+    this.code = code;
+  }
 
-  @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPosition(List<Position> position) {
-    if (position == null) {
-      return;
-    }
-    if (this.position == null) {
-      this.position = new ArrayList<>();
-    }
-    this.position.addAll(position);
+  public HealthMotive label(String label) {
+
+    this.label = label;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le libellé de la nomenclature TYPCIRCO. Dans le cas où un
+   *système n&#39;est pas en mesure de reconnaître un code, il peut directement
+   *afficher le libellé qui est obligatoirement fourni avec le code.
+   * @return label
+   **/
+  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getLabel() {
+    return label;
+  }
+
+  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLabel(String label) {
+    this.label = label;
   }
 
   @Override
@@ -103,20 +111,22 @@ public class GeoPositionUpdate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoPositionUpdate geoPositionUpdate = (GeoPositionUpdate)o;
-    return Objects.equals(this.position, geoPositionUpdate.position);
+    HealthMotive healthMotive = (HealthMotive)o;
+    return Objects.equals(this.code, healthMotive.code) &&
+        Objects.equals(this.label, healthMotive.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(position);
+    return Objects.hash(code, label);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoPositionUpdate {\n");
-    sb.append("    position: ").append(toIndentedString(position)).append("\n");
+    sb.append("class HealthMotive {\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("}");
     return sb.toString();
   }

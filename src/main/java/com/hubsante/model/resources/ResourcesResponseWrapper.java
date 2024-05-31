@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocation;
+package com.hubsante.model.resources;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,57 +34,56 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.GeoResourceDetails;
 import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.resources.ResourcesResponse;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * GeoResourceDetailsWrapper
+ * ResourcesResponseWrapper
  */
-@JsonPropertyOrder(
-    {DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-     DistributionElement.JSON_PROPERTY_SENDER,
-     DistributionElement.JSON_PROPERTY_SENT_AT,
-     DistributionElement.JSON_PROPERTY_KIND,
-     DistributionElement.JSON_PROPERTY_STATUS,
-     DistributionElement.JSON_PROPERTY_RECIPIENT,
-     GeoResourceDetailsWrapper.JSON_PROPERTY_GEO_RESOURCE_DETAILS})
-@JsonTypeName("geoResourceDetailsWrapper")
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    ResourcesResponseWrapper.JSON_PROPERTY_RESOURCES_RESPONSE})
+@JsonTypeName("resourcesResponseWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceDetailsWrapper extends DistributionElement {
+public class ResourcesResponseWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_RESOURCE_DETAILS =
-      "geoResourceDetails";
-  private GeoResourceDetails geoResourceDetails;
+  public static final String JSON_PROPERTY_RESOURCES_RESPONSE =
+      "resourcesResponse";
+  private ResourcesResponse resourcesResponse;
 
-  public GeoResourceDetailsWrapper() {}
+  public ResourcesResponseWrapper() {}
 
-  public GeoResourceDetailsWrapper
-  geoResourceDetails(GeoResourceDetails geoResourceDetails) {
+  public ResourcesResponseWrapper
+  resourcesResponse(ResourcesResponse resourcesResponse) {
 
-    this.geoResourceDetails = geoResourceDetails;
+    this.resourcesResponse = resourcesResponse;
     return this;
   }
 
   /**
-   * Get geoResourceDetails
-   * @return geoResourceDetails
+   * Get resourcesResponse
+   * @return resourcesResponse
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_RESPONSE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeoResourceDetails getGeoResourceDetails() {
-    return geoResourceDetails;
+  public ResourcesResponse getResourcesResponse() {
+    return resourcesResponse;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_RESPONSE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoResourceDetails(GeoResourceDetails geoResourceDetails) {
-    this.geoResourceDetails = geoResourceDetails;
+  public void setResourcesResponse(ResourcesResponse resourcesResponse) {
+    this.resourcesResponse = resourcesResponse;
   }
 
   @Override
@@ -95,25 +94,25 @@ public class GeoResourceDetailsWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceDetailsWrapper geoResourceDetailsWrapper =
-        (GeoResourceDetailsWrapper)o;
-    return Objects.equals(this.geoResourceDetails,
-                          geoResourceDetailsWrapper.geoResourceDetails) &&
+    ResourcesResponseWrapper resourcesResponseWrapper =
+        (ResourcesResponseWrapper)o;
+    return Objects.equals(this.resourcesResponse,
+                          resourcesResponseWrapper.resourcesResponse) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoResourceDetails, super.hashCode());
+    return Objects.hash(resourcesResponse, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceDetailsWrapper {\n");
+    sb.append("class ResourcesResponseWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoResourceDetails: ")
-        .append(toIndentedString(geoResourceDetails))
+    sb.append("    resourcesResponse: ")
+        .append(toIndentedString(resourcesResponse))
         .append("\n");
     sb.append("}");
     return sb.toString();

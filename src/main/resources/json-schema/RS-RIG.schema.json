@@ -1,0 +1,291 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RS-RIG.schema.json#",
+    "version": "24.05.31",
+    "example": "example.json#",
+    "type": "object",
+    "title": "resourcesInfo",
+    "required": [
+        "caseId",
+        "RSRIGId"
+    ],
+    "properties": {
+        "caseId": {
+            "type": "string",
+            "title": "Identifiant affaire/dossier",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/caseId",
+            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
+        },
+        "RSRIGId": {
+            "type": "string",
+            "title": "ID partag\u00e9 du message RS-RIG",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/RSRIGId",
+            "description": "Identifiant unique de l'Echange de Ressource concern\u00e9. Le premier qui le cr\u00e9\u00e9 \u00e0 raison, ensuite il ne change pas. Il s'agit du message servant \u00e0 \u00e9changer l'ensemble des ressources mobilis\u00e9es/engag\u00e9es sur un dossier"
+        },
+        "mobilizedResources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/resource"
+            }
+        }
+    },
+    "definitions": {
+        "resource": {
+            "type": "object",
+            "title": "Ressource engag\u00e9e",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "dateTime",
+                "resourceID",
+                "ownerID",
+                "type"
+            ],
+            "properties": {
+                "dateTime": {
+                    "type": "string",
+                    "title": "Date/heure de d\u00e9clenchement",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/dateTime",
+                    "description": "date et heure d'engagement de la ressource",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "resourceID": {
+                    "type": "string",
+                    "title": "ID partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/resourceID",
+                    "description": "ID unique de la ressource engag\u00e9e"
+                },
+                "ownerID": {
+                    "type": "string",
+                    "title": "ID central d\u2019appel ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/ownerID",
+                    "description": "(PSAP, \u2026) qui a d\u00e9clench\u00e9 le vecteur et coordonne le vecteur"
+                },
+                "missionID": {
+                    "type": "string",
+                    "title": "ID mission local",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/missionID",
+                    "description": "Num\u00e9ro de mission du central d\u2019appel (PSAP, \u2026) qui a d\u00e9clench\u00e9 le vecteur"
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/type",
+                    "description": "Type de ressource mobilis\u00e9e (nomenclature type de vecteur \u00e0 impl\u00e9menter pour l'instant, voir ensuite si elle est compl\u00e9t\u00e9e par des ressources autres que des vecteurs)"
+                },
+                "plate": {
+                    "type": "string",
+                    "title": "Immatriculation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/plate"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/name",
+                    "description": "Nom donn\u00e9 \u00e0 la ressource par l\u2019organisation d\u2019appartenance"
+                },
+                "orgID": {
+                    "type": "string",
+                    "title": "ID Organisation propri\u00e9taire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/orgID",
+                    "description": "Organisation \u00e0 laquelle appartient la ressource"
+                },
+                "centerName": {
+                    "type": "string",
+                    "title": "ID Centre d\u2019affectation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/centerName",
+                    "description": "Lieu de garage principal"
+                },
+                "centerType": {
+                    "type": "string",
+                    "title": "Type de centre d\u2019affectation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/centerType"
+                },
+                "centerCity": {
+                    "type": "string",
+                    "title": "Commune du centre d\u2019affectation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/centerCity",
+                    "description": "Code INSEE de la commune du centre d'affectation"
+                },
+                "make": {
+                    "type": "string",
+                    "title": "Marque vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/make",
+                    "description": "Marque vecteur"
+                },
+                "model": {
+                    "type": "string",
+                    "title": "Mod\u00e8le vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/model",
+                    "description": "Mod\u00e8le vecteur"
+                },
+                "team": {
+                    "$ref": "#/definitions/team"
+                },
+                "state": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/state"
+                    }
+                },
+                "coord": {
+                    "type": NaN,
+                    "title": "Derni\u00e8re g\u00e9olocalisation du vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/coord"
+                },
+                "contact": {
+                    "$ref": "#/definitions/contact"
+                },
+                "freetext": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Commentaires",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/mobilizedResources/0/freetext/0",
+                        "description": "Texte libre permettant de passer toute autre information (\u00e9quipements suppl\u00e9mentaires / particuliers, particularit\u00e9s du vecteur)"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0"
+        },
+        "team": {
+            "type": "object",
+            "title": "Equipe vecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "teamCare": {
+                    "type": "string",
+                    "title": "Type",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/team/teamCare",
+                    "description": "M\u00e9dical / param\u00e9dical : indique le niveau de m\u00e9dicalisation du vecteur"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/team/name",
+                    "description": "Nom de l'\u00e9quipe \u00e0 bord du vecteur"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/team"
+        },
+        "state": {
+            "type": "object",
+            "title": "Etats vecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "dateTime": {
+                    "type": "string",
+                    "title": "Date/heure de changement de statut",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/state/0/dateTime",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "string",
+                    "title": "Statut du vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/state/0/status",
+                    "description": "Statuts Antares"
+                },
+                "availability": {
+                    "type": "string",
+                    "title": "Disponibilit\u00e9 du vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/state/0/availability",
+                    "description": "Indique si le vecteur est disponible / indisponible"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/state/0"
+        },
+        "contact": {
+            "type": "object",
+            "title": "Contact",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact du requ\u00e9rant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/contact/type",
+                    "description": "Type de l'URI utilis\u00e9e",
+                    "enum": [
+                        "PSTADD",
+                        "EMLADD",
+                        "IPADD",
+                        "FTPADD",
+                        "WWWADD",
+                        "PHNADD",
+                        "FAXADD",
+                        "PMRADD"
+                    ]
+                },
+                "details": {
+                    "type": "string",
+                    "title": "URI du contact requ\u00e9rant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/contact/details",
+                    "description": "Valeur de l'URI utilis\u00e9e pour contacter la ressource"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/contact"
+        }
+    },
+    "additionalProperties": false
+}

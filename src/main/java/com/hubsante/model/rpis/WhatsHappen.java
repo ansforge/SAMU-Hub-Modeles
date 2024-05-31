@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.geolocation;
+package com.hubsante.model.rpis;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,64 +34,73 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoResourceRequest
+ * WhatsHappen
  */
-@JsonPropertyOrder({GeoResourceRequest.JSON_PROPERTY_RESOURCE_ID})
-@JsonTypeName("geoResourceRequest")
+@JsonPropertyOrder(
+    {WhatsHappen.JSON_PROPERTY_CODE, WhatsHappen.JSON_PROPERTY_LABEL})
+@JsonTypeName("whatsHappen")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceRequest {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoResourceRequest";
-  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
-  private List<String> resourceId = new ArrayList<>();
+public class WhatsHappen {
+  public static final String JSON_PROPERTY_CODE = "code";
+  private String code;
 
-  public GeoResourceRequest() {}
+  public static final String JSON_PROPERTY_LABEL = "label";
+  private String label;
 
-  public GeoResourceRequest resourceId(List<String> resourceId) {
+  public WhatsHappen() {}
 
-    this.resourceId = resourceId;
-    return this;
-  }
+  public WhatsHappen code(String code) {
 
-  public GeoResourceRequest addResourceIdItem(String resourceIdItem) {
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
-    }
-    this.resourceId.add(resourceIdItem);
+    this.code = code;
     return this;
   }
 
   /**
-   * Get resourceId
-   * @return resourceId
+   * A valoriser avec un code de la nomenclature TYPCIRCO
+   * @return code
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<String> getResourceId() {
-    return resourceId;
+  public String getCode() {
+    return code;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
+  @JsonProperty(JSON_PROPERTY_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceId(List<String> resourceId) {
-    if (resourceId == null) {
-      return;
-    }
-    if (this.resourceId == null) {
-      this.resourceId = new ArrayList<>();
-    }
-    this.resourceId.addAll(resourceId);
+  public void setCode(String code) {
+    this.code = code;
+  }
+
+  public WhatsHappen label(String label) {
+
+    this.label = label;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le libellé de la nomenclature TYPCIRCO. Dans le cas où un
+   *système n&#39;est pas en mesure de reconnaître un code, il peut directement
+   *afficher le libellé qui est obligatoirement fourni avec le code.
+   * @return label
+   **/
+  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getLabel() {
+    return label;
+  }
+
+  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLabel(String label) {
+    this.label = label;
   }
 
   @Override
@@ -102,22 +111,22 @@ public class GeoResourceRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceRequest geoResourceRequest = (GeoResourceRequest)o;
-    return Objects.equals(this.resourceId, geoResourceRequest.resourceId);
+    WhatsHappen whatsHappen = (WhatsHappen)o;
+    return Objects.equals(this.code, whatsHappen.code) &&
+        Objects.equals(this.label, whatsHappen.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourceId);
+    return Objects.hash(code, label);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceRequest {\n");
-    sb.append("    resourceId: ")
-        .append(toIndentedString(resourceId))
-        .append("\n");
+    sb.append("class WhatsHappen {\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("}");
     return sb.toString();
   }
