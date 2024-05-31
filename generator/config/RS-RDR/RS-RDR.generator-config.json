@@ -1,5 +1,5 @@
 {
-  "inputSpec": "./input/RS-Rdr.openapi.yaml",
+  "inputSpec": "./input/RS-RDR.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
   "templateDir": "templates/child-classes/",
