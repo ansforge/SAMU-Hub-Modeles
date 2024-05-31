@@ -6,9 +6,13 @@
         xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
         xmlns:emsi="urn:emergency:cisu:2.0:emsi"
         xmlns:info="urn:emergency:cisu:2.0:info"
-        xmlns:geopositionupdate="urn:emergency:cisu:2.0:geoPositionUpdate"
-        xmlns:georesourcedetails="urn:emergency:cisu:2.0:geoResourceDetails"
-        xmlns:georesourcerequest="urn:emergency:cisu:2.0:geoResourceRequest"
+        xmlns:geopositionsupdate="urn:emergency:cisu:2.0:geoPositionsUpdate"
+        xmlns:georesourcesdetails="urn:emergency:cisu:2.0:geoResourcesDetails"
+        xmlns:georesourcesrequest="urn:emergency:cisu:2.0:geoResourcesRequest"
+        xmlns:resourcesinfo="urn:emergency:cisu:2.0:resourcesInfo"
+        xmlns:resourcesrequest="urn:emergency:cisu:2.0:resourcesRequest"
+        xmlns:resourcesresponse="urn:emergency:cisu:2.0:resourcesResponse"
+        xmlns:rpis="urn:emergency:cisu:2.0:rpis"
         xmlns:error="urn:emergency:cisu:2.0:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
@@ -46,10 +50,15 @@
                         <xs:element ref="rceda:createCase"/>
                         <xs:element ref="rseda:createCaseHealth"/>
                         <xs:element ref="emsi:emsi"/>
+                        <xs:element ref="rpis:rpis"/>
                         <!-- geo -->
-                        <xs:element ref="geopositionupdate:geoPositionUpdate"/>
-                        <xs:element ref="georesourcedetails:geoResourceDetails"/>
-                        <xs:element ref="georesourcerequest:geoResourceRequest"/>
+                        <xs:element ref="geopositionsupdate:geoPositionsUpdate"/>
+                        <xs:element ref="georesourcesdetails:geoResourcesDetails"/>
+                        <xs:element ref="georesourcesrequest:geoResourcesRequest"/>
+                        <!-- resources -->
+                        <xs:element ref="resourcesinfo:resourcesInfo"/>
+                        <xs:element ref="resourcesrequest:resourcesRequest"/>
+                        <xs:element ref="resourcesresponse:resourcesResponse"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
