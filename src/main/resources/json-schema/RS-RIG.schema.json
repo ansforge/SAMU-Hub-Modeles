@@ -44,7 +44,7 @@
                 "dateTime",
                 "resourceID",
                 "ownerID",
-                "type"
+                "resourceType"
             ],
             "properties": {
                 "dateTime": {
@@ -81,20 +81,29 @@
                     "example": "example.json#/mobilizedResources/0/missionID",
                     "description": "Num\u00e9ro de mission du central d\u2019appel (PSAP, \u2026) qui a d\u00e9clench\u00e9 le vecteur"
                 },
-                "type": {
+                "resourceType": {
                     "type": "string",
-                    "title": "Type",
+                    "title": "Type de ressource",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResources/0/type",
-                    "description": "Type de ressource mobilis\u00e9e (nomenclature type de vecteur \u00e0 impl\u00e9menter pour l'instant, voir ensuite si elle est compl\u00e9t\u00e9e par des ressources autres que des vecteurs)"
+                    "example": "example.json#/mobilizedResources/0/resourceType",
+                    "description": "Type de ressource mobilis\u00e9e (type moyen)"
+                },
+                "vehiculeType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/vehiculeType",
+                    "description": "Type de ressource mobilis\u00e9e (nomenclature type de vecteur \u00e0 impl\u00e9menter)"
                 },
                 "plate": {
                     "type": "string",
                     "title": "Immatriculation",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResources/0/plate"
+                    "example": "example.json#/mobilizedResources/0/plate",
+                    "description": "N\u00b0 d'immatriculation du vecteur"
                 },
                 "name": {
                     "type": "string",
@@ -161,7 +170,7 @@
                     }
                 },
                 "coord": {
-                    "type": NaN,
+                    "type": "coord",
                     "title": "Derni\u00e8re g\u00e9olocalisation du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,

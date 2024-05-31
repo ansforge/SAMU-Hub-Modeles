@@ -59,7 +59,7 @@ components:
       - dateTime
       - resourceID
       - ownerID
-      - type
+      - resourceType
       properties:
         dateTime:
           type: string
@@ -101,15 +101,23 @@ components:
             ) qui a d\xE9clench\xE9 le vecteur"
           examples:
           - None
-        type:
+        resourceType:
           type: string
-          title: Type
+          title: Type de ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResources/0/type
+          example: example.json#/mobilizedResources/0/resourceType
+          description: "Type de ressource mobilis\xE9e (type moyen)"
+          examples:
+          - None
+        vehiculeType:
+          type: string
+          title: Type de vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/vehiculeType
           description: "Type de ressource mobilis\xE9e (nomenclature type de vecteur\
-            \ \xE0 impl\xE9menter pour l'instant, voir ensuite si elle est compl\xE9\
-            t\xE9e par des ressources autres que des vecteurs)"
+            \ \xE0 impl\xE9menter)"
           examples:
           - None
         plate:
@@ -118,6 +126,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResources/0/plate
+          description: "N\xB0 d'immatriculation du vecteur"
           examples:
           - None
         name:
@@ -190,7 +199,7 @@ components:
           items:
             $ref: '#/components/schemas/state'
         coord:
-          type: .nan
+          type: coord
           title: "Derni\xE8re g\xE9olocalisation du vecteur"
           x-health-only: false
           x-cols: 6
