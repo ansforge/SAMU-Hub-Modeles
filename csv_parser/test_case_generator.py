@@ -94,11 +94,12 @@ def run(perimeters):
                                     current[path[i]] = {}
                                 # We set the current object to the object at the path
                                 current = current[path[i]]
-                            # We add the value to the last key in the path
-                            if path[-1] in type_override_map:
-                                current[path[-1]] = locate(transform_type(type_override_map[path[-1]]))(row["JDD 1"])
-                            else:
-                                current[path[-1]] = str(row["JDD 1"])
+                            # We add the value to the last key in the path if we're at the end of the path
+                            if i == len(path) - 2:
+                                if path[-1] in type_override_map:
+                                    current[path[-1]] = locate(transform_type(type_override_map[path[-1]]))(row["JDD 1"])
+                                else:
+                                    current[path[-1]] = str(row["JDD 1"])
 
                     # If the value is not empty, we add it to the required values array of the last step, specifying
                     # the number in the "verificationLevel" property
