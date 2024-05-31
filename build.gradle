@@ -6,7 +6,7 @@ plugins {
 }
 
 group = 'com.hubsante'
-version ='0.5.0-SNAPSHOT-2'
+version ='0.5.1-SNAPSHOT'
 
 java {
     toolchain {

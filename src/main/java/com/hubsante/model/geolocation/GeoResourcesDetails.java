@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.smur;
+package com.hubsante.model.geolocation;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.smur.CustomMap;
+import com.hubsante.model.geolocation.Resource;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -42,55 +42,55 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * AdditionalInformation
+ * GeoResourcesDetails
  */
-@JsonPropertyOrder({AdditionalInformation.JSON_PROPERTY_CUSTOM_MAP})
-@JsonTypeName("additionalInformation")
+@JsonPropertyOrder({GeoResourcesDetails.JSON_PROPERTY_RESOURCE})
+@JsonTypeName("geoResourcesDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class AdditionalInformation {
-  public static final String JSON_PROPERTY_CUSTOM_MAP = "customMap";
-  private List<CustomMap> customMap;
+public class GeoResourcesDetails {
+  public static final String JSON_PROPERTY_RESOURCE = "resource";
+  private List<Resource> resource;
 
-  public AdditionalInformation() {}
+  public GeoResourcesDetails() {}
 
-  public AdditionalInformation customMap(List<CustomMap> customMap) {
+  public GeoResourcesDetails resource(List<Resource> resource) {
 
-    this.customMap = customMap;
+    this.resource = resource;
     return this;
   }
 
-  public AdditionalInformation addCustomMapItem(CustomMap customMapItem) {
-    if (this.customMap == null) {
-      this.customMap = new ArrayList<>();
+  public GeoResourcesDetails addResourceItem(Resource resourceItem) {
+    if (this.resource == null) {
+      this.resource = new ArrayList<>();
     }
-    this.customMap.add(customMapItem);
+    this.resource.add(resourceItem);
     return this;
   }
 
   /**
-   * Get customMap
-   * @return customMap
+   * Get resource
+   * @return resource
    **/
-  @JsonProperty(JSON_PROPERTY_CUSTOM_MAP)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<CustomMap> getCustomMap() {
-    return customMap;
+  public List<Resource> getResource() {
+    return resource;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_CUSTOM_MAP)
+  @JsonProperty(JSON_PROPERTY_RESOURCE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomMap(List<CustomMap> customMap) {
-    if (customMap == null) {
+  public void setResource(List<Resource> resource) {
+    if (resource == null) {
       return;
     }
-    if (this.customMap == null) {
-      this.customMap = new ArrayList<>();
+    if (this.resource == null) {
+      this.resource = new ArrayList<>();
     }
-    this.customMap.addAll(customMap);
+    this.resource.addAll(resource);
   }
 
   @Override
@@ -101,22 +101,20 @@ public class AdditionalInformation {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AdditionalInformation additionalInformation = (AdditionalInformation)o;
-    return Objects.equals(this.customMap, additionalInformation.customMap);
+    GeoResourcesDetails geoResourcesDetails = (GeoResourcesDetails)o;
+    return Objects.equals(this.resource, geoResourcesDetails.resource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(customMap);
+    return Objects.hash(resource);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AdditionalInformation {\n");
-    sb.append("    customMap: ")
-        .append(toIndentedString(customMap))
-        .append("\n");
+    sb.append("class GeoResourcesDetails {\n");
+    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
     sb.append("}");
     return sb.toString();
   }

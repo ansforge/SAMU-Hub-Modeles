@@ -41,27 +41,25 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoResourceRequest
+ * GeoResourcesRequest
  */
-@JsonPropertyOrder({GeoResourceRequest.JSON_PROPERTY_RESOURCE_ID})
-@JsonTypeName("geoResourceRequest")
+@JsonPropertyOrder({GeoResourcesRequest.JSON_PROPERTY_RESOURCE_ID})
+@JsonTypeName("geoResourcesRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceRequest {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoResourceRequest";
+public class GeoResourcesRequest {
   public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
   private List<String> resourceId = new ArrayList<>();
 
-  public GeoResourceRequest() {}
+  public GeoResourcesRequest() {}
 
-  public GeoResourceRequest resourceId(List<String> resourceId) {
+  public GeoResourcesRequest resourceId(List<String> resourceId) {
 
     this.resourceId = resourceId;
     return this;
   }
 
-  public GeoResourceRequest addResourceIdItem(String resourceIdItem) {
+  public GeoResourcesRequest addResourceIdItem(String resourceIdItem) {
     if (this.resourceId == null) {
       this.resourceId = new ArrayList<>();
     }
@@ -102,8 +100,8 @@ public class GeoResourceRequest {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceRequest geoResourceRequest = (GeoResourceRequest)o;
-    return Objects.equals(this.resourceId, geoResourceRequest.resourceId);
+    GeoResourcesRequest geoResourcesRequest = (GeoResourcesRequest)o;
+    return Objects.equals(this.resourceId, geoResourcesRequest.resourceId);
   }
 
   @Override
@@ -114,7 +112,7 @@ public class GeoResourceRequest {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceRequest {\n");
+    sb.append("class GeoResourcesRequest {\n");
     sb.append("    resourceId: ")
         .append(toIndentedString(resourceId))
         .append("\n");

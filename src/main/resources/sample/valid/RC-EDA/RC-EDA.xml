@@ -42,17 +42,14 @@
                                 <whatsHappen>
                                     <code>C01.01.04</code>
                                     <label>2-roues</label>
-                                    <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la circulation</freetext>
                                 </whatsHappen>
                                 <riskThreat>
                                     <code>R22</code>
                                     <label>Gêne à la circulation</label>
-                                    <freetext>Risque lié aux voitures</freetext>
                                 </riskThreat>
                                 <riskThreat>
                                     <code>R23</code>
                                     <label>Second risque</label>
-                                    <freetext>Second risque</freetext>
                                 </riskThreat>
                                 <victims>
                                     <count>SEVERAL</count>
@@ -152,7 +149,6 @@
                                     <whatsHappen>
                                         <code>C01.01.04</code>
                                         <label>2-roues</label>
-                                        <freetext>autres véhicules présents sur le lieu d'intervention qui gênent la circulation</freetext>
                                     </whatsHappen>
                                 </qualification>
                                 <callTaker>

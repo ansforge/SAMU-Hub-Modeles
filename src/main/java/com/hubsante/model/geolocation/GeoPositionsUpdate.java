@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.smur;
+package com.hubsante.model.geolocation;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,73 +34,63 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.smur.City;
-import com.hubsante.model.smur.DetailedAddress;
+import com.hubsante.model.geolocation.Position;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * GeoPositionsUpdate
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder({GeoPositionsUpdate.JSON_PROPERTY_POSITION})
+@JsonTypeName("geoPositionsUpdate")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class GeoPositionsUpdate {
+  public static final String JSON_PROPERTY_POSITION = "position";
+  private List<Position> position;
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  public GeoPositionsUpdate() {}
 
-  public PersonalAddress() {}
+  public GeoPositionsUpdate position(List<Position> position) {
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+    this.position = position;
+    return this;
+  }
 
-    this.detailedAddress = detailedAddress;
+  public GeoPositionsUpdate addPositionItem(Position positionItem) {
+    if (this.position == null) {
+      this.position = new ArrayList<>();
+    }
+    this.position.add(positionItem);
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * Get position
+   * @return position
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_POSITION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public List<Position> getPosition() {
+    return position;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_POSITION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
-  }
-
-  public PersonalAddress city(City city) {
-
-    this.city = city;
-    return this;
-  }
-
-  /**
-   * Get city
-   * @return city
-   **/
-  @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public City getCity() {
-    return city;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  public void setPosition(List<Position> position) {
+    if (position == null) {
+      return;
+    }
+    if (this.position == null) {
+      this.position = new ArrayList<>();
+    }
+    this.position.addAll(position);
   }
 
   @Override
@@ -111,25 +101,20 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    GeoPositionsUpdate geoPositionsUpdate = (GeoPositionsUpdate)o;
+    return Objects.equals(this.position, geoPositionsUpdate.position);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(position);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
-        .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("class GeoPositionsUpdate {\n");
+    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");
     return sb.toString();
   }

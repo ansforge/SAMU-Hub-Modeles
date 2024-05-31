@@ -791,22 +791,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/whatsHappen/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/whatsHappen
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     locationKind:
       type: object
       title: Type de lieu
@@ -1017,22 +1006,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/locationKind/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/locationKind
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     riskThreat:
       type: object
       title: "Risque, menace et sensibilit\xE9"
@@ -1101,22 +1079,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/riskThreat/0
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     healthMotive:
       type: object
       title: "Motif de recours m\xE9dico-secouriste"
@@ -1202,22 +1169,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/healthMotive/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/qualification/healthMotive
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     caseDetails:
       type: object
       title: "D\xE9tails du dossier "
@@ -1536,7 +1492,7 @@ components:
           examples:
           - Infirmerie
         phoneNumber:
-          type: number
+          type: string
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
           x-health-only: false
           x-cols: 6
@@ -1752,25 +1708,6 @@ components:
             \ ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
           - 120
-        heading:
-          type: number
-          title: Cap
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/geometry/point/coord/heading
-          description: "En degr\xE9"
-          examples:
-          - 96
-        speed:
-          type: number
-          title: Vitesse
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/geometry/point/coord/speed
-          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
-            \ AML, \u2026"
-          examples:
-          - 34
         precision:
           type: string
           title: "Pr\xE9cision"
@@ -1797,8 +1734,6 @@ components:
       - lat: '48.866667'
         lon: '2.333333'
         height: 120
-        heading: 96
-        speed: 34
         precision: ADDRESS
     notes:
       type: object
@@ -2800,22 +2735,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/mainDiagnosis/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/patient/0/hypothesis/mainDiagnosis
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     otherDiagnosis:
       type: object
       title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale secondaires"
@@ -2846,22 +2770,11 @@ components:
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
-        freetext:
-          type: string
-          title: Commentaire
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/hypothesis/otherDiagnosis/0/freetext
-          description: "Commentaire libre permettant de passer des informations compl\xE9\
-            mentaires associ\xE9es \xE0 la nomenclature"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/patient/0/hypothesis/otherDiagnosis/0
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-        freetext: None
     operator:
       type: object
       title: "Professionnel de sant\xE9 qui r\xE9alise l'interrogatoire"

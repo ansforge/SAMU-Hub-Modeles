@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.smur;
+package com.hubsante.model.geolocation;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,58 +34,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.smur.CreateCaseHealthSmur;
+import com.hubsante.model.geolocation.GeoPositionsUpdate;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * CreateCaseHealthSmurWrapper
+ * GeoPositionsUpdateWrapper
  */
 @JsonPropertyOrder(
-    {DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-     DistributionElement.JSON_PROPERTY_SENDER,
-     DistributionElement.JSON_PROPERTY_SENT_AT,
-     DistributionElement.JSON_PROPERTY_KIND,
-     DistributionElement.JSON_PROPERTY_STATUS,
-     DistributionElement.JSON_PROPERTY_RECIPIENT,
-     CreateCaseHealthSmurWrapper.JSON_PROPERTY_CREATE_CASE_HEALTH_SMUR})
-@JsonTypeName("createCaseHealthSmurWrapper")
+    {GeoPositionsUpdateWrapper.JSON_PROPERTY_GEO_POSITIONS_UPDATE})
+@JsonTypeName("geoPositionsUpdateWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class CreateCaseHealthSmurWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_CREATE_CASE_HEALTH_SMUR =
-      "createCaseHealthSmur";
-  private CreateCaseHealthSmur createCaseHealthSmur;
+public class GeoPositionsUpdateWrapper {
+  public static final String JSON_PROPERTY_GEO_POSITIONS_UPDATE =
+      "geoPositionsUpdate";
+  private GeoPositionsUpdate geoPositionsUpdate;
 
-  public CreateCaseHealthSmurWrapper() {}
+  public GeoPositionsUpdateWrapper() {}
 
-  public CreateCaseHealthSmurWrapper
-  createCaseHealthSmur(CreateCaseHealthSmur createCaseHealthSmur) {
+  public GeoPositionsUpdateWrapper
+  geoPositionsUpdate(GeoPositionsUpdate geoPositionsUpdate) {
 
-    this.createCaseHealthSmur = createCaseHealthSmur;
+    this.geoPositionsUpdate = geoPositionsUpdate;
     return this;
   }
 
   /**
-   * Get createCaseHealthSmur
-   * @return createCaseHealthSmur
+   * Get geoPositionsUpdate
+   * @return geoPositionsUpdate
    **/
-  @JsonProperty(JSON_PROPERTY_CREATE_CASE_HEALTH_SMUR)
+  @JsonProperty(JSON_PROPERTY_GEO_POSITIONS_UPDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public CreateCaseHealthSmur getCreateCaseHealthSmur() {
-    return createCaseHealthSmur;
+  public GeoPositionsUpdate getGeoPositionsUpdate() {
+    return geoPositionsUpdate;
   }
 
-  @JsonProperty(JSON_PROPERTY_CREATE_CASE_HEALTH_SMUR)
+  @JsonProperty(JSON_PROPERTY_GEO_POSITIONS_UPDATE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void
-  setCreateCaseHealthSmur(CreateCaseHealthSmur createCaseHealthSmur) {
-    this.createCaseHealthSmur = createCaseHealthSmur;
+  public void setGeoPositionsUpdate(GeoPositionsUpdate geoPositionsUpdate) {
+    this.geoPositionsUpdate = geoPositionsUpdate;
   }
 
   @Override
@@ -96,25 +86,23 @@ public class CreateCaseHealthSmurWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateCaseHealthSmurWrapper createCaseHealthSmurWrapper =
-        (CreateCaseHealthSmurWrapper)o;
-    return Objects.equals(this.createCaseHealthSmur,
-                          createCaseHealthSmurWrapper.createCaseHealthSmur) &&
-        super.equals(o);
+    GeoPositionsUpdateWrapper geoPositionsUpdateWrapper =
+        (GeoPositionsUpdateWrapper)o;
+    return Objects.equals(this.geoPositionsUpdate,
+                          geoPositionsUpdateWrapper.geoPositionsUpdate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createCaseHealthSmur, super.hashCode());
+    return Objects.hash(geoPositionsUpdate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateCaseHealthSmurWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    createCaseHealthSmur: ")
-        .append(toIndentedString(createCaseHealthSmur))
+    sb.append("class GeoPositionsUpdateWrapper {\n");
+    sb.append("    geoPositionsUpdate: ")
+        .append(toIndentedString(geoPositionsUpdate))
         .append("\n");
     sb.append("}");
     return sb.toString();

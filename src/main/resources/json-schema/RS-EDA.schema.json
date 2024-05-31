@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.05.28",
+    "version": "24.05.31",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -759,14 +759,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/whatsHappen/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -978,14 +970,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/locationKind/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -1055,14 +1039,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/riskThreat/0/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -1149,14 +1125,6 @@
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/healthMotive/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -1444,7 +1412,7 @@
                     "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement : Infirmerie, service finance, service cardiologie, \u2026"
                 },
                 "phoneNumber": {
-                    "type": "number",
+                    "type": "string",
                     "title": "N\u00b0 de t\u00e9l\u00e9phone du lieu",
                     "x-health-only": false,
                     "x-cols": 6,
@@ -1635,22 +1603,6 @@
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/height",
                     "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
-                },
-                "heading": {
-                    "type": "number",
-                    "title": "Cap",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/location/geometry/point/coord/heading",
-                    "description": "En degr\u00e9"
-                },
-                "speed": {
-                    "type": "number",
-                    "title": "Vitesse",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/location/geometry/point/coord/speed",
-                    "description": "Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, \u2026"
                 },
                 "precision": {
                     "type": "string",
@@ -2591,14 +2543,6 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/mainDiagnosis/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/hypothesis/mainDiagnosis/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,
@@ -2629,14 +2573,6 @@
                     "x-cols": 6,
                     "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/label",
                     "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
-                },
-                "freetext": {
-                    "type": "string",
-                    "title": "Commentaire",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/freetext",
-                    "description": "Commentaire libre permettant de passer des informations compl\u00e9mentaires associ\u00e9es \u00e0 la nomenclature"
                 }
             },
             "additionalProperties": false,

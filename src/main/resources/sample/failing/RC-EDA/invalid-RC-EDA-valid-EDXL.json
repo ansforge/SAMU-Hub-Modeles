@@ -38,19 +38,16 @@
               "qualification": {
                 "whatsHappen": {
                   "code": "C01.01.04",
-                  "label": "2-roues",
-                  "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
+                  "label": "2-roues"
                 },
                 "riskThreat": [
                   {
                     "code": "R22",
-                    "label": "Gêne à la circulation",
-                    "freetext": "Risque lié aux voitures"
+                    "label": "Gêne à la circulation"
                   },
                   {
                     "code": "R23",
-                    "label": "Second risque",
-                    "freetext": "Second risque"
+                    "label": "Second risque"
                   }
                 ],
                 "victims": {
@@ -152,8 +149,7 @@
                 "qualification": {
                   "whatsHappen": {
                     "code": "C01.01.04",
-                    "label": "2-roues",
-                    "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
+                    "label": "2-roues"
                   }
                 },
                 "callTaker": {
@@ -180,11 +176,11 @@
               },
               "additionalInformation": {
                 "customMap": {
-                    "key": "neighborhood",
-                    "label": "Quartier",
-                    "value": "LYON 2e arrondissement",
-                    "freetext": "Précision sur le quartier d'intervention"
-                  }
+                  "key": "neighborhood",
+                  "label": "Quartier",
+                  "value": "LYON 2e arrondissement",
+                  "freetext": "Précision sur le quartier d'intervention"
+                }
               },
               "freetext": [
                 "None"

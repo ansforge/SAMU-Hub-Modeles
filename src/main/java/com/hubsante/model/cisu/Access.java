@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -79,7 +78,7 @@ public class Access {
   private String entity;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  private BigDecimal phoneNumber;
+  private String phoneNumber;
 
   public Access() {}
 
@@ -285,7 +284,7 @@ public class Access {
     this.entity = entity;
   }
 
-  public Access phoneNumber(BigDecimal phoneNumber) {
+  public Access phoneNumber(String phoneNumber) {
 
     this.phoneNumber = phoneNumber;
     return this;
@@ -300,13 +299,13 @@ public class Access {
   @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getPhoneNumber() {
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 
   @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(BigDecimal phoneNumber) {
+  public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 

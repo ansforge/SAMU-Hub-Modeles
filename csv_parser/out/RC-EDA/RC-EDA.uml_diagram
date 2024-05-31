@@ -7,28 +7,28 @@ strict digraph {
                 <TR>
                 <TD ><B>whatsHappen</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet whatsHappen</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet whatsHappen</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	whatsHappen -> qualification [headlabel=1 taillabel=1]
 	locationKind [label=<<TABLE>
                 <TR>
                 <TD ><B>locationKind</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet locationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet locationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	locationKind -> qualification [headlabel=1 taillabel="0..1"]
 	riskThreat [label=<<TABLE>
                 <TR>
                 <TD ><B>riskThreat</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	riskThreat -> qualification [headlabel=1 taillabel="0..*"]
 	healthMotive [label=<<TABLE>
                 <TR>
                 <TD ><B>healthMotive</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet healthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet healthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	healthMotive -> qualification [headlabel=1 taillabel="0..1"]
 	victims [label=<<TABLE>
@@ -77,7 +77,7 @@ strict digraph {
                 <TR>
                 <TD ><B>access</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>number</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	access -> location [headlabel=1 taillabel="0..1"]
 	coord [label=<<TABLE>
@@ -182,7 +182,7 @@ strict digraph {
                 <TR>
                 <TD ><B>access</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>number</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	access -> location [headlabel=1 taillabel="0..1"]
 	coord [label=<<TABLE>
@@ -224,28 +224,28 @@ strict digraph {
                 <TR>
                 <TD ><B>whatsHappen</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet whatsHappen</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet whatsHappen</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	whatsHappen -> qualification [headlabel=1 taillabel=1]
 	locationKind [label=<<TABLE>
                 <TR>
                 <TD ><B>locationKind</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet locationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet locationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	locationKind -> qualification [headlabel=1 taillabel="0..1"]
 	riskThreat [label=<<TABLE>
                 <TR>
                 <TD ><B>riskThreat</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	riskThreat -> qualification [headlabel=1 taillabel="0..*"]
 	healthMotive [label=<<TABLE>
                 <TR>
                 <TD ><B>healthMotive</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet healthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet healthMotive</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	healthMotive -> qualification [headlabel=1 taillabel="0..1"]
 	victims [label=<<TABLE>
@@ -350,7 +350,7 @@ strict digraph {
                 <TR>
                 <TD ><B>access</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>number</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	access -> destinationLocation [headlabel=1 taillabel="0..1"]
 	coord [label=<<TABLE>

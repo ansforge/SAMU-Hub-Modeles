@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.smur;
+package com.hubsante.model.geolocation;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,73 +34,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.smur.Coord;
+import com.hubsante.model.geolocation.GeoResourcesRequest;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Point
+ * GeoResourcesRequestWrapper
  */
-@JsonPropertyOrder({Point.JSON_PROPERTY_COORD, Point.JSON_PROPERTY_SYS_COORD})
-@JsonTypeName("point")
+@JsonPropertyOrder(
+    {GeoResourcesRequestWrapper.JSON_PROPERTY_GEO_RESOURCES_REQUEST})
+@JsonTypeName("geoResourcesRequestWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Point {
-  public static final String JSON_PROPERTY_COORD = "coord";
-  private Coord coord;
+public class GeoResourcesRequestWrapper {
+  public static final String JSON_PROPERTY_GEO_RESOURCES_REQUEST =
+      "geoResourcesRequest";
+  private GeoResourcesRequest geoResourcesRequest;
 
-  public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
-  private String sysCoord;
+  public GeoResourcesRequestWrapper() {}
 
-  public Point() {}
+  public GeoResourcesRequestWrapper
+  geoResourcesRequest(GeoResourcesRequest geoResourcesRequest) {
 
-  public Point coord(Coord coord) {
-
-    this.coord = coord;
+    this.geoResourcesRequest = geoResourcesRequest;
     return this;
   }
 
   /**
-   * Get coord
-   * @return coord
+   * Get geoResourcesRequest
+   * @return geoResourcesRequest
    **/
-  @JsonProperty(JSON_PROPERTY_COORD)
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Coord getCoord() {
-    return coord;
+  public GeoResourcesRequest getGeoResourcesRequest() {
+    return geoResourcesRequest;
   }
 
-  @JsonProperty(JSON_PROPERTY_COORD)
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCoord(Coord coord) {
-    this.coord = coord;
-  }
-
-  public Point sysCoord(String sysCoord) {
-
-    this.sysCoord = sysCoord;
-    return this;
-  }
-
-  /**
-   * Indique le type de coordonnées utilisé. Actuellement, la seule valeur
-   *valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84. Si ce champ
-   *n&#39;est pas renseigné, on considère que la valeur par défaut est «».
-   * @return sysCoord
-   **/
-  @JsonProperty(JSON_PROPERTY_SYS_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSysCoord() {
-    return sysCoord;
-  }
-
-  @JsonProperty(JSON_PROPERTY_SYS_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysCoord(String sysCoord) {
-    this.sysCoord = sysCoord;
+  public void setGeoResourcesRequest(GeoResourcesRequest geoResourcesRequest) {
+    this.geoResourcesRequest = geoResourcesRequest;
   }
 
   @Override
@@ -111,22 +86,24 @@ public class Point {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Point point = (Point)o;
-    return Objects.equals(this.coord, point.coord) &&
-        Objects.equals(this.sysCoord, point.sysCoord);
+    GeoResourcesRequestWrapper geoResourcesRequestWrapper =
+        (GeoResourcesRequestWrapper)o;
+    return Objects.equals(this.geoResourcesRequest,
+                          geoResourcesRequestWrapper.geoResourcesRequest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(coord, sysCoord);
+    return Objects.hash(geoResourcesRequest);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Point {\n");
-    sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
-    sb.append("    sysCoord: ").append(toIndentedString(sysCoord)).append("\n");
+    sb.append("class GeoResourcesRequestWrapper {\n");
+    sb.append("    geoResourcesRequest: ")
+        .append(toIndentedString(geoResourcesRequest))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -39,19 +39,16 @@
               "qualification": {
                 "whatsHappen": {
                   "code": "C01.01.04",
-                  "label": "2-roues",
-                  "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
+                  "label": "2-roues"
                 },
                 "riskThreat": [
                   {
                     "code": "R22",
-                    "label": "Gêne à la circulation",
-                    "freetext": "Risque lié aux voitures"
+                    "label": "Gêne à la circulation"
                   },
                   {
                     "code": "R23",
-                    "label": "Second risque",
-                    "freetext": "Second risque"
+                    "label": "Second risque"
                   }
                 ],
                 "victims": {
@@ -61,22 +58,22 @@
                 }
               },
               "location": {
-                  "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
-                  "locLabel": "8 quai des Célestins - 69002 Lyon",
-                  "name": "Quai des Célestins",
-                  "externalLocationId": [
-                    {
-                      "source": "FINESS administratif",
-                      "value": "'920000650"
-                    }
-                  ],
-                  "detailedAddress": {
-                    "complete": "8 quai des Célestins",
-                    "number": "8",
-                    "wayName": {
-                      "complete": "quai des Célestins",
-                      "type": "Quai",
-                      "name": "des Célestins"
+                "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
+                "locLabel": "8 quai des Célestins - 69002 Lyon",
+                "name": "Quai des Célestins",
+                "externalLocationId": [
+                  {
+                    "source": "FINESS administratif",
+                    "value": "'920000650"
+                  }
+                ],
+                "detailedAddress": {
+                  "complete": "8 quai des Célestins",
+                  "number": "8",
+                  "wayName": {
+                    "complete": "quai des Célestins",
+                    "type": "Quai",
+                    "name": "des Célestins"
                   }
                 },
                 "city": {
@@ -109,7 +106,7 @@
                       "precision": "ADDRESS"
                     },
                     "sysCoord": "EPSG-4326"
-                 },
+                  },
                   "sketch": "None"
                 },
                 "externalInfo": [
@@ -127,10 +124,10 @@
                 "reception": "2023-11-03T10:02:00+01:00",
                 "reporting": "STANDARD",
                 "notes": [
-                 {
-                  "creation": "2023-11-03T10:02:00+01:00",
-                  "freetext": "Accident entre une voiture et un vélo"
-                 }
+                  {
+                    "creation": "2023-11-03T10:02:00+01:00",
+                    "freetext": "Accident entre une voiture et un vélo"
+                  }
                 ],
                 "caller": {
                   "callerContact": {
@@ -159,8 +156,7 @@
                 "qualification": {
                   "whatsHappen": {
                     "code": "C01.01.04",
-                    "label": "2-roues",
-                    "freetext": "autres véhicules présents sur le lieu d'intervention qui gênent la circulation"
+                    "label": "2-roues"
                   }
                 },
                 "callTaker": {
@@ -186,27 +182,27 @@
                 ]
               },
               "decision": [
-                  {
-                    "type": "INTER",
-                    "creation": "2023-11-03T10:05:00+01:00"
-                    }
-                ],
-               "patient": [
-                  {
-                    "identity": {
-                      "nonStrictFeatures": {
-                        "complete": "Alexandre Armaury",
-                        "lastName": "Armaury",
-                        "firstName": "Alexandre"
-                      },
-                      "strictFeatures": {
-                        "sex": "MASC",
-                        "birthDate": "1981-01-01"
-                      }
+                {
+                  "type": "INTER",
+                  "creation": "2023-11-03T10:05:00+01:00"
+                }
+              ],
+              "patient": [
+                {
+                  "identity": {
+                    "nonStrictFeatures": {
+                      "complete": "Alexandre Armaury",
+                      "lastName": "Armaury",
+                      "firstName": "Alexandre"
                     },
-                    "id": "fr.health.samu690.DRFR15690240430050.P01"
-                  }  
-                ],
+                    "strictFeatures": {
+                      "sex": "MASC",
+                      "birthDate": "1981-01-01"
+                    }
+                  },
+                  "id": "fr.health.samu690.DRFR15690240430050.P01"
+                }
+              ],
               "additionalInformation": {
                 "customMap": [
                   {
