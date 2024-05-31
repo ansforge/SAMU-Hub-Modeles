@@ -28,7 +28,14 @@
                     "availability": "None"
                 }
             ],
-            "coord": "None",
+            "coord": {
+                "lat": "48.866667",
+                "lon": "2.333333",
+                "height": 120,
+                "heading": 96,
+                "speed": 34,
+                "precision": "ADDRESS"
+            },
             "contact": {
                 "type": "PHNADD",
                 "details": "0671830530"

@@ -26,7 +26,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
 21,22,,,Date/heure de changement de statut,,,,,,,dateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X
 22,23,,,Statut du vecteur,,,,Statuts Antares,,,status,0..1,,string,X,"ENUM : Alerté, Parti, Arrivée sur les lieux, Transport destination, Arrivée destination, Fin de médicalisation , Quitte destination, Retour base, Rentrée Base",,X
 23,24,,,Disponibilité du vecteur,,,,Indique si le vecteur est disponible / indisponible,,,availability,0..1,,string,X,"ENUM : Disponible, Indisponible, Inconnu",,X
-24,25,,Dernière géolocalisation du vecteur,,,,,,,,coord,0..1,,coord,,,,X
+24,25,,Dernière géolocalisation du vecteur,,,,,,,,coord,0..1,X,coord,,,,X
 25,26,,,Latitude,,,,Latitude du point clé de la localisation ,48.866667,,lat,1..1,,number,,,,X
 26,27,,,Longitude,,,,Longitude du point clé de la localisation,2.333333,,lon,1..1,,number,,,,X
 27,28,,,Altitude ,,,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,0..1,,number,,,,X

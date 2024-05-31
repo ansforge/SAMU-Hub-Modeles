@@ -199,13 +199,7 @@ components:
           items:
             $ref: '#/components/schemas/state'
         coord:
-          type: coord
-          title: "Derni\xE8re g\xE9olocalisation du vecteur"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResources/0/coord
-          examples:
-          - None
+          $ref: '#/components/schemas/coord'
         contact:
           $ref: '#/components/schemas/contact'
         freetext:
@@ -296,6 +290,92 @@ components:
       - dateTime: None
         status: None
         availability: None
+    coord:
+      type: object
+      title: "Derni\xE8re g\xE9olocalisation du vecteur"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - lat
+      - lon
+      - precision
+      properties:
+        lat:
+          type: number
+          title: Latitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/coord/lat
+          description: "Latitude du point cl\xE9 de la localisation "
+          examples:
+          - '48.866667'
+        lon:
+          type: number
+          title: Longitude
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/coord/lon
+          description: "Longitude du point cl\xE9 de la localisation"
+          examples:
+          - '2.333333'
+        height:
+          type: number
+          title: 'Altitude '
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/coord/height
+          description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
+            \ ignor\xE9 c\xF4t\xE9 NexSIS. "
+          examples:
+          - 120
+        heading:
+          type: number
+          title: Cap
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/coord/heading
+          description: "En degr\xE9"
+          examples:
+          - 96
+        speed:
+          type: number
+          title: Vitesse
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/coord/speed
+          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
+            \ AML, \u2026"
+          examples:
+          - 34
+        precision:
+          type: string
+          title: "Pr\xE9cision"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/coord/precision
+          description: "Indique via une nomenclature le niveau de pr\xE9cision des\
+            \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
+            \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
+            \ de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9e GPS\
+            \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
+            \ l'\xE9metteur"
+          enum:
+          - CITY
+          - STREET
+          - ADDRESS
+          - EXACT
+          - UNKNOWN
+          examples:
+          - ADDRESS
+      additionalProperties: false
+      example: example.json#/mobilizedResources/0/coord
+      examples:
+      - lat: '48.866667'
+        lon: '2.333333'
+        height: 120
+        heading: 96
+        speed: 34
+        precision: ADDRESS
     contact:
       type: object
       title: Contact
