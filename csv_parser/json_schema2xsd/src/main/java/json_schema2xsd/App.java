@@ -109,25 +109,25 @@ public class App {
                 root = "info";
                 break;
             case "GEO-RES":
-                root = "geoResourceDetails";
+                root = "geoResourcesDetails";
                 break;
             case "GEO-REQ":
-                root = "geoResourceRequest";
+                root = "geoResourcesRequest";
                 break;
             case "GEO-POS":
-                root = "geoPositionUpdate";
+                root = "geoPositionsUpdate";
                 break;
             case "RS-ERROR":
                 root = "error";
                 break;
             case "RS-RIG":
-                root = "resourceShareRig";
+                root = "resourcesInfo";
                 break;
             case "RS-DRD":
-                root = "resourceShareDrd";
+                root = "resourcesRequest";
                 break;
             case "RS-DDR":
-                root = "resourceShareDdr";
+                root = "resourcesResponse";
                 break;
             case "RPIS":
                 root = "rpis";

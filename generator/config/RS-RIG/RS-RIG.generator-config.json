@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.resourceShareRig",
+    "modelPackage": "com.hubsante.model.resources",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,
