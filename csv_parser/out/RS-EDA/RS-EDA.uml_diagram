@@ -77,14 +77,14 @@ strict digraph {
                 <TR>
                 <TD ><B>access</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>number</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	access -> location [headlabel=1 taillabel="0..1"]
 	coord [label=<<TABLE>
                 <TR>
                 <TD ><B>coord</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >heading <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >speed <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	coord -> point [headlabel=1 taillabel=1]
 	point [label=<<TABLE>
@@ -413,14 +413,14 @@ strict digraph {
                 <TR>
                 <TD ><B>access</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>number</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet access</I></TD></TR><TR><TD BORDER="0" >floor <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >roomNumber <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interphone <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >accessCode <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >elevator <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >buildingName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entrance <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >entity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >phoneNumber <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	access -> destinationLocation [headlabel=1 taillabel="0..1"]
 	coord [label=<<TABLE>
                 <TR>
                 <TD ><B>coord</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >heading <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >speed <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	coord -> point [headlabel=1 taillabel=1]
 	point [label=<<TABLE>

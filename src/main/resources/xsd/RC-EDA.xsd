@@ -886,7 +886,7 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
                     <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="phoneNumber" type="decimal">
+            <element minOccurs="0" name="phoneNumber" type="string">
                 <annotation>
                     <documentation>Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.</documentation>
                 </annotation>

@@ -34,65 +34,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.Position;
-import java.util.ArrayList;
+import com.hubsante.model.geolocation.GeoPositionsUpdate;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoPositionUpdate
+ * GeoPositionsUpdateWrapper
  */
-@JsonPropertyOrder({GeoPositionUpdate.JSON_PROPERTY_POSITION})
-@JsonTypeName("geoPositionUpdate")
+@JsonPropertyOrder(
+    {GeoPositionsUpdateWrapper.JSON_PROPERTY_GEO_POSITIONS_UPDATE})
+@JsonTypeName("geoPositionsUpdateWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoPositionUpdate {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoPositionUpdate";
-  public static final String JSON_PROPERTY_POSITION = "position";
-  private List<Position> position;
+public class GeoPositionsUpdateWrapper {
+  public static final String JSON_PROPERTY_GEO_POSITIONS_UPDATE =
+      "geoPositionsUpdate";
+  private GeoPositionsUpdate geoPositionsUpdate;
 
-  public GeoPositionUpdate() {}
+  public GeoPositionsUpdateWrapper() {}
 
-  public GeoPositionUpdate position(List<Position> position) {
+  public GeoPositionsUpdateWrapper
+  geoPositionsUpdate(GeoPositionsUpdate geoPositionsUpdate) {
 
-    this.position = position;
-    return this;
-  }
-
-  public GeoPositionUpdate addPositionItem(Position positionItem) {
-    if (this.position == null) {
-      this.position = new ArrayList<>();
-    }
-    this.position.add(positionItem);
+    this.geoPositionsUpdate = geoPositionsUpdate;
     return this;
   }
 
   /**
-   * Get position
-   * @return position
+   * Get geoPositionsUpdate
+   * @return geoPositionsUpdate
    **/
-  @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_GEO_POSITIONS_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Position> getPosition() {
-    return position;
+  public GeoPositionsUpdate getGeoPositionsUpdate() {
+    return geoPositionsUpdate;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_POSITION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPosition(List<Position> position) {
-    if (position == null) {
-      return;
-    }
-    if (this.position == null) {
-      this.position = new ArrayList<>();
-    }
-    this.position.addAll(position);
+  @JsonProperty(JSON_PROPERTY_GEO_POSITIONS_UPDATE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setGeoPositionsUpdate(GeoPositionsUpdate geoPositionsUpdate) {
+    this.geoPositionsUpdate = geoPositionsUpdate;
   }
 
   @Override
@@ -103,20 +86,24 @@ public class GeoPositionUpdate {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoPositionUpdate geoPositionUpdate = (GeoPositionUpdate)o;
-    return Objects.equals(this.position, geoPositionUpdate.position);
+    GeoPositionsUpdateWrapper geoPositionsUpdateWrapper =
+        (GeoPositionsUpdateWrapper)o;
+    return Objects.equals(this.geoPositionsUpdate,
+                          geoPositionsUpdateWrapper.geoPositionsUpdate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(position);
+    return Objects.hash(geoPositionsUpdate);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoPositionUpdate {\n");
-    sb.append("    position: ").append(toIndentedString(position)).append("\n");
+    sb.append("class GeoPositionsUpdateWrapper {\n");
+    sb.append("    geoPositionsUpdate: ")
+        .append(toIndentedString(geoPositionsUpdate))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

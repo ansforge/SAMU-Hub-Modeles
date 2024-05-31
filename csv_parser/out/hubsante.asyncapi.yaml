@@ -1590,7 +1590,7 @@ components:
           examples:
           - Infirmerie
         phoneNumber:
-          type: number
+          type: string
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
           x-health-only: false
           x-cols: 6
@@ -5918,12 +5918,12 @@ components:
             $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/RESOURCE/0/RGEO/0
-    geoPositionUpdate:
+    geoPositionsUpdate:
       $id: classpath:/json-schema/schema#
       x-id: GEO-POS.schema.json#
       example: example.json#
       type: object
-      title: geoPositionUpdate
+      title: geoPositionsUpdate
       required: []
       properties:
         position:
@@ -5931,12 +5931,12 @@ components:
           items:
             $ref: '#/components/schemas/position'
       additionalProperties: false
-    geoResourceRequest:
+    geoResourcesRequest:
       $id: classpath:/json-schema/schema#
       x-id: GEO-REQ.schema.json#
       example: example.json#
       type: object
-      title: geoResourceRequest
+      title: geoResourcesRequest
       required:
       - resourceId
       properties:
@@ -5955,12 +5955,12 @@ components:
             - 76_45101#SMUR1
           minItems: 1
       additionalProperties: false
-    geoResourceDetails:
+    geoResourcesDetails:
       $id: classpath:/json-schema/schema#
       x-id: GEO-RES.schema.json#
       example: example.json#
       type: object
-      title: geoResourceDetails
+      title: geoResourcesDetails
       required: []
       properties:
         resource:

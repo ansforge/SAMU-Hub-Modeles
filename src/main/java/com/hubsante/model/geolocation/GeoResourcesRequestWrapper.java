@@ -34,57 +34,48 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.GeoResourceDetails;
-import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.geolocation.GeoResourcesRequest;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * GeoResourceDetailsWrapper
+ * GeoResourcesRequestWrapper
  */
 @JsonPropertyOrder(
-    {DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-     DistributionElement.JSON_PROPERTY_SENDER,
-     DistributionElement.JSON_PROPERTY_SENT_AT,
-     DistributionElement.JSON_PROPERTY_KIND,
-     DistributionElement.JSON_PROPERTY_STATUS,
-     DistributionElement.JSON_PROPERTY_RECIPIENT,
-     GeoResourceDetailsWrapper.JSON_PROPERTY_GEO_RESOURCE_DETAILS})
-@JsonTypeName("geoResourceDetailsWrapper")
+    {GeoResourcesRequestWrapper.JSON_PROPERTY_GEO_RESOURCES_REQUEST})
+@JsonTypeName("geoResourcesRequestWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceDetailsWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_RESOURCE_DETAILS =
-      "geoResourceDetails";
-  private GeoResourceDetails geoResourceDetails;
+public class GeoResourcesRequestWrapper {
+  public static final String JSON_PROPERTY_GEO_RESOURCES_REQUEST =
+      "geoResourcesRequest";
+  private GeoResourcesRequest geoResourcesRequest;
 
-  public GeoResourceDetailsWrapper() {}
+  public GeoResourcesRequestWrapper() {}
 
-  public GeoResourceDetailsWrapper
-  geoResourceDetails(GeoResourceDetails geoResourceDetails) {
+  public GeoResourcesRequestWrapper
+  geoResourcesRequest(GeoResourcesRequest geoResourcesRequest) {
 
-    this.geoResourceDetails = geoResourceDetails;
+    this.geoResourcesRequest = geoResourcesRequest;
     return this;
   }
 
   /**
-   * Get geoResourceDetails
-   * @return geoResourceDetails
+   * Get geoResourcesRequest
+   * @return geoResourcesRequest
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeoResourceDetails getGeoResourceDetails() {
-    return geoResourceDetails;
+  public GeoResourcesRequest getGeoResourcesRequest() {
+    return geoResourcesRequest;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_RESOURCE_DETAILS)
+  @JsonProperty(JSON_PROPERTY_GEO_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoResourceDetails(GeoResourceDetails geoResourceDetails) {
-    this.geoResourceDetails = geoResourceDetails;
+  public void setGeoResourcesRequest(GeoResourcesRequest geoResourcesRequest) {
+    this.geoResourcesRequest = geoResourcesRequest;
   }
 
   @Override
@@ -95,25 +86,23 @@ public class GeoResourceDetailsWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceDetailsWrapper geoResourceDetailsWrapper =
-        (GeoResourceDetailsWrapper)o;
-    return Objects.equals(this.geoResourceDetails,
-                          geoResourceDetailsWrapper.geoResourceDetails) &&
-        super.equals(o);
+    GeoResourcesRequestWrapper geoResourcesRequestWrapper =
+        (GeoResourcesRequestWrapper)o;
+    return Objects.equals(this.geoResourcesRequest,
+                          geoResourcesRequestWrapper.geoResourcesRequest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoResourceDetails, super.hashCode());
+    return Objects.hash(geoResourcesRequest);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceDetailsWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoResourceDetails: ")
-        .append(toIndentedString(geoResourceDetails))
+    sb.append("class GeoResourcesRequestWrapper {\n");
+    sb.append("    geoResourcesRequest: ")
+        .append(toIndentedString(geoResourcesRequest))
         .append("\n");
     sb.append("}");
     return sb.toString();

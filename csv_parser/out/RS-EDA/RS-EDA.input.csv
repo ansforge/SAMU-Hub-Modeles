@@ -60,7 +60,7 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
 46,47,,,Bâtiment,,,,Nom du bâtiment,Batiment B,,buildingName,,,,,,0..1,,string,,,X,X,X
 47,48,,,Entrée,,,,,Zone Sud,,entrance,,,,,,0..1,,string,,,X,X,X
 48,49,,,Service,,,,"Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …",Infirmerie,,entity,,,,,,0..1,,string,,,X,X,X
-49,50,,,N° de téléphone du lieu,,,,"Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.",33123452323,,phoneNumber,,,,,,0..1,,number,,,X,X,X
+49,50,,,N° de téléphone du lieu,,,,"Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.",33123452323,,phoneNumber,,,,,,0..1,,string,,,X,X,X
 50,51,,Géometrie associée,,,,,,,objectGeometry,geometry,,,,,,0..1,X,geometry,,,X,X,X
 51,52,,,Heure du dernier relevé,,,,Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.,2022-09-27T08:23:34+02:00,,obsDatime,,,,,,1..1,,datetime,,,X,X,X
 52,53,,,Point ,,,,"Fournir au maximum même s'il est imprécis (et adapter le champs ""Précision"" en fonction). 
@@ -72,8 +72,6 @@ L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord
 54,55,,,,,Latitude,,Latitude du point clé de la localisation ,48.866667,lat,lat,,,,,,1..1,,number,,,X,X,X
 55,56,,,,,Longitude,,Longitude du point clé de la localisation,2.333333,lon,lon,,,,,,1..1,,number,,,X,X,X
 56,57,,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,,X,X,X
-57,58,,,,,Cap,,En degré,96,,heading,,,,,,0..1,,number,,,X,X,X
-58,59,,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,,,,,,0..1,,number,,,X,X,X
 59,60,,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
 CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN",X,X,X
 60,61,,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,,,X,X,X

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.05.30",
+    "version": "24.05.31",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -1242,7 +1242,7 @@
                     "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement : Infirmerie, service finance, service cardiologie, \u2026"
                 },
                 "phoneNumber": {
-                    "type": "number",
+                    "type": "string",
                     "title": "N\u00b0 de t\u00e9l\u00e9phone du lieu",
                     "x-health-only": false,
                     "x-cols": 6,

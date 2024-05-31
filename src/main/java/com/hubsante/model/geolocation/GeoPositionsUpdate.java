@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.Resource;
+import com.hubsante.model.geolocation.Position;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -42,57 +42,55 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoResourceDetails
+ * GeoPositionsUpdate
  */
-@JsonPropertyOrder({GeoResourceDetails.JSON_PROPERTY_RESOURCE})
-@JsonTypeName("geoResourceDetails")
+@JsonPropertyOrder({GeoPositionsUpdate.JSON_PROPERTY_POSITION})
+@JsonTypeName("geoPositionsUpdate")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourceDetails {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:geoResourceDetails";
-  public static final String JSON_PROPERTY_RESOURCE = "resource";
-  private List<Resource> resource;
+public class GeoPositionsUpdate {
+  public static final String JSON_PROPERTY_POSITION = "position";
+  private List<Position> position;
 
-  public GeoResourceDetails() {}
+  public GeoPositionsUpdate() {}
 
-  public GeoResourceDetails resource(List<Resource> resource) {
+  public GeoPositionsUpdate position(List<Position> position) {
 
-    this.resource = resource;
+    this.position = position;
     return this;
   }
 
-  public GeoResourceDetails addResourceItem(Resource resourceItem) {
-    if (this.resource == null) {
-      this.resource = new ArrayList<>();
+  public GeoPositionsUpdate addPositionItem(Position positionItem) {
+    if (this.position == null) {
+      this.position = new ArrayList<>();
     }
-    this.resource.add(resourceItem);
+    this.position.add(positionItem);
     return this;
   }
 
   /**
-   * Get resource
-   * @return resource
+   * Get position
+   * @return position
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_POSITION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Resource> getResource() {
-    return resource;
+  public List<Position> getPosition() {
+    return position;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_POSITION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResource(List<Resource> resource) {
-    if (resource == null) {
+  public void setPosition(List<Position> position) {
+    if (position == null) {
       return;
     }
-    if (this.resource == null) {
-      this.resource = new ArrayList<>();
+    if (this.position == null) {
+      this.position = new ArrayList<>();
     }
-    this.resource.addAll(resource);
+    this.position.addAll(position);
   }
 
   @Override
@@ -103,20 +101,20 @@ public class GeoResourceDetails {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoResourceDetails geoResourceDetails = (GeoResourceDetails)o;
-    return Objects.equals(this.resource, geoResourceDetails.resource);
+    GeoPositionsUpdate geoPositionsUpdate = (GeoPositionsUpdate)o;
+    return Objects.equals(this.position, geoPositionsUpdate.position);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resource);
+    return Objects.hash(position);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoResourceDetails {\n");
-    sb.append("    resource: ").append(toIndentedString(resource)).append("\n");
+    sb.append("class GeoPositionsUpdate {\n");
+    sb.append("    position: ").append(toIndentedString(position)).append("\n");
     sb.append("}");
     return sb.toString();
   }

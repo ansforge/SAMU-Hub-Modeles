@@ -1492,7 +1492,7 @@ components:
           examples:
           - Infirmerie
         phoneNumber:
-          type: number
+          type: string
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
           x-health-only: false
           x-cols: 6
@@ -1708,25 +1708,6 @@ components:
             \ ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
           - 120
-        heading:
-          type: number
-          title: Cap
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/geometry/point/coord/heading
-          description: "En degr\xE9"
-          examples:
-          - 96
-        speed:
-          type: number
-          title: Vitesse
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/geometry/point/coord/speed
-          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
-            \ AML, \u2026"
-          examples:
-          - 34
         precision:
           type: string
           title: "Pr\xE9cision"
@@ -1753,8 +1734,6 @@ components:
       - lat: '48.866667'
         lon: '2.333333'
         height: 120
-        heading: 96
-        speed: 34
         precision: ADDRESS
     notes:
       type: object

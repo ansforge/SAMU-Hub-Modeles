@@ -34,56 +34,62 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.geolocation.GeoPositionUpdate;
-import com.hubsante.model.rcde.DistributionElement;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * GeoPositionUpdateWrapper
+ * GeoResourcesRequest
  */
-@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
-                    DistributionElement.JSON_PROPERTY_SENDER,
-                    DistributionElement.JSON_PROPERTY_SENT_AT,
-                    DistributionElement.JSON_PROPERTY_KIND,
-                    DistributionElement.JSON_PROPERTY_STATUS,
-                    DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    GeoPositionUpdateWrapper.JSON_PROPERTY_GEO_POSITION_UPDATE})
-@JsonTypeName("geoPositionUpdateWrapper")
+@JsonPropertyOrder({GeoResourcesRequest.JSON_PROPERTY_RESOURCE_ID})
+@JsonTypeName("geoResourcesRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoPositionUpdateWrapper extends DistributionElement {
-  @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_GEO_POSITION_UPDATE =
-      "geoPositionUpdate";
-  private GeoPositionUpdate geoPositionUpdate;
+public class GeoResourcesRequest {
+  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
+  private List<String> resourceId = new ArrayList<>();
 
-  public GeoPositionUpdateWrapper() {}
+  public GeoResourcesRequest() {}
 
-  public GeoPositionUpdateWrapper
-  geoPositionUpdate(GeoPositionUpdate geoPositionUpdate) {
+  public GeoResourcesRequest resourceId(List<String> resourceId) {
 
-    this.geoPositionUpdate = geoPositionUpdate;
+    this.resourceId = resourceId;
+    return this;
+  }
+
+  public GeoResourcesRequest addResourceIdItem(String resourceIdItem) {
+    if (this.resourceId == null) {
+      this.resourceId = new ArrayList<>();
+    }
+    this.resourceId.add(resourceIdItem);
     return this;
   }
 
   /**
-   * Get geoPositionUpdate
-   * @return geoPositionUpdate
+   * Get resourceId
+   * @return resourceId
    **/
-  @JsonProperty(JSON_PROPERTY_GEO_POSITION_UPDATE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public GeoPositionUpdate getGeoPositionUpdate() {
-    return geoPositionUpdate;
+  public List<String> getResourceId() {
+    return resourceId;
   }
 
-  @JsonProperty(JSON_PROPERTY_GEO_POSITION_UPDATE)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setGeoPositionUpdate(GeoPositionUpdate geoPositionUpdate) {
-    this.geoPositionUpdate = geoPositionUpdate;
+  public void setResourceId(List<String> resourceId) {
+    if (resourceId == null) {
+      return;
+    }
+    if (this.resourceId == null) {
+      this.resourceId = new ArrayList<>();
+    }
+    this.resourceId.addAll(resourceId);
   }
 
   @Override
@@ -94,25 +100,21 @@ public class GeoPositionUpdateWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    GeoPositionUpdateWrapper geoPositionUpdateWrapper =
-        (GeoPositionUpdateWrapper)o;
-    return Objects.equals(this.geoPositionUpdate,
-                          geoPositionUpdateWrapper.geoPositionUpdate) &&
-        super.equals(o);
+    GeoResourcesRequest geoResourcesRequest = (GeoResourcesRequest)o;
+    return Objects.equals(this.resourceId, geoResourcesRequest.resourceId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoPositionUpdate, super.hashCode());
+    return Objects.hash(resourceId);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class GeoPositionUpdateWrapper {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    geoPositionUpdate: ")
-        .append(toIndentedString(geoPositionUpdate))
+    sb.append("class GeoResourcesRequest {\n");
+    sb.append("    resourceId: ")
+        .append(toIndentedString(resourceId))
         .append("\n");
     sb.append("}");
     return sb.toString();
