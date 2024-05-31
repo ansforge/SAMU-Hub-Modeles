@@ -45,7 +45,7 @@
         "elevator": "Esc D",
         "buildingName": "C",
         "entity": "Comptabilité",
-        "phoneNumber": 156789456
+        "phoneNumber": "0156789456"
       },
       "freetext": "Se rendre au service comptabilité l'accueil est prévenu",
       "geometry": {

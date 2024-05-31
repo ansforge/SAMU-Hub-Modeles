@@ -90,7 +90,7 @@
                   "elevator": "Esc D",
                   "buildingName": "C",
                   "entity": "Comptabilité",
-                  "phoneNumber": 156789456,
+                  "phoneNumber": "0156789456",
                   "accessCode": [
                     "4568"
                   ],
@@ -103,9 +103,7 @@
                       "lat": 48.95102310180664,
                       "lon": 2.1857428550720215,
                       "precision": "UNKNOWN",
-                      "height": 6,
-                      "heading": 8,
-                      "speed": 49
+                      "height": 6
                     },
                     "sysCoord": "système"
                   },
@@ -361,8 +359,6 @@
                               "lat": 48.869422912597656,
                               "lon": 2.2231545448303223,
                               "height": 22,
-                              "heading": 35,
-                              "speed": 46,
                               "precision": "STREET"
                             },
                             "sysCoord": "systeme"
@@ -381,7 +377,7 @@
                           "buildingName": "batb",
                           "entrance": "235a",
                           "entity": "urgences",
-                          "phoneNumber": 102030405
+                          "phoneNumber": "0102030405"
                         },
                         "city": {
                           "inseeCode": "92073",
