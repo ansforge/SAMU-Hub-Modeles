@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesInfo" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesInfo" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourcesInfo" type="x:resourcesInfo"/>
+    <complexType name="resourcesInfo">
+        <sequence>
+            <element name="caseId" type="string">
+                <annotation>
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                </annotation>
+            </element>
+            <element name="RSRIGId" type="string">
+                <annotation>
+                    <documentation>Identifiant unique de l'Echange de Ressource concerné. Le premier qui le créé à raison, ensuite il ne change pas. Il s'agit du message servant à échanger l'ensemble des ressources mobilisées/engagées sur un dossier</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="mobilizedResources" type="x:resource"/>
+        </sequence>
+    </complexType>
+    <complexType name="resource">
+        <sequence>
+            <element name="dateTime" type="dateTime">
+                <annotation>
+                    <documentation>date et heure d'engagement de la ressource</documentation>
+                </annotation>
+            </element>
+            <element name="resourceID" type="string">
+                <annotation>
+                    <documentation>ID unique de la ressource engagée</documentation>
+                </annotation>
+            </element>
+            <element name="ownerID" type="string">
+                <annotation>
+                    <documentation>(PSAP, …) qui a déclenché le vecteur et coordonne le vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="missionID" type="string">
+                <annotation>
+                    <documentation>Numéro de mission du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
+                </annotation>
+            </element>
+            <element name="resourceType" type="string">
+                <annotation>
+                    <documentation>Type de ressource mobilisée (type moyen)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="vehiculeType" type="string">
+                <annotation>
+                    <documentation>Type de ressource mobilisée (nomenclature type de vecteur à implémenter)</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="plate" type="string">
+                <annotation>
+                    <documentation>N° d'immatriculation du vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom donné à la ressource par l’organisation d’appartenance</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="orgID" type="string">
+                <annotation>
+                    <documentation>Organisation à laquelle appartient la ressource</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="centerName" type="string">
+                <annotation>
+                    <documentation>Lieu de garage principal</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="centerType" type="string"/>
+            <element minOccurs="0" name="centerCity" type="string">
+                <annotation>
+                    <documentation>Code INSEE de la commune du centre d'affectation</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="make" type="string">
+                <annotation>
+                    <documentation>Marque vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="model" type="string">
+                <annotation>
+                    <documentation>Modèle vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="team" type="x:team"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="state" type="x:state"/>
+            <element minOccurs="0" name="coord" type="x:coord"/>
+            <element minOccurs="0" name="contact" type="x:contact"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+        </sequence>
+    </complexType>
+    <complexType name="team">
+        <sequence>
+            <element minOccurs="0" name="teamCare" type="string">
+                <annotation>
+                    <documentation>Médical / paramédical : indique le niveau de médicalisation du vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom de l'équipe à bord du vecteur</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="state">
+        <sequence>
+            <element minOccurs="0" name="dateTime" type="dateTime"/>
+            <element minOccurs="0" name="status" type="string">
+                <annotation>
+                    <documentation>Statuts Antares</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="availability" type="string">
+                <annotation>
+                    <documentation>Indique si le vecteur est disponible / indisponible</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="coord">
+        <sequence>
+            <element name="lat" type="decimal">
+                <annotation>
+                    <documentation>Latitude du point clé de la localisation </documentation>
+                </annotation>
+            </element>
+            <element name="lon" type="decimal">
+                <annotation>
+                    <documentation>Longitude du point clé de la localisation</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="height" type="decimal">
+                <annotation>
+                    <documentation>Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="heading" type="decimal">
+                <annotation>
+                    <documentation>En degré</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="speed" type="decimal">
+                <annotation>
+                    <documentation>Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …</documentation>
+                </annotation>
+            </element>
+            <element name="precision">
+                <annotation>
+                    <documentation>Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="CITY"/>
+                        <enumeration value="STREET"/>
+                        <enumeration value="ADDRESS"/>
+                        <enumeration value="EXACT"/>
+                        <enumeration value="UNKNOWN"/>
+                    </restriction>
+                </simpleType>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="contact">
+        <sequence>
+            <element minOccurs="0" name="type">
+                <annotation>
+                    <documentation>Type de l'URI utilisée</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="PSTADD"/>
+                        <enumeration value="EMLADD"/>
+                        <enumeration value="IPADD"/>
+                        <enumeration value="FTPADD"/>
+                        <enumeration value="WWWADD"/>
+                        <enumeration value="PHNADD"/>
+                        <enumeration value="FAXADD"/>
+                        <enumeration value="PMRADD"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="details" type="string">
+                <annotation>
+                    <documentation>Valeur de l'URI utilisée pour contacter la ressource</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

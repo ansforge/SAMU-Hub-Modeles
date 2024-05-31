@@ -1,0 +1,40 @@
+,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
+0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440-DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
+1,2,ID partagé du message RS-RIG,,,,,,"Identifiant unique de l'Echange de Ressource concerné. Le premier qui le créé à raison, ensuite il ne change pas. Il s'agit du message servant à échanger l'ensemble des ressources mobilisées/engagées sur un dossier",,,RSRIGId,1..1,,string,,,,X
+2,3,Ressource engagée,,,,,,Liste des vecteurs associés au message :  liste l'ensemble des vecteurs ou ressources mobilisées,,,mobilizedResources,0..n,X,resource,,,,X
+3,4,,Date/heure de déclenchement,,,,,date et heure d'engagement de la ressource,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+4,5,,ID partagé,,,,,ID unique de la ressource engagée,,,resourceID,1..1,,string,,,,X
+5,6,,ID central d’appel ,,,,,"(PSAP, …) qui a déclenché le vecteur et coordonne le vecteur",,,ownerID,1..1,,string,,,,X
+6,7,,ID mission local,,,,,"Numéro de mission du central d’appel (PSAP, …) qui a déclenché le vecteur",,,missionID,0..1,,string,,,,X
+7,8,,Type de ressource,,,,,Type de ressource mobilisée (type moyen),,,resourceType,1..1,,string,X,Nomenclature / liste à implémenter,,X
+8,9,,Type de vecteur,,,,,Type de ressource mobilisée (nomenclature type de vecteur à implémenter),,,vehiculeType,0..1,,string,X,,,
+9,10,,Immatriculation,,,,,N° d'immatriculation du vecteur,,,plate,0..1,,string,,,,X
+10,11,,Nom,,,,,Nom donné à la ressource par l’organisation d’appartenance,,,name,0..1,,string,,,,X
+11,12,,ID Organisation propriétaire,,,,,Organisation à laquelle appartient la ressource,,,orgID,0..1,,string,,,,X
+12,13,,ID Centre d’affectation,,,,,Lieu de garage principal,,,centerName,0..1,,string,,,,X
+13,14,,Type de centre d’affectation,,,,,,,,centerType,0..1,,string,,,,X
+14,15,,Commune du centre d’affectation,,,,,Code INSEE de la commune du centre d'affectation,,,centerCity,0..1,,string,,,,X
+15,16,,Marque vecteur,,,,,Marque vecteur,,,make,0..1,,string,,,,X
+16,17,,Modèle vecteur,,,,,Modèle vecteur,,,model,0..1,,string,,,,X
+17,18,,Equipe vecteur,,,,,Décrit le type et l'équipe à bord du vecteur,,,team,0..1,X,team,,,,X
+18,19,,,Type,,,,Médical / paramédical : indique le niveau de médicalisation du vecteur,,,teamCare,0..1,,string,X,"ENUM : Medicale, Paramédicale",,X
+19,20,,,Nom,,,,Nom de l'équipe à bord du vecteur,,,name,0..1,,string,,,,X
+20,21,,Etats vecteur,,,,,,,,state,0..n,X,state,,,,X
+21,22,,,Date/heure de changement de statut,,,,,,,dateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X
+22,23,,,Statut du vecteur,,,,Statuts Antares,,,status,0..1,,string,X,"ENUM : Alerté, Parti, Arrivée sur les lieux, Transport destination, Arrivée destination, Fin de médicalisation , Quitte destination, Retour base, Rentrée Base",,X
+23,24,,,Disponibilité du vecteur,,,,Indique si le vecteur est disponible / indisponible,,,availability,0..1,,string,X,"ENUM : Disponible, Indisponible, Inconnu",,X
+24,25,,Dernière géolocalisation du vecteur,,,,,,,,coord,0..1,X,coord,,,,X
+25,26,,,Latitude,,,,Latitude du point clé de la localisation ,48.866667,,lat,1..1,,number,,,,X
+26,27,,,Longitude,,,,Longitude du point clé de la localisation,2.333333,,lon,1..1,,number,,,,X
+27,28,,,Altitude ,,,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,0..1,,number,,,,X
+28,29,,,Cap,,,,En degré,96,,heading,0..1,,number,,,,X
+29,30,,,Vitesse,,,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,0..1,,number,,,,X
+30,31,,,Précision,,,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN",,X
+31,32,,Contact,,,,,Type et valeur de l'URI utilisée par la ressource.,,,contact,0..1,X,contact,,,,X
+32,33,,,Type de contact du requérant,,,,Type de l'URI utilisée,PHNADD,,type,0..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",,X
+33,34,,,URI du contact requérant,,,,Valeur de l'URI utilisée pour contacter la ressource,0671830530,,details,0..1,,string,,,,X
+34,35,,Commentaires,,,,,"Texte libre permettant de passer toute autre information (équipements supplémentaires / particuliers, particularités du vecteur)",,,freetext,0..n,,string,,,,X

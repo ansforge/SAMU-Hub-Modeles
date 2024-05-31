@@ -33,9 +33,9 @@ strict digraph {
 	healthMotive -> qualification [headlabel=1 taillabel="0..1"]
 	details [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>details</B></TD>
+                <TD ><B>details</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">status <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">type <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">attribution <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">priority <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" >status <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >attribution <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >priority <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	details -> qualification [headlabel=1 taillabel="0..1"]
 	qualification [label=<<TABLE>
@@ -180,9 +180,9 @@ strict digraph {
 	initialAlert -> createCaseHealth [headlabel=1 taillabel="0..1"]
 	externalId [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>externalId</B></TD>
+                <TD ><B>externalId</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet externalId</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">source <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">value <I>string</I> : [1..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet externalId</I></TD></TR><TR><TD BORDER="0" >source <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >value <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	externalId -> administrativeFile [headlabel=1 taillabel="0..*"]
 	contact [label=<<TABLE>
@@ -215,9 +215,9 @@ strict digraph {
 	city -> personalAddress [headlabel=1 taillabel="0..1"]
 	personalAddress [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>personalAddress</B></TD>
+                <TD ><B>personalAddress</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet personalAddress</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet personalAddress</I></TD></TR>
                 </TABLE>>]
 	personalAddress -> administrativeFile [headlabel=1 taillabel="0..1"]
 	detailedName [label=<<TABLE>
@@ -250,9 +250,9 @@ strict digraph {
 	city -> personalAddress [headlabel=1 taillabel="0..1"]
 	personalAddress [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>personalAddress</B></TD>
+                <TD ><B>personalAddress</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet personalAddress</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet personalAddress</I></TD></TR>
                 </TABLE>>]
 	personalAddress -> generalPractitioner [headlabel=1 taillabel="0..1"]
 	contact [label=<<TABLE>
@@ -264,37 +264,37 @@ strict digraph {
 	contact -> generalPractitioner [headlabel=1 taillabel="0..*"]
 	generalPractitioner [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>generalPractitioner</B></TD>
+                <TD ><B>generalPractitioner</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet generalPractitioner</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">id <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet generalPractitioner</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	generalPractitioner -> administrativeFile [headlabel=1 taillabel="0..1"]
 	administrativeFile [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>administrativeFile</B></TD>
+                <TD ><B>administrativeFile</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet administrativeFile</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet administrativeFile</I></TD></TR>
                 </TABLE>>]
 	administrativeFile -> patient [headlabel=1 taillabel="0..1"]
 	cycle [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>cycle</B></TD>
+                <TD ><B>cycle</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet insCycle</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">status <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">attribute <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet insCycle</I></TD></TR><TR><TD BORDER="0" >status <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >attribute <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	cycle -> identity [headlabel=1 taillabel="0..1"]
 	number [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>number</B></TD>
+                <TD ><B>number</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet insNumber</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">value <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">oid <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet insNumber</I></TD></TR><TR><TD BORDER="0" >value <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >oid <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	number -> identity [headlabel=1 taillabel="0..1"]
 	strictFeatures [label=<<TABLE>
                 <TR>
                 <TD ><B>strictFeatures</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet insStrictFeatures</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">birthName <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">birthFirstName <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">birthFirstNamesList <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" >birthDate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >sex <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">birthPlaceCode <I>number</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet insStrictFeatures</I></TD></TR><TR><TD BORDER="0" >birthName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >birthFirstName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >birthFirstNamesList <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >birthDate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >sex <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >birthPlaceCode <I>number</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	strictFeatures -> identity [headlabel=1 taillabel="0..1"]
 	nonStrictFeatures [label=<<TABLE>
@@ -320,30 +320,30 @@ strict digraph {
 	healthMotive -> patient [headlabel=1 taillabel="0..1"]
 	detail [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>detail</B></TD>
+                <TD ><B>detail</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">weight <I>integer</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">height <I>integer</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">age <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">careLevel <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	detail -> patient [headlabel=1 taillabel="0..1"]
 	mainDiagnosis [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>mainDiagnosis</B></TD>
+                <TD ><B>mainDiagnosis</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet mainDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet mainDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	mainDiagnosis -> hypothesis [headlabel=1 taillabel="0..1"]
 	otherDiagnosis [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>otherDiagnosis</B></TD>
+                <TD ><B>otherDiagnosis</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet otherDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet otherDiagnosis</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	otherDiagnosis -> hypothesis [headlabel=1 taillabel="0..*"]
 	hypothesis [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>hypothesis</B></TD>
+                <TD ><B>hypothesis</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet hypothesis</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet hypothesis</I></TD></TR>
                 </TABLE>>]
 	hypothesis -> patient [headlabel=1 taillabel="0..1"]
 	patient [label=<<TABLE>
@@ -362,23 +362,23 @@ strict digraph {
 	detailedName -> operator [headlabel=1 taillabel="0..1"]
 	operator [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>operator</B></TD>
+                <TD ><B>operator</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">id <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">role <I>string</I> : [1..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	operator -> medicalNote [headlabel=1 taillabel="0..1"]
 	medicalNote [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>medicalNote</B></TD>
+                <TD ><B>medicalNote</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">id <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">creation <I>date-time</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">freetext <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">medicalHistory <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">treatments <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">allergies <I>string</I> : [0..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >medicalHistory <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >treatments <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >allergies <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealth [headlabel=1 taillabel="0..*"]
 	engagementDetails [label=<<TABLE>
                 <TR>
-                <TD BGCOLOR="#dceaf7"><B>engagementDetails</B></TD>
+                <TD ><B>engagementDetails</B></TD>
                 </TR>
-                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet engagementDetails</I></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">categoryType <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">resourceType <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">resourceId <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">teamCareInitial <I>string</I> : [1..1]  <B>15-15</B></TD></TR>
+                <TR><TD  BORDER="0"><I>objet engagementDetails</I></TD></TR><TR><TD BORDER="0" >categoryType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCareInitial <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	engagementDetails -> decision [headlabel=1 taillabel="0..1"]
 	externalLocationId [label=<<TABLE>
@@ -497,6 +497,6 @@ strict digraph {
                 <TR>
                 <TD ><B>createCaseHealth</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet createCaseHealth</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">perimeter <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">interventionType <I>string</I> : [0..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" BGCOLOR="#dceaf7">owner <I>string</I> : [1..1]  <B>15-15</B></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet createCaseHealth</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >senderCaseId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >referenceVersion <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >perimeter <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >interventionType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >owner <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
                 </TABLE>>]
 }
