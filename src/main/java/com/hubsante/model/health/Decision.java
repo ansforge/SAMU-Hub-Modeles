@@ -45,7 +45,7 @@ import java.util.Objects;
  * Decision
  */
 @JsonPropertyOrder({Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
-                    Decision.JSON_PROPERTY_TYPE,
+                    Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_DECIDER,
                     Decision.JSON_PROPERTY_ENGAGEMENT_DETAILS,
                     Decision.JSON_PROPERTY_TRANSPORT_DETAILS})
 @JsonTypeName("decision")
@@ -99,6 +99,9 @@ public class Decision {
 
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
+
+  public static final String JSON_PROPERTY_DECIDER = "decider";
+  private Object decider;
 
   public static final String JSON_PROPERTY_ENGAGEMENT_DETAILS =
       "engagementDetails";
@@ -181,6 +184,29 @@ public class Decision {
     this.type = type;
   }
 
+  public Decision decider(Object decider) {
+
+    this.decider = decider;
+    return this;
+  }
+
+  /**
+   * Get decider
+   * @return decider
+   **/
+  @JsonProperty(JSON_PROPERTY_DECIDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getDecider() {
+    return decider;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DECIDER)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDecider(Object decider) {
+    this.decider = decider;
+  }
+
   public Decision engagementDetails(EngagementDetails engagementDetails) {
 
     this.engagementDetails = engagementDetails;
@@ -239,13 +265,14 @@ public class Decision {
     return Objects.equals(this.id, decision.id) &&
         Objects.equals(this.creation, decision.creation) &&
         Objects.equals(this.type, decision.type) &&
+        Objects.equals(this.decider, decision.decider) &&
         Objects.equals(this.engagementDetails, decision.engagementDetails) &&
         Objects.equals(this.transportDetails, decision.transportDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, creation, type, engagementDetails,
+    return Objects.hash(id, creation, type, decider, engagementDetails,
                         transportDetails);
   }
 
@@ -256,6 +283,7 @@ public class Decision {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    decider: ").append(toIndentedString(decider)).append("\n");
     sb.append("    engagementDetails: ")
         .append(toIndentedString(engagementDetails))
         .append("\n");

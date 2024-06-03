@@ -374,6 +374,13 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >medicalHistory <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >treatments <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >allergies <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealth [headlabel=1 taillabel="0..*"]
+	decider [label=<<TABLE>
+                <TR>
+                <TD BGCOLOR="#dceaf7"><B>decider</B></TD>
+                </TR>
+                <TR><TD BGCOLOR="#dceaf7" BORDER="0"><I>objet decider</I></TD></TR>
+                </TABLE>>]
+	decider -> decision [headlabel=1 taillabel="0..1"]
 	engagementDetails [label=<<TABLE>
                 <TR>
                 <TD ><B>engagementDetails</B></TD>
