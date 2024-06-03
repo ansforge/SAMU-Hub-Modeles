@@ -741,6 +741,8 @@ components:
           examples:
           - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
             orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
+        decider:
+          $ref: '#/components/schemas/decider'
         engagementDetails:
           $ref: '#/components/schemas/engagementDetails'
         transportDetails:
@@ -2810,6 +2812,17 @@ components:
       - detailedName: {}
         id: None
         role: "ARM, Medecin r\xE9gulateur\u2026"
+    decider:
+      type: object
+      title: "Op\xE9rateur d\xE9cideur"
+      x-display: expansion-panels
+      x-health-only: true
+      required: []
+      properties: {}
+      additionalProperties: false
+      example: example.json#/decision/0/decider
+      examples:
+      - {}
     engagementDetails:
       type: object
       title: "D\xE9cision d'engagement"

@@ -225,28 +225,29 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
 162,163,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,,X,X,X
 163,164,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,X,X,X
 164,165,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPEDEC,X,X,X
-165,166,,Décision d'engagement,,,,,Partage de l'équipe à engager sur le lieu de l'intervention,,,engagementDetails,,,,,,0..1,X,engagementDetails,,,,X,X
-166,167,,,Type de moyen,,,,détaille le moyen à engager,"SMUR, Pompiers",,categoryType,,,,,,1..1,,string,X,NOMENCLATURE : TYPE_MOYEN,,X,X
-167,168,,,Type de vecteur,,,,détaille le type de vecteur à engager,"AR, VLM, VSAV",,resourceType,,,,,,0..1,,string,X,NOMENCLATURE : TYPE_VECTEUR,,X,X
-168,169,,,ID vecteur ,,,,,,,resourceId,,,,,,0..1,,string,,,,X,X
-169,170,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCareInitial,,,,,,1..1,,string,,NOMENCLATURE : NIVSOIN,,X,X
-170,171,,Décision de transport/orientation,,,,,,,,transportDetails,,,,,,0..1,X,transportDetails,,,X,X,X
-171,172,,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
+165,166,,Opérateur décideur,,,,,,,,decider,,,,,,0..1,X,decider,,,,X,X
+168,169,,Décision d'engagement,,,,,Partage de l'équipe à engager sur le lieu de l'intervention,,,engagementDetails,,,,,,0..1,X,engagementDetails,,,,X,X
+169,170,,,Type de moyen,,,,détaille le moyen à engager,"SMUR, Pompiers",,categoryType,,,,,,1..1,,string,X,NOMENCLATURE : TYPE_MOYEN,,X,X
+170,171,,,Type de vecteur,,,,détaille le type de vecteur à engager,"AR, VLM, VSAV",,resourceType,,,,,,0..1,,string,X,NOMENCLATURE : TYPE_VECTEUR,,X,X
+171,172,,,ID vecteur ,,,,,,,resourceId,,,,,,0..1,,string,,,,X,X
+172,173,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCareInitial,,,,,,1..1,,string,,NOMENCLATURE : NIVSOIN,,X,X
+173,174,,Décision de transport/orientation,,,,,,,,transportDetails,,,,,,0..1,X,transportDetails,,,X,X,X
+174,175,,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
 - Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,,X,X,X
-172,173,,,ID demande de concours/de ressources,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X,
-173,174,,,ID vecteur partagé,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X,X
-174,175,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,,NOMENCLATURE : NIVSOIN,X,X,X
-175,176,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X,X
-176,177,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X,X
-177,178,,,,Localisation de la destination,# Voir type location,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X,X
-178,179,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+175,176,,,ID demande de concours/de ressources,,,,Identifiant de la ou des demandes de concours ,,,concoursRequest,,,,,,0..1,,string,,,X,X,
+176,177,,,ID vecteur partagé,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,,transportationID,,,,,,0..1,,string,,,X,X,X
+177,178,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,,NOMENCLATURE : NIVSOIN,X,X,X
+178,179,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X,X
+179,180,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X,X
+180,181,,,,Localisation de la destination,# Voir type location,,,,,destinationLocation,,,,,,0..1,X,location,,,X,X,X
+181,182,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X,
-179,180,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X,X
-180,181,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X,X
-181,182,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X,X
-182,183,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X,X
-183,184,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X,X
-184,185,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X,X
-185,186,Description de l'affaire/dossier,,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'affaire/dossier. Ces informations sont générales, et ont vocation à être échangées en inter-force. ",Le forcené n'est pas maîtrisé. Voiture renversée. Urgences fermées de 22h à 6h00.,,freetext,,,,,,0..n,,string,,,X,X,X
+182,183,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X,X
+183,184,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X,X
+184,185,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X,X
+185,186,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X,X
+186,187,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X,X
+187,188,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X,X
+188,189,Description de l'affaire/dossier,,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'affaire/dossier. Ces informations sont générales, et ont vocation à être échangées en inter-force. ",Le forcené n'est pas maîtrisé. Voiture renversée. Urgences fermées de 22h à 6h00.,,freetext,,,,,,0..n,,string,,,X,X,X
