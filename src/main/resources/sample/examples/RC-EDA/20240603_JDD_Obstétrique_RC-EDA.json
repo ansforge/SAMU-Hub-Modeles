@@ -1,0 +1,125 @@
+{
+  "createCase": {
+    "caseId": "fr.fire.cga-044.SC-20240526-044-cga-AL8",
+    "senderCaseId": "SC-20240526-044-cga-AL8",
+    "creation": "2024-05-26T13:15:00+02:00",
+    "referenceVersion": "1.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.05.02",
+        "label": "Obstétrique"
+      },
+      "healthMotive": {
+        "code": "M03.02",
+        "label": "Autre problème obstétrique non hémorragique"
+      },
+      "victims": {
+        "freetext": "Femme enceinte de 2 mois qui est tombé d'une échelle au bureau. Delphine Vigneau, 32 ans.",
+        "count": "1",
+        "mainVictim": "ADULT"
+      },
+      "locationKind": {
+        "code": "L04.02.00",
+        "label": "Centre commercial / magasin"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188891",
+      "locLabel": "Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain",
+      "name": "Centre Commercial Atlantis",
+      "detailedAddress": {
+        "complete": "Boulevard Salvador Allende"
+      },
+      "city": {
+        "name": "Saint-Herblain",
+        "inseeCode": "44800"
+      },
+      "country": "FR",
+      "access": {
+        "floor": "RDC",
+        "buildingName": "Soleil",
+        "phoneNumber": "0969362006"
+      },
+      "externalLocationId": [
+        {
+          "source": "SIRET",
+          "value": "70142121200018"
+        }
+      ]
+    },
+    "initialAlert": {
+      "id": "CGA044-20240526-AL0182",
+      "reception": "2024-05-26T13:15:00+02:00",
+      "reporting": "STANDARD",
+      "caller": {
+        "callerContact": {
+          "type": "PHNADD",
+          "detail": "0671832618",
+          "channel": "Personne"
+        },
+        "callbackContact": {
+          "type": "PHNADD",
+          "detail": "0671832618",
+          "channel": "Personne"
+        },
+        "detailedName": {
+          "complete": "Agnès Duberti",
+          "lastName": "Duberti",
+          "firstName": "Agnès"
+        },
+        "type": "TIERS",
+        "communication": "AUCUNE",
+        "language": "FR"
+      },
+      "location": {
+        "locID": "111fb03a-6fd9-41e0-8e81-990c45188891",
+        "locLabel": "Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain",
+        "name": "Centre Commercial Atlantis",
+        "detailedAddress": {
+          "complete": "Boulevard Salvador Allende"
+        },
+        "city": {
+          "name": "Saint-Herblain",
+          "inseeCode": "44800"
+        },
+        "country": "FR",
+        "access": {
+          "floor": "RDC",
+          "buildingName": "Soleil",
+          "phoneNumber": "0969362006"
+        }
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C02.05.02",
+          "label": "Obstétrique"
+        },
+        "healthMotive": {
+          "code": "M03.02",
+          "label": "Autre problème obstétrique non hémorragique"
+        },
+        "victims": {
+          "freetext": "Femme enceinte de 2 mois qui est tombé d'une échelle au bureau.  Delphine Vigneau, 32 ans.",
+          "mainVictim": "ADULT",
+          "count": "1"
+        },
+        "locationKind": {
+          "code": "L04.02.00",
+          "label": "Centre commercial / magasin"
+        }
+      },
+      "callTaker": {
+        "organization": "fr.fire.cga-044",
+        "controlRoom": "CGA44"
+      }
+    },
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "COMMERCIAL",
+          "value": "IKEA Nantes"
+        }
+      ]
+    }
+  }
+}
