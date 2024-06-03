@@ -18,16 +18,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-
-      - name: Merge target branch into current branch
-        run: |
-          git config user.name "${{ github.actor }}"
-          git config user.email "${{ github.actor }}@users.noreply.github.com"
-          git checkout-index
-          git checkout origin/${{ github.event.pull_request.base.ref }} --ours -- ./src/main
+        uses: actions/checkout@v3
 
       - name: Check for changes requiring running the parser
         uses: dorny/paths-filter@v3
