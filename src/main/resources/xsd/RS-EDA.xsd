@@ -471,6 +471,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="decider" type="x:decider"/>
             <element minOccurs="0" name="engagementDetails" type="x:engagementDetails"/>
             <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
@@ -1821,6 +1822,9 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
             </element>
         </sequence>
+    </complexType>
+    <complexType name="decider">
+        <sequence/>
     </complexType>
     <complexType name="engagementDetails">
         <sequence>

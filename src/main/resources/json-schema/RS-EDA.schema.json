@@ -706,6 +706,9 @@
                         "PASPLUS"
                     ]
                 },
+                "decider": {
+                    "$ref": "#/definitions/decider"
+                },
                 "engagementDetails": {
                     "$ref": "#/definitions/engagementDetails"
                 },
@@ -2609,6 +2612,16 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0/operator"
+        },
+        "decider": {
+            "type": "object",
+            "title": "Op\u00e9rateur d\u00e9cideur",
+            "x-display": "expansion-panels",
+            "x-health-only": true,
+            "required": [],
+            "properties": {},
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/decider"
         },
         "engagementDetails": {
             "type": "object",
