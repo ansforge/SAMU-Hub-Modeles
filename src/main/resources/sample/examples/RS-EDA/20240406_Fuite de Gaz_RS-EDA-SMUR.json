@@ -1,0 +1,174 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu440.DRFR154402413800236",
+    "senderCaseId": "DRFR154402413800236",
+    "creation": "2024-05-18T18:15:00+02:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C09.03.00",
+        "label": "Fuite de gaz"
+      },
+      "locationKind": {
+        "code": "L01.01.01",
+        "label": "Maison particulière, pavillon, à l'intérieur"
+      },
+      "riskThreat": [
+        {
+          "code": "R13",
+          "label": "Risque d'explosion, présence de gaz"
+        }
+      ],
+      "healthMotive": {
+        "code": "M03.10",
+        "label": "Malaise avec perte de connaissance initiale"
+      },
+      "details": {
+        "priority": "P1",
+        "attribution": "TOXICOL"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188889",
+      "detailedAddress": {
+        "complete": "3 Rue des Marins",
+        "wayName": {
+          "complete": "Rue des Marins",
+          "type": "Rue",
+          "name": "Des Marins"
+        },
+        "number": "3"
+      },
+      "city": {
+        "name": "Bouaye",
+        "inseeCode": "44830"
+      },
+      "access": {
+        "buildingName": "C"
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.146089,
+            "lon": -1.691374,
+            "precision": "ADDRESS"
+          }
+        },
+        "obsDatime": "2024-05-18T18:15:00+02:00"
+      },
+      "freetext": "Maison aux volets verts",
+      "country": "FR"
+    },
+    "initialAlert": {
+      "id": "samu440-20240518-AL0192",
+      "reception": "2023-11-18T18:15:00+01:00",
+      "reporting": "ATTENTION",
+      "caller": {
+        "callerContact": {
+          "type": "PHNADD",
+          "detail": "0671830523",
+          "channel": "Personne"
+        },
+        "freetext": "Mère des enfants",
+        "detailedName": {
+          "complete": "Marie Dubois",
+          "lastName": "Dubois",
+          "firstName": "Marie"
+        },
+        "language": "FR",
+        "type": "FAMILLE",
+        "callbackContact": {
+          "channel": "Personne",
+          "type": "PHNADD",
+          "detail": "0671830523"
+        },
+        "communication": "AUCUNE"
+      }
+    },
+    "decision": [
+      {
+        "type": "INTER",
+        "creation": "2024-05-18T18:19:00+02:00",
+        "engagementDetails": {
+          "categoryType": "SMUR",
+          "resourceType": "VLM",
+          "teamCareInitial": "MED"
+        }
+      },
+      {
+        "engagementDetails": {
+          "categoryType": "SIS",
+          "resourceType": "VSAV",
+          "teamCareInitial": "SECOURS"
+        },
+        "creation": "2024-05-18T18:20:00+02:00",
+        "type": "INTER"
+      }
+    ],
+    "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Alice Normand",
+            "lastName": "Normand",
+            "firstName": "Alice"
+          },
+          "strictFeatures": {
+            "sex": "FEM",
+            "birthDate": "2011-05-11"
+          }
+        },
+        "id": "fr.health.samu440.DRFR154402414300123.P01",
+        "detail": {
+          "age": "13"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "PB32",
+            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone"
+          }
+        },
+        "healthMotive": {
+          "code": "M03.10",
+          "label": "Malaise avec perte de connaissance initiale"
+        }
+      },
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Grégoire Normand",
+            "lastName": "Normand",
+            "firstName": "Grégoire"
+          },
+          "strictFeatures": {
+            "birthDate": "2013-11-03",
+            "sex": "MASC"
+          }
+        },
+        "id": "fr.health.samu440.DRFR154402413800236.P02",
+        "detail": {
+          "age": "11"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone",
+            "code": "PB32"
+          }
+        }
+      }
+    ],
+    "freetext": [
+      "Les enfants et leur mère sortent dehors pour attendre le VLM, les pompiers vont intervenir sur la fuite de gaz dans l'appartement"
+    ],
+    "medicalNote": [
+      {
+        "id": "fr.health.samu440.DRFR154402413800236.P02",
+        "creation": "2024-05-18T18:15:00+02:00",
+        "freetext": "Asthmatique",
+        "treatments": "SERETIDE DISKUS 250/50ug (1 bouffée matin et soir)"
+      }
+    ],
+    "owner": "CRRA44",
+    "interventionType": "Primaire", 
+    "referenceVersion": "1.3"
+  }
+}

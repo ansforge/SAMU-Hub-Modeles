@@ -1,0 +1,143 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.fire.cga-044.SC-20240526-044-cga-AL8",
+    "senderCaseId": "DRFR154402414300123",
+    "creation": "2024-05-26T13:15:00+02:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.05.02",
+        "label": "Obstétrique"
+      },
+      "locationKind": {
+        "code": "L04.02.00",
+        "label": "Centre commercial / magasin"
+      },
+      "healthMotive": {
+        "code": "M03.03",
+        "label": "Saignements gynécologiques"
+      },
+      "details": {
+        "priority": "P2",
+        "attribution": "MU"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188891",
+      "detailedAddress": {
+        "complete": "Boulevard Salvador Allende",
+        "wayName": {
+          "complete": "Boulevard Salvador Allende",
+          "type": "Boulevard",
+          "name": "Salvador Allende"
+        }
+      },
+      "city": {
+        "name": "Saint-Herblain",
+        "inseeCode": "44800"
+      },
+      "access": {
+        "floor": "RDC",
+        "buildingName": "Soleil",
+        "phoneNumber": 969362006
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.146089,
+            "lon": -1.691374,
+            "precision": "ADDRESS"
+          }
+        },
+        "obsDatime": "2024-05-18T18:15:00+02:00"
+      },
+      "externalLocationId": [
+        {
+          "source": "SIRET",
+          "value": "70142121200018"
+        }
+      ],
+      "country": "FR",
+      "locLabel": "Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain",
+      "name": "Centre Commercial Atlantis"
+    },
+    "initialAlert": {
+      "id": "CGA044-20240526-AL0182",
+      "reception": "2024-05-26T13:15:00+02:00",
+      "reporting": "STANDARD",
+      "caller": {
+        "callerContact": {
+          "type": "PHNADD",
+          "detail": "0671832618",
+          "channel": "Personne"
+        },
+        "detailedName": {
+          "complete": "Agnès Duberti",
+          "lastName": "Duberti",
+          "firstName": "Agnès"
+        },
+        "language": "FR",
+        "type": "TIERS",
+        "callbackContact": {
+          "channel": "Personne",
+          "type": "PHNADD",
+          "detail": "0671832618"
+        },
+        "communication": "AUCUNE"
+      }
+    },
+    "decision": [
+      {
+        "type": "INTER",
+        "creation": "2024-05-26T13:19:00+02:00",
+        "engagementDetails": {
+          "categoryType": "SMUR",
+          "resourceType": "VLM",
+          "teamCareInitial": "MED"
+        }
+      }
+    ],
+    "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Delphine Vigneau",
+            "lastName": "Vigneau",
+            "firstName": "Delphine"
+          },
+          "strictFeatures": {
+            "sex": "FEM",
+            "birthDate": "1992-03-03"
+          }
+        },
+        "id": "fr.health.samu440.DRFR154402414300123.P01",
+        "detail": {
+          "age": "32"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "JA40 ",
+            "label": "Hémorragie en début de grossesse"
+          }
+        },
+        "healthMotive": {
+          "code": "M03.10",
+          "label": "Malaise avec perte de connaissance initiale"
+        },
+        "freetext": [
+          "Enceinte de 2 mois, antécédents de fausse couche à 1 mois"
+        ]
+      }
+    ],
+    "owner": "CRRA44",
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "COMMERCIAL",
+          "value": "IKEA Nantes"
+        }
+      ]
+    },
+    "interventionType": "Primaire",
+    "referenceVersion": "1.3"
+  }
+}
