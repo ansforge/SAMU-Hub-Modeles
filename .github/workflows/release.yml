@@ -1,0 +1,36 @@
+name: build image on release
+
+on:
+  release:
+
+jobs:
+  build-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+
+      - name: Grant execute permission for Gradlew
+        run: chmod +x gradlew
+
+      - name: check lib version
+        env:
+          RELEASE_NAME: ${{ github.ref_name}}
+        run: |
+          CURRENT_VERSION=$(grep 'version=' gradle.properties | cut -d '=' -f 2)
+          if [[ "$CURRENT_VERSION" == "$RELEASE_NAME" ]]; then
+            echo "versions match"
+          else
+            echo "Error: The version in gradle.properties ($CURRENT_VERSION) does not match the release name ($RELEASE_NAME). Please update either one accordingly."
+            exit 1
+          fi
+
+      - name: Build, run tests and publish
+        run: ./gradlew publish
