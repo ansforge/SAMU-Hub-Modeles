@@ -9,6 +9,8 @@ on:
 jobs:
   build-image:
     runs-on: ubuntu-latest
+    env:
+      RELEASE_NAME: ${{ github.ref_name}}
 
     steps:
       - name: Checkout
@@ -23,17 +25,16 @@ jobs:
       - name: Grant execute permission for Gradlew
         run: chmod +x gradlew
 
-      - name: check lib version
-        env:
-          RELEASE_NAME: ${{ github.ref_name}}
+      - name: check release name matches version pattern
         run: |
-          CURRENT_VERSION=$(grep 'version=' gradle.properties | cut -d '=' -f 2)
-          if [[ "$CURRENT_VERSION" == "$RELEASE_NAME" ]]; then
-            echo "versions match"
+          PATTERN="^([0-9]+\.[0-9]+\.[0-9]+)(-[A-Za-z]+(-[0-9]+))?$"
+  
+          if [[ $RELEASE_NAME =~ $PATTERN ]]; then
+            echo "The RELEASE_NAME '$RELEASE_NAME' is valid."
           else
-            echo "Error: The version in gradle.properties ($CURRENT_VERSION) does not match the release name ($RELEASE_NAME). Please update either one accordingly."
+            echo "The RELEASE_NAME '$RELEASE_NAME' is invalid."
             exit 1
           fi
 
       - name: Build, run tests and publish
-        run: ./gradlew publish
+        run: ./gradlew -Pversion=$RELEASE_NAME publish
