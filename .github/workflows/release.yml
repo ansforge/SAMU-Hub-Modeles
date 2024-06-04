@@ -2,6 +2,9 @@ name: build image on release
 
 on:
   release:
+    types:
+      - prereleased
+      - published
 
 jobs:
   build-image:
