@@ -1,7 +1,0 @@
-,code,label_n1,description,commentaire
-0,POINT,Point géographique unique,Point géographique unique,
-1,CERCLE,Un cercle défini par le centre et n'importe quel point de la circonférence,Un cercle défini par le centre et n'importe quel point de la circonférence,
-2,SURFACE,Une liste de points formant une ligne,Une liste de points formant une ligne,
-3,GRID,Une surface fermée,Une surface fermée,
-4,POLYGON,Une liste de points formant une ligne fermée,Une liste de points formant une ligne fermée,
-5,ELLIPSE,Une ellipse définie par 3 points : la position des 2 foyers et une position sur le contour.,Une ellipse définie par 3 points : la position des 2 foyers et une position sur le contour.,
