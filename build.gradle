@@ -48,6 +48,12 @@ tasks.named('test') {
     finalizedBy jacocoTestReport
 }
 
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
 license {
     header = file('LICENSE_HEADER.txt')
     strictCheck = true
