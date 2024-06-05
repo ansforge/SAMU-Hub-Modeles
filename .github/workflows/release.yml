@@ -4,7 +4,6 @@ on:
   release:
     types:
       - prereleased
-      - published
 
 jobs:
   build-image:
