@@ -51,6 +51,10 @@ def run(sheet, name, version, perimeter_filter, model_type):
         full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
         # Getting modelName from cell A1
         modelName = full_df.iloc[0, 0]
+        # Get line 7 to find which columns have 'Périmètre' flag
+        perimeter_row = full_df.iloc[6, :]
+        # Save all the column numbers that have 'Périmètre' in their name
+        perimeter_columns = [i for i, x in enumerate(perimeter_row) if 'Périmètre' in str(x)]
         # Computing number of rows in table
         # rows = df.iloc[7:, 0]
         # Simply remove initial rows & total row
@@ -66,7 +70,8 @@ def run(sheet, name, version, perimeter_filter, model_type):
         return {
             'modelName': modelName,
             'cols': cols,
-            'rows': rows
+            'rows': rows,
+            'perimeterColumns': perimeter_columns
         }
 
     def get_nomenclature(elem):
@@ -122,6 +127,14 @@ def run(sheet, name, version, perimeter_filter, model_type):
     # Keeping only the relevant perimeter rows
     if perimeter_filter:
         df = df[pd.notna(df[perimeter_filter])]
+
+    # Deleting the columns of other perimeters by checking if the column is in the perimeter columns
+    for i in range(0, len(params['perimeterColumns'])):
+        if df.columns.iloc[params['perimeterColumns'][i]] != perimeter_filter:
+            df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
+
+
+
 
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
