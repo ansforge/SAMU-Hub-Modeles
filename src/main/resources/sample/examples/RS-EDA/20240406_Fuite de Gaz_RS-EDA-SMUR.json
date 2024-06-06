@@ -82,6 +82,10 @@
           "detail": "0671830523"
         },
         "communication": "AUCUNE"
+      },
+    "callTaker": {
+        "organization": "fr.health.samu440",
+        "controlRoom": "CRRA44"
       }
     },
     "decision": [
