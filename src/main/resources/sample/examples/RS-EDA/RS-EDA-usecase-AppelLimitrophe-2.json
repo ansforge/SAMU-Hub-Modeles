@@ -1,6 +1,6 @@
 {
   "createCaseHealth": {
-    "caseId": "fr.health.samu950-DRFR159502401000233",
+    "caseId": "fr.health.samu950.DRFR159502401000233",
     "senderCaseId": "DRFR159502401000233",
     "creation": "2024-01-10T14:07:00+01:00",
     "referenceVersion": "1.4",
@@ -60,7 +60,7 @@
       }
     },
     "initialAlert": {
-      "id": "fr.health.samu950-DRFR159502401000233",
+      "id": "fr.health.samu950.DRFR159502401000233",
       "reception": "2024-01-10T14:05:00+01:00",
       "reporting": "STANDARD",
       "caller": {
@@ -125,7 +125,7 @@
             "sex": "FEM"
           }
         },
-        "id": "fr.health.samu950-DRFR159502401000233.P1"
+        "id": "fr.health.samu950.DRFR159502401000233.P1"
       }
     ],
     "perimeter": "AMU",
