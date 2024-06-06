@@ -38,7 +38,7 @@
         "inseeCode": "77360"
       },
       "country": "FR",
-      "freetext": "La porte de garage est ouverte",
+      "freetext": "aller directement dans le garage, la porte est ouverte",
       "geometry": {
         "point": {
           "coord": {
