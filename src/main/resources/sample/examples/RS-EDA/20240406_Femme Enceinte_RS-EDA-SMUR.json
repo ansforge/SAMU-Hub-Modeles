@@ -83,6 +83,15 @@
           "detail": "0671832618"
         },
         "communication": "AUCUNE"
+        },
+      "callTaker": {
+        "organization": "fr.health.samu440",
+        "controlRoom": "CRRA44",
+        "calltakerContact": {
+          "channel": "Personne",
+          "type": "PHNADD",
+          "detail": "0102030405"
+        }
       }
     },
     "decision": [
