@@ -28,7 +28,7 @@ nomenclatures() {
   else
     echo "Changes detected in $NOMENCLATURE_FOLDER, running nomenclatures generation..."
     cd ../nomenclature_parser
-    /Users/romainfouilland/code/envs/all/bin/python nomenclature_parser.py || git stash && exit 1
+    /Users/romainfouilland/code/envs/all/bin/python nomenclature_parser.py || (git stash && exit 1)
     git add .
   fi
 }
