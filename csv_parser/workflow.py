@@ -58,6 +58,11 @@ def parser_and_mv():
                       f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'. "
                       f"It was: '{full_df.iloc[1, 0]}'")
                 exit(1)
+        else:
+            print(f"Error in sheet {sheet}: schema list (cell A2) is empty. "
+                  f"Should be 'name:filter:modelType' separated by a space. "
+                  f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'.")
+            exit(1)
 
         for schema in schemas:
             # Run csv_parser
