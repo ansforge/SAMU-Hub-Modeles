@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -125,12 +126,17 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
                 converter.deserializeJsonEDXL(fullJson);
                 log.info("File {} has been successfully deserialized", file.getName());
 
+                validator.validateJSON(fullJson, FULL_SCHEMA);
+                log.info("File {} is valid against schema", file.getName());
 
             }catch (JsonProcessingException e) {
                 allPass.set(false);
                 log.error("File " + file.getName() + " could have not been deserialized: " + e.getMessage());
             } catch (IOException e) {
                 throw new RuntimeException(e);
+            } catch (ValidationException e) {
+                allPass.set(false);
+                log.error("File " + file.getName() + " is not valid against schema: " + e.getMessage());
             }
         });
         if (!allPass.get()) {
