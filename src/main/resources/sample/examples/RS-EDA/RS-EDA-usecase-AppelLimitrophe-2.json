@@ -38,7 +38,6 @@
         "name": "Sartrouville",
         "inseeCode": "78586"
       },
-      "country": "FR",
       "access": {
         "floor": "4",
         "interphone": "SARL TOTO",
@@ -60,9 +59,7 @@
       }
     },
     "initialAlert": {
-      "id": "fr.health.samu950-DRFR159502401000233",
       "reception": "2024-01-10T14:05:00+01:00",
-      "reporting": "STANDARD",
       "caller": {
         "callerContact": {
           "type": "PHNADD",
@@ -82,15 +79,6 @@
           "firstName": "Magda"
         },
         "type": "TIERS"
-      },
-      "callTaker": {
-        "organization": "fr.health.samu950",
-        "controlRoom": "CRRA 95",
-        "calltakerContact": {
-          "type": "PHNADD",
-          "detail": "060102030406",
-          "channel": "Personne"
-        }
       },
       "notes": [
         {
