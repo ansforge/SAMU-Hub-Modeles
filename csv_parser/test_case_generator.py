@@ -1,6 +1,7 @@
 import json
 import os
 import collections.abc as collections
+import unicodedata
 from pydoc import locate
 
 import pandas as pd
@@ -144,7 +145,7 @@ def run(perimeters):
                     # We only use JDD1 values, as the other two JDDs will be overriden later on in the lrm itself
                     if get_type(row["Pas de test"]) == "receive":
                         test_case["steps"][-1]["message"][
-                            "file"] = f'{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]}.json'
+                            "file"] =  normalize_path(f'{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]}.json')
                         # We populate the type_override_map object with the type overrides for the current step
                         type_override_map = generate_type_override_map(row)
                     # We update current set and empty the receive_json object
@@ -167,15 +168,18 @@ def run(perimeters):
 
 def generate_step_json(perimeter, test_case, row, receive_jsons):
     # Create the JSON files for the step
-    if not os.path.exists(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}'):
-        os.makedirs(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}')
+    if not os.path.exists(normalize_path(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}')):
+        os.makedirs(normalize_path(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}'))
     for i in range(len(receive_jsons)):
         if receive_jsons[i] != {}:  # We only generate the JSON file if there are values in the object
             with open(
-                    f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]} JDD{i+1}.json',
+                    normalize_path(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]} JDD{i + 1}.json'),
                     'w', encoding='utf-8') as file:
                 file.write(dumps(receive_jsons[i], indent=4, ensure_ascii=False))
 
+def normalize_path(text):
+    # We normalize the path to remove any accents and replace spaces with underscores
+    return ''.join(char for char in unicodedata.normalize('NFD', text) if unicodedata.category(char) != 'Mn').replace(' ', '_')
 
 def get_type(type_in_french):
     if type_in_french == "Envoi":
