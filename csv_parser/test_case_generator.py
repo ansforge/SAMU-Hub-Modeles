@@ -71,18 +71,21 @@ def run(perimeters):
                     # of json objects that we'll use to generate n JSON files for the 'receive' steps
                     for i in range(1,5):
                         if pd.notna(row[f"JDD {i}"]):
+                            test3 = f"JDD {i}"
+                            test2 = row[f"JDD {i}"]
+                            test = row[f"JDD {i}"]
                             # We split the JSONPath string by '.' and iterate over the keys to create the JSON object,
                             # dropping the initial '$.' element and creating arrays when the key has a bracketed number
                             # (such as $.createCaseHealth.patient[0].id)
                             path = row["path JSON"].split('.')
                             current = receive_jsons[i-1]
                             # We iterate over the split path (dropping the $)
-                            for i in range(1, len(path) - 1):
+                            for j in range(1, len(path) - 1):
                                 # Presence of '[' indicates an array
-                                if path[i].find('[') != -1:
+                                if path[j].find('[') != -1:
                                     # We split on '[' and ']' to get the key and the index
-                                    key = path[i].split('[')[0]
-                                    index = int(path[i].split('[')[1].split(']')[0])
+                                    key = path[j].split('[')[0]
+                                    index = int(path[j].split('[')[1].split(']')[0])
                                     # If the key is not in the current object, we add it as an empty array
                                     if key not in current:
                                         current[key] = []
@@ -95,12 +98,12 @@ def run(perimeters):
                                 else:
                                     # For properties that are not arrays, we simply add the key to the current object if it
                                     # is not already present
-                                    if path[i] not in current:
-                                        current[path[i]] = {}
+                                    if path[j] not in current:
+                                        current[path[j]] = {}
                                     # We set the current object to the object at the path
-                                    current = current[path[i]]
+                                    current = current[path[j]]
                                 # We add the value to the last key in the path if we're at the end of the path
-                                if i == len(path) - 2:
+                                if j == len(path) - 2:
                                     if path[-1] in type_override_map:
                                         current[path[-1]] = locate(transform_type(type_override_map[path[-1]]))(row[f"JDD {i}"])
                                     else:
