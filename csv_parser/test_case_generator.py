@@ -46,8 +46,9 @@ def run(perimeters):
             test_case["description"] = test_case_df.iloc[3, 2]
             # Create steps array in test_case object
             test_case["steps"] = []
-            # Create empty JSON object that we'll use to generate potential JSON files for the 'receive' steps
-            receive_json = {}
+            # Create empty array with length 5 and object that we'll use to store the potential JSON files for the
+            # 'receive' steps
+            receive_jsons = [{} for i in range(5)]
             # Holds current step data
             current_step = {}
             # Holds current step type overrides
@@ -59,47 +60,50 @@ def run(perimeters):
                 if row["Pas de test"] == "End":
                     # If the last step is of 'receive' type, we generate the JSON file for it
                     if get_type(current_step["Pas de test"]) == "receive":
-                        generate_step_json(perimeter, test_case, current_step, receive_json)
+                        generate_step_json(perimeter, test_case, current_step, receive_jsons)
                     break
                 # Else if the value is nan, we check if the row represents a 'required' value by checking the V column
                 elif pd.isna(row["Pas de test"]):
                     # As we iterate over the step, we generate a json object using the ["path JSON"] field, which
-                    # contains a JSONPath string (such as $.createCaseHealth.caseId) and the value of ["JDD 1"] column
-                    if pd.notna(row["JDD 1"]):
-                        # We split the JSONPath string by '.' and iterate over the keys to create the JSON object,
-                        # dropping the initial '$.' element and creating arrays when the key has a bracketed number
-                        # (such as $.createCaseHealth.patient[0].id)
-                        path = row["path JSON"].split('.')
-                        current = receive_json
-                        # We iterate over the split path (dropping the $)
-                        for i in range(1, len(path) - 1):
-                            # Presence of '[' indicates an array
-                            if path[i].find('[') != -1:
-                                # We split on '[' and ']' to get the key and the index
-                                key = path[i].split('[')[0]
-                                index = int(path[i].split('[')[1].split(']')[0])
-                                # If the key is not in the current object, we add it as an empty array
-                                if key not in current:
-                                    current[key] = []
-                                # If the index is greater than the length of the array, we add empty objects to the
-                                # array until the index is reached
-                                if len(current[key]) <= index:
-                                    current[key].append({})
-                                # We grab the property at the index and set it as the current object
-                                current = current[key][index]
-                            else:
-                                # For properties that are not arrays, we simply add the key to the current object if it
-                                # is not already present
-                                if path[i] not in current:
-                                    current[path[i]] = {}
-                                # We set the current object to the object at the path
-                                current = current[path[i]]
-                            # We add the value to the last key in the path if we're at the end of the path
-                            if i == len(path) - 2:
-                                if path[-1] in type_override_map:
-                                    current[path[-1]] = locate(transform_type(type_override_map[path[-1]]))(row["JDD 1"])
+                    # contains a JSONPath string (such as $.createCaseHealth.caseId) and the value of ["JDD n"] column,
+                    # where n is the number of the JDD column (1, 2 or 3) and then we add the object to the array
+                    # of json objects that we'll use to generate n JSON files for the 'receive' steps
+                    for i in range(1,5):
+                        if pd.notna(row[f"JDD {i}"]):
+                            # We split the JSONPath string by '.' and iterate over the keys to create the JSON object,
+                            # dropping the initial '$.' element and creating arrays when the key has a bracketed number
+                            # (such as $.createCaseHealth.patient[0].id)
+                            path = row["path JSON"].split('.')
+                            current = receive_jsons[i-1]
+                            # We iterate over the split path (dropping the $)
+                            for i in range(1, len(path) - 1):
+                                # Presence of '[' indicates an array
+                                if path[i].find('[') != -1:
+                                    # We split on '[' and ']' to get the key and the index
+                                    key = path[i].split('[')[0]
+                                    index = int(path[i].split('[')[1].split(']')[0])
+                                    # If the key is not in the current object, we add it as an empty array
+                                    if key not in current:
+                                        current[key] = []
+                                    # If the index is greater than the length of the array, we add empty objects to the
+                                    # array until the index is reached
+                                    if len(current[key]) <= index:
+                                        current[key].append({})
+                                    # We grab the property at the index and set it as the current object
+                                    current = current[key][index]
                                 else:
-                                    current[path[-1]] = str(row["JDD 1"])
+                                    # For properties that are not arrays, we simply add the key to the current object if it
+                                    # is not already present
+                                    if path[i] not in current:
+                                        current[path[i]] = {}
+                                    # We set the current object to the object at the path
+                                    current = current[path[i]]
+                                # We add the value to the last key in the path if we're at the end of the path
+                                if i == len(path) - 2:
+                                    if path[-1] in type_override_map:
+                                        current[path[-1]] = locate(transform_type(type_override_map[path[-1]]))(row[f"JDD {i}"])
+                                    else:
+                                        current[path[-1]] = str(row[f"JDD {i}"])
 
                     # If the value is not empty, we add it to the required values array of the last step, specifying
                     # the number in the "verificationLevel" property
@@ -161,14 +165,16 @@ def run(perimeters):
     return test_cases
 
 
-def generate_step_json(perimeter, test_case, row, receive_json):
-    # Create the JSON file for the step
+def generate_step_json(perimeter, test_case, row, receive_jsons):
+    # Create the JSON files for the step
     if not os.path.exists(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}'):
         os.makedirs(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}')
-    with open(
-            f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]}.json',
-            'w', encoding='utf-8') as file:
-        file.write(dumps(receive_json, indent=4, ensure_ascii=False))
+    for i in range(len(receive_jsons)):
+        if receive_jsons[i] != {}:  # We only generate the JSON file if there are values in the object
+            with open(
+                    f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]} JDD{i}.json',
+                    'w', encoding='utf-8') as file:
+                file.write(dumps(receive_jsons[i+1], indent=4, ensure_ascii=False))
 
 
 def get_type(type_in_french):
