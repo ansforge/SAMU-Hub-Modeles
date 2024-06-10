@@ -34,73 +34,97 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.City;
-import com.hubsante.model.health.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * Highway
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder({Highway.JSON_PROPERTY_NAME, Highway.JSON_PROPERTY_PK,
+                    Highway.JSON_PROPERTY_DIRECTION})
+@JsonTypeName("highway")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class Highway {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  public static final String JSON_PROPERTY_PK = "pk";
+  private String pk;
 
-  public PersonalAddress() {}
+  public static final String JSON_PROPERTY_DIRECTION = "direction";
+  private String direction;
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+  public Highway() {}
 
-    this.detailedAddress = detailedAddress;
+  public Highway name(String name) {
+
+    this.name = name;
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * Nom de l&#39;autoroute
+   * @return name
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public String getName() {
+    return name;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public PersonalAddress city(City city) {
+  public Highway pk(String pk) {
 
-    this.city = city;
+    this.pk = pk;
     return this;
   }
 
   /**
-   * Get city
-   * @return city
+   * Point kilométrique
+   * @return pk
    **/
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_PK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public City getCity() {
-    return city;
+  public String getPk() {
+    return pk;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonProperty(JSON_PROPERTY_PK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  public void setPk(String pk) {
+    this.pk = pk;
+  }
+
+  public Highway direction(String direction) {
+
+    this.direction = direction;
+    return this;
+  }
+
+  /**
+   * Sens
+   * @return direction
+   **/
+  @JsonProperty(JSON_PROPERTY_DIRECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDirection() {
+    return direction;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DIRECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDirection(String direction) {
+    this.direction = direction;
   }
 
   @Override
@@ -111,25 +135,26 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    Highway highway = (Highway)o;
+    return Objects.equals(this.name, highway.name) &&
+        Objects.equals(this.pk, highway.pk) &&
+        Objects.equals(this.direction, highway.direction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(name, pk, direction);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
+    sb.append("class Highway {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    pk: ").append(toIndentedString(pk)).append("\n");
+    sb.append("    direction: ")
+        .append(toIndentedString(direction))
         .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("}");
     return sb.toString();
   }

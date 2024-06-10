@@ -43,8 +43,6 @@ import java.util.Objects;
  * TransportDetails
  */
 @JsonPropertyOrder({TransportDetails.JSON_PROPERTY_ORIENTATION,
-                    TransportDetails.JSON_PROPERTY_CONCOURS_REQUEST,
-                    TransportDetails.JSON_PROPERTY_TRANSPORTATION_I_D,
                     TransportDetails.JSON_PROPERTY_TEAM_CARE,
                     TransportDetails.JSON_PROPERTY_DESTINATION})
 @JsonTypeName("transportDetails")
@@ -54,15 +52,44 @@ public class TransportDetails {
   public static final String JSON_PROPERTY_ORIENTATION = "orientation";
   private String orientation;
 
-  public static final String JSON_PROPERTY_CONCOURS_REQUEST = "concoursRequest";
-  private String concoursRequest;
+  /**
+   * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
+   * ...)
+   */
+  public enum TeamCareEnum {
+    MED("MED"),
 
-  public static final String JSON_PROPERTY_TRANSPORTATION_I_D =
-      "transportationID";
-  private String transportationID;
+    PARAMED("PARAMED"),
+
+    SECOURS("SECOURS");
+
+    private String value;
+
+    TeamCareEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TeamCareEnum fromValue(String value) {
+      for (TeamCareEnum b : TeamCareEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
-  private String teamCare;
+  private TeamCareEnum teamCare;
 
   public static final String JSON_PROPERTY_DESTINATION = "destination";
   private Destination destination;
@@ -93,55 +120,7 @@ public class TransportDetails {
     this.orientation = orientation;
   }
 
-  public TransportDetails concoursRequest(String concoursRequest) {
-
-    this.concoursRequest = concoursRequest;
-    return this;
-  }
-
-  /**
-   * Identifiant de la ou des demandes de concours
-   * @return concoursRequest
-   **/
-  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getConcoursRequest() {
-    return concoursRequest;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConcoursRequest(String concoursRequest) {
-    this.concoursRequest = concoursRequest;
-  }
-
-  public TransportDetails transportationID(String transportationID) {
-
-    this.transportationID = transportationID;
-    return this;
-  }
-
-  /**
-   * Identifiant du véhicule terrestre / aérien / maritime de transport
-   *principal (&#x3D; celui dans lequel se trouve le patient), permettant
-   *d&#39;associer la décision à un véhicule spécifique + au patient.
-   * @return transportationID
-   **/
-  @JsonProperty(JSON_PROPERTY_TRANSPORTATION_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getTransportationID() {
-    return transportationID;
-  }
-
-  @JsonProperty(JSON_PROPERTY_TRANSPORTATION_I_D)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransportationID(String transportationID) {
-    this.transportationID = transportationID;
-  }
-
-  public TransportDetails teamCare(String teamCare) {
+  public TransportDetails teamCare(TeamCareEnum teamCare) {
 
     this.teamCare = teamCare;
     return this;
@@ -155,13 +134,13 @@ public class TransportDetails {
   @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getTeamCare() {
+  public TeamCareEnum getTeamCare() {
     return teamCare;
   }
 
   @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTeamCare(String teamCare) {
+  public void setTeamCare(TeamCareEnum teamCare) {
     this.teamCare = teamCare;
   }
 
@@ -198,18 +177,13 @@ public class TransportDetails {
     }
     TransportDetails transportDetails = (TransportDetails)o;
     return Objects.equals(this.orientation, transportDetails.orientation) &&
-        Objects.equals(this.concoursRequest,
-                       transportDetails.concoursRequest) &&
-        Objects.equals(this.transportationID,
-                       transportDetails.transportationID) &&
         Objects.equals(this.teamCare, transportDetails.teamCare) &&
         Objects.equals(this.destination, transportDetails.destination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(orientation, concoursRequest, transportationID,
-                        teamCare, destination);
+    return Objects.hash(orientation, teamCare, destination);
   }
 
   @Override
@@ -218,12 +192,6 @@ public class TransportDetails {
     sb.append("class TransportDetails {\n");
     sb.append("    orientation: ")
         .append(toIndentedString(orientation))
-        .append("\n");
-    sb.append("    concoursRequest: ")
-        .append(toIndentedString(concoursRequest))
-        .append("\n");
-    sb.append("    transportationID: ")
-        .append(toIndentedString(transportationID))
         .append("\n");
     sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
     sb.append("    destination: ")

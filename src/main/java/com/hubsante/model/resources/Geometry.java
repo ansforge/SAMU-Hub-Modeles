@@ -43,9 +43,8 @@ import java.util.Objects;
 /**
  * Geometry
  */
-@JsonPropertyOrder({Geometry.JSON_PROPERTY_OBS_DATIME,
-                    Geometry.JSON_PROPERTY_POINT,
-                    Geometry.JSON_PROPERTY_SKETCH})
+@JsonPropertyOrder(
+    {Geometry.JSON_PROPERTY_OBS_DATIME, Geometry.JSON_PROPERTY_POINT})
 @JsonTypeName("geometry")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -55,9 +54,6 @@ public class Geometry {
 
   public static final String JSON_PROPERTY_POINT = "point";
   private Point point;
-
-  public static final String JSON_PROPERTY_SKETCH = "sketch";
-  private String sketch;
 
   public Geometry() {}
 
@@ -109,38 +105,6 @@ public class Geometry {
     this.point = point;
   }
 
-  public Geometry sketch(String sketch) {
-
-    this.sketch = sketch;
-    return this;
-  }
-
-  /**
-   * Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une
-   *forme dans un système de projection donné.  Dans le cas d&#39;une alerte
-   *donnée sur une zone géographique non précise (par exemple une section
-   *d&#39;autoroute ou une zone sur un chemin de randonnée), une indication sur
-   *la zone de recherche peut être fournie. En XML, un objet gml est encapsulé
-   *dans une balise &lt;sketch
-   *xmlns:gml&#x3D;&#39;http://www.opengis.net/gml&#39;
-   *version&#x3D;&#39;1.0&#39; &gt; &lt;/sketch&gt; En JSON, les balises sont
-   *reprises depuis le modèle gml Voir http://www.opengis.net/gml pour le format
-   *de l&#39;objet sketch
-   * @return sketch
-   **/
-  @JsonProperty(JSON_PROPERTY_SKETCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSketch() {
-    return sketch;
-  }
-
-  @JsonProperty(JSON_PROPERTY_SKETCH)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSketch(String sketch) {
-    this.sketch = sketch;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -151,13 +115,12 @@ public class Geometry {
     }
     Geometry geometry = (Geometry)o;
     return Objects.equals(this.obsDatime, geometry.obsDatime) &&
-        Objects.equals(this.point, geometry.point) &&
-        Objects.equals(this.sketch, geometry.sketch);
+        Objects.equals(this.point, geometry.point);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(obsDatime, point, sketch);
+    return Objects.hash(obsDatime, point);
   }
 
   @Override
@@ -168,7 +131,6 @@ public class Geometry {
         .append(toIndentedString(obsDatime))
         .append("\n");
     sb.append("    point: ").append(toIndentedString(point)).append("\n");
-    sb.append("    sketch: ").append(toIndentedString(sketch)).append("\n");
     sb.append("}");
     return sb.toString();
   }

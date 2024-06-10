@@ -32,7 +32,7 @@ components:
             \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
         RSDDRId:
           type: string
           title: "ID DDR partag\xE9"
@@ -76,7 +76,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/answer
-          description: 'oui / non / oui partiel / '
+          description: "oui / non / oui partiel / diff\xE9r\xE9"
           examples:
           - None
         deadline:
@@ -108,13 +108,13 @@ components:
         freetext: None
     resource:
       type: object
-      title: "Vecteur/ressource engag\xE9e"
+      title: "Ressource engag\xE9e"
       x-display: expansion-panels
       x-health-only: false
       required:
       - commitmentDateTime
       - resourceID
-      - type
+      - resourceType
       properties:
         commitmentDateTime:
           type: string
@@ -158,9 +158,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResources/0/resourceID
-          description: "ID unique de la ressource engag\xE9e"
+          description: "ID unique de la ressource engag\xE9e partag\xE9e = aux champs\
+            \ {orgID}.R.{ownerID}"
           examples:
-          - None
+          - fr.health.samu440.R.123456
         orgID:
           type: string
           title: "Identifiant de l'organisation propri\xE9taire"
@@ -169,18 +170,103 @@ components:
           example: example.json#/mobilizedResources/0/orgID
           description: "Organisation \xE0 laquelle appartient la ressource"
           examples:
-          - None
-        type:
+          - fr.health.samu440
+        resourceType:
           type: string
-          title: Type
+          title: Type de ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResources/0/type
-          description: "Type de ressource mobilis\xE9e (nomenclature type de vecteur\
-            \ \xE0 impl\xE9menter pour l'instant, voir ensuite si elle est compl\xE9\
-            t\xE9e par des ressources autres que des vecteurs)"
+          example: example.json#/mobilizedResources/0/resourceType
+          description: "Type de ressource mobilis\xE9e : Smur, Hospitaliers (hors\
+            \ Smur), Professionnels Lib\xE9raux, Ambulanciers priv\xE9s (Transporteurs\
+            \ Sanitaires Urgent), etc."
+          enum:
+          - SMUR
+          - HOSPIT
+          - LIB
+          - 'TSU '
+          - SIS
+          - AASC
+          - FDO
+          - ADM
+          - DAE
+          - AUTRE
           examples:
-          - None
+          - SMUR
+        vehiculeType:
+          type: string
+          title: Type de vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResources/0/vehiculeType
+          description: "Type de vecteur mobilis\xE9 : V\xE9hicule L\xE9ger M\xE9dicalis\xE9\
+            , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
+            \ Ambulance de r\xE9animation P\xE9diatrique, etc."
+          enum:
+          - VPSP
+          - VLSC
+          - AUTRESC
+          - TAXI
+          - TRANSP
+          - AUTRE
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - INCONNU
+          - CONSEIL
+          - DAE
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - MEDC
+          - MEDV
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
+          - DRAGON
+          - AVSC
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - MOYSSE
+          - AUTRESIS
+          - VLM
+          - AR
+          - AR-BAR
+          - AR-PED
+          - VL
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          - VSL
+          - NAVISIS
+          examples:
+          - VLM
         plate:
           type: string
           title: Immatriculation
@@ -259,20 +345,6 @@ components:
           $ref: '#/components/schemas/state'
         contact:
           $ref: '#/components/schemas/contact'
-        freetext:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Commentaires
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/mobilizedResources/0/freetext/0
-            description: "Texte libre permettant de passer toute autre information\
-              \ (\xE9quipements suppl\xE9mentaires / particuliers, particularit\xE9\
-              s du vecteur)"
-            examples:
-            - None
       additionalProperties: false
       example: example.json#/mobilizedResources/0
     team:
@@ -331,7 +403,9 @@ components:
           example: example.json#/mobilizedResources/0/state/status
           description: Statuts Antares
           examples:
-          - None
+          - 'ENUM : Alerte, Parti, Arrivee Sur Les Lieux, Transport Destination, Arrivee
+            Destination, Fin De Medicalisation , Quitte Destination, Retour Base,
+            Rentree Base'
         availability:
           type: string
           title: "Disponibilit\xE9 du vecteur"
@@ -340,13 +414,15 @@ components:
           example: example.json#/mobilizedResources/0/state/availability
           description: Indique si le vecteur est disponible / indisponible
           examples:
-          - None
+          - 'ENUM : Disponible, Indisponible, Inconnu'
       additionalProperties: false
       example: example.json#/mobilizedResources/0/state
       examples:
       - dateTime: None
-        status: None
-        availability: None
+        status: 'ENUM : Alerte, Parti, Arrivee Sur Les Lieux, Transport Destination,
+          Arrivee Destination, Fin De Medicalisation , Quitte Destination, Retour
+          Base, Rentree Base'
+        availability: 'ENUM : Disponible, Indisponible, Inconnu'
     contact:
       type: object
       title: Contact

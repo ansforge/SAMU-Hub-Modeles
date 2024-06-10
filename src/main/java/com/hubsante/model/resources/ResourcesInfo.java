@@ -45,7 +45,6 @@ import java.util.Objects;
  * ResourcesInfo
  */
 @JsonPropertyOrder({ResourcesInfo.JSON_PROPERTY_CASE_ID,
-                    ResourcesInfo.JSON_PROPERTY_RS_R_I_G_ID,
                     ResourcesInfo.JSON_PROPERTY_MOBILIZED_RESOURCES})
 @JsonTypeName("resourcesInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -55,9 +54,6 @@ public class ResourcesInfo {
   String xmlns = "urn:emergency:cisu:2.0:resourcesInfo";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
-
-  public static final String JSON_PROPERTY_RS_R_I_G_ID = "RSRIGId";
-  private String rsRIGId;
 
   public static final String JSON_PROPERTY_MOBILIZED_RESOURCES =
       "mobilizedResources";
@@ -73,7 +69,7 @@ public class ResourcesInfo {
 
   /**
    * Identifiant de l&#39;affaire partagé entre tous les intervenants &#x3D; aux
-   *champs {organization}.{senderCaseId}. Il doit pouvoir être généré de façon
+   *champs {organization}.{senderCaseId} Il doit pouvoir être généré de façon
    *unique et décentralisée et ne présenter aucune ambiguïté.  Il est généré par
    *le système du partenaire récepteur de la primo-demande de secours (créateur
    *du dossier). Valorisation : {pays}.{domaine}.{organisation}.{structure
@@ -91,31 +87,6 @@ public class ResourcesInfo {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCaseId(String caseId) {
     this.caseId = caseId;
-  }
-
-  public ResourcesInfo rsRIGId(String rsRIGId) {
-
-    this.rsRIGId = rsRIGId;
-    return this;
-  }
-
-  /**
-   * Identifiant unique de l&#39;Echange de Ressource concerné. Le premier qui
-   *le créé à raison, ensuite il ne change pas. Il s&#39;agit du message servant
-   *à échanger l&#39;ensemble des ressources mobilisées/engagées sur un dossier
-   * @return rsRIGId
-   **/
-  @JsonProperty(JSON_PROPERTY_RS_R_I_G_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getRsRIGId() {
-    return rsRIGId;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RS_R_I_G_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRsRIGId(String rsRIGId) {
-    this.rsRIGId = rsRIGId;
   }
 
   public ResourcesInfo mobilizedResources(List<Resource> mobilizedResources) {
@@ -168,14 +139,13 @@ public class ResourcesInfo {
     }
     ResourcesInfo resourcesInfo = (ResourcesInfo)o;
     return Objects.equals(this.caseId, resourcesInfo.caseId) &&
-        Objects.equals(this.rsRIGId, resourcesInfo.rsRIGId) &&
         Objects.equals(this.mobilizedResources,
                        resourcesInfo.mobilizedResources);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsRIGId, mobilizedResources);
+    return Objects.hash(caseId, mobilizedResources);
   }
 
   @Override
@@ -183,7 +153,6 @@ public class ResourcesInfo {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourcesInfo {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    rsRIGId: ").append(toIndentedString(rsRIGId)).append("\n");
     sb.append("    mobilizedResources: ")
         .append(toIndentedString(mobilizedResources))
         .append("\n");

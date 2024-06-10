@@ -37,6 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.CaseDetails;
 import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.LocationKind;
+import com.hubsante.model.health.NaN;
 import com.hubsante.model.health.RiskThreat;
 import com.hubsante.model.health.WhatsHappen;
 import java.util.ArrayList;
@@ -48,7 +49,8 @@ import java.util.Objects;
 /**
  * Qualification
  */
-@JsonPropertyOrder({Qualification.JSON_PROPERTY_WHATS_HAPPEN,
+@JsonPropertyOrder({Qualification.JSON_PROPERTY_ORIGIN,
+                    Qualification.JSON_PROPERTY_WHATS_HAPPEN,
                     Qualification.JSON_PROPERTY_LOCATION_KIND,
                     Qualification.JSON_PROPERTY_RISK_THREAT,
                     Qualification.JSON_PROPERTY_HEALTH_MOTIVE,
@@ -57,6 +59,49 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Qualification {
+
+  /**
+   * Numéro de provenance de l&#39;appel
+   */
+  public enum OriginEnum {
+    _15("15"),
+
+    _18("18"),
+
+    _17("17"),
+
+    _112("112"),
+
+    _116117("116117");
+
+    private NaN value;
+
+    OriginEnum(NaN value) { this.value = value; }
+
+    @JsonValue
+    public NaN getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static OriginEnum fromValue(NaN value) {
+      for (OriginEnum b : OriginEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ORIGIN = "origin";
+  private OriginEnum origin = null;
+
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
   private WhatsHappen whatsHappen;
 
@@ -73,6 +118,29 @@ public class Qualification {
   private CaseDetails details;
 
   public Qualification() {}
+
+  public Qualification origin(OriginEnum origin) {
+
+    this.origin = origin;
+    return this;
+  }
+
+  /**
+   * Numéro de provenance de l&#39;appel
+   * @return origin
+   **/
+  @JsonProperty(JSON_PROPERTY_ORIGIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OriginEnum getOrigin() {
+    return origin;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ORIGIN)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOrigin(OriginEnum origin) {
+    this.origin = origin;
+  }
 
   public Qualification whatsHappen(WhatsHappen whatsHappen) {
 
@@ -214,7 +282,8 @@ public class Qualification {
       return false;
     }
     Qualification qualification = (Qualification)o;
-    return Objects.equals(this.whatsHappen, qualification.whatsHappen) &&
+    return Objects.equals(this.origin, qualification.origin) &&
+        Objects.equals(this.whatsHappen, qualification.whatsHappen) &&
         Objects.equals(this.locationKind, qualification.locationKind) &&
         Objects.equals(this.riskThreat, qualification.riskThreat) &&
         Objects.equals(this.healthMotive, qualification.healthMotive) &&
@@ -223,14 +292,15 @@ public class Qualification {
 
   @Override
   public int hashCode() {
-    return Objects.hash(whatsHappen, locationKind, riskThreat, healthMotive,
-                        details);
+    return Objects.hash(origin, whatsHappen, locationKind, riskThreat,
+                        healthMotive, details);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Qualification {\n");
+    sb.append("    origin: ").append(toIndentedString(origin)).append("\n");
     sb.append("    whatsHappen: ")
         .append(toIndentedString(whatsHappen))
         .append("\n");

@@ -34,8 +34,8 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
-            <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
     </complexType>
     <complexType name="qualification">
@@ -1505,20 +1505,17 @@ Par convention les prénoms composés doivent préférablement être séparés p
 - Laisser sur place</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="transportationID" type="string">
-                <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
-                </annotation>
-            </element>
-            <element name="teamCare" type="string">
+            <element name="teamCare">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SECOURS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
@@ -1540,7 +1537,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="destinationLocation" type="x:location"/>
+            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

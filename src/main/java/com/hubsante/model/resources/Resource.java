@@ -38,10 +38,8 @@ import com.hubsante.model.resources.Contact;
 import com.hubsante.model.resources.State;
 import com.hubsante.model.resources.Team;
 import java.time.OffsetDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -52,13 +50,13 @@ import java.util.Objects;
      Resource.JSON_PROPERTY_ORIGIN_DATE_TIME,
      Resource.JSON_PROPERTY_DESTINATION_DATE_TIME,
      Resource.JSON_PROPERTY_RESOURCE_I_D, Resource.JSON_PROPERTY_ORG_I_D,
-     Resource.JSON_PROPERTY_TYPE, Resource.JSON_PROPERTY_PLATE,
-     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_ORDER,
-     Resource.JSON_PROPERTY_CENTER_NAME, Resource.JSON_PROPERTY_CENTER_TYPE,
-     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_MAKE,
-     Resource.JSON_PROPERTY_MODEL, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT,
-     Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
+     Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
+     Resource.JSON_PROPERTY_ORDER, Resource.JSON_PROPERTY_CENTER_NAME,
+     Resource.JSON_PROPERTY_CENTER_TYPE, Resource.JSON_PROPERTY_CENTER_CITY,
+     Resource.JSON_PROPERTY_MAKE, Resource.JSON_PROPERTY_MODEL,
+     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
+     Resource.JSON_PROPERTY_CONTACT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -80,8 +78,217 @@ public class Resource {
   public static final String JSON_PROPERTY_ORG_I_D = "orgID";
   private String orgID;
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  /**
+   * Type de ressource mobilisée : Smur, Hospitaliers (hors Smur),
+   * Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires
+   * Urgent), etc.
+   */
+  public enum ResourceTypeEnum {
+    SMUR("SMUR"),
+
+    HOSPIT("HOSPIT"),
+
+    LIB("LIB"),
+
+    TSU_("TSU "),
+
+    SIS("SIS"),
+
+    AASC("AASC"),
+
+    FDO("FDO"),
+
+    ADM("ADM"),
+
+    DAE("DAE"),
+
+    AUTRE("AUTRE");
+
+    private String value;
+
+    ResourceTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
+  private ResourceTypeEnum resourceType;
+
+  /**
+   * Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de
+   * réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation
+   * Pédiatrique, etc.
+   */
+  public enum VehiculeTypeEnum {
+    VPSP("VPSP"),
+
+    VLSC("VLSC"),
+
+    AUTRESC("AUTRESC"),
+
+    TAXI("TAXI"),
+
+    TRANSP("TRANSP"),
+
+    AUTRE("AUTRE"),
+
+    TRAIN("TRAIN"),
+
+    AVION("AVION"),
+
+    PERSO("PERSO"),
+
+    APIED("APIED"),
+
+    INCONNU("INCONNU"),
+
+    CONSEIL("CONSEIL"),
+
+    DAE("DAE"),
+
+    HELIFSI("HELIFSI"),
+
+    VLFSI("VLFSI"),
+
+    FFSI("FFSI"),
+
+    VHFSI("VHFSI"),
+
+    MEDC("MEDC"),
+
+    MEDV("MEDV"),
+
+    PHARMA("PHARMA"),
+
+    INF("INF"),
+
+    MEDSPE("MEDSPE"),
+
+    DENT("DENT"),
+
+    AUTREPRO("AUTREPRO"),
+
+    DRAGON("DRAGON"),
+
+    AVSC("AVSC"),
+
+    VSAV("VSAV"),
+
+    GRIMP("GRIMP"),
+
+    VPL("VPL"),
+
+    SRSIS("SRSIS"),
+
+    FEUSIS("FEUSIS"),
+
+    VPMA("VPMA"),
+
+    VCH("VCH"),
+
+    VR("VR"),
+
+    PCSIS("PCSIS"),
+
+    VLISP("VLISP"),
+
+    VLMSP("VLMSP"),
+
+    VLCG("VLCG"),
+
+    VLSIS("VLSIS"),
+
+    MOYSSE("MOYSSE"),
+
+    AUTRESIS("AUTRESIS"),
+
+    VLM("VLM"),
+
+    AR("AR"),
+
+    AR_BAR("AR-BAR"),
+
+    AR_PED("AR-PED"),
+
+    VL("VL"),
+
+    HELISMUR("HELISMUR"),
+
+    HELISAN("HELISAN"),
+
+    AVSMUR("AVSMUR"),
+
+    AVSAN("AVSAN"),
+
+    NAVISMUR("NAVISMUR"),
+
+    PSM1("PSM1"),
+
+    PSM2("PSM2"),
+
+    PSM3("PSM3"),
+
+    PSMP("PSMP"),
+
+    VPC("VPC"),
+
+    AMB_GV("AMB-GV"),
+
+    AMB_PV("AMB-PV"),
+
+    AMB_BAR("AMB-BAR"),
+
+    AMB("AMB"),
+
+    VSL("VSL"),
+
+    NAVISIS("NAVISIS");
+
+    private String value;
+
+    VehiculeTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static VehiculeTypeEnum fromValue(String value) {
+      for (VehiculeTypeEnum b : VehiculeTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_VEHICULE_TYPE = "vehiculeType";
+  private VehiculeTypeEnum vehiculeType;
 
   public static final String JSON_PROPERTY_PLATE = "plate";
   private String plate;
@@ -115,9 +322,6 @@ public class Resource {
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
   private Contact contact;
-
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private List<String> freetext;
 
   public Resource() {}
 
@@ -199,7 +403,8 @@ public class Resource {
   }
 
   /**
-   * ID unique de la ressource engagée
+   * ID unique de la ressource engagée partagée &#x3D; aux champs
+   *{orgID}.R.{ownerID}
    * @return resourceID
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_I_D)
@@ -238,29 +443,54 @@ public class Resource {
     this.orgID = orgID;
   }
 
-  public Resource type(String type) {
+  public Resource resourceType(ResourceTypeEnum resourceType) {
 
-    this.type = type;
+    this.resourceType = resourceType;
     return this;
   }
 
   /**
-   * Type de ressource mobilisée (nomenclature type de vecteur à implémenter
-   *pour l&#39;instant, voir ensuite si elle est complétée par des ressources
-   *autres que des vecteurs)
-   * @return type
+   * Type de ressource mobilisée : Smur, Hospitaliers (hors Smur),
+   *Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires
+   *Urgent), etc.
+   * @return resourceType
    **/
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getType() {
-    return type;
+  public ResourceTypeEnum getResourceType() {
+    return resourceType;
   }
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(String type) {
-    this.type = type;
+  public void setResourceType(ResourceTypeEnum resourceType) {
+    this.resourceType = resourceType;
+  }
+
+  public Resource vehiculeType(VehiculeTypeEnum vehiculeType) {
+
+    this.vehiculeType = vehiculeType;
+    return this;
+  }
+
+  /**
+   * Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de
+   *réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation
+   *Pédiatrique, etc.
+   * @return vehiculeType
+   **/
+  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public VehiculeTypeEnum getVehiculeType() {
+    return vehiculeType;
+  }
+
+  @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVehiculeType(VehiculeTypeEnum vehiculeType) {
+    this.vehiculeType = vehiculeType;
   }
 
   public Resource plate(String plate) {
@@ -518,45 +748,6 @@ public class Resource {
     this.contact = contact;
   }
 
-  public Resource freetext(List<String> freetext) {
-
-    this.freetext = freetext;
-    return this;
-  }
-
-  public Resource addFreetextItem(String freetextItem) {
-    if (this.freetext == null) {
-      this.freetext = new ArrayList<>();
-    }
-    this.freetext.add(freetextItem);
-    return this;
-  }
-
-  /**
-   * Get freetext
-   * @return freetext
-   **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<String> getFreetext() {
-    return freetext;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFreetext(List<String> freetext) {
-    if (freetext == null) {
-      return;
-    }
-    if (this.freetext == null) {
-      this.freetext = new ArrayList<>();
-    }
-    this.freetext.addAll(freetext);
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -573,7 +764,8 @@ public class Resource {
                        resource.destinationDateTime) &&
         Objects.equals(this.resourceID, resource.resourceID) &&
         Objects.equals(this.orgID, resource.orgID) &&
-        Objects.equals(this.type, resource.type) &&
+        Objects.equals(this.resourceType, resource.resourceType) &&
+        Objects.equals(this.vehiculeType, resource.vehiculeType) &&
         Objects.equals(this.plate, resource.plate) &&
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.order, resource.order) &&
@@ -584,16 +776,15 @@ public class Resource {
         Objects.equals(this.model, resource.model) &&
         Objects.equals(this.team, resource.team) &&
         Objects.equals(this.state, resource.state) &&
-        Objects.equals(this.contact, resource.contact) &&
-        Objects.equals(this.freetext, resource.freetext);
+        Objects.equals(this.contact, resource.contact);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(commitmentDateTime, originDateTime, destinationDateTime,
-                        resourceID, orgID, type, plate, name, order, centerName,
-                        centerType, centerCity, make, model, team, state,
-                        contact, freetext);
+                        resourceID, orgID, resourceType, vehiculeType, plate,
+                        name, order, centerName, centerType, centerCity, make,
+                        model, team, state, contact);
   }
 
   @Override
@@ -613,7 +804,12 @@ public class Resource {
         .append(toIndentedString(resourceID))
         .append("\n");
     sb.append("    orgID: ").append(toIndentedString(orgID)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    resourceType: ")
+        .append(toIndentedString(resourceType))
+        .append("\n");
+    sb.append("    vehiculeType: ")
+        .append(toIndentedString(vehiculeType))
+        .append("\n");
     sb.append("    plate: ").append(toIndentedString(plate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    order: ").append(toIndentedString(order)).append("\n");
@@ -631,7 +827,6 @@ public class Resource {
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -28,7 +28,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element name="answer" type="string">
                 <annotation>
-                    <documentation>oui / non / oui partiel / </documentation>
+                    <documentation>oui / non / oui partiel / différé</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="deadline" type="string">
@@ -62,7 +62,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element name="resourceID" type="string">
                 <annotation>
-                    <documentation>ID unique de la ressource engagée</documentation>
+                    <documentation>ID unique de la ressource engagée partagée = aux champs {orgID}.R.{ownerID}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="orgID" type="string">
@@ -70,10 +70,95 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Organisation à laquelle appartient la ressource</documentation>
                 </annotation>
             </element>
-            <element name="type" type="string">
+            <element name="resourceType">
                 <annotation>
-                    <documentation>Type de ressource mobilisée (nomenclature type de vecteur à implémenter pour l'instant, voir ensuite si elle est complétée par des ressources autres que des vecteurs)</documentation>
+                    <documentation>Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SMUR"/>
+                        <enumeration value="HOSPIT"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="TSU "/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="AASC"/>
+                        <enumeration value="FDO"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="vehiculeType">
+                <annotation>
+                    <documentation>Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="VPSP"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="INCONNU"/>
+                        <enumeration value="CONSEIL"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="NAVISIS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="plate" type="string"/>
             <element minOccurs="0" name="name" type="string">
@@ -110,7 +195,6 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             <element minOccurs="0" name="team" type="x:team"/>
             <element minOccurs="0" name="state" type="x:state"/>
             <element minOccurs="0" name="contact" type="x:contact"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="team">
