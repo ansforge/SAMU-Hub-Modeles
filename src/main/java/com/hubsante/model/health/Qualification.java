@@ -37,7 +37,6 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.CaseDetails;
 import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.LocationKind;
-import com.hubsante.model.health.NaN;
 import com.hubsante.model.health.RiskThreat;
 import com.hubsante.model.health.WhatsHappen;
 import java.util.ArrayList;
@@ -74,12 +73,12 @@ public class Qualification {
 
     _116117("116117");
 
-    private NaN value;
+    private String value;
 
-    OriginEnum(NaN value) { this.value = value; }
+    OriginEnum(String value) { this.value = value; }
 
     @JsonValue
-    public NaN getValue() {
+    public String getValue() {
       return value;
     }
 
@@ -89,7 +88,7 @@ public class Qualification {
     }
 
     @JsonCreator
-    public static OriginEnum fromValue(NaN value) {
+    public static OriginEnum fromValue(String value) {
       for (OriginEnum b : OriginEnum.values()) {
         if (b.value.equals(value)) {
           return b;
@@ -100,7 +99,7 @@ public class Qualification {
   }
 
   public static final String JSON_PROPERTY_ORIGIN = "origin";
-  private OriginEnum origin = null;
+  private OriginEnum origin;
 
   public static final String JSON_PROPERTY_WHATS_HAPPEN = "whatsHappen";
   private WhatsHappen whatsHappen;

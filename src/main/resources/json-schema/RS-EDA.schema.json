@@ -142,7 +142,7 @@
             ],
             "properties": {
                 "origin": {
-                    "type": NaN,
+                    "type": "string",
                     "title": "Origine de l'appel",
                     "x-health-only": false,
                     "x-cols": 6,

@@ -13,7 +13,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
 5,6,Type d'intervention,,,,,,Indiquer s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),Primaire,,interventionType,,,,,,0..1,,string,,"ENUM: Primaire, Secondaire",,X,X
 6,7,Qualification de l'affaire/dossier,,,,,,"Permet de qualifier l'affaire/dossier en général. 
 15-18 : La qualification est issue d'une interprétation métier des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X,X
-7,8,,Origine de l'appel,,,,,Numéro de provenance de l'appel,"15, 112, 18",,origin,,,,,,0..1,,,,"ENUM: 15, 18, 17, 112, 116117",,X,
+7,8,,Origine de l'appel,,,,,Numéro de provenance de l'appel,"15, 112, 18",,origin,,,,,,0..1,,string,,"ENUM: 15, 18, 17, 112, 116117",,X,
 8,9,,Nature de fait,,,,,"Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU.
 Le champs freetext sert à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées).",,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,"ENUM: 15, 18, 17, 112, 116117",X,X,X
 9,10,,,Code,,,,A valoriser avec un code la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,,,X,X,X

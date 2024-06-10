@@ -42,7 +42,7 @@ strict digraph {
                 <TR>
                 <TD ><B>qualification</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet qualification</I></TD></TR><TR><TD BORDER="0" >origin <I>nan</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet qualification</I></TD></TR><TR><TD BORDER="0" >origin <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	qualification -> createCaseHealth [headlabel=1 taillabel=1]
 	externalLocationId [label=<<TABLE>

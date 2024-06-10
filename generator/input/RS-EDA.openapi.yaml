@@ -162,7 +162,7 @@ components:
       - whatsHappen
       properties:
         origin:
-          type: .nan
+          type: string
           title: Origine de l'appel
           x-health-only: false
           x-cols: 6
