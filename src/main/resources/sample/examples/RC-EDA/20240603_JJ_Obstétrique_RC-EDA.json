@@ -37,8 +37,7 @@
       "country": "FR",
       "access": {
         "floor": "RDC",
-        "buildingName": "Soleil",
-        "phoneNumber": "0969362006"
+        "buildingName": "Soleil"
       },
       "externalLocationId": [
         {
@@ -85,8 +84,7 @@
         "country": "FR",
         "access": {
           "floor": "RDC",
-          "buildingName": "Soleil",
-          "phoneNumber": "0969362006"
+          "buildingName": "Soleil"
         }
       },
       "qualification": {
