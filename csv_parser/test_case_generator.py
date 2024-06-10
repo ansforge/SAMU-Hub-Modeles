@@ -202,6 +202,10 @@ def generate_type_override_map(row):
         if "type" in value and not isinstance(value["type"], collections.Mapping) and value["type"] not in {"string",
                                                                                                             "object", "array"}:
             type_override_map[key] = value["type"]
+    for key, value in nested_dict_iter(schema["properties"]):
+        if "type" in value and not isinstance(value["type"], collections.Mapping) and value["type"] not in {"string",
+                                                                                                            "object", "array"}:
+            type_override_map[key] = value["type"]
     return type_override_map
 
 
