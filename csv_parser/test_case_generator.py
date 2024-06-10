@@ -172,9 +172,9 @@ def generate_step_json(perimeter, test_case, row, receive_jsons):
     for i in range(len(receive_jsons)):
         if receive_jsons[i] != {}:  # We only generate the JSON file if there are values in the object
             with open(
-                    f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]} JDD{i}.json',
+                    f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]} JDD{i+1}.json',
                     'w', encoding='utf-8') as file:
-                file.write(dumps(receive_jsons[i+1], indent=4, ensure_ascii=False))
+                file.write(dumps(receive_jsons[i], indent=4, ensure_ascii=False))
 
 
 def get_type(type_in_french):
