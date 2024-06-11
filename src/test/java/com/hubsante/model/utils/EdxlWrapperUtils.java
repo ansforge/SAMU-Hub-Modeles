@@ -50,6 +50,13 @@ public class EdxlWrapperUtils {
         return mapper.writeValueAsString(envelope);
     }
 
+    public static String wrapUseCaseMessageWithoutDistributionElement(String useCaseMessage) throws JsonProcessingException {
+        JsonNode contentMessage = mapper.readTree(useCaseMessage);
+        JsonNode envelope = addEnvelope(contentMessage);
+
+        return mapper.writeValueAsString(envelope);
+    }
+
     public static JsonNode addEnvelope(JsonNode jsonNode) {
         OffsetDateTime sentAt = OffsetDateTime.of(LocalDateTime.parse("2023-12-15T00:00:00"), ZoneOffset.ofHours(2)).truncatedTo(ChronoUnit.SECONDS);
         OffsetDateTime expiresAt = sentAt.plusDays(1);

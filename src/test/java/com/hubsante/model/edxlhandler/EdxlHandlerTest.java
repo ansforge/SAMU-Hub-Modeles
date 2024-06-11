@@ -36,6 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -71,7 +72,13 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         files.forEach(file -> {
             try {
                 String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+                // We wrap the use case message in a full json message, except for RS-ERROR message, which does not
+                // require RC-DE header
+                String fullJson;
+                if (!file.getName().contains("RS-ERROR"))
+                    fullJson = wrapUseCaseMessage(useCaseJson);
+                else
+                    fullJson = wrapUseCaseMessageWithoutDistributionElement(useCaseJson);
 
                 converter.deserializeJsonEDXL(fullJson);
                 log.info("File {} has been successfully deserialized", file.getName());
