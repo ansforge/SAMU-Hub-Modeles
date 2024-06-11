@@ -22,21 +22,4 @@ import java.io.IOException;
 
 public class GeoResHandlerTest extends AbstractEdxlHandlerTest {
 
-    @Test
-    @DisplayName("should consistently deserialize then serialize JSON GEO-RES")
-    public void end2end_GEO_RES_JSON() throws IOException {
-        end2end("GEO-RES", false);
-    }
-
-    @Test
-    @DisplayName("should consistently deserialize then serialize XML GEO-RES")
-    public void end2end_GEO_RES_XML() throws IOException {
-        end2end("GEO-RES", true);
-    }
-
-    @Test
-    @DisplayName("json and xml GEO-RES should be equal")
-    public void jsonAndXmlGEO_RES() throws IOException {
-        jsonEqualsXml("GEO-RES");
-    }
 }

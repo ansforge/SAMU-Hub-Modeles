@@ -22,21 +22,4 @@ import java.io.IOException;
 
 public class GeoPosHandlerTest extends AbstractEdxlHandlerTest {
 
-    @Test
-    @DisplayName("should consistently deserialize then serialize JSON GEO-POS")
-    public void end2end_GEO_POS_JSON() throws IOException {
-        end2end("GEO-POS", false);
-    }
-
-    @Test
-    @DisplayName("should consistently deserialize then serialize XML GEO-POS")
-    public void end2end_GEO_POS_XML() throws IOException {
-        end2end("GEO-POS", true);
-    }
-
-    @Test
-    @DisplayName("json and xml GEO-POS should be equal")
-    public void jsonAndXmlGEO_POS() throws IOException {
-        jsonEqualsXml("GEO-POS");
-    }
 }

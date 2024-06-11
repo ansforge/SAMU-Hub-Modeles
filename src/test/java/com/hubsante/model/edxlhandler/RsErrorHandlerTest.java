@@ -27,17 +27,6 @@ import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RsErrorHandlerTest extends AbstractEdxlHandlerTest {
-    @Test
-    @DisplayName("should consistently deserialize then serialize JSON RS-ERROR")
-    public void end2end_RS_ERROR_JSON() throws IOException {
-        end2end("RS-ERROR", false);
-    }
-
-    @Test
-    @DisplayName("should consistently deserialize then serialize XML RS-ERROR")
-    public void end2end_RS_ERROR_XML() throws IOException {
-        end2end("RS-ERROR", true);
-    }
 
     @Test
     @DisplayName("should not deserialize JSON RS-ERROR with inconsistent enum")

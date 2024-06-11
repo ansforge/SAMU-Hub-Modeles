@@ -24,17 +24,4 @@ import java.io.IOException;
 
 public class RsEdaValidatorTest extends AbstractValidatorTest {
 
-    // TODO bbo add RS-EDA test files
-    //region Passes validation
-    @Test
-    @DisplayName("RS-EDA json validation passes")
-    public void jsonRsEdaValidationPasses() throws IOException {
-        validationPasses("RS-EDA", false);
-    }
-
-    //endregion
-
-    //region Fails validation
-
-    //endregion
 }

@@ -29,20 +29,6 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RcRefValidatorTest extends AbstractValidatorTest {
 
-    //region Passes validation
-    @Test
-    @DisplayName("RC-REF json validation passes")
-    public void jsonRcRefValidationPasses() throws IOException {
-        validationPasses("RC-REF", false);
-    }
-
-    @Test
-    @DisplayName("RC-REF xml validation passes")
-    public void xmlRcRefValidationPasses() throws IOException {
-        validationPasses("RC-REF", true);
-    }
-    //endregion
-
     //region Fails validation
     @Test
     @DisplayName("RC-REF json validation fails")

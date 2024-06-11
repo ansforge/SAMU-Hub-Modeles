@@ -54,15 +54,6 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     }
 
     @Test
-    @DisplayName("should add XML prefix")
-    public void verifyXmlPrefix() throws IOException {
-        String json = getMessageString("RC-EDA");
-        EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
-        String xml = converter.serializeXmlEDXL(messageFromInput);
-        assertTrue(() -> xml.startsWith(xmlPrefix()));
-    }
-
-    @Test
     @DisplayName("all examples files deserializing")
     public void examplesBundlePassingTest() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();

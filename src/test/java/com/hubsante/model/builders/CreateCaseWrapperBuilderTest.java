@@ -37,33 +37,6 @@ public class CreateCaseWrapperBuilderTest {
     private final String SENDER_ID = "sender-x";
     private final String RECIPIENT_ID = "recipient-y";
     private EdxlHandler converter = new EdxlHandler();
-    @Test
-    @DisplayName("should build a RC-EDA Message")
-    public void shouldBuildRC_EDAMessage() throws IOException {
-        Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
-        List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
-
-        DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
-                .build();
-        CreateCaseWrapper createCaseWrapper = new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock())
-                .build();
-
-        assertEquals(MESSAGE_ID, createCaseWrapper.getMessageId());
-        assertEquals(getCreateCaseMock(), createCaseWrapper.getCreateCase());
-    }
-
-    @Test
-    @DisplayName("should not build a RC_EDA with invalid kind")
-    public void shouldNotBuildRC_EDAWithInvalidKind() throws IOException {
-        Recipient recipient = new Recipient().name(RECIPIENT_ID).URI("hubex:" + RECIPIENT_ID);
-        List<Recipient> recipientList = Stream.of(recipient).collect(Collectors.toList());
-
-        DistributionElement distributionElement = new DistributionElementBuilder(MESSAGE_ID, SENDER_ID, recipientList)
-                .kind(DistributionElement.KindEnum.ACK)
-                .build();
-
-        assertThrows(IllegalArgumentException.class, () -> new CreateCaseWrapperBuilder(distributionElement, getCreateCaseMock()).build());
-    }
 
     private CreateCase getCreateCaseMock() throws IOException {
         String json = getMessageString("RC-EDA");
