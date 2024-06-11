@@ -32,7 +32,7 @@ components:
             \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
         RSDDRId:
           type: string
           title: "ID DDR partag\xE9"
@@ -75,6 +75,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/convention
+          description: 'Nomenclature ? '
           examples:
           - None
         deadline:
@@ -83,6 +84,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/deadline
+          description: "D\xE9lai d'intervention souhait\xE9"
           examples:
           - None
         purpose:
@@ -91,6 +93,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/purpose
+          description: "Motif de la demande de ressource aupr\xE8s du partenaire"
           examples:
           - None
         freetext:
@@ -99,6 +102,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/freetext
+          description: "Texte libre permettant de d\xE9tailler la demande"
           examples:
           - None
       additionalProperties: false
@@ -111,22 +115,11 @@ components:
         freetext: None
     location:
       type: object
-      title: Origine
+      title: Lieu de prise en charge
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - country
+      required: []
       properties:
-        locID:
-          type: string
-          title: Identifiant technique de localisation
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/originLocation/locID
-          description: "ID technique et provisoire permettant d'identifier le lieu\
-            \ dans le cadre des \xE9changes de cette affaire."
-          examples:
-          - 111fb03a-6fd9-41e0-8e81-990c45188887
         type:
           type: string
           title: Type d'origine/destination
@@ -145,21 +138,6 @@ components:
             urgences d\u2019un Etablissement de sant\xE9, autres services d\u2019\
             un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
             , domicile personnel, EPHAD ou long s\xE9jour, autre"
-        locLabel:
-          type: string
-          title: "R\xE9sum\xE9 de la localisation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/originLocation/locLabel
-          description: "Donne les informations minimales d'identification du lieu\
-            \ d'intervention, qui permet d'identifier rapidement le lieu pour les\
-            \ \xE9quipes op\xE9rationnelles. Comprend au maximum 255 caract\xE8res.\n\
-            15-18 : Dans les messages NexSIS, va souvent correspondre \xE0 la concat\xE9\
-            nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes informations,\
-            \ dont le \"name\" (toponyme) et l'adresse.\n"
-          examples:
-          - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
-            e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
         name:
           type: string
           title: Nom du lieu
@@ -187,256 +165,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
-        country:
-          type: string
-          title: Pays
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/originLocation/country
-          enum:
-          - AF
-          - AX
-          - AL
-          - DZ
-          - AS
-          - AD
-          - AO
-          - AI
-          - AQ
-          - AG
-          - AR
-          - AM
-          - AW
-          - AU
-          - AT
-          - AZ
-          - BS
-          - BH
-          - BD
-          - BB
-          - BY
-          - BE
-          - BZ
-          - BJ
-          - BM
-          - BT
-          - BO
-          - BA
-          - BW
-          - BV
-          - BR
-          - IO
-          - BN
-          - BG
-          - BF
-          - BI
-          - CV
-          - KH
-          - CM
-          - CA
-          - KY
-          - CF
-          - TD
-          - CL
-          - CN
-          - CX
-          - CC
-          - CO
-          - KM
-          - CG
-          - CK
-          - CR
-          - CI
-          - HR
-          - CU
-          - CW
-          - CY
-          - CZ
-          - DK
-          - DJ
-          - DM
-          - DO
-          - EC
-          - EG
-          - SV
-          - GQ
-          - ER
-          - EE
-          - SZ
-          - ET
-          - FK
-          - FO
-          - FJ
-          - FI
-          - FR
-          - GF
-          - PF
-          - TF
-          - GA
-          - GM
-          - GE
-          - DE
-          - GH
-          - GI
-          - GR
-          - GL
-          - GD
-          - GP
-          - GU
-          - GT
-          - GG
-          - GN
-          - GW
-          - GY
-          - HT
-          - HM
-          - VA
-          - HN
-          - HK
-          - HU
-          - IS
-          - IN
-          - ID
-          - IR
-          - IQ
-          - IE
-          - IM
-          - IL
-          - IT
-          - JM
-          - JP
-          - JE
-          - JO
-          - KZ
-          - KE
-          - KI
-          - KP
-          - KW
-          - KG
-          - LA
-          - LV
-          - LB
-          - LS
-          - LR
-          - LY
-          - LI
-          - LT
-          - LU
-          - MO
-          - MG
-          - MW
-          - MY
-          - MV
-          - ML
-          - MT
-          - MH
-          - MQ
-          - MR
-          - MU
-          - YT
-          - MX
-          - FM
-          - MC
-          - MN
-          - ME
-          - MS
-          - MA
-          - MZ
-          - MM
-          - NA
-          - NR
-          - NP
-          - NL
-          - NC
-          - NZ
-          - NI
-          - NE
-          - NG
-          - NU
-          - NF
-          - MK
-          - MP
-          - 'NO'
-          - OM
-          - PK
-          - PW
-          - PA
-          - PG
-          - PY
-          - PE
-          - PH
-          - PN
-          - PL
-          - PT
-          - PR
-          - QA
-          - RE
-          - RO
-          - RU
-          - RW
-          - BL
-          - KN
-          - LC
-          - MF
-          - PM
-          - VC
-          - WS
-          - SM
-          - ST
-          - SA
-          - SN
-          - RS
-          - SC
-          - SL
-          - SG
-          - SX
-          - SK
-          - SI
-          - SB
-          - SO
-          - ZA
-          - GS
-          - SS
-          - ES
-          - LK
-          - SD
-          - SR
-          - SJ
-          - SE
-          - CH
-          - SY
-          - TJ
-          - TH
-          - TL
-          - TG
-          - TK
-          - TO
-          - TT
-          - TN
-          - TR
-          - TM
-          - TC
-          - TV
-          - UG
-          - UA
-          - AE
-          - GB
-          - US
-          - UM
-          - UY
-          - UZ
-          - VU
-          - VE
-          - VN
-          - VG
-          - VI
-          - WF
-          - EH
-          - YE
-          - ZM
-          - ZW
-          examples:
-          - France
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur la localisation"
@@ -690,23 +418,6 @@ components:
           - '2022-09-27T08:23:34+02:00'
         point:
           $ref: '#/components/schemas/point'
-        sketch:
-          type: string
-          title: "Formes g\xE9om\xE9triques"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/originLocation/geometry/sketch
-          description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
-            \ de d\xE9crire une forme dans un syst\xE8me de projection donn\xE9. \n\
-            Dans le cas d'une alerte donn\xE9e sur une zone g\xE9ographique non pr\xE9\
-            cise (par exemple une section d'autoroute ou une zone sur un chemin de\
-            \ randonn\xE9e), une indication sur la zone de recherche peut \xEAtre\
-            \ fournie.\nEn XML, un objet gml est encapsul\xE9 dans une balise <sketch\
-            \ xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn\
-            \ JSON, les balises sont reprises depuis le mod\xE8le gml\nVoir http://www.opengis.net/gml\
-            \ pour le format de l'objet sketch"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/originLocation/geometry
     externalInfo:
@@ -871,25 +582,6 @@ components:
             \ ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
           - 120
-        heading:
-          type: number
-          title: Cap
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/originLocation/geometry/point/coord/heading
-          description: "En degr\xE9"
-          examples:
-          - 96
-        speed:
-          type: number
-          title: Vitesse
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/originLocation/geometry/point/coord/speed
-          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
-            \ AML, \u2026"
-          examples:
-          - 34
         precision:
           type: string
           title: "Pr\xE9cision"
@@ -916,6 +608,4 @@ components:
       - lat: '48.866667'
         lon: '2.333333'
         height: 120
-        heading: 96
-        speed: 34
         precision: ADDRESS

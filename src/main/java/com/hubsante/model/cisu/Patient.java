@@ -69,7 +69,8 @@ public class Patient {
 
   /**
    * Identifiant technique du patient pour permettre les rapprochements
-   *d&#39;infos. Le 1er qui créé l&#39;ID patient a raison.
+   *d&#39;infos. Le 1er qui créé l&#39;ID patient a raison. {ID du dossier
+   *partagé}.P{numéro d’ordre chronologique}
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)

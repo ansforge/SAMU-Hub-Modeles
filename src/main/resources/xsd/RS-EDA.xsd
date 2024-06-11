@@ -63,12 +63,26 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
-            <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
     </complexType>
     <complexType name="qualification">
         <sequence>
+            <element minOccurs="0" name="origin">
+                <annotation>
+                    <documentation>Numéro de provenance de l'appel</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="15"/>
+                        <enumeration value="18"/>
+                        <enumeration value="17"/>
+                        <enumeration value="112"/>
+                        <enumeration value="116117"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element name="whatsHappen" type="x:whatsHappen"/>
             <element minOccurs="0" name="locationKind" type="x:locationKind"/>
             <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
@@ -83,13 +97,6 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
                     <documentation>ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="locLabel" type="string">
-                <annotation>
-                    <documentation>Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
-15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
-</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
                     <documentation>Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
@@ -101,253 +108,6 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
             <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
-            <element name="country">
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="AF"/>
-                        <enumeration value="AX"/>
-                        <enumeration value="AL"/>
-                        <enumeration value="DZ"/>
-                        <enumeration value="AS"/>
-                        <enumeration value="AD"/>
-                        <enumeration value="AO"/>
-                        <enumeration value="AI"/>
-                        <enumeration value="AQ"/>
-                        <enumeration value="AG"/>
-                        <enumeration value="AR"/>
-                        <enumeration value="AM"/>
-                        <enumeration value="AW"/>
-                        <enumeration value="AU"/>
-                        <enumeration value="AT"/>
-                        <enumeration value="AZ"/>
-                        <enumeration value="BS"/>
-                        <enumeration value="BH"/>
-                        <enumeration value="BD"/>
-                        <enumeration value="BB"/>
-                        <enumeration value="BY"/>
-                        <enumeration value="BE"/>
-                        <enumeration value="BZ"/>
-                        <enumeration value="BJ"/>
-                        <enumeration value="BM"/>
-                        <enumeration value="BT"/>
-                        <enumeration value="BO"/>
-                        <enumeration value="BA"/>
-                        <enumeration value="BW"/>
-                        <enumeration value="BV"/>
-                        <enumeration value="BR"/>
-                        <enumeration value="IO"/>
-                        <enumeration value="BN"/>
-                        <enumeration value="BG"/>
-                        <enumeration value="BF"/>
-                        <enumeration value="BI"/>
-                        <enumeration value="CV"/>
-                        <enumeration value="KH"/>
-                        <enumeration value="CM"/>
-                        <enumeration value="CA"/>
-                        <enumeration value="KY"/>
-                        <enumeration value="CF"/>
-                        <enumeration value="TD"/>
-                        <enumeration value="CL"/>
-                        <enumeration value="CN"/>
-                        <enumeration value="CX"/>
-                        <enumeration value="CC"/>
-                        <enumeration value="CO"/>
-                        <enumeration value="KM"/>
-                        <enumeration value="CG"/>
-                        <enumeration value="CK"/>
-                        <enumeration value="CR"/>
-                        <enumeration value="CI"/>
-                        <enumeration value="HR"/>
-                        <enumeration value="CU"/>
-                        <enumeration value="CW"/>
-                        <enumeration value="CY"/>
-                        <enumeration value="CZ"/>
-                        <enumeration value="DK"/>
-                        <enumeration value="DJ"/>
-                        <enumeration value="DM"/>
-                        <enumeration value="DO"/>
-                        <enumeration value="EC"/>
-                        <enumeration value="EG"/>
-                        <enumeration value="SV"/>
-                        <enumeration value="GQ"/>
-                        <enumeration value="ER"/>
-                        <enumeration value="EE"/>
-                        <enumeration value="SZ"/>
-                        <enumeration value="ET"/>
-                        <enumeration value="FK"/>
-                        <enumeration value="FO"/>
-                        <enumeration value="FJ"/>
-                        <enumeration value="FI"/>
-                        <enumeration value="FR"/>
-                        <enumeration value="GF"/>
-                        <enumeration value="PF"/>
-                        <enumeration value="TF"/>
-                        <enumeration value="GA"/>
-                        <enumeration value="GM"/>
-                        <enumeration value="GE"/>
-                        <enumeration value="DE"/>
-                        <enumeration value="GH"/>
-                        <enumeration value="GI"/>
-                        <enumeration value="GR"/>
-                        <enumeration value="GL"/>
-                        <enumeration value="GD"/>
-                        <enumeration value="GP"/>
-                        <enumeration value="GU"/>
-                        <enumeration value="GT"/>
-                        <enumeration value="GG"/>
-                        <enumeration value="GN"/>
-                        <enumeration value="GW"/>
-                        <enumeration value="GY"/>
-                        <enumeration value="HT"/>
-                        <enumeration value="HM"/>
-                        <enumeration value="VA"/>
-                        <enumeration value="HN"/>
-                        <enumeration value="HK"/>
-                        <enumeration value="HU"/>
-                        <enumeration value="IS"/>
-                        <enumeration value="IN"/>
-                        <enumeration value="ID"/>
-                        <enumeration value="IR"/>
-                        <enumeration value="IQ"/>
-                        <enumeration value="IE"/>
-                        <enumeration value="IM"/>
-                        <enumeration value="IL"/>
-                        <enumeration value="IT"/>
-                        <enumeration value="JM"/>
-                        <enumeration value="JP"/>
-                        <enumeration value="JE"/>
-                        <enumeration value="JO"/>
-                        <enumeration value="KZ"/>
-                        <enumeration value="KE"/>
-                        <enumeration value="KI"/>
-                        <enumeration value="KP"/>
-                        <enumeration value="KW"/>
-                        <enumeration value="KG"/>
-                        <enumeration value="LA"/>
-                        <enumeration value="LV"/>
-                        <enumeration value="LB"/>
-                        <enumeration value="LS"/>
-                        <enumeration value="LR"/>
-                        <enumeration value="LY"/>
-                        <enumeration value="LI"/>
-                        <enumeration value="LT"/>
-                        <enumeration value="LU"/>
-                        <enumeration value="MO"/>
-                        <enumeration value="MG"/>
-                        <enumeration value="MW"/>
-                        <enumeration value="MY"/>
-                        <enumeration value="MV"/>
-                        <enumeration value="ML"/>
-                        <enumeration value="MT"/>
-                        <enumeration value="MH"/>
-                        <enumeration value="MQ"/>
-                        <enumeration value="MR"/>
-                        <enumeration value="MU"/>
-                        <enumeration value="YT"/>
-                        <enumeration value="MX"/>
-                        <enumeration value="FM"/>
-                        <enumeration value="MC"/>
-                        <enumeration value="MN"/>
-                        <enumeration value="ME"/>
-                        <enumeration value="MS"/>
-                        <enumeration value="MA"/>
-                        <enumeration value="MZ"/>
-                        <enumeration value="MM"/>
-                        <enumeration value="NA"/>
-                        <enumeration value="NR"/>
-                        <enumeration value="NP"/>
-                        <enumeration value="NL"/>
-                        <enumeration value="NC"/>
-                        <enumeration value="NZ"/>
-                        <enumeration value="NI"/>
-                        <enumeration value="NE"/>
-                        <enumeration value="NG"/>
-                        <enumeration value="NU"/>
-                        <enumeration value="NF"/>
-                        <enumeration value="MK"/>
-                        <enumeration value="MP"/>
-                        <enumeration value="NO"/>
-                        <enumeration value="OM"/>
-                        <enumeration value="PK"/>
-                        <enumeration value="PW"/>
-                        <enumeration value="PA"/>
-                        <enumeration value="PG"/>
-                        <enumeration value="PY"/>
-                        <enumeration value="PE"/>
-                        <enumeration value="PH"/>
-                        <enumeration value="PN"/>
-                        <enumeration value="PL"/>
-                        <enumeration value="PT"/>
-                        <enumeration value="PR"/>
-                        <enumeration value="QA"/>
-                        <enumeration value="RE"/>
-                        <enumeration value="RO"/>
-                        <enumeration value="RU"/>
-                        <enumeration value="RW"/>
-                        <enumeration value="BL"/>
-                        <enumeration value="KN"/>
-                        <enumeration value="LC"/>
-                        <enumeration value="MF"/>
-                        <enumeration value="PM"/>
-                        <enumeration value="VC"/>
-                        <enumeration value="WS"/>
-                        <enumeration value="SM"/>
-                        <enumeration value="ST"/>
-                        <enumeration value="SA"/>
-                        <enumeration value="SN"/>
-                        <enumeration value="RS"/>
-                        <enumeration value="SC"/>
-                        <enumeration value="SL"/>
-                        <enumeration value="SG"/>
-                        <enumeration value="SX"/>
-                        <enumeration value="SK"/>
-                        <enumeration value="SI"/>
-                        <enumeration value="SB"/>
-                        <enumeration value="SO"/>
-                        <enumeration value="ZA"/>
-                        <enumeration value="GS"/>
-                        <enumeration value="SS"/>
-                        <enumeration value="ES"/>
-                        <enumeration value="LK"/>
-                        <enumeration value="SD"/>
-                        <enumeration value="SR"/>
-                        <enumeration value="SJ"/>
-                        <enumeration value="SE"/>
-                        <enumeration value="CH"/>
-                        <enumeration value="SY"/>
-                        <enumeration value="TJ"/>
-                        <enumeration value="TH"/>
-                        <enumeration value="TL"/>
-                        <enumeration value="TG"/>
-                        <enumeration value="TK"/>
-                        <enumeration value="TO"/>
-                        <enumeration value="TT"/>
-                        <enumeration value="TN"/>
-                        <enumeration value="TR"/>
-                        <enumeration value="TM"/>
-                        <enumeration value="TC"/>
-                        <enumeration value="TV"/>
-                        <enumeration value="UG"/>
-                        <enumeration value="UA"/>
-                        <enumeration value="AE"/>
-                        <enumeration value="GB"/>
-                        <enumeration value="US"/>
-                        <enumeration value="UM"/>
-                        <enumeration value="UY"/>
-                        <enumeration value="UZ"/>
-                        <enumeration value="VU"/>
-                        <enumeration value="VE"/>
-                        <enumeration value="VN"/>
-                        <enumeration value="VG"/>
-                        <enumeration value="VI"/>
-                        <enumeration value="WF"/>
-                        <enumeration value="EH"/>
-                        <enumeration value="YE"/>
-                        <enumeration value="ZM"/>
-                        <enumeration value="ZW"/>
-                    </restriction>
-                </simpleType>
-            </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Champ libre pour compléter les informations de localisation</documentation>
@@ -357,48 +117,21 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
     </complexType>
     <complexType name="alert">
         <sequence>
-            <element name="id" type="string">
-                <annotation>
-                    <documentation>Identifiant technique unique de l'alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage.
-Voir la description de l'identifiant de l'affaire pour voir le format.
-Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
-a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
-b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
-Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.</documentation>
-                </annotation>
-            </element>
             <element name="reception" type="dateTime">
                 <annotation>
                     <documentation>Groupe date heure de réception de l'alerte</documentation>
                 </annotation>
             </element>
-            <element name="reporting">
-                <annotation>
-                    <documentation>Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.
-Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. 
-Prend les valeurs définies dans la nomenclature CISU :
-- standard : STANDARD
-- signalé : ATTENTION
-Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="STANDARD"/>
-                        <enumeration value="ATTENTION"/>
-                    </restriction>
-                </simpleType>
-            </element>
             <element maxOccurs="unbounded" minOccurs="0" name="notes" type="x:notes"/>
             <element name="caller" type="x:caller"/>
-            <element name="callTaker" type="x:callTaker"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
         </sequence>
     </complexType>
     <complexType name="patient">
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
+                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
+{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
@@ -416,7 +149,6 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="operator" type="x:operator"/>
             <element name="creation" type="dateTime">
                 <annotation>
                     <documentation>Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
@@ -822,35 +554,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="caseDetails">
         <sequence>
-            <element minOccurs="0" name="status">
-                <annotation>
-                    <documentation>cf. cycle SI SAMU  : échanger l'état du dossier si le cycle de vie du dossier est implémenté de manière conforme au cycle de vie du dossier SI-SAMU. 
-Echanger à minima l'information que le dossier est clôturé.</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="Programmé"/>
-                        <enumeration value="Actif "/>
-                        <enumeration value="Achevé"/>
-                        <enumeration value="Validé "/>
-                        <enumeration value="Clôturé "/>
-                        <enumeration value="Classé"/>
-                        <enumeration value="Archivé"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="type">
-                <annotation>
-                    <documentation>D/DR/DRM si cycle SI-SAMU implémenté</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="D"/>
-                        <enumeration value="DR"/>
-                        <enumeration value="DRM"/>
-                    </restriction>
-                </simpleType>
-            </element>
             <element minOccurs="0" name="attribution">
                 <annotation>
                     <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.</documentation>
@@ -937,6 +640,7 @@ Echanger à minima l'information que le dossier est clôturé.</documentation>
     </complexType>
     <complexType name="detailedAddress">
         <sequence>
+            <element minOccurs="0" name="highway" type="x:highway"/>
             <element name="complete" type="string">
                 <annotation>
                     <documentation>Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
@@ -1025,15 +729,6 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
                 </annotation>
             </element>
             <element minOccurs="0" name="point" type="x:point"/>
-            <element minOccurs="0" name="sketch" type="string">
-                <annotation>
-                    <documentation>Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
-Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
-En XML, un objet gml est encapsulé dans une balise &lt;sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' &gt; &lt;/sketch&gt;
-En JSON, les balises sont reprises depuis le modèle gml
-Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="externalInfo">
@@ -1068,6 +763,25 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
             <element name="uri" type="string">
                 <annotation>
                     <documentation>Identifiant unique dans le type. Exemple : UUID d'un ega</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="highway">
+        <sequence>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom de l'autoroute</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="pk" type="string">
+                <annotation>
+                    <documentation>Point kilométrique</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="direction" type="string">
+                <annotation>
+                    <documentation>Sens</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1461,69 +1175,6 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
         </sequence>
     </complexType>
-    <complexType name="callTaker">
-        <sequence>
-            <element name="organization" type="string">
-                <annotation>
-                    <documentation>Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
-Se référer au DSF pour la structure normée des organisations.
-Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.</documentation>
-                </annotation>
-            </element>
-            <element name="controlRoom" type="string">
-                <annotation>
-                    <documentation>Décrit le centre d'appel auquel est rattaché l'agent</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="role" type="string">
-                <annotation>
-                    <documentation>Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="calltakerContact" type="x:contact"/>
-            <element minOccurs="0" name="calltakerId" type="string">
-                <annotation>
-                    <documentation>Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="attachment">
-        <sequence>
-            <element minOccurs="0" name="description" type="string">
-                <annotation>
-                    <documentation>Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="mimeType" type="string">
-                <annotation>
-                    <documentation>L'identifiant du type MIME de contenu et sous-type décrivant la ressource</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="size" type="int">
-                <annotation>
-                    <documentation>Taille approximative de la ressource en kO</documentation>
-                </annotation>
-            </element>
-            <element name="URI" type="string">
-                <annotation>
-                    <documentation>Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
-Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="derefURI" type="string">
-                <annotation>
-                    <documentation>Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="digest" type="string">
-                <annotation>
-                    <documentation>Hash de la ressource pour confirmer la réception de la bonne ressource
-La ressource est hashée avec le protocole SHA-256</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="contact">
         <sequence>
             <element name="channel" type="string">
@@ -1580,15 +1231,10 @@ Par convention les prénoms composés doivent préférablement être séparés p
     <complexType name="administrativeFile">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:contact"/>
-            <element minOccurs="0" name="personalAddress" type="x:personalAddress"/>
-            <element minOccurs="0" name="generalPractitioner" type="x:generalPractitioner"/>
         </sequence>
     </complexType>
     <complexType name="insIdentity">
         <sequence>
-            <element minOccurs="0" name="cycle" type="x:insCycle"/>
-            <element minOccurs="0" name="number" type="x:insNumber"/>
             <element minOccurs="0" name="strictFeatures" type="x:insStrictFeatures"/>
             <element minOccurs="0" name="nonStrictFeatures" type="x:detailedName"/>
         </sequence>
@@ -1657,94 +1303,11 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
             </element>
         </sequence>
     </complexType>
-    <complexType name="personalAddress">
-        <sequence>
-            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
-            <element minOccurs="0" name="city" type="x:city"/>
-        </sequence>
-    </complexType>
-    <complexType name="generalPractitioner">
-        <sequence>
-            <element name="detailedName" type="x:detailedName"/>
-            <element minOccurs="0" name="id" type="string">
-                <annotation>
-                    <documentation>Numéro RPPS du médecin traitant</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="personalAddress" type="x:personalAddress"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="contact" type="x:contact"/>
-        </sequence>
-    </complexType>
-    <complexType name="insCycle">
-        <sequence>
-            <element minOccurs="0" name="status">
-                <annotation>
-                    <documentation>Le RNIV exige que les logiciels référentiels d’identités gèrent les 4 statuts fonctionnels suivants :
-- « identité provisoire »,
-- « identité récupérée »,
-- « identité validée »,
-- « identité qualifiée ».
-Ces statuts fonctionnels sont exclusifs les uns des autres. Le référentiel INS [EXI 18] précise en outre que le matricule INS et l’OID doivent être accompagnés d’informations confirmant qu’ils ont été qualifiés.</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="Provisoire"/>
-                        <enumeration value="Validée"/>
-                        <enumeration value="Récupérée"/>
-                        <enumeration value="Qualifiée"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="attribute">
-                <annotation>
-                    <documentation>Le RNIV recommande que les logiciels référentiels d’identités gèrent a minima les 3 attributs suivants :
-- identité homonyme,
-- identité douteuse,
-- identité fictive.</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="Homonyme"/>
-                        <enumeration value="Fictive"/>
-                        <enumeration value="Douteuse"/>
-                    </restriction>
-                </simpleType>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="insNumber">
-        <sequence>
-            <element minOccurs="0" name="value" type="string">
-                <annotation>
-                    <documentation>n° NIR OU n° NIA de l'individu. Le matricule INS (et son OID) ne doit jamais être propagé (= échangé) si l'identité est à un statut autre que qualifiée. Il correspond au numéro personnel de sécurité sociale. Il peut être différent du numéro de sécurité sociale utilisé pour le remboursement des soins par l’assurance maladie, dans le cas par exemple où l’usager n’est pas l’assuré social (ex.: l’enfant qui est rattaché à l’un de ses parents).
-Le matricule INS est composé des 13 caractères et de la clé de contrôle. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="oid" type="string">
-                <annotation>
-                    <documentation>Identifiant de la structure qui a affecté l’INS sous la forme d'un OID. Les OID (Object Identifier) sont des identifiants universels, représentés sous la forme d'une suite d'entiers. Ils sont organisés sous forme hiérarchique avec des nœuds. L'OID est toujours associé à un matricule INS, il n'est donc pas propagé si le statut de l'identité n'est pas "qualifiée"</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="insStrictFeatures">
         <sequence>
             <element minOccurs="0" name="birthName" type="string">
                 <annotation>
                     <documentation>Egalement appelé nom de famille.</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="birthFirstName" type="string">
-                <annotation>
-                    <documentation>Doit être cohérent avec la liste des prénoms de naissance renvoyée par INSi. Ex: si la liste des prénoms renvoyée est "Pierre Alain Jacques", le premier prénom de naissance ne peut être que : 
-Pierre
-Pierre Alain
-Pierre Alain Jacques</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="birthFirstNamesList" type="string">
-                <annotation>
-                    <documentation>Ensemble des prénoms de naissance (renvoyés par INSi)</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="birthDate">
@@ -1807,64 +1370,156 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
         </sequence>
     </complexType>
-    <complexType name="operator">
-        <sequence>
-            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
-            <element minOccurs="0" name="id" type="string">
-                <annotation>
-                    <documentation>Identifiant professionnel de l'opérateur si existant</documentation>
-                </annotation>
-            </element>
-            <element name="role" type="string">
-                <annotation>
-                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
-                </annotation>
-            </element>
-        </sequence>
-    </complexType>
     <complexType name="engagementDetails">
         <sequence>
-            <element name="categoryType" type="string">
+            <element name="categoryType">
                 <annotation>
                     <documentation>détaille le moyen à engager</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SMUR"/>
+                        <enumeration value="HOSPIT"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="TSU "/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="AASC"/>
+                        <enumeration value="FDO"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="resourceType" type="string">
+            <element minOccurs="0" name="resourceType">
                 <annotation>
                     <documentation>détaille le type de vecteur à engager</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="VPSP"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="INCONNU"/>
+                        <enumeration value="CONSEIL"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="NAVISIS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="resourceId" type="string"/>
-            <element name="teamCareInitial" type="string">
+            <element name="teamCareInitial">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SECOURS"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
     <complexType name="transportDetails">
         <sequence>
-            <element name="orientation" type="string">
+            <element name="orientation">
                 <annotation>
                     <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
 - Laisser sur place</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="OK"/>
+                        <enumeration value="TEMP"/>
+                        <enumeration value="SEUL"/>
+                        <enumeration value="AFAMILLE"/>
+                        <enumeration value="AMED"/>
+                        <enumeration value="AFDO"/>
+                        <enumeration value="ATIERS"/>
+                        <enumeration value="MOYPERSO"/>
+                        <enumeration value="Code vecteur choisi"/>
+                        <enumeration value="REFPAT"/>
+                        <enumeration value="REFFAM"/>
+                        <enumeration value="PASREAKO"/>
+                        <enumeration value="PASREAOK"/>
+                        <enumeration value="REA"/>
+                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="FUGUE"/>
+                        <enumeration value="REFAUTRE"/>
+                        <enumeration value="RAS"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="transportationID" type="string">
-                <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
-                </annotation>
-            </element>
-            <element name="teamCare" type="string">
+            <element name="teamCare">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SECOURS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
@@ -1886,7 +1541,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="destinationLocation" type="x:location"/>
+            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RDR.schema.json#",
-    "version": "24.05.31",
+    "version": "24.06.11",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
@@ -64,7 +64,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/resourceRequest/answer",
-                    "description": "oui / non / oui partiel / "
+                    "description": "oui / non / oui partiel / diff\u00e9r\u00e9"
                 },
                 "deadline": {
                     "type": "string",
@@ -88,13 +88,13 @@
         },
         "resource": {
             "type": "object",
-            "title": "Vecteur/ressource engag\u00e9e",
+            "title": "Ressource engag\u00e9e",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
                 "commitmentDateTime",
                 "resourceID",
-                "type"
+                "resourceType"
             ],
             "properties": {
                 "commitmentDateTime": {
@@ -133,7 +133,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/resourceID",
-                    "description": "ID unique de la ressource engag\u00e9e"
+                    "description": "ID unique de la ressource engag\u00e9e partag\u00e9e \n{orgID}.{ID du dossier partag\u00e9}.R{num\u00e9ro d\u2019ordre chronologique}"
                 },
                 "orgID": {
                     "type": "string",
@@ -143,13 +143,97 @@
                     "example": "example.json#/mobilizedResources/0/orgID",
                     "description": "Organisation \u00e0 laquelle appartient la ressource"
                 },
-                "type": {
+                "resourceType": {
                     "type": "string",
-                    "title": "Type",
+                    "title": "Type de ressource",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResources/0/type",
-                    "description": "Type de ressource mobilis\u00e9e (nomenclature type de vecteur \u00e0 impl\u00e9menter pour l'instant, voir ensuite si elle est compl\u00e9t\u00e9e par des ressources autres que des vecteurs)"
+                    "example": "example.json#/mobilizedResources/0/resourceType",
+                    "description": "Type de ressource mobilis\u00e9e : Smur, Hospitaliers (hors Smur), Professionnels Lib\u00e9raux, Ambulanciers priv\u00e9s (Transporteurs Sanitaires Urgent), etc.",
+                    "enum": [
+                        "SMUR",
+                        "HOSPIT",
+                        "LIB",
+                        "TSU ",
+                        "SIS",
+                        "AASC",
+                        "FDO",
+                        "ADM",
+                        "DAE",
+                        "AUTRE"
+                    ]
+                },
+                "vehiculeType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/vehiculeType",
+                    "description": "Type de vecteur mobilis\u00e9 : V\u00e9hicule L\u00e9ger M\u00e9dicalis\u00e9, Ambulance de r\u00e9animation, Ambulance de r\u00e9animation Bariatrique, Ambulance de r\u00e9animation P\u00e9diatrique, etc.",
+                    "enum": [
+                        "VPSP",
+                        "VLSC",
+                        "AUTRESC",
+                        "TAXI",
+                        "TRANSP",
+                        "AUTRE",
+                        "TRAIN",
+                        "AVION",
+                        "PERSO",
+                        "APIED",
+                        "INCONNU",
+                        "CONSEIL",
+                        "DAE",
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "VHFSI",
+                        "MEDC",
+                        "MEDV",
+                        "PHARMA",
+                        "INF",
+                        "MEDSPE",
+                        "DENT",
+                        "AUTREPRO",
+                        "DRAGON",
+                        "AVSC",
+                        "VSAV",
+                        "GRIMP",
+                        "VPL",
+                        "SRSIS",
+                        "FEUSIS",
+                        "VPMA",
+                        "VCH",
+                        "VR",
+                        "PCSIS",
+                        "VLISP",
+                        "VLMSP",
+                        "VLCG",
+                        "VLSIS",
+                        "MOYSSE",
+                        "AUTRESIS",
+                        "VLM",
+                        "AR",
+                        "AR-BAR",
+                        "AR-PED",
+                        "VL",
+                        "HELISMUR",
+                        "HELISAN",
+                        "AVSMUR",
+                        "AVSAN",
+                        "NAVISMUR",
+                        "PSM1",
+                        "PSM2",
+                        "PSM3",
+                        "PSMP",
+                        "VPC",
+                        "AMB-GV",
+                        "AMB-PV",
+                        "AMB-BAR",
+                        "AMB",
+                        "VSL",
+                        "NAVISIS"
+                    ]
                 },
                 "plate": {
                     "type": "string",
@@ -181,13 +265,6 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/centerName",
                     "description": "Lieu de garage principal"
-                },
-                "centerType": {
-                    "type": "string",
-                    "title": "Type de centre d\u2019affectation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResources/0/centerType"
                 },
                 "centerCity": {
                     "type": "string",
@@ -221,18 +298,6 @@
                 },
                 "contact": {
                     "$ref": "#/definitions/contact"
-                },
-                "freetext": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Commentaires",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/mobilizedResources/0/freetext/0",
-                        "description": "Texte libre permettant de passer toute autre information (\u00e9quipements suppl\u00e9mentaires / particuliers, particularit\u00e9s du vecteur)"
-                    }
                 }
             },
             "additionalProperties": false,

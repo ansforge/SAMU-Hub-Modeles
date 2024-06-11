@@ -27,19 +27,30 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Voir liste des effets à obtenir identifiés</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="convention" type="string"/>
-            <element minOccurs="0" name="deadline" type="string"/>
-            <element name="purpose" type="string"/>
-            <element minOccurs="0" name="freetext" type="string"/>
+            <element minOccurs="0" name="convention" type="string">
+                <annotation>
+                    <documentation>Nomenclature ? </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>Délai d'intervention souhaité</documentation>
+                </annotation>
+            </element>
+            <element name="purpose" type="string">
+                <annotation>
+                    <documentation>Motif de la demande de ressource auprès du partenaire</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Texte libre permettant de détailler la demande</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="location">
         <sequence>
-            <element minOccurs="0" name="locID" type="string">
-                <annotation>
-                    <documentation>ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="type">
                 <simpleType>
                     <restriction base="string">
@@ -52,13 +63,6 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="locLabel" type="string">
-                <annotation>
-                    <documentation>Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
-15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le "name" (toponyme) et l'adresse.
-</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
                     <documentation>Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
@@ -70,253 +74,6 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
             <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
-            <element name="country">
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="AF"/>
-                        <enumeration value="AX"/>
-                        <enumeration value="AL"/>
-                        <enumeration value="DZ"/>
-                        <enumeration value="AS"/>
-                        <enumeration value="AD"/>
-                        <enumeration value="AO"/>
-                        <enumeration value="AI"/>
-                        <enumeration value="AQ"/>
-                        <enumeration value="AG"/>
-                        <enumeration value="AR"/>
-                        <enumeration value="AM"/>
-                        <enumeration value="AW"/>
-                        <enumeration value="AU"/>
-                        <enumeration value="AT"/>
-                        <enumeration value="AZ"/>
-                        <enumeration value="BS"/>
-                        <enumeration value="BH"/>
-                        <enumeration value="BD"/>
-                        <enumeration value="BB"/>
-                        <enumeration value="BY"/>
-                        <enumeration value="BE"/>
-                        <enumeration value="BZ"/>
-                        <enumeration value="BJ"/>
-                        <enumeration value="BM"/>
-                        <enumeration value="BT"/>
-                        <enumeration value="BO"/>
-                        <enumeration value="BA"/>
-                        <enumeration value="BW"/>
-                        <enumeration value="BV"/>
-                        <enumeration value="BR"/>
-                        <enumeration value="IO"/>
-                        <enumeration value="BN"/>
-                        <enumeration value="BG"/>
-                        <enumeration value="BF"/>
-                        <enumeration value="BI"/>
-                        <enumeration value="CV"/>
-                        <enumeration value="KH"/>
-                        <enumeration value="CM"/>
-                        <enumeration value="CA"/>
-                        <enumeration value="KY"/>
-                        <enumeration value="CF"/>
-                        <enumeration value="TD"/>
-                        <enumeration value="CL"/>
-                        <enumeration value="CN"/>
-                        <enumeration value="CX"/>
-                        <enumeration value="CC"/>
-                        <enumeration value="CO"/>
-                        <enumeration value="KM"/>
-                        <enumeration value="CG"/>
-                        <enumeration value="CK"/>
-                        <enumeration value="CR"/>
-                        <enumeration value="CI"/>
-                        <enumeration value="HR"/>
-                        <enumeration value="CU"/>
-                        <enumeration value="CW"/>
-                        <enumeration value="CY"/>
-                        <enumeration value="CZ"/>
-                        <enumeration value="DK"/>
-                        <enumeration value="DJ"/>
-                        <enumeration value="DM"/>
-                        <enumeration value="DO"/>
-                        <enumeration value="EC"/>
-                        <enumeration value="EG"/>
-                        <enumeration value="SV"/>
-                        <enumeration value="GQ"/>
-                        <enumeration value="ER"/>
-                        <enumeration value="EE"/>
-                        <enumeration value="SZ"/>
-                        <enumeration value="ET"/>
-                        <enumeration value="FK"/>
-                        <enumeration value="FO"/>
-                        <enumeration value="FJ"/>
-                        <enumeration value="FI"/>
-                        <enumeration value="FR"/>
-                        <enumeration value="GF"/>
-                        <enumeration value="PF"/>
-                        <enumeration value="TF"/>
-                        <enumeration value="GA"/>
-                        <enumeration value="GM"/>
-                        <enumeration value="GE"/>
-                        <enumeration value="DE"/>
-                        <enumeration value="GH"/>
-                        <enumeration value="GI"/>
-                        <enumeration value="GR"/>
-                        <enumeration value="GL"/>
-                        <enumeration value="GD"/>
-                        <enumeration value="GP"/>
-                        <enumeration value="GU"/>
-                        <enumeration value="GT"/>
-                        <enumeration value="GG"/>
-                        <enumeration value="GN"/>
-                        <enumeration value="GW"/>
-                        <enumeration value="GY"/>
-                        <enumeration value="HT"/>
-                        <enumeration value="HM"/>
-                        <enumeration value="VA"/>
-                        <enumeration value="HN"/>
-                        <enumeration value="HK"/>
-                        <enumeration value="HU"/>
-                        <enumeration value="IS"/>
-                        <enumeration value="IN"/>
-                        <enumeration value="ID"/>
-                        <enumeration value="IR"/>
-                        <enumeration value="IQ"/>
-                        <enumeration value="IE"/>
-                        <enumeration value="IM"/>
-                        <enumeration value="IL"/>
-                        <enumeration value="IT"/>
-                        <enumeration value="JM"/>
-                        <enumeration value="JP"/>
-                        <enumeration value="JE"/>
-                        <enumeration value="JO"/>
-                        <enumeration value="KZ"/>
-                        <enumeration value="KE"/>
-                        <enumeration value="KI"/>
-                        <enumeration value="KP"/>
-                        <enumeration value="KW"/>
-                        <enumeration value="KG"/>
-                        <enumeration value="LA"/>
-                        <enumeration value="LV"/>
-                        <enumeration value="LB"/>
-                        <enumeration value="LS"/>
-                        <enumeration value="LR"/>
-                        <enumeration value="LY"/>
-                        <enumeration value="LI"/>
-                        <enumeration value="LT"/>
-                        <enumeration value="LU"/>
-                        <enumeration value="MO"/>
-                        <enumeration value="MG"/>
-                        <enumeration value="MW"/>
-                        <enumeration value="MY"/>
-                        <enumeration value="MV"/>
-                        <enumeration value="ML"/>
-                        <enumeration value="MT"/>
-                        <enumeration value="MH"/>
-                        <enumeration value="MQ"/>
-                        <enumeration value="MR"/>
-                        <enumeration value="MU"/>
-                        <enumeration value="YT"/>
-                        <enumeration value="MX"/>
-                        <enumeration value="FM"/>
-                        <enumeration value="MC"/>
-                        <enumeration value="MN"/>
-                        <enumeration value="ME"/>
-                        <enumeration value="MS"/>
-                        <enumeration value="MA"/>
-                        <enumeration value="MZ"/>
-                        <enumeration value="MM"/>
-                        <enumeration value="NA"/>
-                        <enumeration value="NR"/>
-                        <enumeration value="NP"/>
-                        <enumeration value="NL"/>
-                        <enumeration value="NC"/>
-                        <enumeration value="NZ"/>
-                        <enumeration value="NI"/>
-                        <enumeration value="NE"/>
-                        <enumeration value="NG"/>
-                        <enumeration value="NU"/>
-                        <enumeration value="NF"/>
-                        <enumeration value="MK"/>
-                        <enumeration value="MP"/>
-                        <enumeration value="NO"/>
-                        <enumeration value="OM"/>
-                        <enumeration value="PK"/>
-                        <enumeration value="PW"/>
-                        <enumeration value="PA"/>
-                        <enumeration value="PG"/>
-                        <enumeration value="PY"/>
-                        <enumeration value="PE"/>
-                        <enumeration value="PH"/>
-                        <enumeration value="PN"/>
-                        <enumeration value="PL"/>
-                        <enumeration value="PT"/>
-                        <enumeration value="PR"/>
-                        <enumeration value="QA"/>
-                        <enumeration value="RE"/>
-                        <enumeration value="RO"/>
-                        <enumeration value="RU"/>
-                        <enumeration value="RW"/>
-                        <enumeration value="BL"/>
-                        <enumeration value="KN"/>
-                        <enumeration value="LC"/>
-                        <enumeration value="MF"/>
-                        <enumeration value="PM"/>
-                        <enumeration value="VC"/>
-                        <enumeration value="WS"/>
-                        <enumeration value="SM"/>
-                        <enumeration value="ST"/>
-                        <enumeration value="SA"/>
-                        <enumeration value="SN"/>
-                        <enumeration value="RS"/>
-                        <enumeration value="SC"/>
-                        <enumeration value="SL"/>
-                        <enumeration value="SG"/>
-                        <enumeration value="SX"/>
-                        <enumeration value="SK"/>
-                        <enumeration value="SI"/>
-                        <enumeration value="SB"/>
-                        <enumeration value="SO"/>
-                        <enumeration value="ZA"/>
-                        <enumeration value="GS"/>
-                        <enumeration value="SS"/>
-                        <enumeration value="ES"/>
-                        <enumeration value="LK"/>
-                        <enumeration value="SD"/>
-                        <enumeration value="SR"/>
-                        <enumeration value="SJ"/>
-                        <enumeration value="SE"/>
-                        <enumeration value="CH"/>
-                        <enumeration value="SY"/>
-                        <enumeration value="TJ"/>
-                        <enumeration value="TH"/>
-                        <enumeration value="TL"/>
-                        <enumeration value="TG"/>
-                        <enumeration value="TK"/>
-                        <enumeration value="TO"/>
-                        <enumeration value="TT"/>
-                        <enumeration value="TN"/>
-                        <enumeration value="TR"/>
-                        <enumeration value="TM"/>
-                        <enumeration value="TC"/>
-                        <enumeration value="TV"/>
-                        <enumeration value="UG"/>
-                        <enumeration value="UA"/>
-                        <enumeration value="AE"/>
-                        <enumeration value="GB"/>
-                        <enumeration value="US"/>
-                        <enumeration value="UM"/>
-                        <enumeration value="UY"/>
-                        <enumeration value="UZ"/>
-                        <enumeration value="VU"/>
-                        <enumeration value="VE"/>
-                        <enumeration value="VN"/>
-                        <enumeration value="VG"/>
-                        <enumeration value="VI"/>
-                        <enumeration value="WF"/>
-                        <enumeration value="EH"/>
-                        <enumeration value="YE"/>
-                        <enumeration value="ZM"/>
-                        <enumeration value="ZW"/>
-                    </restriction>
-                </simpleType>
-            </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Champ libre pour compléter les informations de localisation</documentation>
@@ -437,15 +194,6 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
                 </annotation>
             </element>
             <element minOccurs="0" name="point" type="x:point"/>
-            <element minOccurs="0" name="sketch" type="string">
-                <annotation>
-                    <documentation>Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
-Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
-En XML, un objet gml est encapsulé dans une balise &lt;sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' &gt; &lt;/sketch&gt;
-En JSON, les balises sont reprises depuis le modèle gml
-Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="externalInfo">
@@ -529,16 +277,6 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
             <element minOccurs="0" name="height" type="decimal">
                 <annotation>
                     <documentation>Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="heading" type="decimal">
-                <annotation>
-                    <documentation>En degré</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="speed" type="decimal">
-                <annotation>
-                    <documentation>Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …</documentation>
                 </annotation>
             </element>
             <element name="precision">

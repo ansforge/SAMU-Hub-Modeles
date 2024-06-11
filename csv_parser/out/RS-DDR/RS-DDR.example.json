@@ -1,5 +1,5 @@
 {
-    "caseId": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
     "RSDDRId": "None",
     "resourceRequest": {
         "dateTime": "None",
@@ -9,9 +9,7 @@
         "freetext": "None"
     },
     "originLocation": {
-        "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
         "type": "Indique le type de d'origine /destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
-        "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
         "name": "Lyc\u00e9e Pierre de Coubertin",
         "externalLocationId": [
             {
@@ -53,13 +51,10 @@
                     "lat": "48.866667",
                     "lon": "2.333333",
                     "height": 120,
-                    "heading": 96,
-                    "speed": 34,
                     "precision": "ADDRESS"
                 },
                 "sysCoord": "EPSG-4326"
-            },
-            "sketch": "None"
+            }
         },
         "externalInfo": [
             {
@@ -68,7 +63,6 @@
                 "uri": "id987"
             }
         ],
-        "country": "France",
         "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
     },
     "destinationLocation": {}

@@ -101,7 +101,7 @@ public class Link {
    *organization du message RC-EDA) suivi de l&#39;identifiant local de
    *l&#39;affaire du partenaire requérant (champ senderCaseId du message
    *RC-EDA). {pays}.{domaine}.{organisation}.{structure interne}*.{unité
-   *fonctionnelle}*-{numéro de dossier}
+   *fonctionnelle}*.{numéro de dossier}
    * @return ID
    **/
   @JsonProperty(JSON_PROPERTY_I_D)

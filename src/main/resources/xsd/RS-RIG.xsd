@@ -4,15 +4,10 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
-                </annotation>
-            </element>
-            <element name="RSRIGId" type="string">
-                <annotation>
-                    <documentation>Identifiant unique de l'Echange de Ressource concerné. Le premier qui le créé à raison, ensuite il ne change pas. Il s'agit du message servant à échanger l'ensemble des ressources mobilisées/engagées sur un dossier</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="mobilizedResources" type="x:resource"/>
@@ -27,37 +22,13 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element name="resourceID" type="string">
                 <annotation>
-                    <documentation>ID unique de la ressource engagée</documentation>
-                </annotation>
-            </element>
-            <element name="ownerID" type="string">
-                <annotation>
-                    <documentation>(PSAP, …) qui a déclenché le vecteur et coordonne le vecteur</documentation>
+                    <documentation>ID unique de la ressource engagée partagée 
+{orgID}.{ID du dossier partagé}.R{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="missionID" type="string">
                 <annotation>
-                    <documentation>Numéro de mission du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
-                </annotation>
-            </element>
-            <element name="resourceType" type="string">
-                <annotation>
-                    <documentation>Type de ressource mobilisée (type moyen)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="vehiculeType" type="string">
-                <annotation>
-                    <documentation>Type de ressource mobilisée (nomenclature type de vecteur à implémenter)</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="plate" type="string">
-                <annotation>
-                    <documentation>N° d'immatriculation du vecteur</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="name" type="string">
-                <annotation>
-                    <documentation>Nom donné à la ressource par l’organisation d’appartenance</documentation>
+                    <documentation>Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="orgID" type="string">
@@ -70,11 +41,115 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Lieu de garage principal</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="centerType" type="string"/>
-            <element minOccurs="0" name="centerCity" type="string">
+            <element name="resourceType">
+                <annotation>
+                    <documentation>Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SMUR"/>
+                        <enumeration value="HOSPIT"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="TSU "/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="AASC"/>
+                        <enumeration value="FDO"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="vehiculeType">
+                <annotation>
+                    <documentation>Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="VPSP"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="INCONNU"/>
+                        <enumeration value="CONSEIL"/>
+                        <enumeration value="DAE"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="MEDC"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="PHARMA"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="MEDSPE"/>
+                        <enumeration value="DENT"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="NAVISIS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="plate" type="string">
+                <annotation>
+                    <documentation>N° d'immatriculation du vecteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom donné à la ressource par l’organisation d’appartenance</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="centerCity">
                 <annotation>
                     <documentation>Code INSEE de la commune du centre d'affectation</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="make" type="string">
                 <annotation>
@@ -91,6 +166,8 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             <element minOccurs="0" name="coord" type="x:coord"/>
             <element minOccurs="0" name="contact" type="x:contact"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element minOccurs="0" name="originLocation" type="x:location"/>
+            <element minOccurs="0" name="destinationLocation" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="team">
@@ -112,7 +189,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             <element minOccurs="0" name="dateTime" type="dateTime"/>
             <element minOccurs="0" name="status" type="string">
                 <annotation>
-                    <documentation>Statuts Antares</documentation>
+                    <documentation>Dernier statut du vecteur</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="availability" type="string">
@@ -188,6 +265,219 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             <element minOccurs="0" name="details" type="string">
                 <annotation>
                     <documentation>Valeur de l'URI utilisée pour contacter la ressource</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="location">
+        <sequence>
+            <element minOccurs="0" name="type">
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="Service d’urgences d’un Etablissement de sante"/>
+                        <enumeration value="Autres services d’un établissement de sante"/>
+                        <enumeration value="Cabinet d’un professionnel de sante"/>
+                        <enumeration value="Domicile personnel"/>
+                        <enumeration value="EPHAD ou long séjour"/>
+                        <enumeration value="Autre"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalLocationId" type="x:externalLocationId"/>
+            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
+            <element minOccurs="0" name="city" type="x:city"/>
+            <element minOccurs="0" name="access" type="x:access"/>
+            <element minOccurs="0" name="geometry" type="x:geometry"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Champ libre pour compléter les informations de localisation</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="externalLocationId">
+        <sequence>
+            <element name="source">
+                <annotation>
+                    <documentation>Type de l'identifiant fourni</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="FINESS administratif"/>
+                        <enumeration value="FINESS géographique"/>
+                        <enumeration value="SIREN"/>
+                        <enumeration value="SIRET"/>
+                        <enumeration value="APE/NAF"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="value" type="string">
+                <annotation>
+                    <documentation>L'identifiant en lui-même</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="detailedAddress">
+        <sequence>
+            <element name="complete" type="string">
+                <annotation>
+                    <documentation>Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="number" type="string">
+                <annotation>
+                    <documentation>Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="wayName" type="x:wayName"/>
+        </sequence>
+    </complexType>
+    <complexType name="city">
+        <sequence>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom officiel de la commune actuelle</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="inseeCode">
+                <annotation>
+                    <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="detail" type="string">
+                <annotation>
+                    <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
+NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="access">
+        <sequence>
+            <element minOccurs="0" name="floor" type="string">
+                <annotation>
+                    <documentation>Etage </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="roomNumber" type="string">
+                <annotation>
+                    <documentation>Spécifie numéro d'appartement, de chambre, de bureau</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="interphone" type="string">
+                <annotation>
+                    <documentation>Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="accessCode" type="string"/>
+            <element minOccurs="0" name="elevator" type="string">
+                <annotation>
+                    <documentation>Indique l'ascenseur ou la cage d'escalier </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="buildingName" type="string">
+                <annotation>
+                    <documentation>Nom du bâtiment</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="entrance" type="string"/>
+            <element minOccurs="0" name="entity" type="string">
+                <annotation>
+                    <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="phoneNumber" type="decimal">
+                <annotation>
+                    <documentation>Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="geometry">
+        <sequence>
+            <element name="obsDatime" type="dateTime">
+                <annotation>
+                    <documentation>Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="point" type="x:point"/>
+        </sequence>
+    </complexType>
+    <complexType name="externalInfo">
+        <sequence>
+            <element name="freetext">
+                <annotation>
+                    <documentation>Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="BAN"/>
+                        <enumeration value="IGN"/>
+                        <enumeration value="NexSIS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="type">
+                <annotation>
+                    <documentation>Définition du type d'objet dans le système
+Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MANUAL"/>
+                        <enumeration value="MAP"/>
+                        <enumeration value="OTHER"/>
+                        <enumeration value="PHOTO"/>
+                        <enumeration value="WEBSIT"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="uri" type="string">
+                <annotation>
+                    <documentation>Identifiant unique dans le type. Exemple : UUID d'un ega</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="wayName">
+        <sequence>
+            <element name="complete" type="string">
+                <annotation>
+                    <documentation>Type et nom de la voie (venant d'un référentiel ou non)
+Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>Type de la voie</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="name" type="string">
+                <annotation>
+                    <documentation>Nom de la voie</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="point">
+        <sequence>
+            <element name="coord" type="x:coord"/>
+            <element minOccurs="0" name="sysCoord" type="string">
+                <annotation>
+                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».</documentation>
                 </annotation>
             </element>
         </sequence>

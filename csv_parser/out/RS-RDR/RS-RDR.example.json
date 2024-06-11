@@ -1,5 +1,5 @@
 {
-    "caseId": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
     "RSDDRId": "None",
     "resourceRequest": {
         "dateTime": "None",
@@ -12,14 +12,14 @@
             "commitmentDateTime": "None",
             "originDateTime": "None",
             "destinationDateTime": "None",
-            "resourceID": "None",
-            "orgID": "None",
-            "type": "None",
+            "resourceID": "fr.health.samu440.DRFR15DDXAAJJJ0000.R01",
+            "orgID": "fr.health.samu440",
+            "resourceType": "SMUR",
+            "vehiculeType": "VLM",
             "plate": "None",
             "name": "None",
             "order": "None",
             "centerName": "None",
-            "centerType": "None",
             "centerCity": "None",
             "make": "None",
             "model": "None",
@@ -29,16 +29,13 @@
             },
             "state": {
                 "dateTime": "None",
-                "status": "None",
-                "availability": "None"
+                "status": "ENUM : Alerte, Parti, Arrivee Sur Les Lieux, Transport Destination, Arrivee Destination, Fin De Medicalisation , Quitte Destination, Retour Base, Rentree Base",
+                "availability": "ENUM : Disponible, Indisponible, Inconnu"
             },
             "contact": {
                 "type": "PHNADD",
                 "details": "0671830530"
-            },
-            "freetext": [
-                "None"
-            ]
+            }
         }
     ]
 }

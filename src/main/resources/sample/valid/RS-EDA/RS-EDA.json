@@ -24,13 +24,13 @@
             },
             "sentAt": "2022-07-25T10:04:34+01:00",
             "kind": "Report",
-            "status": "Actual",
             "recipient": [
               {
                 "name": "samuB",
                 "URI": "hubex:fr.health.samuB"
               }
             ],
+            "status": "Actual",
             "createCaseHealth": {
               "caseId": "fr.health.samu950-DRFR159502401000233",
               "senderCaseId": "DRFR159502401000233",
@@ -51,9 +51,7 @@
                 },
                 "details": {
                   "priority": "P0",
-                  "attribution": "MU",
-                  "type": "D",
-                  "status": "Actif "
+                  "attribution": "MU"
                 },
                 "riskThreat": [
                   {
@@ -83,7 +81,6 @@
                   "inseeCode": "78586",
                   "detail": "Sartrouville"
                 },
-                "country": "FR",
                 "access": {
                   "floor": "4",
                   "interphone": "SARL TOTO",
@@ -107,8 +104,7 @@
                     },
                     "sysCoord": "système"
                   },
-                  "obsDatime": "2024-01-10T11:00:00+01:00",
-                  "sketch": "formes"
+                  "obsDatime": "2024-01-10T11:00:00+01:00"
                 },
                 "externalInfo": [
                   {
@@ -122,13 +118,10 @@
                     "source": "SIRET",
                     "value": "36252187900034"
                   }
-                ],
-                "locLabel": "Résumé localisation dossier"
+                ]
               },
               "initialAlert": {
-                "id": "fr.health.samu950-DRFR159502401000233",
                 "reception": "2024-01-10T14:05:00+01:00",
-                "reporting": "STANDARD",
                 "caller": {
                   "callerContact": {
                     "type": "PHNADD",
@@ -150,27 +143,6 @@
                   "type": "TIERS",
                   "communication": "LANGUE"
                 },
-                "callTaker": {
-                  "organization": "fr.health.samu950",
-                  "controlRoom": "CRRA 95",
-                  "calltakerContact": {
-                    "type": "PHNADD",
-                    "detail": "060102030406",
-                    "channel": "Personne"
-                  },
-                  "role": "ARM",
-                  "calltakerId": "4978-IDARM2"
-                },
-                "attachment": [
-                  {
-                    "description": "TYPE PJ",
-                    "mimeType": "TYPE MIME",
-                    "size": 798,
-                    "URI": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json",
-                    "derefURI": "aHR0cHM6Ly93d3cuYmFzZTY0ZW5jb2RlLm9yZy9mci8=",
-                    "digest": "hash"
-                  }
-                ],
                 "notes": [
                   {
                     "creation": "2024-01-10T07:04:00+01:00",
@@ -214,18 +186,8 @@
                     "strictFeatures": {
                       "sex": "FEM",
                       "birthName": "BOUDADI",
-                      "birthFirstName": "Ouardia",
-                      "birthFirstNamesList": "Ouardia Salomé",
                       "birthDate": "1982-02-26",
                       "birthPlaceCode": 99205
-                    },
-                    "number": {
-                      "value": "256897445698754",
-                      "oid": "1.2.250.1.213.1.4.8"
-                    },
-                    "cycle": {
-                      "status": "Qualifiée",
-                      "attribute": "Homonyme"
                     }
                   },
                   "id": "fr.health.samu950-DRFR159502401000233.P11",
@@ -246,46 +208,6 @@
                     "code": "M03.06"
                   },
                   "administrativeFile": {
-                    "generalPractitioner": {
-                      "personalAddress": {
-                        "city": {
-                          "name": "ST DENIS",
-                          "detail": "Lieu-dit",
-                          "inseeCode": "93066"
-                        },
-                        "detailedAddress": {
-                          "wayName": {
-                            "complete": "PLACE PLEYEL",
-                            "type": "PLACE",
-                            "name": "PLEYEL"
-                          },
-                          "complete": "1 PLACE PLEYEL",
-                          "number": "1"
-                        }
-                      },
-                      "detailedName": {
-                        "complete": "Michel Dupont",
-                        "lastName": "Dupont",
-                        "firstName": "Michel "
-                      },
-                      "id": "10003019207"
-                    },
-                    "personalAddress": {
-                      "city": {
-                        "name": "Paris",
-                        "inseeCode": "75111",
-                        "detail": "Cedex 03"
-                      },
-                      "detailedAddress": {
-                        "wayName": {
-                          "complete": "rue du chemin vert",
-                          "type": "rue",
-                          "name": "du chemin vert"
-                        },
-                        "complete": "60 rue du chemin vert",
-                        "number": "60"
-                      }
-                    }
                   },
                   "freetext": [
                     "Commentaire 1 dossier",
@@ -301,17 +223,6 @@
               ],
               "newAlert": [
                 {
-                  "callTaker": {
-                    "calltakerContact": {
-                      "channel": "Personne",
-                      "type": "PHNADD",
-                      "detail": "0506070809"
-                    },
-                    "organization": "fr.health.samu950",
-                    "controlRoom": "fr.health.samu950",
-                    "role": "Medecin",
-                    "calltakerId": "12345"
-                  },
                   "caller": {
                     "detailedName": {
                       "complete": "tom tom",
@@ -333,113 +244,30 @@
                     "communication": "LANGUE",
                     "freetext": "commentaire"
                   },
-                  "attachment": [
-                    {
-                      "description": "type PJ",
-                      "mimeType": "type MIME",
-                      "size": 234,
-                      "URI": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json",
-                      "derefURI": "aHR0cHM6Ly9iYWMtYS1zYWJsZS5odWIuZXNhbnRlLmdvdXYuZnIvbHJtL2pzb24=",
-                      "digest": "test"
-                    }
-                  ],
-                  "id": "fr.health.samu950-DRFR159502401000233",
-                  "reception": "2024-04-18T09:45:00+02:00",
-                  "reporting": "ATTENTION"
+                  "reception": "2024-04-18T09:45:00+02:00"
                 }
               ],
               "decision": [
                 {
                   "transportDetails": {
                     "destination": {
-                      "destinationLocation": {
-                        "geometry": {
-                          "point": {
-                            "coord": {
-                              "lat": 48.869422912597656,
-                              "lon": 2.2231545448303223,
-                              "height": 22,
-                              "precision": "STREET"
-                            },
-                            "sysCoord": "systeme"
-                          },
-                          "obsDatime": "2024-04-08T06:40:00+02:00",
-                          "sketch": "test"
-                        },
-                        "access": {
-                          "accessCode": [
-                            "1234"
-                          ],
-                          "floor": "étage",
-                          "roomNumber": "2",
-                          "interphone": "interphone",
-                          "elevator": "esc2",
-                          "buildingName": "batb",
-                          "entrance": "235a",
-                          "entity": "urgences",
-                          "phoneNumber": "0102030405"
-                        },
-                        "city": {
-                          "inseeCode": "92073",
-                          "name": "Suresnes",
-                          "detail": "Suresnes"
-                        },
-                        "detailedAddress": {
-                          "wayName": {
-                            "complete": "Rue Merlin de Thionville",
-                            "type": "Rue",
-                            "name": "Merlin de Thionville"
-                          },
-                          "complete": "39 Rue Merlin de Thionville",
-                          "number": "39 "
-                        },
-                        "externalInfo": [
-                          {
-                            "freetext": "BAN",
-                            "type": "MANUAL",
-                            "uri": "555fb03a-qs48"
-                          }
-                        ],
-                        "externalLocationId": [
-                          {
-                            "source": "FINESS géographique",
-                            "value": "123456789"
-                          }
-                        ],
-                        "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
-                        "locLabel": "Résumé localisation urgences",
-                        "name": "urgences",
-                        "country": "FR",
-                        "freetext": "test"
-                      },
                       "type": "service d’urgences d’un Etablissement de santé"
                     },
                     "orientation": "OK",
-                    "teamCare": "MED",
-                    "concoursRequest": "fr.health.samu950-DRFR159502401000233.D350",
-                    "transportationID": "IDV-OIUSJP1245"
+                    "teamCare": "MED"
                   },
                   "id": "fr.health.samu950-DRFR159502401000233.P11",
                   "creation": "2024-04-30T09:15:00+02:00",
                   "type": "ORIENT",
                   "engagementDetails": {
+                    "teamCareInitial": "MED",
                     "categoryType": "SMUR",
-                    "resourceType": "VLM",
-                    "teamCareInitial": "R1"
+                    "resourceType": "VLM"
                   }
                 }
               ],
               "medicalNote": [
                 {
-                  "operator": {
-                    "detailedName": {
-                      "complete": "Lucas Stefano",
-                      "lastName": "Stefano",
-                      "firstName": "Lucas "
-                    },
-                    "id": "1245_ID",
-                    "role": "ARM"
-                  },
                   "id": "fr.health.samu950-DRFR159502401000233.P11",
                   "creation": "2024-04-03T01:15:00+02:00",
                   "freetext": "Observations et commentaires médicaux sur le patient Ouardia Boudadi. ",

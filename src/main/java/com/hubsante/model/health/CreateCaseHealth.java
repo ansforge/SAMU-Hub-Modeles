@@ -65,8 +65,8 @@ import java.util.Objects;
                     CreateCaseHealth.JSON_PROPERTY_MEDICAL_NOTE,
                     CreateCaseHealth.JSON_PROPERTY_DECISION,
                     CreateCaseHealth.JSON_PROPERTY_NEW_ALERT,
-                    CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION,
-                    CreateCaseHealth.JSON_PROPERTY_FREETEXT})
+                    CreateCaseHealth.JSON_PROPERTY_FREETEXT,
+                    CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCaseHealth")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -187,12 +187,12 @@ public class CreateCaseHealth {
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
 
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private List<String> freetext;
+
   public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION =
       "additionalInformation";
   private AdditionalInformation additionalInformation;
-
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private List<String> freetext;
 
   public CreateCaseHealth() {}
 
@@ -599,31 +599,6 @@ public class CreateCaseHealth {
     this.newAlert.addAll(newAlert);
   }
 
-  public CreateCaseHealth
-  additionalInformation(AdditionalInformation additionalInformation) {
-
-    this.additionalInformation = additionalInformation;
-    return this;
-  }
-
-  /**
-   * Get additionalInformation
-   * @return additionalInformation
-   **/
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public AdditionalInformation getAdditionalInformation() {
-    return additionalInformation;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void
-  setAdditionalInformation(AdditionalInformation additionalInformation) {
-    this.additionalInformation = additionalInformation;
-  }
-
   public CreateCaseHealth freetext(List<String> freetext) {
 
     this.freetext = freetext;
@@ -663,6 +638,31 @@ public class CreateCaseHealth {
     this.freetext.addAll(freetext);
   }
 
+  public CreateCaseHealth
+  additionalInformation(AdditionalInformation additionalInformation) {
+
+    this.additionalInformation = additionalInformation;
+    return this;
+  }
+
+  /**
+   * Get additionalInformation
+   * @return additionalInformation
+   **/
+  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public AdditionalInformation getAdditionalInformation() {
+    return additionalInformation;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void
+  setAdditionalInformation(AdditionalInformation additionalInformation) {
+    this.additionalInformation = additionalInformation;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -688,9 +688,9 @@ public class CreateCaseHealth {
         Objects.equals(this.medicalNote, createCaseHealth.medicalNote) &&
         Objects.equals(this.decision, createCaseHealth.decision) &&
         Objects.equals(this.newAlert, createCaseHealth.newAlert) &&
+        Objects.equals(this.freetext, createCaseHealth.freetext) &&
         Objects.equals(this.additionalInformation,
-                       createCaseHealth.additionalInformation) &&
-        Objects.equals(this.freetext, createCaseHealth.freetext);
+                       createCaseHealth.additionalInformation);
   }
 
   @Override
@@ -698,7 +698,7 @@ public class CreateCaseHealth {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
                         perimeter, interventionType, qualification, location,
                         initialAlert, owner, patient, medicalNote, decision,
-                        newAlert, additionalInformation, freetext);
+                        newAlert, freetext, additionalInformation);
   }
 
   @Override
@@ -733,10 +733,10 @@ public class CreateCaseHealth {
         .append("\n");
     sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("    additionalInformation: ")
         .append(toIndentedString(additionalInformation))
         .append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

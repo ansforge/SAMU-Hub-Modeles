@@ -1,20 +1,17 @@
 {
-    "caseId": "fr.health.samu440-DRFR15DDXAAJJJ0000",
-    "RSRIGId": "None",
+    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
     "mobilizedResources": [
         {
             "dateTime": "None",
-            "resourceID": "None",
-            "ownerID": "None",
-            "missionID": "None",
-            "resourceType": "None",
-            "vehiculeType": "None",
+            "resourceID": "fr.health.samu440.DRFR15DDXAAJJJ0000.R01",
+            "missionID": "DRFR15DDXAAJJJ0000.M001",
+            "orgID": "fr.health.samu440",
+            "centerName": "CHU Nantes",
+            "resourceType": "SMUR",
+            "vehiculeType": "VLM",
             "plate": "None",
-            "name": "None",
-            "orgID": "None",
-            "centerName": "None",
-            "centerType": "None",
-            "centerCity": "None",
+            "name": "SMUR 123",
+            "centerCity": 44109,
             "make": "None",
             "model": "None",
             "team": {
@@ -42,7 +39,65 @@
             },
             "freetext": [
                 "None"
-            ]
+            ],
+            "originLocation": {
+                "type": "Indique le type de d'origine /destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
+                "name": "Lyc\u00e9e Pierre de Coubertin",
+                "externalLocationId": [
+                    {
+                        "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
+                        "value": "920000650\u00a0"
+                    }
+                ],
+                "detailedAddress": {
+                    "complete": "9 Bd du Montparnasse",
+                    "number": "9, 4bis, PK10, \u2026",
+                    "wayName": {
+                        "complete": "Boulevard du Montparnasse",
+                        "type": "Boulevard",
+                        "name": "du Montparnasse"
+                    }
+                },
+                "city": {
+                    "name": "Lille",
+                    "inseeCode": 59350,
+                    "detail": "Quartie Melun Nord, Lhomme, \u2026"
+                },
+                "access": {
+                    "floor": "RDC",
+                    "roomNumber": "A16",
+                    "interphone": "Dupont",
+                    "accessCode": [
+                        "1234A"
+                    ],
+                    "elevator": "C3",
+                    "buildingName": "Batiment B",
+                    "entrance": "Zone Sud",
+                    "entity": "Infirmerie",
+                    "phoneNumber": 33123452323
+                },
+                "geometry": {
+                    "obsDatime": "2022-09-27T08:23:34+02:00",
+                    "point": {
+                        "coord": {
+                            "lat": "48.866667",
+                            "lon": "2.333333",
+                            "height": 120,
+                            "precision": "ADDRESS"
+                        },
+                        "sysCoord": "EPSG-4326"
+                    }
+                },
+                "externalInfo": [
+                    {
+                        "freetext": "NexSIS, BAN, IGN, \u2026",
+                        "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
+                        "uri": "id987"
+                    }
+                ],
+                "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+            },
+            "destinationLocation": {}
         }
     ]
 }

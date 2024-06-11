@@ -342,6 +342,8 @@ components:
       required:
       - code
       - label
+      - code
+      - label
       properties:
         code:
           type: string

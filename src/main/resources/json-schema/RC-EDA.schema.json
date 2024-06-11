@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.05.31",
+    "version": "24.06.11",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -75,9 +75,6 @@
                 "$ref": "#/definitions/alert"
             }
         },
-        "additionalInformation": {
-            "$ref": "#/definitions/additionalInformation"
-        },
         "freetext": {
             "type": "array",
             "x-health-only": false,
@@ -89,6 +86,9 @@
                 "example": "example.json#/freetext/0",
                 "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire/dossier. Ces informations sont g\u00e9n\u00e9rales, et ont vocation \u00e0 \u00eatre \u00e9chang\u00e9es en inter-force. "
             }
+        },
+        "additionalInformation": {
+            "$ref": "#/definitions/additionalInformation"
         }
     },
     "definitions": {
@@ -468,7 +468,7 @@
                 },
                 "reception": {
                     "type": "string",
-                    "title": "Date de r\u00e9ception de l'alerte",
+                    "title": "Date et heure de r\u00e9ception de l'alerte",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reception",
@@ -531,7 +531,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/id",
-                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
+                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison.\n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique}"
                 },
                 "identity": {
                     "$ref": "#/definitions/insIdentity"
@@ -2027,7 +2027,7 @@
         },
         "insIdentity": {
             "type": "object",
-            "title": "Identit\u00e9 INS",
+            "title": "Identit\u00e9",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [],
@@ -2092,23 +2092,28 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportDetails/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
-                },
-                "concoursRequest": {
-                    "type": "string",
-                    "title": "ID demande de concours/de ressources",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/concoursRequest",
-                    "description": "Identifiant de la ou des demandes de concours "
-                },
-                "transportationID": {
-                    "type": "string",
-                    "title": "ID vecteur partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/transportationID",
-                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place",
+                    "enum": [
+                        "OK",
+                        "TEMP",
+                        "SEUL",
+                        "AFAMILLE",
+                        "AMED",
+                        "AFDO",
+                        "ATIERS",
+                        "MOYPERSO",
+                        "Code vecteur choisi",
+                        "REFPAT",
+                        "REFFAM",
+                        "PASREAKO",
+                        "PASREAOK",
+                        "REA",
+                        "TRANSPOR",
+                        "ADM",
+                        "FUGUE",
+                        "REFAUTRE",
+                        "RAS"
+                    ]
                 },
                 "teamCare": {
                     "type": "string",
@@ -2116,7 +2121,12 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportDetails/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)",
+                    "enum": [
+                        "MED",
+                        "PARAMED",
+                        "SECOURS"
+                    ]
                 },
                 "destination": {
                     "$ref": "#/definitions/destination"
@@ -2148,7 +2158,7 @@
                         "autre"
                     ]
                 },
-                "destinationLocation": {
+                "location": {
                     "$ref": "#/definitions/location"
                 }
             },

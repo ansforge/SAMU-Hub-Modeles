@@ -46,9 +46,9 @@ def parser_and_mv():
     for sheet in sheets:
         full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
 
-        # For each sheet we read the A2 cell and get the list of schemas to generate
-        if not pd.isna(full_df.iloc[1, 0]):
-            schemas_array = full_df.iloc[1, 0].split(' ')
+        # For each sheet we read the A1 cell and get the list of schemas to generate
+        if not pd.isna(full_df.iloc[0, 0]):
+            schemas_array = full_df.iloc[0, 0].split(' ')
 
             # Schemas are formatted in the sheet as follows:
             # "schema1['name']:schema1['filter']:schema1['modelType'] schema2['name']:schema2['filter']:schema2['modelType'] ..."
@@ -62,9 +62,11 @@ def parser_and_mv():
                       f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'. "
                       f"It was: '{full_df.iloc[1, 0]}'")
                 exit(1)
-        # If A2 is empty, we generate only one schema with the sheet name and modelType in A1
         else:
-            schemas = [{'name': sheet, 'sheet': sheet, 'filter': '', 'model_type': full_df.iloc[0, 0]}]
+            print(f"Error in sheet {sheet}: schema list (cell A2) is empty. "
+                  f"Should be 'name:filter:modelType' separated by a space. "
+                  f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'.")
+            exit(1)
 
         for schema in schemas:
             # Run csv_parser

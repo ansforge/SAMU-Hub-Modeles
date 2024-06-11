@@ -2,20 +2,16 @@
 0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440-DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
 1,2,ID DDR partagé,,,,,,Identifiant unique partagé de la demande de ressource,,,RSDDRId,1..1,,string,,,,X
 2,3,Demande de ressource,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,resourceRequest,0..1,X,request,,Format datetime décrit dans le DSF,,X
 3,4,,Date Heure de création de la demande,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
-4,5,,Cadre conventionnel,,,,,,,,convention,0..1,,string,,,,X
-5,6,,Délai souhaité,,,,,,,,deadline,0..1,,string,,,,X
-6,7,,Effet à obtenir,,,,,,,,purpose,1..1,,string,X,Liste/nomenclature des effets à obtenir à ajouter,,X
-7,8,,Précisions sur la demande,,,,,,,,freetext,0..1,,string,,,,X
-8,9,Origine,,,,,,"Permet de décrire le lieu d'intervention, uniquement lorsqu'il est différent de celui porté au dossier. Par exemple dans un cas de jonction, ou pour un TIH.",,,originLocation,0..1,X,location,,,,X
-9,10,,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,,locID,0..1,,string,,,,X
+4,5,,Cadre conventionnel,,,,,Nomenclature ? ,,,convention,0..1,,string,,,,X
+5,6,,Délai souhaité,,,,,Délai d'intervention souhaité,,,deadline,0..1,,string,,,,X
+6,7,,Effet à obtenir,,,,,Motif de la demande de ressource auprès du partenaire,,,purpose,1..1,,string,X,,,X
+7,8,,Précisions sur la demande,,,,,Texte libre permettant de détailler la demande,,,freetext,0..1,,string,,,,X
+8,9,Lieu de prise en charge,,,,,,"Permet de décrire le lieu d'intervention, lorsqu'il est différent de celui porté au dossier. Par exemple dans un cas de jonction, ou pour un TIH.",,,originLocation,0..1,X,location,,,,X
 10,11,,Type d'origine/destination,,,,,,"Indique le type de d'origine /destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,type,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,X
-11,12,,Résumé de la localisation,,,,,"Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
-15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
-","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",,locLabel,0..1,,string,,,,X
 12,13,,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,,name,0..1,,string,,,,X
 13,14,,Identifiant(s) du lieu,,,,,Permet d'identifier une structure commerciale ou un établissement,,,externalLocationId,0..n,X,externalLocationId,,,,X
 14,15,,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,1..1,,string,X,"ENUM: FINESS administratif, FINESS géographique, SIREN, SIRET, APE/NAF",,X
@@ -56,22 +52,14 @@ L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,,coor
 41,42,,,,,Latitude,,Latitude du point clé de la localisation ,48.866667,,lat,1..1,,number,,,,X
 42,43,,,,,Longitude,,Longitude du point clé de la localisation,2.333333,,lon,1..1,,number,,,,X
 43,44,,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,0..1,,number,,,,X
-44,45,,,,,Cap,,En degré,96,,heading,0..1,,number,,,,
-45,46,,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,0..1,,number,,,,
 46,47,,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
 CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN",,X
 47,48,,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,,sysCoord,0..1,,string,,,,X
-48,49,,,Formes géométriques,,,,"Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
-Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
-En XML, un objet gml est encapsulé dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>
-En JSON, les balises sont reprises depuis le modèle gml
-Voir http://www.opengis.net/gml pour le format de l'objet sketch",,,sketch,0..1,,string,,,,X
 49,50,,Liens aux systèmes externes,,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,,externalInfo,0..n,X,externalInfo,,,,X
 50,51,,,Nom de la source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",,freetext,1..1,,string,X,"ENUM: BAN, IGN, NexSIS",,X
 51,52,,,Type ,,,,"Définition du type d'objet dans le système
 Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",,type,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",,X
 52,53,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,,uri,1..1,,string,,,,X
-53,54,,Pays,,,,,,France,,country,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,,X
 54,55,,Informations complémentaires sur la localisation,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,,freetext,0..1,,string,,,,X
 55,56,Destination,# Voir Origine (type location),,,,,"Permet de décrire la destination d'une ressource, lorsqu'elle est connue. (Par exemple : suite à une décisition d'orientation, une nouvelle demande de ressource doit être envoyée, ou lors d'un TIH)",,,destinationLocation,0..1,X,location,,,,X

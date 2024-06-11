@@ -93,7 +93,7 @@ public class Request {
   }
 
   /**
-   * oui / non / oui partiel /
+   * oui / non / oui partiel / différé
    * @return answer
    **/
   @JsonProperty(JSON_PROPERTY_ANSWER)
