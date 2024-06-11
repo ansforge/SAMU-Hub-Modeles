@@ -49,77 +49,8 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class TransportDetails {
-
-  /**
-   * Décision(s) d&#39;orientation prise par le médecin régulateur :  - A
-   * transporter - Laisser sur place
-   */
-  public enum OrientationEnum {
-    OK("OK"),
-
-    TEMP("TEMP"),
-
-    SEUL("SEUL"),
-
-    AFAMILLE("AFAMILLE"),
-
-    AMED("AMED"),
-
-    AFDO("AFDO"),
-
-    ATIERS("ATIERS"),
-
-    MOYPERSO("MOYPERSO"),
-
-    CODE_VECTEUR_CHOISI("Code vecteur choisi"),
-
-    REFPAT("REFPAT"),
-
-    REFFAM("REFFAM"),
-
-    PASREAKO("PASREAKO"),
-
-    PASREAOK("PASREAOK"),
-
-    REA("REA"),
-
-    TRANSPOR("TRANSPOR"),
-
-    ADM("ADM"),
-
-    FUGUE("FUGUE"),
-
-    REFAUTRE("REFAUTRE"),
-
-    RAS("RAS");
-
-    private String value;
-
-    OrientationEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static OrientationEnum fromValue(String value) {
-      for (OrientationEnum b : OrientationEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_ORIENTATION = "orientation";
-  private OrientationEnum orientation;
+  private String orientation;
 
   /**
    * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
@@ -165,7 +96,7 @@ public class TransportDetails {
 
   public TransportDetails() {}
 
-  public TransportDetails orientation(OrientationEnum orientation) {
+  public TransportDetails orientation(String orientation) {
 
     this.orientation = orientation;
     return this;
@@ -179,13 +110,13 @@ public class TransportDetails {
   @JsonProperty(JSON_PROPERTY_ORIENTATION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OrientationEnum getOrientation() {
+  public String getOrientation() {
     return orientation;
   }
 
   @JsonProperty(JSON_PROPERTY_ORIENTATION)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setOrientation(OrientationEnum orientation) {
+  public void setOrientation(String orientation) {
     this.orientation = orientation;
   }
 
