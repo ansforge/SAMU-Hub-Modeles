@@ -64,10 +64,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResources/0/resourceID
-          description: "ID unique de la ressource engag\xE9e partag\xE9e = aux champs\
-            \ {orgID}.R.{ownerID}"
+          description: "ID unique de la ressource engag\xE9e partag\xE9e \n{orgID}.{ID\
+            \ du dossier partag\xE9}.R{num\xE9ro d\u2019ordre chronologique}"
           examples:
-          - fr.health.samu440.R.123456
+          - fr.health.samu440.DRFR15DDXAAJJJ0000.R01
         missionID:
           type: string
           title: ID mission local
@@ -127,6 +127,69 @@ components:
           description: "Type de vecteur mobilis\xE9 : V\xE9hicule L\xE9ger M\xE9dicalis\xE9\
             , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
             \ Ambulance de r\xE9animation P\xE9diatrique, etc."
+          enum:
+          - VPSP
+          - VLSC
+          - AUTRESC
+          - TAXI
+          - TRANSP
+          - AUTRE
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - INCONNU
+          - CONSEIL
+          - DAE
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - MEDC
+          - MEDV
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
+          - DRAGON
+          - AVSC
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - MOYSSE
+          - AUTRESIS
+          - VLM
+          - AR
+          - AR-BAR
+          - AR-PED
+          - VL
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          - VSL
+          - NAVISIS
           examples:
           - VLM
         plate:
@@ -148,14 +211,6 @@ components:
             appartenance"
           examples:
           - SMUR 123
-        centerType:
-          type: string
-          title: "Type de centre d\u2019affectation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResources/0/centerType
-          examples:
-          - None
         centerCity:
           type: string
           title: "Commune du centre d\u2019affectation"

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.06.10",
+    "version": "24.06.11",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -287,7 +287,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/id",
-                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
+                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison.\n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique}"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -2182,7 +2182,28 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportDetails/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place",
+                    "enum": [
+                        "OK",
+                        "TEMP",
+                        "SEUL",
+                        "AFAMILLE",
+                        "AMED",
+                        "AFDO",
+                        "ATIERS",
+                        "MOYPERSO",
+                        "Code vecteur choisi",
+                        "REFPAT",
+                        "REFFAM",
+                        "PASREAKO",
+                        "PASREAOK",
+                        "REA",
+                        "TRANSPOR",
+                        "ADM",
+                        "FUGUE",
+                        "REFAUTRE",
+                        "RAS"
+                    ]
                 },
                 "teamCare": {
                     "type": "string",

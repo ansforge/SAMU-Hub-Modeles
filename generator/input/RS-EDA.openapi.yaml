@@ -289,7 +289,8 @@ components:
           x-cols: 6
           example: example.json#/patient/0/id
           description: "Identifiant technique du patient pour permettre les rapprochements\
-            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
+            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison.\n{ID du dossier\
+            \ partag\xE9}.P{num\xE9ro d\u2019ordre chronologique}"
           examples:
           - fr.health.samu044.DRFR15DDXAAJJJ00000.P00
         administrativeFile:
@@ -2304,6 +2305,26 @@ components:
           example: example.json#/decision/0/transportDetails/orientation
           description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
             gulateur : \n- A transporter\n- Laisser sur place"
+          enum:
+          - OK
+          - TEMP
+          - SEUL
+          - AFAMILLE
+          - AMED
+          - AFDO
+          - ATIERS
+          - MOYPERSO
+          - Code vecteur choisi
+          - REFPAT
+          - REFFAM
+          - PASREAKO
+          - PASREAOK
+          - REA
+          - TRANSPOR
+          - ADM
+          - FUGUE
+          - REFAUTRE
+          - RAS
           examples:
           - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
         teamCare:

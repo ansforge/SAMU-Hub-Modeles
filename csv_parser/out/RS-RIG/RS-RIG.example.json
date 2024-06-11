@@ -3,7 +3,7 @@
     "mobilizedResources": [
         {
             "dateTime": "None",
-            "resourceID": "fr.health.samu440.R.123456",
+            "resourceID": "fr.health.samu440.DRFR15DDXAAJJJ0000.R01",
             "missionID": "DRFR15DDXAAJJJ0000.M001",
             "orgID": "fr.health.samu440",
             "centerName": "CHU Nantes",
@@ -11,7 +11,6 @@
             "vehiculeType": "VLM",
             "plate": "None",
             "name": "SMUR 123",
-            "centerType": "None",
             "centerCity": 44109,
             "make": "None",
             "model": "None",

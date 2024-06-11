@@ -62,7 +62,8 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element name="resourceID" type="string">
                 <annotation>
-                    <documentation>ID unique de la ressource engagée partagée = aux champs {orgID}.R.{ownerID}</documentation>
+                    <documentation>ID unique de la ressource engagée partagée 
+{orgID}.{ID du dossier partagé}.R{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="orgID" type="string">
@@ -176,7 +177,6 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Lieu de garage principal</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="centerType" type="string"/>
             <element minOccurs="0" name="centerCity" type="string">
                 <annotation>
                     <documentation>Code INSEE de la commune du centre d'affectation</documentation>

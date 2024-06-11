@@ -158,10 +158,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResources/0/resourceID
-          description: "ID unique de la ressource engag\xE9e partag\xE9e = aux champs\
-            \ {orgID}.R.{ownerID}"
+          description: "ID unique de la ressource engag\xE9e partag\xE9e \n{orgID}.{ID\
+            \ du dossier partag\xE9}.R{num\xE9ro d\u2019ordre chronologique}"
           examples:
-          - fr.health.samu440.R.123456
+          - fr.health.samu440.DRFR15DDXAAJJJ0000.R01
         orgID:
           type: string
           title: "Identifiant de l'organisation propri\xE9taire"
@@ -302,14 +302,6 @@ components:
           x-cols: 6
           example: example.json#/mobilizedResources/0/centerName
           description: Lieu de garage principal
-          examples:
-          - None
-        centerType:
-          type: string
-          title: "Type de centre d\u2019affectation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/mobilizedResources/0/centerType
           examples:
           - None
         centerCity:

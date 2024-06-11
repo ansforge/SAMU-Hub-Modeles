@@ -53,10 +53,9 @@ import java.util.Objects;
      Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
      Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
      Resource.JSON_PROPERTY_ORDER, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_CENTER_TYPE, Resource.JSON_PROPERTY_CENTER_CITY,
-     Resource.JSON_PROPERTY_MAKE, Resource.JSON_PROPERTY_MODEL,
-     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
-     Resource.JSON_PROPERTY_CONTACT})
+     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_MAKE,
+     Resource.JSON_PROPERTY_MODEL, Resource.JSON_PROPERTY_TEAM,
+     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -302,9 +301,6 @@ public class Resource {
   public static final String JSON_PROPERTY_CENTER_NAME = "centerName";
   private String centerName;
 
-  public static final String JSON_PROPERTY_CENTER_TYPE = "centerType";
-  private String centerType;
-
   public static final String JSON_PROPERTY_CENTER_CITY = "centerCity";
   private String centerCity;
 
@@ -403,8 +399,8 @@ public class Resource {
   }
 
   /**
-   * ID unique de la ressource engagée partagée &#x3D; aux champs
-   *{orgID}.R.{ownerID}
+   * ID unique de la ressource engagée partagée  {orgID}.{ID du dossier
+   *partagé}.R{numéro d’ordre chronologique}
    * @return resourceID
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_I_D)
@@ -587,29 +583,6 @@ public class Resource {
     this.centerName = centerName;
   }
 
-  public Resource centerType(String centerType) {
-
-    this.centerType = centerType;
-    return this;
-  }
-
-  /**
-   * Get centerType
-   * @return centerType
-   **/
-  @JsonProperty(JSON_PROPERTY_CENTER_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCenterType() {
-    return centerType;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CENTER_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCenterType(String centerType) {
-    this.centerType = centerType;
-  }
-
   public Resource centerCity(String centerCity) {
 
     this.centerCity = centerCity;
@@ -770,7 +743,6 @@ public class Resource {
         Objects.equals(this.name, resource.name) &&
         Objects.equals(this.order, resource.order) &&
         Objects.equals(this.centerName, resource.centerName) &&
-        Objects.equals(this.centerType, resource.centerType) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
         Objects.equals(this.make, resource.make) &&
         Objects.equals(this.model, resource.model) &&
@@ -783,8 +755,8 @@ public class Resource {
   public int hashCode() {
     return Objects.hash(commitmentDateTime, originDateTime, destinationDateTime,
                         resourceID, orgID, resourceType, vehiculeType, plate,
-                        name, order, centerName, centerType, centerCity, make,
-                        model, team, state, contact);
+                        name, order, centerName, centerCity, make, model, team,
+                        state, contact);
   }
 
   @Override
@@ -815,9 +787,6 @@ public class Resource {
     sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
-        .append("\n");
-    sb.append("    centerType: ")
-        .append(toIndentedString(centerType))
         .append("\n");
     sb.append("    centerCity: ")
         .append(toIndentedString(centerCity))

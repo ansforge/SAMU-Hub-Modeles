@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RDR.schema.json#",
-    "version": "24.06.10",
+    "version": "24.06.11",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
@@ -133,7 +133,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/resourceID",
-                    "description": "ID unique de la ressource engag\u00e9e partag\u00e9e = aux champs {orgID}.R.{ownerID}"
+                    "description": "ID unique de la ressource engag\u00e9e partag\u00e9e \n{orgID}.{ID du dossier partag\u00e9}.R{num\u00e9ro d\u2019ordre chronologique}"
                 },
                 "orgID": {
                     "type": "string",
@@ -265,13 +265,6 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/centerName",
                     "description": "Lieu de garage principal"
-                },
-                "centerType": {
-                    "type": "string",
-                    "title": "Type de centre d\u2019affectation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/mobilizedResources/0/centerType"
                 },
                 "centerCity": {
                     "type": "string",

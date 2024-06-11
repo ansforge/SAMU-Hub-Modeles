@@ -130,7 +130,8 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
+                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
+{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
@@ -1478,12 +1479,35 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="transportDetails">
         <sequence>
-            <element name="orientation" type="string">
+            <element name="orientation">
                 <annotation>
                     <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
 - Laisser sur place</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="OK"/>
+                        <enumeration value="TEMP"/>
+                        <enumeration value="SEUL"/>
+                        <enumeration value="AFAMILLE"/>
+                        <enumeration value="AMED"/>
+                        <enumeration value="AFDO"/>
+                        <enumeration value="ATIERS"/>
+                        <enumeration value="MOYPERSO"/>
+                        <enumeration value="Code vecteur choisi"/>
+                        <enumeration value="REFPAT"/>
+                        <enumeration value="REFFAM"/>
+                        <enumeration value="PASREAKO"/>
+                        <enumeration value="PASREAOK"/>
+                        <enumeration value="REA"/>
+                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="FUGUE"/>
+                        <enumeration value="REFAUTRE"/>
+                        <enumeration value="RAS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="teamCare">
                 <annotation>
