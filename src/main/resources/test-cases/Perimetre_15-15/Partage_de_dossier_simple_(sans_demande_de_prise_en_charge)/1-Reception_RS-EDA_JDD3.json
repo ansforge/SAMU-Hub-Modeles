@@ -1,0 +1,90 @@
+{
+    "createCaseHealth": {
+        "caseId": "fr.health.samu009-DRFR150092400401259",
+        "creation": "2024-01-18T15:15:00+01:00",
+        "referenceVersion": "1.4",
+        "perimeter": "AMU",
+        "interventionType": "Primaire",
+        "qualification": {
+            "whatsHappen": {
+                "code": "C02.05.00",
+                "label": "Atteinte aux personnes ; Pathologie / maladie"
+            },
+            "locationKind": {
+                "code": "L04.12.00",
+                "label": "Lieu accueillant du public ; H\u00e9bergement touristique"
+            },
+            "healthMotive": {
+                "code": "M03.08",
+                "label": "Signes d\u2019AVC"
+            },
+            "details": {
+                "priority": "P1",
+                "attribution": "MU"
+            }
+        },
+        "owner": "fr.health.samu009",
+        "patient": [
+            {
+                "id": "fr.health.samu009-DRFR150092400401259.P90",
+                "identity": {
+                    "strictFeatures": {
+                        "sex": "INCONNU"
+                    }
+                },
+                "detail": {
+                    "age": "P80Y"
+                }
+            }
+        ],
+        "location": {
+            "locID": "654ij03a-1kl2-3mn4-5op6-210p9876543",
+            "country": "FR",
+            "name": "Le gite du Moulin ",
+            "detailedAddress": {
+                "complete": "Rue principale"
+            },
+            "city": {
+                "name": "Aulus-les-Bains",
+                "inseeCode": "9029"
+            },
+            "access": {
+                "phoneNumber": "561964589"
+            },
+            "freetext": "Maison avec la porte verte, 100 m apr\u00e8s le lavoir"
+        },
+        "initialAlert": {
+            "id": "ALRT-2024-AMP697",
+            "reception": "2024-01-18T15:15:00+01:00",
+            "reporting": "STANDARD",
+            "caller": {
+                "callerContact": {
+                    "type": "PHNADD",
+                    "detail": "632085528",
+                    "channel": "Personne"
+                },
+                "callbackContact": {
+                    "type": "PHNADD",
+                    "detail": "561964589",
+                    "channel": "Personne"
+                },
+                "language": "FR",
+                "type": "TIERS",
+                "detailedName": {
+                    "complete": "Lucas Bernardi ",
+                    "firstName": "Lucas",
+                    "lastName": "Bernardi "
+                }
+            },
+            "notes": [
+                {
+                    "freetext": "Confusion, \u00e9tourdissements, s\u2019exprime difficilement"
+                }
+            ],
+            "callTaker": {
+                "organization": "fr.health.samu090",
+                "controlRoom": "CRRA 09"
+            }
+        }
+    }
+}

@@ -203,7 +203,7 @@
                                     "verificationLevel":2
                                 },
                                 {
-                                    "path":"$.createCaseHealth.location.access[0].accessCode",
+                                    "path":"$.createCaseHealth.location.access.accessCode",
                                     "value":[
                                         "5678"
                                     ],
@@ -355,7 +355,7 @@
                                     "verificationLevel":1
                                 }
                             ],
-                            "file":"Périmetre 15-15\/Partage de dossier simple (sans demande de prise en charge)\/1-Réception RS-EDA.json"
+                            "file":"Perimetre_15-15\/Partage_de_dossier_simple_(sans_demande_de_prise_en_charge)\/1-Reception_RS-EDA.json"
                         }
                     }
                 ]

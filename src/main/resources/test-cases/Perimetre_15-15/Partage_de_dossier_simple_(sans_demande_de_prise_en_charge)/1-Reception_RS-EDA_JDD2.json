@@ -1,0 +1,115 @@
+{
+    "createCaseHealth": {
+        "caseId": "fr.health.samu950-DRFR159502400400159",
+        "creation": "2024-01-18T15:15:00+01:00",
+        "referenceVersion": "1.4",
+        "perimeter": "AMU",
+        "interventionType": "Primaire",
+        "qualification": {
+            "whatsHappen": {
+                "code": "C02.08.02",
+                "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
+            },
+            "locationKind": {
+                "code": "L01.02.10",
+                "label": "Domicile ; Lieu d'habitation collectif ou foyer d'h\u00e9bergement ;  escaliers"
+            },
+            "healthMotive": {
+                "code": "M02.07",
+                "label": "Traumatisme s\u00e9rieux, plaie interm\u00e9diaire"
+            },
+            "details": {
+                "priority": "P2",
+                "attribution": "MU"
+            }
+        },
+        "owner": "fr.health.samu950",
+        "patient": [
+            {
+                "id": "fr.health.samu950-DRFR159502400400159.P5",
+                "identity": {
+                    "strictFeatures": {
+                        "sex": "FEM",
+                        "birthDate": "2014-03-03"
+                    },
+                    "nonStrictFeatures": {
+                        "complete": "Lola Halimi",
+                        "firstName": "Lola ",
+                        "lastName": "Halimi"
+                    }
+                },
+                "detail": {
+                    "age": "P10Y"
+                }
+            }
+        ],
+        "location": {
+            "locID": "567op03a-3qr4-5st6-7uv8-109u8765432",
+            "country": "FR",
+            "detailedAddress": {
+                "complete": "4 rue Danielle Mitterrand"
+            },
+            "city": {
+                "name": "Bezons",
+                "inseeCode": "95063"
+            },
+            "access": {
+                "floor": "3",
+                "interphone": "Halimi",
+                "accessCode": "5678",
+                "elevator": "ESC B",
+                "buildingName": "A"
+            },
+            "freetext": "dans la cage d\u2019escalier B",
+            "geometry": {
+                "obsDatime": "2024-01-04T00:05:00+01:00",
+                "point": {
+                    "coord": {
+                        "lat": 48.92399978637695,
+                        "lon": 2.2162439823150635,
+                        "precision": "ADDRESS"
+                    }
+                }
+            }
+        },
+        "initialAlert": {
+            "id": "ALRT-2024-ZGY594",
+            "reception": "2024-01-18T15:15:00+01:00",
+            "reporting": "STANDARD",
+            "caller": {
+                "callerContact": {
+                    "type": "PHNADD",
+                    "detail": "702880946",
+                    "channel": "Personne"
+                },
+                "callbackContact": {
+                    "type": "PHNADD",
+                    "detail": "702880946",
+                    "channel": "Personne"
+                },
+                "language": "FR",
+                "type": "TIERS",
+                "detailedName": {
+                    "complete": "Amina BERTRAND  ",
+                    "firstName": "Amina ",
+                    "lastName": "BERTRAND  "
+                }
+            },
+            "notes": [
+                {
+                    "freetext": "Entorse de la cheville, avec possible fracture. "
+                },
+                {
+                    "freetext": "Cheville gonfl\u00e9e et douloureuse. "
+                },
+                {
+                    "freetext": "Marche impossible."
+                }
+            ],
+            "callTaker": {
+                "organization": "fr.health.samu950",
+                "controlRoom": "CRRA 95"
+            }
+        }
+    }
+}
