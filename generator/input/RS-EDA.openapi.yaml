@@ -1813,7 +1813,7 @@ components:
           - Personne
         type:
           type: string
-          title: "Type de contact du requ\xE9rant"
+          title: Type de contact
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/type
@@ -1832,7 +1832,7 @@ components:
           - PHNADD
         detail:
           type: string
-          title: "URI du contact requ\xE9rant"
+          title: URI du contact
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/detail
@@ -2363,12 +2363,12 @@ components:
             un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
             , domicile personnel, EPHAD ou long s\xE9jour, autre"
           enum:
-          - "service d\u2019urgences d\u2019un Etablissement de sant\xE9"
-          - "autres services d\u2019un \xE9tablissement de sant\xE9"
-          - "cabinet d\u2019un professionnel de sant\xE9"
-          - domicile personnel
-          - "EPHAD ou long s\xE9jour"
-          - autre
+          - "Service d\u2019urgences d\u2019un etablissement de sante"
+          - "Autres services d\u2019un etablissement de sante"
+          - "Cabinet d\u2019un professionnel de sante"
+          - Domicile personnel
+          - EPHAD ou long sejour
+          - Autre
           examples:
           - None
         location:

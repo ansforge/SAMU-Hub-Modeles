@@ -380,7 +380,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "title": "Type de contact du requ\u00e9rant",
+                    "title": "Type de contact ",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/contact/type",
@@ -398,7 +398,7 @@
                 },
                 "details": {
                     "type": "string",
-                    "title": "URI du contact requ\u00e9rant",
+                    "title": "URI du contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/contact/details",

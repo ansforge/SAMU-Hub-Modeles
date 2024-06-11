@@ -1960,7 +1960,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "title": "Type de contact du requ\u00e9rant",
+                    "title": "Type de contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/type",
@@ -1978,7 +1978,7 @@
                 },
                 "detail": {
                     "type": "string",
-                    "title": "URI du contact requ\u00e9rant",
+                    "title": "URI du contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/detail",
@@ -2150,12 +2150,12 @@
                     "example": "example.json#/decision/0/transportDetails/destination/type",
                     "description": "Indique le type de destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
                     "enum": [
-                        "service d\u2019urgences d\u2019un Etablissement de sant\u00e9",
-                        "autres services d\u2019un \u00e9tablissement de sant\u00e9",
-                        "cabinet d\u2019un professionnel de sant\u00e9",
-                        "domicile personnel",
-                        "EPHAD ou long s\u00e9jour",
-                        "autre"
+                        "Service d\u2019urgences d\u2019un etablissement de sante",
+                        "Autres services d\u2019un etablissement de sante",
+                        "Cabinet d\u2019un professionnel de sante",
+                        "Domicile personnel",
+                        "EPHAD ou long sejour",
+                        "Autre"
                     ]
                 },
                 "location": {

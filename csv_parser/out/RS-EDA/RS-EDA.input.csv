@@ -90,9 +90,9 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle
 79,80,,,Commentaire/Observations,,,,texte libre contenant les indications renseignées par l'ARM,La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,,X,X,X
 80,81,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X,X
 81,82,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,,X,X,X
-82,83,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,,X,X,X
-83,84,,,,Type de contact du requérant,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X,X
-84,85,,,,URI du contact requérant,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X,X
+82,83,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : Personne, Application, DAU, BAU, Defibrillateur, Ecall",X,X,X
+83,84,,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X,X
+84,85,,,,URI du contact,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X,X
 85,86,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X,X
 86,87,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X,X
 87,88,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"FAMILLE, TIERS",,type,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-TYPAPPLT,X,X,X
@@ -159,7 +159,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
 - Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT,X,X,X
 182,183,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN,X,X,X
 183,184,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X,X
-184,185,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X,X
+184,185,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: Service d’urgences d’un etablissement de sante, Autres services d’un etablissement de sante, Cabinet d’un professionnel de sante, Domicile personnel, EPHAD ou long sejour, Autre",X,X,X
 185,186,,,,Localisation de la destination,# Voir type location,,,,,location,,,,,,0..1,X,location,,,X,X,X
 186,187,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert

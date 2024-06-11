@@ -441,11 +441,11 @@
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/originLocation/type",
                     "enum": [
-                        "Service d\u2019urgences d\u2019un Etablissement de sante",
-                        "Autres services d\u2019un \u00e9tablissement de sante",
+                        "Service d\u2019urgences d\u2019un etablissement de sante",
+                        "Autres services d\u2019un etablissement de sante",
                         "Cabinet d\u2019un professionnel de sante",
                         "Domicile personnel",
-                        "EPHAD ou long s\u00e9jour",
+                        "EPHAD ou long sejour",
                         "Autre"
                     ]
                 },

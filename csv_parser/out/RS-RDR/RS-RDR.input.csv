@@ -33,5 +33,5 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
 28,29,,,Statut du vecteur,,,,Statuts Antares,"ENUM : Alerte, Parti, Arrivee Sur Les Lieux, Transport Destination, Arrivee Destination, Fin De Medicalisation , Quitte Destination, Retour Base, Rentree Base",,status,0..1,,string,X,"ENUM : Alerte, Parti, Arrivee sur les lieux, Transport destination, Arrivee destination, Fin de medicalisation , Quitte destination, Retour base, Rentree Base",,X
 29,30,,,Disponibilité du vecteur,,,,Indique si le vecteur est disponible / indisponible,"ENUM : Disponible, Indisponible, Inconnu",,availability,0..1,,string,X,"ENUM : Disponible, Indisponible, Inconnu",,X
 30,31,,Contact,,,,,Type et valeur de l'URI utilisée par la ressource.,,,contact,0..1,X,contact,,,,X
-31,32,,,Type de contact du requérant,,,,Type de l'URI utilisée,PHNADD,,type,0..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",,X
-32,33,,,URI du contact requérant,,,,Valeur de l'URI utilisée pour contacter la ressource,0671830530,,details,0..1,,string,,,,X
+31,32,,,Type de contact ,,,,Type de l'URI utilisée,PHNADD,,type,0..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",,X
+32,33,,,URI du contact,,,,Valeur de l'URI utilisée pour contacter la ressource,0671830530,,details,0..1,,string,,,,X
