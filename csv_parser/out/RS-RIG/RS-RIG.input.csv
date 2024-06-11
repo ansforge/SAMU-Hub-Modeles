@@ -18,7 +18,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
 14,15,,Marque vecteur,,,,,Marque vecteur,,,make,0..1,,string,,,,X
 15,16,,Modèle vecteur,,,,,Modèle vecteur,,,model,0..1,,string,,,,X
 16,17,,Equipe vecteur,,,,,Décrit le type et l'équipe à bord du vecteur,,,team,0..1,X,team,,,,X
-17,18,,,Type,,,,Médical / paramédical : indique le niveau de médicalisation du vecteur,,,teamCare,0..1,,string,X,"ENUM : Medicale, Paramedicale, Secouriste",,X
+17,18,,,Type,,,,Médical / paramédical : indique le niveau de médicalisation du vecteur,,,teamCare,0..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN,,X
 18,19,,,Nom,,,,Nom de l'équipe à bord du vecteur,,,name,0..1,,string,,,,X
 19,20,,Etats vecteur,,,,,,,,state,0..n,X,state,,,,X
 20,21,,,Date/heure de changement de statut,,,,,,,dateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X

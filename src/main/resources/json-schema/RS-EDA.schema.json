@@ -2182,7 +2182,28 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportDetails/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place",
+                    "enum": [
+                        "OK",
+                        "TEMP",
+                        "SEUL",
+                        "AFAMILLE",
+                        "AMED",
+                        "AFDO",
+                        "ATIERS",
+                        "MOYPERSO",
+                        "Code vecteur choisi",
+                        "REFPAT",
+                        "REFFAM",
+                        "PASREAKO",
+                        "PASREAOK",
+                        "REA",
+                        "TRANSPOR",
+                        "ADM",
+                        "FUGUE",
+                        "REFAUTRE",
+                        "RAS"
+                    ]
                 },
                 "teamCare": {
                     "type": "string",

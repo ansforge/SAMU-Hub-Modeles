@@ -354,6 +354,10 @@ components:
           example: example.json#/mobilizedResources/0/team/type
           description: "M\xE9dical / param\xE9dical : indique le niveau de m\xE9dicalisation\
             \ du vecteur"
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
           examples:
           - None
         name:

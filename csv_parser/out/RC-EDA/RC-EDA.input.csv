@@ -165,7 +165,7 @@ Elle est composée :
 178,179,,Décision de transport/orientation,,,,,,,,transportDetails,,,,,,0..1,X,transportDetails,,,X,X,X
 179,180,,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
-- Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,,X,X,X
+- Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT,X,X,X
 182,183,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN,X,X,X
 183,184,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X,X
 184,185,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",X,X,X

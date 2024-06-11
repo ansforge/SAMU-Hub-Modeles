@@ -262,7 +262,12 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/team/teamCare",
-                    "description": "M\u00e9dical / param\u00e9dical : indique le niveau de m\u00e9dicalisation du vecteur"
+                    "description": "M\u00e9dical / param\u00e9dical : indique le niveau de m\u00e9dicalisation du vecteur",
+                    "enum": [
+                        "MED",
+                        "PARAMED",
+                        "SECOURS"
+                    ]
                 },
                 "name": {
                     "type": "string",

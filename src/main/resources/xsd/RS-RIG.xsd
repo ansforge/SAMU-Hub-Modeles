@@ -172,10 +172,17 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
     </complexType>
     <complexType name="team">
         <sequence>
-            <element minOccurs="0" name="teamCare" type="string">
+            <element minOccurs="0" name="teamCare">
                 <annotation>
                     <documentation>Médical / paramédical : indique le niveau de médicalisation du vecteur</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SECOURS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
