@@ -1,0 +1,822 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RS-RIG.schema.json#",
+    "version": "24.06.11",
+    "example": "example.json#",
+    "type": "object",
+    "title": "resourcesInfo",
+    "required": [
+        "caseId"
+    ],
+    "properties": {
+        "caseId": {
+            "type": "string",
+            "title": "Identifiant affaire/dossier",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/caseId",
+            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
+        },
+        "mobilizedResources": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/resource"
+            }
+        }
+    },
+    "definitions": {
+        "resource": {
+            "type": "object",
+            "title": "Ressource engag\u00e9e",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "dateTime",
+                "resourceID",
+                "resourceType"
+            ],
+            "properties": {
+                "dateTime": {
+                    "type": "string",
+                    "title": "Date/heure de d\u00e9clenchement",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/dateTime",
+                    "description": "date et heure d'engagement de la ressource",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "resourceID": {
+                    "type": "string",
+                    "title": "ID partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/resourceID",
+                    "description": "ID unique de la ressource engag\u00e9e partag\u00e9e \n{orgID}.{ID du dossier partag\u00e9}.R{num\u00e9ro d\u2019ordre chronologique}"
+                },
+                "missionID": {
+                    "type": "string",
+                    "title": "ID mission local",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/missionID",
+                    "description": "Num\u00e9ro de mission unique du central d\u2019appel (PSAP, \u2026) qui a d\u00e9clench\u00e9 le vecteur"
+                },
+                "orgID": {
+                    "type": "string",
+                    "title": "ID Organisation propri\u00e9taire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/orgID",
+                    "description": "Organisation \u00e0 laquelle appartient la ressource"
+                },
+                "centerName": {
+                    "type": "string",
+                    "title": "ID Centre d\u2019affectation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/centerName",
+                    "description": "Lieu de garage principal"
+                },
+                "resourceType": {
+                    "type": "string",
+                    "title": "Type de ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/resourceType",
+                    "description": "Type de ressource mobilis\u00e9e : Smur, Hospitaliers (hors Smur), Professionnels Lib\u00e9raux, Ambulanciers priv\u00e9s (Transporteurs Sanitaires Urgent), etc.",
+                    "enum": [
+                        "SMUR",
+                        "HOSPIT",
+                        "LIB",
+                        "TSU ",
+                        "SIS",
+                        "AASC",
+                        "FDO",
+                        "ADM",
+                        "DAE",
+                        "AUTRE"
+                    ]
+                },
+                "vehiculeType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/vehiculeType",
+                    "description": "Type de vecteur mobilis\u00e9 : V\u00e9hicule L\u00e9ger M\u00e9dicalis\u00e9, Ambulance de r\u00e9animation, Ambulance de r\u00e9animation Bariatrique, Ambulance de r\u00e9animation P\u00e9diatrique, etc.",
+                    "enum": [
+                        "VPSP",
+                        "VLSC",
+                        "AUTRESC",
+                        "TAXI",
+                        "TRANSP",
+                        "AUTRE",
+                        "TRAIN",
+                        "AVION",
+                        "PERSO",
+                        "APIED",
+                        "INCONNU",
+                        "CONSEIL",
+                        "DAE",
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "VHFSI",
+                        "MEDC",
+                        "MEDV",
+                        "PHARMA",
+                        "INF",
+                        "MEDSPE",
+                        "DENT",
+                        "AUTREPRO",
+                        "DRAGON",
+                        "AVSC",
+                        "VSAV",
+                        "GRIMP",
+                        "VPL",
+                        "SRSIS",
+                        "FEUSIS",
+                        "VPMA",
+                        "VCH",
+                        "VR",
+                        "PCSIS",
+                        "VLISP",
+                        "VLMSP",
+                        "VLCG",
+                        "VLSIS",
+                        "MOYSSE",
+                        "AUTRESIS",
+                        "VLM",
+                        "AR",
+                        "AR-BAR",
+                        "AR-PED",
+                        "VL",
+                        "HELISMUR",
+                        "HELISAN",
+                        "AVSMUR",
+                        "AVSAN",
+                        "NAVISMUR",
+                        "PSM1",
+                        "PSM2",
+                        "PSM3",
+                        "PSMP",
+                        "VPC",
+                        "AMB-GV",
+                        "AMB-PV",
+                        "AMB-BAR",
+                        "AMB",
+                        "VSL",
+                        "NAVISIS"
+                    ]
+                },
+                "plate": {
+                    "type": "string",
+                    "title": "Immatriculation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/plate",
+                    "description": "N\u00b0 d'immatriculation du vecteur"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/name",
+                    "description": "Nom donn\u00e9 \u00e0 la ressource par l\u2019organisation d\u2019appartenance"
+                },
+                "centerCity": {
+                    "type": "string",
+                    "title": "Commune du centre d\u2019affectation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/centerCity",
+                    "description": "Code INSEE de la commune du centre d'affectation",
+                    "pattern": "[0-9]{5}"
+                },
+                "make": {
+                    "type": "string",
+                    "title": "Marque vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/make",
+                    "description": "Marque vecteur"
+                },
+                "model": {
+                    "type": "string",
+                    "title": "Mod\u00e8le vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/model",
+                    "description": "Mod\u00e8le vecteur"
+                },
+                "team": {
+                    "$ref": "#/definitions/team"
+                },
+                "state": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/state"
+                    }
+                },
+                "coord": {
+                    "$ref": "#/definitions/coord"
+                },
+                "contact": {
+                    "$ref": "#/definitions/contact"
+                },
+                "freetext": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Commentaires",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/mobilizedResources/0/freetext/0",
+                        "description": "Texte libre permettant de passer toute autre information sur la ressource (\u00e9quipements suppl\u00e9mentaires / particuliers, particularit\u00e9s du vecteur)"
+                    }
+                },
+                "originLocation": {
+                    "$ref": "#/definitions/location"
+                },
+                "destinationLocation": {
+                    "$ref": "#/definitions/location"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0"
+        },
+        "team": {
+            "type": "object",
+            "title": "Equipe vecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "teamCare": {
+                    "type": "string",
+                    "title": "Type",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/team/teamCare",
+                    "description": "M\u00e9dical / param\u00e9dical : indique le niveau de m\u00e9dicalisation du vecteur"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/team/name",
+                    "description": "Nom de l'\u00e9quipe \u00e0 bord du vecteur"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/team"
+        },
+        "state": {
+            "type": "object",
+            "title": "Etats vecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "dateTime": {
+                    "type": "string",
+                    "title": "Date/heure de changement de statut",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/state/0/dateTime",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "status": {
+                    "type": "string",
+                    "title": "Statuts du vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/state/0/status",
+                    "description": "Dernier statut du vecteur"
+                },
+                "availability": {
+                    "type": "string",
+                    "title": "Disponibilit\u00e9 du vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/state/0/availability",
+                    "description": "Indique si le vecteur est disponible / indisponible"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/state/0"
+        },
+        "coord": {
+            "type": "object",
+            "title": "Derni\u00e8re g\u00e9olocalisation du vecteur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "lat",
+                "lon",
+                "precision",
+                "lat",
+                "lon",
+                "precision"
+            ],
+            "properties": {
+                "lat": {
+                    "type": "number",
+                    "title": "Latitude",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/coord/lat",
+                    "description": "Latitude du point cl\u00e9 de la localisation "
+                },
+                "lon": {
+                    "type": "number",
+                    "title": "Longitude",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/coord/lon",
+                    "description": "Longitude du point cl\u00e9 de la localisation"
+                },
+                "height": {
+                    "type": "number",
+                    "title": "Altitude ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/coord/height",
+                    "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
+                },
+                "heading": {
+                    "type": "number",
+                    "title": "Cap",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/coord/heading",
+                    "description": "En degr\u00e9"
+                },
+                "speed": {
+                    "type": "number",
+                    "title": "Vitesse",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/coord/speed",
+                    "description": "Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, \u2026"
+                },
+                "precision": {
+                    "type": "string",
+                    "title": "Pr\u00e9cision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/coord/precision",
+                    "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nCITY=Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, STREET=Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, ADDRESS=Adresse pr\u00e9cise, EXACT=Point coordonn\u00e9e GPS exact, UNKNOWN=Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
+                    "enum": [
+                        "CITY",
+                        "STREET",
+                        "ADDRESS",
+                        "EXACT",
+                        "UNKNOWN"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/coord"
+        },
+        "contact": {
+            "type": "object",
+            "title": "Contact",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de contact ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/contact/type",
+                    "description": "Type de l'URI utilis\u00e9e",
+                    "enum": [
+                        "PSTADD",
+                        "EMLADD",
+                        "IPADD",
+                        "FTPADD",
+                        "WWWADD",
+                        "PHNADD",
+                        "FAXADD",
+                        "PMRADD"
+                    ]
+                },
+                "details": {
+                    "type": "string",
+                    "title": "URI du contact",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/contact/details",
+                    "description": "Valeur de l'URI utilis\u00e9e pour contacter la ressource"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/contact"
+        },
+        "location": {
+            "type": "object",
+            "title": "Lieu de prise en charge",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type d'origine/destination",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/type",
+                    "enum": [
+                        "Service d\u2019urgences d\u2019un Etablissement de sante",
+                        "Autres services d\u2019un \u00e9tablissement de sante",
+                        "Cabinet d\u2019un professionnel de sante",
+                        "Domicile personnel",
+                        "EPHAD ou long s\u00e9jour",
+                        "Autre"
+                    ]
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom du lieu",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/name",
+                    "description": "Indique le nom de lieu : nom commercial, Etablissement, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                },
+                "externalLocationId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalLocationId"
+                    }
+                },
+                "detailedAddress": {
+                    "$ref": "#/definitions/detailedAddress"
+                },
+                "city": {
+                    "$ref": "#/definitions/city"
+                },
+                "access": {
+                    "$ref": "#/definitions/access"
+                },
+                "geometry": {
+                    "$ref": "#/definitions/geometry"
+                },
+                "externalInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalInfo"
+                    }
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Informations compl\u00e9mentaires sur la localisation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/freetext",
+                    "description": "Champ libre pour compl\u00e9ter les informations de localisation"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation"
+        },
+        "externalLocationId": {
+            "type": "object",
+            "title": "Identifiant(s) du lieu",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "source",
+                "value"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "title": "Source  /  type d'identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/externalLocationId/0/source",
+                    "description": "Type de l'identifiant fourni",
+                    "enum": [
+                        "FINESS administratif",
+                        "FINESS g\u00e9ographique",
+                        "SIREN",
+                        "SIRET",
+                        "APE/NAF"
+                    ]
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/externalLocationId/0/value",
+                    "description": "L'identifiant en lui-m\u00eame"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/externalLocationId/0"
+        },
+        "detailedAddress": {
+            "type": "object",
+            "title": "D\u00e9tails de l'adresse",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Num\u00e9ro, type et nom de voie",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/detailedAddress/complete",
+                    "description": "Num\u00e9ro, type et nom de la voie. Utilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\n15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
+                },
+                "number": {
+                    "type": "string",
+                    "title": "Num\u00e9ro dans la voie",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/detailedAddress/number",
+                    "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
+                },
+                "wayName": {
+                    "$ref": "#/definitions/wayName"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/detailedAddress"
+        },
+        "city": {
+            "type": "object",
+            "title": "D\u00e9tails de la commune",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Nom de la commune",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/city/name",
+                    "description": "Nom officiel de la commune actuelle"
+                },
+                "inseeCode": {
+                    "type": "string",
+                    "title": "Code INSEE de la commune",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/city/inseeCode",
+                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.",
+                    "pattern": "[0-9]{5}"
+                },
+                "detail": {
+                    "type": "string",
+                    "title": "Compl\u00e9ment de commune",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/city/detail",
+                    "description": "Informations compl\u00e9mentaires permettant de pr\u00e9ciser le quartier, lieu-dit, ancienne commune, \u2026 ou autre information aidant \u00e0 pr\u00e9ciser l'adresse et notamment g\u00e9rer les cas de communes fusionn\u00e9es pour le syst\u00e8me \u00e9metteur\nNB : dans tous les cas, la localisation GPS de la commune doit \u00eatre fournie afin d'\u00e9viter une trop forte ambigu\u00eft\u00e9."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/city"
+        },
+        "access": {
+            "type": "object",
+            "title": "D\u00e9tails d'acc\u00e8s",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "floor": {
+                    "type": "string",
+                    "title": "Etage",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/floor",
+                    "description": "Etage "
+                },
+                "roomNumber": {
+                    "type": "string",
+                    "title": "Num\u00e9ro de porte",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/roomNumber",
+                    "description": "Sp\u00e9cifie num\u00e9ro d'appartement, de chambre, de bureau"
+                },
+                "interphone": {
+                    "type": "string",
+                    "title": "Interphone",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/interphone",
+                    "description": "Indique les informations n\u00e9cessaires  \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
+                },
+                "accessCode": {
+                    "type": "array",
+                    "x-health-only": false,
+                    "items": {
+                        "type": "string",
+                        "title": "Digicode",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/mobilizedResources/0/originLocation/access/accessCode/0",
+                        "description": "Indique le ou les digicodes dans l'ordre de progression dans le b\u00e2timent"
+                    }
+                },
+                "elevator": {
+                    "type": "string",
+                    "title": "Ascenseur/escalier",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/elevator",
+                    "description": "Indique l'ascenseur ou la cage d'escalier "
+                },
+                "buildingName": {
+                    "type": "string",
+                    "title": "B\u00e2timent",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/buildingName",
+                    "description": "Nom du b\u00e2timent"
+                },
+                "entrance": {
+                    "type": "string",
+                    "title": "Entr\u00e9e",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/entrance"
+                },
+                "entity": {
+                    "type": "string",
+                    "title": "Service",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/entity",
+                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement : Infirmerie, service finance, service cardiologie, \u2026"
+                },
+                "phoneNumber": {
+                    "type": "number",
+                    "title": "N\u00b0 de t\u00e9l\u00e9phone du lieu",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/access/phoneNumber",
+                    "description": "Num\u00e9ro de t\u00e9l\u00e9phone permettant d'acc\u00e9der au lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/victime."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/access"
+        },
+        "geometry": {
+            "type": "object",
+            "title": "G\u00e9ometrie associ\u00e9e",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "obsDatime"
+            ],
+            "properties": {
+                "obsDatime": {
+                    "type": "string",
+                    "title": "Heure du dernier relev\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/geometry/obsDatime",
+                    "description": "Groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. Permet de conna\u00eetre la fra\u00eecheur et donc pertinence des informations pour intervenir.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "point": {
+                    "$ref": "#/definitions/point"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/geometry"
+        },
+        "externalInfo": {
+            "type": "object",
+            "title": "Liens aux syst\u00e8mes externes",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "freetext",
+                "type",
+                "uri"
+            ],
+            "properties": {
+                "freetext": {
+                    "type": "string",
+                    "title": "Nom de la source",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/externalInfo/0/freetext",
+                    "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
+                    "enum": [
+                        "BAN",
+                        "IGN",
+                        "NexSIS"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/externalInfo/0/type",
+                    "description": "D\u00e9finition du type d'objet dans le syst\u00e8me\nEx : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
+                    "enum": [
+                        "MANUAL",
+                        "MAP",
+                        "OTHER",
+                        "PHOTO",
+                        "WEBSIT"
+                    ]
+                },
+                "uri": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/externalInfo/0/uri",
+                    "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/externalInfo/0"
+        },
+        "wayName": {
+            "type": "object",
+            "title": "Type et nom de voie",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Type et nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/detailedAddress/wayName/complete",
+                    "description": "Type et nom de la voie (venant d'un r\u00e9f\u00e9rentiel ou non)\nSi les champs type et name sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/detailedAddress/wayName/type",
+                    "description": "Type de la voie"
+                },
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/detailedAddress/wayName/name",
+                    "description": "Nom de la voie"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/detailedAddress/wayName"
+        },
+        "point": {
+            "type": "object",
+            "title": "Point ",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "coord"
+            ],
+            "properties": {
+                "coord": {
+                    "$ref": "#/definitions/coord"
+                },
+                "sysCoord": {
+                    "type": "string",
+                    "title": "Syst\u00e8me de coordonn\u00e9es",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/mobilizedResources/0/originLocation/geometry/point/sysCoord",
+                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/mobilizedResources/0/originLocation/geometry/point"
+        }
+    },
+    "additionalProperties": false
+}

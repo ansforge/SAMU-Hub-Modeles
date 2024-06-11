@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.Highway;
 import com.hubsante.model.health.WayName;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -42,13 +43,17 @@ import java.util.Objects;
 /**
  * DetailedAddress
  */
-@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_COMPLETE,
+@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_HIGHWAY,
+                    DetailedAddress.JSON_PROPERTY_COMPLETE,
                     DetailedAddress.JSON_PROPERTY_NUMBER,
                     DetailedAddress.JSON_PROPERTY_WAY_NAME})
 @JsonTypeName("detailedAddress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DetailedAddress {
+  public static final String JSON_PROPERTY_HIGHWAY = "highway";
+  private Highway highway;
+
   public static final String JSON_PROPERTY_COMPLETE = "complete";
   private String complete;
 
@@ -59,6 +64,29 @@ public class DetailedAddress {
   private WayName wayName;
 
   public DetailedAddress() {}
+
+  public DetailedAddress highway(Highway highway) {
+
+    this.highway = highway;
+    return this;
+  }
+
+  /**
+   * Get highway
+   * @return highway
+   **/
+  @JsonProperty(JSON_PROPERTY_HIGHWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Highway getHighway() {
+    return highway;
+  }
+
+  @JsonProperty(JSON_PROPERTY_HIGHWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHighway(Highway highway) {
+    this.highway = highway;
+  }
 
   public DetailedAddress complete(String complete) {
 
@@ -142,20 +170,22 @@ public class DetailedAddress {
       return false;
     }
     DetailedAddress detailedAddress = (DetailedAddress)o;
-    return Objects.equals(this.complete, detailedAddress.complete) &&
+    return Objects.equals(this.highway, detailedAddress.highway) &&
+        Objects.equals(this.complete, detailedAddress.complete) &&
         Objects.equals(this.number, detailedAddress.number) &&
         Objects.equals(this.wayName, detailedAddress.wayName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(complete, number, wayName);
+    return Objects.hash(highway, complete, number, wayName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DetailedAddress {\n");
+    sb.append("    highway: ").append(toIndentedString(highway)).append("\n");
     sb.append("    complete: ").append(toIndentedString(complete)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    wayName: ").append(toIndentedString(wayName)).append("\n");

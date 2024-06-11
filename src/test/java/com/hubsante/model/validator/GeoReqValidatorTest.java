@@ -43,8 +43,8 @@ public class GeoReqValidatorTest extends AbstractValidatorTest {
         String[] expectedErrors = {
                 "Could not validate message against schema : errors occurred. ",
                 "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - geoResourceRequest.resourceId_error: is not defined in the schema and the schema does not allow additional properties",
-                " - geoResourceRequest.resourceId: is missing but it is required"
+                " - geoResourcesRequest.resourceId_error: is not defined in the schema and the schema does not allow additional properties",
+                " - geoResourcesRequest.resourceId: is missing but it is required"
         };
         jsonValidationFails("GEO-REQ/GEO-REQ-missing-required-fields.json", expectedErrors);
     }
@@ -52,7 +52,7 @@ public class GeoReqValidatorTest extends AbstractValidatorTest {
     @Test
     @DisplayName("GEO-REQ xml validation fails")
     public void xmlGeoReqValidationFails() throws IOException {
-        xmlValidationFails("GEO-REQ/GEO-REQ-missing-required-fields.xml", XML_MISSING, new String[]{"One of '{\"urn:emergency:cisu:2.0:geoResourceRequest\":resourceId}' "});
+        xmlValidationFails("GEO-REQ/GEO-REQ-missing-required-fields.xml", XML_MISSING, new String[]{"One of '{\"urn:emergency:cisu:2.0:geoResourcesRequest\":resourceId}' "});
     }
 
     //endregion

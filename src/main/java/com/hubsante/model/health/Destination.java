@@ -42,8 +42,8 @@ import java.util.Objects;
 /**
  * Destination
  */
-@JsonPropertyOrder({Destination.JSON_PROPERTY_TYPE,
-                    Destination.JSON_PROPERTY_DESTINATION_LOCATION})
+@JsonPropertyOrder(
+    {Destination.JSON_PROPERTY_TYPE, Destination.JSON_PROPERTY_LOCATION})
 @JsonTypeName("destination")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -98,9 +98,8 @@ public class Destination {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_DESTINATION_LOCATION =
-      "destinationLocation";
-  private Location destinationLocation;
+  public static final String JSON_PROPERTY_LOCATION = "location";
+  private Location location;
 
   public Destination() {}
 
@@ -129,27 +128,27 @@ public class Destination {
     this.type = type;
   }
 
-  public Destination destinationLocation(Location destinationLocation) {
+  public Destination location(Location location) {
 
-    this.destinationLocation = destinationLocation;
+    this.location = location;
     return this;
   }
 
   /**
-   * Get destinationLocation
-   * @return destinationLocation
+   * Get location
+   * @return location
    **/
-  @JsonProperty(JSON_PROPERTY_DESTINATION_LOCATION)
+  @JsonProperty(JSON_PROPERTY_LOCATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Location getDestinationLocation() {
-    return destinationLocation;
+  public Location getLocation() {
+    return location;
   }
 
-  @JsonProperty(JSON_PROPERTY_DESTINATION_LOCATION)
+  @JsonProperty(JSON_PROPERTY_LOCATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestinationLocation(Location destinationLocation) {
-    this.destinationLocation = destinationLocation;
+  public void setLocation(Location location) {
+    this.location = location;
   }
 
   @Override
@@ -162,13 +161,12 @@ public class Destination {
     }
     Destination destination = (Destination)o;
     return Objects.equals(this.type, destination.type) &&
-        Objects.equals(this.destinationLocation,
-                       destination.destinationLocation);
+        Objects.equals(this.location, destination.location);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, destinationLocation);
+    return Objects.hash(type, location);
   }
 
   @Override
@@ -176,9 +174,7 @@ public class Destination {
     StringBuilder sb = new StringBuilder();
     sb.append("class Destination {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    destinationLocation: ")
-        .append(toIndentedString(destinationLocation))
-        .append("\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("}");
     return sb.toString();
   }

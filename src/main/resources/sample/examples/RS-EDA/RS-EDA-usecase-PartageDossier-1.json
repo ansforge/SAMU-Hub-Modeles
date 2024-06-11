@@ -37,7 +37,6 @@
         "name": "Vaires-sur-Marne",
         "inseeCode": "77360"
       },
-      "country": "FR",
       "freetext": "La porte de garage est ouverte",
       "geometry": {
         "point": {
@@ -51,9 +50,7 @@
       }
     },
     "initialAlert": {
-      "id": "fr.health.samu770-DRFR157702400400055",
       "reception": "2024-01-04T15:00:00+01:00",
-      "reporting": "STANDARD",
       "caller": {
         "callerContact": {
           "channel": "Personne",
@@ -73,15 +70,6 @@
           "firstName": "Sébastien"
         },
         "type": "FAMILLE"
-      },
-      "callTaker": {
-        "organization": "fr.health.samu770",
-        "controlRoom": "CRRA 77",
-        "calltakerContact": {
-          "channel": "Personne",
-          "type": "PHNADD",
-          "detail": "0102030405"
-        }
       },
       "notes": [
         {

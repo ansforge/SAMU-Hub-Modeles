@@ -189,6 +189,7 @@
                                 <creation>2023-11-03T10:05:00+01:00</creation>
                                 <type>INTER</type>
                             </decision>
+                            <freetext>None</freetext>
                             <additionalInformation>
                                 <customMap>
                                     <key>neighborhood</key>
@@ -197,7 +198,6 @@
                                     <freetext>Précision sur le quartier d'intervention</freetext>
                                 </customMap>
                             </additionalInformation>
-                            <freetext>None</freetext>
                         </createCase>
                     </message>
                 </embeddedXMLContent>

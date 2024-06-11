@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.rpis;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,73 +34,73 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.City;
-import com.hubsante.model.health.DetailedAddress;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * PersonalAddress
+ * WhatsHappen
  */
-@JsonPropertyOrder({PersonalAddress.JSON_PROPERTY_DETAILED_ADDRESS,
-                    PersonalAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("personalAddress")
+@JsonPropertyOrder(
+    {WhatsHappen.JSON_PROPERTY_CODE, WhatsHappen.JSON_PROPERTY_LABEL})
+@JsonTypeName("whatsHappen")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class PersonalAddress {
-  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
-  private DetailedAddress detailedAddress;
+public class WhatsHappen {
+  public static final String JSON_PROPERTY_CODE = "code";
+  private String code;
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private City city;
+  public static final String JSON_PROPERTY_LABEL = "label";
+  private String label;
 
-  public PersonalAddress() {}
+  public WhatsHappen() {}
 
-  public PersonalAddress detailedAddress(DetailedAddress detailedAddress) {
+  public WhatsHappen code(String code) {
 
-    this.detailedAddress = detailedAddress;
+    this.code = code;
     return this;
   }
 
   /**
-   * Get detailedAddress
-   * @return detailedAddress
+   * A valoriser avec un code de la nomenclature TYPCIRCO
+   * @return code
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public DetailedAddress getDetailedAddress() {
-    return detailedAddress;
+  public String getCode() {
+    return code;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedAddress(DetailedAddress detailedAddress) {
-    this.detailedAddress = detailedAddress;
+  @JsonProperty(JSON_PROPERTY_CODE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCode(String code) {
+    this.code = code;
   }
 
-  public PersonalAddress city(City city) {
+  public WhatsHappen label(String label) {
 
-    this.city = city;
+    this.label = label;
     return this;
   }
 
   /**
-   * Get city
-   * @return city
+   * A valoriser avec le libellé de la nomenclature TYPCIRCO. Dans le cas où un
+   *système n&#39;est pas en mesure de reconnaître un code, il peut directement
+   *afficher le libellé qui est obligatoirement fourni avec le code.
+   * @return label
    **/
-  @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public City getCity() {
-    return city;
+  public String getLabel() {
+    return label;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCity(City city) {
-    this.city = city;
+  @JsonProperty(JSON_PROPERTY_LABEL)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setLabel(String label) {
+    this.label = label;
   }
 
   @Override
@@ -111,25 +111,22 @@ public class PersonalAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PersonalAddress personalAddress = (PersonalAddress)o;
-    return Objects.equals(this.detailedAddress,
-                          personalAddress.detailedAddress) &&
-        Objects.equals(this.city, personalAddress.city);
+    WhatsHappen whatsHappen = (WhatsHappen)o;
+    return Objects.equals(this.code, whatsHappen.code) &&
+        Objects.equals(this.label, whatsHappen.label);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedAddress, city);
+    return Objects.hash(code, label);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PersonalAddress {\n");
-    sb.append("    detailedAddress: ")
-        .append(toIndentedString(detailedAddress))
-        .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("class WhatsHappen {\n");
+    sb.append("    code: ").append(toIndentedString(code)).append("\n");
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("}");
     return sb.toString();
   }

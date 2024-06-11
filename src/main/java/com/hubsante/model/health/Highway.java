@@ -34,98 +34,97 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Operator
+ * Highway
  */
-@JsonPropertyOrder({Operator.JSON_PROPERTY_DETAILED_NAME,
-                    Operator.JSON_PROPERTY_ID, Operator.JSON_PROPERTY_ROLE})
-@JsonTypeName("operator")
+@JsonPropertyOrder({Highway.JSON_PROPERTY_NAME, Highway.JSON_PROPERTY_PK,
+                    Highway.JSON_PROPERTY_DIRECTION})
+@JsonTypeName("highway")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Operator {
-  public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
-  private DetailedName detailedName;
+public class Highway {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_PK = "pk";
+  private String pk;
 
-  public static final String JSON_PROPERTY_ROLE = "role";
-  private String role;
+  public static final String JSON_PROPERTY_DIRECTION = "direction";
+  private String direction;
 
-  public Operator() {}
+  public Highway() {}
 
-  public Operator detailedName(DetailedName detailedName) {
+  public Highway name(String name) {
 
-    this.detailedName = detailedName;
+    this.name = name;
     return this;
   }
 
   /**
-   * Get detailedName
-   * @return detailedName
+   * Nom de l&#39;autoroute
+   * @return name
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedName getDetailedName() {
-    return detailedName;
+  public String getName() {
+    return name;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedName(DetailedName detailedName) {
-    this.detailedName = detailedName;
+  public void setName(String name) {
+    this.name = name;
   }
 
-  public Operator id(String id) {
+  public Highway pk(String pk) {
 
-    this.id = id;
+    this.pk = pk;
     return this;
   }
 
   /**
-   * Identifiant professionnel de l&#39;opérateur si existant
-   * @return id
+   * Point kilométrique
+   * @return pk
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_PK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public String getPk() {
+    return pk;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_PK)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
+  public void setPk(String pk) {
+    this.pk = pk;
   }
 
-  public Operator role(String role) {
+  public Highway direction(String direction) {
 
-    this.role = role;
+    this.direction = direction;
     return this;
   }
 
   /**
-   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
-   * @return role
+   * Sens
+   * @return direction
    **/
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_DIRECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getRole() {
-    return role;
+  public String getDirection() {
+    return direction;
   }
 
-  @JsonProperty(JSON_PROPERTY_ROLE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(String role) {
-    this.role = role;
+  @JsonProperty(JSON_PROPERTY_DIRECTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDirection(String direction) {
+    this.direction = direction;
   }
 
   @Override
@@ -136,26 +135,26 @@ public class Operator {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Operator operator = (Operator)o;
-    return Objects.equals(this.detailedName, operator.detailedName) &&
-        Objects.equals(this.id, operator.id) &&
-        Objects.equals(this.role, operator.role);
+    Highway highway = (Highway)o;
+    return Objects.equals(this.name, highway.name) &&
+        Objects.equals(this.pk, highway.pk) &&
+        Objects.equals(this.direction, highway.direction);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedName, id, role);
+    return Objects.hash(name, pk, direction);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Operator {\n");
-    sb.append("    detailedName: ")
-        .append(toIndentedString(detailedName))
+    sb.append("class Highway {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    pk: ").append(toIndentedString(pk)).append("\n");
+    sb.append("    direction: ")
+        .append(toIndentedString(direction))
         .append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();
   }

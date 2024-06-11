@@ -1,5 +1,5 @@
 {
-    "caseId": "fr.health.samu440-DRFR15DDXAAJJJ0000",
+    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
     "senderCaseId": "DRFR15DDXAAJJJ0000",
     "creation": "2022-09-27T08:23:34+02:00",
     "referenceVersion": "1.2",
@@ -108,7 +108,7 @@
             },
             "callbackContact": {},
             "language": "FR",
-            "type": "le patient lui-m\u00eame, p\u00e8re, m\u00e8re",
+            "type": "FAMILLE, TIERS",
             "communication": "Malentendant, aucune difficult\u00e9 de communication",
             "freetext": "t\u00e9moin de l'accident",
             "detailedName": {
@@ -159,18 +159,19 @@
             "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire",
             "transportDetails": {
                 "orientation": "laiss\u00e9 sur place, d\u00e9c\u00e9d\u00e9, ou transport\u00e9",
-                "concoursRequest": "None",
-                "transportationID": "None",
                 "teamCare": "M\u00e9dical, param\u00e9dical, secouriste",
                 "destination": {
                     "type": "None",
-                    "destinationLocation": {}
+                    "location": {}
                 }
             }
         }
     ],
     "newAlert": [
         {}
+    ],
+    "freetext": [
+        "Le forcen\u00e9 n'est pas ma\u00eetris\u00e9. Voiture renvers\u00e9e. Urgences ferm\u00e9es de 22h \u00e0 6h00."
     ],
     "additionalInformation": {
         "customMap": [
@@ -181,8 +182,5 @@
                 "freetext": "Pr\u00e9cision sur le quartier d'intervention"
             }
         ]
-    },
-    "freetext": [
-        "Le forcen\u00e9 n'est pas ma\u00eetris\u00e9. Voiture renvers\u00e9e. Urgences ferm\u00e9es de 22h \u00e0 6h00."
-    ]
+    }
 }

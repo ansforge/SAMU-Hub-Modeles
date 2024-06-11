@@ -1002,7 +1002,7 @@ components:
           description: "A renseigner avec l'identifiant de l'organisation (champ organization\
             \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
             \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
         LINK_ROLE:

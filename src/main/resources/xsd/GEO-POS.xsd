@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoPositionUpdate" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoPositionUpdate" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="geoPositionUpdate" type="x:geoPositionUpdate"/>
-    <complexType name="geoPositionUpdate">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoPositionsUpdate" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoPositionsUpdate" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="geoPositionsUpdate" type="x:geoPositionsUpdate"/>
+    <complexType name="geoPositionsUpdate">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="position" type="x:position"/>
         </sequence>

@@ -28,6 +28,10 @@ sheets = [
     'RC-REF',
     'RS-ERROR',
     'RS-INFO',
+    'RS-RIG',
+    'RS-DDR',
+    'RS-RDR',
+    'RS-BPV',
     'customContent'
 ]
 

@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Operator;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -44,8 +43,8 @@ import java.util.Objects;
  * MedicalNote
  */
 @JsonPropertyOrder(
-    {MedicalNote.JSON_PROPERTY_ID, MedicalNote.JSON_PROPERTY_OPERATOR,
-     MedicalNote.JSON_PROPERTY_CREATION, MedicalNote.JSON_PROPERTY_FREETEXT,
+    {MedicalNote.JSON_PROPERTY_ID, MedicalNote.JSON_PROPERTY_CREATION,
+     MedicalNote.JSON_PROPERTY_FREETEXT,
      MedicalNote.JSON_PROPERTY_MEDICAL_HISTORY,
      MedicalNote.JSON_PROPERTY_TREATMENTS, MedicalNote.JSON_PROPERTY_ALLERGIES})
 @JsonTypeName("medicalNote")
@@ -54,9 +53,6 @@ import java.util.Objects;
 public class MedicalNote {
   public static final String JSON_PROPERTY_ID = "id";
   private String id;
-
-  public static final String JSON_PROPERTY_OPERATOR = "operator";
-  private Operator operator;
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
@@ -96,29 +92,6 @@ public class MedicalNote {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(String id) {
     this.id = id;
-  }
-
-  public MedicalNote operator(Operator operator) {
-
-    this.operator = operator;
-    return this;
-  }
-
-  /**
-   * Get operator
-   * @return operator
-   **/
-  @JsonProperty(JSON_PROPERTY_OPERATOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Operator getOperator() {
-    return operator;
-  }
-
-  @JsonProperty(JSON_PROPERTY_OPERATOR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOperator(Operator operator) {
-    this.operator = operator;
   }
 
   public MedicalNote creation(OffsetDateTime creation) {
@@ -250,7 +223,6 @@ public class MedicalNote {
     }
     MedicalNote medicalNote = (MedicalNote)o;
     return Objects.equals(this.id, medicalNote.id) &&
-        Objects.equals(this.operator, medicalNote.operator) &&
         Objects.equals(this.creation, medicalNote.creation) &&
         Objects.equals(this.freetext, medicalNote.freetext) &&
         Objects.equals(this.medicalHistory, medicalNote.medicalHistory) &&
@@ -260,8 +232,8 @@ public class MedicalNote {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, operator, creation, freetext, medicalHistory,
-                        treatments, allergies);
+    return Objects.hash(id, creation, freetext, medicalHistory, treatments,
+                        allergies);
   }
 
   @Override
@@ -269,7 +241,6 @@ public class MedicalNote {
     StringBuilder sb = new StringBuilder();
     sb.append("class MedicalNote {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("    medicalHistory: ")
