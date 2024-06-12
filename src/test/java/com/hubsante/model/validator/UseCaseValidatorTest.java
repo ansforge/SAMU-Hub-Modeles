@@ -136,9 +136,7 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
         List<File> exampleFiles = new ArrayList<>();
 
         Arrays.stream(subFolders).forEach(folder -> {
-            if (!folder.getName().equals("work-in-progress")) {
-                exampleFiles.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-            }
+            exampleFiles.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
         });
 
         AtomicBoolean allPass = new AtomicBoolean(true);

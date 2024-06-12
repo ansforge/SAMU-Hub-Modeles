@@ -33,6 +33,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.stream.Collectors;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
@@ -42,6 +43,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
+
+    private static final String[] useCasesWithNoRcDe = {
+            "RS-ERROR"
+    };
 
     @Test
     @DisplayName("should consistently deserialize EDXL with several content objects")
@@ -54,9 +59,14 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         assertEquals(message.getFirstContentMessage(), message.getAllContentMessages().get(0));
     }
 
-    private static final String[] useCasesWithNoRcDe = {
-            "RS-ERROR"
-    };
+    @Test
+    @DisplayName("should add XML prefix")
+    public void verifyXmlPrefix() throws IOException {
+        String json = getMessageString("RC-REF");
+        EdxlMessage messageFromInput = converter.deserializeJsonEDXL(json);
+        String xml = converter.serializeXmlEDXL(messageFromInput);
+        assertTrue(() -> xml.startsWith(xmlPrefix()));
+    }
 
     @Test
     @DisplayName("all examples files deserializing")
@@ -67,9 +77,8 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
         List<File> files = new ArrayList<>();
         Arrays.stream(subFolders).forEach(folder -> {
-            if (!folder.getName().equals("work-in-progress")) {
                 files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-            }});
+            });
 
         AtomicBoolean allPass = new AtomicBoolean(true);
 
@@ -79,10 +88,10 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
                 // We wrap the use case message in a full json message, except for messages which do not
                 // require RC-DE header
                 String fullJson;
-                if ( Arrays.stream(useCasesWithNoRcDe).noneMatch(file.getName()::contains) )
-                    fullJson = wrapUseCaseMessage(useCaseJson);
-                else
+                if ( Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains) )
                     fullJson = wrapUseCaseMessageWithoutDistributionElement(useCaseJson);
+                else
+                    fullJson = wrapUseCaseMessage(useCaseJson);
 
                 converter.deserializeJsonEDXL(fullJson);
                 log.info("File {} has been successfully deserialized", file.getName());
