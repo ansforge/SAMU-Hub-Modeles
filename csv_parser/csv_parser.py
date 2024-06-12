@@ -133,9 +133,6 @@ def run(sheet, name, version, perimeter_filter, model_type):
     for i in reversed(range(0, len(params['perimeterColumns']))):
         df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
 
-
-
-
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
 
