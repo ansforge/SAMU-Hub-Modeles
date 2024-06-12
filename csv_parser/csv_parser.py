@@ -128,10 +128,14 @@ def run(sheet, name, version, perimeter_filter, model_type):
     if perimeter_filter:
         df = df[pd.notna(df[perimeter_filter])]
 
-    # Deleting the columns of other perimeters by checking if the column is in the perimeter columns
-    # N.B: dropping a column (obviously) reduces the length df.columns, so we iterate in reverse order
+    # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
+    if perimeter_filter:
+        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+
+    # Deleting perimeter columns. N.B: dropping a
+    # column (obviously) reduces the length df.columns, so we iterate in reverse order
     for i in reversed(range(0, len(params['perimeterColumns']))):
-        df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
+            df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
 
     # Storing input data in a file to track versions
     df.to_csv(f'out/{name}/{name}.input.csv')
@@ -337,9 +341,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
         df['parent_type'] = df.apply(get_parent_type, axis=1)
         df['full_name'] = df.apply(build_full_name, axis=1)
 
-    # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
-    if perimeter_filter:
-        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+
 
     # Verify that cardinality is formatted correctly (e.g. '0..1', '1..1', '0..n', '1..n'; regex (\d+..(\d+|n)))
     def validate_cardinality_format(cardinality):
