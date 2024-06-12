@@ -43,8 +43,6 @@ import java.util.Objects;
  * InsStrictFeatures
  */
 @JsonPropertyOrder({InsStrictFeatures.JSON_PROPERTY_BIRTH_NAME,
-                    InsStrictFeatures.JSON_PROPERTY_BIRTH_FIRST_NAME,
-                    InsStrictFeatures.JSON_PROPERTY_BIRTH_FIRST_NAMES_LIST,
                     InsStrictFeatures.JSON_PROPERTY_BIRTH_DATE,
                     InsStrictFeatures.JSON_PROPERTY_SEX,
                     InsStrictFeatures.JSON_PROPERTY_BIRTH_PLACE_CODE})
@@ -54,13 +52,6 @@ import java.util.Objects;
 public class InsStrictFeatures {
   public static final String JSON_PROPERTY_BIRTH_NAME = "birthName";
   private String birthName;
-
-  public static final String JSON_PROPERTY_BIRTH_FIRST_NAME = "birthFirstName";
-  private String birthFirstName;
-
-  public static final String JSON_PROPERTY_BIRTH_FIRST_NAMES_LIST =
-      "birthFirstNamesList";
-  private String birthFirstNamesList;
 
   public static final String JSON_PROPERTY_BIRTH_DATE = "birthDate";
   private String birthDate;
@@ -131,55 +122,6 @@ public class InsStrictFeatures {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setBirthName(String birthName) {
     this.birthName = birthName;
-  }
-
-  public InsStrictFeatures birthFirstName(String birthFirstName) {
-
-    this.birthFirstName = birthFirstName;
-    return this;
-  }
-
-  /**
-   * Doit être cohérent avec la liste des prénoms de naissance renvoyée par
-   *INSi. Ex: si la liste des prénoms renvoyée est \&quot;Pierre Alain
-   *Jacques\&quot;, le premier prénom de naissance ne peut être que :  Pierre
-   *Pierre Alain Pierre Alain Jacques
-   * @return birthFirstName
-   **/
-  @JsonProperty(JSON_PROPERTY_BIRTH_FIRST_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getBirthFirstName() {
-    return birthFirstName;
-  }
-
-  @JsonProperty(JSON_PROPERTY_BIRTH_FIRST_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBirthFirstName(String birthFirstName) {
-    this.birthFirstName = birthFirstName;
-  }
-
-  public InsStrictFeatures birthFirstNamesList(String birthFirstNamesList) {
-
-    this.birthFirstNamesList = birthFirstNamesList;
-    return this;
-  }
-
-  /**
-   * Ensemble des prénoms de naissance (renvoyés par INSi)
-   * @return birthFirstNamesList
-   **/
-  @JsonProperty(JSON_PROPERTY_BIRTH_FIRST_NAMES_LIST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getBirthFirstNamesList() {
-    return birthFirstNamesList;
-  }
-
-  @JsonProperty(JSON_PROPERTY_BIRTH_FIRST_NAMES_LIST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBirthFirstNamesList(String birthFirstNamesList) {
-    this.birthFirstNamesList = birthFirstNamesList;
   }
 
   public InsStrictFeatures birthDate(String birthDate) {
@@ -264,9 +206,6 @@ public class InsStrictFeatures {
     }
     InsStrictFeatures insStrictFeatures = (InsStrictFeatures)o;
     return Objects.equals(this.birthName, insStrictFeatures.birthName) &&
-        Objects.equals(this.birthFirstName, insStrictFeatures.birthFirstName) &&
-        Objects.equals(this.birthFirstNamesList,
-                       insStrictFeatures.birthFirstNamesList) &&
         Objects.equals(this.birthDate, insStrictFeatures.birthDate) &&
         Objects.equals(this.sex, insStrictFeatures.sex) &&
         Objects.equals(this.birthPlaceCode, insStrictFeatures.birthPlaceCode);
@@ -274,8 +213,7 @@ public class InsStrictFeatures {
 
   @Override
   public int hashCode() {
-    return Objects.hash(birthName, birthFirstName, birthFirstNamesList,
-                        birthDate, sex, birthPlaceCode);
+    return Objects.hash(birthName, birthDate, sex, birthPlaceCode);
   }
 
   @Override
@@ -284,12 +222,6 @@ public class InsStrictFeatures {
     sb.append("class InsStrictFeatures {\n");
     sb.append("    birthName: ")
         .append(toIndentedString(birthName))
-        .append("\n");
-    sb.append("    birthFirstName: ")
-        .append(toIndentedString(birthFirstName))
-        .append("\n");
-    sb.append("    birthFirstNamesList: ")
-        .append(toIndentedString(birthFirstNamesList))
         .append("\n");
     sb.append("    birthDate: ")
         .append(toIndentedString(birthDate))

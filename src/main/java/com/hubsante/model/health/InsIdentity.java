@@ -35,8 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.DetailedName;
-import com.hubsante.model.health.InsCycle;
-import com.hubsante.model.health.InsNumber;
 import com.hubsante.model.health.InsStrictFeatures;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -45,20 +43,12 @@ import java.util.Objects;
 /**
  * InsIdentity
  */
-@JsonPropertyOrder({InsIdentity.JSON_PROPERTY_CYCLE,
-                    InsIdentity.JSON_PROPERTY_NUMBER,
-                    InsIdentity.JSON_PROPERTY_STRICT_FEATURES,
+@JsonPropertyOrder({InsIdentity.JSON_PROPERTY_STRICT_FEATURES,
                     InsIdentity.JSON_PROPERTY_NON_STRICT_FEATURES})
 @JsonTypeName("insIdentity")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class InsIdentity {
-  public static final String JSON_PROPERTY_CYCLE = "cycle";
-  private InsCycle cycle;
-
-  public static final String JSON_PROPERTY_NUMBER = "number";
-  private InsNumber number;
-
   public static final String JSON_PROPERTY_STRICT_FEATURES = "strictFeatures";
   private InsStrictFeatures strictFeatures;
 
@@ -67,52 +57,6 @@ public class InsIdentity {
   private DetailedName nonStrictFeatures;
 
   public InsIdentity() {}
-
-  public InsIdentity cycle(InsCycle cycle) {
-
-    this.cycle = cycle;
-    return this;
-  }
-
-  /**
-   * Get cycle
-   * @return cycle
-   **/
-  @JsonProperty(JSON_PROPERTY_CYCLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public InsCycle getCycle() {
-    return cycle;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CYCLE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCycle(InsCycle cycle) {
-    this.cycle = cycle;
-  }
-
-  public InsIdentity number(InsNumber number) {
-
-    this.number = number;
-    return this;
-  }
-
-  /**
-   * Get number
-   * @return number
-   **/
-  @JsonProperty(JSON_PROPERTY_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public InsNumber getNumber() {
-    return number;
-  }
-
-  @JsonProperty(JSON_PROPERTY_NUMBER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNumber(InsNumber number) {
-    this.number = number;
-  }
 
   public InsIdentity strictFeatures(InsStrictFeatures strictFeatures) {
 
@@ -169,23 +113,19 @@ public class InsIdentity {
       return false;
     }
     InsIdentity insIdentity = (InsIdentity)o;
-    return Objects.equals(this.cycle, insIdentity.cycle) &&
-        Objects.equals(this.number, insIdentity.number) &&
-        Objects.equals(this.strictFeatures, insIdentity.strictFeatures) &&
+    return Objects.equals(this.strictFeatures, insIdentity.strictFeatures) &&
         Objects.equals(this.nonStrictFeatures, insIdentity.nonStrictFeatures);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cycle, number, strictFeatures, nonStrictFeatures);
+    return Objects.hash(strictFeatures, nonStrictFeatures);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class InsIdentity {\n");
-    sb.append("    cycle: ").append(toIndentedString(cycle)).append("\n");
-    sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    strictFeatures: ")
         .append(toIndentedString(strictFeatures))
         .append("\n");

@@ -34,8 +34,8 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
-            <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
     </complexType>
     <complexType name="qualification">
@@ -371,7 +371,8 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.</documentation>
+                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
+{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="identity" type="x:insIdentity"/>
@@ -1498,27 +1499,47 @@ Par convention les prénoms composés doivent préférablement être séparés p
     </complexType>
     <complexType name="transportDetails">
         <sequence>
-            <element name="orientation" type="string">
+            <element name="orientation">
                 <annotation>
                     <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
 - A transporter
 - Laisser sur place</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="OK"/>
+                        <enumeration value="TEMP"/>
+                        <enumeration value="SEUL"/>
+                        <enumeration value="AFAMILLE"/>
+                        <enumeration value="AMED"/>
+                        <enumeration value="AFDO"/>
+                        <enumeration value="ATIERS"/>
+                        <enumeration value="MOYPERSO"/>
+                        <enumeration value="Code vecteur choisi"/>
+                        <enumeration value="REFPAT"/>
+                        <enumeration value="REFFAM"/>
+                        <enumeration value="PASREAKO"/>
+                        <enumeration value="PASREAOK"/>
+                        <enumeration value="REA"/>
+                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="FUGUE"/>
+                        <enumeration value="REFAUTRE"/>
+                        <enumeration value="RAS"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="transportationID" type="string">
-                <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
-                </annotation>
-            </element>
-            <element name="teamCare" type="string">
+            <element name="teamCare">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SECOURS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="destination" type="x:destination"/>
         </sequence>
@@ -1531,16 +1552,16 @@ Par convention les prénoms composés doivent préférablement être séparés p
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="service d’urgences d’un Etablissement de santé"/>
-                        <enumeration value="autres services d’un établissement de santé"/>
-                        <enumeration value="cabinet d’un professionnel de santé"/>
-                        <enumeration value="domicile personnel"/>
-                        <enumeration value="EPHAD ou long séjour"/>
-                        <enumeration value="autre"/>
+                        <enumeration value="Service d’urgences d’un etablissement de sante"/>
+                        <enumeration value="Autres services d’un etablissement de sante"/>
+                        <enumeration value="Cabinet d’un professionnel de sante"/>
+                        <enumeration value="Domicile personnel"/>
+                        <enumeration value="EPHAD ou long sejour"/>
+                        <enumeration value="Autre"/>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="destinationLocation" type="x:location"/>
+            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

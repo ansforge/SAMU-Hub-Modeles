@@ -1,0 +1,91 @@
+,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
+0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
+2,3,Ressource engagée,,,,,,Liste des vecteurs associés au message :  liste l'ensemble des vecteurs ou ressources mobilisées,,,mobilizedResources,0..n,X,resource,,,,X
+3,4,,Date/heure de déclenchement,,,,,date et heure d'engagement de la ressource,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+4,5,,ID partagé,,,,,"ID unique de la ressource engagée partagée 
+{orgID}.{ID du dossier partagé}.R{numéro d’ordre chronologique}",fr.health.samu440.DRFR15DDXAAJJJ0000.R01,,resourceID,1..1,,string,,,,X
+5,6,,ID mission local,,,,,"Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur",DRFR15DDXAAJJJ0000.M001,,missionID,0..1,,string,,,,X
+6,7,,ID Organisation propriétaire,,,,,Organisation à laquelle appartient la ressource,fr.health.samu440,,orgID,0..1,,string,,,,X
+7,8,,ID Centre d’affectation,,,,,Lieu de garage principal,CHU Nantes,,centerName,0..1,,string,,,,X
+8,9,,Type de ressource,,,,,"Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.",SMUR,,resourceType,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_MOYEN,,X
+9,10,,Type de vecteur,,,,,"Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.",VLM,,vehiculeType,0..1,,string,X,NOMENCLATURE: CISU-TYPE_VECTEUR,,X
+10,11,,Immatriculation,,,,,N° d'immatriculation du vecteur,,,plate,0..1,,string,,,,X
+11,12,,Nom,,,,,Nom donné à la ressource par l’organisation d’appartenance,SMUR 123,,name,0..1,,string,,,,X
+13,14,,Commune du centre d’affectation,,,,,Code INSEE de la commune du centre d'affectation,44109,,centerCity,0..1,,string,,REGEX: [0-9]{5},,X
+14,15,,Marque vecteur,,,,,Marque vecteur,,,make,0..1,,string,,,,X
+15,16,,Modèle vecteur,,,,,Modèle vecteur,,,model,0..1,,string,,,,X
+16,17,,Equipe vecteur,,,,,Décrit le type et l'équipe à bord du vecteur,,,team,0..1,X,team,,,,X
+17,18,,,Type,,,,Médical / paramédical : indique le niveau de médicalisation du vecteur,,,teamCare,0..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN,,X
+18,19,,,Nom,,,,Nom de l'équipe à bord du vecteur,,,name,0..1,,string,,,,X
+19,20,,Etats vecteur,,,,,,,,state,0..n,X,state,,,,X
+20,21,,,Date/heure de changement de statut,,,,,,,dateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X
+21,22,,,Statuts du vecteur,,,,Dernier statut du vecteur,,,status,0..1,,string,X,"ENUM : Alerte, Parti, Arrivee Sur Les Lieux, Transport Destination, Arrivee Destination, Fin De Medicalisation , Quitte Destination, Retour Base, Rentree Base",,X
+22,23,,,Disponibilité du vecteur,,,,Indique si le vecteur est disponible / indisponible,,,availability,0..1,,string,X,"ENUM : Disponible, Indisponible, Inconnu",,X
+23,24,,Dernière géolocalisation du vecteur,,,,,,,,coord,0..1,X,coord,,,,X
+24,25,,,Latitude,,,,Latitude du point clé de la localisation ,48.866667,,lat,1..1,,number,,,,X
+25,26,,,Longitude,,,,Longitude du point clé de la localisation,2.333333,,lon,1..1,,number,,,,X
+26,27,,,Altitude ,,,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,0..1,,number,,,,X
+27,28,,,Cap,,,,En degré,96,,heading,0..1,,number,,,,X
+28,29,,,Vitesse,,,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,0..1,,number,,,,X
+29,30,,,Précision,,,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN",,X
+30,31,,Contact,,,,,Type et valeur de l'URI utilisée par la ressource.,,,contact,0..1,X,contact,,,,X
+31,32,,,Type de contact ,,,,Type de l'URI utilisée,PHNADD,,type,0..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",,X
+32,33,,,URI du contact,,,,Valeur de l'URI utilisée pour contacter la ressource,0671830530,,details,0..1,,string,,,,X
+33,34,,Commentaires,,,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / particuliers, particularités du vecteur)",,,freetext,0..n,,string,,,,X
+34,35,,Lieu de prise en charge,,,,,"Permet de décrire le lieu d'intervention de la ressource, notamment s'il est différent du lieu d'intervention du dossier",,,originLocation,0..1,X,location,,,,X
+36,37,,,Type d'origine/destination,,,,,"Indique le type de d'origine /destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,type,0..1,,string,X,"ENUM: Service d’urgences d’un etablissement de sante, Autres services d’un etablissement de sante, Cabinet d’un professionnel de sante, Domicile personnel, EPHAD ou long sejour, Autre",,X
+38,39,,,Nom du lieu,,,,"Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,,name,0..1,,string,,,,X
+39,40,,,Identifiant(s) du lieu,,,,Permet d'identifier une structure commerciale ou un établissement,,,externalLocationId,0..n,X,externalLocationId,,,,X
+40,41,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,1..1,,string,X,"ENUM: FINESS administratif, FINESS géographique, SIREN, SIRET, APE/NAF",,X
+41,42,,,,Identifiant,,,L'identifiant en lui-même,920000650 ,,value,1..1,,string,,,,X
+42,43,,,Détails de l'adresse,,,,,,,detailedAddress,0..1,X,detailedAddress,,,,X
+43,44,,,,"Numéro, type et nom de voie",,,"Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
+15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.",9 Bd du Montparnasse,,complete,1..1,,string,,TEMPLATE: {number} {wayName},,X
+44,45,,,,Numéro dans la voie,,,"Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).","9, 4bis, PK10, …",,number,0..1,,string,,,,X
+45,46,,,,Type et nom de voie,,,,,,wayName,0..1,X,wayName,,,,X
+46,47,,,,,Type et nom,,"Type et nom de la voie (venant d'un référentiel ou non)
+Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,,complete,1..1,,string,,TEMPLATE: {type} {name},,X
+47,48,,,,,Type,,Type de la voie,Boulevard,,type,0..1,,string,,,,X
+48,49,,,,,Nom,,Nom de la voie,du Montparnasse,,name,0..1,,string,,,,X
+49,50,,,Détails de la commune,,,,,,,city,0..1,X,city,,,,X
+50,51,,,,Nom de la commune,,,Nom officiel de la commune actuelle,Lille,,name,0..1,,string,,,,X
+51,52,,,,Code INSEE de la commune,,,Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.,59350,,inseeCode,0..1,,string,,REGEX: [0-9]{5},,X
+52,53,,,,Complément de commune,,,"Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
+NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.","Quartie Melun Nord, Lhomme, …",,detail,0..1,,string,,,,X
+53,54,,,Détails d'accès,,,,"Permet d'envoyer l'ensemble des détails d'accès au lieu d'intervention. Si les détails ne sont pas gérés individuellement, il est préférable de passer ces indications dans le freetext lié à la localisation de l'affaire.
+15-18 - Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,,access,0..1,X,access,,,,X
+54,55,,,,Etage,,,Etage ,RDC,,floor,0..1,,string,,,,X
+55,56,,,,Numéro de porte,,,"Spécifie numéro d'appartement, de chambre, de bureau",A16,,roomNumber,0..1,,string,,,,X
+56,57,,,,Interphone,,,"Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)",Dupont,,interphone,0..1,,string,,,,X
+57,58,,,,Digicode,,,Indique le ou les digicodes dans l'ordre de progression dans le bâtiment,1234A,,accessCode,0..n,,string,,,,X
+58,59,,,,Ascenseur/escalier,,,Indique l'ascenseur ou la cage d'escalier ,C3,,elevator,0..1,,string,,,,X
+59,60,,,,Bâtiment,,,Nom du bâtiment,Batiment B,,buildingName,0..1,,string,,,,X
+60,61,,,,Entrée,,,,Zone Sud,,entrance,0..1,,string,,,,X
+61,62,,,,Service,,,"Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …",Infirmerie,,entity,0..1,,string,,,,X
+62,63,,,,N° de téléphone du lieu,,,"Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.",33123452323,,phoneNumber,0..1,,number,,,,X
+63,64,,,Géometrie associée,,,,,,,geometry,0..1,X,geometry,,,,X
+64,65,,,,Heure du dernier relevé,,,Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.,2022-09-27T08:23:34+02:00,,obsDatime,1..1,,datetime,,,,X
+65,66,,,,Point ,,,"Fournir au maximum même s'il est imprécis (et adapter le champs ""Précision"" en fonction). 
+Par exemple, sans adresse, il est possible de fournir le point GPS de la commune et d'adapter et préciser l'adresse en cours d'intervention.
+Sera toujours fourni par NexSIS.",,,point,0..1,X,point,,,,X
+66,67,,,,,Coordonnées,,"Le SGO ne fonctionne toujours sur des coordonnées X/Y ainsi qu'une adresse indicative associée. 
+NexSIS dispose donc toujours d'un point GPS utilisé pour le temps de trajet, la détermination de l'intervenant le plus proche, ...
+L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,,coord,1..1,X,coord,,,,X
+67,68,,,,,,Latitude,Latitude du point clé de la localisation ,48.866667,,lat,1..1,,number,,,,X
+68,69,,,,,,Longitude,Longitude du point clé de la localisation,2.333333,,lon,1..1,,number,,,,X
+69,70,,,,,,Altitude ,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,0..1,,number,,,,X
+70,71,,,,,,Précision,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN",,X
+71,72,,,,,Système de coordonnées,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,,sysCoord,0..1,,string,,,,X
+73,74,,,Liens aux systèmes externes,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI
+L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,,externalInfo,0..n,X,externalInfo,,,,X
+74,75,,,,Nom de la source,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",,freetext,1..1,,string,X,"ENUM: BAN, IGN, NexSIS",,X
+75,76,,,,Type ,,,"Définition du type d'objet dans le système
+Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",,type,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",,X
+76,77,,,,Identifiant,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,,uri,1..1,,string,,,,X
+78,79,,,Informations complémentaires sur la localisation,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,,freetext,0..1,,string,,,,X
+79,80,,Destination,# Voir Origine (type location),,,,"Permet de décrire la destination d'une ressource, lorsqu'elle est connue. (Par exemple : suite à une décisition d'orientation, une nouvelle demande de ressource doit être envoyée, ou lors d'un TIH)",,,destinationLocation,0..1,X,location,,,,X

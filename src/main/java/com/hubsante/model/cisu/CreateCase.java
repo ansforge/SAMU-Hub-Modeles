@@ -57,8 +57,8 @@ import java.util.Objects;
      CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
      CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_PATIENT,
      CreateCase.JSON_PROPERTY_DECISION, CreateCase.JSON_PROPERTY_NEW_ALERT,
-     CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION,
-     CreateCase.JSON_PROPERTY_FREETEXT})
+     CreateCase.JSON_PROPERTY_FREETEXT,
+     CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCase")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -96,12 +96,12 @@ public class CreateCase {
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
 
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private List<String> freetext;
+
   public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION =
       "additionalInformation";
   private AdditionalInformation additionalInformation;
-
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private List<String> freetext;
 
   public CreateCase() {}
 
@@ -396,31 +396,6 @@ public class CreateCase {
     this.newAlert.addAll(newAlert);
   }
 
-  public CreateCase
-  additionalInformation(AdditionalInformation additionalInformation) {
-
-    this.additionalInformation = additionalInformation;
-    return this;
-  }
-
-  /**
-   * Get additionalInformation
-   * @return additionalInformation
-   **/
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public AdditionalInformation getAdditionalInformation() {
-    return additionalInformation;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void
-  setAdditionalInformation(AdditionalInformation additionalInformation) {
-    this.additionalInformation = additionalInformation;
-  }
-
   public CreateCase freetext(List<String> freetext) {
 
     this.freetext = freetext;
@@ -460,6 +435,31 @@ public class CreateCase {
     this.freetext.addAll(freetext);
   }
 
+  public CreateCase
+  additionalInformation(AdditionalInformation additionalInformation) {
+
+    this.additionalInformation = additionalInformation;
+    return this;
+  }
+
+  /**
+   * Get additionalInformation
+   * @return additionalInformation
+   **/
+  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public AdditionalInformation getAdditionalInformation() {
+    return additionalInformation;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ADDITIONAL_INFORMATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void
+  setAdditionalInformation(AdditionalInformation additionalInformation) {
+    this.additionalInformation = additionalInformation;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -479,16 +479,16 @@ public class CreateCase {
         Objects.equals(this.patient, createCase.patient) &&
         Objects.equals(this.decision, createCase.decision) &&
         Objects.equals(this.newAlert, createCase.newAlert) &&
+        Objects.equals(this.freetext, createCase.freetext) &&
         Objects.equals(this.additionalInformation,
-                       createCase.additionalInformation) &&
-        Objects.equals(this.freetext, createCase.freetext);
+                       createCase.additionalInformation);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
                         qualification, location, initialAlert, patient,
-                        decision, newAlert, additionalInformation, freetext);
+                        decision, newAlert, freetext, additionalInformation);
   }
 
   @Override
@@ -513,10 +513,10 @@ public class CreateCase {
     sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
     sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("    additionalInformation: ")
         .append(toIndentedString(additionalInformation))
         .append("\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -35,7 +35,7 @@ components:
             \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
@@ -93,8 +93,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/alert'
-        additionalInformation:
-          $ref: '#/components/schemas/additionalInformation'
         freetext:
           type: array
           x-health-only: false
@@ -110,6 +108,8 @@ components:
             examples:
             - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
               \ ferm\xE9es de 22h \xE0 6h00."
+        additionalInformation:
+          $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
     qualification:
       type: object
@@ -496,7 +496,7 @@ components:
           - SGO050-20230605-AL0123
         reception:
           type: string
-          title: "Date de r\xE9ception de l'alerte"
+          title: "Date et heure de r\xE9ception de l'alerte"
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/reception
@@ -556,7 +556,8 @@ components:
           x-cols: 6
           example: example.json#/patient/0/id
           description: "Identifiant technique du patient pour permettre les rapprochements\
-            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
+            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison.\n{ID du dossier\
+            \ partag\xE9}.P{num\xE9ro d\u2019ordre chronologique}"
           examples:
           - fr.health.samu044.DRFR15DDXAAJJJ00000.P00
         identity:
@@ -1905,7 +1906,7 @@ components:
           - AUTRE
           - INCONNU
           examples:
-          - "le patient lui-m\xEAme, p\xE8re, m\xE8re"
+          - FAMILLE, TIERS
         communication:
           type: string
           title: "Difficult\xE9 de communication"
@@ -2104,7 +2105,7 @@ components:
           - Personne
         type:
           type: string
-          title: "Type de contact du requ\xE9rant"
+          title: Type de contact
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/type
@@ -2123,7 +2124,7 @@ components:
           - PHNADD
         detail:
           type: string
-          title: "URI du contact requ\xE9rant"
+          title: URI du contact
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/detail
@@ -2185,7 +2186,7 @@ components:
         firstName: Jean
     insIdentity:
       type: object
-      title: "Identit\xE9 INS"
+      title: "Identit\xE9"
       x-display: expansion-panels
       x-health-only: false
       required: []
@@ -2249,28 +2250,28 @@ components:
           example: example.json#/decision/0/transportDetails/orientation
           description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
             gulateur : \n- A transporter\n- Laisser sur place"
+          enum:
+          - OK
+          - TEMP
+          - SEUL
+          - AFAMILLE
+          - AMED
+          - AFDO
+          - ATIERS
+          - MOYPERSO
+          - Code vecteur choisi
+          - REFPAT
+          - REFFAM
+          - PASREAKO
+          - PASREAOK
+          - REA
+          - TRANSPOR
+          - ADM
+          - FUGUE
+          - REFAUTRE
+          - RAS
           examples:
           - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
-        concoursRequest:
-          type: string
-          title: ID demande de concours/de ressources
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportDetails/concoursRequest
-          description: 'Identifiant de la ou des demandes de concours '
-          examples:
-          - None
-        transportationID:
-          type: string
-          title: "ID vecteur partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportDetails/transportationID
-          description: "Identifiant du v\xE9hicule terrestre / a\xE9rien / maritime\
-            \ de transport principal (= celui dans lequel se trouve le patient), permettant\
-            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient. "
-          examples:
-          - None
         teamCare:
           type: string
           title: Niveau de prise en charge
@@ -2279,6 +2280,10 @@ components:
           example: example.json#/decision/0/transportDetails/teamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
             dicale, standard, incomplete, ...)"
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
           examples:
           - "M\xE9dical, param\xE9dical, secouriste"
         destination:
@@ -2303,21 +2308,21 @@ components:
             un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
             , domicile personnel, EPHAD ou long s\xE9jour, autre"
           enum:
-          - "service d\u2019urgences d\u2019un Etablissement de sant\xE9"
-          - "autres services d\u2019un \xE9tablissement de sant\xE9"
-          - "cabinet d\u2019un professionnel de sant\xE9"
-          - domicile personnel
-          - "EPHAD ou long s\xE9jour"
-          - autre
+          - "Service d\u2019urgences d\u2019un etablissement de sante"
+          - "Autres services d\u2019un etablissement de sante"
+          - "Cabinet d\u2019un professionnel de sante"
+          - Domicile personnel
+          - EPHAD ou long sejour
+          - Autre
           examples:
           - None
-        destinationLocation:
+        location:
           $ref: '#/components/schemas/location'
       additionalProperties: false
       example: example.json#/decision/0/transportDetails/destination
       examples:
       - type: None
-        destinationLocation: {}
+        location: {}
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"

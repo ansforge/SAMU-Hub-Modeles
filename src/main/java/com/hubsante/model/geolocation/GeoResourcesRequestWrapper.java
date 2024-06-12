@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.geolocation.GeoResourcesRequest;
+import com.hubsante.model.rcde.DistributionElement;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -43,11 +44,19 @@ import java.util.Objects;
  * GeoResourcesRequestWrapper
  */
 @JsonPropertyOrder(
-    {GeoResourcesRequestWrapper.JSON_PROPERTY_GEO_RESOURCES_REQUEST})
+    {DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+     DistributionElement.JSON_PROPERTY_SENDER,
+     DistributionElement.JSON_PROPERTY_SENT_AT,
+     DistributionElement.JSON_PROPERTY_KIND,
+     DistributionElement.JSON_PROPERTY_STATUS,
+     DistributionElement.JSON_PROPERTY_RECIPIENT,
+     GeoResourcesRequestWrapper.JSON_PROPERTY_GEO_RESOURCES_REQUEST})
 @JsonTypeName("geoResourcesRequestWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class GeoResourcesRequestWrapper {
+public class GeoResourcesRequestWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
   public static final String JSON_PROPERTY_GEO_RESOURCES_REQUEST =
       "geoResourcesRequest";
   private GeoResourcesRequest geoResourcesRequest;
@@ -89,18 +98,20 @@ public class GeoResourcesRequestWrapper {
     GeoResourcesRequestWrapper geoResourcesRequestWrapper =
         (GeoResourcesRequestWrapper)o;
     return Objects.equals(this.geoResourcesRequest,
-                          geoResourcesRequestWrapper.geoResourcesRequest);
+                          geoResourcesRequestWrapper.geoResourcesRequest) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(geoResourcesRequest);
+    return Objects.hash(geoResourcesRequest, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class GeoResourcesRequestWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
     sb.append("    geoResourcesRequest: ")
         .append(toIndentedString(geoResourcesRequest))
         .append("\n");

@@ -49,22 +49,261 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class EngagementDetails {
+
+  /**
+   * détaille le moyen à engager
+   */
+  public enum CategoryTypeEnum {
+    SMUR("SMUR"),
+
+    HOSPIT("HOSPIT"),
+
+    LIB("LIB"),
+
+    TSU_("TSU "),
+
+    SIS("SIS"),
+
+    AASC("AASC"),
+
+    FDO("FDO"),
+
+    ADM("ADM"),
+
+    DAE("DAE"),
+
+    AUTRE("AUTRE");
+
+    private String value;
+
+    CategoryTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CategoryTypeEnum fromValue(String value) {
+      for (CategoryTypeEnum b : CategoryTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_CATEGORY_TYPE = "categoryType";
-  private String categoryType;
+  private CategoryTypeEnum categoryType;
+
+  /**
+   * détaille le type de vecteur à engager
+   */
+  public enum ResourceTypeEnum {
+    VPSP("VPSP"),
+
+    VLSC("VLSC"),
+
+    AUTRESC("AUTRESC"),
+
+    TAXI("TAXI"),
+
+    TRANSP("TRANSP"),
+
+    AUTRE("AUTRE"),
+
+    TRAIN("TRAIN"),
+
+    AVION("AVION"),
+
+    PERSO("PERSO"),
+
+    APIED("APIED"),
+
+    INCONNU("INCONNU"),
+
+    CONSEIL("CONSEIL"),
+
+    DAE("DAE"),
+
+    HELIFSI("HELIFSI"),
+
+    VLFSI("VLFSI"),
+
+    FFSI("FFSI"),
+
+    VHFSI("VHFSI"),
+
+    MEDC("MEDC"),
+
+    MEDV("MEDV"),
+
+    PHARMA("PHARMA"),
+
+    INF("INF"),
+
+    MEDSPE("MEDSPE"),
+
+    DENT("DENT"),
+
+    AUTREPRO("AUTREPRO"),
+
+    DRAGON("DRAGON"),
+
+    AVSC("AVSC"),
+
+    VSAV("VSAV"),
+
+    GRIMP("GRIMP"),
+
+    VPL("VPL"),
+
+    SRSIS("SRSIS"),
+
+    FEUSIS("FEUSIS"),
+
+    VPMA("VPMA"),
+
+    VCH("VCH"),
+
+    VR("VR"),
+
+    PCSIS("PCSIS"),
+
+    VLISP("VLISP"),
+
+    VLMSP("VLMSP"),
+
+    VLCG("VLCG"),
+
+    VLSIS("VLSIS"),
+
+    MOYSSE("MOYSSE"),
+
+    AUTRESIS("AUTRESIS"),
+
+    VLM("VLM"),
+
+    AR("AR"),
+
+    AR_BAR("AR-BAR"),
+
+    AR_PED("AR-PED"),
+
+    VL("VL"),
+
+    HELISMUR("HELISMUR"),
+
+    HELISAN("HELISAN"),
+
+    AVSMUR("AVSMUR"),
+
+    AVSAN("AVSAN"),
+
+    NAVISMUR("NAVISMUR"),
+
+    PSM1("PSM1"),
+
+    PSM2("PSM2"),
+
+    PSM3("PSM3"),
+
+    PSMP("PSMP"),
+
+    VPC("VPC"),
+
+    AMB_GV("AMB-GV"),
+
+    AMB_PV("AMB-PV"),
+
+    AMB_BAR("AMB-BAR"),
+
+    AMB("AMB"),
+
+    VSL("VSL"),
+
+    NAVISIS("NAVISIS");
+
+    private String value;
+
+    ResourceTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
-  private String resourceType;
+  private ResourceTypeEnum resourceType;
 
   public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
   private String resourceId;
 
+  /**
+   * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
+   * ...)
+   */
+  public enum TeamCareInitialEnum {
+    MED("MED"),
+
+    PARAMED("PARAMED"),
+
+    SECOURS("SECOURS");
+
+    private String value;
+
+    TeamCareInitialEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TeamCareInitialEnum fromValue(String value) {
+      for (TeamCareInitialEnum b : TeamCareInitialEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_TEAM_CARE_INITIAL =
       "teamCareInitial";
-  private String teamCareInitial;
+  private TeamCareInitialEnum teamCareInitial;
 
   public EngagementDetails() {}
 
-  public EngagementDetails categoryType(String categoryType) {
+  public EngagementDetails categoryType(CategoryTypeEnum categoryType) {
 
     this.categoryType = categoryType;
     return this;
@@ -77,17 +316,17 @@ public class EngagementDetails {
   @JsonProperty(JSON_PROPERTY_CATEGORY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getCategoryType() {
+  public CategoryTypeEnum getCategoryType() {
     return categoryType;
   }
 
   @JsonProperty(JSON_PROPERTY_CATEGORY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCategoryType(String categoryType) {
+  public void setCategoryType(CategoryTypeEnum categoryType) {
     this.categoryType = categoryType;
   }
 
-  public EngagementDetails resourceType(String resourceType) {
+  public EngagementDetails resourceType(ResourceTypeEnum resourceType) {
 
     this.resourceType = resourceType;
     return this;
@@ -100,13 +339,13 @@ public class EngagementDetails {
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getResourceType() {
+  public ResourceTypeEnum getResourceType() {
     return resourceType;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceType(String resourceType) {
+  public void setResourceType(ResourceTypeEnum resourceType) {
     this.resourceType = resourceType;
   }
 
@@ -133,7 +372,8 @@ public class EngagementDetails {
     this.resourceId = resourceId;
   }
 
-  public EngagementDetails teamCareInitial(String teamCareInitial) {
+  public EngagementDetails
+  teamCareInitial(TeamCareInitialEnum teamCareInitial) {
 
     this.teamCareInitial = teamCareInitial;
     return this;
@@ -147,13 +387,13 @@ public class EngagementDetails {
   @JsonProperty(JSON_PROPERTY_TEAM_CARE_INITIAL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getTeamCareInitial() {
+  public TeamCareInitialEnum getTeamCareInitial() {
     return teamCareInitial;
   }
 
   @JsonProperty(JSON_PROPERTY_TEAM_CARE_INITIAL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTeamCareInitial(String teamCareInitial) {
+  public void setTeamCareInitial(TeamCareInitialEnum teamCareInitial) {
     this.teamCareInitial = teamCareInitial;
   }
 

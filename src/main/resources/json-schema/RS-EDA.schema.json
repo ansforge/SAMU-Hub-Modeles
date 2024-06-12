@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.06.03",
+    "version": "24.06.11",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -52,7 +52,7 @@
         "perimeter": {
             "type": "string",
             "title": "Fili\u00e8re",
-            "x-health-only": true,
+            "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/perimeter",
             "description": "Sert \u00e0 indiquer \u00e0 quelle fili\u00e8re du CRRA le dossier doit \u00eatre adress\u00e9/affich\u00e9",
@@ -65,7 +65,7 @@
         "interventionType": {
             "type": "string",
             "title": "Type d'intervention",
-            "x-health-only": true,
+            "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/interventionType",
             "description": "Indiquer s'il s'agit d'un dossier dit primaire (premi\u00e8re intervention urgente) ou secondaire (par exemple TIH)",
@@ -86,7 +86,7 @@
         "owner": {
             "type": "string",
             "title": "CRRA traitant",
-            "x-health-only": true,
+            "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/owner",
             "description": "Champ servant \u00e0 transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA apr\u00e8s accord verbal de ce dernier."
@@ -115,9 +115,6 @@
                 "$ref": "#/definitions/alert"
             }
         },
-        "additionalInformation": {
-            "$ref": "#/definitions/additionalInformation"
-        },
         "freetext": {
             "type": "array",
             "x-health-only": false,
@@ -129,6 +126,9 @@
                 "example": "example.json#/freetext/0",
                 "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire/dossier. Ces informations sont g\u00e9n\u00e9rales, et ont vocation \u00e0 \u00eatre \u00e9chang\u00e9es en inter-force. "
             }
+        },
+        "additionalInformation": {
+            "$ref": "#/definitions/additionalInformation"
         }
     },
     "definitions": {
@@ -141,6 +141,21 @@
                 "whatsHappen"
             ],
             "properties": {
+                "origin": {
+                    "type": "string",
+                    "title": "Origine de l'appel",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/origin",
+                    "description": "Num\u00e9ro de provenance de l'appel",
+                    "enum": [
+                        "15",
+                        "18",
+                        "17",
+                        "112",
+                        "116117"
+                    ]
+                },
                 "whatsHappen": {
                     "$ref": "#/definitions/whatsHappen"
                 },
@@ -169,8 +184,7 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "locID",
-                "country"
+                "locID"
             ],
             "properties": {
                 "locID": {
@@ -180,14 +194,6 @@
                     "x-cols": 6,
                     "example": "example.json#/location/locID",
                     "description": "ID technique et provisoire permettant d'identifier le lieu dans le cadre des \u00e9changes de cette affaire."
-                },
-                "locLabel": {
-                    "type": "string",
-                    "title": "R\u00e9sum\u00e9 de la localisation",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/location/locLabel",
-                    "description": "Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les \u00e9quipes op\u00e9rationnelles. Comprend au maximum 255 caract\u00e8res.\n15-18 : Dans les messages NexSIS, va souvent correspondre \u00e0 la concat\u00e9nation suivant des r\u00e8gles m\u00e9tiers de diff\u00e9rentes informations, dont le \"name\" (toponyme) et l'adresse.\n"
                 },
                 "name": {
                     "type": "string",
@@ -221,256 +227,6 @@
                         "$ref": "#/definitions/externalInfo"
                     }
                 },
-                "country": {
-                    "type": "string",
-                    "title": "Pays",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/location/country",
-                    "enum": [
-                        "AF",
-                        "AX",
-                        "AL",
-                        "DZ",
-                        "AS",
-                        "AD",
-                        "AO",
-                        "AI",
-                        "AQ",
-                        "AG",
-                        "AR",
-                        "AM",
-                        "AW",
-                        "AU",
-                        "AT",
-                        "AZ",
-                        "BS",
-                        "BH",
-                        "BD",
-                        "BB",
-                        "BY",
-                        "BE",
-                        "BZ",
-                        "BJ",
-                        "BM",
-                        "BT",
-                        "BO",
-                        "BA",
-                        "BW",
-                        "BV",
-                        "BR",
-                        "IO",
-                        "BN",
-                        "BG",
-                        "BF",
-                        "BI",
-                        "CV",
-                        "KH",
-                        "CM",
-                        "CA",
-                        "KY",
-                        "CF",
-                        "TD",
-                        "CL",
-                        "CN",
-                        "CX",
-                        "CC",
-                        "CO",
-                        "KM",
-                        "CG",
-                        "CK",
-                        "CR",
-                        "CI",
-                        "HR",
-                        "CU",
-                        "CW",
-                        "CY",
-                        "CZ",
-                        "DK",
-                        "DJ",
-                        "DM",
-                        "DO",
-                        "EC",
-                        "EG",
-                        "SV",
-                        "GQ",
-                        "ER",
-                        "EE",
-                        "SZ",
-                        "ET",
-                        "FK",
-                        "FO",
-                        "FJ",
-                        "FI",
-                        "FR",
-                        "GF",
-                        "PF",
-                        "TF",
-                        "GA",
-                        "GM",
-                        "GE",
-                        "DE",
-                        "GH",
-                        "GI",
-                        "GR",
-                        "GL",
-                        "GD",
-                        "GP",
-                        "GU",
-                        "GT",
-                        "GG",
-                        "GN",
-                        "GW",
-                        "GY",
-                        "HT",
-                        "HM",
-                        "VA",
-                        "HN",
-                        "HK",
-                        "HU",
-                        "IS",
-                        "IN",
-                        "ID",
-                        "IR",
-                        "IQ",
-                        "IE",
-                        "IM",
-                        "IL",
-                        "IT",
-                        "JM",
-                        "JP",
-                        "JE",
-                        "JO",
-                        "KZ",
-                        "KE",
-                        "KI",
-                        "KP",
-                        "KW",
-                        "KG",
-                        "LA",
-                        "LV",
-                        "LB",
-                        "LS",
-                        "LR",
-                        "LY",
-                        "LI",
-                        "LT",
-                        "LU",
-                        "MO",
-                        "MG",
-                        "MW",
-                        "MY",
-                        "MV",
-                        "ML",
-                        "MT",
-                        "MH",
-                        "MQ",
-                        "MR",
-                        "MU",
-                        "YT",
-                        "MX",
-                        "FM",
-                        "MC",
-                        "MN",
-                        "ME",
-                        "MS",
-                        "MA",
-                        "MZ",
-                        "MM",
-                        "NA",
-                        "NR",
-                        "NP",
-                        "NL",
-                        "NC",
-                        "NZ",
-                        "NI",
-                        "NE",
-                        "NG",
-                        "NU",
-                        "NF",
-                        "MK",
-                        "MP",
-                        "NO",
-                        "OM",
-                        "PK",
-                        "PW",
-                        "PA",
-                        "PG",
-                        "PY",
-                        "PE",
-                        "PH",
-                        "PN",
-                        "PL",
-                        "PT",
-                        "PR",
-                        "QA",
-                        "RE",
-                        "RO",
-                        "RU",
-                        "RW",
-                        "BL",
-                        "KN",
-                        "LC",
-                        "MF",
-                        "PM",
-                        "VC",
-                        "WS",
-                        "SM",
-                        "ST",
-                        "SA",
-                        "SN",
-                        "RS",
-                        "SC",
-                        "SL",
-                        "SG",
-                        "SX",
-                        "SK",
-                        "SI",
-                        "SB",
-                        "SO",
-                        "ZA",
-                        "GS",
-                        "SS",
-                        "ES",
-                        "LK",
-                        "SD",
-                        "SR",
-                        "SJ",
-                        "SE",
-                        "CH",
-                        "SY",
-                        "TJ",
-                        "TH",
-                        "TL",
-                        "TG",
-                        "TK",
-                        "TO",
-                        "TT",
-                        "TN",
-                        "TR",
-                        "TM",
-                        "TC",
-                        "TV",
-                        "UG",
-                        "UA",
-                        "AE",
-                        "GB",
-                        "US",
-                        "UM",
-                        "UY",
-                        "UZ",
-                        "VU",
-                        "VE",
-                        "VN",
-                        "VG",
-                        "VI",
-                        "WF",
-                        "EH",
-                        "YE",
-                        "ZM",
-                        "ZW"
-                    ]
-                },
                 "freetext": {
                     "type": "string",
                     "title": "Informations compl\u00e9mentaires sur la localisation",
@@ -489,42 +245,19 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "id",
                 "reception",
-                "reporting",
-                "caller",
-                "callTaker"
+                "caller"
             ],
             "properties": {
-                "id": {
-                    "type": "string",
-                    "title": "Identifiant alerte",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/id",
-                    "description": "Identifiant technique unique de l'alerte. Il doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 automatiquement par le syst\u00e8me \u00e9metteur et ne doit pas avoir de signification / utilisation particuli\u00e8re par les diff\u00e9rents syst\u00e8mes pour garantir leur d\u00e9couplage.\nVoir la description de l'identifiant de l'affaire pour voir le format.\nLorsqu\u2019une alerte est g\u00e9n\u00e9r\u00e9e dans NexSIS et cr\u00e9e une affaire, elle est qualifi\u00e9e d\u2019Alerte Initiale.\na)\tSi cette derni\u00e8re concerne un partenaire (caract\u00e8re m\u00e9dical pour la Sant\u00e9 par exemple), elle est relay\u00e9e seule dans le message. Il y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\u00e9e \u00e0 la m\u00eame affaire peut \u00eatre d\u00e9clar\u00e9e ult\u00e9rieurement, concernant cette fois le partenaire. Lorsqu\u2019elle est d\u00e9clar\u00e9e cette Nouvelle Alerte est relay\u00e9e avec l\u2019Alerte Initiale pour partager un contexte commun. Dans le message de cr\u00e9ation d\u2019affaire il y\u2019a deux objets alerte : initialAlert et newAlert.\nLe rattachement des messages \u00e0 une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un syst\u00e8me \u00e0 l'autre."
-                },
                 "reception": {
                     "type": "string",
-                    "title": "Date de r\u00e9ception de l'alerte",
+                    "title": "Date et heure de r\u00e9ception de l'alerte",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reception",
                     "description": "Groupe date heure de r\u00e9ception de l'alerte",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
-                },
-                "reporting": {
-                    "type": "string",
-                    "title": "Signalement",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/reporting",
-                    "description": "Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.\nEventuellement automatis\u00e9 en fonction des crit\u00e8res saisis et de leur param\u00e9trage, ou renseign\u00e9 par l'op\u00e9rateur. \nPrend les valeurs d\u00e9finies dans la nomenclature CISU :\n- standard : STANDARD\n- signal\u00e9 : ATTENTION\nLes syst\u00e8mes peuvent proposer des fonctionnalit\u00e9s faisant ressortir les dossiers avec le libell\u00e9 ATTENTION",
-                    "enum": [
-                        "STANDARD",
-                        "ATTENTION"
-                    ]
                 },
                 "notes": {
                     "type": "array",
@@ -534,15 +267,6 @@
                 },
                 "caller": {
                     "$ref": "#/definitions/caller"
-                },
-                "callTaker": {
-                    "$ref": "#/definitions/callTaker"
-                },
-                "attachment": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/attachment"
-                    }
                 }
             },
             "additionalProperties": false,
@@ -563,7 +287,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/id",
-                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
+                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison.\n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique}"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -600,7 +324,7 @@
             "type": "object",
             "title": "Interrogatoire m\u00e9dical",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [
                 "creation",
                 "freetext"
@@ -609,18 +333,15 @@
                 "id": {
                     "type": "string",
                     "title": "ID patient partag\u00e9",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/id",
                     "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9"
                 },
-                "operator": {
-                    "$ref": "#/definitions/operator"
-                },
                 "creation": {
                     "type": "string",
                     "title": "Date Heure de cr\u00e9ation de l'interrogatoire",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/creation",
                     "description": "Groupe date heure de cr\u00e9ation de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
@@ -630,7 +351,7 @@
                 "freetext": {
                     "type": "string",
                     "title": "Observations et commentaires",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/freetext",
                     "description": "Observations m\u00e9dicales du professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire (texte libre)\nChamp \u00e0 utiliser pour aggr\u00e9ger l'ensemble des ant\u00e9c\u00e9dents /traitements/allergies du patient si les cat\u00e9gories ne sont pas disctinctes dans le LRM"
@@ -638,7 +359,7 @@
                 "medicalHistory": {
                     "type": "string",
                     "title": "Ant\u00e9c\u00e9dents",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/medicalHistory",
                     "description": "Texte libre  pour d\u00e9crire les ant\u00e9c\u00e9dents du patient"
@@ -646,7 +367,7 @@
                 "treatments": {
                     "type": "string",
                     "title": "Traitements",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/treatments",
                     "description": "Texte libre  pour d\u00e9crire les traitements du patient"
@@ -654,7 +375,7 @@
                 "allergies": {
                     "type": "string",
                     "title": "Allergies",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/allergies",
                     "description": "Texte libre pour d\u00e9crire les allergies du patient"
@@ -705,9 +426,6 @@
                         "ORIENT",
                         "PASPLUS"
                     ]
-                },
-                "decider": {
-                    "$ref": "#/definitions/decider"
                 },
                 "engagementDetails": {
                     "$ref": "#/definitions/engagementDetails"
@@ -1137,43 +855,13 @@
             "type": "object",
             "title": "D\u00e9tails du dossier ",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [],
             "properties": {
-                "status": {
-                    "type": "string",
-                    "title": "Etat du dossier",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/details/status",
-                    "description": "cf. cycle SI SAMU  : \u00e9changer l'\u00e9tat du dossier si le cycle de vie du dossier est impl\u00e9ment\u00e9 de mani\u00e8re conforme au cycle de vie du dossier SI-SAMU. \nEchanger \u00e0 minima l'information que le dossier est cl\u00f4tur\u00e9.",
-                    "enum": [
-                        "Programm\u00e9",
-                        "Actif ",
-                        "Achev\u00e9",
-                        "Valid\u00e9 ",
-                        "Cl\u00f4tur\u00e9 ",
-                        "Class\u00e9",
-                        "Archiv\u00e9"
-                    ]
-                },
-                "type": {
-                    "type": "string",
-                    "title": "Type de dossier",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/qualification/details/type",
-                    "description": "D/DR/DRM si cycle SI-SAMU impl\u00e9ment\u00e9",
-                    "enum": [
-                        "D",
-                        "DR",
-                        "DRM"
-                    ]
-                },
                 "attribution": {
                     "type": "string",
                     "title": "Attribution du dossier",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/attribution",
                     "description": "D\u00e9crit le type de professionnel m\u00e9dical \u00e0 qui le dossier est attribu\u00e9 : M\u00e9decin g\u00e9n\u00e9raliste, m\u00e9decin urgentiste etc.",
@@ -1219,7 +907,7 @@
                 "priority": {
                     "type": "string",
                     "title": "Priorit\u00e9 de r\u00e9gulation m\u00e9dicale",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/priority",
                     "description": "D\u00e9crit la priorit\u00e9 de r\u00e9gulation m\u00e9dicale du dossier : P0, P1, P2, P3",
@@ -1281,6 +969,9 @@
                 "complete"
             ],
             "properties": {
+                "highway": {
+                    "$ref": "#/definitions/highway"
+                },
                 "complete": {
                     "type": "string",
                     "title": "Num\u00e9ro, type et nom de voie",
@@ -1447,14 +1138,6 @@
                 },
                 "point": {
                     "$ref": "#/definitions/point"
-                },
-                "sketch": {
-                    "type": "string",
-                    "title": "Formes g\u00e9om\u00e9triques",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/location/geometry/sketch",
-                    "description": "Objet gml (\u00e9quivalent xml du geojson). Le langage GML permet de d\u00e9crire une forme dans un syst\u00e8me de projection donn\u00e9. \nDans le cas d'une alerte donn\u00e9e sur une zone g\u00e9ographique non pr\u00e9cise (par exemple une section d'autoroute ou une zone sur un chemin de randonn\u00e9e), une indication sur la zone de recherche peut \u00eatre fournie.\nEn XML, un objet gml est encapsul\u00e9 dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn JSON, les balises sont reprises depuis le mod\u00e8le gml\nVoir http://www.opengis.net/gml pour le format de l'objet sketch"
                 }
             },
             "additionalProperties": false,
@@ -1510,6 +1193,41 @@
             },
             "additionalProperties": false,
             "example": "example.json#/location/externalInfo/0"
+        },
+        "highway": {
+            "type": "object",
+            "title": "Autoroute",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "name": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/detailedAddress/highway/name",
+                    "description": "Nom de l'autoroute"
+                },
+                "pk": {
+                    "type": "string",
+                    "title": "Point kilom\u00e9trique",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/detailedAddress/highway/pk",
+                    "description": "Point kilom\u00e9trique"
+                },
+                "direction": {
+                    "type": "string",
+                    "title": "Sens",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/detailedAddress/highway/direction",
+                    "description": "Sens"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/location/detailedAddress/highway"
         },
         "wayName": {
             "type": "object",
@@ -1986,116 +1704,6 @@
             "additionalProperties": false,
             "example": "example.json#/initialAlert/caller"
         },
-        "callTaker": {
-            "type": "object",
-            "title": "Agent",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "organization",
-                "controlRoom"
-            ],
-            "properties": {
-                "organization": {
-                    "type": "string",
-                    "title": "Service d'urgence",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/callTaker/organization",
-                    "description": "D\u00e9crit la structure ou le service \u00e0 laquelle est rattach\u00e9e l'agent (en fonction du niveau de pr\u00e9cision disponible).\nSe r\u00e9f\u00e9rer au DSF pour la structure norm\u00e9e des organisations.\nLe format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*."
-                },
-                "controlRoom": {
-                    "type": "string",
-                    "title": "Centre d'appels",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/callTaker/controlRoom",
-                    "description": "D\u00e9crit le centre d'appel auquel est rattach\u00e9 l'agent"
-                },
-                "role": {
-                    "type": "string",
-                    "title": "R\u00f4le agent",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/callTaker/role",
-                    "description": "D\u00e9crit le r\u00f4le de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU)"
-                },
-                "calltakerContact": {
-                    "$ref": "#/definitions/contact"
-                },
-                "calltakerId": {
-                    "type": "string",
-                    "title": "ID de l'agent",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/callTaker/calltakerId",
-                    "description": "Identifiant unique de l'op\u00e9rateur ayant trait\u00e9 l'alerte (peut \u00eatre un identifiant technique, un num\u00e9ro de carte CPS etc)"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/initialAlert/callTaker"
-        },
-        "attachment": {
-            "type": "object",
-            "title": "Pi\u00e8ces jointes",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "URI"
-            ],
-            "properties": {
-                "description": {
-                    "type": "string",
-                    "title": "Type ou description pj",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/attachment/0/description",
-                    "description": "D\u00e9crit la ressource en pr\u00e9cisant le type et le contenu, tels que \u00abcarte\u00bb ou \u00abphoto\u00bb"
-                },
-                "mimeType": {
-                    "type": "string",
-                    "title": "Type MIME",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/attachment/0/mimeType",
-                    "description": "L'identifiant du type MIME de contenu et sous-type d\u00e9crivant la ressource"
-                },
-                "size": {
-                    "type": "integer",
-                    "title": "Taille approximative",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/attachment/0/size",
-                    "description": "Taille approximative de la ressource en kO"
-                },
-                "URI": {
-                    "type": "string",
-                    "title": "URI",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/attachment/0/URI",
-                    "description": "Une URI, g\u00e9n\u00e9ralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un r\u00e9seau priv\u00e9\nNous sugg\u00e9rons d'employer le format suivant de regex (https?|ftp|file):\\/\\/([\\w-]+(\\.[\\w-]+)*)(\\/[\\w\\-\\.]*)*\\/?(\\?[^\\s]*)?"
-                },
-                "derefURI": {
-                    "type": "string",
-                    "title": "URI base 64",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/attachment/0/derefURI",
-                    "description": "Peut \u00eatre utilis\u00e9 \u00e0 la place de l'\u00e9l\u00e9ment 'URI' pour envoyer la ressource encod\u00e9e en base64 pour \u00e9viter des probl\u00e8mes de transcodage (sur des double quotes qui casseraient le message, \u2026)"
-                },
-                "digest": {
-                    "type": "string",
-                    "title": "Hash",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/initialAlert/attachment/0/digest",
-                    "description": "Hash de la ressource pour confirmer la r\u00e9ception de la bonne ressource\nLa ressource est hash\u00e9e avec le protocole SHA-256"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/initialAlert/attachment/0"
-        },
         "contact": {
             "type": "object",
             "title": "Contact",
@@ -2117,7 +1725,7 @@
                 },
                 "type": {
                     "type": "string",
-                    "title": "Type de contact du requ\u00e9rant",
+                    "title": "Type de contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/type",
@@ -2135,7 +1743,7 @@
                 },
                 "detail": {
                     "type": "string",
-                    "title": "URI du contact requ\u00e9rant",
+                    "title": "URI du contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/detail",
@@ -2186,7 +1794,7 @@
             "type": "object",
             "title": "Dossier administratif",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "externalId": {
@@ -2194,18 +1802,6 @@
                     "items": {
                         "$ref": "#/definitions/externalId"
                     }
-                },
-                "contact": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/contact"
-                    }
-                },
-                "personalAddress": {
-                    "$ref": "#/definitions/personalAddress"
-                },
-                "generalPractitioner": {
-                    "$ref": "#/definitions/generalPractitioner"
                 }
             },
             "additionalProperties": false,
@@ -2213,17 +1809,11 @@
         },
         "insIdentity": {
             "type": "object",
-            "title": "Identit\u00e9 INS",
+            "title": "Identit\u00e9",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [],
             "properties": {
-                "cycle": {
-                    "$ref": "#/definitions/insCycle"
-                },
-                "number": {
-                    "$ref": "#/definitions/insNumber"
-                },
                 "strictFeatures": {
                     "$ref": "#/definitions/insStrictFeatures"
                 },
@@ -2238,13 +1828,13 @@
             "type": "object",
             "title": "Informations patient",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "weight": {
                     "type": "integer",
                     "title": "Poids",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/weight",
                     "description": "Poids en kilogrammes"
@@ -2252,7 +1842,7 @@
                 "height": {
                     "type": "integer",
                     "title": "Taille",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/height",
                     "description": "Taille en centim\u00e8tres"
@@ -2260,7 +1850,7 @@
                 "age": {
                     "type": "string",
                     "title": "Age",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/age",
                     "description": "Age du patient.\nAu format Dur\u00e9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unit\u00e9 de dur\u00e9e (ann\u00e9es, mois, semaines ou jours)",
@@ -2269,7 +1859,7 @@
                 "careLevel": {
                     "type": "string",
                     "title": "Niveau de soin",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/careLevel",
                     "enum": [
@@ -2287,7 +1877,7 @@
             "type": "object",
             "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [],
             "properties": {
                 "mainDiagnosis": {
@@ -2307,7 +1897,7 @@
             "type": "object",
             "title": "Identifiant(s) patient(s)",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [
                 "source",
                 "value"
@@ -2316,7 +1906,7 @@
                 "source": {
                     "type": "string",
                     "title": "Source  /  type d'identifiant",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/administrativeFile/externalId/0/source",
                     "description": "Type de l'identifiant fourni",
@@ -2331,7 +1921,7 @@
                 "value": {
                     "type": "string",
                     "title": "Identifiant",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/administrativeFile/externalId/0/value",
                     "description": "L'identifiant en lui-m\u00eame"
@@ -2339,121 +1929,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/patient/0/administrativeFile/externalId/0"
-        },
-        "personalAddress": {
-            "type": "object",
-            "title": "Adresse",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [],
-            "properties": {
-                "detailedAddress": {
-                    "$ref": "#/definitions/detailedAddress"
-                },
-                "city": {
-                    "$ref": "#/definitions/city"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/administrativeFile/personalAddress"
-        },
-        "generalPractitioner": {
-            "type": "object",
-            "title": "M\u00e9decin traitant ",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [
-                "detailedName"
-            ],
-            "properties": {
-                "detailedName": {
-                    "$ref": "#/definitions/detailedName"
-                },
-                "id": {
-                    "type": "string",
-                    "title": "Identifiant RPPS",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/administrativeFile/generalPractitioner/id",
-                    "description": "Num\u00e9ro RPPS du m\u00e9decin traitant"
-                },
-                "personalAddress": {
-                    "$ref": "#/definitions/personalAddress"
-                },
-                "contact": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/contact"
-                    }
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/administrativeFile/generalPractitioner"
-        },
-        "insCycle": {
-            "type": "object",
-            "title": "Impl\u00e9mentation INS",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [],
-            "properties": {
-                "status": {
-                    "type": "string",
-                    "title": "Statut de l'identit\u00e9",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/cycle/status",
-                    "description": "Le RNIV exige que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent les 4 statuts fonctionnels suivants :\n- \u00ab identit\u00e9 provisoire \u00bb,\n- \u00ab identit\u00e9 r\u00e9cup\u00e9r\u00e9e \u00bb,\n- \u00ab identit\u00e9 valid\u00e9e \u00bb,\n- \u00ab identit\u00e9 qualifi\u00e9e \u00bb.\nCes statuts fonctionnels sont exclusifs les uns des autres. Le r\u00e9f\u00e9rentiel INS [EXI 18] pr\u00e9cise en outre que le matricule INS et l\u2019OID doivent \u00eatre accompagn\u00e9s d\u2019informations confirmant qu\u2019ils ont \u00e9t\u00e9 qualifi\u00e9s.",
-                    "enum": [
-                        "Provisoire",
-                        "Valid\u00e9e",
-                        "R\u00e9cup\u00e9r\u00e9e",
-                        "Qualifi\u00e9e"
-                    ]
-                },
-                "attribute": {
-                    "type": "string",
-                    "title": "Attribut de l'identit\u00e9",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/cycle/attribute",
-                    "description": "Le RNIV recommande que les logiciels r\u00e9f\u00e9rentiels d\u2019identit\u00e9s g\u00e8rent a minima les 3 attributs suivants :\n- identit\u00e9 homonyme,\n- identit\u00e9 douteuse,\n- identit\u00e9 fictive.",
-                    "enum": [
-                        "Homonyme",
-                        "Fictive",
-                        "Douteuse"
-                    ]
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity/cycle"
-        },
-        "insNumber": {
-            "type": "object",
-            "title": "Matricule INS",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [],
-            "properties": {
-                "value": {
-                    "type": "string",
-                    "title": "Matricule ",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/number/value",
-                    "description": "n\u00b0 NIR OU n\u00b0 NIA de l'individu. Le matricule INS (et son OID) ne doit jamais \u00eatre propag\u00e9 (= \u00e9chang\u00e9) si l'identit\u00e9 est \u00e0 un statut autre que qualifi\u00e9e. Il correspond au num\u00e9ro personnel de s\u00e9curit\u00e9 sociale. Il peut \u00eatre diff\u00e9rent du num\u00e9ro de s\u00e9curit\u00e9 sociale utilis\u00e9 pour le remboursement des soins par l\u2019assurance maladie, dans le cas par exemple o\u00f9 l\u2019usager n\u2019est pas l\u2019assur\u00e9 social (ex.: l\u2019enfant qui est rattach\u00e9 \u00e0 l\u2019un de ses parents).\nLe matricule INS est compos\u00e9 des 13 caract\u00e8res et de la cl\u00e9 de contr\u00f4le. "
-                },
-                "oid": {
-                    "type": "string",
-                    "title": "OID",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/number/oid",
-                    "description": "Identifiant de la structure qui a affect\u00e9 l\u2019INS sous la forme d'un OID. Les OID (Object Identifier) sont des identifiants universels, repr\u00e9sent\u00e9s sous la forme d'une suite d'entiers. Ils sont organis\u00e9s sous forme hi\u00e9rarchique avec des n\u0153uds. L'OID est toujours associ\u00e9 \u00e0 un matricule INS, il n'est donc pas propag\u00e9 si le statut de l'identit\u00e9 n'est pas \"qualifi\u00e9e\""
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity/number"
         },
         "insStrictFeatures": {
             "type": "object",
@@ -2465,26 +1940,10 @@
                 "birthName": {
                     "type": "string",
                     "title": "Nom de naissance",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/birthName",
                     "description": "Egalement appel\u00e9 nom de famille."
-                },
-                "birthFirstName": {
-                    "type": "string",
-                    "title": "Premier pr\u00e9nom de naissance",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/strictFeatures/birthFirstName",
-                    "description": "Doit \u00eatre coh\u00e9rent avec la liste des pr\u00e9noms de naissance renvoy\u00e9e par INSi. Ex: si la liste des pr\u00e9noms renvoy\u00e9e est \"Pierre Alain Jacques\", le premier pr\u00e9nom de naissance ne peut \u00eatre que : \nPierre\nPierre Alain\nPierre Alain Jacques"
-                },
-                "birthFirstNamesList": {
-                    "type": "string",
-                    "title": "Liste des pr\u00e9noms de naissance",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/strictFeatures/birthFirstNamesList",
-                    "description": "Ensemble des pr\u00e9noms de naissance (renvoy\u00e9s par INSi)"
                 },
                 "birthDate": {
                     "type": "string",
@@ -2512,7 +1971,7 @@
                 "birthPlaceCode": {
                     "type": "number",
                     "title": "Code lieu de naissance",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/identity/strictFeatures/birthPlaceCode",
                     "description": "Il s\u2019agit de la commune de naissance pour les personnes n\u00e9es en France et du pays de naissance pour les personnes n\u00e9es \u00e0 l\u2019\u00e9tranger. Utilisation du code INSEE (diff\u00e9rent du code postal), auquel est associ\u00e9 le nom de la commune ou du pays correspondant."
@@ -2525,7 +1984,7 @@
             "type": "object",
             "title": "Hypoth\u00e8se de r\u00e9gulation m\u00e9dicale principale",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [
                 "code",
                 "label"
@@ -2555,7 +2014,7 @@
             "type": "object",
             "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale secondaires",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [
                 "code",
                 "label"
@@ -2581,53 +2040,11 @@
             "additionalProperties": false,
             "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0"
         },
-        "operator": {
-            "type": "object",
-            "title": "Professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [
-                "role"
-            ],
-            "properties": {
-                "detailedName": {
-                    "$ref": "#/definitions/detailedName"
-                },
-                "id": {
-                    "type": "string",
-                    "title": "ID",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/operator/id",
-                    "description": "Identifiant professionnel de l'op\u00e9rateur si existant"
-                },
-                "role": {
-                    "type": "string",
-                    "title": "R\u00f4le",
-                    "x-health-only": true,
-                    "x-cols": 6,
-                    "example": "example.json#/medicalNote/0/operator/role",
-                    "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/medicalNote/0/operator"
-        },
-        "decider": {
-            "type": "object",
-            "title": "Op\u00e9rateur d\u00e9cideur",
-            "x-display": "expansion-panels",
-            "x-health-only": true,
-            "required": [],
-            "properties": {},
-            "additionalProperties": false,
-            "example": "example.json#/decision/0/decider"
-        },
         "engagementDetails": {
             "type": "object",
             "title": "D\u00e9cision d'engagement",
             "x-display": "expansion-panels",
-            "x-health-only": true,
+            "x-health-only": false,
             "required": [
                 "categoryType",
                 "teamCareInitial"
@@ -2635,34 +2052,115 @@
             "properties": {
                 "categoryType": {
                     "type": "string",
-                    "title": "Type de moyen",
-                    "x-health-only": true,
+                    "title": "Type de ressource",
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/categoryType",
-                    "description": "d\u00e9taille le moyen \u00e0 engager"
+                    "description": "d\u00e9taille le moyen \u00e0 engager",
+                    "enum": [
+                        "SMUR",
+                        "HOSPIT",
+                        "LIB",
+                        "TSU ",
+                        "SIS",
+                        "AASC",
+                        "FDO",
+                        "ADM",
+                        "DAE",
+                        "AUTRE"
+                    ]
                 },
                 "resourceType": {
                     "type": "string",
                     "title": "Type de vecteur",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/resourceType",
-                    "description": "d\u00e9taille le type de vecteur \u00e0 engager"
+                    "description": "d\u00e9taille le type de vecteur \u00e0 engager",
+                    "enum": [
+                        "VPSP",
+                        "VLSC",
+                        "AUTRESC",
+                        "TAXI",
+                        "TRANSP",
+                        "AUTRE",
+                        "TRAIN",
+                        "AVION",
+                        "PERSO",
+                        "APIED",
+                        "INCONNU",
+                        "CONSEIL",
+                        "DAE",
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "VHFSI",
+                        "MEDC",
+                        "MEDV",
+                        "PHARMA",
+                        "INF",
+                        "MEDSPE",
+                        "DENT",
+                        "AUTREPRO",
+                        "DRAGON",
+                        "AVSC",
+                        "VSAV",
+                        "GRIMP",
+                        "VPL",
+                        "SRSIS",
+                        "FEUSIS",
+                        "VPMA",
+                        "VCH",
+                        "VR",
+                        "PCSIS",
+                        "VLISP",
+                        "VLMSP",
+                        "VLCG",
+                        "VLSIS",
+                        "MOYSSE",
+                        "AUTRESIS",
+                        "VLM",
+                        "AR",
+                        "AR-BAR",
+                        "AR-PED",
+                        "VL",
+                        "HELISMUR",
+                        "HELISAN",
+                        "AVSMUR",
+                        "AVSAN",
+                        "NAVISMUR",
+                        "PSM1",
+                        "PSM2",
+                        "PSM3",
+                        "PSMP",
+                        "VPC",
+                        "AMB-GV",
+                        "AMB-PV",
+                        "AMB-BAR",
+                        "AMB",
+                        "VSL",
+                        "NAVISIS"
+                    ]
                 },
                 "resourceId": {
                     "type": "string",
                     "title": "ID vecteur ",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/resourceId"
                 },
                 "teamCareInitial": {
                     "type": "string",
                     "title": "Niveau de prise en charge",
-                    "x-health-only": true,
+                    "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/engagementDetails/teamCareInitial",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)",
+                    "enum": [
+                        "MED",
+                        "PARAMED",
+                        "SECOURS"
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -2684,23 +2182,28 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportDetails/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
-                },
-                "concoursRequest": {
-                    "type": "string",
-                    "title": "ID demande de concours/de ressources",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/concoursRequest",
-                    "description": "Identifiant de la ou des demandes de concours "
-                },
-                "transportationID": {
-                    "type": "string",
-                    "title": "ID vecteur partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/transportationID",
-                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
+                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place",
+                    "enum": [
+                        "OK",
+                        "TEMP",
+                        "SEUL",
+                        "AFAMILLE",
+                        "AMED",
+                        "AFDO",
+                        "ATIERS",
+                        "MOYPERSO",
+                        "Code vecteur choisi",
+                        "REFPAT",
+                        "REFFAM",
+                        "PASREAKO",
+                        "PASREAOK",
+                        "REA",
+                        "TRANSPOR",
+                        "ADM",
+                        "FUGUE",
+                        "REFAUTRE",
+                        "RAS"
+                    ]
                 },
                 "teamCare": {
                     "type": "string",
@@ -2708,7 +2211,12 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/transportDetails/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
+                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)",
+                    "enum": [
+                        "MED",
+                        "PARAMED",
+                        "SECOURS"
+                    ]
                 },
                 "destination": {
                     "$ref": "#/definitions/destination"
@@ -2732,15 +2240,15 @@
                     "example": "example.json#/decision/0/transportDetails/destination/type",
                     "description": "Indique le type de destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
                     "enum": [
-                        "service d\u2019urgences d\u2019un Etablissement de sant\u00e9",
-                        "autres services d\u2019un \u00e9tablissement de sant\u00e9",
-                        "cabinet d\u2019un professionnel de sant\u00e9",
-                        "domicile personnel",
-                        "EPHAD ou long s\u00e9jour",
-                        "autre"
+                        "Service d\u2019urgences d\u2019un etablissement de sante",
+                        "Autres services d\u2019un etablissement de sante",
+                        "Cabinet d\u2019un professionnel de sante",
+                        "Domicile personnel",
+                        "EPHAD ou long sejour",
+                        "Autre"
                     ]
                 },
-                "destinationLocation": {
+                "location": {
                     "$ref": "#/definitions/location"
                 }
             },
