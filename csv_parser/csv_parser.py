@@ -297,9 +297,10 @@ def run(sheet, name, version, perimeter_filter, model_type):
     def is_health_only(row):
         # TODO: Rework this method, it's no longer applicable as is, as we have many more perimeters than just
         #  '15-15' and '15-18'.
-        """Is elem only for 15-15?"""
-        isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
-        return isHealthOnly
+        # """Is elem only for 15-15?"""
+        # isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
+        # return isHealthOnly
+        return False
 
     def capitalizeFirstLetter(string):
         return string[0].upper() + string[1:]
