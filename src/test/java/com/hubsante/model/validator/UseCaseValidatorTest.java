@@ -53,11 +53,11 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
     @DisplayName("Additional properties below wrapper level do not pass validation")
     public void additionalPropertyFails() throws IOException {
         // unknown property below wrapper level will not pass validation
-        String refLevelInvalid = getInvalidMessage("RC-REF/reference-level-additional-property.json");
+        String refLevelInvalid = getInvalidMessage("RC-REF/RC-REF-reference-level-additional-property.json");
         assertThrows(ValidationException.class, () -> validator.validateJSON(refLevelInvalid, FULL_SCHEMA));
 
         // unknown property at the wrapper level does not throw exception but will be ignored at deserialization
-        String wrapperLevelInvalid = getInvalidMessage("RC-REF/wrapper-level-additional-property.json");
+        String wrapperLevelInvalid = getInvalidMessage("RC-REF/RC-REF-wrapper-level-additional-property.json");
         assertDoesNotThrow(() -> validator.validateJSON(wrapperLevelInvalid, FULL_SCHEMA));
     }
 

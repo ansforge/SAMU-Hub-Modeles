@@ -54,6 +54,10 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         assertEquals(message.getFirstContentMessage(), message.getAllContentMessages().get(0));
     }
 
+    private static final String[] useCasesWithNoRcDe = {
+            "RS-ERROR"
+    };
+
     @Test
     @DisplayName("all examples files deserializing")
     public void examplesBundlePassingTest() {
@@ -72,10 +76,10 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
         files.forEach(file -> {
             try {
                 String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                // We wrap the use case message in a full json message, except for RS-ERROR message, which does not
+                // We wrap the use case message in a full json message, except for messages which do not
                 // require RC-DE header
                 String fullJson;
-                if (!file.getName().contains("RS-ERROR"))
+                if ( Arrays.stream(useCasesWithNoRcDe).noneMatch(file.getName()::contains) )
                     fullJson = wrapUseCaseMessage(useCaseJson);
                 else
                     fullJson = wrapUseCaseMessageWithoutDistributionElement(useCaseJson);
