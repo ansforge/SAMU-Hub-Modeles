@@ -129,9 +129,9 @@ def run(sheet, name, version, perimeter_filter, model_type):
         df = df[pd.notna(df[perimeter_filter])]
 
     # Deleting the columns of other perimeters by checking if the column is in the perimeter columns
-    for i in range(0, len(params['perimeterColumns'])):
-        if df.columns.iloc[params['perimeterColumns'][i]] != perimeter_filter:
-            df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
+    # N.B: dropping a column (obviously) reduces the length df.columns, so we iterate in reverse order
+    for i in reversed(range(0, len(params['perimeterColumns']))):
+        df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
 
 
 
@@ -301,7 +301,8 @@ def run(sheet, name, version, perimeter_filter, model_type):
         # TODO: Rework this method, it's no longer applicable as is, as we have many more perimeters than just
         #  '15-15' and '15-18'.
         """Is elem only for 15-15?"""
-        return False
+        isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
+        return isHealthOnly
 
     def capitalizeFirstLetter(string):
         return string[0].upper() + string[1:]
