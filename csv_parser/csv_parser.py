@@ -135,10 +135,12 @@ def run(sheet, name, version, perimeter_filter, model_type):
     # Deleting perimeter columns. N.B: dropping a
     # column (obviously) reduces the length df.columns, so we iterate in reverse order
     for i in reversed(range(0, len(params['perimeterColumns']))):
-            df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
+        df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
 
     # Storing input data in a file to track versions
-    df.to_csv(f'out/{name}/{name}.input.csv')
+    # Before storing, we remove the first column (ID), and we also do not want to write line index to the file,
+    # hence index=False
+    df.drop(df.columns[0], axis=1).to_csv(f'out/{name}/{name}.input.csv', index=False)
 
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
