@@ -142,7 +142,6 @@ def run(perimeters):
                     # For 'receive' steps, we generate a json file using all the values of the step (even unmarked
                     # ones, through the usage of receive_json object) and save it to the path
                     # ./out/test-cases/[perimeter_name]/[test_case_name]/[step_name].json
-                    # We only use JDD1 values, as the other two JDDs will be overriden later on in the lrm itself
                     if get_type(row["Pas de test"]) == "receive":
                         test_case["steps"][-1]["message"][
                             "file"] =  normalize_path(f'{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]}.json')
