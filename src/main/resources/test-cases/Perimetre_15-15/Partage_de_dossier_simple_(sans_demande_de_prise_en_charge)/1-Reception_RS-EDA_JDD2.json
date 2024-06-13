@@ -12,11 +12,11 @@
             },
             "locationKind": {
                 "code": "L01.02.10",
-                "label": "Domicile ; Lieu d'habitation collectif ou foyer d'h\u00e9bergement ;  escaliers"
+                "label": "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers"
             },
             "healthMotive": {
                 "code": "M02.07",
-                "label": "Traumatisme s\u00e9rieux, plaie interm\u00e9diaire"
+                "label": "Traumatisme sérieux, plaie intermédiaire"
             },
             "details": {
                 "priority": "P2",
@@ -60,7 +60,7 @@
                 "elevator": "ESC B",
                 "buildingName": "A"
             },
-            "freetext": "dans la cage d\u2019escalier B",
+            "freetext": "dans la cage d’escalier B",
             "geometry": {
                 "obsDatime": "2024-01-04T00:05:00+01:00",
                 "point": {
@@ -100,7 +100,7 @@
                     "freetext": "Entorse de la cheville, avec possible fracture. "
                 },
                 {
-                    "freetext": "Cheville gonfl\u00e9e et douloureuse. "
+                    "freetext": "Cheville gonflée et douloureuse. "
                 },
                 {
                     "freetext": "Marche impossible."
