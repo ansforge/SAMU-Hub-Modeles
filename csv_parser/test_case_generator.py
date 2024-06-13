@@ -71,9 +71,6 @@ def run(perimeters):
                     # of json objects that we'll use to generate n JSON files for the 'receive' steps
                     for i in range(1,5):
                         if pd.notna(row[f"JDD {i}"]):
-                            test3 = f"JDD {i}"
-                            test2 = row[f"JDD {i}"]
-                            test = row[f"JDD {i}"]
                             # We split the JSONPath string by '.' and iterate over the keys to create the JSON object,
                             # dropping the initial '$.' element and creating arrays when the key has a bracketed number
                             # (such as $.createCaseHealth.patient[0].id)
