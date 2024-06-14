@@ -25,19 +25,24 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Voir liste des effets à obtenir identifiés</documentation>
                 </annotation>
             </element>
-            <element name="answer" type="string">
+            <element minOccurs="0" name="convention" type="string">
                 <annotation>
-                    <documentation>oui / non / oui partiel / différé</documentation>
+                    <documentation>Nomenclature ? </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="deadline" type="string">
                 <annotation>
-                    <documentation>Indique le délai de réponse auquel s'engage l'expéditeur</documentation>
+                    <documentation>Délai d'intervention souhaité</documentation>
+                </annotation>
+            </element>
+            <element name="purpose" type="string">
+                <annotation>
+                    <documentation>Motif de la demande de ressource auprès du partenaire</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Commentaire libre pour apporter toutes précisions utiles à la réponse</documentation>
+                    <documentation>Texte libre permettant de détailler la demande</documentation>
                 </annotation>
             </element>
         </sequence>

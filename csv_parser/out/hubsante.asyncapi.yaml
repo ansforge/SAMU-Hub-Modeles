@@ -5779,11 +5779,11 @@ components:
       x-health-only: false
       required:
       - dateTime
-      - answer
+      - purpose
       properties:
         dateTime:
           type: string
-          title: "Date Heure de r\xE9ponse"
+          title: "Date Heure de cr\xE9ation de la demande"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/dateTime
@@ -5792,41 +5792,49 @@ components:
           format: date-time
           examples:
           - None
-        answer:
+        convention:
           type: string
-          title: "R\xE9ponse"
+          title: Cadre conventionnel
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceRequest/answer
-          description: "oui / non / oui partiel / diff\xE9r\xE9"
+          example: example.json#/resourceRequest/convention
+          description: 'Nomenclature ? '
           examples:
           - None
         deadline:
           type: string
-          title: "D\xE9lai de r\xE9ponse"
+          title: "D\xE9lai souhait\xE9"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/deadline
-          description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
-            diteur"
+          description: "D\xE9lai d'intervention souhait\xE9"
+          examples:
+          - None
+        purpose:
+          type: string
+          title: "Effet \xE0 obtenir"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceRequest/purpose
+          description: "Motif de la demande de ressource aupr\xE8s du partenaire"
           examples:
           - None
         freetext:
           type: string
-          title: "Pr\xE9cisions sur la r\xE9ponse"
+          title: "Pr\xE9cisions sur la demande"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/freetext
-          description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
-            \ \xE0 la r\xE9ponse"
+          description: "Texte libre permettant de d\xE9tailler la demande"
           examples:
           - None
       additionalProperties: false
       example: example.json#/resourceRequest
       examples:
       - dateTime: None
-        answer: None
+        convention: None
         deadline: None
+        purpose: None
         freetext: None
     resourcesResponse:
       $id: classpath:/json-schema/schema#
@@ -5837,7 +5845,7 @@ components:
       required:
       - caseId
       - RSDDRId
-      - resourceResponse
+      - requestResponse
       properties:
         caseId:
           type: string
@@ -5864,7 +5872,7 @@ components:
             \ laquelle l'exp\xE9diteur r\xE9pond"
           examples:
           - None
-        resourceResponse:
+        requestResponse:
           $ref: '#/components/schemas/response'
       additionalProperties: false
     response:
@@ -5881,7 +5889,7 @@ components:
           title: "Date Heure de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/dateTime
+          example: example.json#/requestResponse/dateTime
           description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -5892,7 +5900,7 @@ components:
           title: "R\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/answer
+          example: example.json#/requestResponse/answer
           description: "oui / non / oui partiel / diff\xE9r\xE9"
           examples:
           - None
@@ -5901,7 +5909,7 @@ components:
           title: "D\xE9lai de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/deadline
+          example: example.json#/requestResponse/deadline
           description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
             diteur"
           examples:
@@ -5911,13 +5919,13 @@ components:
           title: "Pr\xE9cisions sur la r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/freetext
+          example: example.json#/requestResponse/freetext
           description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
             \ \xE0 la r\xE9ponse"
           examples:
           - None
       additionalProperties: false
-      example: example.json#/resourceResponse
+      example: example.json#/requestResponse
       examples:
       - dateTime: None
         answer: None

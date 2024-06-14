@@ -17,7 +17,7 @@ components:
       required:
       - caseId
       - RSDDRId
-      - resourceResponse
+      - requestResponse
       properties:
         caseId:
           type: string
@@ -44,7 +44,7 @@ components:
             \ laquelle l'exp\xE9diteur r\xE9pond"
           examples:
           - None
-        resourceResponse:
+        requestResponse:
           $ref: '#/components/schemas/response'
       additionalProperties: false
     response:
@@ -61,7 +61,7 @@ components:
           title: "Date Heure de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/dateTime
+          example: example.json#/requestResponse/dateTime
           description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -72,7 +72,7 @@ components:
           title: "R\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/answer
+          example: example.json#/requestResponse/answer
           description: "oui / non / oui partiel / diff\xE9r\xE9"
           examples:
           - None
@@ -81,7 +81,7 @@ components:
           title: "D\xE9lai de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/deadline
+          example: example.json#/requestResponse/deadline
           description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
             diteur"
           examples:
@@ -91,13 +91,13 @@ components:
           title: "Pr\xE9cisions sur la r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceResponse/freetext
+          example: example.json#/requestResponse/freetext
           description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
             \ \xE0 la r\xE9ponse"
           examples:
           - None
       additionalProperties: false
-      example: example.json#/resourceResponse
+      example: example.json#/requestResponse
       examples:
       - dateTime: None
         answer: None

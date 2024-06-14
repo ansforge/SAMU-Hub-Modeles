@@ -3,8 +3,9 @@
     "RSDDRId": "None",
     "resourceRequest": {
         "dateTime": "None",
-        "answer": "None",
+        "convention": "None",
         "deadline": "None",
+        "purpose": "None",
         "freetext": "None"
     }
 }
