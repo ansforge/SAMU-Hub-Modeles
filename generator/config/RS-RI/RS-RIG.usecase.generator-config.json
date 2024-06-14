@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/RS-RDR.openapi.yaml",
+  "inputSpec": "./input/RS-RI.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/wrapper/",
+  "templateDir": "templates/useCase/",
   "globalProperties": {
-    "models": "resourcesResponseWrapper",
+    "models": "resourcesInfo",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,

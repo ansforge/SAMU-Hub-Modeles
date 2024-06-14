@@ -215,7 +215,7 @@
                 "message": {
                   "properties": {
                     "resourcesInfo": {
-                      "$ref": "RS-RIG.schema.json"
+                      "$ref": "RS-RI.schema.json"
                     }
                   },
                   "required": [
@@ -240,7 +240,7 @@
                 "message": {
                   "properties": {
                     "resourcesRequest": {
-                      "$ref": "RS-DDR.schema.json"
+                      "$ref": "RS-DR.schema.json"
                     }
                   },
                   "required": [
@@ -265,7 +265,7 @@
                 "message": {
                   "properties": {
                     "resourcesResponse": {
-                      "$ref": "RS-RDR.schema.json"
+                      "$ref": "RS-RR.schema.json"
                     }
                   },
                   "required": [

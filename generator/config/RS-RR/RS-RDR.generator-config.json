@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/RS-RIG.openapi.yaml",
+  "inputSpec": "./input/RS-RR.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/useCase/",
+  "templateDir": "templates/child-classes/",
   "globalProperties": {
-    "models": "resourcesInfo",
+    "models": "",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,

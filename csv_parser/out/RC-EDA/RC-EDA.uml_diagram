@@ -308,7 +308,7 @@ strict digraph {
                 <TR>
                 <TD ><B>identity</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet insIdentity</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet Identity</I></TD></TR>
                 </TABLE>>]
 	identity -> patient [headlabel=1 taillabel="0..1"]
 	patient [label=<<TABLE>

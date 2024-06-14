@@ -17,7 +17,6 @@ components:
       required:
       - caseId
       - creation
-      - referenceVersion
       - qualification
       - location
       - owner
@@ -64,18 +63,6 @@ components:
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
-        referenceVersion:
-          type: string
-          title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/referenceVersion
-          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
-            \ des codes transmis. \nCela permet aux diff\xE9rents syst\xE8mes de s'assurer\
-            \ qu'ils utilisent la m\xEAme version des codes de nomenclature que leurs\
-            \ partenaires."
-          examples:
-          - '1.2'
         perimeter:
           type: string
           title: "Fili\xE8re"
@@ -86,8 +73,9 @@ components:
             \ doit \xEAtre adress\xE9/affich\xE9"
           enum:
           - AMU
-          - SNP
           - NEONAT
+          - PSY
+          - SNP
           examples:
           - AMU
         interventionType:
@@ -99,8 +87,9 @@ components:
           description: "Indiquer s'il s'agit d'un dossier dit primaire (premi\xE8\
             re intervention urgente) ou secondaire (par exemple TIH)"
           enum:
-          - Primaire
-          - Secondaire
+          - PRIMAIRE
+          - SECONDAIRE
+          - RETOUR A DOMICILE
           examples:
           - Primaire
         qualification:
@@ -296,7 +285,7 @@ components:
         administrativeFile:
           $ref: '#/components/schemas/administrativeFile'
         identity:
-          $ref: '#/components/schemas/insIdentity'
+          $ref: '#/components/schemas/Identity'
         healthMotive:
           $ref: '#/components/schemas/healthMotive'
         detail:
@@ -970,11 +959,11 @@ components:
           example: example.json#/location/externalLocationId/0/source
           description: Type de l'identifiant fourni
           enum:
-          - FINESS administratif
-          - "FINESS g\xE9ographique"
+          - FINESS ADMINISTRATIF
+          - FINESS GEOGRAPHIQUE
           - SIREN
           - SIRET
-          - APE/NAF
+          - APE_NAF
           examples:
           - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
         value:
@@ -1220,7 +1209,7 @@ components:
           enum:
           - BAN
           - IGN
-          - NexSIS
+          - NEXSIS
           examples:
           - "NexSIS, BAN, IGN, \u2026"
         type:
@@ -1234,11 +1223,11 @@ components:
             \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
             \ Aussi table dans une base de donn\xE9es"
           enum:
-          - MANUAL
-          - MAP
-          - OTHER
+          - MANUEL
+          - CARTE
+          - AUTRE
           - PHOTO
-          - WEBSIT
+          - SITE INTERNET
           examples:
           - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
         uri:
@@ -1414,11 +1403,11 @@ components:
             \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
             \ l'\xE9metteur"
           enum:
-          - CITY
-          - STREET
-          - ADDRESS
-          - EXACT
-          - UNKNOWN
+          - VILLE
+          - RUE
+          - ADRESSE
+          - EXACTE
+          - INCONNUE
           examples:
           - ADDRESS
       additionalProperties: false
@@ -1820,14 +1809,9 @@ components:
           description: "Type de l'URI utilis\xE9e par le requ\xE9rant, cf. nomenclature\
             \ EMSI"
           enum:
-          - PSTADD
-          - EMLADD
-          - IPADD
-          - FTPADD
-          - WWWADD
-          - PHNADD
-          - FAXADD
-          - PMRADD
+          - TEL
+          - EMAIL
+          - FAX
           examples:
           - PHNADD
         detail:
@@ -1905,7 +1889,7 @@ components:
             $ref: '#/components/schemas/externalId'
       additionalProperties: false
       example: example.json#/patient/0/administrativeFile
-    insIdentity:
+    Identity:
       type: object
       title: "Identit\xE9"
       x-display: expansion-panels
@@ -2068,26 +2052,12 @@ components:
           - INCONNU
           examples:
           - F
-        birthPlaceCode:
-          type: number
-          title: Code lieu de naissance
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/identity/strictFeatures/birthPlaceCode
-          description: "Il s\u2019agit de la commune de naissance pour les personnes\
-            \ n\xE9es en France et du pays de naissance pour les personnes n\xE9es\
-            \ \xE0 l\u2019\xE9tranger. Utilisation du code INSEE (diff\xE9rent du\
-            \ code postal), auquel est associ\xE9 le nom de la commune ou du pays\
-            \ correspondant."
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/patient/0/identity/strictFeatures
       examples:
       - birthName: Dupont
         birthDate: None
         sex: F
-        birthPlaceCode: None
     mainDiagnosis:
       type: object
       title: "Hypoth\xE8se de r\xE9gulation m\xE9dicale principale"
@@ -2363,12 +2333,12 @@ components:
             un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
             , domicile personnel, EPHAD ou long s\xE9jour, autre"
           enum:
-          - "Service d\u2019urgences d\u2019un etablissement de sante"
-          - "Autres services d\u2019un etablissement de sante"
-          - "Cabinet d\u2019un professionnel de sante"
-          - Domicile personnel
-          - EPHAD ou long sejour
-          - Autre
+          - SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE
+          - AUTRES SERVICES D UN ETABLISSEMENT DE SANTE
+          - CABINET D UN PROFESSIONNEL DE SANTE
+          - DOMICILE
+          - EPHAD OU LONG SEJOUR
+          - AUTRE
           examples:
           - None
         location:

@@ -2,7 +2,6 @@
     "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
     "senderCaseId": "DRFR15DDXAAJJJ0000",
     "creation": "2022-09-27T08:23:34+02:00",
-    "referenceVersion": "1.2",
     "perimeter": "AMU",
     "interventionType": "Primaire",
     "qualification": {
@@ -134,8 +133,7 @@
                 "strictFeatures": {
                     "birthName": "Dupont",
                     "birthDate": "None",
-                    "sex": "F",
-                    "birthPlaceCode": "None"
+                    "sex": "F"
                 },
                 "nonStrictFeatures": {}
             },

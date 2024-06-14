@@ -10,7 +10,7 @@ components:
           $ref: '#/components/schemas/resourcesInfo'
     resourcesInfo:
       $id: classpath:/json-schema/schema#
-      x-id: RS-RIG.schema.json#
+      x-id: RS-RI.schema.json#
       example: example.json#
       type: object
       title: resourcesInfo

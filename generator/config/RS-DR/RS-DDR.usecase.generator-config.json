@@ -1,10 +1,10 @@
 {
-  "inputSpec": "./input/RS-RDR.openapi.yaml",
+  "inputSpec": "./input/RS-DR.openapi.yaml",
   "outputDir": "classes/",
   "generatorName": "java",
-  "templateDir": "templates/child-classes/",
+  "templateDir": "templates/useCase/",
   "globalProperties": {
-    "models": "",
+    "models": "resourcesRequest",
     "apis": false,
     "apiTests": false,
     "apiDocs": false,

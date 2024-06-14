@@ -7,10 +7,8 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
 Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
 ",DRFR15DDXAAJJJ0000,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X,X
 2,3,Date Heure de création de l'affaire/dossier,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF,X,X,X
-3,4,Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
-Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,,X,X,
-4,5,Filière,,,,,,Sert à indiquer à quelle filière du CRRA le dossier doit être adressé/affiché,AMU,,perimeter,,,,,,0..1,,string,,"ENUM: AMU, SNP, NEONAT",,X,X
-5,6,Type d'intervention,,,,,,Indiquer s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),Primaire,,interventionType,,,,,,0..1,,string,,"ENUM: Primaire, Secondaire",,X,X
+4,5,Filière,,,,,,Sert à indiquer à quelle filière du CRRA le dossier doit être adressé/affiché,AMU,,perimeter,,,,,,0..1,,string,,"ENUM: AMU, NEONAT, PSY, SNP",,X,X
+5,6,Type d'intervention,,,,,,Indiquer s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),Primaire,,interventionType,,,,,,0..1,,string,,"ENUM: PRIMAIRE, SECONDAIRE, RETOUR A DOMICILE",,X,X
 6,7,Qualification de l'affaire/dossier,,,,,,"Permet de qualifier l'affaire/dossier en général. 
 15-18 : La qualification est issue d'une interprétation métier des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X,X
 7,8,,Origine de l'appel,,,,,Numéro de provenance de l'appel,"15, 112, 18",,origin,,,,,,0..1,,string,,"ENUM: 15, 18, 17, 112, 116117",,X,
@@ -29,7 +27,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 24,25,,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,,,,,,,1..1,,string,,,X,X,X
 26,27,,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,,X,X,X
 27,28,,Identifiant(s) du lieu,,,,,Permet d'identifier une structure commerciale ou un établissement,,,externalLocationId,,,,,,0..n,X,externalLocationId,,,X,X,X
-28,29,,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS administratif, FINESS géographique, SIREN, SIRET, APE/NAF",X,X,X
+28,29,,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF",X,X,X
 29,30,,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,value,,,,,,1..1,,string,,,X,X,X
 30,31,,Détails de l'adresse,,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,X,X,X
 31,32,,,Autoroute,,,,,,,highway,,,,,,0..1,X,highway,,,,X,
@@ -72,13 +70,13 @@ L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord
 60,61,,,,,Longitude,,Longitude du point clé de la localisation,2.333333,lon,lon,,,,,,1..1,,number,,,X,X,X
 61,62,,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,,X,X,X
 64,65,,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN",X,X,X
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE",X,X,X
 65,66,,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,,,X,X,X
 67,68,,Liens aux systèmes externes,,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,,X,X,X
-68,69,,,Nom de la source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NexSIS",X,X,X
+68,69,,,Nom de la source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS",X,X,X
 69,70,,,Type ,,,,"Définition du type d'objet dans le système
-Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT",X,X,X
+Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",X,X,X
 70,71,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,,X,X,X
 72,73,,Informations complémentaires sur la localisation,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X,X
 73,74,Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communication d'urgence, par exemple un appel téléphonique.
@@ -90,8 +88,8 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle
 79,80,,,Commentaire/Observations,,,,texte libre contenant les indications renseignées par l'ARM,La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,,X,X,X
 80,81,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X,X
 81,82,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,,X,X,X
-82,83,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : Personne, Application, DAU, BAU, Defibrillateur, Ecall",X,X,X
-83,84,,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",X,X,X
+82,83,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",X,X,X
+83,84,,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX",X,X,X
 84,85,,,,URI du contact,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X,X
 85,86,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X,X
 86,87,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X,X
@@ -115,7 +113,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
 117,118,,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,,,X,X
 118,119,,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE",,X,X
 119,120,,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,1..1,,string,,,,X,X
-129,130,,Identité,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,,X,X,X
+129,130,,Identité,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,Identity,,,X,X,X
 136,137,,,Traits stricts de l'identité,,,,"L’Identité Nationale de Santé (INS) permet de référencer les données de santé avec une identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé.
 Elle est composée : 
  - Du matricule INS (NIR - numéro d’inscription au répertoire national des personnes physiques - ou NIA – numéro identifiant attente - de l’individu). Concrètement, ce numéro correspond au numéro de sécurité sociale pour les ouvrants-droits, c’est-à-dire la très grande majorité des personnes majeures. Pour les autres assurés, ce numéro figure sur leur attestation de sécurité sociale et sera affiché dans l’espace numérique de santé (Mon espace santé) ; 
@@ -123,7 +121,6 @@ Elle est composée :
 137,138,,,,Nom de naissance,,,Egalement appelé nom de famille.,Dupont,,birthName,,,,,,0..1,,string,,,,X,X
 140,141,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,,X,X,X
 141,142,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE,X,X,X
-142,143,,,,Code lieu de naissance,,,"Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.",,,birthPlaceCode,,,,,,0..1,,number,,,,X,
 143,144,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,,X,X,X
 144,145,,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,healthMotive,,,,,,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime,,X,
 145,146,,Informations patient,,,,,,,,detail,,,,,,0..1,X,patientDetail,,,,X,X
@@ -159,7 +156,7 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
 - Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT,X,X,X
 182,183,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN,X,X,X
 183,184,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,,X,X,X
-184,185,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: Service d’urgences d’un etablissement de sante, Autres services d’un etablissement de sante, Cabinet d’un professionnel de sante, Domicile personnel, EPHAD ou long sejour, Autre",X,X,X
+184,185,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE, AUTRES SERVICES D UN ETABLISSEMENT DE SANTE, CABINET D UN PROFESSIONNEL DE SANTE, DOMICILE, EPHAD OU LONG SEJOUR, AUTRE",X,X,X
 185,186,,,,Localisation de la destination,# Voir type location,,,,,location,,,,,,0..1,X,location,,,X,X,X
 186,187,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert

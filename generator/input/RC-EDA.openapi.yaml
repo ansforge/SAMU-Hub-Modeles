@@ -561,7 +561,7 @@ components:
           examples:
           - fr.health.samu044.DRFR15DDXAAJJJ00000.P00
         identity:
-          $ref: '#/components/schemas/insIdentity'
+          $ref: '#/components/schemas/Identity'
         freetext:
           type: array
           x-health-only: false
@@ -1071,9 +1071,9 @@ components:
           enum:
           - '0'
           - '1'
-          - SEVERAL
-          - MANY
-          - UNKNOWN
+          - PLUSIEURS
+          - BEAUCOUP
+          - INCONNU
           examples:
           - SEVERAL
         mainVictim:
@@ -1087,9 +1087,9 @@ components:
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
             \ des partenaires impliqu\xE9s par NexSIS."
           enum:
-          - INFANT
-          - CHILD
-          - ADULT
+          - NOURRISSON
+          - ENFANT
+          - ADULTE
           - SENIOR
           examples:
           - CHILD
@@ -1125,11 +1125,11 @@ components:
           example: example.json#/location/externalLocationId/0/source
           description: Type de l'identifiant fourni
           enum:
-          - FINESS administratif
-          - "FINESS g\xE9ographique"
+          - FINESS ADMINISTRATIF
+          - FINESS GEOGRAPHIQUE
           - SIREN
           - SIRET
-          - APE/NAF
+          - APE_NAF
           examples:
           - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
         value:
@@ -1390,7 +1390,7 @@ components:
           enum:
           - BAN
           - IGN
-          - NexSIS
+          - NEXSIS
           examples:
           - "NexSIS, BAN, IGN, \u2026"
         type:
@@ -1404,11 +1404,11 @@ components:
             \ parle (POI, tron\xE7on de route, \u2026) pour faciliter le filtre |\
             \ Aussi table dans une base de donn\xE9es"
           enum:
-          - MANUAL
-          - MAP
-          - OTHER
+          - MANUEL
+          - CARTE
+          - AUTRE
           - PHOTO
-          - WEBSIT
+          - SITE INTERNET
           examples:
           - "ega, egr, egm, DIO (donn\xE9es d'influence op\xE9rationnelle), \u2026"
         uri:
@@ -1563,11 +1563,11 @@ components:
             \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
             \ l'\xE9metteur"
           enum:
-          - CITY
-          - STREET
-          - ADDRESS
-          - EXACT
-          - UNKNOWN
+          - VILLE
+          - RUE
+          - ADRESSE
+          - EXACTE
+          - INCONNUE
           examples:
           - ADDRESS
       additionalProperties: false
@@ -2112,14 +2112,9 @@ components:
           description: "Type de l'URI utilis\xE9e par le requ\xE9rant, cf. nomenclature\
             \ EMSI"
           enum:
-          - PSTADD
-          - EMLADD
-          - IPADD
-          - FTPADD
-          - WWWADD
-          - PHNADD
-          - FAXADD
-          - PMRADD
+          - TEL
+          - EMAIL
+          - FAX
           examples:
           - PHNADD
         detail:
@@ -2184,7 +2179,7 @@ components:
       - complete: Jean Dupont
         lastName: Dupont
         firstName: Jean
-    insIdentity:
+    Identity:
       type: object
       title: "Identit\xE9"
       x-display: expansion-panels
@@ -2308,12 +2303,12 @@ components:
             un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
             , domicile personnel, EPHAD ou long s\xE9jour, autre"
           enum:
-          - "Service d\u2019urgences d\u2019un etablissement de sante"
-          - "Autres services d\u2019un etablissement de sante"
-          - "Cabinet d\u2019un professionnel de sante"
-          - Domicile personnel
-          - EPHAD ou long sejour
-          - Autre
+          - SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE
+          - AUTRES SERVICES D UN ETABLISSEMENT DE SANTE
+          - CABINET D UN PROFESSIONNEL DE SANTE
+          - DOMICILE
+          - EPHAD OU LONG SEJOUR
+          - AUTRE
           examples:
           - None
         location:
