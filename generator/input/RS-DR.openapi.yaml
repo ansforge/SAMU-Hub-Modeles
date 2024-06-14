@@ -52,11 +52,11 @@ components:
       x-health-only: false
       required:
       - dateTime
-      - purpose
+      - answer
       properties:
         dateTime:
           type: string
-          title: "Date Heure de cr\xE9ation de la demande"
+          title: "Date Heure de r\xE9ponse"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/dateTime
@@ -65,47 +65,39 @@ components:
           format: date-time
           examples:
           - None
-        convention:
+        answer:
           type: string
-          title: Cadre conventionnel
+          title: "R\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceRequest/convention
-          description: 'Nomenclature ? '
+          example: example.json#/resourceRequest/answer
+          description: "oui / non / oui partiel / diff\xE9r\xE9"
           examples:
           - None
         deadline:
           type: string
-          title: "D\xE9lai souhait\xE9"
+          title: "D\xE9lai de r\xE9ponse"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/deadline
-          description: "D\xE9lai d'intervention souhait\xE9"
-          examples:
-          - None
-        purpose:
-          type: string
-          title: "Effet \xE0 obtenir"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/resourceRequest/purpose
-          description: "Motif de la demande de ressource aupr\xE8s du partenaire"
+          description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
+            diteur"
           examples:
           - None
         freetext:
           type: string
-          title: "Pr\xE9cisions sur la demande"
+          title: "Pr\xE9cisions sur la r\xE9ponse"
           x-health-only: false
           x-cols: 6
           example: example.json#/resourceRequest/freetext
-          description: "Texte libre permettant de d\xE9tailler la demande"
+          description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
+            \ \xE0 la r\xE9ponse"
           examples:
           - None
       additionalProperties: false
       example: example.json#/resourceRequest
       examples:
       - dateTime: None
-        convention: None
+        answer: None
         deadline: None
-        purpose: None
         freetext: None

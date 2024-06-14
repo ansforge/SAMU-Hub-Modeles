@@ -9,7 +9,7 @@
     "required": [
         "caseId",
         "RSDDRId",
-        "resourceRequest"
+        "resourceResponse"
     ],
     "properties": {
         "caseId": {
@@ -28,7 +28,7 @@
             "example": "example.json#/RSDDRId",
             "description": "Identifiant unique partag\u00e9 de la demande de ressource \u00e0 laquelle l'exp\u00e9diteur r\u00e9pond"
         },
-        "resourceRequest": {
+        "resourceResponse": {
             "$ref": "#/definitions/response"
         }
     },
@@ -48,7 +48,7 @@
                     "title": "Date Heure de r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resourceRequest/dateTime",
+                    "example": "example.json#/resourceResponse/dateTime",
                     "description": "Voir liste des effets \u00e0 obtenir identifi\u00e9s",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -58,7 +58,7 @@
                     "title": "R\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resourceRequest/answer",
+                    "example": "example.json#/resourceResponse/answer",
                     "description": "oui / non / oui partiel / diff\u00e9r\u00e9"
                 },
                 "deadline": {
@@ -66,7 +66,7 @@
                     "title": "D\u00e9lai de r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resourceRequest/deadline",
+                    "example": "example.json#/resourceResponse/deadline",
                     "description": "Indique le d\u00e9lai de r\u00e9ponse auquel s'engage l'exp\u00e9diteur"
                 },
                 "freetext": {
@@ -74,12 +74,12 @@
                     "title": "Pr\u00e9cisions sur la r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resourceRequest/freetext",
+                    "example": "example.json#/resourceResponse/freetext",
                     "description": "Commentaire libre pour apporter toutes pr\u00e9cisions utiles \u00e0 la r\u00e9ponse"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/resourceRequest"
+            "example": "example.json#/resourceResponse"
         }
     },
     "additionalProperties": false

@@ -39,12 +39,12 @@
             "x-health-only": false,
             "required": [
                 "dateTime",
-                "purpose"
+                "answer"
             ],
             "properties": {
                 "dateTime": {
                     "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la demande",
+                    "title": "Date Heure de r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/resourceRequest/dateTime",
@@ -52,37 +52,29 @@
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
-                "convention": {
+                "answer": {
                     "type": "string",
-                    "title": "Cadre conventionnel",
+                    "title": "R\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/resourceRequest/convention",
-                    "description": "Nomenclature ? "
+                    "example": "example.json#/resourceRequest/answer",
+                    "description": "oui / non / oui partiel / diff\u00e9r\u00e9"
                 },
                 "deadline": {
                     "type": "string",
-                    "title": "D\u00e9lai souhait\u00e9",
+                    "title": "D\u00e9lai de r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/resourceRequest/deadline",
-                    "description": "D\u00e9lai d'intervention souhait\u00e9"
-                },
-                "purpose": {
-                    "type": "string",
-                    "title": "Effet \u00e0 obtenir",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/resourceRequest/purpose",
-                    "description": "Motif de la demande de ressource aupr\u00e8s du partenaire"
+                    "description": "Indique le d\u00e9lai de r\u00e9ponse auquel s'engage l'exp\u00e9diteur"
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Pr\u00e9cisions sur la demande",
+                    "title": "Pr\u00e9cisions sur la r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/resourceRequest/freetext",
-                    "description": "Texte libre permettant de d\u00e9tailler la demande"
+                    "description": "Commentaire libre pour apporter toutes pr\u00e9cisions utiles \u00e0 la r\u00e9ponse"
                 }
             },
             "additionalProperties": false,

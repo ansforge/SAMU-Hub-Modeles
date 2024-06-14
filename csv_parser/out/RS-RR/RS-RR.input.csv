@@ -4,7 +4,7 @@ Il doit pouvoir être généré de façon unique et décentralisée et ne prése
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
 1,2,ID DDR partagé,,,,,,Identifiant unique partagé de la demande de ressource à laquelle l'expéditeur répond,,,RSDDRId,1..1,,string,,,,X
-2,3,Réponse à la demande de concours,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,resourceRequest,1..1,X,response,,Format datetime décrit dans le DSF,,X
+2,3,Réponse à la demande de concours,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,resourceResponse,1..1,X,response,,Format datetime décrit dans le DSF,,X
 3,4,,Date Heure de réponse,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
 4,5,,Réponse,,,,,oui / non / oui partiel / différé,,,answer,1..1,,string,X,"ENUM : OUI, NON, PARTIEL, DIFFERE",,X
 5,6,,Délai de réponse,,,,,Indique le délai de réponse auquel s'engage l'expéditeur,,,deadline,0..1,,string,,,,X

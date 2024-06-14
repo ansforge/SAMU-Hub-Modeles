@@ -5,8 +5,7 @@ Il est généré par le système du partenaire récepteur de la primo-demande de
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
 1,2,ID DDR partagé,,,,,,Identifiant unique partagé de la demande de ressource,,,RSDDRId,1..1,,string,,,,X
 2,3,Demande de ressource,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,resourceRequest,0..1,X,request,,Format datetime décrit dans le DSF,,X
-3,4,,Date Heure de création de la demande,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
-4,5,,Cadre conventionnel,,,,,Nomenclature ? ,,,convention,0..1,,string,,,,X
-5,6,,Délai souhaité,,,,,Délai d'intervention souhaité,,,deadline,0..1,,string,,,,X
-6,7,,Effet à obtenir,,,,,Motif de la demande de ressource auprès du partenaire,,,purpose,1..1,,string,X,,,X
-7,8,,Précisions sur la demande,,,,,Texte libre permettant de détailler la demande,,,freetext,0..1,,string,,,,X
+3,4,,Date Heure de réponse,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+4,5,,Réponse,,,,,oui / non / oui partiel / différé,,,answer,1..1,,string,X,"ENUM : OUI, NON, PARTIEL, DIFFERE",,X
+5,6,,Délai de réponse,,,,,Indique le délai de réponse auquel s'engage l'expéditeur,,,deadline,0..1,,string,,,,X
+6,7,,Précisions sur la réponse,,,,,Commentaire libre pour apporter toutes précisions utiles à la réponse,,,freetext,0..1,,string,,,,X
