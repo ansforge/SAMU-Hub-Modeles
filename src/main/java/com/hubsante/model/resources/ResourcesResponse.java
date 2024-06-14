@@ -44,7 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({ResourcesResponse.JSON_PROPERTY_CASE_ID,
                     ResourcesResponse.JSON_PROPERTY_RS_D_D_R_ID,
-                    ResourcesResponse.JSON_PROPERTY_REQUEST_RESPONSE})
+                    ResourcesResponse.JSON_PROPERTY_RESOURCE_REQUEST})
 @JsonTypeName("resourcesResponse")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -57,8 +57,8 @@ public class ResourcesResponse {
   public static final String JSON_PROPERTY_RS_D_D_R_ID = "RSDDRId";
   private String rsDDRId;
 
-  public static final String JSON_PROPERTY_REQUEST_RESPONSE = "requestResponse";
-  private Response requestResponse;
+  public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
+  private Response resourceRequest;
 
   public ResourcesResponse() {}
 
@@ -114,27 +114,27 @@ public class ResourcesResponse {
     this.rsDDRId = rsDDRId;
   }
 
-  public ResourcesResponse requestResponse(Response requestResponse) {
+  public ResourcesResponse resourceRequest(Response resourceRequest) {
 
-    this.requestResponse = requestResponse;
+    this.resourceRequest = resourceRequest;
     return this;
   }
 
   /**
-   * Get requestResponse
-   * @return requestResponse
+   * Get resourceRequest
+   * @return resourceRequest
    **/
-  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Response getRequestResponse() {
-    return requestResponse;
+  public Response getResourceRequest() {
+    return resourceRequest;
   }
 
-  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRequestResponse(Response requestResponse) {
-    this.requestResponse = requestResponse;
+  public void setResourceRequest(Response resourceRequest) {
+    this.resourceRequest = resourceRequest;
   }
 
   @Override
@@ -148,12 +148,12 @@ public class ResourcesResponse {
     ResourcesResponse resourcesResponse = (ResourcesResponse)o;
     return Objects.equals(this.caseId, resourcesResponse.caseId) &&
         Objects.equals(this.rsDDRId, resourcesResponse.rsDDRId) &&
-        Objects.equals(this.requestResponse, resourcesResponse.requestResponse);
+        Objects.equals(this.resourceRequest, resourcesResponse.resourceRequest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDDRId, requestResponse);
+    return Objects.hash(caseId, rsDDRId, resourceRequest);
   }
 
   @Override
@@ -162,8 +162,8 @@ public class ResourcesResponse {
     sb.append("class ResourcesResponse {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    rsDDRId: ").append(toIndentedString(rsDDRId)).append("\n");
-    sb.append("    requestResponse: ")
-        .append(toIndentedString(requestResponse))
+    sb.append("    resourceRequest: ")
+        .append(toIndentedString(resourceRequest))
         .append("\n");
     sb.append("}");
     return sb.toString();

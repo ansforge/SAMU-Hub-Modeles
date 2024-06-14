@@ -15,7 +15,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Identifiant unique partagé de la demande de ressource à laquelle l'expéditeur répond</documentation>
                 </annotation>
             </element>
-            <element name="requestResponse" type="x:response"/>
+            <element name="resourceRequest" type="x:response"/>
         </sequence>
     </complexType>
     <complexType name="response">
