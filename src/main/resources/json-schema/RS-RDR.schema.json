@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RDR.schema.json#",
-    "version": "24.06.11",
+    "version": "24.06.13",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
@@ -380,7 +380,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "title": "Type de contact du requ\u00e9rant",
+                    "title": "Type de contact ",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/contact/type",
@@ -398,7 +398,7 @@
                 },
                 "details": {
                     "type": "string",
-                    "title": "URI du contact requ\u00e9rant",
+                    "title": "URI du contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResources/0/contact/details",

@@ -127,12 +127,12 @@ components:
           x-cols: 6
           example: example.json#/originLocation/type
           enum:
-          - "service d\u2019urgences d\u2019un Etablissement de sant\xE9"
-          - "autres services d\u2019un \xE9tablissement de sant\xE9"
-          - "cabinet d\u2019un professionnel de sant\xE9"
-          - domicile personnel
-          - "EPHAD ou long s\xE9jour"
-          - autre
+          - "Service d\u2019urgences d\u2019un etablissement de sante"
+          - "Autres services d\u2019un etablissement de sante"
+          - "Cabinet d\u2019un professionnel de sante"
+          - Domicile personnel
+          - EPHAD ou long sejour
+          - Autre
           examples:
           - "Indique le type de d'origine /destination de la ressource : service d\u2019\
             urgences d\u2019un Etablissement de sant\xE9, autres services d\u2019\
