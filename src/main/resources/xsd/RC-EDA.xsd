@@ -375,7 +375,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
 {ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="identity" type="x:insIdentity"/>
+            <element minOccurs="0" name="identity" type="x:Identity"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
@@ -763,9 +763,9 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     <restriction base="string">
                         <enumeration value="0"/>
                         <enumeration value="1"/>
-                        <enumeration value="SEVERAL"/>
-                        <enumeration value="MANY"/>
-                        <enumeration value="UNKNOWN"/>
+                        <enumeration value="PLUSIEURS"/>
+                        <enumeration value="BEAUCOUP"/>
+                        <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -775,9 +775,9 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="INFANT"/>
-                        <enumeration value="CHILD"/>
-                        <enumeration value="ADULT"/>
+                        <enumeration value="NOURRISSON"/>
+                        <enumeration value="ENFANT"/>
+                        <enumeration value="ADULTE"/>
                         <enumeration value="SENIOR"/>
                     </restriction>
                 </simpleType>
@@ -797,11 +797,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="FINESS administratif"/>
-                        <enumeration value="FINESS géographique"/>
+                        <enumeration value="FINESS ADMINISTRATIF"/>
+                        <enumeration value="FINESS GEOGRAPHIQUE"/>
                         <enumeration value="SIREN"/>
                         <enumeration value="SIRET"/>
-                        <enumeration value="APE/NAF"/>
+                        <enumeration value="APE_NAF"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -923,7 +923,7 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
                     <restriction base="string">
                         <enumeration value="BAN"/>
                         <enumeration value="IGN"/>
-                        <enumeration value="NexSIS"/>
+                        <enumeration value="NEXSIS"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -934,11 +934,11 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="MANUAL"/>
-                        <enumeration value="MAP"/>
-                        <enumeration value="OTHER"/>
+                        <enumeration value="MANUEL"/>
+                        <enumeration value="CARTE"/>
+                        <enumeration value="AUTRE"/>
                         <enumeration value="PHOTO"/>
-                        <enumeration value="WEBSIT"/>
+                        <enumeration value="SITE INTERNET"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1013,11 +1013,11 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="CITY"/>
-                        <enumeration value="STREET"/>
-                        <enumeration value="ADDRESS"/>
-                        <enumeration value="EXACT"/>
-                        <enumeration value="UNKNOWN"/>
+                        <enumeration value="VILLE"/>
+                        <enumeration value="RUE"/>
+                        <enumeration value="ADRESSE"/>
+                        <enumeration value="EXACTE"/>
+                        <enumeration value="INCONNUE"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1424,14 +1424,9 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="PSTADD"/>
-                        <enumeration value="EMLADD"/>
-                        <enumeration value="IPADD"/>
-                        <enumeration value="FTPADD"/>
-                        <enumeration value="WWWADD"/>
-                        <enumeration value="PHNADD"/>
-                        <enumeration value="FAXADD"/>
-                        <enumeration value="PMRADD"/>
+                        <enumeration value="TEL"/>
+                        <enumeration value="EMAIL"/>
+                        <enumeration value="FAX"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1464,7 +1459,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
             </element>
         </sequence>
     </complexType>
-    <complexType name="insIdentity">
+    <complexType name="Identity">
         <sequence>
             <element minOccurs="0" name="strictFeatures" type="x:insStrictFeatures"/>
             <element minOccurs="0" name="nonStrictFeatures" type="x:detailedName"/>
@@ -1552,12 +1547,12 @@ Par convention les prénoms composés doivent préférablement être séparés p
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="Service d’urgences d’un etablissement de sante"/>
-                        <enumeration value="Autres services d’un etablissement de sante"/>
-                        <enumeration value="Cabinet d’un professionnel de sante"/>
-                        <enumeration value="Domicile personnel"/>
-                        <enumeration value="EPHAD ou long sejour"/>
-                        <enumeration value="Autre"/>
+                        <enumeration value="SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE"/>
+                        <enumeration value="AUTRES SERVICES D UN ETABLISSEMENT DE SANTE"/>
+                        <enumeration value="CABINET D UN PROFESSIONNEL DE SANTE"/>
+                        <enumeration value="DOMICILE"/>
+                        <enumeration value="EPHAD OU LONG SEJOUR"/>
+                        <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>

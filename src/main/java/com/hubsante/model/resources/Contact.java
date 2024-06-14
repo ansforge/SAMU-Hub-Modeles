@@ -51,21 +51,11 @@ public class Contact {
    * Type de l&#39;URI utilisée
    */
   public enum TypeEnum {
-    PSTADD("PSTADD"),
+    TEL("TEL"),
 
-    EMLADD("EMLADD"),
+    EMAIL("EMAIL"),
 
-    IPADD("IPADD"),
-
-    FTPADD("FTPADD"),
-
-    WWWADD("WWWADD"),
-
-    PHNADD("PHNADD"),
-
-    FAXADD("FAXADD"),
-
-    PMRADD("PMRADD");
+    FAX("FAX");
 
     private String value;
 

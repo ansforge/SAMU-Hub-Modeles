@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesRequest" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesRequest" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourcesRequest" type="x:resourcesRequest"/>
+    <complexType name="resourcesRequest">
+        <sequence>
+            <element name="caseId" type="string">
+                <annotation>
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                </annotation>
+            </element>
+            <element name="RSDDRId" type="string">
+                <annotation>
+                    <documentation>Identifiant unique partagé de la demande de ressource</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="resourceRequest" type="x:request"/>
+        </sequence>
+    </complexType>
+    <complexType name="request">
+        <sequence>
+            <element name="dateTime" type="dateTime">
+                <annotation>
+                    <documentation>Voir liste des effets à obtenir identifiés</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="convention" type="string">
+                <annotation>
+                    <documentation>Nomenclature ? </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>Délai d'intervention souhaité</documentation>
+                </annotation>
+            </element>
+            <element name="purpose" type="string">
+                <annotation>
+                    <documentation>Motif de la demande de ressource auprès du partenaire</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Texte libre permettant de détailler la demande</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

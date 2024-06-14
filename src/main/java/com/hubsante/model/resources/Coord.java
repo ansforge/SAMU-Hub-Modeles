@@ -43,7 +43,8 @@ import java.util.Objects;
  * Coord
  */
 @JsonPropertyOrder({Coord.JSON_PROPERTY_LAT, Coord.JSON_PROPERTY_LON,
-                    Coord.JSON_PROPERTY_HEIGHT, Coord.JSON_PROPERTY_PRECISION})
+                    Coord.JSON_PROPERTY_HEIGHT, Coord.JSON_PROPERTY_HEADING,
+                    Coord.JSON_PROPERTY_SPEED, Coord.JSON_PROPERTY_PRECISION})
 @JsonTypeName("coord")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -57,6 +58,12 @@ public class Coord {
   public static final String JSON_PROPERTY_HEIGHT = "height";
   private BigDecimal height;
 
+  public static final String JSON_PROPERTY_HEADING = "heading";
+  private BigDecimal heading;
+
+  public static final String JSON_PROPERTY_SPEED = "speed";
+  private BigDecimal speed;
+
   /**
    * Indique via une nomenclature le niveau de précision des coordonnées
    * fournies par le système emetteur. CITY&#x3D;Précision à l&#39;échelle de la
@@ -65,15 +72,15 @@ public class Coord {
    * UNKNOWN&#x3D;Précision de la localisation non évaluable par l&#39;émetteur
    */
   public enum PrecisionEnum {
-    CITY("CITY"),
+    VILLE("VILLE"),
 
-    STREET("STREET"),
+    RUE("RUE"),
 
-    ADDRESS("ADDRESS"),
+    ADRESSE("ADRESSE"),
 
-    EXACT("EXACT"),
+    EXACTE("EXACTE"),
 
-    UNKNOWN("UNKNOWN");
+    INCONNUE("INCONNUE");
 
     private String value;
 
@@ -174,6 +181,52 @@ public class Coord {
     this.height = height;
   }
 
+  public Coord heading(BigDecimal heading) {
+
+    this.heading = heading;
+    return this;
+  }
+
+  /**
+   * En degré
+   * @return heading
+   **/
+  @JsonProperty(JSON_PROPERTY_HEADING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public BigDecimal getHeading() {
+    return heading;
+  }
+
+  @JsonProperty(JSON_PROPERTY_HEADING)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeading(BigDecimal heading) {
+    this.heading = heading;
+  }
+
+  public Coord speed(BigDecimal speed) {
+
+    this.speed = speed;
+    return this;
+  }
+
+  /**
+   * Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …
+   * @return speed
+   **/
+  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public BigDecimal getSpeed() {
+    return speed;
+  }
+
+  @JsonProperty(JSON_PROPERTY_SPEED)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSpeed(BigDecimal speed) {
+    this.speed = speed;
+  }
+
   public Coord precision(PrecisionEnum precision) {
 
     this.precision = precision;
@@ -213,12 +266,14 @@ public class Coord {
     return Objects.equals(this.lat, coord.lat) &&
         Objects.equals(this.lon, coord.lon) &&
         Objects.equals(this.height, coord.height) &&
+        Objects.equals(this.heading, coord.heading) &&
+        Objects.equals(this.speed, coord.speed) &&
         Objects.equals(this.precision, coord.precision);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(lat, lon, height, precision);
+    return Objects.hash(lat, lon, height, heading, speed, precision);
   }
 
   @Override
@@ -228,6 +283,8 @@ public class Coord {
     sb.append("    lat: ").append(toIndentedString(lat)).append("\n");
     sb.append("    lon: ").append(toIndentedString(lon)).append("\n");
     sb.append("    height: ").append(toIndentedString(height)).append("\n");
+    sb.append("    heading: ").append(toIndentedString(heading)).append("\n");
+    sb.append("    speed: ").append(toIndentedString(speed)).append("\n");
     sb.append("    precision: ")
         .append(toIndentedString(precision))
         .append("\n");

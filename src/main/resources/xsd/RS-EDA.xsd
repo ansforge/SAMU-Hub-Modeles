@@ -22,12 +22,6 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
                     <documentation>Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
-            <element name="referenceVersion" type="string">
-                <annotation>
-                    <documentation>Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
-Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="perimeter">
                 <annotation>
                     <documentation>Sert à indiquer à quelle filière du CRRA le dossier doit être adressé/affiché</documentation>
@@ -35,8 +29,9 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="AMU"/>
-                        <enumeration value="SNP"/>
                         <enumeration value="NEONAT"/>
+                        <enumeration value="PSY"/>
+                        <enumeration value="SNP"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -46,8 +41,9 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="Primaire"/>
-                        <enumeration value="Secondaire"/>
+                        <enumeration value="PRIMAIRE"/>
+                        <enumeration value="SECONDAIRE"/>
+                        <enumeration value="RETOUR A DOMICILE"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -135,7 +131,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
                 </annotation>
             </element>
             <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
-            <element minOccurs="0" name="identity" type="x:insIdentity"/>
+            <element minOccurs="0" name="identity" type="x:Identity"/>
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
@@ -623,11 +619,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="FINESS administratif"/>
-                        <enumeration value="FINESS géographique"/>
+                        <enumeration value="FINESS ADMINISTRATIF"/>
+                        <enumeration value="FINESS GEOGRAPHIQUE"/>
                         <enumeration value="SIREN"/>
                         <enumeration value="SIRET"/>
-                        <enumeration value="APE/NAF"/>
+                        <enumeration value="APE_NAF"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -741,7 +737,7 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
                     <restriction base="string">
                         <enumeration value="BAN"/>
                         <enumeration value="IGN"/>
-                        <enumeration value="NexSIS"/>
+                        <enumeration value="NEXSIS"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -752,11 +748,11 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="MANUAL"/>
-                        <enumeration value="MAP"/>
-                        <enumeration value="OTHER"/>
+                        <enumeration value="MANUEL"/>
+                        <enumeration value="CARTE"/>
+                        <enumeration value="AUTRE"/>
                         <enumeration value="PHOTO"/>
-                        <enumeration value="WEBSIT"/>
+                        <enumeration value="SITE INTERNET"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -840,11 +836,11 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="CITY"/>
-                        <enumeration value="STREET"/>
-                        <enumeration value="ADDRESS"/>
-                        <enumeration value="EXACT"/>
-                        <enumeration value="UNKNOWN"/>
+                        <enumeration value="VILLE"/>
+                        <enumeration value="RUE"/>
+                        <enumeration value="ADRESSE"/>
+                        <enumeration value="EXACTE"/>
+                        <enumeration value="INCONNUE"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1188,14 +1184,9 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="PSTADD"/>
-                        <enumeration value="EMLADD"/>
-                        <enumeration value="IPADD"/>
-                        <enumeration value="FTPADD"/>
-                        <enumeration value="WWWADD"/>
-                        <enumeration value="PHNADD"/>
-                        <enumeration value="FAXADD"/>
-                        <enumeration value="PMRADD"/>
+                        <enumeration value="TEL"/>
+                        <enumeration value="EMAIL"/>
+                        <enumeration value="FAX"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1233,7 +1224,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
             <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
         </sequence>
     </complexType>
-    <complexType name="insIdentity">
+    <complexType name="Identity">
         <sequence>
             <element minOccurs="0" name="strictFeatures" type="x:insStrictFeatures"/>
             <element minOccurs="0" name="nonStrictFeatures" type="x:detailedName"/>
@@ -1332,11 +1323,6 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
                         <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
-            </element>
-            <element minOccurs="0" name="birthPlaceCode" type="decimal">
-                <annotation>
-                    <documentation>Il s’agit de la commune de naissance pour les personnes nées en France et du pays de naissance pour les personnes nées à l’étranger. Utilisation du code INSEE (différent du code postal), auquel est associé le nom de la commune ou du pays correspondant.</documentation>
-                </annotation>
             </element>
         </sequence>
     </complexType>
@@ -1532,12 +1518,12 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="Service d’urgences d’un etablissement de sante"/>
-                        <enumeration value="Autres services d’un etablissement de sante"/>
-                        <enumeration value="Cabinet d’un professionnel de sante"/>
-                        <enumeration value="Domicile personnel"/>
-                        <enumeration value="EPHAD ou long sejour"/>
-                        <enumeration value="Autre"/>
+                        <enumeration value="SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE"/>
+                        <enumeration value="AUTRES SERVICES D UN ETABLISSEMENT DE SANTE"/>
+                        <enumeration value="CABINET D UN PROFESSIONNEL DE SANTE"/>
+                        <enumeration value="DOMICILE"/>
+                        <enumeration value="EPHAD OU LONG SEJOUR"/>
+                        <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>

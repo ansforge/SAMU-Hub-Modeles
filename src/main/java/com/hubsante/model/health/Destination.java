@@ -57,18 +57,18 @@ public class Destination {
    */
   public enum TypeEnum {
     SERVICE_D_URGENCES_D_UN_ETABLISSEMENT_DE_SANTE(
-        "Service d’urgences d’un etablissement de sante"),
+        "SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE"),
 
     AUTRES_SERVICES_D_UN_ETABLISSEMENT_DE_SANTE(
-        "Autres services d’un etablissement de sante"),
+        "AUTRES SERVICES D UN ETABLISSEMENT DE SANTE"),
 
-    CABINET_D_UN_PROFESSIONNEL_DE_SANTE("Cabinet d’un professionnel de sante"),
+    CABINET_D_UN_PROFESSIONNEL_DE_SANTE("CABINET D UN PROFESSIONNEL DE SANTE"),
 
-    DOMICILE_PERSONNEL("Domicile personnel"),
+    DOMICILE("DOMICILE"),
 
-    EPHAD_OU_LONG_SEJOUR("EPHAD ou long sejour"),
+    EPHAD_OU_LONG_SEJOUR("EPHAD OU LONG SEJOUR"),
 
-    AUTRE("Autre");
+    AUTRE("AUTRE");
 
     private String value;
 

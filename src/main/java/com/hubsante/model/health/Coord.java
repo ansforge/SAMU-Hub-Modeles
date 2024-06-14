@@ -65,15 +65,15 @@ public class Coord {
    * UNKNOWN&#x3D;Précision de la localisation non évaluable par l&#39;émetteur
    */
   public enum PrecisionEnum {
-    CITY("CITY"),
+    VILLE("VILLE"),
 
-    STREET("STREET"),
+    RUE("RUE"),
 
-    ADDRESS("ADDRESS"),
+    ADRESSE("ADRESSE"),
 
-    EXACT("EXACT"),
+    EXACTE("EXACTE"),
 
-    UNKNOWN("UNKNOWN");
+    INCONNUE("INCONNUE");
 
     private String value;
 

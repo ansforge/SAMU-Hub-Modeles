@@ -1,0 +1,47 @@
+// UML MDD Hub Sante
+strict digraph {
+	node [shape=none]
+	edge [arrowhead=odiamond arrowtail=none]
+	rankdir=BT
+	team [label=<<TABLE>
+                <TR>
+                <TD ><B>team</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet team</I></TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	team -> mobilizedResources [headlabel=1 taillabel="0..1"]
+	state [label=<<TABLE>
+                <TR>
+                <TD ><B>state</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet state</I></TD></TR><TR><TD BORDER="0" >dateTime <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >status <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >availability <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	state -> mobilizedResources [headlabel=1 taillabel="0..*"]
+	coord [label=<<TABLE>
+                <TR>
+                <TD ><B>coord</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet coord</I></TD></TR><TR><TD BORDER="0" >lat <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lon <I>number</I> : [1..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >heading <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >speed <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >precision <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	coord -> mobilizedResources [headlabel=1 taillabel="0..1"]
+	contact [label=<<TABLE>
+                <TR>
+                <TD ><B>contact</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet contact</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >details <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	contact -> mobilizedResources [headlabel=1 taillabel="0..1"]
+	mobilizedResources [label=<<TABLE>
+                <TR>
+                <TD ><B>mobilizedResources</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >dateTime <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >missionID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >orgID <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >vehiculeType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >plate <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >centerCity <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..*] </TD></TR>
+                </TABLE>>]
+	mobilizedResources -> resourcesInfo [headlabel=1 taillabel="0..*"]
+	resourcesInfo [label=<<TABLE>
+                <TR>
+                <TD ><B>resourcesInfo</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet resourcesInfo</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+}

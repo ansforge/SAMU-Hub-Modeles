@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.cisu.InsIdentity;
+import com.hubsante.model.cisu.Identity;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -54,7 +54,7 @@ public class Patient {
   private String id;
 
   public static final String JSON_PROPERTY_IDENTITY = "identity";
-  private InsIdentity identity;
+  private Identity identity;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private List<String> freetext;
@@ -86,7 +86,7 @@ public class Patient {
     this.id = id;
   }
 
-  public Patient identity(InsIdentity identity) {
+  public Patient identity(Identity identity) {
 
     this.identity = identity;
     return this;
@@ -99,13 +99,13 @@ public class Patient {
   @JsonProperty(JSON_PROPERTY_IDENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InsIdentity getIdentity() {
+  public Identity getIdentity() {
     return identity;
   }
 
   @JsonProperty(JSON_PROPERTY_IDENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdentity(InsIdentity identity) {
+  public void setIdentity(Identity identity) {
     this.identity = identity;
   }
 

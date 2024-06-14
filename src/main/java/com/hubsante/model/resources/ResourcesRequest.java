@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.resources.Location;
 import com.hubsante.model.resources.Request;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -45,9 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({ResourcesRequest.JSON_PROPERTY_CASE_ID,
                     ResourcesRequest.JSON_PROPERTY_RS_D_D_R_ID,
-                    ResourcesRequest.JSON_PROPERTY_RESOURCE_REQUEST,
-                    ResourcesRequest.JSON_PROPERTY_ORIGIN_LOCATION,
-                    ResourcesRequest.JSON_PROPERTY_DESTINATION_LOCATION})
+                    ResourcesRequest.JSON_PROPERTY_RESOURCE_REQUEST})
 @JsonTypeName("resourcesRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -62,13 +59,6 @@ public class ResourcesRequest {
 
   public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
   private Request resourceRequest;
-
-  public static final String JSON_PROPERTY_ORIGIN_LOCATION = "originLocation";
-  private Location originLocation;
-
-  public static final String JSON_PROPERTY_DESTINATION_LOCATION =
-      "destinationLocation";
-  private Location destinationLocation;
 
   public ResourcesRequest() {}
 
@@ -146,52 +136,6 @@ public class ResourcesRequest {
     this.resourceRequest = resourceRequest;
   }
 
-  public ResourcesRequest originLocation(Location originLocation) {
-
-    this.originLocation = originLocation;
-    return this;
-  }
-
-  /**
-   * Get originLocation
-   * @return originLocation
-   **/
-  @JsonProperty(JSON_PROPERTY_ORIGIN_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Location getOriginLocation() {
-    return originLocation;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ORIGIN_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOriginLocation(Location originLocation) {
-    this.originLocation = originLocation;
-  }
-
-  public ResourcesRequest destinationLocation(Location destinationLocation) {
-
-    this.destinationLocation = destinationLocation;
-    return this;
-  }
-
-  /**
-   * Get destinationLocation
-   * @return destinationLocation
-   **/
-  @JsonProperty(JSON_PROPERTY_DESTINATION_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Location getDestinationLocation() {
-    return destinationLocation;
-  }
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION_LOCATION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestinationLocation(Location destinationLocation) {
-    this.destinationLocation = destinationLocation;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -203,17 +147,12 @@ public class ResourcesRequest {
     ResourcesRequest resourcesRequest = (ResourcesRequest)o;
     return Objects.equals(this.caseId, resourcesRequest.caseId) &&
         Objects.equals(this.rsDDRId, resourcesRequest.rsDDRId) &&
-        Objects.equals(this.resourceRequest,
-                       resourcesRequest.resourceRequest) &&
-        Objects.equals(this.originLocation, resourcesRequest.originLocation) &&
-        Objects.equals(this.destinationLocation,
-                       resourcesRequest.destinationLocation);
+        Objects.equals(this.resourceRequest, resourcesRequest.resourceRequest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDDRId, resourceRequest, originLocation,
-                        destinationLocation);
+    return Objects.hash(caseId, rsDDRId, resourceRequest);
   }
 
   @Override
@@ -224,12 +163,6 @@ public class ResourcesRequest {
     sb.append("    rsDDRId: ").append(toIndentedString(rsDDRId)).append("\n");
     sb.append("    resourceRequest: ")
         .append(toIndentedString(resourceRequest))
-        .append("\n");
-    sb.append("    originLocation: ")
-        .append(toIndentedString(originLocation))
-        .append("\n");
-    sb.append("    destinationLocation: ")
-        .append(toIndentedString(destinationLocation))
         .append("\n");
     sb.append("}");
     return sb.toString();

@@ -35,47 +35,46 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.resources.Contact;
+import com.hubsante.model.resources.Coord;
 import com.hubsante.model.resources.State;
 import com.hubsante.model.resources.Team;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
  * Resource
  */
 @JsonPropertyOrder(
-    {Resource.JSON_PROPERTY_COMMITMENT_DATE_TIME,
-     Resource.JSON_PROPERTY_ORIGIN_DATE_TIME,
-     Resource.JSON_PROPERTY_DESTINATION_DATE_TIME,
-     Resource.JSON_PROPERTY_RESOURCE_I_D, Resource.JSON_PROPERTY_ORG_I_D,
-     Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
-     Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
-     Resource.JSON_PROPERTY_ORDER, Resource.JSON_PROPERTY_CENTER_NAME,
-     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_MAKE,
-     Resource.JSON_PROPERTY_MODEL, Resource.JSON_PROPERTY_TEAM,
-     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_CONTACT})
+    {Resource.JSON_PROPERTY_DATE_TIME, Resource.JSON_PROPERTY_RESOURCE_I_D,
+     Resource.JSON_PROPERTY_MISSION_I_D, Resource.JSON_PROPERTY_ORG_I_D,
+     Resource.JSON_PROPERTY_CENTER_NAME, Resource.JSON_PROPERTY_RESOURCE_TYPE,
+     Resource.JSON_PROPERTY_VEHICULE_TYPE, Resource.JSON_PROPERTY_PLATE,
+     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_CENTER_CITY,
+     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
+     Resource.JSON_PROPERTY_COORD, Resource.JSON_PROPERTY_CONTACT,
+     Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Resource {
-  public static final String JSON_PROPERTY_COMMITMENT_DATE_TIME =
-      "commitmentDateTime";
-  private OffsetDateTime commitmentDateTime;
-
-  public static final String JSON_PROPERTY_ORIGIN_DATE_TIME = "originDateTime";
-  private OffsetDateTime originDateTime;
-
-  public static final String JSON_PROPERTY_DESTINATION_DATE_TIME =
-      "destinationDateTime";
-  private OffsetDateTime destinationDateTime;
+  public static final String JSON_PROPERTY_DATE_TIME = "dateTime";
+  private OffsetDateTime dateTime;
 
   public static final String JSON_PROPERTY_RESOURCE_I_D = "resourceID";
   private String resourceID;
 
+  public static final String JSON_PROPERTY_MISSION_I_D = "missionID";
+  private String missionID;
+
   public static final String JSON_PROPERTY_ORG_I_D = "orgID";
   private String orgID;
+
+  public static final String JSON_PROPERTY_CENTER_NAME = "centerName";
+  private String centerName;
 
   /**
    * Type de ressource mobilisée : Smur, Hospitaliers (hors Smur),
@@ -295,101 +294,47 @@ public class Resource {
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
-  public static final String JSON_PROPERTY_ORDER = "order";
-  private String order;
-
-  public static final String JSON_PROPERTY_CENTER_NAME = "centerName";
-  private String centerName;
-
   public static final String JSON_PROPERTY_CENTER_CITY = "centerCity";
   private String centerCity;
-
-  public static final String JSON_PROPERTY_MAKE = "make";
-  private String make;
-
-  public static final String JSON_PROPERTY_MODEL = "model";
-  private String model;
 
   public static final String JSON_PROPERTY_TEAM = "team";
   private Team team;
 
   public static final String JSON_PROPERTY_STATE = "state";
-  private State state;
+  private List<State> state;
+
+  public static final String JSON_PROPERTY_COORD = "coord";
+  private Coord coord;
 
   public static final String JSON_PROPERTY_CONTACT = "contact";
   private Contact contact;
 
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private List<String> freetext;
+
   public Resource() {}
 
-  public Resource commitmentDateTime(OffsetDateTime commitmentDateTime) {
+  public Resource dateTime(OffsetDateTime dateTime) {
 
-    this.commitmentDateTime = commitmentDateTime;
+    this.dateTime = dateTime;
     return this;
   }
 
   /**
    * date et heure d&#39;engagement de la ressource
-   * @return commitmentDateTime
+   * @return dateTime
    **/
-  @JsonProperty(JSON_PROPERTY_COMMITMENT_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_DATE_TIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OffsetDateTime getCommitmentDateTime() {
-    return commitmentDateTime;
+  public OffsetDateTime getDateTime() {
+    return dateTime;
   }
 
-  @JsonProperty(JSON_PROPERTY_COMMITMENT_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_DATE_TIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCommitmentDateTime(OffsetDateTime commitmentDateTime) {
-    this.commitmentDateTime = commitmentDateTime;
-  }
-
-  public Resource originDateTime(OffsetDateTime originDateTime) {
-
-    this.originDateTime = originDateTime;
-    return this;
-  }
-
-  /**
-   * date et heure d&#39;arrivée prévisionnelle sur le lieu de prise en charge
-   *du patient
-   * @return originDateTime
-   **/
-  @JsonProperty(JSON_PROPERTY_ORIGIN_DATE_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getOriginDateTime() {
-    return originDateTime;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ORIGIN_DATE_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOriginDateTime(OffsetDateTime originDateTime) {
-    this.originDateTime = originDateTime;
-  }
-
-  public Resource destinationDateTime(OffsetDateTime destinationDateTime) {
-
-    this.destinationDateTime = destinationDateTime;
-    return this;
-  }
-
-  /**
-   * date et heure d&#39;arrivée prévisionnelle sur le lieu de destination du
-   *patient
-   * @return destinationDateTime
-   **/
-  @JsonProperty(JSON_PROPERTY_DESTINATION_DATE_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public OffsetDateTime getDestinationDateTime() {
-    return destinationDateTime;
-  }
-
-  @JsonProperty(JSON_PROPERTY_DESTINATION_DATE_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDestinationDateTime(OffsetDateTime destinationDateTime) {
-    this.destinationDateTime = destinationDateTime;
+  public void setDateTime(OffsetDateTime dateTime) {
+    this.dateTime = dateTime;
   }
 
   public Resource resourceID(String resourceID) {
@@ -399,8 +344,10 @@ public class Resource {
   }
 
   /**
-   * ID unique de la ressource engagée partagée  {orgID}.{ID du dossier
-   *partagé}.R{numéro d’ordre chronologique}
+   * ID unique de la ressource engagée partagée  {orgID}.{ID unique de la
+   *ressource partagée} Ou, uniquement dans le cas où un ID unique de ressource
+   *ne peut pas être garanti par l&#39;organisation propriétaire : {orgID}.{ID
+   *du dossier partagé}.R{numéro d’ordre chronologique ressource}
    * @return resourceID
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_I_D)
@@ -414,6 +361,30 @@ public class Resource {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResourceID(String resourceID) {
     this.resourceID = resourceID;
+  }
+
+  public Resource missionID(String missionID) {
+
+    this.missionID = missionID;
+    return this;
+  }
+
+  /**
+   * Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le
+   *vecteur
+   * @return missionID
+   **/
+  @JsonProperty(JSON_PROPERTY_MISSION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getMissionID() {
+    return missionID;
+  }
+
+  @JsonProperty(JSON_PROPERTY_MISSION_I_D)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMissionID(String missionID) {
+    this.missionID = missionID;
   }
 
   public Resource orgID(String orgID) {
@@ -437,6 +408,29 @@ public class Resource {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setOrgID(String orgID) {
     this.orgID = orgID;
+  }
+
+  public Resource centerName(String centerName) {
+
+    this.centerName = centerName;
+    return this;
+  }
+
+  /**
+   * Lieu de garage principal
+   * @return centerName
+   **/
+  @JsonProperty(JSON_PROPERTY_CENTER_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getCenterName() {
+    return centerName;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CENTER_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCenterName(String centerName) {
+    this.centerName = centerName;
   }
 
   public Resource resourceType(ResourceTypeEnum resourceType) {
@@ -496,7 +490,7 @@ public class Resource {
   }
 
   /**
-   * Get plate
+   * N° d&#39;immatriculation du vecteur
    * @return plate
    **/
   @JsonProperty(JSON_PROPERTY_PLATE)
@@ -519,7 +513,7 @@ public class Resource {
   }
 
   /**
-   * Nom donné par l’organisation d’appartenance
+   * Nom donné à la ressource par l’organisation d’appartenance
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -533,54 +527,6 @@ public class Resource {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setName(String name) {
     this.name = name;
-  }
-
-  public Resource order(String order) {
-
-    this.order = order;
-    return this;
-  }
-
-  /**
-   * S&#39;il existe plusieurs types de vecteurs ou ressource identiques portant
-   *le même nom dans un même dans le même centre d’affectation; préciser le
-   *numéro d&#39;ordre
-   * @return order
-   **/
-  @JsonProperty(JSON_PROPERTY_ORDER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getOrder() {
-    return order;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ORDER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrder(String order) {
-    this.order = order;
-  }
-
-  public Resource centerName(String centerName) {
-
-    this.centerName = centerName;
-    return this;
-  }
-
-  /**
-   * Lieu de garage principal
-   * @return centerName
-   **/
-  @JsonProperty(JSON_PROPERTY_CENTER_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getCenterName() {
-    return centerName;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CENTER_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCenterName(String centerName) {
-    this.centerName = centerName;
   }
 
   public Resource centerCity(String centerCity) {
@@ -606,52 +552,6 @@ public class Resource {
     this.centerCity = centerCity;
   }
 
-  public Resource make(String make) {
-
-    this.make = make;
-    return this;
-  }
-
-  /**
-   * Marque vecteur
-   * @return make
-   **/
-  @JsonProperty(JSON_PROPERTY_MAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getMake() {
-    return make;
-  }
-
-  @JsonProperty(JSON_PROPERTY_MAKE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMake(String make) {
-    this.make = make;
-  }
-
-  public Resource model(String model) {
-
-    this.model = model;
-    return this;
-  }
-
-  /**
-   * Modèle vecteur
-   * @return model
-   **/
-  @JsonProperty(JSON_PROPERTY_MODEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getModel() {
-    return model;
-  }
-
-  @JsonProperty(JSON_PROPERTY_MODEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setModel(String model) {
-    this.model = model;
-  }
-
   public Resource team(Team team) {
 
     this.team = team;
@@ -675,9 +575,17 @@ public class Resource {
     this.team = team;
   }
 
-  public Resource state(State state) {
+  public Resource state(List<State> state) {
 
     this.state = state;
+    return this;
+  }
+
+  public Resource addStateItem(State stateItem) {
+    if (this.state == null) {
+      this.state = new ArrayList<>();
+    }
+    this.state.add(stateItem);
     return this;
   }
 
@@ -688,14 +596,45 @@ public class Resource {
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public State getState() {
+  public List<State> getState() {
     return state;
   }
 
+  @JacksonXmlElementWrapper(useWrapping = false)
+
   @JsonProperty(JSON_PROPERTY_STATE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setState(State state) {
-    this.state = state;
+  public void setState(List<State> state) {
+    if (state == null) {
+      return;
+    }
+    if (this.state == null) {
+      this.state = new ArrayList<>();
+    }
+    this.state.addAll(state);
+  }
+
+  public Resource coord(Coord coord) {
+
+    this.coord = coord;
+    return this;
+  }
+
+  /**
+   * Get coord
+   * @return coord
+   **/
+  @JsonProperty(JSON_PROPERTY_COORD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Coord getCoord() {
+    return coord;
+  }
+
+  @JsonProperty(JSON_PROPERTY_COORD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCoord(Coord coord) {
+    this.coord = coord;
   }
 
   public Resource contact(Contact contact) {
@@ -721,6 +660,45 @@ public class Resource {
     this.contact = contact;
   }
 
+  public Resource freetext(List<String> freetext) {
+
+    this.freetext = freetext;
+    return this;
+  }
+
+  public Resource addFreetextItem(String freetextItem) {
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
+    }
+    this.freetext.add(freetextItem);
+    return this;
+  }
+
+  /**
+   * Get freetext
+   * @return freetext
+   **/
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getFreetext() {
+    return freetext;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFreetext(List<String> freetext) {
+    if (freetext == null) {
+      return;
+    }
+    if (this.freetext == null) {
+      this.freetext = new ArrayList<>();
+    }
+    this.freetext.addAll(freetext);
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -730,52 +708,45 @@ public class Resource {
       return false;
     }
     Resource resource = (Resource)o;
-    return Objects.equals(this.commitmentDateTime,
-                          resource.commitmentDateTime) &&
-        Objects.equals(this.originDateTime, resource.originDateTime) &&
-        Objects.equals(this.destinationDateTime,
-                       resource.destinationDateTime) &&
+    return Objects.equals(this.dateTime, resource.dateTime) &&
         Objects.equals(this.resourceID, resource.resourceID) &&
+        Objects.equals(this.missionID, resource.missionID) &&
         Objects.equals(this.orgID, resource.orgID) &&
+        Objects.equals(this.centerName, resource.centerName) &&
         Objects.equals(this.resourceType, resource.resourceType) &&
         Objects.equals(this.vehiculeType, resource.vehiculeType) &&
         Objects.equals(this.plate, resource.plate) &&
         Objects.equals(this.name, resource.name) &&
-        Objects.equals(this.order, resource.order) &&
-        Objects.equals(this.centerName, resource.centerName) &&
         Objects.equals(this.centerCity, resource.centerCity) &&
-        Objects.equals(this.make, resource.make) &&
-        Objects.equals(this.model, resource.model) &&
         Objects.equals(this.team, resource.team) &&
         Objects.equals(this.state, resource.state) &&
-        Objects.equals(this.contact, resource.contact);
+        Objects.equals(this.coord, resource.coord) &&
+        Objects.equals(this.contact, resource.contact) &&
+        Objects.equals(this.freetext, resource.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(commitmentDateTime, originDateTime, destinationDateTime,
-                        resourceID, orgID, resourceType, vehiculeType, plate,
-                        name, order, centerName, centerCity, make, model, team,
-                        state, contact);
+    return Objects.hash(dateTime, resourceID, missionID, orgID, centerName,
+                        resourceType, vehiculeType, plate, name, centerCity,
+                        team, state, coord, contact, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Resource {\n");
-    sb.append("    commitmentDateTime: ")
-        .append(toIndentedString(commitmentDateTime))
-        .append("\n");
-    sb.append("    originDateTime: ")
-        .append(toIndentedString(originDateTime))
-        .append("\n");
-    sb.append("    destinationDateTime: ")
-        .append(toIndentedString(destinationDateTime))
-        .append("\n");
+    sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
     sb.append("    resourceID: ")
         .append(toIndentedString(resourceID))
         .append("\n");
+    sb.append("    missionID: ")
+        .append(toIndentedString(missionID))
+        .append("\n");
     sb.append("    orgID: ").append(toIndentedString(orgID)).append("\n");
+    sb.append("    centerName: ")
+        .append(toIndentedString(centerName))
+        .append("\n");
     sb.append("    resourceType: ")
         .append(toIndentedString(resourceType))
         .append("\n");
@@ -784,18 +755,14 @@ public class Resource {
         .append("\n");
     sb.append("    plate: ").append(toIndentedString(plate)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    order: ").append(toIndentedString(order)).append("\n");
-    sb.append("    centerName: ")
-        .append(toIndentedString(centerName))
-        .append("\n");
     sb.append("    centerCity: ")
         .append(toIndentedString(centerCity))
         .append("\n");
-    sb.append("    make: ").append(toIndentedString(make)).append("\n");
-    sb.append("    model: ").append(toIndentedString(model)).append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
+    sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
     sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

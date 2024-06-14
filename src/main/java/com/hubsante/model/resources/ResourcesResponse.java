@@ -35,11 +35,8 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.resources.Request;
-import com.hubsante.model.resources.Resource;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -47,8 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({ResourcesResponse.JSON_PROPERTY_CASE_ID,
                     ResourcesResponse.JSON_PROPERTY_RS_D_D_R_ID,
-                    ResourcesResponse.JSON_PROPERTY_RESOURCE_REQUEST,
-                    ResourcesResponse.JSON_PROPERTY_MOBILIZED_RESOURCES})
+                    ResourcesResponse.JSON_PROPERTY_RESOURCE_REQUEST})
 @JsonTypeName("resourcesResponse")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -63,10 +59,6 @@ public class ResourcesResponse {
 
   public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
   private Request resourceRequest;
-
-  public static final String JSON_PROPERTY_MOBILIZED_RESOURCES =
-      "mobilizedResources";
-  private List<Resource> mobilizedResources;
 
   public ResourcesResponse() {}
 
@@ -133,57 +125,16 @@ public class ResourcesResponse {
    * @return resourceRequest
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Request getResourceRequest() {
     return resourceRequest;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResourceRequest(Request resourceRequest) {
     this.resourceRequest = resourceRequest;
-  }
-
-  public ResourcesResponse
-  mobilizedResources(List<Resource> mobilizedResources) {
-
-    this.mobilizedResources = mobilizedResources;
-    return this;
-  }
-
-  public ResourcesResponse
-  addMobilizedResourcesItem(Resource mobilizedResourcesItem) {
-    if (this.mobilizedResources == null) {
-      this.mobilizedResources = new ArrayList<>();
-    }
-    this.mobilizedResources.add(mobilizedResourcesItem);
-    return this;
-  }
-
-  /**
-   * Get mobilizedResources
-   * @return mobilizedResources
-   **/
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Resource> getMobilizedResources() {
-    return mobilizedResources;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMobilizedResources(List<Resource> mobilizedResources) {
-    if (mobilizedResources == null) {
-      return;
-    }
-    if (this.mobilizedResources == null) {
-      this.mobilizedResources = new ArrayList<>();
-    }
-    this.mobilizedResources.addAll(mobilizedResources);
   }
 
   @Override
@@ -197,15 +148,12 @@ public class ResourcesResponse {
     ResourcesResponse resourcesResponse = (ResourcesResponse)o;
     return Objects.equals(this.caseId, resourcesResponse.caseId) &&
         Objects.equals(this.rsDDRId, resourcesResponse.rsDDRId) &&
-        Objects.equals(this.resourceRequest,
-                       resourcesResponse.resourceRequest) &&
-        Objects.equals(this.mobilizedResources,
-                       resourcesResponse.mobilizedResources);
+        Objects.equals(this.resourceRequest, resourcesResponse.resourceRequest);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDDRId, resourceRequest, mobilizedResources);
+    return Objects.hash(caseId, rsDDRId, resourceRequest);
   }
 
   @Override
@@ -216,9 +164,6 @@ public class ResourcesResponse {
     sb.append("    rsDDRId: ").append(toIndentedString(rsDDRId)).append("\n");
     sb.append("    resourceRequest: ")
         .append(toIndentedString(resourceRequest))
-        .append("\n");
-    sb.append("    mobilizedResources: ")
-        .append(toIndentedString(mobilizedResources))
         .append("\n");
     sb.append("}");
     return sb.toString();

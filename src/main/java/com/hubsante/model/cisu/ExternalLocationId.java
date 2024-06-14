@@ -52,15 +52,15 @@ public class ExternalLocationId {
    * Type de l&#39;identifiant fourni
    */
   public enum SourceEnum {
-    FINESS_ADMINISTRATIF("FINESS administratif"),
+    FINESS_ADMINISTRATIF("FINESS ADMINISTRATIF"),
 
-    FINESS_G_OGRAPHIQUE("FINESS géographique"),
+    FINESS_GEOGRAPHIQUE("FINESS GEOGRAPHIQUE"),
 
     SIREN("SIREN"),
 
     SIRET("SIRET"),
 
-    APE_NAF("APE/NAF");
+    APE_NAF("APE_NAF");
 
     private String value;
 

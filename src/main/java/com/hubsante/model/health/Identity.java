@@ -41,14 +41,13 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * InsIdentity
+ * Identity
  */
-@JsonPropertyOrder({InsIdentity.JSON_PROPERTY_STRICT_FEATURES,
-                    InsIdentity.JSON_PROPERTY_NON_STRICT_FEATURES})
-@JsonTypeName("insIdentity")
+@JsonPropertyOrder({Identity.JSON_PROPERTY_STRICT_FEATURES,
+                    Identity.JSON_PROPERTY_NON_STRICT_FEATURES})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class InsIdentity {
+public class Identity {
   public static final String JSON_PROPERTY_STRICT_FEATURES = "strictFeatures";
   private InsStrictFeatures strictFeatures;
 
@@ -56,9 +55,9 @@ public class InsIdentity {
       "nonStrictFeatures";
   private DetailedName nonStrictFeatures;
 
-  public InsIdentity() {}
+  public Identity() {}
 
-  public InsIdentity strictFeatures(InsStrictFeatures strictFeatures) {
+  public Identity strictFeatures(InsStrictFeatures strictFeatures) {
 
     this.strictFeatures = strictFeatures;
     return this;
@@ -81,7 +80,7 @@ public class InsIdentity {
     this.strictFeatures = strictFeatures;
   }
 
-  public InsIdentity nonStrictFeatures(DetailedName nonStrictFeatures) {
+  public Identity nonStrictFeatures(DetailedName nonStrictFeatures) {
 
     this.nonStrictFeatures = nonStrictFeatures;
     return this;
@@ -112,9 +111,9 @@ public class InsIdentity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InsIdentity insIdentity = (InsIdentity)o;
-    return Objects.equals(this.strictFeatures, insIdentity.strictFeatures) &&
-        Objects.equals(this.nonStrictFeatures, insIdentity.nonStrictFeatures);
+    Identity identity = (Identity)o;
+    return Objects.equals(this.strictFeatures, identity.strictFeatures) &&
+        Objects.equals(this.nonStrictFeatures, identity.nonStrictFeatures);
   }
 
   @Override
@@ -125,7 +124,7 @@ public class InsIdentity {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InsIdentity {\n");
+    sb.append("class Identity {\n");
     sb.append("    strictFeatures: ")
         .append(toIndentedString(strictFeatures))
         .append("\n");

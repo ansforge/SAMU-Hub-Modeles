@@ -54,7 +54,6 @@ import java.util.Objects;
 @JsonPropertyOrder({CreateCaseHealth.JSON_PROPERTY_CASE_ID,
                     CreateCaseHealth.JSON_PROPERTY_SENDER_CASE_ID,
                     CreateCaseHealth.JSON_PROPERTY_CREATION,
-                    CreateCaseHealth.JSON_PROPERTY_REFERENCE_VERSION,
                     CreateCaseHealth.JSON_PROPERTY_PERIMETER,
                     CreateCaseHealth.JSON_PROPERTY_INTERVENTION_TYPE,
                     CreateCaseHealth.JSON_PROPERTY_QUALIFICATION,
@@ -82,10 +81,6 @@ public class CreateCaseHealth {
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
 
-  public static final String JSON_PROPERTY_REFERENCE_VERSION =
-      "referenceVersion";
-  private String referenceVersion;
-
   /**
    * Sert à indiquer à quelle filière du CRRA le dossier doit être
    * adressé/affiché
@@ -93,9 +88,11 @@ public class CreateCaseHealth {
   public enum PerimeterEnum {
     AMU("AMU"),
 
-    SNP("SNP"),
+    NEONAT("NEONAT"),
 
-    NEONAT("NEONAT");
+    PSY("PSY"),
+
+    SNP("SNP");
 
     private String value;
 
@@ -130,9 +127,11 @@ public class CreateCaseHealth {
    * intervention urgente) ou secondaire (par exemple TIH)
    */
   public enum InterventionTypeEnum {
-    PRIMAIRE("Primaire"),
+    PRIMAIRE("PRIMAIRE"),
 
-    SECONDAIRE("Secondaire");
+    SECONDAIRE("SECONDAIRE"),
+
+    RETOUR_A_DOMICILE("RETOUR A DOMICILE");
 
     private String value;
 
@@ -274,31 +273,6 @@ public class CreateCaseHealth {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
-  }
-
-  public CreateCaseHealth referenceVersion(String referenceVersion) {
-
-    this.referenceVersion = referenceVersion;
-    return this;
-  }
-
-  /**
-   * Indique le numéro de version du référentiel des nomenclatures des codes
-   *transmis.  Cela permet aux différents systèmes de s&#39;assurer qu&#39;ils
-   *utilisent la même version des codes de nomenclature que leurs partenaires.
-   * @return referenceVersion
-   **/
-  @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getReferenceVersion() {
-    return referenceVersion;
-  }
-
-  @JsonProperty(JSON_PROPERTY_REFERENCE_VERSION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setReferenceVersion(String referenceVersion) {
-    this.referenceVersion = referenceVersion;
   }
 
   public CreateCaseHealth perimeter(PerimeterEnum perimeter) {
@@ -675,8 +649,6 @@ public class CreateCaseHealth {
     return Objects.equals(this.caseId, createCaseHealth.caseId) &&
         Objects.equals(this.senderCaseId, createCaseHealth.senderCaseId) &&
         Objects.equals(this.creation, createCaseHealth.creation) &&
-        Objects.equals(this.referenceVersion,
-                       createCaseHealth.referenceVersion) &&
         Objects.equals(this.perimeter, createCaseHealth.perimeter) &&
         Objects.equals(this.interventionType,
                        createCaseHealth.interventionType) &&
@@ -695,10 +667,10 @@ public class CreateCaseHealth {
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
-                        perimeter, interventionType, qualification, location,
-                        initialAlert, owner, patient, medicalNote, decision,
-                        newAlert, freetext, additionalInformation);
+    return Objects.hash(caseId, senderCaseId, creation, perimeter,
+                        interventionType, qualification, location, initialAlert,
+                        owner, patient, medicalNote, decision, newAlert,
+                        freetext, additionalInformation);
   }
 
   @Override
@@ -710,9 +682,6 @@ public class CreateCaseHealth {
         .append(toIndentedString(senderCaseId))
         .append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
-    sb.append("    referenceVersion: ")
-        .append(toIndentedString(referenceVersion))
-        .append("\n");
     sb.append("    perimeter: ")
         .append(toIndentedString(perimeter))
         .append("\n");
