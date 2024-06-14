@@ -61,7 +61,9 @@ public class Victims {
 
     BEAUCOUP("BEAUCOUP"),
 
-    INCONNU("INCONNU");
+    INCONNU("INCONNU"),
+
+    NON_DEFINI("NON DEFINI");
 
     private String value;
 

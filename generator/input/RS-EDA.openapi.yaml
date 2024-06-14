@@ -1812,6 +1812,9 @@ components:
           - TEL
           - EMAIL
           - FAX
+          - POSTAL
+          - WEB
+          - RADIO
           examples:
           - PHNADD
         detail:

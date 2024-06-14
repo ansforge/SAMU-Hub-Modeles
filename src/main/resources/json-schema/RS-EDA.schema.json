@@ -1726,7 +1726,10 @@
                     "enum": [
                         "TEL",
                         "EMAIL",
-                        "FAX"
+                        "FAX",
+                        "POSTAL",
+                        "WEB",
+                        "RADIO"
                     ]
                 },
                 "detail": {

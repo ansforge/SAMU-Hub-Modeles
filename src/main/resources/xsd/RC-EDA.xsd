@@ -766,6 +766,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <enumeration value="PLUSIEURS"/>
                         <enumeration value="BEAUCOUP"/>
                         <enumeration value="INCONNU"/>
+                        <enumeration value="NON DEFINI"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1427,6 +1428,9 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                         <enumeration value="TEL"/>
                         <enumeration value="EMAIL"/>
                         <enumeration value="FAX"/>
+                        <enumeration value="POSTAL"/>
+                        <enumeration value="WEB"/>
+                        <enumeration value="RADIO"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -1033,7 +1033,8 @@
                         "1",
                         "PLUSIEURS",
                         "BEAUCOUP",
-                        "INCONNU"
+                        "INCONNU",
+                        "NON DEFINI"
                     ]
                 },
                 "mainVictim": {
@@ -1968,7 +1969,10 @@
                     "enum": [
                         "TEL",
                         "EMAIL",
-                        "FAX"
+                        "FAX",
+                        "POSTAL",
+                        "WEB",
+                        "RADIO"
                     ]
                 },
                 "detail": {

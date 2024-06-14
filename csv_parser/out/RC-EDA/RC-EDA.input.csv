@@ -20,7 +20,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 12,13,,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités (RMS). Référentiel : nomenclature CISU.",,riskThreat,,,,,,1.0,0..n,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité,X,X,X
 13,14,,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste (MR). Référentiel : nomenclature CISU.,,healthMotive,,,,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime,X,X,X
 19,20,,Patients-Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,,X
-20,21,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, PLUSIEURS, BEAUCOUP, INCONNU",X,,X
+20,21,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, PLUSIEURS, BEAUCOUP, INCONNU, NON DEFINI",X,,X
 21,22,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: NOURRISSON, ENFANT, ADULTE, SENIOR",X,,
 22,23,,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,,X,,
 23,24,Localisation de l'affaire/dossier,,,,,,Permet de décrire le lieu d'intervention.,,eventLocation,location,,,,,,1..1,X,location,,,X,X,X
@@ -108,7 +108,7 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
 80,81,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X,X
 81,82,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,,X,X,X
 82,83,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",X,X,X
-83,84,,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX",X,X,X
+83,84,,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO",X,X,X
 84,85,,,,URI du contact,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X,X
 85,86,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X,X
 86,87,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X,X

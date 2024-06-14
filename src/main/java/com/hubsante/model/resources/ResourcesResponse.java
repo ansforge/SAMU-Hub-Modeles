@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.resources.Request;
+import com.hubsante.model.resources.Response;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -44,7 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({ResourcesResponse.JSON_PROPERTY_CASE_ID,
                     ResourcesResponse.JSON_PROPERTY_RS_D_D_R_ID,
-                    ResourcesResponse.JSON_PROPERTY_RESOURCE_REQUEST})
+                    ResourcesResponse.JSON_PROPERTY_REQUEST_RESPONSE})
 @JsonTypeName("resourcesResponse")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -57,8 +57,8 @@ public class ResourcesResponse {
   public static final String JSON_PROPERTY_RS_D_D_R_ID = "RSDDRId";
   private String rsDDRId;
 
-  public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
-  private Request resourceRequest;
+  public static final String JSON_PROPERTY_REQUEST_RESPONSE = "requestResponse";
+  private Response requestResponse;
 
   public ResourcesResponse() {}
 
@@ -114,27 +114,27 @@ public class ResourcesResponse {
     this.rsDDRId = rsDDRId;
   }
 
-  public ResourcesResponse resourceRequest(Request resourceRequest) {
+  public ResourcesResponse requestResponse(Response requestResponse) {
 
-    this.resourceRequest = resourceRequest;
+    this.requestResponse = requestResponse;
     return this;
   }
 
   /**
-   * Get resourceRequest
-   * @return resourceRequest
+   * Get requestResponse
+   * @return requestResponse
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
+  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Request getResourceRequest() {
-    return resourceRequest;
+  public Response getRequestResponse() {
+    return requestResponse;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
+  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceRequest(Request resourceRequest) {
-    this.resourceRequest = resourceRequest;
+  public void setRequestResponse(Response requestResponse) {
+    this.requestResponse = requestResponse;
   }
 
   @Override
@@ -148,12 +148,12 @@ public class ResourcesResponse {
     ResourcesResponse resourcesResponse = (ResourcesResponse)o;
     return Objects.equals(this.caseId, resourcesResponse.caseId) &&
         Objects.equals(this.rsDDRId, resourcesResponse.rsDDRId) &&
-        Objects.equals(this.resourceRequest, resourcesResponse.resourceRequest);
+        Objects.equals(this.requestResponse, resourcesResponse.requestResponse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDDRId, resourceRequest);
+    return Objects.hash(caseId, rsDDRId, requestResponse);
   }
 
   @Override
@@ -162,8 +162,8 @@ public class ResourcesResponse {
     sb.append("class ResourcesResponse {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    rsDDRId: ").append(toIndentedString(rsDDRId)).append("\n");
-    sb.append("    resourceRequest: ")
-        .append(toIndentedString(resourceRequest))
+    sb.append("    requestResponse: ")
+        .append(toIndentedString(requestResponse))
         .append("\n");
     sb.append("}");
     return sb.toString();

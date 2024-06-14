@@ -1187,6 +1187,9 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
                         <enumeration value="TEL"/>
                         <enumeration value="EMAIL"/>
                         <enumeration value="FAX"/>
+                        <enumeration value="POSTAL"/>
+                        <enumeration value="WEB"/>
+                        <enumeration value="RADIO"/>
                     </restriction>
                 </simpleType>
             </element>

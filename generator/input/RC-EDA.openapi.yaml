@@ -1074,6 +1074,7 @@ components:
           - PLUSIEURS
           - BEAUCOUP
           - INCONNU
+          - NON DEFINI
           examples:
           - SEVERAL
         mainVictim:
@@ -2115,6 +2116,9 @@ components:
           - TEL
           - EMAIL
           - FAX
+          - POSTAL
+          - WEB
+          - RADIO
           examples:
           - PHNADD
         detail:
