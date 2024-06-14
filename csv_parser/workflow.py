@@ -43,8 +43,24 @@ perimeters = [{
 
 # ---------------------------------------- STAGE FUNCTIONS
 def parser_and_mv():
+    # Iterate over each sheet
     for sheet in sheets:
-        full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
+        full_df = None
+        filepath = None
+        # Iterate over files in model folder
+        for file in os.listdir('./model'):
+            # If we can't find the sheet, we look in the next file, if we can't find it anywhere, we throw
+            try:
+                # Load the excel file
+                full_df = pd.read_excel(f'./model/{file}', header=None, sheet_name=sheet)
+                filepath = f'./model/{file}'
+                break
+            except ValueError:
+                continue
+
+        if full_df is None:
+            print(f"Error: Sheet {sheet} not found in any file in the model folder.")
+            exit(1)
 
         # For each sheet we read the A1 cell and get the list of schemas to generate
         if not pd.isna(full_df.iloc[0, 0]):
@@ -53,9 +69,10 @@ def parser_and_mv():
             # Schemas are formatted in the sheet as follows:
             # "schema1['name']:schema1['filter']:schema1['modelType'] schema2['name']:schema2['filter']:schema2['modelType'] ..."
             try:
-                schemas = [{'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
-                            'model_type': schemas_array[i].split(':')[2]}
-                           for i in range(len(schemas_array))]
+                schemas = [
+                    {'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
+                     'model_type': schemas_array[i].split(':')[2]}
+                    for i in range(len(schemas_array))]
             except IndexError:
                 print(f"Error in sheet {sheet}: schema list (cell A2) is not well formatted. "
                       f"Should be 'name:filter:modelType' separated by a space. "
@@ -70,7 +87,7 @@ def parser_and_mv():
 
         for schema in schemas:
             # Run csv_parser
-            csv_parser.run(schema['sheet'], schema['name'], None, schema['filter'], schema['model_type'])
+            csv_parser.run(schema['sheet'], schema['name'], None, schema['filter'], schema['model_type'], filepath)
 
             name = schema['name']
             # Copy schema to JsonSchema2XSD project
