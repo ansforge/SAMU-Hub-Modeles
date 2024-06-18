@@ -127,9 +127,8 @@ def run(sheet, name, version, perimeter_filter, model_type):
     # Keeping only the relevant perimeter rows
     if perimeter_filter:
         df = df[pd.notna(df[perimeter_filter])]
-
-    # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
-    df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+        # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
+        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
 
     # Deleting perimeter columns. N.B: dropping a
     # column (obviously) reduces the length df.columns, so we iterate in reverse order
