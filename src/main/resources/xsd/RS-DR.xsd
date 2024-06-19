@@ -36,10 +36,36 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Délai d'intervention souhaité</documentation>
                 </annotation>
             </element>
-            <element name="purpose" type="string">
+            <element name="purpose">
                 <annotation>
                     <documentation>Motif de la demande de ressource auprès du partenaire</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="E01"/>
+                        <enumeration value="E02"/>
+                        <enumeration value="E03"/>
+                        <enumeration value="E04"/>
+                        <enumeration value="E05"/>
+                        <enumeration value="E06"/>
+                        <enumeration value="E07"/>
+                        <enumeration value="E08"/>
+                        <enumeration value="E09"/>
+                        <enumeration value="E10"/>
+                        <enumeration value="E11"/>
+                        <enumeration value="E12"/>
+                        <enumeration value="E13"/>
+                        <enumeration value="E14"/>
+                        <enumeration value="E15"/>
+                        <enumeration value="E16"/>
+                        <enumeration value="E17"/>
+                        <enumeration value="E18"/>
+                        <enumeration value="E19"/>
+                        <enumeration value="E20"/>
+                        <enumeration value="E21"/>
+                        <enumeration value="E22"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>

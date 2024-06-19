@@ -9,5 +9,5 @@ Demande de ressource,,,,,,Groupe date heure de début de la demande,2022-09-27T0
 ,Date Heure de création de la demande,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF
 ,Cadre conventionnel,,,,,Nomenclature ? ,,,convention,0..1,,string,X,
 ,Délai souhaité,,,,,Délai d'intervention souhaité,,,deadline,0..1,,string,X,
-,Effet à obtenir,,,,,Motif de la demande de ressource auprès du partenaire,,,purpose,1..1,,string,X,
+,Effet à obtenir,,,,,Motif de la demande de ressource auprès du partenaire,,,purpose,1..1,,string,X,NOMENCLATURE: CISU-Code_Effet_a_obtenir
 ,Précisions sur la demande,,,,,Texte libre permettant de détailler la demande,,,freetext,0..1,,string,,

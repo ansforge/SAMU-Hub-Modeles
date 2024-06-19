@@ -59,8 +59,81 @@ public class Request {
   public static final String JSON_PROPERTY_DEADLINE = "deadline";
   private String deadline;
 
+  /**
+   * Motif de la demande de ressource auprès du partenaire
+   */
+  public enum PurposeEnum {
+    E01("E01"),
+
+    E02("E02"),
+
+    E03("E03"),
+
+    E04("E04"),
+
+    E05("E05"),
+
+    E06("E06"),
+
+    E07("E07"),
+
+    E08("E08"),
+
+    E09("E09"),
+
+    E10("E10"),
+
+    E11("E11"),
+
+    E12("E12"),
+
+    E13("E13"),
+
+    E14("E14"),
+
+    E15("E15"),
+
+    E16("E16"),
+
+    E17("E17"),
+
+    E18("E18"),
+
+    E19("E19"),
+
+    E20("E20"),
+
+    E21("E21"),
+
+    E22("E22");
+
+    private String value;
+
+    PurposeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PurposeEnum fromValue(String value) {
+      for (PurposeEnum b : PurposeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_PURPOSE = "purpose";
-  private String purpose;
+  private PurposeEnum purpose;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
@@ -136,7 +209,7 @@ public class Request {
     this.deadline = deadline;
   }
 
-  public Request purpose(String purpose) {
+  public Request purpose(PurposeEnum purpose) {
 
     this.purpose = purpose;
     return this;
@@ -149,13 +222,13 @@ public class Request {
   @JsonProperty(JSON_PROPERTY_PURPOSE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getPurpose() {
+  public PurposeEnum getPurpose() {
     return purpose;
   }
 
   @JsonProperty(JSON_PROPERTY_PURPOSE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPurpose(String purpose) {
+  public void setPurpose(PurposeEnum purpose) {
     this.purpose = purpose;
   }
 
