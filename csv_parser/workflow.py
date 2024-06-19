@@ -47,20 +47,20 @@ def parser_and_mv():
     for sheet in sheets:
         full_df = None
         filepath = None
-        # Iterate over files in model folder
-        for file in os.listdir('./model'):
+        # Iterate over files in models folder
+        for file in os.listdir('models'):
             # If we can't find the sheet, we look in the next file, if we can't find it anywhere, we throw
             try:
                 # Load the excel file
-                full_df = pd.read_excel(f'./model/{file}', header=None, sheet_name=sheet)
-                filepath = f'./model/{file}'
+                full_df = pd.read_excel(f'./models/{file}', header=None, sheet_name=sheet)
+                filepath = f'models/{file}'
                 break
             except ValueError:
-                print(f"Parser Warning: Sheet {sheet} not found in file {file}, trying next file if any.")
                 continue
 
         if full_df is None:
-            print(f"Error: Sheet {sheet} not found in any file in the model folder.")
+            print(f"Error: Sheet {sheet} not found in any file in the models folder.")
+            print(f"Files checked: {os.listdir('models')}")
             exit(1)
 
         # For each sheet we read the A1 cell and get the list of schemas to generate
