@@ -66,7 +66,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     @DisplayName("all examples files deserializing")
     public void examplesBundlePassingTest() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
-        File[] subFolders = new File(rootFolder).listFiles();
+        File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
         assert subFolders != null;
 
         List<File> files = new ArrayList<>();
