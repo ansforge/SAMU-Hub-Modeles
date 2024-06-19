@@ -1,0 +1,41 @@
+,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15
+0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
+2,3,Ressource engagée,,,,,,Liste des vecteurs associés au message :  liste l'ensemble des vecteurs ou ressources mobilisées,,,mobilizedResource,1..n,X,resource,,,,X
+3,4,,Date/heure de déclenchement,,,,,date et heure d'engagement de la ressource,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
+5,6,,ID Ressource partagé,,,,,"ID partagé unique de la ressource engagée 
+{orgID}.R.{ID unique de la ressource partagée}
+Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
+{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}","fr.health.samu440.DRFR15DDXAAJJJ0000.R01
+fr.health.samu440.VLM16",,resourceID,1..1,,string,,,,X
+6,2,,ID Demande partagé,,,,,"Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource)
+{orgID}.D.{ID unique de la demande dans le système émetteur}",fr.health.samu770.D.1249875,,RSDRId,0..1,,string,,,,X
+7,7,,ID Mission local,,,,,"Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur",DRFR15DDXAAJJJ0000.M001,,missionID,0..1,,string,,,,X
+8,8,,ID Organisation propriétaire,,,,,Organisation à laquelle appartient la ressource,fr.health.samu440,,orgID,0..1,,string,,,,X
+9,9,,ID Centre d’affectation,,,,,Lieu de garage principal,CHU Nantes,,centerName,0..1,,string,,,,X
+10,10,,Type de ressource,,,,,"Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.",SMUR,,resourceType,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_MOYEN,,X
+11,11,,Type de vecteur,,,,,"Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.",VLM,,vehiculeType,0..1,,string,X,NOMENCLATURE: CISU-TYPE_VECTEUR,,X
+12,12,,Immatriculation,,,,,N° d'immatriculation du vecteur,,,plate,0..1,,string,,,,X
+13,13,,Nom,,,,,Nom donné à la ressource par l’organisation d’appartenance,SMUR 123,,name,0..1,,string,,,,X
+15,15,,Commune du centre d’affectation,,,,,Code INSEE de la commune du centre d'affectation,44109,,centerCity,0..1,,string,,REGEX: [0-9]{5},,X
+18,18,,Equipe vecteur,,,,,Décrit le type et l'équipe à bord du vecteur,,,team,0..1,X,team,,,,X
+19,19,,,Type,,,,Médical / paramédical : indique le niveau de médicalisation du vecteur,,,teamCare,0..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN,,X
+20,20,,,Nom,,,,Nom de l'équipe à bord du vecteur,,,name,0..1,,string,,,,X
+21,21,,Etats vecteur,,,,,,,,state,0..n,X,state,,,,X
+22,22,,,Date/heure de changement de statut,,,,,,,dateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X
+23,23,,,Statuts du vecteur,,,,Dernier statut du vecteur,,,status,0..1,,string,X,"ENUM : ALERTE, PARTI, ARRIVEE SUR LES LIEUX, TRANSPORT DESTINATION, ARRIVEE DESTINATION, FIN DE MEDICALISATION , QUITTE DESTINATION, RETOUR BASE, RENTREE BASE",,X
+24,24,,,Disponibilité du vecteur,,,,Indique si le vecteur est disponible / indisponible,,,availability,0..1,,string,X,"ENUM : DISPONIBLE, INDISPONIBLE, INCONNUE",,X
+25,25,,Dernière géolocalisation du vecteur,,,,,,,,coord,0..1,X,coord,,,,X
+26,26,,,Latitude,,,,Latitude du point clé de la localisation ,48.866667,,lat,1..1,,number,,,,X
+27,27,,,Longitude,,,,Longitude du point clé de la localisation,2.333333,,lon,1..1,,number,,,,X
+28,28,,,Altitude ,,,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,0..1,,number,,,,X
+29,29,,,Cap,,,,En degré,96,,heading,0..1,,number,,,,X
+30,30,,,Vitesse,,,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,0..1,,number,,,,X
+31,31,,,Précision,,,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE",,X
+32,32,,Contact,,,,,Type et valeur de l'URI utilisée par la ressource.,,,contact,0..1,X,contact,,,,X
+33,33,,,Type de contact ,,,,Type de l'URI utilisée,PHNADD,,type,0..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO",,X
+34,34,,,URI du contact,,,,Valeur de l'URI utilisée pour contacter la ressource,0671830530,,details,0..1,,string,,,,X
+35,35,,Commentaires,,,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / particuliers, particularités du vecteur)",,,freetext,0..n,,string,,,,X

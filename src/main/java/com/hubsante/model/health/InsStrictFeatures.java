@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -44,8 +43,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({InsStrictFeatures.JSON_PROPERTY_BIRTH_NAME,
                     InsStrictFeatures.JSON_PROPERTY_BIRTH_DATE,
-                    InsStrictFeatures.JSON_PROPERTY_SEX,
-                    InsStrictFeatures.JSON_PROPERTY_BIRTH_PLACE_CODE})
+                    InsStrictFeatures.JSON_PROPERTY_SEX})
 @JsonTypeName("insStrictFeatures")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -95,9 +93,6 @@ public class InsStrictFeatures {
 
   public static final String JSON_PROPERTY_SEX = "sex";
   private SexEnum sex;
-
-  public static final String JSON_PROPERTY_BIRTH_PLACE_CODE = "birthPlaceCode";
-  private BigDecimal birthPlaceCode;
 
   public InsStrictFeatures() {}
 
@@ -170,32 +165,6 @@ public class InsStrictFeatures {
     this.sex = sex;
   }
 
-  public InsStrictFeatures birthPlaceCode(BigDecimal birthPlaceCode) {
-
-    this.birthPlaceCode = birthPlaceCode;
-    return this;
-  }
-
-  /**
-   * Il s’agit de la commune de naissance pour les personnes nées en France et
-   *du pays de naissance pour les personnes nées à l’étranger. Utilisation du
-   *code INSEE (différent du code postal), auquel est associé le nom de la
-   *commune ou du pays correspondant.
-   * @return birthPlaceCode
-   **/
-  @JsonProperty(JSON_PROPERTY_BIRTH_PLACE_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public BigDecimal getBirthPlaceCode() {
-    return birthPlaceCode;
-  }
-
-  @JsonProperty(JSON_PROPERTY_BIRTH_PLACE_CODE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBirthPlaceCode(BigDecimal birthPlaceCode) {
-    this.birthPlaceCode = birthPlaceCode;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -207,13 +176,12 @@ public class InsStrictFeatures {
     InsStrictFeatures insStrictFeatures = (InsStrictFeatures)o;
     return Objects.equals(this.birthName, insStrictFeatures.birthName) &&
         Objects.equals(this.birthDate, insStrictFeatures.birthDate) &&
-        Objects.equals(this.sex, insStrictFeatures.sex) &&
-        Objects.equals(this.birthPlaceCode, insStrictFeatures.birthPlaceCode);
+        Objects.equals(this.sex, insStrictFeatures.sex);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(birthName, birthDate, sex, birthPlaceCode);
+    return Objects.hash(birthName, birthDate, sex);
   }
 
   @Override
@@ -227,9 +195,6 @@ public class InsStrictFeatures {
         .append(toIndentedString(birthDate))
         .append("\n");
     sb.append("    sex: ").append(toIndentedString(sex)).append("\n");
-    sb.append("    birthPlaceCode: ")
-        .append(toIndentedString(birthPlaceCode))
-        .append("\n");
     sb.append("}");
     return sb.toString();
   }

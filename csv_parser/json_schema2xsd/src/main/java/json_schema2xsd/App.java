@@ -22,8 +22,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
     public static void main(String[] args) {
-        for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RIG",
-        "RS-DDR", "RS-RDR", "RPIS")) {
+        for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "RS-INFO", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RI",
+        "RS-DR", "RS-RR", "RPIS")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -120,13 +120,13 @@ public class App {
             case "RS-ERROR":
                 root = "error";
                 break;
-            case "RS-RIG":
+            case "RS-RI":
                 root = "resourcesInfo";
                 break;
-            case "RS-DDR":
+            case "RS-DR":
                 root = "resourcesRequest";
                 break;
-            case "RS-RDR":
+            case "RS-RR":
                 root = "resourcesResponse";
                 break;
             case "RPIS":

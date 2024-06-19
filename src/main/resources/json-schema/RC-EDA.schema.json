@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.06.13",
+    "version": "24.06.19",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -56,18 +56,6 @@
         },
         "initialAlert": {
             "$ref": "#/definitions/alert"
-        },
-        "patient": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/patient"
-            }
-        },
-        "decision": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/decision"
-            }
         },
         "newAlert": {
             "type": "array",
@@ -516,92 +504,6 @@
             "additionalProperties": false,
             "example": "example.json#/initialAlert"
         },
-        "patient": {
-            "type": "object",
-            "title": "Patient / victime",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "id"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "title": "ID patient partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/id",
-                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison.\n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique}"
-                },
-                "identity": {
-                    "$ref": "#/definitions/insIdentity"
-                },
-                "freetext": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Informations compl\u00e9mentaires sur le patient",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/patient/0/freetext/0",
-                        "description": "Correspond \u00e0 la zone de commentaire renseign\u00e9 par patient cr\u00e9\u00e9/identifi\u00e9"
-                    }
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0"
-        },
-        "decision": {
-            "type": "object",
-            "title": "D\u00e9cisions",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "creation",
-                "type"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "title": "ID patient partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/id",
-                    "description": "ID partag\u00e9 du patient concern\u00e9 par la d\u00e9cision, lorsque le patient existe et est identifi\u00e9"
-                },
-                "creation": {
-                    "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/creation",
-                    "description": "Groupe date heure de cr\u00e9ation de la d\u00e9cision.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
-                    "format": "date-time"
-                },
-                "type": {
-                    "type": "string",
-                    "title": "Type de d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/type",
-                    "description": "Type de d\u00e9cision prise",
-                    "enum": [
-                        "CONSEIL",
-                        "PMT",
-                        "INTER",
-                        "ORIENT",
-                        "PASPLUS"
-                    ]
-                },
-                "transportDetails": {
-                    "$ref": "#/definitions/transportDetails"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0"
-        },
         "additionalInformation": {
             "type": "object",
             "title": "Informations compl\u00e9mentaires",
@@ -1031,9 +933,10 @@
                     "enum": [
                         "0",
                         "1",
-                        "SEVERAL",
-                        "MANY",
-                        "UNKNOWN"
+                        "PLUSIEURS",
+                        "BEAUCOUP",
+                        "INCONNU",
+                        "NON DEFINI"
                     ]
                 },
                 "mainVictim": {
@@ -1044,9 +947,9 @@
                     "example": "example.json#/qualification/victims/mainVictim",
                     "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS.",
                     "enum": [
-                        "INFANT",
-                        "CHILD",
-                        "ADULT",
+                        "NOURRISSON",
+                        "ENFANT",
+                        "ADULTE",
                         "SENIOR"
                     ]
                 },
@@ -1080,11 +983,11 @@
                     "example": "example.json#/location/externalLocationId/0/source",
                     "description": "Type de l'identifiant fourni",
                     "enum": [
-                        "FINESS administratif",
-                        "FINESS g\u00e9ographique",
+                        "FINESS ADMINISTRATIF",
+                        "FINESS GEOGRAPHIQUE",
                         "SIREN",
                         "SIRET",
-                        "APE/NAF"
+                        "APE_NAF"
                     ]
                 },
                 "value": {
@@ -1308,7 +1211,7 @@
                     "enum": [
                         "BAN",
                         "IGN",
-                        "NexSIS"
+                        "NEXSIS"
                     ]
                 },
                 "type": {
@@ -1319,11 +1222,11 @@
                     "example": "example.json#/location/externalInfo/0/type",
                     "description": "D\u00e9finition du type d'objet dans le syst\u00e8me\nEx : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
                     "enum": [
-                        "MANUAL",
-                        "MAP",
-                        "OTHER",
+                        "MANUEL",
+                        "CARTE",
+                        "AUTRE",
                         "PHOTO",
-                        "WEBSIT"
+                        "SITE INTERNET"
                     ]
                 },
                 "uri": {
@@ -1458,11 +1361,11 @@
                     "example": "example.json#/location/geometry/point/coord/precision",
                     "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nCITY=Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, STREET=Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, ADDRESS=Adresse pr\u00e9cise, EXACT=Point coordonn\u00e9e GPS exact, UNKNOWN=Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
                     "enum": [
-                        "CITY",
-                        "STREET",
-                        "ADDRESS",
-                        "EXACT",
-                        "UNKNOWN"
+                        "VILLE",
+                        "RUE",
+                        "ADRESSE",
+                        "EXACTE",
+                        "INCONNUE"
                     ]
                 }
             },
@@ -1471,7 +1374,7 @@
         },
         "notes": {
             "type": "object",
-            "title": "Informations compl\u00e9mentaires sur l'alerte (observations ARM)",
+            "title": "Informations compl\u00e9mentaires sur l'alerte",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [],
@@ -1966,14 +1869,12 @@
                     "example": "example.json#/initialAlert/caller/callerContact/type",
                     "description": "Type de l'URI utilis\u00e9e par le requ\u00e9rant, cf. nomenclature EMSI",
                     "enum": [
-                        "PSTADD",
-                        "EMLADD",
-                        "IPADD",
-                        "FTPADD",
-                        "WWWADD",
-                        "PHNADD",
-                        "FAXADD",
-                        "PMRADD"
+                        "TEL",
+                        "EMAIL",
+                        "FAX",
+                        "POSTAL",
+                        "WEB",
+                        "RADIO"
                     ]
                 },
                 "detail": {
@@ -2024,146 +1925,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/initialAlert/caller/detailedName"
-        },
-        "insIdentity": {
-            "type": "object",
-            "title": "Identit\u00e9",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "strictFeatures": {
-                    "$ref": "#/definitions/insStrictFeatures"
-                },
-                "nonStrictFeatures": {
-                    "$ref": "#/definitions/detailedName"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity"
-        },
-        "insStrictFeatures": {
-            "type": "object",
-            "title": "Traits stricts de l'identit\u00e9",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "birthDate": {
-                    "type": "string",
-                    "title": "Date de naissance",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/strictFeatures/birthDate",
-                    "description": "Date de naissance du patient",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
-                },
-                "sex": {
-                    "type": "string",
-                    "title": "Sexe ",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/strictFeatures/sex",
-                    "description": "Sexe du patient",
-                    "enum": [
-                        "MASC",
-                        "FEM",
-                        "AUTRE",
-                        "INCONNU"
-                    ]
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity/strictFeatures"
-        },
-        "transportDetails": {
-            "type": "object",
-            "title": "D\u00e9cision de transport/orientation",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "orientation",
-                "teamCare"
-            ],
-            "properties": {
-                "orientation": {
-                    "type": "string",
-                    "title": "Type de devenir du patient",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place",
-                    "enum": [
-                        "OK",
-                        "TEMP",
-                        "SEUL",
-                        "AFAMILLE",
-                        "AMED",
-                        "AFDO",
-                        "ATIERS",
-                        "MOYPERSO",
-                        "Code vecteur choisi",
-                        "REFPAT",
-                        "REFFAM",
-                        "PASREAKO",
-                        "PASREAOK",
-                        "REA",
-                        "TRANSPOR",
-                        "ADM",
-                        "FUGUE",
-                        "REFAUTRE",
-                        "RAS"
-                    ]
-                },
-                "teamCare": {
-                    "type": "string",
-                    "title": "Niveau de prise en charge",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)",
-                    "enum": [
-                        "MED",
-                        "PARAMED",
-                        "SECOURS"
-                    ]
-                },
-                "destination": {
-                    "$ref": "#/definitions/destination"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0/transportDetails"
-        },
-        "destination": {
-            "type": "object",
-            "title": "Destination",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "title": "Type de destination",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/destination/type",
-                    "description": "Indique le type de destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
-                    "enum": [
-                        "Service d\u2019urgences d\u2019un etablissement de sante",
-                        "Autres services d\u2019un etablissement de sante",
-                        "Cabinet d\u2019un professionnel de sante",
-                        "Domicile personnel",
-                        "EPHAD ou long sejour",
-                        "Autre"
-                    ]
-                },
-                "location": {
-                    "$ref": "#/definitions/location"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0/transportDetails/destination"
         },
         "customMap": {
             "type": "object",

@@ -41,7 +41,7 @@ import java.util.Objects;
 /**
  * Team
  */
-@JsonPropertyOrder({Team.JSON_PROPERTY_TYPE, Team.JSON_PROPERTY_NAME})
+@JsonPropertyOrder({Team.JSON_PROPERTY_TEAM_CARE, Team.JSON_PROPERTY_NAME})
 @JsonTypeName("team")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -50,7 +50,7 @@ public class Team {
   /**
    * Médical / paramédical : indique le niveau de médicalisation du vecteur
    */
-  public enum TypeEnum {
+  public enum TeamCareEnum {
     MED("MED"),
 
     PARAMED("PARAMED"),
@@ -59,7 +59,7 @@ public class Team {
 
     private String value;
 
-    TypeEnum(String value) { this.value = value; }
+    TeamCareEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -72,8 +72,8 @@ public class Team {
     }
 
     @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
+    public static TeamCareEnum fromValue(String value) {
+      for (TeamCareEnum b : TeamCareEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -82,35 +82,35 @@ public class Team {
     }
   }
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
+  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
+  private TeamCareEnum teamCare;
 
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
   public Team() {}
 
-  public Team type(TypeEnum type) {
+  public Team teamCare(TeamCareEnum teamCare) {
 
-    this.type = type;
+    this.teamCare = teamCare;
     return this;
   }
 
   /**
    * Médical / paramédical : indique le niveau de médicalisation du vecteur
-   * @return type
+   * @return teamCare
    **/
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TypeEnum getType() {
-    return type;
+  public TeamCareEnum getTeamCare() {
+    return teamCare;
   }
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
-    this.type = type;
+  public void setTeamCare(TeamCareEnum teamCare) {
+    this.teamCare = teamCare;
   }
 
   public Team name(String name) {
@@ -145,20 +145,20 @@ public class Team {
       return false;
     }
     Team team = (Team)o;
-    return Objects.equals(this.type, team.type) &&
+    return Objects.equals(this.teamCare, team.teamCare) &&
         Objects.equals(this.name, team.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, name);
+    return Objects.hash(teamCare, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Team {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
+    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
