@@ -10,7 +10,7 @@ Il est généré par le système du partenaire récepteur de la primo-demande de
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="mobilizedResources" type="x:resource"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="mobilizedResource" type="x:resource"/>
         </sequence>
     </complexType>
     <complexType name="resource">
@@ -22,10 +22,16 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element name="resourceID" type="string">
                 <annotation>
-                    <documentation>ID unique de la ressource engagée partagée 
-{orgID}.{ID unique de la ressource partagée}
+                    <documentation>ID partagé unique de la ressource engagée 
+{orgID}.R.{ID unique de la ressource partagée}
 Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
-{orgID}.{ID du dossier partagé}.R{numéro d’ordre chronologique ressource}</documentation>
+{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="RSDRId" type="string">
+                <annotation>
+                    <documentation>Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource)
+{orgID}.D.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="missionID" type="string">
@@ -251,6 +257,9 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                         <enumeration value="TEL"/>
                         <enumeration value="EMAIL"/>
                         <enumeration value="FAX"/>
+                        <enumeration value="POSTAL"/>
+                        <enumeration value="WEB"/>
+                        <enumeration value="RADIO"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -31,8 +31,6 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element name="qualification" type="x:qualification"/>
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
@@ -365,47 +363,6 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
             <element name="qualification" type="x:qualification"/>
             <element name="callTaker" type="x:callTaker"/>
             <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
-        </sequence>
-    </complexType>
-    <complexType name="patient">
-        <sequence>
-            <element name="id" type="string">
-                <annotation>
-                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
-{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="identity" type="x:Identity"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
-        </sequence>
-    </complexType>
-    <complexType name="decision">
-        <sequence>
-            <element minOccurs="0" name="id" type="string">
-                <annotation>
-                    <documentation>ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié</documentation>
-                </annotation>
-            </element>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element name="type">
-                <annotation>
-                    <documentation>Type de décision prise</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="CONSEIL"/>
-                        <enumeration value="PMT"/>
-                        <enumeration value="INTER"/>
-                        <enumeration value="ORIENT"/>
-                        <enumeration value="PASPLUS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -1461,106 +1418,6 @@ Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux 
 Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
                 </annotation>
             </element>
-        </sequence>
-    </complexType>
-    <complexType name="Identity">
-        <sequence>
-            <element minOccurs="0" name="strictFeatures" type="x:insStrictFeatures"/>
-            <element minOccurs="0" name="nonStrictFeatures" type="x:detailedName"/>
-        </sequence>
-    </complexType>
-    <complexType name="insStrictFeatures">
-        <sequence>
-            <element minOccurs="0" name="birthDate">
-                <annotation>
-                    <documentation>Date de naissance du patient</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <pattern value="\d{4}-\d{2}-\d{2}"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="sex">
-                <annotation>
-                    <documentation>Sexe du patient</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="MASC"/>
-                        <enumeration value="FEM"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="INCONNU"/>
-                    </restriction>
-                </simpleType>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="transportDetails">
-        <sequence>
-            <element name="orientation">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
-- A transporter
-- Laisser sur place</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="OK"/>
-                        <enumeration value="TEMP"/>
-                        <enumeration value="SEUL"/>
-                        <enumeration value="AFAMILLE"/>
-                        <enumeration value="AMED"/>
-                        <enumeration value="AFDO"/>
-                        <enumeration value="ATIERS"/>
-                        <enumeration value="MOYPERSO"/>
-                        <enumeration value="Code vecteur choisi"/>
-                        <enumeration value="REFPAT"/>
-                        <enumeration value="REFFAM"/>
-                        <enumeration value="PASREAKO"/>
-                        <enumeration value="PASREAOK"/>
-                        <enumeration value="REA"/>
-                        <enumeration value="TRANSPOR"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="FUGUE"/>
-                        <enumeration value="REFAUTRE"/>
-                        <enumeration value="RAS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="teamCare">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="MED"/>
-                        <enumeration value="PARAMED"/>
-                        <enumeration value="SECOURS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
-        </sequence>
-    </complexType>
-    <complexType name="destination">
-        <sequence>
-            <element minOccurs="0" name="type">
-                <annotation>
-                    <documentation>Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE"/>
-                        <enumeration value="AUTRES SERVICES D UN ETABLISSEMENT DE SANTE"/>
-                        <enumeration value="CABINET D UN PROFESSIONNEL DE SANTE"/>
-                        <enumeration value="DOMICILE"/>
-                        <enumeration value="EPHAD OU LONG SEJOUR"/>
-                        <enumeration value="AUTRE"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

@@ -2,13 +2,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RR.schema.json#",
-    "version": "24.06.14",
+    "version": "24.06.19",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
     "required": [
         "caseId",
-        "RSDDRId",
+        "RSDRId",
         "requestResponse"
     ],
     "properties": {
@@ -20,13 +20,13 @@
             "example": "example.json#/caseId",
             "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
         },
-        "RSDDRId": {
+        "RSDRId": {
             "type": "string",
-            "title": "ID DDR partag\u00e9",
+            "title": "ID Demande partag\u00e9",
             "x-health-only": false,
             "x-cols": 6,
-            "example": "example.json#/RSDDRId",
-            "description": "Identifiant unique partag\u00e9 de la demande de ressource \u00e0 laquelle l'exp\u00e9diteur r\u00e9pond"
+            "example": "example.json#/RSDRId",
+            "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.D.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
         },
         "requestResponse": {
             "$ref": "#/definitions/response"
@@ -35,7 +35,7 @@
     "definitions": {
         "response": {
             "type": "object",
-            "title": "R\u00e9ponse \u00e0 la demande de concours",
+            "title": "R\u00e9ponse \u00e0 la demande de ressources",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [

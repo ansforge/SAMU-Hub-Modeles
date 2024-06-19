@@ -59,7 +59,6 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
             <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
     </complexType>
@@ -88,11 +87,6 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
     </complexType>
     <complexType name="location">
         <sequence>
-            <element name="locID" type="string">
-                <annotation>
-                    <documentation>ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
                     <documentation>Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
@@ -140,14 +134,22 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
     </complexType>
     <complexType name="medicalNote">
         <sequence>
-            <element minOccurs="0" name="id" type="string">
+            <element minOccurs="0" name="idNote" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié</documentation>
+                    <documentation>ID partagé de la note médicale
+{ID du dossier partagé}.N.{numéro d’ordre chronologique de la note}</documentation>
                 </annotation>
             </element>
+            <element minOccurs="0" name="idPat" type="string">
+                <annotation>
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur
+{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="operator" type="x:operator"/>
             <element name="creation" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de création de l'interrogatoire.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
             <element name="freetext" type="string">
@@ -156,26 +158,11 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
 Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="medicalHistory" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les antécédents du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="treatments" type="string">
-                <annotation>
-                    <documentation>Texte libre  pour décrire les traitements du patient</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="allergies" type="string">
-                <annotation>
-                    <documentation>Texte libre pour décrire les allergies du patient</documentation>
-                </annotation>
-            </element>
         </sequence>
     </complexType>
     <complexType name="decision">
         <sequence>
-            <element minOccurs="0" name="id" type="string">
+            <element minOccurs="0" name="idPat" type="string">
                 <annotation>
                     <documentation>ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié</documentation>
                 </annotation>
@@ -199,8 +186,6 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="engagementDetails" type="x:engagementDetails"/>
-            <element minOccurs="0" name="transportDetails" type="x:transportDetails"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -667,12 +652,6 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <pattern value="[0-9]{5}"/>
                     </restriction>
                 </simpleType>
-            </element>
-            <element minOccurs="0" name="detail" type="string">
-                <annotation>
-                    <documentation>Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
-NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.</documentation>
-                </annotation>
             </element>
         </sequence>
     </complexType>
@@ -1359,178 +1338,21 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
         </sequence>
     </complexType>
-    <complexType name="engagementDetails">
+    <complexType name="operator">
         <sequence>
-            <element name="categoryType">
+            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
+            <element name="role">
                 <annotation>
-                    <documentation>détaille le moyen à engager</documentation>
+                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="SMUR"/>
-                        <enumeration value="HOSPIT"/>
-                        <enumeration value="LIB"/>
-                        <enumeration value="TSU "/>
-                        <enumeration value="SIS"/>
-                        <enumeration value="AASC"/>
-                        <enumeration value="FDO"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="DAE"/>
+                        <enumeration value="ARM"/>
+                        <enumeration value="MEDECIN"/>
                         <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="resourceType">
-                <annotation>
-                    <documentation>détaille le type de vecteur à engager</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="VPSP"/>
-                        <enumeration value="VLSC"/>
-                        <enumeration value="AUTRESC"/>
-                        <enumeration value="TAXI"/>
-                        <enumeration value="TRANSP"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="TRAIN"/>
-                        <enumeration value="AVION"/>
-                        <enumeration value="PERSO"/>
-                        <enumeration value="APIED"/>
-                        <enumeration value="INCONNU"/>
-                        <enumeration value="CONSEIL"/>
-                        <enumeration value="DAE"/>
-                        <enumeration value="HELIFSI"/>
-                        <enumeration value="VLFSI"/>
-                        <enumeration value="FFSI"/>
-                        <enumeration value="VHFSI"/>
-                        <enumeration value="MEDC"/>
-                        <enumeration value="MEDV"/>
-                        <enumeration value="PHARMA"/>
-                        <enumeration value="INF"/>
-                        <enumeration value="MEDSPE"/>
-                        <enumeration value="DENT"/>
-                        <enumeration value="AUTREPRO"/>
-                        <enumeration value="DRAGON"/>
-                        <enumeration value="AVSC"/>
-                        <enumeration value="VSAV"/>
-                        <enumeration value="GRIMP"/>
-                        <enumeration value="VPL"/>
-                        <enumeration value="SRSIS"/>
-                        <enumeration value="FEUSIS"/>
-                        <enumeration value="VPMA"/>
-                        <enumeration value="VCH"/>
-                        <enumeration value="VR"/>
-                        <enumeration value="PCSIS"/>
-                        <enumeration value="VLISP"/>
-                        <enumeration value="VLMSP"/>
-                        <enumeration value="VLCG"/>
-                        <enumeration value="VLSIS"/>
-                        <enumeration value="MOYSSE"/>
-                        <enumeration value="AUTRESIS"/>
-                        <enumeration value="VLM"/>
-                        <enumeration value="AR"/>
-                        <enumeration value="AR-BAR"/>
-                        <enumeration value="AR-PED"/>
-                        <enumeration value="VL"/>
-                        <enumeration value="HELISMUR"/>
-                        <enumeration value="HELISAN"/>
-                        <enumeration value="AVSMUR"/>
-                        <enumeration value="AVSAN"/>
-                        <enumeration value="NAVISMUR"/>
-                        <enumeration value="PSM1"/>
-                        <enumeration value="PSM2"/>
-                        <enumeration value="PSM3"/>
-                        <enumeration value="PSMP"/>
-                        <enumeration value="VPC"/>
-                        <enumeration value="AMB-GV"/>
-                        <enumeration value="AMB-PV"/>
-                        <enumeration value="AMB-BAR"/>
-                        <enumeration value="AMB"/>
-                        <enumeration value="VSL"/>
-                        <enumeration value="NAVISIS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="resourceId" type="string"/>
-            <element name="teamCareInitial">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="MED"/>
-                        <enumeration value="PARAMED"/>
-                        <enumeration value="SECOURS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="transportDetails">
-        <sequence>
-            <element name="orientation">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
-- A transporter
-- Laisser sur place</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="OK"/>
-                        <enumeration value="TEMP"/>
-                        <enumeration value="SEUL"/>
-                        <enumeration value="AFAMILLE"/>
-                        <enumeration value="AMED"/>
-                        <enumeration value="AFDO"/>
-                        <enumeration value="ATIERS"/>
-                        <enumeration value="MOYPERSO"/>
-                        <enumeration value="Code vecteur choisi"/>
-                        <enumeration value="REFPAT"/>
-                        <enumeration value="REFFAM"/>
-                        <enumeration value="PASREAKO"/>
-                        <enumeration value="PASREAOK"/>
-                        <enumeration value="REA"/>
-                        <enumeration value="TRANSPOR"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="FUGUE"/>
-                        <enumeration value="REFAUTRE"/>
-                        <enumeration value="RAS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element name="teamCare">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="MED"/>
-                        <enumeration value="PARAMED"/>
-                        <enumeration value="SECOURS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="destination" type="x:destination"/>
-        </sequence>
-    </complexType>
-    <complexType name="destination">
-        <sequence>
-            <element minOccurs="0" name="type">
-                <annotation>
-                    <documentation>Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="SERVICE D URGENCES D UN ETABLISSEMENT DE SANTE"/>
-                        <enumeration value="AUTRES SERVICES D UN ETABLISSEMENT DE SANTE"/>
-                        <enumeration value="CABINET D UN PROFESSIONNEL DE SANTE"/>
-                        <enumeration value="DOMICILE"/>
-                        <enumeration value="EPHAD OU LONG SEJOUR"/>
-                        <enumeration value="AUTRE"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

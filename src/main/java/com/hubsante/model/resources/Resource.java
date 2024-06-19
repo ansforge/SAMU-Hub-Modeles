@@ -50,13 +50,13 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Resource.JSON_PROPERTY_DATE_TIME, Resource.JSON_PROPERTY_RESOURCE_I_D,
-     Resource.JSON_PROPERTY_MISSION_I_D, Resource.JSON_PROPERTY_ORG_I_D,
-     Resource.JSON_PROPERTY_CENTER_NAME, Resource.JSON_PROPERTY_RESOURCE_TYPE,
-     Resource.JSON_PROPERTY_VEHICULE_TYPE, Resource.JSON_PROPERTY_PLATE,
-     Resource.JSON_PROPERTY_NAME, Resource.JSON_PROPERTY_CENTER_CITY,
-     Resource.JSON_PROPERTY_TEAM, Resource.JSON_PROPERTY_STATE,
-     Resource.JSON_PROPERTY_COORD, Resource.JSON_PROPERTY_CONTACT,
-     Resource.JSON_PROPERTY_FREETEXT})
+     Resource.JSON_PROPERTY_RS_D_R_ID, Resource.JSON_PROPERTY_MISSION_I_D,
+     Resource.JSON_PROPERTY_ORG_I_D, Resource.JSON_PROPERTY_CENTER_NAME,
+     Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
+     Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
+     Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
+     Resource.JSON_PROPERTY_STATE, Resource.JSON_PROPERTY_COORD,
+     Resource.JSON_PROPERTY_CONTACT, Resource.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("resource")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -66,6 +66,9 @@ public class Resource {
 
   public static final String JSON_PROPERTY_RESOURCE_I_D = "resourceID";
   private String resourceID;
+
+  public static final String JSON_PROPERTY_RS_D_R_ID = "RSDRId";
+  private String rsDRId;
 
   public static final String JSON_PROPERTY_MISSION_I_D = "missionID";
   private String missionID;
@@ -344,10 +347,10 @@ public class Resource {
   }
 
   /**
-   * ID unique de la ressource engagée partagée  {orgID}.{ID unique de la
+   * ID partagé unique de la ressource engagée  {orgID}.R.{ID unique de la
    *ressource partagée} Ou, uniquement dans le cas où un ID unique de ressource
-   *ne peut pas être garanti par l&#39;organisation propriétaire : {orgID}.{ID
-   *du dossier partagé}.R{numéro d’ordre chronologique ressource}
+   *ne peut pas être garanti par l&#39;organisation propriétaire : {orgID}.R.{ID
+   *du dossier partagé}.{numéro d’ordre chronologique ressource}
    * @return resourceID
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_I_D)
@@ -361,6 +364,31 @@ public class Resource {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setResourceID(String resourceID) {
     this.resourceID = resourceID;
+  }
+
+  public Resource rsDRId(String rsDRId) {
+
+    this.rsDRId = rsDRId;
+    return this;
+  }
+
+  /**
+   * Identifiant unique partagé de la demande de ressource (si la ressource a
+   *été engagée suite à une demande de ressource) {orgID}.D.{ID unique de la
+   *demande dans le système émetteur}
+   * @return rsDRId
+   **/
+  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getRsDRId() {
+    return rsDRId;
+  }
+
+  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRsDRId(String rsDRId) {
+    this.rsDRId = rsDRId;
   }
 
   public Resource missionID(String missionID) {
@@ -710,6 +738,7 @@ public class Resource {
     Resource resource = (Resource)o;
     return Objects.equals(this.dateTime, resource.dateTime) &&
         Objects.equals(this.resourceID, resource.resourceID) &&
+        Objects.equals(this.rsDRId, resource.rsDRId) &&
         Objects.equals(this.missionID, resource.missionID) &&
         Objects.equals(this.orgID, resource.orgID) &&
         Objects.equals(this.centerName, resource.centerName) &&
@@ -727,9 +756,9 @@ public class Resource {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateTime, resourceID, missionID, orgID, centerName,
-                        resourceType, vehiculeType, plate, name, centerCity,
-                        team, state, coord, contact, freetext);
+    return Objects.hash(dateTime, resourceID, rsDRId, missionID, orgID,
+                        centerName, resourceType, vehiculeType, plate, name,
+                        centerCity, team, state, coord, contact, freetext);
   }
 
   @Override
@@ -740,6 +769,7 @@ public class Resource {
     sb.append("    resourceID: ")
         .append(toIndentedString(resourceID))
         .append("\n");
+    sb.append("    rsDRId: ").append(toIndentedString(rsDRId)).append("\n");
     sb.append("    missionID: ")
         .append(toIndentedString(missionID))
         .append("\n");

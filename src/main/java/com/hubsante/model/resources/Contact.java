@@ -55,7 +55,13 @@ public class Contact {
 
     EMAIL("EMAIL"),
 
-    FAX("FAX");
+    FAX("FAX"),
+
+    POSTAL("POSTAL"),
+
+    WEB("WEB"),
+
+    RADIO("RADIO");
 
     private String value;
 

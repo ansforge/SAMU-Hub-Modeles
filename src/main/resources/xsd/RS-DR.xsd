@@ -10,9 +10,10 @@ Il est généré par le système du partenaire récepteur de la primo-demande de
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
-            <element name="RSDDRId" type="string">
+            <element name="RSDRId" type="string">
                 <annotation>
-                    <documentation>Identifiant unique partagé de la demande de ressource</documentation>
+                    <documentation>Identifiant unique partagé de la demande de ressource
+{orgID}.D.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="resourceRequest" type="x:request"/>

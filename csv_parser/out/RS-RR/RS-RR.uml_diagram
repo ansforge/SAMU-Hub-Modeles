@@ -14,6 +14,6 @@ strict digraph {
                 <TR>
                 <TD ><B>resourcesResponse</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet resourcesResponse</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >RSDDRId <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet resourcesResponse</I></TD></TR><TR><TD BORDER="0" >caseId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >RSDRId <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 }

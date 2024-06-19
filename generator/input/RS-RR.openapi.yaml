@@ -16,7 +16,7 @@ components:
       title: resourcesResponse
       required:
       - caseId
-      - RSDDRId
+      - RSDRId
       - requestResponse
       properties:
         caseId:
@@ -34,22 +34,22 @@ components:
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
-        RSDDRId:
+        RSDRId:
           type: string
-          title: "ID DDR partag\xE9"
+          title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/RSDDRId
-          description: "Identifiant unique partag\xE9 de la demande de ressource \xE0\
-            \ laquelle l'exp\xE9diteur r\xE9pond"
+          example: example.json#/RSDRId
+          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
+            {orgID}.D.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
           examples:
-          - None
+          - fr.health.samu770.D.1249875
         requestResponse:
           $ref: '#/components/schemas/response'
       additionalProperties: false
     response:
       type: object
-      title: "R\xE9ponse \xE0 la demande de concours"
+      title: "R\xE9ponse \xE0 la demande de ressources"
       x-display: expansion-panels
       x-health-only: false
       required:

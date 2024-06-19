@@ -43,7 +43,7 @@ import java.util.Objects;
  * ResourcesResponse
  */
 @JsonPropertyOrder({ResourcesResponse.JSON_PROPERTY_CASE_ID,
-                    ResourcesResponse.JSON_PROPERTY_RS_D_D_R_ID,
+                    ResourcesResponse.JSON_PROPERTY_RS_D_R_ID,
                     ResourcesResponse.JSON_PROPERTY_REQUEST_RESPONSE})
 @JsonTypeName("resourcesResponse")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -54,8 +54,8 @@ public class ResourcesResponse {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
-  public static final String JSON_PROPERTY_RS_D_D_R_ID = "RSDDRId";
-  private String rsDDRId;
+  public static final String JSON_PROPERTY_RS_D_R_ID = "RSDRId";
+  private String rsDRId;
 
   public static final String JSON_PROPERTY_REQUEST_RESPONSE = "requestResponse";
   private Response requestResponse;
@@ -90,28 +90,28 @@ public class ResourcesResponse {
     this.caseId = caseId;
   }
 
-  public ResourcesResponse rsDDRId(String rsDDRId) {
+  public ResourcesResponse rsDRId(String rsDRId) {
 
-    this.rsDDRId = rsDDRId;
+    this.rsDRId = rsDRId;
     return this;
   }
 
   /**
-   * Identifiant unique partagé de la demande de ressource à laquelle
-   *l&#39;expéditeur répond
-   * @return rsDDRId
+   * Identifiant unique partagé de la demande de ressource {orgID}.D.{ID unique
+   *de la demande dans le système émetteur}
+   * @return rsDRId
    **/
-  @JsonProperty(JSON_PROPERTY_RS_D_D_R_ID)
+  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getRsDDRId() {
-    return rsDDRId;
+  public String getRsDRId() {
+    return rsDRId;
   }
 
-  @JsonProperty(JSON_PROPERTY_RS_D_D_R_ID)
+  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRsDDRId(String rsDDRId) {
-    this.rsDDRId = rsDDRId;
+  public void setRsDRId(String rsDRId) {
+    this.rsDRId = rsDRId;
   }
 
   public ResourcesResponse requestResponse(Response requestResponse) {
@@ -147,13 +147,13 @@ public class ResourcesResponse {
     }
     ResourcesResponse resourcesResponse = (ResourcesResponse)o;
     return Objects.equals(this.caseId, resourcesResponse.caseId) &&
-        Objects.equals(this.rsDDRId, resourcesResponse.rsDDRId) &&
+        Objects.equals(this.rsDRId, resourcesResponse.rsDRId) &&
         Objects.equals(this.requestResponse, resourcesResponse.requestResponse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDDRId, requestResponse);
+    return Objects.hash(caseId, rsDRId, requestResponse);
   }
 
   @Override
@@ -161,7 +161,7 @@ public class ResourcesResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourcesResponse {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    rsDDRId: ").append(toIndentedString(rsDDRId)).append("\n");
+    sb.append("    rsDRId: ").append(toIndentedString(rsDRId)).append("\n");
     sb.append("    requestResponse: ")
         .append(toIndentedString(requestResponse))
         .append("\n");

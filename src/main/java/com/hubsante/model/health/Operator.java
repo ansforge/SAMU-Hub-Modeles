@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.cisu;
+package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,37 +34,36 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * InsStrictFeatures
+ * Operator
  */
-@JsonPropertyOrder({InsStrictFeatures.JSON_PROPERTY_BIRTH_DATE,
-                    InsStrictFeatures.JSON_PROPERTY_SEX})
-@JsonTypeName("insStrictFeatures")
+@JsonPropertyOrder(
+    {Operator.JSON_PROPERTY_DETAILED_NAME, Operator.JSON_PROPERTY_ROLE})
+@JsonTypeName("operator")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class InsStrictFeatures {
-  public static final String JSON_PROPERTY_BIRTH_DATE = "birthDate";
-  private String birthDate;
+public class Operator {
+  public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
+  private DetailedName detailedName;
 
   /**
-   * Sexe du patient
+   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
    */
-  public enum SexEnum {
-    MASC("MASC"),
+  public enum RoleEnum {
+    ARM("ARM"),
 
-    FEM("FEM"),
+    MEDECIN("MEDECIN"),
 
-    AUTRE("AUTRE"),
-
-    INCONNU("INCONNU");
+    AUTRE("AUTRE");
 
     private String value;
 
-    SexEnum(String value) { this.value = value; }
+    RoleEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -77,8 +76,8 @@ public class InsStrictFeatures {
     }
 
     @JsonCreator
-    public static SexEnum fromValue(String value) {
-      for (SexEnum b : SexEnum.values()) {
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -87,55 +86,55 @@ public class InsStrictFeatures {
     }
   }
 
-  public static final String JSON_PROPERTY_SEX = "sex";
-  private SexEnum sex;
+  public static final String JSON_PROPERTY_ROLE = "role";
+  private RoleEnum role;
 
-  public InsStrictFeatures() {}
+  public Operator() {}
 
-  public InsStrictFeatures birthDate(String birthDate) {
+  public Operator detailedName(DetailedName detailedName) {
 
-    this.birthDate = birthDate;
+    this.detailedName = detailedName;
     return this;
   }
 
   /**
-   * Date de naissance du patient
-   * @return birthDate
+   * Get detailedName
+   * @return detailedName
    **/
-  @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
+  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getBirthDate() {
-    return birthDate;
+  public DetailedName getDetailedName() {
+    return detailedName;
   }
 
-  @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
+  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setBirthDate(String birthDate) {
-    this.birthDate = birthDate;
+  public void setDetailedName(DetailedName detailedName) {
+    this.detailedName = detailedName;
   }
 
-  public InsStrictFeatures sex(SexEnum sex) {
+  public Operator role(RoleEnum role) {
 
-    this.sex = sex;
+    this.role = role;
     return this;
   }
 
   /**
-   * Sexe du patient
-   * @return sex
+   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
+   * @return role
    **/
-  @JsonProperty(JSON_PROPERTY_SEX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public SexEnum getSex() {
-    return sex;
+  public RoleEnum getRole() {
+    return role;
   }
 
-  @JsonProperty(JSON_PROPERTY_SEX)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSex(SexEnum sex) {
-    this.sex = sex;
+  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRole(RoleEnum role) {
+    this.role = role;
   }
 
   @Override
@@ -146,24 +145,24 @@ public class InsStrictFeatures {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    InsStrictFeatures insStrictFeatures = (InsStrictFeatures)o;
-    return Objects.equals(this.birthDate, insStrictFeatures.birthDate) &&
-        Objects.equals(this.sex, insStrictFeatures.sex);
+    Operator operator = (Operator)o;
+    return Objects.equals(this.detailedName, operator.detailedName) &&
+        Objects.equals(this.role, operator.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(birthDate, sex);
+    return Objects.hash(detailedName, role);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InsStrictFeatures {\n");
-    sb.append("    birthDate: ")
-        .append(toIndentedString(birthDate))
+    sb.append("class Operator {\n");
+    sb.append("    detailedName: ")
+        .append(toIndentedString(detailedName))
         .append("\n");
-    sb.append("    sex: ").append(toIndentedString(sex)).append("\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();
   }
