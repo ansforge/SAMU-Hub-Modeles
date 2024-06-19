@@ -27,7 +27,7 @@ first_codeandlabel_name = ""
 first_codeandlabel_properties = []
 
 
-def run(sheet, name, version, perimeter_filter, model_type):
+def run(sheet, name, version, perimeter_filter, model_type, filepath):
     class Color:
         ORANGE = '\033[93m'
         RED = '\033[91m'
@@ -48,7 +48,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     def get_params_from_sheet(sheet):
         """ Automatically get the number of rows and columns to use for this sheet. """
-        full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
+        full_df = pd.read_excel(filepath, sheet_name=sheet, header=None)
         # Getting modelName from cell A1
         modelName = full_df.iloc[0, 0]
         # Get line 7 to find which columns have 'Périmètre' flag
@@ -110,7 +110,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     # DATA COLLECTION AND CLEANING
     # Read CSV, skipping useless first and last lines
-    df = pd.read_excel('model.xlsx', sheet_name=sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
+    df = pd.read_excel(filepath, sheet_name=sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
     # Dropping useless columns
     df = df.iloc[:, :NB_COLS]
     # Column validation

@@ -1,182 +1,158 @@
-,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
+,ID,Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-18,15-15,15-SMUR
 0,1,Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
 Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,,X,X,X
 1,2,Identifiant local de l'affaire/dossier,,,,,,"Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
 Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
-",DRFR15DDXAAJJJ0000,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
-2,3,Date Heure de création de l'affaire/dossier,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF
+",DRFR15DDXAAJJJ0000,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,,X,X,X
+2,3,Date Heure de création de l'affaire/dossier,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF,X,X,X
 3,4,Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
-Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,
+Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,,X,,
 6,7,Qualification de l'affaire/dossier,,,,,,"Permet de qualifier l'affaire/dossier en général. 
-15-18 : La qualification est issue d'une interprétation métier des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,
+15-18 : La qualification est issue d'une interprétation métier des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,,X,X,X
 8,9,,Nature de fait,,,,,"Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU.
-Le champs freetext sert à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées).",,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
-9,10,,,Code,,,,A valoriser avec un code la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,,
+Le champs freetext sert à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées).",,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait,X,X,X
+9,10,,,Code,,,,A valoriser avec un code la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,,,X,X,X
 10,11,,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,,1.0,1..1,,string,,
-11,12,,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu (TL). Référentiel : nomenclature CISU,,locationKind,,CI,Type de lieu d'intervention,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Type_de_lieu
-12,13,,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités (RMS). Référentiel : nomenclature CISU.",,riskThreat,,,,,,1.0,0..n,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
-13,14,,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste (MR). Référentiel : nomenclature CISU.,,healthMotive,,,,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
-19,20,,Patients-Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,
-20,21,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, SEVERAL, MANY, UNKNOWN"
-21,22,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: INFANT, CHILD, ADULT, SENIOR"
-22,23,,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,
-23,24,Localisation de l'affaire/dossier,,,,,,Permet de décrire le lieu d'intervention.,,eventLocation,location,,,,,,1..1,X,location,,
-24,25,,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,,,,,,,1..1,,string,,
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,,1.0,1..1,,string,,,X,X,X
+11,12,,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu (TL). Référentiel : nomenclature CISU,,locationKind,,CI,Type de lieu d'intervention,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Type_de_lieu,X,X,X
+12,13,,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités (RMS). Référentiel : nomenclature CISU.",,riskThreat,,,,,,1.0,0..n,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité,X,X,X
+13,14,,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste (MR). Référentiel : nomenclature CISU.,,healthMotive,,,,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime,X,X,X
+19,20,,Patients-Victimes,,,,,,,victims,,,,,,,0..1,X,victims,,,X,,X
+20,21,,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, PLUSIEURS, BEAUCOUP, INCONNU, NON DEFINI",X,,X
+21,22,,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: NOURRISSON, ENFANT, ADULTE, SENIOR",X,,
+22,23,,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,,X,,
+23,24,Localisation de l'affaire/dossier,,,,,,Permet de décrire le lieu d'intervention.,,eventLocation,location,,,,,,1..1,X,location,,,X,X,X
+24,25,,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,,,,,,,1..1,,string,,,X,,X
 25,26,,Résumé de la localisation,,,,,"Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
 15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
-","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",locLabel,,,,,,,0..1,,string,,
-26,27,,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
-27,28,,Identifiant(s) du lieu,,,,,Permet d'identifier une structure commerciale ou un établissement,,,externalLocationId,,,,,,0..n,X,externalLocationId,,
-28,29,,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS administratif, FINESS géographique, SIREN, SIRET, APE/NAF"
-29,30,,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,value,,,,,,1..1,,string,,
-30,31,,Détails de l'adresse,,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
+","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",locLabel,,,,,,,0..1,,string,,,X,,X
+26,27,,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,,X,X,X
+27,28,,Identifiant(s) du lieu,,,,,Permet d'identifier une structure commerciale ou un établissement,,,externalLocationId,,,,,,0..n,X,externalLocationId,,,X,X,X
+28,29,,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF",X,X,X
+29,30,,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,value,,,,,,1..1,,string,,,X,X,X
+30,31,,Détails de l'adresse,,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,,X,X,X
 35,36,,,"Numéro, type et nom de voie",,,,"Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.",9 Bd du Montparnasse,address,complete,,,,,,1..1,,string,,TEMPLATE: {number} {wayName}
-36,37,,,Numéro dans la voie,,,,"Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).","9, 4bis, PK10, …",,number,LO,N° dans la voie,,,,0..1,,string,,
-37,38,,,Type et nom de voie,,,,,,,wayName,LY/LB/LV,"Type, particule, nom de voie",,,,0..1,X,wayName,,
+15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.",9 Bd du Montparnasse,address,complete,,,,,,1..1,,string,,TEMPLATE: {number} {wayName},X,X,X
+36,37,,,Numéro dans la voie,,,,"Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).","9, 4bis, PK10, …",,number,LO,N° dans la voie,,,,0..1,,string,,,X,X,X
+37,38,,,Type et nom de voie,,,,,,,wayName,LY/LB/LV,"Type, particule, nom de voie",,,,0..1,X,wayName,,,X,X,X
 38,39,,,,Type et nom,,,"Type et nom de la voie (venant d'un référentiel ou non)
-Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name}
-39,40,,,,Type,,,Type de la voie,Boulevard,,type,,,,,,0..1,,string,,
-40,41,,,,Nom,,,Nom de la voie,du Montparnasse,,name,,,,,,0..1,,string,,
-41,42,,Détails de la commune,,,,,,,,city,,,,,,0..1,X,city,,
-42,43,,,Nom de la commune,,,,Nom officiel de la commune actuelle,Lille,city,name,LC,Nom de la commune,,,,0..1,,string,,
-43,44,,,Code INSEE de la commune,,,,Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.,59350,citycode,inseeCode,LZ,Code INSEE de la commune,,,,0..1,,string,,REGEX: [0-9]{5}
+Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name},X,X,X
+39,40,,,,Type,,,Type de la voie,Boulevard,,type,,,,,,0..1,,string,,,X,X,X
+40,41,,,,Nom,,,Nom de la voie,du Montparnasse,,name,,,,,,0..1,,string,,,X,X,X
+41,42,,Détails de la commune,,,,,,,,city,,,,,,0..1,X,city,,,X,X,X
+42,43,,,Nom de la commune,,,,Nom officiel de la commune actuelle,Lille,city,name,LC,Nom de la commune,,,,0..1,,string,,,X,X,X
+43,44,,,Code INSEE de la commune,,,,Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.,59350,citycode,inseeCode,LZ,Code INSEE de la commune,,,,0..1,,string,,REGEX: [0-9]{5},X,X,X
 44,45,,,Complément de commune,,,,"Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
-NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.","Quartie Melun Nord, Lhomme, …",,detail,,,,,,0..1,,string,,
+NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.","Quartie Melun Nord, Lhomme, …",,detail,,,,,,0..1,,string,,,X,,X
 45,46,,Détails d'accès,,,,,"Permet d'envoyer l'ensemble des détails d'accès au lieu d'intervention. Si les détails ne sont pas gérés individuellement, il est préférable de passer ces indications dans le freetext lié à la localisation de l'affaire.
-15-18 - Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,,access,,,,,,0..1,X,access,,
-46,47,,,Etage,,,,Etage ,RDC,,floor,LG,Etage,,,,0..1,,string,,
-47,48,,,Numéro de porte,,,,"Spécifie numéro d'appartement, de chambre, de bureau",A16,,roomNumber,LP,Porte,,,,0..1,,string,,
-48,49,,,Interphone,,,,"Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)",Dupont,,interphone,,,,,,0..1,,string,,
-49,50,,,Digicode,,,,Indique le ou les digicodes dans l'ordre de progression dans le bâtiment,1234A,,accessCode,LD,Digicode,,,,0..n,,string,,
-50,51,,,Ascenseur/escalier,,,,Indique l'ascenseur ou la cage d'escalier ,C3,,elevator,,,,,,0..1,,string,,
-51,52,,,Bâtiment,,,,Nom du bâtiment,Batiment B,,buildingName,,,,,,0..1,,string,,
-52,53,,,Entrée,,,,,Zone Sud,,entrance,,,,,,0..1,,string,,
-53,54,,,Service,,,,"Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …",Infirmerie,,entity,,,,,,0..1,,string,,
-54,55,,,N° de téléphone du lieu,,,,"Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.",33123452323,,phoneNumber,,,,,,0..1,,string,,
-55,56,,Géometrie associée,,,,,,,objectGeometry,geometry,,,,,,0..1,X,geometry,,
-56,57,,,Heure du dernier relevé,,,,Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.,2022-09-27T08:23:34+02:00,,obsDatime,,,,,,1..1,,datetime,,
+15-18 - Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,,access,,,,,,0..1,X,access,,,X,X,X
+46,47,,,Etage,,,,Etage ,RDC,,floor,LG,Etage,,,,0..1,,string,,,X,X,X
+47,48,,,Numéro de porte,,,,"Spécifie numéro d'appartement, de chambre, de bureau",A16,,roomNumber,LP,Porte,,,,0..1,,string,,,X,X,X
+48,49,,,Interphone,,,,"Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)",Dupont,,interphone,,,,,,0..1,,string,,,X,X,X
+49,50,,,Digicode,,,,Indique le ou les digicodes dans l'ordre de progression dans le bâtiment,1234A,,accessCode,LD,Digicode,,,,0..n,,string,,,X,X,X
+50,51,,,Ascenseur/escalier,,,,Indique l'ascenseur ou la cage d'escalier ,C3,,elevator,,,,,,0..1,,string,,,X,X,X
+51,52,,,Bâtiment,,,,Nom du bâtiment,Batiment B,,buildingName,,,,,,0..1,,string,,,X,X,X
+52,53,,,Entrée,,,,,Zone Sud,,entrance,,,,,,0..1,,string,,,X,X,X
+53,54,,,Service,,,,"Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …",Infirmerie,,entity,,,,,,0..1,,string,,,X,X,X
+54,55,,,N° de téléphone du lieu,,,,"Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.",33123452323,,phoneNumber,,,,,,0..1,,string,,,X,X,X
+55,56,,Géometrie associée,,,,,,,objectGeometry,geometry,,,,,,0..1,X,geometry,,,X,X,X
+56,57,,,Heure du dernier relevé,,,,Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.,2022-09-27T08:23:34+02:00,,obsDatime,,,,,,1..1,,datetime,,,X,X,X
 57,58,,,Point ,,,,"Fournir au maximum même s'il est imprécis (et adapter le champs ""Précision"" en fonction). 
 Par exemple, sans adresse, il est possible de fournir le point GPS de la commune et d'adapter et préciser l'adresse en cours d'intervention.
-Sera toujours fourni par NexSIS.",,point,point,,,,,,0..1,X,point,,
+Sera toujours fourni par NexSIS.",,point,point,,,,,,0..1,X,point,,,X,X,X
 58,59,,,,Coordonnées,,,"Le SGO ne fonctionne toujours sur des coordonnées X/Y ainsi qu'une adresse indicative associée. 
 NexSIS dispose donc toujours d'un point GPS utilisé pour le temps de trajet, la détermination de l'intervenant le plus proche, ...
-L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord,coord,,,,,,1..1,X,coord,,
-59,60,,,,,Latitude,,Latitude du point clé de la localisation ,48.866667,lat,lat,,,,,,1..1,,number,,
-60,61,,,,,Longitude,,Longitude du point clé de la localisation,2.333333,lon,lon,,,,,,1..1,,number,,
-61,62,,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,
-62,63,,,,,Cap,,En degré,96,,heading,,,,,,0..1,,number,,
-63,64,,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,,,,,,0..1,,number,,
+L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord,coord,,,,,,1..1,X,coord,,,X,X,X
+59,60,,,,,Latitude,,Latitude du point clé de la localisation ,48.866667,lat,lat,,,,,,1..1,,number,,,X,X,X
+60,61,,,,,Longitude,,Longitude du point clé de la localisation,2.333333,lon,lon,,,,,,1..1,,number,,,X,X,X
+61,62,,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,,X,X,X
+62,63,,,,,Cap,,En degré,96,,heading,,,,,,0..1,,number,,,X,,X
+63,64,,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,,,,,,0..1,,number,,,X,,X
 64,65,,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: CITY, STREET, ADDRESS, EXACT, UNKNOWN"
-65,66,,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,,
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE",X,X,X
+65,66,,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,,,X,X,X
 66,67,,,Formes géométriques,,,,"Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
 Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
 En XML, un objet gml est encapsulé dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>
 En JSON, les balises sont reprises depuis le modèle gml
-Voir http://www.opengis.net/gml pour le format de l'objet sketch",,sketch,sketch,,,,,,0..1,,string,,
+Voir http://www.opengis.net/gml pour le format de l'objet sketch",,sketch,sketch,,,,,,0..1,,string,,,X,,X
 67,68,,Liens aux systèmes externes,,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI
-L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
-68,69,,,Nom de la source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NexSIS"
+L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,,X,X,X
+68,69,,,Nom de la source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS",X,X,X
 69,70,,,Type ,,,,"Définition du type d'objet dans le système
-Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUAL, MAP, OTHER, PHOTO, WEBSIT"
-70,71,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,
-71,72,,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2
-72,73,,Informations complémentaires sur la localisation,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,
+Ex : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","ega, egr, egm, DIO (données d'influence opérationnelle), …",type,type,,,,,,1..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",X,X,X
+70,71,,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,,X,X,X
+71,72,,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,,
+72,73,,Informations complémentaires sur la localisation,,,,,Champ libre pour compléter les informations de localisation,Clé derrière le pot de fleur,comment,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,,X,X,X
 73,74,Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communication d'urgence, par exemple un appel téléphonique.
-15-18 : Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte, L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.",,primaryAlert,initialAlert,,,,,,0..1,X,alert,,
+15-18 : Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte, L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.",,primaryAlert,initialAlert,,,,,,0..1,X,alert,,,X,X,X
 74,75,,Identifiant alerte,,,,,"Identifiant technique unique de l'alerte. Il doit pouvoir être généré automatiquement par le système émetteur et ne doit pas avoir de signification / utilisation particulière par les différents systèmes pour garantir leur découplage.
 Voir la description de l'identifiant de l'affaire pour voir le format.
 Lorsqu’une alerte est générée dans NexSIS et crée une affaire, elle est qualifiée d’Alerte Initiale.
 a)	Si cette dernière concerne un partenaire (caractère médical pour la Santé par exemple), elle est relayée seule dans le message. Il y’a un seul objet initialAlert.
 b)	Sinon, une autre alerte liée à la même affaire peut être déclarée ultérieurement, concernant cette fois le partenaire. Lorsqu’elle est déclarée cette Nouvelle Alerte est relayée avec l’Alerte Initiale pour partager un contexte commun. Dans le message de création d’affaire il y’a deux objets alerte : initialAlert et newAlert.
-Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.",SGO050-20230605-AL0123,alertId,id,,,,,1.0,1..1,,string,,
-75,76,,Date et heure de réception de l'alerte,,,,,Groupe date heure de réception de l'alerte,2022-09-27T08:21:06+02:00,receivedAt,reception,HA ,		Date et heure de prise d'appel   (format DD/MM/YYYY HH24:MI:SS),,,,1..1,,datetime,,Format datetime décrit dans le DSF
+Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et non les alertId qui peuvent varier d'un système à l'autre.",SGO050-20230605-AL0123,alertId,id,,,,,1.0,1..1,,string,,,X,,X
+75,76,,Date et heure de réception de l'alerte,,,,,Groupe date heure de réception de l'alerte,2022-09-27T08:21:06+02:00,receivedAt,reception,HA ,		Date et heure de prise d'appel   (format DD/MM/YYYY HH24:MI:SS),,,,1..1,,datetime,,Format datetime décrit dans le DSF,X,X,X
 76,77,,Signalement,,,,,"Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.
 Eventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. 
 Prend les valeurs définies dans la nomenclature CISU :
 - standard : STANDARD
 - signalé : ATTENTION
-Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION"
-77,78,,Informations complémentaires sur l'alerte (observations ARM),,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
-15-15 : ce champ est celui dédié pour passer les observations ARM en texte libre.","Déclenchement téléalarme, voisine sur les lieux",comment,notes,OG,Observations générales (texte libre),,,1.0,0..n,X,notes,,
-78,79,,,Date et heure de l'information complémentaire/l'observation ARM,,,,date et heure de l'observation,,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF
-79,80,,,Commentaire/Observations,,,,texte libre contenant les indications renseignées par l'ARM,La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,
-80,81,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,
-81,82,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
-82,83,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : Personne, Application, DAU, BAU, Defibrillateur, Ecall"
-83,84,,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD"
-84,85,,,,URI du contact,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,
-85,86,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,
-86,87,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2
-87,88,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"FAMILLE, TIERS",,type,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-TYPAPPLT
-88,89,,,Difficulté de communication,,,,Indique si le requérant rencontre ou non des difficulté de communication,"Malentendant, aucune difficulté de communication",,communication,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PBAPL
+Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION",X,,X
+77,78,,Informations complémentaires sur l'alerte,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
+15-15 : ce champ est celui dédié pour passer les observations ARM en texte libre.","Déclenchement téléalarme, voisine sur les lieux",comment,notes,OG,Observations générales (texte libre),,,1.0,0..n,X,notes,,,X,X,X
+78,79,,,Date et heure de l'information complémentaire/l'observation ARM,,,,date et heure de l'observation,,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF,X,X,X
+79,80,,,Commentaire/Observations,,,,texte libre contenant les indications renseignées par l'ARM,La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,,X,X,X
+80,81,,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,,X,X,X
+81,82,,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,,X,X,X
+82,83,,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",X,X,X
+83,84,,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO",X,X,X
+84,85,,,,URI du contact,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,,X,X,X
+85,86,,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,,X,X,X
+86,87,,,Langue parlée,,,,Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.,FR,spokenLanguage,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2,X,X,X
+87,88,,,Type de requérant,,,,Indique la relation du requérant avec l'incident / le patient / la victime,"FAMILLE, TIERS",,type,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-TYPAPPLT,X,X,X
+88,89,,,Difficulté de communication,,,,Indique si le requérant rencontre ou non des difficulté de communication,"Malentendant, aucune difficulté de communication",,communication,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PBAPL,X,X,X
 89,90,,,Informations complémentaires sur le requérant,,,,"Informations complémentaires sur le requérant 
-Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif",témoin de l'accident,freetext,freetext,CH,Profil appelant,,,1.0,0..1,,string,,
-90,91,,,Prénom & nom usuel,,,,,,callerName,detailedName,,,,,,0..1,X,detailedName,,
+Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif",témoin de l'accident,freetext,freetext,CH,Profil appelant,,,1.0,0..1,,string,,,X,X,X
+90,91,,,Prénom & nom usuel,,,,,,callerName,detailedName,,,,,,0..1,X,detailedName,,,X,X,X
 91,92,,,,Prénom et nom,,,"Prénom et nom usuel du requérant.
 Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : ""{callerFirstName} {callerLastName}"".
 Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.",Jean Dupont,,complete,AN/AP,"Nom
-Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
-92,93,,,,Nom,,,Nom du requérant,Dupont,,lastName,,,,,,0..1,,string,,
+Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName},X,X,X
+92,93,,,,Nom,,,Nom du requérant,Dupont,,lastName,,,,,,0..1,,string,,,X,X,X
 93,94,,,,Prénom,,,"Prénom du réquérant.
-Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,,firstName,,,,,,0..1,,string,,
-94,95,,Localisation de l'alerte,# Voir createCase.location (type location),,,,Cet élément peut représenter la localisation du requérant si celle-ci diffère de celle de l'événement ou pointer vers la localisation d'accès à l'affaire si elle est confondue avec celle de l'alerte.,,alertLocation,location,AB/AV/AC/AZ,"Particule et nom de voie, nom/code commune",,,,1..1,X,location,,
-95,96,,Qualification,# Voir qualification,,,,Qualification de l'alerte.,,alertCode,qualification,,,,,,1..1,X,qualification,,
-96,97,,Agent,,,,,Objet permettant d'identifer et recontacter l'opérateur ayant traité l'alerte,,callTaker,callTaker,,,,,,1..1,X,callTaker,,
+Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,,firstName,,,,,,0..1,,string,,,X,X,X
+94,95,,Localisation de l'alerte,# Voir createCase.location (type location),,,,Cet élément peut représenter la localisation du requérant si celle-ci diffère de celle de l'événement ou pointer vers la localisation d'accès à l'affaire si elle est confondue avec celle de l'alerte.,,alertLocation,location,AB/AV/AC/AZ,"Particule et nom de voie, nom/code commune",,,,1..1,X,location,,,X,,
+95,96,,Qualification,# Voir qualification,,,,Qualification de l'alerte.,,alertCode,qualification,,,,,,1..1,X,qualification,,,X,,
+96,97,,Agent,,,,,Objet permettant d'identifer et recontacter l'opérateur ayant traité l'alerte,,callTaker,callTaker,,,,,,1..1,X,callTaker,,,X,,
 97,98,,,Service d'urgence,,,,"Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
 Se référer au DSF pour la structure normée des organisations.
-Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",fr.health.samu440,organization,,,,,,,1..1,,string,,
-98,99,,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,,,,,,,1..1,,string,,
-99,100,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,,
-100,101,,,Contact de l'agent,# Voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerURI,calltakerContact,,,,,,0..1,X,contact,,
-101,102,,,ID de l'agent,,,,"Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)",id1234,calltakerId,,O1,Code de l'opérateur ayant pris l'appel,,,,0..1,,string,,
+Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",fr.health.samu440,organization,,,,,,,1..1,,string,,,X,,
+98,99,,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,,,,,,,1..1,,string,,,X,,
+99,100,,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,callTakerRole,role,,,,,,0..1,,string,,,X,,
+100,101,,,Contact de l'agent,# Voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerURI,calltakerContact,,,,,,0..1,X,contact,,,X,,
+101,102,,,ID de l'agent,,,,"Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)",id1234,calltakerId,,O1,Code de l'opérateur ayant pris l'appel,,,,0..1,,string,,,X,,
 102,103,,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
 Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
 
-",,resource,attachment,,,,,,0..n,X,attachment,,
-103,104,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,
-104,105,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,
-105,106,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,
+",,resource,attachment,,,,,,0..n,X,attachment,,,X,,X
+103,104,,,Type ou description pj,,,,"Décrit la ressource en précisant le type et le contenu, tels que «carte» ou «photo»","photo, carte, …",resourceDesc,description,,,,,,0..1,,string,X,,X,,X
+104,105,,,Type MIME,,,,L'identifiant du type MIME de contenu et sous-type décrivant la ressource,"PDF, XML, JPEG, …",mimeType,,,,,,,0..1,,string,,,X,,X
+105,106,,,Taille approximative,,,,Taille approximative de la ressource en kO,"1235, 35, …",size,,,,,,,0..1,,integer,,,X,,X
 106,107,,,URI,,,,"Une URI, généralement une URL, qui permet d'atteindre la ressource sur Internet ou sur un réseau privé
-Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?",https://hub.esante.gouv.fr/resourceExample,URI,,,,,,,1..1,,string,,
-107,108,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,
+Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w-]+(\.[\w-]+)*)(\/[\w\-\.]*)*\/?(\?[^\s]*)?",https://hub.esante.gouv.fr/resourceExample,URI,,,,,,,1..1,,string,,,X,,X
+107,108,,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,,,,,,,0..1,,string,,,X,,X
 108,109,,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
-La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,
-114,115,Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,
-115,116,,ID patient partagé,,,,,"Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
-{ID du dossier partagé}.P{numéro d’ordre chronologique}",fr.health.samu044.DRFR15DDXAAJJJ00000.P00,,id,,,,,,1..1,,string,,
-129,130,,Identité,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,insIdentity,,
-136,137,,,Traits stricts de l'identité,,,,"L’Identité Nationale de Santé (INS) permet de référencer les données de santé avec une identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé.
-Elle est composée : 
- - Du matricule INS (NIR - numéro d’inscription au répertoire national des personnes physiques - ou NIA – numéro identifiant attente - de l’individu). Concrètement, ce numéro correspond au numéro de sécurité sociale pour les ouvrants-droits, c’est-à-dire la très grande majorité des personnes majeures. Pour les autres assurés, ce numéro figure sur leur attestation de sécurité sociale et sera affiché dans l’espace numérique de santé (Mon espace santé) ; 
-- Des cinq traits stricts de référence (nom de naissance, prénom(s) de naissance, date de naissance, sexe, lieu de naissance).",,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,
-140,141,,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,
-141,142,,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
-143,144,,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,
-154,155,,Informations complémentaires sur le patient,,,,,Correspond à la zone de commentaire renseigné par patient créé/identifié,,,freetext,,,,,,0..n,,string,,
-166,167,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,
-167,168,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,id,,,,,,0..1,,string,,
-168,169,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,
-169,170,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPEDEC
-178,179,,Décision de transport/orientation,,,,,,,,transportDetails,,,,,,0..1,X,transportDetails,,
-179,180,,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
-- A transporter
-- Laisser sur place","laissé sur place, décédé, ou transporté",,orientation,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT
-182,183,,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",,teamCare,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN
-183,184,,,Destination,,,,,,,destination,,,,,,0..1,X,destination,,
-184,185,,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,,type,,,,,,0..1,,string,X,"ENUM: Service d’urgences d’un etablissement de sante, Autres services d’un etablissement de sante, Cabinet d’un professionnel de sante, Domicile personnel, EPHAD ou long sejour, Autre"
-185,186,,,,Localisation de la destination,# Voir type location,,,,,location,,,,,,0..1,X,location,,
-186,187,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+La ressource est hashée avec le protocole SHA-256",,digest,,,,,,,0..1,,string,,,X,,X
+187,188,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
-15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,
-187,188,Description de l'affaire/dossier,,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'affaire/dossier. Ces informations sont générales, et ont vocation à être échangées en inter-force. ",Le forcené n'est pas maîtrisé. Voiture renversée. Urgences fermées de 22h à 6h00.,,freetext,,,,,,0..n,,string,,
-188,189,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,
-189,190,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,
-190,191,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,
-191,192,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,
-192,193,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,
-193,194,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,
+15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X,
+188,189,Description de l'affaire/dossier,,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'affaire/dossier. Ces informations sont générales, et ont vocation à être échangées en inter-force. ",Le forcené n'est pas maîtrisé. Voiture renversée. Urgences fermées de 22h à 6h00.,,freetext,,,,,,0..n,,string,,,X,,X
+189,190,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X,X
+190,191,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X,X
+191,192,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X,X
+192,193,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X,X
+193,194,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X,X
+194,195,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X,X

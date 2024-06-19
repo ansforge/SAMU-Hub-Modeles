@@ -1,0 +1,44 @@
+{
+    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
+    "mobilizedResource": [
+        {
+            "dateTime": "None",
+            "resourceID": "fr.health.samu440.DRFR15DDXAAJJJ0000.R01\nfr.health.samu440.VLM16",
+            "RSDRId": "fr.health.samu770.D.1249875",
+            "missionID": "DRFR15DDXAAJJJ0000.M001",
+            "orgID": "fr.health.samu440",
+            "centerName": "CHU Nantes",
+            "resourceType": "SMUR",
+            "vehiculeType": "VLM",
+            "plate": "None",
+            "name": "SMUR 123",
+            "centerCity": 44109,
+            "team": {
+                "teamCare": "None",
+                "name": "None"
+            },
+            "state": [
+                {
+                    "dateTime": "None",
+                    "status": "None",
+                    "availability": "None"
+                }
+            ],
+            "coord": {
+                "lat": "48.866667",
+                "lon": "2.333333",
+                "height": 120,
+                "heading": 96,
+                "speed": 34,
+                "precision": "ADDRESS"
+            },
+            "contact": {
+                "type": "PHNADD",
+                "details": "0671830530"
+            },
+            "freetext": [
+                "None"
+            ]
+        }
+    ]
+}

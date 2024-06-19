@@ -57,11 +57,13 @@ public class Victims {
 
     _1("1"),
 
-    SEVERAL("SEVERAL"),
+    PLUSIEURS("PLUSIEURS"),
 
-    MANY("MANY"),
+    BEAUCOUP("BEAUCOUP"),
 
-    UNKNOWN("UNKNOWN");
+    INCONNU("INCONNU"),
+
+    NON_DEFINI("NON DEFINI");
 
     private String value;
 
@@ -98,11 +100,11 @@ public class Victims {
    * NexSIS.
    */
   public enum MainVictimEnum {
-    INFANT("INFANT"),
+    NOURRISSON("NOURRISSON"),
 
-    CHILD("CHILD"),
+    ENFANT("ENFANT"),
 
-    ADULT("ADULT"),
+    ADULTE("ADULTE"),
 
     SENIOR("SENIOR");
 

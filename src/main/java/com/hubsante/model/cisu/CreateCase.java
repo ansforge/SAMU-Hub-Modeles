@@ -36,9 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.AdditionalInformation;
 import com.hubsante.model.cisu.Alert;
-import com.hubsante.model.cisu.Decision;
 import com.hubsante.model.cisu.Location;
-import com.hubsante.model.cisu.Patient;
 import com.hubsante.model.cisu.Qualification;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -55,8 +53,7 @@ import java.util.Objects;
      CreateCase.JSON_PROPERTY_CREATION,
      CreateCase.JSON_PROPERTY_REFERENCE_VERSION,
      CreateCase.JSON_PROPERTY_QUALIFICATION, CreateCase.JSON_PROPERTY_LOCATION,
-     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_PATIENT,
-     CreateCase.JSON_PROPERTY_DECISION, CreateCase.JSON_PROPERTY_NEW_ALERT,
+     CreateCase.JSON_PROPERTY_INITIAL_ALERT, CreateCase.JSON_PROPERTY_NEW_ALERT,
      CreateCase.JSON_PROPERTY_FREETEXT,
      CreateCase.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCase")
@@ -86,12 +83,6 @@ public class CreateCase {
 
   public static final String JSON_PROPERTY_INITIAL_ALERT = "initialAlert";
   private Alert initialAlert;
-
-  public static final String JSON_PROPERTY_PATIENT = "patient";
-  private List<Patient> patient;
-
-  public static final String JSON_PROPERTY_DECISION = "decision";
-  private List<Decision> decision;
 
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
@@ -279,84 +270,6 @@ public class CreateCase {
     this.initialAlert = initialAlert;
   }
 
-  public CreateCase patient(List<Patient> patient) {
-
-    this.patient = patient;
-    return this;
-  }
-
-  public CreateCase addPatientItem(Patient patientItem) {
-    if (this.patient == null) {
-      this.patient = new ArrayList<>();
-    }
-    this.patient.add(patientItem);
-    return this;
-  }
-
-  /**
-   * Get patient
-   * @return patient
-   **/
-  @JsonProperty(JSON_PROPERTY_PATIENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Patient> getPatient() {
-    return patient;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_PATIENT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPatient(List<Patient> patient) {
-    if (patient == null) {
-      return;
-    }
-    if (this.patient == null) {
-      this.patient = new ArrayList<>();
-    }
-    this.patient.addAll(patient);
-  }
-
-  public CreateCase decision(List<Decision> decision) {
-
-    this.decision = decision;
-    return this;
-  }
-
-  public CreateCase addDecisionItem(Decision decisionItem) {
-    if (this.decision == null) {
-      this.decision = new ArrayList<>();
-    }
-    this.decision.add(decisionItem);
-    return this;
-  }
-
-  /**
-   * Get decision
-   * @return decision
-   **/
-  @JsonProperty(JSON_PROPERTY_DECISION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Decision> getDecision() {
-    return decision;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_DECISION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDecision(List<Decision> decision) {
-    if (decision == null) {
-      return;
-    }
-    if (this.decision == null) {
-      this.decision = new ArrayList<>();
-    }
-    this.decision.addAll(decision);
-  }
-
   public CreateCase newAlert(List<Alert> newAlert) {
 
     this.newAlert = newAlert;
@@ -476,8 +389,6 @@ public class CreateCase {
         Objects.equals(this.qualification, createCase.qualification) &&
         Objects.equals(this.location, createCase.location) &&
         Objects.equals(this.initialAlert, createCase.initialAlert) &&
-        Objects.equals(this.patient, createCase.patient) &&
-        Objects.equals(this.decision, createCase.decision) &&
         Objects.equals(this.newAlert, createCase.newAlert) &&
         Objects.equals(this.freetext, createCase.freetext) &&
         Objects.equals(this.additionalInformation,
@@ -487,8 +398,8 @@ public class CreateCase {
   @Override
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, referenceVersion,
-                        qualification, location, initialAlert, patient,
-                        decision, newAlert, freetext, additionalInformation);
+                        qualification, location, initialAlert, newAlert,
+                        freetext, additionalInformation);
   }
 
   @Override
@@ -510,8 +421,6 @@ public class CreateCase {
     sb.append("    initialAlert: ")
         .append(toIndentedString(initialAlert))
         .append("\n");
-    sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
-    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("    additionalInformation: ")
