@@ -164,12 +164,12 @@
     ],
     "medicalNote": [
         {
-            "idNote": "None",
             "idPat": "None",
             "operator": {
                 "detailedName": {},
                 "role": "ARM, Medecin r\u00e9gulateur\u2026"
             },
+            "idObs": "None",
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None"
         }

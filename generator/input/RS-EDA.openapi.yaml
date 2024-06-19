@@ -287,19 +287,10 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - creation
+      - operator
+      - idObs
       - freetext
       properties:
-        idNote:
-          type: string
-          title: "ID observation partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/medicalNote/0/idNote
-          description: "ID partag\xE9 de la note m\xE9dicale\n{ID du dossier partag\xE9\
-            }.N.{num\xE9ro d\u2019ordre chronologique de la note}"
-          examples:
-          - None
         idPat:
           type: string
           title: "ID patient partag\xE9"
@@ -308,11 +299,20 @@ components:
           example: example.json#/medicalNote/0/idPat
           description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
             \ et est identifi\xE9 dans le syst\xE8me emetteur\n{ID du dossier partag\xE9\
-            }.P{num\xE9ro d\u2019ordre chronologique}"
+            }.P{num\xE9ro d\u2019ordre chronologique unique du patient}"
           examples:
           - None
         operator:
           $ref: '#/components/schemas/operator'
+        idObs:
+          type: string
+          title: ID Observation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalNote/0/idObs
+          description: "{ID du dossier partag\xE9}.N.{id unique de la note}\n"
+          examples:
+          - None
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'interrogatoire"

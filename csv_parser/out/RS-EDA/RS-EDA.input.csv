@@ -131,26 +131,26 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
 152,153,,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,,,X,X
 154,155,,Informations complémentaires sur le patient,,,,,Correspond à la zone de commentaire renseigné par patient créé/identifié,,,freetext,,,,,,0..n,,string,,,,X,X
 155,156,Observations médicales,,,,,,Observations de nature médicale. ,,,medicalNote,,,,,,0..n,X,medicalNote,,,,X,X
-156,157,,ID observation partagé,,,,,"ID partagé de la note médicale
-{ID du dossier partagé}.N.{numéro d’ordre chronologique de la note}",,,idNote,,,,,,0..1,,string,,,,X,
-157,158,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur
-{ID du dossier partagé}.P{numéro d’ordre chronologique}",,,idPat,,,,,,0..1,,string,,,,X,X
-158,159,,Professionnel de santé qui réalise l'interrogatoire,,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,0..1,X,operator,,,,X,X
-159,160,,,Prénom et nom,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,,,X,X
-161,162,,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,X,"ENUM: ARM, MEDECIN, AUTRE",,X,X
-163,164,,Date Heure de création de l'interrogatoire,,,,,Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,,X,X
-164,165,,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
+156,157,,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur
+{ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}",,,idPat,,,,,,0..1,,string,,,,X,X
+157,158,,Professionnel de santé qui réalise l'interrogatoire,,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,1..1,X,operator,,,,X,X
+158,159,,,Prénom et nom,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,,,X,X
+160,161,,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,X,"ENUM: ARM, MEDECIN, AUTRE",,X,X
+161,162,,ID Observation,,,,,"{ID du dossier partagé}.N.{id unique de la note}
+",,,idObs,,,,,,1..1,,string,,,,X,
+162,163,,Date Heure de création de l'interrogatoire,,,,,Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,0..1,,datetime,,,,X,X
+163,164,,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
 Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM",,,freetext,,,,,,1..1,,string,,,,X,X
-168,169,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,,X,X
-169,170,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,idPat,,,,,,0..1,,string,,,,X,X
-170,171,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,,X,X
-171,172,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPEDEC,,X,X
-188,189,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+167,168,Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,,,X,X
+168,169,,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,idPat,,,,,,0..1,,string,,,,X,X
+169,170,,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,,,X,X
+170,171,,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPEDEC,,X,X
+187,188,Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,,X,X,
-190,191,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X,X
-191,192,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X,X
-192,193,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X,X
-193,194,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X,X
-194,195,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X,X
-195,196,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X,X
+189,190,Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,,X,X,X
+190,191,,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,,X,X,X
+191,192,,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,,X,X,X
+192,193,,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,,X,X,X
+193,194,,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,,X,X,X
+194,195,,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,,X,X,X

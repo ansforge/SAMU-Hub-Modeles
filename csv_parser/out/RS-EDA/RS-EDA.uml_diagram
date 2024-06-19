@@ -254,12 +254,12 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	operator -> medicalNote [headlabel=1 taillabel="0..1"]
+	operator -> medicalNote [headlabel=1 taillabel=1]
 	medicalNote [label=<<TABLE>
                 <TR>
                 <TD ><B>medicalNote</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idNote <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealth [headlabel=1 taillabel="0..*"]
 	decision [label=<<TABLE>

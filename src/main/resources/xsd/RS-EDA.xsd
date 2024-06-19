@@ -134,20 +134,20 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
     </complexType>
     <complexType name="medicalNote">
         <sequence>
-            <element minOccurs="0" name="idNote" type="string">
-                <annotation>
-                    <documentation>ID partagé de la note médicale
-{ID du dossier partagé}.N.{numéro d’ordre chronologique de la note}</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="idPat" type="string">
                 <annotation>
                     <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur
-{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
+{ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="operator" type="x:operator"/>
-            <element name="creation" type="dateTime">
+            <element name="operator" type="x:operator"/>
+            <element name="idObs" type="string">
+                <annotation>
+                    <documentation>{ID du dossier partagé}.N.{id unique de la note}
+</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="creation" type="dateTime">
                 <annotation>
                     <documentation>Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
