@@ -132,8 +132,8 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     # Deleting perimeter columns. N.B: dropping a
     # column (obviously) reduces the length df.columns, so we iterate in reverse order
-    for i in reversed(range(0, len(params['perimeterColumns']))):
-        df.drop(df.columns[params['perimeterColumns'][i]], axis=1, inplace=True)
+    for i in sorted(params['perimeterColumns'], reverse=True):
+        df.drop(df.columns[i], axis=1, inplace=True)
 
     # Storing input data in a file to track versions
     # Before storing, we remove the first column (ID), and we also do not want to write line index to the file,
