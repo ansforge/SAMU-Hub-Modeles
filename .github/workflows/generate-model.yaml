@@ -92,28 +92,28 @@ jobs:
       - name: Install linter
         run: sudo apt install -y clang-format
 
-#      - name: Generate Java classes
-#        working-directory: ./generator
-#        run: |
-#          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.generator-config.json --skip-validate-spec
-#          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distributionElement.generator-config.json --skip-validate-spec
-#
-#          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
-#          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
-#            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
-#            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
-#            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
-#          done
-#
-#      - name: Replace src/ with generated classes
-#        run: |
-#          rm -r ./src/main/java/com/hubsante/model/rcde || true
-#          rm -r ./src/main/java/com/hubsante/model/cisu || true
-#          rm -r ./src/main/java/com/hubsante/model/health || true
-#          rm -r ./src/main/java/com/hubsante/model/emsi || true
-#          rm -r ./src/main/java/com/hubsante/model/geolocation || true
-#          rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
-#          cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
+      - name: Generate Java classes
+        working-directory: ./generator
+        run: |
+          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.generator-config.json --skip-validate-spec
+          npx @openapitools/openapi-generator-cli generate -c ./config/RC-DE/RC-DE.distributionElement.generator-config.json --skip-validate-spec
+
+          IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
+          for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.generator-config.json --skip-validate-spec
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.usecase.generator-config.json --skip-validate-spec
+            npx @openapitools/openapi-generator-cli generate -c ./config/$SCHEMA/$SCHEMA.wrapper.generator-config.json --skip-validate-spec
+          done
+
+      - name: Replace src/ with generated classes
+        run: |
+          rm -r ./src/main/java/com/hubsante/model/rcde || true
+          rm -r ./src/main/java/com/hubsante/model/cisu || true
+          rm -r ./src/main/java/com/hubsante/model/health || true
+          rm -r ./src/main/java/com/hubsante/model/emsi || true
+          rm -r ./src/main/java/com/hubsante/model/geolocation || true
+          rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
+          cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
       - name: Grant execute permission for Gradlew
         run: chmod +x ./gradlew
