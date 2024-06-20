@@ -121,11 +121,9 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
-      - name: Gradle build without tests
-        run: ./gradlew build -x test
-
       - name: Generate XML files
         run: |
+          gradlew shadowJar
           mkdir -p com/hubsante/model
           echo '
           package com.hubsante.model;
@@ -137,8 +135,9 @@ jobs:
             }       
           }
           ' > com/hubsante/model/TempMain.java
-          javac -cp build/libs/models-2-0.5.1-SNAPSHOT.jar com/hubsante/model/TempMain.java
-          java -cp .:build/libs/models-2-0.5.1-SNAPSHOT.jar com.hubsante.model.TempMain
+          JAR_FILE=$(find build/libs -name "*.jar" -print -quit)
+          javac -cp "$JAR_FILE" com/hubsante/model/TempMain.java
+          java -cp .:"$JAR_FILE" com.hubsante.model.TempMain
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
