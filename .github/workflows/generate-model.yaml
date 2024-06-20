@@ -135,7 +135,7 @@ jobs:
           JAR_FILE=$(find build/libs -name "*.jar" -print -quit)
           javac -cp "$JAR_FILE" TempMain.java
           java -cp .:"$JAR_FILE" TempMain
-          rm TempMain.java
+          rm TempMain
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
