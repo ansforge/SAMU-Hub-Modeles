@@ -136,6 +136,7 @@ jobs:
           javac -cp "$JAR_FILE" XmlGenerator.java
           java -cp .:"$JAR_FILE" XmlGenerator
           rm XmlGenerator.java
+          rm XmlGenerator.class
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
