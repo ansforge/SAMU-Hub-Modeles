@@ -1,1 +1,11 @@
-<?xml version='1.0' encoding='UTF-8'?><ReferenceWrapper xmlns="urn:emergency:cisu:2.0"><messageId/><sender/><sentAt/><kind/><status/><reference xmlns="urn:emergency:cisu:2.0:reference"><distributionID>samuB_2607723d-507d-4cbf-bf74-12345f7064cd</distributionID></reference></ReferenceWrapper>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ReferenceWrapper xmlns="urn:emergency:cisu:2.0">
+  <messageId/>
+  <sender/>
+  <sentAt/>
+  <kind/>
+  <status/>
+  <reference xmlns="urn:emergency:cisu:2.0:reference">
+    <distributionID>samuB_2607723d-507d-4cbf-bf74-12345f7064cd</distributionID>
+  </reference>
+</ReferenceWrapper>

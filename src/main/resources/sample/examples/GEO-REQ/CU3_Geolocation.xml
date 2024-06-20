@@ -1,1 +1,14 @@
-<?xml version='1.0' encoding='UTF-8'?><GeoResourcesRequestWrapper xmlns="urn:emergency:cisu:2.0"><messageId/><sender/><sentAt/><kind/><status/><geoResourcesRequest xmlns="urn:emergency:cisu:2.0:geoResourcesRequest"><resourceId>76_45101#SMUR1#</resourceId><resourceId>76_45102#SMUR2#</resourceId><resourceId>76_45103#SMUR4#</resourceId><resourceId>14_45103#SMUR3#</resourceId></geoResourcesRequest></GeoResourcesRequestWrapper>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<GeoResourcesRequestWrapper xmlns="urn:emergency:cisu:2.0">
+  <messageId/>
+  <sender/>
+  <sentAt/>
+  <kind/>
+  <status/>
+  <geoResourcesRequest xmlns="urn:emergency:cisu:2.0:geoResourcesRequest">
+    <resourceId>76_45101#SMUR1#</resourceId>
+    <resourceId>76_45102#SMUR2#</resourceId>
+    <resourceId>76_45103#SMUR4#</resourceId>
+    <resourceId>14_45103#SMUR3#</resourceId>
+  </geoResourcesRequest>
+</GeoResourcesRequestWrapper>
