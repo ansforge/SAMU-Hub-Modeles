@@ -124,7 +124,6 @@ jobs:
       - name: Generate XML files
         run: |
           ./gradlew shadowJar
-          mkdir -p com/hubsante/model
           echo '
           package com.hubsante.model;
           
@@ -134,11 +133,11 @@ jobs:
               xmlGenerationHelper.generateXmlFiles();
             }       
           }
-          ' > xml_generation/TempMain.java
+          ' > TempMain.java
           JAR_FILE=$(find build/libs -name "*.jar" -print -quit)
-          javac -cp "$JAR_FILE" com/hubsante/model/TempMain.java
-          java -cp .:"$JAR_FILE" com.hubsante.model.TempMain
-          rm -rf xml_generation
+          javac -cp "$JAR_FILE" TempMain.java
+          java -cp .:"$JAR_FILE" TempMain
+          rm TempMain.java
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
