@@ -127,7 +127,7 @@ jobs:
           echo '
           public class TempMain {
             public static void main(String[] args) throws Exception {
-              XmlGenerationHelper xmlGenerationHelper = new XmlGenerationHelper();
+              com.hubsante.model.XmlGenerationHelper xmlGenerationHelper = new com.hubsante.model.XmlGenerationHelper();
               xmlGenerationHelper.generateXmlFiles();
             }       
           }
