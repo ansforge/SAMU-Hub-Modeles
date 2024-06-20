@@ -124,7 +124,7 @@ jobs:
       - name: Generate XML files
         run: |
           ./gradlew shadowJar
-          mkdir -p xml_generation
+          mkdir -p com/hubsante/model
           echo '
           package com.hubsante.model;
           
@@ -136,8 +136,8 @@ jobs:
           }
           ' > xml_generation/TempMain.java
           JAR_FILE=$(find build/libs -name "*.jar" -print -quit)
-          javac -cp "$JAR_FILE" xml_generation/TempMain.java
-          java -cp .:"$JAR_FILE" xml_generation.TempMain
+          javac -cp "$JAR_FILE" com/hubsante/model/TempMain.java
+          java -cp .:"$JAR_FILE" com.hubsante.model.TempMain
           rm -rf xml_generation
 
       - name: Commit and push changes
