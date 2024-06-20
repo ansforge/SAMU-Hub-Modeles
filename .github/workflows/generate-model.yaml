@@ -125,17 +125,17 @@ jobs:
         run: |
           ./gradlew shadowJar
           echo '
-          public class TempMain {
+          public class XmlGenerator {
             public static void main(String[] args) throws Exception {
               com.hubsante.model.XmlGenerationHelper xmlGenerationHelper = new com.hubsante.model.XmlGenerationHelper();
               xmlGenerationHelper.generateXmlFiles();
             }       
           }
-          ' > TempMain.java
+          ' > XmlGenerator.java
           JAR_FILE=$(find build/libs -name "*.jar" -print -quit)
-          javac -cp "$JAR_FILE" TempMain.java
-          java -cp .:"$JAR_FILE" TempMain
-          rm TempMain
+          javac -cp "$JAR_FILE" XmlGenerator.java
+          java -cp .:"$JAR_FILE" XmlGenerator
+          rm XmlGenerator.java
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
