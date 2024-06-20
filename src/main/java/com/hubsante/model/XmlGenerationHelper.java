@@ -32,7 +32,7 @@ public class XmlGenerationHelper {
         contentMessageHandler = new ContentMessageHandler();
     }
 
-    public void generateXmls() {
+    public void generateXmlFiles() {
         Path examplesDir = Paths.get("src/main/resources/sample/examples");
 
         try (
