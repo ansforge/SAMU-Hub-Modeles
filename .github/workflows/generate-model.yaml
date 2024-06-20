@@ -121,6 +121,30 @@ jobs:
       - name: Apply license
         run: ./gradlew licenseFormat
 
+      - name: Gradle build without tests
+        run: ./gradlew build -x test
+
+      - name: Generate XML files
+        run: |
+          echo '
+          package com.hubsante.model;
+          
+          import java.nio.file.*;
+          import java.io.IOException;
+          import java.util.List;
+          import java.util.stream.Collectors;
+          import java.util.stream.Stream;
+          
+          public class TempMain {
+            public static void main(String[] args) throws Exception {
+              XmlGenerationHelper xmlGenerationHelper = new XmlGenerationHelper();
+              xmlGenerationHelper.generateXmlFiles();
+            }       
+          }
+          ' > TempMain.java
+          javac -cp :build/libs/models-2-0.5.1-SNAPSHOT.jar TempMain.java
+          java -cp .:build/libs/models-2-0.5.1-SNAPSHOT.jar TempMain
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
