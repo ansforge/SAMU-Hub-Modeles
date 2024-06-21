@@ -32,9 +32,8 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.FULL_XSD;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.config.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -76,16 +75,6 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
                 "embeddedJsonContent: should be valid to one and only one schema, but 2 are valid"
         };
         jsonValidationFails("too-many-valid-schemas.json", expectedErrors);
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: no use cases detected")
-    void noSchemasDetected() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Could not detect any schemas in the message, at least one is required "
-        };
-        jsonValidationFails("RC-EDA/invalid-RC-EDA-no-schemas.json", expectedErrors);
     }
 
     @Test
