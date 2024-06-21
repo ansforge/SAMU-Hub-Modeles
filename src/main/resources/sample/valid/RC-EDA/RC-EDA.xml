@@ -1,0 +1,207 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<edxlDistribution xlink:type="extended"
+                  xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
+                  xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0"
+                  xmlns:xlink="http://www.w3.org/1999/xlink">
+    <distributionID>fr.health.samuB_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
+    <senderID>fr.health.samuB</senderID>
+    <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
+    <dateTimeExpires>2072-07-25T10:04:34+01:00</dateTimeExpires>
+    <distributionStatus>Actual</distributionStatus>
+    <distributionKind>Report</distributionKind>
+    <descriptor xlink:type="resource">
+        <language>fr-FR</language>
+        <explicitAddress>
+            <explicitAddressScheme>hubex</explicitAddressScheme>
+            <explicitAddressValue>fr.health.samuA</explicitAddressValue>
+        </explicitAddress>
+    </descriptor>
+    <content>
+        <contentObject xlink:type="resource">
+            <contentXML>
+                <embeddedXMLContent>
+                    <message xmlns="urn:emergency:cisu:2.0">
+                        <messageId>messageId</messageId>
+                        <sender>
+                            <name>samuB</name>
+                            <URI>hubex:fr.health.samuB</URI>
+                        </sender>
+                        <sentAt>2022-07-25T10:04:34+01:00</sentAt>
+                        <kind>Report</kind>
+                        <status>Actual</status>
+                        <recipient>
+                            <name>samuA</name>
+                            <URI>hubex:fr.health.samuA</URI>
+                        </recipient>
+                        <createCase xmlns="urn:emergency:cisu:2.0:createCase">
+                            <caseId>fr.health.samu690.DRFR15690240430050</caseId>
+                            <senderCaseId>DRFR15690240430050</senderCaseId>
+                            <creation>2023-11-03T10:03:00+01:00</creation>
+                            <referenceVersion>1.3</referenceVersion>
+                            <qualification>
+                                <whatsHappen>
+                                    <code>C01.01.04</code>
+                                    <label>2-roues</label>
+                                </whatsHappen>
+                                <riskThreat>
+                                    <code>R22</code>
+                                    <label>Gêne à la circulation</label>
+                                </riskThreat>
+                                <riskThreat>
+                                    <code>R23</code>
+                                    <label>Second risque</label>
+                                </riskThreat>
+                                <victims>
+                                    <count>SEVERAL</count>
+                                    <mainVictim>ADULT</mainVictim>
+                                    <freetext>Deuxième victime présente saignements et brûlures legères aux mains et genoux</freetext>
+                                </victims>
+                            </qualification>
+                            <location>
+                                <locID>111fb03a-6fd9-41e0-8e81-990c45188887</locID>
+                                <locLabel>8 quai des Célestins - 69002 Lyon</locLabel>
+                                <name>Quai des Célestins</name>
+                                <externalLocationId>
+                                    <source>FINESS administratif</source>
+                                    <value>'920000650</value>
+                                </externalLocationId>
+                                <detailedAddress>
+                                    <complete>8 quai des Célestins</complete>
+                                    <number>8</number>
+                                    <wayName>
+                                        <complete>quai des Célestins</complete>
+                                        <type>Quai</type>
+                                        <name>des Célestins</name>
+                                    </wayName>
+                                </detailedAddress>
+                                <city>
+                                    <name>Lyon</name>
+                                    <inseeCode>69382</inseeCode>
+                                    <detail>Quartier Melun Nord</detail>
+                                </city>
+                                <access>
+                                    <floor>RDC</floor>
+                                    <roomNumber>A16</roomNumber>
+                                    <interphone>Dupont</interphone>
+                                    <accessCode>1234A</accessCode>
+                                    <accessCode>4321B</accessCode>
+                                    <elevator>C3</elevator>
+                                    <buildingName>Batiment B</buildingName>
+                                    <entrance>Zone Sud</entrance>
+                                    <entity>Infirmerie</entity>
+                                </access>
+                                <geometry>
+                                    <obsDatime>2023-11-03T10:04:00+01:00</obsDatime>
+                                    <point>
+                                        <coord>
+                                            <lat>48.866667</lat>
+                                            <lon>2.333333</lon>
+                                            <height>168</height>
+                                            <heading>96</heading>
+                                            <speed>34</speed>
+                                            <precision>ADDRESS</precision>
+                                        </coord>
+                                        <sysCoord>EPSG-4326</sysCoord>
+                                    </point>
+                                    <sketch>None</sketch>
+                                </geometry>
+                                <externalInfo>
+                                    <freetext>BAN</freetext>
+                                    <type>MANUAL</type>
+                                    <uri>id987</uri>
+                                </externalInfo>
+                                <country>FR</country>
+                                <freetext>Clé derrière le pot de fleur</freetext>
+                            </location>
+                            <initialAlert>
+                                <id>samu690-20231103-AL01234</id>
+                                <reception>2023-11-03T10:02:00+01:00</reception>
+                                <reporting>STANDARD</reporting>
+                                <notes>
+                                    <creation>2023-11-03T10:02:00+01:00</creation>
+                                    <freetext>Accident entre une voiture et un vélo</freetext>
+                                </notes>
+                                <caller>
+                                    <callerContact>
+                                        <channel>Personne</channel>
+                                        <type>PHNADD</type>
+                                        <detail>0607080901</detail>
+                                    </callerContact>
+                                    <callbackContact>
+                                        <channel>Personne</channel>
+                                        <type>PHNADD</type>
+                                        <detail>0607080901</detail>
+                                    </callbackContact>
+                                    <language>FR</language>
+                                    <freetext>épouse de la victime</freetext>
+                                    <detailedName>
+                                        <complete>Albane Armaury</complete>
+                                        <lastName>Armaury</lastName>
+                                        <firstName>Albane</firstName>
+                                    </detailedName>
+                                </caller>
+                                <location>
+                                    <locID>111fb03a-6fd9-41e0-8e81-990c45188887</locID>
+                                    <name>Quai des Célestins</name>
+                                    <country>FR</country>
+                                </location>
+                                <qualification>
+                                    <whatsHappen>
+                                        <code>C01.01.04</code>
+                                        <label>2-roues</label>
+                                    </whatsHappen>
+                                </qualification>
+                                <callTaker>
+                                    <organization>fr.health.samu690</organization>
+                                    <controlRoom>CRRA 690</controlRoom>
+                                    <role>ARM</role>
+                                    <calltakerContact>
+                                        <channel>Personne</channel>
+                                        <type>PHNADD</type>
+                                        <detail>0607080901</detail>
+                                    </calltakerContact>
+                                    <calltakerId>id1234</calltakerId>
+                                </callTaker>
+                                <attachment>
+                                    <description>photo</description>
+                                    <mimeType>JPEG</mimeType>
+                                    <size>1235</size>
+                                    <URI>https://hub.esante.gouv.fr/resourceExample</URI>
+                                    <derefURI>None</derefURI>
+                                    <digest>None</digest>
+                                </attachment>
+                            </initialAlert>
+                            <patient>
+                                <id>fr.health.samu690.DRFR15690240430050.P01</id>
+                                <identity>
+                                    <strictFeatures>
+                                        <birthDate>1981-01-01</birthDate>
+                                        <sex>MASC</sex>
+                                    </strictFeatures>
+                                    <nonStrictFeatures>
+                                        <complete>Alexandre Armaury</complete>
+                                        <lastName>Armaury</lastName>
+                                        <firstName>Alexandre</firstName>
+                                    </nonStrictFeatures>
+                                </identity>
+                            </patient>
+                            <decision>
+                                <creation>2023-11-03T10:05:00+01:00</creation>
+                                <type>INTER</type>
+                            </decision>
+                            <freetext>None</freetext>
+                            <additionalInformation>
+                                <customMap>
+                                    <key>neighborhood</key>
+                                    <label>Quartier</label>
+                                    <value>LYON 2e arrondissement</value>
+                                    <freetext>Précision sur le quartier d'intervention</freetext>
+                                </customMap>
+                            </additionalInformation>
+                        </createCase>
+                    </message>
+                </embeddedXMLContent>
+            </contentXML>
+        </contentObject>
+    </content>
+</edxlDistribution>

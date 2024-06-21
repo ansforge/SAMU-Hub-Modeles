@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<edxlDistribution xlink:type="extended" xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0">
+    <distributionID>fr.health.hub_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
+    <senderID>fr.health.hub</senderID>
+    <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
+    <dateTimeExpires>2072-07-25T10:04:34+01:00</dateTimeExpires>
+    <distributionStatus>Actual</distributionStatus>
+    <distributionKind>Report</distributionKind>
+    <descriptor xlink:type="resource">
+        <language>fr-FR</language>
+        <explicitAddress>
+            <explicitAddressScheme>hubex</explicitAddressScheme>
+            <explicitAddressValue>fr.health.samuA</explicitAddressValue>
+        </explicitAddress>
+    </descriptor>
+    <content xlink:type="resource">
+        <contentObject xlink:type="resource">
+            <contentXML>
+                <embeddedXMLContent>
+                    <message xmlns="urn:emergency:cisu:2.0">
+                        <messageId>fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea</messageId>
+                        <sender>
+                            <name>samuA</name>
+                            <URI>hubex:fr.health.samuA</URI>
+                        </sender>
+                        <sentAt>2022-07-25T10:04:34+01:00</sentAt>
+                        <kind>Report</kind>
+                        <status>Actual</status>
+                        <recipient>
+                            <name>samuB</name>
+                            <URI>hubex:fr.health.samuB</URI>
+                        </recipient>
+                        <geoPositionsUpdate xmlns="urn:emergency:cisu:2.0:geoPositionsUpdate">
+                            <position>
+                                <id>76_45101#SMUR1#</id>
+                                <datetime>2024-01-27T08:44:00+02:00</datetime>
+                                <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
+                                <coord>
+                                    <lat>49.464944</lat>
+                                    <lon>1.097341</lon>
+                                </coord>
+                                <move>STATIQUE</move>
+                                <engineOn>false</engineOn>
+                                <status>DISPONIBLE</status>
+                            </position>
+                            <position>
+                                <id>76_45102#SMUR2#</id>
+                                <datetime>2024-01-27T08:43:00+02:00</datetime>
+                                <receptionDatetime>2024-01-27T08:45:00+02:00</receptionDatetime>
+                                <coord>
+                                    <lat>49.428421</lat>
+                                    <lon>1.086735</lon>
+                                </coord>
+                                <move>STATIQUE</move>
+                                <engineOn>true</engineOn>
+                                <status>INDISPONIBLE</status>
+                                <engagedStatus>ARRIVEE_LIEU</engagedStatus>
+                            </position>
+                            <position>
+                                <id>76_45104#SMUR4#</id>
+                                <datetime>2024-01-27T08:46:00+02:00</datetime>
+                                <receptionDatetime>2024-01-27T08:48:00+02:00</receptionDatetime>
+                                <coord>
+                                    <lat>49.448681</lat>
+                                    <lon>1.072659</lon>
+                                </coord>
+                                <move>MOBILE</move>
+                                <engineOn>false</engineOn>
+                                <status>INDISPONIBLE</status>
+                            </position>
+                        </geoPositionsUpdate>
+                    </message>
+                </embeddedXMLContent>
+            </contentXML>
+        </contentObject>
+    </content>
+</edxlDistribution>
