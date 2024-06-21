@@ -20,7 +20,6 @@ import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -33,11 +32,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.stream.Collectors;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
-import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -84,16 +82,21 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
         files.forEach(file -> {
             try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                // We wrap the use case message in a full json message, except for messages which do not
-                // require RC-DE header
-                String fullJson;
-                if ( Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains) )
-                    fullJson = wrapUseCaseMessageWithoutDistributionElement(useCaseJson);
-                else
-                    fullJson = wrapUseCaseMessage(useCaseJson);
+                if(file.getName().endsWith(".json")) {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    // We wrap the use case message in a full json message, except for messages which do not
+                    // require RC-DE header
+                    String fullJson;
+                    if (Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains))
+                        fullJson = wrapUseCaseMessageWithoutDistributionElement(useCaseJson);
+                    else
+                        fullJson = wrapUseCaseMessage(useCaseJson);
 
-                converter.deserializeJsonEDXL(fullJson);
+                    converter.deserializeJsonEDXL(fullJson);
+                } else {
+                    String useCaseXml = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    converter.deserializeXmlEDXL(useCaseXml);
+                }
                 log.info("File {} has been successfully deserialized", file.getName());
 
             }catch (JsonProcessingException e) {

@@ -15,7 +15,7 @@
  */
 package com.hubsante.model;
 
-import com.hubsante.model.edxl.ContentMessage;
+import com.hubsante.model.edxl.EdxlMessage;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
@@ -32,12 +32,20 @@ import java.io.StringWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
+
 public class XmlGenerationHelper {
     ContentMessageHandler contentMessageHandler = new ContentMessageHandler();
+    EdxlHandler edxlHandler = new EdxlHandler();
+    private static final String[] useCasesWithNoRcDe = {
+            "RS-ERROR"
+    };
 
     public XmlGenerationHelper() {
         contentMessageHandler = new ContentMessageHandler();
@@ -64,8 +72,12 @@ public class XmlGenerationHelper {
 
     private void convertJsonToXml(Path jsonFile) throws IOException {
         String json = new String(Files.readAllBytes(jsonFile));
-        ContentMessage deserializedMessage = contentMessageHandler.deserializeJsonContentMessage(json);
-        String xml = contentMessageHandler.serializeXmlContentMessage(deserializedMessage);
+        if (Arrays.stream(useCasesWithNoRcDe).anyMatch(jsonFile.toString()::contains))
+            json = wrapUseCaseMessageWithoutDistributionElement(json);
+        else
+            json = wrapUseCaseMessage(json);
+        EdxlMessage deserializedMessage = edxlHandler.deserializeJsonEDXL(json);
+        String xml = edxlHandler.serializeXmlEDXL(deserializedMessage);
         xml = prettifyXml(xml);
         Path xmlFile = Paths.get(jsonFile.toString().replace(".json", ".xml"));
         Files.write(xmlFile, xml.getBytes());

@@ -32,9 +32,9 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.config.Constants.FULL_XSD;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -143,10 +143,15 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
 
         exampleFiles.forEach(file -> {
             try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+                if (file.getName().endsWith(".json")) {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                validator.validateJSON(fullJson, FULL_SCHEMA);
+                    validator.validateJSON(fullJson, FULL_SCHEMA);
+                } else {
+                    String useCaseXml = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    validator.validateXML(useCaseXml, FULL_XSD);
+                }
                 log.info("File {} is valid against schema", file.getName());
 
             } catch (IOException e) {
