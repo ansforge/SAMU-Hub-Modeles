@@ -281,11 +281,11 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             <element minOccurs="0" name="type">
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="Service d’urgences d’un Etablissement de sante"/>
-                        <enumeration value="Autres services d’un établissement de sante"/>
+                        <enumeration value="Service d’urgences d’un etablissement de sante"/>
+                        <enumeration value="Autres services d’un etablissement de sante"/>
                         <enumeration value="Cabinet d’un professionnel de sante"/>
                         <enumeration value="Domicile personnel"/>
-                        <enumeration value="EPHAD ou long séjour"/>
+                        <enumeration value="EPHAD ou long sejour"/>
                         <enumeration value="Autre"/>
                     </restriction>
                 </simpleType>

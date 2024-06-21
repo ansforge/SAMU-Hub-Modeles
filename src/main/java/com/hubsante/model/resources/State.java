@@ -89,7 +89,7 @@ public class State {
   }
 
   /**
-   * Statuts Antares
+   * Dernier statut du vecteur
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)

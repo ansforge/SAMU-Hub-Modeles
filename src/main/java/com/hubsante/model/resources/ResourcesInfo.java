@@ -45,7 +45,7 @@ import java.util.Objects;
  * ResourcesInfo
  */
 @JsonPropertyOrder({ResourcesInfo.JSON_PROPERTY_CASE_ID,
-                    ResourcesInfo.JSON_PROPERTY_MOBILIZED_RESOURCES})
+                    ResourcesInfo.JSON_PROPERTY_MOBILIZED_RESOURCE})
 @JsonTypeName("resourcesInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -55,9 +55,9 @@ public class ResourcesInfo {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
-  public static final String JSON_PROPERTY_MOBILIZED_RESOURCES =
-      "mobilizedResources";
-  private List<Resource> mobilizedResources;
+  public static final String JSON_PROPERTY_MOBILIZED_RESOURCE =
+      "mobilizedResource";
+  private List<Resource> mobilizedResource = new ArrayList<>();
 
   public ResourcesInfo() {}
 
@@ -89,44 +89,44 @@ public class ResourcesInfo {
     this.caseId = caseId;
   }
 
-  public ResourcesInfo mobilizedResources(List<Resource> mobilizedResources) {
+  public ResourcesInfo mobilizedResource(List<Resource> mobilizedResource) {
 
-    this.mobilizedResources = mobilizedResources;
+    this.mobilizedResource = mobilizedResource;
     return this;
   }
 
   public ResourcesInfo
-  addMobilizedResourcesItem(Resource mobilizedResourcesItem) {
-    if (this.mobilizedResources == null) {
-      this.mobilizedResources = new ArrayList<>();
+  addMobilizedResourceItem(Resource mobilizedResourceItem) {
+    if (this.mobilizedResource == null) {
+      this.mobilizedResource = new ArrayList<>();
     }
-    this.mobilizedResources.add(mobilizedResourcesItem);
+    this.mobilizedResource.add(mobilizedResourceItem);
     return this;
   }
 
   /**
-   * Get mobilizedResources
-   * @return mobilizedResources
+   * Get mobilizedResource
+   * @return mobilizedResource
    **/
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Resource> getMobilizedResources() {
-    return mobilizedResources;
+  public List<Resource> getMobilizedResource() {
+    return mobilizedResource;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMobilizedResources(List<Resource> mobilizedResources) {
-    if (mobilizedResources == null) {
+  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setMobilizedResource(List<Resource> mobilizedResource) {
+    if (mobilizedResource == null) {
       return;
     }
-    if (this.mobilizedResources == null) {
-      this.mobilizedResources = new ArrayList<>();
+    if (this.mobilizedResource == null) {
+      this.mobilizedResource = new ArrayList<>();
     }
-    this.mobilizedResources.addAll(mobilizedResources);
+    this.mobilizedResource.addAll(mobilizedResource);
   }
 
   @Override
@@ -139,13 +139,12 @@ public class ResourcesInfo {
     }
     ResourcesInfo resourcesInfo = (ResourcesInfo)o;
     return Objects.equals(this.caseId, resourcesInfo.caseId) &&
-        Objects.equals(this.mobilizedResources,
-                       resourcesInfo.mobilizedResources);
+        Objects.equals(this.mobilizedResource, resourcesInfo.mobilizedResource);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, mobilizedResources);
+    return Objects.hash(caseId, mobilizedResource);
   }
 
   @Override
@@ -153,8 +152,8 @@ public class ResourcesInfo {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourcesInfo {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    mobilizedResources: ")
-        .append(toIndentedString(mobilizedResources))
+    sb.append("    mobilizedResource: ")
+        .append(toIndentedString(mobilizedResource))
         .append("\n");
     sb.append("}");
     return sb.toString();

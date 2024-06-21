@@ -43,8 +43,9 @@ import java.util.Objects;
  * Request
  */
 @JsonPropertyOrder(
-    {Request.JSON_PROPERTY_DATE_TIME, Request.JSON_PROPERTY_ANSWER,
-     Request.JSON_PROPERTY_DEADLINE, Request.JSON_PROPERTY_FREETEXT})
+    {Request.JSON_PROPERTY_DATE_TIME, Request.JSON_PROPERTY_CONVENTION,
+     Request.JSON_PROPERTY_DEADLINE, Request.JSON_PROPERTY_PURPOSE,
+     Request.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("request")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -52,11 +53,87 @@ public class Request {
   public static final String JSON_PROPERTY_DATE_TIME = "dateTime";
   private OffsetDateTime dateTime;
 
-  public static final String JSON_PROPERTY_ANSWER = "answer";
-  private String answer;
+  public static final String JSON_PROPERTY_CONVENTION = "convention";
+  private String convention;
 
   public static final String JSON_PROPERTY_DEADLINE = "deadline";
   private String deadline;
+
+  /**
+   * Motif de la demande de ressource auprès du partenaire
+   */
+  public enum PurposeEnum {
+    E01("E01"),
+
+    E02("E02"),
+
+    E03("E03"),
+
+    E04("E04"),
+
+    E05("E05"),
+
+    E06("E06"),
+
+    E07("E07"),
+
+    E08("E08"),
+
+    E09("E09"),
+
+    E10("E10"),
+
+    E11("E11"),
+
+    E12("E12"),
+
+    E13("E13"),
+
+    E14("E14"),
+
+    E15("E15"),
+
+    E16("E16"),
+
+    E17("E17"),
+
+    E18("E18"),
+
+    E19("E19"),
+
+    E20("E20"),
+
+    E21("E21"),
+
+    E22("E22");
+
+    private String value;
+
+    PurposeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PurposeEnum fromValue(String value) {
+      for (PurposeEnum b : PurposeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PURPOSE = "purpose";
+  private PurposeEnum purpose;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
@@ -86,27 +163,27 @@ public class Request {
     this.dateTime = dateTime;
   }
 
-  public Request answer(String answer) {
+  public Request convention(String convention) {
 
-    this.answer = answer;
+    this.convention = convention;
     return this;
   }
 
   /**
-   * oui / non / oui partiel / différé
-   * @return answer
+   * Nomenclature ?
+   * @return convention
    **/
-  @JsonProperty(JSON_PROPERTY_ANSWER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonProperty(JSON_PROPERTY_CONVENTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getAnswer() {
-    return answer;
+  public String getConvention() {
+    return convention;
   }
 
-  @JsonProperty(JSON_PROPERTY_ANSWER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAnswer(String answer) {
-    this.answer = answer;
+  @JsonProperty(JSON_PROPERTY_CONVENTION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setConvention(String convention) {
+    this.convention = convention;
   }
 
   public Request deadline(String deadline) {
@@ -116,7 +193,7 @@ public class Request {
   }
 
   /**
-   * Indique le délai de réponse auquel s&#39;engage l&#39;expéditeur
+   * Délai d&#39;intervention souhaité
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)
@@ -132,6 +209,29 @@ public class Request {
     this.deadline = deadline;
   }
 
+  public Request purpose(PurposeEnum purpose) {
+
+    this.purpose = purpose;
+    return this;
+  }
+
+  /**
+   * Motif de la demande de ressource auprès du partenaire
+   * @return purpose
+   **/
+  @JsonProperty(JSON_PROPERTY_PURPOSE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public PurposeEnum getPurpose() {
+    return purpose;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PURPOSE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPurpose(PurposeEnum purpose) {
+    this.purpose = purpose;
+  }
+
   public Request freetext(String freetext) {
 
     this.freetext = freetext;
@@ -139,7 +239,7 @@ public class Request {
   }
 
   /**
-   * Commentaire libre pour apporter toutes précisions utiles à la réponse
+   * Texte libre permettant de détailler la demande
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
@@ -165,14 +265,15 @@ public class Request {
     }
     Request request = (Request)o;
     return Objects.equals(this.dateTime, request.dateTime) &&
-        Objects.equals(this.answer, request.answer) &&
+        Objects.equals(this.convention, request.convention) &&
         Objects.equals(this.deadline, request.deadline) &&
+        Objects.equals(this.purpose, request.purpose) &&
         Objects.equals(this.freetext, request.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateTime, answer, deadline, freetext);
+    return Objects.hash(dateTime, convention, deadline, purpose, freetext);
   }
 
   @Override
@@ -180,8 +281,11 @@ public class Request {
     StringBuilder sb = new StringBuilder();
     sb.append("class Request {\n");
     sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
-    sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
+    sb.append("    convention: ")
+        .append(toIndentedString(convention))
+        .append("\n");
     sb.append("    deadline: ").append(toIndentedString(deadline)).append("\n");
+    sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();

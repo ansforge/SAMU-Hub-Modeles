@@ -34,8 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.EngagementDetails;
-import com.hubsante.model.health.TransportDetails;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -44,16 +42,15 @@ import java.util.Objects;
 /**
  * Decision
  */
-@JsonPropertyOrder({Decision.JSON_PROPERTY_ID, Decision.JSON_PROPERTY_CREATION,
-                    Decision.JSON_PROPERTY_TYPE,
-                    Decision.JSON_PROPERTY_ENGAGEMENT_DETAILS,
-                    Decision.JSON_PROPERTY_TRANSPORT_DETAILS})
+@JsonPropertyOrder({Decision.JSON_PROPERTY_ID_PAT,
+                    Decision.JSON_PROPERTY_CREATION,
+                    Decision.JSON_PROPERTY_TYPE})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Decision {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_ID_PAT = "idPat";
+  private String idPat;
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
@@ -100,38 +97,30 @@ public class Decision {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_ENGAGEMENT_DETAILS =
-      "engagementDetails";
-  private EngagementDetails engagementDetails;
-
-  public static final String JSON_PROPERTY_TRANSPORT_DETAILS =
-      "transportDetails";
-  private TransportDetails transportDetails;
-
   public Decision() {}
 
-  public Decision id(String id) {
+  public Decision idPat(String idPat) {
 
-    this.id = id;
+    this.idPat = idPat;
     return this;
   }
 
   /**
    * ID partagé du patient concerné par la décision, lorsque le patient existe
    *et est identifié
-   * @return id
+   * @return idPat
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_ID_PAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public String getIdPat() {
+    return idPat;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_ID_PAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
+  public void setIdPat(String idPat) {
+    this.idPat = idPat;
   }
 
   public Decision creation(OffsetDateTime creation) {
@@ -181,52 +170,6 @@ public class Decision {
     this.type = type;
   }
 
-  public Decision engagementDetails(EngagementDetails engagementDetails) {
-
-    this.engagementDetails = engagementDetails;
-    return this;
-  }
-
-  /**
-   * Get engagementDetails
-   * @return engagementDetails
-   **/
-  @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public EngagementDetails getEngagementDetails() {
-    return engagementDetails;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEngagementDetails(EngagementDetails engagementDetails) {
-    this.engagementDetails = engagementDetails;
-  }
-
-  public Decision transportDetails(TransportDetails transportDetails) {
-
-    this.transportDetails = transportDetails;
-    return this;
-  }
-
-  /**
-   * Get transportDetails
-   * @return transportDetails
-   **/
-  @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TransportDetails getTransportDetails() {
-    return transportDetails;
-  }
-
-  @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransportDetails(TransportDetails transportDetails) {
-    this.transportDetails = transportDetails;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -236,32 +179,23 @@ public class Decision {
       return false;
     }
     Decision decision = (Decision)o;
-    return Objects.equals(this.id, decision.id) &&
+    return Objects.equals(this.idPat, decision.idPat) &&
         Objects.equals(this.creation, decision.creation) &&
-        Objects.equals(this.type, decision.type) &&
-        Objects.equals(this.engagementDetails, decision.engagementDetails) &&
-        Objects.equals(this.transportDetails, decision.transportDetails);
+        Objects.equals(this.type, decision.type);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, creation, type, engagementDetails,
-                        transportDetails);
+    return Objects.hash(idPat, creation, type);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    idPat: ").append(toIndentedString(idPat)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    engagementDetails: ")
-        .append(toIndentedString(engagementDetails))
-        .append("\n");
-    sb.append("    transportDetails: ")
-        .append(toIndentedString(transportDetails))
-        .append("\n");
     sb.append("}");
     return sb.toString();
   }

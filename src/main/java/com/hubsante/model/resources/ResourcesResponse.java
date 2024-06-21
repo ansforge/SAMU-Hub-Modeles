@@ -34,21 +34,17 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.resources.Request;
-import com.hubsante.model.resources.Resource;
-import java.util.ArrayList;
+import com.hubsante.model.resources.Response;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
  * ResourcesResponse
  */
 @JsonPropertyOrder({ResourcesResponse.JSON_PROPERTY_CASE_ID,
-                    ResourcesResponse.JSON_PROPERTY_RS_D_D_R_ID,
-                    ResourcesResponse.JSON_PROPERTY_RESOURCE_REQUEST,
-                    ResourcesResponse.JSON_PROPERTY_MOBILIZED_RESOURCES})
+                    ResourcesResponse.JSON_PROPERTY_RS_D_R_ID,
+                    ResourcesResponse.JSON_PROPERTY_REQUEST_RESPONSE})
 @JsonTypeName("resourcesResponse")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -58,15 +54,11 @@ public class ResourcesResponse {
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
-  public static final String JSON_PROPERTY_RS_D_D_R_ID = "RSDDRId";
-  private String rsDDRId;
+  public static final String JSON_PROPERTY_RS_D_R_ID = "RSDRId";
+  private String rsDRId;
 
-  public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
-  private Request resourceRequest;
-
-  public static final String JSON_PROPERTY_MOBILIZED_RESOURCES =
-      "mobilizedResources";
-  private List<Resource> mobilizedResources;
+  public static final String JSON_PROPERTY_REQUEST_RESPONSE = "requestResponse";
+  private Response requestResponse;
 
   public ResourcesResponse() {}
 
@@ -98,92 +90,51 @@ public class ResourcesResponse {
     this.caseId = caseId;
   }
 
-  public ResourcesResponse rsDDRId(String rsDDRId) {
+  public ResourcesResponse rsDRId(String rsDRId) {
 
-    this.rsDDRId = rsDDRId;
+    this.rsDRId = rsDRId;
     return this;
   }
 
   /**
-   * Identifiant unique partagé de la demande de ressource à laquelle
-   *l&#39;expéditeur répond
-   * @return rsDDRId
+   * Identifiant unique partagé de la demande de ressource {orgID}.D.{ID unique
+   *de la demande dans le système émetteur}
+   * @return rsDRId
    **/
-  @JsonProperty(JSON_PROPERTY_RS_D_D_R_ID)
+  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getRsDDRId() {
-    return rsDDRId;
+  public String getRsDRId() {
+    return rsDRId;
   }
 
-  @JsonProperty(JSON_PROPERTY_RS_D_D_R_ID)
+  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRsDDRId(String rsDDRId) {
-    this.rsDDRId = rsDDRId;
+  public void setRsDRId(String rsDRId) {
+    this.rsDRId = rsDRId;
   }
 
-  public ResourcesResponse resourceRequest(Request resourceRequest) {
+  public ResourcesResponse requestResponse(Response requestResponse) {
 
-    this.resourceRequest = resourceRequest;
+    this.requestResponse = requestResponse;
     return this;
   }
 
   /**
-   * Get resourceRequest
-   * @return resourceRequest
+   * Get requestResponse
+   * @return requestResponse
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Request getResourceRequest() {
-    return resourceRequest;
+  public Response getRequestResponse() {
+    return requestResponse;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceRequest(Request resourceRequest) {
-    this.resourceRequest = resourceRequest;
-  }
-
-  public ResourcesResponse
-  mobilizedResources(List<Resource> mobilizedResources) {
-
-    this.mobilizedResources = mobilizedResources;
-    return this;
-  }
-
-  public ResourcesResponse
-  addMobilizedResourcesItem(Resource mobilizedResourcesItem) {
-    if (this.mobilizedResources == null) {
-      this.mobilizedResources = new ArrayList<>();
-    }
-    this.mobilizedResources.add(mobilizedResourcesItem);
-    return this;
-  }
-
-  /**
-   * Get mobilizedResources
-   * @return mobilizedResources
-   **/
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Resource> getMobilizedResources() {
-    return mobilizedResources;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMobilizedResources(List<Resource> mobilizedResources) {
-    if (mobilizedResources == null) {
-      return;
-    }
-    if (this.mobilizedResources == null) {
-      this.mobilizedResources = new ArrayList<>();
-    }
-    this.mobilizedResources.addAll(mobilizedResources);
+  @JsonProperty(JSON_PROPERTY_REQUEST_RESPONSE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRequestResponse(Response requestResponse) {
+    this.requestResponse = requestResponse;
   }
 
   @Override
@@ -196,16 +147,13 @@ public class ResourcesResponse {
     }
     ResourcesResponse resourcesResponse = (ResourcesResponse)o;
     return Objects.equals(this.caseId, resourcesResponse.caseId) &&
-        Objects.equals(this.rsDDRId, resourcesResponse.rsDDRId) &&
-        Objects.equals(this.resourceRequest,
-                       resourcesResponse.resourceRequest) &&
-        Objects.equals(this.mobilizedResources,
-                       resourcesResponse.mobilizedResources);
+        Objects.equals(this.rsDRId, resourcesResponse.rsDRId) &&
+        Objects.equals(this.requestResponse, resourcesResponse.requestResponse);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDDRId, resourceRequest, mobilizedResources);
+    return Objects.hash(caseId, rsDRId, requestResponse);
   }
 
   @Override
@@ -213,12 +161,9 @@ public class ResourcesResponse {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourcesResponse {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    rsDDRId: ").append(toIndentedString(rsDDRId)).append("\n");
-    sb.append("    resourceRequest: ")
-        .append(toIndentedString(resourceRequest))
-        .append("\n");
-    sb.append("    mobilizedResources: ")
-        .append(toIndentedString(mobilizedResources))
+    sb.append("    rsDRId: ").append(toIndentedString(rsDRId)).append("\n");
+    sb.append("    requestResponse: ")
+        .append(toIndentedString(requestResponse))
         .append("\n");
     sb.append("}");
     return sb.toString();

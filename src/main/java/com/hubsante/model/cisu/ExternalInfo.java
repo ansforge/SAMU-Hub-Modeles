@@ -57,7 +57,7 @@ public class ExternalInfo {
 
     IGN("IGN"),
 
-    NEXSIS("NexSIS");
+    NEXSIS("NEXSIS");
 
     private String value;
 
@@ -93,15 +93,15 @@ public class ExternalInfo {
    * route, …) pour faciliter le filtre | Aussi table dans une base de données
    */
   public enum TypeEnum {
-    MANUAL("MANUAL"),
+    MANUEL("MANUEL"),
 
-    MAP("MAP"),
+    CARTE("CARTE"),
 
-    OTHER("OTHER"),
+    AUTRE("AUTRE"),
 
     PHOTO("PHOTO"),
 
-    WEBSIT("WEBSIT");
+    SITE_INTERNET("SITE INTERNET");
 
     private String value;
 

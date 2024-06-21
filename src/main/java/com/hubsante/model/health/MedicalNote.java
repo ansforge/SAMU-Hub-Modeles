@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.Operator;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -43,16 +44,21 @@ import java.util.Objects;
  * MedicalNote
  */
 @JsonPropertyOrder(
-    {MedicalNote.JSON_PROPERTY_ID, MedicalNote.JSON_PROPERTY_CREATION,
-     MedicalNote.JSON_PROPERTY_FREETEXT,
-     MedicalNote.JSON_PROPERTY_MEDICAL_HISTORY,
-     MedicalNote.JSON_PROPERTY_TREATMENTS, MedicalNote.JSON_PROPERTY_ALLERGIES})
+    {MedicalNote.JSON_PROPERTY_ID_PAT, MedicalNote.JSON_PROPERTY_OPERATOR,
+     MedicalNote.JSON_PROPERTY_ID_OBS, MedicalNote.JSON_PROPERTY_CREATION,
+     MedicalNote.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("medicalNote")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class MedicalNote {
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_ID_PAT = "idPat";
+  private String idPat;
+
+  public static final String JSON_PROPERTY_OPERATOR = "operator";
+  private Operator operator;
+
+  public static final String JSON_PROPERTY_ID_OBS = "idObs";
+  private String idObs;
 
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
@@ -60,38 +66,77 @@ public class MedicalNote {
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
-  public static final String JSON_PROPERTY_MEDICAL_HISTORY = "medicalHistory";
-  private String medicalHistory;
-
-  public static final String JSON_PROPERTY_TREATMENTS = "treatments";
-  private String treatments;
-
-  public static final String JSON_PROPERTY_ALLERGIES = "allergies";
-  private String allergies;
-
   public MedicalNote() {}
 
-  public MedicalNote id(String id) {
+  public MedicalNote idPat(String idPat) {
 
-    this.id = id;
+    this.idPat = idPat;
     return this;
   }
 
   /**
    * ID partagé du patient concerné, lorsque le patient existe et est identifié
-   * @return id
+   *dans le système emetteur {ID du dossier partagé}.P{numéro d’ordre
+   *chronologique unique du patient}
+   * @return idPat
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_ID_PAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getId() {
-    return id;
+  public String getIdPat() {
+    return idPat;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_ID_PAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
+  public void setIdPat(String idPat) {
+    this.idPat = idPat;
+  }
+
+  public MedicalNote operator(Operator operator) {
+
+    this.operator = operator;
+    return this;
+  }
+
+  /**
+   * Get operator
+   * @return operator
+   **/
+  @JsonProperty(JSON_PROPERTY_OPERATOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Operator getOperator() {
+    return operator;
+  }
+
+  @JsonProperty(JSON_PROPERTY_OPERATOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setOperator(Operator operator) {
+    this.operator = operator;
+  }
+
+  public MedicalNote idObs(String idObs) {
+
+    this.idObs = idObs;
+    return this;
+  }
+
+  /**
+   * {ID du dossier partagé}.N.{id unique de la note}
+   * @return idObs
+   **/
+  @JsonProperty(JSON_PROPERTY_ID_OBS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getIdObs() {
+    return idObs;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ID_OBS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setIdObs(String idObs) {
+    this.idObs = idObs;
   }
 
   public MedicalNote creation(OffsetDateTime creation) {
@@ -101,19 +146,19 @@ public class MedicalNote {
   }
 
   /**
-   * Groupe date heure de création de l&#39;interrogatoire.  L&#39;indicateur de
+   * Groupe date heure de création de l&#39;observation.  L&#39;indicateur de
    *fuseau horaire Z ne doit pas être utilisé.
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public OffsetDateTime getCreation() {
     return creation;
   }
 
   @JsonProperty(JSON_PROPERTY_CREATION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCreation(OffsetDateTime creation) {
     this.creation = creation;
   }
@@ -144,75 +189,6 @@ public class MedicalNote {
     this.freetext = freetext;
   }
 
-  public MedicalNote medicalHistory(String medicalHistory) {
-
-    this.medicalHistory = medicalHistory;
-    return this;
-  }
-
-  /**
-   * Texte libre  pour décrire les antécédents du patient
-   * @return medicalHistory
-   **/
-  @JsonProperty(JSON_PROPERTY_MEDICAL_HISTORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getMedicalHistory() {
-    return medicalHistory;
-  }
-
-  @JsonProperty(JSON_PROPERTY_MEDICAL_HISTORY)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMedicalHistory(String medicalHistory) {
-    this.medicalHistory = medicalHistory;
-  }
-
-  public MedicalNote treatments(String treatments) {
-
-    this.treatments = treatments;
-    return this;
-  }
-
-  /**
-   * Texte libre  pour décrire les traitements du patient
-   * @return treatments
-   **/
-  @JsonProperty(JSON_PROPERTY_TREATMENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getTreatments() {
-    return treatments;
-  }
-
-  @JsonProperty(JSON_PROPERTY_TREATMENTS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTreatments(String treatments) {
-    this.treatments = treatments;
-  }
-
-  public MedicalNote allergies(String allergies) {
-
-    this.allergies = allergies;
-    return this;
-  }
-
-  /**
-   * Texte libre pour décrire les allergies du patient
-   * @return allergies
-   **/
-  @JsonProperty(JSON_PROPERTY_ALLERGIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getAllergies() {
-    return allergies;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ALLERGIES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAllergies(String allergies) {
-    this.allergies = allergies;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -222,36 +198,27 @@ public class MedicalNote {
       return false;
     }
     MedicalNote medicalNote = (MedicalNote)o;
-    return Objects.equals(this.id, medicalNote.id) &&
+    return Objects.equals(this.idPat, medicalNote.idPat) &&
+        Objects.equals(this.operator, medicalNote.operator) &&
+        Objects.equals(this.idObs, medicalNote.idObs) &&
         Objects.equals(this.creation, medicalNote.creation) &&
-        Objects.equals(this.freetext, medicalNote.freetext) &&
-        Objects.equals(this.medicalHistory, medicalNote.medicalHistory) &&
-        Objects.equals(this.treatments, medicalNote.treatments) &&
-        Objects.equals(this.allergies, medicalNote.allergies);
+        Objects.equals(this.freetext, medicalNote.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, creation, freetext, medicalHistory, treatments,
-                        allergies);
+    return Objects.hash(idPat, operator, idObs, creation, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class MedicalNote {\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    idPat: ").append(toIndentedString(idPat)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
+    sb.append("    idObs: ").append(toIndentedString(idObs)).append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
-    sb.append("    medicalHistory: ")
-        .append(toIndentedString(medicalHistory))
-        .append("\n");
-    sb.append("    treatments: ")
-        .append(toIndentedString(treatments))
-        .append("\n");
-    sb.append("    allergies: ")
-        .append(toIndentedString(allergies))
-        .append("\n");
     sb.append("}");
     return sb.toString();
   }

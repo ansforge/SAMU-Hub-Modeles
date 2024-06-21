@@ -1,0 +1,12 @@
+Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
+Identifiant affaire/dossier,,,,,,"Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,
+ID Demande partagé,,,,,,"Identifiant unique partagé de la demande de ressource
+{orgID}.D.{ID unique de la demande dans le système émetteur}",fr.health.samu770.D.1249875,,RSDRId,1..1,,string,,
+Réponse à la demande de ressources,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,requestResponse,1..1,X,response,,Format datetime décrit dans le DSF
+,Date Heure de réponse,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF
+,Réponse,,,,,oui / non / oui partiel / différé,,,answer,1..1,,string,X,"ENUM : ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
+,Délai de réponse,,,,,Indique le délai de réponse auquel s'engage l'expéditeur,,,deadline,0..1,,string,,
+,Précisions sur la réponse,,,,,Commentaire libre pour apporter toutes précisions utiles à la réponse,,,freetext,0..1,,string,,

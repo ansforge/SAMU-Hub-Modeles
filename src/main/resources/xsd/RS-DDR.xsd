@@ -54,12 +54,12 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             <element minOccurs="0" name="type">
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="service d’urgences d’un Etablissement de santé"/>
-                        <enumeration value="autres services d’un établissement de santé"/>
-                        <enumeration value="cabinet d’un professionnel de santé"/>
-                        <enumeration value="domicile personnel"/>
-                        <enumeration value="EPHAD ou long séjour"/>
-                        <enumeration value="autre"/>
+                        <enumeration value="Service d’urgences d’un etablissement de sante"/>
+                        <enumeration value="Autres services d’un etablissement de sante"/>
+                        <enumeration value="Cabinet d’un professionnel de sante"/>
+                        <enumeration value="Domicile personnel"/>
+                        <enumeration value="EPHAD ou long sejour"/>
+                        <enumeration value="Autre"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -29,9 +29,9 @@
     <xs:import namespace="urn:emergency:cisu:2.0:geoPositionsUpdate" schemaLocation="GEO-POS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesDetails" schemaLocation="GEO-RES.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesRequest" schemaLocation="GEO-REQ.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesInfo" schemaLocation="RS-RIG.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesRequest" schemaLocation="RS-DDR.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:resourcesResponse" schemaLocation="RS-RDR.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesInfo" schemaLocation="RS-RI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesRequest" schemaLocation="RS-DR.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesResponse" schemaLocation="RS-RR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>

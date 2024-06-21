@@ -4,34 +4,8 @@ Il doit pouvoir être généré de façon unique et décentralisée et ne prése
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,,,X
 1,2,ID DDR partagé,,,,,,Identifiant unique partagé de la demande de ressource à laquelle l'expéditeur répond,,,RSDDRId,1..1,,string,,,,X
-2,3,Réponse à la demande de concours,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,resourceRequest,0..1,X,request,,Format datetime décrit dans le DSF,,X
+2,3,Réponse à la demande de concours,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,resourceRequest,1..1,X,request,,Format datetime décrit dans le DSF,,X
 3,4,,Date Heure de réponse,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
 4,5,,Réponse,,,,,oui / non / oui partiel / différé,,,answer,1..1,,string,X,"ENUM : OUI, NON, PARTIEL, DIFFERE",,X
 5,6,,Délai de réponse,,,,,Indique le délai de réponse auquel s'engage l'expéditeur,,,deadline,0..1,,string,,,,X
 6,7,,Précisions sur la réponse,,,,,Commentaire libre pour apporter toutes précisions utiles à la réponse,,,freetext,0..1,,string,,,,X
-7,8,Ressource engagée,,,,,,Liste des vecteurs associés au message :  liste l'ensemble des vecteurs ou ressources mobilisées,,,mobilizedResources,0..n,X,resource,,,,X
-8,9,,Date/heure de déclenchement,,,,,date et heure d'engagement de la ressource,,,commitmentDateTime,1..1,,datetime,,Format datetime décrit dans le DSF,,X
-9,10,,Date/heure prévisionnelle d'arrivée au lieu d'intervention / lieu d'origine,,,,,date et heure d'arrivée prévisionnelle sur le lieu de prise en charge du patient,,,originDateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X
-10,11,,Date/heure prévisionnelle d'arrivée au lieu de destination,,,,,date et heure d'arrivée prévisionnelle sur le lieu de destination du patient,,,destinationDateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X
-11,12,,ID partagé,,,,,"ID unique de la ressource engagée partagée 
-{orgID}.{ID du dossier partagé}.R{numéro d’ordre chronologique}",fr.health.samu440.DRFR15DDXAAJJJ0000.R01,,resourceID,1..1,,string,,,,X
-12,13,,Identifiant de l'organisation propriétaire,,,,,Organisation à laquelle appartient la ressource,fr.health.samu440,,orgID,0..1,,string,,,,X
-13,11,,Type de ressource,,,,,"Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.",SMUR,,resourceType,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_MOYEN,,X
-14,12,,Type de vecteur,,,,,"Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.",VLM,,vehiculeType,0..1,,string,X,NOMENCLATURE: CISU-TYPE_VECTEUR,,X
-15,16,,Immatriculation,,,,,,,,plate,0..1,,string,,,,X
-16,17,,Nom,,,,,Nom donné par l’organisation d’appartenance,,,name,0..1,,string,,,,X
-17,18,,N° d'ordre de la ressource,,,,,S'il existe plusieurs types de vecteurs ou ressource identiques portant le même nom dans un même dans le même centre d’affectation; préciser le numéro d'ordre,,,order,0..1,,string,,,,X
-18,19,,Centre d’affectation,,,,,Lieu de garage principal,,,centerName,0..1,,string,,,,X
-20,21,,Commune du centre d’affectation,,,,,Code INSEE de la commune du centre d'affectation,,,centerCity,0..1,,string,,,,X
-21,22,,Marque vecteur,,,,,Marque vecteur,,,make,0..1,,string,,,,X
-22,23,,Modèle vecteur,,,,,Modèle vecteur,,,model,0..1,,string,,,,X
-23,24,,Equipe vecteur,,,,,Décrit le type et l'équipe à bord du vecteur,,,team,0..1,X,team,,,,X
-24,25,,,Type,,,,Médical / paramédical : indique le niveau de médicalisation du vecteur,,,type,0..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN,,X
-25,26,,,Nom,,,,Nom de l'équipe à bord du vecteur,,,name,0..1,,string,,,,X
-26,27,,Etat vecteur,,,,,,,,state,0..1,X,state,,,,X
-27,28,,,Date/heure de changement de statut,,,,,,,dateTime,0..1,,datetime,,Format datetime décrit dans le DSF,,X
-28,29,,,Statut du vecteur,,,,Statuts Antares,"ENUM : Alerte, Parti, Arrivee Sur Les Lieux, Transport Destination, Arrivee Destination, Fin De Medicalisation , Quitte Destination, Retour Base, Rentree Base",,status,0..1,,string,X,"ENUM : Alerte, Parti, Arrivee sur les lieux, Transport destination, Arrivee destination, Fin de medicalisation , Quitte destination, Retour base, Rentree Base",,X
-29,30,,,Disponibilité du vecteur,,,,Indique si le vecteur est disponible / indisponible,"ENUM : Disponible, Indisponible, Inconnu",,availability,0..1,,string,X,"ENUM : Disponible, Indisponible, Inconnu",,X
-30,31,,Contact,,,,,Type et valeur de l'URI utilisée par la ressource.,,,contact,0..1,X,contact,,,,X
-31,32,,,Type de contact du requérant,,,,Type de l'URI utilisée,PHNADD,,type,0..1,,string,X,"ENUM: PSTADD, EMLADD, IPADD, FTPADD, WWWADD, PHNADD, FAXADD, PMRADD",,X
-32,33,,,URI du contact requérant,,,,Valeur de l'URI utilisée pour contacter la ressource,0671830530,,details,0..1,,string,,,,X

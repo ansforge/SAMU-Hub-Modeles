@@ -50,8 +50,7 @@ import java.util.Objects;
  * Location
  */
 @JsonPropertyOrder(
-    {Location.JSON_PROPERTY_LOC_I_D, Location.JSON_PROPERTY_NAME,
-     Location.JSON_PROPERTY_EXTERNAL_LOCATION_ID,
+    {Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_EXTERNAL_LOCATION_ID,
      Location.JSON_PROPERTY_DETAILED_ADDRESS, Location.JSON_PROPERTY_CITY,
      Location.JSON_PROPERTY_ACCESS, Location.JSON_PROPERTY_GEOMETRY,
      Location.JSON_PROPERTY_EXTERNAL_INFO, Location.JSON_PROPERTY_FREETEXT})
@@ -59,9 +58,6 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Location {
-  public static final String JSON_PROPERTY_LOC_I_D = "locID";
-  private String locID;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
@@ -88,30 +84,6 @@ public class Location {
   private String freetext;
 
   public Location() {}
-
-  public Location locID(String locID) {
-
-    this.locID = locID;
-    return this;
-  }
-
-  /**
-   * ID technique et provisoire permettant d&#39;identifier le lieu dans le
-   *cadre des échanges de cette affaire.
-   * @return locID
-   **/
-  @JsonProperty(JSON_PROPERTY_LOC_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getLocID() {
-    return locID;
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOC_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLocID(String locID) {
-    this.locID = locID;
-  }
 
   public Location name(String name) {
 
@@ -342,8 +314,7 @@ public class Location {
       return false;
     }
     Location location = (Location)o;
-    return Objects.equals(this.locID, location.locID) &&
-        Objects.equals(this.name, location.name) &&
+    return Objects.equals(this.name, location.name) &&
         Objects.equals(this.externalLocationId, location.externalLocationId) &&
         Objects.equals(this.detailedAddress, location.detailedAddress) &&
         Objects.equals(this.city, location.city) &&
@@ -355,15 +326,14 @@ public class Location {
 
   @Override
   public int hashCode() {
-    return Objects.hash(locID, name, externalLocationId, detailedAddress, city,
-                        access, geometry, externalInfo, freetext);
+    return Objects.hash(name, externalLocationId, detailedAddress, city, access,
+                        geometry, externalInfo, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Location {\n");
-    sb.append("    locID: ").append(toIndentedString(locID)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    externalLocationId: ")
         .append(toIndentedString(externalLocationId))
