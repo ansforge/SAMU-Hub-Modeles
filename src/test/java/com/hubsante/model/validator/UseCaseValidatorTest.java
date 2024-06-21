@@ -39,6 +39,35 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 public class UseCaseValidatorTest extends AbstractValidatorTest {
+
+    @Test
+    @DisplayName("Valid error message is thrown: valid envelope and errors in use case")
+    public void invalidContentValidEnvelopeTest() throws IOException {
+        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.json");
+
+        // envelope validation does not throw because envelope is ok
+        assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
+        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
+
+        try {
+            validator.validateJSON(json, FULL_SCHEMA);
+        } catch (ValidationException e) {
+            String[] expectedErrors = {
+                    "Could not validate message against schema : errors occurred. ",
+                    "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
+                    " - createCase.creation: is missing but it is required",
+                    " - createCase.additionalInformation.customMap: object found, array expected"
+            };
+            String[] errors = e.getMessage().split("\n");
+            checkErrorMessageArrayExactContent(errors, expectedErrors);
+        }
+
+        String xml = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.xml");
+        // envelope validation does not throw because envelope is ok
+        assertDoesNotThrow(() -> validator.validateXML(xml, ENVELOPE_XSD));
+        assertThrows(ValidationException.class, () -> validator.validateXML(xml, FULL_XSD));
+    }
+
     @Test
     @DisplayName("Valid error message is thrown: too many valid use cases")
     void tooManyValidSchemas() throws IOException {
@@ -47,6 +76,16 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
                 "embeddedJsonContent: should be valid to one and only one schema, but 2 are valid"
         };
         jsonValidationFails("too-many-valid-schemas.json", expectedErrors);
+    }
+
+    @Test
+    @DisplayName("Valid error message is thrown: no use cases detected")
+    void noSchemasDetected() throws IOException {
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Could not detect any schemas in the message, at least one is required "
+        };
+        jsonValidationFails("RC-EDA/invalid-RC-EDA-no-schemas.json", expectedErrors);
     }
 
     @Test

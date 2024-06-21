@@ -13,30 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.edxlhandler;
+package com.hubsante.model.validator;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class RcRefHandlerTest extends AbstractEdxlHandlerTest {
 
+public class RsEdaValidatorTest extends AbstractValidatorTest {
+
+    // TODO bbo add RS-EDA test files
+    //region Passes validation
     @Test
-    @DisplayName("should consistently deserialize then serialize JSON RC-REF")
-    public void end2end_RC_REF_JSON() throws IOException {
-        end2end("RC-REF", false);
+    @DisplayName("RS-EDA json validation passes")
+    public void jsonRsEdaValidationPasses() throws IOException {
+        validationPasses("RS-EDA", false);
     }
 
-    @Test
-    @DisplayName("should consistently deserialize then serialize XML RC-REF")
-    public void end2end_RC_REF_XML() throws IOException {
-        end2end("RC-REF", true);
-    }
+    //endregion
 
-    @Test
-    @DisplayName("json and xml RC-REF should be equal")
-    public void jsonAndXmlRC_REF() throws IOException {
-        jsonEqualsXml("RC-REF");
-    }
+    //region Fails validation
+
+    //endregion
 }

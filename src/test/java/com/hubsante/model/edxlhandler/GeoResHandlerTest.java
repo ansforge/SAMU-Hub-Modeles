@@ -20,23 +20,23 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-public class RcRefHandlerTest extends AbstractEdxlHandlerTest {
+public class GeoResHandlerTest extends AbstractEdxlHandlerTest {
 
     @Test
-    @DisplayName("should consistently deserialize then serialize JSON RC-REF")
-    public void end2end_RC_REF_JSON() throws IOException {
-        end2end("RC-REF", false);
+    @DisplayName("should consistently deserialize then serialize JSON GEO-RES")
+    public void end2end_GEO_RES_JSON() throws IOException {
+        end2end("GEO-RES", false);
     }
 
     @Test
-    @DisplayName("should consistently deserialize then serialize XML RC-REF")
-    public void end2end_RC_REF_XML() throws IOException {
-        end2end("RC-REF", true);
+    @DisplayName("should consistently deserialize then serialize XML GEO-RES")
+    public void end2end_GEO_RES_XML() throws IOException {
+        end2end("GEO-RES", true);
     }
 
     @Test
-    @DisplayName("json and xml RC-REF should be equal")
-    public void jsonAndXmlRC_REF() throws IOException {
-        jsonEqualsXml("RC-REF");
+    @DisplayName("json and xml GEO-RES should be equal")
+    public void jsonAndXmlGEO_RES() throws IOException {
+        jsonEqualsXml("GEO-RES");
     }
 }

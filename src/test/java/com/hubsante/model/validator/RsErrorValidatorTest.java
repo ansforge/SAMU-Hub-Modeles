@@ -15,50 +15,46 @@
  */
 package com.hubsante.model.validator;
 
-import com.hubsante.model.exception.ValidationException;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.FULL_XSD;
-import static com.hubsante.model.utils.TestFileUtils.getMessageString;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-
-public class RcRefValidatorTest extends AbstractValidatorTest {
+public class RsErrorValidatorTest extends AbstractValidatorTest {
 
     //region Passes validation
     @Test
-    @DisplayName("RC-REF json validation passes")
+    @DisplayName("RS-ERROR json validation passes")
     public void jsonRcRefValidationPasses() throws IOException {
-        validationPasses("RC-REF", false);
+        validationPasses("RS-ERROR", false);
     }
 
     @Test
-    @DisplayName("RC-REF xml validation passes")
+    @DisplayName("RS-ERROR xml validation passes")
     public void xmlRcRefValidationPasses() throws IOException {
-        validationPasses("RC-REF", true);
+        validationPasses("RS-ERROR", true);
     }
     //endregion
 
     //region Fails validation
     @Test
-    @DisplayName("RC-REF json validation fails")
+    @DisplayName("RS-ERROR json validation fails")
     public void jsonRcRefValidationFails() throws IOException {
         String[] expectedErrors = {
                 "Could not validate message against schema : errors occurred. ",
-                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - reference.distributionID: is missing but it is required",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message: ",
+                " - error.sourceMessage: string found, object expected",
+                " - error.errorCode.statusCode: is missing but it is required",
+                " - error.referencedDistributionID: is missing but it is required"
         };
-        jsonValidationFails("RC-REF/RC-REF-missing-required-fields.json", expectedErrors);
+        jsonValidationFails("RS-ERROR/RS-ERROR-missing-required-fields.json", expectedErrors);
     }
 
     @Test
-    @DisplayName("RC-REF xml validation fails")
+    @DisplayName("RS-ERROR xml validation fails")
     public void xmlRcRefValidationFails() throws IOException {
-        xmlValidationFails("RC-REF/RC-REF-missing-required-fields.xml", XML_MISSING, new String[]{"distributionID}' "});
+        xmlValidationFails("RS-ERROR/RS-ERROR-missing-required-fields.xml", XML_MISSING, new String[]{"referencedDistributionID}' "});
     }
     //endregion
 }
