@@ -52,8 +52,8 @@
                                     <label>Second risque</label>
                                 </riskThreat>
                                 <victims>
-                                    <count>SEVERAL</count>
-                                    <mainVictim>ADULT</mainVictim>
+                                    <count>PLUSIEURS</count>
+                                    <mainVictim>ADULTE</mainVictim>
                                     <freetext>Deuxième victime présente saignements et brûlures legères aux mains et genoux</freetext>
                                 </victims>
                             </qualification>
@@ -62,7 +62,7 @@
                                 <locLabel>8 quai des Célestins - 69002 Lyon</locLabel>
                                 <name>Quai des Célestins</name>
                                 <externalLocationId>
-                                    <source>FINESS administratif</source>
+                                    <source>FINESS ADMINISTRATIF</source>
                                     <value>'920000650</value>
                                 </externalLocationId>
                                 <detailedAddress>
@@ -99,7 +99,7 @@
                                             <height>168</height>
                                             <heading>96</heading>
                                             <speed>34</speed>
-                                            <precision>ADDRESS</precision>
+                                            <precision>ADRESSE</precision>
                                         </coord>
                                         <sysCoord>EPSG-4326</sysCoord>
                                     </point>
@@ -107,7 +107,7 @@
                                 </geometry>
                                 <externalInfo>
                                     <freetext>BAN</freetext>
-                                    <type>MANUAL</type>
+                                    <type>MANUEL</type>
                                     <uri>id987</uri>
                                 </externalInfo>
                                 <country>FR</country>
@@ -123,13 +123,13 @@
                                 </notes>
                                 <caller>
                                     <callerContact>
-                                        <channel>Personne</channel>
-                                        <type>PHNADD</type>
+                                        <channel>PERSONNE</channel>
+                                        <type>TEL</type>
                                         <detail>0607080901</detail>
                                     </callerContact>
                                     <callbackContact>
-                                        <channel>Personne</channel>
-                                        <type>PHNADD</type>
+                                        <channel>PERSONNE</channel>
+                                        <type>TEL</type>
                                         <detail>0607080901</detail>
                                     </callbackContact>
                                     <language>FR</language>
@@ -156,8 +156,8 @@
                                     <controlRoom>CRRA 690</controlRoom>
                                     <role>ARM</role>
                                     <calltakerContact>
-                                        <channel>Personne</channel>
-                                        <type>PHNADD</type>
+                                        <channel>PERSONNE</channel>
+                                        <type>TEL</type>
                                         <detail>0607080901</detail>
                                     </calltakerContact>
                                     <calltakerId>id1234</calltakerId>
@@ -171,24 +171,6 @@
                                     <digest>None</digest>
                                 </attachment>
                             </initialAlert>
-                            <patient>
-                                <id>fr.health.samu690.DRFR15690240430050.P01</id>
-                                <identity>
-                                    <strictFeatures>
-                                        <birthDate>1981-01-01</birthDate>
-                                        <sex>MASC</sex>
-                                    </strictFeatures>
-                                    <nonStrictFeatures>
-                                        <complete>Alexandre Armaury</complete>
-                                        <lastName>Armaury</lastName>
-                                        <firstName>Alexandre</firstName>
-                                    </nonStrictFeatures>
-                                </identity>
-                            </patient>
-                            <decision>
-                                <creation>2023-11-03T10:05:00+01:00</creation>
-                                <type>INTER</type>
-                            </decision>
                             <freetext>None</freetext>
                             <additionalInformation>
                                 <customMap>

@@ -52,8 +52,8 @@
                   }
                 ],
                 "victims": {
-                  "count": "SEVERAL",
-                  "mainVictim": "ADULT",
+                  "count": "PLUSIEURS",
+                  "mainVictim": "ADULTE",
                   "freetext": "Deuxième victime présente saignements et brûlures legères aux mains et genoux"
                 }
               },
@@ -63,7 +63,7 @@
                 "name": "Quai des Célestins",
                 "externalLocationId": [
                   {
-                    "source": "FINESS administratif",
+                    "source": "FINESS ADMINISTRATIF",
                     "value": "'920000650"
                   }
                 ],
@@ -103,7 +103,7 @@
                       "height": 168,
                       "heading": 96,
                       "speed": 34,
-                      "precision": "ADDRESS"
+                      "precision": "ADRESSE"
                     },
                     "sysCoord": "EPSG-4326"
                   },
@@ -112,7 +112,7 @@
                 "externalInfo": [
                   {
                     "freetext": "BAN",
-                    "type": "MANUAL",
+                    "type": "MANUEL",
                     "uri": "id987"
                   }
                 ],
@@ -131,13 +131,13 @@
                 ],
                 "caller": {
                   "callerContact": {
-                    "channel": "Personne",
-                    "type": "PHNADD",
+                    "channel": "PERSONNE",
+                    "type": "TEL",
                     "detail": "0607080901"
                   },
                   "callbackContact": {
-                    "channel": "Personne",
-                    "type": "PHNADD",
+                    "channel": "PERSONNE",
+                    "type": "TEL",
                     "detail": "0607080901"
                   },
                   "language": "FR",
@@ -164,8 +164,8 @@
                   "controlRoom": "CRRA 690",
                   "role": "ARM",
                   "calltakerContact": {
-                    "channel": "Personne",
-                    "type": "PHNADD",
+                    "channel": "PERSONNE",
+                    "type": "TEL",
                     "detail": "0607080901"
                   },
                   "calltakerId": "id1234"
@@ -181,28 +181,6 @@
                   }
                 ]
               },
-              "decision": [
-                {
-                  "type": "INTER",
-                  "creation": "2023-11-03T10:05:00+01:00"
-                }
-              ],
-              "patient": [
-                {
-                  "identity": {
-                    "nonStrictFeatures": {
-                      "complete": "Alexandre Armaury",
-                      "lastName": "Armaury",
-                      "firstName": "Alexandre"
-                    },
-                    "strictFeatures": {
-                      "sex": "MASC",
-                      "birthDate": "1981-01-01"
-                    }
-                  },
-                  "id": "fr.health.samu690.DRFR15690240430050.P01"
-                }
-              ],
               "additionalInformation": {
                 "customMap": [
                   {

@@ -35,7 +35,6 @@
               "caseId": "fr.health.samu950-DRFR159502401000233",
               "senderCaseId": "DRFR159502401000233",
               "creation": "2024-01-10T14:07:00+01:00",
-              "referenceVersion": "1.4",
               "qualification": {
                 "whatsHappen": {
                   "code": "C02.05.01",
@@ -65,7 +64,6 @@
                 ]
               },
               "location": {
-                "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
                 "name": "SARL Toto",
                 "detailedAddress": {
                   "complete": "18 rue des Bois Rochefort 78500 Sartrouville",
@@ -78,8 +76,7 @@
                 },
                 "city": {
                   "name": "Sartrouville",
-                  "inseeCode": "78586",
-                  "detail": "Sartrouville"
+                  "inseeCode": "78586"
                 },
                 "access": {
                   "floor": "4",
@@ -99,10 +96,10 @@
                     "coord": {
                       "lat": 48.95102310180664,
                       "lon": 2.1857428550720215,
-                      "precision": "UNKNOWN",
+                      "precision": "INCONNUE",
                       "height": 6
                     },
-                    "sysCoord": "système"
+                    "sysCoord": "EPSG-4326"
                   },
                   "obsDatime": "2024-01-10T11:00:00+01:00"
                 },
@@ -124,14 +121,14 @@
                 "reception": "2024-01-10T14:05:00+01:00",
                 "caller": {
                   "callerContact": {
-                    "type": "PHNADD",
+                    "type": "TEL",
                     "detail": "0607080928",
-                    "channel": "Personne"
+                    "channel": "PERSONNE"
                   },
                   "callbackContact": {
-                    "type": "PHNADD",
+                    "type": "TEL",
                     "detail": "0607080928",
-                    "channel": "Personne"
+                    "channel": "PERSONNE"
                   },
                   "language": "FR",
                   "freetext": "Collègue de la victime",
@@ -186,8 +183,7 @@
                     "strictFeatures": {
                       "sex": "FEM",
                       "birthName": "BOUDADI",
-                      "birthDate": "1982-02-26",
-                      "birthPlaceCode": 99205
+                      "birthDate": "1982-02-26"
                     }
                   },
                   "id": "fr.health.samu950-DRFR159502401000233.P11",
@@ -216,11 +212,6 @@
                   ]
                 }
               ],
-              "freetext": [
-                "Commentaire dossier 1",
-                "Commentaire dossier 2",
-                "Commentaire dossier 3"
-              ],
               "newAlert": [
                 {
                   "caller": {
@@ -230,13 +221,13 @@
                       "firstName": "tom"
                     },
                     "callbackContact": {
-                      "channel": "Personne",
-                      "type": "WWWADD",
+                      "channel": "PERSONNE",
+                      "type": "WEB",
                       "detail": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json"
                     },
                     "callerContact": {
-                      "type": "PSTADD",
-                      "channel": "Personne",
+                      "type": "POSTAL",
+                      "channel": "PERSONNE",
                       "detail": "0102030405"
                     },
                     "language": "AL",
@@ -247,37 +238,17 @@
                   "reception": "2024-04-18T09:45:00+02:00"
                 }
               ],
-              "decision": [
-                {
-                  "transportDetails": {
-                    "destination": {
-                      "type": "service d’urgences d’un Etablissement de santé"
-                    },
-                    "orientation": "OK",
-                    "teamCare": "MED"
-                  },
-                  "id": "fr.health.samu950-DRFR159502401000233.P11",
-                  "creation": "2024-04-30T09:15:00+02:00",
-                  "type": "ORIENT",
-                  "engagementDetails": {
-                    "teamCareInitial": "MED",
-                    "categoryType": "SMUR",
-                    "resourceType": "VLM"
-                  }
-                }
-              ],
               "medicalNote": [
                 {
-                  "id": "fr.health.samu950-DRFR159502401000233.P11",
+                  "operator": {
+                    "role": "MEDECIN"
+                  },
                   "creation": "2024-04-03T01:15:00+02:00",
-                  "freetext": "Observations et commentaires médicaux sur le patient Ouardia Boudadi. ",
-                  "medicalHistory": "Antécédent de crise cardiaque",
-                  "treatments": "Pas de traitement",
-                  "allergies": "Pas d’allergie"
+                  "freetext": "Observations et commentaires médicaux sur le patient Ouardia Boudadi. "
                 }
               ],
               "perimeter": "AMU",
-              "interventionType": "Primaire"
+              "interventionType": "PRIMAIRE"
             }
           }
         }
