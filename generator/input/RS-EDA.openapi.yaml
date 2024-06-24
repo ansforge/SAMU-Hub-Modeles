@@ -305,7 +305,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/idObs
-          description: "Identifiant unique de l'observation, valorid\xE9 comme suit\
+          description: "Identifiant unique de l'observation, valoris\xE9 comme suit\
             \ : {caseID}.medicalNote.{ID unique de l'observation dans le syst\xE8\
             me \xE9metteur}\n"
           examples:
@@ -1247,19 +1247,6 @@ components:
             \ AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
           examples:
           - 'TRUE'
-        sysCoord:
-          type: string
-          title: "Syst\xE8me de coordonn\xE9es"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/geometry/point/sysCoord
-          description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
-            \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
-            \ de WGS-84. "
-          enum:
-          - EPSG-4326
-          examples:
-          - EPSG-4326
       additionalProperties: false
       example: example.json#/location/geometry/point
     coord:
@@ -1278,7 +1265,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/geometry/point/coord/lat
-          description: "Latitude du point cl\xE9 de la localisation "
+          description: "Latitude du point cl\xE9 de la localisation dans le syst\xE8\
+            me de coordonn\xE9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
           examples:
           - '48.866667'
         lon:
@@ -1287,7 +1275,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/geometry/point/coord/lon
-          description: "Longitude du point cl\xE9 de la localisation"
+          description: "Longitude du point cl\xE9 de la localisation dans le syst\xE8\
+            me de coordonn\xE9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
           examples:
           - '2.333333'
         height:
@@ -1319,14 +1308,14 @@ components:
           - EXACTE
           - INCONNUE
           examples:
-          - ADDRESS
+          - ADRESSE
       additionalProperties: false
       example: example.json#/location/geometry/point/coord
       examples:
       - lat: '48.866667'
         lon: '2.333333'
         height: 120
-        precision: ADDRESS
+        precision: ADRESSE
     notes:
       type: object
       title: "Informations compl\xE9mentaires sur l'alerte"

@@ -26,10 +26,18 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                     <documentation>Voir liste des effets à obtenir identifiés</documentation>
                 </annotation>
             </element>
-            <element name="answer" type="string">
+            <element name="answer">
                 <annotation>
                     <documentation>oui / non / oui partiel / différé</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ACCEPTEE"/>
+                        <enumeration value="REFUSEE"/>
+                        <enumeration value="PARTIELLE"/>
+                        <enumeration value="DIFFEREE"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="deadline" type="string">
                 <annotation>

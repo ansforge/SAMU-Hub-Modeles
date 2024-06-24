@@ -11,12 +11,17 @@
     </complexType>
     <complexType name="event">
         <sequence>
-            <element name="samuId" type="string">
+            <element name="samuId">
                 <annotation>
                     <documentation>Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
 </documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="fileId" type="string">
                 <annotation>
@@ -163,11 +168,16 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="residentialAddress">
         <sequence>
-            <element name="cityCode" type="string">
+            <element name="cityCode">
                 <annotation>
                     <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays de résidence, si étranger. </documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="city" type="string">
                 <annotation>

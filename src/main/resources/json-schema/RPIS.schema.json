@@ -52,7 +52,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/samuId",
-                    "description": "Num\u00e9ro du SAMU r\u00e9gulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
+                    "description": "Num\u00e9ro du SAMU r\u00e9gulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
+                    "pattern": "^[a-zA-Z]{2,3}\\.[a-zA-Z]+\\..*$"
                 },
                 "fileId": {
                     "type": "string",
@@ -346,7 +347,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/residentialAddress/cityCode",
-                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.\nLe Code INSEE peut \u00e9galement pr\u00e9cis\u00e9 le pays de r\u00e9sidence, si \u00e9tranger. "
+                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.\nLe Code INSEE peut \u00e9galement pr\u00e9cis\u00e9 le pays de r\u00e9sidence, si \u00e9tranger. ",
+                    "pattern": "[0-9]{5}"
                 },
                 "city": {
                     "type": "string",

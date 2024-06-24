@@ -64,13 +64,12 @@ Sera toujours fourni par NexSIS.",,point,point,,,,,,0..1,X,point,,
 ,,,Coordonnées,,,"Le SGO ne fonctionne toujours sur des coordonnées X/Y ainsi qu'une adresse indicative associée. 
 NexSIS dispose donc toujours d'un point GPS utilisé pour le temps de trajet, la détermination de l'intervenant le plus proche, ...
 L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord,coord,,,,,,1..1,X,coord,,
-,,,,Latitude,,Latitude du point clé de la localisation ,48.866667,lat,lat,,,,,,1..1,,number,,
-,,,,Longitude,,Longitude du point clé de la localisation,2.333333,lon,lon,,,,,,1..1,,number,,
+,,,,Latitude,,Latitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,48.866667,lat,lat,,,,,,1..1,,number,,
+,,,,Longitude,,Longitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,2.333333,lon,lon,,,,,,1..1,,number,,
 ,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,
 ,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADRESSE,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
 ,,,Dipositif AML,,,Précise si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. ,TRUE,,aml,,,,,,0..1,,boolean,,
-,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. ",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,X,ENUM: EPSG-4326
 ,Liens aux systèmes externes,,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
 ,,Nom de la source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
@@ -138,7 +137,7 @@ Observation médicale,,,,,,Observations de nature médicale. ,,,medicalNote,,,,,
 ,Professionnel de santé qui réalise l'observation,,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,1..1,X,operator,,
 ,,Prénom et nom,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,
 ,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
-,ID Observation,,,,,"Identifiant unique de l'observation, valoridé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
+,ID Observation,,,,,"Identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
 ",fr.health.samu540.DRFR15DDXAAJJJ00001.medicalNote.46585A,,idObs,,,,,,0..1,,string,,
 ,Date Heure de création de l'observation,,,,,Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,0..1,,datetime,,
 ,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)

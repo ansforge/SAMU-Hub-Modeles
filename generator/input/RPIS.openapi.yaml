@@ -54,6 +54,7 @@ components:
           example: example.json#/event/samuId
           description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
             \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
+          pattern: ^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$
           examples:
           - fr.health.samu440
         fileId:
@@ -390,6 +391,7 @@ components:
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
             \ de r\xE9sidence, si \xE9tranger. "
+          pattern: '[0-9]{5}'
           examples:
           - 92300
         city:

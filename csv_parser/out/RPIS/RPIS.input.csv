@@ -2,7 +2,7 @@ Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donn
 Evènement,,,,,,,,,event,,,,,,1..1,X,event,,
 ,Identifiant du SAMU qui engage le SMUR,,,,,"Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
-",fr.health.samu440,,samuId,,,,,,1..1,,string,,
+",fr.health.samu440,,samuId,,,,,,1..1,,string,,"REGEX: ^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$"
 ,Identifiant du dossier de régulation médicale (DRM),,,,,"Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 
 - DR = désignation d'un dossier sous forme abrégée,
@@ -38,7 +38,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
 ,NIR,,,,,"Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL",278112B050002,,nir,,,,,,0..1,,number,,
 ,Adresse de résidence,,,,,,,,residentialAddress,,,,,,0..1,X,residentialAddress,,
 ,,Code INSEE de la commune de résidence,,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
-Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,,cityCode,,,,,,1..1,,string,,
+Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,,cityCode,,,,,,1..1,,string,,REGEX: [0-9]{5}
 ,,Nom de la commune,,,,Nom officiel de la commune actuelle,Levallois-Perret,,city,,,,,,1..1,,string,,
 Intervention,,,,,,,,,intervention,,,,,,1..1,X,intervention,,
 ,Lieu d'intervention,,,,,,,,location,,,,,,1..1,X,location,,

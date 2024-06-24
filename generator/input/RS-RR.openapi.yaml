@@ -74,6 +74,11 @@ components:
           x-cols: 6
           example: example.json#/requestResponse/answer
           description: "oui / non / oui partiel / diff\xE9r\xE9"
+          enum:
+          - ACCEPTEE
+          - REFUSEE
+          - PARTIELLE
+          - DIFFEREE
           examples:
           - None
         deadline:

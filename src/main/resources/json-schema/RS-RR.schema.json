@@ -59,7 +59,13 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/requestResponse/answer",
-                    "description": "oui / non / oui partiel / diff\u00e9r\u00e9"
+                    "description": "oui / non / oui partiel / diff\u00e9r\u00e9",
+                    "enum": [
+                        "ACCEPTEE",
+                        "REFUSEE",
+                        "PARTIELLE",
+                        "DIFFEREE"
+                    ]
                 },
                 "deadline": {
                     "type": "string",

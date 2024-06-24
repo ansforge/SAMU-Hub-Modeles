@@ -6,7 +6,6 @@ plugins {
 }
 
 group = 'com.hubsante'
-version ='0.5.1-SNAPSHOT'
 
 java {
     toolchain {
@@ -43,9 +42,21 @@ jacocoTestReport {
     }
 }
 
+allprojects {
+    tasks.withType(JavaCompile) {
+        options.encoding = 'UTF-8'
+    }
+}
+
 tasks.named('test') {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
+}
+
+tasks.named('publish') {
+    configure {
+        dependsOn("test")
+    }
 }
 
 license {
