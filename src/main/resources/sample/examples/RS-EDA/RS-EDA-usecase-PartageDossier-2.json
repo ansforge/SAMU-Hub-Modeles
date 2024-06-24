@@ -2,7 +2,6 @@
   "createCaseHealth": {
     "caseId": "fr.health.samu950.DRFR159502400400159",
     "creation": "2024-01-18T15:00:00+01:00",
-    "referenceVersion": "1.4",
     "qualification": {
       "whatsHappen": {
         "code": "C02.08.02",
@@ -19,10 +18,10 @@
       "details": {
         "priority": "P2",
         "attribution": "MU"
-      }
+      },
+      "origin": "15"
     },
     "location": {
-      "locID": "567op03a-3qr4-5st6-7uv8-109u8765432",
       "detailedAddress": {
         "complete": "4 rue Danielle Mitterrand",
         "number": "4",
@@ -36,14 +35,13 @@
         "name": "Bezons",
         "inseeCode": "95063"
       },
-      "country": "FR",
       "freetext": "dans la cage d’escalier B",
       "geometry": {
         "point": {
           "coord": {
             "lat": 48.92399978637695,
             "lon": 2.2162439823150635,
-            "precision": "ADDRESS"
+            "precision": "ADRESSE"
           }
         },
         "obsDatime": "2024-01-04T00:05:00+01:00"
@@ -59,19 +57,17 @@
       }
     },
     "initialAlert": {
-      "id": "ALRT-2024-ZGY594",
       "reception": "2024-01-04T15:00:00+01:00",
-      "reporting": "STANDARD",
       "caller": {
         "callerContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0702880946",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "callbackContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0702880946",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "language": "FR",
         "detailedName": {
@@ -81,27 +77,10 @@
         },
         "type": "TIERS"
       },
-      "callTaker": {
-        "organization": "fr.health.samu950",
-        "controlRoom": "CRRA 95",
-        "calltakerContact": {
-          "type": "PHNADD",
-          "detail": "0112345678",
-          "channel": "Personne"
-        }
-      },
       "notes": [
         {
-          "freetext": "Entorse de la cheville, avec possible fracture. ",
+          "freetext": "Chute enfant dans les escaliers",
           "creation": "2024-01-18T15:02:00+01:00"
-        },
-        {
-          "freetext": "Cheville gonflée et douloureuse",
-          "creation": "2024-01-18T15:05:00+01:00"
-        },
-        {
-          "freetext": "Marche impossible.",
-          "creation": "2024-01-18T15:06:00+01:00"
         }
       ]
     },
@@ -123,6 +102,35 @@
           }
         },
         "id": "fr.health.samu950.DRFR159502400400159.P1"
+      }
+    ],
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu950.DRFR159502400400159.P1",
+        "idObs": "fr.health.samu950.DRFR159502400400159.medicalNote.9876",
+        "creation": "2024-01-18T18:02:00+01:00",
+        "freetext": "Marche impossible."
+      },
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu950.DRFR159502400400159.P1",
+        "idObs": "fr.health.samu950.DRFR159502400400159.medicalNote.9877",
+        "creation": "2024-01-18T18:04:00+01:00",
+        "freetext": "Cheville gonflée et douloureuse"
+      },
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu950.DRFR159502400400159.P1",
+        "idObs": "fr.health.samu950.DRFR159502400400159.medicalNote.9878",
+        "creation": "2024-01-18T18:06:00+01:00",
+        "freetext": "Entorse de la cheville, avec possible fracture."
       }
     ]
   }
