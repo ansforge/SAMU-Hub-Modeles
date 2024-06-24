@@ -77,6 +77,19 @@ public class RcRefValidatorTest extends AbstractValidatorTest {
     }
 
     @Test
+    @DisplayName("RC-RE incorrect date format validation fails")
+    public void jsonRcRefIncorrectDateFormatValidationFails() throws IOException {
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Could not detect any schemas in the message, at least one is required ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: ",
+                " - sentAt: 7 juillet 1985 is an invalid date-time",
+                " - sentAt: does not match the regex pattern \\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}"
+        };
+        jsonValidationFails("RC-REF/RC-REF-incorrect-date-format.json", expectedErrors);
+    }
+
+    @Test
     @DisplayName("RC-REF xml validation fails")
     public void xmlRcRefValidationFails() throws IOException {
         xmlValidationFails("RC-REF/RC-REF-missing-required-fields.xml", XML_MISSING, new String[]{"distributionID}' "});
