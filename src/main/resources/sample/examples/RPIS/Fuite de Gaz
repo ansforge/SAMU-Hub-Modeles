@@ -1,0 +1,71 @@
+{
+  "rpis": {
+    "orientation": {
+      "decision": {
+        "resourceCategory": "SIS",
+        "resourceType": "VSAV",
+        "teamCare": "SECOURS"
+      },
+      "destination": {
+        "destinationCountry": "FR",
+        "destinationCategory": "ES",
+        "healthcareType": "142",
+        "finess": "440000271"
+      },
+      "type": "TEMP"
+    },
+    "intervention": {
+      "smurStatus": {
+        "departSmur": "2024-05-18T18:21:00+02:00",
+        "arrivedSmur": "2024-05-18T18:32:00+02:00",
+        "departLocation": "2024-05-18T18:44:00+02:00",
+        "arrivedDestination": "2024-05-18T18:55:00+02:00",
+        "teamAvailable": "2024-05-18T19:05:00+02:00",
+        "returnSmur": "2024-05-18T19:16:00+02:00"
+      },
+      "team": {
+        "doctor": true,
+        "driver": true,
+        "nurse": true
+      },
+      "location": {
+        "detailedAddress": {
+          "cityCode": "44018",
+          "city": "Bouaye"
+        },
+        "type": "L01.01.01"
+      },
+      "mainDiagnosis": "PB32"
+    },
+    "patient": {
+      "residentialAddress": {
+        "cityCode": "44018",
+        "city": "Bouaye"
+      },
+      "patientId": "fr.health.samu440.DRFR154402413800236.P02",
+      "birthDate": "2013-11-03",
+      "sex": "MASC",
+      "nir": 113117507500113
+    },
+    "regulation": {
+      "healthMotive": {
+        "code": "M03.10",
+        "label": "Malaise avec perte de connaissance initiale"
+      },
+      "whatsHappen": {
+        "code": "C09.03.00",
+        "label": "Fuite de gaz"
+      },
+      "initialTeamCare": "MED"
+    },
+    "event": {
+      "samuId": "fr.health.samu440",
+      "fileId": "DRFR154402413800236",
+      "ressourceFinessLegal": "440000271",
+      "ressourceFinessGeo": "440000289",
+      "ressourceStructure": "0",
+      "creationDate": "2024-05-18T18:15:00+02:00",
+      "decisionDate": "2024-05-18T18:19:00+02:00"
+    }
+  }
+}
