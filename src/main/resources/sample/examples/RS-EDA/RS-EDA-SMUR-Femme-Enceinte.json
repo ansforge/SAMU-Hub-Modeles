@@ -22,7 +22,6 @@
       }
     },
     "location": {
-      "locID": "111fb03a-6fd9-41e0-8e81-990c45188891",
       "detailedAddress": {
         "complete": "Boulevard Salvador Allende",
         "wayName": {
@@ -33,19 +32,18 @@
       },
       "city": {
         "name": "Saint-Herblain",
-        "inseeCode": "44800"
+        "inseeCode": "44162"
       },
       "access": {
         "floor": "RDC",
-        "buildingName": "Soleil",
-        "phoneNumber": 969362006
+        "buildingName": "Soleil"
       },
       "geometry": {
         "point": {
           "coord": {
             "lat": 47.146089,
             "lon": -1.691374,
-            "precision": "ADDRESS"
+            "precision": "EXACTE"
           }
         },
         "obsDatime": "2024-05-18T18:15:00+02:00"
@@ -56,19 +54,15 @@
           "value": "70142121200018"
         }
       ],
-      "country": "FR",
-      "locLabel": "Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain",
       "name": "Centre Commercial Atlantis"
     },
     "initialAlert": {
-      "id": "CGA044-20240526-AL0182",
       "reception": "2024-05-26T13:15:00+02:00",
-      "reporting": "STANDARD",
       "caller": {
         "callerContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0671832618",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "detailedName": {
           "complete": "Agnès Duberti",
@@ -78,33 +72,13 @@
         "language": "FR",
         "type": "TIERS",
         "callbackContact": {
-          "channel": "Personne",
-          "type": "PHNADD",
+          "channel": "PERSONNE",
+          "type": "TEL",
           "detail": "0671832618"
         },
         "communication": "AUCUNE"
-      },
-      "callTaker": {
-        "organization": "fr.health.samu440",
-        "controlRoom": "CRRA44",
-        "calltakerContact": {
-          "channel": "Personne",
-          "type": "PHNADD",
-          "detail": "0102030405"
-        }
       }
     },
-    "decision": [
-      {
-        "type": "INTER",
-        "creation": "2024-05-26T13:19:00+02:00",
-        "engagementDetails": {
-          "categoryType": "SMUR",
-          "resourceType": "VLM",
-          "teamCareInitial": "MED"
-        }
-      }
-    ],
     "patient": [
       {
         "identity": {
@@ -146,7 +120,6 @@
         }
       ]
     },
-    "interventionType": "Primaire",
-    "referenceVersion": "1.3"
+    "interventionType": "PRIMAIRE"
   }
 }
