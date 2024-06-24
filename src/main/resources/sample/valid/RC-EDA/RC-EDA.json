@@ -104,8 +104,7 @@
                       "heading": 96,
                       "speed": 34,
                       "precision": "ADRESSE"
-                    },
-                    "sysCoord": "EPSG-4326"
+                    }
                   },
                   "sketch": "None"
                 },

@@ -101,7 +101,6 @@
                                             <speed>34</speed>
                                             <precision>ADRESSE</precision>
                                         </coord>
-                                        <sysCoord>EPSG-4326</sysCoord>
                                     </point>
                                     <sketch>None</sketch>
                                 </geometry>
