@@ -310,7 +310,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
-                    "description": "Identifiant unique de l'observation, valorid\u00e9 comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le syst\u00e8me \u00e9metteur}\n"
+                    "description": "Identifiant unique de l'observation, valoris\u00e9 comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le syst\u00e8me \u00e9metteur}\n"
                 },
                 "creation": {
                     "type": "string",

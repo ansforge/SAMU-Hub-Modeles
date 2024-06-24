@@ -137,7 +137,7 @@ Observation médicale,,,,,,Observations de nature médicale. ,,,medicalNote,,,,,
 ,Professionnel de santé qui réalise l'observation,,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,1..1,X,operator,,
 ,,Prénom et nom,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,
 ,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
-,ID Observation,,,,,"Identifiant unique de l'observation, valoridé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
+,ID Observation,,,,,"Identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
 ",fr.health.samu540.DRFR15DDXAAJJJ00001.medicalNote.46585A,,idObs,,,,,,0..1,,string,,
 ,Date Heure de création de l'observation,,,,,Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,0..1,,datetime,,
 ,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)

@@ -142,7 +142,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             <element name="operator" type="x:operator"/>
             <element minOccurs="0" name="idObs" type="string">
                 <annotation>
-                    <documentation>Identifiant unique de l'observation, valoridé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
+                    <documentation>Identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
 </documentation>
                 </annotation>
             </element>
