@@ -123,7 +123,7 @@ public class MedicalNote {
   }
 
   /**
-   * Identifiant unique de l&#39;observation, valoridé comme suit :
+   * Identifiant unique de l&#39;observation, valorisé comme suit :
    *{caseID}.medicalNote.{ID unique de l&#39;observation dans le système
    *émetteur}
    * @return idObs

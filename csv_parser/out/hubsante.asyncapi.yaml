@@ -2174,7 +2174,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/idObs
-          description: "Identifiant unique de l'observation, valorid\xE9 comme suit\
+          description: "Identifiant unique de l'observation, valoris\xE9 comme suit\
             \ : {caseID}.medicalNote.{ID unique de l'observation dans le syst\xE8\
             me \xE9metteur}\n"
           examples:
