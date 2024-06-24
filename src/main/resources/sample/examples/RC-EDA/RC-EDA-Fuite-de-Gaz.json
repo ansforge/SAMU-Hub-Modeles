@@ -22,6 +22,10 @@
       "healthMotive": {
         "code": "M03.10",
         "label": "Malaise avec perte de connaissance initiale"
+      },
+      "victims": {
+        "count": "PLUSIEURS",
+        "mainVictim": "ENFANT"
       }
     },
     "location": {
@@ -32,14 +36,25 @@
           "complete": "Rue des Marins",
           "type": "Rue",
           "name": "Des Marins"
-        }
+        },
+        "number": "3"
       },
       "city": {
         "name": "Bouaye",
-        "inseeCode": "44830"
+        "inseeCode": "44018"
       },
       "country": "FR",
-      "freetext": "Maison aux volets verts"
+      "freetext": "Maison aux volets verts",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.147005,
+            "lon": -1.690548,
+            "precision": "ADRESSE"
+          }
+        },
+        "obsDatime": "2024-05-18T18:17:00+02:00"
+      }
     },
     "initialAlert": {
       "id": "samu440-20240518-AL0192",
@@ -47,9 +62,9 @@
       "reporting": "ATTENTION",
       "caller": {
         "callerContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0671830523",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "freetext": "Mère des enfants",
         "detailedName": {
@@ -60,8 +75,8 @@
         "language": "FR",
         "type": "FAMILLE",
         "callbackContact": {
-          "channel": "Personne",
-          "type": "PHNADD",
+          "channel": "PERSONNE",
+          "type": "TEL",
           "detail": "0671830523"
         },
         "communication": "AUCUNE"
@@ -74,11 +89,12 @@
             "complete": "Rue des Marins",
             "type": "Rue ",
             "name": "Des Marins"
-          }
+          },
+          "number": "3"
         },
         "city": {
           "name": "Bouaye",
-          "inseeCode": "44830"
+          "inseeCode": "44018"
         },
         "country": "FR",
         "freetext": "Maison aux volets verts",
@@ -87,10 +103,10 @@
             "coord": {
               "lat": 47.146089,
               "lon": -1.691374,
-              "precision": "ADDRESS"
+              "precision": "ADRESSE"
             }
           },
-          "obsDatime": "2024-05-18T18:15:00+02:00"
+          "obsDatime": "2024-05-18T18:17:00+02:00"
         }
       },
       "qualification": {
@@ -111,15 +127,19 @@
         "healthMotive": {
           "code": "M03.10",
           "label": "Malaise avec perte de connaissance initiale"
+        },
+        "victims": {
+          "count": "PLUSIEURS",
+          "mainVictim": "ENFANT"
         }
       },
       "callTaker": {
         "organization": "fr.health.samu440",
         "controlRoom": "CRRA44",
         "calltakerContact": {
-          "channel": "Personne",
+          "channel": "PERSONNE",
           "detail": "0671830587",
-          "type": "PHNADD"
+          "type": "TEL"
         },
         "role": "ARM",
         "calltakerId": "1234"
@@ -135,42 +155,6 @@
           "creation": "2024-05-18T18:17:00+02:00"
         }
       ]
-    },
-    "decision": [
-      {
-        "type": "INTER",
-        "creation": "2024-05-18T18:18:00+02:00"
-      }
-    ],
-    "patient": [
-      {
-        "identity": {
-          "nonStrictFeatures": {
-            "complete": "Alice Normand",
-            "lastName": "Normand",
-            "firstName": "Alice"
-          },
-          "strictFeatures": {
-            "sex": "FEM",
-            "birthDate": "2011-05-11"
-          }
-        },
-        "id": "fr.health.samu440.DRFR154402414300123.P01"
-      },
-      {
-        "identity": {
-          "nonStrictFeatures": {
-            "complete": "Grégoire Normand",
-            "lastName": "Normand",
-            "firstName": "Grégoire"
-          },
-          "strictFeatures": {
-            "birthDate": "2013-11-03",
-            "sex": "MASC"
-          }
-        },
-        "id": "fr.health.samu440.DRFR154402413800236.P02"
-      }
-    ]
+    }
   }
 }
