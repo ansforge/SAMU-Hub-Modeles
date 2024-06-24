@@ -76,8 +76,8 @@ public class MedicalNote {
 
   /**
    * ID partagé du patient concerné, lorsque le patient existe et est identifié
-   *dans le système emetteur {ID du dossier partagé}.P{numéro d’ordre
-   *chronologique unique du patient}
+   *dans le système emetteur, valorisé comme suit pour un CRRA :  {ID du dossier
+   *partagé}.P{numéro d’ordre chronologique unique du patient}
    * @return idPat
    **/
   @JsonProperty(JSON_PROPERTY_ID_PAT)
@@ -123,18 +123,20 @@ public class MedicalNote {
   }
 
   /**
-   * {ID du dossier partagé}.N.{id unique de la note}
+   * Identifiant unique de l&#39;observation, valoridé comme suit :
+   *{caseID}.medicalNote.{ID unique de l&#39;observation dans le système
+   *émetteur}
    * @return idObs
    **/
   @JsonProperty(JSON_PROPERTY_ID_OBS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getIdObs() {
     return idObs;
   }
 
   @JsonProperty(JSON_PROPERTY_ID_OBS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdObs(String idObs) {
     this.idObs = idObs;
   }

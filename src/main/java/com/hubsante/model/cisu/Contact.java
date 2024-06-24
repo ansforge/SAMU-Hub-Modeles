@@ -47,8 +47,51 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Contact {
+
+  /**
+   * Permet d&#39;indiquer l&#39;origine du canal établit : Personne,
+   * application, DAU, BAU, défibrillateur, ecall
+   */
+  public enum ChannelEnum {
+    PERSONNE("PERSONNE"),
+
+    APPLICATION("APPLICATION"),
+
+    DAU("DAU"),
+
+    BAU("BAU"),
+
+    DEFIBRILLATEUR("DEFIBRILLATEUR"),
+
+    ECALL("ECALL");
+
+    private String value;
+
+    ChannelEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ChannelEnum fromValue(String value) {
+      for (ChannelEnum b : ChannelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_CHANNEL = "channel";
-  private String channel;
+  private ChannelEnum channel;
 
   /**
    * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
@@ -99,7 +142,7 @@ public class Contact {
 
   public Contact() {}
 
-  public Contact channel(String channel) {
+  public Contact channel(ChannelEnum channel) {
 
     this.channel = channel;
     return this;
@@ -113,13 +156,13 @@ public class Contact {
   @JsonProperty(JSON_PROPERTY_CHANNEL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getChannel() {
+  public ChannelEnum getChannel() {
     return channel;
   }
 
   @JsonProperty(JSON_PROPERTY_CHANNEL)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setChannel(String channel) {
+  public void setChannel(ChannelEnum channel) {
     this.channel = channel;
   }
 

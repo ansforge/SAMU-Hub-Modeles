@@ -40,10 +40,10 @@ components:
           x-cols: 6
           example: example.json#/RSDRId
           description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.D.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
           examples:
-          - fr.health.samu770.D.1249875
-        resourceRequest:
+          - fr.health.samu770.request.1249875
+        request:
           $ref: '#/components/schemas/request'
       additionalProperties: false
     request:
@@ -60,7 +60,7 @@ components:
           title: "Date Heure de cr\xE9ation de la demande"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceRequest/dateTime
+          example: example.json#/request/dateTime
           description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -71,8 +71,9 @@ components:
           title: Cadre conventionnel
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceRequest/convention
-          description: 'Nomenclature ? '
+          example: example.json#/request/convention
+          description: "Nomenclature \xE0 venir : d\xE9crit le cadre conventionnel\
+            \ de la demande."
           examples:
           - None
         deadline:
@@ -80,7 +81,7 @@ components:
           title: "D\xE9lai souhait\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceRequest/deadline
+          example: example.json#/request/deadline
           description: "D\xE9lai d'intervention souhait\xE9"
           examples:
           - None
@@ -89,7 +90,7 @@ components:
           title: "Effet \xE0 obtenir"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceRequest/purpose
+          example: example.json#/request/purpose
           description: "Motif de la demande de ressource aupr\xE8s du partenaire"
           enum:
           - E01
@@ -121,12 +122,12 @@ components:
           title: "Pr\xE9cisions sur la demande"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resourceRequest/freetext
+          example: example.json#/request/freetext
           description: "Texte libre permettant de d\xE9tailler la demande"
           examples:
           - None
       additionalProperties: false
-      example: example.json#/resourceRequest
+      example: example.json#/request
       examples:
       - dateTime: None
         convention: None

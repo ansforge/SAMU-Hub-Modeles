@@ -44,7 +44,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({ResourcesRequest.JSON_PROPERTY_CASE_ID,
                     ResourcesRequest.JSON_PROPERTY_RS_D_R_ID,
-                    ResourcesRequest.JSON_PROPERTY_RESOURCE_REQUEST})
+                    ResourcesRequest.JSON_PROPERTY_REQUEST})
 @JsonTypeName("resourcesRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -57,8 +57,8 @@ public class ResourcesRequest {
   public static final String JSON_PROPERTY_RS_D_R_ID = "RSDRId";
   private String rsDRId;
 
-  public static final String JSON_PROPERTY_RESOURCE_REQUEST = "resourceRequest";
-  private Request resourceRequest;
+  public static final String JSON_PROPERTY_REQUEST = "request";
+  private Request request;
 
   public ResourcesRequest() {}
 
@@ -97,8 +97,8 @@ public class ResourcesRequest {
   }
 
   /**
-   * Identifiant unique partagé de la demande de ressource {orgID}.D.{ID unique
-   *de la demande dans le système émetteur}
+   * Identifiant unique partagé de la demande de ressource {orgID}.request.{ID
+   *unique de la demande dans le système émetteur}
    * @return rsDRId
    **/
   @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
@@ -114,27 +114,27 @@ public class ResourcesRequest {
     this.rsDRId = rsDRId;
   }
 
-  public ResourcesRequest resourceRequest(Request resourceRequest) {
+  public ResourcesRequest request(Request request) {
 
-    this.resourceRequest = resourceRequest;
+    this.request = request;
     return this;
   }
 
   /**
-   * Get resourceRequest
-   * @return resourceRequest
+   * Get request
+   * @return request
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
+  @JsonProperty(JSON_PROPERTY_REQUEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Request getResourceRequest() {
-    return resourceRequest;
+  public Request getRequest() {
+    return request;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_REQUEST)
+  @JsonProperty(JSON_PROPERTY_REQUEST)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceRequest(Request resourceRequest) {
-    this.resourceRequest = resourceRequest;
+  public void setRequest(Request request) {
+    this.request = request;
   }
 
   @Override
@@ -148,12 +148,12 @@ public class ResourcesRequest {
     ResourcesRequest resourcesRequest = (ResourcesRequest)o;
     return Objects.equals(this.caseId, resourcesRequest.caseId) &&
         Objects.equals(this.rsDRId, resourcesRequest.rsDRId) &&
-        Objects.equals(this.resourceRequest, resourcesRequest.resourceRequest);
+        Objects.equals(this.request, resourcesRequest.request);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDRId, resourceRequest);
+    return Objects.hash(caseId, rsDRId, request);
   }
 
   @Override
@@ -162,9 +162,7 @@ public class ResourcesRequest {
     sb.append("class ResourcesRequest {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    rsDRId: ").append(toIndentedString(rsDRId)).append("\n");
-    sb.append("    resourceRequest: ")
-        .append(toIndentedString(resourceRequest))
-        .append("\n");
+    sb.append("    request: ").append(toIndentedString(request)).append("\n");
     sb.append("}");
     return sb.toString();
   }

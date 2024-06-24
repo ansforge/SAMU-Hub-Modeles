@@ -3,8 +3,8 @@
     "mobilizedResource": [
         {
             "dateTime": "None",
-            "resourceID": "fr.health.samu440.DRFR15DDXAAJJJ0000.R01\nfr.health.samu440.VLM16",
-            "RSDRId": "fr.health.samu770.D.1249875",
+            "resourceID": "fr.health.samu770.resource.VLM250\nfr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",
+            "RSDRId": "fr.health.samu770.request.1249875",
             "missionID": "DRFR15DDXAAJJJ0000.M001",
             "orgID": "fr.health.samu440",
             "centerName": "CHU Nantes",

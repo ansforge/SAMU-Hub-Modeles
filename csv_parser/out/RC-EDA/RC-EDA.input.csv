@@ -9,7 +9,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
 Date Heure de création de l'affaire/dossier,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF
 Version des nomenclatures du référentiel CISU,,,,,,"Indique le numéro de version du référentiel des nomenclatures des codes transmis. 
 Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même version des codes de nomenclature que leurs partenaires.",1.2,cisuNomenclatureVersion,referenceVersion,,,,,,1..1,,string,,
-Qualification de l'affaire/dossier,,,,,,"Permet de qualifier l'affaire/dossier en général. 
+Qualification,,,,,,"Permet de qualifier l'affaire/dossier en général. 
 15-18 : La qualification est issue d'une interprétation métier des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,
 ,Nature de fait,,,,,"Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU.
 Le champs freetext sert à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées).",,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
@@ -23,7 +23,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 ,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, PLUSIEURS, BEAUCOUP, INCONNU, NON DEFINI"
 ,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,,0..1,,string,X,"ENUM: NOURRISSON, ENFANT, ADULTE, SENIOR"
 ,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,,0..1,,string,,
-Localisation de l'affaire/dossier,,,,,,Permet de décrire le lieu d'intervention.,,eventLocation,location,,,,,,1..1,X,location,,
+Localisation,,,,,,Permet de décrire le lieu d'intervention.,,eventLocation,location,,,,,,1..1,X,location,,
 ,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,,,,,,,1..1,,string,,
 ,Résumé de la localisation,,,,,"Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
 15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
@@ -49,12 +49,12 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
 ,Détails d'accès,,,,,"Permet d'envoyer l'ensemble des détails d'accès au lieu d'intervention. Si les détails ne sont pas gérés individuellement, il est préférable de passer ces indications dans le freetext lié à la localisation de l'affaire.
 15-18 - Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,,access,,,,,,0..1,X,access,,
 ,,Etage,,,,Etage ,RDC,,floor,LG,Etage,,,,0..1,,string,,
-,,Numéro de porte,,,,"Spécifie numéro d'appartement, de chambre, de bureau",A16,,roomNumber,LP,Porte,,,,0..1,,string,,
+,,Numéro de porte,,,,"Spécifie le numéro d'appartement, de chambre, de bureau",A16,,roomNumber,LP,Porte,,,,0..1,,string,,
 ,,Interphone,,,,"Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)",Dupont,,interphone,,,,,,0..1,,string,,
 ,,Digicode,,,,Indique le ou les digicodes dans l'ordre de progression dans le bâtiment,1234A,,accessCode,LD,Digicode,,,,0..n,,string,,
 ,,Ascenseur/escalier,,,,Indique l'ascenseur ou la cage d'escalier ,C3,,elevator,,,,,,0..1,,string,,
 ,,Bâtiment,,,,Nom du bâtiment,Batiment B,,buildingName,,,,,,0..1,,string,,
-,,Entrée,,,,,Zone Sud,,entrance,,,,,,0..1,,string,,
+,,Entrée,,,,Nom de l'entrée,Zone Sud,,entrance,,,,,,0..1,,string,,
 ,,Service,,,,"Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …",Infirmerie,,entity,,,,,,0..1,,string,,
 ,,N° de téléphone du lieu,,,,"Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.",33123452323,,phoneNumber,,,,,,0..1,,string,,
 ,Géometrie associée,,,,,,,objectGeometry,geometry,,,,,,0..1,X,geometry,,
@@ -72,7 +72,7 @@ L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord
 ,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,,,,,,0..1,,number,,
 ,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
 CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
-,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,,
+,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. ",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,X,ENUM: EPSG-4326
 ,,Formes géométriques,,,,"Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
 Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
 En XML, un objet gml est encapsulé dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>
@@ -103,11 +103,11 @@ Prend les valeurs définies dans la nomenclature CISU :
 Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",STANDARD,,reporting,,,,,1.0,1..1,,string,X,"ENUM: STANDARD, ATTENTION"
 ,Informations complémentaires sur l'alerte,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
 15-15 : ce champ est celui dédié pour passer les observations ARM en texte libre.","Déclenchement téléalarme, voisine sur les lieux",comment,notes,OG,Observations générales (texte libre),,,1.0,0..n,X,notes,,
-,,Date et heure de l'information complémentaire/l'observation ARM,,,,date et heure de l'observation,,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF
-,,Commentaire/Observations,,,,texte libre contenant les indications renseignées par l'ARM,La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,
+,,Date et heure de l'information complémentaire,,,,date et heure de l'observation,,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF
+,,Commentaire/Observations,,,,"texte libre contenant les indications renseignées sur l'alerte en général, hors notes spécifiquement médicales",La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,
 ,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,
 ,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
-,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
+,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
 ,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
 ,,,URI du contact,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,

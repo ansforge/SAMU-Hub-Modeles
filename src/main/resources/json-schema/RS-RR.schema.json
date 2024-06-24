@@ -26,7 +26,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/RSDRId",
-            "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.D.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
+            "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
         },
         "requestResponse": {
             "$ref": "#/definitions/response"

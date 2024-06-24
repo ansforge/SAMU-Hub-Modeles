@@ -112,7 +112,7 @@ public class Access {
   }
 
   /**
-   * Spécifie numéro d&#39;appartement, de chambre, de bureau
+   * Spécifie le numéro d&#39;appartement, de chambre, de bureau
    * @return roomNumber
    **/
   @JsonProperty(JSON_PROPERTY_ROOM_NUMBER)
@@ -244,7 +244,7 @@ public class Access {
   }
 
   /**
-   * Get entrance
+   * Nom de l&#39;entrée
    * @return entrance
    **/
   @JsonProperty(JSON_PROPERTY_ENTRANCE)

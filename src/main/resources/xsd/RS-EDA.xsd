@@ -57,7 +57,6 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
@@ -78,7 +77,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
                     </restriction>
                 </simpleType>
             </element>
-            <element name="whatsHappen" type="x:whatsHappen"/>
+            <element minOccurs="0" name="whatsHappen" type="x:whatsHappen"/>
             <element minOccurs="0" name="locationKind" type="x:locationKind"/>
             <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
@@ -136,14 +135,14 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
         <sequence>
             <element minOccurs="0" name="idPat" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur
+                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur, valorisé comme suit pour un CRRA : 
 {ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}</documentation>
                 </annotation>
             </element>
             <element name="operator" type="x:operator"/>
-            <element name="idObs" type="string">
+            <element minOccurs="0" name="idObs" type="string">
                 <annotation>
-                    <documentation>{ID du dossier partagé}.N.{id unique de la note}
+                    <documentation>Identifiant unique de l'observation, valoridé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
 </documentation>
                 </annotation>
             </element>
@@ -157,34 +156,6 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
                     <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
 Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
                 </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="decision">
-        <sequence>
-            <element minOccurs="0" name="idPat" type="string">
-                <annotation>
-                    <documentation>ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié</documentation>
-                </annotation>
-            </element>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element name="type">
-                <annotation>
-                    <documentation>Type de décision prise</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="CONSEIL"/>
-                        <enumeration value="PMT"/>
-                        <enumeration value="INTER"/>
-                        <enumeration value="ORIENT"/>
-                        <enumeration value="PASPLUS"/>
-                    </restriction>
-                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -594,6 +565,19 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="careLevel">
+                <annotation>
+                    <documentation>Décrit le niveau de soin global du dossier : s'il y a plusieurs niveau de soin par patient, on indique ici le niveau le plus grave</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="R1"/>
+                        <enumeration value="R2"/>
+                        <enumeration value="R3"/>
+                        <enumeration value="R4"/>
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
     <complexType name="externalLocationId">
@@ -664,7 +648,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="roomNumber" type="string">
                 <annotation>
-                    <documentation>Spécifie numéro d'appartement, de chambre, de bureau</documentation>
+                    <documentation>Spécifie le numéro d'appartement, de chambre, de bureau</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="interphone" type="string">
@@ -683,7 +667,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     <documentation>Nom du bâtiment</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="entrance" type="string"/>
+            <element minOccurs="0" name="entrance" type="string">
+                <annotation>
+                    <documentation>Nom de l'entrée</documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="entity" type="string">
                 <annotation>
                     <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
@@ -784,10 +772,20 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
     <complexType name="point">
         <sequence>
             <element name="coord" type="x:coord"/>
-            <element minOccurs="0" name="sysCoord" type="string">
+            <element minOccurs="0" name="aml" type="boolean">
                 <annotation>
-                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».</documentation>
+                    <documentation>Précise si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. </documentation>
                 </annotation>
+            </element>
+            <element minOccurs="0" name="sysCoord">
+                <annotation>
+                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="EPSG-4326"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -834,7 +832,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>texte libre contenant les indications renseignées par l'ARM</documentation>
+                    <documentation>texte libre contenant les indications renseignées sur l'alerte en général, hors notes spécifiquement médicales</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1152,10 +1150,20 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
     </complexType>
     <complexType name="contact">
         <sequence>
-            <element name="channel" type="string">
+            <element name="channel">
                 <annotation>
                     <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="PERSONNE"/>
+                        <enumeration value="APPLICATION"/>
+                        <enumeration value="DAU"/>
+                        <enumeration value="BAU"/>
+                        <enumeration value="DEFIBRILLATEUR"/>
+                        <enumeration value="ECALL"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="type">
                 <annotation>
@@ -1347,8 +1355,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
+                        <enumeration value="AMBULANCIER"/>
                         <enumeration value="ARM"/>
+                        <enumeration value="INFIRMIER"/>
                         <enumeration value="MEDECIN"/>
+                        <enumeration value="INCONNU"/>
                         <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>

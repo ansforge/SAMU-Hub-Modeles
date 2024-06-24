@@ -96,12 +96,6 @@
                 "$ref": "#/definitions/medicalNote"
             }
         },
-        "decision": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/decision"
-            }
-        },
         "newAlert": {
             "type": "array",
             "items": {
@@ -115,12 +109,10 @@
     "definitions": {
         "qualification": {
             "type": "object",
-            "title": "Qualification de l'affaire/dossier",
+            "title": "Qualification",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [
-                "whatsHappen"
-            ],
+            "required": [],
             "properties": {
                 "origin": {
                     "type": "string",
@@ -161,7 +153,7 @@
         },
         "location": {
             "type": "object",
-            "title": "Localisation de l'affaire/dossier",
+            "title": "Localisation",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [],
@@ -245,7 +237,7 @@
         },
         "patient": {
             "type": "object",
-            "title": "Patient / victime",
+            "title": "Patient",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -293,12 +285,11 @@
         },
         "medicalNote": {
             "type": "object",
-            "title": "Observations m\u00e9dicales",
+            "title": "Observation m\u00e9dicale",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
                 "operator",
-                "idObs",
                 "freetext"
             ],
             "properties": {
@@ -308,7 +299,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idPat",
-                    "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur\n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique unique du patient}"
+                    "description": "ID partag\u00e9 du patient concern\u00e9, lorsque le patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur, valoris\u00e9 comme suit pour un CRRA : \n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique unique du patient}"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
@@ -319,11 +310,11 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
-                    "description": "{ID du dossier partag\u00e9}.N.{id unique de la note}\n"
+                    "description": "Identifiant unique de l'observation, valorid\u00e9 comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le syst\u00e8me \u00e9metteur}\n"
                 },
                 "creation": {
                     "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de l'interrogatoire",
+                    "title": "Date Heure de cr\u00e9ation de l'observation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/creation",
@@ -342,53 +333,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0"
-        },
-        "decision": {
-            "type": "object",
-            "title": "D\u00e9cisions",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "creation",
-                "type"
-            ],
-            "properties": {
-                "idPat": {
-                    "type": "string",
-                    "title": "ID patient partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/idPat",
-                    "description": "ID partag\u00e9 du patient concern\u00e9 par la d\u00e9cision, lorsque le patient existe et est identifi\u00e9"
-                },
-                "creation": {
-                    "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/creation",
-                    "description": "Groupe date heure de cr\u00e9ation de la d\u00e9cision.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
-                    "format": "date-time"
-                },
-                "type": {
-                    "type": "string",
-                    "title": "Type de d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/type",
-                    "description": "Type de d\u00e9cision prise",
-                    "enum": [
-                        "CONSEIL",
-                        "PMT",
-                        "INTER",
-                        "ORIENT",
-                        "PASPLUS"
-                    ]
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0"
         },
         "additionalInformation": {
             "type": "object",
@@ -871,6 +815,20 @@
                         "P3",
                         "NR"
                     ]
+                },
+                "careLevel": {
+                    "type": "string",
+                    "title": "Niveau de soin du dossier",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/details/careLevel",
+                    "description": "D\u00e9crit le niveau de soin global du dossier : s'il y a plusieurs niveau de soin par patient, on indique ici le niveau le plus grave",
+                    "enum": [
+                        "R1",
+                        "R2",
+                        "R3",
+                        "R4"
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -997,7 +955,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/roomNumber",
-                    "description": "Sp\u00e9cifie num\u00e9ro d'appartement, de chambre, de bureau"
+                    "description": "Sp\u00e9cifie le num\u00e9ro d'appartement, de chambre, de bureau"
                 },
                 "interphone": {
                     "type": "string",
@@ -1040,7 +998,8 @@
                     "title": "Entr\u00e9e",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/access/entrance"
+                    "example": "example.json#/location/access/entrance",
+                    "description": "Nom de l'entr\u00e9e"
                 },
                 "entity": {
                     "type": "string",
@@ -1223,13 +1182,24 @@
                 "coord": {
                     "$ref": "#/definitions/coord"
                 },
+                "aml": {
+                    "type": "boolean",
+                    "title": "Dipositif AML",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/geometry/point/aml",
+                    "description": "Pr\u00e9cise si les coordonn\u00e9es fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
+                },
                 "sysCoord": {
                     "type": "string",
                     "title": "Syst\u00e8me de coordonn\u00e9es",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/sysCoord",
-                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
+                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. ",
+                    "enum": [
+                        "EPSG-4326"
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -1298,7 +1268,7 @@
             "properties": {
                 "creation": {
                     "type": "string",
-                    "title": "Date et heure de l'information compl\u00e9mentaire/l'observation ARM",
+                    "title": "Date et heure de l'information compl\u00e9mentaire",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
@@ -1312,7 +1282,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/freetext",
-                    "description": "texte libre contenant les indications renseign\u00e9es par l'ARM"
+                    "description": "texte libre contenant les indications renseign\u00e9es sur l'alerte en g\u00e9n\u00e9ral, hors notes sp\u00e9cifiquement m\u00e9dicales"
                 }
             },
             "additionalProperties": false,
@@ -1666,7 +1636,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/channel",
-                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
+                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall",
+                    "enum": [
+                        "PERSONNE",
+                        "APPLICATION",
+                        "DAU",
+                        "BAU",
+                        "DEFIBRILLATEUR",
+                        "ECALL"
+                    ]
                 },
                 "type": {
                     "type": "string",
@@ -1801,7 +1779,7 @@
                 },
                 "careLevel": {
                     "type": "string",
-                    "title": "Niveau de soin",
+                    "title": "Niveau de soin du patient",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/detail/careLevel",
@@ -1977,7 +1955,7 @@
         },
         "operator": {
             "type": "object",
-            "title": "Professionnel de sant\u00e9 qui r\u00e9alise l'interrogatoire",
+            "title": "Professionnel de sant\u00e9 qui r\u00e9alise l'observation",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1995,8 +1973,11 @@
                     "example": "example.json#/medicalNote/0/operator/role",
                     "description": "R\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message",
                     "enum": [
+                        "AMBULANCIER",
                         "ARM",
+                        "INFIRMIER",
                         "MEDECIN",
+                        "INCONNU",
                         "AUTRE"
                     ]
                 }

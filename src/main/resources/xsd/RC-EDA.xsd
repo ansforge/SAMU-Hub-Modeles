@@ -820,7 +820,7 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
             </element>
             <element minOccurs="0" name="roomNumber" type="string">
                 <annotation>
-                    <documentation>Spécifie numéro d'appartement, de chambre, de bureau</documentation>
+                    <documentation>Spécifie le numéro d'appartement, de chambre, de bureau</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="interphone" type="string">
@@ -839,7 +839,11 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
                     <documentation>Nom du bâtiment</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="entrance" type="string"/>
+            <element minOccurs="0" name="entrance" type="string">
+                <annotation>
+                    <documentation>Nom de l'entrée</documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="entity" type="string">
                 <annotation>
                     <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
@@ -930,10 +934,15 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
     <complexType name="point">
         <sequence>
             <element name="coord" type="x:coord"/>
-            <element minOccurs="0" name="sysCoord" type="string">
+            <element minOccurs="0" name="sysCoord">
                 <annotation>
-                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».</documentation>
+                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. </documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="EPSG-4326"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -990,7 +999,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>texte libre contenant les indications renseignées par l'ARM</documentation>
+                    <documentation>texte libre contenant les indications renseignées sur l'alerte en général, hors notes spécifiquement médicales</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1371,10 +1380,20 @@ La ressource est hashée avec le protocole SHA-256</documentation>
     </complexType>
     <complexType name="contact">
         <sequence>
-            <element name="channel" type="string">
+            <element name="channel">
                 <annotation>
                     <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="PERSONNE"/>
+                        <enumeration value="APPLICATION"/>
+                        <enumeration value="DAU"/>
+                        <enumeration value="BAU"/>
+                        <enumeration value="DEFIBRILLATEUR"/>
+                        <enumeration value="ECALL"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="type">
                 <annotation>

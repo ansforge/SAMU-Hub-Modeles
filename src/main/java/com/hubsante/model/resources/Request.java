@@ -170,7 +170,7 @@ public class Request {
   }
 
   /**
-   * Nomenclature ?
+   * Nomenclature à venir : décrit le cadre conventionnel de la demande.
    * @return convention
    **/
   @JsonProperty(JSON_PROPERTY_CONVENTION)

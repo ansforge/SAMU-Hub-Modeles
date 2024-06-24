@@ -116,10 +116,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
-        decision:
-          type: array
-          items:
-            $ref: '#/components/schemas/decision'
         newAlert:
           type: array
           items:
@@ -129,11 +125,10 @@ components:
       additionalProperties: false
     qualification:
       type: object
-      title: Qualification de l'affaire/dossier
+      title: Qualification
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - whatsHappen
+      required: []
       properties:
         origin:
           type: string
@@ -166,7 +161,7 @@ components:
       example: example.json#/qualification
     location:
       type: object
-      title: Localisation de l'affaire/dossier
+      title: Localisation
       x-display: expansion-panels
       x-health-only: false
       required: []
@@ -239,7 +234,7 @@ components:
       example: example.json#/initialAlert
     patient:
       type: object
-      title: Patient / victime
+      title: Patient
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -283,12 +278,11 @@ components:
       example: example.json#/patient/0
     medicalNote:
       type: object
-      title: "Observations m\xE9dicales"
+      title: "Observation m\xE9dicale"
       x-display: expansion-panels
       x-health-only: false
       required:
       - operator
-      - idObs
       - freetext
       properties:
         idPat:
@@ -298,8 +292,9 @@ components:
           x-cols: 6
           example: example.json#/medicalNote/0/idPat
           description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
-            \ et est identifi\xE9 dans le syst\xE8me emetteur\n{ID du dossier partag\xE9\
-            }.P{num\xE9ro d\u2019ordre chronologique unique du patient}"
+            \ et est identifi\xE9 dans le syst\xE8me emetteur, valoris\xE9 comme suit\
+            \ pour un CRRA : \n{ID du dossier partag\xE9}.P{num\xE9ro d\u2019ordre\
+            \ chronologique unique du patient}"
           examples:
           - None
         operator:
@@ -310,12 +305,14 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/idObs
-          description: "{ID du dossier partag\xE9}.N.{id unique de la note}\n"
+          description: "Identifiant unique de l'observation, valorid\xE9 comme suit\
+            \ : {caseID}.medicalNote.{ID unique de l'observation dans le syst\xE8\
+            me \xE9metteur}\n"
           examples:
-          - None
+          - fr.health.samu540.DRFR15DDXAAJJJ00001.medicalNote.46585A
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de l'interrogatoire"
+          title: "Date Heure de cr\xE9ation de l'observation"
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/creation
@@ -339,60 +336,6 @@ components:
           - None
       additionalProperties: false
       example: example.json#/medicalNote/0
-    decision:
-      type: object
-      title: "D\xE9cisions"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - creation
-      - type
-      properties:
-        idPat:
-          type: string
-          title: "ID patient partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/idPat
-          description: "ID partag\xE9 du patient concern\xE9 par la d\xE9cision, lorsque\
-            \ le patient existe et est identifi\xE9"
-          examples:
-          - None
-        creation:
-          type: string
-          title: "Date Heure de cr\xE9ation de la d\xE9cision"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/creation
-          description: "Groupe date heure de cr\xE9ation de la d\xE9cision.  L'indicateur\
-            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
-        type:
-          type: string
-          title: "Type de d\xE9cision"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/type
-          description: "Type de d\xE9cision prise"
-          enum:
-          - CONSEIL
-          - PMT
-          - INTER
-          - ORIENT
-          - PASPLUS
-          examples:
-          - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
-            orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
-      additionalProperties: false
-      example: example.json#/decision/0
-      examples:
-      - idPat: None
-        creation: '2022-09-27T08:23:34+02:00'
-        type: "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision\
-          \ d\u2019orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -891,11 +834,27 @@ components:
           - NR
           examples:
           - P1
+        careLevel:
+          type: string
+          title: Niveau de soin du dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/details/careLevel
+          description: "D\xE9crit le niveau de soin global du dossier : s'il y a plusieurs\
+            \ niveau de soin par patient, on indique ici le niveau le plus grave"
+          enum:
+          - R1
+          - R2
+          - R3
+          - R4
+          examples:
+          - R1
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
       - attribution: MU
         priority: P1
+        careLevel: R1
     externalLocationId:
       type: object
       title: Identifiant(s) du lieu
@@ -1027,7 +986,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/roomNumber
-          description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
+          description: "Sp\xE9cifie le num\xE9ro d'appartement, de chambre, de bureau"
           examples:
           - A16
         interphone:
@@ -1077,6 +1036,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/entrance
+          description: "Nom de l'entr\xE9e"
           examples:
           - Zone Sud
         entity:
@@ -1277,6 +1237,16 @@ components:
       properties:
         coord:
           $ref: '#/components/schemas/coord'
+        aml:
+          type: boolean
+          title: Dipositif AML
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/geometry/point/aml
+          description: "Pr\xE9cise si les coordonn\xE9es fournies proviennent du dispositif\
+            \ AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
+          examples:
+          - 'TRUE'
         sysCoord:
           type: string
           title: "Syst\xE8me de coordonn\xE9es"
@@ -1285,8 +1255,9 @@ components:
           example: example.json#/location/geometry/point/sysCoord
           description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
             \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
-            \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
-            \ valeur par d\xE9faut est \xAB\xBB."
+            \ de WGS-84. "
+          enum:
+          - EPSG-4326
           examples:
           - EPSG-4326
       additionalProperties: false
@@ -1365,7 +1336,7 @@ components:
       properties:
         creation:
           type: string
-          title: "Date et heure de l'information compl\xE9mentaire/l'observation ARM"
+          title: "Date et heure de l'information compl\xE9mentaire"
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/creation
@@ -1380,7 +1351,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/freetext
-          description: "texte libre contenant les indications renseign\xE9es par l'ARM"
+          description: "texte libre contenant les indications renseign\xE9es sur l'alerte\
+            \ en g\xE9n\xE9ral, hors notes sp\xE9cifiquement m\xE9dicales"
           examples:
           - 'La personne est inconsciente (perte de connaissance). '
       additionalProperties: false
@@ -1737,6 +1709,13 @@ components:
           example: example.json#/initialAlert/caller/callerContact/channel
           description: "Permet d'indiquer l'origine du canal \xE9tablit : Personne,\
             \ application, DAU, BAU, d\xE9fibrillateur, ecall"
+          enum:
+          - PERSONNE
+          - APPLICATION
+          - DAU
+          - BAU
+          - DEFIBRILLATEUR
+          - ECALL
           examples:
           - Personne
         type:
@@ -1883,7 +1862,7 @@ components:
           - P6Y
         careLevel:
           type: string
-          title: Niveau de soin
+          title: Niveau de soin du patient
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/careLevel
@@ -2072,7 +2051,7 @@ components:
         label: "Rod\xE9o automobile"
     operator:
       type: object
-      title: "Professionnel de sant\xE9 qui r\xE9alise l'interrogatoire"
+      title: "Professionnel de sant\xE9 qui r\xE9alise l'observation"
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -2089,8 +2068,11 @@ components:
           description: "R\xF4le de l'op\xE9rateur au sein de l'entit\xE9 \xE9mettrice\
             \ du message"
           enum:
+          - AMBULANCIER
           - ARM
+          - INFIRMIER
           - MEDECIN
+          - INCONNU
           - AUTRE
           examples:
           - "ARM, Medecin r\xE9gulateur\u2026"

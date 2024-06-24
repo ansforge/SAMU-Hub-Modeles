@@ -55,9 +55,15 @@ public class Operator {
    * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
    */
   public enum RoleEnum {
+    AMBULANCIER("AMBULANCIER"),
+
     ARM("ARM"),
 
+    INFIRMIER("INFIRMIER"),
+
     MEDECIN("MEDECIN"),
+
+    INCONNU("INCONNU"),
 
     AUTRE("AUTRE");
 

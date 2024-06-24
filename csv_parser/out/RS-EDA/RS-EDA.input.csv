@@ -9,11 +9,11 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
 Date Heure de création de l'affaire/dossier,,,,,,Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,createdAt,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF
 Filière,,,,,,Sert à indiquer à quelle filière du CRRA le dossier doit être adressé/affiché,AMU,,perimeter,,,,,,0..1,,string,,"ENUM: AMU, NEONAT, PSY, SNP"
 Type d'intervention,,,,,,Indiquer s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),Primaire,,interventionType,,,,,,0..1,,string,,"ENUM: PRIMAIRE, SECONDAIRE, RETOUR A DOMICILE"
-Qualification de l'affaire/dossier,,,,,,"Permet de qualifier l'affaire/dossier en général. 
+Qualification,,,,,,"Permet de qualifier l'affaire/dossier en général. 
 15-18 : La qualification est issue d'une interprétation métier des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,
 ,Origine de l'appel,,,,,Numéro de provenance de l'appel,"15, 112, 18",,origin,,,,,,0..1,,string,,"ENUM: 15, 18, 17, 112, 116117"
 ,Nature de fait,,,,,"Décrit la nature de fait de l'alerte (NF) à partir de la nomenclature CISU.
-Le champs freetext sert à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées).",,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
+Le champs freetext sert à passer les informations de gestion des évènements (main courante sans les informations médicales privilégiées).",,whatsHappen,,CE/CK,raison de l'appel,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,,Code,,,,A valoriser avec un code la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,,
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,,1.0,1..1,,string,,
@@ -23,7 +23,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 ,Détails du dossier ,,,,,,,,details,,,,,,0..1,X,caseDetails,,
 ,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.",MU,,attribution,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-DEVENIRD
 ,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,,priority,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PRIORITE
-Localisation de l'affaire/dossier,,,,,,Permet de décrire le lieu d'intervention.,,eventLocation,location,,,,,,1..1,X,location,,
+,,Niveau de soin du dossier,,,,"Décrit le niveau de soin global du dossier : s'il y a plusieurs niveau de soin par patient, on indique ici le niveau le plus grave",R1,,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
+Localisation,,,,,,Permet de décrire le lieu d'intervention.,,eventLocation,location,,,,,,1..1,X,location,,
 ,Nom du lieu,,,,,"Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
 ,Identifiant(s) du lieu,,,,,Permet d'identifier une structure commerciale ou un établissement,,,externalLocationId,,,,,,0..n,X,externalLocationId,,
 ,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
@@ -47,12 +48,12 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
 ,Détails d'accès,,,,,"Permet d'envoyer l'ensemble des détails d'accès au lieu d'intervention. Si les détails ne sont pas gérés individuellement, il est préférable de passer ces indications dans le freetext lié à la localisation de l'affaire.
 15-18 - Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,,access,,,,,,0..1,X,access,,
 ,,Etage,,,,Etage ,RDC,,floor,LG,Etage,,,,0..1,,string,,
-,,Numéro de porte,,,,"Spécifie numéro d'appartement, de chambre, de bureau",A16,,roomNumber,LP,Porte,,,,0..1,,string,,
+,,Numéro de porte,,,,"Spécifie le numéro d'appartement, de chambre, de bureau",A16,,roomNumber,LP,Porte,,,,0..1,,string,,
 ,,Interphone,,,,"Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)",Dupont,,interphone,,,,,,0..1,,string,,
 ,,Digicode,,,,Indique le ou les digicodes dans l'ordre de progression dans le bâtiment,1234A,,accessCode,LD,Digicode,,,,0..n,,string,,
 ,,Ascenseur/escalier,,,,Indique l'ascenseur ou la cage d'escalier ,C3,,elevator,,,,,,0..1,,string,,
 ,,Bâtiment,,,,Nom du bâtiment,Batiment B,,buildingName,,,,,,0..1,,string,,
-,,Entrée,,,,,Zone Sud,,entrance,,,,,,0..1,,string,,
+,,Entrée,,,,Nom de l'entrée,Zone Sud,,entrance,,,,,,0..1,,string,,
 ,,Service,,,,"Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …",Infirmerie,,entity,,,,,,0..1,,string,,
 ,,N° de téléphone du lieu,,,,"Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.",33123452323,,phoneNumber,,,,,,0..1,,string,,
 ,Géometrie associée,,,,,,,objectGeometry,geometry,,,,,,0..1,X,geometry,,
@@ -68,7 +69,8 @@ L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord
 ,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,
 ,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
 CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
-,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,,
+,,,Dipositif AML,,,Précise si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. ,TRUE,,aml,,,,,,0..1,,boolean,,
+,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. ",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,X,ENUM: EPSG-4326
 ,Liens aux systèmes externes,,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
 ,,Nom de la source,,,,"Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
@@ -81,11 +83,11 @@ Alerte initiale,,,,,,"L'objet alert correspond à la transcription d'une communi
 ,Date et heure de réception de l'alerte,,,,,Groupe date heure de réception de l'alerte,2022-09-27T08:21:06+02:00,receivedAt,reception,HA ,		Date et heure de prise d'appel   (format DD/MM/YYYY HH24:MI:SS),,,,1..1,,datetime,,Format datetime décrit dans le DSF
 ,Informations complémentaires sur l'alerte,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'alerte.
 15-15 : ce champ est celui dédié pour passer les observations ARM en texte libre.","Déclenchement téléalarme, voisine sur les lieux",comment,notes,OG,Observations générales (texte libre),,,1.0,0..n,X,notes,,
-,,Date et heure de l'information complémentaire/l'observation ARM,,,,date et heure de l'observation,,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF
-,,Commentaire/Observations,,,,texte libre contenant les indications renseignées par l'ARM,La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,
+,,Date et heure de l'information complémentaire,,,,date et heure de l'observation,,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF
+,,Commentaire/Observations,,,,"texte libre contenant les indications renseignées sur l'alerte en général, hors notes spécifiquement médicales",La personne est inconsciente (perte de connaissance). ,,freetext,,,,,,0..1,,string,,
 ,Requérant,,,,,Objet permettant d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,,1..1,X,caller,,
 ,,Contact,,,,Type et valeur de l'URI utilisée par le requérant à l'origine de l'alerte.,,callerURI,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
-,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
+,,,Canal,,,"Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall",Personne,,channel,,,,,,1..1,,string,,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
 ,,,Type de contact,,,"Type de l'URI utilisée par le requérant, cf. nomenclature EMSI",PHNADD,,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
 ,,,URI du contact,,,Valeur de l'URI utilisée pour contacter le partenaire,0671830530,,detail,,,,,,1..1,,string,,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Type et valeur de l'URI permettant un rappel pour avoir plus d'informations : il peut s'agir du requérant, de la victime ou d'un témoin. ",,,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,
@@ -103,7 +105,7 @@ Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
 ,,,Prénom,,,"Prénom du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,,firstName,,,,,,0..1,,string,,
 CRRA traitant,,,,,,Champ servant à transférer la prise en charge d'un dossier à un autre CRAA après accord verbal de ce dernier.,fr.health.samu440,,owner,,,,,,1..1,,string,,
-Patient / victime,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,
+Patient,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,
 ,ID patient partagé,,,,,"Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
 {ID du dossier partagé}.P{numéro d’ordre chronologique}",fr.health.samu044.DRFR15DDXAAJJJ00000.P00,,id,,,,,,1..1,,string,,
 ,Dossier administratif,,,,,,,,administrativeFile,,,,,,0..1,X,administrativeFile,,
@@ -125,26 +127,22 @@ Elle est composée :
 ,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,
 ,,Age,,,,"Age du patient.
 Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,,age,,,,,,0..1,,string,,"REGEX: P[0-9]{1,3}[YMWD]"
-,,Niveau de soin,,,,,R1,,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
+,,Niveau de soin du patient,,,,,R1,,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
 ,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,
 ,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,codeAndLabel,X,
 ,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,
 ,Informations complémentaires sur le patient,,,,,Correspond à la zone de commentaire renseigné par patient créé/identifié,,,freetext,,,,,,0..n,,string,,
-Observations médicales,,,,,,Observations de nature médicale. ,,,medicalNote,,,,,,0..n,X,medicalNote,,
-,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur
+Observation médicale,,,,,,Observations de nature médicale. ,,,medicalNote,,,,,,0..n,X,medicalNote,,
+,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur, valorisé comme suit pour un CRRA : 
 {ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}",,,idPat,,,,,,0..1,,string,,
-,Professionnel de santé qui réalise l'interrogatoire,,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,1..1,X,operator,,
+,Professionnel de santé qui réalise l'observation,,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,1..1,X,operator,,
 ,,Prénom et nom,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,
-,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,X,"ENUM: ARM, MEDECIN, AUTRE"
-,ID Observation,,,,,"{ID du dossier partagé}.N.{id unique de la note}
-",,,idObs,,,,,,1..1,,string,,
-,Date Heure de création de l'interrogatoire,,,,,Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,0..1,,datetime,,
+,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
+,ID Observation,,,,,"Identifiant unique de l'observation, valoridé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
+",fr.health.samu540.DRFR15DDXAAJJJ00001.medicalNote.46585A,,idObs,,,,,,0..1,,string,,
+,Date Heure de création de l'observation,,,,,Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,0..1,,datetime,,
 ,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
 Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM",,,freetext,,,,,,1..1,,string,,
-Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,,decision,,,,,,0..n,X,decision,,
-,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié",,,idPat,,,,,,0..1,,string,,
-,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,1..1,,datetime,,
-,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPEDEC
 Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert
 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,

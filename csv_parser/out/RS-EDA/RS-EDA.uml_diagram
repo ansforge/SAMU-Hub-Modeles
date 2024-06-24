@@ -9,7 +9,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet whatsHappen</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	whatsHappen -> qualification [headlabel=1 taillabel=1]
+	whatsHappen -> qualification [headlabel=1 taillabel="0..1"]
 	locationKind [label=<<TABLE>
                 <TR>
                 <TD ><B>locationKind</B></TD>
@@ -35,7 +35,7 @@ strict digraph {
                 <TR>
                 <TD ><B>details</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" >attribution <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >priority <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" >attribution <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >priority <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	details -> qualification [headlabel=1 taillabel="0..1"]
 	qualification [label=<<TABLE>
@@ -98,7 +98,7 @@ strict digraph {
                 <TR>
                 <TD ><B>point</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet point</I></TD></TR><TR><TD BORDER="0" >sysCoord <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet point</I></TD></TR><TR><TD BORDER="0" >aml <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >sysCoord <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	point -> geometry [headlabel=1 taillabel="0..1"]
 	geometry [label=<<TABLE>
@@ -259,16 +259,9 @@ strict digraph {
                 <TR>
                 <TD ><B>medicalNote</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealth [headlabel=1 taillabel="0..*"]
-	decision [label=<<TABLE>
-                <TR>
-                <TD ><B>decision</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	decision -> createCaseHealth [headlabel=1 taillabel="0..*"]
 	newAlert [label=<<TABLE>
                 <TR>
                 <TD ><B>newAlert</B></TD>

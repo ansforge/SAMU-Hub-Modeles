@@ -50,8 +50,40 @@ public class Point {
   public static final String JSON_PROPERTY_COORD = "coord";
   private Coord coord;
 
+  /**
+   * Indique le type de coordonnées utilisé. Actuellement, la seule valeur
+   * valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84.
+   */
+  public enum SysCoordEnum {
+    EPSG_4326("EPSG-4326");
+
+    private String value;
+
+    SysCoordEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static SysCoordEnum fromValue(String value) {
+      for (SysCoordEnum b : SysCoordEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
-  private String sysCoord;
+  private SysCoordEnum sysCoord;
 
   public Point() {}
 
@@ -78,7 +110,7 @@ public class Point {
     this.coord = coord;
   }
 
-  public Point sysCoord(String sysCoord) {
+  public Point sysCoord(SysCoordEnum sysCoord) {
 
     this.sysCoord = sysCoord;
     return this;
@@ -86,20 +118,19 @@ public class Point {
 
   /**
    * Indique le type de coordonnées utilisé. Actuellement, la seule valeur
-   *valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84. Si ce champ
-   *n&#39;est pas renseigné, on considère que la valeur par défaut est «».
+   *valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84.
    * @return sysCoord
    **/
   @JsonProperty(JSON_PROPERTY_SYS_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getSysCoord() {
+  public SysCoordEnum getSysCoord() {
     return sysCoord;
   }
 
   @JsonProperty(JSON_PROPERTY_SYS_COORD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysCoord(String sysCoord) {
+  public void setSysCoord(SysCoordEnum sysCoord) {
     this.sysCoord = sysCoord;
   }
 

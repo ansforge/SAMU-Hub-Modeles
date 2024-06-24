@@ -347,10 +347,11 @@ public class Resource {
   }
 
   /**
-   * ID partagé unique de la ressource engagée  {orgID}.R.{ID unique de la
-   *ressource partagée} Ou, uniquement dans le cas où un ID unique de ressource
-   *ne peut pas être garanti par l&#39;organisation propriétaire : {orgID}.R.{ID
-   *du dossier partagé}.{numéro d’ordre chronologique ressource}
+   * ID partagé unique de la ressource engagée, valorisé comme suit :
+   *{orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans
+   *le cas où un ID unique de ressource ne peut pas être garanti par
+   *l&#39;organisation propriétaire : {orgID}.resource.{ID du dossier
+   *partagé}.{numéro d’ordre chronologique ressource}
    * @return resourceID
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_I_D)
@@ -374,8 +375,8 @@ public class Resource {
 
   /**
    * Identifiant unique partagé de la demande de ressource (si la ressource a
-   *été engagée suite à une demande de ressource) {orgID}.D.{ID unique de la
-   *demande dans le système émetteur}
+   *été engagée suite à une demande de ressource), valorisé comme suit :
+   *{orgID}.request.{ID unique de la demande dans le système émetteur}
    * @return rsDRId
    **/
   @JsonProperty(JSON_PROPERTY_RS_D_R_ID)

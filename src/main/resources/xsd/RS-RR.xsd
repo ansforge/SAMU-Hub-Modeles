@@ -13,7 +13,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             <element name="RSDRId" type="string">
                 <annotation>
                     <documentation>Identifiant unique partagé de la demande de ressource
-{orgID}.D.{ID unique de la demande dans le système émetteur}</documentation>
+{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
             <element name="requestResponse" type="x:response"/>

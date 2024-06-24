@@ -82,7 +82,7 @@
     "definitions": {
         "qualification": {
             "type": "object",
-            "title": "Qualification de l'affaire/dossier",
+            "title": "Qualification",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -113,7 +113,7 @@
         },
         "location": {
             "type": "object",
-            "title": "Localisation de l'affaire/dossier",
+            "title": "Localisation",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -1091,7 +1091,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/roomNumber",
-                    "description": "Sp\u00e9cifie num\u00e9ro d'appartement, de chambre, de bureau"
+                    "description": "Sp\u00e9cifie le num\u00e9ro d'appartement, de chambre, de bureau"
                 },
                 "interphone": {
                     "type": "string",
@@ -1134,7 +1134,8 @@
                     "title": "Entr\u00e9e",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/access/entrance"
+                    "example": "example.json#/location/access/entrance",
+                    "description": "Nom de l'entr\u00e9e"
                 },
                 "entity": {
                     "type": "string",
@@ -1296,7 +1297,10 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/sysCoord",
-                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
+                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. ",
+                    "enum": [
+                        "EPSG-4326"
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -1381,7 +1385,7 @@
             "properties": {
                 "creation": {
                     "type": "string",
-                    "title": "Date et heure de l'information compl\u00e9mentaire/l'observation ARM",
+                    "title": "Date et heure de l'information compl\u00e9mentaire",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
@@ -1395,7 +1399,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/freetext",
-                    "description": "texte libre contenant les indications renseign\u00e9es par l'ARM"
+                    "description": "texte libre contenant les indications renseign\u00e9es sur l'alerte en g\u00e9n\u00e9ral, hors notes sp\u00e9cifiquement m\u00e9dicales"
                 }
             },
             "additionalProperties": false,
@@ -1859,7 +1863,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/channel",
-                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
+                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall",
+                    "enum": [
+                        "PERSONNE",
+                        "APPLICATION",
+                        "DAU",
+                        "BAU",
+                        "DEFIBRILLATEUR",
+                        "ECALL"
+                    ]
                 },
                 "type": {
                     "type": "string",

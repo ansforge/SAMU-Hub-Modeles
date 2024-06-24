@@ -85,7 +85,8 @@ public class Notes {
   }
 
   /**
-   * texte libre contenant les indications renseignées par l&#39;ARM
+   * texte libre contenant les indications renseignées sur l&#39;alerte en
+   *général, hors notes spécifiquement médicales
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

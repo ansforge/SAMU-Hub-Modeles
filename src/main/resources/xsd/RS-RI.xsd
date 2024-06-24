@@ -22,16 +22,16 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element name="resourceID" type="string">
                 <annotation>
-                    <documentation>ID partagé unique de la ressource engagée 
-{orgID}.R.{ID unique de la ressource partagée}
-Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
-{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}</documentation>
+                    <documentation>ID partagé unique de la ressource engagée, valorisé comme suit :
+{orgID}.resource.{ID unique de la ressource partagée}
+OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
+{orgID}.resource.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="RSDRId" type="string">
                 <annotation>
-                    <documentation>Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource)
-{orgID}.D.{ID unique de la demande dans le système émetteur}</documentation>
+                    <documentation>Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), valorisé comme suit :
+{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="missionID" type="string">

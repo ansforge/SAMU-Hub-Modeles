@@ -66,15 +66,15 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/resourceID
-          description: "ID partag\xE9 unique de la ressource engag\xE9e \n{orgID}.R.{ID\
-            \ unique de la ressource partag\xE9e}\nOu, uniquement dans le cas o\xF9\
-            \ un ID unique de ressource ne peut pas \xEAtre garanti par l'organisation\
-            \ propri\xE9taire :\n{orgID}.R.{ID du dossier partag\xE9}.{num\xE9ro d\u2019\
-            ordre chronologique ressource}"
+          description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
+            \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
+            e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
+            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{ID\
+            \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}"
           examples:
-          - 'fr.health.samu440.DRFR15DDXAAJJJ0000.R01
+          - 'fr.health.samu770.resource.VLM250
 
-            fr.health.samu440.VLM16'
+            fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
         RSDRId:
           type: string
           title: "ID Demande partag\xE9"
@@ -82,10 +82,11 @@ components:
           x-cols: 6
           example: example.json#/mobilizedResource/0/RSDRId
           description: "Identifiant unique partag\xE9 de la demande de ressource (si\
-            \ la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une demande de ressource)\n\
-            {orgID}.D.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+            \ la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une demande de ressource),\
+            \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
+            \ le syst\xE8me \xE9metteur}"
           examples:
-          - fr.health.samu770.D.1249875
+          - fr.health.samu770.request.1249875
         missionID:
           type: string
           title: ID Mission local

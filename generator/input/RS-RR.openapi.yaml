@@ -41,9 +41,9 @@ components:
           x-cols: 6
           example: example.json#/RSDRId
           description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.D.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
           examples:
-          - fr.health.samu770.D.1249875
+          - fr.health.samu770.request.1249875
         requestResponse:
           $ref: '#/components/schemas/response'
       additionalProperties: false

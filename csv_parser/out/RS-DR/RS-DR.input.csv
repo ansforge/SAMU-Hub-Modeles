@@ -4,10 +4,10 @@ Il doit pouvoir être généré de façon unique et décentralisée et ne prése
 Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}",fr.health.samu440.DRFR15DDXAAJJJ0000,,caseId,1..1,,string,,
 ID Demande partagé,,,,,,"Identifiant unique partagé de la demande de ressource
-{orgID}.D.{ID unique de la demande dans le système émetteur}",fr.health.samu770.D.1249875,,RSDRId,1..1,,string,,
-Demande de ressource,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,resourceRequest,0..1,X,request,,Format datetime décrit dans le DSF
+{orgID}.request.{ID unique de la demande dans le système émetteur}",fr.health.samu770.request.1249875,,RSDRId,1..1,,string,,
+Demande de ressource,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,request,0..1,X,request,,Format datetime décrit dans le DSF
 ,Date Heure de création de la demande,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF
-,Cadre conventionnel,,,,,Nomenclature ? ,,,convention,0..1,,string,X,
+,Cadre conventionnel,,,,,Nomenclature à venir : décrit le cadre conventionnel de la demande.,,,convention,0..1,,string,X,
 ,Délai souhaité,,,,,Délai d'intervention souhaité,,,deadline,0..1,,string,X,
 ,Effet à obtenir,,,,,Motif de la demande de ressource auprès du partenaire,,,purpose,1..1,,string,X,NOMENCLATURE: CISU-Code_Effet_a_obtenir
 ,Précisions sur la demande,,,,,Texte libre permettant de détailler la demande,,,freetext,0..1,,string,,
