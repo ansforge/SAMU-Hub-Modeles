@@ -66,6 +66,17 @@ public class RcRefValidatorTest extends AbstractValidatorTest {
     }
 
     @Test
+    @DisplayName("RC-REF array where object is expected validation fails")
+    public void jsonRcRefArrayWhereObjectIsExpectedValidationFails() throws IOException {
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
+                " - reference.distributionID: array found, string expected"
+        };
+        jsonValidationFails("RC-REF/RC-REF-unexpected-array.json", expectedErrors);
+    }
+
+    @Test
     @DisplayName("RC-REF xml validation fails")
     public void xmlRcRefValidationFails() throws IOException {
         xmlValidationFails("RC-REF/RC-REF-missing-required-fields.xml", XML_MISSING, new String[]{"distributionID}' "});

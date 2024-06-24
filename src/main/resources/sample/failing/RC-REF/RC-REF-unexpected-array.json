@@ -32,7 +32,10 @@
               }
             ],
             "reference": {
-              "distributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
+              "distributionID": [
+                "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
+                "samuB_2607723d-507d-4cbf-bf74-12345f7064ce"
+              ]
             }
           }
         }
