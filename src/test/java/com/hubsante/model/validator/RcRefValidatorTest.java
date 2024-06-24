@@ -15,17 +15,10 @@
  */
 package com.hubsante.model.validator;
 
-import com.hubsante.model.exception.ValidationException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.config.Constants.FULL_XSD;
-import static com.hubsante.model.utils.TestFileUtils.getMessageString;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RcRefValidatorTest extends AbstractValidatorTest {
 
@@ -53,6 +46,23 @@ public class RcRefValidatorTest extends AbstractValidatorTest {
                 " - reference.distributionID: is missing but it is required",
         };
         jsonValidationFails("RC-REF/RC-REF-missing-required-fields.json", expectedErrors);
+    }
+
+    @Test
+    @DisplayName("RC-REF incorrect property type validation fails")
+    public void jsonRcRefIncorrectPropertyTypeValidationFails() throws IOException {
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Could not detect any schemas in the message, at least one is required ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: ",
+                " - kind: integer found, string expected",
+                " - recipient[0].name: integer found, string expected",
+                " - status: does not have a value in the enumeration [Actual, Exercise, System]",
+                " - kind: does not have a value in the enumeration [Report, Update, Cancel, Ack, Error]",
+                " - recipient[0].URI: integer found, string expected",
+                " - status: integer found, string expected"
+        };
+        jsonValidationFails("RC-REF/RC-REF-invalid-type.json", expectedErrors);
     }
 
     @Test
