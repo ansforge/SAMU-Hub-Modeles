@@ -26,10 +26,9 @@ import com.hubsante.model.cisu.*;
 import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.report.ErrorWrapper;
-import com.hubsante.model.resources.ResourcesInfo;
-import com.hubsante.model.resources.ResourcesRequest;
-import com.hubsante.model.resources.ResourcesResponse;
+import com.hubsante.model.resources.*;
 import com.hubsante.model.rpis.Rpis;
+import com.hubsante.model.rpis.RpisWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
@@ -42,10 +41,10 @@ import com.hubsante.model.rpis.Rpis;
         @JsonSubTypes.Type(GeoPositionsUpdateWrapper.class),
         @JsonSubTypes.Type(GeoResourcesRequestWrapper.class),
         @JsonSubTypes.Type(GeoResourcesDetailsWrapper.class),
-        @JsonSubTypes.Type(ResourcesInfo.class),
-        @JsonSubTypes.Type(ResourcesRequest.class),
-        @JsonSubTypes.Type(ResourcesResponse.class),
-        @JsonSubTypes.Type(Rpis.class),
+        @JsonSubTypes.Type(ResourcesInfoWrapper.class),
+        @JsonSubTypes.Type(ResourcesRequestWrapper.class),
+        @JsonSubTypes.Type(ResourcesResponseWrapper.class),
+        @JsonSubTypes.Type(RpisWrapper.class),
 })
 public class ContentMessage {
 
