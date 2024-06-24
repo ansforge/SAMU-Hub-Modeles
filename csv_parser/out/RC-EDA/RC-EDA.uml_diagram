@@ -91,7 +91,7 @@ strict digraph {
                 <TR>
                 <TD ><B>point</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet point</I></TD></TR><TR><TD BORDER="0" >sysCoord <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet point</I></TD></TR>
                 </TABLE>>]
 	point -> geometry [headlabel=1 taillabel="0..1"]
 	geometry [label=<<TABLE>
@@ -196,7 +196,7 @@ strict digraph {
                 <TR>
                 <TD ><B>point</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet point</I></TD></TR><TR><TD BORDER="0" >sysCoord <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet point</I></TD></TR>
                 </TABLE>>]
 	point -> geometry [headlabel=1 taillabel="0..1"]
 	geometry [label=<<TABLE>

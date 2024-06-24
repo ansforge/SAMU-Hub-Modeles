@@ -7,6 +7,6 @@ ID Demande partagé,,,,,,"Identifiant unique partagé de la demande de ressource
 {orgID}.request.{ID unique de la demande dans le système émetteur}",fr.health.samu770.request.1249875,,RSDRId,1..1,,string,,
 Réponse à la demande de ressources,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,,requestResponse,1..1,X,response,,Format datetime décrit dans le DSF
 ,Date Heure de réponse,,,,,Voir liste des effets à obtenir identifiés,,,dateTime,1..1,,datetime,,Format datetime décrit dans le DSF
-,Réponse,,,,,oui / non / oui partiel / différé,,,answer,1..1,,string,X,"ENUM : ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
+,Réponse,,,,,oui / non / oui partiel / différé,,,answer,1..1,,string,X,"ENUM: ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
 ,Délai de réponse,,,,,Indique le délai de réponse auquel s'engage l'expéditeur,,,deadline,0..1,,string,,
 ,Précisions sur la réponse,,,,,Commentaire libre pour apporter toutes précisions utiles à la réponse,,,freetext,0..1,,string,,

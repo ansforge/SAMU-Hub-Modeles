@@ -65,14 +65,13 @@ Sera toujours fourni par NexSIS.",,point,point,,,,,,0..1,X,point,,
 ,,,Coordonnées,,,"Le SGO ne fonctionne toujours sur des coordonnées X/Y ainsi qu'une adresse indicative associée. 
 NexSIS dispose donc toujours d'un point GPS utilisé pour le temps de trajet, la détermination de l'intervenant le plus proche, ...
 L'adresse est elle utilisée par l’intervenant pour aller sur le lieu.",,coord,coord,,,,,,1..1,X,coord,,
-,,,,Latitude,,Latitude du point clé de la localisation ,48.866667,lat,lat,,,,,,1..1,,number,,
-,,,,Longitude,,Longitude du point clé de la localisation,2.333333,lon,lon,,,,,,1..1,,number,,
+,,,,Latitude,,Latitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,48.866667,lat,lat,,,,,,1..1,,number,,
+,,,,Longitude,,Longitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,2.333333,lon,lon,,,,,,1..1,,number,,
 ,,,,Altitude ,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,,height,,,,,,0..1,,number,,
 ,,,,Cap,,En degré,96,,heading,,,,,,0..1,,number,,
 ,,,,Vitesse,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,,speed,,,,,,0..1,,number,,
 ,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
-,,,Système de coordonnées,,,"Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. ",EPSG-4326,coordsys,sysCoord,,,,,1.0,0..1,,string,X,ENUM: EPSG-4326
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADRESSE,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
 ,,Formes géométriques,,,,"Objet gml (équivalent xml du geojson). Le langage GML permet de décrire une forme dans un système de projection donné. 
 Dans le cas d'une alerte donnée sur une zone géographique non précise (par exemple une section d'autoroute ou une zone sur un chemin de randonnée), une indication sur la zone de recherche peut être fournie.
 En XML, un objet gml est encapsulé dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>

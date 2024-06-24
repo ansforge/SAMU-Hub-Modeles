@@ -1189,17 +1189,6 @@
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/aml",
                     "description": "Pr\u00e9cise si les coordonn\u00e9es fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
-                },
-                "sysCoord": {
-                    "type": "string",
-                    "title": "Syst\u00e8me de coordonn\u00e9es",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/location/geometry/point/sysCoord",
-                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. ",
-                    "enum": [
-                        "EPSG-4326"
-                    ]
                 }
             },
             "additionalProperties": false,
@@ -1222,7 +1211,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/lat",
-                    "description": "Latitude du point cl\u00e9 de la localisation "
+                    "description": "Latitude du point cl\u00e9 de la localisation dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
                 },
                 "lon": {
                     "type": "number",
@@ -1230,7 +1219,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/lon",
-                    "description": "Longitude du point cl\u00e9 de la localisation"
+                    "description": "Longitude du point cl\u00e9 de la localisation dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
                 },
                 "height": {
                     "type": "number",

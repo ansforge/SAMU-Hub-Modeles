@@ -119,7 +119,8 @@ public class Coord {
   }
 
   /**
-   * Latitude du point clé de la localisation
+   * Latitude du point clé de la localisation dans le système de coordonnées
+   *EPSG-4326 (indiquant l&#39;utilisation de WGS-84)
    * @return lat
    **/
   @JsonProperty(JSON_PROPERTY_LAT)
@@ -142,7 +143,8 @@ public class Coord {
   }
 
   /**
-   * Longitude du point clé de la localisation
+   * Longitude du point clé de la localisation dans le système de coordonnées
+   *EPSG-4326 (indiquant l&#39;utilisation de WGS-84)
    * @return lon
    **/
   @JsonProperty(JSON_PROPERTY_LON)

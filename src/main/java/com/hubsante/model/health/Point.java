@@ -42,8 +42,7 @@ import java.util.Objects;
 /**
  * Point
  */
-@JsonPropertyOrder({Point.JSON_PROPERTY_COORD, Point.JSON_PROPERTY_AML,
-                    Point.JSON_PROPERTY_SYS_COORD})
+@JsonPropertyOrder({Point.JSON_PROPERTY_COORD, Point.JSON_PROPERTY_AML})
 @JsonTypeName("point")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -53,41 +52,6 @@ public class Point {
 
   public static final String JSON_PROPERTY_AML = "aml";
   private Boolean aml;
-
-  /**
-   * Indique le type de coordonnées utilisé. Actuellement, la seule valeur
-   * valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84.
-   */
-  public enum SysCoordEnum {
-    EPSG_4326("EPSG-4326");
-
-    private String value;
-
-    SysCoordEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static SysCoordEnum fromValue(String value) {
-      for (SysCoordEnum b : SysCoordEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
-  private SysCoordEnum sysCoord;
 
   public Point() {}
 
@@ -138,30 +102,6 @@ public class Point {
     this.aml = aml;
   }
 
-  public Point sysCoord(SysCoordEnum sysCoord) {
-
-    this.sysCoord = sysCoord;
-    return this;
-  }
-
-  /**
-   * Indique le type de coordonnées utilisé. Actuellement, la seule valeur
-   *valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84.
-   * @return sysCoord
-   **/
-  @JsonProperty(JSON_PROPERTY_SYS_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public SysCoordEnum getSysCoord() {
-    return sysCoord;
-  }
-
-  @JsonProperty(JSON_PROPERTY_SYS_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysCoord(SysCoordEnum sysCoord) {
-    this.sysCoord = sysCoord;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -172,13 +112,12 @@ public class Point {
     }
     Point point = (Point)o;
     return Objects.equals(this.coord, point.coord) &&
-        Objects.equals(this.aml, point.aml) &&
-        Objects.equals(this.sysCoord, point.sysCoord);
+        Objects.equals(this.aml, point.aml);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(coord, aml, sysCoord);
+    return Objects.hash(coord, aml);
   }
 
   @Override
@@ -187,7 +126,6 @@ public class Point {
     sb.append("class Point {\n");
     sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
     sb.append("    aml: ").append(toIndentedString(aml)).append("\n");
-    sb.append("    sysCoord: ").append(toIndentedString(sysCoord)).append("\n");
     sb.append("}");
     return sb.toString();
   }

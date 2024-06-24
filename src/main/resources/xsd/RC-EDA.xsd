@@ -934,28 +934,18 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
     <complexType name="point">
         <sequence>
             <element name="coord" type="x:coord"/>
-            <element minOccurs="0" name="sysCoord">
-                <annotation>
-                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. </documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="EPSG-4326"/>
-                    </restriction>
-                </simpleType>
-            </element>
         </sequence>
     </complexType>
     <complexType name="coord">
         <sequence>
             <element name="lat" type="decimal">
                 <annotation>
-                    <documentation>Latitude du point clé de la localisation </documentation>
+                    <documentation>Latitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
                 </annotation>
             </element>
             <element name="lon" type="decimal">
                 <annotation>
-                    <documentation>Longitude du point clé de la localisation</documentation>
+                    <documentation>Longitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="height" type="decimal">

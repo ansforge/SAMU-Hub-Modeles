@@ -76,10 +76,9 @@
                     "lat": "48.866667",
                     "lon": "2.333333",
                     "height": 120,
-                    "precision": "ADDRESS"
+                    "precision": "ADRESSE"
                 },
-                "aml": "TRUE",
-                "sysCoord": "EPSG-4326"
+                "aml": "TRUE"
             }
         },
         "externalInfo": [
