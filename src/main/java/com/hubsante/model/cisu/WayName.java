@@ -65,8 +65,9 @@ public class WayName {
   }
 
   /**
-   * Type et nom de la voie (venant d&#39;un référentiel ou non) Si les champs
-   *type et name sont renseignés, le champ callerName doit être valorisé ainsi :
+   * A valoriser avec le type et le nom de la voie. Si les attributs
+   *\&quot;type\&quot; et \&quot;name\&quot; de \&quot;wayName\&quot; sont
+   *également renseignés,alors \&quot;complete\&quot; doit être valorisé ainsi :
    *\&quot;{type} {nom}\&quot;.
    * @return complete
    **/
@@ -90,7 +91,7 @@ public class WayName {
   }
 
   /**
-   * Type de la voie
+   * A valoriser avec le type de la voie
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -113,7 +114,7 @@ public class WayName {
   }
 
   /**
-   * Nom de la voie
+   * A valoriser avec le nom de la voie
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)

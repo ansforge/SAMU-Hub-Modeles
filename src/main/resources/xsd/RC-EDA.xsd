@@ -69,7 +69,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
+                    <documentation>A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="externalLocationId" type="x:externalLocationId"/>
@@ -327,7 +327,11 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Champ libre pour compléter les informations de localisation</documentation>
+                    <documentation>Champ libre qui permet de compléter les informations liées à la localisation.
+
+Spécificités 15-15 :
+En envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. 
+En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -346,7 +350,7 @@ Le rattachement des messages à une affaire doivent s'appuyer sur les caseId et 
             </element>
             <element name="reception" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de réception de l'alerte</documentation>
+                    <documentation>A valoriser avec le groupe date heure de réception de l'alerte/appel</documentation>
                 </annotation>
             </element>
             <element name="reporting">
@@ -782,13 +786,20 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                    <documentation>A valoriser avec le numéro, le type et le nom de la voie.
+En réception, il est possible que seul cette information soit remplie. 
+
+Spécificités 15-15 : si les informations pour les autoroutes (voie férée ou voie navigable) ne sont pas structurées, il est possible de passer le nom, PK et sens ici, de manière concaténée.
+
+Spécificités 15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.
+Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="number" type="string">
                 <annotation>
-                    <documentation>Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).</documentation>
+                    <documentation>A valoriser avec le numéro dans l'adresse. La valeur de l'attribut inclut l'indice de répétition associé au numéro (par exemple bis, a…).
+
+Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferrée ou voie navigable.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="wayName" type="x:wayName"/>
@@ -798,12 +809,13 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Nom officiel de la commune actuelle</documentation>
+                    <documentation>A valoriser avec le nom officiel de la commune</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="inseeCode">
                 <annotation>
-                    <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.</documentation>
+                    <documentation>A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. 
+La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -823,43 +835,43 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
         <sequence>
             <element minOccurs="0" name="floor" type="string">
                 <annotation>
-                    <documentation>Etage </documentation>
+                    <documentation>A valoriser avec le numéro ou nom de l'étage </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="roomNumber" type="string">
                 <annotation>
-                    <documentation>Spécifie le numéro d'appartement, de chambre, de bureau</documentation>
+                    <documentation>A valoriser avec le numéro d'appartement, de chambre, de bureau</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="interphone" type="string">
                 <annotation>
-                    <documentation>Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)</documentation>
+                    <documentation>A valoriser avec les informations nécessaires à l'identification de l'interphone (numéro, nom)</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="accessCode" type="string"/>
             <element minOccurs="0" name="elevator" type="string">
                 <annotation>
-                    <documentation>Indique l'ascenseur ou la cage d'escalier </documentation>
+                    <documentation>A valoriser avec le nom ou le numéro de l'ascenseur ou de la cage d'escalier </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="buildingName" type="string">
                 <annotation>
-                    <documentation>Nom du bâtiment</documentation>
+                    <documentation>A valoriser avec le nom du bâtiment</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="entrance" type="string">
                 <annotation>
-                    <documentation>Nom de l'entrée</documentation>
+                    <documentation>A valoriser avec le nom de l'entrée</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="entity" type="string">
                 <annotation>
-                    <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
+                    <documentation>A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="phoneNumber" type="string">
                 <annotation>
-                    <documentation>Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.</documentation>
+                    <documentation>A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -868,7 +880,8 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
         <sequence>
             <element name="obsDatime" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
+Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="point" type="x:point"/>
@@ -887,7 +900,7 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
         <sequence>
             <element name="freetext">
                 <annotation>
-                    <documentation>Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)</documentation>
+                    <documentation>A valoriser avec le système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -899,8 +912,8 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
             </element>
             <element name="type">
                 <annotation>
-                    <documentation>Définition du type d'objet dans le système
-Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
+                    <documentation>A valoriser avec la définition du type d'objet dans le système
+Exemple  : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -923,18 +936,18 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Type et nom de la voie (venant d'un référentiel ou non)
-Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
+                    <documentation>A valoriser avec le type et le nom de la voie.
+Si les attributs "type" et "name" de "wayName" sont également renseignés,alors "complete" doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="type" type="string">
                 <annotation>
-                    <documentation>Type de la voie</documentation>
+                    <documentation>A valoriser avec le type de la voie</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Nom de la voie</documentation>
+                    <documentation>A valoriser avec le nom de la voie</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -948,17 +961,19 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
         <sequence>
             <element name="lat" type="decimal">
                 <annotation>
-                    <documentation>Latitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
+                    <documentation>A valoriser avec la latitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
                 </annotation>
             </element>
             <element name="lon" type="decimal">
                 <annotation>
-                    <documentation>Longitude du point clé de la localisation dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
+                    <documentation>A valoriser avec la longitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="height" type="decimal">
                 <annotation>
-                    <documentation>Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
+                    <documentation>A valoriser avec l'altitude du point clé de la localisation, en mètres.
+
+Spécificité 15-18 :  ignoré côté NexSIS. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="heading" type="decimal">
@@ -974,7 +989,11 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
             <element name="precision">
                 <annotation>
                     <documentation>Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
+VILLE : Précision à l'échelle de la ville, 
+RUE : Précision à l'échelle de la rue, 
+ADRESSE : Adresse précise, 
+EXACTE : Point coordonnée GPS exact, 
+INCONNUE : Précision de la localisation non évaluable par l'émetteur</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -992,12 +1011,14 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
         <sequence>
             <element minOccurs="0" name="creation" type="dateTime">
                 <annotation>
-                    <documentation>date et heure de l'observation</documentation>
+                    <documentation>A valoriser avec le groupe date heure de création de l'information complémentaire</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>texte libre contenant les indications renseignées sur l'alerte en général, hors notes spécifiquement médicales</documentation>
+                    <documentation>A valoriser avec un texte libre contenant les indications complémentaires renseignées sur l'alerte/appel.
+
+Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1008,7 +1029,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             <element minOccurs="0" name="callbackContact" type="x:contact"/>
             <element minOccurs="0" name="language">
                 <annotation>
-                    <documentation>Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.</documentation>
+                    <documentation>A valoriser avec la langue parlée par le requérant. 
+cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1258,7 +1280,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="type">
                 <annotation>
-                    <documentation>Indique la relation du requérant avec l'incident / le patient / la victime</documentation>
+                    <documentation>A valoriser avec la relation du requérant avec l'incident / le patient / la victime.
+cf. nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1288,7 +1311,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="communication">
                 <annotation>
-                    <documentation>Indique si le requérant rencontre ou non des difficulté de communication</documentation>
+                    <documentation>A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. 
+cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1306,8 +1330,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Informations complémentaires sur le requérant 
-Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif</documentation>
+                    <documentation>Champ libre qui permet de compléter les informations spécifiquement liées au requérant.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
@@ -1380,7 +1403,7 @@ La ressource est hashée avec le protocole SHA-256</documentation>
         <sequence>
             <element name="channel">
                 <annotation>
-                    <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
+                    <documentation>A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1395,7 +1418,7 @@ La ressource est hashée avec le protocole SHA-256</documentation>
             </element>
             <element name="type">
                 <annotation>
-                    <documentation>Type de l'URI utilisée par le requérant, cf. nomenclature EMSI</documentation>
+                    <documentation>A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1410,7 +1433,7 @@ La ressource est hashée avec le protocole SHA-256</documentation>
             </element>
             <element name="detail" type="string">
                 <annotation>
-                    <documentation>Valeur de l'URI utilisée pour contacter le partenaire</documentation>
+                    <documentation>A valoriser avec la valeur de l'URI utilisée</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1419,19 +1442,20 @@ La ressource est hashée avec le protocole SHA-256</documentation>
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Prénom et nom usuel du requérant.
-Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
-Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
+                    <documentation>A valoriser avec le prénom et le nom usuel du requérant/appelant.
+Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
+
+Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="lastName" type="string">
                 <annotation>
-                    <documentation>Nom du requérant</documentation>
+                    <documentation>A valoriser avec le nom usuel du requérant</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="firstName" type="string">
                 <annotation>
-                    <documentation>Prénom du réquérant.
+                    <documentation>A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
                 </annotation>
             </element>

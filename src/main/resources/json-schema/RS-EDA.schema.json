@@ -82,7 +82,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/owner",
-            "description": "Champ servant \u00e0 transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA apr\u00e8s accord verbal de ce dernier."
+            "description": "Attribut qui permet de transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA - apr\u00e8s accord verbal de ce dernier."
         },
         "patient": {
             "type": "array",
@@ -164,7 +164,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/name",
-                    "description": "Indique le nom de lieu : nom commercial, Etablissement, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                    "description": "A valoriser avec le nom de lieu : nom commercial, nom d'\u00e9tablissement, for\u00eat de Fontainebleau, lac du Der, etc."
                 },
                 "externalLocationId": {
                     "type": "array",
@@ -196,7 +196,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/freetext",
-                    "description": "Champ libre pour compl\u00e9ter les informations de localisation"
+                    "description": "Champ libre qui permet de compl\u00e9ter les informations li\u00e9es \u00e0 la localisation.\n\nSp\u00e9cificit\u00e9s 15-15 :\nEn envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas \u00eatre transmise de mani\u00e8re structur\u00e9e dans l'objet location. \nEn r\u00e9ception, il est tr\u00e8s important d'int\u00e9grer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'acc\u00e8s importantes."
                 }
             },
             "additionalProperties": false,
@@ -218,7 +218,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reception",
-                    "description": "Groupe date heure de r\u00e9ception de l'alerte",
+                    "description": "A valoriser avec le groupe date heure de r\u00e9ception de l'alerte/appel",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -889,7 +889,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/complete",
-                    "description": "Num\u00e9ro, type et nom de la voie. Utilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\n15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
+                    "description": "A valoriser avec le num\u00e9ro, le type et le nom de la voie.\nEn r\u00e9ception, il est possible que seul cette information soit remplie. \n\nSp\u00e9cificit\u00e9s 15-15 : si les informations pour les autoroutes (voie f\u00e9r\u00e9e ou voie navigable) ne sont pas structur\u00e9es, il est possible de passer le nom, PK et sens ici, de mani\u00e8re concat\u00e9n\u00e9e.\n\nSp\u00e9cificit\u00e9s 15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS.\nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026"
                 },
                 "number": {
                     "type": "string",
@@ -897,7 +897,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/number",
-                    "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
+                    "description": "A valoriser avec le num\u00e9ro dans l'adresse. La valeur de l'attribut inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026).\n\nSp\u00e9cificit\u00e9s 15-18 :  inclut le point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable."
                 },
                 "wayName": {
                     "$ref": "#/definitions/wayName"
@@ -919,7 +919,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/city/name",
-                    "description": "Nom officiel de la commune actuelle"
+                    "description": "A valoriser avec le nom officiel de la commune"
                 },
                 "inseeCode": {
                     "type": "string",
@@ -927,7 +927,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/city/inseeCode",
-                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.",
+                    "description": "A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. \nLa valeur du code INSEE est obligatoire d\u00e8s que le nom de la commune est renseign\u00e9 (city.name).",
                     "pattern": "[0-9]{5}"
                 }
             },
@@ -947,7 +947,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/floor",
-                    "description": "Etage "
+                    "description": "A valoriser avec le num\u00e9ro ou nom de l'\u00e9tage "
                 },
                 "roomNumber": {
                     "type": "string",
@@ -955,7 +955,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/roomNumber",
-                    "description": "Sp\u00e9cifie le num\u00e9ro d'appartement, de chambre, de bureau"
+                    "description": "A valoriser avec le num\u00e9ro d'appartement, de chambre, de bureau"
                 },
                 "interphone": {
                     "type": "string",
@@ -963,7 +963,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/interphone",
-                    "description": "Indique les informations n\u00e9cessaires  \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
+                    "description": "A valoriser avec les informations n\u00e9cessaires \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
                 },
                 "accessCode": {
                     "type": "array",
@@ -974,7 +974,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/location/access/accessCode/0",
-                        "description": "Indique le ou les digicodes dans l'ordre de progression dans le b\u00e2timent"
+                        "description": "A valoriser avec le ou les digicodes, dans l'ordre de progression dans le b\u00e2timent."
                     }
                 },
                 "elevator": {
@@ -983,7 +983,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/elevator",
-                    "description": "Indique l'ascenseur ou la cage d'escalier "
+                    "description": "A valoriser avec le nom ou le num\u00e9ro de l'ascenseur ou de la cage d'escalier "
                 },
                 "buildingName": {
                     "type": "string",
@@ -991,7 +991,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/buildingName",
-                    "description": "Nom du b\u00e2timent"
+                    "description": "A valoriser avec le nom du b\u00e2timent"
                 },
                 "entrance": {
                     "type": "string",
@@ -999,7 +999,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/entrance",
-                    "description": "Nom de l'entr\u00e9e"
+                    "description": "A valoriser avec le nom de l'entr\u00e9e"
                 },
                 "entity": {
                     "type": "string",
@@ -1007,7 +1007,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/entity",
-                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement : Infirmerie, service finance, service cardiologie, \u2026"
+                    "description": "A valoriser avec le nom du service concern\u00e9 au sein de l'\u00e9tablissement : infirmerie, service finance, service comptabilit\u00e9."
                 },
                 "phoneNumber": {
                     "type": "string",
@@ -1015,7 +1015,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/phoneNumber",
-                    "description": "Num\u00e9ro de t\u00e9l\u00e9phone permettant d'acc\u00e9der au lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/victime."
+                    "description": "A valoriser avec le num\u00e9ro de t\u00e9l\u00e9phone du lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/ la victime."
                 }
             },
             "additionalProperties": false,
@@ -1036,7 +1036,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/obsDatime",
-                    "description": "Groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. Permet de conna\u00eetre la fra\u00eecheur et donc pertinence des informations pour intervenir.",
+                    "description": "A valoriser avec le groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. \nPermet de conna\u00eetre la fra\u00eecheur et donc la pertinence des informations pour intervenir.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1064,7 +1064,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/freetext",
-                    "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
+                    "description": "A valoriser avec le syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
                     "enum": [
                         "BAN",
                         "IGN",
@@ -1077,7 +1077,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/type",
-                    "description": "D\u00e9finition du type d'objet dans le syst\u00e8me\nEx : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
+                    "description": "A valoriser avec la d\u00e9finition du type d'objet dans le syst\u00e8me\nExemple  : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
                     "enum": [
                         "MANUEL",
                         "CARTE",
@@ -1111,7 +1111,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/highway/name",
-                    "description": "Nom de l'autoroute"
+                    "description": "A valoriser avec le nom de l'autoroute, de la voie ferr\u00e9e ou voie navigable."
                 },
                 "pk": {
                     "type": "string",
@@ -1119,7 +1119,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/highway/pk",
-                    "description": "Point kilom\u00e9trique"
+                    "description": "A valoriser avec le point kilom\u00e9trique de l'autoroute, de la voie ferr\u00e9e ou voie navigable. "
                 },
                 "direction": {
                     "type": "string",
@@ -1127,7 +1127,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/highway/direction",
-                    "description": "Sens"
+                    "description": "A valoriser avec le sens de l'autoroute."
                 }
             },
             "additionalProperties": false,
@@ -1148,7 +1148,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/wayName/complete",
-                    "description": "Type et nom de la voie (venant d'un r\u00e9f\u00e9rentiel ou non)\nSi les champs type et name sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
+                    "description": "A valoriser avec le type et le nom de la voie.\nSi les attributs \"type\" et \"name\" de \"wayName\" sont \u00e9galement renseign\u00e9s,alors \"complete\" doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
                 },
                 "type": {
                     "type": "string",
@@ -1156,7 +1156,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/wayName/type",
-                    "description": "Type de la voie"
+                    "description": "A valoriser avec le type de la voie"
                 },
                 "name": {
                     "type": "string",
@@ -1164,7 +1164,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/wayName/name",
-                    "description": "Nom de la voie"
+                    "description": "A valoriser avec le nom de la voie"
                 }
             },
             "additionalProperties": false,
@@ -1188,7 +1188,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/aml",
-                    "description": "Pr\u00e9cise si les coordonn\u00e9es fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
+                    "description": "Attribut qui permet de pr\u00e9ciser si les coordonn\u00e9es fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
                 }
             },
             "additionalProperties": false,
@@ -1211,7 +1211,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/lat",
-                    "description": "Latitude du point cl\u00e9 de la localisation dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
+                    "description": "A valoriser avec la latitude du point cl\u00e9 de la localisation - dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
                 },
                 "lon": {
                     "type": "number",
@@ -1219,7 +1219,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/lon",
-                    "description": "Longitude du point cl\u00e9 de la localisation dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
+                    "description": "A valoriser avec la longitude du point cl\u00e9 de la localisation - dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
                 },
                 "height": {
                     "type": "number",
@@ -1227,7 +1227,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/height",
-                    "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
+                    "description": "A valoriser avec l'altitude du point cl\u00e9 de la localisation, en m\u00e8tres.\n\nSp\u00e9cificit\u00e9 15-18 :  ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
                 },
                 "precision": {
                     "type": "string",
@@ -1235,7 +1235,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/precision",
-                    "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nCITY=Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, STREET=Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, ADDRESS=Adresse pr\u00e9cise, EXACT=Point coordonn\u00e9e GPS exact, UNKNOWN=Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
+                    "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nVILLE : Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, \nRUE : Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, \nADRESSE : Adresse pr\u00e9cise, \nEXACTE : Point coordonn\u00e9e GPS exact, \nINCONNUE : Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
                     "enum": [
                         "VILLE",
                         "RUE",
@@ -1261,7 +1261,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
-                    "description": "date et heure de l'observation",
+                    "description": "A valoriser avec le groupe date heure de cr\u00e9ation de l'information compl\u00e9mentaire",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1271,7 +1271,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/freetext",
-                    "description": "texte libre contenant les indications renseign\u00e9es sur l'alerte en g\u00e9n\u00e9ral, hors notes sp\u00e9cifiquement m\u00e9dicales"
+                    "description": "A valoriser avec un texte libre contenant les indications compl\u00e9mentaires renseign\u00e9es sur l'alerte/appel.\n\nSp\u00e9cificit\u00e9s 15-15 : cet attribut ne doit pas \u00eatre valoris\u00e9 avec des notes \u00e0 caract\u00e8re m\u00e9dical, qui serait li\u00e9e \u00e0 un interrogatoire ARM ou m\u00e9decin, ou \u00e0 un patient en particulier"
                 }
             },
             "additionalProperties": false,
@@ -1298,7 +1298,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/language",
-                    "description": "Langue parl\u00e9e par le requ\u00e9rant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.",
+                    "description": "A valoriser avec la langue parl\u00e9e par le requ\u00e9rant. \ncf.nomenclature associ\u00e9e.",
                     "enum": [
                         "AF",
                         "AX",
@@ -1549,7 +1549,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/type",
-                    "description": "Indique la relation du requ\u00e9rant avec l'incident / le patient / la victime",
+                    "description": "A valoriser avec la relation du requ\u00e9rant avec l'incident / le patient / la victime.\ncf. nomenclature associ\u00e9e.",
                     "enum": [
                         "SUJET",
                         "FAMILLE",
@@ -1580,7 +1580,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/communication",
-                    "description": "Indique si le requ\u00e9rant rencontre ou non des difficult\u00e9 de communication",
+                    "description": "A valoriser avec la nature des \u00e9ventuelles difficult\u00e9s de communication rencontr\u00e9es par le requ\u00e9rant. \ncf.nomenclature associ\u00e9e.",
                     "enum": [
                         "AUCUNE",
                         "MUET",
@@ -1599,7 +1599,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/freetext",
-                    "description": "Informations compl\u00e9mentaires sur le requ\u00e9rant \nLes informations peuvent \u00eatre pass\u00e9es sous forme de texte libre ou via une liste d'adjectif"
+                    "description": "Champ libre qui permet de compl\u00e9ter les informations sp\u00e9cifiquement li\u00e9es au requ\u00e9rant."
                 },
                 "detailedName": {
                     "$ref": "#/definitions/detailedName"
@@ -1625,7 +1625,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/channel",
-                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall",
+                    "description": "A valoriser avec  l'origine du canal \u00e9tabli : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",
                     "enum": [
                         "PERSONNE",
                         "APPLICATION",
@@ -1641,7 +1641,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/type",
-                    "description": "Type de l'URI utilis\u00e9e par le requ\u00e9rant, cf. nomenclature EMSI",
+                    "description": "A valoriser avec le type de l'URI utilis\u00e9e : TEL, EMAIL, FAX, POSTAL, WEB, RADIO",
                     "enum": [
                         "TEL",
                         "EMAIL",
@@ -1657,7 +1657,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/detail",
-                    "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
+                    "description": "A valoriser avec la valeur de l'URI utilis\u00e9e"
                 }
             },
             "additionalProperties": false,
@@ -1678,7 +1678,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/detailedName/complete",
-                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nSi les champs callerLastName et callerFirstName sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
+                    "description": "A valoriser avec le pr\u00e9nom et le nom usuel du requ\u00e9rant/appelant.\nSi les champs callerLastName et callerFirstName sont \u00e9galement renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{callerFirstName} {callerLastName}\".\n\nSp\u00e9cificit\u00e9s 15-18  : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
                 },
                 "lastName": {
                     "type": "string",
@@ -1686,7 +1686,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/detailedName/lastName",
-                    "description": "Nom du requ\u00e9rant"
+                    "description": "A valoriser avec le nom usuel du requ\u00e9rant"
                 },
                 "firstName": {
                     "type": "string",
@@ -1694,7 +1694,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/detailedName/firstName",
-                    "description": "Pr\u00e9nom du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
+                    "description": "A valoriser avec le pr\u00e9nom usuel du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
                 }
             },
             "additionalProperties": false,

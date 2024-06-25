@@ -50,7 +50,8 @@ import java.util.Objects;
 public class ExternalInfo {
 
   /**
-   * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
+   * A valoriser avec le système fournissant le localisant :  NexSiS ou
+   * l&#39;ORG_ID (BAN, IGN, ...)
    */
   public enum FreetextEnum {
     BAN("BAN"),
@@ -88,9 +89,10 @@ public class ExternalInfo {
   private FreetextEnum freetext;
 
   /**
-   * Définition du type d&#39;objet dans le système Ex : SIG NexSIS / OSM ont
-   * plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de
-   * route, …) pour faciliter le filtre | Aussi table dans une base de données
+   * A valoriser avec la définition du type d&#39;objet dans le système Exemple
+   * : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on
+   * parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table
+   * dans une base de données
    */
   public enum TypeEnum {
     MANUEL("MANUEL"),
@@ -143,7 +145,8 @@ public class ExternalInfo {
   }
 
   /**
-   * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
+   * A valoriser avec le système fournissant le localisant :  NexSiS ou
+   *l&#39;ORG_ID (BAN, IGN, ...)
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
@@ -166,9 +169,10 @@ public class ExternalInfo {
   }
 
   /**
-   * Définition du type d&#39;objet dans le système Ex : SIG NexSIS / OSM ont
-   *plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de
-   *route, …) pour faciliter le filtre | Aussi table dans une base de données
+   * A valoriser avec la définition du type d&#39;objet dans le système Exemple
+   *: SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on
+   *parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans
+   *une base de données
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)

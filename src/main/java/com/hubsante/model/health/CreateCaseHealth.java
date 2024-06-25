@@ -398,8 +398,8 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Champ servant à transférer la prise en charge d&#39;un dossier à un autre
-   *CRAA après accord verbal de ce dernier.
+   * Attribut qui permet de transférer la prise en charge d&#39;un dossier à un
+   *autre CRAA - après accord verbal de ce dernier.
    * @return owner
    **/
   @JsonProperty(JSON_PROPERTY_OWNER)

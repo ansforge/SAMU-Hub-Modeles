@@ -49,8 +49,8 @@ import java.util.Objects;
 public class Contact {
 
   /**
-   * Permet d&#39;indiquer l&#39;origine du canal établit : Personne,
-   * application, DAU, BAU, défibrillateur, ecall
+   * A valoriser avec  l&#39;origine du canal établi : PERSONNE, APPLICATION,
+   * DAU, BAU, DEFIBRILLATEUR, ECALL
    */
   public enum ChannelEnum {
     PERSONNE("PERSONNE"),
@@ -94,7 +94,8 @@ public class Contact {
   private ChannelEnum channel;
 
   /**
-   * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
+   * A valoriser avec le type de l&#39;URI utilisée : TEL, EMAIL, FAX, POSTAL,
+   * WEB, RADIO
    */
   public enum TypeEnum {
     TEL("TEL"),
@@ -149,8 +150,8 @@ public class Contact {
   }
 
   /**
-   * Permet d&#39;indiquer l&#39;origine du canal établit : Personne,
-   *application, DAU, BAU, défibrillateur, ecall
+   * A valoriser avec  l&#39;origine du canal établi : PERSONNE, APPLICATION,
+   *DAU, BAU, DEFIBRILLATEUR, ECALL
    * @return channel
    **/
   @JsonProperty(JSON_PROPERTY_CHANNEL)
@@ -173,7 +174,8 @@ public class Contact {
   }
 
   /**
-   * Type de l&#39;URI utilisée par le requérant, cf. nomenclature EMSI
+   * A valoriser avec le type de l&#39;URI utilisée : TEL, EMAIL, FAX, POSTAL,
+   *WEB, RADIO
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -196,7 +198,7 @@ public class Contact {
   }
 
   /**
-   * Valeur de l&#39;URI utilisée pour contacter le partenaire
+   * A valoriser avec la valeur de l&#39;URI utilisée
    * @return detail
    **/
   @JsonProperty(JSON_PROPERTY_DETAIL)

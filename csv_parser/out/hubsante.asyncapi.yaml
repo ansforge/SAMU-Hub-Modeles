@@ -469,7 +469,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/reception
-          description: "Groupe date heure de r\xE9ception de l'alerte"
+          description: "A valoriser avec le groupe date heure de r\xE9ception de l'alerte/appel"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -999,7 +999,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/city/name
-          description: Nom officiel de la commune actuelle
+          description: A valoriser avec le nom officiel de la commune
           examples:
           - Lille
         inseeCode:
@@ -1008,9 +1008,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/city/inseeCode
-          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
-            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
-            \ renseign\xE9."
+          description: "A valoriser avec le code INSEE de la commune actuelle sur\
+            \ la base du Code Officiel g\xE9ographique en vigueur. \nLa valeur du\
+            \ code INSEE est obligatoire d\xE8s que le nom de la commune est renseign\xE9\
+            \ (city.name)."
           pattern: '[0-9]{5}'
           examples:
           - 59350
@@ -1032,7 +1033,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/floor
-          description: 'Etage '
+          description: "A valoriser avec le num\xE9ro ou nom de l'\xE9tage "
           examples:
           - RDC
         roomNumber:
@@ -1041,7 +1042,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/roomNumber
-          description: "Sp\xE9cifie le num\xE9ro d'appartement, de chambre, de bureau"
+          description: "A valoriser avec le num\xE9ro d'appartement, de chambre, de\
+            \ bureau"
           examples:
           - A16
         interphone:
@@ -1050,7 +1052,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/interphone
-          description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
+          description: "A valoriser avec les informations n\xE9cessaires \xE0 l'identification\
             \ de l'interphone (num\xE9ro, nom)"
           examples:
           - Dupont
@@ -1063,8 +1065,8 @@ components:
             x-health-only: false
             x-cols: 6
             example: example.json#/location/access/accessCode/0
-            description: "Indique le ou les digicodes dans l'ordre de progression\
-              \ dans le b\xE2timent"
+            description: "A valoriser avec le ou les digicodes, dans l'ordre de progression\
+              \ dans le b\xE2timent."
             examples:
             - 1234A
         elevator:
@@ -1073,7 +1075,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/elevator
-          description: 'Indique l''ascenseur ou la cage d''escalier '
+          description: "A valoriser avec le nom ou le num\xE9ro de l'ascenseur ou\
+            \ de la cage d'escalier "
           examples:
           - C3
         buildingName:
@@ -1082,7 +1085,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/buildingName
-          description: "Nom du b\xE2timent"
+          description: "A valoriser avec le nom du b\xE2timent"
           examples:
           - Batiment B
         entrance:
@@ -1091,7 +1094,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/entrance
-          description: "Nom de l'entr\xE9e"
+          description: "A valoriser avec le nom de l'entr\xE9e"
           examples:
           - Zone Sud
         entity:
@@ -1100,8 +1103,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/entity
-          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement :\
-            \ Infirmerie, service finance, service cardiologie, \u2026"
+          description: "A valoriser avec le nom du service concern\xE9 au sein de\
+            \ l'\xE9tablissement : infirmerie, service finance, service comptabilit\xE9\
+            ."
           examples:
           - Infirmerie
         phoneNumber:
@@ -1110,9 +1114,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/phoneNumber
-          description: "Num\xE9ro de t\xE9l\xE9phone permettant d'acc\xE9der au lieu\
-            \ de l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat,\
-            \ t\xE9l\xE9phone du service administratif ou se trouve le patient/victime."
+          description: "A valoriser avec le num\xE9ro de t\xE9l\xE9phone du lieu de\
+            \ l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat, t\xE9\
+            l\xE9phone du service administratif ou se trouve le patient/ la victime."
           examples:
           - 33123452323
       additionalProperties: false
@@ -1131,9 +1135,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/geometry/obsDatime
-          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
-            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
-            \ donc pertinence des informations pour intervenir."
+          description: "A valoriser avec le groupe date heure de renseignement des\
+            \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
+            tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1203,9 +1207,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/complete
-          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
-            Si les champs type et name sont renseign\xE9s, le champ callerName doit\
-            \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
+          description: "A valoriser avec le type et le nom de la voie.\nSi les attributs\
+            \ \"type\" et \"name\" de \"wayName\" sont \xE9galement renseign\xE9s,alors\
+            \ \"complete\" doit \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
           examples:
           - Boulevard du Montparnasse
         type:
@@ -1214,7 +1218,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/type
-          description: Type de la voie
+          description: A valoriser avec le type de la voie
           examples:
           - Boulevard
         name:
@@ -1223,7 +1227,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/name
-          description: Nom de la voie
+          description: A valoriser avec le nom de la voie
           examples:
           - du Montparnasse
       additionalProperties: false
@@ -1248,8 +1252,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/geometry/point/aml
-          description: "Pr\xE9cise si les coordonn\xE9es fournies proviennent du dispositif\
-            \ AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
+          description: "Attribut qui permet de pr\xE9ciser si les coordonn\xE9es fournies\
+            \ proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou\
+            \ non - FALSE. "
           examples:
           - 'TRUE'
       additionalProperties: false
@@ -1353,7 +1358,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/creation
-          description: date et heure de l'observation
+          description: "A valoriser avec le groupe date heure de cr\xE9ation de l'information\
+            \ compl\xE9mentaire"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1364,15 +1370,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/freetext
-          description: "texte libre contenant les indications renseign\xE9es sur l'alerte\
-            \ en g\xE9n\xE9ral, hors notes sp\xE9cifiquement m\xE9dicales"
+          description: "A valoriser avec un texte libre contenant les indications\
+            \ compl\xE9mentaires renseign\xE9es sur l'alerte/appel.\n\nSp\xE9cificit\xE9\
+            s 15-15 : cet attribut ne doit pas \xEAtre valoris\xE9 avec des notes\
+            \ \xE0 caract\xE8re m\xE9dical, qui serait li\xE9e \xE0 un interrogatoire\
+            \ ARM ou m\xE9decin, ou \xE0 un patient en particulier"
           examples:
-          - 'La personne est inconsciente (perte de connaissance). '
+          - "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9l\xE9\
+            alarme, voisine sur les lieux"
       additionalProperties: false
       example: example.json#/initialAlert/notes/0
       examples:
       - creation: None
-        freetext: 'La personne est inconsciente (perte de connaissance). '
+        freetext: "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9\
+          l\xE9alarme, voisine sur les lieux"
     caller:
       type: object
       title: "Requ\xE9rant"
@@ -1391,8 +1402,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/language
-          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
-            \ place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU."
+          description: "A valoriser avec la langue parl\xE9e par le requ\xE9rant.\
+            \ \ncf.nomenclature associ\xE9e."
           enum:
           - AF
           - AX
@@ -1643,8 +1654,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/type
-          description: "Indique la relation du requ\xE9rant avec l'incident / le patient\
-            \ / la victime"
+          description: "A valoriser avec la relation du requ\xE9rant avec l'incident\
+            \ / le patient / la victime.\ncf. nomenclature associ\xE9e."
           enum:
           - SUJET
           - FAMILLE
@@ -1675,8 +1686,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/communication
-          description: "Indique si le requ\xE9rant rencontre ou non des difficult\xE9\
-            \ de communication"
+          description: "A valoriser avec la nature des \xE9ventuelles difficult\xE9\
+            s de communication rencontr\xE9es par le requ\xE9rant. \ncf.nomenclature\
+            \ associ\xE9e."
           enum:
           - AUCUNE
           - MUET
@@ -1695,9 +1707,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/freetext
-          description: "Informations compl\xE9mentaires sur le requ\xE9rant \nLes\
-            \ informations peuvent \xEAtre pass\xE9es sous forme de texte libre ou\
-            \ via une liste d'adjectif"
+          description: "Champ libre qui permet de compl\xE9ter les informations sp\xE9\
+            cifiquement li\xE9es au requ\xE9rant."
           examples:
           - "t\xE9moin de l'accident"
         detailedName:
@@ -1896,11 +1907,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/detailedName/complete
-          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
-            \ et callerFirstName sont renseign\xE9s, le champ callerName doit \xEA\
-            tre valoris\xE9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote\
-            \ : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et pas\
-            \ de deux champs s\xE9par\xE9s."
+          description: "A valoriser avec le pr\xE9nom et le nom usuel du requ\xE9\
+            rant/appelant.\nSi les champs callerLastName et callerFirstName sont \xE9\
+            galement renseign\xE9s, le champ callerName doit \xEAtre valoris\xE9 ainsi\
+            \ : \"{callerFirstName} {callerLastName}\".\n\nSp\xE9cificit\xE9s 15-18\
+            \  : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et\
+            \ pas de deux champs s\xE9par\xE9s."
           examples:
           - Jean Dupont
         lastName:
@@ -1909,7 +1921,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/detailedName/lastName
-          description: "Nom du requ\xE9rant"
+          description: "A valoriser avec le nom usuel du requ\xE9rant"
           examples:
           - Dupont
         firstName:
@@ -1918,9 +1930,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/detailedName/firstName
-          description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
-            \ compos\xE9s doivent pr\xE9f\xE9rablement \xEAtre s\xE9par\xE9s par le\
-            \ caract\xE8re \"-\""
+          description: "A valoriser avec le pr\xE9nom usuel du r\xE9qu\xE9rant.\n\
+            Par convention les pr\xE9noms compos\xE9s doivent pr\xE9f\xE9rablement\
+            \ \xEAtre s\xE9par\xE9s par le caract\xE8re \"-\""
           examples:
           - Jean
       additionalProperties: false
@@ -2085,8 +2097,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/owner
-          description: "Champ servant \xE0 transf\xE9rer la prise en charge d'un dossier\
-            \ \xE0 un autre CRAA apr\xE8s accord verbal de ce dernier."
+          description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
+            \ dossier \xE0 un autre CRAA - apr\xE8s accord verbal de ce dernier."
           examples:
           - fr.health.samu440
         patient:
@@ -2324,7 +2336,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/highway/name
-          description: Nom de l'autoroute
+          description: "A valoriser avec le nom de l'autoroute, de la voie ferr\xE9\
+            e ou voie navigable."
           examples:
           - A4
         pk:
@@ -2333,7 +2346,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/highway/pk
-          description: "Point kilom\xE9trique"
+          description: "A valoriser avec le point kilom\xE9trique de l'autoroute,\
+            \ de la voie ferr\xE9e ou voie navigable. "
           examples:
           - None
         direction:
@@ -2342,7 +2356,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/highway/direction
-          description: Sens
+          description: A valoriser avec le sens de l'autoroute.
           examples:
           - None
       additionalProperties: false
@@ -5960,6 +5974,248 @@ components:
           x-cols: 6
           example: example.json#/orientation/destination/destinationCountry
           description: "A valoriser par le libell\xE9 court de la nomenclature SIGLPAYS"
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
           examples:
           - FR
         destinationCategory:

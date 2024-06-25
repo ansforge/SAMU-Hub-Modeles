@@ -84,7 +84,7 @@
         "externalInfo": [
             {
                 "freetext": "NexSIS, BAN, IGN, \u2026",
-                "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
+                "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
                 "uri": "id987"
             }
         ],
@@ -95,13 +95,13 @@
         "notes": [
             {
                 "creation": "None",
-                "freetext": "La personne est inconsciente (perte de connaissance). "
+                "freetext": "Accident de bricolage, accident domestique, d\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
             }
         ],
         "caller": {
             "callerContact": {
-                "channel": "Personne",
-                "type": "PHNADD",
+                "channel": "PERSONNE",
+                "type": "TEL",
                 "detail": "0671830530"
             },
             "callbackContact": {},

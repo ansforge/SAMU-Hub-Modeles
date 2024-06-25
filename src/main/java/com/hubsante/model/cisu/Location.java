@@ -666,8 +666,8 @@ public class Location {
   }
 
   /**
-   * Indique le nom de lieu : nom commercial, Etablissement, forêt de
-   *Fontainebleau, lac du Der (plutôt à destination des systèmes).
+   * A valoriser avec le nom de lieu : nom commercial, nom d&#39;établissement,
+   *forêt de Fontainebleau, lac du Der, etc.
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -886,7 +886,13 @@ public class Location {
   }
 
   /**
-   * Champ libre pour compléter les informations de localisation
+   * Champ libre qui permet de compléter les informations liées à la
+   *localisation.  Spécificités 15-15 : En envoi, il est souhaitable de mapper
+   *ici toute valeur en lien avec la localisation de l&#39;intervention qui ne
+   *pourrait pas être transmise de manière structurée dans l&#39;objet location.
+   *En réception, il est très important d&#39;intégrer et d&#39;afficher la
+   *valeur de cet attribut, qui est suceptible de contenir des informations
+   *d&#39;accès importantes.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

@@ -85,8 +85,8 @@ public class Point {
   }
 
   /**
-   * Précise si les coordonnées fournies proviennent du dispositif AML (Advanced
-   *Mobile Location) -TRUE - ou non - FALSE.
+   * Attribut qui permet de préciser si les coordonnées fournies proviennent du
+   *dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE.
    * @return aml
    **/
   @JsonProperty(JSON_PROPERTY_AML)
