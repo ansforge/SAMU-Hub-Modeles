@@ -1,15 +1,6 @@
 {
   "createCaseHealth": {
     "initialAlert": {
-      "callTaker": {
-        "organization": "fr.health.samu090",
-        "controlRoom": "CRRA 09",
-        "calltakerContact": {
-          "channel": "Personne",
-          "type": "PHNADD",
-          "detail": "0102030405"
-        }
-      },
       "caller": {
         "detailedName": {
           "complete": "Lucas Bernardi ",
@@ -18,25 +9,19 @@
         },
         "callbackContact": {
           "detail": "0561964589",
-          "type": "PHNADD",
-          "channel": "Personne"
+          "type": "TEL",
+          "channel": "PERSONNE"
         },
         "callerContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0632085528",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "language": "FR",
         "type": "TIERS"
       },
-      "id": "ALRT-2024-AMP697",
       "reception": "2024-04-18T15:00:00+02:00",
-      "reporting": "STANDARD",
       "notes": [
-        {
-          "creation": "2024-01-18T15:05:00+01:00",
-          "freetext": "Confusion, étourdissements, s’exprime difficilement. "
-        },
         {
           "freetext": "Client du gite voyageant seul.",
           "creation": "2024-01-18T15:20:00+01:00"
@@ -44,9 +29,6 @@
       ]
     },
     "location": {
-      "access": {
-        "phoneNumber": 561964589
-      },
       "city": {
         "name": "Aulus-les-Bains",
         "inseeCode": "09029"
@@ -59,9 +41,7 @@
         },
         "complete": "Rue principale"
       },
-      "locID": "654ij03a-1kl2-3mn4-5op6-210p9876543",
       "name": "Le gite du Moulin ",
-      "country": "FR",
       "freetext": "Maison avec la porte verte, 100 m après le lavoir"
     },
     "qualification": {
@@ -92,7 +72,17 @@
     ],
     "caseId": "fr.health.samu009.DRFR150092400401259",
     "creation": "2024-01-18T15:00:00+01:00",
-    "referenceVersion": "1.4",
-    "owner": "fr.health.samu009"
+    "owner": "fr.health.samu009",
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "freetext": "Confusion, étourdissements, s’exprime difficilement. ",
+        "creation": "2024-01-18T03:35:00+01:00",
+        "idPat": "fr.health.samu009.DRFR150092400401259.P90",
+        "idObs": "fr.health.samu009.DRFR150092400401259.medicalNote.4689"
+      }
+    ]
   }
 }

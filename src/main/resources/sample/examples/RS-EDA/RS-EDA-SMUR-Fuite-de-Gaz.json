@@ -28,7 +28,6 @@
       }
     },
     "location": {
-      "locID": "111fb03a-6fd9-41e0-8e81-990c45188889",
       "detailedAddress": {
         "complete": "3 Rue des Marins",
         "wayName": {
@@ -40,7 +39,7 @@
       },
       "city": {
         "name": "Bouaye",
-        "inseeCode": "44830"
+        "inseeCode": "44018"
       },
       "access": {
         "buildingName": "C"
@@ -50,23 +49,20 @@
           "coord": {
             "lat": 47.146089,
             "lon": -1.691374,
-            "precision": "ADDRESS"
+            "precision": "ADRESSE"
           }
         },
         "obsDatime": "2024-05-18T18:15:00+02:00"
       },
-      "freetext": "Maison aux volets verts",
-      "country": "FR"
+      "freetext": "Maison aux volets verts"
     },
     "initialAlert": {
-      "id": "samu440-20240518-AL0192",
       "reception": "2023-11-18T18:15:00+01:00",
-      "reporting": "ATTENTION",
       "caller": {
         "callerContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0671830523",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "freetext": "Mère des enfants",
         "detailedName": {
@@ -77,37 +73,13 @@
         "language": "FR",
         "type": "FAMILLE",
         "callbackContact": {
-          "channel": "Personne",
-          "type": "PHNADD",
+          "channel": "PERSONNE",
+          "type": "TEL",
           "detail": "0671830523"
         },
         "communication": "AUCUNE"
-      },
-      "callTaker": {
-        "organization": "fr.health.samu440",
-        "controlRoom": "CRRA44"
       }
     },
-    "decision": [
-      {
-        "type": "INTER",
-        "creation": "2024-05-18T18:19:00+02:00",
-        "engagementDetails": {
-          "categoryType": "SMUR",
-          "resourceType": "VLM",
-          "teamCareInitial": "MED"
-        }
-      },
-      {
-        "engagementDetails": {
-          "categoryType": "SIS",
-          "resourceType": "VSAV",
-          "teamCareInitial": "SECOURS"
-        },
-        "creation": "2024-05-18T18:20:00+02:00",
-        "type": "INTER"
-      }
-    ],
     "patient": [
       {
         "identity": {
@@ -121,7 +93,7 @@
             "birthDate": "2011-05-11"
           }
         },
-        "id": "fr.health.samu440.DRFR154402414300123.P01",
+        "id": "fr.health.samu440.DRFR154402413800236.P01",
         "detail": {
           "age": "P13Y"
         },
@@ -160,19 +132,21 @@
         }
       }
     ],
-    "freetext": [
-      "Les enfants et leur mère sortent dehors pour attendre le VLM, les pompiers vont intervenir sur la fuite de gaz dans l'appartement"
-    ],
     "medicalNote": [
       {
-        "id": "fr.health.samu440.DRFR154402413800236.P02",
         "creation": "2024-05-18T18:15:00+02:00",
         "freetext": "Asthmatique",
-        "treatments": "SERETIDE DISKUS 250/50ug (1 bouffée matin et soir)"
+        "operator": {
+          "detailedName": {
+            "complete": "Angèle Mouscou",
+            "lastName": "Mouscou",
+            "firstName": "Angèle"
+          },
+          "role": "ARM"
+        }
       }
     ],
     "owner": "CRRA44",
-    "interventionType": "Primaire",
-    "referenceVersion": "1.3"
+    "interventionType": "PRIMAIRE"
   }
 }
