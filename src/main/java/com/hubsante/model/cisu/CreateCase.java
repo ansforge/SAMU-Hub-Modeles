@@ -103,12 +103,19 @@ public class CreateCase {
   }
 
   /**
-   * Identifiant de l&#39;affaire partagé entre tous les intervenants &#x3D; aux
-   *champs {organization}.{senderCaseId}. Il doit pouvoir être généré de façon
-   *unique et décentralisée et ne présenter aucune ambiguïté.  Il est généré par
-   *le système du partenaire récepteur de la primo-demande de secours (créateur
-   *du dossier). Valorisation : {pays}.{domaine}.{organisation}.{structure
-   *interne}*.{unité fonctionnelle}*.{numéro de dossier}
+   * A valoriser avec l&#39;identifiant de l&#39;affaire/dossier partagé entre
+   *tous les intervenants, valorisé comme suit :
+   *{pays}.{domaine}.{organisation}.{senderCaseId}. Cet identifiant est généré
+   *une seule fois par le système du partenaire récepteur de la primo-demande de
+   *secours (créateur du dossier). Il doit pouvoir être généré de façon
+   *décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans
+   *l&#39;ensemble des systèmes : le numéro de dossier fourni par celui qui
+   *génère l&#39;identifiant partagé doit donc être un numéro unique dans son
+   *système.  Pour les systèmes qui ne sont pas en mesure de garantir
+   *l&#39;unicité d&#39;un numéro de dossier (senderCaseId), il est possible de
+   *décomposer le numéro de dossier fourni, afin de le rendre unique.  Par
+   *exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unité
+   *fonctionnelle}.{senderCaseId}
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
@@ -131,9 +138,8 @@ public class CreateCase {
   }
 
   /**
-   * Valoriser avec le numéro du dossier dans le SI de l&#39;émetteur du
-   *message.  Ce champ est facultatif, il ne sera notamment pas transmis par
-   *NexSIS.
+   * A valoriser avec le numéro du dossier dans le SI de l&#39;émetteur du
+   *message.
    * @return senderCaseId
    **/
   @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
@@ -156,11 +162,12 @@ public class CreateCase {
   }
 
   /**
-   * Groupe date heure de début de partage lié à la création de l&#39;affaire
-   *(et donc de génération du caseId). Il doit être renseigné à la fin du
-   *processus de la  création  de la première alerte. Lors de l&#39;ajout
-   *d&#39;alerte à une affaire ce champ ne doit pas être modifié.
-   *L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
+   * A valoriser avec le groupe date heure de début de partage lié à la création
+   *de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout
+   *d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.
+   *L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité
+   *15-18 : Il doit être renseigné à la fin du processus de la  création de la
+   *première alerte.
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)

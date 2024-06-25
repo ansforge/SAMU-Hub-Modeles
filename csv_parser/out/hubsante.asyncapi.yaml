@@ -297,13 +297,19 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
+            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
+            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
+            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
+            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
+            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
+            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
+            \ un num\xE9ro unique dans son syst\xE8me.\n\nPour les syst\xE8mes qui\
+            \ ne sont pas en mesure de garantir l'unicit\xE9 d'un num\xE9ro de dossier\
+            \ (senderCaseId), il est possible de d\xE9composer le num\xE9ro de dossier\
+            \ fourni, afin de le rendre unique. \nPar exemple  : {pays}.{domaine}.{organisation}.{structure\
+            \ interne}.{unit\xE9 fonctionnelle}.{senderCaseId}\n\n"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
         senderCaseId:
@@ -312,9 +318,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/senderCaseId
-          description: "Valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
-            metteur du message. \nCe champ est facultatif, il ne sera notamment pas\
-            \ transmis par NexSIS.\n"
+          description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
+            metteur du message.\n"
           examples:
           - DRFR15DDXAAJJJ0000
         creation:
@@ -323,12 +328,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
-            ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
-            tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
-            re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
-            \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
-            \ \xEAtre utilis\xE9."
+          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
+            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
+            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
+            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
+            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
+            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
+            \ la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -386,7 +392,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/origin
-          description: "Num\xE9ro de provenance de l'appel"
+          description: "A valoriser avec le num\xE9ro de provenance de l'appel."
           enum:
           - '15'
           - '18'
@@ -540,7 +546,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/locationKind/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           enum:
           - L01.00.00
           - L01.01.00
@@ -731,7 +737,7 @@ components:
           example: example.json#/qualification/locationKind/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
@@ -755,7 +761,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/riskThreat/0/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           enum:
           - R01
           - R02
@@ -804,7 +810,7 @@ components:
           example: example.json#/qualification/riskThreat/0/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
@@ -1995,13 +2001,19 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
+            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
+            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
+            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
+            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
+            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
+            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
+            \ un num\xE9ro unique dans son syst\xE8me.\n\nPour les syst\xE8mes qui\
+            \ ne sont pas en mesure de garantir l'unicit\xE9 d'un num\xE9ro de dossier\
+            \ (senderCaseId), il est possible de d\xE9composer le num\xE9ro de dossier\
+            \ fourni, afin de le rendre unique. \nPar exemple  : {pays}.{domaine}.{organisation}.{structure\
+            \ interne}.{unit\xE9 fonctionnelle}.{senderCaseId}\n\n"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
         senderCaseId:
@@ -2010,9 +2022,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/senderCaseId
-          description: "Valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
-            metteur du message. \nCe champ est facultatif, il ne sera notamment pas\
-            \ transmis par NexSIS.\n"
+          description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
+            metteur du message.\n"
           examples:
           - DRFR15DDXAAJJJ0000
         creation:
@@ -2021,12 +2032,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
-            ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
-            tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
-            re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
-            \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
-            \ \xEAtre utilis\xE9."
+          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
+            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
+            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
+            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
+            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
+            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
+            \ la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -2037,8 +2049,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/perimeter
-          description: "Sert \xE0 indiquer \xE0 quelle fili\xE8re du CRRA le dossier\
-            \ doit \xEAtre adress\xE9/affich\xE9"
+          description: "Sert \xE0 indiquer \xE0 quelle fili\xE8re du CRRA destinataire\
+            \ le dossier doit \xEAtre adress\xE9/affich\xE9, lorsque celle-ci est\
+            \ sp\xE9cifique ou d\xE9di\xE9e."
           enum:
           - AMU
           - NEONAT
@@ -2052,8 +2065,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/interventionType
-          description: "Indiquer s'il s'agit d'un dossier dit primaire (premi\xE8\
-            re intervention urgente) ou secondaire (par exemple TIH)"
+          description: "A valoriser en indiquant s'il s'agit d'un dossier dit primaire\
+            \ (premi\xE8re intervention urgente) ou secondaire (par exemple TIH)"
           enum:
           - PRIMAIRE
           - SECONDAIRE
@@ -2219,7 +2232,7 @@ components:
           x-cols: 6
           example: example.json#/qualification/details/attribution
           description: "D\xE9crit le type de professionnel m\xE9dical \xE0 qui le\
-            \ dossier est attribu\xE9 : M\xE9decin g\xE9n\xE9raliste, m\xE9decin urgentiste\
+            \ dossier est attribu\xE9 : m\xE9decin g\xE9n\xE9raliste, m\xE9decin urgentiste\
             \ etc."
           enum:
           - DRM
@@ -2283,7 +2296,8 @@ components:
           x-cols: 6
           example: example.json#/qualification/details/careLevel
           description: "D\xE9crit le niveau de soin global du dossier : s'il y a plusieurs\
-            \ niveau de soin par patient, on indique ici le niveau le plus grave"
+            \ niveau de soin diff\xE9rents pour chaque patient, on indique ici le\
+            \ niveau le plus grave.\ncf.nomenclature associ\xE9e."
           enum:
           - R1
           - R2
@@ -2534,7 +2548,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/mainDiagnosis/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           examples:
           - C07.13.02
         label:
@@ -2545,7 +2559,7 @@ components:
           example: example.json#/patient/0/hypothesis/mainDiagnosis/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
@@ -2569,7 +2583,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/otherDiagnosis/0/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           examples:
           - C07.13.02
         label:
@@ -2580,7 +2594,7 @@ components:
           example: example.json#/patient/0/hypothesis/otherDiagnosis/0/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"

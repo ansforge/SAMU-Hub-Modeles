@@ -20,7 +20,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
+            "description": "A valoriser avec l'identifiant de l'affaire/dossier partag\u00e9 entre tous les intervenants, valoris\u00e9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me.\n\nPour les syst\u00e8mes qui ne sont pas en mesure de garantir l'unicit\u00e9 d'un num\u00e9ro de dossier (senderCaseId), il est possible de d\u00e9composer le num\u00e9ro de dossier fourni, afin de le rendre unique. \nPar exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unit\u00e9 fonctionnelle}.{senderCaseId}\n\n"
         },
         "senderCaseId": {
             "type": "string",
@@ -28,7 +28,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/senderCaseId",
-            "description": "Valoriser avec le num\u00e9ro du dossier dans le SI de l'\u00e9metteur du message. \nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS.\n"
+            "description": "A valoriser avec le num\u00e9ro du dossier dans le SI de l'\u00e9metteur du message.\n"
         },
         "creation": {
             "type": "string",
@@ -36,7 +36,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/creation",
-            "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). Il doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation  de la premi\u00e8re alerte. Lors de l'ajout d'alerte \u00e0 une affaire ce champ ne doit pas \u00eatre modifi\u00e9.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+            "description": "A valoriser avec le groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas \u00eatre modifi\u00e9e.  \nL'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.\n\nSp\u00e9cificit\u00e9 15-18 :\nIl doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation de la premi\u00e8re alerte.",
             "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
             "format": "date-time"
         },
@@ -538,7 +538,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e"
                 },
                 "label": {
                     "type": "string",
@@ -546,7 +546,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -568,7 +568,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
                     "enum": [
                         "L01.00.00",
                         "L01.01.00",
@@ -757,7 +757,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -779,7 +779,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
                     "enum": [
                         "R01",
                         "R02",
@@ -826,7 +826,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -848,7 +848,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
                     "enum": [
                         "M01.00",
                         "M01.01",
@@ -910,7 +910,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,

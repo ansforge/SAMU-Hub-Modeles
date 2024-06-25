@@ -4,22 +4,30 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
-Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                    <documentation>A valoriser avec l'identifiant de l'affaire/dossier partagé entre tous les intervenants, valorisé comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.
+Cet identifiant est généré une seule fois par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
+
+Pour les systèmes qui ne sont pas en mesure de garantir l'unicité d'un numéro de dossier (senderCaseId), il est possible de décomposer le numéro de dossier fourni, afin de le rendre unique. 
+Par exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unité fonctionnelle}.{senderCaseId}
+
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
-                    <documentation>Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
-Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
+                    <documentation>A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 </documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
+Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
+L'indicateur de fuseau horaire Z ne doit pas être utilisé.
+
+Spécificité 15-18 :
+Il doit être renseigné à la fin du processus de la  création de la première alerte.</documentation>
                 </annotation>
             </element>
             <element name="referenceVersion" type="string">
@@ -374,13 +382,13 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -389,7 +397,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -578,7 +586,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -587,7 +595,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -634,7 +642,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -643,7 +651,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -705,7 +713,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>

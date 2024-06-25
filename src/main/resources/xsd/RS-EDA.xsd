@@ -4,27 +4,35 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
-Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                    <documentation>A valoriser avec l'identifiant de l'affaire/dossier partagé entre tous les intervenants, valorisé comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.
+Cet identifiant est généré une seule fois par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
+
+Pour les systèmes qui ne sont pas en mesure de garantir l'unicité d'un numéro de dossier (senderCaseId), il est possible de décomposer le numéro de dossier fourni, afin de le rendre unique. 
+Par exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unité fonctionnelle}.{senderCaseId}
+
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
-                    <documentation>Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
-Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
+                    <documentation>A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 </documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
+Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
+L'indicateur de fuseau horaire Z ne doit pas être utilisé.
+
+Spécificité 15-18 :
+Il doit être renseigné à la fin du processus de la  création de la première alerte.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="perimeter">
                 <annotation>
-                    <documentation>Sert à indiquer à quelle filière du CRRA le dossier doit être adressé/affiché</documentation>
+                    <documentation>Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -37,7 +45,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             </element>
             <element minOccurs="0" name="interventionType">
                 <annotation>
-                    <documentation>Indiquer s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)</documentation>
+                    <documentation>A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -65,7 +73,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
         <sequence>
             <element minOccurs="0" name="origin">
                 <annotation>
-                    <documentation>Numéro de provenance de l'appel</documentation>
+                    <documentation>A valoriser avec le numéro de provenance de l'appel.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -168,13 +176,13 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -183,7 +191,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -372,7 +380,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -381,7 +389,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -428,7 +436,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -437,7 +445,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -499,7 +507,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -508,7 +516,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="attribution">
                 <annotation>
-                    <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.</documentation>
+                    <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -567,7 +575,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="careLevel">
                 <annotation>
-                    <documentation>Décrit le niveau de soin global du dossier : s'il y a plusieurs niveau de soin par patient, on indique ici le niveau le plus grave</documentation>
+                    <documentation>Décrit le niveau de soin global du dossier : s'il y a plusieurs niveau de soin différents pour chaque patient, on indique ici le niveau le plus grave.
+cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1310,13 +1319,13 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1325,13 +1334,13 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>

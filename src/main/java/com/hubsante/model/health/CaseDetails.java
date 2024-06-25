@@ -51,7 +51,7 @@ public class CaseDetails {
 
   /**
    * Décrit le type de professionnel médical à qui le dossier est attribué :
-   * Médecin généraliste, médecin urgentiste etc.
+   * médecin généraliste, médecin urgentiste etc.
    */
   public enum AttributionEnum {
     DRM("DRM"),
@@ -198,7 +198,8 @@ public class CaseDetails {
 
   /**
    * Décrit le niveau de soin global du dossier : s&#39;il y a plusieurs niveau
-   * de soin par patient, on indique ici le niveau le plus grave
+   * de soin différents pour chaque patient, on indique ici le niveau le plus
+   * grave. cf.nomenclature associée.
    */
   public enum CareLevelEnum {
     R1("R1"),
@@ -247,7 +248,7 @@ public class CaseDetails {
 
   /**
    * Décrit le type de professionnel médical à qui le dossier est attribué :
-   *Médecin généraliste, médecin urgentiste etc.
+   *médecin généraliste, médecin urgentiste etc.
    * @return attribution
    **/
   @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
@@ -294,7 +295,8 @@ public class CaseDetails {
 
   /**
    * Décrit le niveau de soin global du dossier : s&#39;il y a plusieurs niveau
-   *de soin par patient, on indique ici le niveau le plus grave
+   *de soin différents pour chaque patient, on indique ici le niveau le plus
+   *grave. cf.nomenclature associée.
    * @return careLevel
    **/
   @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
