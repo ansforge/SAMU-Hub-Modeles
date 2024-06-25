@@ -52,10 +52,11 @@ def run(sheet, name, version, perimeter_filter, model_type):
         # Getting modelName from cell A1
         modelName = full_df.iloc[0, 0]
         # Computing number of rows in table
-        # rows = df.iloc[7:, 0]
-        # Simply remove initial rows & total row
-        # ToDo: be more resilient to nan & \xa0 in full_df.iloc[8:,0] and compute nb with count?
-        rows = full_df.shape[0] - 8 - 1
+        # Find the row number of the first table header ('ID')
+        id_index = (full_df[0] == 'ID').idxmax()
+        id_column = full_df.loc[id_index+1:, 0]
+        # Count the number of rows in the ID column, without counting the last row (total)
+        rows = id_column.count() - 1
         # Compute number of columns in table
         try:
             # By finding the CUT column
