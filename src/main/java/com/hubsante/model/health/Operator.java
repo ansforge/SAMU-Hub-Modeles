@@ -52,7 +52,8 @@ public class Operator {
   private DetailedName detailedName;
 
   /**
-   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
+   * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
+   * émettrice du message :
    */
   public enum RoleEnum {
     AMBULANCIER("AMBULANCIER"),
@@ -127,7 +128,8 @@ public class Operator {
   }
 
   /**
-   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
+   * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
+   *émettrice du message :
    * @return role
    **/
   @JsonProperty(JSON_PROPERTY_ROLE)

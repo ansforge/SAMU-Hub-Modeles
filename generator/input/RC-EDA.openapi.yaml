@@ -1456,7 +1456,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/geometry/point/coord/heading
-          description: "En degr\xE9"
+          description: "A valoriser avec le cap, en degr\xE9"
           examples:
           - 96
         speed:
@@ -2131,7 +2131,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/key
-          description: Nom de la balise
+          description: A valoriser avec le nom de la balise
           examples:
           - neighborhood
         label:
@@ -2140,7 +2140,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/label
-          description: "Libell\xE9 correspondant"
+          description: "A valoriser avec le libell\xE9 correspondant"
           examples:
           - Quartier
         value:
@@ -2149,7 +2149,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/value
-          description: "Valeur associ\xE9e \xE0 la cl\xE9"
+          description: "A valoriser avec la valeur associ\xE9e \xE0 la cl\xE9"
           examples:
           - LYON 2e arrondissement
         freetext:

@@ -55,7 +55,7 @@ public class InsStrictFeatures {
   private String birthDate;
 
   /**
-   * Sexe du patient
+   * A valoriser avec le sexe du patient
    */
   public enum SexEnum {
     MASC("MASC"),
@@ -103,7 +103,8 @@ public class InsStrictFeatures {
   }
 
   /**
-   * Egalement appelé nom de famille.
+   * A valoriser avec le nom de naissance du patient. Egalement appelé nom de
+   *famille.
    * @return birthName
    **/
   @JsonProperty(JSON_PROPERTY_BIRTH_NAME)
@@ -126,7 +127,7 @@ public class InsStrictFeatures {
   }
 
   /**
-   * Date de naissance du patient
+   * A valoriser avec la date de naissance du patient
    * @return birthDate
    **/
   @JsonProperty(JSON_PROPERTY_BIRTH_DATE)
@@ -149,7 +150,7 @@ public class InsStrictFeatures {
   }
 
   /**
-   * Sexe du patient
+   * A valoriser avec le sexe du patient
    * @return sex
    **/
   @JsonProperty(JSON_PROPERTY_SEX)

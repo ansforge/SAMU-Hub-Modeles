@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.06.25",
+    "version": "24.06.27",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -1336,7 +1336,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/heading",
-                    "description": "En degr\u00e9"
+                    "description": "A valoriser avec le cap, en degr\u00e9"
                 },
                 "speed": {
                     "type": "number",
@@ -1943,7 +1943,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/key",
-                    "description": "Nom de la balise"
+                    "description": "A valoriser avec le nom de la balise"
                 },
                 "label": {
                     "type": "string",
@@ -1951,7 +1951,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/label",
-                    "description": "Libell\u00e9 correspondant"
+                    "description": "A valoriser avec le libell\u00e9 correspondant"
                 },
                 "value": {
                     "type": "string",
@@ -1959,7 +1959,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/value",
-                    "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
+                    "description": "A valoriser avec la valeur associ\u00e9e \u00e0 la cl\u00e9"
                 },
                 "freetext": {
                     "type": "string",

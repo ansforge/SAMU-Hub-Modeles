@@ -428,7 +428,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/location/type
-          description: A valoriser avec un code de la nomenclature TYPELIEU.
+          description: A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
           examples:
           - DOMPAV
         finessGeo:
@@ -511,7 +511,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/code
-          description: A valoriser avec un code de la nomenclature TYPCIRCO
+          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
           examples:
           - AVPAR
         label:
@@ -520,7 +520,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature TYPCIRCO.\n\
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
             Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
             \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
@@ -836,7 +836,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/code
-          description: A valoriser avec un code de la nomenclature TYPCIRCO
+          description: A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime
           examples:
           - AVPAR
         label:
@@ -845,7 +845,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature TYPCIRCO.\n\
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Motif_patient-victime.\n\
             Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
             \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
@@ -970,6 +970,7 @@ components:
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
             \ d'intervention, si \xE9tranger. "
+          pattern: '[0-9]{5}'
           examples:
           - 92300
         city:
@@ -1956,7 +1957,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/key
-          description: Nom de la balise
+          description: A valoriser avec le nom de la balise
           examples:
           - neighborhood
         label:
@@ -1965,7 +1966,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/label
-          description: "Libell\xE9 correspondant"
+          description: "A valoriser avec le libell\xE9 correspondant"
           examples:
           - Quartier
         value:
@@ -1974,7 +1975,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/value
-          description: "Valeur associ\xE9e \xE0 la cl\xE9"
+          description: "A valoriser avec la valeur associ\xE9e \xE0 la cl\xE9"
           examples:
           - LYON 2e arrondissement
         freetext:
@@ -2153,7 +2154,7 @@ components:
           x-cols: 6
           example: example.json#/patient/sex
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
-            \ SEXE"
+            \ SI-SAMU-NOMENC_SEXE"
           examples:
           - F
         nir:
@@ -2185,12 +2186,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/idPat
-          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
-            \ et est identifi\xE9 dans le syst\xE8me emetteur, valoris\xE9 comme suit\
-            \ pour un CRRA : \n{ID du dossier partag\xE9}.P{num\xE9ro d\u2019ordre\
-            \ chronologique unique du patient}"
+          description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
+            \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
+            \ le syst\xE8me emetteur, valoris\xE9 comme suit  : \n{ID du dossier partag\xE9\
+            }.P{num\xE9ro d\u2019ordre chronologique unique du patient}"
           examples:
-          - None
+          - fr.health.samu044.DRFR154402415000450.P1
         operator:
           $ref: '#/components/schemas/operator'
         idObs:
@@ -2199,19 +2200,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/idObs
-          description: "Identifiant unique de l'observation, valoris\xE9 comme suit\
-            \ : {caseID}.medicalNote.{ID unique de l'observation dans le syst\xE8\
-            me \xE9metteur}\n"
+          description: "A valoriser avec l'identifiant unique de l'observation, valoris\xE9\
+            \ comme suit : {caseID}.medicalNote.{ID de l'observation dans le syst\xE8\
+            me \xE9metteur}.\nCet identifiant a vocation \xE0 devenir obligatoire\
+            \ pour permettre les mises \xE0 jour, il est laiss\xE9 en facultatif temporairement.\n"
           examples:
-          - fr.health.samu540.DRFR15DDXAAJJJ00001.medicalNote.46585A
+          - fr.health.samu540.DRFR155402416000125.medicalNote.46585A
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'observation"
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/creation
-          description: "Groupe date heure de cr\xE9ation de l'observation.  L'indicateur\
-            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
+          description: "A valoriser avec le groupe date heure de cr\xE9ation de l'observation.\
+            \  L'indicateur de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -2222,10 +2224,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/freetext
-          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
-            \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
-            \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
-            \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
+          description: "Champ libre qui permet de compl\xE9ter les informations de\
+            \ nature m\xE9dicales, faites par un ARM, un m\xE9decin ou un autre professionnel\
+            \ de sant\xE9."
           examples:
           - None
       additionalProperties: false
@@ -2404,7 +2405,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/weight
-          description: Poids en kilogrammes
+          description: A valoriser avec le poids en kilogrammes
           examples:
           - 31
         height:
@@ -2413,7 +2414,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/height
-          description: "Taille en centim\xE8tres"
+          description: "A valoriser avec la taille en centim\xE8tres du patient"
           examples:
           - 109
         age:
@@ -2422,9 +2423,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/age
-          description: "Age du patient.\nAu format Dur\xE9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
-            \ en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois, semaines\
-            \ ou jours)"
+          description: "A valoriser avec l'age du patient.\nAu format \"Dur\xE9e\"\
+            \ de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
+            \ et en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois,\
+            \ semaines ou jours)"
           pattern: P[0-9]{1,3}[YMWD]
           examples:
           - P6Y
@@ -2434,6 +2436,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/careLevel
+          description: "A valoriser avec le niveau de soins sp\xE9cifique au patient"
           enum:
           - R1
           - R2
@@ -2514,7 +2517,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/birthName
-          description: "Egalement appel\xE9 nom de famille."
+          description: "A valoriser avec le nom de naissance du patient. Egalement\
+            \ appel\xE9 nom de famille."
           examples:
           - Dupont
         birthDate:
@@ -2523,7 +2527,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/birthDate
-          description: Date de naissance du patient
+          description: A valoriser avec la date de naissance du patient
           pattern: \d{4}-\d{2}-\d{2}
           examples:
           - None
@@ -2533,7 +2537,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/identity/strictFeatures/sex
-          description: Sexe du patient
+          description: A valoriser avec le sexe du patient
           enum:
           - MASC
           - FEM
@@ -2633,8 +2637,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/operator/role
-          description: "R\xF4le de l'op\xE9rateur au sein de l'entit\xE9 \xE9mettrice\
-            \ du message"
+          description: "A valoriser avec le r\xF4le de l'op\xE9rateur au sein de l'entit\xE9\
+            \ \xE9mettrice du message : "
           enum:
           - AMBULANCIER
           - ARM
@@ -2643,12 +2647,12 @@ components:
           - INCONNU
           - AUTRE
           examples:
-          - "ARM, Medecin r\xE9gulateur\u2026"
+          - ARM
       additionalProperties: false
       example: example.json#/medicalNote/0/operator
       examples:
       - detailedName: {}
-        role: "ARM, Medecin r\xE9gulateur\u2026"
+        role: ARM
     emsi:
       $id: classpath:/json-schema/schema#
       x-id: EMSI.schema.json#
@@ -5748,9 +5752,9 @@ components:
           x-cols: 6
           example: example.json#/regulation/initialTeamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature NIVSOIN.\nPermet de d\xE9duire\
-            \ avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\", si un\
-            \ UMHP est devenu un SMUR. "
+            A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de\
+            \ d\xE9duire avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\"\
+            , si un UMHP est devenu un SMUR. "
           examples:
           - PARAMED
       additionalProperties: false
@@ -5824,7 +5828,7 @@ components:
           example: example.json#/orientation/type
           description: "Indique si le patient est transport\xE9 ou non (Sans transport\
             \ associ\xE9 / avec transport associ\xE9). \nA valoriser par un code de\
-            \ la nomenclature NOMENC_DEVENIR_PAT_200622.\nSi le type d'orientation\
+            \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
             \ est sans transport associ\xE9, les objets Destination et Transport sont\
             \ facultatifs. "
           examples:
@@ -6271,7 +6275,7 @@ components:
           example: example.json#/orientation/decision/resourceCategory
           description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
             \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
-            \ TYPMOYEN."
+            \ SI SAMU-TYPE_MOYEN."
           examples:
           - SMUR
         resourceType:
@@ -6282,7 +6286,7 @@ components:
           example: example.json#/orientation/decision/resourceType
           description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
             \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
-            \ la nomenclature TYPVECT."
+            \ la nomenclature CISU-TYPE_VECTEUR."
           examples:
           - AR, VLM, VSAV
         teamCare:
@@ -6292,7 +6296,7 @@ components:
           x-cols: 6
           example: example.json#/orientation/decision/teamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature NIVSOIN."
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
           examples:
           - PARAMED
       additionalProperties: false

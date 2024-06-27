@@ -131,8 +131,9 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
-{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
+                    <documentation>A valoriser avec l'identifiant partagé du patient, valorisé comme suit : {ID du dossier partagé}.P{numéro d’ordre chronologique}
+Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
@@ -147,26 +148,26 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
         <sequence>
             <element minOccurs="0" name="idPat" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur, valorisé comme suit pour un CRRA : 
+                    <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
 {ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}</documentation>
                 </annotation>
             </element>
             <element name="operator" type="x:operator"/>
             <element minOccurs="0" name="idObs" type="string">
                 <annotation>
-                    <documentation>Identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
+                    <documentation>A valoriser avec l'identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID de l'observation dans le système émetteur}.
+Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="creation" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
             <element name="freetext" type="string">
                 <annotation>
-                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
-Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
+                    <documentation>Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1247,18 +1248,18 @@ Par convention les prénoms composés doivent préférablement être séparés p
         <sequence>
             <element minOccurs="0" name="weight" type="int">
                 <annotation>
-                    <documentation>Poids en kilogrammes</documentation>
+                    <documentation>A valoriser avec le poids en kilogrammes</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="height" type="int">
                 <annotation>
-                    <documentation>Taille en centimètres</documentation>
+                    <documentation>A valoriser avec la taille en centimètres du patient</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="age">
                 <annotation>
-                    <documentation>Age du patient.
-Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
+                    <documentation>A valoriser avec l'age du patient.
+Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1267,6 +1268,9 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
                 </simpleType>
             </element>
             <element minOccurs="0" name="careLevel">
+                <annotation>
+                    <documentation>A valoriser avec le niveau de soins spécifique au patient</documentation>
+                </annotation>
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="R1"/>
@@ -1311,12 +1315,12 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
         <sequence>
             <element minOccurs="0" name="birthName" type="string">
                 <annotation>
-                    <documentation>Egalement appelé nom de famille.</documentation>
+                    <documentation>A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="birthDate">
                 <annotation>
-                    <documentation>Date de naissance du patient</documentation>
+                    <documentation>A valoriser avec la date de naissance du patient</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1326,7 +1330,7 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
             </element>
             <element minOccurs="0" name="sex">
                 <annotation>
-                    <documentation>Sexe du patient</documentation>
+                    <documentation>A valoriser avec le sexe du patient</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1374,7 +1378,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
             <element name="role">
                 <annotation>
-                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
+                    <documentation>A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : </documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1393,17 +1397,17 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="key" type="string">
                 <annotation>
-                    <documentation>Nom de la balise</documentation>
+                    <documentation>A valoriser avec le nom de la balise</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="label" type="string">
                 <annotation>
-                    <documentation>Libellé correspondant</documentation>
+                    <documentation>A valoriser avec le libellé correspondant</documentation>
                 </annotation>
             </element>
             <element name="value" type="string">
                 <annotation>
-                    <documentation>Valeur associée à la clé</documentation>
+                    <documentation>A valoriser avec la valeur associée à la clé</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">

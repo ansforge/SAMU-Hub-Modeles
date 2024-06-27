@@ -191,7 +191,7 @@ public class Coord {
   }
 
   /**
-   * En degré
+   * A valoriser avec le cap, en degré
    * @return heading
    **/
   @JsonProperty(JSON_PROPERTY_HEADING)

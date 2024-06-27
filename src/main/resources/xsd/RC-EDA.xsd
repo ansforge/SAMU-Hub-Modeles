@@ -978,7 +978,7 @@ Spécificité 15-18 :  ignoré côté NexSIS. </documentation>
             </element>
             <element minOccurs="0" name="heading" type="decimal">
                 <annotation>
-                    <documentation>En degré</documentation>
+                    <documentation>A valoriser avec le cap, en degré</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="speed" type="decimal">
@@ -1465,17 +1465,17 @@ Par convention les prénoms composés doivent préférablement être séparés p
         <sequence>
             <element name="key" type="string">
                 <annotation>
-                    <documentation>Nom de la balise</documentation>
+                    <documentation>A valoriser avec le nom de la balise</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="label" type="string">
                 <annotation>
-                    <documentation>Libellé correspondant</documentation>
+                    <documentation>A valoriser avec le libellé correspondant</documentation>
                 </annotation>
             </element>
             <element name="value" type="string">
                 <annotation>
-                    <documentation>Valeur associée à la clé</documentation>
+                    <documentation>A valoriser avec la valeur associée à la clé</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">

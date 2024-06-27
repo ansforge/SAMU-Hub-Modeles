@@ -69,8 +69,8 @@ public class Orientation {
 
   /**
    * Indique si le patient est transporté ou non (Sans transport associé / avec
-   *transport associé).  A valoriser par un code de la nomenclature
-   *NOMENC_DEVENIR_PAT_200622. Si le type d&#39;orientation est sans transport
+   *transport associé).  A valoriser par un code de la nomenclature SI
+   *SAMU-NOMENC_DEVENIR_PAT. Si le type d&#39;orientation est sans transport
    *associé, les objets Destination et Transport sont facultatifs.
    * @return type
    **/

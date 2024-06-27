@@ -62,7 +62,7 @@ public class WhatsHappen {
   }
 
   /**
-   * A valoriser avec un code de la nomenclature TYPCIRCO
+   * A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
    * @return code
    **/
   @JsonProperty(JSON_PROPERTY_CODE)
@@ -85,9 +85,10 @@ public class WhatsHappen {
   }
 
   /**
-   * A valoriser avec le libellé de la nomenclature TYPCIRCO. Dans le cas où un
-   *système n&#39;est pas en mesure de reconnaître un code, il peut directement
-   *afficher le libellé qui est obligatoirement fourni avec le code.
+   * A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.
+   *Dans le cas où un système n&#39;est pas en mesure de reconnaître un code, il
+   *peut directement afficher le libellé qui est obligatoirement fourni avec le
+   *code.
    * @return label
    **/
   @JsonProperty(JSON_PROPERTY_LABEL)

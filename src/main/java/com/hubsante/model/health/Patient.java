@@ -88,9 +88,9 @@ public class Patient {
   }
 
   /**
-   * Identifiant technique du patient pour permettre les rapprochements
-   *d&#39;infos. Le 1er qui créé l&#39;ID patient a raison. {ID du dossier
-   *partagé}.P{numéro d’ordre chronologique}
+   * A valoriser avec l&#39;identifiant partagé du patient, valorisé comme suit
+   *: {ID du dossier partagé}.P{numéro d’ordre chronologique} Cet identifiant
+   *est généré une seule fois par le système du partenaire qui créé le patient.
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)

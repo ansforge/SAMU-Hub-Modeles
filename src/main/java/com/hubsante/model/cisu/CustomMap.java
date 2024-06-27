@@ -69,7 +69,7 @@ public class CustomMap {
   }
 
   /**
-   * Nom de la balise
+   * A valoriser avec le nom de la balise
    * @return key
    **/
   @JsonProperty(JSON_PROPERTY_KEY)
@@ -92,7 +92,7 @@ public class CustomMap {
   }
 
   /**
-   * Libellé correspondant
+   * A valoriser avec le libellé correspondant
    * @return label
    **/
   @JsonProperty(JSON_PROPERTY_LABEL)
@@ -115,7 +115,7 @@ public class CustomMap {
   }
 
   /**
-   * Valeur associée à la clé
+   * A valoriser avec la valeur associée à la clé
    * @return value
    **/
   @JsonProperty(JSON_PROPERTY_VALUE)

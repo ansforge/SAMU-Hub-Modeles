@@ -71,7 +71,7 @@ A valoriser par DRFR15DDXAAJJJ00000 :
             <element name="initialTeamCare" type="string">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, secouriste).
-A valoriser par un code de la nomenclature NIVSOIN.
+A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
 Permet de déduire avec la donnée "niveau de médicalisation du transport", si un UMHP est devenu un SMUR. </documentation>
                 </annotation>
             </element>
@@ -92,7 +92,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
             </element>
             <element name="sex" type="string">
                 <annotation>
-                    <documentation>Sexe du patient, suivant le libellé court de la nomenclature SEXE</documentation>
+                    <documentation>Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="nir" type="decimal">
@@ -128,7 +128,7 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
             <element name="type" type="string">
                 <annotation>
                     <documentation>Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
-A valoriser par un code de la nomenclature NOMENC_DEVENIR_PAT_200622.
+A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
 Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. </documentation>
                 </annotation>
             </element>
@@ -140,12 +140,12 @@ Si le type d'orientation est sans transport associé, les objets Destination et 
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code de la nomenclature TYPCIRCO</documentation>
+                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le libellé de la nomenclature TYPCIRCO.
+                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
@@ -155,12 +155,12 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code de la nomenclature TYPCIRCO</documentation>
+                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le libellé de la nomenclature TYPCIRCO.
+                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Motif_patient-victime.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
@@ -190,7 +190,7 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. </d
         <sequence>
             <element minOccurs="0" name="type" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code de la nomenclature TYPELIEU.</documentation>
+                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="finessGeo" type="string">
@@ -264,11 +264,16 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
     </complexType>
     <complexType name="detailedAddress">
         <sequence>
-            <element name="cityCode" type="string">
+            <element name="cityCode">
                 <annotation>
                     <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays d'intervention, si étranger. </documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="city" type="string">
                 <annotation>
@@ -551,19 +556,19 @@ Le Code INSEE peut également précisé le pays d'intervention, si étranger. </
             <element name="resourceCategory" type="string">
                 <annotation>
                     <documentation>Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). 
-A valoriser par un code de la nomenclature TYPMOYEN.</documentation>
+A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.</documentation>
                 </annotation>
             </element>
             <element name="resourceType" type="string">
                 <annotation>
                     <documentation>Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
-A valoriser par un code de la nomenclature TYPVECT.</documentation>
+A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
                 </annotation>
             </element>
             <element name="teamCare" type="string">
                 <annotation>
                     <documentation>Type d’équipe (médical, paramédicale, secouriste).
-A valoriser par un code de la nomenclature NIVSOIN.</documentation>
+A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.</documentation>
                 </annotation>
             </element>
         </sequence>

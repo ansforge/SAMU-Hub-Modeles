@@ -101,7 +101,7 @@ ADRESSE : Adresse précise,
 EXACTE : Point coordonnée GPS exact, 
 INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
 ,,,Dipositif AML,,,Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. ,TRUE,,aml,,,,,,0..1,,boolean,,
-,Liens aux systèmes externes,,,,,"Permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. L'objet reprend la structure EXTERNAL_INFO de l'EMSI
+,Liens aux systèmes externes,,,,,"Objet qui permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. 
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
 ,,Nom de la source,,,,"A valoriser avec le système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
@@ -153,50 +153,50 @@ Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
 ,,,Prénom,,,"A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,,firstName,,,,,,0..1,,string,,
 CRRA traitant,,,,,,Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA - après accord verbal de ce dernier.,fr.health.samu440,,owner,,,,,,1..1,,string,,
-Patient,,,,,,Identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,
-,ID patient partagé,,,,,"Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
-{ID du dossier partagé}.P{numéro d’ordre chronologique}",fr.health.samu044.DRFR15DDXAAJJJ00000.P00,,id,,,,,,1..1,,string,,
-,Dossier administratif,,,,,,,,administrativeFile,,,,,,0..1,X,administrativeFile,,
-,,Identifiant(s) patient(s),,,,Identifiant autre que le matricule INS,,,externalId,,,,,,0..n,X,externalId,,
+Patient,,,,,,Objet qui permet l'identification des patients / victimes,,,patient,,,,,,0..n,X,patient,,
+,ID patient partagé,,,,,"A valoriser avec l'identifiant partagé du patient, valorisé comme suit : {ID du dossier partagé}.P{numéro d’ordre chronologique}
+Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
+",fr.health.samu044.DRFR154402415000450.P1,,id,,,,,,1..1,,string,,
+,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,,administrativeFile,,,,,,0..1,X,administrativeFile,,
+,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,,externalId,,,,,,0..n,X,externalId,,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",,source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
 ,,,Identifiant,,,L'identifiant en lui-même,id1234,,value,,,,,,1..1,,string,,
-,Identité,,,,,L'identitée du patient basée sur les règles de l'INS,,,identity,,,,,,0..1,X,Identity,,
-,,Traits stricts de l'identité,,,,"L’Identité Nationale de Santé (INS) permet de référencer les données de santé avec une identité unique, pérenne, partagée par l'ensemble des professionnels du monde de la santé.
-Elle est composée : 
- - Du matricule INS (NIR - numéro d’inscription au répertoire national des personnes physiques - ou NIA – numéro identifiant attente - de l’individu). Concrètement, ce numéro correspond au numéro de sécurité sociale pour les ouvrants-droits, c’est-à-dire la très grande majorité des personnes majeures. Pour les autres assurés, ce numéro figure sur leur attestation de sécurité sociale et sera affiché dans l’espace numérique de santé (Mon espace santé) ; 
-- Des cinq traits stricts de référence (nom de naissance, prénom(s) de naissance, date de naissance, sexe, lieu de naissance).",,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,
-,,,Nom de naissance,,,Egalement appelé nom de famille.,Dupont,,birthName,,,,,,0..1,,string,,
-,,,Date de naissance,,,Date de naissance du patient,,,birthDate,,,,,,0..1,,date,,
-,,,Sexe ,,,Sexe du patient,F,,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
-,,Traits non stricts de l'identité,# Voir detailedName,,,Prénom et nom usuels,,,nonStrictFeatures,,,,,,0..1,X,detailedName,,
-,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste spécifique au patient concerné (MR). Référentiel : nomenclature CISU.,,,healthMotive,,,,,,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
-,Informations patient,,,,,,,,detail,,,,,,0..1,X,patientDetail,,
-,,Poids,,,,Poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,
-,,Taille,,,,Taille en centimètres,109,,height,,,,,,0..1,,integer,,
-,,Age,,,,"Age du patient.
-Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,,age,,,,,,0..1,,string,,"REGEX: P[0-9]{1,3}[YMWD]"
-,,Niveau de soin du patient,,,,,R1,,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
-,Hypothèses de régulation médicale,,,,,,,,hypothesis,,,,,,0..1,X,hypothesis,,
-,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA,,,mainDiagnosis,,,,,,0..1,X,codeAndLabel,X,
-,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA,,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,
-,Informations complémentaires sur le patient,,,,,Correspond à la zone de commentaire renseigné par patient créé/identifié,,,freetext,,,,,,0..n,,string,,
+,Identité,,,,,Objet qui permet de décrire l'identité du patient,,,identity,,,,,,0..1,X,Identity,,
+,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,
+,,,Nom de naissance,,,A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.,Dupont,,birthName,,,,,,0..1,,string,,
+,,,Date de naissance,,,A valoriser avec la date de naissance du patient,,,birthDate,,,,,,0..1,,date,,
+,,,Sexe ,,,A valoriser avec le sexe du patient,F,,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
+,,Traits non stricts de l'identité,# Voir detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,,nonStrictFeatures,,,,,,0..1,X,detailedName,,
+,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,,healthMotive,,,,,,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,Informations patient,,,,,Objet qui permet de décrire les caractéristiques du patient,,,detail,,,,,,0..1,X,patientDetail,,
+,,Poids,,,,A valoriser avec le poids en kilogrammes,31,,weight,,,,,,0..1,,integer,,
+,,Taille,,,,A valoriser avec la taille en centimètres du patient,109,,height,,,,,,0..1,,integer,,
+,,Age,,,,"A valoriser avec l'age du patient.
+Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,,age,,,,,,0..1,,string,,"REGEX: P[0-9]{1,3}[YMWD]"
+,,Niveau de soin du patient,,,,A valoriser avec le niveau de soins spécifique au patient,R1,,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
+,Hypothèses de régulation médicale,,,,,Objet qui permet de décrire les hypothèses de régulation médicale,,,hypothesis,,,,,,0..1,X,hypothesis,,
+,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,,mainDiagnosis,,,,,,0..1,X,codeAndLabel,X,
+,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,
+,Informations complémentaires sur le patient,,,,,Champ libre qui permet de compléter les informations liées spécifiquement à l'identité ou aux caractéristiques du patient - en dehors de tout commentaire ou interrogatoire de nature médical. ,,,freetext,,,,,,0..n,,string,,
 Observation médicale,,,,,,Observations de nature médicale. ,,,medicalNote,,,,,,0..n,X,medicalNote,,
-,ID patient partagé,,,,,"ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur, valorisé comme suit pour un CRRA : 
-{ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}",,,idPat,,,,,,0..1,,string,,
-,Professionnel de santé qui réalise l'observation,,,,,Professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,1..1,X,operator,,
-,,Prénom et nom,,,,Prénom & nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,
-,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
-,ID Observation,,,,,"Identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID unique de l'observation dans le système émetteur}
-",fr.health.samu540.DRFR15DDXAAJJJ00001.medicalNote.46585A,,idObs,,,,,,0..1,,string,,
-,Date Heure de création de l'observation,,,,,Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,0..1,,datetime,,
-,Observations et commentaires,,,,,"Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
-Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM",,,freetext,,,,,,1..1,,string,,
-Nouvelle alerte,# Voir alerte initiale,,,,,"Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
-Les objet newAlert suivent le modèle d'un objet initialAlert
-15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,
-Informations complémentaires,,,,,,,,,additionalInformation,,,,,,0..1,X,additionalInformation,,
-,Clé valeur adaptable,,,,,Permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,
-,,Clé,,,,Nom de la balise,neighborhood,,key,,,,,,1..1,,string,,
-,,Libellé,,,,Libellé correspondant,Quartier,,label,,,,,,0..1,,string,,
-,,Valeur,,,,Valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,
+,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
+{ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}",fr.health.samu044.DRFR154402415000450.P1,,idPat,,,,,,0..1,,string,,
+,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,,operator,,,,,,1..1,X,operator,,
+,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,,detailedName,,,,,,0..1,X,detailedName,,
+,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
+,ID Observation,,,,,"A valoriser avec l'identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID de l'observation dans le système émetteur}.
+Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
+",fr.health.samu540.DRFR155402416000125.medicalNote.46585A,,idObs,,,,,,0..1,,string,,
+,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,,creation,,,,,,0..1,,datetime,,
+,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,,freetext,,,,,,1..1,,string,,
+Nouvelle alerte,# Voir alerte initiale,,,,,"Objet qui permet de gérer plusieurs alerte/appels sur une même affaire / dossier
+Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
+Les objet newAlert suivent le modèle d'un objet initialAlert.
+
+Spécificités 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,
+Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,ObjectGeometry,additionalInformation,,,,,,0..1,X,additionalInformation,,
+,Clé valeur adaptable,,,,,Objet qui permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,
+,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,,key,,,,,,1..1,,string,,
+,,Libellé,,,,A valoriser avec le libellé correspondant,Quartier,,label,,,,,,0..1,,string,,
+,,Valeur,,,,A valoriser avec la valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,
 ,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,

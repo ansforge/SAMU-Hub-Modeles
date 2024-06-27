@@ -119,7 +119,7 @@
     "owner": "fr.health.samu440",
     "patient": [
         {
-            "id": "fr.health.samu044.DRFR15DDXAAJJJ00000.P00",
+            "id": "fr.health.samu044.DRFR154402415000450.P1",
             "administrativeFile": {
                 "externalId": [
                     {
@@ -165,12 +165,12 @@
     ],
     "medicalNote": [
         {
-            "idPat": "None",
+            "idPat": "fr.health.samu044.DRFR154402415000450.P1",
             "operator": {
                 "detailedName": {},
-                "role": "ARM, Medecin r\u00e9gulateur\u2026"
+                "role": "ARM"
             },
-            "idObs": "fr.health.samu540.DRFR15DDXAAJJJ00001.medicalNote.46585A",
+            "idObs": "fr.health.samu540.DRFR155402416000125.medicalNote.46585A",
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None"
         }

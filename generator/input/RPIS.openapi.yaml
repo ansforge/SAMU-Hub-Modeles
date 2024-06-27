@@ -159,9 +159,9 @@ components:
           x-cols: 6
           example: example.json#/regulation/initialTeamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature NIVSOIN.\nPermet de d\xE9duire\
-            \ avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\", si un\
-            \ UMHP est devenu un SMUR. "
+            A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de\
+            \ d\xE9duire avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\"\
+            , si un UMHP est devenu un SMUR. "
           examples:
           - PARAMED
       additionalProperties: false
@@ -203,7 +203,7 @@ components:
           x-cols: 6
           example: example.json#/patient/sex
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
-            \ SEXE"
+            \ SI-SAMU-NOMENC_SEXE"
           examples:
           - F
         nir:
@@ -289,7 +289,7 @@ components:
           example: example.json#/orientation/type
           description: "Indique si le patient est transport\xE9 ou non (Sans transport\
             \ associ\xE9 / avec transport associ\xE9). \nA valoriser par un code de\
-            \ la nomenclature NOMENC_DEVENIR_PAT_200622.\nSi le type d'orientation\
+            \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
             \ est sans transport associ\xE9, les objets Destination et Transport sont\
             \ facultatifs. "
           examples:
@@ -315,7 +315,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/code
-          description: A valoriser avec un code de la nomenclature TYPCIRCO
+          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
           examples:
           - AVPAR
         label:
@@ -324,7 +324,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature TYPCIRCO.\n\
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
             Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
             \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
@@ -352,7 +352,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/code
-          description: A valoriser avec un code de la nomenclature TYPCIRCO
+          description: A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime
           examples:
           - AVPAR
         label:
@@ -361,7 +361,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature TYPCIRCO.\n\
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Motif_patient-victime.\n\
             Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
             \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
@@ -421,7 +421,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/location/type
-          description: A valoriser avec un code de la nomenclature TYPELIEU.
+          description: A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
           examples:
           - DOMPAV
         finessGeo:
@@ -600,6 +600,7 @@ components:
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
             \ d'intervention, si \xE9tranger. "
+          pattern: '[0-9]{5}'
           examples:
           - 92300
         city:
@@ -931,7 +932,7 @@ components:
           example: example.json#/orientation/decision/resourceCategory
           description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
             \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
-            \ TYPMOYEN."
+            \ SI SAMU-TYPE_MOYEN."
           examples:
           - SMUR
         resourceType:
@@ -942,7 +943,7 @@ components:
           example: example.json#/orientation/decision/resourceType
           description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
             \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
-            \ la nomenclature TYPVECT."
+            \ la nomenclature CISU-TYPE_VECTEUR."
           examples:
           - AR, VLM, VSAV
         teamCare:
@@ -952,7 +953,7 @@ components:
           x-cols: 6
           example: example.json#/orientation/decision/teamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature NIVSOIN."
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
           examples:
           - PARAMED
       additionalProperties: false
