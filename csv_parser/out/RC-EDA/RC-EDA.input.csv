@@ -1,12 +1,7 @@
 Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise NexSIS,Nouvelle balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
 Identifiant affaire/dossier,,,,,,"A valoriser avec l'identifiant de l'affaire/dossier partagé entre tous les intervenants, valorisé comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.
 Cet identifiant est généré une seule fois par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
-
-Pour les systèmes qui ne sont pas en mesure de garantir l'unicité d'un numéro de dossier (senderCaseId), il est possible de décomposer le numéro de dossier fourni, afin de le rendre unique. 
-Par exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unité fonctionnelle}.{senderCaseId}
-
-",fr.health.samu440.DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15DDXAAJJJ0000,eventId,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15DDXAAJJJ0000,,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
@@ -20,7 +15,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
 
 Spécificités 15-18 : 
-La qualification est issue d'une interprétation métier des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,
+La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,
 ,Nature de fait,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,,
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
@@ -38,9 +33,9 @@ Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,eventLoc
 15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
 ","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",locLabel,,,,,,,0..1,,string,,
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
-,Identifiant(s) du lieu,,,,,Objet qui permet d'identifier une structure commerciale ou un établissement,,,externalLocationId,,,,,,0..n,X,externalLocationId,,
+,Identifiant(s) du lieu,,,,,Lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,,externalLocationId,,,,,,0..n,X,externalLocationId,,
 ,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
-,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,value,,,,,,1..1,,string,,
+,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,id,,,,,,1..1,,string,,
 ,Détails de l'adresse,,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 
@@ -54,7 +49,7 @@ Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, vo
 Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferrée ou voie navigable.","9, 4bis, PK10, …",,number,LO,N° dans la voie,,,,0..1,,string,,
 ,,Type et nom de voie,,,,Objet qui permet de décrire de manière structurée le type de voie et le nom de voie.,,,wayName,LY/LB/LV,"Type, particule, nom de voie",,,,0..1,X,wayName,,
 ,,,Type et nom,,,"A valoriser avec le type et le nom de la voie.
-Si les attributs ""type"" et ""name"" de ""wayName"" sont également renseignés,alors ""complete"" doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name}
+Si les attributs ""type"" et ""name"" de ""wayName"" sont également renseignés, alors ""complete"" doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name}
 ,,,Type,,,A valoriser avec le type de la voie,Boulevard,,type,,,,,,0..1,,string,,
 ,,,Nom,,,A valoriser avec le nom de la voie,du Montparnasse,,name,,,,,,0..1,,string,,
 ,Détails de la commune,,,,,,,,city,,,,,,0..1,X,city,,
@@ -64,7 +59,7 @@ La valeur du code INSEE est obligatoire dès que le nom de la commune est rensei
 ,,Complément de commune,,,,"Informations complémentaires permettant de préciser le quartier, lieu-dit, ancienne commune, … ou autre information aidant à préciser l'adresse et notamment gérer les cas de communes fusionnées pour le système émetteur
 NB : dans tous les cas, la localisation GPS de la commune doit être fournie afin d'éviter une trop forte ambiguïté.","Quartie Melun Nord, Lhomme, …",,detail,,,,,,0..1,,string,,
 ,Détails d'accès,,,,,"Objet qui permet de décrire l'ensemble des détails d'accès au lieu d'intervention. 
-Si un, pluiseurs ou la totalité des détails ne sont pas gérés individuellement, il est indiqué de reporter ces indications dans le freetext lié à la localisation de l'affaire (location.freetext).
+Si un, plusieurs ou la totalité des détails ne sont pas gérés individuellement, il est indiqué de reporter ces indications dans le freetext lié à la localisation de l'affaire (location.freetext).
 
 Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,,access,,,,,,0..1,X,access,,
 ,,Etage,,,,A valoriser avec le numéro ou nom de l'étage ,RDC,,floor,LG,Etage,,,,0..1,,string,,
@@ -107,12 +102,13 @@ Dans le cas d'une alerte donnée sur une zone géographique non précise (par ex
 En XML, un objet gml est encapsulé dans une balise <sketch xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>
 En JSON, les balises sont reprises depuis le modèle gml
 Voir http://www.opengis.net/gml pour le format de l'objet sketch",,sketch,sketch,,,,,,0..1,,string,,
-,Liens aux systèmes externes,,,,,"Objet qui permet de partager l'identifiant d'un objet ayant servi à l'établissement de la localisation. 
-L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
-,,Nom de la source,,,,"A valoriser avec le système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)","NexSIS, BAN, IGN, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
+,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
+L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalAddressId,,,,,,0..n,X,externalAddressId,,
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",source,source,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
-Exemple  : SIG NexSIS / OSM ont plusieurs types de données -> savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,type,,,,,,1..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET"
-,,Identifiant,,,,Identifiant unique dans le type. Exemple : UUID d'un ega,id987,id,uri,,,,,,1..1,,string,,
+
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,type,,,,,,0..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET"
+,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",id,id,,,,,,1..1,,string,,
 ,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
 
@@ -200,8 +196,8 @@ Les objet newAlert suivent le modèle d'un objet initialAlert.
 Spécificités 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,
 Description de l'affaire/dossier,,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'affaire/dossier. Ces informations sont générales, et ont vocation à être échangées en inter-force. ",Le forcené n'est pas maîtrisé. Voiture renversée. Urgences fermées de 22h à 6h00.,,freetext,,,,,,0..n,,string,,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,ObjectGeometry,additionalInformation,,,,,,0..1,X,additionalInformation,,
-,Clé valeur adaptable,,,,,Objet qui permet de rajouter quelques paires de champs,,,customMap,,,,,,0..3,X,customMap,,
+,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,,customMap,,,,,,0..3,X,customMap,,
 ,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,,key,,,,,,1..1,,string,,
 ,,Libellé,,,,A valoriser avec le libellé correspondant,Quartier,,label,,,,,,0..1,,string,,
 ,,Valeur,,,,A valoriser avec la valeur associée à la clé,LYON 2e arrondissement,,value,,,,,,1..1,,string,,
-,,Détails,,,,Informations complémentaires sur le contexte / utilisation de ce matching additionnel,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,
+,,Détails,,,,Informations complémentaires sur le contexte / utilisation de cette correspondance additionnelle,Précision sur le quartier d'intervention,,freetext,,,,,,0..1,,string,,

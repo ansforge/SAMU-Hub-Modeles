@@ -138,8 +138,8 @@ public class CustomMap {
   }
 
   /**
-   * Informations complémentaires sur le contexte / utilisation de ce matching
-   *additionnel
+   * Informations complémentaires sur le contexte / utilisation de cette
+   *correspondance additionnelle
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

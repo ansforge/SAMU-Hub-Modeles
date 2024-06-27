@@ -67,8 +67,8 @@ public class WayName {
   /**
    * A valoriser avec le type et le nom de la voie. Si les attributs
    *\&quot;type\&quot; et \&quot;name\&quot; de \&quot;wayName\&quot; sont
-   *également renseignés,alors \&quot;complete\&quot; doit être valorisé ainsi :
-   *\&quot;{type} {nom}\&quot;.
+   *également renseignés, alors \&quot;complete\&quot; doit être valorisé ainsi
+   *: \&quot;{type} {nom}\&quot;.
    * @return complete
    **/
   @JsonProperty(JSON_PROPERTY_COMPLETE)

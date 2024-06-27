@@ -111,11 +111,7 @@ public class CreateCase {
    *décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans
    *l&#39;ensemble des systèmes : le numéro de dossier fourni par celui qui
    *génère l&#39;identifiant partagé doit donc être un numéro unique dans son
-   *système.  Pour les systèmes qui ne sont pas en mesure de garantir
-   *l&#39;unicité d&#39;un numéro de dossier (senderCaseId), il est possible de
-   *décomposer le numéro de dossier fourni, afin de le rendre unique.  Par
-   *exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unité
-   *fonctionnelle}.{senderCaseId}
+   *système.
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)

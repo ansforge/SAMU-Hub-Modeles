@@ -42,7 +42,7 @@ import java.util.Objects;
  * ExternalLocationId
  */
 @JsonPropertyOrder({ExternalLocationId.JSON_PROPERTY_SOURCE,
-                    ExternalLocationId.JSON_PROPERTY_VALUE})
+                    ExternalLocationId.JSON_PROPERTY_ID})
 @JsonTypeName("externalLocationId")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -90,8 +90,8 @@ public class ExternalLocationId {
   public static final String JSON_PROPERTY_SOURCE = "source";
   private SourceEnum source;
 
-  public static final String JSON_PROPERTY_VALUE = "value";
-  private String value;
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
 
   public ExternalLocationId() {}
 
@@ -118,27 +118,27 @@ public class ExternalLocationId {
     this.source = source;
   }
 
-  public ExternalLocationId value(String value) {
+  public ExternalLocationId id(String id) {
 
-    this.value = value;
+    this.id = id;
     return this;
   }
 
   /**
    * L&#39;identifiant en lui-même
-   * @return value
+   * @return id
    **/
-  @JsonProperty(JSON_PROPERTY_VALUE)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getValue() {
-    return value;
+  public String getId() {
+    return id;
   }
 
-  @JsonProperty(JSON_PROPERTY_VALUE)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setValue(String value) {
-    this.value = value;
+  public void setId(String id) {
+    this.id = id;
   }
 
   @Override
@@ -151,12 +151,12 @@ public class ExternalLocationId {
     }
     ExternalLocationId externalLocationId = (ExternalLocationId)o;
     return Objects.equals(this.source, externalLocationId.source) &&
-        Objects.equals(this.value, externalLocationId.value);
+        Objects.equals(this.id, externalLocationId.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source, value);
+    return Objects.hash(source, id);
   }
 
   @Override
@@ -164,7 +164,7 @@ public class ExternalLocationId {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExternalLocationId {\n");
     sb.append("    source: ").append(toIndentedString(source)).append("\n");
-    sb.append("    value: ").append(toIndentedString(value)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

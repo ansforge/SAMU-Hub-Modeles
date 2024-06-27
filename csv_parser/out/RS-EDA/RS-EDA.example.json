@@ -3,7 +3,7 @@
     "senderCaseId": "DRFR15DDXAAJJJ0000",
     "creation": "2022-09-27T08:23:34+02:00",
     "perimeter": "AMU",
-    "interventionType": "Primaire",
+    "interventionType": "PRIMAIRE",
     "qualification": {
         "origin": "15, 112, 18",
         "whatsHappen": {
@@ -35,7 +35,7 @@
         "externalLocationId": [
             {
                 "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
-                "value": "920000650\u00a0"
+                "id": "920000650\u00a0"
             }
         ],
         "detailedAddress": {
@@ -78,14 +78,14 @@
                     "height": 120,
                     "precision": "ADRESSE"
                 },
-                "aml": "TRUE"
+                "fromAml": "TRUE"
             }
         },
-        "externalInfo": [
+        "externalAddressId": [
             {
-                "freetext": "NexSIS, BAN, IGN, \u2026",
+                "source": "BAN, IGN, NEXSIS, \u2026",
                 "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
-                "uri": "id987"
+                "id": "80021_6590_00008, id987"
             }
         ],
         "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"

@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.cisu;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,21 +39,20 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ExternalInfo
+ * ExternalAddressId
  */
-@JsonPropertyOrder({ExternalInfo.JSON_PROPERTY_FREETEXT,
-                    ExternalInfo.JSON_PROPERTY_TYPE,
-                    ExternalInfo.JSON_PROPERTY_URI})
-@JsonTypeName("externalInfo")
+@JsonPropertyOrder({ExternalAddressId.JSON_PROPERTY_SOURCE,
+                    ExternalAddressId.JSON_PROPERTY_TYPE,
+                    ExternalAddressId.JSON_PROPERTY_ID})
+@JsonTypeName("externalAddressId")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ExternalInfo {
+public class ExternalAddressId {
 
   /**
-   * A valoriser avec le système fournissant le localisant :  NexSiS ou
-   * l&#39;ORG_ID (BAN, IGN, ...)
+   * A valoriser avec le système fournissant le localisant
    */
-  public enum FreetextEnum {
+  public enum SourceEnum {
     BAN("BAN"),
 
     IGN("IGN"),
@@ -62,7 +61,7 @@ public class ExternalInfo {
 
     private String value;
 
-    FreetextEnum(String value) { this.value = value; }
+    SourceEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -75,8 +74,8 @@ public class ExternalInfo {
     }
 
     @JsonCreator
-    public static FreetextEnum fromValue(String value) {
-      for (FreetextEnum b : FreetextEnum.values()) {
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -85,14 +84,13 @@ public class ExternalInfo {
     }
   }
 
-  public static final String JSON_PROPERTY_FREETEXT = "freetext";
-  private FreetextEnum freetext;
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
   /**
-   * A valoriser avec la définition du type d&#39;objet dans le système Exemple
-   * : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on
-   * parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table
-   * dans une base de données
+   * A valoriser avec la définition du type d&#39;objet dans le système  Exemple
+   * : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de
+   * route, …)
    */
   public enum TypeEnum {
     MANUEL("MANUEL"),
@@ -133,82 +131,80 @@ public class ExternalInfo {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_URI = "uri";
-  private String uri;
+  public static final String JSON_PROPERTY_ID = "id";
+  private String id;
 
-  public ExternalInfo() {}
+  public ExternalAddressId() {}
 
-  public ExternalInfo freetext(FreetextEnum freetext) {
+  public ExternalAddressId source(SourceEnum source) {
 
-    this.freetext = freetext;
+    this.source = source;
     return this;
   }
 
   /**
-   * A valoriser avec le système fournissant le localisant :  NexSiS ou
-   *l&#39;ORG_ID (BAN, IGN, ...)
-   * @return freetext
+   * A valoriser avec le système fournissant le localisant
+   * @return source
    **/
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public FreetextEnum getFreetext() {
-    return freetext;
+  public SourceEnum getSource() {
+    return source;
   }
 
-  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setFreetext(FreetextEnum freetext) {
-    this.freetext = freetext;
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
-  public ExternalInfo type(TypeEnum type) {
+  public ExternalAddressId type(TypeEnum type) {
 
     this.type = type;
     return this;
   }
 
   /**
-   * A valoriser avec la définition du type d&#39;objet dans le système Exemple
-   *: SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on
-   *parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans
-   *une base de données
+   * A valoriser avec la définition du type d&#39;objet dans le système  Exemple
+   *: SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de
+   *route, …)
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public TypeEnum getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setType(TypeEnum type) {
     this.type = type;
   }
 
-  public ExternalInfo uri(String uri) {
+  public ExternalAddressId id(String id) {
 
-    this.uri = uri;
+    this.id = id;
     return this;
   }
 
   /**
-   * Identifiant unique dans le type. Exemple : UUID d&#39;un ega
-   * @return uri
+   * Identifiant dans le système concerné
+   * @return id
    **/
-  @JsonProperty(JSON_PROPERTY_URI)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getUri() {
-    return uri;
+  public String getId() {
+    return id;
   }
 
-  @JsonProperty(JSON_PROPERTY_URI)
+  @JsonProperty(JSON_PROPERTY_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUri(String uri) {
-    this.uri = uri;
+  public void setId(String id) {
+    this.id = id;
   }
 
   @Override
@@ -219,24 +215,24 @@ public class ExternalInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExternalInfo externalInfo = (ExternalInfo)o;
-    return Objects.equals(this.freetext, externalInfo.freetext) &&
-        Objects.equals(this.type, externalInfo.type) &&
-        Objects.equals(this.uri, externalInfo.uri);
+    ExternalAddressId externalAddressId = (ExternalAddressId)o;
+    return Objects.equals(this.source, externalAddressId.source) &&
+        Objects.equals(this.type, externalAddressId.type) &&
+        Objects.equals(this.id, externalAddressId.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(freetext, type, uri);
+    return Objects.hash(source, type, id);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExternalInfo {\n");
-    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
+    sb.append("class ExternalAddressId {\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    uri: ").append(toIndentedString(uri)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

@@ -20,7 +20,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "A valoriser avec l'identifiant de l'affaire/dossier partag\u00e9 entre tous les intervenants, valoris\u00e9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me.\n\nPour les syst\u00e8mes qui ne sont pas en mesure de garantir l'unicit\u00e9 d'un num\u00e9ro de dossier (senderCaseId), il est possible de d\u00e9composer le num\u00e9ro de dossier fourni, afin de le rendre unique. \nPar exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unit\u00e9 fonctionnelle}.{senderCaseId}\n\n"
+            "description": "A valoriser avec l'identifiant de l'affaire/dossier partag\u00e9 entre tous les intervenants, valoris\u00e9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
         },
         "senderCaseId": {
             "type": "string",
@@ -184,10 +184,10 @@
                 "geometry": {
                     "$ref": "#/definitions/geometry"
                 },
-                "externalInfo": {
+                "externalAddressId": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/externalInfo"
+                        "$ref": "#/definitions/externalAddressId"
                     }
                 },
                 "freetext": {
@@ -818,11 +818,11 @@
                 },
                 "careLevel": {
                     "type": "string",
-                    "title": "Niveau de soin du dossier",
+                    "title": "Niveau de soins du dossier",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/details/careLevel",
-                    "description": "D\u00e9crit le niveau de soin global du dossier : s'il y a plusieurs niveau de soin diff\u00e9rents pour chaque patient, on indique ici le niveau le plus grave.\ncf.nomenclature associ\u00e9e.",
+                    "description": "D\u00e9crit le niveau de soins global du dossier identifi\u00e9 au cours de l'acte de r\u00e9gulation m\u00e9dicale : s'il y a plusieurs niveaux de soins diff\u00e9rents pour chaque patient, on indique ici le niveau le plus grave.\ncf.nomenclature associ\u00e9e.",
                     "enum": [
                         "R1",
                         "R2",
@@ -841,7 +841,7 @@
             "x-health-only": false,
             "required": [
                 "source",
-                "value"
+                "id"
             ],
             "properties": {
                 "source": {
@@ -859,12 +859,12 @@
                         "APE_NAF"
                     ]
                 },
-                "value": {
+                "id": {
                     "type": "string",
                     "title": "Identifiant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalLocationId/0/value",
+                    "example": "example.json#/location/externalLocationId/0/id",
                     "description": "L'identifiant en lui-m\u00eame"
                 }
             },
@@ -1047,24 +1047,23 @@
             "additionalProperties": false,
             "example": "example.json#/location/geometry"
         },
-        "externalInfo": {
+        "externalAddressId": {
             "type": "object",
             "title": "Liens aux syst\u00e8mes externes",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "freetext",
-                "type",
-                "uri"
+                "source",
+                "id"
             ],
             "properties": {
-                "freetext": {
+                "source": {
                     "type": "string",
                     "title": "Nom de la source",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalInfo/0/freetext",
-                    "description": "A valoriser avec le syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
+                    "example": "example.json#/location/externalAddressId/0/source",
+                    "description": "A valoriser avec le syst\u00e8me fournissant le localisant",
                     "enum": [
                         "BAN",
                         "IGN",
@@ -1076,8 +1075,8 @@
                     "title": "Type ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalInfo/0/type",
-                    "description": "A valoriser avec la d\u00e9finition du type d'objet dans le syst\u00e8me\nExemple  : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
+                    "example": "example.json#/location/externalAddressId/0/type",
+                    "description": "A valoriser avec la d\u00e9finition du type d'objet dans le syst\u00e8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es (EGA, POI, tron\u00e7on de route, \u2026)",
                     "enum": [
                         "MANUEL",
                         "CARTE",
@@ -1086,17 +1085,17 @@
                         "SITE INTERNET"
                     ]
                 },
-                "uri": {
+                "id": {
                     "type": "string",
                     "title": "Identifiant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalInfo/0/uri",
-                    "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
+                    "example": "example.json#/location/externalAddressId/0/id",
+                    "description": "Identifiant dans le syst\u00e8me concern\u00e9"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/location/externalInfo/0"
+            "example": "example.json#/location/externalAddressId/0"
         },
         "highway": {
             "type": "object",
@@ -1148,7 +1147,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/wayName/complete",
-                    "description": "A valoriser avec le type et le nom de la voie.\nSi les attributs \"type\" et \"name\" de \"wayName\" sont \u00e9galement renseign\u00e9s,alors \"complete\" doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
+                    "description": "A valoriser avec le type et le nom de la voie.\nSi les attributs \"type\" et \"name\" de \"wayName\" sont \u00e9galement renseign\u00e9s, alors \"complete\" doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
                 },
                 "type": {
                     "type": "string",
@@ -1182,13 +1181,13 @@
                 "coord": {
                     "$ref": "#/definitions/coord"
                 },
-                "aml": {
+                "fromAml": {
                     "type": "boolean",
-                    "title": "Dipositif AML",
+                    "title": "Dispositif AML",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/geometry/point/aml",
-                    "description": "Attribut qui permet de pr\u00e9ciser si les coordonn\u00e9es fournies proviennent du dispositif AML (Advanced Mobile Location) -TRUE - ou non - FALSE. "
+                    "example": "example.json#/location/geometry/point/fromAml",
+                    "description": "Attribut qui permet de pr\u00e9ciser si les coordonn\u00e9es fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. "
                 }
             },
             "additionalProperties": false,
@@ -2015,7 +2014,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/freetext",
-                    "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
+                    "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de cette correspondance additionnelle"
                 }
             },
             "additionalProperties": false,

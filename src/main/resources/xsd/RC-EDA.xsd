@@ -6,12 +6,7 @@
                 <annotation>
                     <documentation>A valoriser avec l'identifiant de l'affaire/dossier partagé entre tous les intervenants, valorisé comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.
 Cet identifiant est généré une seule fois par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.
-
-Pour les systèmes qui ne sont pas en mesure de garantir l'unicité d'un numéro de dossier (senderCaseId), il est possible de décomposer le numéro de dossier fourni, afin de le rendre unique. 
-Par exemple  : {pays}.{domaine}.{organisation}.{structure interne}.{unité fonctionnelle}.{senderCaseId}
-
-</documentation>
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
@@ -77,7 +72,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalAddressId" type="x:externalAddressId"/>
             <element name="country">
                 <simpleType>
                     <restriction base="string">
@@ -775,7 +770,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
-            <element name="value" type="string">
+            <element name="id" type="string">
                 <annotation>
                     <documentation>L'identifiant en lui-même</documentation>
                 </annotation>
@@ -896,11 +891,11 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
             </element>
         </sequence>
     </complexType>
-    <complexType name="externalInfo">
+    <complexType name="externalAddressId">
         <sequence>
-            <element name="freetext">
+            <element name="source">
                 <annotation>
-                    <documentation>A valoriser avec le système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)</documentation>
+                    <documentation>A valoriser avec le système fournissant le localisant</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -910,10 +905,11 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element name="type">
+            <element minOccurs="0" name="type">
                 <annotation>
                     <documentation>A valoriser avec la définition du type d'objet dans le système
-Exemple  : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
+
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -925,9 +921,9 @@ Exemple  : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel
                     </restriction>
                 </simpleType>
             </element>
-            <element name="uri" type="string">
+            <element name="id" type="string">
                 <annotation>
-                    <documentation>Identifiant unique dans le type. Exemple : UUID d'un ega</documentation>
+                    <documentation>Identifiant dans le système concerné</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -937,7 +933,7 @@ Exemple  : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel
             <element name="complete" type="string">
                 <annotation>
                     <documentation>A valoriser avec le type et le nom de la voie.
-Si les attributs "type" et "name" de "wayName" sont également renseignés,alors "complete" doit être valorisé ainsi : "{type} {nom}".</documentation>
+Si les attributs "type" et "name" de "wayName" sont également renseignés, alors "complete" doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="type" type="string">
@@ -1480,7 +1476,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Informations complémentaires sur le contexte / utilisation de ce matching additionnel</documentation>
+                    <documentation>Informations complémentaires sur le contexte / utilisation de cette correspondance additionnelle</documentation>
                 </annotation>
             </element>
         </sequence>

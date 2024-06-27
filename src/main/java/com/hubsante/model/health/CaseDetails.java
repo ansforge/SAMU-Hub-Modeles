@@ -197,9 +197,10 @@ public class CaseDetails {
   private PriorityEnum priority;
 
   /**
-   * Décrit le niveau de soin global du dossier : s&#39;il y a plusieurs niveau
-   * de soin différents pour chaque patient, on indique ici le niveau le plus
-   * grave. cf.nomenclature associée.
+   * Décrit le niveau de soins global du dossier identifié au cours de
+   * l&#39;acte de régulation médicale : s&#39;il y a plusieurs niveaux de soins
+   * différents pour chaque patient, on indique ici le niveau le plus grave.
+   * cf.nomenclature associée.
    */
   public enum CareLevelEnum {
     R1("R1"),
@@ -294,9 +295,10 @@ public class CaseDetails {
   }
 
   /**
-   * Décrit le niveau de soin global du dossier : s&#39;il y a plusieurs niveau
-   *de soin différents pour chaque patient, on indique ici le niveau le plus
-   *grave. cf.nomenclature associée.
+   * Décrit le niveau de soins global du dossier identifié au cours de
+   *l&#39;acte de régulation médicale : s&#39;il y a plusieurs niveaux de soins
+   *différents pour chaque patient, on indique ici le niveau le plus grave.
+   *cf.nomenclature associée.
    * @return careLevel
    **/
   @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
