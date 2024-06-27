@@ -1115,15 +1115,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - M
+      - freetext
       - uri
       properties:
-        M:
+        freetext:
           type: string
           title: Nom de la source
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalInfo/0/M
+          example: example.json#/location/externalInfo/0/freetext
           description: "A valoriser avec le syst\xE8me fournissant le localisant"
           enum:
           - BAN
@@ -1160,7 +1160,7 @@ components:
       additionalProperties: false
       example: example.json#/location/externalInfo/0
       examples:
-      - M: "BAN, IGN, NEXSIS, \u2026"
+      - freetext: "BAN, IGN, NEXSIS, \u2026"
         type: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
         uri: 80021_6590_00008, id987
     highway:

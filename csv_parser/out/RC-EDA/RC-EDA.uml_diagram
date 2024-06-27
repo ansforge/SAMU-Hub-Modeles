@@ -105,7 +105,7 @@ strict digraph {
                 <TR>
                 <TD ><B>externalInfo</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >M <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	externalInfo -> location [headlabel=1 taillabel="0..*"]
 	location [label=<<TABLE>
@@ -210,7 +210,7 @@ strict digraph {
                 <TR>
                 <TD ><B>externalInfo</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >M <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	externalInfo -> location [headlabel=1 taillabel="0..*"]
 	location [label=<<TABLE>

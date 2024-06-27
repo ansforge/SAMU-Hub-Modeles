@@ -1197,17 +1197,17 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "M",
+                "freetext",
                 "type",
                 "uri"
             ],
             "properties": {
-                "M": {
+                "freetext": {
                     "type": "string",
                     "title": "Nom de la source",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalInfo/0/M",
+                    "example": "example.json#/location/externalInfo/0/freetext",
                     "description": "A valoriser avec le syst\u00e8me fournissant le localisant",
                     "enum": [
                         "BAN",

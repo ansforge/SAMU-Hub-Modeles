@@ -81,7 +81,7 @@
         },
         "externalInfo": [
             {
-                "M": "BAN, IGN, NEXSIS, \u2026",
+                "freetext": "BAN, IGN, NEXSIS, \u2026",
                 "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
                 "uri": "80021_6590_00008, id987"
             }

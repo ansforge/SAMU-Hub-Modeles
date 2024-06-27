@@ -41,7 +41,7 @@ import java.util.Objects;
 /**
  * ExternalInfo
  */
-@JsonPropertyOrder({ExternalInfo.JSON_PROPERTY_M,
+@JsonPropertyOrder({ExternalInfo.JSON_PROPERTY_FREETEXT,
                     ExternalInfo.JSON_PROPERTY_TYPE,
                     ExternalInfo.JSON_PROPERTY_URI})
 @JsonTypeName("externalInfo")
@@ -52,7 +52,7 @@ public class ExternalInfo {
   /**
    * A valoriser avec le système fournissant le localisant
    */
-  public enum MEnum {
+  public enum FreetextEnum {
     BAN("BAN"),
 
     IGN("IGN"),
@@ -61,7 +61,7 @@ public class ExternalInfo {
 
     private String value;
 
-    MEnum(String value) { this.value = value; }
+    FreetextEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -74,8 +74,8 @@ public class ExternalInfo {
     }
 
     @JsonCreator
-    public static MEnum fromValue(String value) {
-      for (MEnum b : MEnum.values()) {
+    public static FreetextEnum fromValue(String value) {
+      for (FreetextEnum b : FreetextEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -84,8 +84,8 @@ public class ExternalInfo {
     }
   }
 
-  public static final String JSON_PROPERTY_M = "M";
-  private MEnum M;
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private FreetextEnum freetext;
 
   /**
    * A valoriser avec la définition du type d&#39;objet dans le système  Exemple
@@ -136,27 +136,27 @@ public class ExternalInfo {
 
   public ExternalInfo() {}
 
-  public ExternalInfo M(MEnum M) {
+  public ExternalInfo freetext(FreetextEnum freetext) {
 
-    this.M = M;
+    this.freetext = freetext;
     return this;
   }
 
   /**
    * A valoriser avec le système fournissant le localisant
-   * @return M
+   * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_M)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public MEnum getM() {
-    return M;
+  public FreetextEnum getFreetext() {
+    return freetext;
   }
 
-  @JsonProperty(JSON_PROPERTY_M)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setM(MEnum M) {
-    this.M = M;
+  public void setFreetext(FreetextEnum freetext) {
+    this.freetext = freetext;
   }
 
   public ExternalInfo type(TypeEnum type) {
@@ -216,21 +216,21 @@ public class ExternalInfo {
       return false;
     }
     ExternalInfo externalInfo = (ExternalInfo)o;
-    return Objects.equals(this.M, externalInfo.M) &&
+    return Objects.equals(this.freetext, externalInfo.freetext) &&
         Objects.equals(this.type, externalInfo.type) &&
         Objects.equals(this.uri, externalInfo.uri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(M, type, uri);
+    return Objects.hash(freetext, type, uri);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ExternalInfo {\n");
-    sb.append("    M: ").append(toIndentedString(M)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    uri: ").append(toIndentedString(uri)).append("\n");
     sb.append("}");

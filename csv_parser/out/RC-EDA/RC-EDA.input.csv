@@ -104,7 +104,7 @@ En JSON, les balises sont reprises depuis le modèle gml
 Voir http://www.opengis.net/gml pour le format de l'objet sketch",,sketch,sketch,,,,,,0..1,,string,,
 ,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
-,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",source,M,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",source,freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
 Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,type,,,,,,1..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET"

@@ -893,7 +893,7 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
     </complexType>
     <complexType name="externalInfo">
         <sequence>
-            <element name="M">
+            <element name="freetext">
                 <annotation>
                     <documentation>A valoriser avec le système fournissant le localisant</documentation>
                 </annotation>
