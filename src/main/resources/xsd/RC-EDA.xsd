@@ -905,7 +905,7 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="type">
+            <element name="type">
                 <annotation>
                     <documentation>A valoriser avec la définition du type d'objet dans le système
 
