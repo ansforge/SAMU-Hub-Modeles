@@ -35,7 +35,7 @@
         "externalLocationId": [
             {
                 "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
-                "id": "920000650\u00a0"
+                "value": "920000650\u00a0"
             }
         ],
         "detailedAddress": {
@@ -78,14 +78,14 @@
                     "height": 120,
                     "precision": "ADRESSE"
                 },
-                "fromAml": "TRUE"
+                "isAml": "TRUE"
             }
         },
-        "externalAddressId": [
+        "externalInfo": [
             {
-                "source": "BAN, IGN, NEXSIS, \u2026",
+                "M": "BAN, IGN, NEXSIS, \u2026",
                 "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
-                "id": "80021_6590_00008, id987"
+                "uri": "80021_6590_00008, id987"
             }
         ],
         "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"

@@ -72,7 +72,7 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalAddressId" type="x:externalAddressId"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
             <element name="country">
                 <simpleType>
                     <restriction base="string">
@@ -770,7 +770,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
-            <element name="id" type="string">
+            <element name="value" type="string">
                 <annotation>
                     <documentation>L'identifiant en lui-même</documentation>
                 </annotation>
@@ -891,9 +891,9 @@ Voir http://www.opengis.net/gml pour le format de l'objet sketch</documentation>
             </element>
         </sequence>
     </complexType>
-    <complexType name="externalAddressId">
+    <complexType name="externalInfo">
         <sequence>
-            <element name="source">
+            <element name="M">
                 <annotation>
                     <documentation>A valoriser avec le système fournissant le localisant</documentation>
                 </annotation>
@@ -921,7 +921,7 @@ Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon d
                     </restriction>
                 </simpleType>
             </element>
-            <element name="id" type="string">
+            <element name="uri" type="string">
                 <annotation>
                     <documentation>Identifiant dans le système concerné</documentation>
                 </annotation>

@@ -184,10 +184,10 @@
                 "geometry": {
                     "$ref": "#/definitions/geometry"
                 },
-                "externalAddressId": {
+                "externalInfo": {
                     "type": "array",
                     "items": {
-                        "$ref": "#/definitions/externalAddressId"
+                        "$ref": "#/definitions/externalInfo"
                     }
                 },
                 "freetext": {
@@ -841,7 +841,7 @@
             "x-health-only": false,
             "required": [
                 "source",
-                "id"
+                "value"
             ],
             "properties": {
                 "source": {
@@ -859,12 +859,12 @@
                         "APE_NAF"
                     ]
                 },
-                "id": {
+                "value": {
                     "type": "string",
                     "title": "Identifiant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalLocationId/0/id",
+                    "example": "example.json#/location/externalLocationId/0/value",
                     "description": "L'identifiant en lui-m\u00eame"
                 }
             },
@@ -1047,22 +1047,22 @@
             "additionalProperties": false,
             "example": "example.json#/location/geometry"
         },
-        "externalAddressId": {
+        "externalInfo": {
             "type": "object",
             "title": "Liens aux syst\u00e8mes externes",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "source",
-                "id"
+                "M",
+                "uri"
             ],
             "properties": {
-                "source": {
+                "M": {
                     "type": "string",
                     "title": "Nom de la source",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalAddressId/0/source",
+                    "example": "example.json#/location/externalInfo/0/M",
                     "description": "A valoriser avec le syst\u00e8me fournissant le localisant",
                     "enum": [
                         "BAN",
@@ -1075,7 +1075,7 @@
                     "title": "Type ",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalAddressId/0/type",
+                    "example": "example.json#/location/externalInfo/0/type",
                     "description": "A valoriser avec la d\u00e9finition du type d'objet dans le syst\u00e8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es (EGA, POI, tron\u00e7on de route, \u2026)",
                     "enum": [
                         "MANUEL",
@@ -1085,17 +1085,17 @@
                         "SITE INTERNET"
                     ]
                 },
-                "id": {
+                "uri": {
                     "type": "string",
                     "title": "Identifiant",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/externalAddressId/0/id",
+                    "example": "example.json#/location/externalInfo/0/uri",
                     "description": "Identifiant dans le syst\u00e8me concern\u00e9"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/location/externalAddressId/0"
+            "example": "example.json#/location/externalInfo/0"
         },
         "highway": {
             "type": "object",
@@ -1181,12 +1181,12 @@
                 "coord": {
                     "$ref": "#/definitions/coord"
                 },
-                "fromAml": {
+                "isAml": {
                     "type": "boolean",
                     "title": "Dispositif AML",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/geometry/point/fromAml",
+                    "example": "example.json#/location/geometry/point/isAml",
                     "description": "Attribut qui permet de pr\u00e9ciser si les coordonn\u00e9es fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. "
                 }
             },

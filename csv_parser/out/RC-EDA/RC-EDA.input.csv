@@ -35,7 +35,7 @@ Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,eventLoc
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
 ,Identifiant(s) du lieu,,,,,Lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,,externalLocationId,,,,,,0..n,X,externalLocationId,,
 ,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
-,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,id,,,,,,1..1,,string,,
+,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,value,,,,,,1..1,,string,,
 ,Détails de l'adresse,,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 
@@ -103,12 +103,12 @@ En XML, un objet gml est encapsulé dans une balise <sketch xmlns:gml='http://ww
 En JSON, les balises sont reprises depuis le modèle gml
 Voir http://www.opengis.net/gml pour le format de l'objet sketch",,sketch,sketch,,,,,,0..1,,string,,
 ,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
-L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalAddressId,,,,,,0..n,X,externalAddressId,,
-,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",source,source,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
+L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",source,M,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
 Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,type,,,,,,1..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET"
-,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",id,id,,,,,,1..1,,string,,
+,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",id,uri,,,,,,1..1,,string,,
 ,Pays,,,,,,France,country,,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
 
@@ -195,7 +195,7 @@ Les objet newAlert suivent le modèle d'un objet initialAlert.
 
 Spécificités 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,
 Description de l'affaire/dossier,,,,,,"Texte libre permettant de donner des informations supplémentaires concernant l'affaire/dossier. Ces informations sont générales, et ont vocation à être échangées en inter-force. ",Le forcené n'est pas maîtrisé. Voiture renversée. Urgences fermées de 22h à 6h00.,,freetext,,,,,,0..n,,string,,
-Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,ObjectGeometry,additionalInformation,,,,,,0..1,X,additionalInformation,,
+Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,,additionalInformation,,,,,,0..1,X,additionalInformation,,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,,customMap,,,,,,0..3,X,customMap,,
 ,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,,key,,,,,,1..1,,string,,
 ,,Libellé,,,,A valoriser avec le libellé correspondant,Quartier,,label,,,,,,0..1,,string,,

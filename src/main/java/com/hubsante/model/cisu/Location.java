@@ -37,7 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.cisu.Access;
 import com.hubsante.model.cisu.City;
 import com.hubsante.model.cisu.DetailedAddress;
-import com.hubsante.model.cisu.ExternalAddressId;
+import com.hubsante.model.cisu.ExternalInfo;
 import com.hubsante.model.cisu.ExternalLocationId;
 import com.hubsante.model.cisu.Geometry;
 import java.util.ArrayList;
@@ -54,7 +54,7 @@ import java.util.Objects;
      Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_EXTERNAL_LOCATION_ID,
      Location.JSON_PROPERTY_DETAILED_ADDRESS, Location.JSON_PROPERTY_CITY,
      Location.JSON_PROPERTY_ACCESS, Location.JSON_PROPERTY_GEOMETRY,
-     Location.JSON_PROPERTY_EXTERNAL_ADDRESS_ID, Location.JSON_PROPERTY_COUNTRY,
+     Location.JSON_PROPERTY_EXTERNAL_INFO, Location.JSON_PROPERTY_COUNTRY,
      Location.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -85,9 +85,8 @@ public class Location {
   public static final String JSON_PROPERTY_GEOMETRY = "geometry";
   private Geometry geometry;
 
-  public static final String JSON_PROPERTY_EXTERNAL_ADDRESS_ID =
-      "externalAddressId";
-  private List<ExternalAddressId> externalAddressId;
+  public static final String JSON_PROPERTY_EXTERNAL_INFO = "externalInfo";
+  private List<ExternalInfo> externalInfo;
 
   /**
    * Gets or Sets country
@@ -818,44 +817,43 @@ public class Location {
     this.geometry = geometry;
   }
 
-  public Location externalAddressId(List<ExternalAddressId> externalAddressId) {
+  public Location externalInfo(List<ExternalInfo> externalInfo) {
 
-    this.externalAddressId = externalAddressId;
+    this.externalInfo = externalInfo;
     return this;
   }
 
-  public Location
-  addExternalAddressIdItem(ExternalAddressId externalAddressIdItem) {
-    if (this.externalAddressId == null) {
-      this.externalAddressId = new ArrayList<>();
+  public Location addExternalInfoItem(ExternalInfo externalInfoItem) {
+    if (this.externalInfo == null) {
+      this.externalInfo = new ArrayList<>();
     }
-    this.externalAddressId.add(externalAddressIdItem);
+    this.externalInfo.add(externalInfoItem);
     return this;
   }
 
   /**
-   * Get externalAddressId
-   * @return externalAddressId
+   * Get externalInfo
+   * @return externalInfo
    **/
-  @JsonProperty(JSON_PROPERTY_EXTERNAL_ADDRESS_ID)
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<ExternalAddressId> getExternalAddressId() {
-    return externalAddressId;
+  public List<ExternalInfo> getExternalInfo() {
+    return externalInfo;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_EXTERNAL_ADDRESS_ID)
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setExternalAddressId(List<ExternalAddressId> externalAddressId) {
-    if (externalAddressId == null) {
+  public void setExternalInfo(List<ExternalInfo> externalInfo) {
+    if (externalInfo == null) {
       return;
     }
-    if (this.externalAddressId == null) {
-      this.externalAddressId = new ArrayList<>();
+    if (this.externalInfo == null) {
+      this.externalInfo = new ArrayList<>();
     }
-    this.externalAddressId.addAll(externalAddressId);
+    this.externalInfo.addAll(externalInfo);
   }
 
   public Location country(CountryEnum country) {
@@ -927,7 +925,7 @@ public class Location {
         Objects.equals(this.city, location.city) &&
         Objects.equals(this.access, location.access) &&
         Objects.equals(this.geometry, location.geometry) &&
-        Objects.equals(this.externalAddressId, location.externalAddressId) &&
+        Objects.equals(this.externalInfo, location.externalInfo) &&
         Objects.equals(this.country, location.country) &&
         Objects.equals(this.freetext, location.freetext);
   }
@@ -935,8 +933,8 @@ public class Location {
   @Override
   public int hashCode() {
     return Objects.hash(locID, locLabel, name, externalLocationId,
-                        detailedAddress, city, access, geometry,
-                        externalAddressId, country, freetext);
+                        detailedAddress, city, access, geometry, externalInfo,
+                        country, freetext);
   }
 
   @Override
@@ -955,8 +953,8 @@ public class Location {
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("    access: ").append(toIndentedString(access)).append("\n");
     sb.append("    geometry: ").append(toIndentedString(geometry)).append("\n");
-    sb.append("    externalAddressId: ")
-        .append(toIndentedString(externalAddressId))
+    sb.append("    externalInfo: ")
+        .append(toIndentedString(externalInfo))
         .append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

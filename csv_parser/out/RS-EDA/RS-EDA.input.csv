@@ -33,7 +33,7 @@ Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,eventLoc
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
 ,Identifiant(s) du lieu,,,,,Lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,,externalLocationId,,,,,,0..n,X,externalLocationId,,
 ,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",,source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
-,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,id,,,,,,1..1,,string,,
+,,Identifiant,,,,L'identifiant en lui-même,920000650 ,,value,,,,,,1..1,,string,,
 ,Détails de l'adresse,,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,,highway,,,,,,0..1,X,highway,,
 ,,,Nom,,,"A valoriser avec le nom de l'autoroute, de la voie ferrée ou voie navigable.",A4,,name,,,,,,0..1,,string,,
@@ -95,14 +95,14 @@ RUE : Précision à l'échelle de la rue,
 ADRESSE : Adresse précise, 
 EXACTE : Point coordonnée GPS exact, 
 INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,,precision,,,,,,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
-,,,Dispositif AML,,,Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ,TRUE,,fromAml,,,,,,0..1,,boolean,,
+,,,Dispositif AML,,,Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ,TRUE,,isAml,,,,,,0..1,,boolean,,
 ,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
-L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalAddressId,,,,,,0..n,X,externalAddressId,,
-,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",source,source,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
+L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,link,externalInfo,,,,,,0..n,X,externalInfo,,
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",source,M,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
 Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,type,,,,,,0..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET"
-,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",id,id,,,,,,1..1,,string,,
+,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",id,uri,,,,,,1..1,,string,,
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
 
 Spécificités 15-15 :
@@ -190,7 +190,7 @@ Lorsque plusieurs alertes correspondent à une même affaire/dossier, la premiè
 Les objet newAlert suivent le modèle d'un objet initialAlert.
 
 Spécificités 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,otherAlert,newAlert,,,,,1.0,0..n,X,alert,,
-Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,ObjectGeometry,additionalInformation,,,,,,0..1,X,additionalInformation,,
+Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,,additionalInformation,,,,,,0..1,X,additionalInformation,,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,,customMap,,,,,,0..3,X,customMap,,
 ,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,,key,,,,,,1..1,,string,,
 ,,Libellé,,,,A valoriser avec le libellé correspondant,Quartier,,label,,,,,,0..1,,string,,

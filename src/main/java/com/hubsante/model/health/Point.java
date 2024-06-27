@@ -42,7 +42,7 @@ import java.util.Objects;
 /**
  * Point
  */
-@JsonPropertyOrder({Point.JSON_PROPERTY_COORD, Point.JSON_PROPERTY_FROM_AML})
+@JsonPropertyOrder({Point.JSON_PROPERTY_COORD, Point.JSON_PROPERTY_IS_AML})
 @JsonTypeName("point")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -50,8 +50,8 @@ public class Point {
   public static final String JSON_PROPERTY_COORD = "coord";
   private Coord coord;
 
-  public static final String JSON_PROPERTY_FROM_AML = "fromAml";
-  private Boolean fromAml;
+  public static final String JSON_PROPERTY_IS_AML = "isAml";
+  private Boolean isAml;
 
   public Point() {}
 
@@ -78,28 +78,28 @@ public class Point {
     this.coord = coord;
   }
 
-  public Point fromAml(Boolean fromAml) {
+  public Point isAml(Boolean isAml) {
 
-    this.fromAml = fromAml;
+    this.isAml = isAml;
     return this;
   }
 
   /**
    * Attribut qui permet de préciser si les coordonnées fournies proviennent du
    *dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE.
-   * @return fromAml
+   * @return isAml
    **/
-  @JsonProperty(JSON_PROPERTY_FROM_AML)
+  @JsonProperty(JSON_PROPERTY_IS_AML)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Boolean getFromAml() {
-    return fromAml;
+  public Boolean getIsAml() {
+    return isAml;
   }
 
-  @JsonProperty(JSON_PROPERTY_FROM_AML)
+  @JsonProperty(JSON_PROPERTY_IS_AML)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFromAml(Boolean fromAml) {
-    this.fromAml = fromAml;
+  public void setIsAml(Boolean isAml) {
+    this.isAml = isAml;
   }
 
   @Override
@@ -112,12 +112,12 @@ public class Point {
     }
     Point point = (Point)o;
     return Objects.equals(this.coord, point.coord) &&
-        Objects.equals(this.fromAml, point.fromAml);
+        Objects.equals(this.isAml, point.isAml);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(coord, fromAml);
+    return Objects.hash(coord, isAml);
   }
 
   @Override
@@ -125,7 +125,7 @@ public class Point {
     StringBuilder sb = new StringBuilder();
     sb.append("class Point {\n");
     sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
-    sb.append("    fromAml: ").append(toIndentedString(fromAml)).append("\n");
+    sb.append("    isAml: ").append(toIndentedString(isAml)).append("\n");
     sb.append("}");
     return sb.toString();
   }

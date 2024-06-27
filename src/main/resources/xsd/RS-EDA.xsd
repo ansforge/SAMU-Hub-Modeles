@@ -99,7 +99,7 @@ Il doit être renseigné à la fin du processus de la  création de la première
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalAddressId" type="x:externalAddressId"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Champ libre qui permet de compléter les informations liées à la localisation.
@@ -605,7 +605,7 @@ cf.nomenclature associée.</documentation>
                     </restriction>
                 </simpleType>
             </element>
-            <element name="id" type="string">
+            <element name="value" type="string">
                 <annotation>
                     <documentation>L'identifiant en lui-même</documentation>
                 </annotation>
@@ -712,9 +712,9 @@ Permet de connaître la fraîcheur et donc la pertinence des informations pour i
             <element minOccurs="0" name="point" type="x:point"/>
         </sequence>
     </complexType>
-    <complexType name="externalAddressId">
+    <complexType name="externalInfo">
         <sequence>
-            <element name="source">
+            <element name="M">
                 <annotation>
                     <documentation>A valoriser avec le système fournissant le localisant</documentation>
                 </annotation>
@@ -742,7 +742,7 @@ Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon d
                     </restriction>
                 </simpleType>
             </element>
-            <element name="id" type="string">
+            <element name="uri" type="string">
                 <annotation>
                     <documentation>Identifiant dans le système concerné</documentation>
                 </annotation>
@@ -791,7 +791,7 @@ Si les attributs "type" et "name" de "wayName" sont également renseignés, alor
     <complexType name="point">
         <sequence>
             <element name="coord" type="x:coord"/>
-            <element minOccurs="0" name="fromAml" type="boolean">
+            <element minOccurs="0" name="isAml" type="boolean">
                 <annotation>
                     <documentation>Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. </documentation>
                 </annotation>

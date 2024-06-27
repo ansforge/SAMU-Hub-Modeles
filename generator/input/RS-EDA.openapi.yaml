@@ -191,10 +191,10 @@ components:
           $ref: '#/components/schemas/access'
         geometry:
           $ref: '#/components/schemas/geometry'
-        externalAddressId:
+        externalInfo:
           type: array
           items:
-            $ref: '#/components/schemas/externalAddressId'
+            $ref: '#/components/schemas/externalInfo'
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur la localisation"
@@ -875,7 +875,7 @@ components:
       x-health-only: false
       required:
       - source
-      - id
+      - value
       properties:
         source:
           type: string
@@ -892,12 +892,12 @@ components:
           - APE_NAF
           examples:
           - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
-        id:
+        value:
           type: string
           title: Identifiant
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalLocationId/0/id
+          example: example.json#/location/externalLocationId/0/value
           description: "L'identifiant en lui-m\xEAme"
           examples:
           - "920000650\_"
@@ -906,7 +906,7 @@ components:
       examples:
       - source: "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE,\
           \ NAF"
-        id: "920000650\_"
+        value: "920000650\_"
     detailedAddress:
       type: object
       title: "D\xE9tails de l'adresse"
@@ -1109,21 +1109,21 @@ components:
           $ref: '#/components/schemas/point'
       additionalProperties: false
       example: example.json#/location/geometry
-    externalAddressId:
+    externalInfo:
       type: object
       title: "Liens aux syst\xE8mes externes"
       x-display: expansion-panels
       x-health-only: false
       required:
-      - source
-      - id
+      - M
+      - uri
       properties:
-        source:
+        M:
           type: string
           title: Nom de la source
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalAddressId/0/source
+          example: example.json#/location/externalInfo/0/M
           description: "A valoriser avec le syst\xE8me fournissant le localisant"
           enum:
           - BAN
@@ -1136,7 +1136,7 @@ components:
           title: 'Type '
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalAddressId/0/type
+          example: example.json#/location/externalInfo/0/type
           description: "A valoriser avec la d\xE9finition du type d'objet dans le\
             \ syst\xE8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\xE9\
             es (EGA, POI, tron\xE7on de route, \u2026)"
@@ -1148,21 +1148,21 @@ components:
           - SITE INTERNET
           examples:
           - MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
-        id:
+        uri:
           type: string
           title: Identifiant
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalAddressId/0/id
+          example: example.json#/location/externalInfo/0/uri
           description: "Identifiant dans le syst\xE8me concern\xE9"
           examples:
           - 80021_6590_00008, id987
       additionalProperties: false
-      example: example.json#/location/externalAddressId/0
+      example: example.json#/location/externalInfo/0
       examples:
-      - source: "BAN, IGN, NEXSIS, \u2026"
+      - M: "BAN, IGN, NEXSIS, \u2026"
         type: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
-        id: 80021_6590_00008, id987
+        uri: 80021_6590_00008, id987
     highway:
       type: object
       title: Autoroute
@@ -1259,12 +1259,12 @@ components:
       properties:
         coord:
           $ref: '#/components/schemas/coord'
-        fromAml:
+        isAml:
           type: boolean
           title: Dispositif AML
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/point/fromAml
+          example: example.json#/location/geometry/point/isAml
           description: "Attribut qui permet de pr\xE9ciser si les coordonn\xE9es fournies\
             \ proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou\
             \ non - FALSE. "

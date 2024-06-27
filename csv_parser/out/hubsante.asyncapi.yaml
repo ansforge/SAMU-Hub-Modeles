@@ -915,7 +915,7 @@ components:
       x-health-only: false
       required:
       - source
-      - id
+      - value
       properties:
         source:
           type: string
@@ -932,12 +932,12 @@ components:
           - APE_NAF
           examples:
           - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
-        id:
+        value:
           type: string
           title: Identifiant
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalLocationId/0/id
+          example: example.json#/location/externalLocationId/0/value
           description: "L'identifiant en lui-m\xEAme"
           examples:
           - "920000650\_"
@@ -946,7 +946,7 @@ components:
       examples:
       - source: "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE,\
           \ NAF"
-        id: "920000650\_"
+        value: "920000650\_"
     detailedAddress:
       type: object
       title: Adresse de l'intervention
@@ -1143,60 +1143,53 @@ components:
           $ref: '#/components/schemas/point'
       additionalProperties: false
       example: example.json#/location/geometry
-    externalAddressId:
+    externalInfo:
       type: object
-      title: "Liens aux syst\xE8mes externes"
+      title: 'Informations exterieures '
       x-display: expansion-panels
       x-health-only: false
       required:
-      - source
-      - id
+      - URI
       properties:
-        source:
+        FREETEXT:
           type: string
-          title: Nom de la source
+          title: 'Texte libre '
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalAddressId/0/source
-          description: "A valoriser avec le syst\xE8me fournissant le localisant"
-          enum:
-          - BAN
-          - IGN
-          - NEXSIS
+          example: example.json#/CONTEXT/EXTERNAL_INFO/0/FREETEXT
+          description: Optionnel
           examples:
-          - "BAN, IGN, NEXSIS, \u2026"
-        type:
+          - None
+        URI:
           type: string
-          title: 'Type '
+          title: "URI informations ext\xE9rieures"
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/externalAddressId/0/type
-          description: "A valoriser avec la d\xE9finition du type d'objet dans le\
-            \ syst\xE8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\xE9\
-            es (EGA, POI, tron\xE7on de route, \u2026)"
+          example: example.json#/CONTEXT/EXTERNAL_INFO/0/URI
+          description: Optionnel
+          examples:
+          - 289d6939-d225-4c71-9a56-68c03ada2f5e
+        TYPE:
+          type: string
+          title: Type
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/CONTEXT/EXTERNAL_INFO/0/TYPE
+          description: Optionnel
           enum:
-          - MANUEL
-          - CARTE
-          - AUTRE
+          - MANUAL
+          - MAP
+          - OTHER
           - PHOTO
-          - SITE INTERNET
+          - WEBSIT
           examples:
-          - MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
-        id:
-          type: string
-          title: Identifiant
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/externalAddressId/0/id
-          description: "Identifiant dans le syst\xE8me concern\xE9"
-          examples:
-          - 80021_6590_00008, id987
+          - SPRSDS
       additionalProperties: false
-      example: example.json#/location/externalAddressId/0
+      example: example.json#/CONTEXT/EXTERNAL_INFO/0
       examples:
-      - source: "BAN, IGN, NEXSIS, \u2026"
-        type: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
-        id: 80021_6590_00008, id987
+      - FREETEXT: None
+        URI: 289d6939-d225-4c71-9a56-68c03ada2f5e
+        TYPE: SPRSDS
     wayName:
       type: object
       title: Type et nom de voie
@@ -1251,12 +1244,12 @@ components:
       properties:
         coord:
           $ref: '#/components/schemas/coord'
-        fromAml:
+        isAml:
           type: boolean
           title: Dispositif AML
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/point/fromAml
+          example: example.json#/location/geometry/point/isAml
           description: "Attribut qui permet de pr\xE9ciser si les coordonn\xE9es fournies\
             \ proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou\
             \ non - FALSE. "
@@ -3659,53 +3652,6 @@ components:
       - ORG_ID: fr.health.samu440
         USER_ID: id1234
         NAME: samu 44, cgo 77, codis 78, cdau 91, les pompiers du 23
-    externalInfo:
-      type: object
-      title: 'Informations exterieures '
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - URI
-      properties:
-        FREETEXT:
-          type: string
-          title: 'Texte libre '
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/CONTEXT/EXTERNAL_INFO/0/FREETEXT
-          description: Optionnel
-          examples:
-          - None
-        URI:
-          type: string
-          title: "URI informations ext\xE9rieures"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/CONTEXT/EXTERNAL_INFO/0/URI
-          description: Optionnel
-          examples:
-          - 289d6939-d225-4c71-9a56-68c03ada2f5e
-        TYPE:
-          type: string
-          title: Type
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/CONTEXT/EXTERNAL_INFO/0/TYPE
-          description: Optionnel
-          enum:
-          - MANUAL
-          - MAP
-          - OTHER
-          - PHOTO
-          - WEBSIT
-          examples:
-          - SPRSDS
-      additionalProperties: false
-      example: example.json#/CONTEXT/EXTERNAL_INFO/0
-      examples:
-      - FREETEXT: None
-        URI: 289d6939-d225-4c71-9a56-68c03ada2f5e
-        TYPE: SPRSDS
     etype:
       type: object
       title: "Type de l'\xE9v\xE9nement"

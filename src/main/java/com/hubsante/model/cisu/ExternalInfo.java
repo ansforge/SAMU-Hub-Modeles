@@ -39,20 +39,20 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ExternalAddressId
+ * ExternalInfo
  */
-@JsonPropertyOrder({ExternalAddressId.JSON_PROPERTY_SOURCE,
-                    ExternalAddressId.JSON_PROPERTY_TYPE,
-                    ExternalAddressId.JSON_PROPERTY_ID})
-@JsonTypeName("externalAddressId")
+@JsonPropertyOrder({ExternalInfo.JSON_PROPERTY_M,
+                    ExternalInfo.JSON_PROPERTY_TYPE,
+                    ExternalInfo.JSON_PROPERTY_URI})
+@JsonTypeName("externalInfo")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ExternalAddressId {
+public class ExternalInfo {
 
   /**
    * A valoriser avec le système fournissant le localisant
    */
-  public enum SourceEnum {
+  public enum MEnum {
     BAN("BAN"),
 
     IGN("IGN"),
@@ -61,7 +61,7 @@ public class ExternalAddressId {
 
     private String value;
 
-    SourceEnum(String value) { this.value = value; }
+    MEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -74,8 +74,8 @@ public class ExternalAddressId {
     }
 
     @JsonCreator
-    public static SourceEnum fromValue(String value) {
-      for (SourceEnum b : SourceEnum.values()) {
+    public static MEnum fromValue(String value) {
+      for (MEnum b : MEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -84,8 +84,8 @@ public class ExternalAddressId {
     }
   }
 
-  public static final String JSON_PROPERTY_SOURCE = "source";
-  private SourceEnum source;
+  public static final String JSON_PROPERTY_M = "M";
+  private MEnum M;
 
   /**
    * A valoriser avec la définition du type d&#39;objet dans le système  Exemple
@@ -131,35 +131,35 @@ public class ExternalAddressId {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  public static final String JSON_PROPERTY_URI = "uri";
+  private String uri;
 
-  public ExternalAddressId() {}
+  public ExternalInfo() {}
 
-  public ExternalAddressId source(SourceEnum source) {
+  public ExternalInfo M(MEnum M) {
 
-    this.source = source;
+    this.M = M;
     return this;
   }
 
   /**
    * A valoriser avec le système fournissant le localisant
-   * @return source
+   * @return M
    **/
-  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonProperty(JSON_PROPERTY_M)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public SourceEnum getSource() {
-    return source;
+  public MEnum getM() {
+    return M;
   }
 
-  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonProperty(JSON_PROPERTY_M)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setSource(SourceEnum source) {
-    this.source = source;
+  public void setM(MEnum M) {
+    this.M = M;
   }
 
-  public ExternalAddressId type(TypeEnum type) {
+  public ExternalInfo type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -184,27 +184,27 @@ public class ExternalAddressId {
     this.type = type;
   }
 
-  public ExternalAddressId id(String id) {
+  public ExternalInfo uri(String uri) {
 
-    this.id = id;
+    this.uri = uri;
     return this;
   }
 
   /**
    * Identifiant dans le système concerné
-   * @return id
+   * @return uri
    **/
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_URI)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getId() {
-    return id;
+  public String getUri() {
+    return uri;
   }
 
-  @JsonProperty(JSON_PROPERTY_ID)
+  @JsonProperty(JSON_PROPERTY_URI)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setId(String id) {
-    this.id = id;
+  public void setUri(String uri) {
+    this.uri = uri;
   }
 
   @Override
@@ -215,24 +215,24 @@ public class ExternalAddressId {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ExternalAddressId externalAddressId = (ExternalAddressId)o;
-    return Objects.equals(this.source, externalAddressId.source) &&
-        Objects.equals(this.type, externalAddressId.type) &&
-        Objects.equals(this.id, externalAddressId.id);
+    ExternalInfo externalInfo = (ExternalInfo)o;
+    return Objects.equals(this.M, externalInfo.M) &&
+        Objects.equals(this.type, externalInfo.type) &&
+        Objects.equals(this.uri, externalInfo.uri);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(source, type, id);
+    return Objects.hash(M, type, uri);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ExternalAddressId {\n");
-    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("class ExternalInfo {\n");
+    sb.append("    M: ").append(toIndentedString(M)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    uri: ").append(toIndentedString(uri)).append("\n");
     sb.append("}");
     return sb.toString();
   }
