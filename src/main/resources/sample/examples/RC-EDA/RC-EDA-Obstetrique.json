@@ -15,8 +15,8 @@
       },
       "victims": {
         "freetext": "Femme enceinte de 2 mois qui est tombé d'une échelle au bureau. Delphine Vigneau, 32 ans.",
-        "count": "1",
-        "mainVictim": "ADULT"
+        "mainVictim": "ADULTE",
+        "count": "1"
       },
       "locationKind": {
         "code": "L04.02.00",
@@ -32,12 +32,13 @@
       },
       "city": {
         "name": "Saint-Herblain",
-        "inseeCode": "44800"
+        "inseeCode": "44162"
       },
       "country": "FR",
       "access": {
         "floor": "RDC",
-        "buildingName": "Soleil"
+        "buildingName": "Soleil",
+        "phoneNumber": "0969362006"
       },
       "externalLocationId": [
         {
@@ -52,14 +53,14 @@
       "reporting": "STANDARD",
       "caller": {
         "callerContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0671832618",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "callbackContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0671832618",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "detailedName": {
           "complete": "Agnès Duberti",
@@ -79,12 +80,13 @@
         },
         "city": {
           "name": "Saint-Herblain",
-          "inseeCode": "44800"
+          "inseeCode": "44162"
         },
         "country": "FR",
         "access": {
           "floor": "RDC",
-          "buildingName": "Soleil"
+          "buildingName": "Soleil",
+          "phoneNumber": "0969362006"
         }
       },
       "qualification": {
@@ -98,7 +100,7 @@
         },
         "victims": {
           "freetext": "Femme enceinte de 2 mois qui est tombé d'une échelle au bureau.  Delphine Vigneau, 32 ans.",
-          "mainVictim": "ADULT",
+          "mainVictim": "ADULTE",
           "count": "1"
         },
         "locationKind": {

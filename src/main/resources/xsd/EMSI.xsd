@@ -678,7 +678,7 @@ Par exemple, pour un véhicule, sa plaque d'immatriculation.</documentation>
             <element name="ID" type="string">
                 <annotation>
                     <documentation>A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requérant (champ senderCaseId du message RC-EDA).
-{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*-{numéro de dossier}</documentation>
+{pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="LINK_ROLE">

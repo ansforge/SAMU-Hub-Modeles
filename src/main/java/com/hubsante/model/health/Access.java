@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -79,7 +78,7 @@ public class Access {
   private String entity;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
-  private BigDecimal phoneNumber;
+  private String phoneNumber;
 
   public Access() {}
 
@@ -90,7 +89,7 @@ public class Access {
   }
 
   /**
-   * Etage
+   * A valoriser avec le numéro ou nom de l&#39;étage
    * @return floor
    **/
   @JsonProperty(JSON_PROPERTY_FLOOR)
@@ -113,7 +112,7 @@ public class Access {
   }
 
   /**
-   * Spécifie numéro d&#39;appartement, de chambre, de bureau
+   * A valoriser avec le numéro d&#39;appartement, de chambre, de bureau
    * @return roomNumber
    **/
   @JsonProperty(JSON_PROPERTY_ROOM_NUMBER)
@@ -136,7 +135,7 @@ public class Access {
   }
 
   /**
-   * Indique les informations nécessaires  à l&#39;identification de
+   * A valoriser avec les informations nécessaires à l&#39;identification de
    *l&#39;interphone (numéro, nom)
    * @return interphone
    **/
@@ -199,7 +198,8 @@ public class Access {
   }
 
   /**
-   * Indique l&#39;ascenseur ou la cage d&#39;escalier
+   * A valoriser avec le nom ou le numéro de l&#39;ascenseur ou de la cage
+   *d&#39;escalier
    * @return elevator
    **/
   @JsonProperty(JSON_PROPERTY_ELEVATOR)
@@ -222,7 +222,7 @@ public class Access {
   }
 
   /**
-   * Nom du bâtiment
+   * A valoriser avec le nom du bâtiment
    * @return buildingName
    **/
   @JsonProperty(JSON_PROPERTY_BUILDING_NAME)
@@ -245,7 +245,7 @@ public class Access {
   }
 
   /**
-   * Get entrance
+   * A valoriser avec le nom de l&#39;entrée
    * @return entrance
    **/
   @JsonProperty(JSON_PROPERTY_ENTRANCE)
@@ -268,8 +268,8 @@ public class Access {
   }
 
   /**
-   * Nom du service concerné au sein de l&#39;établissement : Infirmerie,
-   *service finance, service cardiologie, …
+   * A valoriser avec le nom du service concerné au sein de l&#39;établissement
+   *: infirmerie, service finance, service comptabilité.
    * @return entity
    **/
   @JsonProperty(JSON_PROPERTY_ENTITY)
@@ -285,28 +285,28 @@ public class Access {
     this.entity = entity;
   }
 
-  public Access phoneNumber(BigDecimal phoneNumber) {
+  public Access phoneNumber(String phoneNumber) {
 
     this.phoneNumber = phoneNumber;
     return this;
   }
 
   /**
-   * Numéro de téléphone permettant d&#39;accéder au lieu de l&#39;intervention,
-   *par exemple : téléphone du secrétariat, téléphone du service administratif
-   *ou se trouve le patient/victime.
+   * A valoriser avec le numéro de téléphone du lieu de l&#39;intervention, par
+   *exemple : téléphone du secrétariat, téléphone du service administratif ou se
+   *trouve le patient/ la victime.
    * @return phoneNumber
    **/
   @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public BigDecimal getPhoneNumber() {
+  public String getPhoneNumber() {
     return phoneNumber;
   }
 
   @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPhoneNumber(BigDecimal phoneNumber) {
+  public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 

@@ -56,8 +56,8 @@
                   }
                 ],
                 "victims": {
-                  "count": "SEVERAL",
-                  "mainVictim": "ADULT",
+                  "count": "PLUSIEURS",
+                  "mainVictim": "ADULTE",
                   "freetext": "Deuxième victime présente saignements et brûlures legères aux mains et genoux"
                 }
               },
@@ -67,7 +67,7 @@
                 "name": "Quai des Célestins",
                 "externalLocationId": [
                   {
-                    "source": "FINESS administratif",
+                    "source": "FINESS ADMINISTRATIF",
                     "value": "'920000650"
                   }
                 ],
@@ -107,16 +107,15 @@
                       "height": 168,
                       "heading": 96,
                       "speed": 34,
-                      "precision": "ADDRESS"
-                    },
-                    "sysCoord": "EPSG-4326"
+                      "precision": "ADRESSE"
+                    }
                   },
                   "sketch": "None"
                 },
                 "externalInfo": [
                   {
                     "freetext": "BAN",
-                    "type": "MANUAL",
+                    "type": "MANUEL",
                     "uri": "id987"
                   }
                 ],
@@ -128,13 +127,13 @@
                 "reporting": "STANDARD",
                 "caller": {
                   "callerContact": {
-                    "channel": "Personne",
-                    "type": "PHNADD",
+                    "channel": "PERSONNE",
+                    "type": "TEL",
                     "detail": "0607080901"
                   },
                   "callbackContact": {
-                    "channel": "Personne",
-                    "type": "PHNADD",
+                    "channel": "PERSONNE",
+                    "type": "TEL",
                     "detail": "0607080901"
                   },
                   "language": "FR",
@@ -161,8 +160,8 @@
                   "controlRoom": "CRRA 690",
                   "role": "ARM",
                   "calltakerContact": {
-                    "channel": "Personne",
-                    "type": "PHNADD",
+                    "channel": "PERSONNE",
+                    "type": "TEL",
                     "detail": "0607080901"
                   },
                   "calltakerId": "id1234"

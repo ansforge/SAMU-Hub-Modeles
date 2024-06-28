@@ -297,24 +297,25 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
+            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
+            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
+            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
+            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
+            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
+            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
+            \ un num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
           x-health-only: false
           x-cols: 6
           example: example.json#/senderCaseId
-          description: "Valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
-            metteur du message. \nCe champ est facultatif, il ne sera notamment pas\
-            \ transmis par NexSIS.\n"
+          description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
+            metteur du message.\n"
           examples:
           - DRFR15DDXAAJJJ0000
         creation:
@@ -323,12 +324,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
-            ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
-            tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
-            re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
-            \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
-            \ \xEAtre utilis\xE9."
+          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
+            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
+            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
+            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
+            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
+            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
+            \ la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -351,20 +353,10 @@ components:
           $ref: '#/components/schemas/location'
         initialAlert:
           $ref: '#/components/schemas/alert'
-        patient:
-          type: array
-          items:
-            $ref: '#/components/schemas/patient'
-        decision:
-          type: array
-          items:
-            $ref: '#/components/schemas/decision'
         newAlert:
           type: array
           items:
             $ref: '#/components/schemas/alert'
-        additionalInformation:
-          $ref: '#/components/schemas/additionalInformation'
         freetext:
           type: array
           x-health-only: false
@@ -380,15 +372,31 @@ components:
             examples:
             - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
               \ ferm\xE9es de 22h \xE0 6h00."
+        additionalInformation:
+          $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
     qualification:
       type: object
-      title: Qualification de l'affaire/dossier
+      title: Qualification
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - whatsHappen
+      required: []
       properties:
+        origin:
+          type: string
+          title: Origine de l'appel
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/origin
+          description: "A valoriser avec le num\xE9ro de provenance de l'appel."
+          enum:
+          - '15'
+          - '18'
+          - '17'
+          - '112'
+          - '116117'
+          examples:
+          - 15, 112, 18
         whatsHappen:
           $ref: '#/components/schemas/whatsHappen'
         locationKind:
@@ -405,502 +413,71 @@ components:
       example: example.json#/qualification
     location:
       type: object
-      title: Localisation de l'affaire/dossier
+      title: Lieu d'intervention
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - locID
-      - country
+      required: []
       properties:
-        locID:
+        type:
           type: string
-          title: Identifiant technique de localisation
+          title: "Type de lieu d\u2019intervention"
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/locID
-          description: "ID technique et provisoire permettant d'identifier le lieu\
-            \ dans le cadre des \xE9changes de cette affaire."
+          example: example.json#/intervention/location/type
+          description: A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
           examples:
-          - 111fb03a-6fd9-41e0-8e81-990c45188887
-        locLabel:
+          - DOMPAV
+        finessGeo:
           type: string
-          title: "R\xE9sum\xE9 de la localisation"
+          title: "FINESS g\xE9ographique de l\u2019\xE9tablissement "
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/locLabel
-          description: "Donne les informations minimales d'identification du lieu\
-            \ d'intervention, qui permet d'identifier rapidement le lieu pour les\
-            \ \xE9quipes op\xE9rationnelles. Comprend au maximum 255 caract\xE8res.\n\
-            15-18 : Dans les messages NexSIS, va souvent correspondre \xE0 la concat\xE9\
-            nation suivant des r\xE8gles m\xE9tiers de diff\xE9rentes informations,\
-            \ dont le \"name\" (toponyme) et l'adresse.\n"
+          example: example.json#/intervention/location/finessGeo
+          description: "Finess g\xE9ographique et juridique de l\u2019\xE9tablissement\
+            \ de sant\xE9"
           examples:
-          - "Lyc\xE9e Pierre de Coubertin - 12 rue de l'Amiti\xE9 77288 Melun, Mus\xE9\
-            e Bossuet - Acc\xE8s 2 - 77048 Saint-Albray"
-        name:
+          - None
+        unit:
           type: string
-          title: Nom du lieu
+          title: "Unit\xE9 fonctionnelle "
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/name
-          description: "Indique le nom de lieu : nom commercial, Etablissement, for\xEA\
-            t de Fontainebleau, lac du Der (plut\xF4t \xE0 destination des syst\xE8\
-            mes)."
+          example: example.json#/intervention/location/unit
+          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9"
           examples:
-          - "Lyc\xE9e Pierre de Coubertin"
-        externalLocationId:
-          type: array
-          items:
-            $ref: '#/components/schemas/externalLocationId'
+          - None
         detailedAddress:
           $ref: '#/components/schemas/detailedAddress'
-        city:
-          $ref: '#/components/schemas/city'
-        access:
-          $ref: '#/components/schemas/access'
-        geometry:
-          $ref: '#/components/schemas/geometry'
-        externalInfo:
-          type: array
-          items:
-            $ref: '#/components/schemas/externalInfo'
-        country:
-          type: string
-          title: Pays
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/country
-          enum:
-          - AF
-          - AX
-          - AL
-          - DZ
-          - AS
-          - AD
-          - AO
-          - AI
-          - AQ
-          - AG
-          - AR
-          - AM
-          - AW
-          - AU
-          - AT
-          - AZ
-          - BS
-          - BH
-          - BD
-          - BB
-          - BY
-          - BE
-          - BZ
-          - BJ
-          - BM
-          - BT
-          - BO
-          - BA
-          - BW
-          - BV
-          - BR
-          - IO
-          - BN
-          - BG
-          - BF
-          - BI
-          - CV
-          - KH
-          - CM
-          - CA
-          - KY
-          - CF
-          - TD
-          - CL
-          - CN
-          - CX
-          - CC
-          - CO
-          - KM
-          - CG
-          - CK
-          - CR
-          - CI
-          - HR
-          - CU
-          - CW
-          - CY
-          - CZ
-          - DK
-          - DJ
-          - DM
-          - DO
-          - EC
-          - EG
-          - SV
-          - GQ
-          - ER
-          - EE
-          - SZ
-          - ET
-          - FK
-          - FO
-          - FJ
-          - FI
-          - FR
-          - GF
-          - PF
-          - TF
-          - GA
-          - GM
-          - GE
-          - DE
-          - GH
-          - GI
-          - GR
-          - GL
-          - GD
-          - GP
-          - GU
-          - GT
-          - GG
-          - GN
-          - GW
-          - GY
-          - HT
-          - HM
-          - VA
-          - HN
-          - HK
-          - HU
-          - IS
-          - IN
-          - ID
-          - IR
-          - IQ
-          - IE
-          - IM
-          - IL
-          - IT
-          - JM
-          - JP
-          - JE
-          - JO
-          - KZ
-          - KE
-          - KI
-          - KP
-          - KW
-          - KG
-          - LA
-          - LV
-          - LB
-          - LS
-          - LR
-          - LY
-          - LI
-          - LT
-          - LU
-          - MO
-          - MG
-          - MW
-          - MY
-          - MV
-          - ML
-          - MT
-          - MH
-          - MQ
-          - MR
-          - MU
-          - YT
-          - MX
-          - FM
-          - MC
-          - MN
-          - ME
-          - MS
-          - MA
-          - MZ
-          - MM
-          - NA
-          - NR
-          - NP
-          - NL
-          - NC
-          - NZ
-          - NI
-          - NE
-          - NG
-          - NU
-          - NF
-          - MK
-          - MP
-          - 'NO'
-          - OM
-          - PK
-          - PW
-          - PA
-          - PG
-          - PY
-          - PE
-          - PH
-          - PN
-          - PL
-          - PT
-          - PR
-          - QA
-          - RE
-          - RO
-          - RU
-          - RW
-          - BL
-          - KN
-          - LC
-          - MF
-          - PM
-          - VC
-          - WS
-          - SM
-          - ST
-          - SA
-          - SN
-          - RS
-          - SC
-          - SL
-          - SG
-          - SX
-          - SK
-          - SI
-          - SB
-          - SO
-          - ZA
-          - GS
-          - SS
-          - ES
-          - LK
-          - SD
-          - SR
-          - SJ
-          - SE
-          - CH
-          - SY
-          - TJ
-          - TH
-          - TL
-          - TG
-          - TK
-          - TO
-          - TT
-          - TN
-          - TR
-          - TM
-          - TC
-          - TV
-          - UG
-          - UA
-          - AE
-          - GB
-          - US
-          - UM
-          - UY
-          - UZ
-          - VU
-          - VE
-          - VN
-          - VG
-          - VI
-          - WF
-          - EH
-          - YE
-          - ZM
-          - ZW
-          examples:
-          - France
-        freetext:
-          type: string
-          title: "Informations compl\xE9mentaires sur la localisation"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/freetext
-          description: "Champ libre pour compl\xE9ter les informations de localisation"
-          examples:
-          - "Cl\xE9 derri\xE8re le pot de fleur"
       additionalProperties: false
-      example: example.json#/location
+      example: example.json#/intervention/location
     alert:
       type: object
       title: Alerte initiale
       x-display: expansion-panels
       x-health-only: false
       required:
-      - id
       - reception
-      - reporting
       - caller
-      - callTaker
       properties:
-        id:
-          type: string
-          title: Identifiant alerte
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/id
-          description: "Identifiant technique unique de l'alerte. Il doit pouvoir\
-            \ \xEAtre g\xE9n\xE9r\xE9 automatiquement par le syst\xE8me \xE9metteur\
-            \ et ne doit pas avoir de signification / utilisation particuli\xE8re\
-            \ par les diff\xE9rents syst\xE8mes pour garantir leur d\xE9couplage.\n\
-            Voir la description de l'identifiant de l'affaire pour voir le format.\n\
-            Lorsqu\u2019une alerte est g\xE9n\xE9r\xE9e dans NexSIS et cr\xE9e une\
-            \ affaire, elle est qualifi\xE9e d\u2019Alerte Initiale.\na)\tSi cette\
-            \ derni\xE8re concerne un partenaire (caract\xE8re m\xE9dical pour la\
-            \ Sant\xE9 par exemple), elle est relay\xE9e seule dans le message. Il\
-            \ y\u2019a un seul objet initialAlert.\nb)\tSinon, une autre alerte li\xE9\
-            e \xE0 la m\xEAme affaire peut \xEAtre d\xE9clar\xE9e ult\xE9rieurement,\
-            \ concernant cette fois le partenaire. Lorsqu\u2019elle est d\xE9clar\xE9\
-            e cette Nouvelle Alerte est relay\xE9e avec l\u2019Alerte Initiale pour\
-            \ partager un contexte commun. Dans le message de cr\xE9ation d\u2019\
-            affaire il y\u2019a deux objets alerte : initialAlert et newAlert.\nLe\
-            \ rattachement des messages \xE0 une affaire doivent s'appuyer sur les\
-            \ caseId et non les alertId qui peuvent varier d'un syst\xE8me \xE0 l'autre."
-          examples:
-          - SGO050-20230605-AL0123
         reception:
           type: string
-          title: "Date de r\xE9ception de l'alerte"
+          title: "Date et heure de r\xE9ception de l'alerte"
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/reception
-          description: "Groupe date heure de r\xE9ception de l'alerte"
+          description: "A valoriser avec le groupe date heure de r\xE9ception de l'alerte/appel"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - '2022-09-27T08:21:06+02:00'
-        reporting:
-          type: string
-          title: Signalement
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/reporting
-          description: "Permet d'attirer l'attention des forces partenaires sur une\
-            \ affaire pour le faire sortir du lot.\nEventuellement automatis\xE9 en\
-            \ fonction des crit\xE8res saisis et de leur param\xE9trage, ou renseign\xE9\
-            \ par l'op\xE9rateur. \nPrend les valeurs d\xE9finies dans la nomenclature\
-            \ CISU :\n- standard : STANDARD\n- signal\xE9 : ATTENTION\nLes syst\xE8\
-            mes peuvent proposer des fonctionnalit\xE9s faisant ressortir les dossiers\
-            \ avec le libell\xE9 ATTENTION"
-          enum:
-          - STANDARD
-          - ATTENTION
-          examples:
-          - STANDARD
         notes:
           type: array
           items:
             $ref: '#/components/schemas/notes'
         caller:
           $ref: '#/components/schemas/caller'
-        callTaker:
-          $ref: '#/components/schemas/callTaker'
-        attachment:
-          type: array
-          items:
-            $ref: '#/components/schemas/attachment'
       additionalProperties: false
       example: example.json#/initialAlert
-    patient:
-      type: object
-      title: Patient / victime
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - id
-      properties:
-        id:
-          type: string
-          title: "ID patient partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/id
-          description: "Identifiant technique du patient pour permettre les rapprochements\
-            \ d'infos. Le 1er qui cr\xE9\xE9 l'ID patient a raison."
-          examples:
-          - fr.health.samu044.DRFR15DDXAAJJJ00000.P00
-        administrativeFile:
-          $ref: '#/components/schemas/administrativeFile'
-        identity:
-          $ref: '#/components/schemas/insIdentity'
-        healthMotive:
-          $ref: '#/components/schemas/healthMotive'
-        detail:
-          $ref: '#/components/schemas/patientDetail'
-        hypothesis:
-          $ref: '#/components/schemas/hypothesis'
-        freetext:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: "Informations compl\xE9mentaires sur le patient"
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/patient/0/freetext/0
-            description: "Correspond \xE0 la zone de commentaire renseign\xE9 par\
-              \ patient cr\xE9\xE9/identifi\xE9"
-            examples:
-            - None
-      additionalProperties: false
-      example: example.json#/patient/0
-    decision:
-      type: object
-      title: "D\xE9cisions"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - creation
-      - type
-      properties:
-        id:
-          type: string
-          title: "ID patient partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/id
-          description: "ID partag\xE9 du patient concern\xE9 par la d\xE9cision, lorsque\
-            \ le patient existe et est identifi\xE9"
-          examples:
-          - None
-        creation:
-          type: string
-          title: "Date Heure de cr\xE9ation de la d\xE9cision"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/creation
-          description: "Groupe date heure de cr\xE9ation de la d\xE9cision.  L'indicateur\
-            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:23:34+02:00'
-        type:
-          type: string
-          title: "Type de d\xE9cision"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/type
-          description: "Type de d\xE9cision prise"
-          enum:
-          - CONSEIL
-          - PMT
-          - INTER
-          - ORIENT
-          - PASPLUS
-          examples:
-          - "conseil m\xE9dical  / d\xE9cision d\u2019intervention / d\xE9cision d\u2019\
-            orientation et de transport / Pas de d\xE9cision suppl\xE9mentaire"
-        engagementDetails:
-          $ref: '#/components/schemas/engagementDetails'
-        transportDetails:
-          $ref: '#/components/schemas/transportDetails'
-      additionalProperties: false
-      example: example.json#/decision/0
     additionalInformation:
       type: object
       title: "Informations compl\xE9mentaires"
@@ -917,7 +494,7 @@ components:
       example: example.json#/additionalInformation
     whatsHappen:
       type: object
-      title: Nature de fait
+      title: "Circonstances ayant donn\xE9es lieu \xE0 l\u2019appel"
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -929,27 +506,27 @@ components:
           title: Code
           x-health-only: false
           x-cols: 6
-          example: example.json#/qualification/whatsHappen/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          example: example.json#/regulation/whatsHappen/code
+          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
           examples:
-          - C07.13.02
+          - AVPAR
         label:
           type: string
-          title: "Libell\xE9"
+          title: "Libell\xE9 court"
           x-health-only: false
           x-cols: 6
-          example: example.json#/qualification/whatsHappen/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+          example: example.json#/regulation/whatsHappen/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
+            Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
+            \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
-          - "Rod\xE9o automobile"
+          - Accident routier
       additionalProperties: false
-      example: example.json#/qualification/whatsHappen
+      example: example.json#/regulation/whatsHappen
       examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
+      - code: AVPAR
+        label: Accident routier
     locationKind:
       type: object
       title: Type de lieu
@@ -965,7 +542,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/locationKind/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           enum:
           - L01.00.00
           - L01.01.00
@@ -1156,7 +733,7 @@ components:
           example: example.json#/qualification/locationKind/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
@@ -1180,7 +757,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/qualification/riskThreat/0/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           enum:
           - R01
           - R02
@@ -1229,7 +806,7 @@ components:
           example: example.json#/qualification/riskThreat/0/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
@@ -1240,7 +817,7 @@ components:
         label: "Rod\xE9o automobile"
     healthMotive:
       type: object
-      title: "Motif de recours m\xE9dico-secouriste"
+      title: 'Motif de recours '
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -1254,80 +831,27 @@ components:
           title: Code
           x-health-only: false
           x-cols: 6
-          example: example.json#/qualification/healthMotive/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
-          enum:
-          - M01.00
-          - M01.01
-          - M01.02
-          - M01.03
-          - M02.00
-          - M02.01
-          - M02.02
-          - M02.03
-          - M02.04
-          - M02.05
-          - M02.06
-          - M02.07
-          - M02.08
-          - M02.09
-          - M02.10
-          - M03.00
-          - M03.01
-          - M03.02
-          - M03.03
-          - M03.04
-          - M03.05
-          - M03.06
-          - M03.07
-          - M03.08
-          - M03.09
-          - M03.10
-          - M03.11
-          - M03.12
-          - M03.13
-          - M03.14
-          - M03.15
-          - M03.16
-          - M03.17
-          - M03.18
-          - M03.19
-          - M03.20
-          - M03.21
-          - M03.22
-          - M04.00
-          - M04.01
-          - M04.02
-          - M04.03
-          - M04.04
-          - M05.00
-          - M05.01
-          - M05.02
-          - M06.00
-          - M06.01
-          - M06.02
-          - M06.03
-          - M06.04
-          - M07.00
+          example: example.json#/regulation/healthMotive/code
+          description: A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime
           examples:
-          - C07.13.02
+          - AVPAR
         label:
           type: string
-          title: "Libell\xE9"
+          title: "Libell\xE9 court"
           x-health-only: false
           x-cols: 6
-          example: example.json#/qualification/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+          example: example.json#/regulation/healthMotive/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Motif_patient-victime.\n\
+            Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
+            \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
-          - "Rod\xE9o automobile"
+          - Accident routier
       additionalProperties: false
-      example: example.json#/qualification/healthMotive
+      example: example.json#/regulation/healthMotive
       examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
+      - code: AVPAR
+        label: Accident routier
     victims:
       type: object
       title: Patients-Victimes
@@ -1346,9 +870,10 @@ components:
           enum:
           - '0'
           - '1'
-          - SEVERAL
-          - MANY
-          - UNKNOWN
+          - PLUSIEURS
+          - BEAUCOUP
+          - INCONNU
+          - NON DEFINI
           examples:
           - SEVERAL
         mainVictim:
@@ -1362,9 +887,9 @@ components:
             \ Prend les valeurs du r\xE9f\xE9rentiel CISU. Entre dans la d\xE9termination\
             \ des partenaires impliqu\xE9s par NexSIS."
           enum:
-          - INFANT
-          - CHILD
-          - ADULT
+          - NOURRISSON
+          - ENFANT
+          - ADULTE
           - SENIOR
           examples:
           - CHILD
@@ -1400,11 +925,11 @@ components:
           example: example.json#/location/externalLocationId/0/source
           description: Type de l'identifiant fourni
           enum:
-          - FINESS administratif
-          - "FINESS g\xE9ographique"
+          - FINESS ADMINISTRATIF
+          - FINESS GEOGRAPHIQUE
           - SIREN
           - SIRET
-          - APE/NAF
+          - APE_NAF
           examples:
           - "FINESS g\xE9ographique, FINESS administratif, SIREN, SIRET, APE, NAF"
         value:
@@ -1424,39 +949,40 @@ components:
         value: "920000650\_"
     detailedAddress:
       type: object
-      title: "D\xE9tails de l'adresse"
+      title: Adresse de l'intervention
       x-display: expansion-panels
       x-health-only: false
       required:
-      - complete
+      - cityCode
+      - city
       properties:
-        complete:
+        cityCode:
           type: string
-          title: "Num\xE9ro, type et nom de voie"
+          title: Code INSEE de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/detailedAddress/complete
-          description: "Num\xE9ro, type et nom de la voie. Utilis\xE9 pour tout type\
-            \ de voie :  autoroute (PK, nom et sens), voie ferr\xE9e, voie navigable\u2026\
-            \n15-18 : Obligatoire et seule valeur des d\xE9tails de l'adresse fournie\
-            \ par NexSIS."
+          example: example.json#/intervention/location/detailedAddress/cityCode
+          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
+            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
+            \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
+            \ d'intervention, si \xE9tranger. "
+          pattern: '[0-9]{5}'
           examples:
-          - 9 Bd du Montparnasse
-        number:
+          - 92300
+        city:
           type: string
-          title: "Num\xE9ro dans la voie"
+          title: Nom de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/detailedAddress/number
-          description: "Num\xE9ro dans l'adresse (inclut point kilom\xE9trique sur\
-            \ l'autoroute, voie ferr\xE9e ou voie navigable). Inclut l'indice de r\xE9\
-            p\xE9tition associ\xE9 au num\xE9ro (par exemple bis, a\u2026)."
+          example: example.json#/intervention/location/detailedAddress/city
+          description: Nom officiel de la commune actuelle
           examples:
-          - "9, 4bis, PK10, \u2026"
-        wayName:
-          $ref: '#/components/schemas/wayName'
+          - Levallois-Perret
       additionalProperties: false
-      example: example.json#/location/detailedAddress
+      example: example.json#/intervention/location/detailedAddress
+      examples:
+      - cityCode: 92300
+        city: Levallois-Perret
     city:
       type: object
       title: "D\xE9tails de la commune"
@@ -1470,7 +996,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/city/name
-          description: Nom officiel de la commune actuelle
+          description: A valoriser avec le nom officiel de la commune
           examples:
           - Lille
         inseeCode:
@@ -1479,32 +1005,18 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/city/inseeCode
-          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
-            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
-            \ renseign\xE9."
+          description: "A valoriser avec le code INSEE de la commune actuelle sur\
+            \ la base du Code Officiel g\xE9ographique en vigueur. \nLa valeur du\
+            \ code INSEE est obligatoire d\xE8s que le nom de la commune est renseign\xE9\
+            \ (city.name)."
           pattern: '[0-9]{5}'
           examples:
           - 59350
-        detail:
-          type: string
-          title: "Compl\xE9ment de commune"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/city/detail
-          description: "Informations compl\xE9mentaires permettant de pr\xE9ciser\
-            \ le quartier, lieu-dit, ancienne commune, \u2026 ou autre information\
-            \ aidant \xE0 pr\xE9ciser l'adresse et notamment g\xE9rer les cas de communes\
-            \ fusionn\xE9es pour le syst\xE8me \xE9metteur\nNB : dans tous les cas,\
-            \ la localisation GPS de la commune doit \xEAtre fournie afin d'\xE9viter\
-            \ une trop forte ambigu\xEFt\xE9."
-          examples:
-          - "Quartie Melun Nord, Lhomme, \u2026"
       additionalProperties: false
       example: example.json#/location/city
       examples:
       - name: Lille
         inseeCode: 59350
-        detail: "Quartie Melun Nord, Lhomme, \u2026"
     access:
       type: object
       title: "D\xE9tails d'acc\xE8s"
@@ -1518,7 +1030,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/floor
-          description: 'Etage '
+          description: "A valoriser avec le num\xE9ro ou nom de l'\xE9tage "
           examples:
           - RDC
         roomNumber:
@@ -1527,7 +1039,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/roomNumber
-          description: "Sp\xE9cifie num\xE9ro d'appartement, de chambre, de bureau"
+          description: "A valoriser avec le num\xE9ro d'appartement, de chambre, de\
+            \ bureau"
           examples:
           - A16
         interphone:
@@ -1536,7 +1049,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/interphone
-          description: "Indique les informations n\xE9cessaires  \xE0 l'identification\
+          description: "A valoriser avec les informations n\xE9cessaires \xE0 l'identification\
             \ de l'interphone (num\xE9ro, nom)"
           examples:
           - Dupont
@@ -1549,8 +1062,8 @@ components:
             x-health-only: false
             x-cols: 6
             example: example.json#/location/access/accessCode/0
-            description: "Indique le ou les digicodes dans l'ordre de progression\
-              \ dans le b\xE2timent"
+            description: "A valoriser avec le ou les digicodes, dans l'ordre de progression\
+              \ dans le b\xE2timent."
             examples:
             - 1234A
         elevator:
@@ -1559,7 +1072,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/elevator
-          description: 'Indique l''ascenseur ou la cage d''escalier '
+          description: "A valoriser avec le nom ou le num\xE9ro de l'ascenseur ou\
+            \ de la cage d'escalier "
           examples:
           - C3
         buildingName:
@@ -1568,7 +1082,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/buildingName
-          description: "Nom du b\xE2timent"
+          description: "A valoriser avec le nom du b\xE2timent"
           examples:
           - Batiment B
         entrance:
@@ -1577,6 +1091,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/entrance
+          description: "A valoriser avec le nom de l'entr\xE9e"
           examples:
           - Zone Sud
         entity:
@@ -1585,19 +1100,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/entity
-          description: "Nom du service concern\xE9 au sein de l'\xE9tablissement :\
-            \ Infirmerie, service finance, service cardiologie, \u2026"
+          description: "A valoriser avec le nom du service concern\xE9 au sein de\
+            \ l'\xE9tablissement : infirmerie, service finance, service comptabilit\xE9\
+            ."
           examples:
           - Infirmerie
         phoneNumber:
-          type: number
+          type: string
           title: "N\xB0 de t\xE9l\xE9phone du lieu"
           x-health-only: false
           x-cols: 6
           example: example.json#/location/access/phoneNumber
-          description: "Num\xE9ro de t\xE9l\xE9phone permettant d'acc\xE9der au lieu\
-            \ de l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat,\
-            \ t\xE9l\xE9phone du service administratif ou se trouve le patient/victime."
+          description: "A valoriser avec le num\xE9ro de t\xE9l\xE9phone du lieu de\
+            \ l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat, t\xE9\
+            l\xE9phone du service administratif ou se trouve le patient/ la victime."
           examples:
           - 33123452323
       additionalProperties: false
@@ -1616,32 +1132,15 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/geometry/obsDatime
-          description: "Groupe date heure de renseignement des coordonn\xE9es du point\
-            \ cl\xE9 de la localisation. Permet de conna\xEEtre la fra\xEEcheur et\
-            \ donc pertinence des informations pour intervenir."
+          description: "A valoriser avec le groupe date heure de renseignement des\
+            \ coordonn\xE9es du point cl\xE9 de la localisation. \nPermet de conna\xEE\
+            tre la fra\xEEcheur et donc la pertinence des informations pour intervenir."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
         point:
           $ref: '#/components/schemas/point'
-        sketch:
-          type: string
-          title: "Formes g\xE9om\xE9triques"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/location/geometry/sketch
-          description: "Objet gml (\xE9quivalent xml du geojson). Le langage GML permet\
-            \ de d\xE9crire une forme dans un syst\xE8me de projection donn\xE9. \n\
-            Dans le cas d'une alerte donn\xE9e sur une zone g\xE9ographique non pr\xE9\
-            cise (par exemple une section d'autoroute ou une zone sur un chemin de\
-            \ randonn\xE9e), une indication sur la zone de recherche peut \xEAtre\
-            \ fournie.\nEn XML, un objet gml est encapsul\xE9 dans une balise <sketch\
-            \ xmlns:gml='http://www.opengis.net/gml' version='1.0' > </sketch>\nEn\
-            \ JSON, les balises sont reprises depuis le mod\xE8le gml\nVoir http://www.opengis.net/gml\
-            \ pour le format de l'objet sketch"
-          examples:
-          - None
       additionalProperties: false
       example: example.json#/location/geometry
     externalInfo:
@@ -1705,9 +1204,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/complete
-          description: "Type et nom de la voie (venant d'un r\xE9f\xE9rentiel ou non)\n\
-            Si les champs type et name sont renseign\xE9s, le champ callerName doit\
-            \ \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"."
+          description: "A valoriser avec le type et le nom de la voie.\nSi les attributs\
+            \ \"type\" et \"name\" de \"wayName\" sont \xE9galement renseign\xE9s,\
+            \ alors \"complete\" doit \xEAtre valoris\xE9 ainsi : \"{type} {nom}\"\
+            ."
           examples:
           - Boulevard du Montparnasse
         type:
@@ -1716,7 +1216,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/type
-          description: Type de la voie
+          description: A valoriser avec le type de la voie
           examples:
           - Boulevard
         name:
@@ -1725,7 +1225,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/detailedAddress/wayName/name
-          description: Nom de la voie
+          description: A valoriser avec le nom de la voie
           examples:
           - du Montparnasse
       additionalProperties: false
@@ -1744,79 +1244,120 @@ components:
       properties:
         coord:
           $ref: '#/components/schemas/coord'
-        sysCoord:
-          type: string
-          title: "Syst\xE8me de coordonn\xE9es"
+        isAml:
+          type: boolean
+          title: Dispositif AML
           x-health-only: false
           x-cols: 6
-          example: example.json#/location/geometry/point/sysCoord
-          description: "Indique le type de coordonn\xE9es utilis\xE9. Actuellement,\
-            \ la seule valeur valide est \xABEPSG-4326\xBB, indiquant l'utilisation\
-            \ de WGS-84. Si ce champ n'est pas renseign\xE9, on consid\xE8re que la\
-            \ valeur par d\xE9faut est \xAB\xBB."
+          example: example.json#/location/geometry/point/isAml
+          description: "Attribut qui permet de pr\xE9ciser si les coordonn\xE9es fournies\
+            \ proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou\
+            \ non - FALSE. "
           examples:
-          - EPSG-4326
+          - 'TRUE'
       additionalProperties: false
       example: example.json#/location/geometry/point
     coord:
       type: object
-      title: "Coordonn\xE9es"
+      title: "Derni\xE8re g\xE9olocalisation du vecteur"
       x-display: expansion-panels
       x-health-only: false
       required:
       - lat
       - lon
+      - precision
       properties:
         lat:
           type: number
-          title: 'Latitude '
+          title: Latitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/position/0/coord/0/lat
-          description: "Derni\xE8re coordonn\xE9e x connue de la ressource, entre\
-            \ \u221290 and +90"
+          example: example.json#/mobilizedResource/0/coord/lat
+          description: "Latitude du point cl\xE9 de la localisation "
           examples:
-          - '47.221866'
+          - '48.866667'
         lon:
           type: number
           title: Longitude
           x-health-only: false
           x-cols: 6
-          example: example.json#/position/0/coord/0/lon
-          description: "Derni\xE8re coordonn\xE9e y connue de la ressource, entre\
-            \ \u2212180 and +180"
+          example: example.json#/mobilizedResource/0/coord/lon
+          description: "Longitude du point cl\xE9 de la localisation"
           examples:
-          - '-1.575807'
+          - '2.333333'
         height:
           type: number
-          title: Altitude
+          title: 'Altitude '
           x-health-only: false
           x-cols: 6
-          example: example.json#/position/0/coord/0/height
-          description: "Derni\xE8re coordonn\xE9e z connue de la ressource, en m\xE8\
-            tres sans bornes"
+          example: example.json#/mobilizedResource/0/coord/height
+          description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
+            \ ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
-          - 1
+          - 120
+        heading:
+          type: number
+          title: Cap
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/coord/heading
+          description: "En degr\xE9"
+          examples:
+          - 96
+        speed:
+          type: number
+          title: Vitesse
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/coord/speed
+          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
+            \ AML, \u2026"
+          examples:
+          - 34
+        precision:
+          type: string
+          title: "Pr\xE9cision"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/coord/precision
+          description: "Indique via une nomenclature le niveau de pr\xE9cision des\
+            \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
+            \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
+            \ de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9e GPS\
+            \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
+            \ l'\xE9metteur"
+          enum:
+          - VILLE
+          - RUE
+          - ADRESSE
+          - EXACTE
+          - INCONNUE
+          examples:
+          - ADDRESS
       additionalProperties: false
-      example: example.json#/position/0/coord/0
+      example: example.json#/mobilizedResource/0/coord
       examples:
-      - lat: '47.221866'
-        lon: '-1.575807'
-        height: 1
+      - lat: '48.866667'
+        lon: '2.333333'
+        height: 120
+        heading: 96
+        speed: 34
+        precision: ADDRESS
     notes:
       type: object
-      title: "Informations compl\xE9mentaires sur l'alerte (observations ARM)"
+      title: "Informations compl\xE9mentaires sur l'alerte"
       x-display: expansion-panels
       x-health-only: false
       required: []
       properties:
         creation:
           type: string
-          title: "Date et heure de l'information compl\xE9mentaire/l'observation ARM"
+          title: "Date et heure de l'information compl\xE9mentaire"
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/creation
-          description: date et heure de l'observation
+          description: "A valoriser avec le groupe date heure de cr\xE9ation de l'information\
+            \ compl\xE9mentaire"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1827,14 +1368,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/notes/0/freetext
-          description: "texte libre contenant les indications renseign\xE9es par l'ARM"
+          description: "A valoriser avec un texte libre contenant les indications\
+            \ compl\xE9mentaires renseign\xE9es sur l'alerte/appel.\n\nSp\xE9cificit\xE9\
+            s 15-15 : cet attribut ne doit pas \xEAtre valoris\xE9 avec des notes\
+            \ \xE0 caract\xE8re m\xE9dical, qui serait li\xE9e \xE0 un interrogatoire\
+            \ ARM ou m\xE9decin, ou \xE0 un patient en particulier"
           examples:
-          - 'La personne est inconsciente (perte de connaissance). '
+          - "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9l\xE9\
+            alarme, voisine sur les lieux"
       additionalProperties: false
       example: example.json#/initialAlert/notes/0
       examples:
       - creation: None
-        freetext: 'La personne est inconsciente (perte de connaissance). '
+        freetext: "Accident de bricolage, accident domestique, d\xE9clenchement t\xE9\
+          l\xE9alarme, voisine sur les lieux"
     caller:
       type: object
       title: "Requ\xE9rant"
@@ -1853,8 +1400,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/language
-          description: "Langue parl\xE9e par le requ\xE9rant. Permet de mettre en\
-            \ place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU."
+          description: "A valoriser avec la langue parl\xE9e par le requ\xE9rant.\
+            \ \ncf.nomenclature associ\xE9e."
           enum:
           - AF
           - AX
@@ -2105,8 +1652,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/type
-          description: "Indique la relation du requ\xE9rant avec l'incident / le patient\
-            \ / la victime"
+          description: "A valoriser avec la relation du requ\xE9rant avec l'incident\
+            \ / le patient / la victime.\ncf. nomenclature associ\xE9e."
           enum:
           - SUJET
           - FAMILLE
@@ -2130,15 +1677,16 @@ components:
           - AUTRE
           - INCONNU
           examples:
-          - "le patient lui-m\xEAme, p\xE8re, m\xE8re"
+          - FAMILLE, TIERS
         communication:
           type: string
           title: "Difficult\xE9 de communication"
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/communication
-          description: "Indique si le requ\xE9rant rencontre ou non des difficult\xE9\
-            \ de communication"
+          description: "A valoriser avec la nature des \xE9ventuelles difficult\xE9\
+            s de communication rencontr\xE9es par le requ\xE9rant. \ncf.nomenclature\
+            \ associ\xE9e."
           enum:
           - AUCUNE
           - MUET
@@ -2157,9 +1705,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/freetext
-          description: "Informations compl\xE9mentaires sur le requ\xE9rant \nLes\
-            \ informations peuvent \xEAtre pass\xE9es sous forme de texte libre ou\
-            \ via une liste d'adjectif"
+          description: "Champ libre qui permet de compl\xE9ter les informations sp\xE9\
+            cifiquement li\xE9es au requ\xE9rant."
           examples:
           - "t\xE9moin de l'accident"
         detailedName:
@@ -2309,38 +1856,41 @@ components:
         digest: None
     contact:
       type: object
-      title: Contacts
+      title: Contact
       x-display: expansion-panels
       x-health-only: false
       required: []
       properties:
         type:
           type: string
-          title: Type de contact
+          title: 'Type de contact '
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/contacts/0/type
-          description: "Type de contact, voir \xE9num\xE9ration associ\xE9e\n1. PMRADD\
-            \ (si RFGI disponible)\n2. PHNADD pour t\xE9l\xE9phonie"
+          example: example.json#/mobilizedResource/0/contact/type
+          description: "Type de l'URI utilis\xE9e"
           enum:
-          - PMRADD
-          - PHNADD
+          - TEL
+          - EMAIL
+          - FAX
+          - POSTAL
+          - WEB
+          - RADIO
           examples:
           - PHNADD
         details:
           type: string
-          title: "D\xE9tails de contact"
+          title: URI du contact
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/contacts/0/details
-          description: "1. RFGI (si RFGI disponible)\n2. Num\xE9ro de t\xE9l\xE9phone"
+          example: example.json#/mobilizedResource/0/contact/details
+          description: "Valeur de l'URI utilis\xE9e pour contacter la ressource"
           examples:
-          - '0612342536'
+          - 0671830530
       additionalProperties: false
-      example: example.json#/resource/0/contacts/0
+      example: example.json#/mobilizedResource/0/contact
       examples:
       - type: PHNADD
-        details: '0612342536'
+        details: 0671830530
     detailedName:
       type: object
       title: "Pr\xE9nom & nom usuel"
@@ -2355,11 +1905,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/detailedName/complete
-          description: "Pr\xE9nom et nom usuel du requ\xE9rant.\nSi les champs callerLastName\
-            \ et callerFirstName sont renseign\xE9s, le champ callerName doit \xEA\
-            tre valoris\xE9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote\
-            \ : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et pas\
-            \ de deux champs s\xE9par\xE9s."
+          description: "A valoriser avec le pr\xE9nom et le nom usuel du requ\xE9\
+            rant/appelant.\nSi les champs callerLastName et callerFirstName sont \xE9\
+            galement renseign\xE9s, le champ callerName doit \xEAtre valoris\xE9 ainsi\
+            \ : \"{callerFirstName} {callerLastName}\".\n\nSp\xE9cificit\xE9s 15-18\
+            \  : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et\
+            \ pas de deux champs s\xE9par\xE9s."
           examples:
           - Jean Dupont
         lastName:
@@ -2368,7 +1919,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/detailedName/lastName
-          description: "Nom du requ\xE9rant"
+          description: "A valoriser avec le nom usuel du requ\xE9rant"
           examples:
           - Dupont
         firstName:
@@ -2377,9 +1928,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/detailedName/firstName
-          description: "Pr\xE9nom du r\xE9qu\xE9rant.\nPar convention les pr\xE9noms\
-            \ compos\xE9s doivent pr\xE9f\xE9rablement \xEAtre s\xE9par\xE9s par le\
-            \ caract\xE8re \"-\""
+          description: "A valoriser avec le pr\xE9nom usuel du r\xE9qu\xE9rant.\n\
+            Par convention les pr\xE9noms compos\xE9s doivent pr\xE9f\xE9rablement\
+            \ \xEAtre s\xE9par\xE9s par le caract\xE8re \"-\""
           examples:
           - Jean
       additionalProperties: false
@@ -2388,192 +1939,6 @@ components:
       - complete: Jean Dupont
         lastName: Dupont
         firstName: Jean
-    insIdentity:
-      type: object
-      title: "Identit\xE9 INS"
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        cycle:
-          $ref: '#/components/schemas/insCycle'
-        number:
-          $ref: '#/components/schemas/insNumber'
-        strictFeatures:
-          $ref: '#/components/schemas/insStrictFeatures'
-        nonStrictFeatures:
-          $ref: '#/components/schemas/detailedName'
-      additionalProperties: false
-      example: example.json#/patient/0/identity
-    insStrictFeatures:
-      type: object
-      title: "Traits stricts de l'identit\xE9"
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        birthName:
-          type: string
-          title: Nom de naissance
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/identity/strictFeatures/birthName
-          description: "Egalement appel\xE9 nom de famille."
-          examples:
-          - Dupont
-        birthFirstName:
-          type: string
-          title: "Premier pr\xE9nom de naissance"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/identity/strictFeatures/birthFirstName
-          description: "Doit \xEAtre coh\xE9rent avec la liste des pr\xE9noms de naissance\
-            \ renvoy\xE9e par INSi. Ex: si la liste des pr\xE9noms renvoy\xE9e est\
-            \ \"Pierre Alain Jacques\", le premier pr\xE9nom de naissance ne peut\
-            \ \xEAtre que : \nPierre\nPierre Alain\nPierre Alain Jacques"
-          examples:
-          - None
-        birthFirstNamesList:
-          type: string
-          title: "Liste des pr\xE9noms de naissance"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/identity/strictFeatures/birthFirstNamesList
-          description: "Ensemble des pr\xE9noms de naissance (renvoy\xE9s par INSi)"
-          examples:
-          - None
-        birthDate:
-          type: string
-          title: Date de naissance
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/identity/strictFeatures/birthDate
-          description: Date de naissance du patient
-          pattern: \d{4}-\d{2}-\d{2}
-          examples:
-          - None
-        sex:
-          type: string
-          title: 'Sexe '
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/0/identity/strictFeatures/sex
-          description: Sexe du patient
-          enum:
-          - MASC
-          - FEM
-          - AUTRE
-          - INCONNU
-          examples:
-          - F
-        birthPlaceCode:
-          type: number
-          title: Code lieu de naissance
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/identity/strictFeatures/birthPlaceCode
-          description: "Il s\u2019agit de la commune de naissance pour les personnes\
-            \ n\xE9es en France et du pays de naissance pour les personnes n\xE9es\
-            \ \xE0 l\u2019\xE9tranger. Utilisation du code INSEE (diff\xE9rent du\
-            \ code postal), auquel est associ\xE9 le nom de la commune ou du pays\
-            \ correspondant."
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/patient/0/identity/strictFeatures
-      examples:
-      - birthName: Dupont
-        birthFirstName: None
-        birthFirstNamesList: None
-        birthDate: None
-        sex: F
-        birthPlaceCode: None
-    transportDetails:
-      type: object
-      title: "D\xE9cision de transport/orientation"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - orientation
-      - teamCare
-      properties:
-        orientation:
-          type: string
-          title: Type de devenir du patient
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportDetails/orientation
-          description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
-            gulateur : \n- A transporter\n- Laisser sur place"
-          examples:
-          - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
-        concoursRequest:
-          type: string
-          title: ID demande de concours/de ressources
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportDetails/concoursRequest
-          description: 'Identifiant de la ou des demandes de concours '
-          examples:
-          - None
-        transportationID:
-          type: string
-          title: "ID vecteur partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportDetails/transportationID
-          description: "Identifiant du v\xE9hicule terrestre / a\xE9rien / maritime\
-            \ de transport principal (= celui dans lequel se trouve le patient), permettant\
-            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient. "
-          examples:
-          - None
-        teamCare:
-          type: string
-          title: Niveau de prise en charge
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportDetails/teamCare
-          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
-            dicale, standard, incomplete, ...)"
-          examples:
-          - "M\xE9dical, param\xE9dical, secouriste"
-        destination:
-          $ref: '#/components/schemas/destination'
-      additionalProperties: false
-      example: example.json#/decision/0/transportDetails
-    destination:
-      type: object
-      title: Destination
-      x-display: expansion-panels
-      x-health-only: false
-      required: []
-      properties:
-        type:
-          type: string
-          title: Type de destination
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/decision/0/transportDetails/destination/type
-          description: "Indique le type de destination de la ressource : service d\u2019\
-            urgences d\u2019un Etablissement de sant\xE9, autres services d\u2019\
-            un \xE9tablissement de sant\xE9, cabinet d\u2019un professionnel de sant\xE9\
-            , domicile personnel, EPHAD ou long s\xE9jour, autre"
-          enum:
-          - "service d\u2019urgences d\u2019un Etablissement de sant\xE9"
-          - "autres services d\u2019un \xE9tablissement de sant\xE9"
-          - "cabinet d\u2019un professionnel de sant\xE9"
-          - domicile personnel
-          - "EPHAD ou long s\xE9jour"
-          - autre
-          examples:
-          - None
-        destinationLocation:
-          $ref: '#/components/schemas/location'
-      additionalProperties: false
-      example: example.json#/decision/0/transportDetails/destination
-      examples:
-      - type: None
-        destinationLocation: {}
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"
@@ -2589,7 +1954,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/key
-          description: Nom de la balise
+          description: A valoriser avec le nom de la balise
           examples:
           - neighborhood
         label:
@@ -2598,7 +1963,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/label
-          description: "Libell\xE9 correspondant"
+          description: "A valoriser avec le libell\xE9 correspondant"
           examples:
           - Quartier
         value:
@@ -2607,7 +1972,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/value
-          description: "Valeur associ\xE9e \xE0 la cl\xE9"
+          description: "A valoriser avec la valeur associ\xE9e \xE0 la cl\xE9"
           examples:
           - LYON 2e arrondissement
         freetext:
@@ -2617,7 +1982,7 @@ components:
           x-cols: 6
           example: example.json#/additionalInformation/customMap/0/freetext
           description: "Informations compl\xE9mentaires sur le contexte / utilisation\
-            \ de ce matching additionnel"
+            \ de cette correspondance additionnelle"
           examples:
           - "Pr\xE9cision sur le quartier d'intervention"
       additionalProperties: false
@@ -2636,7 +2001,6 @@ components:
       required:
       - caseId
       - creation
-      - referenceVersion
       - qualification
       - location
       - owner
@@ -2647,24 +2011,25 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
+            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
+            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
+            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
+            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
+            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
+            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
+            \ un num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440-DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
           x-health-only: false
           x-cols: 6
           example: example.json#/senderCaseId
-          description: "Valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
-            metteur du message. \nCe champ est facultatif, il ne sera notamment pas\
-            \ transmis par NexSIS.\n"
+          description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
+            metteur du message.\n"
           examples:
           - DRFR15DDXAAJJJ0000
         creation:
@@ -2673,55 +2038,47 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/creation
-          description: "Groupe date heure de d\xE9but de partage li\xE9 \xE0 la cr\xE9\
-            ation de l'affaire (et donc de g\xE9n\xE9ration du caseId). Il doit \xEA\
-            tre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation  de la premi\xE8\
-            re alerte. Lors de l'ajout d'alerte \xE0 une affaire ce champ ne doit\
-            \ pas \xEAtre modifi\xE9.  L'indicateur de fuseau horaire Z ne doit pas\
-            \ \xEAtre utilis\xE9."
+          description: "A valoriser avec le groupe date heure de d\xE9but de partage\
+            \ li\xE9 \xE0 la cr\xE9ation de l'affaire (et donc de g\xE9n\xE9ration\
+            \ du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce\
+            \ champ ne doit pas \xEAtre modifi\xE9e.  \nL'indicateur de fuseau horaire\
+            \ Z ne doit pas \xEAtre utilis\xE9.\n\nSp\xE9cificit\xE9 15-18 :\nIl doit\
+            \ \xEAtre renseign\xE9 \xE0 la fin du processus de la  cr\xE9ation de\
+            \ la premi\xE8re alerte."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - '2022-09-27T08:23:34+02:00'
-        referenceVersion:
-          type: string
-          title: "Version des nomenclatures du r\xE9f\xE9rentiel CISU"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/referenceVersion
-          description: "Indique le num\xE9ro de version du r\xE9f\xE9rentiel des nomenclatures\
-            \ des codes transmis. \nCela permet aux diff\xE9rents syst\xE8mes de s'assurer\
-            \ qu'ils utilisent la m\xEAme version des codes de nomenclature que leurs\
-            \ partenaires."
-          examples:
-          - '1.2'
         perimeter:
           type: string
           title: "Fili\xE8re"
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/perimeter
-          description: "Sert \xE0 indiquer \xE0 quelle fili\xE8re du CRRA le dossier\
-            \ doit \xEAtre adress\xE9/affich\xE9"
+          description: "Sert \xE0 indiquer \xE0 quelle fili\xE8re du CRRA destinataire\
+            \ le dossier doit \xEAtre adress\xE9/affich\xE9, lorsque celle-ci est\
+            \ sp\xE9cifique ou d\xE9di\xE9e."
           enum:
           - AMU
-          - SNP
           - NEONAT
+          - PSY
+          - SNP
           examples:
           - AMU
         interventionType:
           type: string
           title: Type d'intervention
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/interventionType
-          description: "Indiquer s'il s'agit d'un dossier dit primaire (premi\xE8\
-            re intervention urgente) ou secondaire (par exemple TIH)"
+          description: "A valoriser en indiquant s'il s'agit d'un dossier dit primaire\
+            \ (premi\xE8re intervention urgente) ou secondaire (par exemple TIH)"
           enum:
-          - Primaire
-          - Secondaire
+          - PRIMAIRE
+          - SECONDAIRE
+          - RETOUR A DOMICILE
           examples:
-          - Primaire
+          - PRIMAIRE
         qualification:
           $ref: '#/components/schemas/qualification'
         location:
@@ -2731,11 +2088,11 @@ components:
         owner:
           type: string
           title: CRRA traitant
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/owner
-          description: "Champ servant \xE0 transf\xE9rer la prise en charge d'un dossier\
-            \ \xE0 un autre CRAA apr\xE8s accord verbal de ce dernier."
+          description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
+            \ dossier \xE0 un autre CRAA - apr\xE8s accord verbal de ce dernier."
           examples:
           - fr.health.samu440
         patient:
@@ -2746,61 +2103,110 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
-        decision:
-          type: array
-          items:
-            $ref: '#/components/schemas/decision'
         newAlert:
           type: array
           items:
             $ref: '#/components/schemas/alert'
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
-        freetext:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Description de l'affaire/dossier
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/freetext/0
-            description: "Texte libre permettant de donner des informations suppl\xE9\
-              mentaires concernant l'affaire/dossier. Ces informations sont g\xE9\
-              n\xE9rales, et ont vocation \xE0 \xEAtre \xE9chang\xE9es en inter-force. "
-            examples:
-            - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
-              \ ferm\xE9es de 22h \xE0 6h00."
       additionalProperties: false
+    patient:
+      type: object
+      title: Patient
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - patientId
+      - birthDate
+      - sex
+      properties:
+        patientId:
+          type: string
+          title: Identifiant Patient
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/patientId
+          description: "Identifiant unique du patient. \nA valoriser par {ID du SAMU\
+            \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
+            \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
+          examples:
+          - fr.health.samu690.DRFR15DDXAAJJJ00001.P01
+        birthDate:
+          type: string
+          title: Date de naissance
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/birthDate
+          description: Date de naissance du patient
+          examples:
+          - 17/02/1936
+        sex:
+          type: string
+          title: Sexe
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/sex
+          description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
+            \ SI-SAMU-NOMENC_SEXE"
+          examples:
+          - F
+        nir:
+          type: number
+          title: NIR
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/nir
+          description: "Num\xE9ro d'inscription au R\xE9pertoire ou num\xE9ro de s\xE9\
+            curit\xE9 sociale, unique, transmis par la CNIL"
+          examples:
+          - 278112B050002
+        residentialAddress:
+          $ref: '#/components/schemas/residentialAddress'
+      additionalProperties: false
+      example: example.json#/patient
     medicalNote:
       type: object
-      title: "Interrogatoire m\xE9dical"
+      title: "Observation m\xE9dicale"
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required:
-      - creation
+      - operator
       - freetext
       properties:
-        id:
+        idPat:
           type: string
           title: "ID patient partag\xE9"
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
-          example: example.json#/medicalNote/0/id
-          description: "ID partag\xE9 du patient concern\xE9, lorsque le patient existe\
-            \ et est identifi\xE9"
+          example: example.json#/medicalNote/0/idPat
+          description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
+            \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
+            \ le syst\xE8me emetteur, valoris\xE9 comme suit  : \n{ID du dossier partag\xE9\
+            }.P{num\xE9ro d\u2019ordre chronologique unique du patient}"
           examples:
-          - None
+          - fr.health.samu044.DRFR154402415000450.P1
         operator:
           $ref: '#/components/schemas/operator'
+        idObs:
+          type: string
+          title: ID Observation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/medicalNote/0/idObs
+          description: "A valoriser avec l'identifiant unique de l'observation, valoris\xE9\
+            \ comme suit : {caseID}.medicalNote.{ID de l'observation dans le syst\xE8\
+            me \xE9metteur}.\nCet identifiant a vocation \xE0 devenir obligatoire\
+            \ pour permettre les mises \xE0 jour, il est laiss\xE9 en facultatif temporairement.\n"
+          examples:
+          - fr.health.samu540.DRFR155402416000125.medicalNote.46585A
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de l'interrogatoire"
-          x-health-only: true
+          title: "Date Heure de cr\xE9ation de l'observation"
+          x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/creation
-          description: "Groupe date heure de cr\xE9ation de l'interrogatoire.  L'indicateur\
-            \ de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
+          description: "A valoriser avec le groupe date heure de cr\xE9ation de l'observation.\
+            \  L'indicateur de fuseau horaire Z ne doit pas \xEAtre utilis\xE9."
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -2808,40 +2214,12 @@ components:
         freetext:
           type: string
           title: Observations et commentaires
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/freetext
-          description: "Observations m\xE9dicales du professionnel de sant\xE9 qui\
-            \ r\xE9alise l'interrogatoire (texte libre)\nChamp \xE0 utiliser pour\
-            \ aggr\xE9ger l'ensemble des ant\xE9c\xE9dents /traitements/allergies\
-            \ du patient si les cat\xE9gories ne sont pas disctinctes dans le LRM"
-          examples:
-          - None
-        medicalHistory:
-          type: string
-          title: "Ant\xE9c\xE9dents"
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/medicalNote/0/medicalHistory
-          description: "Texte libre  pour d\xE9crire les ant\xE9c\xE9dents du patient"
-          examples:
-          - None
-        treatments:
-          type: string
-          title: Traitements
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/medicalNote/0/treatments
-          description: "Texte libre  pour d\xE9crire les traitements du patient"
-          examples:
-          - None
-        allergies:
-          type: string
-          title: Allergies
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/medicalNote/0/allergies
-          description: "Texte libre pour d\xE9crire les allergies du patient"
+          description: "Champ libre qui permet de compl\xE9ter les informations de\
+            \ nature m\xE9dicales, faites par un ARM, un m\xE9decin ou un autre professionnel\
+            \ de sant\xE9."
           examples:
           - None
       additionalProperties: false
@@ -2850,50 +2228,17 @@ components:
       type: object
       title: "D\xE9tails du dossier "
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required: []
       properties:
-        status:
-          type: string
-          title: Etat du dossier
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/qualification/details/status
-          description: "cf. cycle SI SAMU  : \xE9changer l'\xE9tat du dossier si le\
-            \ cycle de vie du dossier est impl\xE9ment\xE9 de mani\xE8re conforme\
-            \ au cycle de vie du dossier SI-SAMU. \nEchanger \xE0 minima l'information\
-            \ que le dossier est cl\xF4tur\xE9."
-          enum:
-          - "Programm\xE9"
-          - 'Actif '
-          - "Achev\xE9"
-          - "Valid\xE9 "
-          - "Cl\xF4tur\xE9 "
-          - "Class\xE9"
-          - "Archiv\xE9"
-          examples:
-          - None
-        type:
-          type: string
-          title: Type de dossier
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/qualification/details/type
-          description: "D/DR/DRM si cycle SI-SAMU impl\xE9ment\xE9"
-          enum:
-          - D
-          - DR
-          - DRM
-          examples:
-          - DR
         attribution:
           type: string
           title: Attribution du dossier
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/qualification/details/attribution
           description: "D\xE9crit le type de professionnel m\xE9dical \xE0 qui le\
-            \ dossier est attribu\xE9 : M\xE9decin g\xE9n\xE9raliste, m\xE9decin urgentiste\
+            \ dossier est attribu\xE9 : m\xE9decin g\xE9n\xE9raliste, m\xE9decin urgentiste\
             \ etc."
           enum:
           - DRM
@@ -2937,7 +2282,7 @@ components:
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/qualification/details/priority
           description: "D\xE9crit la priorit\xE9 de r\xE9gulation m\xE9dicale du dossier\
@@ -2950,77 +2295,142 @@ components:
           - NR
           examples:
           - P1
+        careLevel:
+          type: string
+          title: Niveau de soins du dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/details/careLevel
+          description: "D\xE9crit le niveau de soins global du dossier identifi\xE9\
+            \ au cours de l'acte de r\xE9gulation m\xE9dicale : s'il y a plusieurs\
+            \ niveaux de soins diff\xE9rents pour chaque patient, on indique ici le\
+            \ niveau le plus grave.\ncf.nomenclature associ\xE9e."
+          enum:
+          - R1
+          - R2
+          - R3
+          - R4
+          examples:
+          - R1
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - status: None
-        type: DR
-        attribution: MU
+      - attribution: MU
         priority: P1
+        careLevel: R1
+    highway:
+      type: object
+      title: Autoroute
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        name:
+          type: string
+          title: Nom
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/detailedAddress/highway/name
+          description: "A valoriser avec le nom de l'autoroute, de la voie ferr\xE9\
+            e ou voie navigable."
+          examples:
+          - A4
+        pk:
+          type: string
+          title: "Point kilom\xE9trique"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/detailedAddress/highway/pk
+          description: "A valoriser avec le point kilom\xE9trique de l'autoroute,\
+            \ de la voie ferr\xE9e ou voie navigable. "
+          examples:
+          - None
+        direction:
+          type: string
+          title: Sens
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/location/detailedAddress/highway/direction
+          description: A valoriser avec le sens de l'autoroute.
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/location/detailedAddress/highway
+      examples:
+      - name: A4
+        pk: None
+        direction: None
     administrativeFile:
       type: object
       title: Dossier administratif
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required: []
       properties:
         externalId:
           type: array
           items:
             $ref: '#/components/schemas/externalId'
-        contact:
-          type: array
-          items:
-            $ref: '#/components/schemas/contact'
-        personalAddress:
-          $ref: '#/components/schemas/personalAddress'
-        generalPractitioner:
-          $ref: '#/components/schemas/generalPractitioner'
       additionalProperties: false
       example: example.json#/patient/0/administrativeFile
+    Identity:
+      type: object
+      title: "Identit\xE9"
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        strictFeatures:
+          $ref: '#/components/schemas/insStrictFeatures'
+        nonStrictFeatures:
+          $ref: '#/components/schemas/detailedName'
+      additionalProperties: false
+      example: example.json#/patient/0/identity
     patientDetail:
       type: object
       title: Informations patient
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required: []
       properties:
         weight:
           type: integer
           title: Poids
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/weight
-          description: Poids en kilogrammes
+          description: A valoriser avec le poids en kilogrammes
           examples:
           - 31
         height:
           type: integer
           title: Taille
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/height
-          description: "Taille en centim\xE8tres"
+          description: "A valoriser avec la taille en centim\xE8tres du patient"
           examples:
           - 109
         age:
           type: string
           title: Age
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/age
-          description: "Age du patient.\nAu format Dur\xE9e de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
-            \ en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois, semaines\
-            \ ou jours)"
+          description: "A valoriser avec l'age du patient.\nAu format \"Dur\xE9e\"\
+            \ de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e)\
+            \ et en n'utilisant qu'une seule unit\xE9 de dur\xE9e (ann\xE9es, mois,\
+            \ semaines ou jours)"
           pattern: P[0-9]{1,3}[YMWD]
           examples:
           - P6Y
         careLevel:
           type: string
-          title: Niveau de soin
-          x-health-only: true
+          title: Niveau de soin du patient
+          x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/detail/careLevel
+          description: "A valoriser avec le niveau de soins sp\xE9cifique au patient"
           enum:
           - R1
           - R2
@@ -3039,7 +2449,7 @@ components:
       type: object
       title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale"
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required: []
       properties:
         mainDiagnosis:
@@ -3054,7 +2464,7 @@ components:
       type: object
       title: Identifiant(s) patient(s)
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required:
       - source
       - value
@@ -3062,7 +2472,7 @@ components:
         source:
           type: string
           title: Source  /  type d'identifiant
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/administrativeFile/externalId/0/source
           description: Type de l'identifiant fourni
@@ -3077,7 +2487,7 @@ components:
         value:
           type: string
           title: Identifiant
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/administrativeFile/externalId/0/value
           description: "L'identifiant en lui-m\xEAme"
@@ -3088,145 +2498,58 @@ components:
       examples:
       - source: "NIR, SINUS, SI-VIC, \u2026"
         value: id1234
-    personalAddress:
+    insStrictFeatures:
       type: object
-      title: Adresse
+      title: "Traits stricts de l'identit\xE9"
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required: []
       properties:
-        detailedAddress:
-          $ref: '#/components/schemas/detailedAddress'
-        city:
-          $ref: '#/components/schemas/city'
-      additionalProperties: false
-      example: example.json#/patient/0/administrativeFile/personalAddress
-      examples:
-      - detailedAddress: {}
-        city: {}
-    generalPractitioner:
-      type: object
-      title: "M\xE9decin traitant "
-      x-display: expansion-panels
-      x-health-only: true
-      required:
-      - detailedName
-      properties:
-        detailedName:
-          $ref: '#/components/schemas/detailedName'
-        id:
+        birthName:
           type: string
-          title: Identifiant RPPS
-          x-health-only: true
+          title: Nom de naissance
+          x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/administrativeFile/generalPractitioner/id
-          description: "Num\xE9ro RPPS du m\xE9decin traitant"
+          example: example.json#/patient/0/identity/strictFeatures/birthName
+          description: "A valoriser avec le nom de naissance du patient. Egalement\
+            \ appel\xE9 nom de famille."
           examples:
-          - 10000668540
-        personalAddress:
-          $ref: '#/components/schemas/personalAddress'
-        contact:
-          type: array
-          items:
-            $ref: '#/components/schemas/contact'
-      additionalProperties: false
-      example: example.json#/patient/0/administrativeFile/generalPractitioner
-    insCycle:
-      type: object
-      title: "Impl\xE9mentation INS"
-      x-display: expansion-panels
-      x-health-only: true
-      required: []
-      properties:
-        status:
+          - Dupont
+        birthDate:
           type: string
-          title: "Statut de l'identit\xE9"
-          x-health-only: true
+          title: Date de naissance
+          x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/identity/cycle/status
-          description: "Le RNIV exige que les logiciels r\xE9f\xE9rentiels d\u2019\
-            identit\xE9s g\xE8rent les 4 statuts fonctionnels suivants :\n- \xAB identit\xE9\
-            \ provisoire \xBB,\n- \xAB identit\xE9 r\xE9cup\xE9r\xE9e \xBB,\n- \xAB\
-            \ identit\xE9 valid\xE9e \xBB,\n- \xAB identit\xE9 qualifi\xE9e \xBB.\n\
-            Ces statuts fonctionnels sont exclusifs les uns des autres. Le r\xE9f\xE9\
-            rentiel INS [EXI 18] pr\xE9cise en outre que le matricule INS et l\u2019\
-            OID doivent \xEAtre accompagn\xE9s d\u2019informations confirmant qu\u2019\
-            ils ont \xE9t\xE9 qualifi\xE9s."
-          enum:
-          - Provisoire
-          - "Valid\xE9e"
-          - "R\xE9cup\xE9r\xE9e"
-          - "Qualifi\xE9e"
+          example: example.json#/patient/0/identity/strictFeatures/birthDate
+          description: A valoriser avec la date de naissance du patient
+          pattern: \d{4}-\d{2}-\d{2}
           examples:
           - None
-        attribute:
+        sex:
           type: string
-          title: "Attribut de l'identit\xE9"
-          x-health-only: true
+          title: 'Sexe '
+          x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/identity/cycle/attribute
-          description: "Le RNIV recommande que les logiciels r\xE9f\xE9rentiels d\u2019\
-            identit\xE9s g\xE8rent a minima les 3 attributs suivants :\n- identit\xE9\
-            \ homonyme,\n- identit\xE9 douteuse,\n- identit\xE9 fictive."
+          example: example.json#/patient/0/identity/strictFeatures/sex
+          description: A valoriser avec le sexe du patient
           enum:
-          - Homonyme
-          - Fictive
-          - Douteuse
+          - MASC
+          - FEM
+          - AUTRE
+          - INCONNU
           examples:
-          - None
+          - F
       additionalProperties: false
-      example: example.json#/patient/0/identity/cycle
+      example: example.json#/patient/0/identity/strictFeatures
       examples:
-      - status: None
-        attribute: None
-    insNumber:
-      type: object
-      title: Matricule INS
-      x-display: expansion-panels
-      x-health-only: true
-      required: []
-      properties:
-        value:
-          type: string
-          title: 'Matricule '
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/identity/number/value
-          description: "n\xB0 NIR OU n\xB0 NIA de l'individu. Le matricule INS (et\
-            \ son OID) ne doit jamais \xEAtre propag\xE9 (= \xE9chang\xE9) si l'identit\xE9\
-            \ est \xE0 un statut autre que qualifi\xE9e. Il correspond au num\xE9\
-            ro personnel de s\xE9curit\xE9 sociale. Il peut \xEAtre diff\xE9rent du\
-            \ num\xE9ro de s\xE9curit\xE9 sociale utilis\xE9 pour le remboursement\
-            \ des soins par l\u2019assurance maladie, dans le cas par exemple o\xF9\
-            \ l\u2019usager n\u2019est pas l\u2019assur\xE9 social (ex.: l\u2019enfant\
-            \ qui est rattach\xE9 \xE0 l\u2019un de ses parents).\nLe matricule INS\
-            \ est compos\xE9 des 13 caract\xE8res et de la cl\xE9 de contr\xF4le. "
-          examples:
-          - 2 77 01 01 154 002 29
-        oid:
-          type: string
-          title: OID
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/patient/0/identity/number/oid
-          description: "Identifiant de la structure qui a affect\xE9 l\u2019INS sous\
-            \ la forme d'un OID. Les OID (Object Identifier) sont des identifiants\
-            \ universels, repr\xE9sent\xE9s sous la forme d'une suite d'entiers. Ils\
-            \ sont organis\xE9s sous forme hi\xE9rarchique avec des n\u0153uds. L'OID\
-            \ est toujours associ\xE9 \xE0 un matricule INS, il n'est donc pas propag\xE9\
-            \ si le statut de l'identit\xE9 n'est pas \"qualifi\xE9e\""
-          examples:
-          - 1.2.250.1.213.1.4.8
-      additionalProperties: false
-      example: example.json#/patient/0/identity/number
-      examples:
-      - value: 2 77 01 01 154 002 29
-        oid: 1.2.250.1.213.1.4.8
+      - birthName: Dupont
+        birthDate: None
+        sex: F
     mainDiagnosis:
       type: object
       title: "Hypoth\xE8se de r\xE9gulation m\xE9dicale principale"
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required:
       - code
       - label
@@ -3237,7 +2560,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/mainDiagnosis/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           examples:
           - C07.13.02
         label:
@@ -3248,7 +2571,7 @@ components:
           example: example.json#/patient/0/hypothesis/mainDiagnosis/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
@@ -3261,7 +2584,7 @@ components:
       type: object
       title: "Hypoth\xE8ses de r\xE9gulation m\xE9dicale secondaires"
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required:
       - code
       - label
@@ -3272,7 +2595,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/patient/0/hypothesis/otherDiagnosis/0/code
-          description: "A valoriser avec un code la nomenclature associ\xE9e"
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
           examples:
           - C07.13.02
         label:
@@ -3283,7 +2606,7 @@ components:
           example: example.json#/patient/0/hypothesis/otherDiagnosis/0/label
           description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
             e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - "Rod\xE9o automobile"
@@ -3294,91 +2617,36 @@ components:
         label: "Rod\xE9o automobile"
     operator:
       type: object
-      title: "Professionnel de sant\xE9 qui r\xE9alise l'interrogatoire"
+      title: "Professionnel de sant\xE9 qui r\xE9alise l'observation"
       x-display: expansion-panels
-      x-health-only: true
+      x-health-only: false
       required:
       - role
       properties:
         detailedName:
           $ref: '#/components/schemas/detailedName'
-        id:
-          type: string
-          title: ID
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/medicalNote/0/operator/id
-          description: "Identifiant professionnel de l'op\xE9rateur si existant"
-          examples:
-          - None
         role:
           type: string
           title: "R\xF4le"
-          x-health-only: true
+          x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/operator/role
-          description: "R\xF4le de l'op\xE9rateur au sein de l'entit\xE9 \xE9mettrice\
-            \ du message"
+          description: "A valoriser avec le r\xF4le de l'op\xE9rateur au sein de l'entit\xE9\
+            \ \xE9mettrice du message : "
+          enum:
+          - AMBULANCIER
+          - ARM
+          - INFIRMIER
+          - MEDECIN
+          - INCONNU
+          - AUTRE
           examples:
-          - "ARM, Medecin r\xE9gulateur\u2026"
+          - ARM
       additionalProperties: false
       example: example.json#/medicalNote/0/operator
       examples:
       - detailedName: {}
-        id: None
-        role: "ARM, Medecin r\xE9gulateur\u2026"
-    engagementDetails:
-      type: object
-      title: "D\xE9cision d'engagement"
-      x-display: expansion-panels
-      x-health-only: true
-      required:
-      - categoryType
-      - teamCareInitial
-      properties:
-        categoryType:
-          type: string
-          title: Type de moyen
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/categoryType
-          description: "d\xE9taille le moyen \xE0 engager"
-          examples:
-          - SMUR, Pompiers
-        resourceType:
-          type: string
-          title: Type de vecteur
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/resourceType
-          description: "d\xE9taille le type de vecteur \xE0 engager"
-          examples:
-          - AR, VLM, VSAV
-        resourceId:
-          type: string
-          title: 'ID vecteur '
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/resourceId
-          examples:
-          - None
-        teamCareInitial:
-          type: string
-          title: Niveau de prise en charge
-          x-health-only: true
-          x-cols: 6
-          example: example.json#/decision/0/engagementDetails/teamCareInitial
-          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
-            dicale, standard, incomplete, ...)"
-          examples:
-          - "M\xE9dical, param\xE9dical, secouriste"
-      additionalProperties: false
-      example: example.json#/decision/0/engagementDetails
-      examples:
-      - categoryType: SMUR, Pompiers
-        resourceType: AR, VLM, VSAV
-        resourceId: None
-        teamCareInitial: "M\xE9dical, param\xE9dical, secouriste"
+        role: ARM
     emsi:
       $id: classpath:/json-schema/schema#
       x-id: EMSI.schema.json#
@@ -3552,212 +2820,110 @@ components:
       example: example.json#/CONTEXT
     event:
       type: object
-      title: Evenement
+      title: "Ev\xE8nement"
       x-display: expansion-panels
       x-health-only: false
       required:
-      - ID
+      - samuId
+      - fileId
+      - creationDate
+      - decisionDate
+      - ressourceFinessLegal
+      - ressourceFinessGeo
+      - ressourceStructure
       properties:
-        ID:
+        samuId:
           type: string
-          title: Identifiant local de l'affaire
+          title: Identifiant du SAMU qui engage le SMUR
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/ID
-          description: A renseigner avec l'identifiant local de l'affaire dans le
-            LRM ou NexSIS
+          example: example.json#/event/samuId
+          description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
+            \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
+          pattern: ^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$
           examples:
-          - DRFR15DDXAAJJJ0000
-        NAME:
+          - fr.health.samu440
+        fileId:
           type: string
-          title: "Nom donn\xE9 \xE0 l'\xE9v\xE9nement"
+          title: "Identifiant du dossier de r\xE9gulation m\xE9dicale (DRM)"
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/NAME
-          description: "Optionnel\nDans nexSIS; [libelle NF 1 m\xE9tier] & \" - \"\
-            \ & [libelle TL 1 m\xE9tier] & \" - \" & [libell\xE9 commune]"
+          example: example.json#/event/fileId
+          description: "Num\xE9ro du dossier SAMU \xE0 l\u2019origine de la mission\
+            \ SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = d\xE9signation\
+            \ d'un dossier sous forme abr\xE9g\xE9e,\n- FR : d\xE9signe le pays (FR\
+            \ = France),\n- 15 : d\xE9signe le fait que le dossier a \xE9t\xE9 pris\
+            \ en charge par un SAMU / SAS,\n- DD : d\xE9signe le d\xE9partement o\xF9\
+            \ est situ\xE9 le SAMU / SAS qui a trait\xE9 le dossier,\n- X : lettre\
+            \ d\xE9signant le SAMU / SAS en cas de pluralit\xE9 de SAMU / SAS sur\
+            \ le m\xEAme d\xE9partement ou le troisi\xE8me chiffre des DOM,\n- AA\
+            \ : ann\xE9e durant laquelle l\u2019appel a \xE9t\xE9 cr\xE9\xE9,\n- JJJ\
+            \ : d\xE9signe le jour de l'ann\xE9e (de 1j \xE0 365j),\\par\n- 00000\
+            \ : num\xE9ro d\u2019ordre chronologique du dossier dans la journ\xE9\
+            e de r\xE9f\xE9rence ci-dessus."
           examples:
-          - Grand Incendie Nantes
-        MAIN_EVENT_ID:
+          - DRFR15DDXAAJJJ00000
+        creationDate:
           type: string
-          title: "Identifiant de l'affaire partag\xE9"
+          title: "Date et heure de cr\xE9ation du dossier de r\xE9gulation"
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/MAIN_EVENT_ID
-          description: "A renseigner avec l'identifiant de l'organisation (champ organization\
-            \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
-            \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}\n\nNB : Si\
-            \ l'initiateur du partage de dossier est le m\xEAme que l'initiateur du\
-            \ message EMSI, l'EVENT.ID = EVENT.MAIN_EVENT_ID"
-          examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
-        ETYPE:
-          $ref: '#/components/schemas/etype'
-        SOURCE:
-          type: string
-          title: Source
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/EVENT/SOURCE
-          description: Optionnel
-          enum:
-          - COMFOR
-          - HUMDED
-          - HUMOBS
-          - SENSOR
-          examples:
-          - HUMOBS
-        SCALE:
-          type: string
-          title: "Echelle de s\xE9v\xE9rit\xE9 de l'environnement"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/EVENT/SCALE
-          description: "Optionnel, Niveau de criticit\xE9 de l'op\xE9ration"
-          enum:
-          - '1'
-          - '2'
-          - '3'
-          - '4'
-          - '5'
-          examples:
-          - 2
-        CERTAINTY:
-          type: integer
-          title: "Fiabilit\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/EVENT/CERTAINTY
-          description: "Prend une valeur enti\xE8re entre 0 et 100, et d\xE9crit \xE0\
-            \ quel point l'alerte associ\xE9e \xE0 l'\xE9v\xE9nement est fiable\n\
-            Optionnel"
-          examples:
-          - 100
-        DECL_DATIME:
-          type: string
-          title: "Date de d\xE9claration de l'event"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/EVENT/DECL_DATIME
-          description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
-            \ avec la date/heure de cr\xE9ation de l'affaire ou de l'op\xE9ration.\n\
-            NexSIS transmettra la date/heure de cr\xE9ation de l'op\xE9ration dans\
-            \ ses syst\xE8mes (qui peut diverger de la date/heure de cr\xE9ation de\
-            \ l'affaire)"
+          example: example.json#/event/creationDate
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - '2022-09-27T08:24:50+02:00'
-        OCC_DATIME:
+          - '2022-09-27T08:23:34+02:00'
+        decisionDate:
           type: string
-          title: "D\xE9crit la date et le lieu de l'\xE9v\xE9nement"
+          title: "Date et heure de la d\xE9cision d\u2019engagement du SMUR"
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/OCC_DATIME
-          description: "Dans le cadre d'une demande de concours, ce champ est valoris\xE9\
-            \ avec la date de la premi\xE8re alerte ou la date \xE9valu\xE9e de d\xE9\
-            but de la situation d'urgence.\nPar exemple :\nSi un incendie est d\xE9\
-            clar\xE9 est 9h02, il a pu d\xE9marr\xE9 \xE0 8h55 par exemple.\nNB :\
-            \ temporairement, NexSIS renseignera ce champ avec la date de r\xE9ception\
-            \ de l'alerte initiale"
+          example: example.json#/event/decisionDate
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - '2022-09-27T08:20:50+02:00'
-        OBS_DATIME:
+          - '2022-09-27T08:23:34+02:00'
+        ressourceFinessLegal:
           type: string
-          title: "Date \xE0 laquelle l'observation la plus r\xE9cente a \xE9t\xE9\
-            \ r\xE9alis\xE9e"
+          title: 'FINESS juridique '
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/OBS_DATIME
-          description: "Ce champ est id\xE9alement \xE0 valoriser avec la date/heure\
-            \ \xE0 laquelle l'observation de la situation d'urgence de l'affaire la\
-            \ plus r\xE9cente a \xE9t\xE9 r\xE9alis\xE9e.\nNexSIS transmettra la date/heure\
-            \ d'envoi de la demande de concours dans son syst\xE8me.\nNB : temporairement,\
-            \ NexSIS renseignera ce champ avec la date de r\xE9ception de l'alerte\
-            \ initiale"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
+          example: example.json#/event/ressourceFinessLegal
+          description: "FINESS juridique \xE9tablissement rattachement SMUR"
           examples:
-          - '2022-09-27T08:26:00+02:00'
-        STATUS:
+          - None
+        ressourceFinessGeo:
           type: string
-          title: Status
+          title: "FINESS g\xE9ographique "
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/STATUS
-          description: "Permet de d\xE9crire le status de l'affaire en cours.\nCe\
-            \ champ suit une nomenclature EMSI. (COM = event complete, IPR = event\
-            \ in progress, NST = event not started, STOP = STOP = event under control,\
-            \ no need for additional resource)\nDans le cadre d'une op\xE9ration :\n\
-            - si l'op\xE9ration est encore en cours : rensigner 'IPR',\n- si le dispatching\
-            \ de moyens est encore en cours ou que seulement des qualifications d'alertes\
-            \ ont \xE9t\xE9 \xE9chang\xE9es sans aucune d\xE9cision de r\xE9gulation\
-            \ 'NST',\n- si l'op\xE9ration est en pause/veille : 'STOP'\n- si le message\
-            \ d'\xE9change op\xE9rationnel d\xE9crit une fin d'op\xE9ration, \xE0\
-            \ renseigner avec 'COM'\nUn message EMSI-EO sans RESSOURCE ni "
-          enum:
-          - COM
-          - IPR
-          - NST
-          - STOP
+          example: example.json#/event/ressourceFinessGeo
+          description: "FINESS g\xE9ographique \xE9tablissement rattachement SMUR\
+            \ ou antenne SMUR"
           examples:
-          - IPR
-        RISK_ASSESMENT:
+          - None
+        ressourceStructure:
           type: string
-          title: "Pr\xE9diction sur le risque d'\xE9volution de l'event"
+          title: Type de structure SMUR
           x-health-only: false
           x-cols: 6
-          example: example.json#/EVENT/RISK_ASSESMENT
-          description: Optionnel
-          enum:
-          - NCREA
-          - DECREA
-          - STABLE
+          example: example.json#/event/ressourceStructure
+          description: "9 = Antenne SMUR, 0 = SMUR g\xE9n\xE9ral, 1 = SMUR p\xE9diatrique,\
+            \ 2 = SMUR neonatal "
           examples:
-          - STABLE
-        REFERENCE:
-          type: array
-          items:
-            $ref: '#/components/schemas/reference'
-        CASUALTIES:
-          type: array
-          items:
-            $ref: '#/components/schemas/casualties'
-        EVAC:
-          type: array
-          items:
-            $ref: '#/components/schemas/evac'
-        EGEO:
-          type: array
-          items:
-            $ref: '#/components/schemas/egeo'
-        CAUSE:
-          type: string
-          title: Cause
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/EVENT/CAUSE
-          description: Optionnel
-          enum:
-          - ACC
-          - DEL
-          - NAT
-          examples:
-          - ACC
-        FREETEXT:
-          type: string
-          title: Texte libre
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/EVENT/FREETEXT
-          description: Optionnel
-          examples:
-          - "Maison sur le c\xF4t\xE9 droit de la route"
+          - None
       additionalProperties: false
-      example: example.json#/EVENT
+      example: example.json#/event
+      examples:
+      - samuId: fr.health.samu440
+        fileId: DRFR15DDXAAJJJ00000
+        creationDate: '2022-09-27T08:23:34+02:00'
+        decisionDate: '2022-09-27T08:23:34+02:00'
+        ressourceFinessLegal: None
+        ressourceFinessGeo: None
+        ressourceStructure: None
     mission:
       type: object
       title: Missions
@@ -4173,109 +3339,231 @@ components:
       example: example.json#/MISSION/0
     resource:
       type: object
-      title: Ressource
+      title: "Ressource engag\xE9e"
       x-display: expansion-panels
       x-health-only: false
       required:
-      - id
-      - orgId
-      - type
+      - dateTime
+      - resourceID
+      - resourceType
       properties:
-        id:
+        dateTime:
           type: string
-          title: Identifiant de la ressource
+          title: "Date/heure de d\xE9clenchement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/id
-          description: "Identifiant unique de la ressource  dans le syst\xE8me du\
-            \ partenaire propri\xE9taire"
+          example: example.json#/mobilizedResource/0/dateTime
+          description: date et heure d'engagement de la ressource
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
           examples:
-          - 76_45101#SMUR1
-        orgId:
+          - None
+        resourceID:
           type: string
-          title: "Identifiant de l'organisation propri\xE9taire"
+          title: "ID Ressource partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/orgId
-          description: "Identifiant unique de l'organisme :  {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*\n*donn\xE9es facultatives"
+          example: example.json#/mobilizedResource/0/resourceID
+          description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
+            \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
+            e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
+            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{ID\
+            \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}"
           examples:
-          - fr.health.samu76A
-        name:
+          - 'fr.health.samu770.resource.VLM250
+
+            fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
+        RSDRId:
           type: string
-          title: Nom de la ressource
+          title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/name
-          description: "Nom donn\xE9 \xE0 la ressource par l'organisme propri\xE9\
-            taire. \nL'immatriculation peut \xEAtre utilis\xE9e dans le nom courant\
-            \ des v\xE9hicules."
+          example: example.json#/mobilizedResource/0/RSDRId
+          description: "Identifiant unique partag\xE9 de la demande de ressource (si\
+            \ la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une demande de ressource),\
+            \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
+            \ le syst\xE8me \xE9metteur}"
           examples:
-          - SMUR 1 Rouen
-        type:
+          - fr.health.samu770.request.1249875
+        missionID:
+          type: string
+          title: ID Mission local
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/missionID
+          description: "Num\xE9ro de mission unique du central d\u2019appel (PSAP,\
+            \ \u2026) qui a d\xE9clench\xE9 le vecteur"
+          examples:
+          - DRFR15DDXAAJJJ0000.M001
+        orgID:
+          type: string
+          title: "ID Organisation propri\xE9taire"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/orgID
+          description: "Organisation \xE0 laquelle appartient la ressource"
+          examples:
+          - fr.health.samu440
+        centerName:
+          type: string
+          title: "ID Centre d\u2019affectation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/centerName
+          description: Lieu de garage principal
+          examples:
+          - CHU Nantes
+        resourceType:
           type: string
           title: Type de ressource
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/type
-          description: "Cat\xE9gorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE,\
-            \ navire)"
+          example: example.json#/mobilizedResource/0/resourceType
+          description: "Type de ressource mobilis\xE9e : Smur, Hospitaliers (hors\
+            \ Smur), Professionnels Lib\xE9raux, Ambulanciers priv\xE9s (Transporteurs\
+            \ Sanitaires Urgent), etc."
           enum:
           - SMUR
-          - SDIS
-          - TSU
-          - SNP
-          - MSPE
-          - SHIP
+          - HOSPIT
+          - LIB
+          - 'TSU '
+          - SIS
+          - AASC
+          - FDO
+          - ADM
+          - DAE
+          - AUTRE
           examples:
           - SMUR
-        nature:
+        vehiculeType:
           type: string
-          title: Nature de la ressource
+          title: Type de vecteur
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/nature
-          description: Nature de la ressource (effecteur, base)
+          example: example.json#/mobilizedResource/0/vehiculeType
+          description: "Type de vecteur mobilis\xE9 : V\xE9hicule L\xE9ger M\xE9dicalis\xE9\
+            , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
+            \ Ambulance de r\xE9animation P\xE9diatrique, etc."
           enum:
-          - EFFECTEUR
-          - BASE
+          - VPSP
+          - VLSC
+          - AUTRESC
+          - TAXI
+          - TRANSP
+          - AUTRE
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - INCONNU
+          - CONSEIL
+          - DAE
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - MEDC
+          - MEDV
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
+          - DRAGON
+          - AVSC
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - MOYSSE
+          - AUTRESIS
+          - VLM
+          - AR
+          - AR-BAR
+          - AR-PED
+          - VL
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          - VSL
+          - NAVISIS
           examples:
-          - BASE
-        mobility:
+          - VLM
+        plate:
           type: string
-          title: "Mobilit\xE9 de la ressource"
+          title: Immatriculation
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/mobility
-          description: "Mobilit\xE9 de la ressource (fixe, vehicule, heliport\xE9\
-            , navire)"
-          enum:
-          - FIXE
-          - VEHICULE
-          - HELICOPTERE
-          - 'SHIP '
+          example: example.json#/mobilizedResource/0/plate
+          description: "N\xB0 d'immatriculation du vecteur"
           examples:
-          - VEHICULE
-        capacity:
+          - None
+        name:
           type: string
-          title: "Capacit\xE9s de la ressource"
+          title: Nom
           x-health-only: false
           x-cols: 6
-          example: example.json#/resource/0/capacity
-          description: "Capacit\xE9 de transport d'un patient"
-          enum:
-          - URGENCE
-          - MEDICALE
-          - PARAMEDICALE
-          - INCONNUE
+          example: example.json#/mobilizedResource/0/name
+          description: "Nom donn\xE9 \xE0 la ressource par l\u2019organisation d\u2019\
+            appartenance"
           examples:
-          - MEDICALE
-        contacts:
+          - SMUR 123
+        centerCity:
+          type: string
+          title: "Commune du centre d\u2019affectation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/centerCity
+          description: Code INSEE de la commune du centre d'affectation
+          pattern: '[0-9]{5}'
+          examples:
+          - 44109
+        team:
+          $ref: '#/components/schemas/team'
+        state:
           type: array
           items:
-            $ref: '#/components/schemas/contact'
+            $ref: '#/components/schemas/state'
+        coord:
+          $ref: '#/components/schemas/coord'
+        contact:
+          $ref: '#/components/schemas/contact'
+        freetext:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Commentaires
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/mobilizedResource/0/freetext/0
+            description: "Texte libre permettant de passer toute autre information\
+              \ sur la ressource (\xE9quipements suppl\xE9mentaires / particuliers,\
+              \ particularit\xE9s du vecteur)"
+            examples:
+            - None
       additionalProperties: false
-      example: example.json#/resource/0
+      example: example.json#/mobilizedResource/0
     link:
       type: object
       title: Lien
@@ -4293,7 +3581,7 @@ components:
           description: "A renseigner avec l'identifiant de l'organisation (champ organization\
             \ du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire\
             \ requ\xE9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*-{num\xE9ro de dossier}"
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
         LINK_ROLE:
@@ -5918,12 +5206,12 @@ components:
             $ref: '#/components/schemas/position'
       additionalProperties: false
       example: example.json#/RESOURCE/0/RGEO/0
-    geoPositionUpdate:
+    geoPositionsUpdate:
       $id: classpath:/json-schema/schema#
       x-id: GEO-POS.schema.json#
       example: example.json#
       type: object
-      title: geoPositionUpdate
+      title: geoPositionsUpdate
       required: []
       properties:
         position:
@@ -5931,12 +5219,12 @@ components:
           items:
             $ref: '#/components/schemas/position'
       additionalProperties: false
-    geoResourceRequest:
+    geoResourcesRequest:
       $id: classpath:/json-schema/schema#
       x-id: GEO-REQ.schema.json#
       example: example.json#
       type: object
-      title: geoResourceRequest
+      title: geoResourcesRequest
       required:
       - resourceId
       properties:
@@ -5955,12 +5243,12 @@ components:
             - 76_45101#SMUR1
           minItems: 1
       additionalProperties: false
-    geoResourceDetails:
+    geoResourcesDetails:
       $id: classpath:/json-schema/schema#
       x-id: GEO-RES.schema.json#
       example: example.json#
       type: object
-      title: geoResourceDetails
+      title: geoResourcesDetails
       required: []
       properties:
         resource:
@@ -6066,6 +5354,951 @@ components:
       additionalProperties: false
       examples:
       - info: None
+    resourcesInfo:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-RI.schema.json#
+      example: example.json#
+      type: object
+      title: resourcesInfo
+      required:
+      - caseId
+      - mobilizedResource
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
+            \ = aux champs {organization}.{senderCaseId}\nIl doit pouvoir \xEAtre\
+            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
+            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
+            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          examples:
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
+        mobilizedResource:
+          type: array
+          items:
+            $ref: '#/components/schemas/resource'
+          minItems: 1
+      additionalProperties: false
+    team:
+      type: object
+      title: "Composition de l'\xE9quipage"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - doctor
+      - nurse
+      - driver
+      properties:
+        doctor:
+          type: boolean
+          title: "M\xE9decin"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/team/doctor
+          description: "Permet d'identifier si un m\xE9decin compose l'\xE9quipe.\n\
+            Cette donn\xE9e peut \xEAtre automatiquement d\xE9duite, d\xE8s que le\
+            \ nom et pr\xE9nom du m\xE9decin est saisi sur la tablette. "
+          examples:
+          - OUI
+        nurse:
+          type: boolean
+          title: Infirmier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/team/nurse
+          description: "Permet d'identifier si un infirmier compose l'\xE9quipe.\n\
+            Cette donn\xE9e peut \xEAtre automatiquement d\xE9duite, d\xE8s que le\
+            \ nom et pr\xE9nom de l'infirmier est saisi sur la tablette. "
+          examples:
+          - NON
+        driver:
+          type: boolean
+          title: Ambulancier/Pilote
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/team/driver
+          description: "Permet d'identifier si un ambulancier compose l'\xE9quipe.\n\
+            Cette donn\xE9e peut \xEAtre automatiquement d\xE9duite, d\xE8s que le\
+            \ nom et pr\xE9nom de l'ambulancier est saisi sur la tablette. "
+          examples:
+          - OUI
+      additionalProperties: false
+      example: example.json#/intervention/team
+      examples:
+      - doctor: OUI
+        nurse: NON
+        driver: OUI
+    state:
+      type: object
+      title: Etats vecteur
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        dateTime:
+          type: string
+          title: Date/heure de changement de statut
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/state/0/dateTime
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        status:
+          type: string
+          title: Statuts du vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/state/0/status
+          description: Dernier statut du vecteur
+          examples:
+          - None
+        availability:
+          type: string
+          title: "Disponibilit\xE9 du vecteur"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/mobilizedResource/0/state/0/availability
+          description: Indique si le vecteur est disponible / indisponible
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/mobilizedResource/0/state/0
+      examples:
+      - dateTime: None
+        status: None
+        availability: None
+    resourcesRequest:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-DR.schema.json#
+      example: example.json#
+      type: object
+      title: resourcesRequest
+      required:
+      - caseId
+      - RSDRId
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
+            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
+            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
+            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
+            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          examples:
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
+        RSDRId:
+          type: string
+          title: "ID Demande partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/RSDRId
+          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
+            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          examples:
+          - fr.health.samu770.request.1249875
+        request:
+          $ref: '#/components/schemas/request'
+      additionalProperties: false
+    request:
+      type: object
+      title: Demande de ressource
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - dateTime
+      - purpose
+      properties:
+        dateTime:
+          type: string
+          title: "Date Heure de cr\xE9ation de la demande"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/dateTime
+          description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        convention:
+          type: string
+          title: Cadre conventionnel
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/convention
+          description: "Nomenclature \xE0 venir : d\xE9crit le cadre conventionnel\
+            \ de la demande."
+          examples:
+          - None
+        deadline:
+          type: string
+          title: "D\xE9lai souhait\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/deadline
+          description: "D\xE9lai d'intervention souhait\xE9"
+          examples:
+          - None
+        purpose:
+          type: string
+          title: "Effet \xE0 obtenir"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/purpose
+          description: "Motif de la demande de ressource aupr\xE8s du partenaire"
+          enum:
+          - E01
+          - E02
+          - E03
+          - E04
+          - E05
+          - E06
+          - E07
+          - E08
+          - E09
+          - E10
+          - E11
+          - E12
+          - E13
+          - E14
+          - E15
+          - E16
+          - E17
+          - E18
+          - E19
+          - E20
+          - E21
+          - E22
+          examples:
+          - None
+        freetext:
+          type: string
+          title: "Pr\xE9cisions sur la demande"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/freetext
+          description: "Texte libre permettant de d\xE9tailler la demande"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/request
+      examples:
+      - dateTime: None
+        convention: None
+        deadline: None
+        purpose: None
+        freetext: None
+    resourcesResponse:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-RR.schema.json#
+      example: example.json#
+      type: object
+      title: resourcesResponse
+      required:
+      - caseId
+      - RSDRId
+      - requestResponse
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
+            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
+            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
+            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
+            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
+            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
+            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          examples:
+          - fr.health.samu440.DRFR15DDXAAJJJ0000
+        RSDRId:
+          type: string
+          title: "ID Demande partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/RSDRId
+          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
+            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          examples:
+          - fr.health.samu770.request.1249875
+        requestResponse:
+          $ref: '#/components/schemas/response'
+      additionalProperties: false
+    response:
+      type: object
+      title: "R\xE9ponse \xE0 la demande de ressources"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - dateTime
+      - answer
+      properties:
+        dateTime:
+          type: string
+          title: "Date Heure de r\xE9ponse"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/requestResponse/dateTime
+          description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        answer:
+          type: string
+          title: "R\xE9ponse"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/requestResponse/answer
+          description: "oui / non / oui partiel / diff\xE9r\xE9"
+          enum:
+          - ACCEPTEE
+          - REFUSEE
+          - PARTIELLE
+          - DIFFEREE
+          examples:
+          - None
+        deadline:
+          type: string
+          title: "D\xE9lai de r\xE9ponse"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/requestResponse/deadline
+          description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
+            diteur"
+          examples:
+          - None
+        freetext:
+          type: string
+          title: "Pr\xE9cisions sur la r\xE9ponse"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/requestResponse/freetext
+          description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
+            \ \xE0 la r\xE9ponse"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/requestResponse
+      examples:
+      - dateTime: None
+        answer: None
+        deadline: None
+        freetext: None
+    rpis:
+      $id: classpath:/json-schema/schema#
+      x-id: RPIS.schema.json#
+      example: example.json#
+      type: object
+      title: rpis
+      required:
+      - event
+      - regulation
+      - patient
+      - intervention
+      - orientation
+      properties:
+        event:
+          $ref: '#/components/schemas/event'
+        regulation:
+          $ref: '#/components/schemas/regulation'
+        patient:
+          $ref: '#/components/schemas/patient'
+        intervention:
+          $ref: '#/components/schemas/intervention'
+        orientation:
+          $ref: '#/components/schemas/orientation'
+      additionalProperties: false
+    regulation:
+      type: object
+      title: "R\xE9gulation m\xE9dicale"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - whatsHappen
+      - healthMotive
+      - initialTeamCare
+      properties:
+        whatsHappen:
+          $ref: '#/components/schemas/whatsHappen'
+        healthMotive:
+          $ref: '#/components/schemas/healthMotive'
+        initialTeamCare:
+          type: string
+          title: "Niveau de m\xE9dicalisation initial"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/regulation/initialTeamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
+            A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de\
+            \ d\xE9duire avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\"\
+            , si un UMHP est devenu un SMUR. "
+          examples:
+          - PARAMED
+      additionalProperties: false
+      example: example.json#/regulation
+    intervention:
+      type: object
+      title: Intervention
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - location
+      - team
+      - mainDiagnosis
+      properties:
+        location:
+          $ref: '#/components/schemas/location'
+        team:
+          $ref: '#/components/schemas/team'
+        actions:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: "Actes r\xE9alis\xE9s par le SMUR"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/intervention/actions/0
+            description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
+              \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
+              s avant son intervention. \nA valoriser avec un code de la nomenclature\
+              \ ACTES_SMUR."
+            examples:
+            - ABV
+        mainDiagnosis:
+          type: string
+          title: Diagnostic principal SMUR
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/mainDiagnosis
+          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
+            \ Diagnostic SMUR."
+          examples:
+          - R579
+        associatedDiagnosis:
+          type: string
+          title: "Diagnostic associ\xE9  SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/associatedDiagnosis
+          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
+            \ Diagnostic SMUR."
+          examples:
+          - R578
+        smurStatus:
+          $ref: '#/components/schemas/resourceStatus'
+      additionalProperties: false
+      example: example.json#/intervention
+    orientation:
+      type: object
+      title: "D\xE9cision d'orientation"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          title: Type de devenir du patient
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/type
+          description: "Indique si le patient est transport\xE9 ou non (Sans transport\
+            \ associ\xE9 / avec transport associ\xE9). \nA valoriser par un code de\
+            \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
+            \ est sans transport associ\xE9, les objets Destination et Transport sont\
+            \ facultatifs. "
+          examples:
+          - TEMP
+        destination:
+          $ref: '#/components/schemas/destination'
+        decision:
+          $ref: '#/components/schemas/decision'
+      additionalProperties: false
+      example: example.json#/orientation
+    residentialAddress:
+      type: object
+      title: "Adresse de r\xE9sidence"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - cityCode
+      - city
+      properties:
+        cityCode:
+          type: string
+          title: "Code INSEE de la commune de r\xE9sidence"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/residentialAddress/cityCode
+          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
+            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
+            \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
+            \ de r\xE9sidence, si \xE9tranger. "
+          pattern: '[0-9]{5}'
+          examples:
+          - 92300
+        city:
+          type: string
+          title: Nom de la commune
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/residentialAddress/city
+          description: Nom officiel de la commune actuelle
+          examples:
+          - Levallois-Perret
+      additionalProperties: false
+      example: example.json#/patient/residentialAddress
+      examples:
+      - cityCode: 92300
+        city: Levallois-Perret
+    resourceStatus:
+      type: object
+      title: Statuts des horaires du SMUR
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - departSmur
+      - teamAvailable
+      - returnSmur
+      properties:
+        departSmur:
+          type: string
+          title: "Date et heure du d\xE9part de la base SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/departSmur
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        arrivedSmur:
+          type: string
+          title: "Date et heure de l\u2019arriv\xE9e sur les lieux de l\u2019intervention"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/arrivedSmur
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        departLocation:
+          type: string
+          title: "Date et heure du d\xE9part des lieux de l\u2019intervention"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/departLocation
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        arrivedDestination:
+          type: string
+          title: "Date et heure d\u2019arriv\xE9e \xE0 destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/arrivedDestination
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        teamAvailable:
+          type: string
+          title: "Date et heure de disponibilit\xE9 de l\u2019\xE9quipe"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/teamAvailable
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        returnSmur:
+          type: string
+          title: "Date et heure de retour \xE0 la base SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/returnSmur
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+      additionalProperties: false
+      example: example.json#/intervention/smurStatus
+      examples:
+      - departSmur: '2022-09-27T08:23:34+02:00'
+        arrivedSmur: '2022-09-27T08:23:34+02:00'
+        departLocation: '2022-09-27T08:23:34+02:00'
+        arrivedDestination: '2022-09-27T08:23:34+02:00'
+        teamAvailable: '2022-09-27T08:23:34+02:00'
+        returnSmur: '2022-09-27T08:23:34+02:00'
+    destination:
+      type: object
+      title: Destination
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - destinationCountry
+      - destinationCategory
+      - healthcareType
+      - finess
+      properties:
+        destinationCountry:
+          type: string
+          title: Pays de destination
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCountry
+          description: "A valoriser par le libell\xE9 court de la nomenclature SIGLPAYS"
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - FR
+        destinationCategory:
+          type: string
+          title: "Cat\xE9gorie de l'\xE9tablissement de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCategory
+          description: "A valoriser par le code de la nomenclature associ\xE9e"
+          examples:
+          - None
+        healthcareType:
+          type: string
+          title: "Type d'activit\xE9 de soins de l'unit\xE9 fonctionnelle de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/healthcareType
+          description: A valoriser par le code de la nomenclature ActiviteOperationnelle
+          examples:
+          - None
+        finess:
+          type: string
+          title: "FINESS g\xE9ographique"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/finess
+          description: "FINESS g\xE9ographique de l\u2019\xE9tablissement de destination\
+            \ (9 chiffres)"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/orientation/destination
+      examples:
+      - destinationCountry: FR
+        destinationCategory: None
+        healthcareType: None
+        finess: None
+    decision:
+      type: object
+      title: Transport
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - resourceCategory
+      - resourceType
+      - teamCare
+      properties:
+        resourceCategory:
+          type: string
+          title: Moyen de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceCategory
+          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
+            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
+            \ SI SAMU-TYPE_MOYEN."
+          examples:
+          - SMUR
+        resourceType:
+          type: string
+          title: Type de vecteur de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceType
+          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
+            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
+            \ la nomenclature CISU-TYPE_VECTEUR."
+          examples:
+          - AR, VLM, VSAV
+        teamCare:
+          type: string
+          title: "Niveau de m\xE9dicalisation du transport"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/teamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
+          examples:
+          - PARAMED
+      additionalProperties: false
+      example: example.json#/orientation/decision
+      examples:
+      - resourceCategory: SMUR
+        resourceType: AR, VLM, VSAV
+        teamCare: PARAMED
     customContent:
       $id: classpath:/json-schema/schema#
       x-id: customContent.schema.json#

@@ -66,10 +66,11 @@ public class DetailedName {
   }
 
   /**
-   * Prénom et nom usuel du requérant. Si les champs callerLastName et
-   *callerFirstName sont renseignés, le champ callerName doit être valorisé
-   *ainsi : \&quot;{callerFirstName} {callerLastName}\&quot;. Note : NexSIS ne
-   *dispose que de ces informations (concaténées) et pas de deux champs séparés.
+   * A valoriser avec le prénom et le nom usuel du requérant/appelant. Si les
+   *champs callerLastName et callerFirstName sont également renseignés, le champ
+   *callerName doit être valorisé ainsi : \&quot;{callerFirstName}
+   *{callerLastName}\&quot;.  Spécificités 15-18  : NexSIS ne dispose que de ces
+   *informations (concaténées) et pas de deux champs séparés.
    * @return complete
    **/
   @JsonProperty(JSON_PROPERTY_COMPLETE)
@@ -92,7 +93,7 @@ public class DetailedName {
   }
 
   /**
-   * Nom du requérant
+   * A valoriser avec le nom usuel du requérant
    * @return lastName
    **/
   @JsonProperty(JSON_PROPERTY_LAST_NAME)
@@ -115,8 +116,9 @@ public class DetailedName {
   }
 
   /**
-   * Prénom du réquérant. Par convention les prénoms composés doivent
-   *préférablement être séparés par le caractère \&quot;-\&quot;
+   * A valoriser avec le prénom usuel du réquérant. Par convention les prénoms
+   *composés doivent préférablement être séparés par le caractère
+   *\&quot;-\&quot;
    * @return firstName
    **/
   @JsonProperty(JSON_PROPERTY_FIRST_NAME)

@@ -50,22 +50,14 @@ import java.util.Objects;
  * Location
  */
 @JsonPropertyOrder(
-    {Location.JSON_PROPERTY_LOC_I_D, Location.JSON_PROPERTY_LOC_LABEL,
-     Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_EXTERNAL_LOCATION_ID,
+    {Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_EXTERNAL_LOCATION_ID,
      Location.JSON_PROPERTY_DETAILED_ADDRESS, Location.JSON_PROPERTY_CITY,
      Location.JSON_PROPERTY_ACCESS, Location.JSON_PROPERTY_GEOMETRY,
-     Location.JSON_PROPERTY_EXTERNAL_INFO, Location.JSON_PROPERTY_COUNTRY,
-     Location.JSON_PROPERTY_FREETEXT})
+     Location.JSON_PROPERTY_EXTERNAL_INFO, Location.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Location {
-  public static final String JSON_PROPERTY_LOC_I_D = "locID";
-  private String locID;
-
-  public static final String JSON_PROPERTY_LOC_LABEL = "locLabel";
-  private String locLabel;
-
   public static final String JSON_PROPERTY_NAME = "name";
   private String name;
 
@@ -88,576 +80,10 @@ public class Location {
   public static final String JSON_PROPERTY_EXTERNAL_INFO = "externalInfo";
   private List<ExternalInfo> externalInfo;
 
-  /**
-   * Gets or Sets country
-   */
-  public enum CountryEnum {
-    AF("AF"),
-
-    AX("AX"),
-
-    AL("AL"),
-
-    DZ("DZ"),
-
-    AS("AS"),
-
-    AD("AD"),
-
-    AO("AO"),
-
-    AI("AI"),
-
-    AQ("AQ"),
-
-    AG("AG"),
-
-    AR("AR"),
-
-    AM("AM"),
-
-    AW("AW"),
-
-    AU("AU"),
-
-    AT("AT"),
-
-    AZ("AZ"),
-
-    BS("BS"),
-
-    BH("BH"),
-
-    BD("BD"),
-
-    BB("BB"),
-
-    BY("BY"),
-
-    BE("BE"),
-
-    BZ("BZ"),
-
-    BJ("BJ"),
-
-    BM("BM"),
-
-    BT("BT"),
-
-    BO("BO"),
-
-    BA("BA"),
-
-    BW("BW"),
-
-    BV("BV"),
-
-    BR("BR"),
-
-    IO("IO"),
-
-    BN("BN"),
-
-    BG("BG"),
-
-    BF("BF"),
-
-    BI("BI"),
-
-    CV("CV"),
-
-    KH("KH"),
-
-    CM("CM"),
-
-    CA("CA"),
-
-    KY("KY"),
-
-    CF("CF"),
-
-    TD("TD"),
-
-    CL("CL"),
-
-    CN("CN"),
-
-    CX("CX"),
-
-    CC("CC"),
-
-    CO("CO"),
-
-    KM("KM"),
-
-    CG("CG"),
-
-    CK("CK"),
-
-    CR("CR"),
-
-    CI("CI"),
-
-    HR("HR"),
-
-    CU("CU"),
-
-    CW("CW"),
-
-    CY("CY"),
-
-    CZ("CZ"),
-
-    DK("DK"),
-
-    DJ("DJ"),
-
-    DM("DM"),
-
-    DO("DO"),
-
-    EC("EC"),
-
-    EG("EG"),
-
-    SV("SV"),
-
-    GQ("GQ"),
-
-    ER("ER"),
-
-    EE("EE"),
-
-    SZ("SZ"),
-
-    ET("ET"),
-
-    FK("FK"),
-
-    FO("FO"),
-
-    FJ("FJ"),
-
-    FI("FI"),
-
-    FR("FR"),
-
-    GF("GF"),
-
-    PF("PF"),
-
-    TF("TF"),
-
-    GA("GA"),
-
-    GM("GM"),
-
-    GE("GE"),
-
-    DE("DE"),
-
-    GH("GH"),
-
-    GI("GI"),
-
-    GR("GR"),
-
-    GL("GL"),
-
-    GD("GD"),
-
-    GP("GP"),
-
-    GU("GU"),
-
-    GT("GT"),
-
-    GG("GG"),
-
-    GN("GN"),
-
-    GW("GW"),
-
-    GY("GY"),
-
-    HT("HT"),
-
-    HM("HM"),
-
-    VA("VA"),
-
-    HN("HN"),
-
-    HK("HK"),
-
-    HU("HU"),
-
-    IS("IS"),
-
-    IN("IN"),
-
-    ID("ID"),
-
-    IR("IR"),
-
-    IQ("IQ"),
-
-    IE("IE"),
-
-    IM("IM"),
-
-    IL("IL"),
-
-    IT("IT"),
-
-    JM("JM"),
-
-    JP("JP"),
-
-    JE("JE"),
-
-    JO("JO"),
-
-    KZ("KZ"),
-
-    KE("KE"),
-
-    KI("KI"),
-
-    KP("KP"),
-
-    KW("KW"),
-
-    KG("KG"),
-
-    LA("LA"),
-
-    LV("LV"),
-
-    LB("LB"),
-
-    LS("LS"),
-
-    LR("LR"),
-
-    LY("LY"),
-
-    LI("LI"),
-
-    LT("LT"),
-
-    LU("LU"),
-
-    MO("MO"),
-
-    MG("MG"),
-
-    MW("MW"),
-
-    MY("MY"),
-
-    MV("MV"),
-
-    ML("ML"),
-
-    MT("MT"),
-
-    MH("MH"),
-
-    MQ("MQ"),
-
-    MR("MR"),
-
-    MU("MU"),
-
-    YT("YT"),
-
-    MX("MX"),
-
-    FM("FM"),
-
-    MC("MC"),
-
-    MN("MN"),
-
-    ME("ME"),
-
-    MS("MS"),
-
-    MA("MA"),
-
-    MZ("MZ"),
-
-    MM("MM"),
-
-    NA("NA"),
-
-    NR("NR"),
-
-    NP("NP"),
-
-    NL("NL"),
-
-    NC("NC"),
-
-    NZ("NZ"),
-
-    NI("NI"),
-
-    NE("NE"),
-
-    NG("NG"),
-
-    NU("NU"),
-
-    NF("NF"),
-
-    MK("MK"),
-
-    MP("MP"),
-
-    NO("NO"),
-
-    OM("OM"),
-
-    PK("PK"),
-
-    PW("PW"),
-
-    PA("PA"),
-
-    PG("PG"),
-
-    PY("PY"),
-
-    PE("PE"),
-
-    PH("PH"),
-
-    PN("PN"),
-
-    PL("PL"),
-
-    PT("PT"),
-
-    PR("PR"),
-
-    QA("QA"),
-
-    RE("RE"),
-
-    RO("RO"),
-
-    RU("RU"),
-
-    RW("RW"),
-
-    BL("BL"),
-
-    KN("KN"),
-
-    LC("LC"),
-
-    MF("MF"),
-
-    PM("PM"),
-
-    VC("VC"),
-
-    WS("WS"),
-
-    SM("SM"),
-
-    ST("ST"),
-
-    SA("SA"),
-
-    SN("SN"),
-
-    RS("RS"),
-
-    SC("SC"),
-
-    SL("SL"),
-
-    SG("SG"),
-
-    SX("SX"),
-
-    SK("SK"),
-
-    SI("SI"),
-
-    SB("SB"),
-
-    SO("SO"),
-
-    ZA("ZA"),
-
-    GS("GS"),
-
-    SS("SS"),
-
-    ES("ES"),
-
-    LK("LK"),
-
-    SD("SD"),
-
-    SR("SR"),
-
-    SJ("SJ"),
-
-    SE("SE"),
-
-    CH("CH"),
-
-    SY("SY"),
-
-    TJ("TJ"),
-
-    TH("TH"),
-
-    TL("TL"),
-
-    TG("TG"),
-
-    TK("TK"),
-
-    TO("TO"),
-
-    TT("TT"),
-
-    TN("TN"),
-
-    TR("TR"),
-
-    TM("TM"),
-
-    TC("TC"),
-
-    TV("TV"),
-
-    UG("UG"),
-
-    UA("UA"),
-
-    AE("AE"),
-
-    GB("GB"),
-
-    US("US"),
-
-    UM("UM"),
-
-    UY("UY"),
-
-    UZ("UZ"),
-
-    VU("VU"),
-
-    VE("VE"),
-
-    VN("VN"),
-
-    VG("VG"),
-
-    VI("VI"),
-
-    WF("WF"),
-
-    EH("EH"),
-
-    YE("YE"),
-
-    ZM("ZM"),
-
-    ZW("ZW");
-
-    private String value;
-
-    CountryEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static CountryEnum fromValue(String value) {
-      for (CountryEnum b : CountryEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_COUNTRY = "country";
-  private CountryEnum country;
-
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
   public Location() {}
-
-  public Location locID(String locID) {
-
-    this.locID = locID;
-    return this;
-  }
-
-  /**
-   * ID technique et provisoire permettant d&#39;identifier le lieu dans le
-   *cadre des échanges de cette affaire.
-   * @return locID
-   **/
-  @JsonProperty(JSON_PROPERTY_LOC_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getLocID() {
-    return locID;
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOC_I_D)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setLocID(String locID) {
-    this.locID = locID;
-  }
-
-  public Location locLabel(String locLabel) {
-
-    this.locLabel = locLabel;
-    return this;
-  }
-
-  /**
-   * Donne les informations minimales d&#39;identification du lieu
-   *d&#39;intervention, qui permet d&#39;identifier rapidement le lieu pour les
-   *équipes opérationnelles. Comprend au maximum 255 caractères. 15-18 : Dans
-   *les messages NexSIS, va souvent correspondre à la concaténation suivant des
-   *règles métiers de différentes informations, dont le \&quot;name\&quot;
-   *(toponyme) et l&#39;adresse.
-   * @return locLabel
-   **/
-  @JsonProperty(JSON_PROPERTY_LOC_LABEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getLocLabel() {
-    return locLabel;
-  }
-
-  @JsonProperty(JSON_PROPERTY_LOC_LABEL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setLocLabel(String locLabel) {
-    this.locLabel = locLabel;
-  }
 
   public Location name(String name) {
 
@@ -666,8 +92,8 @@ public class Location {
   }
 
   /**
-   * Indique le nom de lieu : nom commercial, Etablissement, forêt de
-   *Fontainebleau, lac du Der (plutôt à destination des systèmes).
+   * A valoriser avec le nom de lieu : nom commercial, nom d&#39;établissement,
+   *forêt de Fontainebleau, lac du Der, etc.
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -856,29 +282,6 @@ public class Location {
     this.externalInfo.addAll(externalInfo);
   }
 
-  public Location country(CountryEnum country) {
-
-    this.country = country;
-    return this;
-  }
-
-  /**
-   * Get country
-   * @return country
-   **/
-  @JsonProperty(JSON_PROPERTY_COUNTRY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public CountryEnum getCountry() {
-    return country;
-  }
-
-  @JsonProperty(JSON_PROPERTY_COUNTRY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCountry(CountryEnum country) {
-    this.country = country;
-  }
-
   public Location freetext(String freetext) {
 
     this.freetext = freetext;
@@ -886,7 +289,13 @@ public class Location {
   }
 
   /**
-   * Champ libre pour compléter les informations de localisation
+   * Champ libre qui permet de compléter les informations liées à la
+   *localisation.  Spécificités 15-15 : En envoi, il est souhaitable de mapper
+   *ici toute valeur en lien avec la localisation de l&#39;intervention qui ne
+   *pourrait pas être transmise de manière structurée dans l&#39;objet location.
+   *En réception, il est très important d&#39;intégrer et d&#39;afficher la
+   *valeur de cet attribut, qui est suceptible de contenir des informations
+   *d&#39;accès importantes.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
@@ -911,32 +320,26 @@ public class Location {
       return false;
     }
     Location location = (Location)o;
-    return Objects.equals(this.locID, location.locID) &&
-        Objects.equals(this.locLabel, location.locLabel) &&
-        Objects.equals(this.name, location.name) &&
+    return Objects.equals(this.name, location.name) &&
         Objects.equals(this.externalLocationId, location.externalLocationId) &&
         Objects.equals(this.detailedAddress, location.detailedAddress) &&
         Objects.equals(this.city, location.city) &&
         Objects.equals(this.access, location.access) &&
         Objects.equals(this.geometry, location.geometry) &&
         Objects.equals(this.externalInfo, location.externalInfo) &&
-        Objects.equals(this.country, location.country) &&
         Objects.equals(this.freetext, location.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(locID, locLabel, name, externalLocationId,
-                        detailedAddress, city, access, geometry, externalInfo,
-                        country, freetext);
+    return Objects.hash(name, externalLocationId, detailedAddress, city, access,
+                        geometry, externalInfo, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Location {\n");
-    sb.append("    locID: ").append(toIndentedString(locID)).append("\n");
-    sb.append("    locLabel: ").append(toIndentedString(locLabel)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    externalLocationId: ")
         .append(toIndentedString(externalLocationId))
@@ -950,7 +353,6 @@ public class Location {
     sb.append("    externalInfo: ")
         .append(toIndentedString(externalInfo))
         .append("\n");
-    sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();

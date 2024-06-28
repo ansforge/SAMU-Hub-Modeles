@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * City
  */
-@JsonPropertyOrder({City.JSON_PROPERTY_NAME, City.JSON_PROPERTY_INSEE_CODE,
-                    City.JSON_PROPERTY_DETAIL})
+@JsonPropertyOrder({City.JSON_PROPERTY_NAME, City.JSON_PROPERTY_INSEE_CODE})
 @JsonTypeName("city")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -53,9 +52,6 @@ public class City {
   public static final String JSON_PROPERTY_INSEE_CODE = "inseeCode";
   private String inseeCode;
 
-  public static final String JSON_PROPERTY_DETAIL = "detail";
-  private String detail;
-
   public City() {}
 
   public City name(String name) {
@@ -65,7 +61,7 @@ public class City {
   }
 
   /**
-   * Nom officiel de la commune actuelle
+   * A valoriser avec le nom officiel de la commune
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -88,8 +84,9 @@ public class City {
   }
 
   /**
-   * Code INSEE de la commune actuelle sur la base du Code Officiel géographique
-   *en vigueur. Obligatoire si le nom de la commune est renseigné.
+   * A valoriser avec le code INSEE de la commune actuelle sur la base du Code
+   *Officiel géographique en vigueur.  La valeur du code INSEE est obligatoire
+   *dès que le nom de la commune est renseigné (city.name).
    * @return inseeCode
    **/
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)
@@ -105,33 +102,6 @@ public class City {
     this.inseeCode = inseeCode;
   }
 
-  public City detail(String detail) {
-
-    this.detail = detail;
-    return this;
-  }
-
-  /**
-   * Informations complémentaires permettant de préciser le quartier, lieu-dit,
-   *ancienne commune, … ou autre information aidant à préciser l&#39;adresse et
-   *notamment gérer les cas de communes fusionnées pour le système émetteur NB :
-   *dans tous les cas, la localisation GPS de la commune doit être fournie afin
-   *d&#39;éviter une trop forte ambiguïté.
-   * @return detail
-   **/
-  @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDetail() {
-    return detail;
-  }
-
-  @JsonProperty(JSON_PROPERTY_DETAIL)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetail(String detail) {
-    this.detail = detail;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -142,13 +112,12 @@ public class City {
     }
     City city = (City)o;
     return Objects.equals(this.name, city.name) &&
-        Objects.equals(this.inseeCode, city.inseeCode) &&
-        Objects.equals(this.detail, city.detail);
+        Objects.equals(this.inseeCode, city.inseeCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, inseeCode, detail);
+    return Objects.hash(name, inseeCode);
   }
 
   @Override
@@ -159,7 +128,6 @@ public class City {
     sb.append("    inseeCode: ")
         .append(toIndentedString(inseeCode))
         .append("\n");
-    sb.append("    detail: ").append(toIndentedString(detail)).append("\n");
     sb.append("}");
     return sb.toString();
   }

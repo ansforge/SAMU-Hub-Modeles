@@ -58,7 +58,7 @@ public class PatientDetail {
   private String age;
 
   /**
-   * Gets or Sets careLevel
+   * A valoriser avec le niveau de soins spécifique au patient
    */
   public enum CareLevelEnum {
     R1("R1"),
@@ -106,7 +106,7 @@ public class PatientDetail {
   }
 
   /**
-   * Poids en kilogrammes
+   * A valoriser avec le poids en kilogrammes
    * @return weight
    **/
   @JsonProperty(JSON_PROPERTY_WEIGHT)
@@ -129,7 +129,7 @@ public class PatientDetail {
   }
 
   /**
-   * Taille en centimètres
+   * A valoriser avec la taille en centimètres du patient
    * @return height
    **/
   @JsonProperty(JSON_PROPERTY_HEIGHT)
@@ -152,9 +152,10 @@ public class PatientDetail {
   }
 
   /**
-   * Age du patient. Au format Durée de la norme ISO 8601
-   *(https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n&#39;utilisant
-   *qu&#39;une seule unité de durée (années, mois, semaines ou jours)
+   * A valoriser avec l&#39;age du patient. Au format \&quot;Durée\&quot; de la
+   *norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en
+   *n&#39;utilisant qu&#39;une seule unité de durée (années, mois, semaines ou
+   *jours)
    * @return age
    **/
   @JsonProperty(JSON_PROPERTY_AGE)
@@ -177,7 +178,7 @@ public class PatientDetail {
   }
 
   /**
-   * Get careLevel
+   * A valoriser avec le niveau de soins spécifique au patient
    * @return careLevel
    **/
   @JsonProperty(JSON_PROPERTY_CARE_LEVEL)

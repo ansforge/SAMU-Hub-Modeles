@@ -42,8 +42,8 @@ import java.util.Objects;
 /**
  * Operator
  */
-@JsonPropertyOrder({Operator.JSON_PROPERTY_DETAILED_NAME,
-                    Operator.JSON_PROPERTY_ID, Operator.JSON_PROPERTY_ROLE})
+@JsonPropertyOrder(
+    {Operator.JSON_PROPERTY_DETAILED_NAME, Operator.JSON_PROPERTY_ROLE})
 @JsonTypeName("operator")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -51,11 +51,50 @@ public class Operator {
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
   private DetailedName detailedName;
 
-  public static final String JSON_PROPERTY_ID = "id";
-  private String id;
+  /**
+   * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
+   * émettrice du message :
+   */
+  public enum RoleEnum {
+    AMBULANCIER("AMBULANCIER"),
+
+    ARM("ARM"),
+
+    INFIRMIER("INFIRMIER"),
+
+    MEDECIN("MEDECIN"),
+
+    INCONNU("INCONNU"),
+
+    AUTRE("AUTRE");
+
+    private String value;
+
+    RoleEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_ROLE = "role";
-  private String role;
+  private RoleEnum role;
 
   public Operator() {}
 
@@ -82,49 +121,27 @@ public class Operator {
     this.detailedName = detailedName;
   }
 
-  public Operator id(String id) {
-
-    this.id = id;
-    return this;
-  }
-
-  /**
-   * Identifiant professionnel de l&#39;opérateur si existant
-   * @return id
-   **/
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getId() {
-    return id;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setId(String id) {
-    this.id = id;
-  }
-
-  public Operator role(String role) {
+  public Operator role(RoleEnum role) {
 
     this.role = role;
     return this;
   }
 
   /**
-   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
+   * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
+   *émettrice du message :
    * @return role
    **/
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getRole() {
+  public RoleEnum getRole() {
     return role;
   }
 
   @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(String role) {
+  public void setRole(RoleEnum role) {
     this.role = role;
   }
 
@@ -138,13 +155,12 @@ public class Operator {
     }
     Operator operator = (Operator)o;
     return Objects.equals(this.detailedName, operator.detailedName) &&
-        Objects.equals(this.id, operator.id) &&
         Objects.equals(this.role, operator.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedName, id, role);
+    return Objects.hash(detailedName, role);
   }
 
   @Override
@@ -154,7 +170,6 @@ public class Operator {
     sb.append("    detailedName: ")
         .append(toIndentedString(detailedName))
         .append("\n");
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();

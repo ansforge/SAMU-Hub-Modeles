@@ -16,11 +16,11 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet resource</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >orgId <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >nature <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >mobility <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >capacity <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	resource -> geoResourceDetails [headlabel=1 taillabel="0..*"]
-	geoResourceDetails [label=<<TABLE>
+	resource -> geoResourcesDetails [headlabel=1 taillabel="0..*"]
+	geoResourcesDetails [label=<<TABLE>
                 <TR>
-                <TD ><B>geoResourceDetails</B></TD>
+                <TD ><B>geoResourcesDetails</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet geoResourceDetails</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet geoResourcesDetails</I></TD></TR>
                 </TABLE>>]
 }
