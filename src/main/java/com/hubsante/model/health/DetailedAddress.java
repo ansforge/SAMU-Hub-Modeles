@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.Highway;
 import com.hubsante.model.health.WayName;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -42,13 +43,17 @@ import java.util.Objects;
 /**
  * DetailedAddress
  */
-@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_COMPLETE,
+@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_HIGHWAY,
+                    DetailedAddress.JSON_PROPERTY_COMPLETE,
                     DetailedAddress.JSON_PROPERTY_NUMBER,
                     DetailedAddress.JSON_PROPERTY_WAY_NAME})
 @JsonTypeName("detailedAddress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DetailedAddress {
+  public static final String JSON_PROPERTY_HIGHWAY = "highway";
+  private Highway highway;
+
   public static final String JSON_PROPERTY_COMPLETE = "complete";
   private String complete;
 
@@ -60,6 +65,29 @@ public class DetailedAddress {
 
   public DetailedAddress() {}
 
+  public DetailedAddress highway(Highway highway) {
+
+    this.highway = highway;
+    return this;
+  }
+
+  /**
+   * Get highway
+   * @return highway
+   **/
+  @JsonProperty(JSON_PROPERTY_HIGHWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Highway getHighway() {
+    return highway;
+  }
+
+  @JsonProperty(JSON_PROPERTY_HIGHWAY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHighway(Highway highway) {
+    this.highway = highway;
+  }
+
   public DetailedAddress complete(String complete) {
 
     this.complete = complete;
@@ -67,9 +95,13 @@ public class DetailedAddress {
   }
 
   /**
-   * Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute
-   *(PK, nom et sens), voie ferrée, voie navigable… 15-18 : Obligatoire et seule
-   *valeur des détails de l&#39;adresse fournie par NexSIS.
+   * A valoriser avec le numéro, le type et le nom de la voie. En réception, il
+   *est possible que seul cette information soit remplie.   Spécificités 15-15 :
+   *si les informations pour les autoroutes (voie férée ou voie navigable) ne
+   *sont pas structurées, il est possible de passer le nom, PK et sens ici, de
+   *manière concaténée.  Spécificités 15-18 : Obligatoire et seule valeur des
+   *détails de l&#39;adresse fournie par NexSIS. Utilisé pour tout type de voie
+   *:  autoroute (PK, nom et sens), voie ferrée, voie navigable…
    * @return complete
    **/
   @JsonProperty(JSON_PROPERTY_COMPLETE)
@@ -92,9 +124,10 @@ public class DetailedAddress {
   }
 
   /**
-   * Numéro dans l&#39;adresse (inclut point kilométrique sur l&#39;autoroute,
-   *voie ferrée ou voie navigable). Inclut l&#39;indice de répétition associé au
-   *numéro (par exemple bis, a…).
+   * A valoriser avec le numéro dans l&#39;adresse. La valeur de l&#39;attribut
+   *inclut l&#39;indice de répétition associé au numéro (par exemple bis, a…).
+   *Spécificités 15-18 :  inclut le point kilométrique sur l&#39;autoroute, voie
+   *ferrée ou voie navigable.
    * @return number
    **/
   @JsonProperty(JSON_PROPERTY_NUMBER)
@@ -142,20 +175,22 @@ public class DetailedAddress {
       return false;
     }
     DetailedAddress detailedAddress = (DetailedAddress)o;
-    return Objects.equals(this.complete, detailedAddress.complete) &&
+    return Objects.equals(this.highway, detailedAddress.highway) &&
+        Objects.equals(this.complete, detailedAddress.complete) &&
         Objects.equals(this.number, detailedAddress.number) &&
         Objects.equals(this.wayName, detailedAddress.wayName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(complete, number, wayName);
+    return Objects.hash(highway, complete, number, wayName);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DetailedAddress {\n");
+    sb.append("    highway: ").append(toIndentedString(highway)).append("\n");
     sb.append("    complete: ").append(toIndentedString(complete)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    wayName: ").append(toIndentedString(wayName)).append("\n");

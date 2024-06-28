@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RC-EDA.schema.json#",
-    "version": "24.05.29",
+    "version": "24.06.28",
     "example": "example.json#",
     "type": "object",
     "title": "createCase",
@@ -20,7 +20,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
+            "description": "A valoriser avec l'identifiant de l'affaire/dossier partag\u00e9 entre tous les intervenants, valoris\u00e9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
         },
         "senderCaseId": {
             "type": "string",
@@ -28,7 +28,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/senderCaseId",
-            "description": "Valoriser avec le num\u00e9ro du dossier dans le SI de l'\u00e9metteur du message. \nCe champ est facultatif, il ne sera notamment pas transmis par NexSIS.\n"
+            "description": "A valoriser avec le num\u00e9ro du dossier dans le SI de l'\u00e9metteur du message.\n"
         },
         "creation": {
             "type": "string",
@@ -36,7 +36,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/creation",
-            "description": "Groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). Il doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation  de la premi\u00e8re alerte. Lors de l'ajout d'alerte \u00e0 une affaire ce champ ne doit pas \u00eatre modifi\u00e9.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+            "description": "A valoriser avec le groupe date heure de d\u00e9but de partage li\u00e9 \u00e0 la cr\u00e9ation de l'affaire (et donc de g\u00e9n\u00e9ration du caseId). \nLors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas \u00eatre modifi\u00e9e.  \nL'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.\n\nSp\u00e9cificit\u00e9 15-18 :\nIl doit \u00eatre renseign\u00e9 \u00e0 la fin du processus de la  cr\u00e9ation de la premi\u00e8re alerte.",
             "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
             "format": "date-time"
         },
@@ -57,26 +57,11 @@
         "initialAlert": {
             "$ref": "#/definitions/alert"
         },
-        "patient": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/patient"
-            }
-        },
-        "decision": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/decision"
-            }
-        },
         "newAlert": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/alert"
             }
-        },
-        "additionalInformation": {
-            "$ref": "#/definitions/additionalInformation"
         },
         "freetext": {
             "type": "array",
@@ -89,12 +74,15 @@
                 "example": "example.json#/freetext/0",
                 "description": "Texte libre permettant de donner des informations suppl\u00e9mentaires concernant l'affaire/dossier. Ces informations sont g\u00e9n\u00e9rales, et ont vocation \u00e0 \u00eatre \u00e9chang\u00e9es en inter-force. "
             }
+        },
+        "additionalInformation": {
+            "$ref": "#/definitions/additionalInformation"
         }
     },
     "definitions": {
         "qualification": {
             "type": "object",
-            "title": "Qualification de l'affaire/dossier",
+            "title": "Qualification",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -125,7 +113,7 @@
         },
         "location": {
             "type": "object",
-            "title": "Localisation de l'affaire/dossier",
+            "title": "Localisation",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -155,7 +143,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/name",
-                    "description": "Indique le nom de lieu : nom commercial, Etablissement, for\u00eat de Fontainebleau, lac du Der (plut\u00f4t \u00e0 destination des syst\u00e8mes)."
+                    "description": "A valoriser avec le nom de lieu : nom commercial, nom d'\u00e9tablissement, for\u00eat de Fontainebleau, lac du Der, etc."
                 },
                 "externalLocationId": {
                     "type": "array",
@@ -437,7 +425,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/freetext",
-                    "description": "Champ libre pour compl\u00e9ter les informations de localisation"
+                    "description": "Champ libre qui permet de compl\u00e9ter les informations li\u00e9es \u00e0 la localisation.\n\nSp\u00e9cificit\u00e9s 15-15 :\nEn envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas \u00eatre transmise de mani\u00e8re structur\u00e9e dans l'objet location. \nEn r\u00e9ception, il est tr\u00e8s important d'int\u00e9grer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'acc\u00e8s importantes."
                 }
             },
             "additionalProperties": false,
@@ -468,11 +456,11 @@
                 },
                 "reception": {
                     "type": "string",
-                    "title": "Date de r\u00e9ception de l'alerte",
+                    "title": "Date et heure de r\u00e9ception de l'alerte",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/reception",
-                    "description": "Groupe date heure de r\u00e9ception de l'alerte",
+                    "description": "A valoriser avec le groupe date heure de r\u00e9ception de l'alerte/appel",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -516,92 +504,6 @@
             "additionalProperties": false,
             "example": "example.json#/initialAlert"
         },
-        "patient": {
-            "type": "object",
-            "title": "Patient / victime",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "id"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "title": "ID patient partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/id",
-                    "description": "Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui cr\u00e9\u00e9 l'ID patient a raison."
-                },
-                "identity": {
-                    "$ref": "#/definitions/insIdentity"
-                },
-                "freetext": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Informations compl\u00e9mentaires sur le patient",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/patient/0/freetext/0",
-                        "description": "Correspond \u00e0 la zone de commentaire renseign\u00e9 par patient cr\u00e9\u00e9/identifi\u00e9"
-                    }
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0"
-        },
-        "decision": {
-            "type": "object",
-            "title": "D\u00e9cisions",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "creation",
-                "type"
-            ],
-            "properties": {
-                "id": {
-                    "type": "string",
-                    "title": "ID patient partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/id",
-                    "description": "ID partag\u00e9 du patient concern\u00e9 par la d\u00e9cision, lorsque le patient existe et est identifi\u00e9"
-                },
-                "creation": {
-                    "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/creation",
-                    "description": "Groupe date heure de cr\u00e9ation de la d\u00e9cision.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
-                    "format": "date-time"
-                },
-                "type": {
-                    "type": "string",
-                    "title": "Type de d\u00e9cision",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/type",
-                    "description": "Type de d\u00e9cision prise",
-                    "enum": [
-                        "CONSEIL",
-                        "PMT",
-                        "INTER",
-                        "ORIENT",
-                        "PASPLUS"
-                    ]
-                },
-                "transportDetails": {
-                    "$ref": "#/definitions/transportDetails"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0"
-        },
         "additionalInformation": {
             "type": "object",
             "title": "Informations compl\u00e9mentaires",
@@ -636,7 +538,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e"
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e"
                 },
                 "label": {
                     "type": "string",
@@ -644,7 +546,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -666,7 +568,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
                     "enum": [
                         "L01.00.00",
                         "L01.01.00",
@@ -855,7 +757,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/locationKind/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -877,7 +779,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
                     "enum": [
                         "R01",
                         "R02",
@@ -924,7 +826,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -946,7 +848,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/code",
-                    "description": "A valoriser avec un code la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
                     "enum": [
                         "M01.00",
                         "M01.01",
@@ -1008,7 +910,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/healthMotive/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -1031,9 +933,10 @@
                     "enum": [
                         "0",
                         "1",
-                        "SEVERAL",
-                        "MANY",
-                        "UNKNOWN"
+                        "PLUSIEURS",
+                        "BEAUCOUP",
+                        "INCONNU",
+                        "NON DEFINI"
                     ]
                 },
                 "mainVictim": {
@@ -1044,9 +947,9 @@
                     "example": "example.json#/qualification/victims/mainVictim",
                     "description": "Identifie le type de la principale victime (celle dont l'\u00e9tat de sant\u00e9 provoque le d\u00e9clenchement de l'envoi des secours). Prend les valeurs du r\u00e9f\u00e9rentiel CISU. Entre dans la d\u00e9termination des partenaires impliqu\u00e9s par NexSIS.",
                     "enum": [
-                        "INFANT",
-                        "CHILD",
-                        "ADULT",
+                        "NOURRISSON",
+                        "ENFANT",
+                        "ADULTE",
                         "SENIOR"
                     ]
                 },
@@ -1080,11 +983,11 @@
                     "example": "example.json#/location/externalLocationId/0/source",
                     "description": "Type de l'identifiant fourni",
                     "enum": [
-                        "FINESS administratif",
-                        "FINESS g\u00e9ographique",
+                        "FINESS ADMINISTRATIF",
+                        "FINESS GEOGRAPHIQUE",
                         "SIREN",
                         "SIRET",
-                        "APE/NAF"
+                        "APE_NAF"
                     ]
                 },
                 "value": {
@@ -1114,7 +1017,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/complete",
-                    "description": "Num\u00e9ro, type et nom de la voie. Utilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026\n15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS."
+                    "description": "A valoriser avec le num\u00e9ro, le type et le nom de la voie.\nEn r\u00e9ception, il est possible que seul cette information soit remplie. \n\nSp\u00e9cificit\u00e9s 15-15 : si les informations pour les autoroutes (voie f\u00e9r\u00e9e ou voie navigable) ne sont pas structur\u00e9es, il est possible de passer le nom, PK et sens ici, de mani\u00e8re concat\u00e9n\u00e9e.\n\nSp\u00e9cificit\u00e9s 15-18 : Obligatoire et seule valeur des d\u00e9tails de l'adresse fournie par NexSIS.\nUtilis\u00e9 pour tout type de voie :  autoroute (PK, nom et sens), voie ferr\u00e9e, voie navigable\u2026"
                 },
                 "number": {
                     "type": "string",
@@ -1122,7 +1025,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/number",
-                    "description": "Num\u00e9ro dans l'adresse (inclut point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable). Inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026)."
+                    "description": "A valoriser avec le num\u00e9ro dans l'adresse. La valeur de l'attribut inclut l'indice de r\u00e9p\u00e9tition associ\u00e9 au num\u00e9ro (par exemple bis, a\u2026).\n\nSp\u00e9cificit\u00e9s 15-18 :  inclut le point kilom\u00e9trique sur l'autoroute, voie ferr\u00e9e ou voie navigable."
                 },
                 "wayName": {
                     "$ref": "#/definitions/wayName"
@@ -1144,7 +1047,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/city/name",
-                    "description": "Nom officiel de la commune actuelle"
+                    "description": "A valoriser avec le nom officiel de la commune"
                 },
                 "inseeCode": {
                     "type": "string",
@@ -1152,7 +1055,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/city/inseeCode",
-                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.",
+                    "description": "A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. \nLa valeur du code INSEE est obligatoire d\u00e8s que le nom de la commune est renseign\u00e9 (city.name).",
                     "pattern": "[0-9]{5}"
                 },
                 "detail": {
@@ -1180,7 +1083,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/floor",
-                    "description": "Etage "
+                    "description": "A valoriser avec le num\u00e9ro ou nom de l'\u00e9tage "
                 },
                 "roomNumber": {
                     "type": "string",
@@ -1188,7 +1091,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/roomNumber",
-                    "description": "Sp\u00e9cifie num\u00e9ro d'appartement, de chambre, de bureau"
+                    "description": "A valoriser avec le num\u00e9ro d'appartement, de chambre, de bureau"
                 },
                 "interphone": {
                     "type": "string",
@@ -1196,7 +1099,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/interphone",
-                    "description": "Indique les informations n\u00e9cessaires  \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
+                    "description": "A valoriser avec les informations n\u00e9cessaires \u00e0 l'identification de l'interphone (num\u00e9ro, nom)"
                 },
                 "accessCode": {
                     "type": "array",
@@ -1207,7 +1110,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/location/access/accessCode/0",
-                        "description": "Indique le ou les digicodes dans l'ordre de progression dans le b\u00e2timent"
+                        "description": "A valoriser avec le ou les digicodes, dans l'ordre de progression dans le b\u00e2timent."
                     }
                 },
                 "elevator": {
@@ -1216,7 +1119,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/elevator",
-                    "description": "Indique l'ascenseur ou la cage d'escalier "
+                    "description": "A valoriser avec le nom ou le num\u00e9ro de l'ascenseur ou de la cage d'escalier "
                 },
                 "buildingName": {
                     "type": "string",
@@ -1224,14 +1127,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/buildingName",
-                    "description": "Nom du b\u00e2timent"
+                    "description": "A valoriser avec le nom du b\u00e2timent"
                 },
                 "entrance": {
                     "type": "string",
                     "title": "Entr\u00e9e",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/access/entrance"
+                    "example": "example.json#/location/access/entrance",
+                    "description": "A valoriser avec le nom de l'entr\u00e9e"
                 },
                 "entity": {
                     "type": "string",
@@ -1239,15 +1143,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/entity",
-                    "description": "Nom du service concern\u00e9 au sein de l'\u00e9tablissement : Infirmerie, service finance, service cardiologie, \u2026"
+                    "description": "A valoriser avec le nom du service concern\u00e9 au sein de l'\u00e9tablissement : infirmerie, service finance, service comptabilit\u00e9."
                 },
                 "phoneNumber": {
-                    "type": "number",
+                    "type": "string",
                     "title": "N\u00b0 de t\u00e9l\u00e9phone du lieu",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/phoneNumber",
-                    "description": "Num\u00e9ro de t\u00e9l\u00e9phone permettant d'acc\u00e9der au lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/victime."
+                    "description": "A valoriser avec le num\u00e9ro de t\u00e9l\u00e9phone du lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/ la victime."
                 }
             },
             "additionalProperties": false,
@@ -1268,7 +1172,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/obsDatime",
-                    "description": "Groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. Permet de conna\u00eetre la fra\u00eecheur et donc pertinence des informations pour intervenir.",
+                    "description": "A valoriser avec le groupe date heure de renseignement des coordonn\u00e9es du point cl\u00e9 de la localisation. \nPermet de conna\u00eetre la fra\u00eecheur et donc la pertinence des informations pour intervenir.",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1304,11 +1208,11 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/freetext",
-                    "description": "Syst\u00e8me fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)",
+                    "description": "A valoriser avec le syst\u00e8me fournissant le localisant",
                     "enum": [
                         "BAN",
                         "IGN",
-                        "NexSIS"
+                        "NEXSIS"
                     ]
                 },
                 "type": {
@@ -1317,13 +1221,13 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/type",
-                    "description": "D\u00e9finition du type d'objet dans le syst\u00e8me\nEx : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es -> savoir du quel on parle (POI, tron\u00e7on de route, \u2026) pour faciliter le filtre | Aussi table dans une base de donn\u00e9es",
+                    "description": "A valoriser avec la d\u00e9finition du type d'objet dans le syst\u00e8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es (EGA, POI, tron\u00e7on de route, \u2026)",
                     "enum": [
-                        "MANUAL",
-                        "MAP",
-                        "OTHER",
+                        "MANUEL",
+                        "CARTE",
+                        "AUTRE",
                         "PHOTO",
-                        "WEBSIT"
+                        "SITE INTERNET"
                     ]
                 },
                 "uri": {
@@ -1332,7 +1236,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/externalInfo/0/uri",
-                    "description": "Identifiant unique dans le type. Exemple : UUID d'un ega"
+                    "description": "Identifiant dans le syst\u00e8me concern\u00e9"
                 }
             },
             "additionalProperties": false,
@@ -1353,7 +1257,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/wayName/complete",
-                    "description": "Type et nom de la voie (venant d'un r\u00e9f\u00e9rentiel ou non)\nSi les champs type et name sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
+                    "description": "A valoriser avec le type et le nom de la voie.\nSi les attributs \"type\" et \"name\" de \"wayName\" sont \u00e9galement renseign\u00e9s, alors \"complete\" doit \u00eatre valoris\u00e9 ainsi : \"{type} {nom}\"."
                 },
                 "type": {
                     "type": "string",
@@ -1361,7 +1265,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/wayName/type",
-                    "description": "Type de la voie"
+                    "description": "A valoriser avec le type de la voie"
                 },
                 "name": {
                     "type": "string",
@@ -1369,7 +1273,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/detailedAddress/wayName/name",
-                    "description": "Nom de la voie"
+                    "description": "A valoriser avec le nom de la voie"
                 }
             },
             "additionalProperties": false,
@@ -1386,14 +1290,6 @@
             "properties": {
                 "coord": {
                     "$ref": "#/definitions/coord"
-                },
-                "sysCoord": {
-                    "type": "string",
-                    "title": "Syst\u00e8me de coordonn\u00e9es",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/location/geometry/point/sysCoord",
-                    "description": "Indique le type de coordonn\u00e9es utilis\u00e9. Actuellement, la seule valeur valide est \u00abEPSG-4326\u00bb, indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseign\u00e9, on consid\u00e8re que la valeur par d\u00e9faut est \u00ab\u00bb."
                 }
             },
             "additionalProperties": false,
@@ -1416,7 +1312,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/lat",
-                    "description": "Latitude du point cl\u00e9 de la localisation "
+                    "description": "A valoriser avec la latitude du point cl\u00e9 de la localisation - dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
                 },
                 "lon": {
                     "type": "number",
@@ -1424,7 +1320,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/lon",
-                    "description": "Longitude du point cl\u00e9 de la localisation"
+                    "description": "A valoriser avec la longitude du point cl\u00e9 de la localisation - dans le syst\u00e8me de coordonn\u00e9es EPSG-4326 (indiquant l'utilisation de WGS-84) "
                 },
                 "height": {
                     "type": "number",
@@ -1432,7 +1328,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/height",
-                    "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
+                    "description": "A valoriser avec l'altitude du point cl\u00e9 de la localisation, en m\u00e8tres.\n\nSp\u00e9cificit\u00e9 15-18 :  ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
                 },
                 "heading": {
                     "type": "number",
@@ -1440,7 +1336,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/heading",
-                    "description": "En degr\u00e9"
+                    "description": "A valoriser avec le cap, en degr\u00e9"
                 },
                 "speed": {
                     "type": "number",
@@ -1456,13 +1352,13 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/geometry/point/coord/precision",
-                    "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nCITY=Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, STREET=Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, ADDRESS=Adresse pr\u00e9cise, EXACT=Point coordonn\u00e9e GPS exact, UNKNOWN=Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
+                    "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nVILLE : Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, \nRUE : Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, \nADRESSE : Adresse pr\u00e9cise, \nEXACTE : Point coordonn\u00e9e GPS exact, \nINCONNUE : Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
                     "enum": [
-                        "CITY",
-                        "STREET",
-                        "ADDRESS",
-                        "EXACT",
-                        "UNKNOWN"
+                        "VILLE",
+                        "RUE",
+                        "ADRESSE",
+                        "EXACTE",
+                        "INCONNUE"
                     ]
                 }
             },
@@ -1471,18 +1367,18 @@
         },
         "notes": {
             "type": "object",
-            "title": "Informations compl\u00e9mentaires sur l'alerte (observations ARM)",
+            "title": "Informations compl\u00e9mentaires sur l'alerte",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [],
             "properties": {
                 "creation": {
                     "type": "string",
-                    "title": "Date et heure de l'information compl\u00e9mentaire/l'observation ARM",
+                    "title": "Date et heure de l'information compl\u00e9mentaire",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/creation",
-                    "description": "date et heure de l'observation",
+                    "description": "A valoriser avec le groupe date heure de cr\u00e9ation de l'information compl\u00e9mentaire",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1492,7 +1388,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/notes/0/freetext",
-                    "description": "texte libre contenant les indications renseign\u00e9es par l'ARM"
+                    "description": "A valoriser avec un texte libre contenant les indications compl\u00e9mentaires renseign\u00e9es sur l'alerte/appel.\n\nSp\u00e9cificit\u00e9s 15-15 : cet attribut ne doit pas \u00eatre valoris\u00e9 avec des notes \u00e0 caract\u00e8re m\u00e9dical, qui serait li\u00e9e \u00e0 un interrogatoire ARM ou m\u00e9decin, ou \u00e0 un patient en particulier"
                 }
             },
             "additionalProperties": false,
@@ -1519,7 +1415,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/language",
-                    "description": "Langue parl\u00e9e par le requ\u00e9rant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.",
+                    "description": "A valoriser avec la langue parl\u00e9e par le requ\u00e9rant. \ncf.nomenclature associ\u00e9e.",
                     "enum": [
                         "AF",
                         "AX",
@@ -1770,7 +1666,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/type",
-                    "description": "Indique la relation du requ\u00e9rant avec l'incident / le patient / la victime",
+                    "description": "A valoriser avec la relation du requ\u00e9rant avec l'incident / le patient / la victime.\ncf. nomenclature associ\u00e9e.",
                     "enum": [
                         "SUJET",
                         "FAMILLE",
@@ -1801,7 +1697,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/communication",
-                    "description": "Indique si le requ\u00e9rant rencontre ou non des difficult\u00e9 de communication",
+                    "description": "A valoriser avec la nature des \u00e9ventuelles difficult\u00e9s de communication rencontr\u00e9es par le requ\u00e9rant. \ncf.nomenclature associ\u00e9e.",
                     "enum": [
                         "AUCUNE",
                         "MUET",
@@ -1820,7 +1716,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/freetext",
-                    "description": "Informations compl\u00e9mentaires sur le requ\u00e9rant \nLes informations peuvent \u00eatre pass\u00e9es sous forme de texte libre ou via une liste d'adjectif"
+                    "description": "Champ libre qui permet de compl\u00e9ter les informations sp\u00e9cifiquement li\u00e9es au requ\u00e9rant."
                 },
                 "detailedName": {
                     "$ref": "#/definitions/detailedName"
@@ -1956,33 +1852,39 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/channel",
-                    "description": "Permet d'indiquer l'origine du canal \u00e9tablit : Personne, application, DAU, BAU, d\u00e9fibrillateur, ecall"
+                    "description": "A valoriser avec  l'origine du canal \u00e9tabli : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",
+                    "enum": [
+                        "PERSONNE",
+                        "APPLICATION",
+                        "DAU",
+                        "BAU",
+                        "DEFIBRILLATEUR",
+                        "ECALL"
+                    ]
                 },
                 "type": {
                     "type": "string",
-                    "title": "Type de contact du requ\u00e9rant",
+                    "title": "Type de contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/type",
-                    "description": "Type de l'URI utilis\u00e9e par le requ\u00e9rant, cf. nomenclature EMSI",
+                    "description": "A valoriser avec le type de l'URI utilis\u00e9e : TEL, EMAIL, FAX, POSTAL, WEB, RADIO",
                     "enum": [
-                        "PSTADD",
-                        "EMLADD",
-                        "IPADD",
-                        "FTPADD",
-                        "WWWADD",
-                        "PHNADD",
-                        "FAXADD",
-                        "PMRADD"
+                        "TEL",
+                        "EMAIL",
+                        "FAX",
+                        "POSTAL",
+                        "WEB",
+                        "RADIO"
                     ]
                 },
                 "detail": {
                     "type": "string",
-                    "title": "URI du contact requ\u00e9rant",
+                    "title": "URI du contact",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/detail",
-                    "description": "Valeur de l'URI utilis\u00e9e pour contacter le partenaire"
+                    "description": "A valoriser avec la valeur de l'URI utilis\u00e9e"
                 }
             },
             "additionalProperties": false,
@@ -2003,7 +1905,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/detailedName/complete",
-                    "description": "Pr\u00e9nom et nom usuel du requ\u00e9rant.\nSi les champs callerLastName et callerFirstName sont renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{callerFirstName} {callerLastName}\".\nNote : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
+                    "description": "A valoriser avec le pr\u00e9nom et le nom usuel du requ\u00e9rant/appelant.\nSi les champs callerLastName et callerFirstName sont \u00e9galement renseign\u00e9s, le champ callerName doit \u00eatre valoris\u00e9 ainsi : \"{callerFirstName} {callerLastName}\".\n\nSp\u00e9cificit\u00e9s 15-18  : NexSIS ne dispose que de ces informations (concat\u00e9n\u00e9es) et pas de deux champs s\u00e9par\u00e9s."
                 },
                 "lastName": {
                     "type": "string",
@@ -2011,7 +1913,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/detailedName/lastName",
-                    "description": "Nom du requ\u00e9rant"
+                    "description": "A valoriser avec le nom usuel du requ\u00e9rant"
                 },
                 "firstName": {
                     "type": "string",
@@ -2019,141 +1921,11 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/detailedName/firstName",
-                    "description": "Pr\u00e9nom du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
+                    "description": "A valoriser avec le pr\u00e9nom usuel du r\u00e9qu\u00e9rant.\nPar convention les pr\u00e9noms compos\u00e9s doivent pr\u00e9f\u00e9rablement \u00eatre s\u00e9par\u00e9s par le caract\u00e8re \"-\""
                 }
             },
             "additionalProperties": false,
             "example": "example.json#/initialAlert/caller/detailedName"
-        },
-        "insIdentity": {
-            "type": "object",
-            "title": "Identit\u00e9 INS",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "strictFeatures": {
-                    "$ref": "#/definitions/insStrictFeatures"
-                },
-                "nonStrictFeatures": {
-                    "$ref": "#/definitions/detailedName"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity"
-        },
-        "insStrictFeatures": {
-            "type": "object",
-            "title": "Traits stricts de l'identit\u00e9",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "birthDate": {
-                    "type": "string",
-                    "title": "Date de naissance",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/strictFeatures/birthDate",
-                    "description": "Date de naissance du patient",
-                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
-                },
-                "sex": {
-                    "type": "string",
-                    "title": "Sexe ",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/patient/0/identity/strictFeatures/sex",
-                    "description": "Sexe du patient",
-                    "enum": [
-                        "MASC",
-                        "FEM",
-                        "AUTRE",
-                        "INCONNU"
-                    ]
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/patient/0/identity/strictFeatures"
-        },
-        "transportDetails": {
-            "type": "object",
-            "title": "D\u00e9cision de transport/orientation",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "orientation",
-                "teamCare"
-            ],
-            "properties": {
-                "orientation": {
-                    "type": "string",
-                    "title": "Type de devenir du patient",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/orientation",
-                    "description": "D\u00e9cision(s) d'orientation prise par le m\u00e9decin r\u00e9gulateur : \n- A transporter\n- Laisser sur place"
-                },
-                "concoursRequest": {
-                    "type": "string",
-                    "title": "ID demande de concours/de ressources",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/concoursRequest",
-                    "description": "Identifiant de la ou des demandes de concours "
-                },
-                "transportationID": {
-                    "type": "string",
-                    "title": "ID vecteur partag\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/transportationID",
-                    "description": "Identifiant du v\u00e9hicule terrestre / a\u00e9rien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la d\u00e9cision \u00e0 un v\u00e9hicule sp\u00e9cifique + au patient. "
-                },
-                "teamCare": {
-                    "type": "string",
-                    "title": "Niveau de prise en charge",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, non m\u00e9dicale, standard, incomplete, ...)"
-                },
-                "destination": {
-                    "$ref": "#/definitions/destination"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0/transportDetails"
-        },
-        "destination": {
-            "type": "object",
-            "title": "Destination",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "title": "Type de destination",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/transportDetails/destination/type",
-                    "description": "Indique le type de destination de la ressource : service d\u2019urgences d\u2019un Etablissement de sant\u00e9, autres services d\u2019un \u00e9tablissement de sant\u00e9, cabinet d\u2019un professionnel de sant\u00e9, domicile personnel, EPHAD ou long s\u00e9jour, autre",
-                    "enum": [
-                        "service d\u2019urgences d\u2019un Etablissement de sant\u00e9",
-                        "autres services d\u2019un \u00e9tablissement de sant\u00e9",
-                        "cabinet d\u2019un professionnel de sant\u00e9",
-                        "domicile personnel",
-                        "EPHAD ou long s\u00e9jour",
-                        "autre"
-                    ]
-                },
-                "destinationLocation": {
-                    "$ref": "#/definitions/location"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0/transportDetails/destination"
         },
         "customMap": {
             "type": "object",
@@ -2171,7 +1943,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/key",
-                    "description": "Nom de la balise"
+                    "description": "A valoriser avec le nom de la balise"
                 },
                 "label": {
                     "type": "string",
@@ -2179,7 +1951,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/label",
-                    "description": "Libell\u00e9 correspondant"
+                    "description": "A valoriser avec le libell\u00e9 correspondant"
                 },
                 "value": {
                     "type": "string",
@@ -2187,7 +1959,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/value",
-                    "description": "Valeur associ\u00e9e \u00e0 la cl\u00e9"
+                    "description": "A valoriser avec la valeur associ\u00e9e \u00e0 la cl\u00e9"
                 },
                 "freetext": {
                     "type": "string",
@@ -2195,7 +1967,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/additionalInformation/customMap/0/freetext",
-                    "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de ce matching additionnel"
+                    "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de cette correspondance additionnelle"
                 }
             },
             "additionalProperties": false,

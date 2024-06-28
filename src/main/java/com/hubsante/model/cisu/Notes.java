@@ -62,7 +62,8 @@ public class Notes {
   }
 
   /**
-   * date et heure de l&#39;observation
+   * A valoriser avec le groupe date heure de création de l&#39;information
+   *complémentaire
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
@@ -85,7 +86,10 @@ public class Notes {
   }
 
   /**
-   * texte libre contenant les indications renseignées par l&#39;ARM
+   * A valoriser avec un texte libre contenant les indications complémentaires
+   *renseignées sur l&#39;alerte/appel.  Spécificités 15-15 : cet attribut ne
+   *doit pas être valorisé avec des notes à caractère médical, qui serait liée à
+   *un interrogatoire ARM ou médecin, ou à un patient en particulier
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

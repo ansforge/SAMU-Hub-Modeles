@@ -27,7 +27,7 @@ first_codeandlabel_name = ""
 first_codeandlabel_properties = []
 
 
-def run(sheet, name, version, perimeter_filter, model_type):
+def run(sheet, name, version, perimeter_filter, model_type, filepath):
     class Color:
         ORANGE = '\033[93m'
         RED = '\033[91m'
@@ -48,9 +48,13 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     def get_params_from_sheet(sheet):
         """ Automatically get the number of rows and columns to use for this sheet. """
-        full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
+        full_df = pd.read_excel(filepath, sheet_name=sheet, header=None)
         # Getting modelName from cell A1
         modelName = full_df.iloc[0, 0]
+        # Get line 7 to find which columns have 'Périmètre' flag
+        perimeter_row = full_df.iloc[6, :]
+        # Save all the column numbers that have 'Périmètre' in their name
+        perimeter_columns = [i for i, x in enumerate(perimeter_row) if 'Périmètre' in str(x)]
         # Computing number of rows in table
         # rows = df.iloc[7:, 0]
         # Simply remove initial rows & total row
@@ -66,7 +70,8 @@ def run(sheet, name, version, perimeter_filter, model_type):
         return {
             'modelName': modelName,
             'cols': cols,
-            'rows': rows
+            'rows': rows,
+            'perimeterColumns': perimeter_columns
         }
 
     def get_nomenclature(elem):
@@ -105,7 +110,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
 
     # DATA COLLECTION AND CLEANING
     # Read CSV, skipping useless first and last lines
-    df = pd.read_excel('model.xlsx', sheet_name=sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
+    df = pd.read_excel(filepath, sheet_name=sheet, skiprows=7, nrows=NB_ROWS, converters={'ID': int})
     # Dropping useless columns
     df = df.iloc[:, :NB_COLS]
     # Column validation
@@ -122,9 +127,18 @@ def run(sheet, name, version, perimeter_filter, model_type):
     # Keeping only the relevant perimeter rows
     if perimeter_filter:
         df = df[pd.notna(df[perimeter_filter])]
+        # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
+        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+
+    # Deleting perimeter columns. N.B: dropping a
+    # column (obviously) reduces the length df.columns, so we iterate in reverse order
+    for i in sorted(params['perimeterColumns'], reverse=True):
+        df.drop(df.columns[i], axis=1, inplace=True)
 
     # Storing input data in a file to track versions
-    df.to_csv(f'out/{name}/{name}.input.csv')
+    # Before storing, we remove the first column (ID), and we also do not want to write line index to the file,
+    # hence index=False
+    df.drop(df.columns[0], axis=1).to_csv(f'out/{name}/{name}.input.csv', index=False)
 
     # Replacing comment cells (starting with '# ') with NaN in 'Donnée xx' columns
     df.iloc[:, 1:1 + DATA_DEPTH] = df.iloc[:, 1:1 + DATA_DEPTH].applymap(
@@ -285,9 +299,12 @@ def run(sheet, name, version, perimeter_filter, model_type):
         return isObject & isTyped
 
     def is_health_only(row):
-        """Is elem only for 15-15?"""
-        isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
-        return isHealthOnly
+        # TODO: Rework this method, it's no longer applicable as is, as we have many more perimeters than just
+        #  '15-15' and '15-18'.
+        # """Is elem only for 15-15?"""
+        # isHealthOnly = row['15-18'] != 'X' and row['15-15'] == 'X'
+        # return isHealthOnly
+        return False
 
     def capitalizeFirstLetter(string):
         return string[0].upper() + string[1:]
@@ -324,9 +341,7 @@ def run(sheet, name, version, perimeter_filter, model_type):
         df['parent_type'] = df.apply(get_parent_type, axis=1)
         df['full_name'] = df.apply(build_full_name, axis=1)
 
-    # Replace 'Cardinalité' column values with the relevant perimeter column values (whenever the value is not 'X')
-    if perimeter_filter:
-        df['Cardinalité'] = df.where(df[perimeter_filter] == 'X', df[perimeter_filter], axis=0)['Cardinalité']
+
 
     # Verify that cardinality is formatted correctly (e.g. '0..1', '1..1', '0..n', '1..n'; regex (\d+..(\d+|n)))
     def validate_cardinality_format(cardinality):

@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoResourceDetails" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoResourceDetails" xmlns="http://www.w3.org/2001/XMLSchema">
-    <element name="geoResourceDetails" type="x:geoResourceDetails"/>
-    <complexType name="geoResourceDetails">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:geoResourcesDetails" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:geoResourcesDetails" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="geoResourcesDetails" type="x:geoResourcesDetails"/>
+    <complexType name="geoResourcesDetails">
         <sequence>
             <element maxOccurs="unbounded" minOccurs="0" name="resource" type="x:resource"/>
         </sequence>

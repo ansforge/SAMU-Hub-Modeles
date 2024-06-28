@@ -171,7 +171,7 @@ public class Alert {
   }
 
   /**
-   * Groupe date heure de réception de l&#39;alerte
+   * A valoriser avec le groupe date heure de réception de l&#39;alerte/appel
    * @return reception
    **/
   @JsonProperty(JSON_PROPERTY_RECEPTION)

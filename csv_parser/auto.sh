@@ -4,7 +4,7 @@
 NOMENCLATURE_IN_FOLDER="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/Nomenclatures/01 - Base interne/"
 NOMENCLATURE_FOLDER="../nomenclature_parser/in/"
 MODELS_IN_FILE="/Users/romainfouilland/Library/CloudStorage/OneDrive-SharedLibraries-ANS/Espace Projets - Espace Programme SI-SAMU/01 - Equipe projet/07 - Innovation et prospectif/12 - Hub Santé/17 - MDD/MDD - Hub Santé.xlsx"
-MODELS_FILE="model.xlsx"
+MODELS_FILE="models/model.xlsx"
 TRACKING_BRANCH_NAME="auto/model_tracker"
 DATE=$(date +'%y.%m.%d %H:%M')
 LOG_FILE="cron.log"
@@ -27,7 +27,9 @@ nomenclatures() {
     echo "No changes in $NOMENCLATURE_FOLDER, skipping nomenclatures generation..."
   else
     echo "Changes detected in $NOMENCLATURE_FOLDER, running nomenclatures generation..."
-    cd ../nomenclature_parser && /Users/romainfouilland/code/envs/all/bin/python nomenclature_parser.py && git add .
+    cd ../nomenclature_parser
+    /Users/romainfouilland/code/envs/all/bin/python nomenclature_parser.py || (git stash && exit 1)
+    git add .
   fi
 }
 

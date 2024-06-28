@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesRequest" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesRequest" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourcesRequest" type="x:resourcesRequest"/>
+    <complexType name="resourcesRequest">
+        <sequence>
+            <element name="caseId" type="string">
+                <annotation>
+                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
+Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
+Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                </annotation>
+            </element>
+            <element name="RSDRId" type="string">
+                <annotation>
+                    <documentation>Identifiant unique partagé de la demande de ressource
+{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="request" type="x:request"/>
+        </sequence>
+    </complexType>
+    <complexType name="request">
+        <sequence>
+            <element name="dateTime" type="dateTime">
+                <annotation>
+                    <documentation>Voir liste des effets à obtenir identifiés</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="convention" type="string">
+                <annotation>
+                    <documentation>Nomenclature à venir : décrit le cadre conventionnel de la demande.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>Délai d'intervention souhaité</documentation>
+                </annotation>
+            </element>
+            <element name="purpose">
+                <annotation>
+                    <documentation>Motif de la demande de ressource auprès du partenaire</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="E01"/>
+                        <enumeration value="E02"/>
+                        <enumeration value="E03"/>
+                        <enumeration value="E04"/>
+                        <enumeration value="E05"/>
+                        <enumeration value="E06"/>
+                        <enumeration value="E07"/>
+                        <enumeration value="E08"/>
+                        <enumeration value="E09"/>
+                        <enumeration value="E10"/>
+                        <enumeration value="E11"/>
+                        <enumeration value="E12"/>
+                        <enumeration value="E13"/>
+                        <enumeration value="E14"/>
+                        <enumeration value="E15"/>
+                        <enumeration value="E16"/>
+                        <enumeration value="E17"/>
+                        <enumeration value="E18"/>
+                        <enumeration value="E19"/>
+                        <enumeration value="E20"/>
+                        <enumeration value="E21"/>
+                        <enumeration value="E22"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="freetext" type="string">
+                <annotation>
+                    <documentation>Texte libre permettant de détailler la demande</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

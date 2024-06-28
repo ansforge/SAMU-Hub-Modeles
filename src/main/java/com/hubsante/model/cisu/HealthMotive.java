@@ -49,7 +49,7 @@ import java.util.Objects;
 public class HealthMotive {
 
   /**
-   * A valoriser avec un code la nomenclature associée
+   * A valoriser avec le code de la nomenclature associée
    */
   public enum CodeEnum {
     M01_00("M01.00"),
@@ -196,7 +196,7 @@ public class HealthMotive {
   }
 
   /**
-   * A valoriser avec un code la nomenclature associée
+   * A valoriser avec le code de la nomenclature associée
    * @return code
    **/
   @JsonProperty(JSON_PROPERTY_CODE)
@@ -220,8 +220,8 @@ public class HealthMotive {
 
   /**
    * A valoriser avec le libellé de la nomenclature associée. Dans le cas où un
-   *système n&#39;est pas en mesure de reconnaître un code, il peut directement
-   *afficher le libellé qui est obligatoirement fourni avec le code.
+   *système n&#39;est pas en mesure de reconnaître un code, il peut choisir
+   *d&#39;afficher le libellé qui est obligatoirement fourni avec le code.
    * @return label
    **/
   @JsonProperty(JSON_PROPERTY_LABEL)

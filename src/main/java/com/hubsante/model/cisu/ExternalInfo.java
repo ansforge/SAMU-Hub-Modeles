@@ -50,14 +50,14 @@ import java.util.Objects;
 public class ExternalInfo {
 
   /**
-   * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
+   * A valoriser avec le système fournissant le localisant
    */
   public enum FreetextEnum {
     BAN("BAN"),
 
     IGN("IGN"),
 
-    NEXSIS("NexSIS");
+    NEXSIS("NEXSIS");
 
     private String value;
 
@@ -88,20 +88,20 @@ public class ExternalInfo {
   private FreetextEnum freetext;
 
   /**
-   * Définition du type d&#39;objet dans le système Ex : SIG NexSIS / OSM ont
-   * plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de
-   * route, …) pour faciliter le filtre | Aussi table dans une base de données
+   * A valoriser avec la définition du type d&#39;objet dans le système  Exemple
+   * : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de
+   * route, …)
    */
   public enum TypeEnum {
-    MANUAL("MANUAL"),
+    MANUEL("MANUEL"),
 
-    MAP("MAP"),
+    CARTE("CARTE"),
 
-    OTHER("OTHER"),
+    AUTRE("AUTRE"),
 
     PHOTO("PHOTO"),
 
-    WEBSIT("WEBSIT");
+    SITE_INTERNET("SITE INTERNET");
 
     private String value;
 
@@ -143,7 +143,7 @@ public class ExternalInfo {
   }
 
   /**
-   * Système fournissant le localisant :  NexSiS ou l&#39;ORG_ID (BAN, IGN, ...)
+   * A valoriser avec le système fournissant le localisant
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
@@ -166,9 +166,9 @@ public class ExternalInfo {
   }
 
   /**
-   * Définition du type d&#39;objet dans le système Ex : SIG NexSIS / OSM ont
-   *plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de
-   *route, …) pour faciliter le filtre | Aussi table dans une base de données
+   * A valoriser avec la définition du type d&#39;objet dans le système  Exemple
+   *: SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de
+   *route, …)
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -191,7 +191,7 @@ public class ExternalInfo {
   }
 
   /**
-   * Identifiant unique dans le type. Exemple : UUID d&#39;un ega
+   * Identifiant dans le système concerné
    * @return uri
    **/
   @JsonProperty(JSON_PROPERTY_URI)

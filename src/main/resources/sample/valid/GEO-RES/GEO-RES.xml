@@ -31,7 +31,7 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
-                        <geoResourceDetails xmlns="urn:emergency:cisu:2.0:geoResourceDetails">
+                        <geoResourcesDetails xmlns="urn:emergency:cisu:2.0:geoResourcesDetails">
                             <resource>
                                 <id>76_45101#SMUR1#</id>
                                 <orgId>fr.health.760.samu76</orgId>
@@ -84,7 +84,7 @@
                                     <details>0612342539</details>
                                 </contacts>
                             </resource>
-                        </geoResourceDetails>
+                        </geoResourcesDetails>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

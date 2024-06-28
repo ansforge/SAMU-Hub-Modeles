@@ -1,0 +1,160 @@
+{
+  "createCase": {
+    "caseId": "fr.health.samu440.DRFR154402413800236",
+    "senderCaseId": "DRFR154402413800236",
+    "creation": "2024-05-18T18:15:00+02:00",
+    "referenceVersion": "1.3",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C09.03.00",
+        "label": "Fuite de gaz"
+      },
+      "locationKind": {
+        "code": "L01.01.01",
+        "label": "Maison particulière, pavillon, à l'intérieur"
+      },
+      "riskThreat": [
+        {
+          "code": "R13",
+          "label": "Risque d'explosion, présence de gaz"
+        }
+      ],
+      "healthMotive": {
+        "code": "M03.10",
+        "label": "Malaise avec perte de connaissance initiale"
+      },
+      "victims": {
+        "count": "PLUSIEURS",
+        "mainVictim": "ENFANT"
+      }
+    },
+    "location": {
+      "locID": "111fb03a-6fd9-41e0-8e81-990c45188889",
+      "detailedAddress": {
+        "complete": "Rue des Marins",
+        "wayName": {
+          "complete": "Rue des Marins",
+          "type": "Rue",
+          "name": "Des Marins"
+        },
+        "number": "3"
+      },
+      "city": {
+        "name": "Bouaye",
+        "inseeCode": "44018"
+      },
+      "country": "FR",
+      "freetext": "Maison aux volets verts",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.147005,
+            "lon": -1.690548,
+            "precision": "ADRESSE"
+          }
+        },
+        "obsDatime": "2024-05-18T18:17:00+02:00"
+      }
+    },
+    "initialAlert": {
+      "id": "samu440-20240518-AL0192",
+      "reception": "2023-11-18T18:15:00+01:00",
+      "reporting": "ATTENTION",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "0671830523",
+          "channel": "PERSONNE"
+        },
+        "freetext": "Mère des enfants",
+        "detailedName": {
+          "complete": "Marie Dubois",
+          "lastName": "Dubois",
+          "firstName": "Marie"
+        },
+        "language": "FR",
+        "type": "FAMILLE",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "0671830523"
+        },
+        "communication": "AUCUNE"
+      },
+      "location": {
+        "locID": "111fb03a-6fd9-41e0-8e81-990c45188889",
+        "detailedAddress": {
+          "complete": "Rue des Marins",
+          "wayName": {
+            "complete": "Rue des Marins",
+            "type": "Rue ",
+            "name": "Des Marins"
+          },
+          "number": "3"
+        },
+        "city": {
+          "name": "Bouaye",
+          "inseeCode": "44018"
+        },
+        "country": "FR",
+        "freetext": "Maison aux volets verts",
+        "geometry": {
+          "point": {
+            "coord": {
+              "lat": 47.146089,
+              "lon": -1.691374,
+              "precision": "ADRESSE"
+            }
+          },
+          "obsDatime": "2024-05-18T18:17:00+02:00"
+        }
+      },
+      "qualification": {
+        "whatsHappen": {
+          "code": "C09.03.0",
+          "label": "Fuite de gaz"
+        },
+        "locationKind": {
+          "code": "L01.01.01",
+          "label": "Maison particulière, pavillon, à l'intérieur"
+        },
+        "riskThreat": [
+          {
+            "code": "R13",
+            "label": "Risque d'explosion, présence de gaz"
+          }
+        ],
+        "healthMotive": {
+          "code": "M03.10",
+          "label": "Malaise avec perte de connaissance initiale"
+        },
+        "victims": {
+          "count": "PLUSIEURS",
+          "mainVictim": "ENFANT"
+        }
+      },
+      "callTaker": {
+        "organization": "fr.health.samu440",
+        "controlRoom": "CRRA44",
+        "calltakerContact": {
+          "channel": "PERSONNE",
+          "detail": "0671830587",
+          "type": "TEL"
+        },
+        "role": "ARM",
+        "calltakerId": "1234"
+      },
+      "attachment": [
+        {
+          "URI": "https://hub.esante.gouv.fr/resourceExample"
+        }
+      ],
+      "notes": [
+        {
+          "freetext": "Les enfants se plaignent de maux de tête depuis 1h, la mère n'a aucun symptômes",
+          "creation": "2024-05-18T18:17:00+02:00"
+        }
+      ]
+    }
+  }
+}

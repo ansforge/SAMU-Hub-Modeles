@@ -31,7 +31,7 @@
                             <name>samuB</name>
                             <URI>hubex:fr.health.samuB</URI>
                         </recipient>
-                        <geoPositionUpdate xmlns="urn:emergency:cisu:2.0:geoPositionUpdate">
+                        <geoPositionsUpdate xmlns="urn:emergency:cisu:2.0:geoPositionsUpdate">
                             <position>
                                 <id>76_45101#SMUR1#</id>
                                 <datetime>2024-01-27T08:44:00+02:00</datetime>
@@ -67,7 +67,7 @@
                                 <engineOn>false</engineOn>
                                 <status>INDISPONIBLE</status>
                             </position>
-                        </geoPositionUpdate>
+                        </geoPositionsUpdate>
                     </message>
                 </embeddedXMLContent>
             </contentXML>

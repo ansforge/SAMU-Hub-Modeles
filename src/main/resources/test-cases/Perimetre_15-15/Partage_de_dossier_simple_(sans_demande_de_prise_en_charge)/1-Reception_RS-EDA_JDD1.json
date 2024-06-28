@@ -1,0 +1,105 @@
+{
+    "createCaseHealth": {
+        "caseId": "fr.health.samu770-DRFR157702400400055",
+        "creation": "2024-01-18T15:15:00+01:00",
+        "referenceVersion": "1.3",
+        "perimeter": "AMU",
+        "interventionType": "Primaire",
+        "qualification": {
+            "whatsHappen": {
+                "code": "C02.08.05",
+                "label": "Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant"
+            },
+            "locationKind": {
+                "code": "L01.01.04",
+                "label": "Domicile ; Maison particulière, pavillon ;  dépendance"
+            },
+            "healthMotive": {
+                "code": "M01.02",
+                "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
+            },
+            "details": {
+                "priority": "P0",
+                "attribution": "MU"
+            }
+        },
+        "owner": "fr.health.samu770",
+        "patient": [
+            {
+                "id": "fr.health.samu770-DRFR157702400400055.P167",
+                "identity": {
+                    "strictFeatures": {
+                        "sex": "MASC",
+                        "birthDate": "1959-02-01"
+                    },
+                    "nonStrictFeatures": {
+                        "complete": "Didier Morel",
+                        "firstName": "Didier ",
+                        "lastName": "Morel"
+                    }
+                },
+                "detail": {
+                    "age": "P65Y"
+                }
+            }
+        ],
+        "location": {
+            "locID": "555fb03a-4df5-8zg6-8e81-990c4511256",
+            "country": "FR",
+            "detailedAddress": {
+                "complete": "12 Rue Louis Aristide Verdier "
+            },
+            "city": {
+                "name": "Vaires-sur-Marne",
+                "inseeCode": "77479"
+            },
+            "freetext": "Aller directement dans le garage",
+            "geometry": {
+                "obsDatime": "2024-01-04T00:05:00+01:00",
+                "point": {
+                    "coord": {
+                        "lat": 48.866920471191406,
+                        "lon": 2.631575345993042,
+                        "precision": "ADDRESS"
+                    }
+                }
+            }
+        },
+        "initialAlert": {
+            "id": "ALRT-2024-ABC123",
+            "reception": "2024-01-18T15:15:00+01:00",
+            "reporting": "STANDARD",
+            "caller": {
+                "callerContact": {
+                    "type": "PHNADD",
+                    "detail": "0607080915",
+                    "channel": "Personne"
+                },
+                "callbackContact": {
+                    "type": "PHNADD",
+                    "detail": "0607080915",
+                    "channel": "Personne"
+                },
+                "language": "FR",
+                "type": "FAMILLE",
+                "detailedName": {
+                    "complete": "Sébastien Morel",
+                    "firstName": "Sébastien",
+                    "lastName": "Morel"
+                }
+            },
+            "notes": [
+                {
+                    "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. "
+                },
+                {
+                    "freetext": "La victime est inconsciente (perte de connaissance)."
+                }
+            ],
+            "callTaker": {
+                "organization": "fr.health.samu770",
+                "controlRoom": "CRRA 77"
+            }
+        }
+    }
+}

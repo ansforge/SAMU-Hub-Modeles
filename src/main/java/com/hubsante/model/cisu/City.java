@@ -65,7 +65,7 @@ public class City {
   }
 
   /**
-   * Nom officiel de la commune actuelle
+   * A valoriser avec le nom officiel de la commune
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -88,8 +88,9 @@ public class City {
   }
 
   /**
-   * Code INSEE de la commune actuelle sur la base du Code Officiel géographique
-   *en vigueur. Obligatoire si le nom de la commune est renseigné.
+   * A valoriser avec le code INSEE de la commune actuelle sur la base du Code
+   *Officiel géographique en vigueur.  La valeur du code INSEE est obligatoire
+   *dès que le nom de la commune est renseigné (city.name).
    * @return inseeCode
    **/
   @JsonProperty(JSON_PROPERTY_INSEE_CODE)

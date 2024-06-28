@@ -1,19 +1,19 @@
 openapi: 3.0.0
 components:
   schemas:
-    geoResourceDetailsWrapper:
+    geoResourcesDetailsWrapper:
       type: object
       required:
-      - geoResourceDetails
+      - geoResourcesDetails
       properties:
-        geoResourceDetails:
-          $ref: '#/components/schemas/geoResourceDetails'
-    geoResourceDetails:
+        geoResourcesDetails:
+          $ref: '#/components/schemas/geoResourcesDetails'
+    geoResourcesDetails:
       $id: classpath:/json-schema/schema#
       x-id: GEO-RES.schema.json#
       example: example.json#
       type: object
-      title: geoResourceDetails
+      title: geoResourcesDetails
       required: []
       properties:
         resource:

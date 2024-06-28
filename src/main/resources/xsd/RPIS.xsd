@@ -1,0 +1,576 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:rpis" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:rpis" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="rpis" type="x:rpis"/>
+    <complexType name="rpis">
+        <sequence>
+            <element name="event" type="x:event"/>
+            <element name="regulation" type="x:regulation"/>
+            <element name="patient" type="x:patient"/>
+            <element name="intervention" type="x:intervention"/>
+            <element name="orientation" type="x:orientation"/>
+        </sequence>
+    </complexType>
+    <complexType name="event">
+        <sequence>
+            <element name="samuId">
+                <annotation>
+                    <documentation>Numéro du SAMU régulant la mission SMUR. 
+A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
+</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="fileId" type="string">
+                <annotation>
+                    <documentation>Numéro du dossier SAMU à l’origine de la mission SMUR
+A valoriser par DRFR15DDXAAJJJ00000 : 
+- DR = désignation d'un dossier sous forme abrégée,
+- FR : désigne le pays (FR = France),
+- 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS,
+- DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier,
+- X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM,
+- AA : année durant laquelle l’appel a été créé,
+- JJJ : désigne le jour de l'année (de 1j à 365j),\par
+- 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus.</documentation>
+                </annotation>
+            </element>
+            <element name="creationDate" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+            <element name="decisionDate" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+            <element name="ressourceFinessLegal" type="string">
+                <annotation>
+                    <documentation>FINESS juridique établissement rattachement SMUR</documentation>
+                </annotation>
+            </element>
+            <element name="ressourceFinessGeo" type="string">
+                <annotation>
+                    <documentation>FINESS géographique établissement rattachement SMUR ou antenne SMUR</documentation>
+                </annotation>
+            </element>
+            <element name="ressourceStructure" type="string">
+                <annotation>
+                    <documentation>9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="regulation">
+        <sequence>
+            <element name="whatsHappen" type="x:whatsHappen"/>
+            <element name="healthMotive" type="x:healthMotive"/>
+            <element name="initialTeamCare" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, secouriste).
+A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
+Permet de déduire avec la donnée "niveau de médicalisation du transport", si un UMHP est devenu un SMUR. </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="patient">
+        <sequence>
+            <element name="patientId" type="string">
+                <annotation>
+                    <documentation>Identifiant unique du patient. 
+A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01</documentation>
+                </annotation>
+            </element>
+            <element name="birthDate" type="string">
+                <annotation>
+                    <documentation>Date de naissance du patient</documentation>
+                </annotation>
+            </element>
+            <element name="sex" type="string">
+                <annotation>
+                    <documentation>Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="nir" type="decimal">
+                <annotation>
+                    <documentation>Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="residentialAddress" type="x:residentialAddress"/>
+        </sequence>
+    </complexType>
+    <complexType name="intervention">
+        <sequence>
+            <element name="location" type="x:location"/>
+            <element name="team" type="x:team"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="actions" type="string"/>
+            <element name="mainDiagnosis" type="string">
+                <annotation>
+                    <documentation>Thésaurus SFMU-FEDORU.
+A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="associatedDiagnosis" type="string">
+                <annotation>
+                    <documentation>Thésaurus SFMU-FEDORU.
+A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="smurStatus" type="x:resourceStatus"/>
+        </sequence>
+    </complexType>
+    <complexType name="orientation">
+        <sequence>
+            <element name="type" type="string">
+                <annotation>
+                    <documentation>Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
+A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
+Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. </documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
+            <element minOccurs="0" name="decision" type="x:decision"/>
+        </sequence>
+    </complexType>
+    <complexType name="whatsHappen">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="healthMotive">
+        <sequence>
+            <element name="code" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime</documentation>
+                </annotation>
+            </element>
+            <element name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Motif_patient-victime.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="residentialAddress">
+        <sequence>
+            <element name="cityCode">
+                <annotation>
+                    <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
+Le Code INSEE peut également précisé le pays de résidence, si étranger. </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="city" type="string">
+                <annotation>
+                    <documentation>Nom officiel de la commune actuelle</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="location">
+        <sequence>
+            <element minOccurs="0" name="type" type="string">
+                <annotation>
+                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="finessGeo" type="string">
+                <annotation>
+                    <documentation>Finess géographique et juridique de l’établissement de santé</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="unit" type="string">
+                <annotation>
+                    <documentation>Unité fonctionnelle de l'établissement de santé</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
+        </sequence>
+    </complexType>
+    <complexType name="team">
+        <sequence>
+            <element name="doctor" type="boolean">
+                <annotation>
+                    <documentation>Permet d'identifier si un médecin compose l'équipe.
+Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. </documentation>
+                </annotation>
+            </element>
+            <element name="nurse" type="boolean">
+                <annotation>
+                    <documentation>Permet d'identifier si un infirmier compose l'équipe.
+Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. </documentation>
+                </annotation>
+            </element>
+            <element name="driver" type="boolean">
+                <annotation>
+                    <documentation>Permet d'identifier si un ambulancier compose l'équipe.
+Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. </documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="resourceStatus">
+        <sequence>
+            <element name="departSmur" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="arrivedSmur" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="departLocation" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="arrivedDestination" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+            <element name="teamAvailable" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+            <element name="returnSmur" type="dateTime">
+                <annotation>
+                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="detailedAddress">
+        <sequence>
+            <element name="cityCode">
+                <annotation>
+                    <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
+Le Code INSEE peut également précisé le pays d'intervention, si étranger. </documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[0-9]{5}"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="city" type="string">
+                <annotation>
+                    <documentation>Nom officiel de la commune actuelle</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="destination">
+        <sequence>
+            <element name="destinationCountry">
+                <annotation>
+                    <documentation>A valoriser par le libellé court de la nomenclature SIGLPAYS</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AF"/>
+                        <enumeration value="AX"/>
+                        <enumeration value="AL"/>
+                        <enumeration value="DZ"/>
+                        <enumeration value="AS"/>
+                        <enumeration value="AD"/>
+                        <enumeration value="AO"/>
+                        <enumeration value="AI"/>
+                        <enumeration value="AQ"/>
+                        <enumeration value="AG"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AM"/>
+                        <enumeration value="AW"/>
+                        <enumeration value="AU"/>
+                        <enumeration value="AT"/>
+                        <enumeration value="AZ"/>
+                        <enumeration value="BS"/>
+                        <enumeration value="BH"/>
+                        <enumeration value="BD"/>
+                        <enumeration value="BB"/>
+                        <enumeration value="BY"/>
+                        <enumeration value="BE"/>
+                        <enumeration value="BZ"/>
+                        <enumeration value="BJ"/>
+                        <enumeration value="BM"/>
+                        <enumeration value="BT"/>
+                        <enumeration value="BO"/>
+                        <enumeration value="BA"/>
+                        <enumeration value="BW"/>
+                        <enumeration value="BV"/>
+                        <enumeration value="BR"/>
+                        <enumeration value="IO"/>
+                        <enumeration value="BN"/>
+                        <enumeration value="BG"/>
+                        <enumeration value="BF"/>
+                        <enumeration value="BI"/>
+                        <enumeration value="CV"/>
+                        <enumeration value="KH"/>
+                        <enumeration value="CM"/>
+                        <enumeration value="CA"/>
+                        <enumeration value="KY"/>
+                        <enumeration value="CF"/>
+                        <enumeration value="TD"/>
+                        <enumeration value="CL"/>
+                        <enumeration value="CN"/>
+                        <enumeration value="CX"/>
+                        <enumeration value="CC"/>
+                        <enumeration value="CO"/>
+                        <enumeration value="KM"/>
+                        <enumeration value="CG"/>
+                        <enumeration value="CK"/>
+                        <enumeration value="CR"/>
+                        <enumeration value="CI"/>
+                        <enumeration value="HR"/>
+                        <enumeration value="CU"/>
+                        <enumeration value="CW"/>
+                        <enumeration value="CY"/>
+                        <enumeration value="CZ"/>
+                        <enumeration value="DK"/>
+                        <enumeration value="DJ"/>
+                        <enumeration value="DM"/>
+                        <enumeration value="DO"/>
+                        <enumeration value="EC"/>
+                        <enumeration value="EG"/>
+                        <enumeration value="SV"/>
+                        <enumeration value="GQ"/>
+                        <enumeration value="ER"/>
+                        <enumeration value="EE"/>
+                        <enumeration value="SZ"/>
+                        <enumeration value="ET"/>
+                        <enumeration value="FK"/>
+                        <enumeration value="FO"/>
+                        <enumeration value="FJ"/>
+                        <enumeration value="FI"/>
+                        <enumeration value="FR"/>
+                        <enumeration value="GF"/>
+                        <enumeration value="PF"/>
+                        <enumeration value="TF"/>
+                        <enumeration value="GA"/>
+                        <enumeration value="GM"/>
+                        <enumeration value="GE"/>
+                        <enumeration value="DE"/>
+                        <enumeration value="GH"/>
+                        <enumeration value="GI"/>
+                        <enumeration value="GR"/>
+                        <enumeration value="GL"/>
+                        <enumeration value="GD"/>
+                        <enumeration value="GP"/>
+                        <enumeration value="GU"/>
+                        <enumeration value="GT"/>
+                        <enumeration value="GG"/>
+                        <enumeration value="GN"/>
+                        <enumeration value="GW"/>
+                        <enumeration value="GY"/>
+                        <enumeration value="HT"/>
+                        <enumeration value="HM"/>
+                        <enumeration value="VA"/>
+                        <enumeration value="HN"/>
+                        <enumeration value="HK"/>
+                        <enumeration value="HU"/>
+                        <enumeration value="IS"/>
+                        <enumeration value="IN"/>
+                        <enumeration value="ID"/>
+                        <enumeration value="IR"/>
+                        <enumeration value="IQ"/>
+                        <enumeration value="IE"/>
+                        <enumeration value="IM"/>
+                        <enumeration value="IL"/>
+                        <enumeration value="IT"/>
+                        <enumeration value="JM"/>
+                        <enumeration value="JP"/>
+                        <enumeration value="JE"/>
+                        <enumeration value="JO"/>
+                        <enumeration value="KZ"/>
+                        <enumeration value="KE"/>
+                        <enumeration value="KI"/>
+                        <enumeration value="KP"/>
+                        <enumeration value="KW"/>
+                        <enumeration value="KG"/>
+                        <enumeration value="LA"/>
+                        <enumeration value="LV"/>
+                        <enumeration value="LB"/>
+                        <enumeration value="LS"/>
+                        <enumeration value="LR"/>
+                        <enumeration value="LY"/>
+                        <enumeration value="LI"/>
+                        <enumeration value="LT"/>
+                        <enumeration value="LU"/>
+                        <enumeration value="MO"/>
+                        <enumeration value="MG"/>
+                        <enumeration value="MW"/>
+                        <enumeration value="MY"/>
+                        <enumeration value="MV"/>
+                        <enumeration value="ML"/>
+                        <enumeration value="MT"/>
+                        <enumeration value="MH"/>
+                        <enumeration value="MQ"/>
+                        <enumeration value="MR"/>
+                        <enumeration value="MU"/>
+                        <enumeration value="YT"/>
+                        <enumeration value="MX"/>
+                        <enumeration value="FM"/>
+                        <enumeration value="MC"/>
+                        <enumeration value="MN"/>
+                        <enumeration value="ME"/>
+                        <enumeration value="MS"/>
+                        <enumeration value="MA"/>
+                        <enumeration value="MZ"/>
+                        <enumeration value="MM"/>
+                        <enumeration value="NA"/>
+                        <enumeration value="NR"/>
+                        <enumeration value="NP"/>
+                        <enumeration value="NL"/>
+                        <enumeration value="NC"/>
+                        <enumeration value="NZ"/>
+                        <enumeration value="NI"/>
+                        <enumeration value="NE"/>
+                        <enumeration value="NG"/>
+                        <enumeration value="NU"/>
+                        <enumeration value="NF"/>
+                        <enumeration value="MK"/>
+                        <enumeration value="MP"/>
+                        <enumeration value="NO"/>
+                        <enumeration value="OM"/>
+                        <enumeration value="PK"/>
+                        <enumeration value="PW"/>
+                        <enumeration value="PA"/>
+                        <enumeration value="PG"/>
+                        <enumeration value="PY"/>
+                        <enumeration value="PE"/>
+                        <enumeration value="PH"/>
+                        <enumeration value="PN"/>
+                        <enumeration value="PL"/>
+                        <enumeration value="PT"/>
+                        <enumeration value="PR"/>
+                        <enumeration value="QA"/>
+                        <enumeration value="RE"/>
+                        <enumeration value="RO"/>
+                        <enumeration value="RU"/>
+                        <enumeration value="RW"/>
+                        <enumeration value="BL"/>
+                        <enumeration value="KN"/>
+                        <enumeration value="LC"/>
+                        <enumeration value="MF"/>
+                        <enumeration value="PM"/>
+                        <enumeration value="VC"/>
+                        <enumeration value="WS"/>
+                        <enumeration value="SM"/>
+                        <enumeration value="ST"/>
+                        <enumeration value="SA"/>
+                        <enumeration value="SN"/>
+                        <enumeration value="RS"/>
+                        <enumeration value="SC"/>
+                        <enumeration value="SL"/>
+                        <enumeration value="SG"/>
+                        <enumeration value="SX"/>
+                        <enumeration value="SK"/>
+                        <enumeration value="SI"/>
+                        <enumeration value="SB"/>
+                        <enumeration value="SO"/>
+                        <enumeration value="ZA"/>
+                        <enumeration value="GS"/>
+                        <enumeration value="SS"/>
+                        <enumeration value="ES"/>
+                        <enumeration value="LK"/>
+                        <enumeration value="SD"/>
+                        <enumeration value="SR"/>
+                        <enumeration value="SJ"/>
+                        <enumeration value="SE"/>
+                        <enumeration value="CH"/>
+                        <enumeration value="SY"/>
+                        <enumeration value="TJ"/>
+                        <enumeration value="TH"/>
+                        <enumeration value="TL"/>
+                        <enumeration value="TG"/>
+                        <enumeration value="TK"/>
+                        <enumeration value="TO"/>
+                        <enumeration value="TT"/>
+                        <enumeration value="TN"/>
+                        <enumeration value="TR"/>
+                        <enumeration value="TM"/>
+                        <enumeration value="TC"/>
+                        <enumeration value="TV"/>
+                        <enumeration value="UG"/>
+                        <enumeration value="UA"/>
+                        <enumeration value="AE"/>
+                        <enumeration value="GB"/>
+                        <enumeration value="US"/>
+                        <enumeration value="UM"/>
+                        <enumeration value="UY"/>
+                        <enumeration value="UZ"/>
+                        <enumeration value="VU"/>
+                        <enumeration value="VE"/>
+                        <enumeration value="VN"/>
+                        <enumeration value="VG"/>
+                        <enumeration value="VI"/>
+                        <enumeration value="WF"/>
+                        <enumeration value="EH"/>
+                        <enumeration value="YE"/>
+                        <enumeration value="ZM"/>
+                        <enumeration value="ZW"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="destinationCategory" type="string">
+                <annotation>
+                    <documentation>A valoriser par le code de la nomenclature associée</documentation>
+                </annotation>
+            </element>
+            <element name="healthcareType" type="string">
+                <annotation>
+                    <documentation>A valoriser par le code de la nomenclature ActiviteOperationnelle</documentation>
+                </annotation>
+            </element>
+            <element name="finess" type="string">
+                <annotation>
+                    <documentation>FINESS géographique de l’établissement de destination (9 chiffres)</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+    <complexType name="decision">
+        <sequence>
+            <element name="resourceCategory" type="string">
+                <annotation>
+                    <documentation>Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). 
+A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.</documentation>
+                </annotation>
+            </element>
+            <element name="resourceType" type="string">
+                <annotation>
+                    <documentation>Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
+A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
+                </annotation>
+            </element>
+            <element name="teamCare" type="string">
+                <annotation>
+                    <documentation>Type d’équipe (médical, paramédicale, secouriste).
+A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

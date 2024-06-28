@@ -1,0 +1,125 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.fire.cga-044.SC-20240526-044-cga-AL8",
+    "senderCaseId": "DRFR154402414300123",
+    "creation": "2024-05-26T13:15:00+02:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.05.02",
+        "label": "Obstétrique"
+      },
+      "locationKind": {
+        "code": "L04.02.00",
+        "label": "Centre commercial / magasin"
+      },
+      "healthMotive": {
+        "code": "M03.03",
+        "label": "Saignements gynécologiques"
+      },
+      "details": {
+        "priority": "P2",
+        "attribution": "MU"
+      }
+    },
+    "location": {
+      "detailedAddress": {
+        "complete": "Boulevard Salvador Allende",
+        "wayName": {
+          "complete": "Boulevard Salvador Allende",
+          "type": "Boulevard",
+          "name": "Salvador Allende"
+        }
+      },
+      "city": {
+        "name": "Saint-Herblain",
+        "inseeCode": "44162"
+      },
+      "access": {
+        "floor": "RDC",
+        "buildingName": "Soleil"
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.146089,
+            "lon": -1.691374,
+            "precision": "EXACTE"
+          }
+        },
+        "obsDatime": "2024-05-18T18:15:00+02:00"
+      },
+      "externalLocationId": [
+        {
+          "source": "SIRET",
+          "value": "70142121200018"
+        }
+      ],
+      "name": "Centre Commercial Atlantis"
+    },
+    "initialAlert": {
+      "reception": "2024-05-26T13:15:00+02:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "0671832618",
+          "channel": "PERSONNE"
+        },
+        "detailedName": {
+          "complete": "Agnès Duberti",
+          "lastName": "Duberti",
+          "firstName": "Agnès"
+        },
+        "language": "FR",
+        "type": "TIERS",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "0671832618"
+        },
+        "communication": "AUCUNE"
+      }
+    },
+    "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Delphine Vigneau",
+            "lastName": "Vigneau",
+            "firstName": "Delphine"
+          },
+          "strictFeatures": {
+            "sex": "FEM",
+            "birthDate": "1992-03-03"
+          }
+        },
+        "id": "fr.health.samu440.DRFR154402414300123.P01",
+        "detail": {
+          "age": "P32Y"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "JA40 ",
+            "label": "Hémorragie en début de grossesse"
+          }
+        },
+        "healthMotive": {
+          "code": "M03.10",
+          "label": "Malaise avec perte de connaissance initiale"
+        },
+        "freetext": [
+          "Enceinte de 2 mois, antécédents de fausse couche à 1 mois"
+        ]
+      }
+    ],
+    "owner": "CRRA44",
+    "additionalInformation": {
+      "customMap": [
+        {
+          "key": "COMMERCIAL",
+          "value": "IKEA Nantes"
+        }
+      ]
+    },
+    "interventionType": "PRIMAIRE"
+  }
+}

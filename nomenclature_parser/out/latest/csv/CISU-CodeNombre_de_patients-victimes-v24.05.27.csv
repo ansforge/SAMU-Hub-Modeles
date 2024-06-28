@@ -1,6 +1,0 @@
-,code,label_n1,description,commentaire
-0,P00,0,Aucune victime signalée,
-1,P01,1,Une seule victime signalée,
-2,P02,Plusieurs victimes,Entre 2 à 4 victimes signalées,
-3,P03,Nombreuses victimes,A partir de 5 victimes signalées,
-4,P04,Indéterminé,Information non connue lors de l’appel,
