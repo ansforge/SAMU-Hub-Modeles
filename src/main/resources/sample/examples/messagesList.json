@@ -5,17 +5,6 @@
     "schema": null,
     "examples": [
       {
-        "file": "RC-EDA/RC-EDA-usecase-Armaury-1.json",
-        "icon": "mdi-bike-fast",
-        "name": "Alexandre ARMAURY",
-        "caller": "Albane Armaury, témoin accident impliquant son mari, Alexandre Armaury",
-        "context": "Collision de 2 vélos",
-        "environment": "Voie cyclable à Lyon, gêne de la circulation",
-        "victims": "2 victimes, 1 nécessitant assistance SAMU",
-        "victim": "Homme, adulte, 43 ans",
-        "medicalSituation": "Céphalées, migraines, traumatismes sérieux, plaies intermédiaires"
-      },
-      {
         "file": "RC-EDA/RC-EDA-Fuite-de-Gaz.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
