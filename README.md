@@ -21,6 +21,13 @@ Des exemples de messages sont disponibles dans le répertoire [src/main/resource
 
 Les spécifications du modèle de données sont disponibles sur le [site du projet SAMU-Hub-Santé](https://hub.esante.gouv.fr/).
 
+## Correspondance DSF - librairie
+
+||Release|Périmètre 15-15|Périmètre 15-NexSIS|Périmètre 15-SMUR|
+|-|-|-|-|
+|[0.5](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.5.1)|1.2|1.6|1.1|
+|[0.6](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.6.0)|1.3|1.6|1.2|
+
 ## Modèles
 
 ||[Schéma](src/main/resources/json-schema/)|Détails|UML|
