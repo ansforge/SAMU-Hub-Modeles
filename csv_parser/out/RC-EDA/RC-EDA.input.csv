@@ -16,7 +16,7 @@ Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général
 
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,alertCode,qualification,,,,,,1..1,X,qualification,,
-,Nature de fait,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
+,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,,1.0,1..1,,string,,
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,,1.0,1..1,,string,,
