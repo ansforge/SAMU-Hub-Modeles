@@ -234,21 +234,10 @@ components:
           $ref: '#/components/schemas/location'
         team:
           $ref: '#/components/schemas/team'
-        actions:
+        actionsSMUR:
           type: array
-          x-health-only: false
           items:
-            type: string
-            title: "Actes r\xE9alis\xE9s par le SMUR"
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/intervention/actions/0
-            description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
-              \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
-              s avant son intervention. \nA valoriser avec un code de la nomenclature\
-              \ ACTES_SMUR."
-            examples:
-            - ABV
+            $ref: '#/components/schemas/actions'
         mainDiagnosis:
           type: string
           title: Diagnostic principal SMUR
@@ -496,6 +485,17 @@ components:
       - doctor: OUI
         nurse: NON
         driver: OUI
+    actions:
+      type: object
+      title: "Actes r\xE9alis\xE9s par le SMUR"
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties: {}
+      additionalProperties: false
+      example: example.json#/intervention/actionsSMUR/0
+      examples:
+      - {}
     resourceStatus:
       type: object
       title: Statuts des horaires du SMUR

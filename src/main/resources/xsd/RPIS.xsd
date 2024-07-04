@@ -107,7 +107,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
         <sequence>
             <element name="location" type="x:location"/>
             <element name="team" type="x:team"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="actions" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="actionsSMUR" type="x:actions"/>
             <element name="mainDiagnosis" type="string">
                 <annotation>
                     <documentation>Thésaurus SFMU-FEDORU.
@@ -227,6 +227,9 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
                 </annotation>
             </element>
         </sequence>
+    </complexType>
+    <complexType name="actions">
+        <sequence/>
     </complexType>
     <complexType name="resourceStatus">
         <sequence>

@@ -58,7 +58,7 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
 ,,Ambulancier/Pilote,,,,"Permet d'identifier si un ambulancier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ",OUI,,driver,,,,,,1..1,,boolean,,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
-A valoriser avec un code de la nomenclature ACTES_SMUR.",ABV,,actions,,,,,,0..n,,string,X,
+A valoriser avec un code de la nomenclature ACTES_SMUR.",ABV,,actionsSMUR,,,,,,0..n,X,actions,X,
 ,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR.",R579,,mainDiagnosis,,,,,,1..1,,string,X,
 ,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.

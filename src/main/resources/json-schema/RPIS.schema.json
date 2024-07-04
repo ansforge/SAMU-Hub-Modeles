@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.07.02",
+    "version": "24.07.04",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -207,16 +207,10 @@
                 "team": {
                     "$ref": "#/definitions/team"
                 },
-                "actions": {
+                "actionsSMUR": {
                     "type": "array",
-                    "x-health-only": false,
                     "items": {
-                        "type": "string",
-                        "title": "Actes r\u00e9alis\u00e9s par le SMUR",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/intervention/actions/0",
-                        "description": "Pr\u00e9cise aussi bien les actes r\u00e9alis\u00e9s par le SMUR sur le lieu de l'intervention \u00e0 son arriv\u00e9e que ceux r\u00e9alis\u00e9s avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
+                        "$ref": "#/definitions/actions"
                     }
                 },
                 "mainDiagnosis": {
@@ -438,6 +432,16 @@
             },
             "additionalProperties": false,
             "example": "example.json#/intervention/team"
+        },
+        "actions": {
+            "type": "object",
+            "title": "Actes r\u00e9alis\u00e9s par le SMUR",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {},
+            "additionalProperties": false,
+            "example": "example.json#/intervention/actionsSMUR/0"
         },
         "resourceStatus": {
             "type": "object",

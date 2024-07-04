@@ -44,8 +44,8 @@
             "nurse": "NON",
             "driver": "OUI"
         },
-        "actions": [
-            "ABV"
+        "actionsSMUR": [
+            {}
         ],
         "mainDiagnosis": "R579",
         "associatedDiagnosis": "R578",
