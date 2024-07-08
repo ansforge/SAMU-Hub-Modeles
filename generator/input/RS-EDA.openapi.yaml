@@ -29,11 +29,12 @@ components:
           x-cols: 6
           example: example.json#/caseId
           description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
+            \ = aux champs {organization}.{senderCaseId}.\n\nBla bla lba. ? What\u2019\
+            s happening here.\n\nTEQE\n\n\nWq\nWAOOOOOHHHrqwrqwrqwTQWTQWT\nIl doit\
+            \ pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9\
+            \ par le syst\xE8me du partenaire r\xE9cepteur de la primo-demande de\
+            \ secours (cr\xE9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440-DRFR15DDXAAJJJ0000
