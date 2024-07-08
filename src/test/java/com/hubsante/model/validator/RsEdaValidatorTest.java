@@ -15,7 +15,6 @@
  */
 package com.hubsante.model.validator;
 
-import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +23,6 @@ import java.io.IOException;
 
 public class RsEdaValidatorTest extends AbstractValidatorTest {
 
-    // TODO bbo add RS-EDA test files
     //region Passes validation
     @Test
     @DisplayName("RS-EDA json validation passes")
