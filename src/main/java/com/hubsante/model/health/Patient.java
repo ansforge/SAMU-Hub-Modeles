@@ -37,7 +37,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.AdministrativeFile;
 import com.hubsante.model.health.HealthMotive;
 import com.hubsante.model.health.Hypothesis;
-import com.hubsante.model.health.InsIdentity;
+import com.hubsante.model.health.Identity;
 import com.hubsante.model.health.PatientDetail;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,7 +65,7 @@ public class Patient {
   private AdministrativeFile administrativeFile;
 
   public static final String JSON_PROPERTY_IDENTITY = "identity";
-  private InsIdentity identity;
+  private Identity identity;
 
   public static final String JSON_PROPERTY_HEALTH_MOTIVE = "healthMotive";
   private HealthMotive healthMotive;
@@ -88,8 +88,9 @@ public class Patient {
   }
 
   /**
-   * Identifiant technique du patient pour permettre les rapprochements
-   *d&#39;infos. Le 1er qui créé l&#39;ID patient a raison.
+   * A valoriser avec l&#39;identifiant partagé du patient, valorisé comme suit
+   *: {ID du dossier partagé}.P{numéro d’ordre chronologique} Cet identifiant
+   *est généré une seule fois par le système du partenaire qui créé le patient.
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)
@@ -128,7 +129,7 @@ public class Patient {
     this.administrativeFile = administrativeFile;
   }
 
-  public Patient identity(InsIdentity identity) {
+  public Patient identity(Identity identity) {
 
     this.identity = identity;
     return this;
@@ -141,13 +142,13 @@ public class Patient {
   @JsonProperty(JSON_PROPERTY_IDENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InsIdentity getIdentity() {
+  public Identity getIdentity() {
     return identity;
   }
 
   @JsonProperty(JSON_PROPERTY_IDENTITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setIdentity(InsIdentity identity) {
+  public void setIdentity(Identity identity) {
     this.identity = identity;
   }
 

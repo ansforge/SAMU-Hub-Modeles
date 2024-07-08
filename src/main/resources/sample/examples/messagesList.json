@@ -5,17 +5,6 @@
     "schema": null,
     "examples": [
       {
-        "file": "RC-EDA/RC-EDA-usecase-Armaury-1.json",
-        "icon": "mdi-bike-fast",
-        "name": "Alexandre ARMAURY",
-        "caller": "Albane Armaury, témoin accident impliquant son mari, Alexandre Armaury",
-        "context": "Collision de 2 vélos",
-        "environment": "Voie cyclable à Lyon, gêne de la circulation",
-        "victims": "2 victimes, 1 nécessitant assistance SAMU",
-        "victim": "Homme, adulte, 43 ans",
-        "medicalSituation": "Céphalées, migraines, traumatismes sérieux, plaies intermédiaires"
-      },
-      {
         "file": "RC-EDA/RC-EDA-Fuite-de-Gaz.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
@@ -206,24 +195,75 @@
     "label": "RS-RI",
     "schemaName": "RS-RI.schema.json",
     "schema": null,
-    "examples": []
+    "examples": [{
+      "file": "RS-RI/RS-RI-Didier-Morel.json",
+      "icon": "mdi-circular-saw",
+      "name": "Didier Morel",
+      "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+      "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+      "environment": "Domicile, outil scie débranché et sécurisé",
+      "victims": "1 victimes, nécessitant assistance SAMU",
+      "victim": "Homme, adulte, 65 ans",
+      "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+    }]
   },
   {
     "label": "RS-DR",
     "schemaName": "RS-DR.schema.json",
     "schema": null,
-    "examples": []
+    "examples": [{
+      "file": "RS-DR/RS-DR-Lola-Halimi.json",      
+      "icon": "mdi-image-broken-variant",      
+      "name": "Lola HALIMI",      
+      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
+      "context": "Fracture de la cheville",      
+      "environment": "Cage d'escalier d'unimmeuble résidentiel",      
+      "victims": "1 patient",      
+      "victim": "Fille, enfant, 10 ans",      
+      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+    }]
   },
   {
     "label": "RS-RR",
     "schemaName": "RS-RR.schema.json",
     "schema": null,
-    "examples": []
+    "examples": [{
+      "file": "RS-RR/RS-RR-Lola-Halimi.json",      
+      "icon": "mdi-image-broken-variant",      
+      "name": "Lola HALIMI",
+      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
+      "context": "Fracture de la cheville",      
+      "environment": "Cage d'escalier d'unimmeuble résidentiel",      
+      "victims": "1 patient",      
+      "victim": "Fille, enfant, 10 ans",      
+      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+    }]
   },
   {
     "label": "RPIS",
     "schemaName": "RPIS.schema.json",
     "schema": null,
-    "examples": []
+    "examples": [{
+      "file": "RPIS/RPIS-Fuite-de-Gaz.json",
+      "icon": "mdi-molecule-co2",
+      "context": "Fuite de gaz",
+      "name": "Alice et Grégoire Normand",
+      "caller": "Marie Dubois, mère des enfants, appelle le 15",
+      "environment": "Domicile, maison particulière",
+      "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
+      "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
+      "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
+    },
+    {
+      "file": "RPIS/RPIS-Femme-Enceinte.json",
+      "icon": "mdi-human-pregnant",
+      "context": "Chute d'une échelle d'une femme enceinte",
+      "name": "Delphine Vigneau",
+      "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
+      "environment": "Lieu de travail",
+      "victims": "1 patiente, nécessitant assistance SAMU",
+      "victim": "Femme, enceinte de 2 mois, 32 ans",
+      "medicalSituation": "Problème obstétrique non hémorragique"
+    }]
   }
 ]

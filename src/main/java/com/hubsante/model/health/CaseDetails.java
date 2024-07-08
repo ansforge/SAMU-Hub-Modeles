@@ -41,103 +41,17 @@ import java.util.Objects;
 /**
  * CaseDetails
  */
-@JsonPropertyOrder(
-    {CaseDetails.JSON_PROPERTY_STATUS, CaseDetails.JSON_PROPERTY_TYPE,
-     CaseDetails.JSON_PROPERTY_ATTRIBUTION, CaseDetails.JSON_PROPERTY_PRIORITY})
+@JsonPropertyOrder({CaseDetails.JSON_PROPERTY_ATTRIBUTION,
+                    CaseDetails.JSON_PROPERTY_PRIORITY,
+                    CaseDetails.JSON_PROPERTY_CARE_LEVEL})
 @JsonTypeName("caseDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CaseDetails {
 
   /**
-   * cf. cycle SI SAMU  : échanger l&#39;état du dossier si le cycle de vie du
-   * dossier est implémenté de manière conforme au cycle de vie du dossier
-   * SI-SAMU.  Echanger à minima l&#39;information que le dossier est clôturé.
-   */
-  public enum StatusEnum {
-    PROGRAMM_("Programmé"),
-
-    ACTIF_("Actif "),
-
-    ACHEV_("Achevé"),
-
-    VALID_("Validé "),
-
-    CL_TUR_("Clôturé "),
-
-    CLASS_("Classé"),
-
-    ARCHIV_("Archivé");
-
-    private String value;
-
-    StatusEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static StatusEnum fromValue(String value) {
-      for (StatusEnum b : StatusEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_STATUS = "status";
-  private StatusEnum status;
-
-  /**
-   * D/DR/DRM si cycle SI-SAMU implémenté
-   */
-  public enum TypeEnum {
-    D("D"),
-
-    DR("DR"),
-
-    DRM("DRM");
-
-    private String value;
-
-    TypeEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
-
-  /**
    * Décrit le type de professionnel médical à qui le dossier est attribué :
-   * Médecin généraliste, médecin urgentiste etc.
+   * médecin généraliste, médecin urgentiste etc.
    */
   public enum AttributionEnum {
     DRM("DRM"),
@@ -282,55 +196,50 @@ public class CaseDetails {
   public static final String JSON_PROPERTY_PRIORITY = "priority";
   private PriorityEnum priority;
 
+  /**
+   * Décrit le niveau de soins global du dossier identifié au cours de
+   * l&#39;acte de régulation médicale : s&#39;il y a plusieurs niveaux de soins
+   * différents pour chaque patient, on indique ici le niveau le plus grave.
+   * cf.nomenclature associée.
+   */
+  public enum CareLevelEnum {
+    R1("R1"),
+
+    R2("R2"),
+
+    R3("R3"),
+
+    R4("R4");
+
+    private String value;
+
+    CareLevelEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CareLevelEnum fromValue(String value) {
+      for (CareLevelEnum b : CareLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CARE_LEVEL = "careLevel";
+  private CareLevelEnum careLevel;
+
   public CaseDetails() {}
-
-  public CaseDetails status(StatusEnum status) {
-
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * cf. cycle SI SAMU  : échanger l&#39;état du dossier si le cycle de vie du
-   *dossier est implémenté de manière conforme au cycle de vie du dossier
-   *SI-SAMU.  Echanger à minima l&#39;information que le dossier est clôturé.
-   * @return status
-   **/
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public StatusEnum getStatus() {
-    return status;
-  }
-
-  @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(StatusEnum status) {
-    this.status = status;
-  }
-
-  public CaseDetails type(TypeEnum type) {
-
-    this.type = type;
-    return this;
-  }
-
-  /**
-   * D/DR/DRM si cycle SI-SAMU implémenté
-   * @return type
-   **/
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public TypeEnum getType() {
-    return type;
-  }
-
-  @JsonProperty(JSON_PROPERTY_TYPE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
-    this.type = type;
-  }
 
   public CaseDetails attribution(AttributionEnum attribution) {
 
@@ -340,7 +249,7 @@ public class CaseDetails {
 
   /**
    * Décrit le type de professionnel médical à qui le dossier est attribué :
-   *Médecin généraliste, médecin urgentiste etc.
+   *médecin généraliste, médecin urgentiste etc.
    * @return attribution
    **/
   @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
@@ -379,6 +288,32 @@ public class CaseDetails {
     this.priority = priority;
   }
 
+  public CaseDetails careLevel(CareLevelEnum careLevel) {
+
+    this.careLevel = careLevel;
+    return this;
+  }
+
+  /**
+   * Décrit le niveau de soins global du dossier identifié au cours de
+   *l&#39;acte de régulation médicale : s&#39;il y a plusieurs niveaux de soins
+   *différents pour chaque patient, on indique ici le niveau le plus grave.
+   *cf.nomenclature associée.
+   * @return careLevel
+   **/
+  @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CareLevelEnum getCareLevel() {
+    return careLevel;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCareLevel(CareLevelEnum careLevel) {
+    this.careLevel = careLevel;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -388,27 +323,27 @@ public class CaseDetails {
       return false;
     }
     CaseDetails caseDetails = (CaseDetails)o;
-    return Objects.equals(this.status, caseDetails.status) &&
-        Objects.equals(this.type, caseDetails.type) &&
-        Objects.equals(this.attribution, caseDetails.attribution) &&
-        Objects.equals(this.priority, caseDetails.priority);
+    return Objects.equals(this.attribution, caseDetails.attribution) &&
+        Objects.equals(this.priority, caseDetails.priority) &&
+        Objects.equals(this.careLevel, caseDetails.careLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, type, attribution, priority);
+    return Objects.hash(attribution, priority, careLevel);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CaseDetails {\n");
-    sb.append("    status: ").append(toIndentedString(status)).append("\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
     sb.append("    attribution: ")
         .append(toIndentedString(attribution))
         .append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
+    sb.append("    careLevel: ")
+        .append(toIndentedString(careLevel))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

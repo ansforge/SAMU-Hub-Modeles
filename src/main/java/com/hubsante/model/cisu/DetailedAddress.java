@@ -67,9 +67,13 @@ public class DetailedAddress {
   }
 
   /**
-   * Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute
-   *(PK, nom et sens), voie ferrée, voie navigable… 15-18 : Obligatoire et seule
-   *valeur des détails de l&#39;adresse fournie par NexSIS.
+   * A valoriser avec le numéro, le type et le nom de la voie. En réception, il
+   *est possible que seul cette information soit remplie.   Spécificités 15-15 :
+   *si les informations pour les autoroutes (voie férée ou voie navigable) ne
+   *sont pas structurées, il est possible de passer le nom, PK et sens ici, de
+   *manière concaténée.  Spécificités 15-18 : Obligatoire et seule valeur des
+   *détails de l&#39;adresse fournie par NexSIS. Utilisé pour tout type de voie
+   *:  autoroute (PK, nom et sens), voie ferrée, voie navigable…
    * @return complete
    **/
   @JsonProperty(JSON_PROPERTY_COMPLETE)
@@ -92,9 +96,10 @@ public class DetailedAddress {
   }
 
   /**
-   * Numéro dans l&#39;adresse (inclut point kilométrique sur l&#39;autoroute,
-   *voie ferrée ou voie navigable). Inclut l&#39;indice de répétition associé au
-   *numéro (par exemple bis, a…).
+   * A valoriser avec le numéro dans l&#39;adresse. La valeur de l&#39;attribut
+   *inclut l&#39;indice de répétition associé au numéro (par exemple bis, a…).
+   *Spécificités 15-18 :  inclut le point kilométrique sur l&#39;autoroute, voie
+   *ferrée ou voie navigable.
    * @return number
    **/
   @JsonProperty(JSON_PROPERTY_NUMBER)

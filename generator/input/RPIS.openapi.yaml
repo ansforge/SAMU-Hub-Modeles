@@ -1,0 +1,964 @@
+openapi: 3.0.0
+components:
+  schemas:
+    rpisWrapper:
+      type: object
+      required:
+      - rpis
+      properties:
+        rpis:
+          $ref: '#/components/schemas/rpis'
+    rpis:
+      $id: classpath:/json-schema/schema#
+      x-id: RPIS.schema.json#
+      example: example.json#
+      type: object
+      title: rpis
+      required:
+      - event
+      - regulation
+      - patient
+      - intervention
+      - orientation
+      properties:
+        event:
+          $ref: '#/components/schemas/event'
+        regulation:
+          $ref: '#/components/schemas/regulation'
+        patient:
+          $ref: '#/components/schemas/patient'
+        intervention:
+          $ref: '#/components/schemas/intervention'
+        orientation:
+          $ref: '#/components/schemas/orientation'
+      additionalProperties: false
+    event:
+      type: object
+      title: "Ev\xE8nement"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - samuId
+      - fileId
+      - creationDate
+      - decisionDate
+      - ressourceFinessLegal
+      - ressourceFinessGeo
+      - ressourceStructure
+      properties:
+        samuId:
+          type: string
+          title: Identifiant du SAMU qui engage le SMUR
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/event/samuId
+          description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
+            \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
+          pattern: ^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$
+          examples:
+          - fr.health.samu440
+        fileId:
+          type: string
+          title: "Identifiant du dossier de r\xE9gulation m\xE9dicale (DRM)"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/event/fileId
+          description: "Num\xE9ro du dossier SAMU \xE0 l\u2019origine de la mission\
+            \ SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = d\xE9signation\
+            \ d'un dossier sous forme abr\xE9g\xE9e,\n- FR : d\xE9signe le pays (FR\
+            \ = France),\n- 15 : d\xE9signe le fait que le dossier a \xE9t\xE9 pris\
+            \ en charge par un SAMU / SAS,\n- DD : d\xE9signe le d\xE9partement o\xF9\
+            \ est situ\xE9 le SAMU / SAS qui a trait\xE9 le dossier,\n- X : lettre\
+            \ d\xE9signant le SAMU / SAS en cas de pluralit\xE9 de SAMU / SAS sur\
+            \ le m\xEAme d\xE9partement ou le troisi\xE8me chiffre des DOM,\n- AA\
+            \ : ann\xE9e durant laquelle l\u2019appel a \xE9t\xE9 cr\xE9\xE9,\n- JJJ\
+            \ : d\xE9signe le jour de l'ann\xE9e (de 1j \xE0 365j),\\par\n- 00000\
+            \ : num\xE9ro d\u2019ordre chronologique du dossier dans la journ\xE9\
+            e de r\xE9f\xE9rence ci-dessus."
+          examples:
+          - DRFR15DDXAAJJJ00000
+        creationDate:
+          type: string
+          title: "Date et heure de cr\xE9ation du dossier de r\xE9gulation"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/event/creationDate
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        decisionDate:
+          type: string
+          title: "Date et heure de la d\xE9cision d\u2019engagement du SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/event/decisionDate
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        ressourceFinessLegal:
+          type: string
+          title: 'FINESS juridique '
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/event/ressourceFinessLegal
+          description: "FINESS juridique \xE9tablissement rattachement SMUR"
+          examples:
+          - None
+        ressourceFinessGeo:
+          type: string
+          title: "FINESS g\xE9ographique "
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/event/ressourceFinessGeo
+          description: "FINESS g\xE9ographique \xE9tablissement rattachement SMUR\
+            \ ou antenne SMUR"
+          examples:
+          - None
+        ressourceStructure:
+          type: string
+          title: Type de structure SMUR
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/event/ressourceStructure
+          description: "9 = Antenne SMUR, 0 = SMUR g\xE9n\xE9ral, 1 = SMUR p\xE9diatrique,\
+            \ 2 = SMUR neonatal "
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/event
+      examples:
+      - samuId: fr.health.samu440
+        fileId: DRFR15DDXAAJJJ00000
+        creationDate: '2022-09-27T08:23:34+02:00'
+        decisionDate: '2022-09-27T08:23:34+02:00'
+        ressourceFinessLegal: None
+        ressourceFinessGeo: None
+        ressourceStructure: None
+    regulation:
+      type: object
+      title: "R\xE9gulation m\xE9dicale"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - whatsHappen
+      - healthMotive
+      - initialTeamCare
+      properties:
+        whatsHappen:
+          $ref: '#/components/schemas/whatsHappen'
+        healthMotive:
+          $ref: '#/components/schemas/healthMotive'
+        initialTeamCare:
+          type: string
+          title: "Niveau de m\xE9dicalisation initial"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/regulation/initialTeamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
+            A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de\
+            \ d\xE9duire avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\"\
+            , si un UMHP est devenu un SMUR. "
+          examples:
+          - PARAMED
+      additionalProperties: false
+      example: example.json#/regulation
+    patient:
+      type: object
+      title: Patient
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - patientId
+      - birthDate
+      - sex
+      properties:
+        patientId:
+          type: string
+          title: Identifiant Patient
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/patientId
+          description: "Identifiant unique du patient. \nA valoriser par {ID du SAMU\
+            \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
+            \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
+          examples:
+          - fr.health.samu690.DRFR15DDXAAJJJ00001.P01
+        birthDate:
+          type: string
+          title: Date de naissance
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/birthDate
+          description: Date de naissance du patient
+          examples:
+          - 17/02/1936
+        sex:
+          type: string
+          title: Sexe
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/sex
+          description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
+            \ SI-SAMU-NOMENC_SEXE"
+          examples:
+          - F
+        nir:
+          type: number
+          title: NIR
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/nir
+          description: "Num\xE9ro d'inscription au R\xE9pertoire ou num\xE9ro de s\xE9\
+            curit\xE9 sociale, unique, transmis par la CNIL"
+          examples:
+          - 278112B050002
+        residentialAddress:
+          $ref: '#/components/schemas/residentialAddress'
+      additionalProperties: false
+      example: example.json#/patient
+    intervention:
+      type: object
+      title: Intervention
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - location
+      - team
+      - mainDiagnosis
+      properties:
+        location:
+          $ref: '#/components/schemas/location'
+        team:
+          $ref: '#/components/schemas/team'
+        actions:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: "Actes r\xE9alis\xE9s par le SMUR"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/intervention/actions/0
+            description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
+              \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
+              s avant son intervention. \nA valoriser avec un code de la nomenclature\
+              \ ACTES_SMUR."
+            examples:
+            - ABV
+        mainDiagnosis:
+          type: string
+          title: Diagnostic principal SMUR
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/mainDiagnosis
+          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
+            \ Diagnostic SMUR."
+          examples:
+          - R579
+        associatedDiagnosis:
+          type: string
+          title: "Diagnostic associ\xE9  SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/associatedDiagnosis
+          description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
+            \ Diagnostic SMUR."
+          examples:
+          - R578
+        smurStatus:
+          $ref: '#/components/schemas/resourceStatus'
+      additionalProperties: false
+      example: example.json#/intervention
+    orientation:
+      type: object
+      title: "D\xE9cision d'orientation"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - type
+      properties:
+        type:
+          type: string
+          title: Type de devenir du patient
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/type
+          description: "Indique si le patient est transport\xE9 ou non (Sans transport\
+            \ associ\xE9 / avec transport associ\xE9). \nA valoriser par un code de\
+            \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
+            \ est sans transport associ\xE9, les objets Destination et Transport sont\
+            \ facultatifs. "
+          examples:
+          - TEMP
+        destination:
+          $ref: '#/components/schemas/destination'
+        decision:
+          $ref: '#/components/schemas/decision'
+      additionalProperties: false
+      example: example.json#/orientation
+    whatsHappen:
+      type: object
+      title: "Circonstances ayant donn\xE9es lieu \xE0 l\u2019appel"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - code
+      - label
+      properties:
+        code:
+          type: string
+          title: Code
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/regulation/whatsHappen/code
+          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
+          examples:
+          - AVPAR
+        label:
+          type: string
+          title: "Libell\xE9 court"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/regulation/whatsHappen/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
+            Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
+            \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            \ fourni avec le code."
+          examples:
+          - Accident routier
+      additionalProperties: false
+      example: example.json#/regulation/whatsHappen
+      examples:
+      - code: AVPAR
+        label: Accident routier
+    healthMotive:
+      type: object
+      title: 'Motif de recours '
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - code
+      - label
+      - code
+      - label
+      properties:
+        code:
+          type: string
+          title: Code
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/regulation/healthMotive/code
+          description: A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime
+          examples:
+          - AVPAR
+        label:
+          type: string
+          title: "Libell\xE9 court"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/regulation/healthMotive/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Motif_patient-victime.\n\
+            Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
+            \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+            \ fourni avec le code."
+          examples:
+          - Accident routier
+      additionalProperties: false
+      example: example.json#/regulation/healthMotive
+      examples:
+      - code: AVPAR
+        label: Accident routier
+    residentialAddress:
+      type: object
+      title: "Adresse de r\xE9sidence"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - cityCode
+      - city
+      properties:
+        cityCode:
+          type: string
+          title: "Code INSEE de la commune de r\xE9sidence"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/residentialAddress/cityCode
+          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
+            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
+            \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
+            \ de r\xE9sidence, si \xE9tranger. "
+          pattern: '[0-9]{5}'
+          examples:
+          - 92300
+        city:
+          type: string
+          title: Nom de la commune
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/residentialAddress/city
+          description: Nom officiel de la commune actuelle
+          examples:
+          - Levallois-Perret
+      additionalProperties: false
+      example: example.json#/patient/residentialAddress
+      examples:
+      - cityCode: 92300
+        city: Levallois-Perret
+    location:
+      type: object
+      title: Lieu d'intervention
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        type:
+          type: string
+          title: "Type de lieu d\u2019intervention"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/location/type
+          description: A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
+          examples:
+          - DOMPAV
+        finessGeo:
+          type: string
+          title: "FINESS g\xE9ographique de l\u2019\xE9tablissement "
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/location/finessGeo
+          description: "Finess g\xE9ographique et juridique de l\u2019\xE9tablissement\
+            \ de sant\xE9"
+          examples:
+          - None
+        unit:
+          type: string
+          title: "Unit\xE9 fonctionnelle "
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/location/unit
+          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9"
+          examples:
+          - None
+        detailedAddress:
+          $ref: '#/components/schemas/detailedAddress'
+      additionalProperties: false
+      example: example.json#/intervention/location
+    team:
+      type: object
+      title: "Composition de l'\xE9quipage"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - doctor
+      - nurse
+      - driver
+      properties:
+        doctor:
+          type: boolean
+          title: "M\xE9decin"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/team/doctor
+          description: "Permet d'identifier si un m\xE9decin compose l'\xE9quipe.\n\
+            Cette donn\xE9e peut \xEAtre automatiquement d\xE9duite, d\xE8s que le\
+            \ nom et pr\xE9nom du m\xE9decin est saisi sur la tablette. "
+          examples:
+          - OUI
+        nurse:
+          type: boolean
+          title: Infirmier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/team/nurse
+          description: "Permet d'identifier si un infirmier compose l'\xE9quipe.\n\
+            Cette donn\xE9e peut \xEAtre automatiquement d\xE9duite, d\xE8s que le\
+            \ nom et pr\xE9nom de l'infirmier est saisi sur la tablette. "
+          examples:
+          - NON
+        driver:
+          type: boolean
+          title: Ambulancier/Pilote
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/team/driver
+          description: "Permet d'identifier si un ambulancier compose l'\xE9quipe.\n\
+            Cette donn\xE9e peut \xEAtre automatiquement d\xE9duite, d\xE8s que le\
+            \ nom et pr\xE9nom de l'ambulancier est saisi sur la tablette. "
+          examples:
+          - OUI
+      additionalProperties: false
+      example: example.json#/intervention/team
+      examples:
+      - doctor: OUI
+        nurse: NON
+        driver: OUI
+    resourceStatus:
+      type: object
+      title: Statuts des horaires du SMUR
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - departSmur
+      - teamAvailable
+      - returnSmur
+      properties:
+        departSmur:
+          type: string
+          title: "Date et heure du d\xE9part de la base SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/departSmur
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        arrivedSmur:
+          type: string
+          title: "Date et heure de l\u2019arriv\xE9e sur les lieux de l\u2019intervention"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/arrivedSmur
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        departLocation:
+          type: string
+          title: "Date et heure du d\xE9part des lieux de l\u2019intervention"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/departLocation
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        arrivedDestination:
+          type: string
+          title: "Date et heure d\u2019arriv\xE9e \xE0 destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/arrivedDestination
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        teamAvailable:
+          type: string
+          title: "Date et heure de disponibilit\xE9 de l\u2019\xE9quipe"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/teamAvailable
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        returnSmur:
+          type: string
+          title: "Date et heure de retour \xE0 la base SMUR"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/smurStatus/returnSmur
+          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+      additionalProperties: false
+      example: example.json#/intervention/smurStatus
+      examples:
+      - departSmur: '2022-09-27T08:23:34+02:00'
+        arrivedSmur: '2022-09-27T08:23:34+02:00'
+        departLocation: '2022-09-27T08:23:34+02:00'
+        arrivedDestination: '2022-09-27T08:23:34+02:00'
+        teamAvailable: '2022-09-27T08:23:34+02:00'
+        returnSmur: '2022-09-27T08:23:34+02:00'
+    detailedAddress:
+      type: object
+      title: Adresse de l'intervention
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - cityCode
+      - city
+      properties:
+        cityCode:
+          type: string
+          title: Code INSEE de la commune
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/location/detailedAddress/cityCode
+          description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
+            \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
+            \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
+            \ d'intervention, si \xE9tranger. "
+          pattern: '[0-9]{5}'
+          examples:
+          - 92300
+        city:
+          type: string
+          title: Nom de la commune
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/location/detailedAddress/city
+          description: Nom officiel de la commune actuelle
+          examples:
+          - Levallois-Perret
+      additionalProperties: false
+      example: example.json#/intervention/location/detailedAddress
+      examples:
+      - cityCode: 92300
+        city: Levallois-Perret
+    destination:
+      type: object
+      title: Destination
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - destinationCountry
+      - destinationCategory
+      - healthcareType
+      - finess
+      properties:
+        destinationCountry:
+          type: string
+          title: Pays de destination
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCountry
+          description: "A valoriser par le libell\xE9 court de la nomenclature SIGLPAYS"
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - FR
+        destinationCategory:
+          type: string
+          title: "Cat\xE9gorie de l'\xE9tablissement de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCategory
+          description: "A valoriser par le code de la nomenclature associ\xE9e"
+          examples:
+          - None
+        healthcareType:
+          type: string
+          title: "Type d'activit\xE9 de soins de l'unit\xE9 fonctionnelle de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/healthcareType
+          description: A valoriser par le code de la nomenclature ActiviteOperationnelle
+          examples:
+          - None
+        finess:
+          type: string
+          title: "FINESS g\xE9ographique"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/finess
+          description: "FINESS g\xE9ographique de l\u2019\xE9tablissement de destination\
+            \ (9 chiffres)"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/orientation/destination
+      examples:
+      - destinationCountry: FR
+        destinationCategory: None
+        healthcareType: None
+        finess: None
+    decision:
+      type: object
+      title: Transport
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - resourceCategory
+      - resourceType
+      - teamCare
+      properties:
+        resourceCategory:
+          type: string
+          title: Moyen de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceCategory
+          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
+            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
+            \ SI SAMU-TYPE_MOYEN."
+          examples:
+          - SMUR
+        resourceType:
+          type: string
+          title: Type de vecteur de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceType
+          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
+            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
+            \ la nomenclature CISU-TYPE_VECTEUR."
+          examples:
+          - AR, VLM, VSAV
+        teamCare:
+          type: string
+          title: "Niveau de m\xE9dicalisation du transport"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/teamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
+          examples:
+          - PARAMED
+      additionalProperties: false
+      example: example.json#/orientation/decision
+      examples:
+      - resourceCategory: SMUR
+        resourceType: AR, VLM, VSAV
+        teamCare: PARAMED

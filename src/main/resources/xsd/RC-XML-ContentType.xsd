@@ -5,9 +5,14 @@
         xmlns:rceda="urn:emergency:cisu:2.0:createCase"
         xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
         xmlns:emsi="urn:emergency:cisu:2.0:emsi"
-        xmlns:geopositionupdate="urn:emergency:cisu:2.0:geoPositionUpdate"
-        xmlns:georesourcedetails="urn:emergency:cisu:2.0:geoResourceDetails"
-        xmlns:georesourcerequest="urn:emergency:cisu:2.0:geoResourceRequest"
+        xmlns:info="urn:emergency:cisu:2.0:info"
+        xmlns:geopositionsupdate="urn:emergency:cisu:2.0:geoPositionsUpdate"
+        xmlns:georesourcesdetails="urn:emergency:cisu:2.0:geoResourcesDetails"
+        xmlns:georesourcesrequest="urn:emergency:cisu:2.0:geoResourcesRequest"
+        xmlns:resourcesinfo="urn:emergency:cisu:2.0:resourcesInfo"
+        xmlns:resourcesrequest="urn:emergency:cisu:2.0:resourcesRequest"
+        xmlns:resourcesresponse="urn:emergency:cisu:2.0:resourcesResponse"
+        xmlns:rpis="urn:emergency:cisu:2.0:rpis"
         xmlns:error="urn:emergency:cisu:2.0:error"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
@@ -18,10 +23,15 @@
     <xs:import namespace="urn:emergency:cisu:2.0:reference" schemaLocation="RC-REF.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:rpis" schemaLocation="RPIS.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:geoPositionUpdate" schemaLocation="GEO-POS.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:geoResourceDetails" schemaLocation="GEO-RES.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:geoResourceRequest" schemaLocation="GEO-REQ.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoPositionsUpdate" schemaLocation="GEO-POS.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesDetails" schemaLocation="GEO-RES.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesRequest" schemaLocation="GEO-REQ.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesInfo" schemaLocation="RS-RI.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesRequest" schemaLocation="RS-DR.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:resourcesResponse" schemaLocation="RS-RR.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -44,10 +54,15 @@
                         <xs:element ref="rceda:createCase"/>
                         <xs:element ref="rseda:createCaseHealth"/>
                         <xs:element ref="emsi:emsi"/>
+                        <xs:element ref="rpis:rpis"/>
                         <!-- geo -->
-                        <xs:element ref="geopositionupdate:geoPositionUpdate"/>
-                        <xs:element ref="georesourcedetails:geoResourceDetails"/>
-                        <xs:element ref="georesourcerequest:geoResourceRequest"/>
+                        <xs:element ref="geopositionsupdate:geoPositionsUpdate"/>
+                        <xs:element ref="georesourcesdetails:geoResourcesDetails"/>
+                        <xs:element ref="georesourcesrequest:geoResourcesRequest"/>
+                        <!-- resources -->
+                        <xs:element ref="resourcesinfo:resourcesInfo"/>
+                        <xs:element ref="resourcesrequest:resourcesRequest"/>
+                        <xs:element ref="resourcesresponse:resourcesResponse"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
@@ -58,6 +73,7 @@
         <xs:sequence>
             <xs:choice>
                 <xs:element ref="error:error"/>
+                <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
         </xs:sequence>

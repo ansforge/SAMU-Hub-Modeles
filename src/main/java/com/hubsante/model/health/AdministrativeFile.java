@@ -34,10 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Contact;
 import com.hubsante.model.health.ExternalId;
-import com.hubsante.model.health.GeneralPractitioner;
-import com.hubsante.model.health.PersonalAddress;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -47,26 +44,13 @@ import java.util.Objects;
 /**
  * AdministrativeFile
  */
-@JsonPropertyOrder({AdministrativeFile.JSON_PROPERTY_EXTERNAL_ID,
-                    AdministrativeFile.JSON_PROPERTY_CONTACT,
-                    AdministrativeFile.JSON_PROPERTY_PERSONAL_ADDRESS,
-                    AdministrativeFile.JSON_PROPERTY_GENERAL_PRACTITIONER})
+@JsonPropertyOrder({AdministrativeFile.JSON_PROPERTY_EXTERNAL_ID})
 @JsonTypeName("administrativeFile")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class AdministrativeFile {
   public static final String JSON_PROPERTY_EXTERNAL_ID = "externalId";
   private List<ExternalId> externalId;
-
-  public static final String JSON_PROPERTY_CONTACT = "contact";
-  private List<Contact> contact;
-
-  public static final String JSON_PROPERTY_PERSONAL_ADDRESS = "personalAddress";
-  private PersonalAddress personalAddress;
-
-  public static final String JSON_PROPERTY_GENERAL_PRACTITIONER =
-      "generalPractitioner";
-  private GeneralPractitioner generalPractitioner;
 
   public AdministrativeFile() {}
 
@@ -109,92 +93,6 @@ public class AdministrativeFile {
     this.externalId.addAll(externalId);
   }
 
-  public AdministrativeFile contact(List<Contact> contact) {
-
-    this.contact = contact;
-    return this;
-  }
-
-  public AdministrativeFile addContactItem(Contact contactItem) {
-    if (this.contact == null) {
-      this.contact = new ArrayList<>();
-    }
-    this.contact.add(contactItem);
-    return this;
-  }
-
-  /**
-   * Get contact
-   * @return contact
-   **/
-  @JsonProperty(JSON_PROPERTY_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Contact> getContact() {
-    return contact;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_CONTACT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setContact(List<Contact> contact) {
-    if (contact == null) {
-      return;
-    }
-    if (this.contact == null) {
-      this.contact = new ArrayList<>();
-    }
-    this.contact.addAll(contact);
-  }
-
-  public AdministrativeFile personalAddress(PersonalAddress personalAddress) {
-
-    this.personalAddress = personalAddress;
-    return this;
-  }
-
-  /**
-   * Get personalAddress
-   * @return personalAddress
-   **/
-  @JsonProperty(JSON_PROPERTY_PERSONAL_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public PersonalAddress getPersonalAddress() {
-    return personalAddress;
-  }
-
-  @JsonProperty(JSON_PROPERTY_PERSONAL_ADDRESS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPersonalAddress(PersonalAddress personalAddress) {
-    this.personalAddress = personalAddress;
-  }
-
-  public AdministrativeFile
-  generalPractitioner(GeneralPractitioner generalPractitioner) {
-
-    this.generalPractitioner = generalPractitioner;
-    return this;
-  }
-
-  /**
-   * Get generalPractitioner
-   * @return generalPractitioner
-   **/
-  @JsonProperty(JSON_PROPERTY_GENERAL_PRACTITIONER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public GeneralPractitioner getGeneralPractitioner() {
-    return generalPractitioner;
-  }
-
-  @JsonProperty(JSON_PROPERTY_GENERAL_PRACTITIONER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setGeneralPractitioner(GeneralPractitioner generalPractitioner) {
-    this.generalPractitioner = generalPractitioner;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -204,18 +102,12 @@ public class AdministrativeFile {
       return false;
     }
     AdministrativeFile administrativeFile = (AdministrativeFile)o;
-    return Objects.equals(this.externalId, administrativeFile.externalId) &&
-        Objects.equals(this.contact, administrativeFile.contact) &&
-        Objects.equals(this.personalAddress,
-                       administrativeFile.personalAddress) &&
-        Objects.equals(this.generalPractitioner,
-                       administrativeFile.generalPractitioner);
+    return Objects.equals(this.externalId, administrativeFile.externalId);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(externalId, contact, personalAddress,
-                        generalPractitioner);
+    return Objects.hash(externalId);
   }
 
   @Override
@@ -224,13 +116,6 @@ public class AdministrativeFile {
     sb.append("class AdministrativeFile {\n");
     sb.append("    externalId: ")
         .append(toIndentedString(externalId))
-        .append("\n");
-    sb.append("    contact: ").append(toIndentedString(contact)).append("\n");
-    sb.append("    personalAddress: ")
-        .append(toIndentedString(personalAddress))
-        .append("\n");
-    sb.append("    generalPractitioner: ")
-        .append(toIndentedString(generalPractitioner))
         .append("\n");
     sb.append("}");
     return sb.toString();

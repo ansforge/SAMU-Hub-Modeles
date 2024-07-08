@@ -27,6 +27,11 @@ sheets = [
     'GEO-RES',
     'RC-REF',
     'RS-ERROR',
+    'RS-INFO',
+    'RS-RI',
+    'RS-DR',
+    'RS-RR',
+    'RS-BPV',
     'customContent'
 ]
 
@@ -38,32 +43,52 @@ perimeters = [{
 
 # ---------------------------------------- STAGE FUNCTIONS
 def parser_and_mv():
+    # Iterate over each sheet
     for sheet in sheets:
-        full_df = pd.read_excel('model.xlsx', sheet_name=sheet, header=None)
+        full_df = None
+        filepath = None
+        # Iterate over files in models folder
+        for file in os.listdir('models'):
+            # If we can't find the sheet, we look in the next file, if we can't find it anywhere, we throw
+            try:
+                # Load the excel file
+                full_df = pd.read_excel(f'./models/{file}', header=None, sheet_name=sheet)
+                filepath = f'models/{file}'
+                break
+            except ValueError:
+                continue
 
-        # For each sheet we read the A2 cell and get the list of schemas to generate
-        if not pd.isna(full_df.iloc[1, 0]):
-            schemas_array = full_df.iloc[1, 0].split(' ')
+        if full_df is None:
+            print(f"Error: Sheet {sheet} not found in any file in the models folder.")
+            print(f"Files checked: {os.listdir('models')}")
+            exit(1)
+
+        # For each sheet we read the A1 cell and get the list of schemas to generate
+        if not pd.isna(full_df.iloc[0, 0]):
+            schemas_array = full_df.iloc[0, 0].split(' ')
 
             # Schemas are formatted in the sheet as follows:
             # "schema1['name']:schema1['filter']:schema1['modelType'] schema2['name']:schema2['filter']:schema2['modelType'] ..."
             try:
-                schemas = [{'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
-                            'model_type': schemas_array[i].split(':')[2]}
-                           for i in range(len(schemas_array))]
+                schemas = [
+                    {'name': schemas_array[i].split(':')[0], 'sheet': sheet, 'filter': schemas_array[i].split(':')[1],
+                     'model_type': schemas_array[i].split(':')[2]}
+                    for i in range(len(schemas_array))]
             except IndexError:
                 print(f"Error in sheet {sheet}: schema list (cell A2) is not well formatted. "
                       f"Should be 'name:filter:modelType' separated by a space. "
                       f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'. "
                       f"It was: '{full_df.iloc[1, 0]}'")
                 exit(1)
-        # If A2 is empty, we generate only one schema with the sheet name and modelType in A1
         else:
-            schemas = [{'name': sheet, 'sheet': sheet, 'filter': '', 'model_type': full_df.iloc[0, 0]}]
+            print(f"Error in sheet {sheet}: schema list (cell A1) is empty. "
+                  f"Should be 'name:filter:modelType' separated by a space. "
+                  f"Ex: 'RC-EDA:15-18:createCase RS-EDA:15-15:createCaseHealth'.")
+            exit(1)
 
         for schema in schemas:
             # Run csv_parser
-            csv_parser.run(schema['sheet'], schema['name'], None, schema['filter'], schema['model_type'])
+            csv_parser.run(schema['sheet'], schema['name'], None, schema['filter'], schema['model_type'], filepath)
 
             name = schema['name']
             # Copy schema to JsonSchema2XSD project

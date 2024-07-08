@@ -59,8 +59,8 @@ public class Caller {
   private Contact callbackContact;
 
   /**
-   * Langue parlée par le requérant. Permet de mettre en place des traducteurs
-   * si besoin. Utilise la nomenclature LANGUE du SI-SAMU.
+   * A valoriser avec la langue parlée par le requérant.  cf.nomenclature
+   * associée.
    */
   public enum LanguageEnum {
     AF("AF"),
@@ -574,8 +574,8 @@ public class Caller {
   private LanguageEnum language;
 
   /**
-   * Indique la relation du requérant avec l&#39;incident / le patient / la
-   * victime
+   * A valoriser avec la relation du requérant avec l&#39;incident / le patient
+   * / la victime. cf. nomenclature associée.
    */
   public enum TypeEnum {
     SUJET("SUJET"),
@@ -649,7 +649,8 @@ public class Caller {
   private TypeEnum type;
 
   /**
-   * Indique si le requérant rencontre ou non des difficulté de communication
+   * A valoriser avec la nature des éventuelles difficultés de communication
+   * rencontrées par le requérant.  cf.nomenclature associée.
    */
   public enum CommunicationEnum {
     AUCUNE("AUCUNE"),
@@ -759,8 +760,8 @@ public class Caller {
   }
 
   /**
-   * Langue parlée par le requérant. Permet de mettre en place des traducteurs
-   *si besoin. Utilise la nomenclature LANGUE du SI-SAMU.
+   * A valoriser avec la langue parlée par le requérant.  cf.nomenclature
+   *associée.
    * @return language
    **/
   @JsonProperty(JSON_PROPERTY_LANGUAGE)
@@ -783,8 +784,8 @@ public class Caller {
   }
 
   /**
-   * Indique la relation du requérant avec l&#39;incident / le patient / la
-   *victime
+   * A valoriser avec la relation du requérant avec l&#39;incident / le patient
+   * / la victime. cf. nomenclature associée.
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -807,7 +808,8 @@ public class Caller {
   }
 
   /**
-   * Indique si le requérant rencontre ou non des difficulté de communication
+   * A valoriser avec la nature des éventuelles difficultés de communication
+   *rencontrées par le requérant.  cf.nomenclature associée.
    * @return communication
    **/
   @JsonProperty(JSON_PROPERTY_COMMUNICATION)
@@ -830,8 +832,8 @@ public class Caller {
   }
 
   /**
-   * Informations complémentaires sur le requérant  Les informations peuvent
-   *être passées sous forme de texte libre ou via une liste d&#39;adjectif
+   * Champ libre qui permet de compléter les informations spécifiquement liées
+   *au requérant.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

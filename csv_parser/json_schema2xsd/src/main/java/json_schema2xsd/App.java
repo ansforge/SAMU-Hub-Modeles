@@ -22,7 +22,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class App {
     public static void main(String[] args) {
-        for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR")) {
+        for (String schema : Arrays.asList("EMSI", "RC-DE", "RC-EDA", "RC-REF", "RS-EDA", "GEO-RES", "GEO-REQ", "GEO-POS", "RS-ERROR", "RS-RI",
+        "RS-DR", "RS-RR", "RPIS")) {
             // Specify the path to your JSON schema file
             String jsonSchemaResourcePath = "/" + schema + ".schema.json";
 
@@ -105,16 +106,28 @@ public class App {
                 root = "createCaseHealth";
                 break;
             case "GEO-RES":
-                root = "geoResourceDetails";
+                root = "geoResourcesDetails";
                 break;
             case "GEO-REQ":
-                root = "geoResourceRequest";
+                root = "geoResourcesRequest";
                 break;
             case "GEO-POS":
-                root = "geoPositionUpdate";
+                root = "geoPositionsUpdate";
                 break;
             case "RS-ERROR":
                 root = "error";
+                break;
+            case "RS-RI":
+                root = "resourcesInfo";
+                break;
+            case "RS-DR":
+                root = "resourcesRequest";
+                break;
+            case "RS-RR":
+                root = "resourcesResponse";
+                break;
+            case "RPIS":
+                root = "rpis";
                 break;
             default:
                 root = "";

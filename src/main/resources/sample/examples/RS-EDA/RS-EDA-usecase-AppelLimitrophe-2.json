@@ -1,13 +1,12 @@
 {
   "createCaseHealth": {
-    "caseId": "fr.health.samu950-DRFR159502401000233",
+    "caseId": "fr.health.samu950.DRFR159502401000233",
     "senderCaseId": "DRFR159502401000233",
     "creation": "2024-01-10T14:07:00+01:00",
-    "referenceVersion": "1.4",
     "qualification": {
       "whatsHappen": {
         "code": "C02.05.01",
-        "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
+        "label": "Atteinte aux PERSONNEs; Pathologie / maladie ; Médicale "
       },
       "locationKind": {
         "code": "L03.01.00",
@@ -23,7 +22,6 @@
       }
     },
     "location": {
-      "locID": "555fb03a-4df5-8zg6-8e81-990c4514986",
       "name": "SARL Toto",
       "detailedAddress": {
         "complete": "18 rue des Bois Rochefort 78500 Sartrouville",
@@ -38,14 +36,13 @@
         "name": "Sartrouville",
         "inseeCode": "78586"
       },
-      "country": "FR",
       "access": {
         "floor": "4",
         "interphone": "SARL TOTO",
         "elevator": "Esc D",
         "buildingName": "C",
         "entity": "Comptabilité",
-        "phoneNumber": 156789456
+        "phoneNumber": "0156789456"
       },
       "freetext": "Se rendre au service comptabilité l'accueil est prévenu",
       "geometry": {
@@ -53,26 +50,24 @@
           "coord": {
             "lat": 48.95102310180664,
             "lon": 2.1857428550720215,
-            "precision": "ADDRESS"
+            "precision": "ADRESSE"
           }
         },
         "obsDatime": "2024-01-10T11:00:00+01:00"
       }
     },
     "initialAlert": {
-      "id": "fr.health.samu950-DRFR159502401000233",
       "reception": "2024-01-10T14:05:00+01:00",
-      "reporting": "STANDARD",
       "caller": {
         "callerContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0607080928",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "callbackContact": {
-          "type": "PHNADD",
+          "type": "TEL",
           "detail": "0607080928",
-          "channel": "Personne"
+          "channel": "PERSONNE"
         },
         "language": "FR",
         "freetext": "Collègue de la victime",
@@ -82,15 +77,6 @@
           "firstName": "Magda"
         },
         "type": "TIERS"
-      },
-      "callTaker": {
-        "organization": "fr.health.samu950",
-        "controlRoom": "CRRA 95",
-        "calltakerContact": {
-          "type": "PHNADD",
-          "detail": "060102030406",
-          "channel": "Personne"
-        }
       },
       "notes": [
         {
@@ -125,10 +111,10 @@
             "sex": "FEM"
           }
         },
-        "id": "fr.health.samu950-DRFR159502401000233.P1"
+        "id": "fr.health.samu950.DRFR159502401000233.P1"
       }
     ],
     "perimeter": "AMU",
-    "interventionType": "Primaire"
+    "interventionType": "PRIMAIRE"
   }
 }

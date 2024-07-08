@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "EMSI.schema.json#",
-    "version": "24.06.25",
+    "version": "24.06.28",
     "example": "example.json#",
     "type": "object",
     "title": "emsi",
@@ -845,7 +845,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/CONTEXT/LINK/0/ID",
-                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requ\u00e9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*-{num\u00e9ro de dossier}"
+                    "description": "A renseigner avec l'identifiant de l'organisation (champ organization du message RC-EDA) suivi de l'identifiant local de l'affaire du partenaire requ\u00e9rant (champ senderCaseId du message RC-EDA).\n{pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
                 },
                 "LINK_ROLE": {
                     "type": "string",

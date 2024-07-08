@@ -188,6 +188,106 @@
           ]
         },
         {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesInfo": {
+                      "$ref": "RS-RI.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesInfo"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesRequest": {
+                      "$ref": "RS-DR.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesRequest"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesResponse": {
+                      "$ref": "RS-RR.schema.json"
+                    }
+                  },
+                  "required": [
+                    "resourcesResponse"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {
+              "properties": {
+                "message": {
+                  "$ref": "RC-DE.schema.json"
+                }
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "rpis": {
+                      "$ref": "RPIS.schema.json"
+                    }
+                  },
+                  "required": [
+                    "rpis"
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        {
           "properties": {
             "message": {
               "properties": {
@@ -216,32 +316,32 @@
                   "oneOf": [
                     {
                       "properties": {
-                        "geoPositionUpdate": {
+                        "geoPositionsUpdate": {
                           "$ref": "GEO-POS.schema.json"
                         }
                       },
                       "required": [
-                        "geoPositionUpdate"
+                        "geoPositionsUpdate"
                       ]
                     },
                     {
                       "properties": {
-                        "geoResourceRequest": {
+                        "geoResourcesRequest": {
                           "$ref": "GEO-REQ.schema.json"
                         }
                       },
                       "required": [
-                        "geoResourceRequest"
+                        "geoResourcesRequest"
                       ]
                     },
                     {
                       "properties": {
-                        "geoResourceDetails": {
+                        "geoResourcesDetails": {
                           "$ref": "GEO-RES.schema.json"
                         }
                       },
                       "required": [
-                        "geoResourceDetails"
+                        "geoResourcesDetails"
                       ]
                     }
                   ]
