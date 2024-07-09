@@ -438,8 +438,25 @@
             "title": "Actes r\u00e9alis\u00e9s par le SMUR",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
-            "properties": {},
+            "required": [
+                "actions"
+            ],
+            "properties": {
+                "actions": {
+                    "type": "string",
+                    "title": "Actes",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/intervention/actionsSMUR/0/actions"
+                },
+                "maintained": {
+                    "type": "boolean",
+                    "title": "Maintenu",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/intervention/actionsSMUR/0/maintained"
+                }
+            },
             "additionalProperties": false,
             "example": "example.json#/intervention/actionsSMUR/0"
         },

@@ -70,7 +70,7 @@ strict digraph {
                 <TR>
                 <TD ><B>actionsSMUR</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet actions</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet actions</I></TD></TR><TR><TD BORDER="0" >actions <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >maintained <I>boolean</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	actionsSMUR -> intervention [headlabel=1 taillabel="0..*"]
 	smurStatus [label=<<TABLE>

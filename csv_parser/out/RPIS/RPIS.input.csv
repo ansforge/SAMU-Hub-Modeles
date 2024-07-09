@@ -59,6 +59,8 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ",OUI,,driver,,,,,,1..1,,boolean,,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
 A valoriser avec un code de la nomenclature ACTES_SMUR.",ABV,,actionsSMUR,,,,,,0..n,X,actions,X,
+,,Actes,,,,,,,actions,,,,,,1..1,,string,,
+,,Maintenu,,,,,,,maintained,,,,,,0..1,,boolean,,
 ,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR.",R579,,mainDiagnosis,,,,,,1..1,,string,X,
 ,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.

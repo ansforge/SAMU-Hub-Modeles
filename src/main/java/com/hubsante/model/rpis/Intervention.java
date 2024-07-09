@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.rpis.Actions;
 import com.hubsante.model.rpis.Location;
 import com.hubsante.model.rpis.ResourceStatus;
 import com.hubsante.model.rpis.Team;
@@ -63,7 +64,7 @@ public class Intervention {
   private Team team;
 
   public static final String JSON_PROPERTY_ACTIONS_S_M_U_R = "actionsSMUR";
-  private List<Object> actionsSMUR;
+  private List<Actions> actionsSMUR;
 
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
   private String mainDiagnosis;
@@ -123,13 +124,13 @@ public class Intervention {
     this.team = team;
   }
 
-  public Intervention actionsSMUR(List<Object> actionsSMUR) {
+  public Intervention actionsSMUR(List<Actions> actionsSMUR) {
 
     this.actionsSMUR = actionsSMUR;
     return this;
   }
 
-  public Intervention addActionsSMURItem(Object actionsSMURItem) {
+  public Intervention addActionsSMURItem(Actions actionsSMURItem) {
     if (this.actionsSMUR == null) {
       this.actionsSMUR = new ArrayList<>();
     }
@@ -144,7 +145,7 @@ public class Intervention {
   @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<Object> getActionsSMUR() {
+  public List<Actions> getActionsSMUR() {
     return actionsSMUR;
   }
 
@@ -152,7 +153,7 @@ public class Intervention {
 
   @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActionsSMUR(List<Object> actionsSMUR) {
+  public void setActionsSMUR(List<Actions> actionsSMUR) {
     if (actionsSMUR == null) {
       return;
     }

@@ -45,7 +45,10 @@
             "driver": "OUI"
         },
         "actionsSMUR": [
-            {}
+            {
+                "actions": "None",
+                "maintained": "None"
+            }
         ],
         "mainDiagnosis": "R579",
         "associatedDiagnosis": "R578",

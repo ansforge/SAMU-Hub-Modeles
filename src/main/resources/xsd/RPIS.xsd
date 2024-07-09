@@ -229,7 +229,10 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
         </sequence>
     </complexType>
     <complexType name="actions">
-        <sequence/>
+        <sequence>
+            <element name="actions" type="string"/>
+            <element minOccurs="0" name="maintained" type="boolean"/>
+        </sequence>
     </complexType>
     <complexType name="resourceStatus">
         <sequence>
