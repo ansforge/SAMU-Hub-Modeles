@@ -46,12 +46,12 @@
         },
         "actionsSMUR": [
             {
-                "actions": "None",
-                "maintained": "None"
+                "actions": "ABV",
+                "maintained": "VRAI, FAUX"
             }
         ],
-        "mainDiagnosis": "R579",
-        "associatedDiagnosis": "R578",
+        "mainDiagnosis": "MD30.Z",
+        "associatedDiagnosis": "8B22.1",
         "smurStatus": {
             "departSmur": "2022-09-27T08:23:34+02:00",
             "arrivedSmur": "2022-09-27T08:23:34+02:00",

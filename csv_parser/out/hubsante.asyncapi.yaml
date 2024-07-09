@@ -5770,7 +5770,7 @@ components:
           description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
             \ Diagnostic SMUR."
           examples:
-          - R579
+          - MD30.Z
         associatedDiagnosis:
           type: string
           title: "Diagnostic associ\xE9  SMUR"
@@ -5780,7 +5780,7 @@ components:
           description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
             \ Diagnostic SMUR."
           examples:
-          - R578
+          - 8B22.1
         smurStatus:
           $ref: '#/components/schemas/resourceStatus'
       additionalProperties: false
@@ -5863,7 +5863,7 @@ components:
           x-cols: 6
           example: example.json#/intervention/actionsSMUR/0/actions
           examples:
-          - None
+          - ABV
         maintained:
           type: boolean
           title: Maintenu
@@ -5871,12 +5871,12 @@ components:
           x-cols: 6
           example: example.json#/intervention/actionsSMUR/0/maintained
           examples:
-          - None
+          - VRAI, FAUX
       additionalProperties: false
       example: example.json#/intervention/actionsSMUR/0
       examples:
-      - actions: None
-        maintained: None
+      - actions: ABV
+        maintained: VRAI, FAUX
     resourceStatus:
       type: object
       title: Statuts des horaires du SMUR

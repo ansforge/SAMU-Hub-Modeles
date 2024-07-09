@@ -58,13 +58,13 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
 ,,Ambulancier/Pilote,,,,"Permet d'identifier si un ambulancier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ",OUI,,driver,,,,,,1..1,,boolean,,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
-A valoriser avec un code de la nomenclature ACTES_SMUR.",ABV,,actionsSMUR,,,,,,0..n,X,actions,X,
-,,Actes,,,,,,,actions,,,,,,1..1,,string,,
-,,Maintenu,,,,,,,maintained,,,,,,0..1,,boolean,,
+A valoriser avec un code de la nomenclature ACTES_SMUR.",,,actionsSMUR,,,,,,0..n,X,actions,X,
+,,Actes,,,,,ABV,,actions,,,,,,1..1,,string,,
+,,Maintenu,,,,,"VRAI, FAUX",,maintained,,,,,,0..1,,boolean,,
 ,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.",R579,,mainDiagnosis,,,,,,1..1,,string,X,
+A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,,mainDiagnosis,,,,,,1..1,,string,X,
 ,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.",R578,,associatedDiagnosis,,,,,,0..1,,string,X,
+A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,,associatedDiagnosis,,,,,,0..1,,string,X,
 ,Statuts des horaires du SMUR,,,,,,,,smurStatus,,,,,,0..1,X,resourceStatus,,
 ,,Date et heure du départ de la base SMUR,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,,departSmur,,,,,,1..1,,datetime,,
 ,,Date et heure de l’arrivée sur les lieux de l’intervention,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,,arrivedSmur,,,,,,0..1,,datetime,,
