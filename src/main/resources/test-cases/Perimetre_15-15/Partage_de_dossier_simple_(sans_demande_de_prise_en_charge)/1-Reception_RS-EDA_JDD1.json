@@ -12,11 +12,11 @@
             },
             "locationKind": {
                 "code": "L01.01.04",
-                "label": "Domicile ; Maison particulière, pavillon ;  dépendance"
+                "label": "Domicile ; Maison particuli\u00e8re, pavillon ;  d\u00e9pendance"
             },
             "healthMotive": {
                 "code": "M01.02",
-                "label": "Détresse vitale; Altération de la conscience; Dont inconscient, coma"
+                "label": "D\u00e9tresse vitale; Alt\u00e9ration de la conscience; Dont inconscient, coma"
             },
             "details": {
                 "priority": "P0",
@@ -83,14 +83,14 @@
                 "language": "FR",
                 "type": "FAMILLE",
                 "detailedName": {
-                    "complete": "Sébastien Morel",
-                    "firstName": "Sébastien",
+                    "complete": "S\u00e9bastien Morel",
+                    "firstName": "S\u00e9bastien",
                     "lastName": "Morel"
                 }
             },
             "notes": [
                 {
-                    "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup. "
+                    "freetext": "Coupure grave caus\u00e9e par une scie circulaire au niveau de la main; saigne beaucoup. "
                 },
                 {
                     "freetext": "La victime est inconsciente (perte de connaissance)."
