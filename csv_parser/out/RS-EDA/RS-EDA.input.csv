@@ -173,7 +173,6 @@ Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_860
 ,Hypothèses de régulation médicale,,,,,Objet qui permet de décrire les hypothèses de régulation médicale,,,hypothesis,,,,,,0..1,X,hypothesis,,
 ,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,,mainDiagnosis,,,,,,0..1,X,codeAndLabel,X,
 ,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,
-,Informations complémentaires sur le patient,,,,,Champ libre qui permet de compléter les informations liées spécifiquement à l'identité ou aux caractéristiques du patient - en dehors de tout commentaire ou interrogatoire de nature médical. ,,,freetext,,,,,,0..n,,string,,
 Observation médicale,,,,,,Observations de nature médicale. ,,,medicalNote,,,,,,0..n,X,medicalNote,,
 ,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
 {ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}",fr.health.samu044.DRFR154402415000450.P1,,idPat,,,,,,0..1,,string,,

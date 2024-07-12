@@ -270,21 +270,6 @@ components:
           $ref: '#/components/schemas/patientDetail'
         hypothesis:
           $ref: '#/components/schemas/hypothesis'
-        freetext:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: "Informations compl\xE9mentaires sur le patient"
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/patient/0/freetext/0
-            description: "Champ libre qui permet de compl\xE9ter les informations\
-              \ li\xE9es sp\xE9cifiquement \xE0 l'identit\xE9 ou aux caract\xE9ristiques\
-              \ du patient - en dehors de tout commentaire ou interrogatoire de nature\
-              \ m\xE9dical. "
-            examples:
-            - None
       additionalProperties: false
       example: example.json#/patient/0
     medicalNote:

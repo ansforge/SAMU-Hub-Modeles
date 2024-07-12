@@ -136,7 +136,6 @@ Cet identifiant est généré une seule fois par le système du partenaire qui c
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="medicalNote">

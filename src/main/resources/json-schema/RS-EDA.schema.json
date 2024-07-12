@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.07.11",
+    "version": "24.07.12",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -266,18 +266,6 @@
                 },
                 "hypothesis": {
                     "$ref": "#/definitions/hypothesis"
-                },
-                "freetext": {
-                    "type": "array",
-                    "x-health-only": false,
-                    "items": {
-                        "type": "string",
-                        "title": "Informations compl\u00e9mentaires sur le patient",
-                        "x-health-only": false,
-                        "x-cols": 6,
-                        "example": "example.json#/patient/0/freetext/0",
-                        "description": "Champ libre qui permet de compl\u00e9ter les informations li\u00e9es sp\u00e9cifiquement \u00e0 l'identit\u00e9 ou aux caract\u00e9ristiques du patient - en dehors de tout commentaire ou interrogatoire de nature m\u00e9dical. "
-                    }
                 }
             },
             "additionalProperties": false,
