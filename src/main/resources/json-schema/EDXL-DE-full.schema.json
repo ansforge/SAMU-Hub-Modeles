@@ -152,20 +152,6 @@
           "properties": {
             "message": {
               "properties": {
-                "info": {
-                  "$ref": "RS-INFO.schema.json"
-                }
-              },
-              "required": [
-                "info"
-              ]
-            }
-          }
-        },
-        {
-          "properties": {
-            "message": {
-              "properties": {
                 "error": {
                   "$ref": "RS-ERROR.schema.json"
                 }
