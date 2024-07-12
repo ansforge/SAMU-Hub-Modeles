@@ -490,9 +490,14 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return json_schema['example']
         return json_schema['definitions'][parent['true_type']]['example']
 
+    def child_not_already_required(child, definitions):
+        """Check if the array of required values already contains the child we're attempting to add, return False if
+        so"""
+        return child['name'] not in definitions['required']
+
     def add_field_child_property(parent, child, definitions):
         """Update parent definitions (required and properties) by adding the child information for a field child"""
-        if child['Cardinalité'].startswith('1'):
+        if child['Cardinalité'].startswith('1') and child_not_already_required(child, definitions):
             definitions['required'].append(child['name'])
         typeName, pattern, format = type_matching(child)
         parentExamplePath = get_parent_example_path(parent)
