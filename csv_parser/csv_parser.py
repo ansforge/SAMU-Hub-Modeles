@@ -57,7 +57,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         perimeter_columns = [i for i, x in enumerate(perimeter_row) if 'Périmètre' in str(x)]
         # Computing number of rows in table
         # Find the row number of the first table header ('ID')
-        id_index = (full_df[0] == 'ID').idxmax()
+        id_index = (full_df[0] == 'ID').idxmin()
         id_column = full_df.loc[id_index+1:, 0]
         # Count the number of rows in the ID column, without counting the last row (total)
         rows = id_column.count() - 1
