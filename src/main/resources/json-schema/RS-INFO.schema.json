@@ -16,7 +16,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/info",
-            "description": "\u00a0Champ libre permettant de transmettre des informations quelconques"
+            "description": " Champ libre permettant de transmettre des informations quelconques"
         }
     },
     "definitions": {},

@@ -12,11 +12,11 @@
             },
             "locationKind": {
                 "code": "L04.12.00",
-                "label": "Lieu accueillant du public ; H\u00e9bergement touristique"
+                "label": "Lieu accueillant du public ; Hébergement touristique"
             },
             "healthMotive": {
                 "code": "M03.08",
-                "label": "Signes d\u2019AVC"
+                "label": "Signes d’AVC"
             },
             "details": {
                 "priority": "P1",
@@ -51,7 +51,7 @@
             "access": {
                 "phoneNumber": "561964589"
             },
-            "freetext": "Maison avec la porte verte, 100 m apr\u00e8s le lavoir"
+            "freetext": "Maison avec la porte verte, 100 m après le lavoir"
         },
         "initialAlert": {
             "id": "ALRT-2024-AMP697",
@@ -78,7 +78,7 @@
             },
             "notes": [
                 {
-                    "freetext": "Confusion, \u00e9tourdissements, s\u2019exprime difficilement"
+                    "freetext": "Confusion, étourdissements, s’exprime difficilement"
                 }
             ],
             "callTaker": {

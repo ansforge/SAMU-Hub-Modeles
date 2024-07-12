@@ -19,7 +19,7 @@
                 "x-health-only": false,
                 "x-cols": 6,
                 "example": "example.json#/resourceId/0",
-                "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de d\u00e9tails"
+                "description": "Liste des ID des ressources pour lesquels le demandeur a besoin d'obtenir plus de détails"
             },
             "minItems": 1
         }
