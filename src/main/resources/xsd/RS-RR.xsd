@@ -10,18 +10,18 @@ Il est généré par le système du partenaire récepteur de la primo-demande de
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
-            <element name="RSDRId" type="string">
+            <element name="requestId" type="string">
                 <annotation>
                     <documentation>Identifiant unique partagé de la demande de ressource
 {orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
-            <element name="requestResponse" type="x:response"/>
+            <element name="response" type="x:response"/>
         </sequence>
     </complexType>
     <complexType name="response">
         <sequence>
-            <element name="dateTime" type="dateTime">
+            <element name="datetime" type="dateTime">
                 <annotation>
                     <documentation>Voir liste des effets à obtenir identifiés</documentation>
                 </annotation>

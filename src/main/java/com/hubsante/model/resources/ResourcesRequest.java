@@ -43,7 +43,6 @@ import java.util.Objects;
  * ResourcesRequest
  */
 @JsonPropertyOrder({ResourcesRequest.JSON_PROPERTY_CASE_ID,
-                    ResourcesRequest.JSON_PROPERTY_RS_D_R_ID,
                     ResourcesRequest.JSON_PROPERTY_REQUEST})
 @JsonTypeName("resourcesRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -53,9 +52,6 @@ public class ResourcesRequest {
   String xmlns = "urn:emergency:cisu:2.0:resourcesRequest";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
-
-  public static final String JSON_PROPERTY_RS_D_R_ID = "RSDRId";
-  private String rsDRId;
 
   public static final String JSON_PROPERTY_REQUEST = "request";
   private Request request;
@@ -90,30 +86,6 @@ public class ResourcesRequest {
     this.caseId = caseId;
   }
 
-  public ResourcesRequest rsDRId(String rsDRId) {
-
-    this.rsDRId = rsDRId;
-    return this;
-  }
-
-  /**
-   * Identifiant unique partagé de la demande de ressource {orgID}.request.{ID
-   *unique de la demande dans le système émetteur}
-   * @return rsDRId
-   **/
-  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getRsDRId() {
-    return rsDRId;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRsDRId(String rsDRId) {
-    this.rsDRId = rsDRId;
-  }
-
   public ResourcesRequest request(Request request) {
 
     this.request = request;
@@ -125,14 +97,14 @@ public class ResourcesRequest {
    * @return request
    **/
   @JsonProperty(JSON_PROPERTY_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public Request getRequest() {
     return request;
   }
 
   @JsonProperty(JSON_PROPERTY_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setRequest(Request request) {
     this.request = request;
   }
@@ -147,13 +119,12 @@ public class ResourcesRequest {
     }
     ResourcesRequest resourcesRequest = (ResourcesRequest)o;
     return Objects.equals(this.caseId, resourcesRequest.caseId) &&
-        Objects.equals(this.rsDRId, resourcesRequest.rsDRId) &&
         Objects.equals(this.request, resourcesRequest.request);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, rsDRId, request);
+    return Objects.hash(caseId, request);
   }
 
   @Override
@@ -161,7 +132,6 @@ public class ResourcesRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class ResourcesRequest {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    rsDRId: ").append(toIndentedString(rsDRId)).append("\n");
     sb.append("    request: ").append(toIndentedString(request)).append("\n");
     sb.append("}");
     return sb.toString();

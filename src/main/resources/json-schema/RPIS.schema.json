@@ -209,8 +209,14 @@
                 },
                 "actionsSMUR": {
                     "type": "array",
+                    "x-health-only": false,
                     "items": {
-                        "$ref": "#/definitions/actions"
+                        "type": "string",
+                        "title": "Actes r\u00e9alis\u00e9s par le SMUR",
+                        "x-health-only": false,
+                        "x-cols": 6,
+                        "example": "example.json#/intervention/actionsSMUR/0",
+                        "description": "Pr\u00e9cise aussi bien les actes r\u00e9alis\u00e9s par le SMUR sur le lieu de l'intervention \u00e0 son arriv\u00e9e que ceux r\u00e9alis\u00e9s avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
                     }
                 },
                 "mainDiagnosis": {
@@ -432,33 +438,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/intervention/team"
-        },
-        "actions": {
-            "type": "object",
-            "title": "Actes r\u00e9alis\u00e9s par le SMUR",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "actions"
-            ],
-            "properties": {
-                "actions": {
-                    "type": "string",
-                    "title": "Actes",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/intervention/actionsSMUR/0/actions"
-                },
-                "maintained": {
-                    "type": "boolean",
-                    "title": "Maintenu",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/intervention/actionsSMUR/0/maintained"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/intervention/actionsSMUR/0"
         },
         "resourceStatus": {
             "type": "object",

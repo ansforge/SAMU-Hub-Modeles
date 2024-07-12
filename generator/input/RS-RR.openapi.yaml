@@ -16,8 +16,8 @@ components:
       title: resourcesResponse
       required:
       - caseId
-      - RSDRId
-      - requestResponse
+      - requestId
+      - response
       properties:
         caseId:
           type: string
@@ -34,17 +34,17 @@ components:
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
-        RSDRId:
+        requestId:
           type: string
           title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/RSDRId
+          example: example.json#/requestId
           description: "Identifiant unique partag\xE9 de la demande de ressource\n\
             {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
           examples:
           - fr.health.samu770.request.1249875
-        requestResponse:
+        response:
           $ref: '#/components/schemas/response'
       additionalProperties: false
     response:
@@ -53,15 +53,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - dateTime
+      - datetime
       - answer
       properties:
-        dateTime:
+        datetime:
           type: string
           title: "Date Heure de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/dateTime
+          example: example.json#/response/datetime
           description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -72,7 +72,7 @@ components:
           title: "R\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/answer
+          example: example.json#/response/answer
           description: "oui / non / oui partiel / diff\xE9r\xE9"
           enum:
           - ACCEPTEE
@@ -86,7 +86,7 @@ components:
           title: "D\xE9lai de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/deadline
+          example: example.json#/response/deadline
           description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
             diteur"
           examples:
@@ -96,15 +96,15 @@ components:
           title: "Pr\xE9cisions sur la r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/freetext
+          example: example.json#/response/freetext
           description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
             \ \xE0 la r\xE9ponse"
           examples:
           - None
       additionalProperties: false
-      example: example.json#/requestResponse
+      example: example.json#/response
       examples:
-      - dateTime: None
+      - datetime: None
         answer: None
         deadline: None
         freetext: None

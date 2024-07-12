@@ -16,7 +16,7 @@ components:
       title: resourcesRequest
       required:
       - caseId
-      - RSDRId
+      - request
       properties:
         caseId:
           type: string
@@ -33,16 +33,6 @@ components:
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
-        RSDRId:
-          type: string
-          title: "ID Demande partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/RSDRId
-          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
-          examples:
-          - fr.health.samu770.request.1249875
         request:
           $ref: '#/components/schemas/request'
       additionalProperties: false
@@ -52,16 +42,26 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - dateTime
+      - requestId
+      - datetime
       - purpose
       properties:
-        dateTime:
+        requestId:
+          type: string
+          title: "ID Demande partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/requestId
+          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
+            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          examples:
+          - fr.health.samu770.request.1249875
+        datetime:
           type: string
           title: "Date Heure de cr\xE9ation de la demande"
           x-health-only: false
           x-cols: 6
-          example: example.json#/request/dateTime
-          description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
+          example: example.json#/request/datetime
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -91,7 +91,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/purpose
-          description: "Motif de la demande de ressource aupr\xE8s du partenaire"
+          description: "Motif de la demande de ressource aupr\xE8s du partenaire,\
+            \ voir liste des effets \xE0 obtenir identifi\xE9s"
           enum:
           - SAP
           - REGUL
@@ -119,7 +120,8 @@ components:
       additionalProperties: false
       example: example.json#/request
       examples:
-      - dateTime: None
+      - requestId: fr.health.samu770.request.1249875
+        datetime: None
         convention: None
         deadline: None
         purpose: None

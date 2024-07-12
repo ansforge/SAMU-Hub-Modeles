@@ -8,7 +8,7 @@
     "title": "resourcesRequest",
     "required": [
         "caseId",
-        "RSDRId"
+        "request"
     ],
     "properties": {
         "caseId": {
@@ -18,14 +18,6 @@
             "x-cols": 6,
             "example": "example.json#/caseId",
             "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
-        },
-        "RSDRId": {
-            "type": "string",
-            "title": "ID Demande partag\u00e9",
-            "x-health-only": false,
-            "x-cols": 6,
-            "example": "example.json#/RSDRId",
-            "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
         },
         "request": {
             "$ref": "#/definitions/request"
@@ -38,17 +30,25 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "dateTime",
+                "requestId",
+                "datetime",
                 "purpose"
             ],
             "properties": {
-                "dateTime": {
+                "requestId": {
+                    "type": "string",
+                    "title": "ID Demande partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/request/requestId",
+                    "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
+                },
+                "datetime": {
                     "type": "string",
                     "title": "Date Heure de cr\u00e9ation de la demande",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/request/dateTime",
-                    "description": "Voir liste des effets \u00e0 obtenir identifi\u00e9s",
+                    "example": "example.json#/request/datetime",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -74,7 +74,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/purpose",
-                    "description": "Motif de la demande de ressource aupr\u00e8s du partenaire",
+                    "description": "Motif de la demande de ressource aupr\u00e8s du partenaire, voir liste des effets \u00e0 obtenir identifi\u00e9s",
                     "enum": [
                         "SAP",
                         "REGUL",

@@ -3343,27 +3343,27 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - dateTime
-      - resourceID
+      - datetime
+      - resourceId
       - resourceType
       properties:
-        dateTime:
+        datetime:
           type: string
           title: "Date/heure de d\xE9clenchement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/dateTime
+          example: example.json#/mobilizedResource/0/datetime
           description: date et heure d'engagement de la ressource
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - None
-        resourceID:
+        resourceId:
           type: string
           title: "ID Ressource partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/resourceID
+          example: example.json#/mobilizedResource/0/resourceId
           description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
             \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
             e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
@@ -3373,34 +3373,34 @@ components:
           - 'fr.health.samu770.resource.VLM250
 
             fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
-        RSDRId:
+        requestId:
           type: string
           title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/RSDRId
+          example: example.json#/mobilizedResource/0/requestId
           description: "Identifiant unique partag\xE9 de la demande de ressource (si\
             \ la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une demande de ressource),\
             \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
             \ le syst\xE8me \xE9metteur}"
           examples:
           - fr.health.samu770.request.1249875
-        missionID:
+        missionId:
           type: string
           title: ID Mission local
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/missionID
+          example: example.json#/mobilizedResource/0/missionId
           description: "Num\xE9ro de mission unique du central d\u2019appel (PSAP,\
             \ \u2026) qui a d\xE9clench\xE9 le vecteur"
           examples:
           - DRFR15DDXAAJJJ0000.M001
-        orgID:
+        orgId:
           type: string
           title: "ID Organisation propri\xE9taire"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/orgID
+          example: example.json#/mobilizedResource/0/orgId
           description: "Organisation \xE0 laquelle appartient la ressource"
           examples:
           - fr.health.samu440
@@ -5439,40 +5439,58 @@ components:
       title: Etats vecteur
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - datetime
+      - status
       properties:
-        dateTime:
+        datetime:
           type: string
           title: Date/heure de changement de statut
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/state/0/dateTime
+          example: example.json#/mobilizedResource/0/state/0/datetime
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - None
         status:
           type: string
-          title: Statuts du vecteur
+          title: Status du vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/status
           description: Dernier statut du vecteur
+          enum:
+          - ALERTE
+          - PARTI
+          - ARRIVEE SUR LES LIEUX
+          - TRANSPORT DESTINATION
+          - ARRIVEE DESTINATION
+          - 'FIN DE MEDICALISATION '
+          - QUITTE DESTINATION
+          - RETOUR BASE
+          - RENTREE BASE
           examples:
           - None
         availability:
-          type: string
+          type: boolean
           title: "Disponibilit\xE9 du vecteur"
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/availability
-          description: Indique si le vecteur est disponible / indisponible
+          description: 'Indique si le vecteur est disponible / indisponible
+
+            TRUE = DISPONIBLE
+
+            FALSE = INDISPONIBLE
+
+            VIDE = INCONNU'
           examples:
           - None
       additionalProperties: false
       example: example.json#/mobilizedResource/0/state/0
       examples:
-      - dateTime: None
+      - datetime: None
         status: None
         availability: None
     resourcesRequest:
@@ -5483,7 +5501,7 @@ components:
       title: resourcesRequest
       required:
       - caseId
-      - RSDRId
+      - request
       properties:
         caseId:
           type: string
@@ -5500,16 +5518,6 @@ components:
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
-        RSDRId:
-          type: string
-          title: "ID Demande partag\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/RSDRId
-          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
-          examples:
-          - fr.health.samu770.request.1249875
         request:
           $ref: '#/components/schemas/request'
       additionalProperties: false
@@ -5519,16 +5527,26 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - dateTime
+      - requestId
+      - datetime
       - purpose
       properties:
-        dateTime:
+        requestId:
+          type: string
+          title: "ID Demande partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/requestId
+          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
+            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          examples:
+          - fr.health.samu770.request.1249875
+        datetime:
           type: string
           title: "Date Heure de cr\xE9ation de la demande"
           x-health-only: false
           x-cols: 6
-          example: example.json#/request/dateTime
-          description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
+          example: example.json#/request/datetime
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -5558,7 +5576,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/purpose
-          description: "Motif de la demande de ressource aupr\xE8s du partenaire"
+          description: "Motif de la demande de ressource aupr\xE8s du partenaire,\
+            \ voir liste des effets \xE0 obtenir identifi\xE9s"
           enum:
           - SAP
           - REGUL
@@ -5586,7 +5605,8 @@ components:
       additionalProperties: false
       example: example.json#/request
       examples:
-      - dateTime: None
+      - requestId: fr.health.samu770.request.1249875
+        datetime: None
         convention: None
         deadline: None
         purpose: None
@@ -5599,8 +5619,8 @@ components:
       title: resourcesResponse
       required:
       - caseId
-      - RSDRId
-      - requestResponse
+      - requestId
+      - response
       properties:
         caseId:
           type: string
@@ -5617,17 +5637,17 @@ components:
             \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
           examples:
           - fr.health.samu440.DRFR15DDXAAJJJ0000
-        RSDRId:
+        requestId:
           type: string
           title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/RSDRId
+          example: example.json#/requestId
           description: "Identifiant unique partag\xE9 de la demande de ressource\n\
             {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
           examples:
           - fr.health.samu770.request.1249875
-        requestResponse:
+        response:
           $ref: '#/components/schemas/response'
       additionalProperties: false
     response:
@@ -5636,15 +5656,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - dateTime
+      - datetime
       - answer
       properties:
-        dateTime:
+        datetime:
           type: string
           title: "Date Heure de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/dateTime
+          example: example.json#/response/datetime
           description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
@@ -5655,7 +5675,7 @@ components:
           title: "R\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/answer
+          example: example.json#/response/answer
           description: "oui / non / oui partiel / diff\xE9r\xE9"
           enum:
           - ACCEPTEE
@@ -5669,7 +5689,7 @@ components:
           title: "D\xE9lai de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/deadline
+          example: example.json#/response/deadline
           description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
             diteur"
           examples:
@@ -5679,15 +5699,15 @@ components:
           title: "Pr\xE9cisions sur la r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/freetext
+          example: example.json#/response/freetext
           description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
             \ \xE0 la r\xE9ponse"
           examples:
           - None
       additionalProperties: false
-      example: example.json#/requestResponse
+      example: example.json#/response
       examples:
-      - dateTime: None
+      - datetime: None
         answer: None
         deadline: None
         freetext: None
@@ -5759,8 +5779,19 @@ components:
           $ref: '#/components/schemas/team'
         actionsSMUR:
           type: array
+          x-health-only: false
           items:
-            $ref: '#/components/schemas/actions'
+            type: string
+            title: "Actes r\xE9alis\xE9s par le SMUR"
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/intervention/actionsSMUR/0
+            description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
+              \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
+              s avant son intervention. \nA valoriser avec un code de la nomenclature\
+              \ ACTES_SMUR."
+            examples:
+            - None
         mainDiagnosis:
           type: string
           title: Diagnostic principal SMUR
@@ -5848,35 +5879,6 @@ components:
       examples:
       - cityCode: 92300
         city: Levallois-Perret
-    actions:
-      type: object
-      title: "Actes r\xE9alis\xE9s par le SMUR"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - actions
-      properties:
-        actions:
-          type: string
-          title: Actes
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/intervention/actionsSMUR/0/actions
-          examples:
-          - ABV
-        maintained:
-          type: boolean
-          title: Maintenu
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/intervention/actionsSMUR/0/maintained
-          examples:
-          - VRAI, FAUX
-      additionalProperties: false
-      example: example.json#/intervention/actionsSMUR/0
-      examples:
-      - actions: ABV
-        maintained: VRAI, FAUX
     resourceStatus:
       type: object
       title: Statuts des horaires du SMUR

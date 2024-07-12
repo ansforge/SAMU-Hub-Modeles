@@ -10,22 +10,18 @@ Il est généré par le système du partenaire récepteur de la primo-demande de
 Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
                 </annotation>
             </element>
-            <element name="RSDRId" type="string">
+            <element name="request" type="x:request"/>
+        </sequence>
+    </complexType>
+    <complexType name="request">
+        <sequence>
+            <element name="requestId" type="string">
                 <annotation>
                     <documentation>Identifiant unique partagé de la demande de ressource
 {orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="request" type="x:request"/>
-        </sequence>
-    </complexType>
-    <complexType name="request">
-        <sequence>
-            <element name="dateTime" type="dateTime">
-                <annotation>
-                    <documentation>Voir liste des effets à obtenir identifiés</documentation>
-                </annotation>
-            </element>
+            <element name="datetime" type="dateTime"/>
             <element minOccurs="0" name="convention" type="string">
                 <annotation>
                     <documentation>Nomenclature à venir : décrit le cadre conventionnel de la demande.</documentation>
@@ -38,7 +34,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element name="purpose">
                 <annotation>
-                    <documentation>Motif de la demande de ressource auprès du partenaire</documentation>
+                    <documentation>Motif de la demande de ressource auprès du partenaire, voir liste des effets à obtenir identifiés</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">

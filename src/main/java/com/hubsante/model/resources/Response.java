@@ -43,14 +43,14 @@ import java.util.Objects;
  * Response
  */
 @JsonPropertyOrder(
-    {Response.JSON_PROPERTY_DATE_TIME, Response.JSON_PROPERTY_ANSWER,
+    {Response.JSON_PROPERTY_DATETIME, Response.JSON_PROPERTY_ANSWER,
      Response.JSON_PROPERTY_DEADLINE, Response.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("response")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Response {
-  public static final String JSON_PROPERTY_DATE_TIME = "dateTime";
-  private OffsetDateTime dateTime;
+  public static final String JSON_PROPERTY_DATETIME = "datetime";
+  private OffsetDateTime datetime;
 
   /**
    * oui / non / oui partiel / différé
@@ -100,27 +100,27 @@ public class Response {
 
   public Response() {}
 
-  public Response dateTime(OffsetDateTime dateTime) {
+  public Response datetime(OffsetDateTime datetime) {
 
-    this.dateTime = dateTime;
+    this.datetime = datetime;
     return this;
   }
 
   /**
    * Voir liste des effets à obtenir identifiés
-   * @return dateTime
+   * @return datetime
    **/
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OffsetDateTime getDateTime() {
-    return dateTime;
+  public OffsetDateTime getDatetime() {
+    return datetime;
   }
 
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDateTime(OffsetDateTime dateTime) {
-    this.dateTime = dateTime;
+  public void setDatetime(OffsetDateTime datetime) {
+    this.datetime = datetime;
   }
 
   public Response answer(AnswerEnum answer) {
@@ -201,7 +201,7 @@ public class Response {
       return false;
     }
     Response response = (Response)o;
-    return Objects.equals(this.dateTime, response.dateTime) &&
+    return Objects.equals(this.datetime, response.datetime) &&
         Objects.equals(this.answer, response.answer) &&
         Objects.equals(this.deadline, response.deadline) &&
         Objects.equals(this.freetext, response.freetext);
@@ -209,14 +209,14 @@ public class Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateTime, answer, deadline, freetext);
+    return Objects.hash(datetime, answer, deadline, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Response {\n");
-    sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
+    sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
     sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
     sb.append("    deadline: ").append(toIndentedString(deadline)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");

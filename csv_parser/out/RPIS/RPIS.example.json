@@ -45,10 +45,7 @@
             "driver": "OUI"
         },
         "actionsSMUR": [
-            {
-                "actions": "ABV",
-                "maintained": "VRAI, FAUX"
-            }
+            "None"
         ],
         "mainDiagnosis": "MD30.Z",
         "associatedDiagnosis": "8B22.1",

@@ -42,47 +42,94 @@ import java.util.Objects;
 /**
  * State
  */
-@JsonPropertyOrder({State.JSON_PROPERTY_DATE_TIME, State.JSON_PROPERTY_STATUS,
+@JsonPropertyOrder({State.JSON_PROPERTY_DATETIME, State.JSON_PROPERTY_STATUS,
                     State.JSON_PROPERTY_AVAILABILITY})
 @JsonTypeName("state")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class State {
-  public static final String JSON_PROPERTY_DATE_TIME = "dateTime";
-  private OffsetDateTime dateTime;
+  public static final String JSON_PROPERTY_DATETIME = "datetime";
+  private OffsetDateTime datetime;
+
+  /**
+   * Dernier statut du vecteur
+   */
+  public enum StatusEnum {
+    ALERTE("ALERTE"),
+
+    PARTI("PARTI"),
+
+    ARRIVEE_SUR_LES_LIEUX("ARRIVEE SUR LES LIEUX"),
+
+    TRANSPORT_DESTINATION("TRANSPORT DESTINATION"),
+
+    ARRIVEE_DESTINATION("ARRIVEE DESTINATION"),
+
+    FIN_DE_MEDICALISATION_("FIN DE MEDICALISATION "),
+
+    QUITTE_DESTINATION("QUITTE DESTINATION"),
+
+    RETOUR_BASE("RETOUR BASE"),
+
+    RENTREE_BASE("RENTREE BASE");
+
+    private String value;
+
+    StatusEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_STATUS = "status";
-  private String status;
+  private StatusEnum status;
 
   public static final String JSON_PROPERTY_AVAILABILITY = "availability";
-  private String availability;
+  private Boolean availability;
 
   public State() {}
 
-  public State dateTime(OffsetDateTime dateTime) {
+  public State datetime(OffsetDateTime datetime) {
 
-    this.dateTime = dateTime;
+    this.datetime = datetime;
     return this;
   }
 
   /**
-   * Get dateTime
-   * @return dateTime
+   * Get datetime
+   * @return datetime
    **/
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OffsetDateTime getDateTime() {
-    return dateTime;
+  public OffsetDateTime getDatetime() {
+    return datetime;
   }
 
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDateTime(OffsetDateTime dateTime) {
-    this.dateTime = dateTime;
+  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDatetime(OffsetDateTime datetime) {
+    this.datetime = datetime;
   }
 
-  public State status(String status) {
+  public State status(StatusEnum status) {
 
     this.status = status;
     return this;
@@ -93,38 +140,39 @@ public class State {
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getStatus() {
+  public StatusEnum getStatus() {
     return status;
   }
 
   @JsonProperty(JSON_PROPERTY_STATUS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(String status) {
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setStatus(StatusEnum status) {
     this.status = status;
   }
 
-  public State availability(String availability) {
+  public State availability(Boolean availability) {
 
     this.availability = availability;
     return this;
   }
 
   /**
-   * Indique si le vecteur est disponible / indisponible
+   * Indique si le vecteur est disponible / indisponible TRUE &#x3D; DISPONIBLE
+   *FALSE &#x3D; INDISPONIBLE VIDE &#x3D; INCONNU
    * @return availability
    **/
   @JsonProperty(JSON_PROPERTY_AVAILABILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getAvailability() {
+  public Boolean getAvailability() {
     return availability;
   }
 
   @JsonProperty(JSON_PROPERTY_AVAILABILITY)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAvailability(String availability) {
+  public void setAvailability(Boolean availability) {
     this.availability = availability;
   }
 
@@ -137,21 +185,21 @@ public class State {
       return false;
     }
     State state = (State)o;
-    return Objects.equals(this.dateTime, state.dateTime) &&
+    return Objects.equals(this.datetime, state.datetime) &&
         Objects.equals(this.status, state.status) &&
         Objects.equals(this.availability, state.availability);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateTime, status, availability);
+    return Objects.hash(datetime, status, availability);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class State {\n");
-    sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
+    sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    availability: ")
         .append(toIndentedString(availability))

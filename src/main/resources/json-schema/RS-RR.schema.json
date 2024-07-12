@@ -8,8 +8,8 @@
     "title": "resourcesResponse",
     "required": [
         "caseId",
-        "RSDRId",
-        "requestResponse"
+        "requestId",
+        "response"
     ],
     "properties": {
         "caseId": {
@@ -20,15 +20,15 @@
             "example": "example.json#/caseId",
             "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
         },
-        "RSDRId": {
+        "requestId": {
             "type": "string",
             "title": "ID Demande partag\u00e9",
             "x-health-only": false,
             "x-cols": 6,
-            "example": "example.json#/RSDRId",
+            "example": "example.json#/requestId",
             "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
         },
-        "requestResponse": {
+        "response": {
             "$ref": "#/definitions/response"
         }
     },
@@ -39,16 +39,16 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "dateTime",
+                "datetime",
                 "answer"
             ],
             "properties": {
-                "dateTime": {
+                "datetime": {
                     "type": "string",
                     "title": "Date Heure de r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/requestResponse/dateTime",
+                    "example": "example.json#/response/datetime",
                     "description": "Voir liste des effets \u00e0 obtenir identifi\u00e9s",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
@@ -58,7 +58,7 @@
                     "title": "R\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/requestResponse/answer",
+                    "example": "example.json#/response/answer",
                     "description": "oui / non / oui partiel / diff\u00e9r\u00e9",
                     "enum": [
                         "ACCEPTEE",
@@ -72,7 +72,7 @@
                     "title": "D\u00e9lai de r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/requestResponse/deadline",
+                    "example": "example.json#/response/deadline",
                     "description": "Indique le d\u00e9lai de r\u00e9ponse auquel s'engage l'exp\u00e9diteur"
                 },
                 "freetext": {
@@ -80,12 +80,12 @@
                     "title": "Pr\u00e9cisions sur la r\u00e9ponse",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/requestResponse/freetext",
+                    "example": "example.json#/response/freetext",
                     "description": "Commentaire libre pour apporter toutes pr\u00e9cisions utiles \u00e0 la r\u00e9ponse"
                 }
             },
             "additionalProperties": false,
-            "example": "example.json#/requestResponse"
+            "example": "example.json#/response"
         }
     },
     "additionalProperties": false
