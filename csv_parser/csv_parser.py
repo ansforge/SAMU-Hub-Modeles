@@ -449,7 +449,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     json_example = build_example(rootObject)
     with open(f'out/{name}/{name}.example.json', 'w', encoding='utf8') as outfile:
-        json.dump(json_example, outfile, indent=4)
+        json.dump(json_example, outfile, indent=4, ensure_ascii=False)
 
     # Go through data (list or tree) and use it to build the expected JSON schema
     json_schema = {
@@ -670,7 +670,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
     with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
-        json.dump(json_schema, outfile, indent=4)
+        json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
 
     # BUILD OpenAPI SCHEMA
