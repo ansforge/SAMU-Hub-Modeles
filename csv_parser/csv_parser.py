@@ -448,7 +448,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return children
 
     json_example = build_example(rootObject)
-    with open(f'out/{name}/{name}.example.json', 'w') as outfile:
+    with open(f'out/{name}/{name}.example.json', 'w', encoding='utf8') as outfile:
         json.dump(json_example, outfile, indent=4)
 
     # Go through data (list or tree) and use it to build the expected JSON schema
@@ -669,7 +669,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
-    with open(f'out/{name}/{name}.schema.json', 'w') as outfile:
+    with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
         json.dump(json_schema, outfile, indent=4)
     print('JSON schema generated.')
 
@@ -718,7 +718,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             **openapi_components
         }
 
-    with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
+    with open(f'out/{name}/{name}.openapi.yaml', 'w', encoding='utf8') as file:
         documents = yaml.dump(full_yaml, sort_keys=False)
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
