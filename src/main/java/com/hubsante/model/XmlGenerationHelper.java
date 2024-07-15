@@ -77,7 +77,11 @@ public class XmlGenerationHelper {
             "error",
             "geoPositionsUpdate",
             "geoResourcesRequest",
-            "geoResourcesDetails"
+            "geoResourcesDetails",
+            "resourcesInfo",
+            "resourcesStatus",
+            "resourcesRequest",
+            "rpis"
     };
 
     @SneakyThrows
