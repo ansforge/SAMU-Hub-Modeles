@@ -75,8 +75,9 @@ public class MedicalNote {
   }
 
   /**
-   * ID partagé du patient concerné, lorsque le patient existe et est identifié
-   *dans le système emetteur {ID du dossier partagé}.P{numéro d’ordre
+   * Identifiant partagé du patient concerné par l&#39;observation, a remplir
+   *obligatoirement si ce patient existe et est identifié dans le système
+   *emetteur, valorisé comme suit  :  {ID du dossier partagé}.P{numéro d’ordre
    *chronologique unique du patient}
    * @return idPat
    **/
@@ -123,18 +124,21 @@ public class MedicalNote {
   }
 
   /**
-   * {ID du dossier partagé}.N.{id unique de la note}
+   * A valoriser avec l&#39;identifiant unique de l&#39;observation, valorisé
+   *comme suit : {caseID}.medicalNote.{ID de l&#39;observation dans le système
+   *émetteur}. Cet identifiant a vocation à devenir obligatoire pour permettre
+   *les mises à jour, il est laissé en facultatif temporairement.
    * @return idObs
    **/
   @JsonProperty(JSON_PROPERTY_ID_OBS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public String getIdObs() {
     return idObs;
   }
 
   @JsonProperty(JSON_PROPERTY_ID_OBS)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setIdObs(String idObs) {
     this.idObs = idObs;
   }
@@ -146,8 +150,8 @@ public class MedicalNote {
   }
 
   /**
-   * Groupe date heure de création de l&#39;observation.  L&#39;indicateur de
-   *fuseau horaire Z ne doit pas être utilisé.
+   * A valoriser avec le groupe date heure de création de l&#39;observation.
+   *L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
@@ -170,10 +174,8 @@ public class MedicalNote {
   }
 
   /**
-   * Observations médicales du professionnel de santé qui réalise
-   *l&#39;interrogatoire (texte libre) Champ à utiliser pour aggréger
-   *l&#39;ensemble des antécédents /traitements/allergies du patient si les
-   *catégories ne sont pas disctinctes dans le LRM
+   * Champ libre qui permet de compléter les informations de nature médicales,
+   *faites par un ARM, un médecin ou un autre professionnel de santé.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

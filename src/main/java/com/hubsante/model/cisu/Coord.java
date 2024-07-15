@@ -66,10 +66,10 @@ public class Coord {
 
   /**
    * Indique via une nomenclature le niveau de précision des coordonnées
-   * fournies par le système emetteur. CITY&#x3D;Précision à l&#39;échelle de la
-   * ville, STREET&#x3D;Précision à l&#39;échelle de la rue,
-   * ADDRESS&#x3D;Adresse précise, EXACT&#x3D;Point coordonnée GPS exact,
-   * UNKNOWN&#x3D;Précision de la localisation non évaluable par l&#39;émetteur
+   * fournies par le système emetteur. VILLE : Précision à l&#39;échelle de la
+   * ville,  RUE : Précision à l&#39;échelle de la rue,  ADRESSE : Adresse
+   * précise,  EXACTE : Point coordonnée GPS exact,  INCONNUE : Précision de la
+   * localisation non évaluable par l&#39;émetteur
    */
   public enum PrecisionEnum {
     VILLE("VILLE"),
@@ -119,7 +119,8 @@ public class Coord {
   }
 
   /**
-   * Latitude du point clé de la localisation
+   * A valoriser avec la latitude du point clé de la localisation - dans le
+   *système de coordonnées EPSG-4326 (indiquant l&#39;utilisation de WGS-84)
    * @return lat
    **/
   @JsonProperty(JSON_PROPERTY_LAT)
@@ -142,7 +143,8 @@ public class Coord {
   }
 
   /**
-   * Longitude du point clé de la localisation
+   * A valoriser avec la longitude du point clé de la localisation - dans le
+   *système de coordonnées EPSG-4326 (indiquant l&#39;utilisation de WGS-84)
    * @return lon
    **/
   @JsonProperty(JSON_PROPERTY_LON)
@@ -165,7 +167,8 @@ public class Coord {
   }
 
   /**
-   * Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS.
+   * A valoriser avec l&#39;altitude du point clé de la localisation, en mètres.
+   *Spécificité 15-18 :  ignoré côté NexSIS.
    * @return height
    **/
   @JsonProperty(JSON_PROPERTY_HEIGHT)
@@ -188,7 +191,7 @@ public class Coord {
   }
 
   /**
-   * En degré
+   * A valoriser avec le cap, en degré
    * @return heading
    **/
   @JsonProperty(JSON_PROPERTY_HEADING)
@@ -235,9 +238,9 @@ public class Coord {
 
   /**
    * Indique via une nomenclature le niveau de précision des coordonnées
-   *fournies par le système emetteur. CITY&#x3D;Précision à l&#39;échelle de la
-   *ville, STREET&#x3D;Précision à l&#39;échelle de la rue, ADDRESS&#x3D;Adresse
-   *précise, EXACT&#x3D;Point coordonnée GPS exact, UNKNOWN&#x3D;Précision de la
+   *fournies par le système emetteur. VILLE : Précision à l&#39;échelle de la
+   *ville,  RUE : Précision à l&#39;échelle de la rue,  ADRESSE : Adresse
+   *précise,  EXACTE : Point coordonnée GPS exact,  INCONNUE : Précision de la
    *localisation non évaluable par l&#39;émetteur
    * @return precision
    **/

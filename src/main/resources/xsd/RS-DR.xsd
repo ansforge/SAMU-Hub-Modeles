@@ -13,10 +13,10 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             <element name="RSDRId" type="string">
                 <annotation>
                     <documentation>Identifiant unique partagé de la demande de ressource
-{orgID}.D.{ID unique de la demande dans le système émetteur}</documentation>
+{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="resourceRequest" type="x:request"/>
+            <element minOccurs="0" name="request" type="x:request"/>
         </sequence>
     </complexType>
     <complexType name="request">
@@ -28,7 +28,7 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element minOccurs="0" name="convention" type="string">
                 <annotation>
-                    <documentation>Nomenclature ? </documentation>
+                    <documentation>Nomenclature à venir : décrit le cadre conventionnel de la demande.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="deadline" type="string">
@@ -42,28 +42,18 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="E01"/>
-                        <enumeration value="E02"/>
-                        <enumeration value="E03"/>
-                        <enumeration value="E04"/>
-                        <enumeration value="E05"/>
-                        <enumeration value="E06"/>
-                        <enumeration value="E07"/>
-                        <enumeration value="E08"/>
-                        <enumeration value="E09"/>
-                        <enumeration value="E10"/>
-                        <enumeration value="E11"/>
-                        <enumeration value="E12"/>
-                        <enumeration value="E13"/>
-                        <enumeration value="E14"/>
-                        <enumeration value="E15"/>
-                        <enumeration value="E16"/>
-                        <enumeration value="E17"/>
-                        <enumeration value="E18"/>
-                        <enumeration value="E19"/>
-                        <enumeration value="E20"/>
-                        <enumeration value="E21"/>
-                        <enumeration value="E22"/>
+                        <enumeration value="SAP"/>
+                        <enumeration value="REGUL"/>
+                        <enumeration value="CUMP"/>
+                        <enumeration value="SMUR"/>
+                        <enumeration value="MG"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SAMU"/>
+                        <enumeration value="RELEVE"/>
+                        <enumeration value="NOVI"/>
+                        <enumeration value="TIH"/>
+                        <enumeration value="BRANCARD"/>
+                        <enumeration value="BARIA"/>
                     </restriction>
                 </simpleType>
             </element>

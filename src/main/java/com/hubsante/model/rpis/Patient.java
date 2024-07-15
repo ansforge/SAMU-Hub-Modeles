@@ -124,7 +124,8 @@ public class Patient {
   }
 
   /**
-   * Sexe du patient, suivant le libellé court de la nomenclature SEXE
+   * Sexe du patient, suivant le libellé court de la nomenclature
+   *SI-SAMU-NOMENC_SEXE
    * @return sex
    **/
   @JsonProperty(JSON_PROPERTY_SEX)

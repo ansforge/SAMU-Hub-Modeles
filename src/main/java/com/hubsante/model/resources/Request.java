@@ -63,49 +63,29 @@ public class Request {
    * Motif de la demande de ressource auprès du partenaire
    */
   public enum PurposeEnum {
-    E01("E01"),
+    SAP("SAP"),
 
-    E02("E02"),
+    REGUL("REGUL"),
 
-    E03("E03"),
+    CUMP("CUMP"),
 
-    E04("E04"),
+    SMUR("SMUR"),
 
-    E05("E05"),
+    MG("MG"),
 
-    E06("E06"),
+    PARAMED("PARAMED"),
 
-    E07("E07"),
+    SAMU("SAMU"),
 
-    E08("E08"),
+    RELEVE("RELEVE"),
 
-    E09("E09"),
+    NOVI("NOVI"),
 
-    E10("E10"),
+    TIH("TIH"),
 
-    E11("E11"),
+    BRANCARD("BRANCARD"),
 
-    E12("E12"),
-
-    E13("E13"),
-
-    E14("E14"),
-
-    E15("E15"),
-
-    E16("E16"),
-
-    E17("E17"),
-
-    E18("E18"),
-
-    E19("E19"),
-
-    E20("E20"),
-
-    E21("E21"),
-
-    E22("E22");
+    BARIA("BARIA");
 
     private String value;
 
@@ -170,7 +150,7 @@ public class Request {
   }
 
   /**
-   * Nomenclature ?
+   * Nomenclature à venir : décrit le cadre conventionnel de la demande.
    * @return convention
    **/
   @JsonProperty(JSON_PROPERTY_CONVENTION)

@@ -4,27 +4,30 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
-Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                    <documentation>A valoriser avec l'identifiant de l'affaire/dossier partagé entre tous les intervenants, valorisé comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.
+Cet identifiant est généré une seule fois par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
-                    <documentation>Valoriser avec le numéro du dossier dans le SI de l'émetteur du message. 
-Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
+                    <documentation>A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 </documentation>
                 </annotation>
             </element>
             <element name="creation" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). Il doit être renseigné à la fin du processus de la  création  de la première alerte. Lors de l'ajout d'alerte à une affaire ce champ ne doit pas être modifié.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
+Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
+L'indicateur de fuseau horaire Z ne doit pas être utilisé.
+
+Spécificité 15-18 :
+Il doit être renseigné à la fin du processus de la  création de la première alerte.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="perimeter">
                 <annotation>
-                    <documentation>Sert à indiquer à quelle filière du CRRA le dossier doit être adressé/affiché</documentation>
+                    <documentation>Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -37,7 +40,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             </element>
             <element minOccurs="0" name="interventionType">
                 <annotation>
-                    <documentation>Indiquer s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)</documentation>
+                    <documentation>A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -52,12 +55,11 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
             <element name="owner" type="string">
                 <annotation>
-                    <documentation>Champ servant à transférer la prise en charge d'un dossier à un autre CRAA après accord verbal de ce dernier.</documentation>
+                    <documentation>Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA - après accord verbal de ce dernier.</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
@@ -66,7 +68,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
         <sequence>
             <element minOccurs="0" name="origin">
                 <annotation>
-                    <documentation>Numéro de provenance de l'appel</documentation>
+                    <documentation>A valoriser avec le numéro de provenance de l'appel.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -78,7 +80,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
                     </restriction>
                 </simpleType>
             </element>
-            <element name="whatsHappen" type="x:whatsHappen"/>
+            <element minOccurs="0" name="whatsHappen" type="x:whatsHappen"/>
             <element minOccurs="0" name="locationKind" type="x:locationKind"/>
             <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
@@ -89,7 +91,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
         <sequence>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Indique le nom de lieu : nom commercial, Etablissement, forêt de Fontainebleau, lac du Der (plutôt à destination des systèmes).</documentation>
+                    <documentation>A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="externalLocationId" type="x:externalLocationId"/>
@@ -100,7 +102,11 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Champ libre pour compléter les informations de localisation</documentation>
+                    <documentation>Champ libre qui permet de compléter les informations liées à la localisation.
+
+Spécificités 15-15 :
+En envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. 
+En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -109,7 +115,7 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
         <sequence>
             <element name="reception" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de réception de l'alerte</documentation>
+                    <documentation>A valoriser avec le groupe date heure de réception de l'alerte/appel</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="notes" type="x:notes"/>
@@ -120,8 +126,9 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>Identifiant technique du patient pour permettre les rapprochements d'infos. Le 1er qui créé l'ID patient a raison.
-{ID du dossier partagé}.P{numéro d’ordre chronologique}</documentation>
+                    <documentation>A valoriser avec l'identifiant partagé du patient, valorisé comme suit : {ID du dossier partagé}.P{numéro d’ordre chronologique}
+Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
@@ -129,62 +136,33 @@ Ce champ est facultatif, il ne sera notamment pas transmis par NexSIS.
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
             <element minOccurs="0" name="detail" type="x:patientDetail"/>
             <element minOccurs="0" name="hypothesis" type="x:hypothesis"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="medicalNote">
         <sequence>
             <element minOccurs="0" name="idPat" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné, lorsque le patient existe et est identifié dans le système emetteur
+                    <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
 {ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}</documentation>
                 </annotation>
             </element>
             <element name="operator" type="x:operator"/>
-            <element name="idObs" type="string">
+            <element minOccurs="0" name="idObs" type="string">
                 <annotation>
-                    <documentation>{ID du dossier partagé}.N.{id unique de la note}
+                    <documentation>A valoriser avec l'identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID de l'observation dans le système émetteur}.
+Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="creation" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
             <element name="freetext" type="string">
                 <annotation>
-                    <documentation>Observations médicales du professionnel de santé qui réalise l'interrogatoire (texte libre)
-Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/allergies du patient si les catégories ne sont pas disctinctes dans le LRM</documentation>
+                    <documentation>Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.</documentation>
                 </annotation>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="decision">
-        <sequence>
-            <element minOccurs="0" name="idPat" type="string">
-                <annotation>
-                    <documentation>ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié</documentation>
-                </annotation>
-            </element>
-            <element name="creation" type="dateTime">
-                <annotation>
-                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
-                </annotation>
-            </element>
-            <element name="type">
-                <annotation>
-                    <documentation>Type de décision prise</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="CONSEIL"/>
-                        <enumeration value="PMT"/>
-                        <enumeration value="INTER"/>
-                        <enumeration value="ORIENT"/>
-                        <enumeration value="PASPLUS"/>
-                    </restriction>
-                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -197,13 +175,13 @@ Champ à utiliser pour aggréger l'ensemble des antécédents /traitements/aller
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -212,7 +190,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -401,7 +379,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -410,7 +388,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -457,7 +435,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -466,7 +444,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -528,7 +506,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -537,7 +515,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="attribution">
                 <annotation>
-                    <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : Médecin généraliste, médecin urgentiste etc.</documentation>
+                    <documentation>Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -594,6 +572,20 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="careLevel">
+                <annotation>
+                    <documentation>Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave.
+cf.nomenclature associée.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="R1"/>
+                        <enumeration value="R2"/>
+                        <enumeration value="R3"/>
+                        <enumeration value="R4"/>
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
     <complexType name="externalLocationId">
@@ -624,13 +616,20 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element minOccurs="0" name="highway" type="x:highway"/>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Numéro, type et nom de la voie. Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…
-15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.</documentation>
+                    <documentation>A valoriser avec le numéro, le type et le nom de la voie.
+En réception, il est possible que seul cette information soit remplie. 
+
+Spécificités 15-15 : si les informations pour les autoroutes (voie férée ou voie navigable) ne sont pas structurées, il est possible de passer le nom, PK et sens ici, de manière concaténée.
+
+Spécificités 15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.
+Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="number" type="string">
                 <annotation>
-                    <documentation>Numéro dans l'adresse (inclut point kilométrique sur l'autoroute, voie ferrée ou voie navigable). Inclut l'indice de répétition associé au numéro (par exemple bis, a…).</documentation>
+                    <documentation>A valoriser avec le numéro dans l'adresse. La valeur de l'attribut inclut l'indice de répétition associé au numéro (par exemple bis, a…).
+
+Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferrée ou voie navigable.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="wayName" type="x:wayName"/>
@@ -640,12 +639,13 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Nom officiel de la commune actuelle</documentation>
+                    <documentation>A valoriser avec le nom officiel de la commune</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="inseeCode">
                 <annotation>
-                    <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.</documentation>
+                    <documentation>A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. 
+La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -659,39 +659,43 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="floor" type="string">
                 <annotation>
-                    <documentation>Etage </documentation>
+                    <documentation>A valoriser avec le numéro ou nom de l'étage </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="roomNumber" type="string">
                 <annotation>
-                    <documentation>Spécifie numéro d'appartement, de chambre, de bureau</documentation>
+                    <documentation>A valoriser avec le numéro d'appartement, de chambre, de bureau</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="interphone" type="string">
                 <annotation>
-                    <documentation>Indique les informations nécessaires  à l'identification de l'interphone (numéro, nom)</documentation>
+                    <documentation>A valoriser avec les informations nécessaires à l'identification de l'interphone (numéro, nom)</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="accessCode" type="string"/>
             <element minOccurs="0" name="elevator" type="string">
                 <annotation>
-                    <documentation>Indique l'ascenseur ou la cage d'escalier </documentation>
+                    <documentation>A valoriser avec le nom ou le numéro de l'ascenseur ou de la cage d'escalier </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="buildingName" type="string">
                 <annotation>
-                    <documentation>Nom du bâtiment</documentation>
+                    <documentation>A valoriser avec le nom du bâtiment</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="entrance" type="string"/>
+            <element minOccurs="0" name="entrance" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le nom de l'entrée</documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="entity" type="string">
                 <annotation>
-                    <documentation>Nom du service concerné au sein de l'établissement : Infirmerie, service finance, service cardiologie, …</documentation>
+                    <documentation>A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="phoneNumber" type="string">
                 <annotation>
-                    <documentation>Numéro de téléphone permettant d'accéder au lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/victime.</documentation>
+                    <documentation>A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -700,7 +704,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="obsDatime" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de renseignement des coordonnées du point clé de la localisation. Permet de connaître la fraîcheur et donc pertinence des informations pour intervenir.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
+Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="point" type="x:point"/>
@@ -710,7 +715,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="freetext">
                 <annotation>
-                    <documentation>Système fournissant le localisant :  NexSiS ou l'ORG_ID (BAN, IGN, ...)</documentation>
+                    <documentation>A valoriser avec le système fournissant le localisant</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -720,10 +725,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
-            <element name="type">
+            <element minOccurs="0" name="type">
                 <annotation>
-                    <documentation>Définition du type d'objet dans le système
-Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on parle (POI, tronçon de route, …) pour faciliter le filtre | Aussi table dans une base de données</documentation>
+                    <documentation>A valoriser avec la définition du type d'objet dans le système
+
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -737,7 +743,7 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
             </element>
             <element name="uri" type="string">
                 <annotation>
-                    <documentation>Identifiant unique dans le type. Exemple : UUID d'un ega</documentation>
+                    <documentation>Identifiant dans le système concerné</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -746,17 +752,17 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
         <sequence>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Nom de l'autoroute</documentation>
+                    <documentation>A valoriser avec le nom de l'autoroute, de la voie ferrée ou voie navigable.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="pk" type="string">
                 <annotation>
-                    <documentation>Point kilométrique</documentation>
+                    <documentation>A valoriser avec le point kilométrique de l'autoroute, de la voie ferrée ou voie navigable. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="direction" type="string">
                 <annotation>
-                    <documentation>Sens</documentation>
+                    <documentation>A valoriser avec le sens de l'autoroute.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -765,18 +771,18 @@ Ex : SIG NexSIS / OSM ont plusieurs types de données -&gt; savoir du quel on pa
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Type et nom de la voie (venant d'un référentiel ou non)
-Si les champs type et name sont renseignés, le champ callerName doit être valorisé ainsi : "{type} {nom}".</documentation>
+                    <documentation>A valoriser avec le type et le nom de la voie.
+Si les attributs "type" et "name" de "wayName" sont également renseignés, alors "complete" doit être valorisé ainsi : "{type} {nom}".</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="type" type="string">
                 <annotation>
-                    <documentation>Type de la voie</documentation>
+                    <documentation>A valoriser avec le type de la voie</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="name" type="string">
                 <annotation>
-                    <documentation>Nom de la voie</documentation>
+                    <documentation>A valoriser avec le nom de la voie</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -784,9 +790,9 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
     <complexType name="point">
         <sequence>
             <element name="coord" type="x:coord"/>
-            <element minOccurs="0" name="sysCoord" type="string">
+            <element minOccurs="0" name="isAml" type="boolean">
                 <annotation>
-                    <documentation>Indique le type de coordonnées utilisé. Actuellement, la seule valeur valide est «EPSG-4326», indiquant l'utilisation de WGS-84. Si ce champ n'est pas renseigné, on considère que la valeur par défaut est «».</documentation>
+                    <documentation>Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. </documentation>
                 </annotation>
             </element>
         </sequence>
@@ -795,23 +801,29 @@ Si les champs type et name sont renseignés, le champ callerName doit être valo
         <sequence>
             <element name="lat" type="decimal">
                 <annotation>
-                    <documentation>Latitude du point clé de la localisation </documentation>
+                    <documentation>A valoriser avec la latitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
                 </annotation>
             </element>
             <element name="lon" type="decimal">
                 <annotation>
-                    <documentation>Longitude du point clé de la localisation</documentation>
+                    <documentation>A valoriser avec la longitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="height" type="decimal">
                 <annotation>
-                    <documentation>Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. </documentation>
+                    <documentation>A valoriser avec l'altitude du point clé de la localisation, en mètres.
+
+Spécificité 15-18 :  ignoré côté NexSIS. </documentation>
                 </annotation>
             </element>
             <element name="precision">
                 <annotation>
                     <documentation>Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur</documentation>
+VILLE : Précision à l'échelle de la ville, 
+RUE : Précision à l'échelle de la rue, 
+ADRESSE : Adresse précise, 
+EXACTE : Point coordonnée GPS exact, 
+INCONNUE : Précision de la localisation non évaluable par l'émetteur</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -829,12 +841,14 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
         <sequence>
             <element minOccurs="0" name="creation" type="dateTime">
                 <annotation>
-                    <documentation>date et heure de l'observation</documentation>
+                    <documentation>A valoriser avec le groupe date heure de création de l'information complémentaire</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>texte libre contenant les indications renseignées par l'ARM</documentation>
+                    <documentation>A valoriser avec un texte libre contenant les indications complémentaires renseignées sur l'alerte/appel.
+
+Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -845,7 +859,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             <element minOccurs="0" name="callbackContact" type="x:contact"/>
             <element minOccurs="0" name="language">
                 <annotation>
-                    <documentation>Langue parlée par le requérant. Permet de mettre en place des traducteurs si besoin. Utilise la nomenclature LANGUE du SI-SAMU.</documentation>
+                    <documentation>A valoriser avec la langue parlée par le requérant. 
+cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1095,7 +1110,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="type">
                 <annotation>
-                    <documentation>Indique la relation du requérant avec l'incident / le patient / la victime</documentation>
+                    <documentation>A valoriser avec la relation du requérant avec l'incident / le patient / la victime.
+cf. nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1125,7 +1141,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="communication">
                 <annotation>
-                    <documentation>Indique si le requérant rencontre ou non des difficulté de communication</documentation>
+                    <documentation>A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. 
+cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1143,8 +1160,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Informations complémentaires sur le requérant 
-Les informations peuvent être passées sous forme de texte libre ou via une liste d'adjectif</documentation>
+                    <documentation>Champ libre qui permet de compléter les informations spécifiquement liées au requérant.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
@@ -1152,14 +1168,24 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
     </complexType>
     <complexType name="contact">
         <sequence>
-            <element name="channel" type="string">
+            <element name="channel">
                 <annotation>
-                    <documentation>Permet d'indiquer l'origine du canal établit : Personne, application, DAU, BAU, défibrillateur, ecall</documentation>
+                    <documentation>A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="PERSONNE"/>
+                        <enumeration value="APPLICATION"/>
+                        <enumeration value="DAU"/>
+                        <enumeration value="BAU"/>
+                        <enumeration value="DEFIBRILLATEUR"/>
+                        <enumeration value="ECALL"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="type">
                 <annotation>
-                    <documentation>Type de l'URI utilisée par le requérant, cf. nomenclature EMSI</documentation>
+                    <documentation>A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1174,7 +1200,7 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
             </element>
             <element name="detail" type="string">
                 <annotation>
-                    <documentation>Valeur de l'URI utilisée pour contacter le partenaire</documentation>
+                    <documentation>A valoriser avec la valeur de l'URI utilisée</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1183,19 +1209,20 @@ Les informations peuvent être passées sous forme de texte libre ou via une lis
         <sequence>
             <element name="complete" type="string">
                 <annotation>
-                    <documentation>Prénom et nom usuel du requérant.
-Si les champs callerLastName et callerFirstName sont renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
-Note : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
+                    <documentation>A valoriser avec le prénom et le nom usuel du requérant/appelant.
+Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
+
+Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="lastName" type="string">
                 <annotation>
-                    <documentation>Nom du requérant</documentation>
+                    <documentation>A valoriser avec le nom usuel du requérant</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="firstName" type="string">
                 <annotation>
-                    <documentation>Prénom du réquérant.
+                    <documentation>A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
                 </annotation>
             </element>
@@ -1216,18 +1243,18 @@ Par convention les prénoms composés doivent préférablement être séparés p
         <sequence>
             <element minOccurs="0" name="weight" type="int">
                 <annotation>
-                    <documentation>Poids en kilogrammes</documentation>
+                    <documentation>A valoriser avec le poids en kilogrammes</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="height" type="int">
                 <annotation>
-                    <documentation>Taille en centimètres</documentation>
+                    <documentation>A valoriser avec la taille en centimètres du patient</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="age">
                 <annotation>
-                    <documentation>Age du patient.
-Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
+                    <documentation>A valoriser avec l'age du patient.
+Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1236,6 +1263,9 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
                 </simpleType>
             </element>
             <element minOccurs="0" name="careLevel">
+                <annotation>
+                    <documentation>A valoriser avec le niveau de soins spécifique au patient</documentation>
+                </annotation>
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="R1"/>
@@ -1280,12 +1310,12 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
         <sequence>
             <element minOccurs="0" name="birthName" type="string">
                 <annotation>
-                    <documentation>Egalement appelé nom de famille.</documentation>
+                    <documentation>A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="birthDate">
                 <annotation>
-                    <documentation>Date de naissance du patient</documentation>
+                    <documentation>A valoriser avec la date de naissance du patient</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1295,7 +1325,7 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
             </element>
             <element minOccurs="0" name="sex">
                 <annotation>
-                    <documentation>Sexe du patient</documentation>
+                    <documentation>A valoriser avec le sexe du patient</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1312,13 +1342,13 @@ Au format Durée de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Du
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1327,13 +1357,13 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code la nomenclature associée</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
                     <documentation>A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1343,12 +1373,15 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             <element minOccurs="0" name="detailedName" type="x:detailedName"/>
             <element name="role">
                 <annotation>
-                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
+                    <documentation>A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : </documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
+                        <enumeration value="AMBULANCIER"/>
                         <enumeration value="ARM"/>
+                        <enumeration value="INFIRMIER"/>
                         <enumeration value="MEDECIN"/>
+                        <enumeration value="INCONNU"/>
                         <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
@@ -1359,22 +1392,22 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="key" type="string">
                 <annotation>
-                    <documentation>Nom de la balise</documentation>
+                    <documentation>A valoriser avec le nom de la balise</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="label" type="string">
                 <annotation>
-                    <documentation>Libellé correspondant</documentation>
+                    <documentation>A valoriser avec le libellé correspondant</documentation>
                 </annotation>
             </element>
             <element name="value" type="string">
                 <annotation>
-                    <documentation>Valeur associée à la clé</documentation>
+                    <documentation>A valoriser avec la valeur associée à la clé</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Informations complémentaires sur le contexte / utilisation de ce matching additionnel</documentation>
+                    <documentation>Informations complémentaires sur le contexte / utilisation de cette correspondance additionnelle</documentation>
                 </annotation>
             </element>
         </sequence>

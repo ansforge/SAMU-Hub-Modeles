@@ -65,7 +65,8 @@ public class Highway {
   }
 
   /**
-   * Nom de l&#39;autoroute
+   * A valoriser avec le nom de l&#39;autoroute, de la voie ferrée ou voie
+   *navigable.
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -88,7 +89,8 @@ public class Highway {
   }
 
   /**
-   * Point kilométrique
+   * A valoriser avec le point kilométrique de l&#39;autoroute, de la voie
+   *ferrée ou voie navigable.
    * @return pk
    **/
   @JsonProperty(JSON_PROPERTY_PK)
@@ -111,7 +113,7 @@ public class Highway {
   }
 
   /**
-   * Sens
+   * A valoriser avec le sens de l&#39;autoroute.
    * @return direction
    **/
   @JsonProperty(JSON_PROPERTY_DIRECTION)

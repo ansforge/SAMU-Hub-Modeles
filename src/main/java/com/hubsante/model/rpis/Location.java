@@ -70,7 +70,7 @@ public class Location {
   }
 
   /**
-   * A valoriser avec un code de la nomenclature TYPELIEU.
+   * A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)

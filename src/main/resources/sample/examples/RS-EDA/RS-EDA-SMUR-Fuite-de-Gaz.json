@@ -1,0 +1,152 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu440.DRFR154402413800236",
+    "senderCaseId": "DRFR154402413800236",
+    "creation": "2024-05-18T18:15:00+02:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C09.03.00",
+        "label": "Fuite de gaz"
+      },
+      "locationKind": {
+        "code": "L01.01.01",
+        "label": "Maison particulière, pavillon, à l'intérieur"
+      },
+      "riskThreat": [
+        {
+          "code": "R13",
+          "label": "Risque d'explosion, présence de gaz"
+        }
+      ],
+      "healthMotive": {
+        "code": "M03.10",
+        "label": "Malaise avec perte de connaissance initiale"
+      },
+      "details": {
+        "priority": "P1",
+        "attribution": "TOXICOL"
+      }
+    },
+    "location": {
+      "detailedAddress": {
+        "complete": "3 Rue des Marins",
+        "wayName": {
+          "complete": "Rue des Marins",
+          "type": "Rue",
+          "name": "Des Marins"
+        },
+        "number": "3"
+      },
+      "city": {
+        "name": "Bouaye",
+        "inseeCode": "44018"
+      },
+      "access": {
+        "buildingName": "C"
+      },
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 47.146089,
+            "lon": -1.691374,
+            "precision": "ADRESSE"
+          }
+        },
+        "obsDatime": "2024-05-18T18:15:00+02:00"
+      },
+      "freetext": "Maison aux volets verts"
+    },
+    "initialAlert": {
+      "reception": "2023-11-18T18:15:00+01:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "0671830523",
+          "channel": "PERSONNE"
+        },
+        "freetext": "Mère des enfants",
+        "detailedName": {
+          "complete": "Marie Dubois",
+          "lastName": "Dubois",
+          "firstName": "Marie"
+        },
+        "language": "FR",
+        "type": "FAMILLE",
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "0671830523"
+        },
+        "communication": "AUCUNE"
+      }
+    },
+    "patient": [
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Alice Normand",
+            "lastName": "Normand",
+            "firstName": "Alice"
+          },
+          "strictFeatures": {
+            "sex": "FEM",
+            "birthDate": "2011-05-11"
+          }
+        },
+        "id": "fr.health.samu440.DRFR154402413800236.P01",
+        "detail": {
+          "age": "P13Y"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "code": "PB32",
+            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone"
+          }
+        },
+        "healthMotive": {
+          "code": "M03.10",
+          "label": "Malaise avec perte de connaissance initiale"
+        }
+      },
+      {
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Grégoire Normand",
+            "lastName": "Normand",
+            "firstName": "Grégoire"
+          },
+          "strictFeatures": {
+            "birthDate": "2013-11-03",
+            "sex": "MASC"
+          }
+        },
+        "id": "fr.health.samu440.DRFR154402413800236.P02",
+        "detail": {
+          "age": "P11Y"
+        },
+        "hypothesis": {
+          "mainDiagnosis": {
+            "label": "Effets nocifs ou exposition accidentelle au monoxyde de carbone",
+            "code": "PB32"
+          }
+        }
+      }
+    ],
+    "medicalNote": [
+      {
+        "creation": "2024-05-18T18:15:00+02:00",
+        "freetext": "Asthmatique",
+        "operator": {
+          "detailedName": {
+            "complete": "Angèle Mouscou",
+            "lastName": "Mouscou",
+            "firstName": "Angèle"
+          },
+          "role": "ARM"
+        }
+      }
+    ],
+    "owner": "CRRA44",
+    "interventionType": "PRIMAIRE"
+  }
+}

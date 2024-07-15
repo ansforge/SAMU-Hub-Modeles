@@ -54,6 +54,7 @@ components:
           example: example.json#/event/samuId
           description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
             \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
+          pattern: ^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$
           examples:
           - fr.health.samu440
         fileId:
@@ -158,9 +159,9 @@ components:
           x-cols: 6
           example: example.json#/regulation/initialTeamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature NIVSOIN.\nPermet de d\xE9duire\
-            \ avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\", si un\
-            \ UMHP est devenu un SMUR. "
+            A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de\
+            \ d\xE9duire avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\"\
+            , si un UMHP est devenu un SMUR. "
           examples:
           - PARAMED
       additionalProperties: false
@@ -202,7 +203,7 @@ components:
           x-cols: 6
           example: example.json#/patient/sex
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
-            \ SEXE"
+            \ SI-SAMU-NOMENC_SEXE"
           examples:
           - F
         nir:
@@ -233,21 +234,10 @@ components:
           $ref: '#/components/schemas/location'
         team:
           $ref: '#/components/schemas/team'
-        actions:
+        actionsSMUR:
           type: array
-          x-health-only: false
           items:
-            type: string
-            title: "Actes r\xE9alis\xE9s par le SMUR"
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/intervention/actions/0
-            description: "Pr\xE9cise aussi bien les actes r\xE9alis\xE9s par le SMUR\
-              \ sur le lieu de l'intervention \xE0 son arriv\xE9e que ceux r\xE9alis\xE9\
-              s avant son intervention. \nA valoriser avec un code de la nomenclature\
-              \ ACTES_SMUR."
-            examples:
-            - ABV
+            $ref: '#/components/schemas/actions'
         mainDiagnosis:
           type: string
           title: Diagnostic principal SMUR
@@ -257,7 +247,7 @@ components:
           description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
             \ Diagnostic SMUR."
           examples:
-          - R579
+          - MD30.Z
         associatedDiagnosis:
           type: string
           title: "Diagnostic associ\xE9  SMUR"
@@ -267,7 +257,7 @@ components:
           description: "Th\xE9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature\
             \ Diagnostic SMUR."
           examples:
-          - R578
+          - 8B22.1
         smurStatus:
           $ref: '#/components/schemas/resourceStatus'
       additionalProperties: false
@@ -288,7 +278,7 @@ components:
           example: example.json#/orientation/type
           description: "Indique si le patient est transport\xE9 ou non (Sans transport\
             \ associ\xE9 / avec transport associ\xE9). \nA valoriser par un code de\
-            \ la nomenclature NOMENC_DEVENIR_PAT_200622.\nSi le type d'orientation\
+            \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
             \ est sans transport associ\xE9, les objets Destination et Transport sont\
             \ facultatifs. "
           examples:
@@ -314,7 +304,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/code
-          description: A valoriser avec un code de la nomenclature TYPCIRCO
+          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
           examples:
           - AVPAR
         label:
@@ -323,7 +313,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature TYPCIRCO.\n\
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
             Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
             \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
@@ -351,7 +341,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/code
-          description: A valoriser avec un code de la nomenclature TYPCIRCO
+          description: A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime
           examples:
           - AVPAR
         label:
@@ -360,7 +350,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature TYPCIRCO.\n\
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Motif_patient-victime.\n\
             Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
             \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
@@ -390,6 +380,7 @@ components:
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
             \ de r\xE9sidence, si \xE9tranger. "
+          pattern: '[0-9]{5}'
           examples:
           - 92300
         city:
@@ -419,7 +410,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/location/type
-          description: A valoriser avec un code de la nomenclature TYPELIEU.
+          description: A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
           examples:
           - DOMPAV
         finessGeo:
@@ -494,6 +485,35 @@ components:
       - doctor: OUI
         nurse: NON
         driver: OUI
+    actions:
+      type: object
+      title: "Actes r\xE9alis\xE9s par le SMUR"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - actions
+      properties:
+        actions:
+          type: string
+          title: Actes
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/actionsSMUR/0/actions
+          examples:
+          - ABV
+        maintained:
+          type: boolean
+          title: Maintenu
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/intervention/actionsSMUR/0/maintained
+          examples:
+          - VRAI, FAUX
+      additionalProperties: false
+      example: example.json#/intervention/actionsSMUR/0
+      examples:
+      - actions: ABV
+        maintained: VRAI, FAUX
     resourceStatus:
       type: object
       title: Statuts des horaires du SMUR
@@ -598,6 +618,7 @@ components:
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
             \ d'intervention, si \xE9tranger. "
+          pattern: '[0-9]{5}'
           examples:
           - 92300
         city:
@@ -632,6 +653,248 @@ components:
           x-cols: 6
           example: example.json#/orientation/destination/destinationCountry
           description: "A valoriser par le libell\xE9 court de la nomenclature SIGLPAYS"
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
           examples:
           - FR
         destinationCategory:
@@ -687,7 +950,7 @@ components:
           example: example.json#/orientation/decision/resourceCategory
           description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
             \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
-            \ TYPMOYEN."
+            \ SI SAMU-TYPE_MOYEN."
           examples:
           - SMUR
         resourceType:
@@ -698,7 +961,7 @@ components:
           example: example.json#/orientation/decision/resourceType
           description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
             \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
-            \ la nomenclature TYPVECT."
+            \ la nomenclature CISU-TYPE_VECTEUR."
           examples:
           - AR, VLM, VSAV
         teamCare:
@@ -708,7 +971,7 @@ components:
           x-cols: 6
           example: example.json#/orientation/decision/teamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature NIVSOIN."
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
           examples:
           - PARAMED
       additionalProperties: false

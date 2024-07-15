@@ -41,8 +41,9 @@ import java.util.Objects;
 /**
  * CaseDetails
  */
-@JsonPropertyOrder(
-    {CaseDetails.JSON_PROPERTY_ATTRIBUTION, CaseDetails.JSON_PROPERTY_PRIORITY})
+@JsonPropertyOrder({CaseDetails.JSON_PROPERTY_ATTRIBUTION,
+                    CaseDetails.JSON_PROPERTY_PRIORITY,
+                    CaseDetails.JSON_PROPERTY_CARE_LEVEL})
 @JsonTypeName("caseDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -50,7 +51,7 @@ public class CaseDetails {
 
   /**
    * Décrit le type de professionnel médical à qui le dossier est attribué :
-   * Médecin généraliste, médecin urgentiste etc.
+   * médecin généraliste, médecin urgentiste etc.
    */
   public enum AttributionEnum {
     DRM("DRM"),
@@ -195,6 +196,49 @@ public class CaseDetails {
   public static final String JSON_PROPERTY_PRIORITY = "priority";
   private PriorityEnum priority;
 
+  /**
+   * Décrit le niveau de soins global du dossier identifié au cours de
+   * l&#39;acte de régulation médicale : s&#39;il y a plusieurs niveaux de soins
+   * différents pour chaque patient, on indique ici le niveau le plus grave.
+   * cf.nomenclature associée.
+   */
+  public enum CareLevelEnum {
+    R1("R1"),
+
+    R2("R2"),
+
+    R3("R3"),
+
+    R4("R4");
+
+    private String value;
+
+    CareLevelEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CareLevelEnum fromValue(String value) {
+      for (CareLevelEnum b : CareLevelEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CARE_LEVEL = "careLevel";
+  private CareLevelEnum careLevel;
+
   public CaseDetails() {}
 
   public CaseDetails attribution(AttributionEnum attribution) {
@@ -205,7 +249,7 @@ public class CaseDetails {
 
   /**
    * Décrit le type de professionnel médical à qui le dossier est attribué :
-   *Médecin généraliste, médecin urgentiste etc.
+   *médecin généraliste, médecin urgentiste etc.
    * @return attribution
    **/
   @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
@@ -244,6 +288,32 @@ public class CaseDetails {
     this.priority = priority;
   }
 
+  public CaseDetails careLevel(CareLevelEnum careLevel) {
+
+    this.careLevel = careLevel;
+    return this;
+  }
+
+  /**
+   * Décrit le niveau de soins global du dossier identifié au cours de
+   *l&#39;acte de régulation médicale : s&#39;il y a plusieurs niveaux de soins
+   *différents pour chaque patient, on indique ici le niveau le plus grave.
+   *cf.nomenclature associée.
+   * @return careLevel
+   **/
+  @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public CareLevelEnum getCareLevel() {
+    return careLevel;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CARE_LEVEL)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCareLevel(CareLevelEnum careLevel) {
+    this.careLevel = careLevel;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -254,12 +324,13 @@ public class CaseDetails {
     }
     CaseDetails caseDetails = (CaseDetails)o;
     return Objects.equals(this.attribution, caseDetails.attribution) &&
-        Objects.equals(this.priority, caseDetails.priority);
+        Objects.equals(this.priority, caseDetails.priority) &&
+        Objects.equals(this.careLevel, caseDetails.careLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attribution, priority);
+    return Objects.hash(attribution, priority, careLevel);
   }
 
   @Override
@@ -270,6 +341,9 @@ public class CaseDetails {
         .append(toIndentedString(attribution))
         .append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
+    sb.append("    careLevel: ")
+        .append(toIndentedString(careLevel))
+        .append("\n");
     sb.append("}");
     return sb.toString();
   }

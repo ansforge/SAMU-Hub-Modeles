@@ -116,8 +116,9 @@ public class Regulation {
 
   /**
    * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
-   *de la nomenclature NIVSOIN. Permet de déduire avec la donnée \&quot;niveau
-   *de médicalisation du transport\&quot;, si un UMHP est devenu un SMUR.
+   *de la nomenclature  SI-SAMU-NIVSOIN. Permet de déduire avec la donnée
+   *\&quot;niveau de médicalisation du transport\&quot;, si un UMHP est devenu
+   *un SMUR.
    * @return initialTeamCare
    **/
   @JsonProperty(JSON_PROPERTY_INITIAL_TEAM_CARE)

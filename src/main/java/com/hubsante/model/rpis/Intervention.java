@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.rpis.Actions;
 import com.hubsante.model.rpis.Location;
 import com.hubsante.model.rpis.ResourceStatus;
 import com.hubsante.model.rpis.Team;
@@ -48,7 +49,7 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Intervention.JSON_PROPERTY_LOCATION,
                     Intervention.JSON_PROPERTY_TEAM,
-                    Intervention.JSON_PROPERTY_ACTIONS,
+                    Intervention.JSON_PROPERTY_ACTIONS_S_M_U_R,
                     Intervention.JSON_PROPERTY_MAIN_DIAGNOSIS,
                     Intervention.JSON_PROPERTY_ASSOCIATED_DIAGNOSIS,
                     Intervention.JSON_PROPERTY_SMUR_STATUS})
@@ -62,8 +63,8 @@ public class Intervention {
   public static final String JSON_PROPERTY_TEAM = "team";
   private Team team;
 
-  public static final String JSON_PROPERTY_ACTIONS = "actions";
-  private List<String> actions;
+  public static final String JSON_PROPERTY_ACTIONS_S_M_U_R = "actionsSMUR";
+  private List<Actions> actionsSMUR;
 
   public static final String JSON_PROPERTY_MAIN_DIAGNOSIS = "mainDiagnosis";
   private String mainDiagnosis;
@@ -123,43 +124,43 @@ public class Intervention {
     this.team = team;
   }
 
-  public Intervention actions(List<String> actions) {
+  public Intervention actionsSMUR(List<Actions> actionsSMUR) {
 
-    this.actions = actions;
+    this.actionsSMUR = actionsSMUR;
     return this;
   }
 
-  public Intervention addActionsItem(String actionsItem) {
-    if (this.actions == null) {
-      this.actions = new ArrayList<>();
+  public Intervention addActionsSMURItem(Actions actionsSMURItem) {
+    if (this.actionsSMUR == null) {
+      this.actionsSMUR = new ArrayList<>();
     }
-    this.actions.add(actionsItem);
+    this.actionsSMUR.add(actionsSMURItem);
     return this;
   }
 
   /**
-   * Get actions
-   * @return actions
+   * Get actionsSMUR
+   * @return actionsSMUR
    **/
-  @JsonProperty(JSON_PROPERTY_ACTIONS)
+  @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<String> getActions() {
-    return actions;
+  public List<Actions> getActionsSMUR() {
+    return actionsSMUR;
   }
 
   @JacksonXmlElementWrapper(useWrapping = false)
 
-  @JsonProperty(JSON_PROPERTY_ACTIONS)
+  @JsonProperty(JSON_PROPERTY_ACTIONS_S_M_U_R)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setActions(List<String> actions) {
-    if (actions == null) {
+  public void setActionsSMUR(List<Actions> actionsSMUR) {
+    if (actionsSMUR == null) {
       return;
     }
-    if (this.actions == null) {
-      this.actions = new ArrayList<>();
+    if (this.actionsSMUR == null) {
+      this.actionsSMUR = new ArrayList<>();
     }
-    this.actions.addAll(actions);
+    this.actionsSMUR.addAll(actionsSMUR);
   }
 
   public Intervention mainDiagnosis(String mainDiagnosis) {
@@ -244,7 +245,7 @@ public class Intervention {
     Intervention intervention = (Intervention)o;
     return Objects.equals(this.location, intervention.location) &&
         Objects.equals(this.team, intervention.team) &&
-        Objects.equals(this.actions, intervention.actions) &&
+        Objects.equals(this.actionsSMUR, intervention.actionsSMUR) &&
         Objects.equals(this.mainDiagnosis, intervention.mainDiagnosis) &&
         Objects.equals(this.associatedDiagnosis,
                        intervention.associatedDiagnosis) &&
@@ -253,7 +254,7 @@ public class Intervention {
 
   @Override
   public int hashCode() {
-    return Objects.hash(location, team, actions, mainDiagnosis,
+    return Objects.hash(location, team, actionsSMUR, mainDiagnosis,
                         associatedDiagnosis, smurStatus);
   }
 
@@ -263,7 +264,9 @@ public class Intervention {
     sb.append("class Intervention {\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    team: ").append(toIndentedString(team)).append("\n");
-    sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
+    sb.append("    actionsSMUR: ")
+        .append(toIndentedString(actionsSMUR))
+        .append("\n");
     sb.append("    mainDiagnosis: ")
         .append(toIndentedString(mainDiagnosis))
         .append("\n");

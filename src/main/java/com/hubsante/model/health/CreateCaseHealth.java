@@ -36,7 +36,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.health.AdditionalInformation;
 import com.hubsante.model.health.Alert;
-import com.hubsante.model.health.Decision;
 import com.hubsante.model.health.Location;
 import com.hubsante.model.health.MedicalNote;
 import com.hubsante.model.health.Patient;
@@ -62,7 +61,6 @@ import java.util.Objects;
                     CreateCaseHealth.JSON_PROPERTY_OWNER,
                     CreateCaseHealth.JSON_PROPERTY_PATIENT,
                     CreateCaseHealth.JSON_PROPERTY_MEDICAL_NOTE,
-                    CreateCaseHealth.JSON_PROPERTY_DECISION,
                     CreateCaseHealth.JSON_PROPERTY_NEW_ALERT,
                     CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCaseHealth")
@@ -81,8 +79,8 @@ public class CreateCaseHealth {
   private OffsetDateTime creation;
 
   /**
-   * Sert à indiquer à quelle filière du CRRA le dossier doit être
-   * adressé/affiché
+   * Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être
+   * adressé/affiché, lorsque celle-ci est spécifique ou dédiée.
    */
   public enum PerimeterEnum {
     AMU("AMU"),
@@ -122,8 +120,8 @@ public class CreateCaseHealth {
   private PerimeterEnum perimeter;
 
   /**
-   * Indiquer s&#39;il s&#39;agit d&#39;un dossier dit primaire (première
-   * intervention urgente) ou secondaire (par exemple TIH)
+   * A valoriser en indiquant s&#39;il s&#39;agit d&#39;un dossier dit primaire
+   * (première intervention urgente) ou secondaire (par exemple TIH)
    */
   public enum InterventionTypeEnum {
     PRIMAIRE("PRIMAIRE"),
@@ -179,9 +177,6 @@ public class CreateCaseHealth {
   public static final String JSON_PROPERTY_MEDICAL_NOTE = "medicalNote";
   private List<MedicalNote> medicalNote;
 
-  public static final String JSON_PROPERTY_DECISION = "decision";
-  private List<Decision> decision;
-
   public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
   private List<Alert> newAlert;
 
@@ -198,12 +193,15 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Identifiant de l&#39;affaire partagé entre tous les intervenants &#x3D; aux
-   *champs {organization}.{senderCaseId}. Il doit pouvoir être généré de façon
-   *unique et décentralisée et ne présenter aucune ambiguïté.  Il est généré par
-   *le système du partenaire récepteur de la primo-demande de secours (créateur
-   *du dossier). Valorisation : {pays}.{domaine}.{organisation}.{structure
-   *interne}*.{unité fonctionnelle}*.{numéro de dossier}
+   * A valoriser avec l&#39;identifiant de l&#39;affaire/dossier partagé entre
+   *tous les intervenants, valorisé comme suit :
+   *{pays}.{domaine}.{organisation}.{senderCaseId}. Cet identifiant est généré
+   *une seule fois par le système du partenaire récepteur de la primo-demande de
+   *secours (créateur du dossier). Il doit pouvoir être généré de façon
+   *décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans
+   *l&#39;ensemble des systèmes : le numéro de dossier fourni par celui qui
+   *génère l&#39;identifiant partagé doit donc être un numéro unique dans son
+   *système.
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
@@ -226,9 +224,8 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Valoriser avec le numéro du dossier dans le SI de l&#39;émetteur du
-   *message.  Ce champ est facultatif, il ne sera notamment pas transmis par
-   *NexSIS.
+   * A valoriser avec le numéro du dossier dans le SI de l&#39;émetteur du
+   *message.
    * @return senderCaseId
    **/
   @JsonProperty(JSON_PROPERTY_SENDER_CASE_ID)
@@ -251,11 +248,12 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Groupe date heure de début de partage lié à la création de l&#39;affaire
-   *(et donc de génération du caseId). Il doit être renseigné à la fin du
-   *processus de la  création  de la première alerte. Lors de l&#39;ajout
-   *d&#39;alerte à une affaire ce champ ne doit pas être modifié.
-   *L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
+   * A valoriser avec le groupe date heure de début de partage lié à la création
+   *de l&#39;affaire (et donc de génération du caseId).  Lors de l&#39;ajout
+   *d&#39;une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.
+   *L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.  Spécificité
+   *15-18 : Il doit être renseigné à la fin du processus de la  création de la
+   *première alerte.
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
@@ -278,8 +276,8 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Sert à indiquer à quelle filière du CRRA le dossier doit être
-   *adressé/affiché
+   * Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être
+   *adressé/affiché, lorsque celle-ci est spécifique ou dédiée.
    * @return perimeter
    **/
   @JsonProperty(JSON_PROPERTY_PERIMETER)
@@ -303,8 +301,8 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Indiquer s&#39;il s&#39;agit d&#39;un dossier dit primaire (première
-   *intervention urgente) ou secondaire (par exemple TIH)
+   * A valoriser en indiquant s&#39;il s&#39;agit d&#39;un dossier dit primaire
+   *(première intervention urgente) ou secondaire (par exemple TIH)
    * @return interventionType
    **/
   @JsonProperty(JSON_PROPERTY_INTERVENTION_TYPE)
@@ -396,8 +394,8 @@ public class CreateCaseHealth {
   }
 
   /**
-   * Champ servant à transférer la prise en charge d&#39;un dossier à un autre
-   *CRAA après accord verbal de ce dernier.
+   * Attribut qui permet de transférer la prise en charge d&#39;un dossier à un
+   *autre CRAA - après accord verbal de ce dernier.
    * @return owner
    **/
   @JsonProperty(JSON_PROPERTY_OWNER)
@@ -491,45 +489,6 @@ public class CreateCaseHealth {
     this.medicalNote.addAll(medicalNote);
   }
 
-  public CreateCaseHealth decision(List<Decision> decision) {
-
-    this.decision = decision;
-    return this;
-  }
-
-  public CreateCaseHealth addDecisionItem(Decision decisionItem) {
-    if (this.decision == null) {
-      this.decision = new ArrayList<>();
-    }
-    this.decision.add(decisionItem);
-    return this;
-  }
-
-  /**
-   * Get decision
-   * @return decision
-   **/
-  @JsonProperty(JSON_PROPERTY_DECISION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Decision> getDecision() {
-    return decision;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_DECISION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDecision(List<Decision> decision) {
-    if (decision == null) {
-      return;
-    }
-    if (this.decision == null) {
-      this.decision = new ArrayList<>();
-    }
-    this.decision.addAll(decision);
-  }
-
   public CreateCaseHealth newAlert(List<Alert> newAlert) {
 
     this.newAlert = newAlert;
@@ -615,7 +574,6 @@ public class CreateCaseHealth {
         Objects.equals(this.owner, createCaseHealth.owner) &&
         Objects.equals(this.patient, createCaseHealth.patient) &&
         Objects.equals(this.medicalNote, createCaseHealth.medicalNote) &&
-        Objects.equals(this.decision, createCaseHealth.decision) &&
         Objects.equals(this.newAlert, createCaseHealth.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCaseHealth.additionalInformation);
@@ -625,7 +583,7 @@ public class CreateCaseHealth {
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, perimeter,
                         interventionType, qualification, location, initialAlert,
-                        owner, patient, medicalNote, decision, newAlert,
+                        owner, patient, medicalNote, newAlert,
                         additionalInformation);
   }
 
@@ -656,7 +614,6 @@ public class CreateCaseHealth {
     sb.append("    medicalNote: ")
         .append(toIndentedString(medicalNote))
         .append("\n");
-    sb.append("    decision: ").append(toIndentedString(decision)).append("\n");
     sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
     sb.append("    additionalInformation: ")
         .append(toIndentedString(additionalInformation))

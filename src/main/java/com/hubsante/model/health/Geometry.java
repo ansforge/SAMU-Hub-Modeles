@@ -64,9 +64,9 @@ public class Geometry {
   }
 
   /**
-   * Groupe date heure de renseignement des coordonnées du point clé de la
-   *localisation. Permet de connaître la fraîcheur et donc pertinence des
-   *informations pour intervenir.
+   * A valoriser avec le groupe date heure de renseignement des coordonnées du
+   *point clé de la localisation.  Permet de connaître la fraîcheur et donc la
+   *pertinence des informations pour intervenir.
    * @return obsDatime
    **/
   @JsonProperty(JSON_PROPERTY_OBS_DATIME)

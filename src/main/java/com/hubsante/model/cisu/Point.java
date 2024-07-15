@@ -42,16 +42,13 @@ import java.util.Objects;
 /**
  * Point
  */
-@JsonPropertyOrder({Point.JSON_PROPERTY_COORD, Point.JSON_PROPERTY_SYS_COORD})
+@JsonPropertyOrder({Point.JSON_PROPERTY_COORD})
 @JsonTypeName("point")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Point {
   public static final String JSON_PROPERTY_COORD = "coord";
   private Coord coord;
-
-  public static final String JSON_PROPERTY_SYS_COORD = "sysCoord";
-  private String sysCoord;
 
   public Point() {}
 
@@ -78,31 +75,6 @@ public class Point {
     this.coord = coord;
   }
 
-  public Point sysCoord(String sysCoord) {
-
-    this.sysCoord = sysCoord;
-    return this;
-  }
-
-  /**
-   * Indique le type de coordonnées utilisé. Actuellement, la seule valeur
-   *valide est «EPSG-4326», indiquant l&#39;utilisation de WGS-84. Si ce champ
-   *n&#39;est pas renseigné, on considère que la valeur par défaut est «».
-   * @return sysCoord
-   **/
-  @JsonProperty(JSON_PROPERTY_SYS_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getSysCoord() {
-    return sysCoord;
-  }
-
-  @JsonProperty(JSON_PROPERTY_SYS_COORD)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSysCoord(String sysCoord) {
-    this.sysCoord = sysCoord;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -112,13 +84,12 @@ public class Point {
       return false;
     }
     Point point = (Point)o;
-    return Objects.equals(this.coord, point.coord) &&
-        Objects.equals(this.sysCoord, point.sysCoord);
+    return Objects.equals(this.coord, point.coord);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(coord, sysCoord);
+    return Objects.hash(coord);
   }
 
   @Override
@@ -126,7 +97,6 @@ public class Point {
     StringBuilder sb = new StringBuilder();
     sb.append("class Point {\n");
     sb.append("    coord: ").append(toIndentedString(coord)).append("\n");
-    sb.append("    sysCoord: ").append(toIndentedString(sysCoord)).append("\n");
     sb.append("}");
     return sb.toString();
   }

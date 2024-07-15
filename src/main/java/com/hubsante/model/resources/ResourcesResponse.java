@@ -97,8 +97,8 @@ public class ResourcesResponse {
   }
 
   /**
-   * Identifiant unique partagé de la demande de ressource {orgID}.D.{ID unique
-   *de la demande dans le système émetteur}
+   * Identifiant unique partagé de la demande de ressource {orgID}.request.{ID
+   *unique de la demande dans le système émetteur}
    * @return rsDRId
    **/
   @JsonProperty(JSON_PROPERTY_RS_D_R_ID)

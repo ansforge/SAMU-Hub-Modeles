@@ -52,8 +52,45 @@ public class Response {
   public static final String JSON_PROPERTY_DATE_TIME = "dateTime";
   private OffsetDateTime dateTime;
 
+  /**
+   * oui / non / oui partiel / différé
+   */
+  public enum AnswerEnum {
+    ACCEPTEE("ACCEPTEE"),
+
+    REFUSEE("REFUSEE"),
+
+    PARTIELLE("PARTIELLE"),
+
+    DIFFEREE("DIFFEREE");
+
+    private String value;
+
+    AnswerEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AnswerEnum fromValue(String value) {
+      for (AnswerEnum b : AnswerEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_ANSWER = "answer";
-  private String answer;
+  private AnswerEnum answer;
 
   public static final String JSON_PROPERTY_DEADLINE = "deadline";
   private String deadline;
@@ -86,7 +123,7 @@ public class Response {
     this.dateTime = dateTime;
   }
 
-  public Response answer(String answer) {
+  public Response answer(AnswerEnum answer) {
 
     this.answer = answer;
     return this;
@@ -99,13 +136,13 @@ public class Response {
   @JsonProperty(JSON_PROPERTY_ANSWER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getAnswer() {
+  public AnswerEnum getAnswer() {
     return answer;
   }
 
   @JsonProperty(JSON_PROPERTY_ANSWER)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAnswer(String answer) {
+  public void setAnswer(AnswerEnum answer) {
     this.answer = answer;
   }
 

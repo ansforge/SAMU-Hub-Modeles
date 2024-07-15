@@ -60,7 +60,7 @@ import java.util.Objects;
 public class Qualification {
 
   /**
-   * Numéro de provenance de l&#39;appel
+   * A valoriser avec le numéro de provenance de l&#39;appel.
    */
   public enum OriginEnum {
     _15("15"),
@@ -125,7 +125,7 @@ public class Qualification {
   }
 
   /**
-   * Numéro de provenance de l&#39;appel
+   * A valoriser avec le numéro de provenance de l&#39;appel.
    * @return origin
    **/
   @JsonProperty(JSON_PROPERTY_ORIGIN)
@@ -152,14 +152,14 @@ public class Qualification {
    * @return whatsHappen
    **/
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
   public WhatsHappen getWhatsHappen() {
     return whatsHappen;
   }
 
   @JsonProperty(JSON_PROPERTY_WHATS_HAPPEN)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setWhatsHappen(WhatsHappen whatsHappen) {
     this.whatsHappen = whatsHappen;
   }

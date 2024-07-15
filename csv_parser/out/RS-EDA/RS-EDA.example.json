@@ -3,7 +3,7 @@
     "senderCaseId": "DRFR15DDXAAJJJ0000",
     "creation": "2022-09-27T08:23:34+02:00",
     "perimeter": "AMU",
-    "interventionType": "Primaire",
+    "interventionType": "PRIMAIRE",
     "qualification": {
         "origin": "15, 112, 18",
         "whatsHappen": {
@@ -26,7 +26,8 @@
         },
         "details": {
             "attribution": "MU",
-            "priority": "P1"
+            "priority": "P1",
+            "careLevel": "R1"
         }
     },
     "location": {
@@ -75,16 +76,16 @@
                     "lat": "48.866667",
                     "lon": "2.333333",
                     "height": 120,
-                    "precision": "ADDRESS"
+                    "precision": "ADRESSE"
                 },
-                "sysCoord": "EPSG-4326"
+                "isAml": "TRUE"
             }
         },
         "externalInfo": [
             {
-                "freetext": "NexSIS, BAN, IGN, \u2026",
-                "type": "ega, egr, egm, DIO (donn\u00e9es d'influence op\u00e9rationnelle), \u2026",
-                "uri": "id987"
+                "freetext": "BAN, IGN, NEXSIS, \u2026",
+                "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
+                "uri": "80021_6590_00008, id987"
             }
         ],
         "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
@@ -94,13 +95,13 @@
         "notes": [
             {
                 "creation": "None",
-                "freetext": "La personne est inconsciente (perte de connaissance). "
+                "freetext": "Accident de bricolage, accident domestique, d\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
             }
         ],
         "caller": {
             "callerContact": {
-                "channel": "Personne",
-                "type": "PHNADD",
+                "channel": "PERSONNE",
+                "type": "TEL",
                 "detail": "0671830530"
             },
             "callbackContact": {},
@@ -118,7 +119,7 @@
     "owner": "fr.health.samu440",
     "patient": [
         {
-            "id": "fr.health.samu044.DRFR15DDXAAJJJ00000.P00",
+            "id": "fr.health.samu044.DRFR154402415000450.P1",
             "administrativeFile": {
                 "externalId": [
                     {
@@ -156,29 +157,19 @@
                         "label": "Rod\u00e9o automobile"
                     }
                 ]
-            },
-            "freetext": [
-                "None"
-            ]
+            }
         }
     ],
     "medicalNote": [
         {
-            "idPat": "None",
+            "idPat": "fr.health.samu044.DRFR154402415000450.P1",
             "operator": {
                 "detailedName": {},
-                "role": "ARM, Medecin r\u00e9gulateur\u2026"
+                "role": "ARM"
             },
-            "idObs": "None",
+            "idObs": "fr.health.samu540.DRFR155402416000125.medicalNote.46585A",
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None"
-        }
-    ],
-    "decision": [
-        {
-            "idPat": "None",
-            "creation": "2022-09-27T08:23:34+02:00",
-            "type": "conseil m\u00e9dical  / d\u00e9cision d\u2019intervention / d\u00e9cision d\u2019orientation et de transport / Pas de d\u00e9cision suppl\u00e9mentaire"
         }
     ],
     "newAlert": [

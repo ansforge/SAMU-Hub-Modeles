@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.06.19",
+    "version": "24.07.12",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -55,7 +55,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/resourceID",
-                    "description": "ID partag\u00e9 unique de la ressource engag\u00e9e \n{orgID}.R.{ID unique de la ressource partag\u00e9e}\nOu, uniquement dans le cas o\u00f9 un ID unique de ressource ne peut pas \u00eatre garanti par l'organisation propri\u00e9taire :\n{orgID}.R.{ID du dossier partag\u00e9}.{num\u00e9ro d\u2019ordre chronologique ressource}"
+                    "description": "ID partag\u00e9 unique de la ressource engag\u00e9e, valoris\u00e9 comme suit :\n{orgID}.resource.{ID unique de la ressource partag\u00e9e}\nOU - uniquement dans le cas o\u00f9 un ID unique de ressource ne peut pas \u00eatre garanti par l'organisation propri\u00e9taire :\n{orgID}.resource.{ID du dossier partag\u00e9}.{num\u00e9ro d\u2019ordre chronologique ressource}"
                 },
                 "RSDRId": {
                     "type": "string",
@@ -63,7 +63,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/RSDRId",
-                    "description": "Identifiant unique partag\u00e9 de la demande de ressource (si la ressource a \u00e9t\u00e9 engag\u00e9e suite \u00e0 une demande de ressource)\n{orgID}.D.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
+                    "description": "Identifiant unique partag\u00e9 de la demande de ressource (si la ressource a \u00e9t\u00e9 engag\u00e9e suite \u00e0 une demande de ressource), valoris\u00e9 comme suit :\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
                 },
                 "missionID": {
                     "type": "string",
@@ -111,7 +111,7 @@
                 },
                 "vehiculeType": {
                     "type": "string",
-                    "title": "Type de vecteur",
+                    "title": "Type de moyen",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/vehiculeType",
