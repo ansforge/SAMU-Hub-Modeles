@@ -35,9 +35,6 @@
         },
         "type": "L04.02.00"
       },
-      "actions": [
-        "ACC"
-      ],
       "mainDiagnosis": "JA40 "
     },
     "patient": {

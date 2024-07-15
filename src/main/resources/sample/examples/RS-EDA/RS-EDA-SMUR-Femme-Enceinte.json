@@ -105,10 +105,7 @@
         "healthMotive": {
           "code": "M03.10",
           "label": "Malaise avec perte de connaissance initiale"
-        },
-        "freetext": [
-          "Enceinte de 2 mois, antécédents de fausse couche à 1 mois"
-        ]
+        }
       }
     ],
     "owner": "CRRA44",

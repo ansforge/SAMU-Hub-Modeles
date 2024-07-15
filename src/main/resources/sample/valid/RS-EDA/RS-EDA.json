@@ -203,12 +203,7 @@
                     "code": "M03.06"
                   },
                   "administrativeFile": {
-                  },
-                  "freetext": [
-                    "Commentaire 1 dossier",
-                    "Commentaire 2 dossier",
-                    "Commentaire 3 dossier"
-                  ]
+                  }
                 }
               ],
               "newAlert": [
