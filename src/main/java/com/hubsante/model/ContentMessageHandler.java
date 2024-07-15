@@ -52,15 +52,7 @@ public class ContentMessageHandler {
         return jsonMapper.readValue(json, ContentMessage.class);
     }
 
-    public ContentMessage deserializeXmlContentMessage(String xml) throws JsonProcessingException {
-        return xmlMapper.readValue(xml, ContentMessage.class);
-    }
-
-    public String serializeJsonContentMessage(ContentMessage ContentMessage) throws JsonProcessingException {
-        return jsonMapper.writeValueAsString(ContentMessage);
-    }
-
-    public String serializeXmlContentMessage(ContentMessage ContentMessage) throws JsonProcessingException {
-        return xmlMapper.writeValueAsString(ContentMessage);
+    public String serializeXmlContent(Object content) throws JsonProcessingException {
+        return xmlMapper.writeValueAsString(content);
     }
 }

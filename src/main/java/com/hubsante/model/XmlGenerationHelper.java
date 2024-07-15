@@ -15,7 +15,8 @@
  */
 package com.hubsante.model;
 
-import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.edxl.ContentMessage;
+import lombok.SneakyThrows;
 import org.w3c.dom.Document;
 import org.xml.sax.InputSource;
 
@@ -29,6 +30,7 @@ import javax.xml.transform.stream.StreamResult;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
+import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,9 +38,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-
-import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
-import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
 
 public class XmlGenerationHelper {
     ContentMessageHandler contentMessageHandler = new ContentMessageHandler();
@@ -70,14 +69,45 @@ public class XmlGenerationHelper {
         }
     }
 
+    private final String[] useCases = {
+            "createCase",
+            "createCaseHealth",
+            "emsi",
+            "reference",
+            "error",
+            "geoPositionsUpdate",
+            "geoResourcesRequest",
+            "geoResourcesDetails"
+    };
+
+    @SneakyThrows
     private void convertJsonToXml(Path jsonFile) throws IOException {
         String json = new String(Files.readAllBytes(jsonFile));
-        if (Arrays.stream(useCasesWithNoRcDe).anyMatch(jsonFile.toString()::contains))
-            json = wrapUseCaseMessageWithoutDistributionElement(json);
-        else
-            json = wrapUseCaseMessage(json);
-        EdxlMessage deserializedMessage = edxlHandler.deserializeJsonEDXL(json);
-        String xml = edxlHandler.serializeXmlEDXL(deserializedMessage);
+        ContentMessage deserializedContentMessage = contentMessageHandler.deserializeJsonContentMessage(json);
+        // We extract the actual content from the deserialized message by checking for the presence of any properties
+        // specified in the useCases array
+        Field useCase = Arrays.stream(useCases).filter(useCaseName -> {
+            try {
+                return deserializedContentMessage.getClass().getDeclaredField(useCaseName) != null;
+            } catch (NoSuchFieldException e) {
+                return false;
+            }
+        }).findFirst().map(useCaseName -> {
+            try {
+                return deserializedContentMessage.getClass().getDeclaredField(useCaseName);
+            } catch (NoSuchFieldException e) {
+                return null;
+            }
+        }).orElse(null);
+
+        useCase.setAccessible(true);
+        Object useCaseObject = useCase.get(deserializedContentMessage);
+
+        String xml = contentMessageHandler.serializeXmlContent(useCaseObject);
+        // We modify the case of the use case element name in the resulting xml to make sure it starts from a
+        // lowercase letter
+        String className = useCaseObject.getClass().getName().split("\\.")[useCaseObject.getClass().getName().split("\\.").length - 1];
+        xml = xml.replaceAll(className , useCase.getName().substring(0, 1).toLowerCase() + useCase.getName().substring(1));
         xml = prettifyXml(xml);
         Path xmlFile = Paths.get(jsonFile.toString().replace(".json", ".xml"));
         Files.write(xmlFile, xml.getBytes());
