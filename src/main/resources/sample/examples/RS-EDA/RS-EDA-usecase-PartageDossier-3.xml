@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+  <caseId>fr.health.samu009.DRFR150092400401259</caseId>
+  <creation>2024-01-18T15:00:00+01:00</creation>
+  <qualification>
+    <whatsHappen>
+      <code>C02.05.00</code>
+      <label>Atteinte aux personnes ; Pathologie / maladie</label>
+    </whatsHappen>
+    <locationKind>
+      <code>L04.12.00</code>
+      <label>Lieu accueillant du public ; Hébergement touristique</label>
+    </locationKind>
+    <healthMotive>
+      <code>M03.08</code>
+      <label>Signes d’AVC</label>
+    </healthMotive>
+    <details>
+      <attribution>MU</attribution>
+      <priority>P1</priority>
+    </details>
+  </qualification>
+  <location>
+    <name>Le gite du Moulin </name>
+    <detailedAddress>
+      <complete>Rue principale</complete>
+      <wayName>
+        <complete>Rue principale</complete>
+        <type>Rue</type>
+        <name>principale</name>
+      </wayName>
+    </detailedAddress>
+    <city>
+      <name>Aulus-les-Bains</name>
+      <inseeCode>09029</inseeCode>
+    </city>
+    <freetext>Maison avec la porte verte, 100 m après le lavoir</freetext>
+  </location>
+  <initialAlert>
+    <reception>2024-04-18T15:00:00+02:00</reception>
+    <notes>
+      <creation>2024-01-18T15:20:00+01:00</creation>
+      <freetext>Client du gite voyageant seul.</freetext>
+    </notes>
+    <caller>
+      <callerContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>0632085528</detail>
+      </callerContact>
+      <callbackContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>0561964589</detail>
+      </callbackContact>
+      <language>FR</language>
+      <type>TIERS</type>
+      <detailedName>
+        <complete>Lucas Bernardi </complete>
+        <lastName>Bernardi </lastName>
+        <firstName>Lucas</firstName>
+      </detailedName>
+    </caller>
+  </initialAlert>
+  <owner>fr.health.samu009</owner>
+  <patient>
+    <id>fr.health.samu009.DRFR150092400401259.P90</id>
+    <detail>
+      <age>P80Y</age>
+    </detail>
+  </patient>
+  <medicalNote>
+    <idPat>fr.health.samu009.DRFR150092400401259.P90</idPat>
+    <operator>
+      <role>ARM</role>
+    </operator>
+    <idObs>fr.health.samu009.DRFR150092400401259.medicalNote.4689</idObs>
+    <creation>2024-01-18T03:35:00+01:00</creation>
+    <freetext>Confusion, étourdissements, s’exprime difficilement. </freetext>
+  </medicalNote>
+</createCaseHealth>
