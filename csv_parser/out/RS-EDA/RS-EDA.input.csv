@@ -150,9 +150,16 @@ Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,,,,,,0..1,,string,,
 CRRA traitant,,,,,,Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA - après accord verbal de ce dernier.,fr.health.samu440,owner,,,,,,1..1,,string,,
 Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,,,,,,0..n,X,patient,,
-,ID patient partagé,,,,,"A valoriser avec l'identifiant partagé du patient, valorisé comme suit : {ID du dossier partagé}.P{numéro d’ordre chronologique}
+,ID patient partagé,,,,,"A valoriser avec l'identifiant partagé du patient, valorisé comme suit : 
+{ID du dossier partagé}.P{numéro patient unique}
+
+OU, uniquement si un numéro unique de patient n’existe pas dans le système émetteur :
+{ID du dossier partagé}.P{numéro d’ordre chronologique}
+
 Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
-",fr.health.samu044.DRFR154402415000450.P1,id,,,,,,1..1,,string,,
+","fr.health.samu690.DRFR15DDXAAJJJ00001.P164895 
+ou
+fr.health.samu690.DRFR15DDXAAJJJ00001.P01",id,,,,,,1..1,,string,,
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,,,,,,0..1,X,administrativeFile,,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,,,,,,0..n,X,externalId,,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
