@@ -27,17 +27,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
-            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
-            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
-            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
-            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
-            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
-            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
-            \ un num\xE9ro unique dans son syst\xE8me."
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
@@ -47,7 +47,7 @@ components:
           description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
             metteur du message.\n"
           examples:
-          - DRFR15DDXAAJJJ0000
+          - DRFR15440241550012
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'affaire/dossier"

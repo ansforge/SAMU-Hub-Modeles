@@ -69,12 +69,14 @@ public class ResourcesResponse {
   }
 
   /**
-   * Identifiant de l&#39;affaire partagé entre tous les intervenants &#x3D; aux
-   *champs {organization}.{senderCaseId}. Il doit pouvoir être généré de façon
-   *unique et décentralisée et ne présenter aucune ambiguïté.  Il est généré par
-   *le système du partenaire récepteur de la primo-demande de secours (créateur
-   *du dossier). Valorisation : {pays}.{domaine}.{organisation}.{structure
-   *interne}*.{unité fonctionnelle}*.{numéro de dossier}
+   * Identifiant partagé de l&#39;affaire/dossier, généré une seule fois par le
+   *système du partenaire qui recoit la primo-demande de secours (créateur du
+   *dossier).  Il est valorisé comme suit lors de sa création :
+   *{pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré
+   *de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être
+   *unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par
+   *celui qui génère l&#39;identifiant partagé doit donc être un numéro unique
+   *dans son système.
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)

@@ -4,9 +4,12 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>A valoriser avec l'identifiant de l'affaire/dossier partagé entre tous les intervenants, valorisé comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.
-Cet identifiant est généré une seule fois par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
+                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
@@ -55,7 +58,8 @@ Il doit être renseigné à la fin du processus de la  création de la première
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
             <element name="owner" type="string">
                 <annotation>
-                    <documentation>Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA - après accord verbal de ce dernier.</documentation>
+                    <documentation>Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
+A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})</documentation>
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
@@ -126,9 +130,14 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>A valoriser avec l'identifiant partagé du patient, valorisé comme suit : 
-{ID de l’organisation qui crée le dossier}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
-Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
+                    <documentation>Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
+Il est valorisé comme suit lors de sa création : 
+{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}
+
+OU, si un n°patient unique n'existe pas dans le système émetteur :
+{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
+
+
 </documentation>
                 </annotation>
             </element>
@@ -143,15 +152,25 @@ Cet identifiant est généré une seule fois par le système du partenaire qui c
         <sequence>
             <element minOccurs="0" name="idPat" type="string">
                 <annotation>
-                    <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
-{ID de l’organisation qui crée le dossier}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}</documentation>
+                    <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
+
+Valorisé comme suit lors de sa création : 
+{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}
+
+OU, si un n°patient unique n'existe pas dans le système émetteur :
+{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}</documentation>
                 </annotation>
             </element>
             <element name="operator" type="x:operator"/>
             <element minOccurs="0" name="idObs" type="string">
                 <annotation>
-                    <documentation>A valoriser avec l'identifiant unique de l'observation, valorisé comme suit :
- {ID de l’organisation qui crée la note}.{senderCaseId}.medicalNote.{ID unique de l’observation dans le système émetteur}
+                    <documentation>Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
+Il est valorisé comme suit lors de sa création : 
+{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}
+
+OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : 
+{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}
+
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 </documentation>
                 </annotation>
