@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.07.12",
+    "version": "24.07.16",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -34,51 +34,51 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "dateTime",
-                "resourceID",
+                "datetime",
+                "resourceId",
                 "resourceType"
             ],
             "properties": {
-                "dateTime": {
+                "datetime": {
                     "type": "string",
                     "title": "Date/heure de d\u00e9clenchement",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/dateTime",
+                    "example": "example.json#/mobilizedResource/0/datetime",
                     "description": "date et heure d'engagement de la ressource",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
-                "resourceID": {
+                "resourceId": {
                     "type": "string",
                     "title": "ID Ressource partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/resourceID",
+                    "example": "example.json#/mobilizedResource/0/resourceId",
                     "description": "ID partag\u00e9 unique de la ressource engag\u00e9e, valoris\u00e9 comme suit :\n{orgID}.resource.{ID unique de la ressource partag\u00e9e}\nOU - uniquement dans le cas o\u00f9 un ID unique de ressource ne peut pas \u00eatre garanti par l'organisation propri\u00e9taire :\n{orgID}.resource.{ID du dossier partag\u00e9}.{num\u00e9ro d\u2019ordre chronologique ressource}"
                 },
-                "RSDRId": {
+                "requestId": {
                     "type": "string",
                     "title": "ID Demande partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/RSDRId",
+                    "example": "example.json#/mobilizedResource/0/requestId",
                     "description": "Identifiant unique partag\u00e9 de la demande de ressource (si la ressource a \u00e9t\u00e9 engag\u00e9e suite \u00e0 une demande de ressource), valoris\u00e9 comme suit :\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
                 },
-                "missionID": {
+                "missionId": {
                     "type": "string",
                     "title": "ID Mission local",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/missionID",
+                    "example": "example.json#/mobilizedResource/0/missionId",
                     "description": "Num\u00e9ro de mission unique du central d\u2019appel (PSAP, \u2026) qui a d\u00e9clench\u00e9 le vecteur"
                 },
-                "orgID": {
+                "orgId": {
                     "type": "string",
                     "title": "ID Organisation propri\u00e9taire",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/orgID",
+                    "example": "example.json#/mobilizedResource/0/orgId",
                     "description": "Organisation \u00e0 laquelle appartient la ressource"
                 },
                 "centerName": {
@@ -274,32 +274,46 @@
             "title": "Etats vecteur",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "datetime",
+                "status"
+            ],
             "properties": {
-                "dateTime": {
+                "datetime": {
                     "type": "string",
                     "title": "Date/heure de changement de statut",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/mobilizedResource/0/state/0/dateTime",
+                    "example": "example.json#/mobilizedResource/0/state/0/datetime",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
                 "status": {
                     "type": "string",
-                    "title": "Statuts du vecteur",
+                    "title": "Status du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/state/0/status",
-                    "description": "Dernier statut du vecteur"
+                    "description": "Dernier statut du vecteur",
+                    "enum": [
+                        "ALERTE",
+                        "PARTI",
+                        "ARRIVEE SUR LES LIEUX",
+                        "TRANSPORT DESTINATION",
+                        "ARRIVEE DESTINATION",
+                        "FIN DE MEDICALISATION ",
+                        "QUITTE DESTINATION",
+                        "RETOUR BASE",
+                        "RENTREE BASE"
+                    ]
                 },
                 "availability": {
-                    "type": "string",
+                    "type": "boolean",
                     "title": "Disponibilit\u00e9 du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/state/0/availability",
-                    "description": "Indique si le vecteur est disponible / indisponible"
+                    "description": "Indique si le vecteur est disponible / indisponible\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
                 }
             },
             "additionalProperties": false,

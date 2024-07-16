@@ -19,7 +19,7 @@ A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="^[a-zA-Z]{2,3}\.[a-zA-Z]+\..*$"/>
+                        <pattern value="[a-zA-Z]{2,3}\.[a-zA-Z]+\..*"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -107,7 +107,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
         <sequence>
             <element name="location" type="x:location"/>
             <element name="team" type="x:team"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="actionsSMUR" type="x:actions"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="actionsSMUR" type="string"/>
             <element name="mainDiagnosis" type="string">
                 <annotation>
                     <documentation>Thésaurus SFMU-FEDORU.
@@ -226,12 +226,6 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. </documentation>
                 </annotation>
             </element>
-        </sequence>
-    </complexType>
-    <complexType name="actions">
-        <sequence>
-            <element name="actions" type="string"/>
-            <element minOccurs="0" name="maintained" type="boolean"/>
         </sequence>
     </complexType>
     <complexType name="resourceStatus">

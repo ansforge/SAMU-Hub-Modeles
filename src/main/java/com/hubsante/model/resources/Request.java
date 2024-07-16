@@ -43,15 +43,18 @@ import java.util.Objects;
  * Request
  */
 @JsonPropertyOrder(
-    {Request.JSON_PROPERTY_DATE_TIME, Request.JSON_PROPERTY_CONVENTION,
-     Request.JSON_PROPERTY_DEADLINE, Request.JSON_PROPERTY_PURPOSE,
-     Request.JSON_PROPERTY_FREETEXT})
+    {Request.JSON_PROPERTY_REQUEST_ID, Request.JSON_PROPERTY_DATETIME,
+     Request.JSON_PROPERTY_CONVENTION, Request.JSON_PROPERTY_DEADLINE,
+     Request.JSON_PROPERTY_PURPOSE, Request.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("request")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Request {
-  public static final String JSON_PROPERTY_DATE_TIME = "dateTime";
-  private OffsetDateTime dateTime;
+  public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
+  private String requestId;
+
+  public static final String JSON_PROPERTY_DATETIME = "datetime";
+  private OffsetDateTime datetime;
 
   public static final String JSON_PROPERTY_CONVENTION = "convention";
   private String convention;
@@ -60,7 +63,8 @@ public class Request {
   private String deadline;
 
   /**
-   * Motif de la demande de ressource auprès du partenaire
+   * Motif de la demande de ressource auprès du partenaire, voir liste des
+   * effets à obtenir identifiés
    */
   public enum PurposeEnum {
     SAP("SAP"),
@@ -120,27 +124,51 @@ public class Request {
 
   public Request() {}
 
-  public Request dateTime(OffsetDateTime dateTime) {
+  public Request requestId(String requestId) {
 
-    this.dateTime = dateTime;
+    this.requestId = requestId;
     return this;
   }
 
   /**
-   * Voir liste des effets à obtenir identifiés
-   * @return dateTime
+   * Identifiant unique partagé de la demande de ressource {orgID}.request.{ID
+   *unique de la demande dans le système émetteur}
+   * @return requestId
    **/
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OffsetDateTime getDateTime() {
-    return dateTime;
+  public String getRequestId() {
+    return requestId;
   }
 
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDateTime(OffsetDateTime dateTime) {
-    this.dateTime = dateTime;
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
+  }
+
+  public Request datetime(OffsetDateTime datetime) {
+
+    this.datetime = datetime;
+    return this;
+  }
+
+  /**
+   * Get datetime
+   * @return datetime
+   **/
+  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public OffsetDateTime getDatetime() {
+    return datetime;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDatetime(OffsetDateTime datetime) {
+    this.datetime = datetime;
   }
 
   public Request convention(String convention) {
@@ -196,7 +224,8 @@ public class Request {
   }
 
   /**
-   * Motif de la demande de ressource auprès du partenaire
+   * Motif de la demande de ressource auprès du partenaire, voir liste des
+   *effets à obtenir identifiés
    * @return purpose
    **/
   @JsonProperty(JSON_PROPERTY_PURPOSE)
@@ -244,7 +273,8 @@ public class Request {
       return false;
     }
     Request request = (Request)o;
-    return Objects.equals(this.dateTime, request.dateTime) &&
+    return Objects.equals(this.requestId, request.requestId) &&
+        Objects.equals(this.datetime, request.datetime) &&
         Objects.equals(this.convention, request.convention) &&
         Objects.equals(this.deadline, request.deadline) &&
         Objects.equals(this.purpose, request.purpose) &&
@@ -253,14 +283,18 @@ public class Request {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateTime, convention, deadline, purpose, freetext);
+    return Objects.hash(requestId, datetime, convention, deadline, purpose,
+                        freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Request {\n");
-    sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
+    sb.append("    requestId: ")
+        .append(toIndentedString(requestId))
+        .append("\n");
+    sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
     sb.append("    convention: ")
         .append(toIndentedString(convention))
         .append("\n");

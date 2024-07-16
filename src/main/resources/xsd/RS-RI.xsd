@@ -15,12 +15,12 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
     </complexType>
     <complexType name="resource">
         <sequence>
-            <element name="dateTime" type="dateTime">
+            <element name="datetime" type="dateTime">
                 <annotation>
                     <documentation>date et heure d'engagement de la ressource</documentation>
                 </annotation>
             </element>
-            <element name="resourceID" type="string">
+            <element name="resourceId" type="string">
                 <annotation>
                     <documentation>ID partagé unique de la ressource engagée, valorisé comme suit :
 {orgID}.resource.{ID unique de la ressource partagée}
@@ -28,18 +28,18 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
 {orgID}.resource.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="RSDRId" type="string">
+            <element minOccurs="0" name="requestId" type="string">
                 <annotation>
                     <documentation>Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), valorisé comme suit :
 {orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="missionID" type="string">
+            <element minOccurs="0" name="missionId" type="string">
                 <annotation>
                     <documentation>Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="orgID" type="string">
+            <element minOccurs="0" name="orgId" type="string">
                 <annotation>
                     <documentation>Organisation à laquelle appartient la ressource</documentation>
                 </annotation>
@@ -189,15 +189,31 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
     </complexType>
     <complexType name="state">
         <sequence>
-            <element minOccurs="0" name="dateTime" type="dateTime"/>
-            <element minOccurs="0" name="status" type="string">
+            <element name="datetime" type="dateTime"/>
+            <element name="status">
                 <annotation>
                     <documentation>Dernier statut du vecteur</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ALERTE"/>
+                        <enumeration value="PARTI"/>
+                        <enumeration value="ARRIVEE SUR LES LIEUX"/>
+                        <enumeration value="TRANSPORT DESTINATION"/>
+                        <enumeration value="ARRIVEE DESTINATION"/>
+                        <enumeration value="FIN DE MEDICALISATION "/>
+                        <enumeration value="QUITTE DESTINATION"/>
+                        <enumeration value="RETOUR BASE"/>
+                        <enumeration value="RENTREE BASE"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="availability" type="string">
+            <element minOccurs="0" name="availability" type="boolean">
                 <annotation>
-                    <documentation>Indique si le vecteur est disponible / indisponible</documentation>
+                    <documentation>Indique si le vecteur est disponible / indisponible
+TRUE = DISPONIBLE
+FALSE = INDISPONIBLE
+VIDE = INCONNU</documentation>
                 </annotation>
             </element>
         </sequence>

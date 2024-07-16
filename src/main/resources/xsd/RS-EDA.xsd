@@ -126,7 +126,12 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
         <sequence>
             <element name="id" type="string">
                 <annotation>
-                    <documentation>A valoriser avec l'identifiant partagé du patient, valorisé comme suit : {ID du dossier partagé}.P{numéro d’ordre chronologique}
+                    <documentation>A valoriser avec l'identifiant partagé du patient, valorisé comme suit : 
+{ID du dossier partagé}.P{numéro patient unique}
+
+OU, uniquement si un numéro unique de patient n’existe pas dans le système émetteur :
+{ID du dossier partagé}.P{numéro d’ordre chronologique}
+
 Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
 </documentation>
                 </annotation>
