@@ -2,10 +2,10 @@
 <resourcesInfo xmlns="urn:emergency:cisu:2.0:resourcesInfo">
   <caseId>fr.health.samu770-DRFR157702400400055</caseId>
   <mobilizedResource>
-    <dateTime>2024-01-04T07:08:00+01:00</dateTime>
-    <resourceID>fr.health.samu770.resource.VLM250</resourceID>
-    <RSDRId>fr.health.samu770.request.1249875</RSDRId>
-    <orgID>fr.health.samu770</orgID>
+    <datetime>2024-01-04T07:08:00+01:00</datetime>
+    <resourceId>fr.health.samu770.resource.VLM250</resourceId>
+    <requestId>fr.health.samu770.request.1249875</requestId>
+    <orgId>fr.health.samu770</orgId>
     <resourceType>SMUR</resourceType>
     <vehiculeType>VLM</vehiculeType>
     <name>VLM 77 - 250</name>

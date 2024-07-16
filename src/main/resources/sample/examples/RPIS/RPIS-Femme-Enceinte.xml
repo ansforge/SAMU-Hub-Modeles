@@ -42,6 +42,7 @@
       <nurse>false</nurse>
       <driver>true</driver>
     </team>
+    <actionsSMUR>ACC</actionsSMUR>
     <mainDiagnosis>JA40 </mainDiagnosis>
     <smurStatus>
       <departSmur>2024-05-26T13:21:00+02:00</departSmur>
