@@ -250,7 +250,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/id",
-                    "description": "A valoriser avec l'identifiant partag\u00e9 du patient, valoris\u00e9 comme suit : \n{ID du dossier partag\u00e9}.P{num\u00e9ro patient unique}\n\nOU, uniquement si un num\u00e9ro unique de patient n\u2019existe pas dans le syst\u00e8me \u00e9metteur :\n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique}\n\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 le patient.\n"
+                    "description": "A valoriser avec l'identifiant partag\u00e9 du patient, valoris\u00e9 comme suit : \n{ID de l\u2019organisation qui cr\u00e9e le dossier}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 le patient.\n"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -287,7 +287,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idPat",
-                    "description": "Identifiant partag\u00e9 du patient concern\u00e9 par l'observation, a remplir obligatoirement si ce patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur, valoris\u00e9 comme suit  : \n{ID du dossier partag\u00e9}.P{num\u00e9ro d\u2019ordre chronologique unique du patient}"
+                    "description": "Identifiant partag\u00e9 du patient concern\u00e9 par l'observation, a remplir obligatoirement si ce patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur, valoris\u00e9 comme suit  : \n{ID de l\u2019organisation qui cr\u00e9e le dossier}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
@@ -298,7 +298,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
-                    "description": "A valoriser avec l'identifiant unique de l'observation, valoris\u00e9 comme suit : {caseID}.medicalNote.{ID de l'observation dans le syst\u00e8me \u00e9metteur}.\nCet identifiant a vocation \u00e0 devenir obligatoire pour permettre les mises \u00e0 jour, il est laiss\u00e9 en facultatif temporairement.\n"
+                    "description": "A valoriser avec l'identifiant unique de l'observation, valoris\u00e9 comme suit :\n {ID de l\u2019organisation qui cr\u00e9e la note}.{senderCaseId}.medicalNote.{ID unique de l\u2019observation dans le syst\u00e8me \u00e9metteur}\nCet identifiant a vocation \u00e0 devenir obligatoire pour permettre les mises \u00e0 jour, il est laiss\u00e9 en facultatif temporairement.\n"
                 },
                 "creation": {
                     "type": "string",

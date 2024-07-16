@@ -127,11 +127,7 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
             <element name="id" type="string">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant partagé du patient, valorisé comme suit : 
-{ID du dossier partagé}.P{numéro patient unique}
-
-OU, uniquement si un numéro unique de patient n’existe pas dans le système émetteur :
-{ID du dossier partagé}.P{numéro d’ordre chronologique}
-
+{ID de l’organisation qui crée le dossier}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
 Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
 </documentation>
                 </annotation>
@@ -148,13 +144,14 @@ Cet identifiant est généré une seule fois par le système du partenaire qui c
             <element minOccurs="0" name="idPat" type="string">
                 <annotation>
                     <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
-{ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}</documentation>
+{ID de l’organisation qui crée le dossier}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}</documentation>
                 </annotation>
             </element>
             <element name="operator" type="x:operator"/>
             <element minOccurs="0" name="idObs" type="string">
                 <annotation>
-                    <documentation>A valoriser avec l'identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID de l'observation dans le système émetteur}.
+                    <documentation>A valoriser avec l'identifiant unique de l'observation, valorisé comme suit :
+ {ID de l’organisation qui crée la note}.{senderCaseId}.medicalNote.{ID unique de l’observation dans le système émetteur}
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 </documentation>
                 </annotation>

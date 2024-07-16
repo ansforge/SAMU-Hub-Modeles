@@ -69,8 +69,8 @@ components:
           description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
             \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
             e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
-            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{ID\
-            \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}"
+            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{sendercaseId}.{n\xB0\
+            \ d\u2019ordre chronologique de la ressource}"
           examples:
           - 'fr.health.samu770.resource.VLM250
 

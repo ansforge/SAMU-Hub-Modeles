@@ -2181,10 +2181,11 @@ components:
           example: example.json#/medicalNote/0/idPat
           description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
             \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
-            \ le syst\xE8me emetteur, valoris\xE9 comme suit  : \n{ID du dossier partag\xE9\
-            }.P{num\xE9ro d\u2019ordre chronologique unique du patient}"
+            \ le syst\xE8me emetteur, valoris\xE9 comme suit  : \n{ID de l\u2019organisation\
+            \ qui cr\xE9e le dossier}.{senderCaseId}.patient.{num\xE9ro d\u2019ordre\
+            \ chronologique au dossier}"
           examples:
-          - fr.health.samu044.DRFR154402415000450.P1
+          - fr.health.samu690.DRFR15DDXAAJJJ00001.1
         operator:
           $ref: '#/components/schemas/operator'
         idObs:
@@ -2194,9 +2195,10 @@ components:
           x-cols: 6
           example: example.json#/medicalNote/0/idObs
           description: "A valoriser avec l'identifiant unique de l'observation, valoris\xE9\
-            \ comme suit : {caseID}.medicalNote.{ID de l'observation dans le syst\xE8\
-            me \xE9metteur}.\nCet identifiant a vocation \xE0 devenir obligatoire\
-            \ pour permettre les mises \xE0 jour, il est laiss\xE9 en facultatif temporairement.\n"
+            \ comme suit :\n {ID de l\u2019organisation qui cr\xE9e la note}.{senderCaseId}.medicalNote.{ID\
+            \ unique de l\u2019observation dans le syst\xE8me \xE9metteur}\nCet identifiant\
+            \ a vocation \xE0 devenir obligatoire pour permettre les mises \xE0 jour,\
+            \ il est laiss\xE9 en facultatif temporairement.\n"
           examples:
           - fr.health.samu540.DRFR155402416000125.medicalNote.46585A
         creation:
@@ -3367,8 +3369,8 @@ components:
           description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
             \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
             e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
-            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{ID\
-            \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}"
+            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{sendercaseId}.{n\xB0\
+            \ d\u2019ordre chronologique de la ressource}"
           examples:
           - 'fr.health.samu770.resource.VLM250
 

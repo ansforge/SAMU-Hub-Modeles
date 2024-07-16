@@ -151,15 +151,9 @@ Par convention les prénoms composés doivent préférablement être séparés p
 CRRA traitant,,,,,,Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA - après accord verbal de ce dernier.,fr.health.samu440,owner,,,,,,1..1,,string,,
 Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,,,,,,0..n,X,patient,,
 ,ID patient partagé,,,,,"A valoriser avec l'identifiant partagé du patient, valorisé comme suit : 
-{ID du dossier partagé}.P{numéro patient unique}
-
-OU, uniquement si un numéro unique de patient n’existe pas dans le système émetteur :
-{ID du dossier partagé}.P{numéro d’ordre chronologique}
-
+{ID de l’organisation qui crée le dossier}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
 Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
-","fr.health.samu690.DRFR15DDXAAJJJ00001.P164895 
-ou
-fr.health.samu690.DRFR15DDXAAJJJ00001.P01",id,,,,,,1..1,,string,,
+",fr.health.samu690.DRFR15DDXAAJJJ00001.1,id,,,,,,1..1,,string,,
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,,,,,,0..1,X,administrativeFile,,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,,,,,,0..n,X,externalId,,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
@@ -182,11 +176,12 @@ Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_860
 ,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,
 Observation médicale,,,,,,Observations de nature médicale. ,,medicalNote,,,,,,0..n,X,medicalNote,,
 ,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
-{ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}",fr.health.samu044.DRFR154402415000450.P1,idPat,,,,,,0..1,,string,,
+{ID de l’organisation qui crée le dossier}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}",fr.health.samu690.DRFR15DDXAAJJJ00001.1,idPat,,,,,,0..1,,string,,
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,,,,,,1..1,X,operator,,
 ,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,,,,,,0..1,X,detailedName,,
 ,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
-,ID Observation,,,,,"A valoriser avec l'identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID de l'observation dans le système émetteur}.
+,ID Observation,,,,,"A valoriser avec l'identifiant unique de l'observation, valorisé comme suit :
+ {ID de l’organisation qui crée la note}.{senderCaseId}.medicalNote.{ID unique de l’observation dans le système émetteur}
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ",fr.health.samu540.DRFR155402416000125.medicalNote.46585A,idObs,,,,,,0..1,,string,,
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,,,,,,0..1,,datetime,,

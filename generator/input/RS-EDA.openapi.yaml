@@ -255,13 +255,12 @@ components:
           x-cols: 6
           example: example.json#/patient/0/id
           description: "A valoriser avec l'identifiant partag\xE9 du patient, valoris\xE9\
-            \ comme suit : \n{ID du dossier partag\xE9}.P{num\xE9ro patient unique}\n\
-            \nOU, uniquement si un num\xE9ro unique de patient n\u2019existe pas dans\
-            \ le syst\xE8me \xE9metteur :\n{ID du dossier partag\xE9}.P{num\xE9ro\
-            \ d\u2019ordre chronologique}\n\nCet identifiant est g\xE9n\xE9r\xE9 une\
-            \ seule fois par le syst\xE8me du partenaire qui cr\xE9\xE9 le patient.\n"
+            \ comme suit : \n{ID de l\u2019organisation qui cr\xE9e le dossier}.{senderCaseId}.patient.{num\xE9\
+            ro d\u2019ordre chronologique au dossier}\nCet identifiant est g\xE9n\xE9\
+            r\xE9 une seule fois par le syst\xE8me du partenaire qui cr\xE9\xE9 le\
+            \ patient.\n"
           examples:
-          - "fr.health.samu690.DRFR15DDXAAJJJ00001.P164895 \nou\nfr.health.samu690.DRFR15DDXAAJJJ00001.P01"
+          - fr.health.samu690.DRFR15DDXAAJJJ00001.1
         administrativeFile:
           $ref: '#/components/schemas/administrativeFile'
         identity:
@@ -291,10 +290,11 @@ components:
           example: example.json#/medicalNote/0/idPat
           description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
             \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
-            \ le syst\xE8me emetteur, valoris\xE9 comme suit  : \n{ID du dossier partag\xE9\
-            }.P{num\xE9ro d\u2019ordre chronologique unique du patient}"
+            \ le syst\xE8me emetteur, valoris\xE9 comme suit  : \n{ID de l\u2019organisation\
+            \ qui cr\xE9e le dossier}.{senderCaseId}.patient.{num\xE9ro d\u2019ordre\
+            \ chronologique au dossier}"
           examples:
-          - fr.health.samu044.DRFR154402415000450.P1
+          - fr.health.samu690.DRFR15DDXAAJJJ00001.1
         operator:
           $ref: '#/components/schemas/operator'
         idObs:
@@ -304,9 +304,10 @@ components:
           x-cols: 6
           example: example.json#/medicalNote/0/idObs
           description: "A valoriser avec l'identifiant unique de l'observation, valoris\xE9\
-            \ comme suit : {caseID}.medicalNote.{ID de l'observation dans le syst\xE8\
-            me \xE9metteur}.\nCet identifiant a vocation \xE0 devenir obligatoire\
-            \ pour permettre les mises \xE0 jour, il est laiss\xE9 en facultatif temporairement.\n"
+            \ comme suit :\n {ID de l\u2019organisation qui cr\xE9e la note}.{senderCaseId}.medicalNote.{ID\
+            \ unique de l\u2019observation dans le syst\xE8me \xE9metteur}\nCet identifiant\
+            \ a vocation \xE0 devenir obligatoire pour permettre les mises \xE0 jour,\
+            \ il est laiss\xE9 en facultatif temporairement.\n"
           examples:
           - fr.health.samu540.DRFR155402416000125.medicalNote.46585A
         creation:

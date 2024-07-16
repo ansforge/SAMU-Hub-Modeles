@@ -350,8 +350,8 @@ public class Resource {
    * ID partagé unique de la ressource engagée, valorisé comme suit :
    *{orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans
    *le cas où un ID unique de ressource ne peut pas être garanti par
-   *l&#39;organisation propriétaire : {orgID}.resource.{ID du dossier
-   *partagé}.{numéro d’ordre chronologique ressource}
+   *l&#39;organisation propriétaire : {orgID}.resource.{sendercaseId}.{n°
+   *d’ordre chronologique de la ressource}
    * @return resourceId
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)

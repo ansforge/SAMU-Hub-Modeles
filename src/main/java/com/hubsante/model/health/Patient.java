@@ -83,10 +83,9 @@ public class Patient {
 
   /**
    * A valoriser avec l&#39;identifiant partagé du patient, valorisé comme suit
-   *:  {ID du dossier partagé}.P{numéro patient unique}  OU, uniquement si un
-   *numéro unique de patient n’existe pas dans le système émetteur : {ID du
-   *dossier partagé}.P{numéro d’ordre chronologique}  Cet identifiant est généré
-   *une seule fois par le système du partenaire qui créé le patient.
+   *:  {ID de l’organisation qui crée le dossier}.{senderCaseId}.patient.{numéro
+   *d’ordre chronologique au dossier} Cet identifiant est généré une seule fois
+   *par le système du partenaire qui créé le patient.
    * @return id
    **/
   @JsonProperty(JSON_PROPERTY_ID)

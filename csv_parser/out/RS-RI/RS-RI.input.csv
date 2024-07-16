@@ -8,7 +8,7 @@ Ressource engagée,,,,,,Liste des vecteurs associés au message :  liste l'ensem
 ,ID Ressource partagé,,,,,"ID partagé unique de la ressource engagée, valorisé comme suit :
 {orgID}.resource.{ID unique de la ressource partagée}
 OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
-{orgID}.resource.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}","fr.health.samu770.resource.VLM250
+{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}","fr.health.samu770.resource.VLM250
 fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,,
 ,ID Demande partagé,,,,,"Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), valorisé comme suit :
 {orgID}.request.{ID unique de la demande dans le système émetteur}",fr.health.samu770.request.1249875,requestId,0..1,,string,,
