@@ -1,7 +1,7 @@
 {
   "inputSpec": "./input/RS-EDA.openapi.yaml",
-  "outputDir": "ruby/ruby_classes/",
-  "generatorName": "ruby",
+  "outputDir": "ruby/ruby-on-rails_classes/",
+  "generatorName": "ruby-on-rails",
   "globalProperties": {
     "models": "",
     "apis": false,
