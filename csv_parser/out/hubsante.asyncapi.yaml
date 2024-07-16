@@ -297,17 +297,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
-            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
-            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
-            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
-            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
-            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
-            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
-            \ un num\xE9ro unique dans son syst\xE8me."
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
@@ -317,7 +317,7 @@ components:
           description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
             metteur du message.\n"
           examples:
-          - DRFR15DDXAAJJJ0000
+          - DRFR15440241550012
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'affaire/dossier"
@@ -2011,17 +2011,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "A valoriser avec l'identifiant de l'affaire/dossier partag\xE9\
-            \ entre tous les intervenants, valoris\xE9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\n\
-            Cet identifiant est g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du\
-            \ partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9\
-            centralis\xE9e et ne pr\xE9senter aucune ambigu\xEFt\xE9. Il doit \xEA\
-            tre unique dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni\
-            \ par celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre\
-            \ un num\xE9ro unique dans son syst\xE8me."
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         senderCaseId:
           type: string
           title: Identifiant local de l'affaire/dossier
@@ -2031,7 +2031,7 @@ components:
           description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
             metteur du message.\n"
           examples:
-          - DRFR15DDXAAJJJ0000
+          - DRFR15440241550012
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'affaire/dossier"
@@ -2092,7 +2092,8 @@ components:
           x-cols: 6
           example: example.json#/owner
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
-            \ dossier \xE0 un autre CRAA - apr\xE8s accord verbal de ce dernier."
+            \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
+            \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
           examples:
           - fr.health.samu440
         patient:
@@ -2181,11 +2182,15 @@ components:
           example: example.json#/medicalNote/0/idPat
           description: "Identifiant partag\xE9 du patient concern\xE9 par l'observation,\
             \ a remplir obligatoirement si ce patient existe et est identifi\xE9 dans\
-            \ le syst\xE8me emetteur, valoris\xE9 comme suit  : \n{ID de l\u2019organisation\
-            \ qui cr\xE9e le dossier}.{senderCaseId}.patient.{num\xE9ro d\u2019ordre\
-            \ chronologique au dossier}"
+            \ le syst\xE8me emetteur, \n\nValoris\xE9 comme suit lors de sa cr\xE9\
+            ation : \n{OrgId \xE9metteur}.patient.{n\xB0patient unique dans le syst\xE8\
+            me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
+            \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
+            ro d\u2019ordre chronologique au dossier}"
           examples:
-          - fr.health.samu690.DRFR15DDXAAJJJ00001.1
+          - 'fr.health.samu690.patient.P23AZ59
+
+            fr.health.samu690.patient.DRFR15690242370035.1'
         operator:
           $ref: '#/components/schemas/operator'
         idObs:
@@ -2194,13 +2199,19 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/idObs
-          description: "A valoriser avec l'identifiant unique de l'observation, valoris\xE9\
-            \ comme suit :\n {ID de l\u2019organisation qui cr\xE9e la note}.{senderCaseId}.medicalNote.{ID\
-            \ unique de l\u2019observation dans le syst\xE8me \xE9metteur}\nCet identifiant\
-            \ a vocation \xE0 devenir obligatoire pour permettre les mises \xE0 jour,\
-            \ il est laiss\xE9 en facultatif temporairement.\n"
+          description: "Identifiant partag\xE9 de l'observation, g\xE9n\xE9r\xE9 une\
+            \ seule fois par le syst\xE8me du partenaire qui cr\xE9\xE9 l'observation\n\
+            Il est valoris\xE9 comme suit lors de sa cr\xE9ation : \n{OrgId \xE9metteur}.medicalNote.{ID\
+            \ unique de l\u2019observation dans le syst\xE8me \xE9metteur}\n\nOU -\
+            \ uniquement dans le cas o\xF9 un ID unique de la note n'est pas disponible\
+            \ dans le syst\xE8me : \n{OrgId \xE9metteur}.medicalNote.{senderCaseId}.{num\xE9\
+            ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
+            \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
+            \ laiss\xE9 en facultatif temporairement.\n"
           examples:
-          - fr.health.samu540.DRFR155402416000125.medicalNote.46585A
+          - 'fr.health.samu540.medicalNote.46585A
+
+            fr.health.samu540.medicalNote.DRFR15540241600125.20'
         creation:
           type: string
           title: "Date Heure de cr\xE9ation de l'observation"
@@ -5372,15 +5383,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         mobilizedResource:
           type: array
           items:
@@ -5511,15 +5524,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         request:
           $ref: '#/components/schemas/request'
       additionalProperties: false
@@ -5630,15 +5645,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         requestId:
           type: string
           title: "ID Demande partag\xE9"

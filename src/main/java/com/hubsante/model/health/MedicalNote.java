@@ -77,8 +77,10 @@ public class MedicalNote {
   /**
    * Identifiant partagé du patient concerné par l&#39;observation, a remplir
    *obligatoirement si ce patient existe et est identifié dans le système
-   *emetteur, valorisé comme suit  :  {ID de l’organisation qui crée le
-   *dossier}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
+   *emetteur,   Valorisé comme suit lors de sa création :  {OrgId
+   *émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un
+   *n°patient unique n&#39;existe pas dans le système émetteur : {ID
+   *émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
    * @return idPat
    **/
   @JsonProperty(JSON_PROPERTY_ID_PAT)
@@ -124,11 +126,14 @@ public class MedicalNote {
   }
 
   /**
-   * A valoriser avec l&#39;identifiant unique de l&#39;observation, valorisé
-   *comme suit :  {ID de l’organisation qui crée la
-   *note}.{senderCaseId}.medicalNote.{ID unique de l’observation dans le système
-   *émetteur} Cet identifiant a vocation à devenir obligatoire pour permettre
-   *les mises à jour, il est laissé en facultatif temporairement.
+   * Identifiant partagé de l&#39;observation, généré une seule fois par le
+   *système du partenaire qui créé l&#39;observation Il est valorisé comme suit
+   *lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de
+   *l’observation dans le système émetteur}  OU - uniquement dans le cas où un
+   *ID unique de la note n&#39;est pas disponible dans le système :  {OrgId
+   *émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}
+   *Cet identifiant a vocation à devenir obligatoire pour permettre les mises à
+   *jour, il est laissé en facultatif temporairement.
    * @return idObs
    **/
   @JsonProperty(JSON_PROPERTY_ID_OBS)

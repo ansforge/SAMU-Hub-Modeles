@@ -20,7 +20,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "A valoriser avec l'identifiant de l'affaire/dossier partag\u00e9 entre tous les intervenants, valoris\u00e9 comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
+            "description": "Identifiant partag\u00e9 de l'affaire/dossier, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui recoit la primo-demande de secours (cr\u00e9ateur du dossier). \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9.\n Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
         },
         "senderCaseId": {
             "type": "string",
@@ -82,7 +82,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/owner",
-            "description": "Attribut qui permet de transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA - apr\u00e8s accord verbal de ce dernier."
+            "description": "Attribut qui permet de transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation concern\u00e9 (orgId = {pays}.{domaine}.{organisation})"
         },
         "patient": {
             "type": "array",
@@ -250,7 +250,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/id",
-                    "description": "A valoriser avec l'identifiant partag\u00e9 du patient, valoris\u00e9 comme suit : \n{ID de l\u2019organisation qui cr\u00e9e le dossier}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}\nCet identifiant est g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 le patient.\n"
+                    "description": "Identifiant partag\u00e9 du patient, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 le patient.\nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.patient.{n\u00b0patient unique dans le syst\u00e8me \u00e9metteur}\n\nOU, si un n\u00b0patient unique n'existe pas dans le syst\u00e8me \u00e9metteur :\n{ID \u00e9metteur}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}\n\n\n"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -287,7 +287,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idPat",
-                    "description": "Identifiant partag\u00e9 du patient concern\u00e9 par l'observation, a remplir obligatoirement si ce patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur, valoris\u00e9 comme suit  : \n{ID de l\u2019organisation qui cr\u00e9e le dossier}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}"
+                    "description": "Identifiant partag\u00e9 du patient concern\u00e9 par l'observation, a remplir obligatoirement si ce patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur, \n\nValoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.patient.{n\u00b0patient unique dans le syst\u00e8me \u00e9metteur}\n\nOU, si un n\u00b0patient unique n'existe pas dans le syst\u00e8me \u00e9metteur :\n{ID \u00e9metteur}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
@@ -298,7 +298,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
-                    "description": "A valoriser avec l'identifiant unique de l'observation, valoris\u00e9 comme suit :\n {ID de l\u2019organisation qui cr\u00e9e la note}.{senderCaseId}.medicalNote.{ID unique de l\u2019observation dans le syst\u00e8me \u00e9metteur}\nCet identifiant a vocation \u00e0 devenir obligatoire pour permettre les mises \u00e0 jour, il est laiss\u00e9 en facultatif temporairement.\n"
+                    "description": "Identifiant partag\u00e9 de l'observation, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 l'observation\nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.medicalNote.{ID unique de l\u2019observation dans le syst\u00e8me \u00e9metteur}\n\nOU - uniquement dans le cas o\u00f9 un ID unique de la note n'est pas disponible dans le syst\u00e8me : \n{OrgId \u00e9metteur}.medicalNote.{senderCaseId}.{num\u00e9ro chronologique de l\u2019observation}\n\nCet identifiant a vocation \u00e0 devenir obligatoire pour permettre les mises \u00e0 jour, il est laiss\u00e9 en facultatif temporairement.\n"
                 },
                 "creation": {
                     "type": "string",
