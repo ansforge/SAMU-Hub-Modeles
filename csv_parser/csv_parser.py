@@ -13,7 +13,6 @@ import uml_generator
 import os
 
 from pathlib import Path
-# TODO: Remove this todo
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
