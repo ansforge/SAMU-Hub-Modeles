@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:technical" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:technical" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="technical" type="x:technical"/>
+    <complexType name="technical">
+        <sequence>
+            <element name="requiredStringField" type="string">
+                <annotation>
+                    <documentation>This field is required</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="optionalStringField" type="string">
+                <annotation>
+                    <documentation>This field is optional</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="enumerationField">
+                <annotation>
+                    <documentation>This is an enumeration</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="REPORT"/>
+                        <enumeration value="UPDATE"/>
+                        <enumeration value="CANCEL"/>
+                        <enumeration value="ACK"/>
+                        <enumeration value="ERROR"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="numberField" type="decimal">
+                <annotation>
+                    <documentation>This is a number</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="objectField">
+                <annotation>
+                    <documentation>This is an object</documentation>
+                </annotation>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="0" name="arrayField" type="string"/>
+            <element minOccurs="0" name="phoneNumberField" type="string">
+                <annotation>
+                    <documentation>Phone number with regex</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="dateField" type="string">
+                <annotation>
+                    <documentation>Date with regex</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="emailField" type="string">
+                <annotation>
+                    <documentation>Email with regex</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

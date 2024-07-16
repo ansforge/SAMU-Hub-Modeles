@@ -1,0 +1,99 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "TECHNICAL.schema.json#",
+    "version": "24.07.16",
+    "example": "example.json#",
+    "type": "object",
+    "title": "technical",
+    "required": [
+        "requiredStringField"
+    ],
+    "properties": {
+        "requiredStringField": {
+            "type": "string",
+            "title": "Required string",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/requiredStringField",
+            "description": "This field is required"
+        },
+        "optionalStringField": {
+            "type": "string",
+            "title": "Optional string",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/optionalStringField",
+            "description": "This field is optional"
+        },
+        "enumerationField": {
+            "type": "string",
+            "title": "Enumeration",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/enumerationField",
+            "description": "This is an enumeration",
+            "enum": [
+                "REPORT",
+                "UPDATE",
+                "CANCEL",
+                "ACK",
+                "ERROR"
+            ]
+        },
+        "numberField": {
+            "type": "number",
+            "title": "Optional number",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/numberField",
+            "description": "This is a number"
+        },
+        "objectField": {
+            "type": "object",
+            "title": "Object",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/objectField",
+            "description": "This is an object"
+        },
+        "arrayField": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Array",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/arrayField/0",
+                "description": "This is an array"
+            }
+        },
+        "phoneNumberField": {
+            "type": "string",
+            "title": "Phone number with regex",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/phoneNumberField",
+            "description": "Phone number with regex"
+        },
+        "dateField": {
+            "type": "string",
+            "title": "Date with regex",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/dateField",
+            "description": "Date with regex"
+        },
+        "emailField": {
+            "type": "string",
+            "title": "Email with regex",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/emailField",
+            "description": "Email with regex"
+        }
+    },
+    "definitions": {},
+    "additionalProperties": false
+}

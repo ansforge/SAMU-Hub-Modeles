@@ -5554,10 +5554,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/requestId
-          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          description: "Identifiant unique partag\xE9 de la demande de ressource,\
+            \  g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui\
+            \ \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
+            ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
+            \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
+            \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            ro d\u2019ordre chronologique}"
           examples:
-          - fr.health.samu770.request.1249875
+          - 'fr.health.samu770.request.1249875
+
+            fr.health.samu690.request.DRFR15690242370035.3'
         datetime:
           type: string
           title: "Date Heure de cr\xE9ation de la demande"
@@ -5622,7 +5629,9 @@ components:
       additionalProperties: false
       example: example.json#/request
       examples:
-      - requestId: fr.health.samu770.request.1249875
+      - requestId: 'fr.health.samu770.request.1249875
+
+          fr.health.samu690.request.DRFR15690242370035.3'
         datetime: None
         convention: None
         deadline: None
@@ -5662,10 +5671,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/requestId
-          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          description: "Identifiant unique partag\xE9 de la demande de ressource,\
+            \  g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui\
+            \ \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
+            ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
+            \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
+            \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            ro d\u2019ordre chronologique}"
           examples:
-          - fr.health.samu770.request.1249875
+          - 'fr.health.samu770.request.1249875
+
+            fr.health.samu690.request.DRFR15690242370035.3'
         response:
           $ref: '#/components/schemas/response'
       additionalProperties: false
@@ -6339,3 +6355,103 @@ components:
       additionalProperties: true
       examples:
       - {}
+    technical:
+      $id: classpath:/json-schema/schema#
+      x-id: TECHNICAL.schema.json#
+      example: example.json#
+      type: object
+      title: technical
+      required:
+      - requiredStringField
+      properties:
+        requiredStringField:
+          type: string
+          title: Required string
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/requiredStringField
+          description: This field is required
+          examples:
+          - None
+        optionalStringField:
+          type: string
+          title: Optional string
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/optionalStringField
+          description: This field is optional
+          examples:
+          - None
+        enumerationField:
+          type: string
+          title: Enumeration
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/enumerationField
+          description: This is an enumeration
+          enum:
+          - REPORT
+          - UPDATE
+          - CANCEL
+          - ACK
+          - ERROR
+          examples:
+          - None
+        numberField:
+          type: number
+          title: Optional number
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/numberField
+          description: This is a number
+          examples:
+          - None
+        objectField:
+          type: object
+          title: Object
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectField
+          description: This is an object
+          examples:
+          - None
+        arrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayField/0
+            description: This is an array
+            examples:
+            - None
+        phoneNumberField:
+          type: string
+          title: Phone number with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/phoneNumberField
+          description: Phone number with regex
+          examples:
+          - None
+        dateField:
+          type: string
+          title: Date with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/dateField
+          description: Date with regex
+          examples:
+          - None
+        emailField:
+          type: string
+          title: Email with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/emailField
+          description: Email with regex
+          examples:
+          - None
+      additionalProperties: false

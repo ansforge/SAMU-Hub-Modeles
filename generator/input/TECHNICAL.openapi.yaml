@@ -1,0 +1,110 @@
+openapi: 3.0.0
+components:
+  schemas:
+    technicalWrapper:
+      type: object
+      required:
+      - technical
+      properties:
+        technical:
+          $ref: '#/components/schemas/technical'
+    technical:
+      $id: classpath:/json-schema/schema#
+      x-id: TECHNICAL.schema.json#
+      example: example.json#
+      type: object
+      title: technical
+      required:
+      - requiredStringField
+      properties:
+        requiredStringField:
+          type: string
+          title: Required string
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/requiredStringField
+          description: This field is required
+          examples:
+          - None
+        optionalStringField:
+          type: string
+          title: Optional string
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/optionalStringField
+          description: This field is optional
+          examples:
+          - None
+        enumerationField:
+          type: string
+          title: Enumeration
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/enumerationField
+          description: This is an enumeration
+          enum:
+          - REPORT
+          - UPDATE
+          - CANCEL
+          - ACK
+          - ERROR
+          examples:
+          - None
+        numberField:
+          type: number
+          title: Optional number
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/numberField
+          description: This is a number
+          examples:
+          - None
+        objectField:
+          type: object
+          title: Object
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectField
+          description: This is an object
+          examples:
+          - None
+        arrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayField/0
+            description: This is an array
+            examples:
+            - None
+        phoneNumberField:
+          type: string
+          title: Phone number with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/phoneNumberField
+          description: Phone number with regex
+          examples:
+          - None
+        dateField:
+          type: string
+          title: Date with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/dateField
+          description: Date with regex
+          examples:
+          - None
+        emailField:
+          type: string
+          title: Email with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/emailField
+          description: Email with regex
+          examples:
+          - None
+      additionalProperties: false

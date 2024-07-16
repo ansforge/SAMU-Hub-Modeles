@@ -1,0 +1,13 @@
+{
+    "requiredStringField": "None",
+    "optionalStringField": "None",
+    "enumerationField": "None",
+    "numberField": "None",
+    "objectField": "None",
+    "arrayField": [
+        "None"
+    ],
+    "phoneNumberField": "None",
+    "dateField": "None",
+    "emailField": "None"
+}
