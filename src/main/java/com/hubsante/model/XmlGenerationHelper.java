@@ -79,8 +79,8 @@ public class XmlGenerationHelper {
             "geoResourcesRequest",
             "geoResourcesDetails",
             "resourcesInfo",
-            "resourcesStatus",
             "resourcesRequest",
+            "resourcesResponse",
             "rpis"
     };
 

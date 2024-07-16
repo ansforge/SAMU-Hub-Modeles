@@ -52,6 +52,10 @@ public class ContentMessageHandler {
         return jsonMapper.readValue(json, ContentMessage.class);
     }
 
+    public ContentMessage deserializeXmlContentMessage(String xml) throws JsonProcessingException {
+        return xmlMapper.readValue(xml, ContentMessage.class);
+    }
+
     public String serializeXmlContent(Object content) throws JsonProcessingException {
         return xmlMapper.writeValueAsString(content);
     }

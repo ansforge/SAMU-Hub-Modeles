@@ -18,6 +18,7 @@ package com.hubsante.model.edxlhandler;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
@@ -155,6 +156,50 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
                 log.error("File " + file.getName() + " is not valid against schema: " + e.getMessage());
             }
         });
+        if (!allPass.get()) {
+            fail("Some files are not valid against schema");
+        }
+    }
+
+    @Test
+    @DisplayName("all json and xml example files deserialize to equivalent objects")
+    public void allXmlAndJsonFilesDeserializationResultsAreEquivalent() {
+        String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
+        File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
+        assert subFolders != null;
+
+        List<File> files = new ArrayList<>();
+        Arrays.stream(subFolders).forEach(folder -> {
+            files.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
+        });
+
+        AtomicBoolean allPass = new AtomicBoolean(true);
+
+        files.forEach(file -> {
+            try {
+                if(file.getName().endsWith(".json")) {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    ContentMessage messageFromJson = contentMessageHandler.deserializeJsonContentMessage(useCaseJson);
+
+                    File xmlFile = files.stream()
+                            .filter(f -> f.getName().equals(file.getName().replace(".json", ".xml")))
+                            .findFirst()
+                            .orElseThrow(() -> new RuntimeException("XML file not found for " + file.getName()));
+                    String useCaseXml = new String(Files.readAllBytes(xmlFile.toPath()), StandardCharsets.UTF_8);
+                    ContentMessage messageFromXml = contentMessageHandler.deserializeXmlContentMessage(useCaseXml);
+
+                    assertEquals(messageFromJson, messageFromXml);
+                }
+                log.info("File {} has been successfully deserialized", file.getName());
+
+            }catch (JsonProcessingException e) {
+                allPass.set(false);
+                log.error("File " + file.getName() + " could have not been deserialized: " + e.getMessage());
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
         if (!allPass.get()) {
             fail("Some files are not valid against schema");
         }
