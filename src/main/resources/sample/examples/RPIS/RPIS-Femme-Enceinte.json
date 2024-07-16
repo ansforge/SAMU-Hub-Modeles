@@ -35,7 +35,7 @@
         },
         "type": "L04.02.00"
       },
-      "actions": [
+      "actionsSMUR": [
         "ACC"
       ],
       "mainDiagnosis": "JA40 "
