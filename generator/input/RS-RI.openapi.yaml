@@ -88,7 +88,9 @@ components:
             \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
             \ le syst\xE8me \xE9metteur}"
           examples:
-          - fr.health.samu770.request.1249875
+          - 'fr.health.samu770.request.1249875
+
+            fr.health.samu690.request.DRFR15690242370035.3'
         missionId:
           type: string
           title: ID Mission local

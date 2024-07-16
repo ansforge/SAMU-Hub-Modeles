@@ -241,15 +241,15 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "id"
+                "idPat"
             ],
             "properties": {
-                "id": {
+                "idPat": {
                     "type": "string",
                     "title": "ID patient partag\u00e9",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/patient/0/id",
+                    "example": "example.json#/patient/0/idPat",
                     "description": "Identifiant partag\u00e9 du patient, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 le patient.\nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.patient.{n\u00b0patient unique dans le syst\u00e8me \u00e9metteur}\n\nOU, si un n\u00b0patient unique n'existe pas dans le syst\u00e8me \u00e9metteur :\n{ID \u00e9metteur}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}\n\n\n"
                 },
                 "administrativeFile": {
@@ -1003,7 +1003,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/phoneNumber",
-                    "description": "A valoriser avec le num\u00e9ro de t\u00e9l\u00e9phone du lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/ la victime."
+                    "description": "A valoriser avec le num\u00e9ro de t\u00e9l\u00e9phone du lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/ la victime.\nLe format attendu est le suivant : +{indicatif pays}{num\u00e9ro de t\u00e9l\u00e9phone}"
                 }
             },
             "additionalProperties": false,
@@ -1644,7 +1644,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/detail",
-                    "description": "A valoriser avec la valeur de l'URI utilis\u00e9e"
+                    "description": "A valoriser avec la valeur de l'URI utilis\u00e9e\nLe format attendu pour un num\u00e9ro de t\u00e9l\u00e9phone est le suivant : +{indicatif pays}{num\u00e9ro de t\u00e9l\u00e9phone}"
                 }
             },
             "additionalProperties": false,

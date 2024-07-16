@@ -13,7 +13,8 @@ OU - uniquement dans le cas où un ID unique de ressource ne peut pas être gara
 {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}","fr.health.samu770.resource.VLM250
 fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,,
 ,ID Demande partagé,,,,,"Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), valorisé comme suit :
-{orgID}.request.{ID unique de la demande dans le système émetteur}",fr.health.samu770.request.1249875,requestId,0..1,,string,,
+{orgID}.request.{ID unique de la demande dans le système émetteur}","fr.health.samu770.request.1249875
+fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,,
 ,ID Mission local,,,,,"Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur",DRFR15DDXAAJJJ0000.M001,missionId,0..1,,string,,
 ,ID Organisation propriétaire,,,,,Organisation à laquelle appartient la ressource,fr.health.samu440,orgId,0..1,,string,,
 ,ID Centre d’affectation,,,,,Lieu de garage principal,CHU Nantes,centerName,0..1,,string,,

@@ -41,7 +41,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/requestId",
-                    "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
+                    "description": "Identifiant unique partag\u00e9 de la demande de ressource,  g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui \u00e9met la demande \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}\n\nOU - uniquement si un ID unique de la demande n'est pas disponible : \nOrgId \u00e9metteur}.request.{senderCaseId}.{num\u00e9ro d\u2019ordre chronologique}"
                 },
                 "datetime": {
                     "type": "string",

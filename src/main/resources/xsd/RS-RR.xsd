@@ -14,8 +14,12 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
             </element>
             <element name="requestId" type="string">
                 <annotation>
-                    <documentation>Identifiant unique partagé de la demande de ressource
-{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
+                    <documentation>Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
+Il est valorisé comme suit lors de sa création : 
+{orgID}.request.{ID unique de la demande dans le système émetteur}
+
+OU - uniquement si un ID unique de la demande n'est pas disponible : 
+OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element name="response" type="x:response"/>

@@ -73,7 +73,8 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 ,,Bâtiment,,,,A valoriser avec le nom du bâtiment,Batiment B,buildingName,,,,,,0..1,,string,,
 ,,Entrée,,,,A valoriser avec le nom de l'entrée,Zone Sud,entrance,,,,,,0..1,,string,,
 ,,Service,,,,"A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.",Infirmerie,entity,,,,,,0..1,,string,,
-,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.",33123452323,phoneNumber,,,,,,0..1,,string,,
+,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
+Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,,,,,,0..1,,string,,
 ,Géometrie associée,,,,,,,geometry,,,,,,0..1,X,geometry,,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
 Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,,,,,,1..1,,datetime,,
@@ -149,7 +150,8 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
 ,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,,,,,,1..1,,string,,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
 ,,,Type de contact,,,"A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO",TEL,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
-,,,URI du contact,,,A valoriser avec la valeur de l'URI utilisée,0671830530,detail,,,,,,1..1,,string,,
+,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,,,,,,1..1,,string,,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).

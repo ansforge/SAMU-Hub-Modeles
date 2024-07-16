@@ -5,8 +5,13 @@ Il est valorisé comme suit lors de sa création :
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,,
-ID Demande partagé,,,,,,"Identifiant unique partagé de la demande de ressource
-{orgID}.request.{ID unique de la demande dans le système émetteur}",fr.health.samu770.request.1249875,requestId,1..1,,string,,
+ID Demande partagé,,,,,,"Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
+Il est valorisé comme suit lors de sa création : 
+{orgID}.request.{ID unique de la demande dans le système émetteur}
+
+OU - uniquement si un ID unique de la demande n'est pas disponible : 
+OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
+fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,,
 Réponse à la demande de ressources,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,response,1..1,X,response,,Format datetime décrit dans le DSF
 ,Date Heure de réponse,,,,,Voir liste des effets à obtenir identifiés,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
 ,Réponse,,,,,oui / non / oui partiel / différé,,answer,1..1,,string,X,"ENUM: ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"

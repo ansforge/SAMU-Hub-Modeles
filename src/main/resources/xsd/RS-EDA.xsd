@@ -128,7 +128,7 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
     </complexType>
     <complexType name="patient">
         <sequence>
-            <element name="id" type="string">
+            <element name="idPat" type="string">
                 <annotation>
                     <documentation>Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
@@ -716,7 +716,8 @@ La valeur du code INSEE est obligatoire dès que le nom de la commune est rensei
             </element>
             <element minOccurs="0" name="phoneNumber" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.</documentation>
+                    <documentation>A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
+Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>
         </sequence>
@@ -1221,7 +1222,8 @@ cf.nomenclature associée.</documentation>
             </element>
             <element name="detail" type="string">
                 <annotation>
-                    <documentation>A valoriser avec la valeur de l'URI utilisée</documentation>
+                    <documentation>A valoriser avec la valeur de l'URI utilisée
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>
         </sequence>

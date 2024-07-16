@@ -42,10 +42,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/requestId
-          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          description: "Identifiant unique partag\xE9 de la demande de ressource,\
+            \  g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui\
+            \ \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
+            ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
+            \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
+            \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            ro d\u2019ordre chronologique}"
           examples:
-          - fr.health.samu770.request.1249875
+          - 'fr.health.samu770.request.1249875
+
+            fr.health.samu690.request.DRFR15690242370035.3'
         response:
           $ref: '#/components/schemas/response'
       additionalProperties: false

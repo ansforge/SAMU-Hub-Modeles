@@ -294,7 +294,8 @@ public class Access {
   /**
    * A valoriser avec le numéro de téléphone du lieu de l&#39;intervention, par
    *exemple : téléphone du secrétariat, téléphone du service administratif ou se
-   *trouve le patient/ la victime.
+   *trouve le patient/ la victime. Le format attendu est le suivant :
+   *+{indicatif pays}{numéro de téléphone}
    * @return phoneNumber
    **/
   @JsonProperty(JSON_PROPERTY_PHONE_NUMBER)
