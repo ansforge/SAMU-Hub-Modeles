@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<resourcesResponse xmlns="urn:emergency:cisu:2.0:resourcesResponse">
+  <caseId>fr.health.samu950.DRFR159502400400159</caseId>
+  <requestId>fr.health.samu950.request.498</requestId>
+  <response>
+    <datetime>2024-01-18T15:12:00+01:00</datetime>
+    <answer>ACCEPTEE</answer>
+    <freetext>Ok pour kit pédiatrique. Départ immédiat.</freetext>
+  </response>
+</resourcesResponse>
