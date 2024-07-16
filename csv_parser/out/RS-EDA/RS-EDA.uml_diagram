@@ -238,7 +238,7 @@ strict digraph {
                 <TR>
                 <TD ><B>patient</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >id <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	patient -> createCaseHealth [headlabel=1 taillabel="0..*"]
 	detailedName [label=<<TABLE>

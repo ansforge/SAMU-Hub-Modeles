@@ -3397,7 +3397,9 @@ components:
             \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
             \ le syst\xE8me \xE9metteur}"
           examples:
-          - fr.health.samu770.request.1249875
+          - 'fr.health.samu770.request.1249875
+
+            fr.health.samu690.request.DRFR15690242370035.3'
         missionId:
           type: string
           title: ID Mission local
@@ -6434,6 +6436,7 @@ components:
           x-cols: 6
           example: example.json#/phoneNumberField
           description: Phone number with regex
+          pattern: \+?\d*
           examples:
           - None
         dateField:
@@ -6443,6 +6446,7 @@ components:
           x-cols: 6
           example: example.json#/dateField
           description: Date with regex
+          pattern: \d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])
           examples:
           - None
         emailField:
@@ -6452,6 +6456,7 @@ components:
           x-cols: 6
           example: example.json#/emailField
           description: Email with regex
+          pattern: '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
           examples:
           - None
       additionalProperties: false

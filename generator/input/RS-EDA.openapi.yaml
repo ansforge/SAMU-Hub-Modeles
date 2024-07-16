@@ -247,14 +247,14 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - id
+      - idPat
       properties:
-        id:
+        idPat:
           type: string
           title: "ID patient partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/0/id
+          example: example.json#/patient/0/idPat
           description: "Identifiant partag\xE9 du patient, g\xE9n\xE9r\xE9 une seule\
             \ fois par le syst\xE8me du partenaire qui cr\xE9\xE9 le patient.\nIl\
             \ est valoris\xE9 comme suit lors de sa cr\xE9ation : \n{OrgId \xE9metteur}.patient.{n\xB0\

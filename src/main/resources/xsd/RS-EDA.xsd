@@ -128,7 +128,7 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
     </complexType>
     <complexType name="patient">
         <sequence>
-            <element name="id" type="string">
+            <element name="idPat" type="string">
                 <annotation>
                     <documentation>Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 

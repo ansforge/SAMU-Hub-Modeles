@@ -37,20 +37,35 @@
                 </annotation>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="arrayField" type="string"/>
-            <element minOccurs="0" name="phoneNumberField" type="string">
+            <element minOccurs="0" name="phoneNumberField">
                 <annotation>
                     <documentation>Phone number with regex</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\+?\d*"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="dateField" type="string">
+            <element minOccurs="0" name="dateField">
                 <annotation>
                     <documentation>Date with regex</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element minOccurs="0" name="emailField" type="string">
+            <element minOccurs="0" name="emailField">
                 <annotation>
                     <documentation>Email with regex</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="[\w-\.]+@([\w-]+\.)+[\w-]{2,4}"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>

@@ -7,6 +7,6 @@ Object,,,,,,This is an object,,objectField,0..1,technicalObject,object,,
 ,Object property A,,,,,Object property string,,objectPropertyString,0..1,,string,,
 ,Object property B,,,,,Object property number,,objectPropertyNumber,0..1,,number,,
 Array,,,,,,This is an array,,arrayField,0..n,,string,,
-Phone number with regex,,,,,,Phone number with regex,,phoneNumberField,0..1,,string,,
-Date with regex,,,,,,Date with regex,,dateField,0..1,,string,,
-Email with regex,,,,,,Email with regex,,emailField,0..1,,string,,
+Phone number with regex,,,,,,Phone number with regex,,phoneNumberField,0..1,,string,,REGEX: \+?\d*
+Date with regex,,,,,,Date with regex,,dateField,0..1,,string,,REGEX: \d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])
+Email with regex,,,,,,Email with regex,,emailField,0..1,,string,,"REGEX: [\w-\.]+@([\w-]+\.)+[\w-]{2,4}"
