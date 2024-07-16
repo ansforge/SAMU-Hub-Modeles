@@ -6,6 +6,10 @@ Note : En Java, nous devons appliquer trois configurations successivement, car l
 - les classes "useCase" (CreateCase, CreateCaseHealth, etc.), uniquement pour pouvoir porter du mapping XML spécifique - inutile dans un contexte JSON
 - les classes "wrapper" (CreateCaseWrapper, CreateCaseHealthWrapper, etc.), pour pouvoir gérer une logique d'héritage. Celle-ci est totalement adhérente à la librairie Java de (dé)sérialisation que nous utilisons, et pourrait être sans objet pour d'autres langages. A tester probablement en dernier lieu, donc.
 
+### Sources utiles :
+https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/ruby.md
+https://github.com/OpenAPITools/openapi-generator/blob/master/docs/generators/ruby-on-rails.md
+
 ### Reste à faire :
 - [ ] Contrôler que les classes générées sont conformes
 - [ ] Contrôler que les paramètres définis dans les additionalProperties du fichier de config sont conformes aux usages (casse, nom des packages ?)
