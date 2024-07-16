@@ -1,11 +1,11 @@
 {
   "resourcesResponse": {
-    "requestResponse": {
-      "dateTime": "2024-01-18T15:12:00+01:00",
+    "response": {
+      "datetime": "2024-01-18T15:12:00+01:00",
       "answer": "ACCEPTEE",
       "freetext": "Ok pour kit pédiatrique. Départ immédiat."
     },
     "caseId": "fr.health.samu950.DRFR159502400400159",
-    "RSDRId": "fr.health.samu950.request.498"
+    "requestId": "fr.health.samu950.request.498"
   }
 }

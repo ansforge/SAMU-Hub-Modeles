@@ -35,6 +35,9 @@
         },
         "type": "L04.02.00"
       },
+      "actionsSMUR": [
+        "ACC"
+      ],
       "mainDiagnosis": "JA40 "
     },
     "patient": {

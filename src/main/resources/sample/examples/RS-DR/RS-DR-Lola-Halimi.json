@@ -1,11 +1,11 @@
 {
   "resourcesRequest": {
     "request": {
-      "dateTime": "2024-01-18T15:10:00+01:00",
-      "purpose": "MG",
-      "freetext": "Prévoir matériel spécifique pour enfant (10 ans). Suspicion de fracture."
+      "datetime": "2024-01-18T15:10:00+01:00",
+      "freetext": "Prévoir matériel spécifique pour enfant (10 ans). Suspicion de fracture.",
+      "requestId": "fr.health.samu950.request.498",
+      "purpose": "REGUL"
     },
-    "caseId": "fr.health.samu950.DRFR159502400400159",
-    "RSDRId": "fr.health.samu950.request.498"
+    "caseId": "fr.health.samu950.DRFR159502400400159"
   }
 }

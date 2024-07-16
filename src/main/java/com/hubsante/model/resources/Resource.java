@@ -49,9 +49,9 @@ import java.util.Objects;
  * Resource
  */
 @JsonPropertyOrder(
-    {Resource.JSON_PROPERTY_DATE_TIME, Resource.JSON_PROPERTY_RESOURCE_I_D,
-     Resource.JSON_PROPERTY_RS_D_R_ID, Resource.JSON_PROPERTY_MISSION_I_D,
-     Resource.JSON_PROPERTY_ORG_I_D, Resource.JSON_PROPERTY_CENTER_NAME,
+    {Resource.JSON_PROPERTY_DATETIME, Resource.JSON_PROPERTY_RESOURCE_ID,
+     Resource.JSON_PROPERTY_REQUEST_ID, Resource.JSON_PROPERTY_MISSION_ID,
+     Resource.JSON_PROPERTY_ORG_ID, Resource.JSON_PROPERTY_CENTER_NAME,
      Resource.JSON_PROPERTY_RESOURCE_TYPE, Resource.JSON_PROPERTY_VEHICULE_TYPE,
      Resource.JSON_PROPERTY_PLATE, Resource.JSON_PROPERTY_NAME,
      Resource.JSON_PROPERTY_CENTER_CITY, Resource.JSON_PROPERTY_TEAM,
@@ -61,20 +61,20 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Resource {
-  public static final String JSON_PROPERTY_DATE_TIME = "dateTime";
-  private OffsetDateTime dateTime;
+  public static final String JSON_PROPERTY_DATETIME = "datetime";
+  private OffsetDateTime datetime;
 
-  public static final String JSON_PROPERTY_RESOURCE_I_D = "resourceID";
-  private String resourceID;
+  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
+  private String resourceId;
 
-  public static final String JSON_PROPERTY_RS_D_R_ID = "RSDRId";
-  private String rsDRId;
+  public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
+  private String requestId;
 
-  public static final String JSON_PROPERTY_MISSION_I_D = "missionID";
-  private String missionID;
+  public static final String JSON_PROPERTY_MISSION_ID = "missionId";
+  private String missionId;
 
-  public static final String JSON_PROPERTY_ORG_I_D = "orgID";
-  private String orgID;
+  public static final String JSON_PROPERTY_ORG_ID = "orgId";
+  private String orgId;
 
   public static final String JSON_PROPERTY_CENTER_NAME = "centerName";
   private String centerName;
@@ -317,32 +317,32 @@ public class Resource {
 
   public Resource() {}
 
-  public Resource dateTime(OffsetDateTime dateTime) {
+  public Resource datetime(OffsetDateTime datetime) {
 
-    this.dateTime = dateTime;
+    this.datetime = datetime;
     return this;
   }
 
   /**
    * date et heure d&#39;engagement de la ressource
-   * @return dateTime
+   * @return datetime
    **/
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public OffsetDateTime getDateTime() {
-    return dateTime;
+  public OffsetDateTime getDatetime() {
+    return datetime;
   }
 
-  @JsonProperty(JSON_PROPERTY_DATE_TIME)
+  @JsonProperty(JSON_PROPERTY_DATETIME)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setDateTime(OffsetDateTime dateTime) {
-    this.dateTime = dateTime;
+  public void setDatetime(OffsetDateTime datetime) {
+    this.datetime = datetime;
   }
 
-  public Resource resourceID(String resourceID) {
+  public Resource resourceId(String resourceId) {
 
-    this.resourceID = resourceID;
+    this.resourceId = resourceId;
     return this;
   }
 
@@ -352,24 +352,24 @@ public class Resource {
    *le cas où un ID unique de ressource ne peut pas être garanti par
    *l&#39;organisation propriétaire : {orgID}.resource.{ID du dossier
    *partagé}.{numéro d’ordre chronologique ressource}
-   * @return resourceID
+   * @return resourceId
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_I_D)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getResourceID() {
-    return resourceID;
+  public String getResourceId() {
+    return resourceId;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCE_I_D)
+  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceID(String resourceID) {
-    this.resourceID = resourceID;
+  public void setResourceId(String resourceId) {
+    this.resourceId = resourceId;
   }
 
-  public Resource rsDRId(String rsDRId) {
+  public Resource requestId(String requestId) {
 
-    this.rsDRId = rsDRId;
+    this.requestId = requestId;
     return this;
   }
 
@@ -377,66 +377,66 @@ public class Resource {
    * Identifiant unique partagé de la demande de ressource (si la ressource a
    *été engagée suite à une demande de ressource), valorisé comme suit :
    *{orgID}.request.{ID unique de la demande dans le système émetteur}
-   * @return rsDRId
+   * @return requestId
    **/
-  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getRsDRId() {
-    return rsDRId;
+  public String getRequestId() {
+    return requestId;
   }
 
-  @JsonProperty(JSON_PROPERTY_RS_D_R_ID)
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRsDRId(String rsDRId) {
-    this.rsDRId = rsDRId;
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
   }
 
-  public Resource missionID(String missionID) {
+  public Resource missionId(String missionId) {
 
-    this.missionID = missionID;
+    this.missionId = missionId;
     return this;
   }
 
   /**
    * Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le
    *vecteur
-   * @return missionID
+   * @return missionId
    **/
-  @JsonProperty(JSON_PROPERTY_MISSION_I_D)
+  @JsonProperty(JSON_PROPERTY_MISSION_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getMissionID() {
-    return missionID;
+  public String getMissionId() {
+    return missionId;
   }
 
-  @JsonProperty(JSON_PROPERTY_MISSION_I_D)
+  @JsonProperty(JSON_PROPERTY_MISSION_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMissionID(String missionID) {
-    this.missionID = missionID;
+  public void setMissionId(String missionId) {
+    this.missionId = missionId;
   }
 
-  public Resource orgID(String orgID) {
+  public Resource orgId(String orgId) {
 
-    this.orgID = orgID;
+    this.orgId = orgId;
     return this;
   }
 
   /**
    * Organisation à laquelle appartient la ressource
-   * @return orgID
+   * @return orgId
    **/
-  @JsonProperty(JSON_PROPERTY_ORG_I_D)
+  @JsonProperty(JSON_PROPERTY_ORG_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getOrgID() {
-    return orgID;
+  public String getOrgId() {
+    return orgId;
   }
 
-  @JsonProperty(JSON_PROPERTY_ORG_I_D)
+  @JsonProperty(JSON_PROPERTY_ORG_ID)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setOrgID(String orgID) {
-    this.orgID = orgID;
+  public void setOrgId(String orgId) {
+    this.orgId = orgId;
   }
 
   public Resource centerName(String centerName) {
@@ -737,11 +737,11 @@ public class Resource {
       return false;
     }
     Resource resource = (Resource)o;
-    return Objects.equals(this.dateTime, resource.dateTime) &&
-        Objects.equals(this.resourceID, resource.resourceID) &&
-        Objects.equals(this.rsDRId, resource.rsDRId) &&
-        Objects.equals(this.missionID, resource.missionID) &&
-        Objects.equals(this.orgID, resource.orgID) &&
+    return Objects.equals(this.datetime, resource.datetime) &&
+        Objects.equals(this.resourceId, resource.resourceId) &&
+        Objects.equals(this.requestId, resource.requestId) &&
+        Objects.equals(this.missionId, resource.missionId) &&
+        Objects.equals(this.orgId, resource.orgId) &&
         Objects.equals(this.centerName, resource.centerName) &&
         Objects.equals(this.resourceType, resource.resourceType) &&
         Objects.equals(this.vehiculeType, resource.vehiculeType) &&
@@ -757,7 +757,7 @@ public class Resource {
 
   @Override
   public int hashCode() {
-    return Objects.hash(dateTime, resourceID, rsDRId, missionID, orgID,
+    return Objects.hash(datetime, resourceId, requestId, missionId, orgId,
                         centerName, resourceType, vehiculeType, plate, name,
                         centerCity, team, state, coord, contact, freetext);
   }
@@ -766,15 +766,17 @@ public class Resource {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Resource {\n");
-    sb.append("    dateTime: ").append(toIndentedString(dateTime)).append("\n");
-    sb.append("    resourceID: ")
-        .append(toIndentedString(resourceID))
+    sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
+    sb.append("    resourceId: ")
+        .append(toIndentedString(resourceId))
         .append("\n");
-    sb.append("    rsDRId: ").append(toIndentedString(rsDRId)).append("\n");
-    sb.append("    missionID: ")
-        .append(toIndentedString(missionID))
+    sb.append("    requestId: ")
+        .append(toIndentedString(requestId))
         .append("\n");
-    sb.append("    orgID: ").append(toIndentedString(orgID)).append("\n");
+    sb.append("    missionId: ")
+        .append(toIndentedString(missionId))
+        .append("\n");
+    sb.append("    orgId: ").append(toIndentedString(orgId)).append("\n");
     sb.append("    centerName: ")
         .append(toIndentedString(centerName))
         .append("\n");

@@ -45,27 +45,27 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - dateTime
-      - resourceID
+      - datetime
+      - resourceId
       - resourceType
       properties:
-        dateTime:
+        datetime:
           type: string
           title: "Date/heure de d\xE9clenchement"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/dateTime
+          example: example.json#/mobilizedResource/0/datetime
           description: date et heure d'engagement de la ressource
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - None
-        resourceID:
+        resourceId:
           type: string
           title: "ID Ressource partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/resourceID
+          example: example.json#/mobilizedResource/0/resourceId
           description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
             \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
             e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
@@ -75,34 +75,34 @@ components:
           - 'fr.health.samu770.resource.VLM250
 
             fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
-        RSDRId:
+        requestId:
           type: string
           title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/RSDRId
+          example: example.json#/mobilizedResource/0/requestId
           description: "Identifiant unique partag\xE9 de la demande de ressource (si\
             \ la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une demande de ressource),\
             \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
             \ le syst\xE8me \xE9metteur}"
           examples:
           - fr.health.samu770.request.1249875
-        missionID:
+        missionId:
           type: string
           title: ID Mission local
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/missionID
+          example: example.json#/mobilizedResource/0/missionId
           description: "Num\xE9ro de mission unique du central d\u2019appel (PSAP,\
             \ \u2026) qui a d\xE9clench\xE9 le vecteur"
           examples:
           - DRFR15DDXAAJJJ0000.M001
-        orgID:
+        orgId:
           type: string
           title: "ID Organisation propri\xE9taire"
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/orgID
+          example: example.json#/mobilizedResource/0/orgId
           description: "Organisation \xE0 laquelle appartient la ressource"
           examples:
           - fr.health.samu440
@@ -306,40 +306,58 @@ components:
       title: Etats vecteur
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - datetime
+      - status
       properties:
-        dateTime:
+        datetime:
           type: string
           title: Date/heure de changement de statut
           x-health-only: false
           x-cols: 6
-          example: example.json#/mobilizedResource/0/state/0/dateTime
+          example: example.json#/mobilizedResource/0/state/0/datetime
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
           - None
         status:
           type: string
-          title: Statuts du vecteur
+          title: Status du vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/status
           description: Dernier statut du vecteur
+          enum:
+          - ALERTE
+          - PARTI
+          - ARRIVEE SUR LES LIEUX
+          - TRANSPORT DESTINATION
+          - ARRIVEE DESTINATION
+          - 'FIN DE MEDICALISATION '
+          - QUITTE DESTINATION
+          - RETOUR BASE
+          - RENTREE BASE
           examples:
           - None
         availability:
-          type: string
+          type: boolean
           title: "Disponibilit\xE9 du vecteur"
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/availability
-          description: Indique si le vecteur est disponible / indisponible
+          description: 'Indique si le vecteur est disponible / indisponible
+
+            TRUE = DISPONIBLE
+
+            FALSE = INDISPONIBLE
+
+            VIDE = INCONNU'
           examples:
           - None
       additionalProperties: false
       example: example.json#/mobilizedResource/0/state/0
       examples:
-      - dateTime: None
+      - datetime: None
         status: None
         availability: None
     coord:
