@@ -1003,7 +1003,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/phoneNumber",
-                    "description": "A valoriser avec le num\u00e9ro de t\u00e9l\u00e9phone du lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/ la victime."
+                    "description": "A valoriser avec le num\u00e9ro de t\u00e9l\u00e9phone du lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/ la victime.\nLe format attendu est le suivant : +{indicatif pays}{num\u00e9ro de t\u00e9l\u00e9phone}"
                 }
             },
             "additionalProperties": false,
@@ -1644,7 +1644,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/detail",
-                    "description": "A valoriser avec la valeur de l'URI utilis\u00e9e"
+                    "description": "A valoriser avec la valeur de l'URI utilis\u00e9e\nLe format attendu pour un num\u00e9ro de t\u00e9l\u00e9phone est le suivant : +{indicatif pays}{num\u00e9ro de t\u00e9l\u00e9phone}"
                 }
             },
             "additionalProperties": false,

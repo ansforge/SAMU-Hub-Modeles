@@ -67,7 +67,7 @@
             "buildingName": "Batiment B",
             "entrance": "Zone Sud",
             "entity": "Infirmerie",
-            "phoneNumber": 33123452323
+            "phoneNumber": "+33123452323"
         },
         "geometry": {
             "obsDatime": "2022-09-27T08:23:34+02:00",
@@ -102,7 +102,7 @@
             "callerContact": {
                 "channel": "PERSONNE",
                 "type": "TEL",
-                "detail": "0671830530"
+                "detail": "+33671830530"
             },
             "callbackContact": {},
             "language": "FR",

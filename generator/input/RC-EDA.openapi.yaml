@@ -1245,9 +1245,11 @@ components:
           example: example.json#/location/access/phoneNumber
           description: "A valoriser avec le num\xE9ro de t\xE9l\xE9phone du lieu de\
             \ l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat, t\xE9\
-            l\xE9phone du service administratif ou se trouve le patient/ la victime."
+            l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
+            Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
+            l\xE9phone}"
           examples:
-          - 33123452323
+          - '+33123452323'
       additionalProperties: false
       example: example.json#/location/access
     geometry:
@@ -2054,15 +2056,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/detail
-          description: "A valoriser avec la valeur de l'URI utilis\xE9e"
+          description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
+            \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:
-          - 0671830530
+          - '+33671830530'
       additionalProperties: false
       example: example.json#/initialAlert/caller/callerContact
       examples:
       - channel: PERSONNE
         type: TEL
-        detail: 0671830530
+        detail: '+33671830530'
     detailedName:
       type: object
       title: "Pr\xE9nom & nom usuel"

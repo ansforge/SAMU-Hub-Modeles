@@ -1113,9 +1113,11 @@ components:
           example: example.json#/location/access/phoneNumber
           description: "A valoriser avec le num\xE9ro de t\xE9l\xE9phone du lieu de\
             \ l'intervention, par exemple : t\xE9l\xE9phone du secr\xE9tariat, t\xE9\
-            l\xE9phone du service administratif ou se trouve le patient/ la victime."
+            l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
+            Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
+            l\xE9phone}"
           examples:
-          - 33123452323
+          - '+33123452323'
       additionalProperties: false
       example: example.json#/location/access
     geometry:
