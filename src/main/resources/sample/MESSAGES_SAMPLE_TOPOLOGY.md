@@ -4,7 +4,7 @@ Several test messages are provided to test the library (use of [EdxlHandler](../
 
 The sample folder is organized as follows:
 - two subdirectories, to separate compliant ([valid](valid)) and non-compliant ([failing](failing)) messages.
-- in each subdirectory, a subdirectory for each use case (RC-EDA, RC-REF, RS-INFO) and a subdirectory for EDXL-DE messages.
+- in each subdirectory, a subdirectory for each use case (RC-EDA, RC-REF) and a subdirectory for EDXL-DE messages.
 - the EDXL-DE subdirectory contains message embedding a CustomContent use cas message, as its only purpose is to test the EDXL-DE wrapper.
 - each use case subdirectory contains two messages, one in json format and one in xml format.
 
