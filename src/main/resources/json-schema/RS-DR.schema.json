@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-DR.schema.json#",
-    "version": "24.07.12",
+    "version": "24.07.17",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesRequest",
@@ -17,15 +17,15 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant de l'affaire partag\u00e9 entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on unique et d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9. \nIl est g\u00e9n\u00e9r\u00e9 par le syst\u00e8me du partenaire r\u00e9cepteur de la primo-demande de secours (cr\u00e9ateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unit\u00e9 fonctionnelle}*.{num\u00e9ro de dossier}"
+            "description": "Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. \nIl est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}"
         },
         "RSDRId": {
             "type": "string",
-            "title": "ID Demande partag\u00e9",
+            "title": "ID Demande partagé",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/RSDRId",
-            "description": "Identifiant unique partag\u00e9 de la demande de ressource\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
+            "description": "Identifiant unique partagé de la demande de ressource\n{orgID}.request.{ID unique de la demande dans le système émetteur}"
         },
         "request": {
             "$ref": "#/definitions/request"
@@ -44,11 +44,11 @@
             "properties": {
                 "dateTime": {
                     "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la demande",
+                    "title": "Date Heure de création de la demande",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/dateTime",
-                    "description": "Voir liste des effets \u00e0 obtenir identifi\u00e9s",
+                    "description": "Voir liste des effets à obtenir identifiés",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -58,23 +58,23 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/convention",
-                    "description": "Nomenclature \u00e0 venir : d\u00e9crit le cadre conventionnel de la demande."
+                    "description": "Nomenclature à venir : décrit le cadre conventionnel de la demande."
                 },
                 "deadline": {
                     "type": "string",
-                    "title": "D\u00e9lai souhait\u00e9",
+                    "title": "Délai souhaité",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/deadline",
-                    "description": "D\u00e9lai d'intervention souhait\u00e9"
+                    "description": "Délai d'intervention souhaité"
                 },
                 "purpose": {
                     "type": "string",
-                    "title": "Effet \u00e0 obtenir",
+                    "title": "Effet à obtenir",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/purpose",
-                    "description": "Motif de la demande de ressource aupr\u00e8s du partenaire",
+                    "description": "Motif de la demande de ressource auprès du partenaire",
                     "enum": [
                         "E01",
                         "E02",
@@ -102,11 +102,11 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Pr\u00e9cisions sur la demande",
+                    "title": "Précisions sur la demande",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/freetext",
-                    "description": "Texte libre permettant de d\u00e9tailler la demande"
+                    "description": "Texte libre permettant de détailler la demande"
                 }
             },
             "additionalProperties": false,

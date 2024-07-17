@@ -13,7 +13,6 @@ import uml_generator
 import os
 
 from pathlib import Path
-
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -56,10 +55,11 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
         # Save all the column numbers that have 'Périmètre' in their name
         perimeter_columns = [i for i, x in enumerate(perimeter_row) if 'Périmètre' in str(x)]
         # Computing number of rows in table
-        # rows = df.iloc[7:, 0]
-        # Simply remove initial rows & total row
-        # ToDo: be more resilient to nan & \xa0 in full_df.iloc[8:,0] and compute nb with count?
-        rows = full_df.shape[0] - 8 - 1
+        # Find the row number of the first table header ('ID')
+        id_index = (full_df[0] == 'ID').idxmax()
+        id_column = full_df.loc[id_index+1:, 0]
+        # Count the number of rows in the ID column
+        rows = id_column.count()
         # Compute number of columns in table
         try:
             # By finding the CUT column
@@ -448,8 +448,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return children
 
     json_example = build_example(rootObject)
-    with open(f'out/{name}/{name}.example.json', 'w') as outfile:
-        json.dump(json_example, outfile, indent=4)
+    with open(f'out/{name}/{name}.example.json', 'w', encoding='utf8') as outfile:
+        json.dump(json_example, outfile, indent=4, ensure_ascii=False)
 
     # Go through data (list or tree) and use it to build the expected JSON schema
     json_schema = {
@@ -674,8 +674,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
-    with open(f'out/{name}/{name}.schema.json', 'w') as outfile:
-        json.dump(json_schema, outfile, indent=4)
+    with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
+        json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
 
     # BUILD OpenAPI SCHEMA
@@ -723,7 +723,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             **openapi_components
         }
 
-    with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
+    with open(f'out/{name}/{name}.openapi.yaml', 'w', encoding='utf8') as file:
         documents = yaml.dump(full_yaml, sort_keys=False)
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
@@ -773,7 +773,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             doc = docx.Document()
 
         # Add title
-        doc.add_heading(title, level=1)
+        doc.add_heading(name, level=1)
 
         # Add paragraph
         # doc.add_paragraph('This table represents the fields and types defined in the JSON schema.')

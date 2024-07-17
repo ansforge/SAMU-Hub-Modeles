@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.07.12",
+    "version": "24.07.17",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -33,7 +33,7 @@
     "definitions": {
         "event": {
             "type": "object",
-            "title": "Ev\u00e8nement",
+            "title": "Evènement",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -52,20 +52,20 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/samuId",
-                    "description": "Num\u00e9ro du SAMU r\u00e9gulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
+                    "description": "Numéro du SAMU régulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
                     "pattern": "^[a-zA-Z]{2,3}\\.[a-zA-Z]+\\..*$"
                 },
                 "fileId": {
                     "type": "string",
-                    "title": "Identifiant du dossier de r\u00e9gulation m\u00e9dicale (DRM)",
+                    "title": "Identifiant du dossier de régulation médicale (DRM)",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/fileId",
-                    "description": "Num\u00e9ro du dossier SAMU \u00e0 l\u2019origine de la mission SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = d\u00e9signation d'un dossier sous forme abr\u00e9g\u00e9e,\n- FR : d\u00e9signe le pays (FR = France),\n- 15 : d\u00e9signe le fait que le dossier a \u00e9t\u00e9 pris en charge par un SAMU / SAS,\n- DD : d\u00e9signe le d\u00e9partement o\u00f9 est situ\u00e9 le SAMU / SAS qui a trait\u00e9 le dossier,\n- X : lettre d\u00e9signant le SAMU / SAS en cas de pluralit\u00e9 de SAMU / SAS sur le m\u00eame d\u00e9partement ou le troisi\u00e8me chiffre des DOM,\n- AA : ann\u00e9e durant laquelle l\u2019appel a \u00e9t\u00e9 cr\u00e9\u00e9,\n- JJJ : d\u00e9signe le jour de l'ann\u00e9e (de 1j \u00e0 365j),\\par\n- 00000 : num\u00e9ro d\u2019ordre chronologique du dossier dans la journ\u00e9e de r\u00e9f\u00e9rence ci-dessus."
+                    "description": "Numéro du dossier SAMU à l’origine de la mission SMUR\nA valoriser par DRFR15DDXAAJJJ00000 : \n- DR = désignation d'un dossier sous forme abrégée,\n- FR : désigne le pays (FR = France),\n- 15 : désigne le fait que le dossier a été pris en charge par un SAMU / SAS,\n- DD : désigne le département où est situé le SAMU / SAS qui a traité le dossier,\n- X : lettre désignant le SAMU / SAS en cas de pluralité de SAMU / SAS sur le même département ou le troisième chiffre des DOM,\n- AA : année durant laquelle l’appel a été créé,\n- JJJ : désigne le jour de l'année (de 1j à 365j),\\par\n- 00000 : numéro d’ordre chronologique du dossier dans la journée de référence ci-dessus."
                 },
                 "creationDate": {
                     "type": "string",
-                    "title": "Date et heure de cr\u00e9ation du dossier de r\u00e9gulation",
+                    "title": "Date et heure de création du dossier de régulation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/creationDate",
@@ -75,7 +75,7 @@
                 },
                 "decisionDate": {
                     "type": "string",
-                    "title": "Date et heure de la d\u00e9cision d\u2019engagement du SMUR",
+                    "title": "Date et heure de la décision d’engagement du SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/decisionDate",
@@ -89,15 +89,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/ressourceFinessLegal",
-                    "description": "FINESS juridique \u00e9tablissement rattachement SMUR"
+                    "description": "FINESS juridique établissement rattachement SMUR"
                 },
                 "ressourceFinessGeo": {
                     "type": "string",
-                    "title": "FINESS g\u00e9ographique ",
+                    "title": "FINESS géographique ",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/ressourceFinessGeo",
-                    "description": "FINESS g\u00e9ographique \u00e9tablissement rattachement SMUR ou antenne SMUR"
+                    "description": "FINESS géographique établissement rattachement SMUR ou antenne SMUR"
                 },
                 "ressourceStructure": {
                     "type": "string",
@@ -105,7 +105,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/ressourceStructure",
-                    "description": "9 = Antenne SMUR, 0 = SMUR g\u00e9n\u00e9ral, 1 = SMUR p\u00e9diatrique, 2 = SMUR neonatal "
+                    "description": "9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal "
                 }
             },
             "additionalProperties": false,
@@ -113,7 +113,7 @@
         },
         "regulation": {
             "type": "object",
-            "title": "R\u00e9gulation m\u00e9dicale",
+            "title": "Régulation médicale",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -130,11 +130,11 @@
                 },
                 "initialTeamCare": {
                     "type": "string",
-                    "title": "Niveau de m\u00e9dicalisation initial",
+                    "title": "Niveau de médicalisation initial",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/initialTeamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, secouriste).\nA valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de d\u00e9duire avec la donn\u00e9e \"niveau de m\u00e9dicalisation du transport\", si un UMHP est devenu un SMUR. "
+                    "description": "Type d’équipe (médical, paramédicale, secouriste).\nA valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de déduire avec la donnée \"niveau de médicalisation du transport\", si un UMHP est devenu un SMUR. "
                 }
             },
             "additionalProperties": false,
@@ -157,7 +157,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/patientId",
-                    "description": "Identifiant unique du patient. \nA valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{num\u00e9ro d\u2019ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
+                    "description": "Identifiant unique du patient. \nA valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
                 },
                 "birthDate": {
                     "type": "string",
@@ -173,7 +173,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/sex",
-                    "description": "Sexe du patient, suivant le libell\u00e9 court de la nomenclature SI-SAMU-NOMENC_SEXE"
+                    "description": "Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE"
                 },
                 "nir": {
                     "type": "number",
@@ -181,7 +181,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/nir",
-                    "description": "Num\u00e9ro d'inscription au R\u00e9pertoire ou num\u00e9ro de s\u00e9curit\u00e9 sociale, unique, transmis par la CNIL"
+                    "description": "Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL"
                 },
                 "residentialAddress": {
                     "$ref": "#/definitions/residentialAddress"
@@ -212,11 +212,11 @@
                     "x-health-only": false,
                     "items": {
                         "type": "string",
-                        "title": "Actes r\u00e9alis\u00e9s par le SMUR",
+                        "title": "Actes réalisés par le SMUR",
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/intervention/actions/0",
-                        "description": "Pr\u00e9cise aussi bien les actes r\u00e9alis\u00e9s par le SMUR sur le lieu de l'intervention \u00e0 son arriv\u00e9e que ceux r\u00e9alis\u00e9s avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
+                        "description": "Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
                     }
                 },
                 "mainDiagnosis": {
@@ -225,15 +225,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/mainDiagnosis",
-                    "description": "Th\u00e9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
+                    "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
                 },
                 "associatedDiagnosis": {
                     "type": "string",
-                    "title": "Diagnostic associ\u00e9  SMUR",
+                    "title": "Diagnostic associé  SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/associatedDiagnosis",
-                    "description": "Th\u00e9saurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
+                    "description": "Thésaurus SFMU-FEDORU.\nA valoriser par un code de la nomenclature Diagnostic SMUR."
                 },
                 "smurStatus": {
                     "$ref": "#/definitions/resourceStatus"
@@ -244,7 +244,7 @@
         },
         "orientation": {
             "type": "object",
-            "title": "D\u00e9cision d'orientation",
+            "title": "Décision d'orientation",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -257,7 +257,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/type",
-                    "description": "Indique si le patient est transport\u00e9 ou non (Sans transport associ\u00e9 / avec transport associ\u00e9). \nA valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation est sans transport associ\u00e9, les objets Destination et Transport sont facultatifs. "
+                    "description": "Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). \nA valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. "
                 },
                 "destination": {
                     "$ref": "#/definitions/destination"
@@ -271,7 +271,7 @@
         },
         "whatsHappen": {
             "type": "object",
-            "title": "Circonstances ayant donn\u00e9es lieu \u00e0 l\u2019appel",
+            "title": "Circonstances ayant données lieu à l’appel",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -289,11 +289,11 @@
                 },
                 "label": {
                     "type": "string",
-                    "title": "Libell\u00e9 court",
+                    "title": "Libellé court",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/whatsHappen/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature CISU-Code_Nature_de_fait.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.\nDans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -305,6 +305,8 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
+                "code",
+                "label",
                 "code",
                 "label"
             ],
@@ -319,11 +321,11 @@
                 },
                 "label": {
                     "type": "string",
-                    "title": "Libell\u00e9 court",
+                    "title": "Libellé court",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/healthMotive/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature CISU-Code_Motif_patient-victime.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libellé de la nomenclature CISU-Code_Motif_patient-victime.\nDans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -331,7 +333,7 @@
         },
         "residentialAddress": {
             "type": "object",
-            "title": "Adresse de r\u00e9sidence",
+            "title": "Adresse de résidence",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -341,11 +343,11 @@
             "properties": {
                 "cityCode": {
                     "type": "string",
-                    "title": "Code INSEE de la commune de r\u00e9sidence",
+                    "title": "Code INSEE de la commune de résidence",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/residentialAddress/cityCode",
-                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.\nLe Code INSEE peut \u00e9galement pr\u00e9cis\u00e9 le pays de r\u00e9sidence, si \u00e9tranger. ",
+                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays de résidence, si étranger. ",
                     "pattern": "[0-9]{5}"
                 },
                 "city": {
@@ -369,7 +371,7 @@
             "properties": {
                 "type": {
                     "type": "string",
-                    "title": "Type de lieu d\u2019intervention",
+                    "title": "Type de lieu d’intervention",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/type",
@@ -377,19 +379,19 @@
                 },
                 "finessGeo": {
                     "type": "string",
-                    "title": "FINESS g\u00e9ographique de l\u2019\u00e9tablissement ",
+                    "title": "FINESS géographique de l’établissement ",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/finessGeo",
-                    "description": "Finess g\u00e9ographique et juridique de l\u2019\u00e9tablissement de sant\u00e9"
+                    "description": "Finess géographique et juridique de l’établissement de santé"
                 },
                 "unit": {
                     "type": "string",
-                    "title": "Unit\u00e9 fonctionnelle ",
+                    "title": "Unité fonctionnelle ",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/unit",
-                    "description": "Unit\u00e9 fonctionnelle de l'\u00e9tablissement de sant\u00e9"
+                    "description": "Unité fonctionnelle de l'établissement de santé"
                 },
                 "detailedAddress": {
                     "$ref": "#/definitions/detailedAddress"
@@ -400,7 +402,7 @@
         },
         "team": {
             "type": "object",
-            "title": "Composition de l'\u00e9quipage",
+            "title": "Composition de l'équipage",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -411,11 +413,11 @@
             "properties": {
                 "doctor": {
                     "type": "boolean",
-                    "title": "M\u00e9decin",
+                    "title": "Médecin",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/team/doctor",
-                    "description": "Permet d'identifier si un m\u00e9decin compose l'\u00e9quipe.\nCette donn\u00e9e peut \u00eatre automatiquement d\u00e9duite, d\u00e8s que le nom et pr\u00e9nom du m\u00e9decin est saisi sur la tablette. "
+                    "description": "Permet d'identifier si un médecin compose l'équipe.\nCette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. "
                 },
                 "nurse": {
                     "type": "boolean",
@@ -423,7 +425,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/team/nurse",
-                    "description": "Permet d'identifier si un infirmier compose l'\u00e9quipe.\nCette donn\u00e9e peut \u00eatre automatiquement d\u00e9duite, d\u00e8s que le nom et pr\u00e9nom de l'infirmier est saisi sur la tablette. "
+                    "description": "Permet d'identifier si un infirmier compose l'équipe.\nCette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. "
                 },
                 "driver": {
                     "type": "boolean",
@@ -431,7 +433,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/team/driver",
-                    "description": "Permet d'identifier si un ambulancier compose l'\u00e9quipe.\nCette donn\u00e9e peut \u00eatre automatiquement d\u00e9duite, d\u00e8s que le nom et pr\u00e9nom de l'ambulancier est saisi sur la tablette. "
+                    "description": "Permet d'identifier si un ambulancier compose l'équipe.\nCette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. "
                 }
             },
             "additionalProperties": false,
@@ -450,7 +452,7 @@
             "properties": {
                 "departSmur": {
                     "type": "string",
-                    "title": "Date et heure du d\u00e9part de la base SMUR",
+                    "title": "Date et heure du départ de la base SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departSmur",
@@ -460,7 +462,7 @@
                 },
                 "arrivedSmur": {
                     "type": "string",
-                    "title": "Date et heure de l\u2019arriv\u00e9e sur les lieux de l\u2019intervention",
+                    "title": "Date et heure de l’arrivée sur les lieux de l’intervention",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedSmur",
@@ -470,7 +472,7 @@
                 },
                 "departLocation": {
                     "type": "string",
-                    "title": "Date et heure du d\u00e9part des lieux de l\u2019intervention",
+                    "title": "Date et heure du départ des lieux de l’intervention",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departLocation",
@@ -480,7 +482,7 @@
                 },
                 "arrivedDestination": {
                     "type": "string",
-                    "title": "Date et heure d\u2019arriv\u00e9e \u00e0 destination",
+                    "title": "Date et heure d’arrivée à destination",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedDestination",
@@ -490,7 +492,7 @@
                 },
                 "teamAvailable": {
                     "type": "string",
-                    "title": "Date et heure de disponibilit\u00e9 de l\u2019\u00e9quipe",
+                    "title": "Date et heure de disponibilité de l’équipe",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/teamAvailable",
@@ -500,7 +502,7 @@
                 },
                 "returnSmur": {
                     "type": "string",
-                    "title": "Date et heure de retour \u00e0 la base SMUR",
+                    "title": "Date et heure de retour à la base SMUR",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/returnSmur",
@@ -528,7 +530,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/detailedAddress/cityCode",
-                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel g\u00e9ographique en vigueur. Obligatoire si le nom de la commune est renseign\u00e9.\nLe Code INSEE peut \u00e9galement pr\u00e9cis\u00e9 le pays d'intervention, si \u00e9tranger. ",
+                    "description": "Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.\nLe Code INSEE peut également précisé le pays d'intervention, si étranger. ",
                     "pattern": "[0-9]{5}"
                 },
                 "city": {
@@ -561,7 +563,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/destination/destinationCountry",
-                    "description": "A valoriser par le libell\u00e9 court de la nomenclature SIGLPAYS",
+                    "description": "A valoriser par le libellé court de la nomenclature SIGLPAYS",
                     "enum": [
                         "AF",
                         "AX",
@@ -808,15 +810,15 @@
                 },
                 "destinationCategory": {
                     "type": "string",
-                    "title": "Cat\u00e9gorie de l'\u00e9tablissement de destination",
+                    "title": "Catégorie de l'établissement de destination",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/destination/destinationCategory",
-                    "description": "A valoriser par le code de la nomenclature associ\u00e9e"
+                    "description": "A valoriser par le code de la nomenclature associée"
                 },
                 "healthcareType": {
                     "type": "string",
-                    "title": "Type d'activit\u00e9 de soins de l'unit\u00e9 fonctionnelle de destination",
+                    "title": "Type d'activité de soins de l'unité fonctionnelle de destination",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/destination/healthcareType",
@@ -824,11 +826,11 @@
                 },
                 "finess": {
                     "type": "string",
-                    "title": "FINESS g\u00e9ographique",
+                    "title": "FINESS géographique",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/destination/finess",
-                    "description": "FINESS g\u00e9ographique de l\u2019\u00e9tablissement de destination (9 chiffres)"
+                    "description": "FINESS géographique de l’établissement de destination (9 chiffres)"
                 }
             },
             "additionalProperties": false,
@@ -851,7 +853,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/decision/resourceCategory",
-                    "description": "Pr\u00e9cise le type de moyen engag\u00e9 dans l'intervention (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN."
+                    "description": "Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN."
                 },
                 "resourceType": {
                     "type": "string",
@@ -859,15 +861,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/decision/resourceType",
-                    "description": "Pr\u00e9cise le type de v\u00e9hicule terrestre / a\u00e9rien / maritime engag\u00e9 dans l'intervention.\nA valoriser par un code de la nomenclature CISU-TYPE_VECTEUR."
+                    "description": "Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.\nA valoriser par un code de la nomenclature CISU-TYPE_VECTEUR."
                 },
                 "teamCare": {
                     "type": "string",
-                    "title": "Niveau de m\u00e9dicalisation du transport",
+                    "title": "Niveau de médicalisation du transport",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/decision/teamCare",
-                    "description": "Type d\u2019\u00e9quipe (m\u00e9dical, param\u00e9dicale, secouriste).\nA valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
+                    "description": "Type d’équipe (médical, paramédicale, secouriste).\nA valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
                 }
             },
             "additionalProperties": false,
