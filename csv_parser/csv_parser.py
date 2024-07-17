@@ -767,7 +767,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             doc = docx.Document()
 
         # Add title
-        doc.add_heading(title, level=1)
+        doc.add_heading(name, level=1)
 
         # Add paragraph
         # doc.add_paragraph('This table represents the fields and types defined in the JSON schema.')
