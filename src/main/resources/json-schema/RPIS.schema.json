@@ -306,8 +306,6 @@
             "x-health-only": false,
             "required": [
                 "code",
-                "label",
-                "code",
                 "label"
             ],
             "properties": {
