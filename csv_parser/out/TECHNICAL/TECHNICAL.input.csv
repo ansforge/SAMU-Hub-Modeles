@@ -10,3 +10,9 @@ Array,,,,,,This is an array,,arrayField,0..n,,string,,
 Phone number with regex,,,,,,Phone number with regex,,phoneNumberField,0..1,,string,,REGEX: \+?\d*
 Date with regex,,,,,,Date with regex,,dateField,0..1,,string,,REGEX: \d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])
 Email with regex,,,,,,Email with regex,,emailField,0..1,,string,,"REGEX: [\w-\.]+@([\w-]+\.)+[\w-]{2,4}"
+Datetime,,,,,,Datetime,,datetimeField,0..1,,datetime,,
+Level 1 Object,,,,,,Object at data level 1,,objectLevel1,0..1,levelOneData,object,,
+,Level 2 Object 1,,,,,Object 1 at data level 2,,object1Level2,0..1,levelTwoData,object,,
+,,Level 3 Object 1,,,,Object 1 at data level 3,,object1Level3,0..1,levelThreeData,object,,
+,Level 2 Object 2,,,,,Object 2 at data level 2,,object2Level2,0..1,secondLevelTwoData,object,,
+,,Level 3 Object 2,,,,Object 2 at data level 3,,object2Level3,0..1,levelThreeData,object,,

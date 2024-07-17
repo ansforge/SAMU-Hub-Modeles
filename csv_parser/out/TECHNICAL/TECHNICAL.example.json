@@ -9,5 +9,7 @@
     ],
     "phoneNumberField": "None",
     "dateField": "None",
-    "emailField": "None"
+    "emailField": "None",
+    "datetimeField": "None",
+    "objectLevel1": "None"
 }

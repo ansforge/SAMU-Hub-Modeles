@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "TECHNICAL.schema.json#",
-    "version": "24.07.16",
+    "version": "24.07.17",
     "example": "example.json#",
     "type": "object",
     "title": "technical",
@@ -95,6 +95,24 @@
             "example": "example.json#/emailField",
             "description": "Email with regex",
             "pattern": "[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}"
+        },
+        "datetimeField": {
+            "type": "string",
+            "title": "Datetime",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/datetimeField",
+            "description": "Datetime",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "format": "date-time"
+        },
+        "objectLevel1": {
+            "type": "object",
+            "title": "Level 1 Object",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/objectLevel1",
+            "description": "Object at data level 1"
         }
     },
     "definitions": {},

@@ -67,6 +67,16 @@
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="datetimeField" type="dateTime">
+                <annotation>
+                    <documentation>Datetime</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="objectLevel1">
+                <annotation>
+                    <documentation>Object at data level 1</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
 </schema>

@@ -35,6 +35,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -51,7 +52,9 @@ import java.util.Objects;
      Technical.JSON_PROPERTY_NUMBER_FIELD, Technical.JSON_PROPERTY_OBJECT_FIELD,
      Technical.JSON_PROPERTY_ARRAY_FIELD,
      Technical.JSON_PROPERTY_PHONE_NUMBER_FIELD,
-     Technical.JSON_PROPERTY_DATE_FIELD, Technical.JSON_PROPERTY_EMAIL_FIELD})
+     Technical.JSON_PROPERTY_DATE_FIELD, Technical.JSON_PROPERTY_EMAIL_FIELD,
+     Technical.JSON_PROPERTY_DATETIME_FIELD,
+     Technical.JSON_PROPERTY_OBJECT_LEVEL1})
 @JsonTypeName("technical")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -127,6 +130,12 @@ public class Technical {
 
   public static final String JSON_PROPERTY_EMAIL_FIELD = "emailField";
   private String emailField;
+
+  public static final String JSON_PROPERTY_DATETIME_FIELD = "datetimeField";
+  private OffsetDateTime datetimeField;
+
+  public static final String JSON_PROPERTY_OBJECT_LEVEL1 = "objectLevel1";
+  private Object objectLevel1;
 
   public Technical() {}
 
@@ -353,6 +362,52 @@ public class Technical {
     this.emailField = emailField;
   }
 
+  public Technical datetimeField(OffsetDateTime datetimeField) {
+
+    this.datetimeField = datetimeField;
+    return this;
+  }
+
+  /**
+   * Datetime
+   * @return datetimeField
+   **/
+  @JsonProperty(JSON_PROPERTY_DATETIME_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public OffsetDateTime getDatetimeField() {
+    return datetimeField;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DATETIME_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDatetimeField(OffsetDateTime datetimeField) {
+    this.datetimeField = datetimeField;
+  }
+
+  public Technical objectLevel1(Object objectLevel1) {
+
+    this.objectLevel1 = objectLevel1;
+    return this;
+  }
+
+  /**
+   * Object at data level 1
+   * @return objectLevel1
+   **/
+  @JsonProperty(JSON_PROPERTY_OBJECT_LEVEL1)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Object getObjectLevel1() {
+    return objectLevel1;
+  }
+
+  @JsonProperty(JSON_PROPERTY_OBJECT_LEVEL1)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setObjectLevel1(Object objectLevel1) {
+    this.objectLevel1 = objectLevel1;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -372,14 +427,17 @@ public class Technical {
         Objects.equals(this.arrayField, technical.arrayField) &&
         Objects.equals(this.phoneNumberField, technical.phoneNumberField) &&
         Objects.equals(this.dateField, technical.dateField) &&
-        Objects.equals(this.emailField, technical.emailField);
+        Objects.equals(this.emailField, technical.emailField) &&
+        Objects.equals(this.datetimeField, technical.datetimeField) &&
+        Objects.equals(this.objectLevel1, technical.objectLevel1);
   }
 
   @Override
   public int hashCode() {
     return Objects.hash(requiredStringField, optionalStringField,
                         enumerationField, numberField, objectField, arrayField,
-                        phoneNumberField, dateField, emailField);
+                        phoneNumberField, dateField, emailField, datetimeField,
+                        objectLevel1);
   }
 
   @Override
@@ -412,6 +470,12 @@ public class Technical {
         .append("\n");
     sb.append("    emailField: ")
         .append(toIndentedString(emailField))
+        .append("\n");
+    sb.append("    datetimeField: ")
+        .append(toIndentedString(datetimeField))
+        .append("\n");
+    sb.append("    objectLevel1: ")
+        .append(toIndentedString(objectLevel1))
         .append("\n");
     sb.append("}");
     return sb.toString();

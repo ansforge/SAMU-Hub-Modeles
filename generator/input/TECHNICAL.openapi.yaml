@@ -110,4 +110,24 @@ components:
           pattern: '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
           examples:
           - None
+        datetimeField:
+          type: string
+          title: Datetime
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/datetimeField
+          description: Datetime
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        objectLevel1:
+          type: object
+          title: Level 1 Object
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectLevel1
+          description: Object at data level 1
+          examples:
+          - None
       additionalProperties: false
