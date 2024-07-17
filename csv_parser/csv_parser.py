@@ -13,7 +13,6 @@ import uml_generator
 import os
 
 from pathlib import Path
-
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -769,7 +768,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             doc = docx.Document()
 
         # Add title
-        doc.add_heading(title, level=1)
+        doc.add_heading(name, level=1)
 
         # Add paragraph
         # doc.add_paragraph('This table represents the fields and types defined in the JSON schema.')
