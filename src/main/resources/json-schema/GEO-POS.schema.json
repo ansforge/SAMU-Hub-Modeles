@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "GEO-POS.schema.json#",
-    "version": "24.07.12",
+    "version": "24.07.17",
     "example": "example.json#",
     "type": "object",
     "title": "geoPositionsUpdate",
@@ -32,25 +32,25 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/id",
-                    "description": "Identifiant unique de la ressource  dans le système du partenaire propriétaire"
+                    "description": "Identifiant unique de la ressource  dans le syst\u00e8me du partenaire propri\u00e9taire"
                 },
                 "datetime": {
                     "type": "string",
-                    "title": "Date et heure des dernières remontées d'informations de la ressource",
+                    "title": "Date et heure des derni\u00e8res remont\u00e9es d'informations de la ressource",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/datetime",
-                    "description": "Date et heure de la dernière position connue",
+                    "description": "Date et heure de la derni\u00e8re position connue",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
                 "receptionDatetime": {
                     "type": "string",
-                    "title": "Date et heure de la réception de la dernière localisation",
+                    "title": "Date et heure de la r\u00e9ception de la derni\u00e8re localisation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/receptionDatetime",
-                    "description": "Date et heure de la réception de la dernière position connue dans le système de l'organisme",
+                    "description": "Date et heure de la r\u00e9ception de la derni\u00e8re position connue dans le syst\u00e8me de l'organisme",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -66,7 +66,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/speed",
-                    "description": "Vitesse de la ressource enregistrée, exprimée en km/h"
+                    "description": "Vitesse de la ressource enregistr\u00e9e, exprim\u00e9e en km/h"
                 },
                 "cap": {
                     "type": "string",
@@ -74,7 +74,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/cap",
-                    "description": "Direction de la ressource, exprimé en degrés"
+                    "description": "Direction de la ressource, exprim\u00e9 en degr\u00e9s"
                 },
                 "move": {
                     "type": "string",
@@ -94,15 +94,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/engineOn",
-                    "description": "Indique si le moteur de la ressource est éteint (FAUX) ou allumé/en marche (VRAI)"
+                    "description": "Indique si le moteur de la ressource est \u00e9teint (FAUX) ou allum\u00e9/en marche (VRAI)"
                 },
                 "groundStatus": {
                     "type": "boolean",
-                    "title": "Etat de l'hélicoptère",
+                    "title": "Etat de l'h\u00e9licopt\u00e8re",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/groundStatus",
-                    "description": "Indique si l'hélicoptère est au sol (VRAI) ou en l'air (FAUX)"
+                    "description": "Indique si l'h\u00e9licopt\u00e8re est au sol (VRAI) ou en l'air (FAUX)"
                 },
                 "status": {
                     "type": "string",
@@ -110,7 +110,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/status",
-                    "description": "Définit le statut de disponibilité d'une ressource.\n- DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque la ressource n'est pas disponible, celle-ci peut être engagée ou en maintenance\n- INCONNU : Lorsque le status est inconnu",
+                    "description": "D\u00e9finit le statut de disponibilit\u00e9 d'une ressource.\n- DISPONIBLE : Lorsque la ressource est disponible\n- INDISPONIBLE : Lorsque la ressource n'est pas disponible, celle-ci peut \u00eatre engag\u00e9e ou en maintenance\n- INCONNU : Lorsque le status est inconnu",
                     "enum": [
                         "DISPONIBLE",
                         "INDISPONIBLE",
@@ -119,11 +119,11 @@
                 },
                 "engagedStatus": {
                     "type": "string",
-                    "title": "Statut de la ressource engagée",
+                    "title": "Statut de la ressource engag\u00e9e",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/engagedStatus",
-                    "description": "Précise le statut d'une ressource qui est engagée sur une mission",
+                    "description": "Pr\u00e9cise le statut d'une ressource qui est engag\u00e9e sur une mission",
                     "enum": [
                         "ALERTEE",
                         "PARTIE",
@@ -143,7 +143,7 @@
         },
         "coord": {
             "type": "object",
-            "title": "Coordonnées",
+            "title": "Coordonn\u00e9es",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -157,7 +157,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/coord/0/lat",
-                    "description": "Dernière coordonnée x connue de la ressource, entre −90 and +90"
+                    "description": "Derni\u00e8re coordonn\u00e9e x connue de la ressource, entre \u221290 and +90"
                 },
                 "lon": {
                     "type": "number",
@@ -165,7 +165,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/coord/0/lon",
-                    "description": "Dernière coordonnée y connue de la ressource, entre −180 and +180"
+                    "description": "Derni\u00e8re coordonn\u00e9e y connue de la ressource, entre \u2212180 and +180"
                 },
                 "height": {
                     "type": "number",
@@ -173,7 +173,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/position/0/coord/0/height",
-                    "description": "Dernière coordonnée z connue de la ressource, en mètres sans bornes"
+                    "description": "Derni\u00e8re coordonn\u00e9e z connue de la ressource, en m\u00e8tres sans bornes"
                 }
             },
             "additionalProperties": false,

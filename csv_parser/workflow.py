@@ -27,7 +27,6 @@ sheets = [
     'GEO-RES',
     'RC-REF',
     'RS-ERROR',
-    'RS-INFO',
     'RS-RI',
     'RS-DR',
     'RS-RR',
