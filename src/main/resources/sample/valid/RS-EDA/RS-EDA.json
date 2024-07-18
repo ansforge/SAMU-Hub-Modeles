@@ -206,32 +206,6 @@
                   }
                 }
               ],
-              "newAlert": [
-                {
-                  "caller": {
-                    "detailedName": {
-                      "complete": "tom tom",
-                      "lastName": "tom",
-                      "firstName": "tom"
-                    },
-                    "callbackContact": {
-                      "channel": "PERSONNE",
-                      "type": "WEB",
-                      "detail": "https://bac-a-sable.hub.esante.gouv.fr/lrm/json"
-                    },
-                    "callerContact": {
-                      "type": "POSTAL",
-                      "channel": "PERSONNE",
-                      "detail": "0102030405"
-                    },
-                    "language": "AL",
-                    "type": "AMBULANC",
-                    "communication": "LANGUE",
-                    "freetext": "commentaire"
-                  },
-                  "reception": "2024-04-18T09:45:00+02:00"
-                }
-              ],
               "medicalNote": [
                 {
                   "operator": {

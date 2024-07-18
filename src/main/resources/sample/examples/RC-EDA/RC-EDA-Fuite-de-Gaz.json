@@ -111,7 +111,7 @@
       },
       "qualification": {
         "whatsHappen": {
-          "code": "C09.03.0",
+          "code": "C09.03.00",
           "label": "Fuite de gaz"
         },
         "locationKind": {
