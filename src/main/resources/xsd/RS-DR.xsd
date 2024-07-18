@@ -27,7 +27,11 @@ OU - uniquement si un ID unique de la demande n'est pas disponible :
 OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
-            <element name="datetime" type="dateTime"/>
+            <element name="datetime" type="dateTime">
+                <annotation>
+                    <documentation>datetime de création de la demande</documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="convention">
                 <annotation>
                     <documentation>Décrit le cadre conventionnel de la demande. Cf nomenclature associée</documentation>
@@ -46,11 +50,6 @@ OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</docum
                         <enumeration value="AUTRE3"/>
                     </restriction>
                 </simpleType>
-            </element>
-            <element minOccurs="0" name="deadline" type="string">
-                <annotation>
-                    <documentation>Délai d'intervention souhaité (en minutes). </documentation>
-                </annotation>
             </element>
             <element name="purpose">
                 <annotation>
@@ -72,6 +71,11 @@ OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</docum
                         <enumeration value="BARIA"/>
                     </restriction>
                 </simpleType>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>Délai d'intervention souhaité (en minutes). </documentation>
+                </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>

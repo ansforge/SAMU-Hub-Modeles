@@ -18,11 +18,11 @@
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="REPORT"/>
-                        <enumeration value="UPDATE"/>
-                        <enumeration value="CANCEL"/>
-                        <enumeration value="ACK"/>
-                        <enumeration value="ERROR"/>
+                        <enumeration value="ENUM_VALUE_1"/>
+                        <enumeration value="ENUM_VALUE_2"/>
+                        <enumeration value="ENUM_VALUE_3"/>
+                        <enumeration value="ENUM_VALUE_4"/>
+                        <enumeration value="ENUM_VALUE_5"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -39,11 +39,11 @@
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="REPORT"/>
-                        <enumeration value="UPDATE"/>
-                        <enumeration value="CANCEL"/>
-                        <enumeration value="ACK"/>
-                        <enumeration value="ERROR"/>
+                        <enumeration value="ENUM_VALUE_10"/>
+                        <enumeration value="ENUM_VALUE_20"/>
+                        <enumeration value="ENUM_VALUE_30"/>
+                        <enumeration value="ENUM_VALUE_40"/>
+                        <enumeration value="ENUM_VALUE_50"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -97,6 +97,11 @@
             <element minOccurs="0" name="objectPropertyNumber" type="decimal">
                 <annotation>
                     <documentation>Object property number</documentation>
+                </annotation>
+            </element>
+            <element name="objectPropertyRequiredString" type="string">
+                <annotation>
+                    <documentation>Required object property</documentation>
                 </annotation>
             </element>
         </sequence>

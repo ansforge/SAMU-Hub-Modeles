@@ -35,11 +35,11 @@
             "example": "example.json#/enumerationField",
             "description": "This is an enumeration",
             "enum": [
-                "REPORT",
-                "UPDATE",
-                "CANCEL",
-                "ACK",
-                "ERROR"
+                "ENUM_VALUE_1",
+                "ENUM_VALUE_2",
+                "ENUM_VALUE_3",
+                "ENUM_VALUE_4",
+                "ENUM_VALUE_5"
             ]
         },
         "numberField": {
@@ -76,11 +76,11 @@
                 "example": "example.json#/enumArrayField/0",
                 "description": "This is an array of enumerations",
                 "enum": [
-                    "REPORT",
-                    "UPDATE",
-                    "CANCEL",
-                    "ACK",
-                    "ERROR"
+                    "ENUM_VALUE_10",
+                    "ENUM_VALUE_20",
+                    "ENUM_VALUE_30",
+                    "ENUM_VALUE_40",
+                    "ENUM_VALUE_50"
                 ]
             }
         },
@@ -157,7 +157,9 @@
             "title": "Object",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
+            "required": [
+                "objectPropertyRequiredString"
+            ],
             "properties": {
                 "objectPropertyString": {
                     "type": "string",
@@ -174,6 +176,14 @@
                     "x-cols": 6,
                     "example": "example.json#/objectField/objectPropertyNumber",
                     "description": "Object property number"
+                },
+                "objectPropertyRequiredString": {
+                    "type": "string",
+                    "title": "Required Object Property",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectField/objectPropertyRequiredString",
+                    "description": "Required object property"
                 }
             },
             "additionalProperties": false,

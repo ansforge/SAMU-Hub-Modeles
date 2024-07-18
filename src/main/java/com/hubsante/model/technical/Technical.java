@@ -78,15 +78,15 @@ public class Technical {
    * This is an enumeration
    */
   public enum EnumerationFieldEnum {
-    REPORT("REPORT"),
+    _1("ENUM_VALUE_1"),
 
-    UPDATE("UPDATE"),
+    _2("ENUM_VALUE_2"),
 
-    CANCEL("CANCEL"),
+    _3("ENUM_VALUE_3"),
 
-    ACK("ACK"),
+    _4("ENUM_VALUE_4"),
 
-    ERROR("ERROR");
+    _5("ENUM_VALUE_5");
 
     private String value;
 
@@ -130,15 +130,15 @@ public class Technical {
    * This is an array of enumerations
    */
   public enum EnumArrayFieldEnum {
-    REPORT("REPORT"),
+    _10("ENUM_VALUE_10"),
 
-    UPDATE("UPDATE"),
+    _20("ENUM_VALUE_20"),
 
-    CANCEL("CANCEL"),
+    _30("ENUM_VALUE_30"),
 
-    ACK("ACK"),
+    _40("ENUM_VALUE_40"),
 
-    ERROR("ERROR");
+    _50("ENUM_VALUE_50");
 
     private String value;
 

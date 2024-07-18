@@ -7,7 +7,7 @@ strict digraph {
                 <TR>
                 <TD ><B>objectField</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet technicalObject</I></TD></TR><TR><TD BORDER="0" >objectPropertyString <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >objectPropertyNumber <I>number</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet technicalObject</I></TD></TR><TR><TD BORDER="0" >objectPropertyString <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >objectPropertyNumber <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >objectPropertyRequiredString <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	objectField -> technical [headlabel=1 taillabel="0..1"]
 	object1Level3 [label=<<TABLE>

@@ -1,13 +1,14 @@
 Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
 Required string,,,,,,This field is required,,requiredStringField,1..1,,string,,
 Optional string,,,,,,This field is optional,,optionalStringField,0..1,,string,,
-Enumeration,,,,,,This is an enumeration,,enumerationField,0..1,,string,,"ENUM: REPORT, UPDATE, CANCEL, ACK, ERROR"
+Enumeration,,,,,,This is an enumeration,,enumerationField,0..1,,string,,"ENUM: ENUM_VALUE_1, ENUM_VALUE_2, ENUM_VALUE_3, ENUM_VALUE_4, ENUM_VALUE_5"
 Optional number,,,,,,This is a number,,numberField,0..1,,number,,
 Object,,,,,,This is an object,,objectField,0..1,X,technicalObject,,
 ,Object property A,,,,,Object property string,,objectPropertyString,0..1,,string,,
 ,Object property B,,,,,Object property number,,objectPropertyNumber,0..1,,number,,
+,Required Object Property,,,,,Required object property,,objectPropertyRequiredString,1..1,,string,,
 Array,,,,,,This is an array,,arrayField,0..n,,string,,
-Array of enumerations,,,,,,This is an array of enumerations,,enumArrayField,0..n,,string,,"ENUM: REPORT, UPDATE, CANCEL, ACK, ERROR"
+Array of enumerations,,,,,,This is an array of enumerations,,enumArrayField,0..n,,string,,"ENUM: ENUM_VALUE_10, ENUM_VALUE_20, ENUM_VALUE_30, ENUM_VALUE_40, ENUM_VALUE_50"
 Required array,,,,,,This array is required,,requiredArray,1..n,,string,,
 Array with maximum length,,,,,,This is an array with a maximum length,,arrayWithMaxLength,0..5,,string,,
 Phone number with regex,,,,,,Phone number with regex,,phoneNumberField,0..1,,string,,REGEX: \+?\d*

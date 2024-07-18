@@ -5,7 +5,8 @@
     "numberField": "None",
     "objectField": {
         "objectPropertyString": "None",
-        "objectPropertyNumber": "None"
+        "objectPropertyNumber": "None",
+        "objectPropertyRequiredString": "None"
     },
     "arrayField": [
         "None"

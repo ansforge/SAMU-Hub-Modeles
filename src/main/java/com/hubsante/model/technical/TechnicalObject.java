@@ -42,8 +42,10 @@ import java.util.Objects;
 /**
  * TechnicalObject
  */
-@JsonPropertyOrder({TechnicalObject.JSON_PROPERTY_OBJECT_PROPERTY_STRING,
-                    TechnicalObject.JSON_PROPERTY_OBJECT_PROPERTY_NUMBER})
+@JsonPropertyOrder(
+    {TechnicalObject.JSON_PROPERTY_OBJECT_PROPERTY_STRING,
+     TechnicalObject.JSON_PROPERTY_OBJECT_PROPERTY_NUMBER,
+     TechnicalObject.JSON_PROPERTY_OBJECT_PROPERTY_REQUIRED_STRING})
 @JsonTypeName("technicalObject")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -55,6 +57,10 @@ public class TechnicalObject {
   public static final String JSON_PROPERTY_OBJECT_PROPERTY_NUMBER =
       "objectPropertyNumber";
   private BigDecimal objectPropertyNumber;
+
+  public static final String JSON_PROPERTY_OBJECT_PROPERTY_REQUIRED_STRING =
+      "objectPropertyRequiredString";
+  private String objectPropertyRequiredString;
 
   public TechnicalObject() {}
 
@@ -104,6 +110,31 @@ public class TechnicalObject {
     this.objectPropertyNumber = objectPropertyNumber;
   }
 
+  public TechnicalObject
+  objectPropertyRequiredString(String objectPropertyRequiredString) {
+
+    this.objectPropertyRequiredString = objectPropertyRequiredString;
+    return this;
+  }
+
+  /**
+   * Required object property
+   * @return objectPropertyRequiredString
+   **/
+  @JsonProperty(JSON_PROPERTY_OBJECT_PROPERTY_REQUIRED_STRING)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public String getObjectPropertyRequiredString() {
+    return objectPropertyRequiredString;
+  }
+
+  @JsonProperty(JSON_PROPERTY_OBJECT_PROPERTY_REQUIRED_STRING)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void
+  setObjectPropertyRequiredString(String objectPropertyRequiredString) {
+    this.objectPropertyRequiredString = objectPropertyRequiredString;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -116,12 +147,15 @@ public class TechnicalObject {
     return Objects.equals(this.objectPropertyString,
                           technicalObject.objectPropertyString) &&
         Objects.equals(this.objectPropertyNumber,
-                       technicalObject.objectPropertyNumber);
+                       technicalObject.objectPropertyNumber) &&
+        Objects.equals(this.objectPropertyRequiredString,
+                       technicalObject.objectPropertyRequiredString);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(objectPropertyString, objectPropertyNumber);
+    return Objects.hash(objectPropertyString, objectPropertyNumber,
+                        objectPropertyRequiredString);
   }
 
   @Override
@@ -133,6 +167,9 @@ public class TechnicalObject {
         .append("\n");
     sb.append("    objectPropertyNumber: ")
         .append(toIndentedString(objectPropertyNumber))
+        .append("\n");
+    sb.append("    objectPropertyRequiredString: ")
+        .append(toIndentedString(objectPropertyRequiredString))
         .append("\n");
     sb.append("}");
     return sb.toString();
