@@ -136,7 +136,7 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "createCaseHealth": {
+                    "createCaseHealthUpdate": {
                       "$ref": "RS-EDA-MAJ.schema.json"
                     }
                   },
@@ -289,7 +289,7 @@
               "properties": {
                 "message": {
                   "properties": {
-                    "resourcesRequest": {
+                    "resourcesStatus": {
                       "$ref": "RS-SR.schema.json"
                     }
                   },
