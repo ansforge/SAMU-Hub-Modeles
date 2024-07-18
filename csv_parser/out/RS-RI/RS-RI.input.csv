@@ -28,7 +28,7 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,,
 ,,Nom,,,,Nom de l'équipe à bord du vecteur,,name,0..1,,string,,
 ,Etats vecteur,,,,,,,state,0..n,X,state,,
 ,,Date/heure de changement de statut,,,,,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
-,,Status du vecteur,,,,Dernier statut du vecteur,,status,1..1,,string,X,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR
+,,Statut du vecteur,,,,Dernier statut du vecteur,,status,1..1,,string,X,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR
 ,,Disponibilité du vecteur,,,,"Indique si le vecteur est disponible / indisponible
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE

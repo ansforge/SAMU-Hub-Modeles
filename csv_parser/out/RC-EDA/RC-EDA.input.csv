@@ -19,8 +19,8 @@ Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général
 
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,,,,,,1..1,X,qualification,,
-,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,,,,,1.0,0..n,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
-,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,
+,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,,,,,1.0,0..n,X,codeAndLabel,,
+,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,1.0,1..1,,string,,
 ,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait

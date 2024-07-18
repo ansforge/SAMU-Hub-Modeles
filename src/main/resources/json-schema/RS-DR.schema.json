@@ -49,6 +49,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/datetime",
+                    "description": "datetime de cr\u00e9ation de la demande",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -72,14 +73,6 @@
                         "AUTRE3"
                     ]
                 },
-                "deadline": {
-                    "type": "string",
-                    "title": "D\u00e9lai souhait\u00e9",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/request/deadline",
-                    "description": "D\u00e9lai d'intervention souhait\u00e9 (en minutes). "
-                },
                 "purpose": {
                     "type": "string",
                     "title": "Effet \u00e0 obtenir",
@@ -101,6 +94,14 @@
                         "BRANCARD",
                         "BARIA"
                     ]
+                },
+                "deadline": {
+                    "type": "string",
+                    "title": "D\u00e9lai souhait\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/request/deadline",
+                    "description": "D\u00e9lai d'intervention souhait\u00e9 (en minutes). "
                 },
                 "freetext": {
                     "type": "string",

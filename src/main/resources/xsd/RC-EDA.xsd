@@ -382,10 +382,51 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
     </complexType>
     <complexType name="riskThreat">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
                     <documentation>A valoriser avec le code de la nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="R01"/>
+                        <enumeration value="R02"/>
+                        <enumeration value="R03"/>
+                        <enumeration value="R04"/>
+                        <enumeration value="R05"/>
+                        <enumeration value="R06"/>
+                        <enumeration value="R07"/>
+                        <enumeration value="R08"/>
+                        <enumeration value="R09"/>
+                        <enumeration value="R10"/>
+                        <enumeration value="R11"/>
+                        <enumeration value="R12"/>
+                        <enumeration value="R13"/>
+                        <enumeration value="R14"/>
+                        <enumeration value="R15"/>
+                        <enumeration value="R16"/>
+                        <enumeration value="R17"/>
+                        <enumeration value="R18"/>
+                        <enumeration value="R19"/>
+                        <enumeration value="R20"/>
+                        <enumeration value="R21"/>
+                        <enumeration value="R22"/>
+                        <enumeration value="R23"/>
+                        <enumeration value="R24"/>
+                        <enumeration value="R25"/>
+                        <enumeration value="R26"/>
+                        <enumeration value="R27"/>
+                        <enumeration value="R28"/>
+                        <enumeration value="R29"/>
+                        <enumeration value="R30"/>
+                        <enumeration value="R31"/>
+                        <enumeration value="R32"/>
+                        <enumeration value="R33"/>
+                        <enumeration value="R34"/>
+                        <enumeration value="R35"/>
+                        <enumeration value="R36"/>
+                        <enumeration value="R37"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>

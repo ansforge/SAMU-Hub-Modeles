@@ -60,7 +60,6 @@ import java.util.Objects;
      CreateCaseHealthUpdate.JSON_PROPERTY_PATIENT,
      CreateCaseHealthUpdate.JSON_PROPERTY_MEDICAL_NOTE,
      CreateCaseHealthUpdate.JSON_PROPERTY_FREETEXT,
-     CreateCaseHealthUpdate.JSON_PROPERTY_NEW_ALERT,
      CreateCaseHealthUpdate.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCaseHealthUpdate")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -135,9 +134,6 @@ public class CreateCaseHealthUpdate {
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
-
-  public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
-  private List<Alert> newAlert;
 
   public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION =
       "additionalInformation";
@@ -421,45 +417,6 @@ public class CreateCaseHealthUpdate {
     this.freetext = freetext;
   }
 
-  public CreateCaseHealthUpdate newAlert(List<Alert> newAlert) {
-
-    this.newAlert = newAlert;
-    return this;
-  }
-
-  public CreateCaseHealthUpdate addNewAlertItem(Alert newAlertItem) {
-    if (this.newAlert == null) {
-      this.newAlert = new ArrayList<>();
-    }
-    this.newAlert.add(newAlertItem);
-    return this;
-  }
-
-  /**
-   * Get newAlert
-   * @return newAlert
-   **/
-  @JsonProperty(JSON_PROPERTY_NEW_ALERT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Alert> getNewAlert() {
-    return newAlert;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_NEW_ALERT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNewAlert(List<Alert> newAlert) {
-    if (newAlert == null) {
-      return;
-    }
-    if (this.newAlert == null) {
-      this.newAlert = new ArrayList<>();
-    }
-    this.newAlert.addAll(newAlert);
-  }
-
   public CreateCaseHealthUpdate
   additionalInformation(AdditionalInformation additionalInformation) {
 
@@ -507,7 +464,6 @@ public class CreateCaseHealthUpdate {
         Objects.equals(this.patient, createCaseHealthUpdate.patient) &&
         Objects.equals(this.medicalNote, createCaseHealthUpdate.medicalNote) &&
         Objects.equals(this.freetext, createCaseHealthUpdate.freetext) &&
-        Objects.equals(this.newAlert, createCaseHealthUpdate.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCaseHealthUpdate.additionalInformation);
   }
@@ -516,7 +472,7 @@ public class CreateCaseHealthUpdate {
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, perimeter, qualification,
                         location, initialAlert, owner, patient, medicalNote,
-                        freetext, newAlert, additionalInformation);
+                        freetext, additionalInformation);
   }
 
   @Override
@@ -543,7 +499,6 @@ public class CreateCaseHealthUpdate {
         .append(toIndentedString(medicalNote))
         .append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
-    sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
     sb.append("    additionalInformation: ")
         .append(toIndentedString(additionalInformation))
         .append("\n");

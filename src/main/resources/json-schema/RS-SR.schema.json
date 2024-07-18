@@ -41,7 +41,7 @@
         },
         "status": {
             "type": "string",
-            "title": "Status du vecteur",
+            "title": "Statut du vecteur",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/status",
