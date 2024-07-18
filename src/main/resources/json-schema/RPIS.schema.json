@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.07.17",
+    "version": "24.07.18",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -306,8 +306,6 @@
             "x-health-only": false,
             "required": [
                 "code",
-                "label",
-                "code",
                 "label"
             ],
             "properties": {
@@ -317,7 +315,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/healthMotive/code",
-                    "description": "A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime"
+                    "description": "A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait"
                 },
                 "label": {
                     "type": "string",
@@ -325,7 +323,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/healthMotive/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature CISU-Code_Motif_patient-victime.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature CISU-Code_Nature_de_fait.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,

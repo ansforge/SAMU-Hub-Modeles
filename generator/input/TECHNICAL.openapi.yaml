@@ -16,6 +16,7 @@ components:
       title: technical
       required:
       - requiredStringField
+      - requiredArray
       properties:
         requiredStringField:
           type: string
@@ -60,7 +61,7 @@ components:
           examples:
           - None
         objectField:
-          type: object
+          type: technicalObject
           title: Object
           x-health-only: false
           x-cols: 6
@@ -80,6 +81,50 @@ components:
             description: This is an array
             examples:
             - None
+        enumArrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array of enumerations
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/enumArrayField/0
+            description: This is an array of enumerations
+            enum:
+            - REPORT
+            - UPDATE
+            - CANCEL
+            - ACK
+            - ERROR
+            examples:
+            - None
+        requiredArray:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Required array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/requiredArray/0
+            description: This array is required
+            examples:
+            - None
+          minItems: 1
+        arrayWithMaxLength:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array with maximum length
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayWithMaxLength/0
+            description: This is an array with a maximum length
+            examples:
+            - None
+          maxItems: 5
         phoneNumberField:
           type: string
           title: Phone number with regex
@@ -122,7 +167,7 @@ components:
           examples:
           - None
         objectLevel1:
-          type: object
+          type: levelOneData
           title: Level 1 Object
           x-health-only: false
           x-cols: 6

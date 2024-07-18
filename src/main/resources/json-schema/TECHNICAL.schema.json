@@ -2,12 +2,13 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "TECHNICAL.schema.json#",
-    "version": "24.07.17",
+    "version": "24.07.18",
     "example": "example.json#",
     "type": "object",
     "title": "technical",
     "required": [
-        "requiredStringField"
+        "requiredStringField",
+        "requiredArray"
     ],
     "properties": {
         "requiredStringField": {
@@ -50,7 +51,7 @@
             "description": "This is a number"
         },
         "objectField": {
-            "type": "object",
+            "type": "technicalObject",
             "title": "Object",
             "x-health-only": false,
             "x-cols": 6,
@@ -68,6 +69,51 @@
                 "example": "example.json#/arrayField/0",
                 "description": "This is an array"
             }
+        },
+        "enumArrayField": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Array of enumerations",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/enumArrayField/0",
+                "description": "This is an array of enumerations",
+                "enum": [
+                    "REPORT",
+                    "UPDATE",
+                    "CANCEL",
+                    "ACK",
+                    "ERROR"
+                ]
+            }
+        },
+        "requiredArray": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Required array",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/requiredArray/0",
+                "description": "This array is required"
+            },
+            "minItems": 1
+        },
+        "arrayWithMaxLength": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Array with maximum length",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/arrayWithMaxLength/0",
+                "description": "This is an array with a maximum length"
+            },
+            "maxItems": 5
         },
         "phoneNumberField": {
             "type": "string",
@@ -107,7 +153,7 @@
             "format": "date-time"
         },
         "objectLevel1": {
-            "type": "object",
+            "type": "levelOneData",
             "title": "Level 1 Object",
             "x-health-only": false,
             "x-cols": 6,

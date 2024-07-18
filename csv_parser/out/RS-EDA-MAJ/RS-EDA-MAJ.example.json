@@ -1,120 +1,35 @@
 {
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "senderCaseId": "DRFR15440241550012",
-    "creation": "2022-09-27T08:23:34+02:00",
     "perimeter": "AMU",
-    "interventionType": "PRIMAIRE",
     "qualification": {
-        "origin": "15, 112, 18",
         "riskThreat": [
             {
                 "code": "C07.13.02",
                 "label": "Rod\u00e9o automobile"
             }
         ],
-        "whatsHappen": {
-            "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
-        },
-        "locationKind": {
-            "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
-        },
-        "healthMotive": {
-            "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
-        },
         "details": {
-            "attribution": "MU",
             "priority": "P1",
             "careLevel": "R1"
         }
     },
     "location": {
-        "name": "Lyc\u00e9e Pierre de Coubertin",
-        "externalLocationId": [
-            {
-                "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
-                "value": "920000650\u00a0"
-            }
-        ],
-        "detailedAddress": {
-            "highway": {
-                "name": "A4",
-                "pk": "PK10",
-                "direction": "Paris"
-            },
-            "complete": "9 Bd du Montparnasse",
-            "number": "9, 4bis, PK10, \u2026",
-            "wayName": {
-                "complete": "Boulevard du Montparnasse",
-                "type": "Boulevard",
-                "name": "du Montparnasse"
-            }
-        },
-        "city": {
-            "name": "Lille",
-            "inseeCode": 59350
-        },
-        "access": {
-            "floor": "RDC",
-            "roomNumber": "A16",
-            "interphone": "Dupont",
-            "accessCode": [
-                "1234A"
-            ],
-            "elevator": "C3",
-            "buildingName": "Batiment B",
-            "entrance": "Zone Sud",
-            "entity": "Infirmerie",
-            "phoneNumber": "+33123452323"
-        },
-        "geometry": {
-            "obsDatime": "2022-09-27T08:23:34+02:00",
-            "point": {
-                "coord": {
-                    "lat": "48.866667",
-                    "lon": "2.333333",
-                    "height": 120,
-                    "precision": "ADRESSE"
-                },
-                "isAml": "TRUE"
-            }
-        },
         "externalInfo": [
             {
                 "freetext": "BAN, IGN, NEXSIS, \u2026",
                 "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
                 "uri": "80021_6590_00008, id987"
             }
-        ],
-        "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+        ]
     },
     "initialAlert": {
-        "reception": "2022-09-27T08:21:06+02:00",
         "notes": [
             {
                 "creation": "None",
                 "freetext": "Accident de bricolage, accident domestique, d\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
             }
-        ],
-        "caller": {
-            "callerContact": {
-                "channel": "PERSONNE",
-                "type": "TEL",
-                "detail": "+33671830530"
-            },
-            "callbackContact": {},
-            "language": "FR",
-            "type": "FAMILLE, TIERS",
-            "communication": "Malentendant, aucune difficult\u00e9 de communication",
-            "freetext": "t\u00e9moin de l'accident",
-            "detailedName": {
-                "complete": "Jean Dupont",
-                "lastName": "Dupont",
-                "firstName": "Jean"
-            }
-        }
+        ]
     },
     "owner": "fr.health.samu440",
     "patient": [
@@ -172,6 +87,7 @@
             "freetext": "None"
         }
     ],
+    "freetext": "adresse : 7bis rue du ch\u00e2teau - Neuilly sur Seine",
     "newAlert": [
         {}
     ],

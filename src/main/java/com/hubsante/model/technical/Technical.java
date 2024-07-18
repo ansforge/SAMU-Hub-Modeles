@@ -34,6 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.technical.LevelOneData;
+import com.hubsante.model.technical.TechnicalObject;
 import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
@@ -51,6 +53,9 @@ import java.util.Objects;
      Technical.JSON_PROPERTY_ENUMERATION_FIELD,
      Technical.JSON_PROPERTY_NUMBER_FIELD, Technical.JSON_PROPERTY_OBJECT_FIELD,
      Technical.JSON_PROPERTY_ARRAY_FIELD,
+     Technical.JSON_PROPERTY_ENUM_ARRAY_FIELD,
+     Technical.JSON_PROPERTY_REQUIRED_ARRAY,
+     Technical.JSON_PROPERTY_ARRAY_WITH_MAX_LENGTH,
      Technical.JSON_PROPERTY_PHONE_NUMBER_FIELD,
      Technical.JSON_PROPERTY_DATE_FIELD, Technical.JSON_PROPERTY_EMAIL_FIELD,
      Technical.JSON_PROPERTY_DATETIME_FIELD,
@@ -116,10 +121,59 @@ public class Technical {
   private BigDecimal numberField;
 
   public static final String JSON_PROPERTY_OBJECT_FIELD = "objectField";
-  private Object objectField;
+  private TechnicalObject objectField = null;
 
   public static final String JSON_PROPERTY_ARRAY_FIELD = "arrayField";
   private List<String> arrayField;
+
+  /**
+   * This is an array of enumerations
+   */
+  public enum EnumArrayFieldEnum {
+    REPORT("REPORT"),
+
+    UPDATE("UPDATE"),
+
+    CANCEL("CANCEL"),
+
+    ACK("ACK"),
+
+    ERROR("ERROR");
+
+    private String value;
+
+    EnumArrayFieldEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static EnumArrayFieldEnum fromValue(String value) {
+      for (EnumArrayFieldEnum b : EnumArrayFieldEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ENUM_ARRAY_FIELD = "enumArrayField";
+  private List<EnumArrayFieldEnum> enumArrayField;
+
+  public static final String JSON_PROPERTY_REQUIRED_ARRAY = "requiredArray";
+  private List<String> requiredArray = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ARRAY_WITH_MAX_LENGTH =
+      "arrayWithMaxLength";
+  private List<String> arrayWithMaxLength;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER_FIELD =
       "phoneNumberField";
@@ -135,7 +189,7 @@ public class Technical {
   private OffsetDateTime datetimeField;
 
   public static final String JSON_PROPERTY_OBJECT_LEVEL1 = "objectLevel1";
-  private Object objectLevel1;
+  private LevelOneData objectLevel1 = null;
 
   public Technical() {}
 
@@ -231,7 +285,7 @@ public class Technical {
     this.numberField = numberField;
   }
 
-  public Technical objectField(Object objectField) {
+  public Technical objectField(TechnicalObject objectField) {
 
     this.objectField = objectField;
     return this;
@@ -244,13 +298,13 @@ public class Technical {
   @JsonProperty(JSON_PROPERTY_OBJECT_FIELD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getObjectField() {
+  public TechnicalObject getObjectField() {
     return objectField;
   }
 
   @JsonProperty(JSON_PROPERTY_OBJECT_FIELD)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObjectField(Object objectField) {
+  public void setObjectField(TechnicalObject objectField) {
     this.objectField = objectField;
   }
 
@@ -291,6 +345,124 @@ public class Technical {
       this.arrayField = new ArrayList<>();
     }
     this.arrayField.addAll(arrayField);
+  }
+
+  public Technical enumArrayField(List<EnumArrayFieldEnum> enumArrayField) {
+
+    this.enumArrayField = enumArrayField;
+    return this;
+  }
+
+  public Technical
+  addEnumArrayFieldItem(EnumArrayFieldEnum enumArrayFieldItem) {
+    if (this.enumArrayField == null) {
+      this.enumArrayField = new ArrayList<>();
+    }
+    this.enumArrayField.add(enumArrayFieldItem);
+    return this;
+  }
+
+  /**
+   * Get enumArrayField
+   * @return enumArrayField
+   **/
+  @JsonProperty(JSON_PROPERTY_ENUM_ARRAY_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<EnumArrayFieldEnum> getEnumArrayField() {
+    return enumArrayField;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_ENUM_ARRAY_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setEnumArrayField(List<EnumArrayFieldEnum> enumArrayField) {
+    if (enumArrayField == null) {
+      return;
+    }
+    if (this.enumArrayField == null) {
+      this.enumArrayField = new ArrayList<>();
+    }
+    this.enumArrayField.addAll(enumArrayField);
+  }
+
+  public Technical requiredArray(List<String> requiredArray) {
+
+    this.requiredArray = requiredArray;
+    return this;
+  }
+
+  public Technical addRequiredArrayItem(String requiredArrayItem) {
+    if (this.requiredArray == null) {
+      this.requiredArray = new ArrayList<>();
+    }
+    this.requiredArray.add(requiredArrayItem);
+    return this;
+  }
+
+  /**
+   * Get requiredArray
+   * @return requiredArray
+   **/
+  @JsonProperty(JSON_PROPERTY_REQUIRED_ARRAY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public List<String> getRequiredArray() {
+    return requiredArray;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_REQUIRED_ARRAY)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setRequiredArray(List<String> requiredArray) {
+    if (requiredArray == null) {
+      return;
+    }
+    if (this.requiredArray == null) {
+      this.requiredArray = new ArrayList<>();
+    }
+    this.requiredArray.addAll(requiredArray);
+  }
+
+  public Technical arrayWithMaxLength(List<String> arrayWithMaxLength) {
+
+    this.arrayWithMaxLength = arrayWithMaxLength;
+    return this;
+  }
+
+  public Technical addArrayWithMaxLengthItem(String arrayWithMaxLengthItem) {
+    if (this.arrayWithMaxLength == null) {
+      this.arrayWithMaxLength = new ArrayList<>();
+    }
+    this.arrayWithMaxLength.add(arrayWithMaxLengthItem);
+    return this;
+  }
+
+  /**
+   * Get arrayWithMaxLength
+   * @return arrayWithMaxLength
+   **/
+  @JsonProperty(JSON_PROPERTY_ARRAY_WITH_MAX_LENGTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<String> getArrayWithMaxLength() {
+    return arrayWithMaxLength;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_ARRAY_WITH_MAX_LENGTH)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setArrayWithMaxLength(List<String> arrayWithMaxLength) {
+    if (arrayWithMaxLength == null) {
+      return;
+    }
+    if (this.arrayWithMaxLength == null) {
+      this.arrayWithMaxLength = new ArrayList<>();
+    }
+    this.arrayWithMaxLength.addAll(arrayWithMaxLength);
   }
 
   public Technical phoneNumberField(String phoneNumberField) {
@@ -385,7 +557,7 @@ public class Technical {
     this.datetimeField = datetimeField;
   }
 
-  public Technical objectLevel1(Object objectLevel1) {
+  public Technical objectLevel1(LevelOneData objectLevel1) {
 
     this.objectLevel1 = objectLevel1;
     return this;
@@ -398,13 +570,13 @@ public class Technical {
   @JsonProperty(JSON_PROPERTY_OBJECT_LEVEL1)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getObjectLevel1() {
+  public LevelOneData getObjectLevel1() {
     return objectLevel1;
   }
 
   @JsonProperty(JSON_PROPERTY_OBJECT_LEVEL1)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObjectLevel1(Object objectLevel1) {
+  public void setObjectLevel1(LevelOneData objectLevel1) {
     this.objectLevel1 = objectLevel1;
   }
 
@@ -425,6 +597,9 @@ public class Technical {
         Objects.equals(this.numberField, technical.numberField) &&
         Objects.equals(this.objectField, technical.objectField) &&
         Objects.equals(this.arrayField, technical.arrayField) &&
+        Objects.equals(this.enumArrayField, technical.enumArrayField) &&
+        Objects.equals(this.requiredArray, technical.requiredArray) &&
+        Objects.equals(this.arrayWithMaxLength, technical.arrayWithMaxLength) &&
         Objects.equals(this.phoneNumberField, technical.phoneNumberField) &&
         Objects.equals(this.dateField, technical.dateField) &&
         Objects.equals(this.emailField, technical.emailField) &&
@@ -436,6 +611,7 @@ public class Technical {
   public int hashCode() {
     return Objects.hash(requiredStringField, optionalStringField,
                         enumerationField, numberField, objectField, arrayField,
+                        enumArrayField, requiredArray, arrayWithMaxLength,
                         phoneNumberField, dateField, emailField, datetimeField,
                         objectLevel1);
   }
@@ -461,6 +637,15 @@ public class Technical {
         .append("\n");
     sb.append("    arrayField: ")
         .append(toIndentedString(arrayField))
+        .append("\n");
+    sb.append("    enumArrayField: ")
+        .append(toIndentedString(enumArrayField))
+        .append("\n");
+    sb.append("    requiredArray: ")
+        .append(toIndentedString(requiredArray))
+        .append("\n");
+    sb.append("    arrayWithMaxLength: ")
+        .append(toIndentedString(arrayWithMaxLength))
         .append("\n");
     sb.append("    phoneNumberField: ")
         .append(toIndentedString(phoneNumberField))

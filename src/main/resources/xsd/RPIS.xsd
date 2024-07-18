@@ -155,12 +155,12 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime</documentation>
+                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Motif_patient-victime.
+                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>

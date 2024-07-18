@@ -139,17 +139,21 @@ public class Resource {
    * Pédiatrique, etc.
    */
   public enum VehiculeTypeEnum {
-    VPSP("VPSP"),
+    AASC("AASC"),
 
     VLSC("VLSC"),
 
+    VPSP("VPSP"),
+
     AUTRESC("AUTRESC"),
+
+    AUTREVECT("AUTREVECT"),
+
+    CONSEIL("CONSEIL"),
 
     TAXI("TAXI"),
 
     TRANSP("TRANSP"),
-
-    AUTRE("AUTRE"),
 
     TRAIN("TRAIN"),
 
@@ -159,11 +163,17 @@ public class Resource {
 
     APIED("APIED"),
 
+    AUTRE("AUTRE"),
+
+    AUTRETRANS("AUTRETRANS"),
+
     INCONNU("INCONNU"),
 
-    CONSEIL("CONSEIL"),
+    DEFIB("DEFIB"),
 
     DAE("DAE"),
+
+    FSI("FSI"),
 
     HELIFSI("HELIFSI"),
 
@@ -172,6 +182,8 @@ public class Resource {
     FFSI("FFSI"),
 
     VHFSI("VHFSI"),
+
+    LIB("LIB"),
 
     MEDC("MEDC"),
 
@@ -187,9 +199,7 @@ public class Resource {
 
     AUTREPRO("AUTREPRO"),
 
-    DRAGON("DRAGON"),
-
-    AVSC("AVSC"),
+    SIS("SIS"),
 
     VSAV("VSAV"),
 
@@ -217,29 +227,21 @@ public class Resource {
 
     VLSIS("VLSIS"),
 
+    DRAGON("DRAGON"),
+
+    AVSC("AVSC"),
+
     MOYSSE("MOYSSE"),
 
     AUTRESIS("AUTRESIS"),
 
+    NAVISIS("NAVISIS"),
+
+    SMUR("SMUR"),
+
     VLM("VLM"),
 
-    AR("AR"),
-
-    AR_BAR("AR-BAR"),
-
-    AR_PED("AR-PED"),
-
     VL("VL"),
-
-    HELISMUR("HELISMUR"),
-
-    HELISAN("HELISAN"),
-
-    AVSMUR("AVSMUR"),
-
-    AVSAN("AVSAN"),
-
-    NAVISMUR("NAVISMUR"),
 
     PSM1("PSM1"),
 
@@ -251,17 +253,33 @@ public class Resource {
 
     VPC("VPC"),
 
+    AR("AR"),
+
+    AR_BAR("AR-BAR"),
+
+    AR_PED("AR-PED"),
+
+    HELISMUR("HELISMUR"),
+
+    HELISAN("HELISAN"),
+
+    AVSMUR("AVSMUR"),
+
+    AVSAN("AVSAN"),
+
+    NAVISMUR("NAVISMUR"),
+
+    TSU("TSU"),
+
+    VSL("VSL"),
+
     AMB_GV("AMB-GV"),
 
     AMB_PV("AMB-PV"),
 
     AMB_BAR("AMB-BAR"),
 
-    AMB("AMB"),
-
-    VSL("VSL"),
-
-    NAVISIS("NAVISIS");
+    AMB("AMB");
 
     private String value;
 

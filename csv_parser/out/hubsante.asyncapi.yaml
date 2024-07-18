@@ -382,31 +382,10 @@ components:
       x-health-only: false
       required: []
       properties:
-        origin:
-          type: string
-          title: Origine de l'appel
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/origin
-          description: "A valoriser avec le num\xE9ro de provenance de l'appel."
-          enum:
-          - '15'
-          - '18'
-          - '17'
-          - '112'
-          - '116117'
-          examples:
-          - 15, 112, 18
-        whatsHappen:
-          $ref: '#/components/schemas/whatsHappen'
-        locationKind:
-          $ref: '#/components/schemas/locationKind'
         riskThreat:
           type: array
           items:
             $ref: '#/components/schemas/riskThreat'
-        healthMotive:
-          $ref: '#/components/schemas/healthMotive'
         details:
           $ref: '#/components/schemas/caseDetails'
       additionalProperties: false
@@ -455,27 +434,12 @@ components:
       title: Alerte initiale
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - reception
-      - caller
+      required: []
       properties:
-        reception:
-          type: string
-          title: "Date et heure de r\xE9ception de l'alerte"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/reception
-          description: "A valoriser avec le groupe date heure de r\xE9ception de l'alerte/appel"
-          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
-          format: date-time
-          examples:
-          - '2022-09-27T08:21:06+02:00'
         notes:
           type: array
           items:
             $ref: '#/components/schemas/notes'
-        caller:
-          $ref: '#/components/schemas/caller'
       additionalProperties: false
       example: example.json#/initialAlert
     additionalInformation:
@@ -492,6 +456,41 @@ components:
           maxItems: 3
       additionalProperties: false
       example: example.json#/additionalInformation
+    riskThreat:
+      type: object
+      title: "Risque, menace et sensibilit\xE9"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - code
+      - label
+      properties:
+        code:
+          type: string
+          title: Code
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/riskThreat/0/code
+          description: "A valoriser avec le code de la nomenclature associ\xE9e"
+          examples:
+          - C07.13.02
+        label:
+          type: string
+          title: "Libell\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/riskThreat/0/label
+          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
+            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
+            \ fourni avec le code."
+          examples:
+          - "Rod\xE9o automobile"
+      additionalProperties: false
+      example: example.json#/qualification/riskThreat/0
+      examples:
+      - code: C07.13.02
+        label: "Rod\xE9o automobile"
     whatsHappen:
       type: object
       title: "Circonstances ayant donn\xE9es lieu \xE0 l\u2019appel"
@@ -742,87 +741,12 @@ components:
       examples:
       - code: C07.13.02
         label: "Rod\xE9o automobile"
-    riskThreat:
-      type: object
-      title: "Risque, menace et sensibilit\xE9"
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - code
-      - label
-      properties:
-        code:
-          type: string
-          title: Code
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/code
-          description: "A valoriser avec le code de la nomenclature associ\xE9e"
-          enum:
-          - R01
-          - R02
-          - R03
-          - R04
-          - R05
-          - R06
-          - R07
-          - R08
-          - R09
-          - R10
-          - R11
-          - R12
-          - R13
-          - R14
-          - R15
-          - R16
-          - R17
-          - R18
-          - R19
-          - R20
-          - R21
-          - R22
-          - R23
-          - R24
-          - R25
-          - R26
-          - R27
-          - R28
-          - R29
-          - R30
-          - R31
-          - R32
-          - R33
-          - R34
-          - R35
-          - R36
-          - R37
-          examples:
-          - C07.13.02
-        label:
-          type: string
-          title: "Libell\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/riskThreat/0/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
-            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
-            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
-            \ fourni avec le code."
-          examples:
-          - "Rod\xE9o automobile"
-      additionalProperties: false
-      example: example.json#/qualification/riskThreat/0
-      examples:
-      - code: C07.13.02
-        label: "Rod\xE9o automobile"
     healthMotive:
       type: object
       title: 'Motif de recours '
       x-display: expansion-panels
       x-health-only: false
       required:
-      - code
-      - label
       - code
       - label
       properties:
@@ -832,7 +756,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/code
-          description: A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime
+          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
           examples:
           - AVPAR
         label:
@@ -841,7 +765,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Motif_patient-victime.\n\
+          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
             Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
             \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
@@ -1895,52 +1819,15 @@ components:
         details: 0671830530
     detailedName:
       type: object
-      title: "Pr\xE9nom & nom usuel"
+      title: "Traits non stricts de l'identit\xE9"
       x-display: expansion-panels
       x-health-only: false
-      required:
-      - complete
-      properties:
-        complete:
-          type: string
-          title: "Pr\xE9nom et nom"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/caller/detailedName/complete
-          description: "A valoriser avec le pr\xE9nom et le nom usuel du requ\xE9\
-            rant/appelant.\nSi les champs callerLastName et callerFirstName sont \xE9\
-            galement renseign\xE9s, le champ callerName doit \xEAtre valoris\xE9 ainsi\
-            \ : \"{callerFirstName} {callerLastName}\".\n\nSp\xE9cificit\xE9s 15-18\
-            \  : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et\
-            \ pas de deux champs s\xE9par\xE9s."
-          examples:
-          - Jean Dupont
-        lastName:
-          type: string
-          title: Nom
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/caller/detailedName/lastName
-          description: "A valoriser avec le nom usuel du requ\xE9rant"
-          examples:
-          - Dupont
-        firstName:
-          type: string
-          title: "Pr\xE9nom"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/initialAlert/caller/detailedName/firstName
-          description: "A valoriser avec le pr\xE9nom usuel du r\xE9qu\xE9rant.\n\
-            Par convention les pr\xE9noms compos\xE9s doivent pr\xE9f\xE9rablement\
-            \ \xEAtre s\xE9par\xE9s par le caract\xE8re \"-\""
-          examples:
-          - Jean
+      required: []
+      properties: {}
       additionalProperties: false
-      example: example.json#/initialAlert/caller/detailedName
+      example: example.json#/patient/0/identity/nonStrictFeatures
       examples:
-      - complete: Jean Dupont
-        lastName: Dupont
-        firstName: Jean
+      - {}
     customMap:
       type: object
       title: "Cl\xE9 valeur adaptable"
@@ -2246,54 +2133,6 @@ components:
       x-health-only: false
       required: []
       properties:
-        attribution:
-          type: string
-          title: Attribution du dossier
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/qualification/details/attribution
-          description: "D\xE9crit le type de professionnel m\xE9dical \xE0 qui le\
-            \ dossier est attribu\xE9 : m\xE9decin g\xE9n\xE9raliste, m\xE9decin urgentiste\
-            \ etc."
-          enum:
-          - DRM
-          - DRMMRU
-          - MU
-          - DENT
-          - GERIA
-          - PEDIA
-          - PSY
-          - TOXICOL
-          - INDISPMU
-          - SSE
-          - PLANBLAN
-          - PCSAMU
-          - DRMMRL
-          - MG
-          - INDISPMG
-          - ABSML
-          - DR
-          - DREG
-          - DRARM
-          - DRMED
-          - DRPHARMA
-          - DRDENT
-          - DRINFO
-          - DOS-SIS
-          - DOS-FDO
-          - D
-          - D-MALV
-          - ERR
-          - NRP
-          - MALV
-          - FAX
-          - ITERATIF
-          - D-IDENT
-          - ADMIN
-          - PERSO
-          - AUTRE
-          examples:
-          - MU
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -2330,8 +2169,7 @@ components:
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - attribution: MU
-        priority: P1
+      - priority: P1
         careLevel: R1
     highway:
       type: object
@@ -2359,7 +2197,7 @@ components:
           description: "A valoriser avec le point kilom\xE9trique de l'autoroute,\
             \ de la voie ferr\xE9e ou voie navigable. "
           examples:
-          - None
+          - PK10
         direction:
           type: string
           title: Sens
@@ -2368,13 +2206,13 @@ components:
           example: example.json#/location/detailedAddress/highway/direction
           description: A valoriser avec le sens de l'autoroute.
           examples:
-          - None
+          - Paris
       additionalProperties: false
       example: example.json#/location/detailedAddress/highway
       examples:
       - name: A4
-        pk: None
-        direction: None
+        pk: PK10
+        direction: Paris
     administrativeFile:
       type: object
       title: Dossier administratif
@@ -2662,6 +2500,101 @@ components:
       examples:
       - detailedName: {}
         role: ARM
+    createCaseHealthUpdate:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-EDA-MAJ.schema.json#
+      example: example.json#
+      type: object
+      title: createCaseHealthUpdate
+      required:
+      - caseId
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          examples:
+          - fr.health.samu440.DRFR15440241550012
+        senderCaseId:
+          type: string
+          title: Identifiant local de l'affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/senderCaseId
+          description: "A valoriser avec le num\xE9ro du dossier dans le SI de l'\xE9\
+            metteur du message.\n"
+          examples:
+          - DRFR15440241550012
+        perimeter:
+          type: string
+          title: "Fili\xE8re"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/perimeter
+          description: "Sert \xE0 indiquer \xE0 quelle fili\xE8re du CRRA destinataire\
+            \ le dossier doit \xEAtre adress\xE9/affich\xE9, lorsque celle-ci est\
+            \ sp\xE9cifique ou d\xE9di\xE9e."
+          enum:
+          - AMU
+          - NEONAT
+          - PSY
+          - SNP
+          examples:
+          - AMU
+        qualification:
+          $ref: '#/components/schemas/qualification'
+        location:
+          $ref: '#/components/schemas/location'
+        initialAlert:
+          $ref: '#/components/schemas/alert'
+        owner:
+          type: string
+          title: CRRA traitant
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/owner
+          description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
+            \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
+            \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
+          examples:
+          - fr.health.samu440
+        patient:
+          type: array
+          items:
+            $ref: '#/components/schemas/patient'
+        medicalNote:
+          type: array
+          items:
+            $ref: '#/components/schemas/medicalNote'
+        freetext:
+          type: string
+          title: "Information suppl\xE9mentaires modifi\xE9es"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/freetext
+          description: "Champ libre qui permet de concat\xE9ner en une seule note\
+            \ toutes les autres valeurs modifi\xE9es dans le dossier, ne figurant\
+            \ pas de mani\xE8re structur\xE9e dans le RS-EDA-MAJ."
+          examples:
+          - "adresse : 7bis rue du ch\xE2teau - Neuilly sur Seine"
+        newAlert:
+          type: array
+          items:
+            $ref: '#/components/schemas/alert'
+        additionalInformation:
+          $ref: '#/components/schemas/additionalInformation'
+      additionalProperties: false
     emsi:
       $id: classpath:/json-schema/schema#
       x-id: EMSI.schema.json#
@@ -3462,23 +3395,29 @@ components:
             , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
             \ Ambulance de r\xE9animation P\xE9diatrique, etc."
           enum:
-          - VPSP
+          - AASC
           - VLSC
+          - VPSP
           - AUTRESC
+          - AUTREVECT
+          - CONSEIL
           - TAXI
           - TRANSP
-          - AUTRE
           - TRAIN
           - AVION
           - PERSO
           - APIED
+          - AUTRE
+          - AUTRETRANS
           - INCONNU
-          - CONSEIL
+          - DEFIB
           - DAE
+          - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
+          - LIB
           - MEDC
           - MEDV
           - PHARMA
@@ -3486,8 +3425,7 @@ components:
           - MEDSPE
           - DENT
           - AUTREPRO
-          - DRAGON
-          - AVSC
+          - SIS
           - VSAV
           - GRIMP
           - VPL
@@ -3501,29 +3439,33 @@ components:
           - VLMSP
           - VLCG
           - VLSIS
+          - DRAGON
+          - AVSC
           - MOYSSE
           - AUTRESIS
+          - NAVISIS
+          - SMUR
           - VLM
-          - AR
-          - AR-BAR
-          - AR-PED
           - VL
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
           - PSM1
           - PSM2
           - PSM3
           - PSMP
           - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
           - AMB-GV
           - AMB-PV
           - AMB-BAR
           - AMB
-          - VSL
-          - NAVISIS
           examples:
           - VLM
         plate:
@@ -5474,21 +5416,29 @@ components:
           - None
         status:
           type: string
-          title: Status du vecteur
+          title: Statut du vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/status
           description: Dernier statut du vecteur
           enum:
-          - ALERTE
-          - PARTI
-          - ARRIVEE SUR LES LIEUX
-          - TRANSPORT DESTINATION
-          - ARRIVEE DESTINATION
-          - 'FIN DE MEDICALISATION '
-          - QUITTE DESTINATION
-          - RETOUR BASE
-          - RENTREE BASE
+          - DECISION
+          - DECLENCHE
+          - DEPART
+          - ARRIVE
+          - PEC
+          - ANNULE
+          - BILAN
+          - TRANSPOR
+          - ETAPE1
+          - TRANSP2
+          - ETAPE2
+          - TRANSP3
+          - DESTIN
+          - FINPEC
+          - RETOUR
+          - RET-BASE
+          - REN-BASE
           examples:
           - None
         availability:
@@ -5585,8 +5535,19 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/convention
-          description: "Nomenclature \xE0 venir : d\xE9crit le cadre conventionnel\
-            \ de la demande."
+          description: "D\xE9crit le cadre conventionnel de la demande. Cf nomenclature\
+            \ associ\xE9e"
+          enum:
+          - DRSIS
+          - MISSION
+          - ITSP
+          - CARENCE
+          - CONVENT
+          - SPE
+          - HORS
+          - AUTRE1
+          - AUTRE2
+          - AUTRE3
           examples:
           - None
         deadline:
@@ -5595,7 +5556,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "D\xE9lai d'intervention souhait\xE9"
+          description: "D\xE9lai d'intervention souhait\xE9 (en minutes). "
           examples:
           - None
         purpose:
@@ -5730,7 +5691,7 @@ components:
           x-cols: 6
           example: example.json#/response/deadline
           description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
-            diteur"
+            diteur (en minutes)"
           examples:
           - None
         freetext:
@@ -5740,7 +5701,7 @@ components:
           x-cols: 6
           example: example.json#/response/freetext
           description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
-            \ \xE0 la r\xE9ponse"
+            \ \xE0 la r\xE9ponse. Le motif de refus est notifi\xE9 dans ce champ."
           examples:
           - None
       additionalProperties: false
@@ -6367,6 +6328,7 @@ components:
       title: technical
       required:
       - requiredStringField
+      - requiredArray
       properties:
         requiredStringField:
           type: string
@@ -6411,7 +6373,7 @@ components:
           examples:
           - None
         objectField:
-          type: object
+          type: technicalObject
           title: Object
           x-health-only: false
           x-cols: 6
@@ -6431,6 +6393,50 @@ components:
             description: This is an array
             examples:
             - None
+        enumArrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array of enumerations
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/enumArrayField/0
+            description: This is an array of enumerations
+            enum:
+            - REPORT
+            - UPDATE
+            - CANCEL
+            - ACK
+            - ERROR
+            examples:
+            - None
+        requiredArray:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Required array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/requiredArray/0
+            description: This array is required
+            examples:
+            - None
+          minItems: 1
+        arrayWithMaxLength:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array with maximum length
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayWithMaxLength/0
+            description: This is an array with a maximum length
+            examples:
+            - None
+          maxItems: 5
         phoneNumberField:
           type: string
           title: Phone number with regex
@@ -6473,7 +6479,7 @@ components:
           examples:
           - None
         objectLevel1:
-          type: object
+          type: levelOneData
           title: Level 1 Object
           x-health-only: false
           x-cols: 6

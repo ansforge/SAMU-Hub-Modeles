@@ -7,6 +7,15 @@
     "arrayField": [
         "None"
     ],
+    "enumArrayField": [
+        "None"
+    ],
+    "requiredArray": [
+        "None"
+    ],
+    "arrayWithMaxLength": [
+        "None"
+    ],
     "phoneNumberField": "None",
     "dateField": "None",
     "emailField": "None",

@@ -3,16 +3,19 @@ Required string,,,,,,This field is required,,requiredStringField,1..1,,string,,
 Optional string,,,,,,This field is optional,,optionalStringField,0..1,,string,,
 Enumeration,,,,,,This is an enumeration,,enumerationField,0..1,,string,,"ENUM: REPORT, UPDATE, CANCEL, ACK, ERROR"
 Optional number,,,,,,This is a number,,numberField,0..1,,number,,
-Object,,,,,,This is an object,,objectField,0..1,technicalObject,object,,
+Object,,,,,,This is an object,,objectField,0..1,technicalObject,technicalObject,,
 ,Object property A,,,,,Object property string,,objectPropertyString,0..1,,string,,
 ,Object property B,,,,,Object property number,,objectPropertyNumber,0..1,,number,,
 Array,,,,,,This is an array,,arrayField,0..n,,string,,
+Array of enumerations,,,,,,This is an array of enumerations,,enumArrayField,0..n,,string,,"ENUM: REPORT, UPDATE, CANCEL, ACK, ERROR"
+Required array,,,,,,This array is required,,requiredArray,1..n,,string,,
+Array with maximum length,,,,,,This is an array with a maximum length,,arrayWithMaxLength,0..5,,string,,
 Phone number with regex,,,,,,Phone number with regex,,phoneNumberField,0..1,,string,,REGEX: \+?\d*
 Date with regex,,,,,,Date with regex,,dateField,0..1,,string,,REGEX: \d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])
 Email with regex,,,,,,Email with regex,,emailField,0..1,,string,,"REGEX: [\w-\.]+@([\w-]+\.)+[\w-]{2,4}"
 Datetime,,,,,,Datetime,,datetimeField,0..1,,datetime,,
-Level 1 Object,,,,,,Object at data level 1,,objectLevel1,0..1,levelOneData,object,,
-,Level 2 Object 1,,,,,Object 1 at data level 2,,object1Level2,0..1,levelTwoData,object,,
-,,Level 3 Object 1,,,,Object 1 at data level 3,,object1Level3,0..1,levelThreeData,object,,
-,Level 2 Object 2,,,,,Object 2 at data level 2,,object2Level2,0..1,secondLevelTwoData,object,,
-,,Level 3 Object 2,,,,Object 2 at data level 3,,object2Level3,0..1,levelThreeData,object,,
+Level 1 Object,,,,,,Object at data level 1,,objectLevel1,0..1,levelOneData,levelOneData,,
+,Level 2 Object 1,,,,,Object 1 at data level 2,,object1Level2,0..1,levelTwoData,levelTwoData,,
+,,Level 3 Object 1,,,,Object 1 at data level 3,,object1Level3,0..1,levelThreeData,levelThreeData,,
+,Level 2 Object 2,,,,,Object 2 at data level 2,,object2Level2,0..1,secondLevelTwoData,secondLevelTwoData,,
+,,Level 3 Object 2,,,,Object 2 at data level 3,,object2Level3,0..1,levelThreeData,levelThreeData,,
