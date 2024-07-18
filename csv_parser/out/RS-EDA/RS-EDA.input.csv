@@ -210,11 +210,6 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
 fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,,,,,,0..1,,string,,
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,,,,,,0..1,,datetime,,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,,,,,,1..1,,string,,
-Nouvelle alerte,# Voir alerte initiale,,,,,"Objet qui permet de gérer plusieurs alerte/appels sur une même affaire / dossier
-Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
-Les objet newAlert suivent le modèle d'un objet initialAlert.
-
-Spécificités 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,newAlert,,,,,1.0,0..n,X,alert,,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,,,,,,0..1,X,additionalInformation,,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,,,,,,0..3,X,customMap,,
 ,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,key,,,,,,1..1,,string,,

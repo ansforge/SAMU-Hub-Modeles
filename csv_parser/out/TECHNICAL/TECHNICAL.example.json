@@ -3,5 +3,32 @@
     "optionalStringField": "None",
     "enumerationField": "None",
     "numberField": "None",
-    "objectField": "None"
+    "objectField": {
+        "objectPropertyString": "None",
+        "objectPropertyNumber": "None"
+    },
+    "arrayField": [
+        "None"
+    ],
+    "enumArrayField": [
+        "None"
+    ],
+    "requiredArray": [
+        "None"
+    ],
+    "arrayWithMaxLength": [
+        "None"
+    ],
+    "phoneNumberField": "None",
+    "dateField": "None",
+    "emailField": "None",
+    "datetimeField": "None",
+    "objectLevel1": {
+        "object1Level2": {
+            "object1Level3": {}
+        },
+        "object2Level2": {
+            "object2Level3": {}
+        }
+    }
 }

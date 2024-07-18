@@ -96,12 +96,6 @@
                 "$ref": "#/definitions/medicalNote"
             }
         },
-        "newAlert": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/alert"
-            }
-        },
         "additionalInformation": {
             "$ref": "#/definitions/additionalInformation"
         }

@@ -71,17 +71,11 @@
         },
         "freetext": {
             "type": "string",
-            "title": "Information suppl\u00e9mentaires modifi\u00e9es",
+            "title": "Informations suppl\u00e9mentaires modifi\u00e9es",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/freetext",
             "description": "Champ libre qui permet de concat\u00e9ner en une seule note toutes les autres valeurs modifi\u00e9es dans le dossier, ne figurant pas de mani\u00e8re structur\u00e9e dans le RS-EDA-MAJ."
-        },
-        "newAlert": {
-            "type": "array",
-            "items": {
-                "$ref": "#/definitions/alert"
-            }
         },
         "additionalInformation": {
             "$ref": "#/definitions/additionalInformation"

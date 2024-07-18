@@ -16,6 +16,7 @@ components:
       title: technical
       required:
       - requiredStringField
+      - requiredArray
       properties:
         requiredStringField:
           type: string
@@ -60,18 +61,184 @@ components:
           examples:
           - None
         objectField:
-          type: technicalObject
-          title: Object
+          $ref: '#/components/schemas/technicalObject'
+        arrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayField/0
+            description: This is an array
+            examples:
+            - None
+        enumArrayField:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array of enumerations
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/enumArrayField/0
+            description: This is an array of enumerations
+            enum:
+            - REPORT
+            - UPDATE
+            - CANCEL
+            - ACK
+            - ERROR
+            examples:
+            - None
+        requiredArray:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Required array
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/requiredArray/0
+            description: This array is required
+            examples:
+            - None
+          minItems: 1
+        arrayWithMaxLength:
+          type: array
+          x-health-only: false
+          items:
+            type: string
+            title: Array with maximum length
+            x-health-only: false
+            x-cols: 6
+            example: example.json#/arrayWithMaxLength/0
+            description: This is an array with a maximum length
+            examples:
+            - None
+          maxItems: 5
+        phoneNumberField:
+          type: string
+          title: Phone number with regex
           x-health-only: false
           x-cols: 6
-          example: example.json#/objectField
-          description: This is an object
+          example: example.json#/phoneNumberField
+          description: Phone number with regex
+          pattern: \+?\d*
+          examples:
+          - None
+        dateField:
+          type: string
+          title: Date with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/dateField
+          description: Date with regex
+          pattern: \d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])
+          examples:
+          - None
+        emailField:
+          type: string
+          title: Email with regex
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/emailField
+          description: Email with regex
+          pattern: '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
+          examples:
+          - None
+        datetimeField:
+          type: string
+          title: Datetime
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/datetimeField
+          description: Datetime
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        objectLevel1:
+          $ref: '#/components/schemas/levelOneData'
+      additionalProperties: false
+    technicalObject:
+      type: object
+      title: Object
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        objectPropertyString:
+          type: string
+          title: Object property A
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectField/objectPropertyString
+          description: Object property string
+          examples:
+          - None
+        objectPropertyNumber:
+          type: number
+          title: Object property B
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectField/objectPropertyNumber
+          description: Object property number
           examples:
           - None
       additionalProperties: false
+      example: example.json#/objectField
       examples:
-      - requiredStringField: None
-        optionalStringField: None
-        enumerationField: None
-        numberField: None
-        objectField: None
+      - objectPropertyString: None
+        objectPropertyNumber: None
+    levelOneData:
+      type: object
+      title: Level 1 Object
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        object1Level2:
+          $ref: '#/components/schemas/levelTwoData'
+        object2Level2:
+          $ref: '#/components/schemas/secondLevelTwoData'
+      additionalProperties: false
+      example: example.json#/objectLevel1
+    levelTwoData:
+      type: object
+      title: Level 2 Object 1
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        object1Level3:
+          $ref: '#/components/schemas/levelThreeData'
+      additionalProperties: false
+      example: example.json#/objectLevel1/object1Level2
+      examples:
+      - object1Level3: &id001 {}
+    secondLevelTwoData:
+      type: object
+      title: Level 2 Object 2
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties:
+        object2Level3:
+          $ref: '#/components/schemas/levelThreeData'
+      additionalProperties: false
+      example: example.json#/objectLevel1/object2Level2
+      examples:
+      - object2Level3: {}
+    levelThreeData:
+      type: object
+      title: Level 3 Object 1
+      x-display: expansion-panels
+      x-health-only: false
+      required: []
+      properties: {}
+      additionalProperties: false
+      example: example.json#/objectLevel1/object1Level2/object1Level3
+      examples:
+      - *id001

@@ -120,10 +120,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
-        newAlert:
-          type: array
-          items:
-            $ref: '#/components/schemas/alert'
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false

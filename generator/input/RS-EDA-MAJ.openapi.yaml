@@ -87,7 +87,7 @@ components:
             $ref: '#/components/schemas/medicalNote'
         freetext:
           type: string
-          title: "Information suppl\xE9mentaires modifi\xE9es"
+          title: "Informations suppl\xE9mentaires modifi\xE9es"
           x-health-only: false
           x-cols: 6
           example: example.json#/freetext
@@ -96,10 +96,6 @@ components:
             \ pas de mani\xE8re structur\xE9e dans le RS-EDA-MAJ."
           examples:
           - "adresse : 7bis rue du ch\xE2teau - Neuilly sur Seine"
-        newAlert:
-          type: array
-          items:
-            $ref: '#/components/schemas/alert'
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false

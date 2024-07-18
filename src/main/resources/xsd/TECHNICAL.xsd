@@ -31,12 +31,24 @@
                     <documentation>This is a number</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="objectField">
-                <annotation>
-                    <documentation>This is an object</documentation>
-                </annotation>
-            </element>
+            <element minOccurs="0" name="objectField" type="x:technicalObject"/>
             <element maxOccurs="unbounded" minOccurs="0" name="arrayField" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="enumArrayField">
+                <annotation>
+                    <documentation>This is an array of enumerations</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="REPORT"/>
+                        <enumeration value="UPDATE"/>
+                        <enumeration value="CANCEL"/>
+                        <enumeration value="ACK"/>
+                        <enumeration value="ERROR"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element maxOccurs="unbounded" minOccurs="1" name="requiredArray" type="string"/>
+            <element maxOccurs="5" minOccurs="0" name="arrayWithMaxLength" type="string"/>
             <element minOccurs="0" name="phoneNumberField">
                 <annotation>
                     <documentation>Phone number with regex</documentation>
@@ -72,11 +84,40 @@
                     <documentation>Datetime</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="objectLevel1">
+            <element minOccurs="0" name="objectLevel1" type="x:levelOneData"/>
+        </sequence>
+    </complexType>
+    <complexType name="technicalObject">
+        <sequence>
+            <element minOccurs="0" name="objectPropertyString" type="string">
                 <annotation>
-                    <documentation>Object at data level 1</documentation>
+                    <documentation>Object property string</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="objectPropertyNumber" type="decimal">
+                <annotation>
+                    <documentation>Object property number</documentation>
                 </annotation>
             </element>
         </sequence>
+    </complexType>
+    <complexType name="levelOneData">
+        <sequence>
+            <element minOccurs="0" name="object1Level2" type="x:levelTwoData"/>
+            <element minOccurs="0" name="object2Level2" type="x:secondLevelTwoData"/>
+        </sequence>
+    </complexType>
+    <complexType name="levelTwoData">
+        <sequence>
+            <element minOccurs="0" name="object1Level3" type="x:levelThreeData"/>
+        </sequence>
+    </complexType>
+    <complexType name="secondLevelTwoData">
+        <sequence>
+            <element minOccurs="0" name="object2Level3" type="x:levelThreeData"/>
+        </sequence>
+    </complexType>
+    <complexType name="levelThreeData">
+        <sequence/>
     </complexType>
 </schema>
