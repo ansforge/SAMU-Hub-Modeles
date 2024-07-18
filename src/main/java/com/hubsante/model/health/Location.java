@@ -34,7 +34,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.Access;
+import com.hubsante.model.health.City;
+import com.hubsante.model.health.DetailedAddress;
 import com.hubsante.model.health.ExternalInfo;
+import com.hubsante.model.health.ExternalLocationId;
+import com.hubsante.model.health.Geometry;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -44,15 +49,199 @@ import java.util.Objects;
 /**
  * Location
  */
-@JsonPropertyOrder({Location.JSON_PROPERTY_EXTERNAL_INFO})
+@JsonPropertyOrder(
+    {Location.JSON_PROPERTY_NAME, Location.JSON_PROPERTY_EXTERNAL_LOCATION_ID,
+     Location.JSON_PROPERTY_DETAILED_ADDRESS, Location.JSON_PROPERTY_CITY,
+     Location.JSON_PROPERTY_ACCESS, Location.JSON_PROPERTY_GEOMETRY,
+     Location.JSON_PROPERTY_EXTERNAL_INFO, Location.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Location {
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
+
+  public static final String JSON_PROPERTY_EXTERNAL_LOCATION_ID =
+      "externalLocationId";
+  private List<ExternalLocationId> externalLocationId;
+
+  public static final String JSON_PROPERTY_DETAILED_ADDRESS = "detailedAddress";
+  private DetailedAddress detailedAddress;
+
+  public static final String JSON_PROPERTY_CITY = "city";
+  private City city;
+
+  public static final String JSON_PROPERTY_ACCESS = "access";
+  private Access access;
+
+  public static final String JSON_PROPERTY_GEOMETRY = "geometry";
+  private Geometry geometry;
+
   public static final String JSON_PROPERTY_EXTERNAL_INFO = "externalInfo";
   private List<ExternalInfo> externalInfo;
 
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private String freetext;
+
   public Location() {}
+
+  public Location name(String name) {
+
+    this.name = name;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le nom de lieu : nom commercial, nom d&#39;établissement,
+   *forêt de Fontainebleau, lac du Der, etc.
+   * @return name
+   **/
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getName() {
+    return name;
+  }
+
+  @JsonProperty(JSON_PROPERTY_NAME)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Location
+  externalLocationId(List<ExternalLocationId> externalLocationId) {
+
+    this.externalLocationId = externalLocationId;
+    return this;
+  }
+
+  public Location
+  addExternalLocationIdItem(ExternalLocationId externalLocationIdItem) {
+    if (this.externalLocationId == null) {
+      this.externalLocationId = new ArrayList<>();
+    }
+    this.externalLocationId.add(externalLocationIdItem);
+    return this;
+  }
+
+  /**
+   * Get externalLocationId
+   * @return externalLocationId
+   **/
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_LOCATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public List<ExternalLocationId> getExternalLocationId() {
+    return externalLocationId;
+  }
+
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_LOCATION_ID)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void
+  setExternalLocationId(List<ExternalLocationId> externalLocationId) {
+    if (externalLocationId == null) {
+      return;
+    }
+    if (this.externalLocationId == null) {
+      this.externalLocationId = new ArrayList<>();
+    }
+    this.externalLocationId.addAll(externalLocationId);
+  }
+
+  public Location detailedAddress(DetailedAddress detailedAddress) {
+
+    this.detailedAddress = detailedAddress;
+    return this;
+  }
+
+  /**
+   * Get detailedAddress
+   * @return detailedAddress
+   **/
+  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public DetailedAddress getDetailedAddress() {
+    return detailedAddress;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DETAILED_ADDRESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetailedAddress(DetailedAddress detailedAddress) {
+    this.detailedAddress = detailedAddress;
+  }
+
+  public Location city(City city) {
+
+    this.city = city;
+    return this;
+  }
+
+  /**
+   * Get city
+   * @return city
+   **/
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public City getCity() {
+    return city;
+  }
+
+  @JsonProperty(JSON_PROPERTY_CITY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCity(City city) {
+    this.city = city;
+  }
+
+  public Location access(Access access) {
+
+    this.access = access;
+    return this;
+  }
+
+  /**
+   * Get access
+   * @return access
+   **/
+  @JsonProperty(JSON_PROPERTY_ACCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Access getAccess() {
+    return access;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ACCESS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAccess(Access access) {
+    this.access = access;
+  }
+
+  public Location geometry(Geometry geometry) {
+
+    this.geometry = geometry;
+    return this;
+  }
+
+  /**
+   * Get geometry
+   * @return geometry
+   **/
+  @JsonProperty(JSON_PROPERTY_GEOMETRY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Geometry getGeometry() {
+    return geometry;
+  }
+
+  @JsonProperty(JSON_PROPERTY_GEOMETRY)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setGeometry(Geometry geometry) {
+    this.geometry = geometry;
+  }
 
   public Location externalInfo(List<ExternalInfo> externalInfo) {
 
@@ -93,6 +282,35 @@ public class Location {
     this.externalInfo.addAll(externalInfo);
   }
 
+  public Location freetext(String freetext) {
+
+    this.freetext = freetext;
+    return this;
+  }
+
+  /**
+   * Champ libre qui permet de compléter les informations liées à la
+   *localisation.  Spécificités 15-15 : En envoi, il est souhaitable de mapper
+   *ici toute valeur en lien avec la localisation de l&#39;intervention qui ne
+   *pourrait pas être transmise de manière structurée dans l&#39;objet location.
+   *En réception, il est très important d&#39;intégrer et d&#39;afficher la
+   *valeur de cet attribut, qui est suceptible de contenir des informations
+   *d&#39;accès importantes.
+   * @return freetext
+   **/
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getFreetext() {
+    return freetext;
+  }
+
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -102,21 +320,40 @@ public class Location {
       return false;
     }
     Location location = (Location)o;
-    return Objects.equals(this.externalInfo, location.externalInfo);
+    return Objects.equals(this.name, location.name) &&
+        Objects.equals(this.externalLocationId, location.externalLocationId) &&
+        Objects.equals(this.detailedAddress, location.detailedAddress) &&
+        Objects.equals(this.city, location.city) &&
+        Objects.equals(this.access, location.access) &&
+        Objects.equals(this.geometry, location.geometry) &&
+        Objects.equals(this.externalInfo, location.externalInfo) &&
+        Objects.equals(this.freetext, location.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(externalInfo);
+    return Objects.hash(name, externalLocationId, detailedAddress, city, access,
+                        geometry, externalInfo, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Location {\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    externalLocationId: ")
+        .append(toIndentedString(externalLocationId))
+        .append("\n");
+    sb.append("    detailedAddress: ")
+        .append(toIndentedString(detailedAddress))
+        .append("\n");
+    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("    access: ").append(toIndentedString(access)).append("\n");
+    sb.append("    geometry: ").append(toIndentedString(geometry)).append("\n");
     sb.append("    externalInfo: ")
         .append(toIndentedString(externalInfo))
         .append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }

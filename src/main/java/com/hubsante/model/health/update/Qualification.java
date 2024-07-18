@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,73 +34,91 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
-import com.hubsante.model.health.InsStrictFeatures;
+import com.hubsante.model.health.update.CaseDetails;
+import com.hubsante.model.health.update.RiskThreat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * Identity
+ * Qualification
  */
-@JsonPropertyOrder({Identity.JSON_PROPERTY_STRICT_FEATURES,
-                    Identity.JSON_PROPERTY_NON_STRICT_FEATURES})
+@JsonPropertyOrder({Qualification.JSON_PROPERTY_RISK_THREAT,
+                    Qualification.JSON_PROPERTY_DETAILS})
+@JsonTypeName("qualification")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Identity {
-  public static final String JSON_PROPERTY_STRICT_FEATURES = "strictFeatures";
-  private InsStrictFeatures strictFeatures;
+public class Qualification {
+  public static final String JSON_PROPERTY_RISK_THREAT = "riskThreat";
+  private List<RiskThreat> riskThreat;
 
-  public static final String JSON_PROPERTY_NON_STRICT_FEATURES =
-      "nonStrictFeatures";
-  private DetailedName nonStrictFeatures;
+  public static final String JSON_PROPERTY_DETAILS = "details";
+  private CaseDetails details;
 
-  public Identity() {}
+  public Qualification() {}
 
-  public Identity strictFeatures(InsStrictFeatures strictFeatures) {
+  public Qualification riskThreat(List<RiskThreat> riskThreat) {
 
-    this.strictFeatures = strictFeatures;
+    this.riskThreat = riskThreat;
+    return this;
+  }
+
+  public Qualification addRiskThreatItem(RiskThreat riskThreatItem) {
+    if (this.riskThreat == null) {
+      this.riskThreat = new ArrayList<>();
+    }
+    this.riskThreat.add(riskThreatItem);
     return this;
   }
 
   /**
-   * Get strictFeatures
-   * @return strictFeatures
+   * Get riskThreat
+   * @return riskThreat
    **/
-  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_RISK_THREAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InsStrictFeatures getStrictFeatures() {
-    return strictFeatures;
+  public List<RiskThreat> getRiskThreat() {
+    return riskThreat;
   }
 
-  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_RISK_THREAT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStrictFeatures(InsStrictFeatures strictFeatures) {
-    this.strictFeatures = strictFeatures;
+  public void setRiskThreat(List<RiskThreat> riskThreat) {
+    if (riskThreat == null) {
+      return;
+    }
+    if (this.riskThreat == null) {
+      this.riskThreat = new ArrayList<>();
+    }
+    this.riskThreat.addAll(riskThreat);
   }
 
-  public Identity nonStrictFeatures(DetailedName nonStrictFeatures) {
+  public Qualification details(CaseDetails details) {
 
-    this.nonStrictFeatures = nonStrictFeatures;
+    this.details = details;
     return this;
   }
 
   /**
-   * Get nonStrictFeatures
-   * @return nonStrictFeatures
+   * Get details
+   * @return details
    **/
-  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedName getNonStrictFeatures() {
-    return nonStrictFeatures;
+  public CaseDetails getDetails() {
+    return details;
   }
 
-  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNonStrictFeatures(DetailedName nonStrictFeatures) {
-    this.nonStrictFeatures = nonStrictFeatures;
+  public void setDetails(CaseDetails details) {
+    this.details = details;
   }
 
   @Override
@@ -111,26 +129,24 @@ public class Identity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Identity identity = (Identity)o;
-    return Objects.equals(this.strictFeatures, identity.strictFeatures) &&
-        Objects.equals(this.nonStrictFeatures, identity.nonStrictFeatures);
+    Qualification qualification = (Qualification)o;
+    return Objects.equals(this.riskThreat, qualification.riskThreat) &&
+        Objects.equals(this.details, qualification.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(strictFeatures, nonStrictFeatures);
+    return Objects.hash(riskThreat, details);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Identity {\n");
-    sb.append("    strictFeatures: ")
-        .append(toIndentedString(strictFeatures))
+    sb.append("class Qualification {\n");
+    sb.append("    riskThreat: ")
+        .append(toIndentedString(riskThreat))
         .append("\n");
-    sb.append("    nonStrictFeatures: ")
-        .append(toIndentedString(nonStrictFeatures))
-        .append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }

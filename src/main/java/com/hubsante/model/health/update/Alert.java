@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,9 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Caller;
-import com.hubsante.model.health.Notes;
-import java.time.OffsetDateTime;
+import com.hubsante.model.health.update.Notes;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
@@ -46,45 +44,15 @@ import java.util.Objects;
 /**
  * Alert
  */
-@JsonPropertyOrder({Alert.JSON_PROPERTY_RECEPTION, Alert.JSON_PROPERTY_NOTES,
-                    Alert.JSON_PROPERTY_CALLER})
+@JsonPropertyOrder({Alert.JSON_PROPERTY_NOTES})
 @JsonTypeName("alert")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Alert {
-  public static final String JSON_PROPERTY_RECEPTION = "reception";
-  private OffsetDateTime reception;
-
   public static final String JSON_PROPERTY_NOTES = "notes";
   private List<Notes> notes;
 
-  public static final String JSON_PROPERTY_CALLER = "caller";
-  private Caller caller;
-
   public Alert() {}
-
-  public Alert reception(OffsetDateTime reception) {
-
-    this.reception = reception;
-    return this;
-  }
-
-  /**
-   * A valoriser avec le groupe date heure de réception de l&#39;alerte/appel
-   * @return reception
-   **/
-  @JsonProperty(JSON_PROPERTY_RECEPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public OffsetDateTime getReception() {
-    return reception;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RECEPTION)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setReception(OffsetDateTime reception) {
-    this.reception = reception;
-  }
 
   public Alert notes(List<Notes> notes) {
 
@@ -125,29 +93,6 @@ public class Alert {
     this.notes.addAll(notes);
   }
 
-  public Alert caller(Caller caller) {
-
-    this.caller = caller;
-    return this;
-  }
-
-  /**
-   * Get caller
-   * @return caller
-   **/
-  @JsonProperty(JSON_PROPERTY_CALLER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public Caller getCaller() {
-    return caller;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CALLER)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCaller(Caller caller) {
-    this.caller = caller;
-  }
-
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -157,25 +102,19 @@ public class Alert {
       return false;
     }
     Alert alert = (Alert)o;
-    return Objects.equals(this.reception, alert.reception) &&
-        Objects.equals(this.notes, alert.notes) &&
-        Objects.equals(this.caller, alert.caller);
+    return Objects.equals(this.notes, alert.notes);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(reception, notes, caller);
+    return Objects.hash(notes);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Alert {\n");
-    sb.append("    reception: ")
-        .append(toIndentedString(reception))
-        .append("\n");
     sb.append("    notes: ").append(toIndentedString(notes)).append("\n");
-    sb.append("    caller: ").append(toIndentedString(caller)).append("\n");
     sb.append("}");
     return sb.toString();
   }

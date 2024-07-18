@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,73 +34,63 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
-import com.hubsante.model.health.InsStrictFeatures;
+import com.hubsante.model.health.update.ExternalInfo;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
- * Identity
+ * Location
  */
-@JsonPropertyOrder({Identity.JSON_PROPERTY_STRICT_FEATURES,
-                    Identity.JSON_PROPERTY_NON_STRICT_FEATURES})
+@JsonPropertyOrder({Location.JSON_PROPERTY_EXTERNAL_INFO})
+@JsonTypeName("location")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Identity {
-  public static final String JSON_PROPERTY_STRICT_FEATURES = "strictFeatures";
-  private InsStrictFeatures strictFeatures;
+public class Location {
+  public static final String JSON_PROPERTY_EXTERNAL_INFO = "externalInfo";
+  private List<ExternalInfo> externalInfo;
 
-  public static final String JSON_PROPERTY_NON_STRICT_FEATURES =
-      "nonStrictFeatures";
-  private DetailedName nonStrictFeatures;
+  public Location() {}
 
-  public Identity() {}
+  public Location externalInfo(List<ExternalInfo> externalInfo) {
 
-  public Identity strictFeatures(InsStrictFeatures strictFeatures) {
+    this.externalInfo = externalInfo;
+    return this;
+  }
 
-    this.strictFeatures = strictFeatures;
+  public Location addExternalInfoItem(ExternalInfo externalInfoItem) {
+    if (this.externalInfo == null) {
+      this.externalInfo = new ArrayList<>();
+    }
+    this.externalInfo.add(externalInfoItem);
     return this;
   }
 
   /**
-   * Get strictFeatures
-   * @return strictFeatures
+   * Get externalInfo
+   * @return externalInfo
    **/
-  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InsStrictFeatures getStrictFeatures() {
-    return strictFeatures;
+  public List<ExternalInfo> getExternalInfo() {
+    return externalInfo;
   }
 
-  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
+  @JacksonXmlElementWrapper(useWrapping = false)
+
+  @JsonProperty(JSON_PROPERTY_EXTERNAL_INFO)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStrictFeatures(InsStrictFeatures strictFeatures) {
-    this.strictFeatures = strictFeatures;
-  }
-
-  public Identity nonStrictFeatures(DetailedName nonStrictFeatures) {
-
-    this.nonStrictFeatures = nonStrictFeatures;
-    return this;
-  }
-
-  /**
-   * Get nonStrictFeatures
-   * @return nonStrictFeatures
-   **/
-  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public DetailedName getNonStrictFeatures() {
-    return nonStrictFeatures;
-  }
-
-  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNonStrictFeatures(DetailedName nonStrictFeatures) {
-    this.nonStrictFeatures = nonStrictFeatures;
+  public void setExternalInfo(List<ExternalInfo> externalInfo) {
+    if (externalInfo == null) {
+      return;
+    }
+    if (this.externalInfo == null) {
+      this.externalInfo = new ArrayList<>();
+    }
+    this.externalInfo.addAll(externalInfo);
   }
 
   @Override
@@ -111,25 +101,21 @@ public class Identity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Identity identity = (Identity)o;
-    return Objects.equals(this.strictFeatures, identity.strictFeatures) &&
-        Objects.equals(this.nonStrictFeatures, identity.nonStrictFeatures);
+    Location location = (Location)o;
+    return Objects.equals(this.externalInfo, location.externalInfo);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(strictFeatures, nonStrictFeatures);
+    return Objects.hash(externalInfo);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Identity {\n");
-    sb.append("    strictFeatures: ")
-        .append(toIndentedString(strictFeatures))
-        .append("\n");
-    sb.append("    nonStrictFeatures: ")
-        .append(toIndentedString(nonStrictFeatures))
+    sb.append("class Location {\n");
+    sb.append("    externalInfo: ")
+        .append(toIndentedString(externalInfo))
         .append("\n");
     sb.append("}");
     return sb.toString();

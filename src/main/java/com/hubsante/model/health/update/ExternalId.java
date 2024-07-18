@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,43 +34,37 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Operator
+ * ExternalId
  */
 @JsonPropertyOrder(
-    {Operator.JSON_PROPERTY_DETAILED_NAME, Operator.JSON_PROPERTY_ROLE})
-@JsonTypeName("operator")
+    {ExternalId.JSON_PROPERTY_SOURCE, ExternalId.JSON_PROPERTY_VALUE})
+@JsonTypeName("externalId")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Operator {
-  public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
-  private DetailedName detailedName;
+public class ExternalId {
 
   /**
-   * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
-   * émettrice du message :
+   * Type de l&#39;identifiant fourni
    */
-  public enum RoleEnum {
-    AMBULANCIER("AMBULANCIER"),
+  public enum SourceEnum {
+    NIR("NIR"),
 
-    ARM("ARM"),
+    SINUS("SINUS"),
 
-    INFIRMIER("INFIRMIER"),
+    SI_VIC("SI-VIC"),
 
-    MEDECIN("MEDECIN"),
+    DOSSARD("DOSSARD"),
 
-    INCONNU("INCONNU"),
-
-    AUTRE("AUTRE");
+    PLACE("PLACE");
 
     private String value;
 
-    RoleEnum(String value) { this.value = value; }
+    SourceEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -83,8 +77,8 @@ public class Operator {
     }
 
     @JsonCreator
-    public static RoleEnum fromValue(String value) {
-      for (RoleEnum b : RoleEnum.values()) {
+    public static SourceEnum fromValue(String value) {
+      for (SourceEnum b : SourceEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -93,56 +87,58 @@ public class Operator {
     }
   }
 
-  public static final String JSON_PROPERTY_ROLE = "role";
-  private RoleEnum role;
+  public static final String JSON_PROPERTY_SOURCE = "source";
+  private SourceEnum source;
 
-  public Operator() {}
+  public static final String JSON_PROPERTY_VALUE = "value";
+  private String value;
 
-  public Operator detailedName(DetailedName detailedName) {
+  public ExternalId() {}
 
-    this.detailedName = detailedName;
+  public ExternalId source(SourceEnum source) {
+
+    this.source = source;
     return this;
   }
 
   /**
-   * Get detailedName
-   * @return detailedName
+   * Type de l&#39;identifiant fourni
+   * @return source
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public DetailedName getDetailedName() {
-    return detailedName;
+  public SourceEnum getSource() {
+    return source;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedName(DetailedName detailedName) {
-    this.detailedName = detailedName;
+  @JsonProperty(JSON_PROPERTY_SOURCE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setSource(SourceEnum source) {
+    this.source = source;
   }
 
-  public Operator role(RoleEnum role) {
+  public ExternalId value(String value) {
 
-    this.role = role;
+    this.value = value;
     return this;
   }
 
   /**
-   * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
-   *émettrice du message :
-   * @return role
+   * L&#39;identifiant en lui-même
+   * @return value
    **/
-  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public RoleEnum getRole() {
-    return role;
+  public String getValue() {
+    return value;
   }
 
-  @JsonProperty(JSON_PROPERTY_ROLE)
+  @JsonProperty(JSON_PROPERTY_VALUE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setRole(RoleEnum role) {
-    this.role = role;
+  public void setValue(String value) {
+    this.value = value;
   }
 
   @Override
@@ -153,24 +149,22 @@ public class Operator {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Operator operator = (Operator)o;
-    return Objects.equals(this.detailedName, operator.detailedName) &&
-        Objects.equals(this.role, operator.role);
+    ExternalId externalId = (ExternalId)o;
+    return Objects.equals(this.source, externalId.source) &&
+        Objects.equals(this.value, externalId.value);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedName, role);
+    return Objects.hash(source, value);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Operator {\n");
-    sb.append("    detailedName: ")
-        .append(toIndentedString(detailedName))
-        .append("\n");
-    sb.append("    role: ").append(toIndentedString(role)).append("\n");
+    sb.append("class ExternalId {\n");
+    sb.append("    source: ").append(toIndentedString(source)).append("\n");
+    sb.append("    value: ").append(toIndentedString(value)).append("\n");
     sb.append("}");
     return sb.toString();
   }

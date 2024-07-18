@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -49,7 +48,7 @@ import java.util.Objects;
 
 public class Operator {
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
-  private DetailedName detailedName;
+  private Object detailedName;
 
   /**
    * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
@@ -98,7 +97,7 @@ public class Operator {
 
   public Operator() {}
 
-  public Operator detailedName(DetailedName detailedName) {
+  public Operator detailedName(Object detailedName) {
 
     this.detailedName = detailedName;
     return this;
@@ -111,13 +110,13 @@ public class Operator {
   @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedName getDetailedName() {
+  public Object getDetailedName() {
     return detailedName;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedName(DetailedName detailedName) {
+  public void setDetailedName(Object detailedName) {
     this.detailedName = detailedName;
   }
 

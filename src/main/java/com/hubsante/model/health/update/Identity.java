@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,8 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
-import com.hubsante.model.health.InsStrictFeatures;
+import com.hubsante.model.health.update.InsStrictFeatures;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -53,7 +52,7 @@ public class Identity {
 
   public static final String JSON_PROPERTY_NON_STRICT_FEATURES =
       "nonStrictFeatures";
-  private DetailedName nonStrictFeatures;
+  private Object nonStrictFeatures;
 
   public Identity() {}
 
@@ -80,7 +79,7 @@ public class Identity {
     this.strictFeatures = strictFeatures;
   }
 
-  public Identity nonStrictFeatures(DetailedName nonStrictFeatures) {
+  public Identity nonStrictFeatures(Object nonStrictFeatures) {
 
     this.nonStrictFeatures = nonStrictFeatures;
     return this;
@@ -93,13 +92,13 @@ public class Identity {
   @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedName getNonStrictFeatures() {
+  public Object getNonStrictFeatures() {
     return nonStrictFeatures;
   }
 
   @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNonStrictFeatures(DetailedName nonStrictFeatures) {
+  public void setNonStrictFeatures(Object nonStrictFeatures) {
     this.nonStrictFeatures = nonStrictFeatures;
   }
 

@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,73 +34,75 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.DetailedName;
-import com.hubsante.model.health.InsStrictFeatures;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Identity
+ * Notes
  */
-@JsonPropertyOrder({Identity.JSON_PROPERTY_STRICT_FEATURES,
-                    Identity.JSON_PROPERTY_NON_STRICT_FEATURES})
+@JsonPropertyOrder({Notes.JSON_PROPERTY_CREATION, Notes.JSON_PROPERTY_FREETEXT})
+@JsonTypeName("notes")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Identity {
-  public static final String JSON_PROPERTY_STRICT_FEATURES = "strictFeatures";
-  private InsStrictFeatures strictFeatures;
+public class Notes {
+  public static final String JSON_PROPERTY_CREATION = "creation";
+  private OffsetDateTime creation;
 
-  public static final String JSON_PROPERTY_NON_STRICT_FEATURES =
-      "nonStrictFeatures";
-  private DetailedName nonStrictFeatures;
+  public static final String JSON_PROPERTY_FREETEXT = "freetext";
+  private String freetext;
 
-  public Identity() {}
+  public Notes() {}
 
-  public Identity strictFeatures(InsStrictFeatures strictFeatures) {
+  public Notes creation(OffsetDateTime creation) {
 
-    this.strictFeatures = strictFeatures;
+    this.creation = creation;
     return this;
   }
 
   /**
-   * Get strictFeatures
-   * @return strictFeatures
+   * A valoriser avec le groupe date heure de création de l&#39;information
+   *complémentaire
+   * @return creation
    **/
-  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_CREATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public InsStrictFeatures getStrictFeatures() {
-    return strictFeatures;
+  public OffsetDateTime getCreation() {
+    return creation;
   }
 
-  @JsonProperty(JSON_PROPERTY_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_CREATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStrictFeatures(InsStrictFeatures strictFeatures) {
-    this.strictFeatures = strictFeatures;
+  public void setCreation(OffsetDateTime creation) {
+    this.creation = creation;
   }
 
-  public Identity nonStrictFeatures(DetailedName nonStrictFeatures) {
+  public Notes freetext(String freetext) {
 
-    this.nonStrictFeatures = nonStrictFeatures;
+    this.freetext = freetext;
     return this;
   }
 
   /**
-   * Get nonStrictFeatures
-   * @return nonStrictFeatures
+   * A valoriser avec un texte libre contenant les indications complémentaires
+   *renseignées sur l&#39;alerte/appel.  Spécificités 15-15 : cet attribut ne
+   *doit pas être valorisé avec des notes à caractère médical, qui serait liée à
+   *un interrogatoire ARM ou médecin, ou à un patient en particulier
+   * @return freetext
    **/
-  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedName getNonStrictFeatures() {
-    return nonStrictFeatures;
+  public String getFreetext() {
+    return freetext;
   }
 
-  @JsonProperty(JSON_PROPERTY_NON_STRICT_FEATURES)
+  @JsonProperty(JSON_PROPERTY_FREETEXT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNonStrictFeatures(DetailedName nonStrictFeatures) {
-    this.nonStrictFeatures = nonStrictFeatures;
+  public void setFreetext(String freetext) {
+    this.freetext = freetext;
   }
 
   @Override
@@ -111,26 +113,22 @@ public class Identity {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Identity identity = (Identity)o;
-    return Objects.equals(this.strictFeatures, identity.strictFeatures) &&
-        Objects.equals(this.nonStrictFeatures, identity.nonStrictFeatures);
+    Notes notes = (Notes)o;
+    return Objects.equals(this.creation, notes.creation) &&
+        Objects.equals(this.freetext, notes.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(strictFeatures, nonStrictFeatures);
+    return Objects.hash(creation, freetext);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Identity {\n");
-    sb.append("    strictFeatures: ")
-        .append(toIndentedString(strictFeatures))
-        .append("\n");
-    sb.append("    nonStrictFeatures: ")
-        .append(toIndentedString(nonStrictFeatures))
-        .append("\n");
+    sb.append("class Notes {\n");
+    sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
+    sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();
   }
