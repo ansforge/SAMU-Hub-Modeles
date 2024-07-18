@@ -1,0 +1,104 @@
+{
+    "caseId": "fr.health.samu440.DRFR15440241550012",
+    "senderCaseId": "DRFR15440241550012",
+    "perimeter": "AMU",
+    "qualification": {
+        "riskThreat": [
+            {
+                "code": "C07.13.02",
+                "label": "Rod\u00e9o automobile"
+            }
+        ],
+        "details": {
+            "priority": "P1",
+            "careLevel": "R1"
+        }
+    },
+    "location": {
+        "externalInfo": [
+            {
+                "freetext": "BAN, IGN, NEXSIS, \u2026",
+                "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
+                "uri": "80021_6590_00008, id987"
+            }
+        ]
+    },
+    "initialAlert": {
+        "notes": [
+            {
+                "creation": "None",
+                "freetext": "Accident de bricolage, accident domestique, d\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
+            }
+        ]
+    },
+    "owner": "fr.health.samu440",
+    "patient": [
+        {
+            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
+            "administrativeFile": {
+                "externalId": [
+                    {
+                        "source": "NIR, SINUS, SI-VIC, \u2026",
+                        "value": "id1234"
+                    }
+                ]
+            },
+            "identity": {
+                "strictFeatures": {
+                    "birthName": "Dupont",
+                    "birthDate": "None",
+                    "sex": "F"
+                },
+                "nonStrictFeatures": {}
+            },
+            "healthMotive": {
+                "code": "C07.13.02",
+                "label": "Rod\u00e9o automobile"
+            },
+            "detail": {
+                "weight": 31,
+                "height": 109,
+                "age": "P6Y",
+                "careLevel": "R1"
+            },
+            "hypothesis": {
+                "mainDiagnosis": {
+                    "code": "C07.13.02",
+                    "label": "Rod\u00e9o automobile"
+                },
+                "otherDiagnosis": [
+                    {
+                        "code": "C07.13.02",
+                        "label": "Rod\u00e9o automobile"
+                    }
+                ]
+            }
+        }
+    ],
+    "medicalNote": [
+        {
+            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
+            "operator": {
+                "detailedName": {},
+                "role": "ARM"
+            },
+            "idObs": "fr.health.samu540.medicalNote.46585A\nfr.health.samu540.medicalNote.DRFR15540241600125.20",
+            "creation": "2022-09-27T08:23:34+02:00",
+            "freetext": "None"
+        }
+    ],
+    "freetext": "adresse : 7bis rue du ch\u00e2teau - Neuilly sur Seine",
+    "newAlert": [
+        {}
+    ],
+    "additionalInformation": {
+        "customMap": [
+            {
+                "key": "neighborhood",
+                "label": "Quartier",
+                "value": "LYON 2e arrondissement",
+                "freetext": "Pr\u00e9cision sur le quartier d'intervention"
+            }
+        ]
+    }
+}

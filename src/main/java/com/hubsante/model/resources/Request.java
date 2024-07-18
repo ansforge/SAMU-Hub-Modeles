@@ -56,8 +56,57 @@ public class Request {
   public static final String JSON_PROPERTY_DATETIME = "datetime";
   private OffsetDateTime datetime;
 
+  /**
+   * Décrit le cadre conventionnel de la demande. Cf nomenclature associée
+   */
+  public enum ConventionEnum {
+    DRSIS("DRSIS"),
+
+    MISSION("MISSION"),
+
+    ITSP("ITSP"),
+
+    CARENCE("CARENCE"),
+
+    CONVENT("CONVENT"),
+
+    SPE("SPE"),
+
+    HORS("HORS"),
+
+    AUTRE1("AUTRE1"),
+
+    AUTRE2("AUTRE2"),
+
+    AUTRE3("AUTRE3");
+
+    private String value;
+
+    ConventionEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ConventionEnum fromValue(String value) {
+      for (ConventionEnum b : ConventionEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_CONVENTION = "convention";
-  private String convention;
+  private ConventionEnum convention;
 
   public static final String JSON_PROPERTY_DEADLINE = "deadline";
   private String deadline;
@@ -175,26 +224,26 @@ public class Request {
     this.datetime = datetime;
   }
 
-  public Request convention(String convention) {
+  public Request convention(ConventionEnum convention) {
 
     this.convention = convention;
     return this;
   }
 
   /**
-   * Nomenclature à venir : décrit le cadre conventionnel de la demande.
+   * Décrit le cadre conventionnel de la demande. Cf nomenclature associée
    * @return convention
    **/
   @JsonProperty(JSON_PROPERTY_CONVENTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getConvention() {
+  public ConventionEnum getConvention() {
     return convention;
   }
 
   @JsonProperty(JSON_PROPERTY_CONVENTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConvention(String convention) {
+  public void setConvention(ConventionEnum convention) {
     this.convention = convention;
   }
 
@@ -205,7 +254,7 @@ public class Request {
   }
 
   /**
-   * Délai d&#39;intervention souhaité
+   * Délai d&#39;intervention souhaité (en minutes).
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)

@@ -41,118 +41,12 @@ import java.util.Objects;
 /**
  * CaseDetails
  */
-@JsonPropertyOrder({CaseDetails.JSON_PROPERTY_ATTRIBUTION,
-                    CaseDetails.JSON_PROPERTY_PRIORITY,
-                    CaseDetails.JSON_PROPERTY_CARE_LEVEL})
+@JsonPropertyOrder(
+    {CaseDetails.JSON_PROPERTY_PRIORITY, CaseDetails.JSON_PROPERTY_CARE_LEVEL})
 @JsonTypeName("caseDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CaseDetails {
-
-  /**
-   * Décrit le type de professionnel médical à qui le dossier est attribué :
-   * médecin généraliste, médecin urgentiste etc.
-   */
-  public enum AttributionEnum {
-    DRM("DRM"),
-
-    DRMMRU("DRMMRU"),
-
-    MU("MU"),
-
-    DENT("DENT"),
-
-    GERIA("GERIA"),
-
-    PEDIA("PEDIA"),
-
-    PSY("PSY"),
-
-    TOXICOL("TOXICOL"),
-
-    INDISPMU("INDISPMU"),
-
-    SSE("SSE"),
-
-    PLANBLAN("PLANBLAN"),
-
-    PCSAMU("PCSAMU"),
-
-    DRMMRL("DRMMRL"),
-
-    MG("MG"),
-
-    INDISPMG("INDISPMG"),
-
-    ABSML("ABSML"),
-
-    DR("DR"),
-
-    DREG("DREG"),
-
-    DRARM("DRARM"),
-
-    DRMED("DRMED"),
-
-    DRPHARMA("DRPHARMA"),
-
-    DRDENT("DRDENT"),
-
-    DRINFO("DRINFO"),
-
-    DOS_SIS("DOS-SIS"),
-
-    DOS_FDO("DOS-FDO"),
-
-    D("D"),
-
-    D_MALV("D-MALV"),
-
-    ERR("ERR"),
-
-    NRP("NRP"),
-
-    MALV("MALV"),
-
-    FAX("FAX"),
-
-    ITERATIF("ITERATIF"),
-
-    D_IDENT("D-IDENT"),
-
-    ADMIN("ADMIN"),
-
-    PERSO("PERSO"),
-
-    AUTRE("AUTRE");
-
-    private String value;
-
-    AttributionEnum(String value) { this.value = value; }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static AttributionEnum fromValue(String value) {
-      for (AttributionEnum b : AttributionEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
-  public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
-  private AttributionEnum attribution;
 
   /**
    * Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3
@@ -241,30 +135,6 @@ public class CaseDetails {
 
   public CaseDetails() {}
 
-  public CaseDetails attribution(AttributionEnum attribution) {
-
-    this.attribution = attribution;
-    return this;
-  }
-
-  /**
-   * Décrit le type de professionnel médical à qui le dossier est attribué :
-   *médecin généraliste, médecin urgentiste etc.
-   * @return attribution
-   **/
-  @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public AttributionEnum getAttribution() {
-    return attribution;
-  }
-
-  @JsonProperty(JSON_PROPERTY_ATTRIBUTION)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAttribution(AttributionEnum attribution) {
-    this.attribution = attribution;
-  }
-
   public CaseDetails priority(PriorityEnum priority) {
 
     this.priority = priority;
@@ -323,23 +193,19 @@ public class CaseDetails {
       return false;
     }
     CaseDetails caseDetails = (CaseDetails)o;
-    return Objects.equals(this.attribution, caseDetails.attribution) &&
-        Objects.equals(this.priority, caseDetails.priority) &&
+    return Objects.equals(this.priority, caseDetails.priority) &&
         Objects.equals(this.careLevel, caseDetails.careLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attribution, priority, careLevel);
+    return Objects.hash(priority, careLevel);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CaseDetails {\n");
-    sb.append("    attribution: ")
-        .append(toIndentedString(attribution))
-        .append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    careLevel: ")
         .append(toIndentedString(careLevel))
