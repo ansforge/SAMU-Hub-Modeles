@@ -13,7 +13,7 @@
   },
   "additionalProperties": {
     "library": "native",
-    "modelPackage": "com.hubsante.model.health",
+    "modelPackage": "com.hubsante.model.health.update",
     "serializationLibrary": "jackson",
     "openApiNullable": true,
     "supportUrlQuery": false,

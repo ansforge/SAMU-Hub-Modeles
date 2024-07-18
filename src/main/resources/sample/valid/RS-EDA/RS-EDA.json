@@ -185,7 +185,7 @@
                       "birthDate": "1982-02-26"
                     }
                   },
-                  "id": "fr.health.samu950-DRFR159502401000233.P11",
+                  "idPat": "fr.health.samu950-DRFR159502401000233.P11",
                   "hypothesis": {
                     "mainDiagnosis": {
                       "code": "Z86. 704",
