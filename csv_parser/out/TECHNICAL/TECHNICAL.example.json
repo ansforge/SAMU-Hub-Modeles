@@ -3,22 +3,5 @@
     "optionalStringField": "None",
     "enumerationField": "None",
     "numberField": "None",
-    "objectField": "None",
-    "arrayField": [
-        "None"
-    ],
-    "enumArrayField": [
-        "None"
-    ],
-    "requiredArray": [
-        "None"
-    ],
-    "arrayWithMaxLength": [
-        "None"
-    ],
-    "phoneNumberField": "None",
-    "dateField": "None",
-    "emailField": "None",
-    "datetimeField": "None",
-    "objectLevel1": "None"
+    "objectField": "None"
 }
