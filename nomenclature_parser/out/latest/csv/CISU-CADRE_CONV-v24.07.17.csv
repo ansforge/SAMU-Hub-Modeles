@@ -1,0 +1,11 @@
+,code,label_n1,Libellé niveau 2,Libellé niveau 3,description,commentaire
+0,DRSIS,Départ réflexe SIS,,,,"Engagement d'un moyen du SIS dans le cadre strict des départs réflexes prévu à l'annexe 1 du réferentiel SAP-AMU (Situations cliniques, circonstances particulières, Voie Publique)"
+1,MISSION,Propres missions,,,,Engagement d'un moyen du partenaire résultant de ses missions propres (hors départ reflexe du SIS)
+2,ITSP,Carence pour ITSP,,,,Engagement d'un VSAV par carence résultant d'une Indisponibilité de Transporteur sanitaire Privé
+3,CARENCE,Carence pour autre motif,,,,Engagement d'un VSAV par carence résultant d'un autre motif
+4,CONVENT,Convention locale,,,,"Engagement d'un moyen du partenaire, hors mission propre et hors carence, mais prévu dans une convention départementale ou régionale (notamment convention bi-tripartite)"
+5,SPE,Convention spécifique,,,,"Engagement d'un moyen du partenaire résultant d'une convention spécifique (transport bariatrique, ….)"
+6,HORS,Hors de ses missions,,,,"Engagement d'un moyen du partenaire hors cadre conventionnel, hors de ses missions et hors d'un cadre conventionnel"
+7,AUTRE1,Autre cas 1,,,,Engagement d'un partenaire dans un nouveau cadre ou en test
+8,AUTRE2,Autre cas 2,,,,Engagement d'un partenaire dans un nouveau cadre ou en test
+9,AUTRE3,Autre cas 3,,,,Engagement d'un partenaire dans un nouveau cadre ou en test
