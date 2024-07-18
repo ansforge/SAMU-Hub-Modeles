@@ -40,8 +40,8 @@ Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location
 ,Détails de l'adresse,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,highway,,,,,,0..1,X,highway,,
 ,,,Nom,,,"A valoriser avec le nom de l'autoroute, de la voie ferrée ou voie navigable.",A4,name,,,,,,0..1,,string,,
-,,,Point kilométrique,,,"A valoriser avec le point kilométrique de l'autoroute, de la voie ferrée ou voie navigable. ",,pk,,,,,,0..1,,string,,
-,,,Sens,,,A valoriser avec le sens de l'autoroute.,,direction,,,,,,0..1,,string,,
+,,,Point kilométrique,,,"A valoriser avec le point kilométrique de l'autoroute, de la voie ferrée ou voie navigable. ",PK10,pk,,,,,,0..1,,string,,
+,,,Sens,,,A valoriser avec le sens de l'autoroute.,Paris,direction,,,,,,0..1,,string,,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 
 

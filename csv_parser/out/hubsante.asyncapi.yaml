@@ -2197,7 +2197,7 @@ components:
           description: "A valoriser avec le point kilom\xE9trique de l'autoroute,\
             \ de la voie ferr\xE9e ou voie navigable. "
           examples:
-          - None
+          - PK10
         direction:
           type: string
           title: Sens
@@ -2206,13 +2206,13 @@ components:
           example: example.json#/location/detailedAddress/highway/direction
           description: A valoriser avec le sens de l'autoroute.
           examples:
-          - None
+          - Paris
       additionalProperties: false
       example: example.json#/location/detailedAddress/highway
       examples:
       - name: A4
-        pk: None
-        direction: None
+        pk: PK10
+        direction: Paris
     administrativeFile:
       type: object
       title: Dossier administratif

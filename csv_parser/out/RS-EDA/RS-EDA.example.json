@@ -41,8 +41,8 @@
         "detailedAddress": {
             "highway": {
                 "name": "A4",
-                "pk": "None",
-                "direction": "None"
+                "pk": "PK10",
+                "direction": "Paris"
             },
             "complete": "9 Bd du Montparnasse",
             "number": "9, 4bis, PK10, \u2026",
