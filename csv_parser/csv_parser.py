@@ -175,6 +175,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     global first_codeandlabel_properties
     first_codeandlabel_properties = []
+    global first_codeandlabel_name
+    first_codeandlabel_name = ""
 
     def regenerate_ids(df):
         """Regenerate the IDs of the dataframe"""

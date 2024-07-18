@@ -27,16 +27,29 @@ OU - uniquement si un ID unique de la demande n'est pas disponible :
 OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
-            <element name="datetime" type="dateTime"/>
-            <element minOccurs="0" name="convention" type="string">
+            <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>Nomenclature à venir : décrit le cadre conventionnel de la demande.</documentation>
+                    <documentation>datetime de création de la demande</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="deadline" type="string">
+            <element minOccurs="0" name="convention">
                 <annotation>
-                    <documentation>Délai d'intervention souhaité</documentation>
+                    <documentation>Décrit le cadre conventionnel de la demande. Cf nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="DRSIS"/>
+                        <enumeration value="MISSION"/>
+                        <enumeration value="ITSP"/>
+                        <enumeration value="CARENCE"/>
+                        <enumeration value="CONVENT"/>
+                        <enumeration value="SPE"/>
+                        <enumeration value="HORS"/>
+                        <enumeration value="AUTRE1"/>
+                        <enumeration value="AUTRE2"/>
+                        <enumeration value="AUTRE3"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="purpose">
                 <annotation>
@@ -58,6 +71,11 @@ OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</docum
                         <enumeration value="BARIA"/>
                     </restriction>
                 </simpleType>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>Délai d'intervention souhaité (en minutes). </documentation>
+                </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>

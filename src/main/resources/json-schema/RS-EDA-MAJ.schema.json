@@ -1,0 +1,849 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RS-EDA-MAJ.schema.json#",
+    "version": "24.07.18",
+    "example": "example.json#",
+    "type": "object",
+    "title": "createCaseHealthUpdate",
+    "required": [
+        "caseId"
+    ],
+    "properties": {
+        "caseId": {
+            "type": "string",
+            "title": "Identifiant affaire/dossier",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/caseId",
+            "description": "Identifiant partag\u00e9 de l'affaire/dossier, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui recoit la primo-demande de secours (cr\u00e9ateur du dossier). \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9.\n Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
+        },
+        "senderCaseId": {
+            "type": "string",
+            "title": "Identifiant local de l'affaire/dossier",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/senderCaseId",
+            "description": "A valoriser avec le num\u00e9ro du dossier dans le SI de l'\u00e9metteur du message.\n"
+        },
+        "perimeter": {
+            "type": "string",
+            "title": "Fili\u00e8re",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/perimeter",
+            "description": "Sert \u00e0 indiquer \u00e0 quelle fili\u00e8re du CRRA destinataire le dossier doit \u00eatre adress\u00e9/affich\u00e9, lorsque celle-ci est sp\u00e9cifique ou d\u00e9di\u00e9e.",
+            "enum": [
+                "AMU",
+                "NEONAT",
+                "PSY",
+                "SNP"
+            ]
+        },
+        "qualification": {
+            "$ref": "#/definitions/qualification"
+        },
+        "location": {
+            "$ref": "#/definitions/location"
+        },
+        "initialAlert": {
+            "$ref": "#/definitions/alert"
+        },
+        "owner": {
+            "type": "string",
+            "title": "CRRA traitant",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/owner",
+            "description": "Attribut qui permet de transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation concern\u00e9 (orgId = {pays}.{domaine}.{organisation})"
+        },
+        "patient": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/patient"
+            }
+        },
+        "medicalNote": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/medicalNote"
+            }
+        },
+        "freetext": {
+            "type": "string",
+            "title": "Informations suppl\u00e9mentaires modifi\u00e9es",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/freetext",
+            "description": "Champ libre qui permet de concat\u00e9ner en une seule note toutes les autres valeurs modifi\u00e9es dans le dossier, ne figurant pas de mani\u00e8re structur\u00e9e dans le RS-EDA-MAJ."
+        },
+        "additionalInformation": {
+            "$ref": "#/definitions/additionalInformation"
+        }
+    },
+    "definitions": {
+        "qualification": {
+            "type": "object",
+            "title": "Qualification",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "riskThreat": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/riskThreat"
+                    }
+                },
+                "details": {
+                    "$ref": "#/definitions/caseDetails"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/qualification"
+        },
+        "location": {
+            "type": "object",
+            "title": "Localisation",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "externalInfo": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalInfo"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/location"
+        },
+        "alert": {
+            "type": "object",
+            "title": "Alerte initiale",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "notes": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/notes"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/initialAlert"
+        },
+        "patient": {
+            "type": "object",
+            "title": "Patient",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "idPat"
+            ],
+            "properties": {
+                "idPat": {
+                    "type": "string",
+                    "title": "ID patient partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/idPat",
+                    "description": "Identifiant partag\u00e9 du patient, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 le patient.\nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.patient.{n\u00b0patient unique dans le syst\u00e8me \u00e9metteur}\n\nOU, si un n\u00b0patient unique n'existe pas dans le syst\u00e8me \u00e9metteur :\n{ID \u00e9metteur}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}\n\n\n"
+                },
+                "administrativeFile": {
+                    "$ref": "#/definitions/administrativeFile"
+                },
+                "identity": {
+                    "$ref": "#/definitions/Identity"
+                },
+                "healthMotive": {
+                    "$ref": "#/definitions/healthMotive"
+                },
+                "detail": {
+                    "$ref": "#/definitions/patientDetail"
+                },
+                "hypothesis": {
+                    "$ref": "#/definitions/hypothesis"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0"
+        },
+        "medicalNote": {
+            "type": "object",
+            "title": "Observation m\u00e9dicale",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "operator",
+                "freetext"
+            ],
+            "properties": {
+                "idPat": {
+                    "type": "string",
+                    "title": "ID patient partag\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/idPat",
+                    "description": "Identifiant partag\u00e9 du patient concern\u00e9 par l'observation, a remplir obligatoirement si ce patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur, \n\nValoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.patient.{n\u00b0patient unique dans le syst\u00e8me \u00e9metteur}\n\nOU, si un n\u00b0patient unique n'existe pas dans le syst\u00e8me \u00e9metteur :\n{ID \u00e9metteur}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}"
+                },
+                "operator": {
+                    "$ref": "#/definitions/operator"
+                },
+                "idObs": {
+                    "type": "string",
+                    "title": "ID Observation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/idObs",
+                    "description": "Identifiant partag\u00e9 de l'observation, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 l'observation\nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.medicalNote.{ID unique de l\u2019observation dans le syst\u00e8me \u00e9metteur}\n\nOU - uniquement dans le cas o\u00f9 un ID unique de la note n'est pas disponible dans le syst\u00e8me : \n{OrgId \u00e9metteur}.medicalNote.{senderCaseId}.{num\u00e9ro chronologique de l\u2019observation}\n\nCet identifiant a vocation \u00e0 devenir obligatoire pour permettre les mises \u00e0 jour, il est laiss\u00e9 en facultatif temporairement.\n"
+                },
+                "creation": {
+                    "type": "string",
+                    "title": "Date Heure de cr\u00e9ation de l'observation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/creation",
+                    "description": "A valoriser avec le groupe date heure de cr\u00e9ation de l'observation.  L'indicateur de fuseau horaire Z ne doit pas \u00eatre utilis\u00e9.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Observations et commentaires",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/freetext",
+                    "description": "Champ libre qui permet de compl\u00e9ter les informations de nature m\u00e9dicales, faites par un ARM, un m\u00e9decin ou un autre professionnel de sant\u00e9."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/medicalNote/0"
+        },
+        "additionalInformation": {
+            "type": "object",
+            "title": "Informations compl\u00e9mentaires",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "customMap": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/customMap"
+                    },
+                    "maxItems": 3
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/additionalInformation"
+        },
+        "riskThreat": {
+            "type": "object",
+            "title": "Risque, menace et sensibilit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/riskThreat/0/code",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
+                    "enum": [
+                        "R01",
+                        "R02",
+                        "R03",
+                        "R04",
+                        "R05",
+                        "R06",
+                        "R07",
+                        "R08",
+                        "R09",
+                        "R10",
+                        "R11",
+                        "R12",
+                        "R13",
+                        "R14",
+                        "R15",
+                        "R16",
+                        "R17",
+                        "R18",
+                        "R19",
+                        "R20",
+                        "R21",
+                        "R22",
+                        "R23",
+                        "R24",
+                        "R25",
+                        "R26",
+                        "R27",
+                        "R28",
+                        "R29",
+                        "R30",
+                        "R31",
+                        "R32",
+                        "R33",
+                        "R34",
+                        "R35",
+                        "R36",
+                        "R37"
+                    ]
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/riskThreat/0/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/qualification/riskThreat/0"
+        },
+        "caseDetails": {
+            "type": "object",
+            "title": "D\u00e9tails du dossier ",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "priority": {
+                    "type": "string",
+                    "title": "Priorit\u00e9 de r\u00e9gulation m\u00e9dicale",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/details/priority",
+                    "description": "D\u00e9crit la priorit\u00e9 de r\u00e9gulation m\u00e9dicale du dossier : P0, P1, P2, P3",
+                    "enum": [
+                        "P0",
+                        "P1",
+                        "P2",
+                        "P3",
+                        "NR"
+                    ]
+                },
+                "careLevel": {
+                    "type": "string",
+                    "title": "Niveau de soins du dossier",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/details/careLevel",
+                    "description": "D\u00e9crit le niveau de soins global du dossier identifi\u00e9 au cours de l'acte de r\u00e9gulation m\u00e9dicale : s'il y a plusieurs niveaux de soins diff\u00e9rents pour chaque patient, on indique ici le niveau le plus grave.\ncf.nomenclature associ\u00e9e.",
+                    "enum": [
+                        "R1",
+                        "R2",
+                        "R3",
+                        "R4"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/qualification/details"
+        },
+        "externalInfo": {
+            "type": "object",
+            "title": "Liens aux syst\u00e8mes externes",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "freetext",
+                "uri"
+            ],
+            "properties": {
+                "freetext": {
+                    "type": "string",
+                    "title": "Nom de la source",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/externalInfo/0/freetext",
+                    "description": "A valoriser avec le syst\u00e8me fournissant le localisant",
+                    "enum": [
+                        "BAN",
+                        "IGN",
+                        "NEXSIS"
+                    ]
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/externalInfo/0/type",
+                    "description": "A valoriser avec la d\u00e9finition du type d'objet dans le syst\u00e8me\n\nExemple : SIG NexSIS / OSM ont plusieurs types de donn\u00e9es (EGA, POI, tron\u00e7on de route, \u2026)",
+                    "enum": [
+                        "MANUEL",
+                        "CARTE",
+                        "AUTRE",
+                        "PHOTO",
+                        "SITE INTERNET"
+                    ]
+                },
+                "uri": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/location/externalInfo/0/uri",
+                    "description": "Identifiant dans le syst\u00e8me concern\u00e9"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/location/externalInfo/0"
+        },
+        "notes": {
+            "type": "object",
+            "title": "Informations compl\u00e9mentaires sur l'alerte",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "creation": {
+                    "type": "string",
+                    "title": "Date et heure de l'information compl\u00e9mentaire",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/notes/0/creation",
+                    "description": "A valoriser avec le groupe date heure de cr\u00e9ation de l'information compl\u00e9mentaire",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "Commentaire/Observations",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/initialAlert/notes/0/freetext",
+                    "description": "A valoriser avec un texte libre contenant les indications compl\u00e9mentaires renseign\u00e9es sur l'alerte/appel.\n\nSp\u00e9cificit\u00e9s 15-15 : cet attribut ne doit pas \u00eatre valoris\u00e9 avec des notes \u00e0 caract\u00e8re m\u00e9dical, qui serait li\u00e9e \u00e0 un interrogatoire ARM ou m\u00e9decin, ou \u00e0 un patient en particulier"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/initialAlert/notes/0"
+        },
+        "administrativeFile": {
+            "type": "object",
+            "title": "Dossier administratif",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "externalId": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/externalId"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile"
+        },
+        "Identity": {
+            "type": "object",
+            "title": "Identit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "strictFeatures": {
+                    "$ref": "#/definitions/insStrictFeatures"
+                },
+                "nonStrictFeatures": {
+                    "$ref": "#/definitions/detailedName"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/identity"
+        },
+        "healthMotive": {
+            "type": "object",
+            "title": "Motif de recours m\u00e9dico-secouriste",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/healthMotive/code",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
+                    "enum": [
+                        "M01.00",
+                        "M01.01",
+                        "M01.02",
+                        "M01.03",
+                        "M02.00",
+                        "M02.01",
+                        "M02.02",
+                        "M02.03",
+                        "M02.04",
+                        "M02.05",
+                        "M02.06",
+                        "M02.07",
+                        "M02.08",
+                        "M02.09",
+                        "M02.10",
+                        "M03.00",
+                        "M03.01",
+                        "M03.02",
+                        "M03.03",
+                        "M03.04",
+                        "M03.05",
+                        "M03.06",
+                        "M03.07",
+                        "M03.08",
+                        "M03.09",
+                        "M03.10",
+                        "M03.11",
+                        "M03.12",
+                        "M03.13",
+                        "M03.14",
+                        "M03.15",
+                        "M03.16",
+                        "M03.17",
+                        "M03.18",
+                        "M03.19",
+                        "M03.20",
+                        "M03.21",
+                        "M03.22",
+                        "M04.00",
+                        "M04.01",
+                        "M04.02",
+                        "M04.03",
+                        "M04.04",
+                        "M05.00",
+                        "M05.01",
+                        "M05.02",
+                        "M06.00",
+                        "M06.01",
+                        "M06.02",
+                        "M06.03",
+                        "M06.04",
+                        "M07.00"
+                    ]
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/healthMotive/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/healthMotive"
+        },
+        "patientDetail": {
+            "type": "object",
+            "title": "Informations patient",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "weight": {
+                    "type": "integer",
+                    "title": "Poids",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/weight",
+                    "description": "A valoriser avec le poids en kilogrammes"
+                },
+                "height": {
+                    "type": "integer",
+                    "title": "Taille",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/height",
+                    "description": "A valoriser avec la taille en centim\u00e8tres du patient"
+                },
+                "age": {
+                    "type": "string",
+                    "title": "Age",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/age",
+                    "description": "A valoriser avec l'age du patient.\nAu format \"Dur\u00e9e\" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unit\u00e9 de dur\u00e9e (ann\u00e9es, mois, semaines ou jours)",
+                    "pattern": "P[0-9]{1,3}[YMWD]"
+                },
+                "careLevel": {
+                    "type": "string",
+                    "title": "Niveau de soin du patient",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/detail/careLevel",
+                    "description": "A valoriser avec le niveau de soins sp\u00e9cifique au patient",
+                    "enum": [
+                        "R1",
+                        "R2",
+                        "R3",
+                        "R4"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/detail"
+        },
+        "hypothesis": {
+            "type": "object",
+            "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "mainDiagnosis": {
+                    "$ref": "#/definitions/mainDiagnosis"
+                },
+                "otherDiagnosis": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/otherDiagnosis"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/hypothesis"
+        },
+        "externalId": {
+            "type": "object",
+            "title": "Identifiant(s) patient(s)",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "source",
+                "value"
+            ],
+            "properties": {
+                "source": {
+                    "type": "string",
+                    "title": "Source  /  type d'identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/externalId/0/source",
+                    "description": "Type de l'identifiant fourni",
+                    "enum": [
+                        "NIR",
+                        "SINUS",
+                        "SI-VIC",
+                        "DOSSARD",
+                        "PLACE"
+                    ]
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Identifiant",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/administrativeFile/externalId/0/value",
+                    "description": "L'identifiant en lui-m\u00eame"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/administrativeFile/externalId/0"
+        },
+        "insStrictFeatures": {
+            "type": "object",
+            "title": "Traits stricts de l'identit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "birthName": {
+                    "type": "string",
+                    "title": "Nom de naissance",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/identity/strictFeatures/birthName",
+                    "description": "A valoriser avec le nom de naissance du patient. Egalement appel\u00e9 nom de famille."
+                },
+                "birthDate": {
+                    "type": "string",
+                    "title": "Date de naissance",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/identity/strictFeatures/birthDate",
+                    "description": "A valoriser avec la date de naissance du patient",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}"
+                },
+                "sex": {
+                    "type": "string",
+                    "title": "Sexe ",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/identity/strictFeatures/sex",
+                    "description": "A valoriser avec le sexe du patient",
+                    "enum": [
+                        "MASC",
+                        "FEM",
+                        "AUTRE",
+                        "INCONNU"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/identity/strictFeatures"
+        },
+        "detailedName": {
+            "type": "object",
+            "title": "Traits non stricts de l'identit\u00e9",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {},
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/identity/nonStrictFeatures"
+        },
+        "mainDiagnosis": {
+            "type": "object",
+            "title": "Hypoth\u00e8se de r\u00e9gulation m\u00e9dicale principale",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/mainDiagnosis/code",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/mainDiagnosis/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/hypothesis/mainDiagnosis"
+        },
+        "otherDiagnosis": {
+            "type": "object",
+            "title": "Hypoth\u00e8ses de r\u00e9gulation m\u00e9dicale secondaires",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "code",
+                "label"
+            ],
+            "properties": {
+                "code": {
+                    "type": "string",
+                    "title": "Code",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/code",
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0/label",
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/patient/0/hypothesis/otherDiagnosis/0"
+        },
+        "operator": {
+            "type": "object",
+            "title": "Professionnel de sant\u00e9 qui r\u00e9alise l'observation",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "role"
+            ],
+            "properties": {
+                "detailedName": {
+                    "$ref": "#/definitions/detailedName"
+                },
+                "role": {
+                    "type": "string",
+                    "title": "R\u00f4le",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/medicalNote/0/operator/role",
+                    "description": "A valoriser avec le r\u00f4le de l'op\u00e9rateur au sein de l'entit\u00e9 \u00e9mettrice du message : ",
+                    "enum": [
+                        "AMBULANCIER",
+                        "ARM",
+                        "INFIRMIER",
+                        "MEDECIN",
+                        "INCONNU",
+                        "AUTRE"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/medicalNote/0/operator"
+        },
+        "customMap": {
+            "type": "object",
+            "title": "Cl\u00e9 valeur adaptable",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "key",
+                "value"
+            ],
+            "properties": {
+                "key": {
+                    "type": "string",
+                    "title": "Cl\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/additionalInformation/customMap/0/key",
+                    "description": "A valoriser avec le nom de la balise"
+                },
+                "label": {
+                    "type": "string",
+                    "title": "Libell\u00e9",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/additionalInformation/customMap/0/label",
+                    "description": "A valoriser avec le libell\u00e9 correspondant"
+                },
+                "value": {
+                    "type": "string",
+                    "title": "Valeur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/additionalInformation/customMap/0/value",
+                    "description": "A valoriser avec la valeur associ\u00e9e \u00e0 la cl\u00e9"
+                },
+                "freetext": {
+                    "type": "string",
+                    "title": "D\u00e9tails",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/additionalInformation/customMap/0/freetext",
+                    "description": "Informations compl\u00e9mentaires sur le contexte / utilisation de cette correspondance additionnelle"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/additionalInformation/customMap/0"
+        }
+    },
+    "additionalProperties": false
+}

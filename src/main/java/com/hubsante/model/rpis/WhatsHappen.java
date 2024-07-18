@@ -62,7 +62,7 @@ public class WhatsHappen {
   }
 
   /**
-   * A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
+   * A valoriser avec le code de la nomenclature associée.
    * @return code
    **/
   @JsonProperty(JSON_PROPERTY_CODE)
@@ -85,10 +85,9 @@ public class WhatsHappen {
   }
 
   /**
-   * A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.
-   *Dans le cas où un système n&#39;est pas en mesure de reconnaître un code, il
-   *peut directement afficher le libellé qui est obligatoirement fourni avec le
-   *code.
+   * A valoriser avec le libellé de la nomenclature associée. Dans le cas où un
+   *système n&#39;est pas en mesure de reconnaître un code, il peut choisir
+   *d&#39;afficher le libellé qui est obligatoirement fourni avec le code.
    * @return label
    **/
   @JsonProperty(JSON_PROPERTY_LABEL)

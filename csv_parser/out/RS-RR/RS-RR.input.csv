@@ -15,5 +15,5 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,,
 Réponse à la demande de ressources,,,,,,Groupe date heure de début de la demande,2022-09-27T08:23:34+02:00,response,1..1,X,response,,Format datetime décrit dans le DSF
 ,Date Heure de réponse,,,,,Voir liste des effets à obtenir identifiés,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
 ,Réponse,,,,,oui / non / oui partiel / différé,,answer,1..1,,string,X,"ENUM: ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
-,Délai de réponse,,,,,Indique le délai de réponse auquel s'engage l'expéditeur,,deadline,0..1,,string,,
-,Précisions sur la réponse,,,,,Commentaire libre pour apporter toutes précisions utiles à la réponse,,freetext,0..1,,string,,
+,Délai de réponse,,,,,Indique le délai de réponse auquel s'engage l'expéditeur (en minutes),,deadline,0..1,,string,,
+,Précisions sur la réponse,,,,,Commentaire libre pour apporter toutes précisions utiles à la réponse. Le motif de refus est notifié dans ce champ.,,freetext,0..1,,string,,

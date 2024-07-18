@@ -153,7 +153,8 @@ public class Response {
   }
 
   /**
-   * Indique le délai de réponse auquel s&#39;engage l&#39;expéditeur
+   * Indique le délai de réponse auquel s&#39;engage l&#39;expéditeur (en
+   *minutes)
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)
@@ -176,7 +177,8 @@ public class Response {
   }
 
   /**
-   * Commentaire libre pour apporter toutes précisions utiles à la réponse
+   * Commentaire libre pour apporter toutes précisions utiles à la réponse. Le
+   *motif de refus est notifié dans ce champ.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)

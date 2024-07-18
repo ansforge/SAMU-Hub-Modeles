@@ -71,6 +71,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/datetime
+          description: "datetime de cr\xE9ation de la demande"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -81,17 +82,19 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/convention
-          description: "Nomenclature \xE0 venir : d\xE9crit le cadre conventionnel\
-            \ de la demande."
-          examples:
-          - None
-        deadline:
-          type: string
-          title: "D\xE9lai souhait\xE9"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/request/deadline
-          description: "D\xE9lai d'intervention souhait\xE9"
+          description: "D\xE9crit le cadre conventionnel de la demande. Cf nomenclature\
+            \ associ\xE9e"
+          enum:
+          - DRSIS
+          - MISSION
+          - ITSP
+          - CARENCE
+          - CONVENT
+          - SPE
+          - HORS
+          - AUTRE1
+          - AUTRE2
+          - AUTRE3
           examples:
           - None
         purpose:
@@ -117,6 +120,15 @@ components:
           - BARIA
           examples:
           - None
+        deadline:
+          type: string
+          title: "D\xE9lai souhait\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/request/deadline
+          description: "D\xE9lai d'intervention souhait\xE9 (en minutes). "
+          examples:
+          - None
         freetext:
           type: string
           title: "Pr\xE9cisions sur la demande"
@@ -134,6 +146,6 @@ components:
           fr.health.samu690.request.DRFR15690242370035.3'
         datetime: None
         convention: None
-        deadline: None
         purpose: None
+        deadline: None
         freetext: None

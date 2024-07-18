@@ -97,7 +97,7 @@ components:
           x-cols: 6
           example: example.json#/response/deadline
           description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
-            diteur"
+            diteur (en minutes)"
           examples:
           - None
         freetext:
@@ -107,7 +107,7 @@ components:
           x-cols: 6
           example: example.json#/response/freetext
           description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
-            \ \xE0 la r\xE9ponse"
+            \ \xE0 la r\xE9ponse. Le motif de refus est notifi\xE9 dans ce champ."
           examples:
           - None
       additionalProperties: false

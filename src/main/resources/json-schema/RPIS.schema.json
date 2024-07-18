@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.07.16",
+    "version": "24.07.18",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -285,7 +285,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/whatsHappen/code",
-                    "description": "A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait"
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e."
                 },
                 "label": {
                     "type": "string",
@@ -293,7 +293,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/whatsHappen/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature CISU-Code_Nature_de_fait.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -306,8 +306,6 @@
             "x-health-only": false,
             "required": [
                 "code",
-                "label",
-                "code",
                 "label"
             ],
             "properties": {
@@ -317,7 +315,61 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/healthMotive/code",
-                    "description": "A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime"
+                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e.",
+                    "enum": [
+                        "M01.00",
+                        "M01.01",
+                        "M01.02",
+                        "M01.03",
+                        "M02.00",
+                        "M02.01",
+                        "M02.02",
+                        "M02.03",
+                        "M02.04",
+                        "M02.05",
+                        "M02.06",
+                        "M02.07",
+                        "M02.08",
+                        "M02.09",
+                        "M02.10",
+                        "M03.00",
+                        "M03.01",
+                        "M03.02",
+                        "M03.03",
+                        "M03.04",
+                        "M03.05",
+                        "M03.06",
+                        "M03.07",
+                        "M03.08",
+                        "M03.09",
+                        "M03.10",
+                        "M03.11",
+                        "M03.12",
+                        "M03.13",
+                        "M03.14",
+                        "M03.15",
+                        "M03.16",
+                        "M03.17",
+                        "M03.18",
+                        "M03.19",
+                        "M03.20",
+                        "M03.21",
+                        "M03.22",
+                        "M04.00",
+                        "M04.01",
+                        "M04.02",
+                        "M04.03",
+                        "M04.04",
+                        "M05.00",
+                        "M05.01",
+                        "M05.02",
+                        "M06.00",
+                        "M06.01",
+                        "M06.02",
+                        "M06.03",
+                        "M06.04",
+                        "M07.00"
+                    ]
                 },
                 "label": {
                     "type": "string",
@@ -325,7 +377,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/healthMotive/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature CISU-Code_Motif_patient-victime.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut directement afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,

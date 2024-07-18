@@ -93,7 +93,7 @@
             "birthDate": "2011-05-11"
           }
         },
-        "id": "fr.health.samu440.DRFR154402413800236.P01",
+        "idPat": "fr.health.samu440.DRFR154402413800236.P01",
         "detail": {
           "age": "P13Y"
         },
@@ -120,7 +120,7 @@
             "sex": "MASC"
           }
         },
-        "id": "fr.health.samu440.DRFR154402413800236.P02",
+        "idPat": "fr.health.samu440.DRFR154402413800236.P02",
         "detail": {
           "age": "P11Y"
         },

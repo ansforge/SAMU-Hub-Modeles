@@ -151,23 +151,29 @@ components:
             , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
             \ Ambulance de r\xE9animation P\xE9diatrique, etc."
           enum:
-          - VPSP
+          - AASC
           - VLSC
+          - VPSP
           - AUTRESC
+          - AUTREVECT
+          - CONSEIL
           - TAXI
           - TRANSP
-          - AUTRE
           - TRAIN
           - AVION
           - PERSO
           - APIED
+          - AUTRE
+          - AUTRETRANS
           - INCONNU
-          - CONSEIL
+          - DEFIB
           - DAE
+          - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
+          - LIB
           - MEDC
           - MEDV
           - PHARMA
@@ -175,8 +181,7 @@ components:
           - MEDSPE
           - DENT
           - AUTREPRO
-          - DRAGON
-          - AVSC
+          - SIS
           - VSAV
           - GRIMP
           - VPL
@@ -190,29 +195,33 @@ components:
           - VLMSP
           - VLCG
           - VLSIS
+          - DRAGON
+          - AVSC
           - MOYSSE
           - AUTRESIS
+          - NAVISIS
+          - SMUR
           - VLM
-          - AR
-          - AR-BAR
-          - AR-PED
           - VL
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
           - PSM1
           - PSM2
           - PSM3
           - PSMP
           - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
           - AMB-GV
           - AMB-PV
           - AMB-BAR
           - AMB
-          - VSL
-          - NAVISIS
           examples:
           - VLM
         plate:
@@ -326,21 +335,29 @@ components:
           - None
         status:
           type: string
-          title: Status du vecteur
+          title: Statut du vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/status
           description: Dernier statut du vecteur
           enum:
-          - ALERTE
-          - PARTI
-          - ARRIVEE SUR LES LIEUX
-          - TRANSPORT DESTINATION
-          - ARRIVEE DESTINATION
-          - 'FIN DE MEDICALISATION '
-          - QUITTE DESTINATION
-          - RETOUR BASE
-          - RENTREE BASE
+          - DECISION
+          - DECLENCHE
+          - DEPART
+          - ARRIVE
+          - PEC
+          - ANNULE
+          - BILAN
+          - TRANSPOR
+          - ETAPE1
+          - TRANSP2
+          - ETAPE2
+          - TRANSP3
+          - DESTIN
+          - FINPEC
+          - RETOUR
+          - RET-BASE
+          - REN-BASE
           examples:
           - None
         availability:

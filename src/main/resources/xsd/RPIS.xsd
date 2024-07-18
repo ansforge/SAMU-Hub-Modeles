@@ -140,28 +140,84 @@ Si le type d'orientation est sans transport associé, les objets Destination et 
         <sequence>
             <element name="code" type="string">
                 <annotation>
-                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée.</documentation>
                 </annotation>
             </element>
             <element name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>
     </complexType>
     <complexType name="healthMotive">
         <sequence>
-            <element name="code" type="string">
+            <element name="code">
                 <annotation>
-                    <documentation>A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime</documentation>
+                    <documentation>A valoriser avec le code de la nomenclature associée.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="M01.00"/>
+                        <enumeration value="M01.01"/>
+                        <enumeration value="M01.02"/>
+                        <enumeration value="M01.03"/>
+                        <enumeration value="M02.00"/>
+                        <enumeration value="M02.01"/>
+                        <enumeration value="M02.02"/>
+                        <enumeration value="M02.03"/>
+                        <enumeration value="M02.04"/>
+                        <enumeration value="M02.05"/>
+                        <enumeration value="M02.06"/>
+                        <enumeration value="M02.07"/>
+                        <enumeration value="M02.08"/>
+                        <enumeration value="M02.09"/>
+                        <enumeration value="M02.10"/>
+                        <enumeration value="M03.00"/>
+                        <enumeration value="M03.01"/>
+                        <enumeration value="M03.02"/>
+                        <enumeration value="M03.03"/>
+                        <enumeration value="M03.04"/>
+                        <enumeration value="M03.05"/>
+                        <enumeration value="M03.06"/>
+                        <enumeration value="M03.07"/>
+                        <enumeration value="M03.08"/>
+                        <enumeration value="M03.09"/>
+                        <enumeration value="M03.10"/>
+                        <enumeration value="M03.11"/>
+                        <enumeration value="M03.12"/>
+                        <enumeration value="M03.13"/>
+                        <enumeration value="M03.14"/>
+                        <enumeration value="M03.15"/>
+                        <enumeration value="M03.16"/>
+                        <enumeration value="M03.17"/>
+                        <enumeration value="M03.18"/>
+                        <enumeration value="M03.19"/>
+                        <enumeration value="M03.20"/>
+                        <enumeration value="M03.21"/>
+                        <enumeration value="M03.22"/>
+                        <enumeration value="M04.00"/>
+                        <enumeration value="M04.01"/>
+                        <enumeration value="M04.02"/>
+                        <enumeration value="M04.03"/>
+                        <enumeration value="M04.04"/>
+                        <enumeration value="M05.00"/>
+                        <enumeration value="M05.01"/>
+                        <enumeration value="M05.02"/>
+                        <enumeration value="M06.00"/>
+                        <enumeration value="M06.01"/>
+                        <enumeration value="M06.02"/>
+                        <enumeration value="M06.03"/>
+                        <enumeration value="M06.04"/>
+                        <enumeration value="M07.00"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le libellé de la nomenclature CISU-Code_Motif_patient-victime.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
+                    <documentation>A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.</documentation>
                 </annotation>
             </element>
         </sequence>

@@ -20,13 +20,10 @@ A valoriser par DRFR15DDXAAJJJ00000 :
 ,Type de structure SMUR,,,,,"9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal ",,ressourceStructure,,,,,,1..1,,string,X,NOMENCLATURE : TBD
 Régulation médicale,,,,,,,,regulation,,,,,,1..1,X,regulation,,
 ,Circonstances ayant données lieu à l’appel,,,,,,,whatsHappen,,,,,,1..1,X,codeAndLabel,,
-,,Code,,,,A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait,AVPAR,code,,,,,,1..1,,string,X,NOMENCLATURE : CISU-Code_Nature_de_fait
-,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature CISU-Code_Nature_de_fait.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,,,,,,1..1,,string,X,NOMENCLATURE : CISU-Code_Nature_de_fait
-,Motif de recours ,,,,,,,healthMotive,,,,,,1..1,X,codeAndLabel,,
-,,Code,,,,A valoriser avec un code de la nomenclature CISU-Code_Motif_patient-victime,AVPAR,code,,,,,,1..1,,string,X,NOMENCLATURE : CISU-Code_Motif_patient-victime
-,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature CISU-Code_Motif_patient-victime.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut directement afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,,,,,,1..1,,string,X,NOMENCLATURE : CISU-Code_Motif_patient-victime
+,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,,,,,,1..1,,string,X,NOMENCLATURE : CISU-Code_Nature_de_fait
+,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature associée.
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,,,,,,1..1,,string,X,
+,Motif de recours ,,,,,,,healthMotive,,,,,,1..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Niveau de médicalisation initial,,,,,"Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
 Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,initialTeamCare,,,,,,1..1,,string,X,NOMENCLATURE : SI-SAMU-NIVSOIN

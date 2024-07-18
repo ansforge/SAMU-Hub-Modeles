@@ -61,7 +61,6 @@ import java.util.Objects;
                     CreateCaseHealth.JSON_PROPERTY_OWNER,
                     CreateCaseHealth.JSON_PROPERTY_PATIENT,
                     CreateCaseHealth.JSON_PROPERTY_MEDICAL_NOTE,
-                    CreateCaseHealth.JSON_PROPERTY_NEW_ALERT,
                     CreateCaseHealth.JSON_PROPERTY_ADDITIONAL_INFORMATION})
 @JsonTypeName("createCaseHealth")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -176,9 +175,6 @@ public class CreateCaseHealth {
 
   public static final String JSON_PROPERTY_MEDICAL_NOTE = "medicalNote";
   private List<MedicalNote> medicalNote;
-
-  public static final String JSON_PROPERTY_NEW_ALERT = "newAlert";
-  private List<Alert> newAlert;
 
   public static final String JSON_PROPERTY_ADDITIONAL_INFORMATION =
       "additionalInformation";
@@ -489,45 +485,6 @@ public class CreateCaseHealth {
     this.medicalNote.addAll(medicalNote);
   }
 
-  public CreateCaseHealth newAlert(List<Alert> newAlert) {
-
-    this.newAlert = newAlert;
-    return this;
-  }
-
-  public CreateCaseHealth addNewAlertItem(Alert newAlertItem) {
-    if (this.newAlert == null) {
-      this.newAlert = new ArrayList<>();
-    }
-    this.newAlert.add(newAlertItem);
-    return this;
-  }
-
-  /**
-   * Get newAlert
-   * @return newAlert
-   **/
-  @JsonProperty(JSON_PROPERTY_NEW_ALERT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public List<Alert> getNewAlert() {
-    return newAlert;
-  }
-
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_NEW_ALERT)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNewAlert(List<Alert> newAlert) {
-    if (newAlert == null) {
-      return;
-    }
-    if (this.newAlert == null) {
-      this.newAlert = new ArrayList<>();
-    }
-    this.newAlert.addAll(newAlert);
-  }
-
   public CreateCaseHealth
   additionalInformation(AdditionalInformation additionalInformation) {
 
@@ -574,7 +531,6 @@ public class CreateCaseHealth {
         Objects.equals(this.owner, createCaseHealth.owner) &&
         Objects.equals(this.patient, createCaseHealth.patient) &&
         Objects.equals(this.medicalNote, createCaseHealth.medicalNote) &&
-        Objects.equals(this.newAlert, createCaseHealth.newAlert) &&
         Objects.equals(this.additionalInformation,
                        createCaseHealth.additionalInformation);
   }
@@ -583,8 +539,7 @@ public class CreateCaseHealth {
   public int hashCode() {
     return Objects.hash(caseId, senderCaseId, creation, perimeter,
                         interventionType, qualification, location, initialAlert,
-                        owner, patient, medicalNote, newAlert,
-                        additionalInformation);
+                        owner, patient, medicalNote, additionalInformation);
   }
 
   @Override
@@ -614,7 +569,6 @@ public class CreateCaseHealth {
     sb.append("    medicalNote: ")
         .append(toIndentedString(medicalNote))
         .append("\n");
-    sb.append("    newAlert: ").append(toIndentedString(newAlert)).append("\n");
     sb.append("    additionalInformation: ")
         .append(toIndentedString(additionalInformation))
         .append("\n");
