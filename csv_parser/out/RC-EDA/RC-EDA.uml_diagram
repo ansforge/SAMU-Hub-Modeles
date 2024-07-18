@@ -3,6 +3,13 @@ strict digraph {
 	node [shape=none]
 	edge [arrowhead=odiamond arrowtail=none]
 	rankdir=BT
+	riskThreat [label=<<TABLE>
+                <TR>
+                <TD ><B>riskThreat</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	riskThreat -> qualification [headlabel=1 taillabel="0..*"]
 	whatsHappen [label=<<TABLE>
                 <TR>
                 <TD ><B>whatsHappen</B></TD>
@@ -17,13 +24,6 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet locationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	locationKind -> qualification [headlabel=1 taillabel="0..1"]
-	riskThreat [label=<<TABLE>
-                <TR>
-                <TD ><B>riskThreat</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	riskThreat -> qualification [headlabel=1 taillabel="0..*"]
 	healthMotive [label=<<TABLE>
                 <TR>
                 <TD ><B>healthMotive</B></TD>
@@ -220,6 +220,13 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet location</I></TD></TR><TR><TD BORDER="0" >locID <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >locLabel <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >name <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >country <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	location -> initialAlert [headlabel=1 taillabel=1]
+	riskThreat [label=<<TABLE>
+                <TR>
+                <TD ><B>riskThreat</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	riskThreat -> qualification [headlabel=1 taillabel="0..*"]
 	whatsHappen [label=<<TABLE>
                 <TR>
                 <TD ><B>whatsHappen</B></TD>
@@ -234,13 +241,6 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet locationKind</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	locationKind -> qualification [headlabel=1 taillabel="0..1"]
-	riskThreat [label=<<TABLE>
-                <TR>
-                <TD ><B>riskThreat</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet riskThreat</I></TD></TR><TR><TD BORDER="0" >code <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >label <I>string</I> : [1..1] </TD></TR>
-                </TABLE>>]
-	riskThreat -> qualification [headlabel=1 taillabel="0..*"]
 	healthMotive [label=<<TABLE>
                 <TR>
                 <TD ><B>healthMotive</B></TD>

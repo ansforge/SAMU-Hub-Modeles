@@ -6,6 +6,12 @@
     "interventionType": "PRIMAIRE",
     "qualification": {
         "origin": "15, 112, 18",
+        "riskThreat": [
+            {
+                "code": "C07.13.02",
+                "label": "Rod\u00e9o automobile"
+            }
+        ],
         "whatsHappen": {
             "code": "C07.13.02",
             "label": "Rod\u00e9o automobile"
@@ -14,12 +20,6 @@
             "code": "C07.13.02",
             "label": "Rod\u00e9o automobile"
         },
-        "riskThreat": [
-            {
-                "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile"
-            }
-        ],
         "healthMotive": {
             "code": "C07.13.02",
             "label": "Rod\u00e9o automobile"

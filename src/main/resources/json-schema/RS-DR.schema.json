@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-DR.schema.json#",
-    "version": "24.07.16",
+    "version": "24.07.18",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesRequest",
@@ -58,7 +58,19 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/convention",
-                    "description": "Nomenclature \u00e0 venir : d\u00e9crit le cadre conventionnel de la demande."
+                    "description": "D\u00e9crit le cadre conventionnel de la demande. Cf nomenclature associ\u00e9e",
+                    "enum": [
+                        "DRSIS",
+                        "MISSION",
+                        "ITSP",
+                        "CARENCE",
+                        "CONVENT",
+                        "SPE",
+                        "HORS",
+                        "AUTRE1",
+                        "AUTRE2",
+                        "AUTRE3"
+                    ]
                 },
                 "deadline": {
                     "type": "string",
@@ -66,7 +78,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/deadline",
-                    "description": "D\u00e9lai d'intervention souhait\u00e9"
+                    "description": "D\u00e9lai d'intervention souhait\u00e9 (en minutes). "
                 },
                 "purpose": {
                     "type": "string",

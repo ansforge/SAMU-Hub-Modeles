@@ -14,7 +14,7 @@ OU - uniquement si un ID unique de la demande n'est pas disponible :
 OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
 fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,,
 ,Date Heure de création de la demande,,,,,,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
-,Cadre conventionnel,,,,,Nomenclature à venir : décrit le cadre conventionnel de la demande.,,convention,0..1,,string,X,
-,Délai souhaité,,,,,Délai d'intervention souhaité,,deadline,0..1,,string,X,
+,Cadre conventionnel,,,,,Décrit le cadre conventionnel de la demande. Cf nomenclature associée,,convention,0..1,,string,X,NOMENCLATURE: CISU-CADRE_CONV
+,Délai souhaité,,,,,Délai d'intervention souhaité (en minutes). ,,deadline,0..1,,string,X,
 ,Effet à obtenir,,,,,"Motif de la demande de ressource auprès du partenaire, voir liste des effets à obtenir identifiés",,purpose,1..1,,string,X,NOMENCLATURE: CISU-Code_Effet_a_obtenir
 ,Précisions sur la demande,,,,,Texte libre permettant de détailler la demande,,freetext,0..1,,string,,

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RR.schema.json#",
-    "version": "24.07.16",
+    "version": "24.07.18",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
@@ -73,7 +73,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/deadline",
-                    "description": "Indique le d\u00e9lai de r\u00e9ponse auquel s'engage l'exp\u00e9diteur"
+                    "description": "Indique le d\u00e9lai de r\u00e9ponse auquel s'engage l'exp\u00e9diteur (en minutes)"
                 },
                 "freetext": {
                     "type": "string",
@@ -81,7 +81,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/freetext",
-                    "description": "Commentaire libre pour apporter toutes pr\u00e9cisions utiles \u00e0 la r\u00e9ponse"
+                    "description": "Commentaire libre pour apporter toutes pr\u00e9cisions utiles \u00e0 la r\u00e9ponse. Le motif de refus est notifi\u00e9 dans ce champ."
                 }
             },
             "additionalProperties": false,

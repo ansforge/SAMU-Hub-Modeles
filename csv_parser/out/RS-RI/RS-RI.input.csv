@@ -19,7 +19,7 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,,
 ,ID Organisation propriétaire,,,,,Organisation à laquelle appartient la ressource,fr.health.samu440,orgId,0..1,,string,,
 ,ID Centre d’affectation,,,,,Lieu de garage principal,CHU Nantes,centerName,0..1,,string,,
 ,Type de ressource,,,,,"Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.",SMUR,resourceType,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
-,Type de moyen,,,,,"Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.",VLM,vehiculeType,0..1,,string,X,NOMENCLATURE: CISU-TYPE_VECTEUR
+,Type de moyen,,,,,"Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.",VLM,vehiculeType,0..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
 ,Immatriculation,,,,,N° d'immatriculation du vecteur,,plate,0..1,,string,,
 ,Nom,,,,,Nom donné à la ressource par l’organisation d’appartenance,SMUR 123,name,0..1,,string,,
 ,Commune du centre d’affectation,,,,,Code INSEE de la commune du centre d'affectation,44109,centerCity,0..1,,string,,REGEX: [0-9]{5}
@@ -28,7 +28,7 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,,
 ,,Nom,,,,Nom de l'équipe à bord du vecteur,,name,0..1,,string,,
 ,Etats vecteur,,,,,,,state,0..n,X,state,,
 ,,Date/heure de changement de statut,,,,,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
-,,Status du vecteur,,,,Dernier statut du vecteur,,status,1..1,,string,X,"ENUM: ALERTE, PARTI, ARRIVEE SUR LES LIEUX, TRANSPORT DESTINATION, ARRIVEE DESTINATION, FIN DE MEDICALISATION , QUITTE DESTINATION, RETOUR BASE, RENTREE BASE"
+,,Status du vecteur,,,,Dernier statut du vecteur,,status,1..1,,string,X,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR
 ,,Disponibilité du vecteur,,,,"Indique si le vecteur est disponible / indisponible
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
