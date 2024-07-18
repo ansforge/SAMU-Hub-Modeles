@@ -286,17 +286,18 @@
               }
             },
             {
-                "properties": {
-                    "message": {
-                    "properties": {
-                        "resourcesRequest": {
-                        "$ref": "RS-SR.schema.json"
-                        }
-                    },
-                    "required": [
-                        "resourcesStatus"
-                    ]
+              "properties": {
+                "message": {
+                  "properties": {
+                    "resourcesRequest": {
+                      "$ref": "RS-SR.schema.json"
                     }
+                  },
+                  "required": [
+                    "resourcesStatus"
+                  ]
+                }
+              }
             }
           ]
         },
