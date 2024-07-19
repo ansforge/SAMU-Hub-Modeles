@@ -5,6 +5,10 @@
   <creation>2024-05-18T18:15:00+02:00</creation>
   <referenceVersion>1.3</referenceVersion>
   <qualification>
+    <riskThreat>
+      <code>R13</code>
+      <label>Risque d'explosion, présence de gaz</label>
+    </riskThreat>
     <whatsHappen>
       <code>C09.03.00</code>
       <label>Fuite de gaz</label>
@@ -13,10 +17,6 @@
       <code>L01.01.01</code>
       <label>Maison particulière, pavillon, à l'intérieur</label>
     </locationKind>
-    <riskThreat>
-      <code>R13</code>
-      <label>Risque d'explosion, présence de gaz</label>
-    </riskThreat>
     <healthMotive>
       <code>M03.10</code>
       <label>Malaise avec perte de connaissance initiale</label>
@@ -112,18 +112,18 @@
       <freetext>Maison aux volets verts</freetext>
     </location>
     <qualification>
+      <riskThreat>
+        <code>R13</code>
+        <label>Risque d'explosion, présence de gaz</label>
+      </riskThreat>
       <whatsHappen>
-        <code>C09.03.0</code>
+        <code>C09.03.00</code>
         <label>Fuite de gaz</label>
       </whatsHappen>
       <locationKind>
         <code>L01.01.01</code>
         <label>Maison particulière, pavillon, à l'intérieur</label>
       </locationKind>
-      <riskThreat>
-        <code>R13</code>
-        <label>Risque d'explosion, présence de gaz</label>
-      </riskThreat>
       <healthMotive>
         <code>M03.10</code>
         <label>Malaise avec perte de connaissance initiale</label>

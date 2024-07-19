@@ -80,7 +80,7 @@
   </initialAlert>
   <owner>CRRA44</owner>
   <patient>
-    <id>fr.health.samu440.DRFR154402414300123.P01</id>
+    <idPat>fr.health.samu440.DRFR154402414300123.P01</idPat>
     <identity>
       <strictFeatures>
         <birthDate>1992-03-03</birthDate>

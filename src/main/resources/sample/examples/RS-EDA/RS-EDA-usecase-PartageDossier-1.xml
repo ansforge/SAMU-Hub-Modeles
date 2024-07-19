@@ -79,7 +79,7 @@
   </initialAlert>
   <owner>fr.health.samu770</owner>
   <patient>
-    <id>fr.health.samu770.DRFR157702400400055.P167</id>
+    <idPat>fr.health.samu770.DRFR157702400400055.P167</idPat>
     <identity>
       <strictFeatures>
         <sex>MASC</sex>

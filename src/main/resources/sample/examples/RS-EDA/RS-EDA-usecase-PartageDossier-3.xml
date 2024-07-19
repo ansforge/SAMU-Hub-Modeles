@@ -64,7 +64,7 @@
   </initialAlert>
   <owner>fr.health.samu009</owner>
   <patient>
-    <id>fr.health.samu009.DRFR150092400401259.P90</id>
+    <idPat>fr.health.samu009.DRFR150092400401259.P90</idPat>
     <detail>
       <age>P80Y</age>
     </detail>

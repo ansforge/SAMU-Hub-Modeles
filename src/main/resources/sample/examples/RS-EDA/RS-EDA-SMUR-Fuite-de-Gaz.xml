@@ -5,6 +5,10 @@
   <creation>2024-05-18T18:15:00+02:00</creation>
   <interventionType>PRIMAIRE</interventionType>
   <qualification>
+    <riskThreat>
+      <code>R13</code>
+      <label>Risque d'explosion, présence de gaz</label>
+    </riskThreat>
     <whatsHappen>
       <code>C09.03.00</code>
       <label>Fuite de gaz</label>
@@ -13,10 +17,6 @@
       <code>L01.01.01</code>
       <label>Maison particulière, pavillon, à l'intérieur</label>
     </locationKind>
-    <riskThreat>
-      <code>R13</code>
-      <label>Risque d'explosion, présence de gaz</label>
-    </riskThreat>
     <healthMotive>
       <code>M03.10</code>
       <label>Malaise avec perte de connaissance initiale</label>
@@ -81,7 +81,7 @@
   </initialAlert>
   <owner>CRRA44</owner>
   <patient>
-    <id>fr.health.samu440.DRFR154402413800236.P01</id>
+    <idPat>fr.health.samu440.DRFR154402413800236.P01</idPat>
     <identity>
       <strictFeatures>
         <birthDate>2011-05-11</birthDate>
@@ -108,7 +108,7 @@
     </hypothesis>
   </patient>
   <patient>
-    <id>fr.health.samu440.DRFR154402413800236.P02</id>
+    <idPat>fr.health.samu440.DRFR154402413800236.P02</idPat>
     <identity>
       <strictFeatures>
         <birthDate>2013-11-03</birthDate>

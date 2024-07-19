@@ -87,7 +87,7 @@
   </initialAlert>
   <owner>fr.health.samu950</owner>
   <patient>
-    <id>fr.health.samu950.DRFR159502401000233.P1</id>
+    <idPat>fr.health.samu950.DRFR159502401000233.P1</idPat>
     <identity>
       <strictFeatures>
         <sex>FEM</sex>

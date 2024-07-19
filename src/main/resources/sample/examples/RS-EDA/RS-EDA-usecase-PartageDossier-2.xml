@@ -82,7 +82,7 @@
   </initialAlert>
   <owner>fr.health.samu950</owner>
   <patient>
-    <id>fr.health.samu950.DRFR159502400400159.P1</id>
+    <idPat>fr.health.samu950.DRFR159502400400159.P1</idPat>
     <identity>
       <strictFeatures>
         <birthDate>2014-03-03</birthDate>
