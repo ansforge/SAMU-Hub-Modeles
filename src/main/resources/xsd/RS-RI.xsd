@@ -4,7 +4,7 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+                    <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
@@ -292,7 +292,7 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
         <sequence>
             <element minOccurs="0" name="type">
                 <annotation>
-                    <documentation>Type de l'URI utilisée</documentation>
+                    <documentation>A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -307,7 +307,8 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
             </element>
             <element minOccurs="0" name="details" type="string">
                 <annotation>
-                    <documentation>Valeur de l'URI utilisée pour contacter la ressource</documentation>
+                    <documentation>A valoriser avec la valeur de l'URI utilisée
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>
         </sequence>

@@ -4,7 +4,7 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+                    <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
@@ -29,12 +29,12 @@ OU - uniquement si un ID unique de la demande n'est pas disponible :
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>datetime de création de la demande</documentation>
+                    <documentation>A valoriser avec le groupe date heure de création de la demande</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="convention">
                 <annotation>
-                    <documentation>Décrit le cadre conventionnel de la demande. Cf nomenclature associée</documentation>
+                    <documentation>A valoriser avec le cadre conventionnel de la demande. Cf nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -53,7 +53,7 @@ OU - uniquement si un ID unique de la demande n'est pas disponible :
             </element>
             <element name="purpose">
                 <annotation>
-                    <documentation>Motif de la demande de ressource auprès du partenaire, voir liste des effets à obtenir identifiés</documentation>
+                    <documentation>A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -74,7 +74,7 @@ OU - uniquement si un ID unique de la demande n'est pas disponible :
             </element>
             <element minOccurs="0" name="deadline" type="string">
                 <annotation>
-                    <documentation>Délai d'intervention souhaité (en minutes). </documentation>
+                    <documentation>A valoriser avec le délai d'intervention souhaité en minutes </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">

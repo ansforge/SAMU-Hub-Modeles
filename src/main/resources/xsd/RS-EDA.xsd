@@ -1509,7 +1509,7 @@ cf.nomenclature associée.</documentation>
             </element>
             <element name="type">
                 <annotation>
-                    <documentation>A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO</documentation>
+                    <documentation>A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1524,7 +1524,7 @@ cf.nomenclature associée.</documentation>
             </element>
             <element name="detail" type="string">
                 <annotation>
-                    <documentation>A valoriser avec la valeur de l'URI utilisée
+                    <documentation>A valoriser avec la valeur de l'URI utilisée.
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>

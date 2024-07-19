@@ -57,7 +57,8 @@ public class Request {
   private OffsetDateTime datetime;
 
   /**
-   * Décrit le cadre conventionnel de la demande. Cf nomenclature associée
+   * A valoriser avec le cadre conventionnel de la demande. Cf nomenclature
+   * associée
    */
   public enum ConventionEnum {
     DRSIS("DRSIS"),
@@ -109,8 +110,8 @@ public class Request {
   private ConventionEnum convention;
 
   /**
-   * Motif de la demande de ressource auprès du partenaire, voir liste des
-   * effets à obtenir identifiés
+   * A valoriser avec le motif de la demande de ressource auprès du partenaire.
+   * Cf Nomenclature associée.
    */
   public enum PurposeEnum {
     SAP("SAP"),
@@ -208,7 +209,7 @@ public class Request {
   }
 
   /**
-   * datetime de création de la demande
+   * A valoriser avec le groupe date heure de création de la demande
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -231,7 +232,8 @@ public class Request {
   }
 
   /**
-   * Décrit le cadre conventionnel de la demande. Cf nomenclature associée
+   * A valoriser avec le cadre conventionnel de la demande. Cf nomenclature
+   *associée
    * @return convention
    **/
   @JsonProperty(JSON_PROPERTY_CONVENTION)
@@ -254,8 +256,8 @@ public class Request {
   }
 
   /**
-   * Motif de la demande de ressource auprès du partenaire, voir liste des
-   *effets à obtenir identifiés
+   * A valoriser avec le motif de la demande de ressource auprès du partenaire.
+   *Cf Nomenclature associée.
    * @return purpose
    **/
   @JsonProperty(JSON_PROPERTY_PURPOSE)
@@ -278,7 +280,7 @@ public class Request {
   }
 
   /**
-   * Délai d&#39;intervention souhaité (en minutes).
+   * A valoriser avec le délai d&#39;intervention souhaité en minutes
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)

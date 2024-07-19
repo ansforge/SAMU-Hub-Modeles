@@ -4,7 +4,7 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+                    <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
@@ -14,20 +14,23 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
             </element>
             <element name="resourceId" type="string">
                 <annotation>
-                    <documentation>ID partagé unique de la ressource engagée 
+                    <documentation>A valoriser avec l'identifiant partagé unique de la ressource engagée , normé comme suit :
 {orgID}.R.{ID unique de la ressource partagée}
 Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
-{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}</documentation>
+{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}
+
+N.B. Il s'agit de l'orgId de l'organisation à qui appartient la ressource</documentation>
                 </annotation>
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>Si la valeur est vide/inconnue alors c'est le datetime du message qui doit être pris en compte</documentation>
+                    <documentation>A valoriser avec la date et heure de changement du statut. 
+Si la valeur est vide/inconnue alors c'est le datetime de création du message qui est indiqué.</documentation>
                 </annotation>
             </element>
             <element name="status">
                 <annotation>
-                    <documentation>Dernier état du vecteur</documentation>
+                    <documentation>A valoriser avec le statut du vecteur. Cf Nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -53,7 +56,7 @@ Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garan
             </element>
             <element minOccurs="0" name="availability" type="boolean">
                 <annotation>
-                    <documentation>Indique si le vecteur est disponible / indisponible
+                    <documentation>A valoriser de manière à indiquer la disponibilité du vecteur.
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
 VIDE = INCONNU</documentation>

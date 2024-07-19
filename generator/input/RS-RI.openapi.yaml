@@ -24,10 +24,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
-            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
-            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
-            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
             \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
             e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
@@ -62,7 +62,7 @@ components:
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         resourceId:
           type: string
           title: "ID Ressource partag\xE9"
@@ -235,7 +235,7 @@ components:
           example: example.json#/mobilizedResource/0/plate
           description: "A valoriser avec le n\xB0 d'immatriculation du vecteur"
           examples:
-          - None
+          - AB-123-CD
         name:
           type: string
           title: Nom
@@ -276,10 +276,10 @@ components:
             x-cols: 6
             example: example.json#/mobilizedResource/0/freetext/0
             description: "Texte libre permettant de passer toute autre information\
-              \ sur la ressource (\xE9quipements suppl\xE9mentaires / particuliers,\
-              \ particularit\xE9s du vecteur)"
+              \ sur la ressource (\xE9quipements suppl\xE9mentaires / sp\xE9cifiques,\
+              \ particularit\xE9s du vecteur, etc.)"
             examples:
-            - None
+            - "SMUR p\xE9diatrique"
       additionalProperties: false
       example: example.json#/mobilizedResource/0
     team:
@@ -302,7 +302,7 @@ components:
           - PARAMED
           - SECOURS
           examples:
-          - None
+          - MED
         name:
           type: string
           title: Nom
@@ -312,12 +312,12 @@ components:
           description: "A valoriser avec le nom de l'\xE9quipe \xE0 bord du vecteur\
             \ (celui communiqu\xE9 par l'organisation \xE0 laquelle l'\xE9quipe appartient)"
           examples:
-          - None
+          - SMUR 1
       additionalProperties: false
       example: example.json#/mobilizedResource/0/team
       examples:
-      - teamCare: None
-        name: None
+      - teamCare: MED
+        name: SMUR 1
     state:
       type: object
       title: Etats vecteur
@@ -338,7 +338,7 @@ components:
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         status:
           type: string
           title: Statut du vecteur
@@ -366,7 +366,7 @@ components:
           - RET-BASE
           - REN-BASE
           examples:
-          - None
+          - ARRIVE
         availability:
           type: boolean
           title: "Disponibilit\xE9 du vecteur"
@@ -376,13 +376,13 @@ components:
           description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
             \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
           examples:
-          - None
+          - 'FALSE'
       additionalProperties: false
       example: example.json#/mobilizedResource/0/state/0
       examples:
-      - datetime: None
-        status: None
-        availability: None
+      - datetime: '2022-09-27T08:23:34+02:00'
+        status: ARRIVE
+        availability: 'FALSE'
     coord:
       type: object
       title: "Derni\xE8re g\xE9olocalisation du vecteur"
@@ -482,7 +482,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/contact/type
-          description: "Type de l'URI utilis\xE9e"
+          description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
+            \ associ\xE9e."
           enum:
           - TEL
           - EMAIL
@@ -498,11 +499,13 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/contact/details
-          description: "Valeur de l'URI utilis\xE9e pour contacter la ressource"
+          description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
+            \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:
-          - 0671830530
+          - '+33671830530'
       additionalProperties: false
       example: example.json#/mobilizedResource/0/contact
       examples:
       - type: PHNADD
-        details: 0671830530
+        details: '+33671830530'

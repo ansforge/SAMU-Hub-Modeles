@@ -24,10 +24,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
-            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
-            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
-            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
             \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
             e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
@@ -71,19 +71,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/datetime
-          description: "datetime de cr\xE9ation de la demande"
+          description: "A valoriser avec le groupe date heure de cr\xE9ation de la\
+            \ demande"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         convention:
           type: string
           title: Cadre conventionnel
           x-health-only: false
           x-cols: 6
           example: example.json#/request/convention
-          description: "D\xE9crit le cadre conventionnel de la demande. Cf nomenclature\
-            \ associ\xE9e"
+          description: "A valoriser avec le cadre conventionnel de la demande. Cf\
+            \ nomenclature associ\xE9e"
           enum:
           - DRSIS
           - MISSION
@@ -96,15 +97,15 @@ components:
           - AUTRE2
           - AUTRE3
           examples:
-          - None
+          - HORS
         purpose:
           type: string
           title: "Effet \xE0 obtenir"
           x-health-only: false
           x-cols: 6
           example: example.json#/request/purpose
-          description: "Motif de la demande de ressource aupr\xE8s du partenaire,\
-            \ voir liste des effets \xE0 obtenir identifi\xE9s"
+          description: "A valoriser avec le motif de la demande de ressource aupr\xE8\
+            s du partenaire. Cf Nomenclature associ\xE9e."
           enum:
           - SAP
           - REGUL
@@ -119,16 +120,17 @@ components:
           - BRANCARD
           - BARIA
           examples:
-          - None
+          - SMUR
         deadline:
           type: string
           title: "D\xE9lai souhait\xE9"
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "D\xE9lai d'intervention souhait\xE9 (en minutes). "
+          description: "A valoriser avec le d\xE9lai d'intervention souhait\xE9 en\
+            \ minutes "
           examples:
-          - None
+          - 10
         freetext:
           type: string
           title: "Pr\xE9cisions sur la demande"
@@ -137,15 +139,15 @@ components:
           example: example.json#/request/freetext
           description: "Texte libre permettant de d\xE9tailler la demande"
           examples:
-          - None
+          - "Pr\xE9voir un kit p\xE9diatrique"
       additionalProperties: false
       example: example.json#/request
       examples:
       - requestId: 'fr.health.samu770.request.1249875
 
           fr.health.samu690.request.DRFR15690242370035.3'
-        datetime: None
-        convention: None
-        purpose: None
-        deadline: None
-        freetext: None
+        datetime: '2022-09-27T08:23:34+02:00'
+        convention: HORS
+        purpose: SMUR
+        deadline: 10
+        freetext: "Pr\xE9voir un kit p\xE9diatrique"

@@ -2341,8 +2341,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/type
-          description: "A valoriser avec le type de l'URI utilis\xE9e : TEL, EMAIL,\
-            \ FAX, POSTAL, WEB, RADIO"
+          description: "A valoriser avec le type de l'URI utilis\xE9e.  Cf nomenclature\
+            \ associ\xE9e."
           enum:
           - TEL
           - EMAIL
@@ -2358,7 +2358,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/initialAlert/caller/callerContact/detail
-          description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
+          description: "A valoriser avec la valeur de l'URI utilis\xE9e.\nLe format\
             \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
             \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:

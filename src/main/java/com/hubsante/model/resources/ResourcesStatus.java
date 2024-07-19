@@ -63,7 +63,7 @@ public class ResourcesStatus {
   private OffsetDateTime datetime;
 
   /**
-   * Dernier état du vecteur
+   * A valoriser avec le statut du vecteur. Cf Nomenclature associée.
    */
   public enum StatusEnum {
     DECISION("DECISION"),
@@ -140,14 +140,14 @@ public class ResourcesStatus {
   }
 
   /**
-   * Identifiant partagé de l&#39;affaire/dossier, généré une seule fois par le
-   *système du partenaire qui recoit la primo-demande de secours (créateur du
-   *dossier).  Il est valorisé comme suit lors de sa création :
-   *{pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré
-   *de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être
-   *unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par
-   *celui qui génère l&#39;identifiant partagé doit donc être un numéro unique
-   *dans son système.
+   * A valoriser avec l&#39;identifiant partagé de l&#39;affaire/dossier, généré
+   *une seule fois par le système du partenaire qui recoit la primo-demande de
+   *secours (créateur du dossier).  Il est valorisé comme suit lors de sa
+   *création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir
+   *être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il
+   *doit être unique dans l&#39;ensemble des systèmes : le numéro de dossier
+   *fourni par celui qui génère l&#39;identifiant partagé doit donc être un
+   *numéro unique dans son système.
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
@@ -170,10 +170,12 @@ public class ResourcesStatus {
   }
 
   /**
-   * ID partagé unique de la ressource engagée  {orgID}.R.{ID unique de la
-   *ressource partagée} Ou, uniquement dans le cas où un ID unique de ressource
-   *ne peut pas être garanti par l&#39;organisation propriétaire : {orgID}.R.{ID
-   *du dossier partagé}.{numéro d’ordre chronologique ressource}
+   * A valoriser avec l&#39;identifiant partagé unique de la ressource engagée ,
+   *normé comme suit : {orgID}.R.{ID unique de la ressource partagée} Ou,
+   *uniquement dans le cas où un ID unique de ressource ne peut pas être garanti
+   *par l&#39;organisation propriétaire : {orgID}.R.{ID du dossier
+   *partagé}.{numéro d’ordre chronologique ressource}  N.B. Il s&#39;agit de
+   *l&#39;orgId de l&#39;organisation à qui appartient la ressource
    * @return resourceId
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
@@ -196,8 +198,9 @@ public class ResourcesStatus {
   }
 
   /**
-   * Si la valeur est vide/inconnue alors c&#39;est le datetime du message qui
-   *doit être pris en compte
+   * A valoriser avec la date et heure de changement du statut.  Si la valeur
+   *est vide/inconnue alors c&#39;est le datetime de création du message qui est
+   *indiqué.
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -220,7 +223,7 @@ public class ResourcesStatus {
   }
 
   /**
-   * Dernier état du vecteur
+   * A valoriser avec le statut du vecteur. Cf Nomenclature associée.
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
@@ -243,8 +246,8 @@ public class ResourcesStatus {
   }
 
   /**
-   * Indique si le vecteur est disponible / indisponible TRUE &#x3D; DISPONIBLE
-   *FALSE &#x3D; INDISPONIBLE VIDE &#x3D; INCONNU
+   * A valoriser de manière à indiquer la disponibilité du vecteur. TRUE &#x3D;
+   *DISPONIBLE FALSE &#x3D; INDISPONIBLE VIDE &#x3D; INCONNU
    * @return availability
    **/
   @JsonProperty(JSON_PROPERTY_AVAILABILITY)
