@@ -4,7 +4,7 @@
 2,DEPART,Début d’intervention,,,"La ressource est partie de la base, pour se rendre sur les lieux de l’intervention",01-PARTI
 3,ARRIVE,Arrivée sur les lieux,,,La ressource est arrivée sur les lieux de l’intervention,02-SLL
 4,PEC,,Début de prise en charge,,La ressource est arrivée sur les lieux de l’intervention et a commencé la prise en charge du patient,
-5,ANNULE,Annulation  de l’intervention,,,La ressource engagée a été annulée : heure d'annulation de la ressource,
+5,ANNULE,Annulation  de l’intervention,,,La ressource engagée a été annulée ,
 6,BILAN,Transmission du bilan,,,,03-MESSAGE
 7,TRANSPOR,Départ des lieux,,, La ressource quitte les lieux de l’intervention vers la destination,05-TRANSPORT
 8,ETAPE1,,Etape de transit 1,,,
