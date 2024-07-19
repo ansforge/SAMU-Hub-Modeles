@@ -36,8 +36,4 @@ public class RsErrorValidatorTest extends AbstractValidatorTest {
         validationPasses("RS-ERROR", true);
     }
     //endregion
-
-    //region Fails validation
-
-    //endregion
 }

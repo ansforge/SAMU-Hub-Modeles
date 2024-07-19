@@ -35,8 +35,4 @@ public class RcEdaValidatorTest extends AbstractValidatorTest {
         validationPasses("RC-EDA", true);
     }
     //endregion
-
-    //region Fails validation
-
-    //endregion
 }

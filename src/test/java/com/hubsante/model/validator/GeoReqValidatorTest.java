@@ -35,9 +35,4 @@ public class GeoReqValidatorTest extends AbstractValidatorTest {
         validationPasses("GEO-REQ", true);
     }
     //endregion
-
-    //region Fails validation
-
-    //endregion
-
 }

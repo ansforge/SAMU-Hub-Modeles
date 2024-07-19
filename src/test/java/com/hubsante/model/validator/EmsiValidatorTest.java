@@ -35,8 +35,4 @@ public class EmsiValidatorTest extends AbstractValidatorTest {
         validationPasses("EMSI-DC", true);
     }
     //endregion
-
-    //region Fails validation
-
-    //endregion
 }

@@ -35,9 +35,4 @@ public class GeoResValidatorTest extends AbstractValidatorTest {
         validationPasses("GEO-RES", true);
     }
     //endregion
-
-    //region Fails validation
-
-    //endregion
-
 }

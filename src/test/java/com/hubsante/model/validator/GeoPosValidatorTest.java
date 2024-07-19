@@ -35,9 +35,4 @@ public class GeoPosValidatorTest extends AbstractValidatorTest {
         validationPasses("GEO-POS", true);
     }
     //endregion
-
-    //region Fails validation
-
-    //endregion
-
 }
