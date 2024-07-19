@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.07.18",
+    "version": "24.07.19",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -20,7 +20,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant partag\u00e9 de l'affaire/dossier, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui recoit la primo-demande de secours (cr\u00e9ateur du dossier). \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9.\n Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
+            "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
         },
         "senderCaseId": {
             "type": "string",
@@ -82,7 +82,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/owner",
-            "description": "Attribut qui permet de transf\u00e9rer la prise en charge d'un dossier \u00e0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation concern\u00e9 (orgId = {pays}.{domaine}.{organisation})"
+            "description": "Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA\nA valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})"
         },
         "patient": {
             "type": "array",
@@ -244,7 +244,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/idPat",
-                    "description": "Identifiant partag\u00e9 du patient, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 le patient.\nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.patient.{n\u00b0patient unique dans le syst\u00e8me \u00e9metteur}\n\nOU, si un n\u00b0patient unique n'existe pas dans le syst\u00e8me \u00e9metteur :\n{ID \u00e9metteur}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}\n\n\n"
+                    "description": "Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}\n\n\n"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -281,7 +281,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idPat",
-                    "description": "Identifiant partag\u00e9 du patient concern\u00e9 par l'observation, a remplir obligatoirement si ce patient existe et est identifi\u00e9 dans le syst\u00e8me emetteur, \n\nValoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.patient.{n\u00b0patient unique dans le syst\u00e8me \u00e9metteur}\n\nOU, si un n\u00b0patient unique n'existe pas dans le syst\u00e8me \u00e9metteur :\n{ID \u00e9metteur}.{senderCaseId}.patient.{num\u00e9ro d\u2019ordre chronologique au dossier}"
+                    "description": "Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, \n\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
@@ -292,7 +292,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
-                    "description": "Identifiant partag\u00e9 de l'observation, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui cr\u00e9\u00e9 l'observation\nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{OrgId \u00e9metteur}.medicalNote.{ID unique de l\u2019observation dans le syst\u00e8me \u00e9metteur}\n\nOU - uniquement dans le cas o\u00f9 un ID unique de la note n'est pas disponible dans le syst\u00e8me : \n{OrgId \u00e9metteur}.medicalNote.{senderCaseId}.{num\u00e9ro chronologique de l\u2019observation}\n\nCet identifiant a vocation \u00e0 devenir obligatoire pour permettre les mises \u00e0 jour, il est laiss\u00e9 en facultatif temporairement.\n"
+                    "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n"
                 },
                 "creation": {
                     "type": "string",
@@ -336,7 +336,7 @@
         },
         "riskThreat": {
             "type": "object",
-            "title": "Risque, menace et sensibilit\u00e9",
+            "title": "Risque, menace et sensibilité",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -350,7 +350,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/code",
-                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associée",
                     "enum": [
                         "R01",
                         "R02",
@@ -393,11 +393,11 @@
                 },
                 "label": {
                     "type": "string",
-                    "title": "Libell\u00e9",
+                    "title": "Libellé",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/riskThreat/0/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libellé de la nomenclature associée.\nDans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -419,7 +419,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/qualification/whatsHappen/code",
-                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e",
+                    "description": "A valoriser avec le code de la nomenclature associée",
                     "enum": [
                         "C01.00.00",
                         "C01.01.00",
@@ -1296,7 +1296,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/location/access/phoneNumber",
-                    "description": "A valoriser avec le num\u00e9ro de t\u00e9l\u00e9phone du lieu de l'intervention, par exemple : t\u00e9l\u00e9phone du secr\u00e9tariat, t\u00e9l\u00e9phone du service administratif ou se trouve le patient/ la victime.\nLe format attendu est le suivant : +{indicatif pays}{num\u00e9ro de t\u00e9l\u00e9phone}"
+                    "description": "A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.\nLe format attendu est le suivant : +{indicatif pays}{numéro de téléphone}"
                 }
             },
             "additionalProperties": false,
@@ -1937,7 +1937,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/initialAlert/caller/callerContact/detail",
-                    "description": "A valoriser avec la valeur de l'URI utilis\u00e9e\nLe format attendu pour un num\u00e9ro de t\u00e9l\u00e9phone est le suivant : +{indicatif pays}{num\u00e9ro de t\u00e9l\u00e9phone}"
+                    "description": "A valoriser avec la valeur de l'URI utilisée\nLe format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}"
                 }
             },
             "additionalProperties": false,

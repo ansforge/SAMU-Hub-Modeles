@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.07.18",
+    "version": "24.07.19",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -17,7 +17,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant partag\u00e9 de l'affaire/dossier, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui recoit la primo-demande de secours (cr\u00e9ateur du dossier). \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9.\n Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
+            "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
         },
         "mobilizedResource": {
             "type": "array",
@@ -55,7 +55,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/resourceId",
-                    "description": "ID partag\u00e9 unique de la ressource engag\u00e9e, valoris\u00e9 comme suit :\n{orgID}.resource.{ID unique de la ressource partag\u00e9e}\nOU - uniquement dans le cas o\u00f9 un ID unique de ressource ne peut pas \u00eatre garanti par l'organisation propri\u00e9taire :\n{orgID}.resource.{sendercaseId}.{n\u00b0 d\u2019ordre chronologique de la ressource}"
+                    "description": "ID partagé unique de la ressource engagée, valorisé comme suit :\n{orgID}.resource.{ID unique de la ressource partagée}\nOU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}"
                 },
                 "requestId": {
                     "type": "string",
@@ -63,7 +63,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/requestId",
-                    "description": "Identifiant unique partag\u00e9 de la demande de ressource (si la ressource a \u00e9t\u00e9 engag\u00e9e suite \u00e0 une demande de ressource), valoris\u00e9 comme suit :\n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}"
+                    "description": "Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), valorisé comme suit :\n{orgID}.request.{ID unique de la demande dans le système émetteur}"
                 },
                 "missionId": {
                     "type": "string",
@@ -71,7 +71,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/missionId",
-                    "description": "Num\u00e9ro de mission unique du central d\u2019appel (PSAP, \u2026) qui a d\u00e9clench\u00e9 le vecteur"
+                    "description": "Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur"
                 },
                 "orgId": {
                     "type": "string",
@@ -79,7 +79,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/orgId",
-                    "description": "Organisation \u00e0 laquelle appartient la ressource"
+                    "description": "Organisation à laquelle appartient la ressource"
                 },
                 "centerName": {
                     "type": "string",
@@ -326,7 +326,7 @@
                 },
                 "availability": {
                     "type": "boolean",
-                    "title": "Disponibilit\u00e9 du vecteur",
+                    "title": "Disponibilité du vecteur",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/state/0/availability",

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.07.18",
+    "version": "24.07.19",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -52,7 +52,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/event/samuId",
-                    "description": "Num\u00e9ro du SAMU r\u00e9gulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
+                    "description": "Numéro du SAMU régulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
                     "pattern": "[a-zA-Z]{2,3}\\.[a-zA-Z]+\\..*"
                 },
                 "fileId": {
@@ -216,7 +216,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/intervention/actionsSMUR/0",
-                        "description": "Pr\u00e9cise aussi bien les actes r\u00e9alis\u00e9s par le SMUR sur le lieu de l'intervention \u00e0 son arriv\u00e9e que ceux r\u00e9alis\u00e9s avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
+                        "description": "Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
                     }
                 },
                 "mainDiagnosis": {
@@ -285,7 +285,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/whatsHappen/code",
-                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e."
+                    "description": "A valoriser avec le code de la nomenclature associée."
                 },
                 "label": {
                     "type": "string",
@@ -293,7 +293,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/whatsHappen/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libellé de la nomenclature associée.\nDans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,
@@ -315,7 +315,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/healthMotive/code",
-                    "description": "A valoriser avec le code de la nomenclature associ\u00e9e.",
+                    "description": "A valoriser avec le code de la nomenclature associée.",
                     "enum": [
                         "M01.00",
                         "M01.01",
@@ -377,7 +377,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/regulation/healthMotive/label",
-                    "description": "A valoriser avec le libell\u00e9 de la nomenclature associ\u00e9e.\nDans le cas o\u00f9 un syst\u00e8me n'est pas en mesure de reconna\u00eetre un code, il peut choisir d'afficher le libell\u00e9 qui est obligatoirement fourni avec le code."
+                    "description": "A valoriser avec le libellé de la nomenclature associée.\nDans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code."
                 }
             },
             "additionalProperties": false,

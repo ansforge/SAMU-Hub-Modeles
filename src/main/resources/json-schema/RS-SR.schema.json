@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-SR.schema.json#",
-    "version": "24.07.18",
+    "version": "24.07.19",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesStatus",
@@ -19,15 +19,15 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant partag\u00e9 de l'affaire/dossier, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui recoit la primo-demande de secours (cr\u00e9ateur du dossier). \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9.\n Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
+            "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
         },
         "resourceId": {
             "type": "string",
-            "title": "ID Ressource partag\u00e9",
+            "title": "ID Ressource partagé",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/resourceId",
-            "description": "ID partag\u00e9 unique de la ressource engag\u00e9e \n{orgID}.R.{ID unique de la ressource partag\u00e9e}\nOu, uniquement dans le cas o\u00f9 un ID unique de ressource ne peut pas \u00eatre garanti par l'organisation propri\u00e9taire :\n{orgID}.R.{ID du dossier partag\u00e9}.{num\u00e9ro d\u2019ordre chronologique ressource}"
+            "description": "ID partagé unique de la ressource engagée \n{orgID}.R.{ID unique de la ressource partagée}\nOu, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}"
         },
         "datetime": {
             "type": "string",
@@ -35,7 +35,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/datetime",
-            "description": "Si la valeur est vide/inconnue alors c'est le datetime du message qui doit \u00eatre pris en compte",
+            "description": "Si la valeur est vide/inconnue alors c'est le datetime du message qui doit être pris en compte",
             "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
             "format": "date-time"
         },
@@ -45,7 +45,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/status",
-            "description": "Dernier \u00e9tat du vecteur",
+            "description": "Dernier état du vecteur",
             "enum": [
                 "DECISION",
                 "DECLENCHE",
@@ -68,7 +68,7 @@
         },
         "availability": {
             "type": "boolean",
-            "title": "Disponibilit\u00e9 du vecteur",
+            "title": "Disponibilité du vecteur",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/availability",
