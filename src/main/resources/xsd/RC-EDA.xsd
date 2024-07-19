@@ -2,7 +2,7 @@
     <element name="createCase" type="x:createCase"/>
     <complexType name="createCase">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
                     <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
@@ -11,6 +11,11 @@ Il est valorisé comme suit lors de sa création :
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3,5}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
@@ -1069,18 +1074,23 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="FINESS ADMINISTRATIF"/>
-                        <enumeration value="FINESS GEOGRAPHIQUE"/>
+                        <enumeration value="FINESS_ADMINISTRATIF"/>
+                        <enumeration value="FINESS_GEOGRAPHIQUE"/>
                         <enumeration value="SIREN"/>
                         <enumeration value="SIRET"/>
                         <enumeration value="APE_NAF"/>
                     </restriction>
                 </simpleType>
             </element>
-            <element name="value" type="string">
+            <element name="value">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant en lui-même</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -1171,11 +1181,16 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
                     <documentation>A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="phoneNumber" type="string">
+            <element minOccurs="0" name="phoneNumber">
                 <annotation>
                     <documentation>A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
 Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\+\d{5,18}"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -1225,7 +1240,7 @@ Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon d
                         <enumeration value="CARTE"/>
                         <enumeration value="AUTRE"/>
                         <enumeration value="PHOTO"/>
-                        <enumeration value="SITE INTERNET"/>
+                        <enumeration value="SITE_INTERNET"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -36,6 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3,5}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -1340,8 +1341,8 @@ components:
           description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
             \ associ\xE9e."
           enum:
-          - FINESS ADMINISTRATIF
-          - FINESS GEOGRAPHIQUE
+          - FINESS_ADMINISTRATIF
+          - FINESS_GEOGRAPHIQUE
           - SIREN
           - SIRET
           - APE_NAF
@@ -1354,6 +1355,7 @@ components:
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
           description: "A valoriser avec l'identifiant en lui-m\xEAme"
+          pattern: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
           examples:
           - "920000650\_"
       additionalProperties: false
@@ -1550,6 +1552,7 @@ components:
             l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
             Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
             l\xE9phone}"
+          pattern: \+\d{5,18}
           examples:
           - '+33123452323'
       additionalProperties: false
@@ -1633,7 +1636,7 @@ components:
           - CARTE
           - AUTRE
           - PHOTO
-          - SITE INTERNET
+          - SITE_INTERNET
           examples:
           - MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
         uri:

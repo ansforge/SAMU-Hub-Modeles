@@ -36,6 +36,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3,5}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -110,6 +111,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
+          pattern: fr(\.[\w-]+){2,4}
           examples:
           - fr.health.samu440
         patient:
@@ -257,6 +259,7 @@ components:
             patient unique dans le syst\xE8me \xE9metteur}\n\nOU, si un n\xB0patient\
             \ unique n'existe pas dans le syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}\n\n\n"
+          pattern: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -295,6 +298,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
+          pattern: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -316,6 +320,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
+          pattern: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -1182,8 +1187,8 @@ components:
           description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
             \ associ\xE9e."
           enum:
-          - FINESS ADMINISTRATIF
-          - FINESS GEOGRAPHIQUE
+          - FINESS_ADMINISTRATIF
+          - FINESS_GEOGRAPHIQUE
           - SIREN
           - SIRET
           - APE_NAF
@@ -1196,6 +1201,7 @@ components:
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
           description: "A valoriser avec l'identifiant en lui-m\xEAme"
+          pattern: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
           examples:
           - "920000650\_"
       additionalProperties: false
@@ -1379,6 +1385,7 @@ components:
             l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
             Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
             l\xE9phone}"
+          pattern: \+\d{5,18}
           examples:
           - '+33123452323'
       additionalProperties: false
@@ -1444,7 +1451,7 @@ components:
           - CARTE
           - AUTRE
           - PHOTO
-          - SITE INTERNET
+          - SITE_INTERNET
           examples:
           - MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
         uri:
