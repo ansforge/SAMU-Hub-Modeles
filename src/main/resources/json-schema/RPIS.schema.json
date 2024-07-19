@@ -53,7 +53,7 @@
                     "x-cols": 6,
                     "example": "example.json#/event/samuId",
                     "description": "Numéro du SAMU régulant la mission SMUR. \nA valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n",
-                    "pattern": "^[a-z]{2,3}\\.[a-z]+\\.\\w*$"
+                    "pattern": "[a-z]{2,3}\\.[a-z]+\\.\\w*"
                 },
                 "fileId": {
                     "type": "string",
