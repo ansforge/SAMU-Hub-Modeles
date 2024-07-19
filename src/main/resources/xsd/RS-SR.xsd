@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns:x="urn:emergency:cisu:2.0:resourcesStatus" elementFormDefault="qualified" targetNamespace="urn:emergency:cisu:2.0:resourcesStatus" xmlns="http://www.w3.org/2001/XMLSchema">
+    <element name="resourcesStatus" type="x:resourcesStatus"/>
+    <complexType name="resourcesStatus">
+        <sequence>
+            <element name="caseId" type="string">
+                <annotation>
+                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
+                </annotation>
+            </element>
+            <element name="resourceId" type="string">
+                <annotation>
+                    <documentation>ID partagé unique de la ressource engagée 
+{orgID}.R.{ID unique de la ressource partagée}
+Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
+{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}</documentation>
+                </annotation>
+            </element>
+            <element name="datetime" type="dateTime">
+                <annotation>
+                    <documentation>Si la valeur est vide/inconnue alors c'est le datetime du message qui doit être pris en compte</documentation>
+                </annotation>
+            </element>
+            <element name="status">
+                <annotation>
+                    <documentation>Dernier état du vecteur</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="DECISION"/>
+                        <enumeration value="DECLENCHE"/>
+                        <enumeration value="DEPART"/>
+                        <enumeration value="ARRIVE"/>
+                        <enumeration value="PEC"/>
+                        <enumeration value="ANNULE"/>
+                        <enumeration value="BILAN"/>
+                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="ETAPE1"/>
+                        <enumeration value="TRANSP2"/>
+                        <enumeration value="ETAPE2"/>
+                        <enumeration value="TRANSP3"/>
+                        <enumeration value="DESTIN"/>
+                        <enumeration value="FINPEC"/>
+                        <enumeration value="RETOUR"/>
+                        <enumeration value="RET-BASE"/>
+                        <enumeration value="REN-BASE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="availability" type="boolean">
+                <annotation>
+                    <documentation>Indique si le vecteur est disponible / indisponible
+TRUE = DISPONIBLE
+FALSE = INDISPONIBLE
+VIDE = INCONNU</documentation>
+                </annotation>
+            </element>
+        </sequence>
+    </complexType>
+</schema>

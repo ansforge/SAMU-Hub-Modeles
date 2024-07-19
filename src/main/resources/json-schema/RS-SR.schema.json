@@ -1,0 +1,80 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "RS-SR.schema.json#",
+    "version": "24.07.19",
+    "example": "example.json#",
+    "type": "object",
+    "title": "resourcesStatus",
+    "required": [
+        "caseId",
+        "resourceId",
+        "datetime",
+        "status"
+    ],
+    "properties": {
+        "caseId": {
+            "type": "string",
+            "title": "Identifiant affaire/dossier",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/caseId",
+            "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
+        },
+        "resourceId": {
+            "type": "string",
+            "title": "ID Ressource partagé",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/resourceId",
+            "description": "ID partagé unique de la ressource engagée \n{orgID}.R.{ID unique de la ressource partagée}\nOu, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :\n{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}"
+        },
+        "datetime": {
+            "type": "string",
+            "title": "Date/heure de changement de statut",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/datetime",
+            "description": "Si la valeur est vide/inconnue alors c'est le datetime du message qui doit être pris en compte",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "format": "date-time"
+        },
+        "status": {
+            "type": "string",
+            "title": "Statut du vecteur",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/status",
+            "description": "Dernier état du vecteur",
+            "enum": [
+                "DECISION",
+                "DECLENCHE",
+                "DEPART",
+                "ARRIVE",
+                "PEC",
+                "ANNULE",
+                "BILAN",
+                "TRANSPOR",
+                "ETAPE1",
+                "TRANSP2",
+                "ETAPE2",
+                "TRANSP3",
+                "DESTIN",
+                "FINPEC",
+                "RETOUR",
+                "RET-BASE",
+                "REN-BASE"
+            ]
+        },
+        "availability": {
+            "type": "boolean",
+            "title": "Disponibilité du vecteur",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/availability",
+            "description": "Indique si le vecteur est disponible / indisponible\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
+        }
+    },
+    "definitions": {},
+    "additionalProperties": false
+}

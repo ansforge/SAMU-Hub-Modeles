@@ -13,7 +13,6 @@ import uml_generator
 import os
 
 from pathlib import Path
-
 # Improving panda printing | Ref.: https://stackoverflow.com/a/11711637
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
@@ -175,6 +174,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     global first_codeandlabel_properties
     first_codeandlabel_properties = []
+    global first_codeandlabel_name
+    first_codeandlabel_name = ""
 
     def regenerate_ids(df):
         """Regenerate the IDs of the dataframe"""
@@ -448,8 +449,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return children
 
     json_example = build_example(rootObject)
-    with open(f'out/{name}/{name}.example.json', 'w') as outfile:
-        json.dump(json_example, outfile, indent=4)
+    with open(f'out/{name}/{name}.example.json', 'w', encoding='utf8') as outfile:
+        json.dump(json_example, outfile, indent=4, ensure_ascii=False)
 
     # Go through data (list or tree) and use it to build the expected JSON schema
     json_schema = {
@@ -490,9 +491,14 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             return json_schema['example']
         return json_schema['definitions'][parent['true_type']]['example']
 
+    def child_not_already_required(child, definitions):
+        """Check if the array of required values already contains the child we're attempting to add, return False if
+        so"""
+        return child['name'] not in definitions['required']
+
     def add_field_child_property(parent, child, definitions):
         """Update parent definitions (required and properties) by adding the child information for a field child"""
-        if child['Cardinalité'].startswith('1'):
+        if child['Cardinalité'].startswith('1') and child_not_already_required(child, definitions):
             definitions['required'].append(child['name'])
         typeName, pattern, format = type_matching(child)
         parentExamplePath = get_parent_example_path(parent)
@@ -669,8 +675,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     print(f'{Color.BOLD}{Color.UNDERLINE}{Color.PURPLE}Generating JSON schema...{Color.END}')
     DFS(rootObject, build_json_schema)
-    with open(f'out/{name}/{name}.schema.json', 'w') as outfile:
-        json.dump(json_schema, outfile, indent=4)
+    with open(f'out/{name}/{name}.schema.json', 'w', encoding='utf8') as outfile:
+        json.dump(json_schema, outfile, indent=4, ensure_ascii=False)
     print('JSON schema generated.')
 
     # BUILD OpenAPI SCHEMA
@@ -718,7 +724,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             **openapi_components
         }
 
-    with open(f'out/{name}/{name}.openapi.yaml', 'w') as file:
+    with open(f'out/{name}/{name}.openapi.yaml', 'w', encoding='utf8') as file:
         documents = yaml.dump(full_yaml, sort_keys=False)
         documents = documents.replace('#/definitions/', "#/components/schemas/")
         file.write(documents)
@@ -768,7 +774,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             doc = docx.Document()
 
         # Add title
-        doc.add_heading(title, level=1)
+        doc.add_heading(name, level=1)
 
         # Add paragraph
         # doc.add_paragraph('This table represents the fields and types defined in the JSON schema.')

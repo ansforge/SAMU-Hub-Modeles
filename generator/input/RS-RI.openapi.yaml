@@ -24,15 +24,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
+          - fr.health.samu440.DRFR15440241550012
         mobilizedResource:
           type: array
           items:
@@ -69,8 +71,8 @@ components:
           description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
             \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
             e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
-            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{ID\
-            \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}"
+            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{sendercaseId}.{n\xB0\
+            \ d\u2019ordre chronologique de la ressource}"
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -86,7 +88,9 @@ components:
             \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
             \ le syst\xE8me \xE9metteur}"
           examples:
-          - fr.health.samu770.request.1249875
+          - 'fr.health.samu770.request.1249875
+
+            fr.health.samu690.request.DRFR15690242370035.3'
         missionId:
           type: string
           title: ID Mission local
@@ -147,23 +151,29 @@ components:
             , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
             \ Ambulance de r\xE9animation P\xE9diatrique, etc."
           enum:
-          - VPSP
+          - AASC
           - VLSC
+          - VPSP
           - AUTRESC
+          - AUTREVECT
+          - CONSEIL
           - TAXI
           - TRANSP
-          - AUTRE
           - TRAIN
           - AVION
           - PERSO
           - APIED
+          - AUTRE
+          - AUTRETRANS
           - INCONNU
-          - CONSEIL
+          - DEFIB
           - DAE
+          - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
+          - LIB
           - MEDC
           - MEDV
           - PHARMA
@@ -171,8 +181,7 @@ components:
           - MEDSPE
           - DENT
           - AUTREPRO
-          - DRAGON
-          - AVSC
+          - SIS
           - VSAV
           - GRIMP
           - VPL
@@ -186,29 +195,33 @@ components:
           - VLMSP
           - VLCG
           - VLSIS
+          - DRAGON
+          - AVSC
           - MOYSSE
           - AUTRESIS
+          - NAVISIS
+          - SMUR
           - VLM
-          - AR
-          - AR-BAR
-          - AR-PED
           - VL
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
           - PSM1
           - PSM2
           - PSM3
           - PSMP
           - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
           - AMB-GV
           - AMB-PV
           - AMB-BAR
           - AMB
-          - VSL
-          - NAVISIS
           examples:
           - VLM
         plate:
@@ -322,21 +335,29 @@ components:
           - None
         status:
           type: string
-          title: Status du vecteur
+          title: Statut du vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/status
           description: Dernier statut du vecteur
           enum:
-          - ALERTE
-          - PARTI
-          - ARRIVEE SUR LES LIEUX
-          - TRANSPORT DESTINATION
-          - ARRIVEE DESTINATION
-          - 'FIN DE MEDICALISATION '
-          - QUITTE DESTINATION
-          - RETOUR BASE
-          - RENTREE BASE
+          - DECISION
+          - DECLENCHE
+          - DEPART
+          - ARRIVE
+          - PEC
+          - ANNULE
+          - BILAN
+          - TRANSPOR
+          - ETAPE1
+          - TRANSP2
+          - ETAPE2
+          - TRANSP3
+          - DESTIN
+          - FINPEC
+          - RETOUR
+          - RET-BASE
+          - REN-BASE
           examples:
           - None
         availability:

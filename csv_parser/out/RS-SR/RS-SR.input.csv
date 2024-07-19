@@ -1,0 +1,18 @@
+Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format,15-15
+Identifiant affaire/dossier,,,,,,"Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,,,X
+ID Ressource partagé,,,,,,"ID partagé unique de la ressource engagée 
+{orgID}.R.{ID unique de la ressource partagée}
+Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
+{orgID}.R.{ID du dossier partagé}.{numéro d’ordre chronologique ressource}","fr.health.samu440.DRFR15DDXAAJJJ0000.R01
+fr.health.samu440.VLM16",resourceId,1..1,,string,,,X
+Date/heure de changement de statut,,,,,,Si la valeur est vide/inconnue alors c'est le datetime du message qui doit être pris en compte,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF,X
+Statut du vecteur,,,,,,Dernier état du vecteur,,status,1..1,,string,X,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR,X
+Disponibilité du vecteur,,,,,,"Indique si le vecteur est disponible / indisponible
+TRUE = DISPONIBLE
+FALSE = INDISPONIBLE
+VIDE = INCONNU",,availability,0..1,,boolean,,,X

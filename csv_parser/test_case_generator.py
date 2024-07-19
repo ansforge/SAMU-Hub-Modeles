@@ -173,8 +173,8 @@ def generate_step_json(perimeter, test_case, row, receive_jsons):
         if receive_jsons[i] != {}:  # We only generate the JSON file if there are values in the object
             with open(
                     normalize_path(f'./out/test-cases/{perimeter["name"]}/{test_case["label"]}/{len(test_case["steps"])}-{row["Pas de test"]} {row["Modèle"]} JDD{i + 1}.json'),
-                    'w', encoding='utf-8') as file:
-                file.write(dumps(receive_jsons[i], indent=4, ensure_ascii=False))
+                    'w', encoding='utf-8') as outfile:
+                json.dump(receive_jsons[i], outfile, indent=4, ensure_ascii=False)
 
 def normalize_path(text):
     # We normalize the path to remove any accents and replace spaces with underscores

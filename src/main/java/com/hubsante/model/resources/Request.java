@@ -44,8 +44,8 @@ import java.util.Objects;
  */
 @JsonPropertyOrder(
     {Request.JSON_PROPERTY_REQUEST_ID, Request.JSON_PROPERTY_DATETIME,
-     Request.JSON_PROPERTY_CONVENTION, Request.JSON_PROPERTY_DEADLINE,
-     Request.JSON_PROPERTY_PURPOSE, Request.JSON_PROPERTY_FREETEXT})
+     Request.JSON_PROPERTY_CONVENTION, Request.JSON_PROPERTY_PURPOSE,
+     Request.JSON_PROPERTY_DEADLINE, Request.JSON_PROPERTY_FREETEXT})
 @JsonTypeName("request")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -56,11 +56,57 @@ public class Request {
   public static final String JSON_PROPERTY_DATETIME = "datetime";
   private OffsetDateTime datetime;
 
-  public static final String JSON_PROPERTY_CONVENTION = "convention";
-  private String convention;
+  /**
+   * Décrit le cadre conventionnel de la demande. Cf nomenclature associée
+   */
+  public enum ConventionEnum {
+    DRSIS("DRSIS"),
 
-  public static final String JSON_PROPERTY_DEADLINE = "deadline";
-  private String deadline;
+    MISSION("MISSION"),
+
+    ITSP("ITSP"),
+
+    CARENCE("CARENCE"),
+
+    CONVENT("CONVENT"),
+
+    SPE("SPE"),
+
+    HORS("HORS"),
+
+    AUTRE1("AUTRE1"),
+
+    AUTRE2("AUTRE2"),
+
+    AUTRE3("AUTRE3");
+
+    private String value;
+
+    ConventionEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ConventionEnum fromValue(String value) {
+      for (ConventionEnum b : ConventionEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CONVENTION = "convention";
+  private ConventionEnum convention;
 
   /**
    * Motif de la demande de ressource auprès du partenaire, voir liste des
@@ -119,6 +165,9 @@ public class Request {
   public static final String JSON_PROPERTY_PURPOSE = "purpose";
   private PurposeEnum purpose;
 
+  public static final String JSON_PROPERTY_DEADLINE = "deadline";
+  private String deadline;
+
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
 
@@ -131,8 +180,12 @@ public class Request {
   }
 
   /**
-   * Identifiant unique partagé de la demande de ressource {orgID}.request.{ID
-   *unique de la demande dans le système émetteur}
+   * Identifiant unique partagé de la demande de ressource,  généré une seule
+   *fois par le système du partenaire qui émet la demande  Il est valorisé comme
+   *suit lors de sa création :  {orgID}.request.{ID unique de la demande dans le
+   *système émetteur}  OU - uniquement si un ID unique de la demande n&#39;est
+   *pas disponible :  OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre
+   *chronologique}
    * @return requestId
    **/
   @JsonProperty(JSON_PROPERTY_REQUEST_ID)
@@ -155,7 +208,7 @@ public class Request {
   }
 
   /**
-   * Get datetime
+   * datetime de création de la demande
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -171,50 +224,27 @@ public class Request {
     this.datetime = datetime;
   }
 
-  public Request convention(String convention) {
+  public Request convention(ConventionEnum convention) {
 
     this.convention = convention;
     return this;
   }
 
   /**
-   * Nomenclature à venir : décrit le cadre conventionnel de la demande.
+   * Décrit le cadre conventionnel de la demande. Cf nomenclature associée
    * @return convention
    **/
   @JsonProperty(JSON_PROPERTY_CONVENTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getConvention() {
+  public ConventionEnum getConvention() {
     return convention;
   }
 
   @JsonProperty(JSON_PROPERTY_CONVENTION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConvention(String convention) {
+  public void setConvention(ConventionEnum convention) {
     this.convention = convention;
-  }
-
-  public Request deadline(String deadline) {
-
-    this.deadline = deadline;
-    return this;
-  }
-
-  /**
-   * Délai d&#39;intervention souhaité
-   * @return deadline
-   **/
-  @JsonProperty(JSON_PROPERTY_DEADLINE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getDeadline() {
-    return deadline;
-  }
-
-  @JsonProperty(JSON_PROPERTY_DEADLINE)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeadline(String deadline) {
-    this.deadline = deadline;
   }
 
   public Request purpose(PurposeEnum purpose) {
@@ -239,6 +269,29 @@ public class Request {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setPurpose(PurposeEnum purpose) {
     this.purpose = purpose;
+  }
+
+  public Request deadline(String deadline) {
+
+    this.deadline = deadline;
+    return this;
+  }
+
+  /**
+   * Délai d&#39;intervention souhaité (en minutes).
+   * @return deadline
+   **/
+  @JsonProperty(JSON_PROPERTY_DEADLINE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getDeadline() {
+    return deadline;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DEADLINE)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDeadline(String deadline) {
+    this.deadline = deadline;
   }
 
   public Request freetext(String freetext) {
@@ -276,14 +329,14 @@ public class Request {
     return Objects.equals(this.requestId, request.requestId) &&
         Objects.equals(this.datetime, request.datetime) &&
         Objects.equals(this.convention, request.convention) &&
-        Objects.equals(this.deadline, request.deadline) &&
         Objects.equals(this.purpose, request.purpose) &&
+        Objects.equals(this.deadline, request.deadline) &&
         Objects.equals(this.freetext, request.freetext);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requestId, datetime, convention, deadline, purpose,
+    return Objects.hash(requestId, datetime, convention, purpose, deadline,
                         freetext);
   }
 
@@ -298,8 +351,8 @@ public class Request {
     sb.append("    convention: ")
         .append(toIndentedString(convention))
         .append("\n");
-    sb.append("    deadline: ").append(toIndentedString(deadline)).append("\n");
     sb.append("    purpose: ").append(toIndentedString(purpose)).append("\n");
+    sb.append("    deadline: ").append(toIndentedString(deadline)).append("\n");
     sb.append("    freetext: ").append(toIndentedString(freetext)).append("\n");
     sb.append("}");
     return sb.toString();

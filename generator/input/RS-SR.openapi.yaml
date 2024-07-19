@@ -1,0 +1,117 @@
+openapi: 3.0.0
+components:
+  schemas:
+    resourcesStatusWrapper:
+      type: object
+      required:
+      - resourcesStatus
+      properties:
+        resourcesStatus:
+          $ref: '#/components/schemas/resourcesStatus'
+    resourcesStatus:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-SR.schema.json#
+      example: example.json#
+      type: object
+      title: resourcesStatus
+      required:
+      - caseId
+      - resourceId
+      - datetime
+      - status
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
+            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
+            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
+            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          examples:
+          - fr.health.samu440.DRFR15440241550012
+        resourceId:
+          type: string
+          title: "ID Ressource partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceId
+          description: "ID partag\xE9 unique de la ressource engag\xE9e \n{orgID}.R.{ID\
+            \ unique de la ressource partag\xE9e}\nOu, uniquement dans le cas o\xF9\
+            \ un ID unique de ressource ne peut pas \xEAtre garanti par l'organisation\
+            \ propri\xE9taire :\n{orgID}.R.{ID du dossier partag\xE9}.{num\xE9ro d\u2019\
+            ordre chronologique ressource}"
+          examples:
+          - 'fr.health.samu440.DRFR15DDXAAJJJ0000.R01
+
+            fr.health.samu440.VLM16'
+        datetime:
+          type: string
+          title: Date/heure de changement de statut
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/datetime
+          description: "Si la valeur est vide/inconnue alors c'est le datetime du\
+            \ message qui doit \xEAtre pris en compte"
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - None
+        status:
+          type: string
+          title: Statut du vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/status
+          description: "Dernier \xE9tat du vecteur"
+          enum:
+          - DECISION
+          - DECLENCHE
+          - DEPART
+          - ARRIVE
+          - PEC
+          - ANNULE
+          - BILAN
+          - TRANSPOR
+          - ETAPE1
+          - TRANSP2
+          - ETAPE2
+          - TRANSP3
+          - DESTIN
+          - FINPEC
+          - RETOUR
+          - RET-BASE
+          - REN-BASE
+          examples:
+          - None
+        availability:
+          type: boolean
+          title: "Disponibilit\xE9 du vecteur"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/availability
+          description: 'Indique si le vecteur est disponible / indisponible
+
+            TRUE = DISPONIBLE
+
+            FALSE = INDISPONIBLE
+
+            VIDE = INCONNU'
+          examples:
+          - None
+      additionalProperties: false
+      examples:
+      - caseId: fr.health.samu440.DRFR15440241550012
+        resourceId: 'fr.health.samu440.DRFR15DDXAAJJJ0000.R01
+
+          fr.health.samu440.VLM16'
+        datetime: None
+        status: None
+        availability: None

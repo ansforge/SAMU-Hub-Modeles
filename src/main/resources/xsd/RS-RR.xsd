@@ -4,16 +4,22 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
-Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
             </element>
             <element name="requestId" type="string">
                 <annotation>
-                    <documentation>Identifiant unique partagé de la demande de ressource
-{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
+                    <documentation>Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
+Il est valorisé comme suit lors de sa création : 
+{orgID}.request.{ID unique de la demande dans le système émetteur}
+
+OU - uniquement si un ID unique de la demande n'est pas disponible : 
+OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element name="response" type="x:response"/>
@@ -41,12 +47,12 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
             </element>
             <element minOccurs="0" name="deadline" type="string">
                 <annotation>
-                    <documentation>Indique le délai de réponse auquel s'engage l'expéditeur</documentation>
+                    <documentation>Indique le délai de réponse auquel s'engage l'expéditeur (en minutes)</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
-                    <documentation>Commentaire libre pour apporter toutes précisions utiles à la réponse</documentation>
+                    <documentation>Commentaire libre pour apporter toutes précisions utiles à la réponse. Le motif de refus est notifié dans ce champ.</documentation>
                 </annotation>
             </element>
         </sequence>

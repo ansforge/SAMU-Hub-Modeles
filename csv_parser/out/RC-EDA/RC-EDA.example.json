@@ -1,46 +1,46 @@
 {
-    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
-    "senderCaseId": "DRFR15DDXAAJJJ0000",
+    "caseId": "fr.health.samu440.DRFR15440241550012",
+    "senderCaseId": "DRFR15440241550012",
     "creation": "2022-09-27T08:23:34+02:00",
     "referenceVersion": "1.2",
     "qualification": {
-        "whatsHappen": {
-            "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
-        },
-        "locationKind": {
-            "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
-        },
         "riskThreat": [
             {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile"
+                "label": "Rodéo automobile"
             }
         ],
+        "whatsHappen": {
+            "code": "C07.13.02",
+            "label": "Rodéo automobile"
+        },
+        "locationKind": {
+            "code": "C07.13.02",
+            "label": "Rodéo automobile"
+        },
         "healthMotive": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
+            "label": "Rodéo automobile"
         },
         "victims": {
-            "count": "SEVERAL",
-            "mainVictim": "CHILD",
-            "freetext": "Jeanne Dupont, 6 ans, ne r\u00e9pond plus"
+            "count": "PLUSIEURS",
+            "mainVictim": "ENFANT",
+            "freetext": "Jeanne Dupont, 6 ans, ne répond plus"
         }
     },
     "location": {
         "locID": "111fb03a-6fd9-41e0-8e81-990c45188887",
-        "locLabel": "Lyc\u00e9e Pierre de Coubertin - 12 rue de l'Amiti\u00e9 77288 Melun, Mus\u00e9e Bossuet - Acc\u00e8s 2 - 77048 Saint-Albray",
-        "name": "Lyc\u00e9e Pierre de Coubertin",
+        "locLabel": "Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",
+        "name": "Lycée Pierre de Coubertin",
         "externalLocationId": [
             {
-                "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
-                "value": "920000650\u00a0"
+                "source": "FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",
+                "value": "920000650 "
             }
         ],
         "detailedAddress": {
             "complete": "9 Bd du Montparnasse",
-            "number": "9, 4bis, PK10, \u2026",
+            "number": "9, 4bis, PK10, …",
             "wayName": {
                 "complete": "Boulevard du Montparnasse",
                 "type": "Boulevard",
@@ -50,7 +50,7 @@
         "city": {
             "name": "Lille",
             "inseeCode": 59350,
-            "detail": "Quartie Melun Nord, Lhomme, \u2026"
+            "detail": "Quartie Melun Nord, Lhomme, …"
         },
         "access": {
             "floor": "RDC",
@@ -63,7 +63,7 @@
             "buildingName": "Batiment B",
             "entrance": "Zone Sud",
             "entity": "Infirmerie",
-            "phoneNumber": 33123452323
+            "phoneNumber": "+33123452323"
         },
         "geometry": {
             "obsDatime": "2022-09-27T08:23:34+02:00",
@@ -81,13 +81,13 @@
         },
         "externalInfo": [
             {
-                "freetext": "BAN, IGN, NEXSIS, \u2026",
+                "freetext": "BAN, IGN, NEXSIS, …",
                 "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
                 "uri": "80021_6590_00008, id987"
             }
         ],
         "country": "France",
-        "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+        "freetext": "Clé derrière le pot de fleur"
     },
     "initialAlert": {
         "id": "SGO050-20230605-AL0123",
@@ -96,20 +96,20 @@
         "notes": [
             {
                 "creation": "None",
-                "freetext": "Accident de bricolage, accident domestique, d\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
+                "freetext": "Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux"
             }
         ],
         "caller": {
             "callerContact": {
                 "channel": "PERSONNE",
                 "type": "TEL",
-                "detail": "0671830530"
+                "detail": "+33671830530"
             },
             "callbackContact": {},
             "language": "FR",
             "type": "FAMILLE, TIERS",
-            "communication": "Malentendant, aucune difficult\u00e9 de communication",
-            "freetext": "t\u00e9moin de l'accident",
+            "communication": "Malentendant, aucune difficulté de communication",
+            "freetext": "témoin de l'accident",
             "detailedName": {
                 "complete": "Jean Dupont",
                 "lastName": "Dupont",
@@ -127,9 +127,9 @@
         },
         "attachment": [
             {
-                "description": "photo, carte, \u2026",
-                "mimeType": "PDF, XML, JPEG, \u2026",
-                "size": "1235, 35, \u2026",
+                "description": "photo, carte, …",
+                "mimeType": "PDF, XML, JPEG, …",
+                "size": "1235, 35, …",
                 "URI": "https://hub.esante.gouv.fr/resourceExample",
                 "derefURI": "None",
                 "digest": "None"
@@ -140,7 +140,7 @@
         {}
     ],
     "freetext": [
-        "Le forcen\u00e9 n'est pas ma\u00eetris\u00e9. Voiture renvers\u00e9e. Urgences ferm\u00e9es de 22h \u00e0 6h00."
+        "Le forcené n'est pas maîtrisé. Voiture renversée. Urgences fermées de 22h à 6h00."
     ],
     "additionalInformation": {
         "customMap": [
@@ -148,7 +148,7 @@
                 "key": "neighborhood",
                 "label": "Quartier",
                 "value": "LYON 2e arrondissement",
-                "freetext": "Pr\u00e9cision sur le quartier d'intervention"
+                "freetext": "Précision sur le quartier d'intervention"
             }
         ]
     }

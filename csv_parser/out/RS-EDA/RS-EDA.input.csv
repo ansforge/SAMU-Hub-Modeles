@@ -1,9 +1,12 @@
 Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
-Identifiant affaire/dossier,,,,,,"A valoriser avec l'identifiant de l'affaire/dossier partagé entre tous les intervenants, valorisé comme suit : {pays}.{domaine}.{organisation}.{senderCaseId}.
-Cet identifiant est généré une seule fois par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté. Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15DDXAAJJJ0000,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,
+Identifiant affaire/dossier,,,,,,"Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
-",DRFR15DDXAAJJJ0000,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
+",DRFR15440241550012,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
 Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
 L'indicateur de fuseau horaire Z ne doit pas être utilisé.
@@ -17,12 +20,12 @@ Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,,,,,,1..1,X,qualification,,
 ,Origine de l'appel,,,,,A valoriser avec le numéro de provenance de l'appel.,"15, 112, 18",origin,,,,,,0..1,,string,,"ENUM: 15, 18, 17, 112, 116117"
-,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,CE/CK,raison de l'appel,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
-,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,
+,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,,,,,1.0,0..n,X,codeAndLabel,,
+,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,1.0,1..1,,string,,
+,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,CE/CK,raison de l'appel,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,CI,Type de lieu d'intervention,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Type_de_lieu
-,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,,,,,1.0,0..n,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,,,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Détails du dossier ,,,,,,,details,,,,,,0..1,X,caseDetails,,
 ,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.",MU,attribution,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-DEVENIRD
@@ -37,8 +40,8 @@ Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location
 ,Détails de l'adresse,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,highway,,,,,,0..1,X,highway,,
 ,,,Nom,,,"A valoriser avec le nom de l'autoroute, de la voie ferrée ou voie navigable.",A4,name,,,,,,0..1,,string,,
-,,,Point kilométrique,,,"A valoriser avec le point kilométrique de l'autoroute, de la voie ferrée ou voie navigable. ",,pk,,,,,,0..1,,string,,
-,,,Sens,,,A valoriser avec le sens de l'autoroute.,,direction,,,,,,0..1,,string,,
+,,,Point kilométrique,,,"A valoriser avec le point kilométrique de l'autoroute, de la voie ferrée ou voie navigable. ",PK10,pk,,,,,,0..1,,string,,
+,,,Sens,,,A valoriser avec le sens de l'autoroute.,Paris,direction,,,,,,0..1,,string,,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 
 
@@ -70,7 +73,8 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 ,,Bâtiment,,,,A valoriser avec le nom du bâtiment,Batiment B,buildingName,,,,,,0..1,,string,,
 ,,Entrée,,,,A valoriser avec le nom de l'entrée,Zone Sud,entrance,,,,,,0..1,,string,,
 ,,Service,,,,"A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.",Infirmerie,entity,,,,,,0..1,,string,,
-,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.",33123452323,phoneNumber,,,,,,0..1,,string,,
+,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
+Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,,,,,,0..1,,string,,
 ,Géometrie associée,,,,,,,geometry,,,,,,0..1,X,geometry,,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
 Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,,,,,,1..1,,datetime,,
@@ -127,7 +131,8 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
 ,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,,,,,,1..1,,string,,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
 ,,,Type de contact,,,"A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO",TEL,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
-,,,URI du contact,,,A valoriser avec la valeur de l'URI utilisée,0671830530,detail,,,,,,1..1,,string,,
+,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,,,,,,1..1,,string,,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).
@@ -148,18 +153,19 @@ Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
 ,,,Nom,,,A valoriser avec le nom usuel du requérant,Dupont,lastName,,,,,,0..1,,string,,
 ,,,Prénom,,,"A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,,,,,,0..1,,string,,
-CRRA traitant,,,,,,Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA - après accord verbal de ce dernier.,fr.health.samu440,owner,,,,,,1..1,,string,,
+CRRA traitant,,,,,,"Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
+A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,,,,,,1..1,,string,,
 Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,,,,,,0..n,X,patient,,
-,ID patient partagé,,,,,"A valoriser avec l'identifiant partagé du patient, valorisé comme suit : 
-{ID du dossier partagé}.P{numéro patient unique}
+,ID patient partagé,,,,,"Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
+Il est valorisé comme suit lors de sa création : 
+{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}
 
-OU, uniquement si un numéro unique de patient n’existe pas dans le système émetteur :
-{ID du dossier partagé}.P{numéro d’ordre chronologique}
+OU, si un n°patient unique n'existe pas dans le système émetteur :
+{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
 
-Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient.
-","fr.health.samu690.DRFR15DDXAAJJJ00001.P164895 
-ou
-fr.health.samu690.DRFR15DDXAAJJJ00001.P01",id,,,,,,1..1,,string,,
+
+","fr.health.samu690.patient.P23AZ59
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,1..1,,string,,
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,,,,,,0..1,X,administrativeFile,,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,,,,,,0..n,X,externalId,,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
@@ -181,21 +187,29 @@ Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_860
 ,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,mainDiagnosis,,,,,,0..1,X,codeAndLabel,X,
 ,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,
 Observation médicale,,,,,,Observations de nature médicale. ,,medicalNote,,,,,,0..n,X,medicalNote,,
-,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  : 
-{ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}",fr.health.samu044.DRFR154402415000450.P1,idPat,,,,,,0..1,,string,,
+,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
+
+Valorisé comme suit lors de sa création : 
+{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}
+
+OU, si un n°patient unique n'existe pas dans le système émetteur :
+{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,0..1,,string,,
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,,,,,,1..1,X,operator,,
 ,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,,,,,,0..1,X,detailedName,,
 ,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
-,ID Observation,,,,,"A valoriser avec l'identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID de l'observation dans le système émetteur}.
+,ID Observation,,,,,"Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
+Il est valorisé comme suit lors de sa création : 
+{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}
+
+OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : 
+{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}
+
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
-",fr.health.samu540.DRFR155402416000125.medicalNote.46585A,idObs,,,,,,0..1,,string,,
+","fr.health.samu540.medicalNote.46585A
+fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,,,,,,0..1,,string,,
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,,,,,,0..1,,datetime,,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,,,,,,1..1,,string,,
-Nouvelle alerte,# Voir alerte initiale,,,,,"Objet qui permet de gérer plusieurs alerte/appels sur une même affaire / dossier
-Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
-Les objet newAlert suivent le modèle d'un objet initialAlert.
-
-Spécificités 15-18 : Dans le cadre d'une mise à jour d'affaire, les objets alertes sont IMMUTABLES.",,newAlert,,,,,1.0,0..n,X,alert,,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,,,,,,0..1,X,additionalInformation,,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,,,,,,0..3,X,customMap,,
 ,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,key,,,,,,1..1,,string,,

@@ -4,10 +4,12 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
-Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                    <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
             </element>
             <element name="request" type="x:request"/>
@@ -17,20 +19,37 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
         <sequence>
             <element name="requestId" type="string">
                 <annotation>
-                    <documentation>Identifiant unique partagé de la demande de ressource
-{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
+                    <documentation>Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
+Il est valorisé comme suit lors de sa création : 
+{orgID}.request.{ID unique de la demande dans le système émetteur}
+
+OU - uniquement si un ID unique de la demande n'est pas disponible : 
+OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
-            <element name="datetime" type="dateTime"/>
-            <element minOccurs="0" name="convention" type="string">
+            <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>Nomenclature à venir : décrit le cadre conventionnel de la demande.</documentation>
+                    <documentation>datetime de création de la demande</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="deadline" type="string">
+            <element minOccurs="0" name="convention">
                 <annotation>
-                    <documentation>Délai d'intervention souhaité</documentation>
+                    <documentation>Décrit le cadre conventionnel de la demande. Cf nomenclature associée</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="DRSIS"/>
+                        <enumeration value="MISSION"/>
+                        <enumeration value="ITSP"/>
+                        <enumeration value="CARENCE"/>
+                        <enumeration value="CONVENT"/>
+                        <enumeration value="SPE"/>
+                        <enumeration value="HORS"/>
+                        <enumeration value="AUTRE1"/>
+                        <enumeration value="AUTRE2"/>
+                        <enumeration value="AUTRE3"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="purpose">
                 <annotation>
@@ -52,6 +71,11 @@ Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonc
                         <enumeration value="BARIA"/>
                     </restriction>
                 </simpleType>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>Délai d'intervention souhaité (en minutes). </documentation>
+                </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
