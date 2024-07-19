@@ -11,7 +11,7 @@ Il est valorisé comme suit lors de sa création :
 {orgID}.request.{ID unique de la demande dans le système émetteur}
 
 OU - uniquement si un ID unique de la demande n'est pas disponible : 
-OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
+{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
 fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,,
 ,Date Heure de création de la demande,,,,,datetime de création de la demande,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
 ,Cadre conventionnel,,,,,Décrit le cadre conventionnel de la demande. Cf nomenclature associée,,convention,0..1,,string,X,NOMENCLATURE: CISU-CADRE_CONV

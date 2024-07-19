@@ -24,7 +24,7 @@ Il est valorisé comme suit lors de sa création :
 {orgID}.request.{ID unique de la demande dans le système émetteur}
 
 OU - uniquement si un ID unique de la demande n'est pas disponible : 
-OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
+{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
             <element name="datetime" type="dateTime">

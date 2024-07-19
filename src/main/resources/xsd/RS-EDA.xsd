@@ -915,7 +915,7 @@ cf.nomenclature associée.</documentation>
         <sequence>
             <element name="source">
                 <annotation>
-                    <documentation>Type de l'identifiant fourni</documentation>
+                    <documentation>A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -929,7 +929,7 @@ cf.nomenclature associée.</documentation>
             </element>
             <element name="value" type="string">
                 <annotation>
-                    <documentation>L'identifiant en lui-même</documentation>
+                    <documentation>A valoriser avec l'identifiant en lui-même</documentation>
                 </annotation>
             </element>
         </sequence>

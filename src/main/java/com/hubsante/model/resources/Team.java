@@ -48,7 +48,8 @@ import java.util.Objects;
 public class Team {
 
   /**
-   * Médical / paramédical : indique le niveau de médicalisation du vecteur
+   * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
+   * associée
    */
   public enum TeamCareEnum {
     MED("MED"),
@@ -97,7 +98,8 @@ public class Team {
   }
 
   /**
-   * Médical / paramédical : indique le niveau de médicalisation du vecteur
+   * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
+   *associée
    * @return teamCare
    **/
   @JsonProperty(JSON_PROPERTY_TEAM_CARE)
@@ -120,7 +122,8 @@ public class Team {
   }
 
   /**
-   * Nom de l&#39;équipe à bord du vecteur
+   * A valoriser avec le nom de l&#39;équipe à bord du vecteur (celui communiqué
+   *par l&#39;organisation à laquelle l&#39;équipe appartient)
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)

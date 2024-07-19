@@ -52,7 +52,7 @@ public class State {
   private OffsetDateTime datetime;
 
   /**
-   * Dernier statut du vecteur
+   * A valoriser avec le statut du vecteur. Cf nomenclature associée.
    */
   public enum StatusEnum {
     DECISION("DECISION"),
@@ -129,7 +129,8 @@ public class State {
   }
 
   /**
-   * Get datetime
+   * A valoriser avec la date et heure d&#39;engagement de changement vers le
+   *nouveau statut
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -152,7 +153,7 @@ public class State {
   }
 
   /**
-   * Dernier statut du vecteur
+   * A valoriser avec le statut du vecteur. Cf nomenclature associée.
    * @return status
    **/
   @JsonProperty(JSON_PROPERTY_STATUS)
@@ -175,8 +176,8 @@ public class State {
   }
 
   /**
-   * Indique si le vecteur est disponible / indisponible TRUE &#x3D; DISPONIBLE
-   *FALSE &#x3D; INDISPONIBLE VIDE &#x3D; INCONNU
+   * A valoriser de manière à indiquer la disponibilité du vecteur. TRUE &#x3D;
+   *DISPONIBLE FALSE &#x3D; INDISPONIBLE VIDE &#x3D; INCONNU
    * @return availability
    **/
   @JsonProperty(JSON_PROPERTY_AVAILABILITY)

@@ -184,7 +184,7 @@ public class Request {
    *fois par le système du partenaire qui émet la demande  Il est valorisé comme
    *suit lors de sa création :  {orgID}.request.{ID unique de la demande dans le
    *système émetteur}  OU - uniquement si un ID unique de la demande n&#39;est
-   *pas disponible :  OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre
+   *pas disponible :  {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre
    *chronologique}
    * @return requestId
    **/

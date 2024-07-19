@@ -65,9 +65,9 @@ public class Coord {
   private BigDecimal speed;
 
   /**
-   * Indique via une nomenclature le niveau de précision des coordonnées
-   * fournies par le système emetteur. CITY&#x3D;Précision à l&#39;échelle de la
-   * ville, STREET&#x3D;Précision à l&#39;échelle de la rue,
+   * A valoriser avec le niveau de précision des coordonnées fournies par le
+   * système emetteur. Cf. nomenclature associée. CITY&#x3D;Précision à
+   * l&#39;échelle de la ville, STREET&#x3D;Précision à l&#39;échelle de la rue,
    * ADDRESS&#x3D;Adresse précise, EXACT&#x3D;Point coordonnée GPS exact,
    * UNKNOWN&#x3D;Précision de la localisation non évaluable par l&#39;émetteur
    */
@@ -119,7 +119,7 @@ public class Coord {
   }
 
   /**
-   * Latitude du point clé de la localisation
+   * A valoriser avec la latitude du point clé de la localisation
    * @return lat
    **/
   @JsonProperty(JSON_PROPERTY_LAT)
@@ -142,7 +142,7 @@ public class Coord {
   }
 
   /**
-   * Longitude du point clé de la localisation
+   * A valoriser avec la longitude du point clé de la localisation
    * @return lon
    **/
   @JsonProperty(JSON_PROPERTY_LON)
@@ -165,7 +165,8 @@ public class Coord {
   }
 
   /**
-   * Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS.
+   * A valoriser avec l&#39;altitude du point clé de la localisation, en mètre,
+   *ignoré côté NexSIS.
    * @return height
    **/
   @JsonProperty(JSON_PROPERTY_HEIGHT)
@@ -188,7 +189,7 @@ public class Coord {
   }
 
   /**
-   * En degré
+   * A valoriser en degrés
    * @return heading
    **/
   @JsonProperty(JSON_PROPERTY_HEADING)
@@ -211,7 +212,7 @@ public class Coord {
   }
 
   /**
-   * Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …
+   * A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)
    * @return speed
    **/
   @JsonProperty(JSON_PROPERTY_SPEED)
@@ -234,11 +235,11 @@ public class Coord {
   }
 
   /**
-   * Indique via une nomenclature le niveau de précision des coordonnées
-   *fournies par le système emetteur. CITY&#x3D;Précision à l&#39;échelle de la
-   *ville, STREET&#x3D;Précision à l&#39;échelle de la rue, ADDRESS&#x3D;Adresse
-   *précise, EXACT&#x3D;Point coordonnée GPS exact, UNKNOWN&#x3D;Précision de la
-   *localisation non évaluable par l&#39;émetteur
+   * A valoriser avec le niveau de précision des coordonnées fournies par le
+   *système emetteur. Cf. nomenclature associée. CITY&#x3D;Précision à
+   *l&#39;échelle de la ville, STREET&#x3D;Précision à l&#39;échelle de la rue,
+   *ADDRESS&#x3D;Adresse précise, EXACT&#x3D;Point coordonnée GPS exact,
+   *UNKNOWN&#x3D;Précision de la localisation non évaluable par l&#39;émetteur
    * @return precision
    **/
   @JsonProperty(JSON_PROPERTY_PRECISION)

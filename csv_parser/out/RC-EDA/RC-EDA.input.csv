@@ -36,9 +36,9 @@ Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location
 15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
 ","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",locLabel,,,,,,0..1,,string,,
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
-,Identifiant(s) du lieu,,,,,Lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,,,,,,0..n,X,externalLocationId,,
-,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
-,,Identifiant,,,,L'identifiant en lui-même,920000650 ,value,,,,,,1..1,,string,,
+,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,,,,,,0..n,X,externalLocationId,,
+,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
+,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,,,,,,1..1,,string,,
 ,Détails de l'adresse,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 

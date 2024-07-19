@@ -80,9 +80,7 @@ public class Resource {
   private String centerName;
 
   /**
-   * Type de ressource mobilisée : Smur, Hospitaliers (hors Smur),
-   * Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires
-   * Urgent), etc.
+   * A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.
    */
   public enum ResourceTypeEnum {
     SMUR("SMUR"),
@@ -134,9 +132,7 @@ public class Resource {
   private ResourceTypeEnum resourceType;
 
   /**
-   * Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de
-   * réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation
-   * Pédiatrique, etc.
+   * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
    */
   public enum VehiculeTypeEnum {
     AASC("AASC"),
@@ -342,7 +338,8 @@ public class Resource {
   }
 
   /**
-   * date et heure d&#39;engagement de la ressource
+   * A valoriser avec la date et heure d&#39;engagement de la ressource/du
+   *vecteur
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -365,11 +362,11 @@ public class Resource {
   }
 
   /**
-   * ID partagé unique de la ressource engagée, valorisé comme suit :
-   *{orgID}.resource.{ID unique de la ressource partagée} OU - uniquement dans
-   *le cas où un ID unique de ressource ne peut pas être garanti par
-   *l&#39;organisation propriétaire : {orgID}.resource.{sendercaseId}.{n°
-   *d’ordre chronologique de la ressource}
+   * A valoriser avec l&#39;identifiant partagé unique de la ressource engagée,
+   *normé comme suit : {orgID}.resource.{ID unique de la ressource partagée} OU
+   *- uniquement dans le cas où un ID unique de ressource ne peut pas être
+   *garanti par l&#39;organisation propriétaire :
+   *{orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}
    * @return resourceId
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
@@ -392,9 +389,11 @@ public class Resource {
   }
 
   /**
-   * Identifiant unique partagé de la demande de ressource (si la ressource a
-   *été engagée suite à une demande de ressource), valorisé comme suit :
-   *{orgID}.request.{ID unique de la demande dans le système émetteur}
+   * A valoriser avec l&#39;identifiant unique partagé de la demande de
+   *ressource (si la ressource a été engagée suite à une demande de ressource),
+   *normé comme suit : {orgID}.request.{ID unique de la demande dans le système
+   *émetteur} OU - si un ID unique de la demande n&#39;était pas disponible :
+   *{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}
    * @return requestId
    **/
   @JsonProperty(JSON_PROPERTY_REQUEST_ID)
@@ -417,8 +416,8 @@ public class Resource {
   }
 
   /**
-   * Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le
-   *vecteur
+   * A valoriser avec le numéro de mission unique du central d’appel (PSAP, …)
+   *qui a déclenché le vecteur
    * @return missionId
    **/
   @JsonProperty(JSON_PROPERTY_MISSION_ID)
@@ -441,7 +440,8 @@ public class Resource {
   }
 
   /**
-   * Organisation à laquelle appartient la ressource
+   * A valoriser avec l&#39;identifiant de l&#39;organisation à laquelle
+   *appartient la ressource, normé comme suit :  {pays}.{domaine}.{organisation}
    * @return orgId
    **/
   @JsonProperty(JSON_PROPERTY_ORG_ID)
@@ -464,7 +464,7 @@ public class Resource {
   }
 
   /**
-   * Lieu de garage principal
+   * A valoriser avec le lieu de garage principal
    * @return centerName
    **/
   @JsonProperty(JSON_PROPERTY_CENTER_NAME)
@@ -487,9 +487,7 @@ public class Resource {
   }
 
   /**
-   * Type de ressource mobilisée : Smur, Hospitaliers (hors Smur),
-   *Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires
-   *Urgent), etc.
+   * A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.
    * @return resourceType
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
@@ -512,9 +510,7 @@ public class Resource {
   }
 
   /**
-   * Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de
-   *réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation
-   *Pédiatrique, etc.
+   * A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée
    * @return vehiculeType
    **/
   @JsonProperty(JSON_PROPERTY_VEHICULE_TYPE)
@@ -537,7 +533,7 @@ public class Resource {
   }
 
   /**
-   * N° d&#39;immatriculation du vecteur
+   * A valoriser avec le n° d&#39;immatriculation du vecteur
    * @return plate
    **/
   @JsonProperty(JSON_PROPERTY_PLATE)
@@ -560,7 +556,8 @@ public class Resource {
   }
 
   /**
-   * Nom donné à la ressource par l’organisation d’appartenance
+   * A valoriser avec le nom donné à la ressource par l’organisation
+   *d’appartenance
    * @return name
    **/
   @JsonProperty(JSON_PROPERTY_NAME)
@@ -583,7 +580,7 @@ public class Resource {
   }
 
   /**
-   * Code INSEE de la commune du centre d&#39;affectation
+   * A valoriser avec le code INSEE de la commune du centre d&#39;affectation
    * @return centerCity
    **/
   @JsonProperty(JSON_PROPERTY_CENTER_CITY)

@@ -49,7 +49,8 @@ import java.util.Objects;
 public class ExternalLocationId {
 
   /**
-   * Type de l&#39;identifiant fourni
+   * A valoriser avec le type de l&#39;identifiant fourni. Cf nomenclature
+   * associée.
    */
   public enum SourceEnum {
     FINESS_ADMINISTRATIF("FINESS ADMINISTRATIF"),
@@ -102,7 +103,8 @@ public class ExternalLocationId {
   }
 
   /**
-   * Type de l&#39;identifiant fourni
+   * A valoriser avec le type de l&#39;identifiant fourni. Cf nomenclature
+   *associée.
    * @return source
    **/
   @JsonProperty(JSON_PROPERTY_SOURCE)
@@ -125,7 +127,7 @@ public class ExternalLocationId {
   }
 
   /**
-   * L&#39;identifiant en lui-même
+   * A valoriser avec l&#39;identifiant en lui-même
    * @return value
    **/
   @JsonProperty(JSON_PROPERTY_VALUE)

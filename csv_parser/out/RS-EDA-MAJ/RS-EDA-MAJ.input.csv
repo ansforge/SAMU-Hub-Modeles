@@ -16,7 +16,7 @@ La qualification est issue d'une interprétation métier synthétisant l'ensembl
 ,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,1.0,1..1,,string,,
-,Détails du dossier ,,,,,,,details,,,,,,0..1,X,caseDetails,,
+,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,,,,,,0..1,X,caseDetails,,
 ,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,priority,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PRIORITE
 ,,Niveau de soins du dossier,,,,"Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave.
 cf.nomenclature associée.",R1,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE

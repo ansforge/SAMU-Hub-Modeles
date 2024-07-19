@@ -59,7 +59,7 @@ components:
             \ \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
             ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
-            \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
           examples:
           - 'fr.health.samu770.request.1249875

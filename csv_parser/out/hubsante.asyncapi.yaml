@@ -1419,7 +1419,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/source
-          description: Type de l'identifiant fourni
+          description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
+            \ associ\xE9e."
           enum:
           - FINESS ADMINISTRATIF
           - FINESS GEOGRAPHIQUE
@@ -1434,7 +1435,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
-          description: "L'identifiant en lui-m\xEAme"
+          description: "A valoriser avec l'identifiant en lui-m\xEAme"
           examples:
           - "920000650\_"
       additionalProperties: false
@@ -1771,7 +1772,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/lat
-          description: "Latitude du point cl\xE9 de la localisation "
+          description: "A valoriser avec la latitude du point cl\xE9 de la localisation "
           examples:
           - '48.866667'
         lon:
@@ -1780,7 +1781,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/lon
-          description: "Longitude du point cl\xE9 de la localisation"
+          description: "A valoriser avec la longitude du point cl\xE9 de la localisation"
           examples:
           - '2.333333'
         height:
@@ -1789,8 +1790,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/height
-          description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
-            \ ignor\xE9 c\xF4t\xE9 NexSIS. "
+          description: "A valoriser avec l'altitude du point cl\xE9 de la localisation,\
+            \ en m\xE8tre, ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
           - 120
         heading:
@@ -1799,7 +1800,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/heading
-          description: "En degr\xE9"
+          description: "A valoriser en degr\xE9s"
           examples:
           - 96
         speed:
@@ -1808,8 +1809,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/speed
-          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
-            \ AML, \u2026"
+          description: A valoriser en km/h (notamment fournie par eCall, tel, nouveau
+            AML)
           examples:
           - 34
         precision:
@@ -1818,12 +1819,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/precision
-          description: "Indique via une nomenclature le niveau de pr\xE9cision des\
-            \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
-            \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
-            \ de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9e GPS\
-            \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
-            \ l'\xE9metteur"
+          description: "A valoriser avec le niveau de pr\xE9cision des coordonn\xE9\
+            es fournies par le syst\xE8me emetteur. Cf. nomenclature associ\xE9e.\n\
+            CITY=Pr\xE9cision \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0\
+            \ l'\xE9chelle de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9\
+            e GPS exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable\
+            \ par l'\xE9metteur"
           enum:
           - VILLE
           - RUE
@@ -3870,7 +3871,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/datetime
-          description: date et heure d'engagement de la ressource
+          description: A valoriser avec la date et heure d'engagement de la ressource/du
+            vecteur
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -3881,11 +3883,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/resourceId
-          description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
-            \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
-            e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
-            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{sendercaseId}.{n\xB0\
-            \ d\u2019ordre chronologique de la ressource}"
+          description: "A valoriser avec l'identifiant partag\xE9 unique de la ressource\
+            \ engag\xE9e, norm\xE9 comme suit :\n{orgID}.resource.{ID unique de la\
+            \ ressource partag\xE9e}\nOU - uniquement dans le cas o\xF9 un ID unique\
+            \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
+            taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
+            \ de la ressource}"
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -3896,10 +3899,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/requestId
-          description: "Identifiant unique partag\xE9 de la demande de ressource (si\
-            \ la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une demande de ressource),\
-            \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
-            \ le syst\xE8me \xE9metteur}"
+          description: "A valoriser avec l'identifiant unique partag\xE9 de la demande\
+            \ de ressource (si la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une\
+            \ demande de ressource), norm\xE9 comme suit :\n{orgID}.request.{ID unique\
+            \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
+            \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            ro d\u2019ordre chronologique}"
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -3910,8 +3915,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/missionId
-          description: "Num\xE9ro de mission unique du central d\u2019appel (PSAP,\
-            \ \u2026) qui a d\xE9clench\xE9 le vecteur"
+          description: "A valoriser avec le num\xE9ro de mission unique du central\
+            \ d\u2019appel (PSAP, \u2026) qui a d\xE9clench\xE9 le vecteur"
           examples:
           - DRFR15DDXAAJJJ0000.M001
         orgId:
@@ -3920,7 +3925,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/orgId
-          description: "Organisation \xE0 laquelle appartient la ressource"
+          description: "A valoriser avec l'identifiant de l'organisation \xE0 laquelle\
+            \ appartient la ressource, norm\xE9 comme suit : \n{pays}.{domaine}.{organisation}"
           examples:
           - fr.health.samu440
         centerName:
@@ -3929,7 +3935,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/centerName
-          description: Lieu de garage principal
+          description: A valoriser avec le lieu de garage principal
           examples:
           - CHU Nantes
         resourceType:
@@ -3938,9 +3944,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/resourceType
-          description: "Type de ressource mobilis\xE9e : Smur, Hospitaliers (hors\
-            \ Smur), Professionnels Lib\xE9raux, Ambulanciers priv\xE9s (Transporteurs\
-            \ Sanitaires Urgent), etc."
+          description: "A valoriser avec le yype de ressource mobilis\xE9e : cf.nomenclature\
+            \ associ\xE9e."
           enum:
           - SMUR
           - HOSPIT
@@ -3960,9 +3965,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/vehiculeType
-          description: "Type de vecteur mobilis\xE9 : V\xE9hicule L\xE9ger M\xE9dicalis\xE9\
-            , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
-            \ Ambulance de r\xE9animation P\xE9diatrique, etc."
+          description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
+            \ associ\xE9e"
           enum:
           - AASC
           - VLSC
@@ -4043,7 +4047,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/plate
-          description: "N\xB0 d'immatriculation du vecteur"
+          description: "A valoriser avec le n\xB0 d'immatriculation du vecteur"
           examples:
           - None
         name:
@@ -4052,8 +4056,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/name
-          description: "Nom donn\xE9 \xE0 la ressource par l\u2019organisation d\u2019\
-            appartenance"
+          description: "A valoriser avec le nom donn\xE9 \xE0 la ressource par l\u2019\
+            organisation d\u2019appartenance"
           examples:
           - SMUR 123
         centerCity:
@@ -4062,7 +4066,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/centerCity
-          description: Code INSEE de la commune du centre d'affectation
+          description: A valoriser avec le code INSEE de la commune du centre d'affectation
           pattern: '[0-9]{5}'
           examples:
           - 44109
@@ -5979,6 +5983,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/datetime
+          description: A valoriser avec la date et heure d'engagement de changement
+            vers le nouveau statut
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -5989,7 +5995,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/status
-          description: Dernier statut du vecteur
+          description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
+            e."
           enum:
           - DECISION
           - DECLENCHE
@@ -6016,13 +6023,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/availability
-          description: 'Indique si le vecteur est disponible / indisponible
-
-            TRUE = DISPONIBLE
-
-            FALSE = INDISPONIBLE
-
-            VIDE = INCONNU'
+          description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
+            \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
           examples:
           - None
       additionalProperties: false
@@ -6082,7 +6084,7 @@ components:
             \ \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
             ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
-            \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
           examples:
           - 'fr.health.samu770.request.1249875

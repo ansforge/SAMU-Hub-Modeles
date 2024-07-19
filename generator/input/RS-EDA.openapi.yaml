@@ -1179,7 +1179,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/source
-          description: Type de l'identifiant fourni
+          description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
+            \ associ\xE9e."
           enum:
           - FINESS ADMINISTRATIF
           - FINESS GEOGRAPHIQUE
@@ -1194,7 +1195,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
-          description: "L'identifiant en lui-m\xEAme"
+          description: "A valoriser avec l'identifiant en lui-m\xEAme"
           examples:
           - "920000650\_"
       additionalProperties: false

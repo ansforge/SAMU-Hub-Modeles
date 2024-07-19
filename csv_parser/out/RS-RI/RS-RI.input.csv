@@ -5,43 +5,46 @@ Il est valorisé comme suit lors de sa création :
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,,
-Ressource engagée,,,,,,Liste des vecteurs associés au message :  liste l'ensemble des vecteurs ou ressources mobilisées,,mobilizedResource,1..n,X,resource,,
-,Date/heure de déclenchement,,,,,date et heure d'engagement de la ressource,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
-,ID Ressource partagé,,,,,"ID partagé unique de la ressource engagée, valorisé comme suit :
+Ressource engagée,,,,,,Objet permettant de communquer la liste des ressource et vecteurs mobilisés,,mobilizedResource,1..n,X,resource,,
+,Date/heure de déclenchement,,,,,A valoriser avec la date et heure d'engagement de la ressource/du vecteur,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
+,ID Ressource partagé,,,,,"A valoriser avec l'identifiant partagé unique de la ressource engagée, normé comme suit :
 {orgID}.resource.{ID unique de la ressource partagée}
 OU - uniquement dans le cas où un ID unique de ressource ne peut pas être garanti par l'organisation propriétaire :
 {orgID}.resource.{sendercaseId}.{n° d’ordre chronologique de la ressource}","fr.health.samu770.resource.VLM250
 fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",resourceId,1..1,,string,,
-,ID Demande partagé,,,,,"Identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), valorisé comme suit :
-{orgID}.request.{ID unique de la demande dans le système émetteur}","fr.health.samu770.request.1249875
+,ID Demande partagé,,,,,"A valoriser avec l'identifiant unique partagé de la demande de ressource (si la ressource a été engagée suite à une demande de ressource), normé comme suit :
+{orgID}.request.{ID unique de la demande dans le système émetteur}
+OU - si un ID unique de la demande n'était pas disponible : 
+{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}","fr.health.samu770.request.1249875
 fr.health.samu690.request.DRFR15690242370035.3",requestId,0..1,,string,,
-,ID Mission local,,,,,"Numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur",DRFR15DDXAAJJJ0000.M001,missionId,0..1,,string,,
-,ID Organisation propriétaire,,,,,Organisation à laquelle appartient la ressource,fr.health.samu440,orgId,0..1,,string,,
-,ID Centre d’affectation,,,,,Lieu de garage principal,CHU Nantes,centerName,0..1,,string,,
-,Type de ressource,,,,,"Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.",SMUR,resourceType,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
-,Type de moyen,,,,,"Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.",VLM,vehiculeType,0..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
-,Immatriculation,,,,,N° d'immatriculation du vecteur,,plate,0..1,,string,,
-,Nom,,,,,Nom donné à la ressource par l’organisation d’appartenance,SMUR 123,name,0..1,,string,,
-,Commune du centre d’affectation,,,,,Code INSEE de la commune du centre d'affectation,44109,centerCity,0..1,,string,,REGEX: [0-9]{5}
-,Equipe vecteur,,,,,Décrit le type et l'équipe à bord du vecteur,,team,0..1,X,team,,
-,,Type,,,,Médical / paramédical : indique le niveau de médicalisation du vecteur,,teamCare,0..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN
-,,Nom,,,,Nom de l'équipe à bord du vecteur,,name,0..1,,string,,
-,Etats vecteur,,,,,,,state,0..n,X,state,,
-,,Date/heure de changement de statut,,,,,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
-,,Statut du vecteur,,,,Dernier statut du vecteur,,status,1..1,,string,X,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR
-,,Disponibilité du vecteur,,,,"Indique si le vecteur est disponible / indisponible
+,ID Mission local,,,,,"A valoriser avec le numéro de mission unique du central d’appel (PSAP, …) qui a déclenché le vecteur",DRFR15DDXAAJJJ0000.M001,missionId,0..1,,string,,
+,ID Organisation propriétaire,,,,,"A valoriser avec l'identifiant de l'organisation à laquelle appartient la ressource, normé comme suit : 
+{pays}.{domaine}.{organisation}",fr.health.samu440,orgId,0..1,,string,,
+,ID Centre d’affectation,,,,,A valoriser avec le lieu de garage principal,CHU Nantes,centerName,0..1,,string,,
+,Type de ressource,,,,,A valoriser avec le yype de ressource mobilisée : cf.nomenclature associée.,SMUR,resourceType,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
+,Type de moyen,,,,,A valoriser avec le type de vecteur mobilisé : cf. nomenclature associée,VLM,vehiculeType,0..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
+,Immatriculation,,,,,A valoriser avec le n° d'immatriculation du vecteur,,plate,0..1,,string,,
+,Nom,,,,,A valoriser avec le nom donné à la ressource par l’organisation d’appartenance,SMUR 123,name,0..1,,string,,
+,Commune du centre d’affectation,,,,,A valoriser avec le code INSEE de la commune du centre d'affectation,44109,centerCity,0..1,,string,,REGEX: [0-9]{5}
+,Equipe vecteur,,,,,Objet qui décrit l'équipe à bord du vecteur,,team,0..1,X,team,,
+,,Type,,,,A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature associée,,teamCare,0..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN
+,,Nom,,,,A valoriser avec le nom de l'équipe à bord du vecteur (celui communiqué par l'organisation à laquelle l'équipe appartient),,name,0..1,,string,,
+,Etats vecteur,,,,,Objet qui permet de décrire l'historique des états connu du vecteur mobilisé - et à minima le dernier état connu. ,,state,0..n,X,state,,
+,,Date/heure de changement de statut,,,,A valoriser avec la date et heure d'engagement de changement vers le nouveau statut,,datetime,1..1,,datetime,,Format datetime décrit dans le DSF
+,,Statut du vecteur,,,,A valoriser avec le statut du vecteur. Cf nomenclature associée.,,status,1..1,,string,X,NOMENCLATURE: SI-SAMU-STATUS_VECTEUR
+,,Disponibilité du vecteur,,,,"A valoriser de manière à indiquer la disponibilité du vecteur.
 TRUE = DISPONIBLE
 FALSE = INDISPONIBLE
 VIDE = INCONNU",,availability,0..1,,boolean,,
-,Dernière géolocalisation du vecteur,,,,,,,coord,0..1,X,coord,,
-,,Latitude,,,,Latitude du point clé de la localisation ,48.866667,lat,1..1,,number,,
-,,Longitude,,,,Longitude du point clé de la localisation,2.333333,lon,1..1,,number,,
-,,Altitude ,,,,"Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,height,0..1,,number,,
-,,Cap,,,,En degré,96,heading,0..1,,number,,
-,,Vitesse,,,,"Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …",34,speed,0..1,,number,,
-,,Précision,,,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
+,Dernière géolocalisation du vecteur,,,,,"Objet qui permet de transmettre la dernière géolocalisation connue d'un vecteur, au moment de la création du RS-RI.",,coord,0..1,X,coord,,
+,,Latitude,,,,A valoriser avec la latitude du point clé de la localisation ,48.866667,lat,1..1,,number,,
+,,Longitude,,,,A valoriser avec la longitude du point clé de la localisation,2.333333,lon,1..1,,number,,
+,,Altitude ,,,,"A valoriser avec l'altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. ",120,height,0..1,,number,,
+,,Cap,,,,A valoriser en degrés,96,heading,0..1,,number,,
+,,Vitesse,,,,"A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)",34,speed,0..1,,number,,
+,,Précision,,,,"A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.
 CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,precision,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
-,Contact,,,,,Type et valeur de l'URI utilisée par la ressource.,,contact,0..1,X,contact,,
+,Contact,,,,,A valoriser avec le type et valeur de l'URI utilisée par la ressource.,,contact,0..1,X,contact,,
 ,,Type de contact ,,,,Type de l'URI utilisée,PHNADD,type,0..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
 ,,URI du contact,,,,Valeur de l'URI utilisée pour contacter la ressource,0671830530,details,0..1,,string,,
 ,Commentaires,,,,,"Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / particuliers, particularités du vecteur)",,freetext,0..n,,string,,
