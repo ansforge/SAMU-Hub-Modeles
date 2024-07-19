@@ -14,15 +14,15 @@
         ],
         "whatsHappen": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
+            "label": "Rodéo automobile"
         },
         "locationKind": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
+            "label": "Rodéo automobile"
         },
         "healthMotive": {
             "code": "C07.13.02",
-            "label": "Rod\u00e9o automobile"
+            "label": "Rodéo automobile"
         },
         "details": {
             "attribution": "MU",
@@ -31,11 +31,11 @@
         }
     },
     "location": {
-        "name": "Lyc\u00e9e Pierre de Coubertin",
+        "name": "Lycée Pierre de Coubertin",
         "externalLocationId": [
             {
-                "source": "FINESS g\u00e9ographique, FINESS administratif, SIREN, SIRET, APE, NAF",
-                "value": "920000650\u00a0"
+                "source": "FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",
+                "value": "920000650 "
             }
         ],
         "detailedAddress": {
@@ -45,7 +45,7 @@
                 "direction": "Paris"
             },
             "complete": "9 Bd du Montparnasse",
-            "number": "9, 4bis, PK10, \u2026",
+            "number": "9, 4bis, PK10, …",
             "wayName": {
                 "complete": "Boulevard du Montparnasse",
                 "type": "Boulevard",
@@ -83,19 +83,19 @@
         },
         "externalInfo": [
             {
-                "freetext": "BAN, IGN, NEXSIS, \u2026",
+                "freetext": "BAN, IGN, NEXSIS, …",
                 "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
                 "uri": "80021_6590_00008, id987"
             }
         ],
-        "freetext": "Cl\u00e9 derri\u00e8re le pot de fleur"
+        "freetext": "Clé derrière le pot de fleur"
     },
     "initialAlert": {
         "reception": "2022-09-27T08:21:06+02:00",
         "notes": [
             {
                 "creation": "None",
-                "freetext": "Accident de bricolage, accident domestique, d\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
+                "freetext": "Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux"
             }
         ],
         "caller": {
@@ -107,8 +107,8 @@
             "callbackContact": {},
             "language": "FR",
             "type": "FAMILLE, TIERS",
-            "communication": "Malentendant, aucune difficult\u00e9 de communication",
-            "freetext": "t\u00e9moin de l'accident",
+            "communication": "Malentendant, aucune difficulté de communication",
+            "freetext": "témoin de l'accident",
             "detailedName": {
                 "complete": "Jean Dupont",
                 "lastName": "Dupont",
@@ -123,7 +123,7 @@
             "administrativeFile": {
                 "externalId": [
                     {
-                        "source": "NIR, SINUS, SI-VIC, \u2026",
+                        "source": "NIR, SINUS, SI-VIC, …",
                         "value": "id1234"
                     }
                 ]
@@ -138,7 +138,7 @@
             },
             "healthMotive": {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile"
+                "label": "Rodéo automobile"
             },
             "detail": {
                 "weight": 31,
@@ -149,12 +149,12 @@
             "hypothesis": {
                 "mainDiagnosis": {
                     "code": "C07.13.02",
-                    "label": "Rod\u00e9o automobile"
+                    "label": "Rodéo automobile"
                 },
                 "otherDiagnosis": [
                     {
                         "code": "C07.13.02",
-                        "label": "Rod\u00e9o automobile"
+                        "label": "Rodéo automobile"
                     }
                 ]
             }
@@ -178,7 +178,7 @@
                 "key": "neighborhood",
                 "label": "Quartier",
                 "value": "LYON 2e arrondissement",
-                "freetext": "Pr\u00e9cision sur le quartier d'intervention"
+                "freetext": "Précision sur le quartier d'intervention"
             }
         ]
     }

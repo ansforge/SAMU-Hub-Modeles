@@ -45,7 +45,7 @@
                 },
                 "datetime": {
                     "type": "string",
-                    "title": "Date Heure de cr\u00e9ation de la demande",
+                    "title": "Date Heure de création de la demande",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/datetime",
@@ -75,7 +75,7 @@
                 },
                 "purpose": {
                     "type": "string",
-                    "title": "Effet \u00e0 obtenir",
+                    "title": "Effet à obtenir",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/purpose",
@@ -105,11 +105,11 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Pr\u00e9cisions sur la demande",
+                    "title": "Précisions sur la demande",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/freetext",
-                    "description": "Texte libre permettant de d\u00e9tailler la demande"
+                    "description": "Texte libre permettant de détailler la demande"
                 }
             },
             "additionalProperties": false,

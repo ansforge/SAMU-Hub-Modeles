@@ -30,7 +30,7 @@
     "definitions": {
         "resource": {
             "type": "object",
-            "title": "Ressource engag\u00e9e",
+            "title": "Ressource engagée",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -41,7 +41,7 @@
             "properties": {
                 "datetime": {
                     "type": "string",
-                    "title": "Date/heure de d\u00e9clenchement",
+                    "title": "Date/heure de déclenchement",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/datetime",
@@ -51,7 +51,7 @@
                 },
                 "resourceId": {
                     "type": "string",
-                    "title": "ID Ressource partag\u00e9",
+                    "title": "ID Ressource partagé",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/resourceId",
@@ -59,7 +59,7 @@
                 },
                 "requestId": {
                     "type": "string",
-                    "title": "ID Demande partag\u00e9",
+                    "title": "ID Demande partagé",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/requestId",
@@ -75,7 +75,7 @@
                 },
                 "orgId": {
                     "type": "string",
-                    "title": "ID Organisation propri\u00e9taire",
+                    "title": "ID Organisation propriétaire",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/orgId",
@@ -83,7 +83,7 @@
                 },
                 "centerName": {
                     "type": "string",
-                    "title": "ID Centre d\u2019affectation",
+                    "title": "ID Centre d’affectation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/centerName",
@@ -95,7 +95,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/resourceType",
-                    "description": "Type de ressource mobilis\u00e9e : Smur, Hospitaliers (hors Smur), Professionnels Lib\u00e9raux, Ambulanciers priv\u00e9s (Transporteurs Sanitaires Urgent), etc.",
+                    "description": "Type de ressource mobilisée : Smur, Hospitaliers (hors Smur), Professionnels Libéraux, Ambulanciers privés (Transporteurs Sanitaires Urgent), etc.",
                     "enum": [
                         "SMUR",
                         "HOSPIT",
@@ -115,7 +115,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/vehiculeType",
-                    "description": "Type de vecteur mobilis\u00e9 : V\u00e9hicule L\u00e9ger M\u00e9dicalis\u00e9, Ambulance de r\u00e9animation, Ambulance de r\u00e9animation Bariatrique, Ambulance de r\u00e9animation P\u00e9diatrique, etc.",
+                    "description": "Type de vecteur mobilisé : Véhicule Léger Médicalisé, Ambulance de réanimation, Ambulance de réanimation Bariatrique, Ambulance de réanimation Pédiatrique, etc.",
                     "enum": [
                         "AASC",
                         "VLSC",
@@ -196,7 +196,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/plate",
-                    "description": "N\u00b0 d'immatriculation du vecteur"
+                    "description": "N° d'immatriculation du vecteur"
                 },
                 "name": {
                     "type": "string",
@@ -204,11 +204,11 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/name",
-                    "description": "Nom donn\u00e9 \u00e0 la ressource par l\u2019organisation d\u2019appartenance"
+                    "description": "Nom donné à la ressource par l’organisation d’appartenance"
                 },
                 "centerCity": {
                     "type": "string",
-                    "title": "Commune du centre d\u2019affectation",
+                    "title": "Commune du centre d’affectation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/centerCity",
@@ -239,7 +239,7 @@
                         "x-health-only": false,
                         "x-cols": 6,
                         "example": "example.json#/mobilizedResource/0/freetext/0",
-                        "description": "Texte libre permettant de passer toute autre information sur la ressource (\u00e9quipements suppl\u00e9mentaires / particuliers, particularit\u00e9s du vecteur)"
+                        "description": "Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / particuliers, particularités du vecteur)"
                     }
                 }
             },
@@ -259,7 +259,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/team/teamCare",
-                    "description": "M\u00e9dical / param\u00e9dical : indique le niveau de m\u00e9dicalisation du vecteur",
+                    "description": "Médical / paramédical : indique le niveau de médicalisation du vecteur",
                     "enum": [
                         "MED",
                         "PARAMED",
@@ -272,7 +272,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/team/name",
-                    "description": "Nom de l'\u00e9quipe \u00e0 bord du vecteur"
+                    "description": "Nom de l'équipe à bord du vecteur"
                 }
             },
             "additionalProperties": false,
@@ -338,7 +338,7 @@
         },
         "coord": {
             "type": "object",
-            "title": "Derni\u00e8re g\u00e9olocalisation du vecteur",
+            "title": "Dernière géolocalisation du vecteur",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -353,7 +353,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/coord/lat",
-                    "description": "Latitude du point cl\u00e9 de la localisation "
+                    "description": "Latitude du point clé de la localisation "
                 },
                 "lon": {
                     "type": "number",
@@ -361,7 +361,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/coord/lon",
-                    "description": "Longitude du point cl\u00e9 de la localisation"
+                    "description": "Longitude du point clé de la localisation"
                 },
                 "height": {
                     "type": "number",
@@ -369,7 +369,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/coord/height",
-                    "description": "Altitude du point cl\u00e9 de la localisation, en m\u00e8tre, ignor\u00e9 c\u00f4t\u00e9 NexSIS. "
+                    "description": "Altitude du point clé de la localisation, en mètre, ignoré côté NexSIS. "
                 },
                 "heading": {
                     "type": "number",
@@ -377,7 +377,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/coord/heading",
-                    "description": "En degr\u00e9"
+                    "description": "En degré"
                 },
                 "speed": {
                     "type": "number",
@@ -385,15 +385,15 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/coord/speed",
-                    "description": "Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, \u2026"
+                    "description": "Vitesse en km/h, notamment fournie par eCall, tel, nouveau AML, …"
                 },
                 "precision": {
                     "type": "string",
-                    "title": "Pr\u00e9cision",
+                    "title": "Précision",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/coord/precision",
-                    "description": "Indique via une nomenclature le niveau de pr\u00e9cision des coordonn\u00e9es fournies par le syst\u00e8me emetteur.\nCITY=Pr\u00e9cision \u00e0 l'\u00e9chelle de la ville, STREET=Pr\u00e9cision \u00e0 l'\u00e9chelle de la rue, ADDRESS=Adresse pr\u00e9cise, EXACT=Point coordonn\u00e9e GPS exact, UNKNOWN=Pr\u00e9cision de la localisation non \u00e9valuable par l'\u00e9metteur",
+                    "description": "Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.\nCITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",
                     "enum": [
                         "VILLE",
                         "RUE",
@@ -419,7 +419,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/contact/type",
-                    "description": "Type de l'URI utilis\u00e9e",
+                    "description": "Type de l'URI utilisée",
                     "enum": [
                         "TEL",
                         "EMAIL",
@@ -435,7 +435,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/mobilizedResource/0/contact/details",
-                    "description": "Valeur de l'URI utilis\u00e9e pour contacter la ressource"
+                    "description": "Valeur de l'URI utilisée pour contacter la ressource"
                 }
             },
             "additionalProperties": false,

@@ -22,7 +22,7 @@
         },
         "requestId": {
             "type": "string",
-            "title": "ID Demande partag\u00e9",
+            "title": "ID Demande partagé",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/requestId",
@@ -35,7 +35,7 @@
     "definitions": {
         "response": {
             "type": "object",
-            "title": "R\u00e9ponse \u00e0 la demande de ressources",
+            "title": "Réponse à la demande de ressources",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -45,7 +45,7 @@
             "properties": {
                 "datetime": {
                     "type": "string",
-                    "title": "Date Heure de r\u00e9ponse",
+                    "title": "Date Heure de réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/datetime",
@@ -55,7 +55,7 @@
                 },
                 "answer": {
                     "type": "string",
-                    "title": "R\u00e9ponse",
+                    "title": "Réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/answer",
@@ -69,7 +69,7 @@
                 },
                 "deadline": {
                     "type": "string",
-                    "title": "D\u00e9lai de r\u00e9ponse",
+                    "title": "Délai de réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/deadline",
@@ -77,7 +77,7 @@
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Pr\u00e9cisions sur la r\u00e9ponse",
+                    "title": "Précisions sur la réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/freetext",
