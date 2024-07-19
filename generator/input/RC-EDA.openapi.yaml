@@ -1288,7 +1288,7 @@ components:
           - INCONNU
           - NON DEFINI
           examples:
-          - SEVERAL
+          - PLUSIEURS
         mainVictim:
           type: string
           title: Type du patient-victime principal
@@ -1304,8 +1304,9 @@ components:
           - ENFANT
           - ADULTE
           - SENIOR
+          - ENCEINTE
           examples:
-          - CHILD
+          - ENFANT
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur les patients-victimes"
@@ -1318,8 +1319,8 @@ components:
       additionalProperties: false
       example: example.json#/qualification/victims
       examples:
-      - count: SEVERAL
-        mainVictim: CHILD
+      - count: PLUSIEURS
+        mainVictim: ENFANT
         freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
     externalLocationId:
       type: object

@@ -1050,6 +1050,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <enumeration value="ENFANT"/>
                         <enumeration value="ADULTE"/>
                         <enumeration value="SENIOR"/>
+                        <enumeration value="ENCEINTE"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -50,8 +50,79 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Orientation {
+
+  /**
+   * Indique si le patient est transporté ou non (Sans transport associé / avec
+   * transport associé).  A valoriser par un code de la nomenclature SI
+   * SAMU-NOMENC_DEVENIR_PAT. Si le type d&#39;orientation est sans transport
+   * associé, les objets Destination et Transport sont facultatifs.
+   */
+  public enum TypeEnum {
+    OK("OK"),
+
+    TEMP("TEMP"),
+
+    SEUL("SEUL"),
+
+    AFAMILLE("AFAMILLE"),
+
+    AMED("AMED"),
+
+    AFDO("AFDO"),
+
+    ATIERS("ATIERS"),
+
+    MOYPERSO("MOYPERSO"),
+
+    CODE_VECTEUR_CHOISI("Code vecteur choisi"),
+
+    REFPAT("REFPAT"),
+
+    REFFAM("REFFAM"),
+
+    PASREAKO("PASREAKO"),
+
+    PASREAOK("PASREAOK"),
+
+    REA("REA"),
+
+    TRANSPOR("TRANSPOR"),
+
+    ADM("ADM"),
+
+    FUGUE("FUGUE"),
+
+    REFAUTRE("REFAUTRE"),
+
+    RAS("RAS");
+
+    private String value;
+
+    TypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TypeEnum fromValue(String value) {
+      for (TypeEnum b : TypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_TYPE = "type";
-  private String type;
+  private TypeEnum type;
 
   public static final String JSON_PROPERTY_DESTINATION = "destination";
   private Destination destination;
@@ -61,7 +132,7 @@ public class Orientation {
 
   public Orientation() {}
 
-  public Orientation type(String type) {
+  public Orientation type(TypeEnum type) {
 
     this.type = type;
     return this;
@@ -77,13 +148,13 @@ public class Orientation {
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getType() {
+  public TypeEnum getType() {
     return type;
   }
 
   @JsonProperty(JSON_PROPERTY_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setType(String type) {
+  public void setType(TypeEnum type) {
     this.type = type;
   }
 

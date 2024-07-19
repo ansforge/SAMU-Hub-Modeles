@@ -2,7 +2,7 @@ Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donn
 Evènement,,,,,,,,event,,,,,,1..1,X,event,,
 ,Identifiant du SAMU qui engage le SMUR,,,,,"Numéro du SAMU régulant la mission SMUR. 
 A valoriser par fr.health.samuXXX :  {pays}.{domaine}.{organisation}
-",fr.health.samu440,samuId,,,,,,1..1,,string,,"REGEX: [a-zA-Z]{2,3}\.[a-zA-Z]+\..*"
+",fr.health.samu440,samuId,,,,,,1..1,,string,,"REGEX: ^[a-z]{2,3}\.[a-z]+\.\w*$"
 ,Identifiant du dossier de régulation médicale (DRM),,,,,"Numéro du dossier SAMU à l’origine de la mission SMUR
 A valoriser par DRFR15DDXAAJJJ00000 : 
 - DR = désignation d'un dossier sous forme abrégée,
@@ -17,21 +17,21 @@ A valoriser par DRFR15DDXAAJJJ00000 :
 ,Date et heure de la décision d’engagement du SMUR,,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,decisionDate,,,,,,1..1,,datetime,,
 ,FINESS juridique ,,,,,FINESS juridique établissement rattachement SMUR,,ressourceFinessLegal,,,,,,1..1,,string,,
 ,FINESS géographique ,,,,,FINESS géographique établissement rattachement SMUR ou antenne SMUR,,ressourceFinessGeo,,,,,,1..1,,string,,
-,Type de structure SMUR,,,,,"9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal ",,ressourceStructure,,,,,,1..1,,string,X,NOMENCLATURE : TBD
+,Type de structure SMUR,,,,,"9 = Antenne SMUR, 0 = SMUR général, 1 = SMUR pédiatrique, 2 = SMUR neonatal ",,ressourceStructure,,,,,,1..1,,string,X,
 Régulation médicale,,,,,,,,regulation,,,,,,1..1,X,regulation,,
 ,Circonstances ayant données lieu à l’appel,,,,,,,whatsHappen,,,,,,1..1,X,codeAndLabel,,
-,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,,,,,,1..1,,string,X,NOMENCLATURE : CISU-Code_Nature_de_fait
+,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,,,,,,1..1,,string,X,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,,,,,,1..1,,string,X,
 ,Motif de recours ,,,,,,,healthMotive,,,,,,1..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Niveau de médicalisation initial,,,,,"Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
-Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,initialTeamCare,,,,,,1..1,,string,X,NOMENCLATURE : SI-SAMU-NIVSOIN
+Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,initialTeamCare,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN
 Patient,,,,,,,,patient,,,,,,1..1,X,patient,,
 ,Identifiant Patient,,,,,"Identifiant unique du patient. 
 A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.DRFR15DDXAAJJJ00001.P01,patientId,,,,,,1..1,,string,,
 ,Date de naissance,,,,,Date de naissance du patient,17/02/1936,birthDate,,,,,,1..1,,string,,
-,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,,,,,,1..1,,string,X,NOMENCLATURE : SI-SAMU-NOMENC_SEXE
+,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
 ,NIR,,,,,"Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL",278112B050002,nir,,,,,,0..1,,number,,
 ,Adresse de résidence,,,,,,,residentialAddress,,,,,,0..1,X,residentialAddress,,
 ,,Code INSEE de la commune de résidence,,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
@@ -39,7 +39,7 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. ",9
 ,,Nom de la commune,,,,Nom officiel de la commune actuelle,Levallois-Perret,city,,,,,,1..1,,string,,
 Intervention,,,,,,,,intervention,,,,,,1..1,X,intervention,,
 ,Lieu d'intervention,,,,,,,location,,,,,,1..1,X,location,,
-,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,,,,,,0..1,,string,X,NOMENCLATURE : CISU-Code_Type_de_lieu
+,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,,,,,,0..1,,string,X,NOMENCLATURE: CISU-Code_Type_de_lieu
 ,,FINESS géographique de l’établissement ,,,,Finess géographique et juridique de l’établissement de santé,,finessGeo,,,,,,0..1,,string,,
 ,,Unité fonctionnelle ,,,,Unité fonctionnelle de l'établissement de santé,,unit,,,,,,0..1,,string,,
 ,,Adresse de l'intervention,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
@@ -55,11 +55,11 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
 ,,Ambulancier/Pilote,,,,"Permet d'identifier si un ambulancier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ",OUI,driver,,,,,,1..1,,boolean,,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
-A valoriser avec un code de la nomenclature ACTES_SMUR.",,actionsSMUR,,,,,,0..n,,string,X,NOMENCLATURE : TBD
+A valoriser avec un code de la nomenclature ACTES_SMUR.",,actionsSMUR,,,,,,0..n,,string,X,
 ,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,,,,,,1..1,,string,X,NOMENCLATURE : TBD
+A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,,,,,,1..1,,string,X,
 ,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDiagnosis,,,,,,0..1,,string,X,NOMENCLATURE : TBD
+A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDiagnosis,,,,,,0..1,,string,X,
 ,Statuts des horaires du SMUR,,,,,,,smurStatus,,,,,,0..1,X,resourceStatus,,
 ,,Date et heure du départ de la base SMUR,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,departSmur,,,,,,1..1,,datetime,,
 ,,Date et heure de l’arrivée sur les lieux de l’intervention,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,arrivedSmur,,,,,,0..1,,datetime,,
@@ -70,16 +70,16 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDi
 Décision d'orientation,,,,,,,,orientation,,,,,,1..1,X,orientation,,
 ,Type de devenir du patient,,,,,"Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
 A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
-Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",TEMP,type,,,,,,1..1,,string,X,NOMENCLATURE : SI SAMU-NOMENC_DEVENIR_PAT
+Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",TEMP,type,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT
 ,Destination,,,,,,,destination,,,,,,0..1,X,destination,,
 ,,Pays de destination,,,,A valoriser par le libellé court de la nomenclature SIGLPAYS,FR,destinationCountry,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2
-,,Catégorie de l'établissement de destination,,,,A valoriser par le code de la nomenclature associée,,destinationCategory,,,,,,1..1,,string,X,NOMENCLATURE : TBD
-,,Type d'activité de soins de l'unité fonctionnelle de destination,,,,A valoriser par le code de la nomenclature ActiviteOperationnelle,,healthcareType,,,,,,1..1,,string,X,NOMENCLATURE : TBD
+,,Catégorie de l'établissement de destination,,,,A valoriser par le code de la nomenclature associée,,destinationCategory,,,,,,1..1,,string,X,
+,,Type d'activité de soins de l'unité fonctionnelle de destination,,,,A valoriser par le code de la nomenclature ActiviteOperationnelle,,healthcareType,,,,,,1..1,,string,X,
 ,,FINESS géographique,,,,FINESS géographique de l’établissement de destination (9 chiffres),,finess,,,,,,1..1,,string,,
 ,Transport,,,,,,,decision,,,,,,0..1,X,decision,,
 ,,Moyen de transport,,,,"Précise le type de moyen engagé dans l'intervention (SMUR, TSU, HOSPIT, etc.). 
-A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.",SMUR,resourceCategory,,,,,,1..1,,string,X,NOMENCLATURE : SI SAMU-TYPE_MOYEN
+A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.",SMUR,resourceCategory,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
 ,,Type de vecteur de transport,,,,"Précise le type de véhicule terrestre / aérien / maritime engagé dans l'intervention.
-A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.","AR, VLM, VSAV",resourceType,,,,,,1..1,,string,X,NOMENCLATURE : CISU-TYPE_VECTEUR
+A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.","AR, VLM, VSAV",resourceType,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
 ,,Niveau de médicalisation du transport,,,,"Type d’équipe (médical, paramédicale, secouriste).
-A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.",PARAMED,teamCare,,,,,,1..1,,string,X,NOMENCLATURE : SI-SAMU-NIVSOIN
+A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN.",PARAMED,teamCare,,,,,,1..1,,string,X,NOMENCLATURE: SI-SAMU-NIVSOIN
