@@ -15,7 +15,6 @@
  */
 package com.hubsante.model.edxlhandler;
 
-import com.hubsante.model.ContentMessageHandler;
 import com.hubsante.model.EdxlHandler;
 import com.hubsante.model.Validator;
 import com.hubsante.model.edxl.EdxlMessage;
@@ -24,16 +23,15 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+import static com.hubsante.model.Sanitizer.sanitizeEdxl;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.config.Constants.FULL_XSD;
-import static com.hubsante.model.utils.Sanitizer.sanitizeEdxl;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
 public abstract class AbstractEdxlHandlerTest {
     protected EdxlHandler converter = new EdxlHandler();
-    protected ContentMessageHandler contentMessageHandler = new ContentMessageHandler();
 
     protected Validator validator = new Validator();
 
@@ -42,6 +40,7 @@ public abstract class AbstractEdxlHandlerTest {
         endToEndDeserializationCheck(json, isXML);
     }
 
+    // This method only verifies deserialization
     protected void jsonEqualsXml(String schema) throws IOException {
         String json = getMessageString(schema);
         String xml = getMessageString(schema, true);

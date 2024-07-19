@@ -1,120 +1,157 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<createCase xmlns="urn:emergency:cisu:2.0:createCase">
-  <caseId>fr.fire.cga-044.SC-20240526-044-cga-AL8</caseId>
-  <senderCaseId>SC-20240526-044-cga-AL8</senderCaseId>
-  <creation>2024-05-26T13:15:00+02:00</creation>
-  <referenceVersion>1.3</referenceVersion>
-  <qualification>
-    <whatsHappen>
-      <code>C02.05.02</code>
-      <label>Obstétrique</label>
-    </whatsHappen>
-    <locationKind>
-      <code>L04.02.00</code>
-      <label>Centre commercial / magasin</label>
-    </locationKind>
-    <healthMotive>
-      <code>M03.02</code>
-      <label>Autre problème obstétrique non hémorragique</label>
-    </healthMotive>
-    <victims>
-      <count>1</count>
-      <mainVictim>ADULTE</mainVictim>
-      <freetext>Femme enceinte de 2 mois qui est tombé d'une échelle au bureau. Delphine Vigneau, 32 ans.</freetext>
-    </victims>
-  </qualification>
-  <location>
-    <locID>111fb03a-6fd9-41e0-8e81-990c45188891</locID>
-    <locLabel>Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain</locLabel>
-    <name>Centre Commercial Atlantis</name>
-    <externalLocationId>
-      <source>SIRET</source>
-      <value>70142121200018</value>
-    </externalLocationId>
-    <detailedAddress>
-      <complete>Boulevard Salvador Allende</complete>
-    </detailedAddress>
-    <city>
-      <name>Saint-Herblain</name>
-      <inseeCode>44162</inseeCode>
-    </city>
-    <access>
-      <floor>RDC</floor>
-      <buildingName>Soleil</buildingName>
-      <phoneNumber>0969362006</phoneNumber>
-    </access>
-    <country>FR</country>
-  </location>
-  <initialAlert>
-    <id>CGA044-20240526-AL0182</id>
-    <reception>2024-05-26T13:15:00+02:00</reception>
-    <reporting>STANDARD</reporting>
-    <caller>
-      <callerContact>
-        <channel>PERSONNE</channel>
-        <type>TEL</type>
-        <detail>0671832618</detail>
-      </callerContact>
-      <callbackContact>
-        <channel>PERSONNE</channel>
-        <type>TEL</type>
-        <detail>0671832618</detail>
-      </callbackContact>
-      <language>FR</language>
-      <type>TIERS</type>
-      <communication>AUCUNE</communication>
-      <detailedName>
-        <complete>Agnès Duberti</complete>
-        <lastName>Duberti</lastName>
-        <firstName>Agnès</firstName>
-      </detailedName>
-    </caller>
-    <location>
-      <locID>111fb03a-6fd9-41e0-8e81-990c45188891</locID>
-      <locLabel>Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain</locLabel>
-      <name>Centre Commercial Atlantis</name>
-      <detailedAddress>
-        <complete>Boulevard Salvador Allende</complete>
-      </detailedAddress>
-      <city>
-        <name>Saint-Herblain</name>
-        <inseeCode>44162</inseeCode>
-      </city>
-      <access>
-        <floor>RDC</floor>
-        <buildingName>Soleil</buildingName>
-        <phoneNumber>0969362006</phoneNumber>
-      </access>
-      <country>FR</country>
-    </location>
-    <qualification>
-      <whatsHappen>
-        <code>C02.05.02</code>
-        <label>Obstétrique</label>
-      </whatsHappen>
-      <locationKind>
-        <code>L04.02.00</code>
-        <label>Centre commercial / magasin</label>
-      </locationKind>
-      <healthMotive>
-        <code>M03.02</code>
-        <label>Autre problème obstétrique non hémorragique</label>
-      </healthMotive>
-      <victims>
-        <count>1</count>
-        <mainVictim>ADULTE</mainVictim>
-        <freetext>Femme enceinte de 2 mois qui est tombé d'une échelle au bureau.  Delphine Vigneau, 32 ans.</freetext>
-      </victims>
-    </qualification>
-    <callTaker>
-      <organization>fr.fire.cga-044</organization>
-      <controlRoom>CGA44</controlRoom>
-    </callTaker>
-  </initialAlert>
-  <additionalInformation>
-    <customMap>
-      <key>COMMERCIAL</key>
-      <value>IKEA Nantes</value>
-    </customMap>
-  </additionalInformation>
-</createCase>
+<edxlDistribution xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+  <distributionID>fr.health.samu_id</distributionID>
+  <senderID>fr.health.sender</senderID>
+  <dateTimeSent>2023-12-15T00:00:00+02:00</dateTimeSent>
+  <dateTimeExpires>2023-12-16T00:00:00+02:00</dateTimeExpires>
+  <distributionStatus>Actual</distributionStatus>
+  <distributionKind>Report</distributionKind>
+  <descriptor xlink:type="resource">
+    <language>fr-FR</language>
+    <explicitAddress>
+      <explicitAddressScheme>hubex</explicitAddressScheme>
+      <explicitAddressValue>fr.health.recipient</explicitAddressValue>
+    </explicitAddress>
+  </descriptor>
+  <content>
+    <contentObject xlink:type="resource">
+      <contentXML>
+        <embeddedXMLContent>
+          <message xmlns="urn:emergency:cisu:2.0">
+            <messageId>messageId</messageId>
+            <sender>
+              <name>sender</name>
+              <URI>hubex:sender</URI>
+            </sender>
+            <sentAt>2023-12-14T00:00:00+02:00</sentAt>
+            <kind>Report</kind>
+            <status>Actual</status>
+            <recipient>
+              <name>recipient_0</name>
+              <URI>hubex:recipient_0</URI>
+            </recipient>
+            <createCase xmlns="urn:emergency:cisu:2.0:createCase">
+              <caseId>fr.fire.cga-044.SC-20240526-044-cga-AL8</caseId>
+              <senderCaseId>SC-20240526-044-cga-AL8</senderCaseId>
+              <creation>2024-05-26T13:15:00+02:00</creation>
+              <referenceVersion>1.3</referenceVersion>
+              <qualification>
+                <whatsHappen>
+                  <code>C02.05.02</code>
+                  <label>Obstétrique</label>
+                </whatsHappen>
+                <locationKind>
+                  <code>L04.02.00</code>
+                  <label>Centre commercial / magasin</label>
+                </locationKind>
+                <healthMotive>
+                  <code>M03.02</code>
+                  <label>Autre problème obstétrique non hémorragique</label>
+                </healthMotive>
+                <victims>
+                  <count>1</count>
+                  <mainVictim>ADULTE</mainVictim>
+                  <freetext>Femme enceinte de 2 mois qui est tombé d'une échelle au bureau. Delphine Vigneau, 32 ans.</freetext>
+                </victims>
+              </qualification>
+              <location>
+                <locID>111fb03a-6fd9-41e0-8e81-990c45188891</locID>
+                <locLabel>Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain</locLabel>
+                <name>Centre Commercial Atlantis</name>
+                <externalLocationId>
+                  <source>SIRET</source>
+                  <value>70142121200018</value>
+                </externalLocationId>
+                <detailedAddress>
+                  <complete>Boulevard Salvador Allende</complete>
+                </detailedAddress>
+                <city>
+                  <name>Saint-Herblain</name>
+                  <inseeCode>44162</inseeCode>
+                </city>
+                <access>
+                  <floor>RDC</floor>
+                  <buildingName>Soleil</buildingName>
+                  <phoneNumber>0969362006</phoneNumber>
+                </access>
+                <country>FR</country>
+              </location>
+              <initialAlert>
+                <id>CGA044-20240526-AL0182</id>
+                <reception>2024-05-26T13:15:00+02:00</reception>
+                <reporting>STANDARD</reporting>
+                <caller>
+                  <callerContact>
+                    <channel>PERSONNE</channel>
+                    <type>TEL</type>
+                    <detail>0671832618</detail>
+                  </callerContact>
+                  <callbackContact>
+                    <channel>PERSONNE</channel>
+                    <type>TEL</type>
+                    <detail>0671832618</detail>
+                  </callbackContact>
+                  <language>FR</language>
+                  <type>TIERS</type>
+                  <communication>AUCUNE</communication>
+                  <detailedName>
+                    <complete>Agnès Duberti</complete>
+                    <lastName>Duberti</lastName>
+                    <firstName>Agnès</firstName>
+                  </detailedName>
+                </caller>
+                <location>
+                  <locID>111fb03a-6fd9-41e0-8e81-990c45188891</locID>
+                  <locLabel>Centre Commercial Atlantis, Bd Salvador Allende, 44800 Saint-Herblain</locLabel>
+                  <name>Centre Commercial Atlantis</name>
+                  <detailedAddress>
+                    <complete>Boulevard Salvador Allende</complete>
+                  </detailedAddress>
+                  <city>
+                    <name>Saint-Herblain</name>
+                    <inseeCode>44162</inseeCode>
+                  </city>
+                  <access>
+                    <floor>RDC</floor>
+                    <buildingName>Soleil</buildingName>
+                    <phoneNumber>0969362006</phoneNumber>
+                  </access>
+                  <country>FR</country>
+                </location>
+                <qualification>
+                  <whatsHappen>
+                    <code>C02.05.02</code>
+                    <label>Obstétrique</label>
+                  </whatsHappen>
+                  <locationKind>
+                    <code>L04.02.00</code>
+                    <label>Centre commercial / magasin</label>
+                  </locationKind>
+                  <healthMotive>
+                    <code>M03.02</code>
+                    <label>Autre problème obstétrique non hémorragique</label>
+                  </healthMotive>
+                  <victims>
+                    <count>1</count>
+                    <mainVictim>ADULTE</mainVictim>
+                    <freetext>Femme enceinte de 2 mois qui est tombé d'une échelle au bureau.  Delphine Vigneau, 32 ans.</freetext>
+                  </victims>
+                </qualification>
+                <callTaker>
+                  <organization>fr.fire.cga-044</organization>
+                  <controlRoom>CGA44</controlRoom>
+                </callTaker>
+              </initialAlert>
+              <additionalInformation>
+                <customMap>
+                  <key>COMMERCIAL</key>
+                  <value>IKEA Nantes</value>
+                </customMap>
+              </additionalInformation>
+            </createCase>
+          </message>
+        </embeddedXMLContent>
+      </contentXML>
+    </contentObject>
+  </content>
+</edxlDistribution>
