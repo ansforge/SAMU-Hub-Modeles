@@ -69,5 +69,24 @@ public class TechnicalHandlerTest {
         assertEquals(xmlTechnical.getArrayWithMaxLength().size(), 5);
     }
 
+    @Test
+    @DisplayName("Nomenclatures should be deserialized correctly")
+    public void testNomenclatures() throws IOException {
+        String json = getValidMessage("TECHNICAL/nomenclature-test.json");
+        Technical jsonTechnical = jsonMapper.readValue(json, Technical.class);
+
+        String xml = getValidMessage("TECHNICAL/nomenclature-test.xml");
+        Technical xmlTechnical = xmlMapper.readValue(xml, Technical.class);
+
+        assertEquals(jsonTechnical.getNomenclatureField(), "INCONNU");
+        assertEquals(jsonTechnical.getEnumArrayField().get(0).getValue(), "ENUM_VALUE_10");
+        assertEquals(jsonTechnical.getEnumArrayField().get(1).getValue(), "ENUM_VALUE_20");
+        assertEquals(jsonTechnical.getEnumArrayField().get(2).getValue(), "ENUM_VALUE_30");
+
+        assertEquals(xmlTechnical.getNomenclatureField(), "INCONNU");
+        assertEquals(xmlTechnical.getEnumArrayField().get(0).getValue(), "ENUM_VALUE_10");
+        assertEquals(xmlTechnical.getEnumArrayField().get(1).getValue(), "ENUM_VALUE_20");
+        assertEquals(xmlTechnical.getEnumArrayField().get(2).getValue(), "ENUM_VALUE_30");
+    }
 
 }

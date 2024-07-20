@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <requiredStringField>requiredStringValue</requiredStringField>
+    <enumArrayField>ENUM_VALUE_10</enumArrayField>
+    <enumArrayField>ENUM_VALUE_20</enumArrayField>
+    <enumArrayField>ENUM_VALUE_30</enumArrayField>
+    <requiredArray>requiredArrayValue1</requiredArray>
+    <nomenclatureField>INCONNU</nomenclatureField>
+</root>
