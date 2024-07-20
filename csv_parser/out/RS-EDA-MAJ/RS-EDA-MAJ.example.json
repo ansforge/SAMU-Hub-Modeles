@@ -6,7 +6,7 @@
         "riskThreat": [
             {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile"
+                "label": "Rodéo automobile"
             }
         ],
         "details": {
@@ -17,7 +17,7 @@
     "location": {
         "externalInfo": [
             {
-                "freetext": "BAN, IGN, NEXSIS, \u2026",
+                "freetext": "BAN, IGN, NEXSIS, …",
                 "type": "MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",
                 "uri": "80021_6590_00008, id987"
             }
@@ -27,7 +27,7 @@
         "notes": [
             {
                 "creation": "None",
-                "freetext": "Accident de bricolage, accident domestique, d\u00e9clenchement t\u00e9l\u00e9alarme, voisine sur les lieux"
+                "freetext": "Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux"
             }
         ]
     },
@@ -38,7 +38,7 @@
             "administrativeFile": {
                 "externalId": [
                     {
-                        "source": "NIR, SINUS, SI-VIC, \u2026",
+                        "source": "NIR, SINUS, SI-VIC, …",
                         "value": "id1234"
                     }
                 ]
@@ -53,7 +53,7 @@
             },
             "healthMotive": {
                 "code": "C07.13.02",
-                "label": "Rod\u00e9o automobile"
+                "label": "Rodéo automobile"
             },
             "detail": {
                 "weight": 31,
@@ -64,12 +64,12 @@
             "hypothesis": {
                 "mainDiagnosis": {
                     "code": "C07.13.02",
-                    "label": "Rod\u00e9o automobile"
+                    "label": "Rodéo automobile"
                 },
                 "otherDiagnosis": [
                     {
                         "code": "C07.13.02",
-                        "label": "Rod\u00e9o automobile"
+                        "label": "Rodéo automobile"
                     }
                 ]
             }
@@ -87,14 +87,14 @@
             "freetext": "None"
         }
     ],
-    "freetext": "adresse : 7bis rue du ch\u00e2teau - Neuilly sur Seine",
+    "freetext": "adresse : 7bis rue du château - Neuilly sur Seine",
     "additionalInformation": {
         "customMap": [
             {
                 "key": "neighborhood",
                 "label": "Quartier",
                 "value": "LYON 2e arrondissement",
-                "freetext": "Pr\u00e9cision sur le quartier d'intervention"
+                "freetext": "Précision sur le quartier d'intervention"
             }
         ]
     }

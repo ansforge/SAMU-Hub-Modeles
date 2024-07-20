@@ -85,6 +85,19 @@
                 </annotation>
             </element>
             <element minOccurs="0" name="objectLevel1" type="x:levelOneData"/>
+            <element minOccurs="0" name="nomenclatureField">
+                <annotation>
+                    <documentation>Enum from extenal nomenclature file</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MASC"/>
+                        <enumeration value="FEM"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="INCONNU"/>
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
     <complexType name="technicalObject">

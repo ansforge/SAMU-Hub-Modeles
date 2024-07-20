@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "TECHNICAL.schema.json#",
-    "version": "24.07.18",
+    "version": "24.07.20",
     "example": "example.json#",
     "type": "object",
     "title": "technical",
@@ -149,6 +149,20 @@
         },
         "objectLevel1": {
             "$ref": "#/definitions/levelOneData"
+        },
+        "nomenclatureField": {
+            "type": "string",
+            "title": "Nomenclature",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/nomenclatureField",
+            "description": "Enum from extenal nomenclature file",
+            "enum": [
+                "MASC",
+                "FEM",
+                "AUTRE",
+                "INCONNU"
+            ]
         }
     },
     "definitions": {

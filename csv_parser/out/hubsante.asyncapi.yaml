@@ -306,6 +306,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3,5}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -404,6 +405,186 @@ components:
           x-cols: 6
           example: example.json#/intervention/location/type
           description: A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.
+          enum:
+          - L01.00.00
+          - L01.01.00
+          - L01.01.01
+          - L01.01.02
+          - L01.01.03
+          - L01.01.04
+          - L01.02.00
+          - L01.02.01
+          - L01.02.02
+          - L01.02.03
+          - L01.02.04
+          - L01.02.05
+          - L01.02.06
+          - L01.02.07
+          - L01.02.08
+          - L01.02.09
+          - L01.02.10
+          - L01.02.11
+          - L01.02.12
+          - L01.03.00
+          - L01.03.01
+          - L01.03.02
+          - L01.03.03
+          - L01.04.00
+          - L02.00.00
+          - L02.01.00
+          - L02.02.00
+          - L02.02.01
+          - L02.02.02
+          - L02.02.03
+          - L02.02.04
+          - L02.02.05
+          - L02.03.00
+          - L02.03.01
+          - L02.03.02
+          - L02.03.03
+          - L02.04.00
+          - L02.05.00
+          - L02.05.01
+          - L02.05.02
+          - L02.05.03
+          - L02.05.04
+          - L02.05.05
+          - L02.05.06
+          - L02.05.07
+          - L02.05.08
+          - L02.05.09
+          - L02.05.10
+          - L02.05.11
+          - L02.05.12
+          - L02.05.13
+          - L02.05.14
+          - L02.05.15
+          - L02.05.16
+          - L02.06.00
+          - L02.06.01
+          - L02.06.02
+          - L02.06.03
+          - L02.06.04
+          - L02.06.05
+          - L02.06.06
+          - L02.06.07
+          - L02.06.08
+          - L02.07.00
+          - L02.07.01
+          - L02.07.02
+          - L02.08.00
+          - L03.00.00
+          - L03.01.00
+          - L03.02.00
+          - L03.03.00
+          - L03.04.00
+          - L03.05.00
+          - L04.00.00
+          - L04.01.00
+          - L04.02.00
+          - L04.02.01
+          - L04.02.02
+          - L04.02.03
+          - L04.03.00
+          - L04.03.01
+          - L04.03.02
+          - L04.03.03
+          - L04.04.00
+          - L04.05.00
+          - L04.06.00
+          - L04.06.01
+          - L04.06.02
+          - L04.06.03
+          - L04.06.04
+          - L04.06.05
+          - L04.07.00
+          - L04.07.01
+          - L04.07.02
+          - L04.07.03
+          - L04.08.00
+          - L04.08.01
+          - L04.08.02
+          - L04.09.00
+          - L04.09.01
+          - L04.09.02
+          - L04.10.00
+          - L04.11.00
+          - L04.11.01
+          - L04.11.02
+          - L04.11.03
+          - L04.11.04
+          - L04.12.00
+          - L04.12.01
+          - L04.12.02
+          - L04.12.03
+          - L04.12.04
+          - L04.13.00
+          - L04.13.01
+          - L04.13.02
+          - L04.13.03
+          - L04.13.04
+          - L04.14.00
+          - L04.14.01
+          - L04.14.02
+          - L04.15.00
+          - L04.16.00
+          - L05.00.00
+          - L05.01.00
+          - L05.01.01
+          - L05.01.02
+          - L05.01.03
+          - L05.01.04
+          - L05.02.00
+          - L05.02.01
+          - L05.02.02
+          - L05.02.03
+          - L05.02.04
+          - L05.03.00
+          - L05.03.01
+          - L05.03.02
+          - L05.04.00
+          - L05.04.01
+          - L05.04.02
+          - L05.04.03
+          - L05.04.04
+          - L05.04.05
+          - L05.04.06
+          - L05.05.00
+          - L05.06.00
+          - L05.07.00
+          - L06.00.00
+          - L06.01.00
+          - L06.01.01
+          - L06.01.02
+          - L06.01.03
+          - L06.01.04
+          - L06.01.05
+          - L06.01.06
+          - L06.01.07
+          - L06.01.08
+          - L06.02.00
+          - L06.03.00
+          - L06.03.01
+          - L06.03.02
+          - L06.03.03
+          - L06.03.04
+          - L06.03.05
+          - L06.04.00
+          - L06.05.00
+          - L06.05.01
+          - L06.05.02
+          - L06.06.00
+          - L06.06.01
+          - L06.06.02
+          - L06.06.03
+          - L06.06.04
+          - L06.07.00
+          - L06.07.01
+          - L06.07.02
+          - L07.00.00
+          - L07.01.00
+          - L07.01.01
+          - L07.02.00
           examples:
           - DOMPAV
         finessGeo:
@@ -472,6 +653,44 @@ components:
           x-cols: 6
           example: example.json#/qualification/riskThreat/0/code
           description: "A valoriser avec le code de la nomenclature associ\xE9e"
+          enum:
+          - R01
+          - R02
+          - R03
+          - R04
+          - R05
+          - R06
+          - R07
+          - R08
+          - R09
+          - R10
+          - R11
+          - R12
+          - R13
+          - R14
+          - R15
+          - R16
+          - R17
+          - R18
+          - R19
+          - R20
+          - R21
+          - R22
+          - R23
+          - R24
+          - R25
+          - R26
+          - R27
+          - R28
+          - R29
+          - R30
+          - R31
+          - R32
+          - R33
+          - R34
+          - R35
+          - R36
+          - R37
           examples:
           - C07.13.02
         label:
@@ -506,7 +725,307 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/code
-          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
+          description: "A valoriser avec le code de la nomenclature associ\xE9e."
+          enum:
+          - C01.00.00
+          - C01.01.00
+          - C01.01.01
+          - C01.01.02
+          - C01.01.03
+          - C01.01.04
+          - C01.01.05
+          - C01.01.06
+          - C01.02.00
+          - C01.02.01
+          - C01.02.02
+          - C01.03.00
+          - C01.03.01
+          - C01.03.02
+          - C01.04.00
+          - C01.04.01
+          - C01.04.02
+          - C01.04.03
+          - C01.04.04
+          - C01.05.00
+          - C02.00.00
+          - C02.01.00
+          - C02.02.00
+          - C02.03.00
+          - C02.03.01
+          - C02.03.02
+          - C02.04.00
+          - C02.04.01
+          - C02.04.02
+          - C02.04.03
+          - C02.05.00
+          - C02.05.01
+          - C02.05.02
+          - C02.05.03
+          - C02.06.00
+          - C02.06.01
+          - C02.07.00
+          - C02.07.01
+          - C02.07.02
+          - C02.07.03
+          - C02.07.04
+          - C02.07.05
+          - C02.08.00
+          - C02.08.01
+          - C02.08.02
+          - C02.08.03
+          - C02.08.04
+          - C02.08.05
+          - C02.08.06
+          - C02.08.07
+          - C02.08.08
+          - C02.09.00
+          - C02.09.01
+          - C02.09.02
+          - C02.09.03
+          - C02.09.04
+          - C02.09.05
+          - C02.09.06
+          - C02.09.07
+          - C02.10.00
+          - C02.11.00
+          - C02.11.01
+          - C02.11.02
+          - C02.12.00
+          - C02.13.00
+          - C02.13.01
+          - C02.13.02
+          - C02.13.03
+          - C02.13.04
+          - C02.13.05
+          - C02.13.06
+          - C02.13.07
+          - C02.13.08
+          - C02.14.00
+          - C02.14.01
+          - C02.14.02
+          - C02.14.03
+          - C02.14.04
+          - C02.14.00
+          - C02.14.01
+          - C02.14.02
+          - C02.14.03
+          - C02.14.04
+          - C02.14.05
+          - C02.14.06
+          - C02.15.00
+          - C02.15.01
+          - C02.15.02
+          - C02.15.03
+          - C03.00.00
+          - C03.01.00
+          - C03.01.01
+          - C03.01.02
+          - C03.01.03
+          - C03.01.04
+          - C03.01.05
+          - C03.02.00
+          - C03.02.01
+          - C03.02.02
+          - C03.02.03
+          - C03.02.04
+          - C03.02.05
+          - C03.02.06
+          - C03.02.07
+          - C03.02.08
+          - C03.02.09
+          - C03.02.10
+          - C03.02.11
+          - C03.02.12
+          - C03.02.13
+          - C03.02.14
+          - C03.02.15
+          - C03.03.00
+          - C03.03.01
+          - C03.03.02
+          - C03.04.00
+          - C03.04.01
+          - C03.04.02
+          - C03.05.00
+          - C03.06.00
+          - C03.07.00
+          - C03.08.00
+          - C03.09.00
+          - C03.10.00
+          - C03.11.00
+          - C03.12.00
+          - C03.13.00
+          - C03.14.00
+          - C03.15.00
+          - C04.00.00
+          - C04.01.00
+          - C04.01.01
+          - C04.01.02
+          - C04.01.03
+          - C04.01.04
+          - C04.01.05
+          - C04.01.06
+          - C04.01.07
+          - C04.01.08
+          - C04.01.09
+          - C04.01.10
+          - C04.01.11
+          - C04.02.00
+          - C04.02.01
+          - C04.02.02
+          - C04.02.03
+          - C04.02.04
+          - C04.03.00
+          - C04.04.00
+          - C04.05.00
+          - C04.06.00
+          - C04.07.00
+          - C04.07.01
+          - C04.07.02
+          - C04.07.03
+          - C04.07.04
+          - C04.08.00
+          - C04.09.00
+          - C05.00.00
+          - C05.00.01
+          - C05.00.02
+          - C05.00.03
+          - C05.00.04
+          - C05.00.05
+          - C06.00.00
+          - C06.01.00
+          - C06.02.00
+          - C06.03.00
+          - C06.03.01
+          - C06.03.02
+          - C06.03.03
+          - C06.03.04
+          - C06.03.05
+          - C06.03.06
+          - C06.04.00
+          - C06.04.01
+          - C06.04.02
+          - C06.05.00
+          - C06.06.00
+          - C06.06.01
+          - C06.07.00
+          - C06.07.01
+          - C06.07.02
+          - C06.08.00
+          - C06.08.01
+          - C06.08.02
+          - C06.08.03
+          - C06.08.04
+          - C06.08.05
+          - C06.08.06
+          - C07.00.00
+          - C07.01.00
+          - C07.02.00
+          - C07.03.00
+          - C07.03.01
+          - C07.03.02
+          - C07.03.03
+          - C07.03.04
+          - C07.03.05
+          - C07.04.00
+          - C07.04.01
+          - C07.04.02
+          - C07.04.03
+          - C07.04.04
+          - C07.05.00
+          - C07.06.00
+          - C07.07.00
+          - C07.07.01
+          - C07.07.02
+          - C07.07.03
+          - C07.07.04
+          - C07.07.05
+          - C07.08.00
+          - C07.08.01
+          - C07.08.02
+          - C07.08.03
+          - C07.09.00
+          - C07.09.01
+          - C07.09.02
+          - C07.09.03
+          - C07.09.05
+          - C07.10.00
+          - C07.11.00
+          - C07.12.00
+          - C07.13.00
+          - C07.13.01
+          - C07.13.02
+          - C07.13.03
+          - C07.13.04
+          - C07.13.05
+          - C07.13.06
+          - C07.13.07
+          - C08.00.00
+          - C08.01.00
+          - C08.02.00
+          - C08.03.00
+          - C08.04.00
+          - C08.05.00
+          - C08.06.00
+          - C08.07.00
+          - C08.08.00
+          - C08.08.01
+          - C08.08.02
+          - C08.09.00
+          - C08.10.00
+          - C08.10.01
+          - C09.00.00
+          - C09.01.00
+          - C09.01.01
+          - C09.01.02
+          - C09.01.03
+          - C09.01.04
+          - C09.02.00
+          - C09.03.00
+          - C09.03.01
+          - C09.04.00
+          - C09.04.01
+          - C09.04.02
+          - C09.05.00
+          - C09.06.00
+          - C09.07.00
+          - C09.08.00
+          - C10.00.00
+          - C10.01.00
+          - C10.01.01
+          - C10.01.02
+          - C10.01.03
+          - C10.01.04
+          - C10.01.05
+          - C10.01.06
+          - C10.01.07
+          - C10.01.08
+          - C10.02.00
+          - C10.02.01
+          - C10.02.02
+          - C10.03.00
+          - C10.03.01
+          - C10.03.02
+          - C10.04.00
+          - C10.04.01
+          - C10.04.02
+          - C10.05.00
+          - C10.06.00
+          - C10.07.00
+          - C10.08.00
+          - C11.00.00
+          - C11.01.00
+          - C11.02.00
+          - C11.02.01
+          - C11.02.02
+          - C11.03.00
+          - C11.03.01
+          - C11.03.02
+          - C11.04.00
+          - C11.05.00
+          - C11.05.01
+          - C11.05.02
+          - C11.05.03
+          - C11.06.00
           examples:
           - AVPAR
         label:
@@ -515,9 +1034,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/whatsHappen/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
-            Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
-            \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
+            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - Accident routier
@@ -756,7 +1275,60 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/code
-          description: A valoriser avec un code de la nomenclature CISU-Code_Nature_de_fait
+          description: "A valoriser avec le code de la nomenclature associ\xE9e."
+          enum:
+          - M01.00
+          - M01.01
+          - M01.02
+          - M01.03
+          - M02.00
+          - M02.01
+          - M02.02
+          - M02.03
+          - M02.04
+          - M02.05
+          - M02.06
+          - M02.07
+          - M02.08
+          - M02.09
+          - M02.10
+          - M03.00
+          - M03.01
+          - M03.02
+          - M03.03
+          - M03.04
+          - M03.05
+          - M03.06
+          - M03.07
+          - M03.08
+          - M03.09
+          - M03.10
+          - M03.11
+          - M03.12
+          - M03.13
+          - M03.14
+          - M03.15
+          - M03.16
+          - M03.17
+          - M03.18
+          - M03.19
+          - M03.20
+          - M03.21
+          - M03.22
+          - M04.00
+          - M04.01
+          - M04.02
+          - M04.03
+          - M04.04
+          - M05.00
+          - M05.01
+          - M05.02
+          - M06.00
+          - M06.01
+          - M06.02
+          - M06.03
+          - M06.04
+          - M07.00
           examples:
           - AVPAR
         label:
@@ -765,9 +1337,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/regulation/healthMotive/label
-          description: "A valoriser avec le libell\xE9 de la nomenclature CISU-Code_Nature_de_fait.\n\
-            Dans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEEtre\
-            \ un code, il peut directement afficher le libell\xE9 qui est obligatoirement\
+          description: "A valoriser avec le libell\xE9 de la nomenclature associ\xE9\
+            e.\nDans le cas o\xF9 un syst\xE8me n'est pas en mesure de reconna\xEE\
+            tre un code, il peut choisir d'afficher le libell\xE9 qui est obligatoirement\
             \ fourni avec le code."
           examples:
           - Accident routier
@@ -799,7 +1371,7 @@ components:
           - INCONNU
           - NON DEFINI
           examples:
-          - SEVERAL
+          - PLUSIEURS
         mainVictim:
           type: string
           title: Type du patient-victime principal
@@ -815,8 +1387,9 @@ components:
           - ENFANT
           - ADULTE
           - SENIOR
+          - ENCEINTE
           examples:
-          - CHILD
+          - ENFANT
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur les patients-victimes"
@@ -829,8 +1402,8 @@ components:
       additionalProperties: false
       example: example.json#/qualification/victims
       examples:
-      - count: SEVERAL
-        mainVictim: CHILD
+      - count: PLUSIEURS
+        mainVictim: ENFANT
         freetext: "Jeanne Dupont, 6 ans, ne r\xE9pond plus"
     externalLocationId:
       type: object
@@ -847,10 +1420,11 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/source
-          description: Type de l'identifiant fourni
+          description: "A valoriser avec le type de l'identifiant fourni. Cf nomenclature\
+            \ associ\xE9e."
           enum:
-          - FINESS ADMINISTRATIF
-          - FINESS GEOGRAPHIQUE
+          - FINESS_ADMINISTRATIF
+          - FINESS_GEOGRAPHIQUE
           - SIREN
           - SIRET
           - APE_NAF
@@ -862,7 +1436,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/location/externalLocationId/0/value
-          description: "L'identifiant en lui-m\xEAme"
+          description: "A valoriser avec l'identifiant en lui-m\xEAme"
+          pattern: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
           examples:
           - "920000650\_"
       additionalProperties: false
@@ -1040,6 +1615,7 @@ components:
             l\xE9phone du service administratif ou se trouve le patient/ la victime.\n\
             Le format attendu est le suivant : +{indicatif pays}{num\xE9ro de t\xE9\
             l\xE9phone}"
+          pattern: \+\d{5,18}
           examples:
           - '+33123452323'
       additionalProperties: false
@@ -1199,7 +1775,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/lat
-          description: "Latitude du point cl\xE9 de la localisation "
+          description: "A valoriser avec la latitude du point cl\xE9 de la localisation "
           examples:
           - '48.866667'
         lon:
@@ -1208,7 +1784,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/lon
-          description: "Longitude du point cl\xE9 de la localisation"
+          description: "A valoriser avec la longitude du point cl\xE9 de la localisation"
           examples:
           - '2.333333'
         height:
@@ -1217,8 +1793,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/height
-          description: "Altitude du point cl\xE9 de la localisation, en m\xE8tre,\
-            \ ignor\xE9 c\xF4t\xE9 NexSIS. "
+          description: "A valoriser avec l'altitude du point cl\xE9 de la localisation,\
+            \ en m\xE8tre, ignor\xE9 c\xF4t\xE9 NexSIS. "
           examples:
           - 120
         heading:
@@ -1227,7 +1803,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/heading
-          description: "En degr\xE9"
+          description: "A valoriser en degr\xE9s"
           examples:
           - 96
         speed:
@@ -1236,8 +1812,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/speed
-          description: "Vitesse en km/h, notamment fournie par eCall, tel, nouveau\
-            \ AML, \u2026"
+          description: A valoriser en km/h (notamment fournie par eCall, tel, nouveau
+            AML)
           examples:
           - 34
         precision:
@@ -1246,12 +1822,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/coord/precision
-          description: "Indique via une nomenclature le niveau de pr\xE9cision des\
-            \ coordonn\xE9es fournies par le syst\xE8me emetteur.\nCITY=Pr\xE9cision\
-            \ \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0 l'\xE9chelle\
-            \ de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9e GPS\
-            \ exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable par\
-            \ l'\xE9metteur"
+          description: "A valoriser avec le niveau de pr\xE9cision des coordonn\xE9\
+            es fournies par le syst\xE8me emetteur. Cf. nomenclature associ\xE9e.\n\
+            CITY=Pr\xE9cision \xE0 l'\xE9chelle de la ville, STREET=Pr\xE9cision \xE0\
+            \ l'\xE9chelle de la rue, ADDRESS=Adresse pr\xE9cise, EXACT=Point coordonn\xE9\
+            e GPS exact, UNKNOWN=Pr\xE9cision de la localisation non \xE9valuable\
+            \ par l'\xE9metteur"
           enum:
           - VILLE
           - RUE
@@ -1793,7 +2369,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/contact/type
-          description: "Type de l'URI utilis\xE9e"
+          description: "A valoriser avec le type de l'URI utilis\xE9e. Cf nomenclature\
+            \ associ\xE9e."
           enum:
           - TEL
           - EMAIL
@@ -1809,14 +2386,16 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/contact/details
-          description: "Valeur de l'URI utilis\xE9e pour contacter la ressource"
+          description: "A valoriser avec la valeur de l'URI utilis\xE9e\nLe format\
+            \ attendu pour un num\xE9ro de t\xE9l\xE9phone est le suivant : +{indicatif\
+            \ pays}{num\xE9ro de t\xE9l\xE9phone}"
           examples:
-          - 0671830530
+          - '+33671830530'
       additionalProperties: false
       example: example.json#/mobilizedResource/0/contact
       examples:
       - type: PHNADD
-        details: 0671830530
+        details: '+33671830530'
     detailedName:
       type: object
       title: "Traits non stricts de l'identit\xE9"
@@ -1909,6 +2488,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3,5}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -1983,6 +2563,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
+          pattern: fr(\.[\w-]+){2,4}
           examples:
           - fr.health.samu440
         patient:
@@ -2034,6 +2615,11 @@ components:
           example: example.json#/patient/sex
           description: "Sexe du patient, suivant le libell\xE9 court de la nomenclature\
             \ SI-SAMU-NOMENC_SEXE"
+          enum:
+          - MASC
+          - FEM
+          - AUTRE
+          - INCONNU
           examples:
           - F
         nir:
@@ -2072,6 +2658,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
+          pattern: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -2093,6 +2680,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
+          pattern: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -2520,6 +3108,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3,5}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2563,6 +3152,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
+          pattern: fr(\.[\w-]+){2,4}
           examples:
           - fr.health.samu440
         patient:
@@ -2780,7 +3370,7 @@ components:
           example: example.json#/event/samuId
           description: "Num\xE9ro du SAMU r\xE9gulant la mission SMUR. \nA valoriser\
             \ par fr.health.samuXXX :  {pays}.{domaine}.{organisation}\n"
-          pattern: '[a-zA-Z]{2,3}\.[a-zA-Z]+\..*'
+          pattern: '[a-z]{2,3}\.[a-z]+\.\w*'
           examples:
           - fr.health.samu440
         fileId:
@@ -3293,22 +3883,24 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/datetime
-          description: date et heure d'engagement de la ressource
+          description: A valoriser avec la date et heure d'engagement de la ressource/du
+            vecteur
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         resourceId:
           type: string
           title: "ID Ressource partag\xE9"
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/resourceId
-          description: "ID partag\xE9 unique de la ressource engag\xE9e, valoris\xE9\
-            \ comme suit :\n{orgID}.resource.{ID unique de la ressource partag\xE9\
-            e}\nOU - uniquement dans le cas o\xF9 un ID unique de ressource ne peut\
-            \ pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.resource.{sendercaseId}.{n\xB0\
-            \ d\u2019ordre chronologique de la ressource}"
+          description: "A valoriser avec l'identifiant partag\xE9 unique de la ressource\
+            \ engag\xE9e, norm\xE9 comme suit :\n{orgID}.resource.{ID unique de la\
+            \ ressource partag\xE9e}\nOU - uniquement dans le cas o\xF9 un ID unique\
+            \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
+            taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
+            \ de la ressource}"
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -3319,10 +3911,12 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/requestId
-          description: "Identifiant unique partag\xE9 de la demande de ressource (si\
-            \ la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une demande de ressource),\
-            \ valoris\xE9 comme suit :\n{orgID}.request.{ID unique de la demande dans\
-            \ le syst\xE8me \xE9metteur}"
+          description: "A valoriser avec l'identifiant unique partag\xE9 de la demande\
+            \ de ressource (si la ressource a \xE9t\xE9 engag\xE9e suite \xE0 une\
+            \ demande de ressource), norm\xE9 comme suit :\n{orgID}.request.{ID unique\
+            \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
+            \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            ro d\u2019ordre chronologique}"
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -3333,8 +3927,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/missionId
-          description: "Num\xE9ro de mission unique du central d\u2019appel (PSAP,\
-            \ \u2026) qui a d\xE9clench\xE9 le vecteur"
+          description: "A valoriser avec le num\xE9ro de mission unique du central\
+            \ d\u2019appel (PSAP, \u2026) qui a d\xE9clench\xE9 le vecteur"
           examples:
           - DRFR15DDXAAJJJ0000.M001
         orgId:
@@ -3343,7 +3937,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/orgId
-          description: "Organisation \xE0 laquelle appartient la ressource"
+          description: "A valoriser avec l'identifiant de l'organisation \xE0 laquelle\
+            \ appartient la ressource, norm\xE9 comme suit : \n{pays}.{domaine}.{organisation}"
           examples:
           - fr.health.samu440
         centerName:
@@ -3352,7 +3947,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/centerName
-          description: Lieu de garage principal
+          description: A valoriser avec le lieu de garage principal
           examples:
           - CHU Nantes
         resourceType:
@@ -3361,9 +3956,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/resourceType
-          description: "Type de ressource mobilis\xE9e : Smur, Hospitaliers (hors\
-            \ Smur), Professionnels Lib\xE9raux, Ambulanciers priv\xE9s (Transporteurs\
-            \ Sanitaires Urgent), etc."
+          description: "A valoriser avec le yype de ressource mobilis\xE9e : cf.nomenclature\
+            \ associ\xE9e."
           enum:
           - SMUR
           - HOSPIT
@@ -3383,9 +3977,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/vehiculeType
-          description: "Type de vecteur mobilis\xE9 : V\xE9hicule L\xE9ger M\xE9dicalis\xE9\
-            , Ambulance de r\xE9animation, Ambulance de r\xE9animation Bariatrique,\
-            \ Ambulance de r\xE9animation P\xE9diatrique, etc."
+          description: "A valoriser avec le type de vecteur mobilis\xE9 : cf. nomenclature\
+            \ associ\xE9e"
           enum:
           - AASC
           - VLSC
@@ -3466,17 +4059,17 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/plate
-          description: "N\xB0 d'immatriculation du vecteur"
+          description: "A valoriser avec le n\xB0 d'immatriculation du vecteur"
           examples:
-          - None
+          - AB-123-CD
         name:
           type: string
           title: Nom
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/name
-          description: "Nom donn\xE9 \xE0 la ressource par l\u2019organisation d\u2019\
-            appartenance"
+          description: "A valoriser avec le nom donn\xE9 \xE0 la ressource par l\u2019\
+            organisation d\u2019appartenance"
           examples:
           - SMUR 123
         centerCity:
@@ -3485,7 +4078,7 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/centerCity
-          description: Code INSEE de la commune du centre d'affectation
+          description: A valoriser avec le code INSEE de la commune du centre d'affectation
           pattern: '[0-9]{5}'
           examples:
           - 44109
@@ -3509,10 +4102,10 @@ components:
             x-cols: 6
             example: example.json#/mobilizedResource/0/freetext/0
             description: "Texte libre permettant de passer toute autre information\
-              \ sur la ressource (\xE9quipements suppl\xE9mentaires / particuliers,\
-              \ particularit\xE9s du vecteur)"
+              \ sur la ressource (\xE9quipements suppl\xE9mentaires / sp\xE9cifiques,\
+              \ particularit\xE9s du vecteur, etc.)"
             examples:
-            - None
+            - "SMUR p\xE9diatrique"
       additionalProperties: false
       example: example.json#/mobilizedResource/0
     link:
@@ -5321,10 +5914,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
-            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
-            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
-            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
             \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
             e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
@@ -5402,17 +5995,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/datetime
+          description: A valoriser avec la date et heure d'engagement de changement
+            vers le nouveau statut
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         status:
           type: string
           title: Statut du vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/status
-          description: Dernier statut du vecteur
+          description: "A valoriser avec le statut du vecteur. Cf nomenclature associ\xE9\
+            e."
           enum:
           - DECISION
           - DECLENCHE
@@ -5432,28 +6028,23 @@ components:
           - RET-BASE
           - REN-BASE
           examples:
-          - None
+          - ARRIVE
         availability:
           type: boolean
           title: "Disponibilit\xE9 du vecteur"
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/state/0/availability
-          description: 'Indique si le vecteur est disponible / indisponible
-
-            TRUE = DISPONIBLE
-
-            FALSE = INDISPONIBLE
-
-            VIDE = INCONNU'
+          description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
+            \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
           examples:
-          - None
+          - 'FALSE'
       additionalProperties: false
       example: example.json#/mobilizedResource/0/state/0
       examples:
-      - datetime: None
-        status: None
-        availability: None
+      - datetime: '2022-09-27T08:23:34+02:00'
+        status: ARRIVE
+        availability: 'FALSE'
     resourcesRequest:
       $id: classpath:/json-schema/schema#
       x-id: RS-DR.schema.json#
@@ -5470,10 +6061,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
-            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
-            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
-            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
             \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
             e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
@@ -5505,7 +6096,7 @@ components:
             \ \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
             ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
-            \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
           examples:
           - 'fr.health.samu770.request.1249875
@@ -5517,19 +6108,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/datetime
-          description: "datetime de cr\xE9ation de la demande"
+          description: "A valoriser avec le groupe date heure de cr\xE9ation de la\
+            \ demande"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         convention:
           type: string
           title: Cadre conventionnel
           x-health-only: false
           x-cols: 6
           example: example.json#/request/convention
-          description: "D\xE9crit le cadre conventionnel de la demande. Cf nomenclature\
-            \ associ\xE9e"
+          description: "A valoriser avec le cadre conventionnel de la demande. Cf\
+            \ nomenclature associ\xE9e"
           enum:
           - DRSIS
           - MISSION
@@ -5542,15 +6134,15 @@ components:
           - AUTRE2
           - AUTRE3
           examples:
-          - None
+          - HORS
         purpose:
           type: string
           title: "Effet \xE0 obtenir"
           x-health-only: false
           x-cols: 6
           example: example.json#/request/purpose
-          description: "Motif de la demande de ressource aupr\xE8s du partenaire,\
-            \ voir liste des effets \xE0 obtenir identifi\xE9s"
+          description: "A valoriser avec le motif de la demande de ressource aupr\xE8\
+            s du partenaire. Cf Nomenclature associ\xE9e."
           enum:
           - SAP
           - REGUL
@@ -5565,16 +6157,17 @@ components:
           - BRANCARD
           - BARIA
           examples:
-          - None
+          - SMUR
         deadline:
           type: string
           title: "D\xE9lai souhait\xE9"
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "D\xE9lai d'intervention souhait\xE9 (en minutes). "
+          description: "A valoriser avec le d\xE9lai d'intervention souhait\xE9 en\
+            \ minutes "
           examples:
-          - None
+          - 10
         freetext:
           type: string
           title: "Pr\xE9cisions sur la demande"
@@ -5583,18 +6176,18 @@ components:
           example: example.json#/request/freetext
           description: "Texte libre permettant de d\xE9tailler la demande"
           examples:
-          - None
+          - "Pr\xE9voir un kit p\xE9diatrique"
       additionalProperties: false
       example: example.json#/request
       examples:
       - requestId: 'fr.health.samu770.request.1249875
 
           fr.health.samu690.request.DRFR15690242370035.3'
-        datetime: None
-        convention: None
-        purpose: None
-        deadline: None
-        freetext: None
+        datetime: '2022-09-27T08:23:34+02:00'
+        convention: HORS
+        purpose: SMUR
+        deadline: 10
+        freetext: "Pr\xE9voir un kit p\xE9diatrique"
     resourcesResponse:
       $id: classpath:/json-schema/schema#
       x-id: RS-RR.schema.json#
@@ -5612,10 +6205,10 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant partag\xE9 de l'affaire/dossier, g\xE9n\xE9r\xE9\
-            \ une seule fois par le syst\xE8me du partenaire qui recoit la primo-demande\
-            \ de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9 comme suit\
-            \ lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
             \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
             e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
@@ -5629,9 +6222,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/requestId
-          description: "Identifiant unique partag\xE9 de la demande de ressource,\
-            \  g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui\
-            \ \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
+          description: "A valoriser avec l'identifiant unique partag\xE9 de la demande\
+            \ de ressource,  g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire\
+            \ qui \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
             ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
@@ -5658,52 +6251,54 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/response/datetime
-          description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
+          description: "Groupe date heure de d\xE9but de la demande"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         answer:
           type: string
           title: "R\xE9ponse"
           x-health-only: false
           x-cols: 6
           example: example.json#/response/answer
-          description: "oui / non / oui partiel / diff\xE9r\xE9"
+          description: "A valoriser avec la r\xE9ponse apport\xE9e. Cf Nomenclature\
+            \ associ\xE9e\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
           enum:
           - ACCEPTEE
           - REFUSEE
           - PARTIELLE
           - DIFFEREE
           examples:
-          - None
+          - ACCEPTEE
         deadline:
           type: string
           title: "D\xE9lai de r\xE9ponse"
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
-            diteur (en minutes)"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
+            \ l'exp\xE9diteur (en minutes),"
           examples:
-          - None
+          - 10
         freetext:
           type: string
           title: "Pr\xE9cisions sur la r\xE9ponse"
           x-health-only: false
           x-cols: 6
           example: example.json#/response/freetext
-          description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
-            \ \xE0 la r\xE9ponse. Le motif de refus est notifi\xE9 dans ce champ."
+          description: "Commentaire libre permettant d'apporter toutes pr\xE9cisions\
+            \ utiles \xE0 la r\xE9ponse. Le motif de refus est notifi\xE9 dans ce\
+            \ champ."
           examples:
-          - None
+          - SMUR 1 non dispo
       additionalProperties: false
       example: example.json#/response
       examples:
-      - datetime: None
-        answer: None
-        deadline: None
-        freetext: None
+      - datetime: '2022-09-27T08:23:34+02:00'
+        answer: ACCEPTEE
+        deadline: 10
+        freetext: SMUR 1 non dispo
     rpis:
       $id: classpath:/json-schema/schema#
       x-id: RPIS.schema.json#
@@ -5752,6 +6347,10 @@ components:
             A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.\nPermet de\
             \ d\xE9duire avec la donn\xE9e \"niveau de m\xE9dicalisation du transport\"\
             , si un UMHP est devenu un SMUR. "
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
           examples:
           - PARAMED
       additionalProperties: false
@@ -5828,6 +6427,26 @@ components:
             \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
             \ est sans transport associ\xE9, les objets Destination et Transport sont\
             \ facultatifs. "
+          enum:
+          - OK
+          - TEMP
+          - SEUL
+          - AFAMILLE
+          - AMED
+          - AFDO
+          - ATIERS
+          - MOYPERSO
+          - Code vecteur choisi
+          - REFPAT
+          - REFFAM
+          - PASREAKO
+          - PASREAOK
+          - REA
+          - TRANSPOR
+          - ADM
+          - FUGUE
+          - REFAUTRE
+          - RAS
           examples:
           - TEMP
         destination:
@@ -6273,6 +6892,17 @@ components:
           description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
             \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
             \ SI SAMU-TYPE_MOYEN."
+          enum:
+          - SMUR
+          - HOSPIT
+          - LIB
+          - 'TSU '
+          - SIS
+          - AASC
+          - FDO
+          - ADM
+          - DAE
+          - AUTRE
           examples:
           - SMUR
         resourceType:
@@ -6284,6 +6914,78 @@ components:
           description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
             \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
             \ la nomenclature CISU-TYPE_VECTEUR."
+          enum:
+          - AASC
+          - VLSC
+          - VPSP
+          - AUTRESC
+          - AUTREVECT
+          - CONSEIL
+          - TAXI
+          - TRANSP
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - AUTRE
+          - AUTRETRANS
+          - INCONNU
+          - DEFIB
+          - DAE
+          - FSI
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - LIB
+          - MEDC
+          - MEDV
+          - PHARMA
+          - INF
+          - MEDSPE
+          - DENT
+          - AUTREPRO
+          - SIS
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - DRAGON
+          - AVSC
+          - MOYSSE
+          - AUTRESIS
+          - NAVISIS
+          - SMUR
+          - VLM
+          - VL
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
           examples:
           - AR, VLM, VSAV
         teamCare:
@@ -6294,6 +6996,10 @@ components:
           example: example.json#/orientation/decision/teamCare
           description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
             A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
           examples:
           - PARAMED
       additionalProperties: false
@@ -6313,6 +7019,111 @@ components:
       additionalProperties: true
       examples:
       - {}
+    resourcesStatus:
+      $id: classpath:/json-schema/schema#
+      x-id: RS-SR.schema.json#
+      example: example.json#
+      type: object
+      title: resourcesStatus
+      required:
+      - caseId
+      - resourceId
+      - datetime
+      - status
+      properties:
+        caseId:
+          type: string
+          title: Identifiant affaire/dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/caseId
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
+          examples:
+          - fr.health.samu440.DRFR15440241550012
+        resourceId:
+          type: string
+          title: "ID Ressource partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/resourceId
+          description: "A valoriser avec l'identifiant partag\xE9 unique de la ressource\
+            \ engag\xE9e , norm\xE9 comme suit :\n{orgID}.R.{ID unique de la ressource\
+            \ partag\xE9e}\nOu, uniquement dans le cas o\xF9 un ID unique de ressource\
+            \ ne peut pas \xEAtre garanti par l'organisation propri\xE9taire :\n{orgID}.R.{ID\
+            \ du dossier partag\xE9}.{num\xE9ro d\u2019ordre chronologique ressource}\n\
+            \nN.B. Il s'agit de l'orgId de l'organisation \xE0 qui appartient la ressource"
+          examples:
+          - 'fr.health.samu770.resource.VLM250 ;
+
+            fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
+        datetime:
+          type: string
+          title: Date/heure de changement de statut
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/datetime
+          description: "A valoriser avec la date et heure de changement du statut.\
+            \ \nSi la valeur est vide/inconnue alors c'est le datetime de cr\xE9ation\
+            \ du message qui est indiqu\xE9."
+          pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
+          format: date-time
+          examples:
+          - '2022-09-27T08:23:34+02:00'
+        status:
+          type: string
+          title: Statut du vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/status
+          description: "A valoriser avec le statut du vecteur. Cf Nomenclature associ\xE9\
+            e."
+          enum:
+          - DECISION
+          - DECLENCHE
+          - DEPART
+          - ARRIVE
+          - PEC
+          - ANNULE
+          - BILAN
+          - TRANSPOR
+          - ETAPE1
+          - TRANSP2
+          - ETAPE2
+          - TRANSP3
+          - DESTIN
+          - FINPEC
+          - RETOUR
+          - RET-BASE
+          - REN-BASE
+          examples:
+          - ARRIVE
+        availability:
+          type: boolean
+          title: "Disponibilit\xE9 du vecteur"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/availability
+          description: "A valoriser de mani\xE8re \xE0 indiquer la disponibilit\xE9\
+            \ du vecteur.\nTRUE = DISPONIBLE\nFALSE = INDISPONIBLE\nVIDE = INCONNU"
+          examples:
+          - 'FALSE'
+      additionalProperties: false
+      examples:
+      - caseId: fr.health.samu440.DRFR15440241550012
+        resourceId: 'fr.health.samu770.resource.VLM250 ;
+
+          fr.health.samu440.resource.DRFR15DDXAAJJJ0000.1'
+        datetime: '2022-09-27T08:23:34+02:00'
+        status: ARRIVE
+        availability: 'FALSE'
     technical:
       $id: classpath:/json-schema/schema#
       x-id: TECHNICAL.schema.json#
@@ -6466,6 +7277,20 @@ components:
           - None
         objectLevel1:
           $ref: '#/components/schemas/levelOneData'
+        nomenclatureField:
+          type: string
+          title: Nomenclature
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/nomenclatureField
+          description: Enum from extenal nomenclature file
+          enum:
+          - MASC
+          - FEM
+          - AUTRE
+          - INCONNU
+          examples:
+          - None
       additionalProperties: false
     technicalObject:
       type: object

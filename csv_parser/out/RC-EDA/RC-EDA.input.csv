@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,"REGEX: fr(\.[\w-]+){3,5}"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
@@ -19,16 +19,16 @@ Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général
 
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,,,,,,1..1,X,qualification,,
-,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,,,,,1.0,0..n,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
-,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,
+,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,,,,,1.0,0..n,X,codeAndLabel,,
+,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,1.0,1..1,,string,,
 ,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,CE/CK,raison de l'appel,,,1.0,1..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,CI,Type de lieu d'intervention,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Type_de_lieu
 ,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,,,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Patients-Victimes,,,,,,,victims,,,,,,0..1,X,victims,,
-,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,SEVERAL,count,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, PLUSIEURS, BEAUCOUP, INCONNU, NON DEFINI"
-,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,CHILD,mainVictim,,,,,,0..1,,string,X,"ENUM: NOURRISSON, ENFANT, ADULTE, SENIOR"
+,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,PLUSIEURS,count,NV,Nombre de victimes,,,,0..1,,string,X,"ENUM: 0, 1, PLUSIEURS, BEAUCOUP, INCONNU, NON DEFINI"
+,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,ENFANT,mainVictim,,,,,,0..1,,string,X,"ENUM: NOURRISSON, ENFANT, ADULTE, SENIOR, ENCEINTE"
 ,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,,,,,,0..1,,string,,
 Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,,,,,,1..1,X,location,,
 ,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,,,,,,1..1,,string,,
@@ -36,9 +36,9 @@ Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location
 15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
 ","Lycée Pierre de Coubertin - 12 rue de l'Amitié 77288 Melun, Musée Bossuet - Accès 2 - 77048 Saint-Albray",locLabel,,,,,,0..1,,string,,
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
-,Identifiant(s) du lieu,,,,,Lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,,,,,,0..n,X,externalLocationId,,
-,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
-,,Identifiant,,,,L'identifiant en lui-même,920000650 ,value,,,,,,1..1,,string,,
+,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,,,,,,0..n,X,externalLocationId,,
+,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,,,,,,1..1,,string,X,"ENUM: FINESS_ADMINISTRATIF, FINESS_GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
+,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,,,,,,1..1,,string,,REGEX: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
 ,Détails de l'adresse,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 
@@ -55,7 +55,7 @@ Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferr
 Si les attributs ""type"" et ""name"" de ""wayName"" sont également renseignés, alors ""complete"" doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name}
 ,,,Type,,,A valoriser avec le type de la voie,Boulevard,type,,,,,,0..1,,string,,
 ,,,Nom,,,A valoriser avec le nom de la voie,du Montparnasse,name,,,,,,0..1,,string,,
-,Détails de la commune,,,,,,,city,,,,,,0..1,X,city,,
+,Détails de la commune,,,,,Objet qui permet de transmettre les détails de la commune,,city,,,,,,0..1,X,city,,
 ,,Nom de la commune,,,,A valoriser avec le nom officiel de la commune,Lille,name,LC,Nom de la commune,,,,0..1,,string,,
 ,,Code INSEE de la commune,,,,"A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. 
 La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).",59350,inseeCode,LZ,Code INSEE de la commune,,,,0..1,,string,,REGEX: [0-9]{5}
@@ -74,8 +74,8 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 ,,Entrée,,,,A valoriser avec le nom de l'entrée,Zone Sud,entrance,,,,,,0..1,,string,,
 ,,Service,,,,"A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.",Infirmerie,entity,,,,,,0..1,,string,,
 ,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
-Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,,,,,,0..1,,string,,
-,Géometrie associée,,,,,,,geometry,,,,,,0..1,X,geometry,,
+Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,,,,,,0..1,,string,,"REGEX: \+\d{5,18}"
+,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,,,,,,0..1,X,geometry,,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
 Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,,,,,,1..1,,datetime,,
 ,,Point ,,,,"Objet qui permet de décrire un point géographique.
@@ -111,7 +111,7 @@ L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé a
 ,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
-Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,,,,,,1..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET"
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,,,,,,1..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE_INTERNET"
 ,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",uri,,,,,,1..1,,string,,
 ,Pays,,,,,,France,country,,,,,,1..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
@@ -149,8 +149,8 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
 ,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,,,,,,1..1,,string,,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
-,,,Type de contact,,,"A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO",TEL,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
-,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée
+,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
+,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée.
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,,,,,,1..1,,string,,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
 

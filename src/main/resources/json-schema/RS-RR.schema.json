@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RR.schema.json#",
-    "version": "24.07.18",
+    "version": "24.07.20",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
@@ -18,15 +18,15 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant partag\u00e9 de l'affaire/dossier, g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui recoit la primo-demande de secours (cr\u00e9ateur du dossier). \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir \u00eatre g\u00e9n\u00e9r\u00e9 de fa\u00e7on d\u00e9centralis\u00e9e et ne pr\u00e9senter aucune ambigu\u00eft\u00e9.\n Il doit \u00eatre unique dans l'ensemble des syst\u00e8mes : le num\u00e9ro de dossier fourni par celui qui g\u00e9n\u00e8re l'identifiant partag\u00e9 doit donc \u00eatre un num\u00e9ro unique dans son syst\u00e8me."
+            "description": "A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
         },
         "requestId": {
             "type": "string",
-            "title": "ID Demande partag\u00e9",
+            "title": "ID Demande partagé",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/requestId",
-            "description": "Identifiant unique partag\u00e9 de la demande de ressource,  g\u00e9n\u00e9r\u00e9 une seule fois par le syst\u00e8me du partenaire qui \u00e9met la demande \nIl est valoris\u00e9 comme suit lors de sa cr\u00e9ation : \n{orgID}.request.{ID unique de la demande dans le syst\u00e8me \u00e9metteur}\n\nOU - uniquement si un ID unique de la demande n'est pas disponible : \nOrgId \u00e9metteur}.request.{senderCaseId}.{num\u00e9ro d\u2019ordre chronologique}"
+            "description": "A valoriser avec l'identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande \nIl est valorisé comme suit lors de sa création : \n{orgID}.request.{ID unique de la demande dans le système émetteur}\n\nOU - uniquement si un ID unique de la demande n'est pas disponible : \nOrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}"
         },
         "response": {
             "$ref": "#/definitions/response"
@@ -35,7 +35,7 @@
     "definitions": {
         "response": {
             "type": "object",
-            "title": "R\u00e9ponse \u00e0 la demande de ressources",
+            "title": "Réponse à la demande de ressources",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -45,21 +45,21 @@
             "properties": {
                 "datetime": {
                     "type": "string",
-                    "title": "Date Heure de r\u00e9ponse",
+                    "title": "Date Heure de réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/datetime",
-                    "description": "Voir liste des effets \u00e0 obtenir identifi\u00e9s",
+                    "description": "Groupe date heure de début de la demande",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
                 "answer": {
                     "type": "string",
-                    "title": "R\u00e9ponse",
+                    "title": "Réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/answer",
-                    "description": "oui / non / oui partiel / diff\u00e9r\u00e9",
+                    "description": "A valoriser avec la réponse apportée. Cf Nomenclature associée\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE",
                     "enum": [
                         "ACCEPTEE",
                         "REFUSEE",
@@ -69,19 +69,19 @@
                 },
                 "deadline": {
                     "type": "string",
-                    "title": "D\u00e9lai de r\u00e9ponse",
+                    "title": "Délai de réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/deadline",
-                    "description": "Indique le d\u00e9lai de r\u00e9ponse auquel s'engage l'exp\u00e9diteur (en minutes)"
+                    "description": "A valoriser avec le délai de réponse auquel s'engage l'expéditeur (en minutes),"
                 },
                 "freetext": {
                     "type": "string",
-                    "title": "Pr\u00e9cisions sur la r\u00e9ponse",
+                    "title": "Précisions sur la réponse",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/freetext",
-                    "description": "Commentaire libre pour apporter toutes pr\u00e9cisions utiles \u00e0 la r\u00e9ponse. Le motif de refus est notifi\u00e9 dans ce champ."
+                    "description": "Commentaire libre permettant d'apporter toutes précisions utiles à la réponse. Le motif de refus est notifié dans ce champ."
                 }
             },
             "additionalProperties": false,

@@ -59,7 +59,8 @@ import java.util.Objects;
      Technical.JSON_PROPERTY_PHONE_NUMBER_FIELD,
      Technical.JSON_PROPERTY_DATE_FIELD, Technical.JSON_PROPERTY_EMAIL_FIELD,
      Technical.JSON_PROPERTY_DATETIME_FIELD,
-     Technical.JSON_PROPERTY_OBJECT_LEVEL1})
+     Technical.JSON_PROPERTY_OBJECT_LEVEL1,
+     Technical.JSON_PROPERTY_NOMENCLATURE_FIELD})
 @JsonTypeName("technical")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -190,6 +191,47 @@ public class Technical {
 
   public static final String JSON_PROPERTY_OBJECT_LEVEL1 = "objectLevel1";
   private LevelOneData objectLevel1;
+
+  /**
+   * Enum from extenal nomenclature file
+   */
+  public enum NomenclatureFieldEnum {
+    MASC("MASC"),
+
+    FEM("FEM"),
+
+    AUTRE("AUTRE"),
+
+    INCONNU("INCONNU");
+
+    private String value;
+
+    NomenclatureFieldEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static NomenclatureFieldEnum fromValue(String value) {
+      for (NomenclatureFieldEnum b : NomenclatureFieldEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_NOMENCLATURE_FIELD =
+      "nomenclatureField";
+  private NomenclatureFieldEnum nomenclatureField;
 
   public Technical() {}
 
@@ -580,6 +622,29 @@ public class Technical {
     this.objectLevel1 = objectLevel1;
   }
 
+  public Technical nomenclatureField(NomenclatureFieldEnum nomenclatureField) {
+
+    this.nomenclatureField = nomenclatureField;
+    return this;
+  }
+
+  /**
+   * Enum from extenal nomenclature file
+   * @return nomenclatureField
+   **/
+  @JsonProperty(JSON_PROPERTY_NOMENCLATURE_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public NomenclatureFieldEnum getNomenclatureField() {
+    return nomenclatureField;
+  }
+
+  @JsonProperty(JSON_PROPERTY_NOMENCLATURE_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNomenclatureField(NomenclatureFieldEnum nomenclatureField) {
+    this.nomenclatureField = nomenclatureField;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -604,7 +669,8 @@ public class Technical {
         Objects.equals(this.dateField, technical.dateField) &&
         Objects.equals(this.emailField, technical.emailField) &&
         Objects.equals(this.datetimeField, technical.datetimeField) &&
-        Objects.equals(this.objectLevel1, technical.objectLevel1);
+        Objects.equals(this.objectLevel1, technical.objectLevel1) &&
+        Objects.equals(this.nomenclatureField, technical.nomenclatureField);
   }
 
   @Override
@@ -613,7 +679,7 @@ public class Technical {
                         enumerationField, numberField, objectField, arrayField,
                         enumArrayField, requiredArray, arrayWithMaxLength,
                         phoneNumberField, dateField, emailField, datetimeField,
-                        objectLevel1);
+                        objectLevel1, nomenclatureField);
   }
 
   @Override
@@ -661,6 +727,9 @@ public class Technical {
         .append("\n");
     sb.append("    objectLevel1: ")
         .append(toIndentedString(objectLevel1))
+        .append("\n");
+    sb.append("    nomenclatureField: ")
+        .append(toIndentedString(nomenclatureField))
         .append("\n");
     sb.append("}");
     return sb.toString();

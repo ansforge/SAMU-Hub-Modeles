@@ -2,10 +2,10 @@
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "request": {
         "requestId": "fr.health.samu770.request.1249875\nfr.health.samu690.request.DRFR15690242370035.3",
-        "datetime": "None",
-        "convention": "None",
-        "purpose": "None",
-        "deadline": "None",
-        "freetext": "None"
+        "datetime": "2022-09-27T08:23:34+02:00",
+        "convention": "HORS",
+        "purpose": "SMUR",
+        "deadline": 10,
+        "freetext": "Prévoir un kit pédiatrique"
     }
 }

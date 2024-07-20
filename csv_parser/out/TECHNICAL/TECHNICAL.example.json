@@ -31,5 +31,6 @@
         "object2Level2": {
             "object2Level3": {}
         }
-    }
+    },
+    "nomenclatureField": "None"
 }

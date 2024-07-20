@@ -53,7 +53,8 @@ public class Response {
   private OffsetDateTime datetime;
 
   /**
-   * oui / non / oui partiel / différé
+   * A valoriser avec la réponse apportée. Cf Nomenclature associée ACCEPTEE,
+   * REFUSEE, PARTIELLE, DIFFEREE
    */
   public enum AnswerEnum {
     ACCEPTEE("ACCEPTEE"),
@@ -107,7 +108,7 @@ public class Response {
   }
 
   /**
-   * Voir liste des effets à obtenir identifiés
+   * Groupe date heure de début de la demande
    * @return datetime
    **/
   @JsonProperty(JSON_PROPERTY_DATETIME)
@@ -130,7 +131,8 @@ public class Response {
   }
 
   /**
-   * oui / non / oui partiel / différé
+   * A valoriser avec la réponse apportée. Cf Nomenclature associée ACCEPTEE,
+   *REFUSEE, PARTIELLE, DIFFEREE
    * @return answer
    **/
   @JsonProperty(JSON_PROPERTY_ANSWER)
@@ -153,8 +155,8 @@ public class Response {
   }
 
   /**
-   * Indique le délai de réponse auquel s&#39;engage l&#39;expéditeur (en
-   *minutes)
+   * A valoriser avec le délai de réponse auquel s&#39;engage l&#39;expéditeur
+   *(en minutes),
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)
@@ -177,8 +179,8 @@ public class Response {
   }
 
   /**
-   * Commentaire libre pour apporter toutes précisions utiles à la réponse. Le
-   *motif de refus est notifié dans ce champ.
+   * Commentaire libre permettant d&#39;apporter toutes précisions utiles à la
+   *réponse. Le motif de refus est notifié dans ce champ.
    * @return freetext
    **/
   @JsonProperty(JSON_PROPERTY_FREETEXT)
