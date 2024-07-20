@@ -68,4 +68,20 @@ public class TestMessagesHelper {
         }
         return json;
     }
+
+    /**
+     * Allows to get a valid sample message as a JSON String
+     *
+     * @param messagePath complete filename of the valid message template (RC-EDA.json, RS-INFO.json, EMSI-DC.json, etc.)
+     * @return the sample valid message as a JSON String
+     * @throws IOException if the specified filename does not correspond to an existing valid sample message
+     */
+    public static String getValidMessage(String messagePath) throws IOException {
+        String json;
+        try (InputStream is = TestMessagesHelper.class.getClassLoader().getResourceAsStream("sample/valid/" + messagePath)) {
+            assert is != null;
+            json = new String(ByteStreams.toByteArray(is), StandardCharsets.UTF_8);
+        }
+        return json;
+    }
 }

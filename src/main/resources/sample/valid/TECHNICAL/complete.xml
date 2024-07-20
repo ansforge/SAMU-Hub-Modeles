@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TECHICAL>
+    <requiredStringField>requiredStringValue</requiredStringField>
+    <optionalStringField>optionalStringValue</optionalStringField>
+    <enumerationField>ENUM_VALUE_1</enumerationField>
+    <numberField>1</numberField>
+    <objectField>
+        <objectPropertyString>objectPropertyStringValue</objectPropertyString>
+        <objectPropertyNumber>1</objectPropertyNumber>
+        <objectPropertyRequiredString>objectPropertyRequiredStringValue</objectPropertyRequiredString>
+    </objectField>
+    <arrayField>arrayValue1</arrayField>
+    <arrayField>arrayValue2</arrayField>
+    <arrayField>arrayValue3</arrayField>
+    <arrayField>arrayValue4</arrayField>
+    <enumArrayField>ENUM_VALUE_10</enumArrayField>
+    <enumArrayField>ENUM_VALUE_20</enumArrayField>
+    <enumArrayField>ENUM_VALUE_30</enumArrayField>
+    <requiredArray>requiredArrayValue1</requiredArray>
+    <requiredArray>requiredArrayValue2</requiredArray>
+    <requiredArray>requiredArrayValue3</requiredArray>
+    <arrayWithMaxLength>arrayWithMaxLengthValue1</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue2</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue3</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue4</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue5</arrayWithMaxLength>
+    <phoneNumberField>0123456789</phoneNumberField>
+    <dateField>2020-01-01</dateField>
+    <emailField>email@domain.com</emailField>
+    <datetimeField>2022-09-27T08:25:54+02:00</datetimeField>
+    <objectLevel1>
+        <object1Level2>
+        </object1Level2>
+        <object2Level2>
+        </object2Level2>
+    </objectLevel1>
+</TECHICAL>
