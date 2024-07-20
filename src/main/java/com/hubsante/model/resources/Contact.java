@@ -48,7 +48,7 @@ import java.util.Objects;
 public class Contact {
 
   /**
-   * Type de l&#39;URI utilisée
+   * A valoriser avec le type de l&#39;URI utilisée. Cf nomenclature associée.
    */
   public enum TypeEnum {
     TEL("TEL"),
@@ -103,7 +103,7 @@ public class Contact {
   }
 
   /**
-   * Type de l&#39;URI utilisée
+   * A valoriser avec le type de l&#39;URI utilisée. Cf nomenclature associée.
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -126,7 +126,8 @@ public class Contact {
   }
 
   /**
-   * Valeur de l&#39;URI utilisée pour contacter la ressource
+   * A valoriser avec la valeur de l&#39;URI utilisée Le format attendu pour un
+   *numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}
    * @return details
    **/
   @JsonProperty(JSON_PROPERTY_DETAILS)

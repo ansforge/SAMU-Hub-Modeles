@@ -101,7 +101,7 @@ public class ExternalInfo {
 
     PHOTO("PHOTO"),
 
-    SITE_INTERNET("SITE INTERNET");
+    SITE_INTERNET("SITE_INTERNET");
 
     private String value;
 

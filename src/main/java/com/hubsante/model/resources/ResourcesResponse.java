@@ -69,14 +69,14 @@ public class ResourcesResponse {
   }
 
   /**
-   * Identifiant partagé de l&#39;affaire/dossier, généré une seule fois par le
-   *système du partenaire qui recoit la primo-demande de secours (créateur du
-   *dossier).  Il est valorisé comme suit lors de sa création :
-   *{pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir être généré
-   *de façon décentralisée et ne présenter aucune ambiguïté.  Il doit être
-   *unique dans l&#39;ensemble des systèmes : le numéro de dossier fourni par
-   *celui qui génère l&#39;identifiant partagé doit donc être un numéro unique
-   *dans son système.
+   * A valoriser avec l&#39;identifiant partagé de l&#39;affaire/dossier, généré
+   *une seule fois par le système du partenaire qui recoit la primo-demande de
+   *secours (créateur du dossier).  Il est valorisé comme suit lors de sa
+   *création :  {pays}.{domaine}.{organisation}.{senderCaseId}  Il doit pouvoir
+   *être généré de façon décentralisée et ne présenter aucune ambiguïté.  Il
+   *doit être unique dans l&#39;ensemble des systèmes : le numéro de dossier
+   *fourni par celui qui génère l&#39;identifiant partagé doit donc être un
+   *numéro unique dans son système.
    * @return caseId
    **/
   @JsonProperty(JSON_PROPERTY_CASE_ID)
@@ -99,12 +99,12 @@ public class ResourcesResponse {
   }
 
   /**
-   * Identifiant unique partagé de la demande de ressource,  généré une seule
-   *fois par le système du partenaire qui émet la demande  Il est valorisé comme
-   *suit lors de sa création :  {orgID}.request.{ID unique de la demande dans le
-   *système émetteur}  OU - uniquement si un ID unique de la demande n&#39;est
-   *pas disponible :  OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre
-   *chronologique}
+   * A valoriser avec l&#39;identifiant unique partagé de la demande de
+   *ressource,  généré une seule fois par le système du partenaire qui émet la
+   *demande  Il est valorisé comme suit lors de sa création :
+   *{orgID}.request.{ID unique de la demande dans le système émetteur}  OU -
+   *uniquement si un ID unique de la demande n&#39;est pas disponible :  OrgId
+   *émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}
    * @return requestId
    **/
   @JsonProperty(JSON_PROPERTY_REQUEST_ID)

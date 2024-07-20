@@ -2,7 +2,7 @@
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "mobilizedResource": [
         {
-            "datetime": "None",
+            "datetime": "2022-09-27T08:23:34+02:00",
             "resourceId": "fr.health.samu770.resource.VLM250\nfr.health.samu440.resource.DRFR15DDXAAJJJ0000.1",
             "requestId": "fr.health.samu770.request.1249875\nfr.health.samu690.request.DRFR15690242370035.3",
             "missionId": "DRFR15DDXAAJJJ0000.M001",
@@ -10,18 +10,18 @@
             "centerName": "CHU Nantes",
             "resourceType": "SMUR",
             "vehiculeType": "VLM",
-            "plate": "None",
+            "plate": "AB-123-CD",
             "name": "SMUR 123",
             "centerCity": 44109,
             "team": {
-                "teamCare": "None",
-                "name": "None"
+                "teamCare": "MED",
+                "name": "SMUR 1"
             },
             "state": [
                 {
-                    "datetime": "None",
-                    "status": "None",
-                    "availability": "None"
+                    "datetime": "2022-09-27T08:23:34+02:00",
+                    "status": "ARRIVE",
+                    "availability": "FALSE"
                 }
             ],
             "coord": {
@@ -34,10 +34,10 @@
             },
             "contact": {
                 "type": "PHNADD",
-                "details": "0671830530"
+                "details": "+33671830530"
             },
             "freetext": [
-                "None"
+                "SMUR pédiatrique"
             ]
         }
     ]

@@ -2,9 +2,9 @@
     "caseId": "fr.health.samu440.DRFR15440241550012",
     "requestId": "fr.health.samu770.request.1249875\nfr.health.samu690.request.DRFR15690242370035.3",
     "response": {
-        "datetime": "None",
-        "answer": "None",
-        "deadline": "None",
-        "freetext": "None"
+        "datetime": "2022-09-27T08:23:34+02:00",
+        "answer": "ACCEPTEE",
+        "deadline": 10,
+        "freetext": "SMUR 1 non dispo"
     }
 }
