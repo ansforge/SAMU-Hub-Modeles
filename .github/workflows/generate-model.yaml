@@ -121,6 +121,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/health || true
           rm -r ./src/main/java/com/hubsante/model/emsi || true
           rm -r ./src/main/java/com/hubsante/model/geolocation || true
+          rm -r ./src/main/java/com/hubsante/model/resources || true
           rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
