@@ -46,7 +46,7 @@ public class TechnicalValidatorTest extends AbstractValidatorTest {
         String[] expectedJsonErrors = {
                 "Could not validate message against schema : errors occurred. ",
                 "Issues found on the envelope: ",
-                " - $.phoneNumberField: does not match the regex pattern \\+?\\d*",
+                " - $.phoneNumberField: does not match the regex pattern \\+?[0-9]{2,14}",
                 " - $.datetimeField: 2022-09-27 08:25:54 Z02:00 is an invalid date-time",
                 " - $.datetimeField: does not match the regex pattern \\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                 " - $.dateField: does not match the regex pattern \\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])",
@@ -56,11 +56,11 @@ public class TechnicalValidatorTest extends AbstractValidatorTest {
 
         String[] expectedXmlErrors = {
                 "Could not validate message against schema : errors occurred. ",
-                "[cvc-pattern-valid: Value 'invalid_value' is not facet-valid with respect to pattern '\\+?\\d*' for type '#AnonType_phoneNumberFieldtechnical'.," +
+                "[cvc-pattern-valid: Value 'invalid_value' is not facet-valid with respect to pattern '\\+?[0-9]{2,14}' for type '#AnonType_phoneNumberFieldtechnical'.," +
                         " cvc-type.3.1.3: The value 'invalid_value' of element 'phoneNumberField' is not valid.," +
                         " cvc-pattern-valid: Value '2020 jan 1' is not facet-valid with respect to pattern '\\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])' for type '#AnonType_dateFieldtechnical'.," +
                         " cvc-type.3.1.3: The value '2020 jan 1' of element 'dateField' is not valid.," +
-                        " cvc-pattern-valid: Value 'email address@domain' is not facet-valid with respect to pattern '[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w-]{2,4}' for type '#AnonType_emailFieldtechnical'.," +
+                        " cvc-pattern-valid: Value 'email address@domain' is not facet-valid with respect to pattern '[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}' for type '#AnonType_emailFieldtechnical'.," +
                         " cvc-type.3.1.3: The value 'email address@domain' of element 'emailField' is not valid.," +
                         " cvc-datatype-valid.1.2.1: '2022-09-27 08:25:54 Z02:00' is not a valid value for 'dateTime'.," +
                         " cvc-type.3.1.3: The value '2022-09-27 08:25:54 Z02:00' of element 'datetimeField' is not valid.]"
