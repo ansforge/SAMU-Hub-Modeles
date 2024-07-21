@@ -1,0 +1,17 @@
+{
+  "requiredStringField": "requiredStringValue",
+  "objectField": [
+    {
+      "property": "value"
+    },
+    {
+      "property": "value"
+    }
+  ],
+  "requiredArray": [
+    "requiredArrayValue1",
+    "requiredArrayValue2",
+    "requiredArrayValue3"
+  ],
+  "objectLevel1": "value"
+}

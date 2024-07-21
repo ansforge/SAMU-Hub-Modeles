@@ -89,4 +89,60 @@ public class TechnicalValidatorTest extends AbstractValidatorTest {
         xmlValidationFails("TECHNICAL/expected-array.xml", expectedXmlErrors, TECHNICAL_XSD);
     }
 
+    @Test
+    @DisplayName("Messages with values or arrays in places where objects are expected should not pass validation")
+    public void technicalObjectDeserializationFails() throws IOException {
+        String[] expectedJsonErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Issues found on the envelope: ",
+                " - $.objectField: array found, object expected",
+                " - $.objectLevel1: string found, object expected"
+        };
+        jsonValidationFails("TECHNICAL/expected-object.json", expectedJsonErrors, TECHNICAL_SCHEMA);
+
+        String[] expectedXmlErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "[cvc-complex-type.2.4.a: Invalid content was found starting with element 'property'. " +
+                        "One of '{\"urn:emergency:cisu:2.0:technical\":objectPropertyString, " +
+                        "\"urn:emergency:cisu:2.0:technical\":objectPropertyNumber, " +
+                        "\"urn:emergency:cisu:2.0:technical\":objectPropertyRequiredString}' is expected., " +
+
+                        "cvc-complex-type.2.4.a: Invalid content was found starting with element 'objectField'. " +
+                        "One of '{\"urn:emergency:cisu:2.0:technical\":arrayField, \"urn:emergency:cisu:2.0:technical\":enumArrayField, " +
+                        "\"urn:emergency:cisu:2.0:technical\":requiredArray}' is expected., " +
+
+                        "cvc-complex-type.2.4.a: Invalid content was found starting with element 'property'. " +
+                        "One of '{\"urn:emergency:cisu:2.0:technical\":objectPropertyString, " +
+                        "\"urn:emergency:cisu:2.0:technical\":objectPropertyNumber, " +
+                        "\"urn:emergency:cisu:2.0:technical\":objectPropertyRequiredString}' is expected., " +
+
+                        "cvc-complex-type.2.3: Element 'objectLevel1' cannot have character [children], " +
+                        "because the type's content type is element-only.]"
+        };
+        xmlValidationFails("TECHNICAL/expected-object.xml", expectedXmlErrors, TECHNICAL_XSD);
+    }
+
+    @Test
+    @DisplayName("Messages with objects or arrays in places where primitives are expected should not pass validation")
+    public void technicalPrimitiveDeserializationFails() throws IOException {
+        String[] expectedJsonErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Issues found on the envelope: ",
+                " - $.optionalStringField: array found, string expected",
+                " - $.requiredStringField: object found, string expected",
+                " - $.numberField: object found, number expected"
+        };
+        jsonValidationFails("TECHNICAL/expected-primitive.json", expectedJsonErrors, TECHNICAL_SCHEMA);
+
+        String[] expectedXmlErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "[cvc-type.3.1.2: Element 'requiredStringField' is a simple type, so it must have no element information item [children]., " +
+                        "cvc-complex-type.2.4.a: Invalid content was found starting with element 'optionalStringField'. One of '{\"urn:emergency:cisu:2.0:technical\":enumerationField, \"urn:emergency:cisu:2.0:technical\":numberField, \"urn:emergency:cisu:2.0:technical\":objectField, \"urn:emergency:cisu:2.0:technical\":arrayField, \"urn:emergency:cisu:2.0:technical\":enumArrayField, \"urn:emergency:cisu:2.0:technical\":requiredArray}' is expected., " +
+                        "cvc-type.3.1.2: Element 'numberField' is a simple type, so it must have no element information item [children]., " +
+                        "cvc-datatype-valid.1.2.1: '' is not a valid value for 'decimal'., " +
+                        "cvc-type.3.1.3: The value '' of element 'numberField' is not valid.]"
+        };
+        xmlValidationFails("TECHNICAL/expected-primitive.xml", expectedXmlErrors, TECHNICAL_XSD);
+    }
+
 }

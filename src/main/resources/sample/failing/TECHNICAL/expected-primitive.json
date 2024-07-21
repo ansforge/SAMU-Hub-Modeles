@@ -1,0 +1,18 @@
+{
+  "requiredStringField": {
+    "property": "value"
+  },
+  "optionalStringField": [
+    "value",
+    "value"
+  ],
+  "numberField": {
+    "property": "value",
+    "property_2": "value"
+  },
+  "requiredArray": [
+    "requiredArrayValue1",
+    "requiredArrayValue2",
+    "requiredArrayValue3"
+  ]
+}
