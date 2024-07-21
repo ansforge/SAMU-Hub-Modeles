@@ -62,8 +62,8 @@
                                 <locLabel>8 quai des Célestins - 69002 Lyon</locLabel>
                                 <name>Quai des Célestins</name>
                                 <externalLocationId>
-                                    <source>FINESS ADMINISTRATIF</source>
-                                    <value>'920000650</value>
+                                    <source>FINESS_ADMINISTRATIF</source>
+                                    <value>920000650</value>
                                 </externalLocationId>
                                 <detailedAddress>
                                     <complete>8 quai des Célestins</complete>

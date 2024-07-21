@@ -67,8 +67,8 @@
                 "name": "Quai des Célestins",
                 "externalLocationId": [
                   {
-                    "source": "FINESS ADMINISTRATIF",
-                    "value": "'920000650"
+                    "source": "FINESS_ADMINISTRATIF",
+                    "value": "920000650"
                   }
                 ],
                 "detailedAddress": {
