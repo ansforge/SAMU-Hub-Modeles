@@ -153,6 +153,12 @@
     ]
   },
   {
+    "label": "RS-EDA-MAJ",
+    "schemaName": "RS-EDA-MAJ.schema.json",
+    "schema": null,
+    "examples": []
+  },
+  {
     "label": "GEO-POS",
     "schemaName": "GEO-POS.schema.json",
     "schema": null,
@@ -228,16 +234,22 @@
     "schemaName": "RS-RR.schema.json",
     "schema": null,
     "examples": [{
-      "file": "RS-RR/RS-RR-Lola-Halimi.json",      
-      "icon": "mdi-image-broken-variant",      
+      "file": "RS-RR/RS-RR-Lola-Halimi.json",
+      "icon": "mdi-image-broken-variant",
       "name": "Lola HALIMI",
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
-      "context": "Fracture de la cheville",      
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",      
-      "victims": "1 patient",      
-      "victim": "Fille, enfant, 10 ans",      
+      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+      "context": "Fracture de la cheville",
+      "environment": "Cage d'escalier d'unimmeuble résidentiel",
+      "victims": "1 patient",
+      "victim": "Fille, enfant, 10 ans",
       "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
     }]
+  },
+  {
+    "label": "RS-SR",
+    "schemaName": "RS-SR.schema.json",
+    "schema": null,
+    "examples": []
   },
   {
     "label": "RPIS",
