@@ -1,0 +1,12 @@
+{
+  "requiredStringField": "requiredStringValue",
+  "arrayField": {
+    "property": "value"
+  },
+  "enumArrayField": "value",
+  "requiredArray": [
+    "requiredArrayValue1",
+    "requiredArrayValue2",
+    "requiredArrayValue3"
+  ]
+}

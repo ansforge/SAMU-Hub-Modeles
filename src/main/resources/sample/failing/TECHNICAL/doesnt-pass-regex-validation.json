@@ -1,0 +1,12 @@
+{
+  "requiredStringField": "requiredStringValue",
+  "requiredArray": [
+    "requiredArrayValue1",
+    "requiredArrayValue2",
+    "requiredArrayValue3"
+  ],
+  "phoneNumberField": "invalid_value",
+  "dateField": "2020 jan 1",
+  "emailField": "email address@domain",
+  "datetimeField": "2022-09-27 08:25:54 Z02:00"
+}
