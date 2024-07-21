@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<technical xmlns="urn:emergency:cisu:2.0:technical">
+    <requiredStringField>requiredStringValue</requiredStringField>
+    <requiredArray>requiredArrayValue1</requiredArray>
+    <requiredArray>requiredArrayValue2</requiredArray>
+    <requiredArray>requiredArrayValue3</requiredArray>
+    <phoneNumberField>0123456789</phoneNumberField>
+    <dateField>2020-01-01</dateField>
+    <emailField>email@domain.com</emailField>
+    <datetimeField>2022-09-27T08:25:54+02:00</datetimeField>
+</technical>
