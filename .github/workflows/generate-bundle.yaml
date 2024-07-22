@@ -6,6 +6,10 @@ on:
       - '**'
   workflow_dispatch:
 
+env:
+  # ToDo: read from yaml list of all schemas
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS"
+
 jobs:
   zip_and_upload:
     runs-on: ubuntu-latest
@@ -20,16 +24,38 @@ jobs:
     - name: Create bundle folder
       run: |
         mkdir bundle
-        cp -r csv_parser/out/ bundle/parser
-        cp -r src/main/resources/sample bundle/json
+        # Nomenclatures
+        mkdir "bundle/Annexes - Nomenclatures"
+        cp -r nomenclature_parser/out/latest/ "bundle/Annexes - Nomenclatures"
+        # Modèles
+        messagesDir="bundle/Annexes - Messages"
+        mkdir $messagesDir
+        IFS=' ' read -ra SCHEMAS_ARRAY <<< "$SCHEMAS"
+        for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
+          # Create "Annexes" directory
+          schemaDir="$messagesDir/Annexes $SCHEMA"
+          mdkir $schemaDir
+
+          # Create and populate "Schemas et Exemples" directory
+          mkdir "$schemaDir/Schemas et Exemples"
+          cp src/main/resources/json-schema/$SCHEMA.schema.json "$schemaDir/Schemas et Exemples"
+          cp src/main/resources/xsd/$SCHEMA.xsd "$schemaDir/Schemas et Exemples"
+          cp -r src/main/resources/sample/examples/$SCHEMA/ "$schemaDir/Schemas et Exemples"
+
+          # Populate root elements (docx and UML)
+          cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Schemas et Exemples/Annexe au DSF - $SCHEMA.docx"
+          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schemas et Exemples/Schema UML - $SCHEMA.docx"
+        done
 
     - name: Create zip file with date
       run: |
-        current_date=$(date +'%Y-%m-%d')
-        zip -r bundle_$current_date.zip bundle
+        current_date=$(date +'%y.%m.%d')
+        bundle_name="$current_date_DSF_Hub Sante"
+        mv bundle $bundle_name
+        zip -r bundle.zip $bundle_name
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
       with:
         name: Bundle-zip
-        path: bundle_*.zip
+        path: bundle.zip
