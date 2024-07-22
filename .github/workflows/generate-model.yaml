@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
 
 env:
+  # ToDo: read from yaml list of all schemas
   SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS"
 
 jobs:
