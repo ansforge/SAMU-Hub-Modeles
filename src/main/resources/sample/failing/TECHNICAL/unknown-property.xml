@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<technical xmlns="urn:emergency:cisu:2.0:technical">
+    <requiredStringField>requiredStringValue</requiredStringField>
+    <requiredArray>requiredArrayValue1</requiredArray>
+    <requiredArray>requiredArrayValue2</requiredArray>
+    <requiredArray>requiredArrayValue3</requiredArray>
+    <unknownField>unknownValue</unknownField>
+</technical>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<technical xmlns="urn:emergency:cisu:2.0:technical">
+    <requiredStringField>requiredStringValue</requiredStringField>
+    <enumerationField>ENUM_VALUE_100</enumerationField>
+    <enumArrayField>ENUM_VALUE_10</enumArrayField>
+    <enumArrayField>ENUM_VALUE_200</enumArrayField>
+    <enumArrayField>ENUM_VALUE_30</enumArrayField>
+    <requiredArray>requiredArrayValue1</requiredArray>
+    <requiredArray>requiredArrayValue2</requiredArray>
+    <requiredArray>requiredArrayValue3</requiredArray>
+    <nomenclatureField>UNKNOWN</nomenclatureField>
+</technical>

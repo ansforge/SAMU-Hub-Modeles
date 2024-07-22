@@ -1,0 +1,9 @@
+{
+  "requiredStringField": "requiredStringValue",
+  "requiredArray": [
+    "requiredArrayValue1",
+    "requiredArrayValue2",
+    "requiredArrayValue3"
+  ],
+  "unknownField": "unknownValue"
+}
