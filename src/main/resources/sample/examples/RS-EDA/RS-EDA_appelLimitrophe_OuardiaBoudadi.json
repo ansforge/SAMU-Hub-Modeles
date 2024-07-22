@@ -6,7 +6,7 @@
     "qualification": {
       "whatsHappen": {
         "code": "C02.05.01",
-        "label": "Atteinte aux PERSONNEs; Pathologie / maladie ; Médicale "
+        "label": "Atteinte aux personnes; Pathologie / maladie ; Médicale "
       },
       "locationKind": {
         "code": "L03.01.00",
@@ -19,7 +19,8 @@
       "details": {
         "priority": "P0",
         "attribution": "MU"
-      }
+      },
+      "origin": "15"
     },
     "location": {
       "name": "SARL Toto",
@@ -42,7 +43,7 @@
         "elevator": "Esc D",
         "buildingName": "C",
         "entity": "Comptabilité",
-        "phoneNumber": "0156789456"
+        "phoneNumber": "+33156789456"
       },
       "freetext": "Se rendre au service comptabilité l'accueil est prévenu",
       "geometry": {
@@ -61,12 +62,12 @@
       "caller": {
         "callerContact": {
           "type": "TEL",
-          "detail": "0607080928",
+          "detail": "+33607080928",
           "channel": "PERSONNE"
         },
         "callbackContact": {
           "type": "TEL",
-          "detail": "0607080928",
+          "detail": "+33607080928",
           "channel": "PERSONNE"
         },
         "language": "FR",
@@ -80,22 +81,12 @@
       },
       "notes": [
         {
-          "freetext": "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
+          "freetext": "Malaise sur lieu de travail, rappeler le service comptabilité si perte de la communication",
           "creation": "2024-01-10T07:09:00+01:00"
         }
       ]
     },
     "owner": "fr.health.samu950",
-    "additionalInformation": {
-      "customMap": [
-        {
-          "key": "Aucune",
-          "label": "Aucun",
-          "value": "0",
-          "freetext": "rempli pour pallier au bug d'envoi"
-        }
-      ]
-    },
     "patient": [
       {
         "detail": {
@@ -111,10 +102,21 @@
             "sex": "FEM"
           }
         },
-        "idPat": "fr.health.samu950.DRFR159502401000233.P1"
+        "idPat": "fr.health.samu950.patient.DRFR159502401000233.1"
       }
     ],
     "perimeter": "AMU",
-    "interventionType": "PRIMAIRE"
+    "interventionType": "PRIMAIRE",
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "freetext": "Douleurs dans la poitrine, pas de difficulté à respirer, la victime est consciente.",
+        "creation": "2024-01-10T09:05:00+01:00",
+        "idPat": "fr.health.samu950.patient.DRFR159502401000233.1",
+        "idObs": "fr.health.samu950.medicalNote.z45a89"
+      }
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "createCase": {
-    "caseId": "fr.fire.cga-044.SC-20240526-044-cga-AL8",
+    "caseId": "fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8",
     "senderCaseId": "SC-20240526-044-cga-AL8",
     "creation": "2024-05-26T13:15:00+02:00",
     "referenceVersion": "1.3",
@@ -38,7 +38,7 @@
       "access": {
         "floor": "RDC",
         "buildingName": "Soleil",
-        "phoneNumber": "0969362006"
+        "entrance": "B"
       },
       "externalLocationId": [
         {
@@ -54,12 +54,12 @@
       "caller": {
         "callerContact": {
           "type": "TEL",
-          "detail": "0671832618",
+          "detail": "+33671832618",
           "channel": "PERSONNE"
         },
         "callbackContact": {
           "type": "TEL",
-          "detail": "0671832618",
+          "detail": "+33671832618",
           "channel": "PERSONNE"
         },
         "detailedName": {
@@ -86,7 +86,7 @@
         "access": {
           "floor": "RDC",
           "buildingName": "Soleil",
-          "phoneNumber": "0969362006"
+          "entrance": "B"
         }
       },
       "qualification": {
@@ -109,7 +109,7 @@
         }
       },
       "callTaker": {
-        "organization": "fr.fire.cga-044",
+        "organization": "fr.fire.sis044.cga-044",
         "controlRoom": "CGA44"
       }
     },

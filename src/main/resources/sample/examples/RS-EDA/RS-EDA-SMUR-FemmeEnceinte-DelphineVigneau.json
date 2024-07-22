@@ -1,6 +1,6 @@
 {
   "createCaseHealth": {
-    "caseId": "fr.fire.cga-044.SC-20240526-044-cga-AL8",
+    "caseId": "fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8",
     "senderCaseId": "DRFR154402414300123",
     "creation": "2024-05-26T13:15:00+02:00",
     "qualification": {
@@ -19,7 +19,8 @@
       "details": {
         "priority": "P2",
         "attribution": "MU"
-      }
+      },
+      "origin": "18"
     },
     "location": {
       "detailedAddress": {
@@ -61,7 +62,7 @@
       "caller": {
         "callerContact": {
           "type": "TEL",
-          "detail": "0671832618",
+          "detail": "+33671832618",
           "channel": "PERSONNE"
         },
         "detailedName": {
@@ -74,7 +75,7 @@
         "callbackContact": {
           "channel": "PERSONNE",
           "type": "TEL",
-          "detail": "0671832618"
+          "detail": "+33671832618"
         },
         "communication": "AUCUNE"
       }
@@ -92,7 +93,7 @@
             "birthDate": "1992-03-03"
           }
         },
-        "idPat": "fr.health.samu440.DRFR154402414300123.P01",
+        "idPat": "fr.health.samu440.patient.DRFR154402414300123.1",
         "detail": {
           "age": "P32Y"
         },
@@ -108,7 +109,7 @@
         }
       }
     ],
-    "owner": "CRRA44",
+    "owner": "fr.health.samu440",
     "additionalInformation": {
       "customMap": [
         {

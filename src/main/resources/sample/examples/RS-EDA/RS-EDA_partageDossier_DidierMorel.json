@@ -54,12 +54,12 @@
         "callerContact": {
           "channel": "PERSONNE",
           "type": "TEL",
-          "detail": "0607080915"
+          "detail": "+33607080915"
         },
         "callbackContact": {
           "channel": "PERSONNE",
           "type": "TEL",
-          "detail": "0607080915"
+          "detail": "+33607080915"
         },
         "language": "FR",
         "freetext": "fils de la victime",
@@ -93,7 +93,7 @@
             "sex": "MASC"
           }
         },
-        "idPat": "fr.health.samu770.DRFR157702400400055.P167"
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1"
       }
     ],
     "perimeter": "AMU",
@@ -103,8 +103,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu770.DRFR157702400400055.P167",
-        "idObs": "fr.health.samu770.DRFR157702400400055.medicalNote.12",
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "idObs": "fr.health.samu770.medicalNote.45db215",
         "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.",
         "creation": "2024-01-04T08:07:00+01:00"
       },
@@ -112,8 +112,8 @@
         "operator": {
           "role": "ARM"
         },
-        "idPat": "fr.health.samu770.DRFR157702400400055.P167",
-        "idObs": "fr.health.samu770.DRFR157702400400055.medicalNote.13",
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
+        "idObs": "fr.health.samu770.medicalNote.15as456",
         "freetext": "La victime est inconsciente (perte de connaissance).",
         "creation": "2024-01-04T08:09:00+01:00"
       }

@@ -1,0 +1,38 @@
+{
+  "createCaseHealthUpdate": {
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.2",
+        "idObs": "fr.health.samu770.medicalNote.78fre25",
+        "creation": "2024-01-04T08:11:00+01:00",
+        "freetext": "Hyperventile / Pleurs /Angoisse ++. Malaise à la vue du sang."
+      }
+    ],
+    "patient": [
+      {
+        "detail": {
+          "age": "P60Y",
+          "weight": 65,
+          "height": 162
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Germaine Morel",
+            "lastName": "Morel",
+            "firstName": "Germaine"
+          },
+          "strictFeatures": {
+            "sex": "FEM",
+            "birthName": "Arnaud",
+            "birthDate": "1963-12-12"
+          }
+        },
+        "idPat": "fr.health.samu770.patient.DRFR157702400400055.2"
+      }
+    ],
+    "caseId": "fr.health.samu770.DRFR157702400400055"
+  }
+}
