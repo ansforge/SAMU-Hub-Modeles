@@ -480,7 +480,27 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
         </sequence>
     </complexType>
     <complexType name="detailedName">
-        <sequence/>
+        <sequence>
+            <element name="complete" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le prénom et le nom usuel du requérant/appelant.
+Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : "{callerFirstName} {callerLastName}".
+
+Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="lastName" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le nom usuel du requérant</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="firstName" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le prénom usuel du réquérant.
+Par convention les prénoms composés doivent préférablement être séparés par le caractère "-"</documentation>
+                </annotation>
+            </element>
+        </sequence>
     </complexType>
     <complexType name="mainDiagnosis">
         <sequence>

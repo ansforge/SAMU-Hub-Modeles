@@ -49,7 +49,11 @@
                     "birthDate": "None",
                     "sex": "F"
                 },
-                "nonStrictFeatures": {}
+                "nonStrictFeatures": {
+                    "complete": "Jean Dupont",
+                    "lastName": "Dupont",
+                    "firstName": "Jean"
+                }
             },
             "healthMotive": {
                 "code": "C07.13.02",

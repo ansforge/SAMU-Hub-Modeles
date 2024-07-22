@@ -63,6 +63,14 @@ fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,1..1,,string,,"REGEX:
 ,,,Date de naissance,,,A valoriser avec la date de naissance du patient,,birthDate,,,,,,0..1,,date,,
 ,,,Sexe ,,,A valoriser avec le sexe du patient,F,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
 ,,Traits non stricts de l'identité,# Voir detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,nonStrictFeatures,,,,,,0..1,X,detailedName,,
+,,,Prénom et nom,,,"A valoriser avec le prénom et le nom usuel du requérant/appelant.
+Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : ""{callerFirstName} {callerLastName}"".
+
+Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.",Jean Dupont,complete,AN/AP,"Nom
+Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
+,,,Nom,,,A valoriser avec le nom usuel du requérant,Dupont,lastName,,,,,,0..1,,string,,
+,,,Prénom,,,"A valoriser avec le prénom usuel du réquérant.
+Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,,,,,,0..1,,string,,
 ,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,healthMotive,,,,,,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Informations patient,,,,,Objet qui permet de décrire les caractéristiques du patient,,detail,,,,,,0..1,X,patientDetail,,
 ,,Poids,,,,A valoriser avec le poids en kilogrammes,31,weight,,,,,,0..1,,integer,,

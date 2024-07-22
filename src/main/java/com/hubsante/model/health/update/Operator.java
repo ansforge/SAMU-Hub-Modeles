@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.update.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -48,7 +49,7 @@ import java.util.Objects;
 
 public class Operator {
   public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
-  private Object detailedName;
+  private DetailedName detailedName;
 
   /**
    * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
@@ -97,7 +98,7 @@ public class Operator {
 
   public Operator() {}
 
-  public Operator detailedName(Object detailedName) {
+  public Operator detailedName(DetailedName detailedName) {
 
     this.detailedName = detailedName;
     return this;
@@ -110,13 +111,13 @@ public class Operator {
   @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getDetailedName() {
+  public DetailedName getDetailedName() {
     return detailedName;
   }
 
   @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedName(Object detailedName) {
+  public void setDetailedName(DetailedName detailedName) {
     this.detailedName = detailedName;
   }
 
