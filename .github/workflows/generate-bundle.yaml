@@ -27,7 +27,7 @@ jobs:
         mkdir bundle
         # Nomenclatures
         mkdir "bundle/Annexes - Nomenclatures"
-        cp -r nomenclature_parser/out/latest/ "bundle/Annexes - Nomenclatures"
+        cp -r nomenclature_parser/out/latest/* "bundle/Annexes - Nomenclatures/"
         # Modèles
         messagesDir="bundle/Annexes - Messages"
         mkdir "$messagesDir"
