@@ -8,13 +8,13 @@
           "firstName": "Lucas"
         },
         "callbackContact": {
-          "detail": "0561964589",
+          "detail": "+33561964589",
           "type": "TEL",
           "channel": "PERSONNE"
         },
         "callerContact": {
           "type": "TEL",
-          "detail": "0632085528",
+          "detail": "+33632085528",
           "channel": "PERSONNE"
         },
         "language": "FR",
@@ -67,7 +67,7 @@
         "detail": {
           "age": "P80Y"
         },
-        "idPat": "fr.health.samu009.DRFR150092400401259.P90"
+        "idPat": "fr.health.samu009.patient.DRFR150092400401259.1"
       }
     ],
     "caseId": "fr.health.samu009.DRFR150092400401259",
@@ -80,8 +80,8 @@
         },
         "freetext": "Confusion, étourdissements, s’exprime difficilement. ",
         "creation": "2024-01-18T03:35:00+01:00",
-        "idPat": "fr.health.samu009.DRFR150092400401259.P90",
-        "idObs": "fr.health.samu009.DRFR150092400401259.medicalNote.4689"
+        "idPat": "fr.health.samu009.patient.DRFR150092400401259.1",
+        "idObs": "fr.health.samu009.medicalNote.46zf89"
       }
     ]
   }
