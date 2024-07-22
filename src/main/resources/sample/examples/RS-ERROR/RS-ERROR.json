@@ -25,7 +25,6 @@
           "jsonContent": {
             "embeddedJsonContent": {
               "message": {
-                "customContent": {},
                 "unknown_property": "unknown_value"
               }
             }

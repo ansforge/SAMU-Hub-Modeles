@@ -42,7 +42,6 @@
                   <jsonContent>
                     <embeddedJsonContent>
                       <message>
-                        <customContent/>
                         <unknown_property>unknown_value</unknown_property>
                       </message>
                     </embeddedJsonContent>
