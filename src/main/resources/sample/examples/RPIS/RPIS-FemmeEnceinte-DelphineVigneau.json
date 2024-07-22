@@ -45,7 +45,7 @@
         "cityCode": "44109",
         "city": "Nantes"
       },
-      "patientId": "fr.health.samu440.DRFR154402414300123.P01",
+      "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
       "birthDate": "1992-03-03",
       "sex": "FEM"
     },
