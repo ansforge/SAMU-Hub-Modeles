@@ -12,7 +12,7 @@
         "coord": {
           "lat": 48.413118,
           "lon": 2.6995784,
-          "precision": "RUE"
+          "precision": "EXACTE"
         },
         "datetime": "2024-01-04T08:14:00+01:00",
         "resourceId": "fr.health.samu770.resource.VLM250",
