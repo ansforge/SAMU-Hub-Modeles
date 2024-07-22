@@ -1,7 +1,9 @@
 name: Zip Files and Upload Artifact
 
 on:
-  push: -- Todo: remove this after tests
+  pull_request: # Todo: remove this after tests
+    branches:
+      - '**'
   workflow_dispatch:
 
 jobs:
