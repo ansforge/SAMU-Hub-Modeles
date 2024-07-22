@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.resources;
+package com.hubsante.model.resources.info;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,10 +34,10 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.resources.Contact;
-import com.hubsante.model.resources.Coord;
-import com.hubsante.model.resources.State;
-import com.hubsante.model.resources.Team;
+import com.hubsante.model.resources.info.Contact;
+import com.hubsante.model.resources.info.Coord;
+import com.hubsante.model.resources.info.State;
+import com.hubsante.model.resources.info.Team;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;

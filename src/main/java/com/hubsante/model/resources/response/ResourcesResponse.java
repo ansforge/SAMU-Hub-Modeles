@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.resources;
+package com.hubsante.model.resources.response;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,34 +34,35 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.resources.Resource;
-import java.util.ArrayList;
+import com.hubsante.model.resources.response.Response;
 import java.util.Arrays;
 import java.util.Arrays;
-import java.util.List;
 import java.util.Objects;
 
 /**
- * ResourcesInfo
+ * ResourcesResponse
  */
-@JsonPropertyOrder({ResourcesInfo.JSON_PROPERTY_CASE_ID,
-                    ResourcesInfo.JSON_PROPERTY_MOBILIZED_RESOURCE})
-@JsonTypeName("resourcesInfo")
+@JsonPropertyOrder({ResourcesResponse.JSON_PROPERTY_CASE_ID,
+                    ResourcesResponse.JSON_PROPERTY_REQUEST_ID,
+                    ResourcesResponse.JSON_PROPERTY_RESPONSE})
+@JsonTypeName("resourcesResponse")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourcesInfo {
+public class ResourcesResponse {
   @JacksonXmlProperty(isAttribute = true)
-  String xmlns = "urn:emergency:cisu:2.0:resourcesInfo";
+  String xmlns = "urn:emergency:cisu:2.0:resourcesResponse";
   public static final String JSON_PROPERTY_CASE_ID = "caseId";
   private String caseId;
 
-  public static final String JSON_PROPERTY_MOBILIZED_RESOURCE =
-      "mobilizedResource";
-  private List<Resource> mobilizedResource = new ArrayList<>();
+  public static final String JSON_PROPERTY_REQUEST_ID = "requestId";
+  private String requestId;
 
-  public ResourcesInfo() {}
+  public static final String JSON_PROPERTY_RESPONSE = "response";
+  private Response response;
 
-  public ResourcesInfo caseId(String caseId) {
+  public ResourcesResponse() {}
+
+  public ResourcesResponse caseId(String caseId) {
 
     this.caseId = caseId;
     return this;
@@ -91,44 +92,55 @@ public class ResourcesInfo {
     this.caseId = caseId;
   }
 
-  public ResourcesInfo mobilizedResource(List<Resource> mobilizedResource) {
+  public ResourcesResponse requestId(String requestId) {
 
-    this.mobilizedResource = mobilizedResource;
-    return this;
-  }
-
-  public ResourcesInfo
-  addMobilizedResourceItem(Resource mobilizedResourceItem) {
-    if (this.mobilizedResource == null) {
-      this.mobilizedResource = new ArrayList<>();
-    }
-    this.mobilizedResource.add(mobilizedResourceItem);
+    this.requestId = requestId;
     return this;
   }
 
   /**
-   * Get mobilizedResource
-   * @return mobilizedResource
+   * A valoriser avec l&#39;identifiant unique partagé de la demande de
+   *ressource,  généré une seule fois par le système du partenaire qui émet la
+   *demande  Il est valorisé comme suit lors de sa création :
+   *{orgID}.request.{ID unique de la demande dans le système émetteur}  OU -
+   *uniquement si un ID unique de la demande n&#39;est pas disponible :  OrgId
+   *émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}
+   * @return requestId
    **/
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public List<Resource> getMobilizedResource() {
-    return mobilizedResource;
+  public String getRequestId() {
+    return requestId;
   }
 
-  @JacksonXmlElementWrapper(useWrapping = false)
-
-  @JsonProperty(JSON_PROPERTY_MOBILIZED_RESOURCE)
+  @JsonProperty(JSON_PROPERTY_REQUEST_ID)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setMobilizedResource(List<Resource> mobilizedResource) {
-    if (mobilizedResource == null) {
-      return;
-    }
-    if (this.mobilizedResource == null) {
-      this.mobilizedResource = new ArrayList<>();
-    }
-    this.mobilizedResource.addAll(mobilizedResource);
+  public void setRequestId(String requestId) {
+    this.requestId = requestId;
+  }
+
+  public ResourcesResponse response(Response response) {
+
+    this.response = response;
+    return this;
+  }
+
+  /**
+   * Get response
+   * @return response
+   **/
+  @JsonProperty(JSON_PROPERTY_RESPONSE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Response getResponse() {
+    return response;
+  }
+
+  @JsonProperty(JSON_PROPERTY_RESPONSE)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setResponse(Response response) {
+    this.response = response;
   }
 
   @Override
@@ -139,24 +151,26 @@ public class ResourcesInfo {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResourcesInfo resourcesInfo = (ResourcesInfo)o;
-    return Objects.equals(this.caseId, resourcesInfo.caseId) &&
-        Objects.equals(this.mobilizedResource, resourcesInfo.mobilizedResource);
+    ResourcesResponse resourcesResponse = (ResourcesResponse)o;
+    return Objects.equals(this.caseId, resourcesResponse.caseId) &&
+        Objects.equals(this.requestId, resourcesResponse.requestId) &&
+        Objects.equals(this.response, resourcesResponse.response);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, mobilizedResource);
+    return Objects.hash(caseId, requestId, response);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResourcesInfo {\n");
+    sb.append("class ResourcesResponse {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
-    sb.append("    mobilizedResource: ")
-        .append(toIndentedString(mobilizedResource))
+    sb.append("    requestId: ")
+        .append(toIndentedString(requestId))
         .append("\n");
+    sb.append("    response: ").append(toIndentedString(response)).append("\n");
     sb.append("}");
     return sb.toString();
   }

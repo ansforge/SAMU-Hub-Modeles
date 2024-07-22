@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.resources;
+package com.hubsante.model.resources.request;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -35,13 +35,13 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.rcde.DistributionElement;
-import com.hubsante.model.resources.ResourcesInfo;
+import com.hubsante.model.resources.request.ResourcesRequest;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * ResourcesInfoWrapper
+ * ResourcesRequestWrapper
  */
 @JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
                     DistributionElement.JSON_PROPERTY_SENDER,
@@ -49,39 +49,41 @@ import java.util.Objects;
                     DistributionElement.JSON_PROPERTY_KIND,
                     DistributionElement.JSON_PROPERTY_STATUS,
                     DistributionElement.JSON_PROPERTY_RECIPIENT,
-                    ResourcesInfoWrapper.JSON_PROPERTY_RESOURCES_INFO})
-@JsonTypeName("resourcesInfoWrapper")
+                    ResourcesRequestWrapper.JSON_PROPERTY_RESOURCES_REQUEST})
+@JsonTypeName("resourcesRequestWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class ResourcesInfoWrapper extends DistributionElement {
+public class ResourcesRequestWrapper extends DistributionElement {
   @JacksonXmlProperty(isAttribute = true)
   String xmlns = "urn:emergency:cisu:2.0";
-  public static final String JSON_PROPERTY_RESOURCES_INFO = "resourcesInfo";
-  private ResourcesInfo resourcesInfo;
+  public static final String JSON_PROPERTY_RESOURCES_REQUEST =
+      "resourcesRequest";
+  private ResourcesRequest resourcesRequest;
 
-  public ResourcesInfoWrapper() {}
+  public ResourcesRequestWrapper() {}
 
-  public ResourcesInfoWrapper resourcesInfo(ResourcesInfo resourcesInfo) {
+  public ResourcesRequestWrapper
+  resourcesRequest(ResourcesRequest resourcesRequest) {
 
-    this.resourcesInfo = resourcesInfo;
+    this.resourcesRequest = resourcesRequest;
     return this;
   }
 
   /**
-   * Get resourcesInfo
-   * @return resourcesInfo
+   * Get resourcesRequest
+   * @return resourcesRequest
    **/
-  @JsonProperty(JSON_PROPERTY_RESOURCES_INFO)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public ResourcesInfo getResourcesInfo() {
-    return resourcesInfo;
+  public ResourcesRequest getResourcesRequest() {
+    return resourcesRequest;
   }
 
-  @JsonProperty(JSON_PROPERTY_RESOURCES_INFO)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_REQUEST)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourcesInfo(ResourcesInfo resourcesInfo) {
-    this.resourcesInfo = resourcesInfo;
+  public void setResourcesRequest(ResourcesRequest resourcesRequest) {
+    this.resourcesRequest = resourcesRequest;
   }
 
   @Override
@@ -92,24 +94,25 @@ public class ResourcesInfoWrapper extends DistributionElement {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ResourcesInfoWrapper resourcesInfoWrapper = (ResourcesInfoWrapper)o;
-    return Objects.equals(this.resourcesInfo,
-                          resourcesInfoWrapper.resourcesInfo) &&
+    ResourcesRequestWrapper resourcesRequestWrapper =
+        (ResourcesRequestWrapper)o;
+    return Objects.equals(this.resourcesRequest,
+                          resourcesRequestWrapper.resourcesRequest) &&
         super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(resourcesInfo, super.hashCode());
+    return Objects.hash(resourcesRequest, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ResourcesInfoWrapper {\n");
+    sb.append("class ResourcesRequestWrapper {\n");
     sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("    resourcesInfo: ")
-        .append(toIndentedString(resourcesInfo))
+    sb.append("    resourcesRequest: ")
+        .append(toIndentedString(resourcesRequest))
         .append("\n");
     sb.append("}");
     return sb.toString();

@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.resources;
+package com.hubsante.model.resources.info;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,33 +39,28 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Contact
+ * Team
  */
-@JsonPropertyOrder({Contact.JSON_PROPERTY_TYPE, Contact.JSON_PROPERTY_DETAILS})
-@JsonTypeName("contact")
+@JsonPropertyOrder({Team.JSON_PROPERTY_TEAM_CARE, Team.JSON_PROPERTY_NAME})
+@JsonTypeName("team")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Contact {
+public class Team {
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée. Cf nomenclature associée.
+   * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
+   * associée
    */
-  public enum TypeEnum {
-    TEL("TEL"),
+  public enum TeamCareEnum {
+    MED("MED"),
 
-    EMAIL("EMAIL"),
+    PARAMED("PARAMED"),
 
-    FAX("FAX"),
-
-    POSTAL("POSTAL"),
-
-    WEB("WEB"),
-
-    RADIO("RADIO");
+    SECOURS("SECOURS");
 
     private String value;
 
-    TypeEnum(String value) { this.value = value; }
+    TeamCareEnum(String value) { this.value = value; }
 
     @JsonValue
     public String getValue() {
@@ -78,8 +73,8 @@ public class Contact {
     }
 
     @JsonCreator
-    public static TypeEnum fromValue(String value) {
-      for (TypeEnum b : TypeEnum.values()) {
+    public static TeamCareEnum fromValue(String value) {
+      for (TeamCareEnum b : TeamCareEnum.values()) {
         if (b.value.equals(value)) {
           return b;
         }
@@ -88,59 +83,60 @@ public class Contact {
     }
   }
 
-  public static final String JSON_PROPERTY_TYPE = "type";
-  private TypeEnum type;
+  public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
+  private TeamCareEnum teamCare;
 
-  public static final String JSON_PROPERTY_DETAILS = "details";
-  private String details;
+  public static final String JSON_PROPERTY_NAME = "name";
+  private String name;
 
-  public Contact() {}
+  public Team() {}
 
-  public Contact type(TypeEnum type) {
+  public Team teamCare(TeamCareEnum teamCare) {
 
-    this.type = type;
+    this.teamCare = teamCare;
     return this;
   }
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée. Cf nomenclature associée.
-   * @return type
+   * A valoriser avec le  niveau de médicalisation du vecteur. Cf. nomenclature
+   *associée
+   * @return teamCare
    **/
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public TypeEnum getType() {
-    return type;
+  public TeamCareEnum getTeamCare() {
+    return teamCare;
   }
 
-  @JsonProperty(JSON_PROPERTY_TYPE)
+  @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setType(TypeEnum type) {
-    this.type = type;
+  public void setTeamCare(TeamCareEnum teamCare) {
+    this.teamCare = teamCare;
   }
 
-  public Contact details(String details) {
+  public Team name(String name) {
 
-    this.details = details;
+    this.name = name;
     return this;
   }
 
   /**
-   * A valoriser avec la valeur de l&#39;URI utilisée Le format attendu pour un
-   *numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}
-   * @return details
+   * A valoriser avec le nom de l&#39;équipe à bord du vecteur (celui communiqué
+   *par l&#39;organisation à laquelle l&#39;équipe appartient)
+   * @return name
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDetails() {
-    return details;
+  public String getName() {
+    return name;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_NAME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(String details) {
-    this.details = details;
+  public void setName(String name) {
+    this.name = name;
   }
 
   @Override
@@ -151,22 +147,22 @@ public class Contact {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Contact contact = (Contact)o;
-    return Objects.equals(this.type, contact.type) &&
-        Objects.equals(this.details, contact.details);
+    Team team = (Team)o;
+    return Objects.equals(this.teamCare, team.teamCare) &&
+        Objects.equals(this.name, team.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, details);
+    return Objects.hash(teamCare, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Contact {\n");
-    sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("class Team {\n");
+    sb.append("    teamCare: ").append(toIndentedString(teamCare)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

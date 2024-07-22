@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.rpis;
+package com.hubsante.model.resources.status;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,71 +34,55 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.rcde.DistributionElement;
+import com.hubsante.model.resources.status.ResourcesStatus;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Actions
+ * ResourcesStatusWrapper
  */
-@JsonPropertyOrder(
-    {Actions.JSON_PROPERTY_ACTIONS, Actions.JSON_PROPERTY_MAINTAINED})
-@JsonTypeName("actions")
+@JsonPropertyOrder({DistributionElement.JSON_PROPERTY_MESSAGE_ID,
+                    DistributionElement.JSON_PROPERTY_SENDER,
+                    DistributionElement.JSON_PROPERTY_SENT_AT,
+                    DistributionElement.JSON_PROPERTY_KIND,
+                    DistributionElement.JSON_PROPERTY_STATUS,
+                    DistributionElement.JSON_PROPERTY_RECIPIENT,
+                    ResourcesStatusWrapper.JSON_PROPERTY_RESOURCES_STATUS})
+@JsonTypeName("resourcesStatusWrapper")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Actions {
-  public static final String JSON_PROPERTY_ACTIONS = "actions";
-  private String actions;
+public class ResourcesStatusWrapper extends DistributionElement {
+  @JacksonXmlProperty(isAttribute = true)
+  String xmlns = "urn:emergency:cisu:2.0";
+  public static final String JSON_PROPERTY_RESOURCES_STATUS = "resourcesStatus";
+  private ResourcesStatus resourcesStatus;
 
-  public static final String JSON_PROPERTY_MAINTAINED = "maintained";
-  private Boolean maintained;
+  public ResourcesStatusWrapper() {}
 
-  public Actions() {}
+  public ResourcesStatusWrapper
+  resourcesStatus(ResourcesStatus resourcesStatus) {
 
-  public Actions actions(String actions) {
-
-    this.actions = actions;
+    this.resourcesStatus = resourcesStatus;
     return this;
   }
 
   /**
-   * Get actions
-   * @return actions
+   * Get resourcesStatus
+   * @return resourcesStatus
    **/
-  @JsonProperty(JSON_PROPERTY_ACTIONS)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getActions() {
-    return actions;
+  public ResourcesStatus getResourcesStatus() {
+    return resourcesStatus;
   }
 
-  @JsonProperty(JSON_PROPERTY_ACTIONS)
+  @JsonProperty(JSON_PROPERTY_RESOURCES_STATUS)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setActions(String actions) {
-    this.actions = actions;
-  }
-
-  public Actions maintained(Boolean maintained) {
-
-    this.maintained = maintained;
-    return this;
-  }
-
-  /**
-   * Get maintained
-   * @return maintained
-   **/
-  @JsonProperty(JSON_PROPERTY_MAINTAINED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public Boolean getMaintained() {
-    return maintained;
-  }
-
-  @JsonProperty(JSON_PROPERTY_MAINTAINED)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setMaintained(Boolean maintained) {
-    this.maintained = maintained;
+  public void setResourcesStatus(ResourcesStatus resourcesStatus) {
+    this.resourcesStatus = resourcesStatus;
   }
 
   @Override
@@ -109,23 +93,24 @@ public class Actions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Actions actions = (Actions)o;
-    return Objects.equals(this.actions, actions.actions) &&
-        Objects.equals(this.maintained, actions.maintained);
+    ResourcesStatusWrapper resourcesStatusWrapper = (ResourcesStatusWrapper)o;
+    return Objects.equals(this.resourcesStatus,
+                          resourcesStatusWrapper.resourcesStatus) &&
+        super.equals(o);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(actions, maintained);
+    return Objects.hash(resourcesStatus, super.hashCode());
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Actions {\n");
-    sb.append("    actions: ").append(toIndentedString(actions)).append("\n");
-    sb.append("    maintained: ")
-        .append(toIndentedString(maintained))
+    sb.append("class ResourcesStatusWrapper {\n");
+    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+    sb.append("    resourcesStatus: ")
+        .append(toIndentedString(resourcesStatus))
         .append("\n");
     sb.append("}");
     return sb.toString();
