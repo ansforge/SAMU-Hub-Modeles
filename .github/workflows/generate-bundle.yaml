@@ -53,8 +53,8 @@ jobs:
       run: |
         current_date=$(date +'%y.%m.%d')
         bundle_name="$current_date_DSF_Hub Sante"
-        mv bundle $bundle_name
-        zip -r bundle.zip $bundle_name
+        mv bundle "$bundle_name"
+        zip -r bundle.zip "$bundle_name"
 
     - name: Upload artifact
       uses: actions/upload-artifact@v3
