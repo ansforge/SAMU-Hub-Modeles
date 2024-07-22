@@ -42,11 +42,11 @@ jobs:
           mkdir "$schemaDir/Schemas et Exemples"
           cp src/main/resources/json-schema/$SCHEMA.schema.json "$schemaDir/Schemas et Exemples"
           cp src/main/resources/xsd/$SCHEMA.xsd "$schemaDir/Schemas et Exemples"
-          cp -r src/main/resources/sample/examples/$SCHEMA/ "$schemaDir/Schemas et Exemples" || true  # || true as not all schemas have examples: RC-REF and RS-ERROR
+          cp src/main/resources/sample/examples/$SCHEMA/* "$schemaDir/Schemas et Exemples" || true  # || true as not all schemas have examples: RC-REF and RS-ERROR
 
           # Populate root elements (docx and UML)
-          cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Schemas et Exemples/Annexe au DSF - $SCHEMA.docx"
-          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schemas et Exemples/Schema UML - $SCHEMA.docx"
+          cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Annexe au DSF - $SCHEMA.docx"
+          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schema UML - $SCHEMA.docx"
         done
 
     - name: Create zip file with date
