@@ -523,6 +523,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
+            if child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = 1
             if not child['Cardinalité'].startswith('0'):
                 properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
@@ -570,6 +572,8 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
+            if child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = 1
             if not child['Cardinalité'].startswith('0'):
                 properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
