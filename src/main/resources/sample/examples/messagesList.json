@@ -107,7 +107,7 @@
         "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible."
       },
       {
-        "file": "RS/RS-EDA-usecase-PartageDossier-3.json",
+        "file": "RS-EDA/RS-EDA-usecase-PartageDossier-3.json",
         "icon": "mdi-head-heart-outline",
         "name": "Monsieur X",
         "caller": "Lucas Bernardi, gérant de gite touristique",
