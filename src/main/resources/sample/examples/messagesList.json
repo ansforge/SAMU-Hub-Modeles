@@ -5,7 +5,7 @@
     "schema": null,
     "examples": [
       {
-        "file": "RC-EDA/RC-EDA-Fuite-de-Gaz.json",
+        "file": "RC-EDA/RC-EDA-FuiteDeGaz-AliceGregoireNormand.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
         "name": "Alice et Grégoire Normand",
@@ -16,7 +16,7 @@
         "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
       },
       {
-        "file": "RC-EDA/RC-EDA-Obstetrique.json",
+        "file": "RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
         "name": "Delphine Vigneau",
@@ -129,7 +129,7 @@
         "medicalSituation": "Douleurs thoraciques irradiantes, antécédents de maladie cardiaque"
       },
       {
-        "file": "RS-EDA/RS-EDA-SMUR-Fuite-de-Gaz.json",
+        "file": "RS-EDA/RS-EDA-SMUR-FuiteDeGaz-AliceGregoireNormand.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
         "name": "Alice et Grégoire Normand",
@@ -140,7 +140,7 @@
         "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
       },
       {
-        "file": "RS-EDA/RS-EDA-SMUR-Femme-Enceinte.json",
+        "file": "RS-EDA/RS-EDA-SMUR-FemmeEnceinte-DelphineVigneau.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
         "name": "Delphine Vigneau",
@@ -256,18 +256,18 @@
     "schemaName": "RPIS.schema.json",
     "schema": null,
     "examples": [{
-      "file": "RPIS/RPIS-Fuite-de-Gaz.json",
+      "file": "RPIS/RPIS-FuiteDeGaz-GregoireNormand.json",
       "icon": "mdi-molecule-co2",
       "context": "Fuite de gaz",
-      "name": "Alice et Grégoire Normand",
+      "name": "Grégoire Normand",
       "caller": "Marie Dubois, mère des enfants, appelle le 15",
       "environment": "Domicile, maison particulière",
       "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
-      "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
+      "victim": "Homme, enfant, 11 ans",
       "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
     },
     {
-      "file": "RPIS/RPIS-Femme-Enceinte.json",
+      "file": "RPIS/RPIS-FemmeEnceinte-DelphineVigneau.json",
       "icon": "mdi-human-pregnant",
       "context": "Chute d'une échelle d'une femme enceinte",
       "name": "Delphine Vigneau",
