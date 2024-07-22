@@ -20,8 +20,8 @@ jobs:
     - name: Create bundle folder
       run: |
         mkdir bundle
-        cp csv_parser/out/ bundle/parser
-        cp src/main/resources/sample bundle/json
+        cp -r csv_parser/out/ bundle/parser
+        cp -r src/main/resources/sample bundle/json
 
     - name: Create zip file with date
       run: |
