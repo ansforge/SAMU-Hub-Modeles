@@ -498,7 +498,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
 
     def add_field_child_property(parent, child, definitions):
         """Update parent definitions (required and properties) by adding the child information for a field child"""
-        if child['Cardinalité'].startswith('1') and child_not_already_required(child, definitions):
+        if not child['Cardinalité'].startswith('0') and child_not_already_required(child, definitions):
             definitions['required'].append(child['name'])
         typeName, pattern, format = type_matching(child)
         parentExamplePath = get_parent_example_path(parent)
@@ -529,7 +529,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
-            if not child['Cardinalité'].startswith('0'):
+            if child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = 1  # not required but when set, at least one item
+            else:
                 properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
             properties[child['name']] = childDetails
@@ -564,7 +566,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             else:
                 json_schema['definitions'][childTrueTypeName]['properties'] = json_schema['definitions'][first_codeandlabel_name]['properties'].copy()
 
-        if child['Cardinalité'].startswith('1'):
+        if not child['Cardinalité'].startswith('0'):
             definitions['required'].append(child['name'])
         properties = definitions['properties']
         if is_array(child):
@@ -576,7 +578,9 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
             }
             if child['Cardinalité'][-1].isdigit():
                 properties[child['name']]['maxItems'] = int(child['Cardinalité'][-1])
-            if not child['Cardinalité'].startswith('0'):
+            if child['Cardinalité'].startswith('0'):
+                properties[child['name']]['minItems'] = 1  # not required but when set, at least one item
+            else:
                 properties[child['name']]['minItems'] = int(child['Cardinalité'][0])
         else:
             properties[child['name']] = {
