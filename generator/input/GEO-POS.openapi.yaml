@@ -20,6 +20,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/position'
+          minItems: 1
       additionalProperties: false
     position:
       type: object
@@ -68,6 +69,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/coord'
+          minItems: 1
         speed:
           type: number
           title: Vitesse de la ressource

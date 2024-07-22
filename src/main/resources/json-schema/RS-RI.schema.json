@@ -222,7 +222,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/state"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "coord": {
                     "$ref": "#/definitions/coord"
@@ -240,7 +241,8 @@
                         "x-cols": 6,
                         "example": "example.json#/mobilizedResource/0/freetext/0",
                         "description": "Texte libre permettant de passer toute autre information sur la ressource (équipements supplémentaires / spécifiques, particularités du vecteur, etc.)"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,

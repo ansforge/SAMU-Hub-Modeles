@@ -228,7 +228,8 @@
                         "x-cols": 6,
                         "example": "example.json#/intervention/actionsSMUR/0",
                         "description": "Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. \nA valoriser avec un code de la nomenclature ACTES_SMUR."
-                    }
+                    },
+                    "minItems": 1
                 },
                 "mainDiagnosis": {
                     "type": "string",

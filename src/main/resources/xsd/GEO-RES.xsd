@@ -2,7 +2,7 @@
     <element name="geoResourcesDetails" type="x:geoResourcesDetails"/>
     <complexType name="geoResourcesDetails">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="resource" type="x:resource"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="resource" type="x:resource"/>
         </sequence>
     </complexType>
     <complexType name="resource">
@@ -76,7 +76,7 @@ L'immatriculation peut être utilisée dans le nom courant des véhicules.</docu
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="contacts" type="x:contact"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="contacts" type="x:contact"/>
         </sequence>
     </complexType>
     <complexType name="contact">

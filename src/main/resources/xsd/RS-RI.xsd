@@ -174,10 +174,10 @@ OU - si un ID unique de la demande n'était pas disponible :
                 </simpleType>
             </element>
             <element minOccurs="0" name="team" type="x:team"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="state" type="x:state"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="state" type="x:state"/>
             <element minOccurs="0" name="coord" type="x:coord"/>
             <element minOccurs="0" name="contact" type="x:contact"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="freetext" type="string"/>
         </sequence>
     </complexType>
     <complexType name="team">

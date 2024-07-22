@@ -83,10 +83,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
+          minItems: 1
         medicalNote:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+          minItems: 1
         freetext:
           type: string
           title: "Informations suppl\xE9mentaires modifi\xE9es"
@@ -112,6 +114,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/riskThreat'
+          minItems: 1
         details:
           $ref: '#/components/schemas/caseDetails'
       additionalProperties: false
@@ -127,6 +130,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
+          minItems: 1
       additionalProperties: false
       example: example.json#/location
     alert:
@@ -140,6 +144,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/notes'
+          minItems: 1
       additionalProperties: false
       example: example.json#/initialAlert
     patient:
@@ -265,6 +270,7 @@ components:
           items:
             $ref: '#/components/schemas/customMap'
           maxItems: 3
+          minItems: 1
       additionalProperties: false
       example: example.json#/additionalInformation
     riskThreat:
@@ -489,6 +495,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalId'
+          minItems: 1
       additionalProperties: false
       example: example.json#/patient/0/administrativeFile
     Identity:
@@ -664,6 +671,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/otherDiagnosis'
+          minItems: 1
       additionalProperties: false
       example: example.json#/patient/0/hypothesis
     externalId:

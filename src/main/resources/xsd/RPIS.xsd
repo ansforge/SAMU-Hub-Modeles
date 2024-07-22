@@ -122,7 +122,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
         <sequence>
             <element name="location" type="x:location"/>
             <element name="team" type="x:team"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="actionsSMUR" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="actionsSMUR" type="string"/>
             <element name="mainDiagnosis" type="string">
                 <annotation>
                     <documentation>Thésaurus SFMU-FEDORU.

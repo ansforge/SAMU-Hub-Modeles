@@ -118,10 +118,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
+          minItems: 1
         medicalNote:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+          minItems: 1
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
@@ -151,6 +153,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/riskThreat'
+          minItems: 1
         whatsHappen:
           $ref: '#/components/schemas/whatsHappen'
         locationKind:
@@ -182,6 +185,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalLocationId'
+          minItems: 1
         detailedAddress:
           $ref: '#/components/schemas/detailedAddress'
         city:
@@ -194,6 +198,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
+          minItems: 1
         freetext:
           type: string
           title: "Informations compl\xE9mentaires sur la localisation"
@@ -235,6 +240,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/notes'
+          minItems: 1
         caller:
           $ref: '#/components/schemas/caller'
       additionalProperties: false
@@ -362,6 +368,7 @@ components:
           items:
             $ref: '#/components/schemas/customMap'
           maxItems: 3
+          minItems: 1
       additionalProperties: false
       example: example.json#/additionalInformation
     riskThreat:
@@ -1335,6 +1342,7 @@ components:
               \ dans le b\xE2timent."
             examples:
             - 1234A
+          minItems: 1
         elevator:
           type: string
           title: Ascenseur/escalier
@@ -2137,6 +2145,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalId'
+          minItems: 1
       additionalProperties: false
       example: example.json#/patient/0/administrativeFile
     Identity:
@@ -2224,6 +2233,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/otherDiagnosis'
+          minItems: 1
       additionalProperties: false
       example: example.json#/patient/0/hypothesis
     externalId:

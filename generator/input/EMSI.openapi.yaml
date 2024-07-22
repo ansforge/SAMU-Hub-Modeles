@@ -26,10 +26,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/mission'
+          minItems: 1
         RESOURCE:
           type: array
           items:
             $ref: '#/components/schemas/resource'
+          minItems: 1
       additionalProperties: false
     context:
       type: object
@@ -106,6 +108,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
+          minItems: 1
         LEVEL:
           type: string
           title: Niveau
@@ -164,6 +167,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
+          minItems: 1
         URGENCY:
           type: string
           title: "Niveau d'urgence de l'\xE9v\xE9nement"
@@ -351,18 +355,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/reference'
+          minItems: 1
         CASUALTIES:
           type: array
           items:
             $ref: '#/components/schemas/casualties'
+          minItems: 1
         EVAC:
           type: array
           items:
             $ref: '#/components/schemas/evac'
+          minItems: 1
         EGEO:
           type: array
           items:
             $ref: '#/components/schemas/egeo'
+          minItems: 1
         CAUSE:
           type: string
           title: Cause
@@ -731,6 +739,7 @@ components:
               \ mission (voir RESOURCE.ID)"
             examples:
             - 77_45102#VSAV 1
+          minItems: 1
         PARENT_MISSION_ID:
           type: array
           x-health-only: false
@@ -748,6 +757,7 @@ components:
               \ \"D\xE9coupage de l'op\xE9ration en missions\")"
             examples:
             - None
+          minItems: 1
         CHILD_MISSION_ID:
           type: array
           x-health-only: false
@@ -761,6 +771,7 @@ components:
               \ \"D\xE9coupage de l'op\xE9ration en missions\")"
             examples:
             - None
+          minItems: 1
         MAIN_MISSION_ID:
           type: string
           title: Mission principale
@@ -870,6 +881,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/rgeo'
+          minItems: 1
         QUANTITY:
           type: number
           title: "Quantit\xE9 de la ressource"
@@ -983,6 +995,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact'
+          minItems: 1
       additionalProperties: false
       example: example.json#/RESOURCE/0
     link:
@@ -1792,6 +1805,7 @@ components:
             - WIN/WTRSPT
             examples:
             - HUM/RAIN
+          minItems: 1
         FREETEXT:
           type: string
           title: "Description de l'\xE9v\xE9nement"
@@ -1872,6 +1886,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/coord'
+          minItems: 1
         ADDRESS:
           type: array
           x-health-only: false
@@ -1885,6 +1900,7 @@ components:
               \ transmises ne sont pas structur\xE9es."
             examples:
             - Nantes centre ville
+          minItems: 1
       additionalProperties: false
       example: example.json#/EVENT/EGEO/0/POSITION
     coord:
@@ -2575,6 +2591,7 @@ components:
               s le standard EMSI"
             examples:
             - None
+          minItems: 1
         CHARACTERISTICS:
           type: array
           x-health-only: false
@@ -2589,6 +2606,7 @@ components:
               \ fonctionnement de cette nomenclature est fournie en annexe."
             examples:
             - None
+          minItems: 1
       additionalProperties: false
       example: example.json#/RESOURCE/0/RTYPE
     rgeo:
@@ -2661,6 +2679,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/position'
+          minItems: 1
       additionalProperties: false
       example: example.json#/RESOURCE/0/RGEO/0
     contact:

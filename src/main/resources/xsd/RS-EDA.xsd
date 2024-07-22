@@ -72,8 +72,8 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="patient" type="x:patient"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="medicalNote" type="x:medicalNote"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
     </complexType>
@@ -93,7 +93,7 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="riskThreat" type="x:riskThreat"/>
             <element minOccurs="0" name="whatsHappen" type="x:whatsHappen"/>
             <element minOccurs="0" name="locationKind" type="x:locationKind"/>
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
@@ -107,12 +107,12 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                     <documentation>A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalLocationId" type="x:externalLocationId"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="externalLocationId" type="x:externalLocationId"/>
             <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="externalInfo" type="x:externalInfo"/>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Champ libre qui permet de compléter les informations liées à la localisation.
@@ -131,7 +131,7 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
                     <documentation>A valoriser avec le groupe date heure de réception de l'alerte/appel</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="notes" type="x:notes"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="notes" type="x:notes"/>
             <element name="caller" type="x:caller"/>
         </sequence>
     </complexType>
@@ -213,7 +213,7 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
     </complexType>
     <complexType name="additionalInformation">
         <sequence>
-            <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
+            <element maxOccurs="3" minOccurs="1" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
     <complexType name="riskThreat">
@@ -1025,7 +1025,7 @@ La valeur du code INSEE est obligatoire dès que le nom de la commune est rensei
                     <documentation>A valoriser avec les informations nécessaires à l'identification de l'interphone (numéro, nom)</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="accessCode" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="accessCode" type="string"/>
             <element minOccurs="0" name="elevator" type="string">
                 <annotation>
                     <documentation>A valoriser avec le nom ou le numéro de l'ascenseur ou de la cage d'escalier </documentation>
@@ -1590,7 +1590,7 @@ Par convention les prénoms composés doivent préférablement être séparés p
     </complexType>
     <complexType name="administrativeFile">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="externalId" type="x:externalId"/>
         </sequence>
     </complexType>
     <complexType name="Identity">
@@ -1640,7 +1640,7 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
     <complexType name="hypothesis">
         <sequence>
             <element minOccurs="0" name="mainDiagnosis" type="x:mainDiagnosis"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:otherDiagnosis"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="otherDiagnosis" type="x:otherDiagnosis"/>
         </sequence>
     </complexType>
     <complexType name="externalId">

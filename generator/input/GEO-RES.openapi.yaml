@@ -20,6 +20,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/resource'
+          minItems: 1
       additionalProperties: false
     resource:
       type: object
@@ -124,6 +125,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/contact'
+          minItems: 1
       additionalProperties: false
       example: example.json#/resource/0
     contact:

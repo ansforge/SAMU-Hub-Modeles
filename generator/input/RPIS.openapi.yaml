@@ -258,6 +258,7 @@ components:
               \ ACTES_SMUR."
             examples:
             - None
+          minItems: 1
         mainDiagnosis:
           type: string
           title: Diagnostic principal SMUR

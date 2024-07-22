@@ -90,13 +90,15 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/patient"
-            }
+            },
+            "minItems": 1
         },
         "medicalNote": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/medicalNote"
-            }
+            },
+            "minItems": 1
         },
         "additionalInformation": {
             "$ref": "#/definitions/additionalInformation"
@@ -129,7 +131,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/riskThreat"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "whatsHappen": {
                     "$ref": "#/definitions/whatsHappen"
@@ -166,7 +169,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/externalLocationId"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "detailedAddress": {
                     "$ref": "#/definitions/detailedAddress"
@@ -184,7 +188,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/externalInfo"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "freetext": {
                     "type": "string",
@@ -222,7 +227,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/notes"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "caller": {
                     "$ref": "#/definitions/caller"
@@ -333,7 +339,8 @@
                     "items": {
                         "$ref": "#/definitions/customMap"
                     },
-                    "maxItems": 3
+                    "maxItems": 3,
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -1262,7 +1269,8 @@
                         "x-cols": 6,
                         "example": "example.json#/location/access/accessCode/0",
                         "description": "A valoriser avec le ou les digicodes, dans l'ordre de progression dans le bâtiment."
-                    }
+                    },
+                    "minItems": 1
                 },
                 "elevator": {
                     "type": "string",
@@ -1998,7 +2006,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/externalId"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -2085,7 +2094,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/otherDiagnosis"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,

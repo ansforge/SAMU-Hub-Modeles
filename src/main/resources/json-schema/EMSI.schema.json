@@ -21,13 +21,15 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/mission"
-            }
+            },
+            "minItems": 1
         },
         "RESOURCE": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/resource"
-            }
+            },
+            "minItems": 1
         }
     },
     "definitions": {
@@ -93,7 +95,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/link"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "LEVEL": {
                     "type": "string",
@@ -139,7 +142,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/externalInfo"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "URGENCY": {
                     "type": "string",
@@ -291,25 +295,29 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/reference"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "CASUALTIES": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/casualties"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "EVAC": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/evac"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "EGEO": {
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/egeo"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "CAUSE": {
                     "type": "string",
@@ -620,7 +628,8 @@
                         "x-cols": 6,
                         "example": "example.json#/MISSION/0/RESOURCE_ID/0",
                         "description": "Liste des identifiants des ressources engagées dans la mission (voir RESOURCE.ID)"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "PARENT_MISSION_ID": {
                     "type": "array",
@@ -632,7 +641,8 @@
                         "x-cols": 6,
                         "example": "example.json#/MISSION/0/PARENT_MISSION_ID/0",
                         "description": "Dans le cadre d'une demande de concours, ne doit pas être renseigné\nLa mission peut déjà être rattachée à des missions filles mais leurs détails ne doivent pas être nécessaires pour traiter la demande de concours dans le système du partenaire.\nCf. DSF pour l'organisation liens entre MISSION (sous-section \"Découpage de l'opération en missions\")"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "CHILD_MISSION_ID": {
                     "type": "array",
@@ -644,7 +654,8 @@
                         "x-cols": 6,
                         "example": "example.json#/MISSION/0/CHILD_MISSION_ID/0",
                         "description": "Cf. DSF pour l'organisation liens entre MISSION (sous-section \"Découpage de l'opération en missions\")"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "MAIN_MISSION_ID": {
                     "type": "string",
@@ -725,7 +736,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/rgeo"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "QUANTITY": {
                     "type": "number",
@@ -824,7 +836,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/contact"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -1569,7 +1582,8 @@
                             "WIN/WHIR",
                             "WIN/WTRSPT"
                         ]
-                    }
+                    },
+                    "minItems": 1
                 },
                 "FREETEXT": {
                     "type": "string",
@@ -1637,7 +1651,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/coord"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "ADDRESS": {
                     "type": "array",
@@ -1649,7 +1664,8 @@
                         "x-cols": 6,
                         "example": "example.json#/EVENT/EGEO/0/POSITION/ADDRESS/0",
                         "description": "Optionnel. Dans le cas d'un partage de position, les adresses transmises ne sont pas structurées."
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -2328,7 +2344,8 @@
                         "x-cols": 6,
                         "example": "example.json#/RESOURCE/0/RTYPE/CAPABILITY/0",
                         "description": "Permet d'indiquer les capacités de la ressource d'après le standard EMSI"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "CHARACTERISTICS": {
                     "type": "array",
@@ -2340,7 +2357,8 @@
                         "x-cols": 6,
                         "example": "example.json#/RESOURCE/0/RTYPE/CHARACTERISTICS/0",
                         "description": "Permet d'indiquer des caractéristique physiques de la ressource (hauteur, largeur, longueur et poids).\nLe détail de fonctionnement de cette nomenclature est fournie en annexe."
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -2400,7 +2418,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/position"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,

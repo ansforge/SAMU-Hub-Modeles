@@ -42,14 +42,14 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
             <element name="qualification" type="x:qualification"/>
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="newAlert" type="x:alert"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="freetext" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="newAlert" type="x:alert"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="freetext" type="string"/>
             <element minOccurs="0" name="additionalInformation" type="x:additionalInformation"/>
         </sequence>
     </complexType>
     <complexType name="qualification">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="riskThreat" type="x:riskThreat"/>
             <element name="whatsHappen" type="x:whatsHappen"/>
             <element minOccurs="0" name="locationKind" type="x:locationKind"/>
             <element minOccurs="0" name="healthMotive" type="x:healthMotive"/>
@@ -75,12 +75,12 @@ Cela permet aux différents systèmes de s'assurer qu'ils utilisent la même ver
                     <documentation>A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalLocationId" type="x:externalLocationId"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="externalLocationId" type="x:externalLocationId"/>
             <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
             <element minOccurs="0" name="city" type="x:city"/>
             <element minOccurs="0" name="access" type="x:access"/>
             <element minOccurs="0" name="geometry" type="x:geometry"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="externalInfo" type="x:externalInfo"/>
             <element name="country">
                 <simpleType>
                     <restriction base="string">
@@ -372,17 +372,17 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="notes" type="x:notes"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="notes" type="x:notes"/>
             <element name="caller" type="x:caller"/>
             <element name="location" type="x:location"/>
             <element name="qualification" type="x:qualification"/>
             <element name="callTaker" type="x:callTaker"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="attachment" type="x:attachment"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="attachment" type="x:attachment"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
         <sequence>
-            <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
+            <element maxOccurs="3" minOccurs="1" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
     <complexType name="riskThreat">
@@ -1160,7 +1160,7 @@ NB : dans tous les cas, la localisation GPS de la commune doit être fournie afi
                     <documentation>A valoriser avec les informations nécessaires à l'identification de l'interphone (numéro, nom)</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="accessCode" type="string"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="accessCode" type="string"/>
             <element minOccurs="0" name="elevator" type="string">
                 <annotation>
                     <documentation>A valoriser avec le nom ou le numéro de l'ascenseur ou de la cage d'escalier </documentation>

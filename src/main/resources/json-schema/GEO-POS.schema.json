@@ -12,7 +12,8 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/position"
-            }
+            },
+            "minItems": 1
         }
     },
     "definitions": {
@@ -58,7 +59,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/coord"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "speed": {
                     "type": "number",

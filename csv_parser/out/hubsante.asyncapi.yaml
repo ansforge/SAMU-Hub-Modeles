@@ -358,6 +358,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/alert'
+          minItems: 1
         freetext:
           type: array
           x-health-only: false
@@ -373,6 +374,7 @@ components:
             examples:
             - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
               \ ferm\xE9es de 22h \xE0 6h00."
+          minItems: 1
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
@@ -387,6 +389,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/riskThreat'
+          minItems: 1
         details:
           $ref: '#/components/schemas/caseDetails'
       additionalProperties: false
@@ -621,6 +624,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/notes'
+          minItems: 1
       additionalProperties: false
       example: example.json#/initialAlert
     additionalInformation:
@@ -635,6 +639,7 @@ components:
           items:
             $ref: '#/components/schemas/customMap'
           maxItems: 3
+          minItems: 1
       additionalProperties: false
       example: example.json#/additionalInformation
     riskThreat:
@@ -1565,6 +1570,7 @@ components:
               \ dans le b\xE2timent."
             examples:
             - 1234A
+          minItems: 1
         elevator:
           type: string
           title: Ascenseur/escalier
@@ -2570,10 +2576,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
+          minItems: 1
         medicalNote:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+          minItems: 1
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
@@ -2808,6 +2816,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalId'
+          minItems: 1
       additionalProperties: false
       example: example.json#/patient/0/administrativeFile
     Identity:
@@ -2895,6 +2904,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/otherDiagnosis'
+          minItems: 1
       additionalProperties: false
       example: example.json#/patient/0/hypothesis
     externalId:
@@ -3159,10 +3169,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/patient'
+          minItems: 1
         medicalNote:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+          minItems: 1
         freetext:
           type: string
           title: "Informations suppl\xE9mentaires modifi\xE9es"
@@ -3195,10 +3207,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/mission'
+          minItems: 1
         RESOURCE:
           type: array
           items:
             $ref: '#/components/schemas/resource'
+          minItems: 1
       additionalProperties: false
     context:
       type: object
@@ -3275,6 +3289,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/link'
+          minItems: 1
         LEVEL:
           type: string
           title: Niveau
@@ -3333,6 +3348,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
+          minItems: 1
         URGENCY:
           type: string
           title: "Niveau d'urgence de l'\xE9v\xE9nement"
@@ -3798,6 +3814,7 @@ components:
               \ mission (voir RESOURCE.ID)"
             examples:
             - 77_45102#VSAV 1
+          minItems: 1
         PARENT_MISSION_ID:
           type: array
           x-health-only: false
@@ -3815,6 +3832,7 @@ components:
               \ \"D\xE9coupage de l'op\xE9ration en missions\")"
             examples:
             - None
+          minItems: 1
         CHILD_MISSION_ID:
           type: array
           x-health-only: false
@@ -3828,6 +3846,7 @@ components:
               \ \"D\xE9coupage de l'op\xE9ration en missions\")"
             examples:
             - None
+          minItems: 1
         MAIN_MISSION_ID:
           type: string
           title: Mission principale
@@ -4088,6 +4107,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/state'
+          minItems: 1
         coord:
           $ref: '#/components/schemas/coord'
         contact:
@@ -4106,6 +4126,7 @@ components:
               \ particularit\xE9s du vecteur, etc.)"
             examples:
             - "SMUR p\xE9diatrique"
+          minItems: 1
       additionalProperties: false
       example: example.json#/mobilizedResource/0
     link:
@@ -4870,6 +4891,7 @@ components:
             - WIN/WTRSPT
             examples:
             - HUM/RAIN
+          minItems: 1
         FREETEXT:
           type: string
           title: "Description de l'\xE9v\xE9nement"
@@ -4932,6 +4954,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/coord'
+          minItems: 1
         speed:
           type: number
           title: Vitesse de la ressource
@@ -5662,6 +5685,7 @@ components:
               s le standard EMSI"
             examples:
             - None
+          minItems: 1
         CHARACTERISTICS:
           type: array
           x-health-only: false
@@ -5676,6 +5700,7 @@ components:
               \ fonctionnement de cette nomenclature est fournie en annexe."
             examples:
             - None
+          minItems: 1
       additionalProperties: false
       example: example.json#/RESOURCE/0/RTYPE
     rgeo:
@@ -5748,6 +5773,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/position'
+          minItems: 1
       additionalProperties: false
       example: example.json#/RESOURCE/0/RGEO/0
     geoPositionsUpdate:
@@ -5762,6 +5788,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/position'
+          minItems: 1
       additionalProperties: false
     geoResourcesRequest:
       $id: classpath:/json-schema/schema#
@@ -5799,6 +5826,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/resource'
+          minItems: 1
       additionalProperties: false
     error:
       $id: classpath:/json-schema/schema#
@@ -6384,6 +6412,7 @@ components:
               \ ACTES_SMUR."
             examples:
             - None
+          minItems: 1
         mainDiagnosis:
           type: string
           title: Diagnostic principal SMUR

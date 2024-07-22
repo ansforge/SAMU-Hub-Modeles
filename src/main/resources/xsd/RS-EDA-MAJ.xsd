@@ -50,8 +50,8 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                     </restriction>
                 </simpleType>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="patient" type="x:patient"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="medicalNote" type="x:medicalNote"/>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.</documentation>
@@ -62,18 +62,18 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
     </complexType>
     <complexType name="qualification">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="riskThreat" type="x:riskThreat"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="riskThreat" type="x:riskThreat"/>
             <element minOccurs="0" name="details" type="x:caseDetails"/>
         </sequence>
     </complexType>
     <complexType name="location">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalInfo" type="x:externalInfo"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="externalInfo" type="x:externalInfo"/>
         </sequence>
     </complexType>
     <complexType name="alert">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="notes" type="x:notes"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="notes" type="x:notes"/>
         </sequence>
     </complexType>
     <complexType name="patient">
@@ -154,7 +154,7 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
     </complexType>
     <complexType name="additionalInformation">
         <sequence>
-            <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
+            <element maxOccurs="3" minOccurs="1" name="customMap" type="x:customMap"/>
         </sequence>
     </complexType>
     <complexType name="riskThreat">
@@ -300,7 +300,7 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
     </complexType>
     <complexType name="administrativeFile">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="externalId" type="x:externalId"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="externalId" type="x:externalId"/>
         </sequence>
     </complexType>
     <complexType name="Identity">
@@ -421,7 +421,7 @@ Au format "Durée" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#
     <complexType name="hypothesis">
         <sequence>
             <element minOccurs="0" name="mainDiagnosis" type="x:mainDiagnosis"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="otherDiagnosis" type="x:otherDiagnosis"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="otherDiagnosis" type="x:otherDiagnosis"/>
         </sequence>
     </complexType>
     <complexType name="externalId">

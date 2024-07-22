@@ -63,13 +63,15 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/patient"
-            }
+            },
+            "minItems": 1
         },
         "medicalNote": {
             "type": "array",
             "items": {
                 "$ref": "#/definitions/medicalNote"
-            }
+            },
+            "minItems": 1
         },
         "freetext": {
             "type": "string",
@@ -95,7 +97,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/riskThreat"
-                    }
+                    },
+                    "minItems": 1
                 },
                 "details": {
                     "$ref": "#/definitions/caseDetails"
@@ -115,7 +118,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/externalInfo"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -132,7 +136,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/notes"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -240,7 +245,8 @@
                     "items": {
                         "$ref": "#/definitions/customMap"
                     },
-                    "maxItems": 3
+                    "maxItems": 3,
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -445,7 +451,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/externalId"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
@@ -616,7 +623,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/otherDiagnosis"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,

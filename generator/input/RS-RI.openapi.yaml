@@ -262,6 +262,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/state'
+          minItems: 1
         coord:
           $ref: '#/components/schemas/coord'
         contact:
@@ -280,6 +281,7 @@ components:
               \ particularit\xE9s du vecteur, etc.)"
             examples:
             - "SMUR p\xE9diatrique"
+          minItems: 1
       additionalProperties: false
       example: example.json#/mobilizedResource/0
     team:

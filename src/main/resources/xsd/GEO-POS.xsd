@@ -2,7 +2,7 @@
     <element name="geoPositionsUpdate" type="x:geoPositionsUpdate"/>
     <complexType name="geoPositionsUpdate">
         <sequence>
-            <element maxOccurs="unbounded" minOccurs="0" name="position" type="x:position"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="position" type="x:position"/>
         </sequence>
     </complexType>
     <complexType name="position">
@@ -22,7 +22,7 @@
                     <documentation>Date et heure de la réception de la dernière position connue dans le système de l'organisme</documentation>
                 </annotation>
             </element>
-            <element maxOccurs="unbounded" minOccurs="0" name="coord" type="x:coord"/>
+            <element maxOccurs="unbounded" minOccurs="1" name="coord" type="x:coord"/>
             <element minOccurs="0" name="speed" type="decimal">
                 <annotation>
                     <documentation>Vitesse de la ressource enregistrée, exprimée en km/h</documentation>

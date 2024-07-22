@@ -88,6 +88,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/alert'
+          minItems: 1
         freetext:
           type: array
           x-health-only: false
@@ -103,6 +104,7 @@ components:
             examples:
             - "Le forcen\xE9 n'est pas ma\xEEtris\xE9. Voiture renvers\xE9e. Urgences\
               \ ferm\xE9es de 22h \xE0 6h00."
+          minItems: 1
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
@@ -118,6 +120,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/riskThreat'
+          minItems: 1
         whatsHappen:
           $ref: '#/components/schemas/whatsHappen'
         locationKind:
@@ -176,6 +179,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalLocationId'
+          minItems: 1
         detailedAddress:
           $ref: '#/components/schemas/detailedAddress'
         city:
@@ -188,6 +192,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/externalInfo'
+          minItems: 1
         country:
           type: string
           title: Pays
@@ -527,6 +532,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/notes'
+          minItems: 1
         caller:
           $ref: '#/components/schemas/caller'
         location:
@@ -539,6 +545,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/attachment'
+          minItems: 1
       additionalProperties: false
       example: example.json#/initialAlert
     additionalInformation:
@@ -553,6 +560,7 @@ components:
           items:
             $ref: '#/components/schemas/customMap'
           maxItems: 3
+          minItems: 1
       additionalProperties: false
       example: example.json#/additionalInformation
     riskThreat:
@@ -1502,6 +1510,7 @@ components:
               \ dans le b\xE2timent."
             examples:
             - 1234A
+          minItems: 1
         elevator:
           type: string
           title: Ascenseur/escalier

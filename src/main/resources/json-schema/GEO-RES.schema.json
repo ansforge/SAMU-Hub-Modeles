@@ -12,7 +12,8 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/resource"
-            }
+            },
+            "minItems": 1
         }
     },
     "definitions": {
@@ -111,7 +112,8 @@
                     "type": "array",
                     "items": {
                         "$ref": "#/definitions/contact"
-                    }
+                    },
+                    "minItems": 1
                 }
             },
             "additionalProperties": false,
