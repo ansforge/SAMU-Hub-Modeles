@@ -1,0 +1,32 @@
+name: Zip Files and Upload Artifact
+
+on:
+  workflow_dispatch:
+
+jobs:
+  zip_and_upload:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up zip
+      run: sudo apt-get install zip -y
+
+    - name: Create bundle folder
+      run: |
+        mkdir bundle
+        cp csv_parser/out/ bundle/parser
+        cp src/main/resources/sample bundle/json
+
+    - name: Create zip file with date
+      run: |
+        current_date=$(date +'%Y-%m-%d')
+        zip -r bundle_$current_date.zip bundle
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: Bundle-zip
+        path: bundle_*.zip
