@@ -34,7 +34,7 @@ jobs:
         for SCHEMA in "${SCHEMAS_ARRAY[@]}"; do
           # Create "Annexes" directory
           schemaDir="$messagesDir/Annexes $SCHEMA"
-          mdkir $schemaDir
+          mkdir $schemaDir
 
           # Create and populate "Schemas et Exemples" directory
           mkdir "$schemaDir/Schemas et Exemples"
