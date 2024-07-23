@@ -1,7 +1,7 @@
 # Notes sur la configuration d'un générateur de lib Ruby pour porter le modèle du Hub Santé
 
 ### Principes de base :
-- La CI du repo SAMU-Hub-Modeles suit en quasi continu les travaux éditeurs / métiers. Les modifications issues des échanges sont portées par le classeur [model.xslx](../../../csv_parser/models/model.xlsx).
+- La CI du repo SAMU-Hub-Modeles suit en quasi continu les travaux éditeurs / métiers. Les modifications issues des échanges sont portées par les classeurs xslx du dossier [models/](../../../csv_parser/models/).
 - Ce fichier permet de générer en cascade les JSON-schemas et les XSDs des différents périmètres, des supports de documentation (contrat d'interface, diagrammes UML), et des descripteurs OpenAPI (uniquement sur le modèle de données)
 - Un paquet npm permet d'appeler un des générateurs développés par la communauté OpenAPI, à partir des descripteurs OpenAPI. On trouve trace des appels dans cette [github action](../../../.github/workflows/generate-model.yaml) : 
 - Ces différents générateurs peuvent être implémentés différemment ; mais dans l'ensemble le principe est le suivant : chaque objet défini dans le descripteur est injecté dans des templates prédéfinis, en fonction de paramètres configurables.
