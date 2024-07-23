@@ -77,7 +77,7 @@ strict digraph {
                 <TR>
                 <TD ><B>nonStrictFeatures</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	nonStrictFeatures -> identity [headlabel=1 taillabel="0..1"]
 	identity [label=<<TABLE>
@@ -133,7 +133,7 @@ strict digraph {
                 <TR>
                 <TD ><B>detailedName</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	detailedName -> operator [headlabel=1 taillabel="0..1"]
 	operator [label=<<TABLE>

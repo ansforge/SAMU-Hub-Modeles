@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-MAJ.schema.json#",
-    "version": "24.07.19",
+    "version": "24.07.22",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthUpdate",
@@ -16,7 +16,8 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
+            "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",
+            "pattern": "fr(\\.[\\w-]+){3,5}"
         },
         "senderCaseId": {
             "type": "string",
@@ -55,7 +56,8 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/owner",
-            "description": "Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA\nA valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})"
+            "description": "Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA\nA valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",
+            "pattern": "fr(\\.[\\w-]+){2,4}"
         },
         "patient": {
             "type": "array",
@@ -151,7 +153,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/patient/0/idPat",
-                    "description": "Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}\n\n\n"
+                    "description": "Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}\n\n\n",
+                    "pattern": "([\\w-]+\\.?){3}patient(\\.[\\w-]+){1,2}"
                 },
                 "administrativeFile": {
                     "$ref": "#/definitions/administrativeFile"
@@ -188,7 +191,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idPat",
-                    "description": "Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, \n\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}"
+                    "description": "Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, \n\nValorisé comme suit lors de sa création : \n{OrgId émetteur}.patient.{n°patient unique dans le système émetteur}\n\nOU, si un n°patient unique n'existe pas dans le système émetteur :\n{ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}",
+                    "pattern": "([\\w-]+\\.?){3}patient(\\.[\\w-]+){1,2}"
                 },
                 "operator": {
                     "$ref": "#/definitions/operator"
@@ -199,7 +203,8 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/idObs",
-                    "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n"
+                    "description": "Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation\nIl est valorisé comme suit lors de sa création : \n{OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}\n\nOU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système : \n{OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}\n\nCet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.\n",
+                    "pattern": "([\\w-]+\\.?){3}medicalNote(\\.[\\w-]+){1,2}"
                 },
                 "creation": {
                     "type": "string",
@@ -385,7 +390,7 @@
                         "CARTE",
                         "AUTRE",
                         "PHOTO",
-                        "SITE INTERNET"
+                        "SITE_INTERNET"
                     ]
                 },
                 "uri": {
@@ -701,8 +706,35 @@
             "title": "Traits non stricts de l'identité",
             "x-display": "expansion-panels",
             "x-health-only": false,
-            "required": [],
-            "properties": {},
+            "required": [
+                "complete"
+            ],
+            "properties": {
+                "complete": {
+                    "type": "string",
+                    "title": "Prénom et nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/identity/nonStrictFeatures/complete",
+                    "description": "A valoriser avec le prénom et le nom usuel du requérant/appelant.\nSi les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : \"{callerFirstName} {callerLastName}\".\n\nSpécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés."
+                },
+                "lastName": {
+                    "type": "string",
+                    "title": "Nom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/identity/nonStrictFeatures/lastName",
+                    "description": "A valoriser avec le nom usuel du requérant"
+                },
+                "firstName": {
+                    "type": "string",
+                    "title": "Prénom",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/patient/0/identity/nonStrictFeatures/firstName",
+                    "description": "A valoriser avec le prénom usuel du réquérant.\nPar convention les prénoms composés doivent préférablement être séparés par le caractère \"-\""
+                }
+            },
             "additionalProperties": false,
             "example": "example.json#/patient/0/identity/nonStrictFeatures"
         },

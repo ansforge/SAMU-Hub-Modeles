@@ -27,10 +27,10 @@ import com.hubsante.model.health.CreateCaseHealthWrapper;
 import com.hubsante.model.health.update.CreateCaseHealthUpdateWrapper;
 import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.report.ErrorWrapper;
-import com.hubsante.model.resources.ResourcesInfoWrapper;
-import com.hubsante.model.resources.ResourcesRequestWrapper;
-import com.hubsante.model.resources.ResourcesResponseWrapper;
-import com.hubsante.model.resources.ResourcesStatusWrapper;
+import com.hubsante.model.resources.info.ResourcesInfoWrapper;
+import com.hubsante.model.resources.request.ResourcesRequestWrapper;
+import com.hubsante.model.resources.response.ResourcesResponseWrapper;
+import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.RpisWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)

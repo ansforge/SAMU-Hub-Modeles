@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,"REGEX: fr(\.[\w-]+){3,5}"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
@@ -27,16 +27,16 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
 ,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,CE/CK,raison de l'appel,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,CI,Type de lieu d'intervention,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Type_de_lieu
 ,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,,,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
-,Détails du dossier ,,,,,,,details,,,,,,0..1,X,caseDetails,,
+,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,,,,,,0..1,X,caseDetails,,
 ,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.",MU,attribution,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-DEVENIRD
 ,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,priority,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PRIORITE
 ,,Niveau de soins du dossier,,,,"Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave.
 cf.nomenclature associée.",R1,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
 Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,,,,,,1..1,X,location,,
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
-,Identifiant(s) du lieu,,,,,Lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,,,,,,0..n,X,externalLocationId,,
-,,Source  /  type d'identifiant,,,,Type de l'identifiant fourni,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,,,,,,1..1,,string,X,"ENUM: FINESS ADMINISTRATIF, FINESS GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
-,,Identifiant,,,,L'identifiant en lui-même,920000650 ,value,,,,,,1..1,,string,,
+,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,,,,,,0..n,X,externalLocationId,,
+,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,,,,,,1..1,,string,X,"ENUM: FINESS_ADMINISTRATIF, FINESS_GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
+,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,,,,,,1..1,,string,,REGEX: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
 ,Détails de l'adresse,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
 ,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,highway,,,,,,0..1,X,highway,,
 ,,,Nom,,,"A valoriser avec le nom de l'autoroute, de la voie ferrée ou voie navigable.",A4,name,,,,,,0..1,,string,,
@@ -57,7 +57,7 @@ Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferr
 Si les attributs ""type"" et ""name"" de ""wayName"" sont également renseignés, alors ""complete"" doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name}
 ,,,Type,,,A valoriser avec le type de la voie,Boulevard,type,,,,,,0..1,,string,,
 ,,,Nom,,,A valoriser avec le nom de la voie,du Montparnasse,name,,,,,,0..1,,string,,
-,Détails de la commune,,,,,,,city,,,,,,0..1,X,city,,
+,Détails de la commune,,,,,Objet qui permet de transmettre les détails de la commune,,city,,,,,,0..1,X,city,,
 ,,Nom de la commune,,,,A valoriser avec le nom officiel de la commune,Lille,name,LC,Nom de la commune,,,,0..1,,string,,
 ,,Code INSEE de la commune,,,,"A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. 
 La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).",59350,inseeCode,LZ,Code INSEE de la commune,,,,0..1,,string,,REGEX: [0-9]{5}
@@ -74,8 +74,8 @@ Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et
 ,,Entrée,,,,A valoriser avec le nom de l'entrée,Zone Sud,entrance,,,,,,0..1,,string,,
 ,,Service,,,,"A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.",Infirmerie,entity,,,,,,0..1,,string,,
 ,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
-Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,,,,,,0..1,,string,,
-,Géometrie associée,,,,,,,geometry,,,,,,0..1,X,geometry,,
+Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,,,,,,0..1,,string,,"REGEX: \+\d{5,18}"
+,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,,,,,,0..1,X,geometry,,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
 Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,,,,,,1..1,,datetime,,
 ,,Point ,,,,"Objet qui permet de décrire un point géographique.
@@ -105,7 +105,7 @@ L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé a
 ,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
-Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,,,,,,0..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET"
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,,,,,,0..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE_INTERNET"
 ,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",uri,,,,,,1..1,,string,,
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
 
@@ -130,8 +130,8 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
 ,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,,,,,,1..1,,string,,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
-,,,Type de contact,,,"A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO",TEL,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
-,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée
+,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,,,,,,1..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
+,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée.
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,,,,,,1..1,,string,,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
 
@@ -154,7 +154,7 @@ Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
 ,,,Prénom,,,"A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,,,,,,0..1,,string,,
 CRRA traitant,,,,,,"Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
-A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,,,,,,1..1,,string,,
+A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,,,,,,1..1,,string,,"REGEX: fr(\.[\w-]+){2,4}"
 Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,,,,,,0..n,X,patient,,
 ,ID patient partagé,,,,,"Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
@@ -165,7 +165,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 
 
 ","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,1..1,,string,,
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,1..1,,string,,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,,,,,,0..1,X,administrativeFile,,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,,,,,,0..n,X,externalId,,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
@@ -194,7 +194,7 @@ Valorisé comme suit lors de sa création :
 
 OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,0..1,,string,,
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,0..1,,string,,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,,,,,,1..1,X,operator,,
 ,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,,,,,,0..1,X,detailedName,,
 ,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
@@ -207,7 +207,7 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,,,,,,0..1,,string,,
+fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,,,,,,0..1,,string,,"REGEX: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}"
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,,,,,,0..1,,datetime,,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,,,,,,1..1,,string,,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,,,,,,0..1,X,additionalInformation,,

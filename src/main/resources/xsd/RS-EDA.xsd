@@ -2,7 +2,7 @@
     <element name="createCaseHealth" type="x:createCaseHealth"/>
     <complexType name="createCaseHealth">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
                     <documentation>Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
@@ -11,6 +11,11 @@ Il est valorisé comme suit lors de sa création :
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3,5}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="senderCaseId" type="string">
                 <annotation>
@@ -56,11 +61,16 @@ Il doit être renseigné à la fin du processus de la  création de la première
             <element name="qualification" type="x:qualification"/>
             <element name="location" type="x:location"/>
             <element minOccurs="0" name="initialAlert" type="x:alert"/>
-            <element name="owner" type="string">
+            <element name="owner">
                 <annotation>
                     <documentation>Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
 A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){2,4}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
@@ -127,7 +137,7 @@ En réception, il est très important d'intégrer et d'afficher la valeur de cet
     </complexType>
     <complexType name="patient">
         <sequence>
-            <element name="idPat" type="string">
+            <element name="idPat">
                 <annotation>
                     <documentation>Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
@@ -139,6 +149,11 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 
 </documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.?){3}patient(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="administrativeFile" type="x:administrativeFile"/>
             <element minOccurs="0" name="identity" type="x:Identity"/>
@@ -149,7 +164,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
     </complexType>
     <complexType name="medicalNote">
         <sequence>
-            <element minOccurs="0" name="idPat" type="string">
+            <element minOccurs="0" name="idPat">
                 <annotation>
                     <documentation>Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
 
@@ -159,9 +174,14 @@ Valorisé comme suit lors de sa création :
 OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.?){3}patient(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="operator" type="x:operator"/>
-            <element minOccurs="0" name="idObs" type="string">
+            <element minOccurs="0" name="idObs">
                 <annotation>
                     <documentation>Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
@@ -173,6 +193,11 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 </documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element minOccurs="0" name="creation" type="dateTime">
                 <annotation>
@@ -915,22 +940,27 @@ cf.nomenclature associée.</documentation>
         <sequence>
             <element name="source">
                 <annotation>
-                    <documentation>Type de l'identifiant fourni</documentation>
+                    <documentation>A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="FINESS ADMINISTRATIF"/>
-                        <enumeration value="FINESS GEOGRAPHIQUE"/>
+                        <enumeration value="FINESS_ADMINISTRATIF"/>
+                        <enumeration value="FINESS_GEOGRAPHIQUE"/>
                         <enumeration value="SIREN"/>
                         <enumeration value="SIRET"/>
                         <enumeration value="APE_NAF"/>
                     </restriction>
                 </simpleType>
             </element>
-            <element name="value" type="string">
+            <element name="value">
                 <annotation>
-                    <documentation>L'identifiant en lui-même</documentation>
+                    <documentation>A valoriser avec l'identifiant en lui-même</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -1016,11 +1046,16 @@ La valeur du code INSEE est obligatoire dès que le nom de la commune est rensei
                     <documentation>A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="phoneNumber" type="string">
+            <element minOccurs="0" name="phoneNumber">
                 <annotation>
                     <documentation>A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
 Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="\+\d{5,18}"/>
+                    </restriction>
+                </simpleType>
             </element>
         </sequence>
     </complexType>
@@ -1061,7 +1096,7 @@ Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon d
                         <enumeration value="CARTE"/>
                         <enumeration value="AUTRE"/>
                         <enumeration value="PHOTO"/>
-                        <enumeration value="SITE INTERNET"/>
+                        <enumeration value="SITE_INTERNET"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1509,7 +1544,7 @@ cf.nomenclature associée.</documentation>
             </element>
             <element name="type">
                 <annotation>
-                    <documentation>A valoriser avec le type de l'URI utilisée : TEL, EMAIL, FAX, POSTAL, WEB, RADIO</documentation>
+                    <documentation>A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -1524,7 +1559,7 @@ cf.nomenclature associée.</documentation>
             </element>
             <element name="detail" type="string">
                 <annotation>
-                    <documentation>A valoriser avec la valeur de l'URI utilisée
+                    <documentation>A valoriser avec la valeur de l'URI utilisée.
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}</documentation>
                 </annotation>
             </element>

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-DR.schema.json#",
-    "version": "24.07.19",
+    "version": "24.07.22",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesRequest",
@@ -17,7 +17,7 @@
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/caseId",
-            "description": "Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
+            "description": "A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). \nIl est valorisé comme suit lors de sa création : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\nIl doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.\n Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système."
         },
         "request": {
             "$ref": "#/definitions/request"
@@ -41,7 +41,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/requestId",
-                    "description": "Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande \nIl est valorisé comme suit lors de sa création : \n{orgID}.request.{ID unique de la demande dans le système émetteur}\n\nOU - uniquement si un ID unique de la demande n'est pas disponible : \nOrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}"
+                    "description": "Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande \nIl est valorisé comme suit lors de sa création : \n{orgID}.request.{ID unique de la demande dans le système émetteur}\n\nOU - uniquement si un ID unique de la demande n'est pas disponible : \n{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}"
                 },
                 "datetime": {
                     "type": "string",
@@ -49,7 +49,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/datetime",
-                    "description": "datetime de création de la demande",
+                    "description": "A valoriser avec le groupe date heure de création de la demande",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -59,7 +59,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/convention",
-                    "description": "Décrit le cadre conventionnel de la demande. Cf nomenclature associée",
+                    "description": "A valoriser avec le cadre conventionnel de la demande. Cf nomenclature associée",
                     "enum": [
                         "DRSIS",
                         "MISSION",
@@ -79,7 +79,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/purpose",
-                    "description": "Motif de la demande de ressource auprès du partenaire, voir liste des effets à obtenir identifiés",
+                    "description": "A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.",
                     "enum": [
                         "SAP",
                         "REGUL",
@@ -101,7 +101,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/deadline",
-                    "description": "Délai d'intervention souhaité (en minutes). "
+                    "description": "A valoriser avec le délai d'intervention souhaité en minutes "
                 },
                 "freetext": {
                     "type": "string",

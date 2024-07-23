@@ -32,6 +32,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3,5}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -75,6 +76,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
+          pattern: fr(\.[\w-]+){2,4}
           examples:
           - fr.health.samu440
         patient:
@@ -160,6 +162,7 @@ components:
             patient unique dans le syst\xE8me \xE9metteur}\n\nOU, si un n\xB0patient\
             \ unique n'existe pas dans le syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}\n\n\n"
+          pattern: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -198,6 +201,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
+          pattern: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -219,6 +223,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
+          pattern: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -416,7 +421,7 @@ components:
           - CARTE
           - AUTRE
           - PHOTO
-          - SITE INTERNET
+          - SITE_INTERNET
           examples:
           - MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET
         uri:
@@ -751,12 +756,49 @@ components:
       title: "Traits non stricts de l'identit\xE9"
       x-display: expansion-panels
       x-health-only: false
-      required: []
-      properties: {}
+      required:
+      - complete
+      properties:
+        complete:
+          type: string
+          title: "Pr\xE9nom et nom"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/identity/nonStrictFeatures/complete
+          description: "A valoriser avec le pr\xE9nom et le nom usuel du requ\xE9\
+            rant/appelant.\nSi les champs callerLastName et callerFirstName sont \xE9\
+            galement renseign\xE9s, le champ callerName doit \xEAtre valoris\xE9 ainsi\
+            \ : \"{callerFirstName} {callerLastName}\".\n\nSp\xE9cificit\xE9s 15-18\
+            \  : NexSIS ne dispose que de ces informations (concat\xE9n\xE9es) et\
+            \ pas de deux champs s\xE9par\xE9s."
+          examples:
+          - Jean Dupont
+        lastName:
+          type: string
+          title: Nom
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/identity/nonStrictFeatures/lastName
+          description: "A valoriser avec le nom usuel du requ\xE9rant"
+          examples:
+          - Dupont
+        firstName:
+          type: string
+          title: "Pr\xE9nom"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/patient/0/identity/nonStrictFeatures/firstName
+          description: "A valoriser avec le pr\xE9nom usuel du r\xE9qu\xE9rant.\n\
+            Par convention les pr\xE9noms compos\xE9s doivent pr\xE9f\xE9rablement\
+            \ \xEAtre s\xE9par\xE9s par le caract\xE8re \"-\""
+          examples:
+          - Jean
       additionalProperties: false
       example: example.json#/patient/0/identity/nonStrictFeatures
       examples:
-      - {}
+      - complete: Jean Dupont
+        lastName: Dupont
+        firstName: Jean
     mainDiagnosis:
       type: object
       title: "Hypoth\xE8se de r\xE9gulation m\xE9dicale principale"
