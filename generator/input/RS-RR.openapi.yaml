@@ -16,8 +16,8 @@ components:
       title: resourcesResponse
       required:
       - caseId
-      - RSDRId
-      - requestResponse
+      - requestId
+      - response
       properties:
         caseId:
           type: string
@@ -25,26 +25,35 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/caseId
-          description: "Identifiant de l'affaire partag\xE9 entre tous les intervenants\
-            \ = aux champs {organization}.{senderCaseId}.\nIl doit pouvoir \xEAtre\
-            \ g\xE9n\xE9r\xE9 de fa\xE7on unique et d\xE9centralis\xE9e et ne pr\xE9\
-            senter aucune ambigu\xEFt\xE9. \nIl est g\xE9n\xE9r\xE9 par le syst\xE8\
-            me du partenaire r\xE9cepteur de la primo-demande de secours (cr\xE9ateur\
-            \ du dossier).\nValorisation : {pays}.{domaine}.{organisation}.{structure\
-            \ interne}*.{unit\xE9 fonctionnelle}*.{num\xE9ro de dossier}"
+          description: "A valoriser avec l'identifiant partag\xE9 de l'affaire/dossier,\
+            \ g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire qui recoit\
+            \ la primo-demande de secours (cr\xE9ateur du dossier). \nIl est valoris\xE9\
+            \ comme suit lors de sa cr\xE9ation : \n{pays}.{domaine}.{organisation}.{senderCaseId}\n\
+            \nIl doit pouvoir \xEAtre g\xE9n\xE9r\xE9 de fa\xE7on d\xE9centralis\xE9\
+            e et ne pr\xE9senter aucune ambigu\xEFt\xE9.\n Il doit \xEAtre unique\
+            \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
+            \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
+            \ num\xE9ro unique dans son syst\xE8me."
           examples:
-          - fr.health.samu440.DRFR15DDXAAJJJ0000
-        RSDRId:
+          - fr.health.samu440.DRFR15440241550012
+        requestId:
           type: string
           title: "ID Demande partag\xE9"
           x-health-only: false
           x-cols: 6
-          example: example.json#/RSDRId
-          description: "Identifiant unique partag\xE9 de la demande de ressource\n\
-            {orgID}.request.{ID unique de la demande dans le syst\xE8me \xE9metteur}"
+          example: example.json#/requestId
+          description: "A valoriser avec l'identifiant unique partag\xE9 de la demande\
+            \ de ressource,  g\xE9n\xE9r\xE9 une seule fois par le syst\xE8me du partenaire\
+            \ qui \xE9met la demande \nIl est valoris\xE9 comme suit lors de sa cr\xE9\
+            ation : \n{orgID}.request.{ID unique de la demande dans le syst\xE8me\
+            \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
+            \ pas disponible : \nOrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
+            ro d\u2019ordre chronologique}"
           examples:
-          - fr.health.samu770.request.1249875
-        requestResponse:
+          - 'fr.health.samu770.request.1249875
+
+            fr.health.samu690.request.DRFR15690242370035.3'
+        response:
           $ref: '#/components/schemas/response'
       additionalProperties: false
     response:
@@ -53,58 +62,60 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - dateTime
+      - datetime
       - answer
       properties:
-        dateTime:
+        datetime:
           type: string
           title: "Date Heure de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/dateTime
-          description: "Voir liste des effets \xE0 obtenir identifi\xE9s"
+          example: example.json#/response/datetime
+          description: "Groupe date heure de d\xE9but de la demande"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
-          - None
+          - '2022-09-27T08:23:34+02:00'
         answer:
           type: string
           title: "R\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/answer
-          description: "oui / non / oui partiel / diff\xE9r\xE9"
+          example: example.json#/response/answer
+          description: "A valoriser avec la r\xE9ponse apport\xE9e. Cf Nomenclature\
+            \ associ\xE9e\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
           enum:
           - ACCEPTEE
           - REFUSEE
           - PARTIELLE
           - DIFFEREE
           examples:
-          - None
+          - ACCEPTEE
         deadline:
           type: string
           title: "D\xE9lai de r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/deadline
-          description: "Indique le d\xE9lai de r\xE9ponse auquel s'engage l'exp\xE9\
-            diteur"
+          example: example.json#/response/deadline
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
+            \ l'exp\xE9diteur (en minutes),"
           examples:
-          - None
+          - 10
         freetext:
           type: string
           title: "Pr\xE9cisions sur la r\xE9ponse"
           x-health-only: false
           x-cols: 6
-          example: example.json#/requestResponse/freetext
-          description: "Commentaire libre pour apporter toutes pr\xE9cisions utiles\
-            \ \xE0 la r\xE9ponse"
+          example: example.json#/response/freetext
+          description: "Commentaire libre permettant d'apporter toutes pr\xE9cisions\
+            \ utiles \xE0 la r\xE9ponse. Le motif de refus est notifi\xE9 dans ce\
+            \ champ."
           examples:
-          - None
+          - SMUR 1 non dispo
       additionalProperties: false
-      example: example.json#/requestResponse
+      example: example.json#/response
       examples:
-      - dateTime: None
-        answer: None
-        deadline: None
-        freetext: None
+      - datetime: '2022-09-27T08:23:34+02:00'
+        answer: ACCEPTEE
+        deadline: 10
+        freetext: SMUR 1 non dispo

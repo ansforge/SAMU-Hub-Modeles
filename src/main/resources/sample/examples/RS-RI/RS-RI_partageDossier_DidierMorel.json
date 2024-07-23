@@ -1,0 +1,24 @@
+{
+  "resourcesInfo": {
+    "mobilizedResource": [
+      {
+        "team": {
+          "teamCare": "MED",
+          "name": "Equipe SMUR A"
+        },
+        "resourceType": "SMUR",
+        "vehiculeType": "VLM",
+        "name": "VLM 77 - 250",
+        "coord": {
+          "lat": 48.413118,
+          "lon": 2.6995784,
+          "precision": "EXACTE"
+        },
+        "datetime": "2024-01-04T08:14:00+01:00",
+        "resourceId": "fr.health.samu770.resource.VLM250",
+        "orgId": "fr.health.samu770"
+      }
+    ],
+    "caseId": "fr.health.samu770.DRFR157702400400055"
+  }
+}

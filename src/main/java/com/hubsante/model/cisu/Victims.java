@@ -106,7 +106,9 @@ public class Victims {
 
     ADULTE("ADULTE"),
 
-    SENIOR("SENIOR");
+    SENIOR("SENIOR"),
+
+    ENCEINTE("ENCEINTE");
 
     private String value;
 

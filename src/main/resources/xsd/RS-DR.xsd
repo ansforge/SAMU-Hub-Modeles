@@ -4,68 +4,78 @@
         <sequence>
             <element name="caseId" type="string">
                 <annotation>
-                    <documentation>Identifiant de l'affaire partagé entre tous les intervenants = aux champs {organization}.{senderCaseId}.
-Il doit pouvoir être généré de façon unique et décentralisée et ne présenter aucune ambiguïté. 
-Il est généré par le système du partenaire récepteur de la primo-demande de secours (créateur du dossier).
-Valorisation : {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.{numéro de dossier}</documentation>
+                    <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
+Il est valorisé comme suit lors de sa création : 
+{pays}.{domaine}.{organisation}.{senderCaseId}
+
+Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
             </element>
-            <element name="RSDRId" type="string">
-                <annotation>
-                    <documentation>Identifiant unique partagé de la demande de ressource
-{orgID}.request.{ID unique de la demande dans le système émetteur}</documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="request" type="x:request"/>
+            <element name="request" type="x:request"/>
         </sequence>
     </complexType>
     <complexType name="request">
         <sequence>
-            <element name="dateTime" type="dateTime">
+            <element name="requestId" type="string">
                 <annotation>
-                    <documentation>Voir liste des effets à obtenir identifiés</documentation>
+                    <documentation>Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
+Il est valorisé comme suit lors de sa création : 
+{orgID}.request.{ID unique de la demande dans le système émetteur}
+
+OU - uniquement si un ID unique de la demande n'est pas disponible : 
+{OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="convention" type="string">
+            <element name="datetime" type="dateTime">
                 <annotation>
-                    <documentation>Nomenclature à venir : décrit le cadre conventionnel de la demande.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de création de la demande</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="deadline" type="string">
+            <element minOccurs="0" name="convention">
                 <annotation>
-                    <documentation>Délai d'intervention souhaité</documentation>
-                </annotation>
-            </element>
-            <element name="purpose">
-                <annotation>
-                    <documentation>Motif de la demande de ressource auprès du partenaire</documentation>
+                    <documentation>A valoriser avec le cadre conventionnel de la demande. Cf nomenclature associée</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="E01"/>
-                        <enumeration value="E02"/>
-                        <enumeration value="E03"/>
-                        <enumeration value="E04"/>
-                        <enumeration value="E05"/>
-                        <enumeration value="E06"/>
-                        <enumeration value="E07"/>
-                        <enumeration value="E08"/>
-                        <enumeration value="E09"/>
-                        <enumeration value="E10"/>
-                        <enumeration value="E11"/>
-                        <enumeration value="E12"/>
-                        <enumeration value="E13"/>
-                        <enumeration value="E14"/>
-                        <enumeration value="E15"/>
-                        <enumeration value="E16"/>
-                        <enumeration value="E17"/>
-                        <enumeration value="E18"/>
-                        <enumeration value="E19"/>
-                        <enumeration value="E20"/>
-                        <enumeration value="E21"/>
-                        <enumeration value="E22"/>
+                        <enumeration value="DRSIS"/>
+                        <enumeration value="MISSION"/>
+                        <enumeration value="ITSP"/>
+                        <enumeration value="CARENCE"/>
+                        <enumeration value="CONVENT"/>
+                        <enumeration value="SPE"/>
+                        <enumeration value="HORS"/>
+                        <enumeration value="AUTRE1"/>
+                        <enumeration value="AUTRE2"/>
+                        <enumeration value="AUTRE3"/>
                     </restriction>
                 </simpleType>
+            </element>
+            <element name="purpose">
+                <annotation>
+                    <documentation>A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SAP"/>
+                        <enumeration value="REGUL"/>
+                        <enumeration value="CUMP"/>
+                        <enumeration value="SMUR"/>
+                        <enumeration value="MG"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SAMU"/>
+                        <enumeration value="RELEVE"/>
+                        <enumeration value="NOVI"/>
+                        <enumeration value="TIH"/>
+                        <enumeration value="BRANCARD"/>
+                        <enumeration value="BARIA"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="deadline" type="string">
+                <annotation>
+                    <documentation>A valoriser avec le délai d'intervention souhaité en minutes </documentation>
+                </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
