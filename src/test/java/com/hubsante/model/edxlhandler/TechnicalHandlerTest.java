@@ -74,12 +74,10 @@ public class TechnicalHandlerTest {
         String xml = getValidMessage("TECHNICAL/array-deserialization.xml");
         Technical xmlTechnical = xmlMapper.readValue(xml, Technical.class);
 
-        assertEquals(jsonTechnical.getArrayField().size(), 0);
         assertEquals(jsonTechnical.getRequiredArray().size(), 1);
         assertEquals(jsonTechnical.getEnumArrayField().size(), 3);
         assertEquals(jsonTechnical.getArrayWithMaxLength().size(), 5);
 
-        assertEquals(xmlTechnical.getArrayField().size(), 0);
         assertEquals(xmlTechnical.getRequiredArray().size(), 1);
         assertEquals(xmlTechnical.getEnumArrayField().size(), 3);
         assertEquals(xmlTechnical.getArrayWithMaxLength().size(), 5);

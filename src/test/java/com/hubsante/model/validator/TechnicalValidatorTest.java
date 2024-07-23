@@ -50,7 +50,7 @@ public class TechnicalValidatorTest extends AbstractValidatorTest {
             " - $.datetimeField: 2022-09-27 08:25:54 Z02:00 is an invalid date-time",
             " - $.datetimeField: does not match the regex pattern \\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
             " - $.dateField: does not match the regex pattern \\d{4}\\-(0[1-9]|1[012])\\-(0[1-9]|[12][0-9]|3[01])",
-            " - $.emailField: does not match the regex pattern [\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}"
+            " - $.emailField: does not match the regex pattern [\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}"
         };
         jsonValidationFails("TECHNICAL/doesnt-pass-regex-validation.json", expectedJsonErrors, TECHNICAL_SCHEMA);
 

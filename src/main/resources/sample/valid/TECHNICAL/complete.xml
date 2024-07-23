@@ -28,11 +28,5 @@
     <dateField>2020-01-01</dateField>
     <emailField>email@domain.com</emailField>
     <datetimeField>2022-09-27T08:25:54+02:00</datetimeField>
-    <objectLevel1>
-        <object1Level2>
-        </object1Level2>
-        <object2Level2>
-        </object2Level2>
-    </objectLevel1>
     <nomenclatureField>INCONNU</nomenclatureField>
 </technical>

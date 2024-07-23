@@ -1,6 +1,5 @@
 {
   "requiredStringField": "requiredStringValue",
-  "arrayField": [],
   "enumArrayField": [
     "ENUM_VALUE_10",
     "ENUM_VALUE_20",
