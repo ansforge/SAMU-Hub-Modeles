@@ -1835,7 +1835,7 @@ components:
           - EXACTE
           - INCONNUE
           examples:
-          - ADDRESS
+          - EXACTE
       additionalProperties: false
       example: example.json#/mobilizedResource/0/coord
       examples:
@@ -1844,7 +1844,7 @@ components:
         height: 120
         heading: 96
         speed: 34
-        precision: ADDRESS
+        precision: EXACTE
     notes:
       type: object
       title: "Informations compl\xE9mentaires sur l'alerte"

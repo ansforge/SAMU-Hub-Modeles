@@ -43,7 +43,7 @@ VIDE = INCONNU",FALSE,availability,0..1,,boolean,,
 ,,Cap,,,,A valoriser en degrés,96,heading,0..1,,number,,
 ,,Vitesse,,,,"A valoriser en km/h (notamment fournie par eCall, tel, nouveau AML)",34,speed,0..1,,number,,
 ,,Précision,,,,"A valoriser avec le niveau de précision des coordonnées fournies par le système emetteur. Cf. nomenclature associée.
-CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",ADDRESS,precision,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
+CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la rue, ADDRESS=Adresse précise, EXACT=Point coordonnée GPS exact, UNKNOWN=Précision de la localisation non évaluable par l'émetteur",EXACTE,precision,1..1,,string,X,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
 ,Contact,,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le contact du vecteur mobilisé.",,contact,0..1,X,contact,,
 ,,Type de contact ,,,,A valoriser avec le type de l'URI utilisée. Cf nomenclature associée.,PHNADD,type,0..1,,string,X,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
 ,,URI du contact,,,,"A valoriser avec la valeur de l'URI utilisée
