@@ -14,7 +14,7 @@ strict digraph {
                 <TR>
                 <TD ><B>object1Level3</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet levelThreeData</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet levelThreeData</I></TD></TR><TR><TD BORDER="0" >stringLevel4 <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	object1Level3 -> object1Level2 [headlabel=1 taillabel="0..1"]
 	object1Level2 [label=<<TABLE>
@@ -28,7 +28,7 @@ strict digraph {
                 <TR>
                 <TD ><B>object2Level3</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet levelThreeData</I></TD></TR>
+                <TR><TD  BORDER="0"><I>objet levelThreeData</I></TD></TR><TR><TD BORDER="0" >stringLevel4 <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	object2Level3 -> object2Level2 [headlabel=1 taillabel="0..1"]
 	object2Level2 [label=<<TABLE>

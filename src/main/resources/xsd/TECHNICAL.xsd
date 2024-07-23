@@ -136,6 +136,12 @@
         </sequence>
     </complexType>
     <complexType name="levelThreeData">
-        <sequence/>
+        <sequence>
+            <element minOccurs="0" name="stringLevel4" type="string">
+                <annotation>
+                    <documentation>String field at level 4</documentation>
+                </annotation>
+            </element>
+        </sequence>
     </complexType>
 </schema>

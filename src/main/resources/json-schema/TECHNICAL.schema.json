@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "TECHNICAL.schema.json#",
-    "version": "24.07.22",
+    "version": "24.07.23",
     "example": "example.json#",
     "type": "object",
     "title": "technical",
@@ -254,7 +254,16 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [],
-            "properties": {},
+            "properties": {
+                "stringLevel4": {
+                    "type": "string",
+                    "title": "Level 4 Field",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectLevel1/object1Level2/object1Level3/stringLevel4",
+                    "description": "String field at level 4"
+                }
+            },
             "additionalProperties": false,
             "example": "example.json#/objectLevel1/object1Level2/object1Level3"
         }

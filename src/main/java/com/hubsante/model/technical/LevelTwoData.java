@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.technical.LevelThreeData;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -47,11 +48,11 @@ import java.util.Objects;
 
 public class LevelTwoData {
   public static final String JSON_PROPERTY_OBJECT1_LEVEL3 = "object1Level3";
-  private Object object1Level3;
+  private LevelThreeData object1Level3;
 
   public LevelTwoData() {}
 
-  public LevelTwoData object1Level3(Object object1Level3) {
+  public LevelTwoData object1Level3(LevelThreeData object1Level3) {
 
     this.object1Level3 = object1Level3;
     return this;
@@ -64,13 +65,13 @@ public class LevelTwoData {
   @JsonProperty(JSON_PROPERTY_OBJECT1_LEVEL3)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Object getObject1Level3() {
+  public LevelThreeData getObject1Level3() {
     return object1Level3;
   }
 
   @JsonProperty(JSON_PROPERTY_OBJECT1_LEVEL3)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObject1Level3(Object object1Level3) {
+  public void setObject1Level3(LevelThreeData object1Level3) {
     this.object1Level3 = object1Level3;
   }
 

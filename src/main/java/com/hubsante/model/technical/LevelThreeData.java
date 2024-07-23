@@ -34,45 +34,44 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.technical.LevelThreeData;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * SecondLevelTwoData
+ * LevelThreeData
  */
-@JsonPropertyOrder({SecondLevelTwoData.JSON_PROPERTY_OBJECT2_LEVEL3})
-@JsonTypeName("secondLevelTwoData")
+@JsonPropertyOrder({LevelThreeData.JSON_PROPERTY_STRING_LEVEL4})
+@JsonTypeName("levelThreeData")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class SecondLevelTwoData {
-  public static final String JSON_PROPERTY_OBJECT2_LEVEL3 = "object2Level3";
-  private LevelThreeData object2Level3;
+public class LevelThreeData {
+  public static final String JSON_PROPERTY_STRING_LEVEL4 = "stringLevel4";
+  private String stringLevel4;
 
-  public SecondLevelTwoData() {}
+  public LevelThreeData() {}
 
-  public SecondLevelTwoData object2Level3(LevelThreeData object2Level3) {
+  public LevelThreeData stringLevel4(String stringLevel4) {
 
-    this.object2Level3 = object2Level3;
+    this.stringLevel4 = stringLevel4;
     return this;
   }
 
   /**
-   * Get object2Level3
-   * @return object2Level3
+   * String field at level 4
+   * @return stringLevel4
    **/
-  @JsonProperty(JSON_PROPERTY_OBJECT2_LEVEL3)
+  @JsonProperty(JSON_PROPERTY_STRING_LEVEL4)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public LevelThreeData getObject2Level3() {
-    return object2Level3;
+  public String getStringLevel4() {
+    return stringLevel4;
   }
 
-  @JsonProperty(JSON_PROPERTY_OBJECT2_LEVEL3)
+  @JsonProperty(JSON_PROPERTY_STRING_LEVEL4)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setObject2Level3(LevelThreeData object2Level3) {
-    this.object2Level3 = object2Level3;
+  public void setStringLevel4(String stringLevel4) {
+    this.stringLevel4 = stringLevel4;
   }
 
   @Override
@@ -83,21 +82,21 @@ public class SecondLevelTwoData {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    SecondLevelTwoData secondLevelTwoData = (SecondLevelTwoData)o;
-    return Objects.equals(this.object2Level3, secondLevelTwoData.object2Level3);
+    LevelThreeData levelThreeData = (LevelThreeData)o;
+    return Objects.equals(this.stringLevel4, levelThreeData.stringLevel4);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(object2Level3);
+    return Objects.hash(stringLevel4);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SecondLevelTwoData {\n");
-    sb.append("    object2Level3: ")
-        .append(toIndentedString(object2Level3))
+    sb.append("class LevelThreeData {\n");
+    sb.append("    stringLevel4: ")
+        .append(toIndentedString(stringLevel4))
         .append("\n");
     sb.append("}");
     return sb.toString();

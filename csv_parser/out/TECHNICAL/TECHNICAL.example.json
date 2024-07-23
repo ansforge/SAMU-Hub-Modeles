@@ -26,10 +26,14 @@
     "datetimeField": "None",
     "objectLevel1": {
         "object1Level2": {
-            "object1Level3": {}
+            "object1Level3": {
+                "stringLevel4": "None"
+            }
         },
         "object2Level2": {
-            "object2Level3": {}
+            "object2Level3": {
+                "stringLevel4": "None"
+            }
         }
     },
     "nomenclatureField": "None"

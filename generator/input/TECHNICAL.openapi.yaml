@@ -125,7 +125,7 @@ components:
           x-cols: 6
           example: example.json#/phoneNumberField
           description: Phone number with regex
-          pattern: \+?\d*
+          pattern: \+?[0-9]{2,14}
           examples:
           - None
         dateField:
@@ -145,7 +145,7 @@ components:
           x-cols: 6
           example: example.json#/emailField
           description: Email with regex
-          pattern: '[\w-\.]+@([\w-]+\.)+[\w-]{2,4}'
+          pattern: '[\w\-\.]+@([\w\-]+\.)+[\w\-]{2,4}'
           examples:
           - None
         datetimeField:
@@ -241,8 +241,6 @@ components:
           $ref: '#/components/schemas/levelThreeData'
       additionalProperties: false
       example: example.json#/objectLevel1/object1Level2
-      examples:
-      - object1Level3: &id001 {}
     secondLevelTwoData:
       type: object
       title: Level 2 Object 2
@@ -254,16 +252,23 @@ components:
           $ref: '#/components/schemas/levelThreeData'
       additionalProperties: false
       example: example.json#/objectLevel1/object2Level2
-      examples:
-      - object2Level3: {}
     levelThreeData:
       type: object
       title: Level 3 Object 1
       x-display: expansion-panels
       x-health-only: false
       required: []
-      properties: {}
+      properties:
+        stringLevel4:
+          type: string
+          title: Level 4 Field
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/objectLevel1/object1Level2/object1Level3/stringLevel4
+          description: String field at level 4
+          examples:
+          - None
       additionalProperties: false
       example: example.json#/objectLevel1/object1Level2/object1Level3
       examples:
-      - *id001
+      - stringLevel4: None
