@@ -32,7 +32,7 @@
             ],
             "status": "Actual",
             "createCaseHealth": {
-              "caseId": "fr.health.samu950-DRFR159502401000233",
+              "caseId": "fr.health.samu950.DRFR159502401000233",
               "senderCaseId": "DRFR159502401000233",
               "creation": "2024-01-10T14:07:00+01:00",
               "qualification": {
@@ -84,7 +84,7 @@
                   "elevator": "Esc D",
                   "buildingName": "C",
                   "entity": "Comptabilité",
-                  "phoneNumber": "0156789456",
+                  "phoneNumber": "+33156789456",
                   "accessCode": [
                     "4568"
                   ],
@@ -185,7 +185,7 @@
                       "birthDate": "1982-02-26"
                     }
                   },
-                  "idPat": "fr.health.samu950-DRFR159502401000233.P11",
+                  "idPat": "fr.health.samu950.patient.DRFR159502401000233.P11",
                   "hypothesis": {
                     "mainDiagnosis": {
                       "code": "Z86. 704",
