@@ -21,16 +21,30 @@ Des exemples de messages sont disponibles dans le répertoire [src/main/resource
 
 Les spécifications du modèle de données sont disponibles sur le [site du projet SAMU-Hub-Santé](https://hub.esante.gouv.fr/).
 
+## Correspondance DSF - librairie
+
+|Release|Principes transverses|Périmètre 15-15|Périmètre 15-SMUR|Périmètre 15-GPS|Périmètre 15-NexSIS|
+|-|-|-|-|-|-|
+|[0.5](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.5.1)|1.1|1.2|1.1|1.0|1.6|
+|[0.6](https://github.com/ansforge/SAMU-Hub-Modeles/tree/0.6.0)|1.2|1.3|1.2|1.0|1.6|
+
 ## Modèles
 
-||[Schéma](src/main/resources/json-schema/)|Détails|UML|
-|-|-|-|-|
-|EMSI|[EMSI.schema.json](src/main/resources/json-schema/EMSI.schema.json)|[EMSI.schema.docx](csv_parser/out/EMSI/EMSI.schema.docx)|[EMSI.uml_diagram.pdf](csv_parser/out/EMSI/EMSI.uml_diagram.pdf)|
-|RC-DE|[RC-DE.schema.json](src/main/resources/json-schema/RC-DE.schema.json)|[RC-DE.schema.docx](csv_parser/out/RC-DE/RC-DE.schema.docx)|[RC-DE.uml_diagram.pdf](csv_parser/out/RC-DE/RC-DE.uml_diagram.pdf)|
-|RC-EDA|[RC-EDA.schema.json](src/main/resources/json-schema/RC-EDA.schema.json)|[RC-EDA.schema.docx](csv_parser/out/RC-EDA/RC-EDA.schema.docx)|[RC-EDA.uml_diagram.pdf](csv_parser/out/RC-EDA/RC-EDA.uml_diagram.pdf)|
-|RS-EDA|[RS-EDA.schema.json](src/main/resources/json-schema/RS-EDA.schema.json)|[RS-EDA.schema.docx](csv_parser/out/RS-EDA/RS-EDA.schema.docx)|[RS-EDA.uml_diagram.pdf](csv_parser/out/RS-EDA/RS-EDA.uml_diagram.pdf)|
-
-[Exemples des messages](src/main/resources/sample/examples/)
+||[Schéma](src/main/resources/json-schema/)|Détails|UML|[Exemples](src/main/resources/sample/examples/)|
+|-|-|-|-|-|
+|RC-DE|[RC-DE.schema.json](src/main/resources/json-schema/RC-DE.schema.json)|[RC-DE.schema.docx](csv_parser/out/RC-DE/RC-DE.schema.docx)|[RC-DE.uml_diagram.pdf](csv_parser/out/RC-DE/RC-DE.uml_diagram.pdf)|-|
+|RC-EDA|[RC-EDA.schema.json](src/main/resources/json-schema/RC-EDA.schema.json)|[RC-EDA.schema.docx](csv_parser/out/RC-EDA/RC-EDA.schema.docx)|[RC-EDA.uml_diagram.pdf](csv_parser/out/RC-EDA/RC-EDA.uml_diagram.pdf)|[Exemples RC-EDA](src/main/resources/sample/examples/RC-EDA/)|
+|RS-EDA|[RS-EDA.schema.json](src/main/resources/json-schema/RS-EDA.schema.json)|[RS-EDA.schema.docx](csv_parser/out/RS-EDA/RS-EDA.schema.docx)|[RS-EDA.uml_diagram.pdf](csv_parser/out/RS-EDA/RS-EDA.uml_diagram.pdf)|[Exemples RS-EDA](src/main/resources/sample/examples/RS-EDA/)|
+|RS-EDA-MAJ|[RS-EDA-MAJ.schema.json](src/main/resources/json-schema/RS-EDA-MAJ.schema.json)|[RS-EDA-MAJ.schema.docx](csv_parser/out/RS-EDA-MAJ/RS-EDA-MAJ.schema.docx)|[RS-EDA-MAJ.uml_diagram.pdf](csv_parser/out/RS-EDA-MAJ/RS-EDA-MAJ.uml_diagram.pdf)|[Exemples RS-EDA-MAJ](src/main/resources/sample/examples/RS-EDA-MAJ/)|
+|RPIS|[RPIS.schema.json](src/main/resources/json-schema/RPIS.schema.json)|[RPIS.schema.docx](csv_parser/out/RPIS/RPIS.schema.docx)|[RPIS.uml_diagram.pdf](csv_parser/out/RPIS/RPIS.uml_diagram.pdf)|[Exemples RPIS](src/main/resources/sample/examples/RPIS/)|
+|EMSI|[EMSI.schema.json](src/main/resources/json-schema/EMSI.schema.json)|[EMSI.schema.docx](csv_parser/out/EMSI/EMSI.schema.docx)|[EMSI.uml_diagram.pdf](csv_parser/out/EMSI/EMSI.uml_diagram.pdf)|[Exemples EMSI](src/main/resources/sample/examples/EMSI/)|
+|RS-RI|[RS-RI.schema.json](src/main/resources/json-schema/RS-RI.schema.json)|[RS-RI.schema.docx](csv_parser/out/RS-RI/RS-RI.schema.docx)|[RS-RI.uml_diagram.pdf](csv_parser/out/RS-RI/RS-RI.uml_diagram.pdf)|[Exemples RS-RI](src/main/resources/sample/examples/RS-RI/)|
+|RS-DR|[RS-DR.schema.json](src/main/resources/json-schema/RS-DR.schema.json)|[RS-DR.schema.docx](csv_parser/out/RS-DR/RS-DR.schema.docx)|[RS-DR.uml_diagram.pdf](csv_parser/out/RS-DR/RS-DR.uml_diagram.pdf)|[Exemples RS-DR](src/main/resources/sample/examples/RS-DR/)|
+|RS-DD|[RS-DD.schema.json](src/main/resources/json-schema/RS-DD.schema.json)|[RS-DD.schema.docx](csv_parser/out/RS-DD/RS-DD.schema.docx)|[RS-DD.uml_diagram.pdf](csv_parser/out/RS-DD/RS-DD.uml_diagram.pdf)|[Exemples RS-DD](src/main/resources/sample/examples/RS-DD/)|
+|RS-SR|[RS-SR.schema.json](src/main/resources/json-schema/RS-SR.schema.json)|[RS-SR.schema.docx](csv_parser/out/RS-SR/RS-SR.schema.docx)|[RS-SR.uml_diagram.pdf](csv_parser/out/RS-SR/RS-SR.uml_diagram.pdf)|[Exemples RS-SR](src/main/resources/sample/examples/RS-SR/)|
+|GEO-POS|[GEO-POS.schema.json](src/main/resources/json-schema/GEO-POS.schema.json)|[GEO-POS.schema.docx](csv_parser/out/GEO-POS/GEO-POS.schema.docx)|[GEO-POS.uml_diagram.pdf](csv_parser/out/GEO-POS/GEO-POS.uml_diagram.pdf)|[Exemples GEO-POS](src/main/resources/sample/examples/GEO-POS/)|
+|GEO-REQ|[GEO-REQ.schema.json](src/main/resources/json-schema/GEO-REQ.schema.json)|[GEO-REQ.schema.docx](csv_parser/out/GEO-REQ/GEO-REQ.schema.docx)|[GEO-REQ.uml_diagram.pdf](csv_parser/out/GEO-REQ/GEO-REQ.uml_diagram.pdf)|[Exemples GEO-REQ](src/main/resources/sample/examples/GEO-REQ/)|
+|GEO-RES|[GEO-RES.schema.json](src/main/resources/json-schema/GEO-RES.schema.json)|[GEO-RES.schema.docx](csv_parser/out/GEO-RES/GEO-RES.schema.docx)|[GEO-RES.uml_diagram.pdf](csv_parser/out/GEO-RES/GEO-RES.uml_diagram.pdf)|[Exemples GEO-RES](src/main/resources/sample/examples/GEO-RES/)|
 
 N. B. : Pour accéder aux versions les plus recentes des fichiers, veuillez utiliser les liens du README de la branche **auto/model_tracker** en cliquant [ici](https://github.com/ansforge/SAMU-Hub-Modeles/tree/auto/model_tracker?tab=readme-ov-file#modèles).
 
