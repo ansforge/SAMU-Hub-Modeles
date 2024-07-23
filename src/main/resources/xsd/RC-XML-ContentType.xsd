@@ -5,6 +5,7 @@
         xmlns:rceda="urn:emergency:cisu:2.0:createCase"
         xmlns:rseda="urn:emergency:cisu:2.0:createCaseHealth"
         xmlns:emsi="urn:emergency:cisu:2.0:emsi"
+        xmlns:info="urn:emergency:cisu:2.0:info"
         xmlns:geopositionsupdate="urn:emergency:cisu:2.0:geoPositionsUpdate"
         xmlns:georesourcesdetails="urn:emergency:cisu:2.0:geoResourcesDetails"
         xmlns:georesourcesrequest="urn:emergency:cisu:2.0:geoResourcesRequest"
@@ -23,6 +24,7 @@
     <xs:import namespace="urn:emergency:cisu:2.0:createCaseHealth" schemaLocation="RS-EDA.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:emsi" schemaLocation="EMSI.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:rpis" schemaLocation="RPIS.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:info" schemaLocation="RS-INFO.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:error" schemaLocation="RS-ERROR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoPositionsUpdate" schemaLocation="GEO-POS.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:geoResourcesDetails" schemaLocation="GEO-RES.xsd"/>
@@ -71,6 +73,7 @@
         <xs:sequence>
             <xs:choice>
                 <xs:element ref="error:error"/>
+                <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
             </xs:choice>
         </xs:sequence>

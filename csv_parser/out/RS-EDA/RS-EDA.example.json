@@ -1,11 +1,17 @@
 {
-    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
-    "senderCaseId": "DRFR15DDXAAJJJ0000",
+    "caseId": "fr.health.samu440.DRFR15440241550012",
+    "senderCaseId": "DRFR15440241550012",
     "creation": "2022-09-27T08:23:34+02:00",
     "perimeter": "AMU",
     "interventionType": "PRIMAIRE",
     "qualification": {
         "origin": "15, 112, 18",
+        "riskThreat": [
+            {
+                "code": "C07.13.02",
+                "label": "Rodéo automobile"
+            }
+        ],
         "whatsHappen": {
             "code": "C07.13.02",
             "label": "Rodéo automobile"
@@ -14,12 +20,6 @@
             "code": "C07.13.02",
             "label": "Rodéo automobile"
         },
-        "riskThreat": [
-            {
-                "code": "C07.13.02",
-                "label": "Rodéo automobile"
-            }
-        ],
         "healthMotive": {
             "code": "C07.13.02",
             "label": "Rodéo automobile"
@@ -41,8 +41,8 @@
         "detailedAddress": {
             "highway": {
                 "name": "A4",
-                "pk": "None",
-                "direction": "None"
+                "pk": "PK10",
+                "direction": "Paris"
             },
             "complete": "9 Bd du Montparnasse",
             "number": "9, 4bis, PK10, …",
@@ -67,7 +67,7 @@
             "buildingName": "Batiment B",
             "entrance": "Zone Sud",
             "entity": "Infirmerie",
-            "phoneNumber": 33123452323
+            "phoneNumber": "+33123452323"
         },
         "geometry": {
             "obsDatime": "2022-09-27T08:23:34+02:00",
@@ -102,7 +102,7 @@
             "callerContact": {
                 "channel": "PERSONNE",
                 "type": "TEL",
-                "detail": "0671830530"
+                "detail": "+33671830530"
             },
             "callbackContact": {},
             "language": "FR",
@@ -119,7 +119,7 @@
     "owner": "fr.health.samu440",
     "patient": [
         {
-            "id": "fr.health.samu044.DRFR154402415000450.P1",
+            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
             "administrativeFile": {
                 "externalId": [
                     {
@@ -157,26 +157,20 @@
                         "label": "Rodéo automobile"
                     }
                 ]
-            },
-            "freetext": [
-                "None"
-            ]
+            }
         }
     ],
     "medicalNote": [
         {
-            "idPat": "fr.health.samu044.DRFR154402415000450.P1",
+            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
             "operator": {
                 "detailedName": {},
                 "role": "ARM"
             },
-            "idObs": "fr.health.samu540.DRFR155402416000125.medicalNote.46585A",
+            "idObs": "fr.health.samu540.medicalNote.46585A\nfr.health.samu540.medicalNote.DRFR15540241600125.20",
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None"
         }
-    ],
-    "newAlert": [
-        {}
     ],
     "additionalInformation": {
         "customMap": [

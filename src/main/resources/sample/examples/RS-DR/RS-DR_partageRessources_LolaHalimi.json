@@ -1,0 +1,11 @@
+{
+  "resourcesRequest": {
+    "request": {
+      "purpose": "SMUR",
+      "freetext": "Prévoir matériel spécifique pédiatrique (enfant 10 ans).",
+      "requestId": "fr.health.samu950.request.zs498qo",
+      "datetime": "2024-01-18T18:21:00+01:00"
+    },
+    "caseId": "fr.health.samu950.DRFR159502400400159"
+  }
+}

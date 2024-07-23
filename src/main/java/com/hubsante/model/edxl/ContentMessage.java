@@ -17,23 +17,27 @@ package com.hubsante.model.edxl;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import com.hubsante.model.cisu.CreateCaseWrapper;
+import com.hubsante.model.custom.CustomMessage;
+import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.geolocation.GeoPositionsUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
 import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
-import com.hubsante.model.reference.ReferenceWrapper;
-import com.hubsante.model.custom.CustomMessage;
-import com.hubsante.model.cisu.*;
-import com.hubsante.model.emsi.EmsiWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
+import com.hubsante.model.health.update.CreateCaseHealthUpdateWrapper;
+import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.report.ErrorWrapper;
-import com.hubsante.model.resources.*;
-import com.hubsante.model.rpis.Rpis;
+import com.hubsante.model.resources.info.ResourcesInfoWrapper;
+import com.hubsante.model.resources.request.ResourcesRequestWrapper;
+import com.hubsante.model.resources.response.ResourcesResponseWrapper;
+import com.hubsante.model.resources.status.ResourcesStatusWrapper;
 import com.hubsante.model.rpis.RpisWrapper;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.DEDUCTION)
 @JsonSubTypes({
         @JsonSubTypes.Type(CreateCaseWrapper.class),
         @JsonSubTypes.Type(CreateCaseHealthWrapper.class),
+        @JsonSubTypes.Type(CreateCaseHealthUpdateWrapper.class),
         @JsonSubTypes.Type(ReferenceWrapper.class),
         @JsonSubTypes.Type(ErrorWrapper.class),
         @JsonSubTypes.Type(CustomMessage.class),
@@ -44,6 +48,7 @@ import com.hubsante.model.rpis.RpisWrapper;
         @JsonSubTypes.Type(ResourcesInfoWrapper.class),
         @JsonSubTypes.Type(ResourcesRequestWrapper.class),
         @JsonSubTypes.Type(ResourcesResponseWrapper.class),
+        @JsonSubTypes.Type(ResourcesStatusWrapper.class),
         @JsonSubTypes.Type(RpisWrapper.class),
 })
 public class ContentMessage {

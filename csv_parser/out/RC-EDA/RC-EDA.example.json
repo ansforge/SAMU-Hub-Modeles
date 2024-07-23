@@ -1,9 +1,15 @@
 {
-    "caseId": "fr.health.samu440.DRFR15DDXAAJJJ0000",
-    "senderCaseId": "DRFR15DDXAAJJJ0000",
+    "caseId": "fr.health.samu440.DRFR15440241550012",
+    "senderCaseId": "DRFR15440241550012",
     "creation": "2022-09-27T08:23:34+02:00",
     "referenceVersion": "1.2",
     "qualification": {
+        "riskThreat": [
+            {
+                "code": "C07.13.02",
+                "label": "Rodéo automobile"
+            }
+        ],
         "whatsHappen": {
             "code": "C07.13.02",
             "label": "Rodéo automobile"
@@ -12,19 +18,13 @@
             "code": "C07.13.02",
             "label": "Rodéo automobile"
         },
-        "riskThreat": [
-            {
-                "code": "C07.13.02",
-                "label": "Rodéo automobile"
-            }
-        ],
         "healthMotive": {
             "code": "C07.13.02",
             "label": "Rodéo automobile"
         },
         "victims": {
-            "count": "SEVERAL",
-            "mainVictim": "CHILD",
+            "count": "PLUSIEURS",
+            "mainVictim": "ENFANT",
             "freetext": "Jeanne Dupont, 6 ans, ne répond plus"
         }
     },
@@ -63,7 +63,7 @@
             "buildingName": "Batiment B",
             "entrance": "Zone Sud",
             "entity": "Infirmerie",
-            "phoneNumber": 33123452323
+            "phoneNumber": "+33123452323"
         },
         "geometry": {
             "obsDatime": "2022-09-27T08:23:34+02:00",
@@ -103,7 +103,7 @@
             "callerContact": {
                 "channel": "PERSONNE",
                 "type": "TEL",
-                "detail": "0671830530"
+                "detail": "+33671830530"
             },
             "callbackContact": {},
             "language": "FR",

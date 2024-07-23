@@ -48,19 +48,279 @@ import java.util.Objects;
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Decision {
+
+  /**
+   * Précise le type de moyen engagé dans l&#39;intervention (SMUR, TSU, HOSPIT,
+   * etc.).  A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.
+   */
+  public enum ResourceCategoryEnum {
+    SMUR("SMUR"),
+
+    HOSPIT("HOSPIT"),
+
+    LIB("LIB"),
+
+    TSU_("TSU "),
+
+    SIS("SIS"),
+
+    AASC("AASC"),
+
+    FDO("FDO"),
+
+    ADM("ADM"),
+
+    DAE("DAE"),
+
+    AUTRE("AUTRE");
+
+    private String value;
+
+    ResourceCategoryEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ResourceCategoryEnum fromValue(String value) {
+      for (ResourceCategoryEnum b : ResourceCategoryEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_RESOURCE_CATEGORY =
       "resourceCategory";
-  private String resourceCategory;
+  private ResourceCategoryEnum resourceCategory;
+
+  /**
+   * Précise le type de véhicule terrestre / aérien / maritime engagé dans
+   * l&#39;intervention. A valoriser par un code de la nomenclature
+   * CISU-TYPE_VECTEUR.
+   */
+  public enum ResourceTypeEnum {
+    AASC("AASC"),
+
+    VLSC("VLSC"),
+
+    VPSP("VPSP"),
+
+    AUTRESC("AUTRESC"),
+
+    AUTREVECT("AUTREVECT"),
+
+    CONSEIL("CONSEIL"),
+
+    TAXI("TAXI"),
+
+    TRANSP("TRANSP"),
+
+    TRAIN("TRAIN"),
+
+    AVION("AVION"),
+
+    PERSO("PERSO"),
+
+    APIED("APIED"),
+
+    AUTRE("AUTRE"),
+
+    AUTRETRANS("AUTRETRANS"),
+
+    INCONNU("INCONNU"),
+
+    DEFIB("DEFIB"),
+
+    DAE("DAE"),
+
+    FSI("FSI"),
+
+    HELIFSI("HELIFSI"),
+
+    VLFSI("VLFSI"),
+
+    FFSI("FFSI"),
+
+    VHFSI("VHFSI"),
+
+    LIB("LIB"),
+
+    MEDC("MEDC"),
+
+    MEDV("MEDV"),
+
+    PHARMA("PHARMA"),
+
+    INF("INF"),
+
+    MEDSPE("MEDSPE"),
+
+    DENT("DENT"),
+
+    AUTREPRO("AUTREPRO"),
+
+    SIS("SIS"),
+
+    VSAV("VSAV"),
+
+    GRIMP("GRIMP"),
+
+    VPL("VPL"),
+
+    SRSIS("SRSIS"),
+
+    FEUSIS("FEUSIS"),
+
+    VPMA("VPMA"),
+
+    VCH("VCH"),
+
+    VR("VR"),
+
+    PCSIS("PCSIS"),
+
+    VLISP("VLISP"),
+
+    VLMSP("VLMSP"),
+
+    VLCG("VLCG"),
+
+    VLSIS("VLSIS"),
+
+    DRAGON("DRAGON"),
+
+    AVSC("AVSC"),
+
+    MOYSSE("MOYSSE"),
+
+    AUTRESIS("AUTRESIS"),
+
+    NAVISIS("NAVISIS"),
+
+    SMUR("SMUR"),
+
+    VLM("VLM"),
+
+    VL("VL"),
+
+    PSM1("PSM1"),
+
+    PSM2("PSM2"),
+
+    PSM3("PSM3"),
+
+    PSMP("PSMP"),
+
+    VPC("VPC"),
+
+    AR("AR"),
+
+    AR_BAR("AR-BAR"),
+
+    AR_PED("AR-PED"),
+
+    HELISMUR("HELISMUR"),
+
+    HELISAN("HELISAN"),
+
+    AVSMUR("AVSMUR"),
+
+    AVSAN("AVSAN"),
+
+    NAVISMUR("NAVISMUR"),
+
+    TSU("TSU"),
+
+    VSL("VSL"),
+
+    AMB_GV("AMB-GV"),
+
+    AMB_PV("AMB-PV"),
+
+    AMB_BAR("AMB-BAR"),
+
+    AMB("AMB");
+
+    private String value;
+
+    ResourceTypeEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static ResourceTypeEnum fromValue(String value) {
+      for (ResourceTypeEnum b : ResourceTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
-  private String resourceType;
+  private ResourceTypeEnum resourceType;
+
+  /**
+   * Type d’équipe (médical, paramédicale, secouriste). A valoriser par un code
+   * de la nomenclature SI-SAMU-NIVSOIN.
+   */
+  public enum TeamCareEnum {
+    MED("MED"),
+
+    PARAMED("PARAMED"),
+
+    SECOURS("SECOURS");
+
+    private String value;
+
+    TeamCareEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TeamCareEnum fromValue(String value) {
+      for (TeamCareEnum b : TeamCareEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
 
   public static final String JSON_PROPERTY_TEAM_CARE = "teamCare";
-  private String teamCare;
+  private TeamCareEnum teamCare;
 
   public Decision() {}
 
-  public Decision resourceCategory(String resourceCategory) {
+  public Decision resourceCategory(ResourceCategoryEnum resourceCategory) {
 
     this.resourceCategory = resourceCategory;
     return this;
@@ -74,17 +334,17 @@ public class Decision {
   @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getResourceCategory() {
+  public ResourceCategoryEnum getResourceCategory() {
     return resourceCategory;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_CATEGORY)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceCategory(String resourceCategory) {
+  public void setResourceCategory(ResourceCategoryEnum resourceCategory) {
     this.resourceCategory = resourceCategory;
   }
 
-  public Decision resourceType(String resourceType) {
+  public Decision resourceType(ResourceTypeEnum resourceType) {
 
     this.resourceType = resourceType;
     return this;
@@ -99,17 +359,17 @@ public class Decision {
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getResourceType() {
+  public ResourceTypeEnum getResourceType() {
     return resourceType;
   }
 
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setResourceType(String resourceType) {
+  public void setResourceType(ResourceTypeEnum resourceType) {
     this.resourceType = resourceType;
   }
 
-  public Decision teamCare(String teamCare) {
+  public Decision teamCare(TeamCareEnum teamCare) {
 
     this.teamCare = teamCare;
     return this;
@@ -123,13 +383,13 @@ public class Decision {
   @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getTeamCare() {
+  public TeamCareEnum getTeamCare() {
     return teamCare;
   }
 
   @JsonProperty(JSON_PROPERTY_TEAM_CARE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTeamCare(String teamCare) {
+  public void setTeamCare(TeamCareEnum teamCare) {
     this.teamCare = teamCare;
   }
 

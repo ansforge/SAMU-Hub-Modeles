@@ -94,8 +94,7 @@ public class Contact {
   private ChannelEnum channel;
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée : TEL, EMAIL, FAX, POSTAL,
-   * WEB, RADIO
+   * A valoriser avec le type de l&#39;URI utilisée.  Cf nomenclature associée.
    */
   public enum TypeEnum {
     TEL("TEL"),
@@ -174,8 +173,7 @@ public class Contact {
   }
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée : TEL, EMAIL, FAX, POSTAL,
-   *WEB, RADIO
+   * A valoriser avec le type de l&#39;URI utilisée.  Cf nomenclature associée.
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -198,7 +196,8 @@ public class Contact {
   }
 
   /**
-   * A valoriser avec la valeur de l&#39;URI utilisée
+   * A valoriser avec la valeur de l&#39;URI utilisée. Le format attendu pour un
+   *numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}
    * @return detail
    **/
   @JsonProperty(JSON_PROPERTY_DETAIL)
