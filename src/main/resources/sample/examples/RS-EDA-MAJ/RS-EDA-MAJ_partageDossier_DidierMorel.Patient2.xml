@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<edxlDistribution xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+  <distributionID>fr.health.samu_id</distributionID>
+  <senderID>fr.health.sender</senderID>
+  <dateTimeSent>2023-12-15T00:00:00+02:00</dateTimeSent>
+  <dateTimeExpires>2023-12-16T00:00:00+02:00</dateTimeExpires>
+  <distributionStatus>Actual</distributionStatus>
+  <distributionKind>Report</distributionKind>
+  <descriptor xlink:type="resource">
+    <language>fr-FR</language>
+    <explicitAddress>
+      <explicitAddressScheme>hubex</explicitAddressScheme>
+      <explicitAddressValue>fr.health.recipient</explicitAddressValue>
+    </explicitAddress>
+  </descriptor>
+  <content>
+    <contentObject xlink:type="resource">
+      <contentXML>
+        <embeddedXMLContent>
+          <message xmlns="urn:emergency:cisu:2.0">
+            <messageId>sender_123</messageId>
+            <sender>
+              <name>sender</name>
+              <URI>hubex:sender</URI>
+            </sender>
+            <sentAt>2023-12-14T00:00:00+02:00</sentAt>
+            <kind>Report</kind>
+            <status>Actual</status>
+            <recipient>
+              <name>recipient</name>
+              <URI>hubex:recipient</URI>
+            </recipient>
+            <createCaseHealthUpdate xmlns="urn:emergency:cisu:2.0:createCaseHealthUpdate">
+              <caseId>fr.health.samu770.DRFR157702400400055</caseId>
+              <patient>
+                <idPat>fr.health.samu770.patient.DRFR157702400400055.2</idPat>
+                <identity>
+                  <strictFeatures>
+                    <birthName>Arnaud</birthName>
+                    <birthDate>1963-12-12</birthDate>
+                    <sex>FEM</sex>
+                  </strictFeatures>
+                  <nonStrictFeatures>
+                    <complete>Germaine Morel</complete>
+                    <lastName>Morel</lastName>
+                    <firstName>Germaine</firstName>
+                  </nonStrictFeatures>
+                </identity>
+                <detail>
+                  <weight>65</weight>
+                  <height>162</height>
+                  <age>P60Y</age>
+                </detail>
+              </patient>
+              <medicalNote>
+                <idPat>fr.health.samu770.patient.DRFR157702400400055.2</idPat>
+                <operator>
+                  <role>ARM</role>
+                </operator>
+                <idObs>fr.health.samu770.medicalNote.78fre25</idObs>
+                <creation>2024-01-04T08:11:00+01:00</creation>
+                <freetext>Hyperventile / Pleurs /Angoisse ++. Malaise à la vue du sang.</freetext>
+              </medicalNote>
+            </createCaseHealthUpdate>
+          </message>
+        </embeddedXMLContent>
+      </contentXML>
+    </contentObject>
+  </content>
+</edxlDistribution>

@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<edxlDistribution xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+  <distributionID>fr.health.samu_id</distributionID>
+  <senderID>fr.health.sender</senderID>
+  <dateTimeSent>2023-12-15T00:00:00+02:00</dateTimeSent>
+  <dateTimeExpires>2023-12-16T00:00:00+02:00</dateTimeExpires>
+  <distributionStatus>Actual</distributionStatus>
+  <distributionKind>Report</distributionKind>
+  <descriptor xlink:type="resource">
+    <language>fr-FR</language>
+    <explicitAddress>
+      <explicitAddressScheme>hubex</explicitAddressScheme>
+      <explicitAddressValue>fr.health.recipient</explicitAddressValue>
+    </explicitAddress>
+  </descriptor>
+  <content>
+    <contentObject xlink:type="resource">
+      <contentXML>
+        <embeddedXMLContent>
+          <message xmlns="urn:emergency:cisu:2.0">
+            <messageId>sender_123</messageId>
+            <sender>
+              <name>sender</name>
+              <URI>hubex:sender</URI>
+            </sender>
+            <sentAt>2023-12-14T00:00:00+02:00</sentAt>
+            <kind>Report</kind>
+            <status>Actual</status>
+            <recipient>
+              <name>recipient</name>
+              <URI>hubex:recipient</URI>
+            </recipient>
+            <createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+              <caseId>fr.health.samu770.DRFR157702400400055</caseId>
+              <senderCaseId>DRFR157702400400055</senderCaseId>
+              <creation>2024-01-04T15:07:00+01:00</creation>
+              <perimeter>AMU</perimeter>
+              <interventionType>PRIMAIRE</interventionType>
+              <qualification>
+                <origin>18</origin>
+                <whatsHappen>
+                  <code>C02.08.05</code>
+                  <label>Atteinte aux personnes ; Traumatisme / Accident ; Par objet tranchant ou perforant</label>
+                </whatsHappen>
+                <locationKind>
+                  <code>L01.01.04</code>
+                  <label>Domicile ; Maison particulière, pavillon ;  dépendance</label>
+                </locationKind>
+                <healthMotive>
+                  <code>M01.02</code>
+                  <label>Détresse vitale; Altération de la conscience; Dont inconscient, coma</label>
+                </healthMotive>
+                <details>
+                  <attribution>MU</attribution>
+                  <priority>P0</priority>
+                </details>
+              </qualification>
+              <location>
+                <detailedAddress>
+                  <complete>12 Rue Louis Aristide Verdier</complete>
+                  <number>12</number>
+                  <wayName>
+                    <complete>Rue Louis Aristide Verdier</complete>
+                    <type>rue</type>
+                    <name>Louis Aristide Verdier</name>
+                  </wayName>
+                </detailedAddress>
+                <city>
+                  <name>Vaires-sur-Marne</name>
+                  <inseeCode>77360</inseeCode>
+                </city>
+                <geometry>
+                  <obsDatime>2024-01-04T00:05:00+01:00</obsDatime>
+                  <point>
+                    <coord>
+                      <lat>48.8668403</lat>
+                      <lon>2.6320988</lon>
+                      <precision>ADRESSE</precision>
+                    </coord>
+                  </point>
+                </geometry>
+                <freetext>aller directement dans le garage, la porte est ouverte</freetext>
+              </location>
+              <initialAlert>
+                <reception>2024-01-04T15:00:00+01:00</reception>
+                <notes>
+                  <creation>2024-01-04T08:04:00+01:00</creation>
+                  <freetext>Accident de bricolage, atelier particulier.</freetext>
+                </notes>
+                <caller>
+                  <callerContact>
+                    <channel>PERSONNE</channel>
+                    <type>TEL</type>
+                    <detail>+33607080915</detail>
+                  </callerContact>
+                  <callbackContact>
+                    <channel>PERSONNE</channel>
+                    <type>TEL</type>
+                    <detail>+33607080915</detail>
+                  </callbackContact>
+                  <language>FR</language>
+                  <type>FAMILLE</type>
+                  <freetext>fils de la victime</freetext>
+                  <detailedName>
+                    <complete>Sébastien Morel </complete>
+                    <lastName>Morel </lastName>
+                    <firstName>Sébastien</firstName>
+                  </detailedName>
+                </caller>
+              </initialAlert>
+              <owner>fr.health.samu770</owner>
+              <patient>
+                <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
+                <identity>
+                  <strictFeatures>
+                    <sex>MASC</sex>
+                  </strictFeatures>
+                  <nonStrictFeatures>
+                    <complete>Didier Morel</complete>
+                    <lastName>Morel</lastName>
+                    <firstName>Didier</firstName>
+                  </nonStrictFeatures>
+                </identity>
+                <detail>
+                  <age>P65Y</age>
+                </detail>
+              </patient>
+              <medicalNote>
+                <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
+                <operator>
+                  <role>ARM</role>
+                </operator>
+                <idObs>fr.health.samu770.medicalNote.45db215</idObs>
+                <creation>2024-01-04T08:07:00+01:00</creation>
+                <freetext>Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.</freetext>
+              </medicalNote>
+              <medicalNote>
+                <idPat>fr.health.samu770.patient.DRFR157702400400055.1</idPat>
+                <operator>
+                  <role>ARM</role>
+                </operator>
+                <idObs>fr.health.samu770.medicalNote.15as456</idObs>
+                <creation>2024-01-04T08:09:00+01:00</creation>
+                <freetext>La victime est inconsciente (perte de connaissance).</freetext>
+              </medicalNote>
+            </createCaseHealth>
+          </message>
+        </embeddedXMLContent>
+      </contentXML>
+    </contentObject>
+  </content>
+</edxlDistribution>

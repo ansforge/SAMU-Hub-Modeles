@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<edxlDistribution xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
+  <distributionID>fr.health.samu_id</distributionID>
+  <senderID>fr.health.sender</senderID>
+  <dateTimeSent>2023-12-15T00:00:00+02:00</dateTimeSent>
+  <dateTimeExpires>2023-12-16T00:00:00+02:00</dateTimeExpires>
+  <distributionStatus>Actual</distributionStatus>
+  <distributionKind>Report</distributionKind>
+  <descriptor xlink:type="resource">
+    <language>fr-FR</language>
+    <explicitAddress>
+      <explicitAddressScheme>hubex</explicitAddressScheme>
+      <explicitAddressValue>fr.health.recipient</explicitAddressValue>
+    </explicitAddress>
+  </descriptor>
+  <content>
+    <contentObject xlink:type="resource">
+      <contentXML>
+        <embeddedXMLContent>
+          <message xmlns="urn:emergency:cisu:2.0">
+            <messageId>sender_123</messageId>
+            <sender>
+              <name>sender</name>
+              <URI>hubex:sender</URI>
+            </sender>
+            <sentAt>2023-12-14T00:00:00+02:00</sentAt>
+            <kind>Report</kind>
+            <status>Actual</status>
+            <recipient>
+              <name>recipient</name>
+              <URI>hubex:recipient</URI>
+            </recipient>
+            <createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+              <caseId>fr.fire.sis044.cga-044.SC-20240526-044-cga-AL8</caseId>
+              <senderCaseId>DRFR154402414300123</senderCaseId>
+              <creation>2024-05-26T13:15:00+02:00</creation>
+              <interventionType>PRIMAIRE</interventionType>
+              <qualification>
+                <origin>18</origin>
+                <whatsHappen>
+                  <code>C02.05.02</code>
+                  <label>Obstétrique</label>
+                </whatsHappen>
+                <locationKind>
+                  <code>L04.02.00</code>
+                  <label>Centre commercial / magasin</label>
+                </locationKind>
+                <healthMotive>
+                  <code>M03.03</code>
+                  <label>Saignements gynécologiques</label>
+                </healthMotive>
+                <details>
+                  <attribution>MU</attribution>
+                  <priority>P2</priority>
+                </details>
+              </qualification>
+              <location>
+                <name>Centre Commercial Atlantis</name>
+                <externalLocationId>
+                  <source>SIRET</source>
+                  <value>70142121200018</value>
+                </externalLocationId>
+                <detailedAddress>
+                  <complete>Boulevard Salvador Allende</complete>
+                  <wayName>
+                    <complete>Boulevard Salvador Allende</complete>
+                    <type>Boulevard</type>
+                    <name>Salvador Allende</name>
+                  </wayName>
+                </detailedAddress>
+                <city>
+                  <name>Saint-Herblain</name>
+                  <inseeCode>44162</inseeCode>
+                </city>
+                <access>
+                  <floor>RDC</floor>
+                  <buildingName>Soleil</buildingName>
+                </access>
+                <geometry>
+                  <obsDatime>2024-05-18T18:15:00+02:00</obsDatime>
+                  <point>
+                    <coord>
+                      <lat>47.146089</lat>
+                      <lon>-1.691374</lon>
+                      <precision>EXACTE</precision>
+                    </coord>
+                  </point>
+                </geometry>
+              </location>
+              <initialAlert>
+                <reception>2024-05-26T13:15:00+02:00</reception>
+                <caller>
+                  <callerContact>
+                    <channel>PERSONNE</channel>
+                    <type>TEL</type>
+                    <detail>+33671832618</detail>
+                  </callerContact>
+                  <callbackContact>
+                    <channel>PERSONNE</channel>
+                    <type>TEL</type>
+                    <detail>+33671832618</detail>
+                  </callbackContact>
+                  <language>FR</language>
+                  <type>TIERS</type>
+                  <communication>AUCUNE</communication>
+                  <detailedName>
+                    <complete>Agnès Duberti</complete>
+                    <lastName>Duberti</lastName>
+                    <firstName>Agnès</firstName>
+                  </detailedName>
+                </caller>
+              </initialAlert>
+              <owner>fr.health.samu440</owner>
+              <patient>
+                <idPat>fr.health.samu440.patient.DRFR154402414300123.1</idPat>
+                <identity>
+                  <strictFeatures>
+                    <birthDate>1992-03-03</birthDate>
+                    <sex>FEM</sex>
+                  </strictFeatures>
+                  <nonStrictFeatures>
+                    <complete>Delphine Vigneau</complete>
+                    <lastName>Vigneau</lastName>
+                    <firstName>Delphine</firstName>
+                  </nonStrictFeatures>
+                </identity>
+                <healthMotive>
+                  <code>M03.10</code>
+                  <label>Malaise avec perte de connaissance initiale</label>
+                </healthMotive>
+                <detail>
+                  <age>P32Y</age>
+                </detail>
+                <hypothesis>
+                  <mainDiagnosis>
+                    <code>JA40 </code>
+                    <label>Hémorragie en début de grossesse</label>
+                  </mainDiagnosis>
+                </hypothesis>
+              </patient>
+              <additionalInformation>
+                <customMap>
+                  <key>COMMERCIAL</key>
+                  <value>IKEA Nantes</value>
+                </customMap>
+              </additionalInformation>
+            </createCaseHealth>
+          </message>
+        </embeddedXMLContent>
+      </contentXML>
+    </contentObject>
+  </content>
+</edxlDistribution>
