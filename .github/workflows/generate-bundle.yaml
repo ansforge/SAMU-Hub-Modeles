@@ -43,7 +43,7 @@ jobs:
 
           # Populate root elements (docx and UML)
           cp csv_parser/out/$SCHEMA/$SCHEMA.schema.docx "$schemaDir/Annexe au DSF - $SCHEMA.docx"
-          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schema UML - $SCHEMA.docx"
+          cp csv_parser/out/$SCHEMA/$SCHEMA.uml_diagram.pdf "$schemaDir/Schema UML - $SCHEMA.pdf"
         done
 
     - name: Create zip file with date
