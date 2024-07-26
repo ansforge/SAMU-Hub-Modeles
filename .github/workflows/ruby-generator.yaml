@@ -30,3 +30,8 @@ jobs:
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/ruby/RS-EDA.generator-config.ruby.json --skip-validate-spec
 
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: ⚙️ Auto-génération des classes et des specs
+
