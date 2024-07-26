@@ -9,16 +9,16 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Com::Hubsante::Model::Health
+module Health
   class Qualification
     # A valoriser avec le numéro de provenance de l'appel.
     attr_accessor :origin
 
+    attr_accessor :risk_threat
+
     attr_accessor :whats_happen
 
     attr_accessor :location_kind
-
-    attr_accessor :risk_threat
 
     attr_accessor :health_motive
 
@@ -50,9 +50,9 @@ module Com::Hubsante::Model::Health
     def self.attribute_map
       {
         :'origin' => :'origin',
+        :'risk_threat' => :'riskThreat',
         :'whats_happen' => :'whatsHappen',
         :'location_kind' => :'locationKind',
-        :'risk_threat' => :'riskThreat',
         :'health_motive' => :'healthMotive',
         :'details' => :'details'
       }
@@ -67,9 +67,9 @@ module Com::Hubsante::Model::Health
     def self.openapi_types
       {
         :'origin' => :'String',
+        :'risk_threat' => :'Array<RiskThreat>',
         :'whats_happen' => :'WhatsHappen',
         :'location_kind' => :'LocationKind',
-        :'risk_threat' => :'Array<RiskThreat>',
         :'health_motive' => :'HealthMotive',
         :'details' => :'CaseDetails'
       }
@@ -85,13 +85,13 @@ module Com::Hubsante::Model::Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Com::Hubsante::Model::Health::Qualification` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::Qualification` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Com::Hubsante::Model::Health::Qualification`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::Qualification`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -100,18 +100,18 @@ module Com::Hubsante::Model::Health
         self.origin = attributes[:'origin']
       end
 
+      if attributes.key?(:'risk_threat')
+        if (value = attributes[:'risk_threat']).is_a?(Array)
+          self.risk_threat = value
+        end
+      end
+
       if attributes.key?(:'whats_happen')
         self.whats_happen = attributes[:'whats_happen']
       end
 
       if attributes.key?(:'location_kind')
         self.location_kind = attributes[:'location_kind']
-      end
-
-      if attributes.key?(:'risk_threat')
-        if (value = attributes[:'risk_threat']).is_a?(Array)
-          self.risk_threat = value
-        end
       end
 
       if attributes.key?(:'health_motive')
@@ -156,9 +156,9 @@ module Com::Hubsante::Model::Health
       return true if self.equal?(o)
       self.class == o.class &&
           origin == o.origin &&
+          risk_threat == o.risk_threat &&
           whats_happen == o.whats_happen &&
           location_kind == o.location_kind &&
-          risk_threat == o.risk_threat &&
           health_motive == o.health_motive &&
           details == o.details
     end
@@ -172,7 +172,7 @@ module Com::Hubsante::Model::Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [origin, whats_happen, location_kind, risk_threat, health_motive, details].hash
+      [origin, risk_threat, whats_happen, location_kind, health_motive, details].hash
     end
 
     # Builds the object from hash
@@ -236,7 +236,7 @@ module Com::Hubsante::Model::Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Com::Hubsante::Model::Health.const_get(type)
+        klass = Health.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

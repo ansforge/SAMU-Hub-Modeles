@@ -9,14 +9,14 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Com::Hubsante::Model::Health
+module Health
   class MedicalNote
-    # Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, valorisé comme suit  :  {ID du dossier partagé}.P{numéro d’ordre chronologique unique du patient}
+    # Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur,   Valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}
     attr_accessor :id_pat
 
     attr_accessor :operator
 
-    # A valoriser avec l'identifiant unique de l'observation, valorisé comme suit : {caseID}.medicalNote.{ID de l'observation dans le système émetteur}. Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. 
+    # Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}  OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dans le système :  {OrgId émetteur}.medicalNote.{senderCaseId}.{numéro chronologique de l’observation}  Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement. 
     attr_accessor :id_obs
 
     # A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.
@@ -62,13 +62,13 @@ module Com::Hubsante::Model::Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Com::Hubsante::Model::Health::MedicalNote` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::MedicalNote` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Com::Hubsante::Model::Health::MedicalNote`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::MedicalNote`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -103,8 +103,18 @@ module Com::Hubsante::Model::Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      pattern = Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
+      if !@id_pat.nil? && @id_pat !~ pattern
+        invalid_properties.push("invalid value for \"id_pat\", must conform to the pattern #{pattern}.")
+      end
+
       if @operator.nil?
         invalid_properties.push('invalid value for "operator", operator cannot be nil.')
+      end
+
+      pattern = Regexp.new(/([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}/)
+      if !@id_obs.nil? && @id_obs !~ pattern
+        invalid_properties.push("invalid value for \"id_obs\", must conform to the pattern #{pattern}.")
       end
 
       pattern = Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
@@ -123,10 +133,42 @@ module Com::Hubsante::Model::Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@id_pat.nil? && @id_pat !~ Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
       return false if @operator.nil?
+      return false if !@id_obs.nil? && @id_obs !~ Regexp.new(/([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}/)
       return false if !@creation.nil? && @creation !~ Regexp.new(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/)
       return false if @freetext.nil?
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id_pat Value to be assigned
+    def id_pat=(id_pat)
+      if id_pat.nil?
+        fail ArgumentError, 'id_pat cannot be nil'
+      end
+
+      pattern = Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
+      if id_pat !~ pattern
+        fail ArgumentError, "invalid value for \"id_pat\", must conform to the pattern #{pattern}."
+      end
+
+      @id_pat = id_pat
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id_obs Value to be assigned
+    def id_obs=(id_obs)
+      if id_obs.nil?
+        fail ArgumentError, 'id_obs cannot be nil'
+      end
+
+      pattern = Regexp.new(/([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}/)
+      if id_obs !~ pattern
+        fail ArgumentError, "invalid value for \"id_obs\", must conform to the pattern #{pattern}."
+      end
+
+      @id_obs = id_obs
     end
 
     # Custom attribute writer method with validation
@@ -229,7 +271,7 @@ module Com::Hubsante::Model::Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Com::Hubsante::Model::Health.const_get(type)
+        klass = Health.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

@@ -9,7 +9,7 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Com::Hubsante::Model::Health
+module Health
   class Access
     # A valoriser avec le numéro ou nom de l'étage 
     attr_accessor :floor
@@ -34,7 +34,7 @@ module Com::Hubsante::Model::Health
     # A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.
     attr_accessor :entity
 
-    # A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
+    # A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime. Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}
     attr_accessor :phone_number
 
     # Attribute mapping from ruby-style variable name to JSON key.
@@ -82,13 +82,13 @@ module Com::Hubsante::Model::Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Com::Hubsante::Model::Health::Access` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::Access` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Com::Hubsante::Model::Health::Access`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::Access`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -137,6 +137,11 @@ module Com::Hubsante::Model::Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
+      pattern = Regexp.new(/\+\d{5,18}/)
+      if !@phone_number.nil? && @phone_number !~ pattern
+        invalid_properties.push("invalid value for \"phone_number\", must conform to the pattern #{pattern}.")
+      end
+
       invalid_properties
     end
 
@@ -144,7 +149,23 @@ module Com::Hubsante::Model::Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
+      return false if !@phone_number.nil? && @phone_number !~ Regexp.new(/\+\d{5,18}/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] phone_number Value to be assigned
+    def phone_number=(phone_number)
+      if phone_number.nil?
+        fail ArgumentError, 'phone_number cannot be nil'
+      end
+
+      pattern = Regexp.new(/\+\d{5,18}/)
+      if phone_number !~ pattern
+        fail ArgumentError, "invalid value for \"phone_number\", must conform to the pattern #{pattern}."
+      end
+
+      @phone_number = phone_number
     end
 
     # Checks equality by comparing each attribute.
@@ -236,7 +257,7 @@ module Com::Hubsante::Model::Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Com::Hubsante::Model::Health.const_get(type)
+        klass = Health.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

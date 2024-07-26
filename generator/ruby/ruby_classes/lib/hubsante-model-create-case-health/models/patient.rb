@@ -9,10 +9,10 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Com::Hubsante::Model::Health
+module Health
   class Patient
-    # A valoriser avec l'identifiant partagé du patient, valorisé comme suit : {ID du dossier partagé}.P{numéro d’ordre chronologique} Cet identifiant est généré une seule fois par le système du partenaire qui créé le patient. 
-    attr_accessor :id
+    # Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient. Il est valorisé comme suit lors de sa création :  {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}  OU, si un n°patient unique n'existe pas dans le système émetteur : {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}   
+    attr_accessor :id_pat
 
     attr_accessor :administrative_file
 
@@ -24,18 +24,15 @@ module Com::Hubsante::Model::Health
 
     attr_accessor :hypothesis
 
-    attr_accessor :freetext
-
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'id' => :'id',
+        :'id_pat' => :'idPat',
         :'administrative_file' => :'administrativeFile',
         :'identity' => :'identity',
         :'health_motive' => :'healthMotive',
         :'detail' => :'detail',
-        :'hypothesis' => :'hypothesis',
-        :'freetext' => :'freetext'
+        :'hypothesis' => :'hypothesis'
       }
     end
 
@@ -47,13 +44,12 @@ module Com::Hubsante::Model::Health
     # Attribute type mapping.
     def self.openapi_types
       {
-        :'id' => :'String',
+        :'id_pat' => :'String',
         :'administrative_file' => :'AdministrativeFile',
         :'identity' => :'Identity',
         :'health_motive' => :'HealthMotive',
         :'detail' => :'PatientDetail',
-        :'hypothesis' => :'Hypothesis',
-        :'freetext' => :'Array<String>'
+        :'hypothesis' => :'Hypothesis'
       }
     end
 
@@ -67,21 +63,21 @@ module Com::Hubsante::Model::Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Com::Hubsante::Model::Health::Patient` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::Patient` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Com::Hubsante::Model::Health::Patient`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::Patient`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
 
-      if attributes.key?(:'id')
-        self.id = attributes[:'id']
+      if attributes.key?(:'id_pat')
+        self.id_pat = attributes[:'id_pat']
       else
-        self.id = nil
+        self.id_pat = nil
       end
 
       if attributes.key?(:'administrative_file')
@@ -103,12 +99,6 @@ module Com::Hubsante::Model::Health
       if attributes.key?(:'hypothesis')
         self.hypothesis = attributes[:'hypothesis']
       end
-
-      if attributes.key?(:'freetext')
-        if (value = attributes[:'freetext']).is_a?(Array)
-          self.freetext = value
-        end
-      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -116,8 +106,13 @@ module Com::Hubsante::Model::Health
     def list_invalid_properties
       warn '[DEPRECATED] the `list_invalid_properties` method is obsolete'
       invalid_properties = Array.new
-      if @id.nil?
-        invalid_properties.push('invalid value for "id", id cannot be nil.')
+      if @id_pat.nil?
+        invalid_properties.push('invalid value for "id_pat", id_pat cannot be nil.')
+      end
+
+      pattern = Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
+      if @id_pat !~ pattern
+        invalid_properties.push("invalid value for \"id_pat\", must conform to the pattern #{pattern}.")
       end
 
       invalid_properties
@@ -127,8 +122,24 @@ module Com::Hubsante::Model::Health
     # @return true if the model is valid
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
-      return false if @id.nil?
+      return false if @id_pat.nil?
+      return false if @id_pat !~ Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
       true
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] id_pat Value to be assigned
+    def id_pat=(id_pat)
+      if id_pat.nil?
+        fail ArgumentError, 'id_pat cannot be nil'
+      end
+
+      pattern = Regexp.new(/([\w-]+\.?){3}patient(\.[\w-]+){1,2}/)
+      if id_pat !~ pattern
+        fail ArgumentError, "invalid value for \"id_pat\", must conform to the pattern #{pattern}."
+      end
+
+      @id_pat = id_pat
     end
 
     # Checks equality by comparing each attribute.
@@ -136,13 +147,12 @@ module Com::Hubsante::Model::Health
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          id == o.id &&
+          id_pat == o.id_pat &&
           administrative_file == o.administrative_file &&
           identity == o.identity &&
           health_motive == o.health_motive &&
           detail == o.detail &&
-          hypothesis == o.hypothesis &&
-          freetext == o.freetext
+          hypothesis == o.hypothesis
     end
 
     # @see the `==` method
@@ -154,7 +164,7 @@ module Com::Hubsante::Model::Health
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [id, administrative_file, identity, health_motive, detail, hypothesis, freetext].hash
+      [id_pat, administrative_file, identity, health_motive, detail, hypothesis].hash
     end
 
     # Builds the object from hash
@@ -218,7 +228,7 @@ module Com::Hubsante::Model::Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Com::Hubsante::Model::Health.const_get(type)
+        klass = Health.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end

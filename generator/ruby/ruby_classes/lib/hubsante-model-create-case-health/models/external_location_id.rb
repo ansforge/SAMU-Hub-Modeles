@@ -9,12 +9,12 @@ OpenAPI Generator version: 7.1.0
 require 'date'
 require 'time'
 
-module Com::Hubsante::Model::Health
+module Health
   class ExternalLocationId
-    # Type de l'identifiant fourni
+    # A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.
     attr_accessor :source
 
-    # L'identifiant en lui-même
+    # A valoriser avec l'identifiant en lui-même
     attr_accessor :value
 
     class EnumAttributeValidator
@@ -70,13 +70,13 @@ module Com::Hubsante::Model::Health
     # @param [Hash] attributes Model attributes in the form of hash
     def initialize(attributes = {})
       if (!attributes.is_a?(Hash))
-        fail ArgumentError, "The input argument (attributes) must be a hash in `Com::Hubsante::Model::Health::ExternalLocationId` initialize method"
+        fail ArgumentError, "The input argument (attributes) must be a hash in `Health::ExternalLocationId` initialize method"
       end
 
       # check to see if the attribute exists and convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h|
         if (!self.class.attribute_map.key?(k.to_sym))
-          fail ArgumentError, "`#{k}` is not a valid attribute in `Com::Hubsante::Model::Health::ExternalLocationId`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
+          fail ArgumentError, "`#{k}` is not a valid attribute in `Health::ExternalLocationId`. Please check the name to make sure it's valid. List of attributes: " + self.class.attribute_map.keys.inspect
         end
         h[k.to_sym] = v
       }
@@ -107,6 +107,11 @@ module Com::Hubsante::Model::Health
         invalid_properties.push('invalid value for "value", value cannot be nil.')
       end
 
+      pattern = Regexp.new(/([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])/)
+      if @value !~ pattern
+        invalid_properties.push("invalid value for \"value\", must conform to the pattern #{pattern}.")
+      end
+
       invalid_properties
     end
 
@@ -115,20 +120,36 @@ module Com::Hubsante::Model::Health
     def valid?
       warn '[DEPRECATED] the `valid?` method is obsolete'
       return false if @source.nil?
-      source_validator = EnumAttributeValidator.new('String', ["FINESS ADMINISTRATIF", "FINESS GEOGRAPHIQUE", "SIREN", "SIRET", "APE_NAF"])
+      source_validator = EnumAttributeValidator.new('String', ["FINESS_ADMINISTRATIF", "FINESS_GEOGRAPHIQUE", "SIREN", "SIRET", "APE_NAF"])
       return false unless source_validator.valid?(@source)
       return false if @value.nil?
+      return false if @value !~ Regexp.new(/([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])/)
       true
     end
 
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] source Object to be assigned
     def source=(source)
-      validator = EnumAttributeValidator.new('String', ["FINESS ADMINISTRATIF", "FINESS GEOGRAPHIQUE", "SIREN", "SIRET", "APE_NAF"])
+      validator = EnumAttributeValidator.new('String', ["FINESS_ADMINISTRATIF", "FINESS_GEOGRAPHIQUE", "SIREN", "SIRET", "APE_NAF"])
       unless validator.valid?(source)
         fail ArgumentError, "invalid value for \"source\", must be one of #{validator.allowable_values}."
       end
       @source = source
+    end
+
+    # Custom attribute writer method with validation
+    # @param [Object] value Value to be assigned
+    def value=(value)
+      if value.nil?
+        fail ArgumentError, 'value cannot be nil'
+      end
+
+      pattern = Regexp.new(/([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])/)
+      if value !~ pattern
+        fail ArgumentError, "invalid value for \"value\", must conform to the pattern #{pattern}."
+      end
+
+      @value = value
     end
 
     # Checks equality by comparing each attribute.
@@ -213,7 +234,7 @@ module Com::Hubsante::Model::Health
         end
       else # model
         # models (e.g. Pet) or oneOf
-        klass = Com::Hubsante::Model::Health.const_get(type)
+        klass = Health.const_get(type)
         klass.respond_to?(:openapi_any_of) || klass.respond_to?(:openapi_one_of) ? klass.build(value) : klass.build_from_hash(value)
       end
     end
