@@ -12,8 +12,6 @@
   },
   "additionalProperties": {
     "moduleName": "Health",
-    "gemName": "hubsante-model-create-case-health",
-    "openApiNullable": true,
-    "supportUrlQuery": false
+    "gemName": "hubsante-model-create-case-health"
   }
 }
