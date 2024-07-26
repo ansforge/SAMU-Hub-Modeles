@@ -28,5 +28,5 @@ jobs:
       - name: Generate Java classes
         working-directory: ./generator
         run: |
-          npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/ruby/RS-EDA.generator-config.json --skip-validate-spec
+          npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/ruby/RS-EDA.generator-config.ruby.json --skip-validate-spec
 
