@@ -25,7 +25,7 @@ jobs:
       - name: Install openapi-generator-cli
         run: npm install -g @openapitools/openapi-generator-cli
 
-      - name: Generate Java classes
+      - name: Generate Ruby classes
         working-directory: ./generator
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/ruby/RS-EDA.generator-config.ruby.json --skip-validate-spec
