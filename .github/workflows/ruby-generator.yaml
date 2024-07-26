@@ -1,0 +1,32 @@
+name: generate-ruby-model
+
+on:
+  pull_request:
+    branches:
+      - '**'
+  workflow_dispatch:
+
+env:
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS"
+
+jobs:
+  generate-ruby:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Install node env 🏗
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install openapi-generator-cli
+        run: npm install -g @openapitools/openapi-generator-cli
+
+      - name: Generate Java classes
+        working-directory: ./generator
+        run: |
+          npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/ruby/RS-EDA.generator-config.json --skip-validate-spec
+
