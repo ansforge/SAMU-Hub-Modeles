@@ -11,9 +11,7 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "moduleName": "Com::Hubsante::Model::Health",
-    "gemName": "hubsante-model-create-case-health",
-    "openApiNullable": true,
-    "supportUrlQuery": false
+    "moduleName": "Health",
+    "gemName": "hubsante-model-create-case-health"
   }
 }
