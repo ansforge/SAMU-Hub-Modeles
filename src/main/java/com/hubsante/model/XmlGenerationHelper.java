@@ -15,8 +15,8 @@
  */
 package com.hubsante.model;
 
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -92,18 +92,6 @@ public class XmlGenerationHelper {
     }
 
     private String extractXmlUseCase(String fullXML) {
-        StringBuilder expressionBuilder = new StringBuilder("//*[(local-name()='");
-        for (int i = 0; i < edxlHandler.useCases.keySet().size(); i++) {
-            if (i > 0) {
-                expressionBuilder.append("' or local-name()='");
-            }
-            expressionBuilder.append(edxlHandler.useCases.keySet().toArray()[i]);
-        }
-        expressionBuilder.append("')]");
-
-        // XPath expression
-        String expression = expressionBuilder.toString();
-
         try {
             // Parse the XML string into a Document
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -116,6 +104,7 @@ public class XmlGenerationHelper {
             XPath xpath = xPathFactory.newXPath();
 
             // Compile the XPath expression to find the specified elements
+            String expression = getUseCaseXPathExpression();
             XPathExpression xPathExpression = xpath.compile(expression);
 
             // Execute the expression to find matching nodes
@@ -136,6 +125,20 @@ public class XmlGenerationHelper {
             log.error("Could not extract XML usecase", e);
             throw  new RuntimeException();
         }
+    }
+
+    private static String getUseCaseXPathExpression() {
+        StringBuilder expressionBuilder = new StringBuilder("//*[(local-name()='");
+        for (int i = 0; i < ContentMessage.UseCaseHelper.useCases.keySet().size(); i++) {
+            if (i > 0) {
+                expressionBuilder.append("' or local-name()='");
+            }
+            expressionBuilder.append(ContentMessage.UseCaseHelper.useCases.keySet().toArray()[i]);
+        }
+        expressionBuilder.append("')]");
+
+        // XPath expression
+        return expressionBuilder.toString();
     }
 
     public static String prettifyXml(String xmlString) {

@@ -19,6 +19,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.emsi.Emsi;
 import com.hubsante.model.exception.ValidationException;
@@ -199,8 +200,8 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
                     log.info("testing " + file.getName() + ": ");
                     assertEquals(
-                            converter.jsonMapper.treeToValue(useCaseNode, Class.forName(converter.useCases.get(useCaseName))),
-                            converter.xmlMapper.readValue(xmlExample, Class.forName(converter.useCases.get(useCaseName))));
+                            converter.jsonMapper.treeToValue(useCaseNode, Class.forName(ContentMessage.UseCaseHelper.useCases.get(useCaseName))),
+                            converter.xmlMapper.readValue(xmlExample, Class.forName(ContentMessage.UseCaseHelper.useCases.get(useCaseName))));
                     log.info("xml and json are equal for " + useCaseName + " useCase.");
                 }
             } catch (IOException | ClassNotFoundException e) {
