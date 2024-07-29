@@ -1,45 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<edxlDistribution xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
-  <distributionID>fr.health.samu_id</distributionID>
-  <senderID>fr.health.sender</senderID>
-  <dateTimeSent>2023-12-15T00:00:00+02:00</dateTimeSent>
-  <dateTimeExpires>2023-12-16T00:00:00+02:00</dateTimeExpires>
-  <distributionStatus>Actual</distributionStatus>
-  <distributionKind>Report</distributionKind>
-  <descriptor xlink:type="resource">
-    <language>fr-FR</language>
-    <explicitAddress>
-      <explicitAddressScheme>hubex</explicitAddressScheme>
-      <explicitAddressValue>fr.health.recipient</explicitAddressValue>
-    </explicitAddress>
-  </descriptor>
-  <content>
-    <contentObject xlink:type="resource">
-      <contentXML>
-        <embeddedXMLContent>
-          <message xmlns="urn:emergency:cisu:2.0">
-            <messageId>sender_123</messageId>
-            <sender>
-              <name>sender</name>
-              <URI>hubex:sender</URI>
-            </sender>
-            <sentAt>2023-12-14T00:00:00+02:00</sentAt>
-            <kind>Report</kind>
-            <status>Actual</status>
-            <recipient>
-              <name>recipient</name>
-              <URI>hubex:recipient</URI>
-            </recipient>
-            <resourcesStatus xmlns="urn:emergency:cisu:2.0:resourcesStatus">
-              <caseId>fr.health.samu950.DRFR159502400400159</caseId>
-              <resourceId>fr.health.samu780.resource.SMUR78-E</resourceId>
-              <datetime>2024-01-18T18:26:00+01:00</datetime>
-              <status>DEPART</status>
-              <availability>false</availability>
-            </resourcesStatus>
-          </message>
-        </embeddedXMLContent>
-      </contentXML>
-    </contentObject>
-  </content>
-</edxlDistribution>
+<resourcesStatus xmlns="urn:emergency:cisu:2.0:resourcesStatus">
+  <caseId>fr.health.samu950.DRFR159502400400159</caseId>
+  <resourceId>fr.health.samu780.resource.SMUR78-E</resourceId>
+  <datetime>2024-01-18T18:26:00+01:00</datetime>
+  <status>DEPART</status>
+  <availability>false</availability>
+</resourcesStatus>

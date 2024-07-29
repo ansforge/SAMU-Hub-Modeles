@@ -169,7 +169,8 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     }
 
     @Test
-    public void jsonAndXmlGeneric() throws IOException, ClassNotFoundException {
+    @DisplayName("all json example files deserialize to same object xml example files deserialize to")
+    public void jsonAndXmlExampleFilesDeserializeToSameObject() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
 
         File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
@@ -201,84 +202,8 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
                             converter.jsonMapper.treeToValue(useCaseNode, Class.forName(converter.useCases.get(useCaseName))),
                             converter.xmlMapper.readValue(xmlExample, Class.forName(converter.useCases.get(useCaseName))));
                     log.info("xml and json are equal for " + useCaseName + " useCase.");
-
-                    //                    boolean doesNotHaveDistributionElement = Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains);
-//
-//                    String jsonExample = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-//
-//                    EdxlMessage edxlMessageFromJson = sanitizeEdxl(converter.deserializeJsonEDXL(
-//                            doesNotHaveDistributionElement?wrapUseCaseMessageWithoutDistributionElement(jsonExample):wrapUseCaseMessage(jsonExample)));
-//
-//                    String xmlExample = new String(Files.readAllBytes(new File(file.getParentFile(), file.getName().replace(".json", ".xml")).toPath()), StandardCharsets.UTF_8);
-//
-//                    EdxlMessage edxlMessageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xmlExample));
-//
-//                    assertEquals(edxlMessageFromJson, edxlMessageFromXml);
                 }
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            } catch (AssertionFailedError e) {
-                allPass.set(false);
-                log.error("Files {} are not equivalent: {}", file.getName(), e.getMessage());
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        if (!allPass.get()) {
-            fail("Some files are not equivalent");
-        }
-
-
-//        String path = "sample/examples/EMSI/emsi-DC-message";
-//        File jsonFile = new File(TestMessagesHelper.class.getClassLoader().getResource(path + ".json").getFile());
-//        String json = new String(Files.readAllBytes(jsonFile.toPath()), StandardCharsets.UTF_8);
-//        File xmlFile = new File(TestMessagesHelper.class.getClassLoader().getResource(path + ".xml").getFile());
-//        String xml = new String(Files.readAllBytes(xmlFile.toPath()), StandardCharsets.UTF_8);
-//
-//        JsonNode jsonEmsiNode = converter.jsonMapper.readTree(json);
-//        String useCaseName = jsonEmsiNode.fieldNames().next();
-//        JsonNode jsonEmsiOnly = jsonEmsiNode.get(useCaseName);
-//
-//        assertEquals(
-//                converter.jsonMapper.treeToValue(jsonEmsiOnly, Class.forName(converter.useCases.get(useCaseName))),
-//                converter.xmlMapper.readValue(xml, Class.forName(converter.useCases.get(useCaseName))));
-    }
-
-    @Test
-    @DisplayName("all json example files deserialize to same object xml example files deserialize to")
-    public void jsonAndXmlExampleFilesDeserializeToSameObject() {
-        String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
-        File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
-        assert subFolders != null;
-        List<File> exampleFiles = new ArrayList<>();
-
-        Arrays.stream(subFolders).forEach(folder -> {
-            exampleFiles.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-        });
-
-        // RS-ERROR messages cannot be compared due to sourceMessage not having any particular definitions
-        // and not being deserialized correctly from XML, we remove the RS-ERROR files from the list
-        List<File> filteredExampleFiles = exampleFiles.stream().filter(file -> "RS-ERROR".equals(file.getName())).collect(Collectors.toList());
-
-        AtomicBoolean allPass = new AtomicBoolean(true);
-
-        filteredExampleFiles.forEach(file -> {
-            try {
-                if (file.getName().endsWith(".json")) {
-                    boolean doesNotHaveDistributionElement = Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains);
-
-                    String jsonExample = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-
-                    EdxlMessage edxlMessageFromJson = sanitizeEdxl(converter.deserializeJsonEDXL(
-                            doesNotHaveDistributionElement?wrapUseCaseMessageWithoutDistributionElement(jsonExample):wrapUseCaseMessage(jsonExample)));
-
-                    String xmlExample = new String(Files.readAllBytes(new File(file.getParentFile(), file.getName().replace(".json", ".xml")).toPath()), StandardCharsets.UTF_8);
-
-                    EdxlMessage edxlMessageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xmlExample));
-
-                    assertEquals(edxlMessageFromJson, edxlMessageFromXml);
-                }
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (AssertionFailedError e) {
                 allPass.set(false);
@@ -289,5 +214,4 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
             fail("Some files are not equivalent");
         }
     }
-
 }

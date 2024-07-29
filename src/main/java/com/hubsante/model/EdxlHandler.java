@@ -25,12 +25,13 @@ import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.edxl.EdxlEnvelope;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.emsi.Emsi;
-import com.hubsante.model.emsi.Reference;
 import com.hubsante.model.geolocation.GeoPositionsUpdate;
 import com.hubsante.model.geolocation.GeoResourcesDetails;
+import com.hubsante.model.geolocation.GeoResourcesRequest;
 import com.hubsante.model.health.CreateCaseHealth;
 import com.hubsante.model.health.update.CreateCaseHealthUpdate;
-import com.hubsante.model.report.Error;
+import com.hubsante.model.reference.Reference;
+import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.model.resources.info.ResourcesInfo;
 import com.hubsante.model.resources.request.ResourcesRequest;
 import com.hubsante.model.resources.response.ResourcesResponse;
@@ -52,7 +53,7 @@ public class EdxlHandler {
     public final Map<String,String> useCases = Stream.of(new String[][] {
             {"emsi", Emsi.class.getCanonicalName()},
             {"geoPositionsUpdate", GeoPositionsUpdate.class.getCanonicalName()},
-            {"geoResourcesRequest", GeoPositionsUpdate.class.getCanonicalName()},
+            {"geoResourcesRequest", GeoResourcesRequest.class.getCanonicalName()},
             {"geoResourcesDetails", GeoResourcesDetails.class.getCanonicalName()},
             {"createCase", CreateCase.class.getCanonicalName()},
             {"reference", Reference.class.getCanonicalName()},
@@ -60,11 +61,11 @@ public class EdxlHandler {
             {"resourcesRequest", ResourcesRequest.class.getCanonicalName()},
             {"createCaseHealth", CreateCaseHealth.class.getCanonicalName()},
             {"createCaseHealthUpdate", CreateCaseHealthUpdate.class.getCanonicalName()},
-            {"error", Error.class.getCanonicalName()},
+            {"error", ErrorWrapper.class.getCanonicalName()},
             {"resourcesInfo", ResourcesInfo.class.getCanonicalName()},
             {"resourcesResponse", ResourcesResponse.class.getCanonicalName()},
             {"resourcesStatus", ResourcesStatus.class.getCanonicalName()}
-    }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+    }).collect(Collectors.toMap(useCaseData -> useCaseData[0], useCaseData -> useCaseData[1]));
 
     public EdxlHandler() {
         xmlMapper = (XmlMapper) new XmlMapper()

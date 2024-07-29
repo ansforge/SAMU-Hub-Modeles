@@ -15,18 +15,7 @@
  */
 package com.hubsante.model;
 
-import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.edxl.EdxlMessage;
-import com.hubsante.model.emsi.Emsi;
-import com.hubsante.model.emsi.Reference;
-import com.hubsante.model.geolocation.GeoPositionsUpdate;
-import com.hubsante.model.geolocation.GeoResourcesDetails;
-import com.hubsante.model.health.CreateCaseHealth;
-import com.hubsante.model.report.Error;
-import com.hubsante.model.resources.info.ResourcesInfo;
-import com.hubsante.model.resources.request.ResourcesRequest;
-import com.hubsante.model.resources.response.ResourcesResponse;
-import com.hubsante.model.rpis.Rpis;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
@@ -48,15 +37,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
-import static com.hubsante.model.Sanitizer.sanitizeEdxl;
 
 @Slf4j
 public class XmlGenerationHelper {
@@ -89,26 +75,20 @@ public class XmlGenerationHelper {
         }
     }
 
-
-
-    @SneakyThrows
     private void convertJsonToXml(Path jsonFile) throws IOException {
-        String json = new String(Files.readAllBytes(jsonFile));
-        EdxlMessage deserialzedEdxlMessage;
+        EdxlMessage deserializedEdxlMessage;
         if (Arrays.stream(useCasesWithNoRcDe).anyMatch(name -> jsonFile.getFileName().toString().contains(name))) {
-            deserialzedEdxlMessage = sanitizeEdxl(edxlHandler.deserializeJsonEDXL(
-                    wrapUseCaseMessageWithoutDistributionElement(new String(Files.readAllBytes(jsonFile)))));
+            deserializedEdxlMessage = edxlHandler.deserializeJsonEDXL(
+                    wrapUseCaseMessageWithoutDistributionElement(new String(Files.readAllBytes(jsonFile))));
         } else {
-            deserialzedEdxlMessage = sanitizeEdxl(edxlHandler.deserializeJsonEDXL(
-                    wrapUseCaseMessage(new String(Files.readAllBytes(jsonFile)))));
+            deserializedEdxlMessage = edxlHandler.deserializeJsonEDXL(
+                    wrapUseCaseMessage(new String(Files.readAllBytes(jsonFile))));
         }
-        String xml = edxlHandler.serializeXmlEDXL(deserialzedEdxlMessage);
-        String useCaseXml = extractXmlUseCase(xml);
-        useCaseXml = prettifyXml(useCaseXml);
-//        xml = prettifyXml(xml);
+        String xml = edxlHandler.serializeXmlEDXL(deserializedEdxlMessage);
+        String useCaseXml = prettifyXml(extractXmlUseCase(xml));
         Path xmlFile = Paths.get(jsonFile.toString().replace(".json", ".xml"));
-        Files.write(xmlFile, xml.getBytes());
-        System.out.println("Converted " + jsonFile + " to " + xmlFile);
+        Files.write(xmlFile, useCaseXml.getBytes());
+        log.info("Converted " + jsonFile + " to " + xmlFile);
     }
 
     private String extractXmlUseCase(String fullXML) {
