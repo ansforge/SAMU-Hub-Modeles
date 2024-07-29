@@ -1164,7 +1164,7 @@ A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
                         <enumeration value="VLSC"/>
                         <enumeration value="VPSP"/>
                         <enumeration value="AUTRESC"/>
-                        <enumeration value="AUTREVECT"/>
+                        <enumeration value="AUTREVEC"/>
                         <enumeration value="CONSEIL"/>
                         <enumeration value="TAXI"/>
                         <enumeration value="TRANSP"/>
@@ -1173,9 +1173,8 @@ A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
                         <enumeration value="PERSO"/>
                         <enumeration value="APIED"/>
                         <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRETRANS"/>
+                        <enumeration value="AUTRETRA"/>
                         <enumeration value="INCONNU"/>
-                        <enumeration value="DEFIB"/>
                         <enumeration value="DAE"/>
                         <enumeration value="FSI"/>
                         <enumeration value="HELIFSI"/>
@@ -1230,6 +1229,7 @@ A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
                         <enumeration value="AMB-GV"/>
                         <enumeration value="AMB-PV"/>
                         <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
                         <enumeration value="AMB"/>
                     </restriction>
                 </simpleType>

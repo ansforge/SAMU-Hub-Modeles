@@ -7,7 +7,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,"REGEX: fr(\.[\w-]+){3,5}"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
-Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,,,,,,0..1,,string,,"ENUM: AMU, NEONAT, PSY, SNP"
+Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,,,,,,0..1,,string,,NOMENCLATURE: ENUM-FILIERE
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
 
 Spécificités 15-18 : 
@@ -23,10 +23,10 @@ cf.nomenclature associée.",R1,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SA
 Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,,,,,,0..1,X,location,,
 ,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,externalInfo,,,,,,0..n,X,externalInfo,,
-,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,,,,,,1..1,,string,X,"ENUM: BAN, IGN, NEXSIS"
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-SOURCE_Loc
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
-Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,,,,,,0..1,,string,X,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE_INTERNET"
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,,,,,,0..1,,string,X,NOMENCLATURE: ENUM-TYPE_Objet_Sys
 ,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",uri,,,,,,1..1,,string,,
 Alerte initiale,,,,,,"Objet qui permet de décrire une communication d'urgence, par exemple un appel téléphonique.
 
@@ -55,7 +55,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,1..1,,string,,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,,,,,,0..1,X,administrativeFile,,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,,,,,,0..n,X,externalId,,
-,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,,,,,,1..1,,string,X,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
+,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-TYPE_Id_Patient
 ,,,Identifiant,,,L'identifiant en lui-même,id1234,value,,,,,,1..1,,string,,
 ,Identité,,,,,Objet qui permet de décrire l'identité du patient,,identity,,,,,,0..1,X,Identity,,
 ,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,
@@ -92,7 +92,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,0..1,,string,,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,,,,,,1..1,X,operator,,
 ,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,,,,,,0..1,X,detailedName,,
-,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,,,,,,1..1,,string,X,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
+,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-ROLE
 ,ID Observation,,,,,"Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
 {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}

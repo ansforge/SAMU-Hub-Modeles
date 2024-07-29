@@ -545,8 +545,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <enumeration value="ARM"/>
                         <enumeration value="INFIRMIER"/>
                         <enumeration value="MEDECIN"/>
-                        <enumeration value="INCONNU"/>
                         <enumeration value="AUTRE"/>
+                        <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
             </element>

@@ -117,7 +117,7 @@ public class Decision {
 
     AUTRESC("AUTRESC"),
 
-    AUTREVECT("AUTREVECT"),
+    AUTREVEC("AUTREVEC"),
 
     CONSEIL("CONSEIL"),
 
@@ -135,11 +135,9 @@ public class Decision {
 
     AUTRE("AUTRE"),
 
-    AUTRETRANS("AUTRETRANS"),
+    AUTRETRA("AUTRETRA"),
 
     INCONNU("INCONNU"),
-
-    DEFIB("DEFIB"),
 
     DAE("DAE"),
 
@@ -249,7 +247,9 @@ public class Decision {
 
     AMB_BAR("AMB-BAR"),
 
-    AMB("AMB");
+    AMB("AMB"),
+
+    AMB2("AMB");
 
     private String value;
 

@@ -2378,6 +2378,14 @@ components:
           - POSTAL
           - WEB
           - RADIO
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
           examples:
           - PHNADD
         details:
@@ -3112,8 +3120,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
-          - INCONNU
           - AUTRE
+          - INCONNU
           examples:
           - ARM
       additionalProperties: false
@@ -4021,7 +4029,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
+          - AUTREVEC
           - CONSEIL
           - TAXI
           - TRANSP
@@ -4030,9 +4038,8 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
+          - AUTRETRA
           - INCONNU
-          - DEFIB
           - DAE
           - FSI
           - HELIFSI
@@ -4087,6 +4094,7 @@ components:
           - AMB-GV
           - AMB-PV
           - AMB-BAR
+          - AMB
           - AMB
           examples:
           - VLM
@@ -6201,8 +6209,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "A valoriser avec le d\xE9lai d'intervention souhait\xE9 en\
-            \ minutes "
+          description: "A valoriser avec le d\xE9lai d'intervention maximum souhait\xE9\
+            \ (cf. nomenclature associ\xE9e)"
+          enum:
+          - DEL0
+          - ASAP
+          - DEL30M
+          - DEL45M
+          - DEL1H
+          - DEL2H
+          - DEL4H
+          - DEL8H
+          - DEL12H
+          - DEL24H
+          - RDV
           examples:
           - 10
         freetext:
@@ -6303,8 +6323,8 @@ components:
             \ associ\xE9e\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
           enum:
           - ACCEPTEE
-          - REFUSEE
           - PARTIELLE
+          - REFUSEE
           - DIFFEREE
           examples:
           - ACCEPTEE
@@ -6314,8 +6334,11 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
-            \ l'exp\xE9diteur (en minutes),"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse maximum auquel\
+            \ s'engage l'exp\xE9diteur (en minutes) \nCas particulier : en cas de\
+            \ r\xE9ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEA\
+            tre respect\xE9,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9\
+            ponse maximum auquel s'engage l'exp\xE9diteur de la r\xE9ponse (en minutes).\n"
           examples:
           - 10
         freetext:
@@ -6956,7 +6979,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
+          - AUTREVEC
           - CONSEIL
           - TAXI
           - TRANSP
@@ -6965,9 +6988,8 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
+          - AUTRETRA
           - INCONNU
-          - DEFIB
           - DAE
           - FSI
           - HELIFSI
@@ -7022,6 +7044,7 @@ components:
           - AMB-GV
           - AMB-PV
           - AMB-BAR
+          - AMB
           - AMB
           examples:
           - AR, VLM, VSAV

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.07.23",
+    "version": "24.07.29",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -118,11 +118,11 @@
                     "example": "example.json#/qualification/origin",
                     "description": "A valoriser avec le numéro de provenance de l'appel.",
                     "enum": [
-                        "15",
-                        "18",
-                        "17",
-                        "112",
-                        "116117"
+                        15,
+                        17,
+                        18,
+                        112,
+                        116117
                     ]
                 },
                 "riskThreat": {
@@ -1914,12 +1914,20 @@
                     "example": "example.json#/initialAlert/caller/callerContact/channel",
                     "description": "A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",
                     "enum": [
-                        "PERSONNE",
                         "APPLICATION",
-                        "DAU",
                         "BAU",
-                        "DEFIBRILLATEUR",
-                        "ECALL"
+                        "DAU",
+                        "DEFIBRILLATEUR, ",
+                        "ECALL",
+                        "PERSONNE",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
                     ]
                 },
                 "type": {
@@ -1935,7 +1943,15 @@
                         "FAX",
                         "POSTAL",
                         "WEB",
-                        "RADIO"
+                        "RADIO",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        "",
+                        ""
                     ]
                 },
                 "detail": {
@@ -2254,8 +2270,8 @@
                         "ARM",
                         "INFIRMIER",
                         "MEDECIN",
-                        "INCONNU",
-                        "AUTRE"
+                        "AUTRE",
+                        "INCONNU"
                     ]
                 }
             },
