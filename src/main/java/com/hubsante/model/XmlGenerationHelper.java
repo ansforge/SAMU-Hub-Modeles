@@ -15,18 +15,32 @@
  */
 package com.hubsante.model;
 
+import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.emsi.Emsi;
+import com.hubsante.model.emsi.Reference;
+import com.hubsante.model.geolocation.GeoPositionsUpdate;
+import com.hubsante.model.geolocation.GeoResourcesDetails;
+import com.hubsante.model.health.CreateCaseHealth;
+import com.hubsante.model.report.Error;
+import com.hubsante.model.resources.info.ResourcesInfo;
+import com.hubsante.model.resources.request.ResourcesRequest;
+import com.hubsante.model.resources.response.ResourcesResponse;
+import com.hubsante.model.rpis.Rpis;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.OutputKeys;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerFactory;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.*;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -34,7 +48,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -42,6 +58,7 @@ import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
 import static com.hubsante.model.Sanitizer.sanitizeEdxl;
 
+@Slf4j
 public class XmlGenerationHelper {
     ContentMessageHandler contentMessageHandler = new ContentMessageHandler();
     EdxlHandler edxlHandler = new EdxlHandler();
@@ -72,20 +89,7 @@ public class XmlGenerationHelper {
         }
     }
 
-    private final String[] useCases = {
-            "createCase",
-            "createCaseHealth",
-            "emsi",
-            "reference",
-            "error",
-            "geoPositionsUpdate",
-            "geoResourcesRequest",
-            "geoResourcesDetails",
-            "resourcesInfo",
-            "resourcesRequest",
-            "resourcesResponse",
-            "rpis"
-    };
+
 
     @SneakyThrows
     private void convertJsonToXml(Path jsonFile) throws IOException {
@@ -99,10 +103,59 @@ public class XmlGenerationHelper {
                     wrapUseCaseMessage(new String(Files.readAllBytes(jsonFile)))));
         }
         String xml = edxlHandler.serializeXmlEDXL(deserialzedEdxlMessage);
-        xml = prettifyXml(xml);
+        String useCaseXml = extractXmlUseCase(xml);
+        useCaseXml = prettifyXml(useCaseXml);
+//        xml = prettifyXml(xml);
         Path xmlFile = Paths.get(jsonFile.toString().replace(".json", ".xml"));
         Files.write(xmlFile, xml.getBytes());
         System.out.println("Converted " + jsonFile + " to " + xmlFile);
+    }
+
+    private String extractXmlUseCase(String fullXML) {
+        StringBuilder expressionBuilder = new StringBuilder("//*[(local-name()='");
+        for (int i = 0; i < edxlHandler.useCases.keySet().size(); i++) {
+            if (i > 0) {
+                expressionBuilder.append("' or local-name()='");
+            }
+            expressionBuilder.append(edxlHandler.useCases.keySet().toArray()[i]);
+        }
+        expressionBuilder.append("')]");
+
+        // XPath expression
+        String expression = expressionBuilder.toString();
+
+        try {
+            // Parse the XML string into a Document
+            DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+            factory.setNamespaceAware(true); // Important to handle namespaces
+            DocumentBuilder builder = factory.newDocumentBuilder();
+            Document document = builder.parse(new InputSource(new StringReader(fullXML)));
+
+            // Create XPathFactory object
+            XPathFactory xPathFactory = XPathFactory.newInstance();
+            XPath xpath = xPathFactory.newXPath();
+
+            // Compile the XPath expression to find the specified elements
+            XPathExpression xPathExpression = xpath.compile(expression);
+
+            // Execute the expression to find matching nodes
+            Node node = (Node) xPathExpression.evaluate(document, XPathConstants.NODE);
+
+            // Convert the node(s) back to a string
+            if (node != null) {
+                TransformerFactory tf = TransformerFactory.newInstance();
+                Transformer transformer = tf.newTransformer();
+                StringWriter writer = new StringWriter();
+                transformer.transform(new DOMSource(node), new StreamResult(writer));
+                return writer.getBuffer().toString();
+            } else {
+                log.error("No matching nodes found");
+                throw new RuntimeException();
+            }
+        } catch (ParserConfigurationException | XPathExpressionException | IOException | SAXException | TransformerException e) {
+            log.error("Could not extract XML usecase", e);
+            throw  new RuntimeException();
+        }
     }
 
     public static String prettifyXml(String xmlString) {
