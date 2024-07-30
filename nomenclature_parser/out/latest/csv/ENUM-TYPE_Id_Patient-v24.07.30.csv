@@ -1,0 +1,6 @@
+,code,label_n1,Libellé niveau 2,description,commentaire
+0,NIR,NIR,,Numéro d'identification NIR ou NIA,
+1,SINUS,SINUS,,Numéro d'identification SINUS,
+2,SI-VIC,SI-VIC,,Numéro d'identification SI-VIC,
+3,DOSSARD,DOSSARD,,Numéro de dossard,
+4,PLACE,PLACE,,Numéro de place,

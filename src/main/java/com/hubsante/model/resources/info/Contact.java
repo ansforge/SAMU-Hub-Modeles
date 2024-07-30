@@ -61,7 +61,23 @@ public class Contact {
 
     WEB("WEB"),
 
-    RADIO("RADIO");
+    RADIO("RADIO"),
+
+    EMPTY(""),
+
+    EMPTY2(""),
+
+    EMPTY3(""),
+
+    EMPTY4(""),
+
+    EMPTY5(""),
+
+    EMPTY6(""),
+
+    EMPTY7(""),
+
+    EMPTY8("");
 
     private String value;
 

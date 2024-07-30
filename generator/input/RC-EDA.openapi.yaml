@@ -521,6 +521,18 @@ components:
           enum:
           - STANDARD
           - ATTENTION
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
           examples:
           - STANDARD
         notes:
@@ -2330,12 +2342,20 @@ components:
           description: "A valoriser avec  l'origine du canal \xE9tabli : PERSONNE,\
             \ APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
           enum:
-          - PERSONNE
           - APPLICATION
-          - DAU
           - BAU
-          - DEFIBRILLATEUR
+          - DAU
+          - 'DEFIBRILLATEUR, '
           - ECALL
+          - PERSONNE
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
           examples:
           - PERSONNE
         type:
@@ -2353,6 +2373,14 @@ components:
           - POSTAL
           - WEB
           - RADIO
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
           examples:
           - TEL
         detail:

@@ -1,0 +1,7 @@
+,code,label_n1,Libellé niveau 2,description,commentaire
+0,AMBULANCIER,AMBULANCIER,,L'opérateur est un ambulancier,
+1,ARM,ARM,,L'opérateur est un ARM,
+2,INFIRMIER,INFIRMIER,,L'opérateur est un infirmier,
+3,MEDECIN,MEDECIN,,L'opérateur est un médecin,
+4,AUTRE,AUTRE,,"Le rôle de l'opérateur est connu, mais n'est pas détaillé dans la liste des valeurs fournie",
+5,INCONNU,INCONNU,,Le rôle de l'opérateur est inconnu,

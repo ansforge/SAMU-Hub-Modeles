@@ -53,17 +53,33 @@ public class Contact {
    * DAU, BAU, DEFIBRILLATEUR, ECALL
    */
   public enum ChannelEnum {
-    PERSONNE("PERSONNE"),
-
     APPLICATION("APPLICATION"),
-
-    DAU("DAU"),
 
     BAU("BAU"),
 
-    DEFIBRILLATEUR("DEFIBRILLATEUR"),
+    DAU("DAU"),
 
-    ECALL("ECALL");
+    DEFIBRILLATEUR_("DEFIBRILLATEUR, "),
+
+    ECALL("ECALL"),
+
+    PERSONNE("PERSONNE"),
+
+    EMPTY(""),
+
+    EMPTY2(""),
+
+    EMPTY3(""),
+
+    EMPTY4(""),
+
+    EMPTY5(""),
+
+    EMPTY6(""),
+
+    EMPTY7(""),
+
+    EMPTY8("");
 
     private String value;
 
@@ -107,7 +123,23 @@ public class Contact {
 
     WEB("WEB"),
 
-    RADIO("RADIO");
+    RADIO("RADIO"),
+
+    EMPTY(""),
+
+    EMPTY2(""),
+
+    EMPTY3(""),
+
+    EMPTY4(""),
+
+    EMPTY5(""),
+
+    EMPTY6(""),
+
+    EMPTY7(""),
+
+    EMPTY8("");
 
     private String value;
 
