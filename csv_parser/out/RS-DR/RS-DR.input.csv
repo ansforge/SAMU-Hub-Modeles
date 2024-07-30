@@ -16,5 +16,5 @@ fr.health.samu690.request.DRFR15690242370035.3",requestId,1..1,,string,
 ,Date Heure de création de la demande,,,,,A valoriser avec le groupe date heure de création de la demande,2022-09-27T08:23:34+02:00,datetime,1..1,,datetime,Format datetime décrit dans le DSF
 ,Cadre conventionnel,,,,,A valoriser avec le cadre conventionnel de la demande. Cf nomenclature associée,HORS,convention,0..1,,string,NOMENCLATURE: CISU-CADRE_CONV
 ,Effet à obtenir,,,,,A valoriser avec le motif de la demande de ressource auprès du partenaire. Cf Nomenclature associée.,SMUR,purpose,1..1,,string,NOMENCLATURE: CISU-Code_Effet_a_obtenir
-,Délai souhaité,,,,,A valoriser avec le délai d'intervention souhaité en minutes ,10,deadline,0..1,,string,
+,Délai souhaité,,,,,A valoriser avec le délai d'intervention maximum souhaité (cf. nomenclature associée),10,deadline,0..1,,string,NOMENCLATURE: SI-SAMU-DELAI
 ,Précisions sur la demande,,,,,Texte libre permettant de détailler la demande,Prévoir un kit pédiatrique,freetext,0..1,,string,

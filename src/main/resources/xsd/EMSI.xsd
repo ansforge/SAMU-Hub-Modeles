@@ -253,28 +253,28 @@ Dans le cadre d'une mission décrivant les opérations en cours :
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="/SAV/ASC"/>
-                        <enumeration value="/FR_MED/REGLTN"/>
-                        <enumeration value="/GEN/SUPRTN"/>
-                        <enumeration value="/SAV/AR/FR_MED"/>
-                        <enumeration value="/SAV/AR/FR_PARAMD"/>
-                        <enumeration value="/SAV"/>
-                        <enumeration value="/GEN/TRNSPN"/>
-                        <enumeration value="/SAV/SARCSL"/>
-                        <enumeration value="/SAV/ASC/FR_PPL/LIFT"/>
-                        <enumeration value="/GEN/RECVRY"/>
-                        <enumeration value="/SAV/RHD"/>
-                        <enumeration value="/FFST/FR_FIRE"/>
-                        <enumeration value="/FSTT/RRHAZ/FR_CO"/>
-                        <enumeration value="/CBRN/TSA"/>
-                        <enumeration value="/INT/RECCE/FR_SMLL"/>
-                        <enumeration value="/FSTT/TA"/>
-                        <enumeration value="/SAV/AR/FR_PPL/GRP"/>
-                        <enumeration value="/INT/RECCE"/>
-                        <enumeration value="/GEN/TRNSPN/FR_SECNDRY"/>
-                        <enumeration value="/OPR/LOG"/>
-                        <enumeration value="/SAV/AR/FR_PPL/OBS"/>
-                        <enumeration value="/FSTT/TA/FR_CLRACCSS"/>
+                        <enumeration value="SAV/ASC"/>
+                        <enumeration value="FR_MED/REGLTN"/>
+                        <enumeration value="GEN/SUPRTN"/>
+                        <enumeration value="SAV/AR/FR_MED"/>
+                        <enumeration value="SAV/AR/FR_PARAMD"/>
+                        <enumeration value="SAV"/>
+                        <enumeration value="GEN/TRNSPN"/>
+                        <enumeration value="SAV/SARCSL"/>
+                        <enumeration value="SAV/ASC/FR_PPL/LIFT"/>
+                        <enumeration value="GEN/RECVRY"/>
+                        <enumeration value="SAV/RHD"/>
+                        <enumeration value="FFST/FR_FIRE"/>
+                        <enumeration value="FSTT/RRHAZ/FR_CO"/>
+                        <enumeration value="CBRN/TSA"/>
+                        <enumeration value="INT/RECCE/FR_SMLL"/>
+                        <enumeration value="FSTT/TA"/>
+                        <enumeration value="SAV/AR/FR_PPL/GRP"/>
+                        <enumeration value="INT/RECCE"/>
+                        <enumeration value="GEN/TRNSPN/FR_SECNDRY"/>
+                        <enumeration value="OPR/LOG"/>
+                        <enumeration value="SAV/AR/FR_PPL/OBS"/>
+                        <enumeration value="FSTT/TA/FR_CLRACCSS"/>
                     </restriction>
                 </simpleType>
             </element>

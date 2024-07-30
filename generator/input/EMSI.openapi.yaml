@@ -411,28 +411,28 @@ components:
             \ d\xE9crivant les op\xE9rations en cours :\n- reprendre la nomenclature\
             \ EMSI pour caract\xE9riser la mission en cours."
           enum:
-          - /SAV/ASC
-          - /FR_MED/REGLTN
-          - /GEN/SUPRTN
-          - /SAV/AR/FR_MED
-          - /SAV/AR/FR_PARAMD
-          - /SAV
-          - /GEN/TRNSPN
-          - /SAV/SARCSL
-          - /SAV/ASC/FR_PPL/LIFT
-          - /GEN/RECVRY
-          - /SAV/RHD
-          - /FFST/FR_FIRE
-          - /FSTT/RRHAZ/FR_CO
-          - /CBRN/TSA
-          - /INT/RECCE/FR_SMLL
-          - /FSTT/TA
-          - /SAV/AR/FR_PPL/GRP
-          - /INT/RECCE
-          - /GEN/TRNSPN/FR_SECNDRY
-          - /OPR/LOG
-          - /SAV/AR/FR_PPL/OBS
-          - /FSTT/TA/FR_CLRACCSS
+          - SAV/ASC
+          - FR_MED/REGLTN
+          - GEN/SUPRTN
+          - SAV/AR/FR_MED
+          - SAV/AR/FR_PARAMD
+          - SAV
+          - GEN/TRNSPN
+          - SAV/SARCSL
+          - SAV/ASC/FR_PPL/LIFT
+          - GEN/RECVRY
+          - SAV/RHD
+          - FFST/FR_FIRE
+          - FSTT/RRHAZ/FR_CO
+          - CBRN/TSA
+          - INT/RECCE/FR_SMLL
+          - FSTT/TA
+          - SAV/AR/FR_PPL/GRP
+          - INT/RECCE
+          - GEN/TRNSPN/FR_SECNDRY
+          - OPR/LOG
+          - SAV/AR/FR_PPL/OBS
+          - FSTT/TA/FR_CLRACCSS
           examples:
           - SAV/ASC
         FREETEXT:

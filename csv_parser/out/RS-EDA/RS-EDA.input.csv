@@ -13,13 +13,13 @@ L'indicateur de fuseau horaire Z ne doit pas être utilisé.
 
 Spécificité 15-18 :
 Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DSF
-Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,0..1,,string,"ENUM: AMU, NEONAT, PSY, SNP"
-Type d'intervention,,,,,,A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),PRIMAIRE,interventionType,0..1,,string,"ENUM: PRIMAIRE, SECONDAIRE, RETOUR A DOMICILE"
+Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,0..1,,string,NOMENCLATURE: ENUM-FILIERE
+Type d'intervention,,,,,,A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),PRIMAIRE,interventionType,0..1,,string,NOMENCLATURE: ENUM-TYPE_Intervention
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
 
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,1..1,X,qualification,
-,Origine de l'appel,,,,,A valoriser avec le numéro de provenance de l'appel.,"15, 112, 18",origin,0..1,,string,"ENUM: 15, 18, 17, 112, 116117"
+,Origine de l'appel,,,,,A valoriser avec le numéro de provenance de l'appel.,"15, 112, 18",origin,0..1,,string,NOMENCLATURE: ENUM-ORIGINE
 ,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,0..n,X,codeAndLabel,
 ,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,1..1,,string,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
@@ -35,7 +35,7 @@ cf.nomenclature associée.",R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAV
 Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,1..1,X,location,
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,0..1,,string,
 ,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,0..n,X,externalLocationId,
-,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,1..1,,string,"ENUM: FINESS_ADMINISTRATIF, FINESS_GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
+,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,1..1,,string,NOMENCLATURE: ENUM-SOURCE_Id_Lieu
 ,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,1..1,,string,REGEX: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
 ,Détails de l'adresse,,,,,,,detailedAddress,0..1,X,detailedAddress,
 ,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,highway,0..1,X,highway,
@@ -98,14 +98,14 @@ VILLE : Précision à l'échelle de la ville,
 RUE : Précision à l'échelle de la rue, 
 ADRESSE : Adresse précise, 
 EXACTE : Point coordonnée GPS exact, 
-INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,precision,1..1,,string,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
+INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,precision,1..1,,string,NOMENCLATURE: ENUM-PRECISION
 ,,,Dispositif AML,,,Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ,TRUE,isAml,0..1,,boolean,
 ,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,externalInfo,0..n,X,externalInfo,
-,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,1..1,,string,"ENUM: BAN, IGN, NEXSIS"
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,1..1,,string,NOMENCLATURE: ENUM-SOURCE_Loc
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
-Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,0..1,,string,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE_INTERNET"
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,0..1,,string,NOMENCLATURE: ENUM-TYPE_Objet_Sys
 ,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",uri,1..1,,string,
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
 
@@ -129,8 +129,8 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
 ,,Contact,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le requérant/appelant à l'origine de l'alerte.
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,1..1,X,contact,
-,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,1..1,,string,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
-,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
+,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Canal
+,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Type
 ,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée.
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,1..1,,string,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
@@ -167,7 +167,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,0..1,X,administrativeFile,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
-,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
+,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
 ,,,Identifiant,,,L'identifiant en lui-même,id1234,value,1..1,,string,
 ,Identité,,,,,Objet qui permet de décrire l'identité du patient,,identity,0..1,X,Identity,
 ,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,strictFeatures,0..1,X,insStrictFeatures,
@@ -196,7 +196,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,1..1,X,operator,
 ,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,0..1,X,detailedName,
-,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
+,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,NOMENCLATURE: ENUM-ROLE
 ,ID Observation,,,,,"Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
 {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}
