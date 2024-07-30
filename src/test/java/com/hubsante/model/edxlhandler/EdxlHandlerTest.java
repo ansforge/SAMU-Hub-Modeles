@@ -16,9 +16,12 @@
 package com.hubsante.model.edxlhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import com.hubsante.model.TestMessagesHelper;
+import com.hubsante.model.edxl.ContentMessage;
 import com.hubsante.model.edxl.EdxlMessage;
+import com.hubsante.model.emsi.Emsi;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
@@ -34,10 +37,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
@@ -173,6 +173,7 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
     @DisplayName("all json example files deserialize to same object xml example files deserialize to")
     public void jsonAndXmlExampleFilesDeserializeToSameObject() {
         String rootFolder = TestMessagesHelper.class.getClassLoader().getResource("sample/examples").getFile();
+
         File[] subFolders = new File(rootFolder).listFiles(File::isDirectory);
         assert subFolders != null;
         List<File> exampleFiles = new ArrayList<>();
@@ -183,27 +184,27 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
 
         // RS-ERROR messages cannot be compared due to sourceMessage not having any particular definitions
         // and not being deserialized correctly from XML, we remove the RS-ERROR files from the list
-        List<File> filteredExampleFiles = exampleFiles.stream().filter(file -> "RS-ERROR".equals(file.getName())).collect(Collectors.toList());
+        List<File> filteredExampleFiles = exampleFiles.stream().filter(file -> !file.getName().startsWith("RS-ERROR")).collect(Collectors.toList());
 
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         filteredExampleFiles.forEach(file -> {
             try {
                 if (file.getName().endsWith(".json")) {
-                    boolean doesNotHaveDistributionElement = Arrays.stream(useCasesWithNoRcDe).anyMatch(file.getName()::contains);
-
                     String jsonExample = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-
-                    EdxlMessage edxlMessageFromJson = sanitizeEdxl(converter.deserializeJsonEDXL(
-                            doesNotHaveDistributionElement?wrapUseCaseMessageWithoutDistributionElement(jsonExample):wrapUseCaseMessage(jsonExample)));
-
                     String xmlExample = new String(Files.readAllBytes(new File(file.getParentFile(), file.getName().replace(".json", ".xml")).toPath()), StandardCharsets.UTF_8);
 
-                    EdxlMessage edxlMessageFromXml = sanitizeEdxl(converter.deserializeXmlEDXL(xmlExample));
+                    JsonNode jsonNode = converter.jsonMapper.readTree(jsonExample);
+                    String useCaseName = jsonNode.fieldNames().next();
+                    JsonNode useCaseNode = jsonNode.get(useCaseName);
 
-                    assertEquals(edxlMessageFromJson, edxlMessageFromXml);
+                    log.info("testing " + file.getName() + ": ");
+                    assertEquals(
+                            converter.jsonMapper.treeToValue(useCaseNode, Class.forName(ContentMessage.UseCaseHelper.useCases.get(useCaseName))),
+                            converter.xmlMapper.readValue(xmlExample, Class.forName(ContentMessage.UseCaseHelper.useCases.get(useCaseName))));
+                    log.info("xml and json are equal for " + useCaseName + " useCase.");
                 }
-            } catch (IOException e) {
+            } catch (IOException | ClassNotFoundException e) {
                 throw new RuntimeException(e);
             } catch (AssertionFailedError e) {
                 allPass.set(false);
@@ -214,5 +215,4 @@ public class EdxlHandlerTest extends AbstractEdxlHandlerTest {
             fail("Some files are not equivalent");
         }
     }
-
 }

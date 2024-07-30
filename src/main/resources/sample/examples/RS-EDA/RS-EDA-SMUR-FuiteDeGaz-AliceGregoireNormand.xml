@@ -1,181 +1,144 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<edxlDistribution xmlns="urn:oasis:names:tc:emergency:EDXL:DE:2.0" xmlns:ct="urn:oasis:names:tc:emergency:edxl:ct:1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:type="extended">
-  <distributionID>fr.health.samu_id</distributionID>
-  <senderID>fr.health.sender</senderID>
-  <dateTimeSent>2023-12-15T00:00:00+02:00</dateTimeSent>
-  <dateTimeExpires>2023-12-16T00:00:00+02:00</dateTimeExpires>
-  <distributionStatus>Actual</distributionStatus>
-  <distributionKind>Report</distributionKind>
-  <descriptor xlink:type="resource">
-    <language>fr-FR</language>
-    <explicitAddress>
-      <explicitAddressScheme>hubex</explicitAddressScheme>
-      <explicitAddressValue>fr.health.recipient</explicitAddressValue>
-    </explicitAddress>
-  </descriptor>
-  <content>
-    <contentObject xlink:type="resource">
-      <contentXML>
-        <embeddedXMLContent>
-          <message xmlns="urn:emergency:cisu:2.0">
-            <messageId>sender_123</messageId>
-            <sender>
-              <name>sender</name>
-              <URI>hubex:sender</URI>
-            </sender>
-            <sentAt>2023-12-14T00:00:00+02:00</sentAt>
-            <kind>Report</kind>
-            <status>Actual</status>
-            <recipient>
-              <name>recipient</name>
-              <URI>hubex:recipient</URI>
-            </recipient>
-            <createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
-              <caseId>fr.health.samu440.DRFR154402413800236</caseId>
-              <senderCaseId>DRFR154402413800236</senderCaseId>
-              <creation>2024-05-18T18:15:00+02:00</creation>
-              <interventionType>PRIMAIRE</interventionType>
-              <qualification>
-                <origin>15</origin>
-                <riskThreat>
-                  <code>R13</code>
-                  <label>Risque d'explosion, présence de gaz</label>
-                </riskThreat>
-                <whatsHappen>
-                  <code>C09.03.00</code>
-                  <label>Fuite de gaz</label>
-                </whatsHappen>
-                <locationKind>
-                  <code>L01.01.01</code>
-                  <label>Maison particulière, pavillon, à l'intérieur</label>
-                </locationKind>
-                <healthMotive>
-                  <code>M03.10</code>
-                  <label>Malaise avec perte de connaissance initiale</label>
-                </healthMotive>
-                <details>
-                  <attribution>TOXICOL</attribution>
-                  <priority>P1</priority>
-                </details>
-              </qualification>
-              <location>
-                <detailedAddress>
-                  <complete>3 Rue des Marins</complete>
-                  <number>3</number>
-                  <wayName>
-                    <complete>Rue des Marins</complete>
-                    <type>Rue</type>
-                    <name>Des Marins</name>
-                  </wayName>
-                </detailedAddress>
-                <city>
-                  <name>Bouaye</name>
-                  <inseeCode>44018</inseeCode>
-                </city>
-                <geometry>
-                  <obsDatime>2024-05-18T18:15:00+02:00</obsDatime>
-                  <point>
-                    <coord>
-                      <lat>47.146089</lat>
-                      <lon>-1.691374</lon>
-                      <precision>ADRESSE</precision>
-                    </coord>
-                  </point>
-                </geometry>
-                <freetext>Maison aux volets verts</freetext>
-              </location>
-              <initialAlert>
-                <reception>2023-11-18T18:15:00+01:00</reception>
-                <caller>
-                  <callerContact>
-                    <channel>PERSONNE</channel>
-                    <type>TEL</type>
-                    <detail>+33671830523</detail>
-                  </callerContact>
-                  <callbackContact>
-                    <channel>PERSONNE</channel>
-                    <type>TEL</type>
-                    <detail>+33671830523</detail>
-                  </callbackContact>
-                  <language>FR</language>
-                  <type>FAMILLE</type>
-                  <communication>AUCUNE</communication>
-                  <freetext>Mère des enfants</freetext>
-                  <detailedName>
-                    <complete>Marie Dubois</complete>
-                    <lastName>Dubois</lastName>
-                    <firstName>Marie</firstName>
-                  </detailedName>
-                </caller>
-              </initialAlert>
-              <owner>fr.health.samu440</owner>
-              <patient>
-                <idPat>fr.health.samu440.patient.DRFR154402413800236.1</idPat>
-                <identity>
-                  <strictFeatures>
-                    <birthDate>2011-05-11</birthDate>
-                    <sex>FEM</sex>
-                  </strictFeatures>
-                  <nonStrictFeatures>
-                    <complete>Alice Normand</complete>
-                    <lastName>Normand</lastName>
-                    <firstName>Alice</firstName>
-                  </nonStrictFeatures>
-                </identity>
-                <healthMotive>
-                  <code>M03.10</code>
-                  <label>Malaise avec perte de connaissance initiale</label>
-                </healthMotive>
-                <detail>
-                  <age>P13Y</age>
-                </detail>
-                <hypothesis>
-                  <mainDiagnosis>
-                    <code>PB32</code>
-                    <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
-                  </mainDiagnosis>
-                </hypothesis>
-              </patient>
-              <patient>
-                <idPat>fr.health.samu440.patient.DRFR154402413800236.2</idPat>
-                <identity>
-                  <strictFeatures>
-                    <birthDate>2013-11-03</birthDate>
-                    <sex>MASC</sex>
-                  </strictFeatures>
-                  <nonStrictFeatures>
-                    <complete>Grégoire Normand</complete>
-                    <lastName>Normand</lastName>
-                    <firstName>Grégoire</firstName>
-                  </nonStrictFeatures>
-                </identity>
-                <detail>
-                  <age>P11Y</age>
-                </detail>
-                <hypothesis>
-                  <mainDiagnosis>
-                    <code>PB32</code>
-                    <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
-                  </mainDiagnosis>
-                </hypothesis>
-              </patient>
-              <medicalNote>
-                <idPat>fr.health.samu440.patient.DRFR154402413800236.2</idPat>
-                <operator>
-                  <detailedName>
-                    <complete>Angèle Mouscou</complete>
-                    <lastName>Mouscou</lastName>
-                    <firstName>Angèle</firstName>
-                  </detailedName>
-                  <role>ARM</role>
-                </operator>
-                <creation>2024-05-18T18:15:00+02:00</creation>
-                <freetext>Asthmatique</freetext>
-              </medicalNote>
-            </createCaseHealth>
-          </message>
-        </embeddedXMLContent>
-      </contentXML>
-    </contentObject>
-  </content>
-</edxlDistribution>
+<createCaseHealth xmlns="urn:emergency:cisu:2.0:createCaseHealth">
+  <caseId>fr.health.samu440.DRFR154402413800236</caseId>
+  <senderCaseId>DRFR154402413800236</senderCaseId>
+  <creation>2024-05-18T18:15:00+02:00</creation>
+  <interventionType>PRIMAIRE</interventionType>
+  <qualification>
+    <origin>15</origin>
+    <riskThreat>
+      <code>R13</code>
+      <label>Risque d'explosion, présence de gaz</label>
+    </riskThreat>
+    <whatsHappen>
+      <code>C09.03.00</code>
+      <label>Fuite de gaz</label>
+    </whatsHappen>
+    <locationKind>
+      <code>L01.01.01</code>
+      <label>Maison particulière, pavillon, à l'intérieur</label>
+    </locationKind>
+    <healthMotive>
+      <code>M03.10</code>
+      <label>Malaise avec perte de connaissance initiale</label>
+    </healthMotive>
+    <details>
+      <attribution>TOXICOL</attribution>
+      <priority>P1</priority>
+    </details>
+  </qualification>
+  <location>
+    <detailedAddress>
+      <complete>3 Rue des Marins</complete>
+      <number>3</number>
+      <wayName>
+        <complete>Rue des Marins</complete>
+        <type>Rue</type>
+        <name>Des Marins</name>
+      </wayName>
+    </detailedAddress>
+    <city>
+      <name>Bouaye</name>
+      <inseeCode>44018</inseeCode>
+    </city>
+    <geometry>
+      <obsDatime>2024-05-18T18:15:00+02:00</obsDatime>
+      <point>
+        <coord>
+          <lat>47.146089</lat>
+          <lon>-1.691374</lon>
+          <precision>ADRESSE</precision>
+        </coord>
+      </point>
+    </geometry>
+    <freetext>Maison aux volets verts</freetext>
+  </location>
+  <initialAlert>
+    <reception>2023-11-18T18:15:00+01:00</reception>
+    <caller>
+      <callerContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>+33671830523</detail>
+      </callerContact>
+      <callbackContact>
+        <channel>PERSONNE</channel>
+        <type>TEL</type>
+        <detail>+33671830523</detail>
+      </callbackContact>
+      <language>FR</language>
+      <type>FAMILLE</type>
+      <communication>AUCUNE</communication>
+      <freetext>Mère des enfants</freetext>
+      <detailedName>
+        <complete>Marie Dubois</complete>
+        <lastName>Dubois</lastName>
+        <firstName>Marie</firstName>
+      </detailedName>
+    </caller>
+  </initialAlert>
+  <owner>fr.health.samu440</owner>
+  <patient>
+    <idPat>fr.health.samu440.patient.DRFR154402413800236.1</idPat>
+    <identity>
+      <strictFeatures>
+        <birthDate>2011-05-11</birthDate>
+        <sex>FEM</sex>
+      </strictFeatures>
+      <nonStrictFeatures>
+        <complete>Alice Normand</complete>
+        <lastName>Normand</lastName>
+        <firstName>Alice</firstName>
+      </nonStrictFeatures>
+    </identity>
+    <healthMotive>
+      <code>M03.10</code>
+      <label>Malaise avec perte de connaissance initiale</label>
+    </healthMotive>
+    <detail>
+      <age>P13Y</age>
+    </detail>
+    <hypothesis>
+      <mainDiagnosis>
+        <code>PB32</code>
+        <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
+      </mainDiagnosis>
+    </hypothesis>
+  </patient>
+  <patient>
+    <idPat>fr.health.samu440.patient.DRFR154402413800236.2</idPat>
+    <identity>
+      <strictFeatures>
+        <birthDate>2013-11-03</birthDate>
+        <sex>MASC</sex>
+      </strictFeatures>
+      <nonStrictFeatures>
+        <complete>Grégoire Normand</complete>
+        <lastName>Normand</lastName>
+        <firstName>Grégoire</firstName>
+      </nonStrictFeatures>
+    </identity>
+    <detail>
+      <age>P11Y</age>
+    </detail>
+    <hypothesis>
+      <mainDiagnosis>
+        <code>PB32</code>
+        <label>Effets nocifs ou exposition accidentelle au monoxyde de carbone</label>
+      </mainDiagnosis>
+    </hypothesis>
+  </patient>
+  <medicalNote>
+    <idPat>fr.health.samu440.patient.DRFR154402413800236.2</idPat>
+    <operator>
+      <detailedName>
+        <complete>Angèle Mouscou</complete>
+        <lastName>Mouscou</lastName>
+        <firstName>Angèle</firstName>
+      </detailedName>
+      <role>ARM</role>
+    </operator>
+    <creation>2024-05-18T18:15:00+02:00</creation>
+    <freetext>Asthmatique</freetext>
+  </medicalNote>
+</createCaseHealth>
