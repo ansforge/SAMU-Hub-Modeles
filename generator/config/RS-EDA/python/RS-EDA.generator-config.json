@@ -11,7 +11,6 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "package_name": "health",
-    "projectName": "hubsante-model"
+    "packageName": "hubsanteModel.health"
   }
 }

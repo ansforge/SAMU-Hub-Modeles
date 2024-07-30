@@ -16,7 +16,7 @@ env:
   SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS"
 
 jobs:
-  generate-ruby:
+  generate-sdks:
     runs-on: ubuntu-latest
 
     steps:
