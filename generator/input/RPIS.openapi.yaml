@@ -1520,7 +1520,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVEC
+          - AUTREVECT
           - CONSEIL
           - TAXI
           - TRANSP
@@ -1529,8 +1529,9 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRA
+          - AUTRETRANS
           - INCONNU
+          - DEFIB
           - DAE
           - FSI
           - HELIFSI
@@ -1585,7 +1586,6 @@ components:
           - AMB-GV
           - AMB-PV
           - AMB-BAR
-          - AMB
           - AMB
           examples:
           - AR, VLM, VSAV

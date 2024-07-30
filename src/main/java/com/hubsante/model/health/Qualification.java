@@ -65,9 +65,9 @@ public class Qualification {
   public enum OriginEnum {
     _15("15"),
 
-    _17("17"),
-
     _18("18"),
+
+    _17("17"),
 
     _112("112"),
 

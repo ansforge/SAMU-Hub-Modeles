@@ -59,9 +59,9 @@ public class Response {
   public enum AnswerEnum {
     ACCEPTEE("ACCEPTEE"),
 
-    PARTIELLE("PARTIELLE"),
-
     REFUSEE("REFUSEE"),
+
+    PARTIELLE("PARTIELLE"),
 
     DIFFEREE("DIFFEREE");
 
@@ -155,11 +155,8 @@ public class Response {
   }
 
   /**
-   * A valoriser avec le délai de réponse maximum auquel s&#39;engage
-   *l&#39;expéditeur (en minutes)  Cas particulier : en cas de réponse
-   *\&quot;Partielle\&quot; car le délai souhaité ne peut pas être respecté,  à
-   *valoriser obligatoirement avec le délai de réponse maximum auquel
-   *s&#39;engage l&#39;expéditeur de la réponse (en minutes).
+   * A valoriser avec le délai de réponse auquel s&#39;engage l&#39;expéditeur
+   *(en minutes),
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)

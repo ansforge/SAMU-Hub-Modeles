@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-DR.schema.json#",
-    "version": "24.07.29",
+    "version": "24.07.30",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesRequest",
@@ -101,20 +101,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/request/deadline",
-                    "description": "A valoriser avec le délai d'intervention maximum souhaité (cf. nomenclature associée)",
-                    "enum": [
-                        "DEL0",
-                        "ASAP",
-                        "DEL30M",
-                        "DEL45M",
-                        "DEL1H",
-                        "DEL2H",
-                        "DEL4H",
-                        "DEL8H",
-                        "DEL12H",
-                        "DEL24H",
-                        "RDV"
-                    ]
+                    "description": "A valoriser avec le délai d'intervention souhaité en minutes "
                 },
                 "freetext": {
                     "type": "string",

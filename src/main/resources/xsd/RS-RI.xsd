@@ -83,7 +83,7 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="VLSC"/>
                         <enumeration value="VPSP"/>
                         <enumeration value="AUTRESC"/>
-                        <enumeration value="AUTREVEC"/>
+                        <enumeration value="AUTREVECT"/>
                         <enumeration value="CONSEIL"/>
                         <enumeration value="TAXI"/>
                         <enumeration value="TRANSP"/>
@@ -92,8 +92,9 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="PERSO"/>
                         <enumeration value="APIED"/>
                         <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="AUTRETRANS"/>
                         <enumeration value="INCONNU"/>
+                        <enumeration value="DEFIB"/>
                         <enumeration value="DAE"/>
                         <enumeration value="FSI"/>
                         <enumeration value="HELIFSI"/>
@@ -148,7 +149,6 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="AMB-GV"/>
                         <enumeration value="AMB-PV"/>
                         <enumeration value="AMB-BAR"/>
-                        <enumeration value="AMB"/>
                         <enumeration value="AMB"/>
                     </restriction>
                 </simpleType>
@@ -302,14 +302,6 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                         <enumeration value="POSTAL"/>
                         <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>

@@ -158,7 +158,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVEC
+          - AUTREVECT
           - CONSEIL
           - TAXI
           - TRANSP
@@ -167,8 +167,9 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRA
+          - AUTRETRANS
           - INCONNU
+          - DEFIB
           - DAE
           - FSI
           - HELIFSI
@@ -223,7 +224,6 @@ components:
           - AMB-GV
           - AMB-PV
           - AMB-BAR
-          - AMB
           - AMB
           examples:
           - VLM
@@ -491,14 +491,6 @@ components:
           - POSTAL
           - WEB
           - RADIO
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
           examples:
           - PHNADD
         details:

@@ -140,11 +140,11 @@ components:
           example: example.json#/qualification/origin
           description: "A valoriser avec le num\xE9ro de provenance de l'appel."
           enum:
-          - 15
-          - 17
-          - 18
-          - 112
-          - 116117
+          - '15'
+          - '18'
+          - '17'
+          - '112'
+          - '116117'
           examples:
           - 15, 112, 18
         riskThreat:
@@ -2036,20 +2036,12 @@ components:
           description: "A valoriser avec  l'origine du canal \xE9tabli : PERSONNE,\
             \ APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
           enum:
-          - APPLICATION
-          - BAU
-          - DAU
-          - 'DEFIBRILLATEUR, '
-          - ECALL
           - PERSONNE
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
+          - APPLICATION
+          - DAU
+          - BAU
+          - DEFIBRILLATEUR
+          - ECALL
           examples:
           - PERSONNE
         type:
@@ -2067,14 +2059,6 @@ components:
           - POSTAL
           - WEB
           - RADIO
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
           examples:
           - TEL
         detail:
@@ -2420,8 +2404,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
-          - AUTRE
           - INCONNU
+          - AUTRE
           examples:
           - ARM
       additionalProperties: false

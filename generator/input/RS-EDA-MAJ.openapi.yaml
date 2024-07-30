@@ -892,8 +892,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
-          - AUTRE
           - INCONNU
+          - AUTRE
           examples:
           - ARM
       additionalProperties: false

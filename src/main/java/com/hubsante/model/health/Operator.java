@@ -64,9 +64,9 @@ public class Operator {
 
     MEDECIN("MEDECIN"),
 
-    AUTRE("AUTRE"),
+    INCONNU("INCONNU"),
 
-    INCONNU("INCONNU");
+    AUTRE("AUTRE");
 
     private String value;
 
