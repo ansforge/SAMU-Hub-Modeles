@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model;
+package com.hubsante.model.service;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -21,6 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import com.hubsante.model.ValidationMessageWrapper;
 import com.hubsante.model.builders.ValidationMessageWrapperBuilder;
 import com.hubsante.model.rcde.DistributionElement;
 import com.hubsante.model.exception.ValidationException;

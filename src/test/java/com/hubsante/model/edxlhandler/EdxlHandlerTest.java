@@ -17,7 +17,7 @@ package com.hubsante.model.edxlhandler;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
-import com.hubsante.model.TestMessagesHelper;
+import com.hubsante.model.service.helpers.TestMessagesHelper;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +40,10 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
 
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.service.utils.EdxlWrapperUtils.wrapUseCaseMessage;
+import static com.hubsante.model.service.utils.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistributionElement;
+import static com.hubsante.model.service.Sanitizer.sanitizeEdxl;
+import static com.hubsante.model.service.helpers.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;

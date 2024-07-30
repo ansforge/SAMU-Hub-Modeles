@@ -15,15 +15,15 @@
  */
 package com.hubsante.model.edxlhandler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.hubsante.model.EdxlHandler;
-import com.hubsante.model.Validator;
+import com.hubsante.model.service.EdxlHandler;
+import com.hubsante.model.service.Validator;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 
+import static com.hubsante.model.service.Sanitizer.sanitizeEdxl;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.config.Constants.FULL_XSD;
 import static com.hubsante.model.utils.Sanitizer.sanitizeEdxl;

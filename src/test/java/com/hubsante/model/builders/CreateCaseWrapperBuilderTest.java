@@ -15,7 +15,7 @@
  */
 package com.hubsante.model.builders;
 
-import com.hubsante.model.EdxlHandler;
+import com.hubsante.model.service.EdxlHandler;
 import com.hubsante.model.cisu.CreateCase;
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.rcde.DistributionElement;

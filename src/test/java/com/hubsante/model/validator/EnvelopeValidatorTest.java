@@ -21,7 +21,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.service.helpers.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 

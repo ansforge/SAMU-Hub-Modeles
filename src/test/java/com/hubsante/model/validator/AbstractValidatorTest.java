@@ -15,14 +15,14 @@
  */
 package com.hubsante.model.validator;
 
-import com.hubsante.model.Validator;
+import com.hubsante.model.service.Validator;
 import com.hubsante.model.exception.ValidationException;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.util.*;
 
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.service.helpers.TestMessagesHelper.getInvalidMessage;
 import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.utils.TestFileUtils.getMessageString;
 import static org.junit.jupiter.api.Assertions.*;

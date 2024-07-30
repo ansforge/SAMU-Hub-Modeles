@@ -15,15 +15,13 @@
  */
 package com.hubsante.model.edxlhandler;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.exc.ValueInstantiationException;
-import com.hubsante.model.edxl.EdxlMessage;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.service.helpers.TestMessagesHelper.getInvalidMessage;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class RsErrorHandlerTest extends AbstractEdxlHandlerTest {
