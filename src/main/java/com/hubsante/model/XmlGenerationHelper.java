@@ -64,14 +64,18 @@ public class XmlGenerationHelper {
                 try (Stream<Path> jsonFiles = Files.list(subfolder)) {
                     List<Path> jsonFileList = jsonFiles.filter(path -> path.toString().endsWith(".json")).collect(Collectors.toList());
                     for (Path jsonFile : jsonFileList) {
-                        convertJsonToXml(jsonFile);
+                        try {
+                            convertJsonToXml(jsonFile);
+                        } catch (IOException e) {
+                            log.error("Could not convert file {} to XML", jsonFile.getFileName());
+                        }
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (IOException e) {
+                    log.error("Error during file streaming in subfolder {}", subfolder.getFileName());
                 }
             });
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (IOException e) {
+            log.error("Error during file streaming in folder {}", examplesDir.getFileName());
         }
     }
 
