@@ -27,7 +27,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 
-import static com.hubsante.model.TestMessagesHelper.getValidMessage;
+import static com.hubsante.model.utils.TestFileUtils.getMessageByFileName;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -56,10 +56,10 @@ public class TechnicalHandlerTest {
     @Test
     @DisplayName("Complete TECHNICAL messages should deserialize to same object from json and xml files")
     public void testCompleteTechnicalDeserialization() throws IOException {
-        String json = getValidMessage("TECHNICAL/complete.json");
+        String json = getMessageByFileName("TECHNICAL/complete.json");
         Technical jsonTechnical = jsonMapper.readValue(json, Technical.class);
 
-        String xml = getValidMessage("TECHNICAL/complete.xml");
+        String xml = getMessageByFileName("TECHNICAL/complete.xml");
         Technical xmlTechnical = xmlMapper.readValue(xml, Technical.class);
 
         assertEquals(jsonTechnical, xmlTechnical);
@@ -68,10 +68,10 @@ public class TechnicalHandlerTest {
     @Test
     @DisplayName("Deserialized arrays should be of correct size")
     public void testDeserializedArrays() throws IOException {
-        String json = getValidMessage("TECHNICAL/array-deserialization.json");
+        String json = getMessageByFileName("TECHNICAL/array-deserialization.json");
         Technical jsonTechnical = jsonMapper.readValue(json, Technical.class);
 
-        String xml = getValidMessage("TECHNICAL/array-deserialization.xml");
+        String xml = getMessageByFileName("TECHNICAL/array-deserialization.xml");
         Technical xmlTechnical = xmlMapper.readValue(xml, Technical.class);
 
         assertEquals(jsonTechnical.getRequiredArray().size(), 1);
@@ -86,10 +86,10 @@ public class TechnicalHandlerTest {
     @Test
     @DisplayName("Nomenclatures should be deserialized correctly")
     public void testNomenclatures() throws IOException {
-        String json = getValidMessage("TECHNICAL/nomenclature-test.json");
+        String json = getMessageByFileName("TECHNICAL/nomenclature-test.json");
         Technical jsonTechnical = jsonMapper.readValue(json, Technical.class);
 
-        String xml = getValidMessage("TECHNICAL/nomenclature-test.xml");
+        String xml = getMessageByFileName("TECHNICAL/nomenclature-test.xml");
         Technical xmlTechnical = xmlMapper.readValue(xml, Technical.class);
 
         assertEquals(jsonTechnical.getNomenclatureField().getValue(), "INCONNU");
@@ -106,10 +106,10 @@ public class TechnicalHandlerTest {
     @Test
     @DisplayName("Regex-compliant values should pass deserialization")
     public void testRegexCompliantValues() throws IOException {
-        String json = getValidMessage("TECHNICAL/regex-validation.json");
+        String json = getMessageByFileName("TECHNICAL/regex-validation.json");
         assertDoesNotThrow(() -> jsonMapper.readValue(json, Technical.class));
 
-        String xml = getValidMessage("TECHNICAL/regex-validation.xml");
+        String xml = getMessageByFileName("TECHNICAL/regex-validation.xml");
         assertDoesNotThrow(() -> xmlMapper.readValue(xml, Technical.class));
     }
 
