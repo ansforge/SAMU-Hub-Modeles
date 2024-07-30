@@ -1,5 +1,0 @@
-,code,label_n1,Libellé niveau 2,Libellé niveau 3,description,commentaire
-0,ACCEPTEE,ACCEPTEE,,,"La demande est acceptée, sans réserve ni modifications. Si un délai maximum était indiqué dans la demande, alors celui si est considéré comme accepté.",
-1,PARTIELLE,PARTIELLE,,,"La demande est acceptée, avec réserves ou modifications. Par exemple, si le délai de réponse est différent de celui souhaité dans la demande. Toute modification ou réserve doit être précisée dans la réponse (en freetext si l'information ne peut pas être communiquée de manière structurée)",
-2,REFUSEE,REFUSEE,,,"La demande est refusée, le motif de refus doit être précisé dans le freetext",
-3,DIFFEREE,DIFFEREE,,,La demande a été reçue mais n'est pas encore traitée. La réponse sera envoyée ultérieurement.,
