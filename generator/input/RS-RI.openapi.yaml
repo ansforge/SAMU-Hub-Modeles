@@ -145,7 +145,7 @@ components:
           - SMUR
         vehiculeType:
           type: string
-          title: Type de moyen
+          title: Type de vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/vehiculeType
