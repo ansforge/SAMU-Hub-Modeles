@@ -116,7 +116,7 @@ def run(sheet, name, version, perimeter_filter, model_type, filepath):
     # Column validation
     REQUIRED_COLUMNS = [
         *[f"Donnée (Niveau {i})" for i in range(1, DATA_DEPTH + 1)],
-        'ID', 'Description', 'Balise', 'Cardinalité', 'Objet', 'Format (ou type)', 'Détails de format',
+        'ID', 'Description', 'Exemples', 'Balise', 'Cardinalité', 'Objet', 'Format (ou type)', 'Détails de format',
         *([perimeter_filter] if perimeter_filter else [])
     ]
     if not (set(REQUIRED_COLUMNS) <= set(df.columns)):
