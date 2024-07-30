@@ -41,6 +41,11 @@ jobs:
         run: |
           npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/python/RS-EDA.generator-config.json --skip-validate-spec
 
+      - name: Generate C# classes
+        working-directory: ./generator
+        run: |
+          npx @openapitools/openapi-generator-cli generate -c ./config/RS-EDA/csharp/RS-EDA.generator-config.json --skip-validate-spec
+
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
