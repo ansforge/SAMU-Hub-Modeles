@@ -46,15 +46,10 @@ import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessageWithoutDistr
 
 @Slf4j
 public class XmlGenerationHelper {
-    ContentMessageHandler contentMessageHandler = new ContentMessageHandler();
     EdxlHandler edxlHandler = new EdxlHandler();
     private static final String[] useCasesWithNoRcDe = {
             "RS-ERROR"
     };
-
-    public XmlGenerationHelper() {
-        contentMessageHandler = new ContentMessageHandler();
-    }
 
     public void generateXmlFiles() {
         Path examplesDir = Paths.get("src/main/resources/sample/examples");
