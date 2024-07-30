@@ -1,24 +1,13 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
-    "x-id": "TECHNICAL.schema.json#",
+    "x-id": "TECHNICAL_SHORT.schema.json#",
     "version": "24.07.30",
     "example": "example.json#",
     "type": "object",
-    "title": "technical",
-    "required": [
-        "requiredStringField",
-        "requiredArray"
-    ],
+    "title": "technicalShort",
+    "required": [],
     "properties": {
-        "requiredStringField": {
-            "type": "string",
-            "title": "Required string",
-            "x-health-only": false,
-            "x-cols": 6,
-            "example": "example.json#/requiredStringField",
-            "description": "This field is required"
-        },
         "optionalStringField": {
             "type": "string",
             "title": "Optional string",
@@ -99,19 +88,6 @@
                     "ENUM_VALUE_50"
                 ]
             }
-        },
-        "requiredArray": {
-            "type": "array",
-            "x-health-only": false,
-            "items": {
-                "type": "string",
-                "title": "Required array",
-                "x-health-only": false,
-                "x-cols": 6,
-                "example": "example.json#/requiredArray/0",
-                "description": "This array is required"
-            },
-            "minItems": 1
         },
         "arrayWithMaxLength": {
             "type": "array",

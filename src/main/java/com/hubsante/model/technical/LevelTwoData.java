@@ -42,13 +42,17 @@ import java.util.Objects;
 /**
  * LevelTwoData
  */
-@JsonPropertyOrder({LevelTwoData.JSON_PROPERTY_OBJECT1_LEVEL3})
+@JsonPropertyOrder({LevelTwoData.JSON_PROPERTY_OBJECT1_LEVEL3,
+                    LevelTwoData.JSON_PROPERTY_STRING_LEVEL3})
 @JsonTypeName("levelTwoData")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class LevelTwoData {
   public static final String JSON_PROPERTY_OBJECT1_LEVEL3 = "object1Level3";
   private LevelThreeData object1Level3;
+
+  public static final String JSON_PROPERTY_STRING_LEVEL3 = "stringLevel3";
+  private String stringLevel3;
 
   public LevelTwoData() {}
 
@@ -75,6 +79,29 @@ public class LevelTwoData {
     this.object1Level3 = object1Level3;
   }
 
+  public LevelTwoData stringLevel3(String stringLevel3) {
+
+    this.stringLevel3 = stringLevel3;
+    return this;
+  }
+
+  /**
+   * String field at level 3
+   * @return stringLevel3
+   **/
+  @JsonProperty(JSON_PROPERTY_STRING_LEVEL3)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStringLevel3() {
+    return stringLevel3;
+  }
+
+  @JsonProperty(JSON_PROPERTY_STRING_LEVEL3)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStringLevel3(String stringLevel3) {
+    this.stringLevel3 = stringLevel3;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -84,12 +111,13 @@ public class LevelTwoData {
       return false;
     }
     LevelTwoData levelTwoData = (LevelTwoData)o;
-    return Objects.equals(this.object1Level3, levelTwoData.object1Level3);
+    return Objects.equals(this.object1Level3, levelTwoData.object1Level3) &&
+        Objects.equals(this.stringLevel3, levelTwoData.stringLevel3);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(object1Level3);
+    return Objects.hash(object1Level3, stringLevel3);
   }
 
   @Override
@@ -98,6 +126,9 @@ public class LevelTwoData {
     sb.append("class LevelTwoData {\n");
     sb.append("    object1Level3: ")
         .append(toIndentedString(object1Level3))
+        .append("\n");
+    sb.append("    stringLevel3: ")
+        .append(toIndentedString(stringLevel3))
         .append("\n");
     sb.append("}");
     return sb.toString();

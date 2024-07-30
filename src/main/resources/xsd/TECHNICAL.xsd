@@ -26,9 +26,19 @@
                     </restriction>
                 </simpleType>
             </element>
+            <element minOccurs="0" name="integerField" type="int">
+                <annotation>
+                    <documentation>This is an integer</documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="numberField" type="decimal">
                 <annotation>
                     <documentation>This is a number</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="booleanField" type="boolean">
+                <annotation>
+                    <documentation>This is a boolean</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="objectField" type="x:technicalObject"/>
@@ -65,7 +75,7 @@
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])"/>
+                        <pattern value="\d{4}-\d{2}-\d{2}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -122,12 +132,22 @@
     <complexType name="levelOneData">
         <sequence>
             <element minOccurs="0" name="object1Level2" type="x:levelTwoData"/>
+            <element minOccurs="0" name="stringLevel2" type="string">
+                <annotation>
+                    <documentation>String field at level 2</documentation>
+                </annotation>
+            </element>
             <element minOccurs="0" name="object2Level2" type="x:secondLevelTwoData"/>
         </sequence>
     </complexType>
     <complexType name="levelTwoData">
         <sequence>
             <element minOccurs="0" name="object1Level3" type="x:levelThreeData"/>
+            <element minOccurs="0" name="stringLevel3" type="string">
+                <annotation>
+                    <documentation>String field at level 3</documentation>
+                </annotation>
+            </element>
         </sequence>
     </complexType>
     <complexType name="secondLevelTwoData">

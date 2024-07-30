@@ -1,5 +1,4 @@
 Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
-Required string,,,,,,This field is required,,requiredStringField,1..1,,string,,
 Optional string,,,,,,This field is optional,,optionalStringField,0..1,,string,,
 Enumeration,,,,,,This is an enumeration,,enumerationField,0..1,,string,,"ENUM: ENUM_VALUE_1, ENUM_VALUE_2, ENUM_VALUE_3, ENUM_VALUE_4, ENUM_VALUE_5"
 Optional integer,,,,,,This is an integer,,integerField,0..1,,integer,,
@@ -11,7 +10,6 @@ Object,,,,,,This is an object,,objectField,0..1,X,technicalObject,,
 ,Required Object Property,,,,,Required object property,,objectPropertyRequiredString,1..1,,string,,
 Array,,,,,,This is an array,,arrayField,0..n,,string,,
 Array of enumerations,,,,,,This is an array of enumerations,,enumArrayField,0..n,,string,,"ENUM: ENUM_VALUE_10, ENUM_VALUE_20, ENUM_VALUE_30, ENUM_VALUE_40, ENUM_VALUE_50"
-Required array,,,,,,This array is required,,requiredArray,1..n,,string,,
 Array with maximum length,,,,,,This is an array with a maximum length,,arrayWithMaxLength,0..5,,string,,
 Phone number with regex,,,,,,Phone number with regex,,phoneNumberField,0..1,,string,,"REGEX: \+?[0-9]{2,14}"
 Date with regex,,,,,,Date with regex,,dateField,0..1,,date,,REGEX: \d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])

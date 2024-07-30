@@ -51,8 +51,10 @@ import java.util.Objects;
     {Technical.JSON_PROPERTY_REQUIRED_STRING_FIELD,
      Technical.JSON_PROPERTY_OPTIONAL_STRING_FIELD,
      Technical.JSON_PROPERTY_ENUMERATION_FIELD,
-     Technical.JSON_PROPERTY_NUMBER_FIELD, Technical.JSON_PROPERTY_OBJECT_FIELD,
-     Technical.JSON_PROPERTY_ARRAY_FIELD,
+     Technical.JSON_PROPERTY_INTEGER_FIELD,
+     Technical.JSON_PROPERTY_NUMBER_FIELD,
+     Technical.JSON_PROPERTY_BOOLEAN_FIELD,
+     Technical.JSON_PROPERTY_OBJECT_FIELD, Technical.JSON_PROPERTY_ARRAY_FIELD,
      Technical.JSON_PROPERTY_ENUM_ARRAY_FIELD,
      Technical.JSON_PROPERTY_REQUIRED_ARRAY,
      Technical.JSON_PROPERTY_ARRAY_WITH_MAX_LENGTH,
@@ -118,8 +120,14 @@ public class Technical {
       "enumerationField";
   private EnumerationFieldEnum enumerationField;
 
+  public static final String JSON_PROPERTY_INTEGER_FIELD = "integerField";
+  private Integer integerField;
+
   public static final String JSON_PROPERTY_NUMBER_FIELD = "numberField";
   private BigDecimal numberField;
+
+  public static final String JSON_PROPERTY_BOOLEAN_FIELD = "booleanField";
+  private Boolean booleanField;
 
   public static final String JSON_PROPERTY_OBJECT_FIELD = "objectField";
   private TechnicalObject objectField;
@@ -304,6 +312,29 @@ public class Technical {
     this.enumerationField = enumerationField;
   }
 
+  public Technical integerField(Integer integerField) {
+
+    this.integerField = integerField;
+    return this;
+  }
+
+  /**
+   * This is an integer
+   * @return integerField
+   **/
+  @JsonProperty(JSON_PROPERTY_INTEGER_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Integer getIntegerField() {
+    return integerField;
+  }
+
+  @JsonProperty(JSON_PROPERTY_INTEGER_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIntegerField(Integer integerField) {
+    this.integerField = integerField;
+  }
+
   public Technical numberField(BigDecimal numberField) {
 
     this.numberField = numberField;
@@ -325,6 +356,29 @@ public class Technical {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setNumberField(BigDecimal numberField) {
     this.numberField = numberField;
+  }
+
+  public Technical booleanField(Boolean booleanField) {
+
+    this.booleanField = booleanField;
+    return this;
+  }
+
+  /**
+   * This is a boolean
+   * @return booleanField
+   **/
+  @JsonProperty(JSON_PROPERTY_BOOLEAN_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Boolean getBooleanField() {
+    return booleanField;
+  }
+
+  @JsonProperty(JSON_PROPERTY_BOOLEAN_FIELD)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBooleanField(Boolean booleanField) {
+    this.booleanField = booleanField;
   }
 
   public Technical objectField(TechnicalObject objectField) {
@@ -659,7 +713,9 @@ public class Technical {
         Objects.equals(this.optionalStringField,
                        technical.optionalStringField) &&
         Objects.equals(this.enumerationField, technical.enumerationField) &&
+        Objects.equals(this.integerField, technical.integerField) &&
         Objects.equals(this.numberField, technical.numberField) &&
+        Objects.equals(this.booleanField, technical.booleanField) &&
         Objects.equals(this.objectField, technical.objectField) &&
         Objects.equals(this.arrayField, technical.arrayField) &&
         Objects.equals(this.enumArrayField, technical.enumArrayField) &&
@@ -675,11 +731,11 @@ public class Technical {
 
   @Override
   public int hashCode() {
-    return Objects.hash(requiredStringField, optionalStringField,
-                        enumerationField, numberField, objectField, arrayField,
-                        enumArrayField, requiredArray, arrayWithMaxLength,
-                        phoneNumberField, dateField, emailField, datetimeField,
-                        objectLevel1, nomenclatureField);
+    return Objects.hash(
+        requiredStringField, optionalStringField, enumerationField,
+        integerField, numberField, booleanField, objectField, arrayField,
+        enumArrayField, requiredArray, arrayWithMaxLength, phoneNumberField,
+        dateField, emailField, datetimeField, objectLevel1, nomenclatureField);
   }
 
   @Override
@@ -695,8 +751,14 @@ public class Technical {
     sb.append("    enumerationField: ")
         .append(toIndentedString(enumerationField))
         .append("\n");
+    sb.append("    integerField: ")
+        .append(toIndentedString(integerField))
+        .append("\n");
     sb.append("    numberField: ")
         .append(toIndentedString(numberField))
+        .append("\n");
+    sb.append("    booleanField: ")
+        .append(toIndentedString(booleanField))
         .append("\n");
     sb.append("    objectField: ")
         .append(toIndentedString(objectField))

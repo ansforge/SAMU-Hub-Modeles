@@ -1,5 +1,4 @@
 {
-    "requiredStringField": "None",
     "optionalStringField": "None",
     "enumerationField": "None",
     "integerField": "None",
@@ -14,9 +13,6 @@
         "None"
     ],
     "enumArrayField": [
-        "None"
-    ],
-    "requiredArray": [
         "None"
     ],
     "arrayWithMaxLength": [

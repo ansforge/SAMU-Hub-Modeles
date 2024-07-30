@@ -9,7 +9,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet technicalObject</I></TD></TR><TR><TD BORDER="0" >objectPropertyString <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >objectPropertyNumber <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >objectPropertyRequiredString <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	objectField -> technical [headlabel=1 taillabel="0..1"]
+	objectField -> technicalShort [headlabel=1 taillabel="0..1"]
 	object1Level3 [label=<<TABLE>
                 <TR>
                 <TD ><B>object1Level3</B></TD>
@@ -44,11 +44,11 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet levelOneData</I></TD></TR><TR><TD BORDER="0" >stringLevel2 <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
-	objectLevel1 -> technical [headlabel=1 taillabel="0..1"]
-	technical [label=<<TABLE>
+	objectLevel1 -> technicalShort [headlabel=1 taillabel="0..1"]
+	technicalShort [label=<<TABLE>
                 <TR>
-                <TD ><B>technical</B></TD>
+                <TD ><B>technicalShort</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet technical</I></TD></TR><TR><TD BORDER="0" >requiredStringField <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >optionalStringField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >enumerationField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >integerField <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >numberField <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >booleanField <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >arrayField <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >enumArrayField <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >requiredArray <I>string</I> : [1..*] </TD></TR><TR><TD BORDER="0" >arrayWithMaxLength <I>string</I> : [0..5] </TD></TR><TR><TD BORDER="0" >phoneNumberField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >dateField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >emailField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >datetimeField <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >nomenclatureField <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet technicalShort</I></TD></TR><TR><TD BORDER="0" >optionalStringField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >enumerationField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >integerField <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >numberField <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >booleanField <I>boolean</I> : [0..1] </TD></TR><TR><TD BORDER="0" >arrayField <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >enumArrayField <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >arrayWithMaxLength <I>string</I> : [0..5] </TD></TR><TR><TD BORDER="0" >phoneNumberField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >dateField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >emailField <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >datetimeField <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >nomenclatureField <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 }

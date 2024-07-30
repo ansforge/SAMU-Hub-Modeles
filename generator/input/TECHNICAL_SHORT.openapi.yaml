@@ -1,32 +1,21 @@
 openapi: 3.0.0
 components:
   schemas:
-    technicalWrapper:
+    technicalShortWrapper:
       type: object
       required:
-      - technical
+      - technicalShort
       properties:
-        technical:
-          $ref: '#/components/schemas/technical'
-    technical:
+        technicalShort:
+          $ref: '#/components/schemas/technicalShort'
+    technicalShort:
       $id: classpath:/json-schema/schema#
-      x-id: TECHNICAL.schema.json#
+      x-id: TECHNICAL_SHORT.schema.json#
       example: example.json#
       type: object
-      title: technical
-      required:
-      - requiredStringField
-      - requiredArray
+      title: technicalShort
+      required: []
       properties:
-        requiredStringField:
-          type: string
-          title: Required string
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/requiredStringField
-          description: This field is required
-          examples:
-          - None
         optionalStringField:
           type: string
           title: Optional string
@@ -110,19 +99,6 @@ components:
             - ENUM_VALUE_50
             examples:
             - None
-        requiredArray:
-          type: array
-          x-health-only: false
-          items:
-            type: string
-            title: Required array
-            x-health-only: false
-            x-cols: 6
-            example: example.json#/requiredArray/0
-            description: This array is required
-            examples:
-            - None
-          minItems: 1
         arrayWithMaxLength:
           type: array
           x-health-only: false

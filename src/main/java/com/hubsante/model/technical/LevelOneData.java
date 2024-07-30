@@ -44,6 +44,7 @@ import java.util.Objects;
  * LevelOneData
  */
 @JsonPropertyOrder({LevelOneData.JSON_PROPERTY_OBJECT1_LEVEL2,
+                    LevelOneData.JSON_PROPERTY_STRING_LEVEL2,
                     LevelOneData.JSON_PROPERTY_OBJECT2_LEVEL2})
 @JsonTypeName("levelOneData")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -51,6 +52,9 @@ import java.util.Objects;
 public class LevelOneData {
   public static final String JSON_PROPERTY_OBJECT1_LEVEL2 = "object1Level2";
   private LevelTwoData object1Level2;
+
+  public static final String JSON_PROPERTY_STRING_LEVEL2 = "stringLevel2";
+  private String stringLevel2;
 
   public static final String JSON_PROPERTY_OBJECT2_LEVEL2 = "object2Level2";
   private SecondLevelTwoData object2Level2;
@@ -78,6 +82,29 @@ public class LevelOneData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setObject1Level2(LevelTwoData object1Level2) {
     this.object1Level2 = object1Level2;
+  }
+
+  public LevelOneData stringLevel2(String stringLevel2) {
+
+    this.stringLevel2 = stringLevel2;
+    return this;
+  }
+
+  /**
+   * String field at level 2
+   * @return stringLevel2
+   **/
+  @JsonProperty(JSON_PROPERTY_STRING_LEVEL2)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public String getStringLevel2() {
+    return stringLevel2;
+  }
+
+  @JsonProperty(JSON_PROPERTY_STRING_LEVEL2)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStringLevel2(String stringLevel2) {
+    this.stringLevel2 = stringLevel2;
   }
 
   public LevelOneData object2Level2(SecondLevelTwoData object2Level2) {
@@ -113,12 +140,13 @@ public class LevelOneData {
     }
     LevelOneData levelOneData = (LevelOneData)o;
     return Objects.equals(this.object1Level2, levelOneData.object1Level2) &&
+        Objects.equals(this.stringLevel2, levelOneData.stringLevel2) &&
         Objects.equals(this.object2Level2, levelOneData.object2Level2);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(object1Level2, object2Level2);
+    return Objects.hash(object1Level2, stringLevel2, object2Level2);
   }
 
   @Override
@@ -127,6 +155,9 @@ public class LevelOneData {
     sb.append("class LevelOneData {\n");
     sb.append("    object1Level2: ")
         .append(toIndentedString(object1Level2))
+        .append("\n");
+    sb.append("    stringLevel2: ")
+        .append(toIndentedString(stringLevel2))
         .append("\n");
     sb.append("    object2Level2: ")
         .append(toIndentedString(object2Level2))
