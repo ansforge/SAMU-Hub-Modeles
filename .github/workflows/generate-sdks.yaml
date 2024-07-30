@@ -31,6 +31,11 @@ jobs:
       - name: Install openapi-generator-cli
         run: npm install -g @openapitools/openapi-generator-cli
 
+      - name: Cleaning output directories
+        working-directory: ./generator
+        run: |
+          rm -r ruby python csharp || true
+
       - name: Generate Ruby classes
         working-directory: ./generator
         run: |
