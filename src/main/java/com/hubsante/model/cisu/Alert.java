@@ -77,7 +77,31 @@ public class Alert {
   public enum ReportingEnum {
     STANDARD("STANDARD"),
 
-    ATTENTION("ATTENTION");
+    ATTENTION("ATTENTION"),
+
+    EMPTY(""),
+
+    EMPTY2(""),
+
+    EMPTY3(""),
+
+    EMPTY4(""),
+
+    EMPTY5(""),
+
+    EMPTY6(""),
+
+    EMPTY7(""),
+
+    EMPTY8(""),
+
+    EMPTY9(""),
+
+    EMPTY10(""),
+
+    EMPTY11(""),
+
+    EMPTY12("");
 
     private String value;
 

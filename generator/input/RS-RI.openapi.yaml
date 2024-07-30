@@ -140,8 +140,6 @@ components:
           - SIS
           - AASC
           - FDO
-          - ADM
-          - DAE
           - AUTRE
           examples:
           - SMUR
@@ -158,8 +156,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
-          - CONSEIL
+          - AUTREVEC
           - TAXI
           - TRANSP
           - TRAIN
@@ -167,22 +164,15 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
+          - AUTRETRA
           - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
           - LIB
-          - MEDC
           - MEDV
-          - PHARMA
           - INF
-          - MEDSPE
-          - DENT
           - AUTREPRO
           - SIS
           - VSAV
@@ -491,6 +481,14 @@ components:
           - POSTAL
           - WEB
           - RADIO
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
           examples:
           - PHNADD
         details:

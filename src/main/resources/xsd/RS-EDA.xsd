@@ -86,8 +86,8 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="15"/>
-                        <enumeration value="18"/>
                         <enumeration value="17"/>
+                        <enumeration value="18"/>
                         <enumeration value="112"/>
                         <enumeration value="116117"/>
                     </restriction>
@@ -1533,12 +1533,20 @@ cf.nomenclature associée.</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="PERSONNE"/>
                         <enumeration value="APPLICATION"/>
-                        <enumeration value="DAU"/>
                         <enumeration value="BAU"/>
-                        <enumeration value="DEFIBRILLATEUR"/>
+                        <enumeration value="DAU"/>
+                        <enumeration value="DEFIBRILLATEUR, "/>
                         <enumeration value="ECALL"/>
+                        <enumeration value="PERSONNE"/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1554,6 +1562,14 @@ cf.nomenclature associée.</documentation>
                         <enumeration value="POSTAL"/>
                         <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1741,8 +1757,8 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                         <enumeration value="ARM"/>
                         <enumeration value="INFIRMIER"/>
                         <enumeration value="MEDECIN"/>
-                        <enumeration value="INCONNU"/>
                         <enumeration value="AUTRE"/>
+                        <enumeration value="INCONNU"/>
                     </restriction>
                 </simpleType>
             </element>

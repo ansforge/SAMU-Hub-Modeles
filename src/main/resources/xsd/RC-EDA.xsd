@@ -369,6 +369,18 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     <restriction base="string">
                         <enumeration value="STANDARD"/>
                         <enumeration value="ATTENTION"/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1726,12 +1738,20 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="PERSONNE"/>
                         <enumeration value="APPLICATION"/>
-                        <enumeration value="DAU"/>
                         <enumeration value="BAU"/>
-                        <enumeration value="DEFIBRILLATEUR"/>
+                        <enumeration value="DAU"/>
+                        <enumeration value="DEFIBRILLATEUR, "/>
                         <enumeration value="ECALL"/>
+                        <enumeration value="PERSONNE"/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1747,6 +1767,14 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                         <enumeration value="POSTAL"/>
                         <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>

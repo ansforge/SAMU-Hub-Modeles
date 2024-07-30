@@ -67,8 +67,6 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="SIS"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="DAE"/>
                         <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
@@ -83,8 +81,7 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="VLSC"/>
                         <enumeration value="VPSP"/>
                         <enumeration value="AUTRESC"/>
-                        <enumeration value="AUTREVECT"/>
-                        <enumeration value="CONSEIL"/>
+                        <enumeration value="AUTREVEC"/>
                         <enumeration value="TAXI"/>
                         <enumeration value="TRANSP"/>
                         <enumeration value="TRAIN"/>
@@ -92,22 +89,15 @@ OU - si un ID unique de la demande n'était pas disponible :
                         <enumeration value="PERSO"/>
                         <enumeration value="APIED"/>
                         <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRETRANS"/>
-                        <enumeration value="INCONNU"/>
-                        <enumeration value="DEFIB"/>
-                        <enumeration value="DAE"/>
+                        <enumeration value="AUTRETRA"/>
                         <enumeration value="FSI"/>
                         <enumeration value="HELIFSI"/>
                         <enumeration value="VLFSI"/>
                         <enumeration value="FFSI"/>
                         <enumeration value="VHFSI"/>
                         <enumeration value="LIB"/>
-                        <enumeration value="MEDC"/>
                         <enumeration value="MEDV"/>
-                        <enumeration value="PHARMA"/>
                         <enumeration value="INF"/>
-                        <enumeration value="MEDSPE"/>
-                        <enumeration value="DENT"/>
                         <enumeration value="AUTREPRO"/>
                         <enumeration value="SIS"/>
                         <enumeration value="VSAV"/>
@@ -302,6 +292,14 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                         <enumeration value="POSTAL"/>
                         <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
+                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>
