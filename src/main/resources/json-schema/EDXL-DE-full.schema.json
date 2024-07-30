@@ -413,6 +413,20 @@
               }
             }
           ]
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "customContent": {
+                  "$ref": "TECHNICAL.schema.json"
+                }
+              },
+              "required": [
+                "technical"
+              ]
+            }
+          }
         }
       ]
     },

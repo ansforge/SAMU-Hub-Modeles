@@ -14,6 +14,7 @@
         xmlns:resourcesresponse="urn:emergency:cisu:2.0:resourcesResponse"
         xmlns:rpis="urn:emergency:cisu:2.0:rpis"
         xmlns:error="urn:emergency:cisu:2.0:error"
+        xmlns:technical="urn:emergency:cisu:2.0:technical"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -32,6 +33,7 @@
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesInfo" schemaLocation="RS-RI.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesRequest" schemaLocation="RS-DR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesResponse" schemaLocation="RS-RR.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
@@ -75,6 +77,7 @@
                 <xs:element ref="error:error"/>
                 <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
+                <xs:element ref="technical:technical"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
