@@ -37,6 +37,7 @@ public class CreateCaseWrapperBuilderTest {
     private final String SENDER_ID = "sender-x";
     private final String RECIPIENT_ID = "recipient-y";
     private EdxlHandler converter = new EdxlHandler();
+
     @Test
     @DisplayName("should build a RC-EDA Message")
     public void shouldBuildRC_EDAMessage() throws IOException {
