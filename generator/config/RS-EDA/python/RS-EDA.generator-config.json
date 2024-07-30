@@ -1,7 +1,7 @@
 {
   "inputSpec": "./input/RS-EDA.openapi.yaml",
-  "outputDir": "ruby/ruby_classes/",
-  "generatorName": "ruby",
+  "outputDir": "python/",
+  "generatorName": "python",
   "globalProperties": {
     "models": "",
     "apis": false,
@@ -11,7 +11,7 @@
     "modelTests": false
   },
   "additionalProperties": {
-    "moduleName": "Health",
-    "gemName": "hubsante-model-create-case-health"
+    "package_name": "health",
+    "projectName": "hubsante-model"
   }
 }
