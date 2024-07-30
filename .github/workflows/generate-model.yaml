@@ -134,20 +134,7 @@ jobs:
 
       - name: Generate XML files
         run: |
-          ./gradlew shadowJar
-          echo '
-          public class XmlGenerator {
-            public static void main(String[] args) throws Exception {
-              com.hubsante.model.XmlGenerationHelper xmlGenerationHelper = new com.hubsante.model.XmlGenerationHelper();
-              xmlGenerationHelper.generateXmlFiles();
-            }       
-          }
-          ' > XmlGenerator.java
-          JAR_FILE=$(find build/libs -name "*.jar" -print -quit)
-          javac -cp "$JAR_FILE" XmlGenerator.java
-          java -cp .:"$JAR_FILE" XmlGenerator
-          rm XmlGenerator.java
-          rm XmlGenerator.class
+          ./gradlew generateXml
 
       - name: Commit and push changes
         uses: stefanzweifel/git-auto-commit-action@v5

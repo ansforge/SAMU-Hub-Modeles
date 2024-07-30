@@ -6,6 +6,11 @@ plugins {
     id 'com.github.johnrengelman.shadow' version '7.1.2'
 }
 
+task generateXml(type:JavaExec) {
+    main = 'com.hubsante.model.XmlGenerator'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
 group = 'com.hubsante'
 
 java {
