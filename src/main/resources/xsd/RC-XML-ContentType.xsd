@@ -35,7 +35,7 @@
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesRequest" schemaLocation="RS-DR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:resourcesResponse" schemaLocation="RS-RR.xsd"/>
     <xs:import namespace="urn:emergency:cisu:2.0:technical" schemaLocation="TECHNICAL.xsd"/>
-    <xs:import namespace="urn:emergency:cisu:2.0:technicalNoreq" schemaLocation="TECHNICAL-NOREQ.xsd"/>
+    <xs:import namespace="urn:emergency:cisu:2.0:technicalNoreq" schemaLocation="TECHNICAL_NOREQ.xsd"/>
 
     <xs:complexType name="cisuXMLContentType">
         <xs:sequence>
