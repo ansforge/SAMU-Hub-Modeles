@@ -12,23 +12,30 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from pydantic import Field
-from typing_extensions import Annotated
-from hubsanteModel.health.models.custom_map import CustomMap
+from hubsante_model.health.models.point import Point
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AdditionalInformation(BaseModel):
+class Geometry(BaseModel):
     """
-    AdditionalInformation
+    Geometry
     """ # noqa: E501
-    custom_map: Optional[Annotated[List[CustomMap], Field(max_length=3)]] = Field(default=None, alias="customMap")
-    __properties: ClassVar[List[str]] = ["customMap"]
+    obs_datime: datetime = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.", alias="obsDatime")
+    point: Optional[Point] = None
+    __properties: ClassVar[List[str]] = ["obsDatime", "point"]
+
+    @field_validator('obs_datime')
+    def obs_datime_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
+            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
+        return value
 
     model_config = {
         "populate_by_name": True,
@@ -47,7 +54,7 @@ class AdditionalInformation(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AdditionalInformation from a JSON string"""
+        """Create an instance of Geometry from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -66,18 +73,14 @@ class AdditionalInformation(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in custom_map (list)
-        _items = []
-        if self.custom_map:
-            for _item in self.custom_map:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['customMap'] = _items
+        # override the default output from pydantic by calling `to_dict()` of point
+        if self.point:
+            _dict['point'] = self.point.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AdditionalInformation from a dict"""
+        """Create an instance of Geometry from a dict"""
         if obj is None:
             return None
 
@@ -85,7 +88,8 @@ class AdditionalInformation(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "customMap": [CustomMap.from_dict(_item) for _item in obj.get("customMap")] if obj.get("customMap") is not None else None
+            "obsDatime": obj.get("obsDatime"),
+            "point": Point.from_dict(obj.get("point")) if obj.get("point") is not None else None
         })
         return _obj
 

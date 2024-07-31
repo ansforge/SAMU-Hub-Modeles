@@ -12,32 +12,23 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
+
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from pydantic import Field
-from hubsanteModel.health.models.caller import Caller
-from hubsanteModel.health.models.notes import Notes
+from typing_extensions import Annotated
+from hubsante_model.health.models.custom_map import CustomMap
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Alert(BaseModel):
+class AdditionalInformation(BaseModel):
     """
-    Alert
+    AdditionalInformation
     """ # noqa: E501
-    reception: datetime = Field(description="A valoriser avec le groupe date heure de réception de l'alerte/appel")
-    notes: Optional[List[Notes]] = None
-    caller: Caller
-    __properties: ClassVar[List[str]] = ["reception", "notes", "caller"]
-
-    @field_validator('reception')
-    def reception_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
-            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
-        return value
+    custom_map: Optional[Annotated[List[CustomMap], Field(max_length=3)]] = Field(default=None, alias="customMap")
+    __properties: ClassVar[List[str]] = ["customMap"]
 
     model_config = {
         "populate_by_name": True,
@@ -56,7 +47,7 @@ class Alert(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Alert from a JSON string"""
+        """Create an instance of AdditionalInformation from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,21 +66,18 @@ class Alert(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in notes (list)
+        # override the default output from pydantic by calling `to_dict()` of each item in custom_map (list)
         _items = []
-        if self.notes:
-            for _item in self.notes:
+        if self.custom_map:
+            for _item in self.custom_map:
                 if _item:
                     _items.append(_item.to_dict())
-            _dict['notes'] = _items
-        # override the default output from pydantic by calling `to_dict()` of caller
-        if self.caller:
-            _dict['caller'] = self.caller.to_dict()
+            _dict['customMap'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Alert from a dict"""
+        """Create an instance of AdditionalInformation from a dict"""
         if obj is None:
             return None
 
@@ -97,9 +85,7 @@ class Alert(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "reception": obj.get("reception"),
-            "notes": [Notes.from_dict(_item) for _item in obj.get("notes")] if obj.get("notes") is not None else None,
-            "caller": Caller.from_dict(obj.get("caller")) if obj.get("caller") is not None else None
+            "customMap": [CustomMap.from_dict(_item) for _item in obj.get("customMap")] if obj.get("customMap") is not None else None
         })
         return _obj
 

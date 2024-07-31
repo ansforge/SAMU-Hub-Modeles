@@ -16,8 +16,8 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
-from hubsanteModel.health.models.highway import Highway
-from hubsanteModel.health.models.way_name import WayName
+from hubsante_model.health.models.highway import Highway
+from hubsante_model.health.models.way_name import WayName
 try:
     from typing import Self
 except ImportError:

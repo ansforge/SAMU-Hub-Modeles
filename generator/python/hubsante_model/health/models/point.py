@@ -13,21 +13,22 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
-from pydantic import BaseModel
+from typing import Any, ClassVar, Dict, List, Optional
+from pydantic import BaseModel, StrictBool
 from pydantic import Field
-from hubsanteModel.health.models.create_case_health import CreateCaseHealth
+from hubsante_model.health.models.coord import Coord
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class CreateCaseHealthWrapper(BaseModel):
+class Point(BaseModel):
     """
-    CreateCaseHealthWrapper
+    Point
     """ # noqa: E501
-    create_case_health: CreateCaseHealth = Field(alias="createCaseHealth")
-    __properties: ClassVar[List[str]] = ["createCaseHealth"]
+    coord: Coord
+    is_aml: Optional[StrictBool] = Field(default=None, description="Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ", alias="isAml")
+    __properties: ClassVar[List[str]] = ["coord", "isAml"]
 
     model_config = {
         "populate_by_name": True,
@@ -46,7 +47,7 @@ class CreateCaseHealthWrapper(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of CreateCaseHealthWrapper from a JSON string"""
+        """Create an instance of Point from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -65,14 +66,14 @@ class CreateCaseHealthWrapper(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of create_case_health
-        if self.create_case_health:
-            _dict['createCaseHealth'] = self.create_case_health.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of coord
+        if self.coord:
+            _dict['coord'] = self.coord.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of CreateCaseHealthWrapper from a dict"""
+        """Create an instance of Point from a dict"""
         if obj is None:
             return None
 
@@ -80,7 +81,8 @@ class CreateCaseHealthWrapper(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "createCaseHealth": CreateCaseHealth.from_dict(obj.get("createCaseHealth")) if obj.get("createCaseHealth") is not None else None
+            "coord": Coord.from_dict(obj.get("coord")) if obj.get("coord") is not None else None,
+            "isAml": obj.get("isAml")
         })
         return _obj
 

@@ -13,23 +13,21 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
+from typing import Any, ClassVar, Dict, List
 from pydantic import BaseModel
 from pydantic import Field
-from hubsanteModel.health.models.main_diagnosis import MainDiagnosis
-from hubsanteModel.health.models.other_diagnosis import OtherDiagnosis
+from hubsante_model.health.models.create_case_health import CreateCaseHealth
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Hypothesis(BaseModel):
+class CreateCaseHealthWrapper(BaseModel):
     """
-    Hypothesis
+    CreateCaseHealthWrapper
     """ # noqa: E501
-    main_diagnosis: Optional[MainDiagnosis] = Field(default=None, alias="mainDiagnosis")
-    other_diagnosis: Optional[List[OtherDiagnosis]] = Field(default=None, alias="otherDiagnosis")
-    __properties: ClassVar[List[str]] = ["mainDiagnosis", "otherDiagnosis"]
+    create_case_health: CreateCaseHealth = Field(alias="createCaseHealth")
+    __properties: ClassVar[List[str]] = ["createCaseHealth"]
 
     model_config = {
         "populate_by_name": True,
@@ -48,7 +46,7 @@ class Hypothesis(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Hypothesis from a JSON string"""
+        """Create an instance of CreateCaseHealthWrapper from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -67,21 +65,14 @@ class Hypothesis(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of main_diagnosis
-        if self.main_diagnosis:
-            _dict['mainDiagnosis'] = self.main_diagnosis.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of each item in other_diagnosis (list)
-        _items = []
-        if self.other_diagnosis:
-            for _item in self.other_diagnosis:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['otherDiagnosis'] = _items
+        # override the default output from pydantic by calling `to_dict()` of create_case_health
+        if self.create_case_health:
+            _dict['createCaseHealth'] = self.create_case_health.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Hypothesis from a dict"""
+        """Create an instance of CreateCaseHealthWrapper from a dict"""
         if obj is None:
             return None
 
@@ -89,8 +80,7 @@ class Hypothesis(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "mainDiagnosis": MainDiagnosis.from_dict(obj.get("mainDiagnosis")) if obj.get("mainDiagnosis") is not None else None,
-            "otherDiagnosis": [OtherDiagnosis.from_dict(_item) for _item in obj.get("otherDiagnosis")] if obj.get("otherDiagnosis") is not None else None
+            "createCaseHealth": CreateCaseHealth.from_dict(obj.get("createCaseHealth")) if obj.get("createCaseHealth") is not None else None
         })
         return _obj
 

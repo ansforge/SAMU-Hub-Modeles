@@ -16,11 +16,11 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr, field_validator
 from pydantic import Field
-from hubsanteModel.health.models.case_details import CaseDetails
-from hubsanteModel.health.models.health_motive import HealthMotive
-from hubsanteModel.health.models.location_kind import LocationKind
-from hubsanteModel.health.models.risk_threat import RiskThreat
-from hubsanteModel.health.models.whats_happen import WhatsHappen
+from hubsante_model.health.models.case_details import CaseDetails
+from hubsante_model.health.models.health_motive import HealthMotive
+from hubsante_model.health.models.location_kind import LocationKind
+from hubsante_model.health.models.risk_threat import RiskThreat
+from hubsante_model.health.models.whats_happen import WhatsHappen
 try:
     from typing import Self
 except ImportError:

@@ -17,7 +17,7 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr, field_validator
 from pydantic import Field
 from typing_extensions import Annotated
-from hubsanteModel.health.models.operator import Operator
+from hubsante_model.health.models.operator import Operator
 try:
     from typing import Self
 except ImportError:

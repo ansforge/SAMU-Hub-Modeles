@@ -16,12 +16,12 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr
 from pydantic import Field
-from hubsanteModel.health.models.access import Access
-from hubsanteModel.health.models.city import City
-from hubsanteModel.health.models.detailed_address import DetailedAddress
-from hubsanteModel.health.models.external_info import ExternalInfo
-from hubsanteModel.health.models.external_location_id import ExternalLocationId
-from hubsanteModel.health.models.geometry import Geometry
+from hubsante_model.health.models.access import Access
+from hubsante_model.health.models.city import City
+from hubsante_model.health.models.detailed_address import DetailedAddress
+from hubsante_model.health.models.external_info import ExternalInfo
+from hubsante_model.health.models.external_location_id import ExternalLocationId
+from hubsante_model.health.models.geometry import Geometry
 try:
     from typing import Self
 except ImportError:

@@ -12,29 +12,31 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import datetime
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictStr, field_validator
+from pydantic import BaseModel
 from pydantic import Field
-from hubsanteModel.health.models.detailed_name import DetailedName
+from hubsante_model.health.models.caller import Caller
+from hubsante_model.health.models.notes import Notes
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Operator(BaseModel):
+class Alert(BaseModel):
     """
-    Operator
+    Alert
     """ # noqa: E501
-    detailed_name: Optional[DetailedName] = Field(default=None, alias="detailedName")
-    role: StrictStr = Field(description="A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ")
-    __properties: ClassVar[List[str]] = ["detailedName", "role"]
+    reception: datetime = Field(description="A valoriser avec le groupe date heure de réception de l'alerte/appel")
+    notes: Optional[List[Notes]] = None
+    caller: Caller
+    __properties: ClassVar[List[str]] = ["reception", "notes", "caller"]
 
-    @field_validator('role')
-    def role_validate_enum(cls, value):
-        """Validates the enum"""
-        if value not in ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'INCONNU', 'AUTRE'):
-            raise ValueError("must be one of enum values ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'INCONNU', 'AUTRE')")
+    @field_validator('reception')
+    def reception_validate_regular_expression(cls, value):
+        """Validates the regular expression"""
+        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
+            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
         return value
 
     model_config = {
@@ -54,7 +56,7 @@ class Operator(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Operator from a JSON string"""
+        """Create an instance of Alert from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +75,21 @@ class Operator(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of detailed_name
-        if self.detailed_name:
-            _dict['detailedName'] = self.detailed_name.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in notes (list)
+        _items = []
+        if self.notes:
+            for _item in self.notes:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['notes'] = _items
+        # override the default output from pydantic by calling `to_dict()` of caller
+        if self.caller:
+            _dict['caller'] = self.caller.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Operator from a dict"""
+        """Create an instance of Alert from a dict"""
         if obj is None:
             return None
 
@@ -88,8 +97,9 @@ class Operator(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "detailedName": DetailedName.from_dict(obj.get("detailedName")) if obj.get("detailedName") is not None else None,
-            "role": obj.get("role")
+            "reception": obj.get("reception"),
+            "notes": [Notes.from_dict(_item) for _item in obj.get("notes")] if obj.get("notes") is not None else None,
+            "caller": Caller.from_dict(obj.get("caller")) if obj.get("caller") is not None else None
         })
         return _obj
 

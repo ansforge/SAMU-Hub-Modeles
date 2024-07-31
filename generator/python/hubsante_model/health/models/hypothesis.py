@@ -12,30 +12,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-from datetime import datetime
+
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from pydantic import Field
-from hubsanteModel.health.models.point import Point
+from hubsante_model.health.models.main_diagnosis import MainDiagnosis
+from hubsante_model.health.models.other_diagnosis import OtherDiagnosis
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Geometry(BaseModel):
+class Hypothesis(BaseModel):
     """
-    Geometry
+    Hypothesis
     """ # noqa: E501
-    obs_datime: datetime = Field(description="A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation.  Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.", alias="obsDatime")
-    point: Optional[Point] = None
-    __properties: ClassVar[List[str]] = ["obsDatime", "point"]
-
-    @field_validator('obs_datime')
-    def obs_datime_validate_regular_expression(cls, value):
-        """Validates the regular expression"""
-        if not re.match(r"\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}", value):
-            raise ValueError(r"must validate the regular expression /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}/")
-        return value
+    main_diagnosis: Optional[MainDiagnosis] = Field(default=None, alias="mainDiagnosis")
+    other_diagnosis: Optional[List[OtherDiagnosis]] = Field(default=None, alias="otherDiagnosis")
+    __properties: ClassVar[List[str]] = ["mainDiagnosis", "otherDiagnosis"]
 
     model_config = {
         "populate_by_name": True,
@@ -54,7 +48,7 @@ class Geometry(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Geometry from a JSON string"""
+        """Create an instance of Hypothesis from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -73,14 +67,21 @@ class Geometry(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of point
-        if self.point:
-            _dict['point'] = self.point.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of main_diagnosis
+        if self.main_diagnosis:
+            _dict['mainDiagnosis'] = self.main_diagnosis.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in other_diagnosis (list)
+        _items = []
+        if self.other_diagnosis:
+            for _item in self.other_diagnosis:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['otherDiagnosis'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Geometry from a dict"""
+        """Create an instance of Hypothesis from a dict"""
         if obj is None:
             return None
 
@@ -88,8 +89,8 @@ class Geometry(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "obsDatime": obj.get("obsDatime"),
-            "point": Point.from_dict(obj.get("point")) if obj.get("point") is not None else None
+            "mainDiagnosis": MainDiagnosis.from_dict(obj.get("mainDiagnosis")) if obj.get("mainDiagnosis") is not None else None,
+            "otherDiagnosis": [OtherDiagnosis.from_dict(_item) for _item in obj.get("otherDiagnosis")] if obj.get("otherDiagnosis") is not None else None
         })
         return _obj
 

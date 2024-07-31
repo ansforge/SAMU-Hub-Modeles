@@ -14,21 +14,20 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictBool
+from pydantic import BaseModel
 from pydantic import Field
-from hubsanteModel.health.models.coord import Coord
+from hubsante_model.health.models.external_id import ExternalId
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Point(BaseModel):
+class AdministrativeFile(BaseModel):
     """
-    Point
+    AdministrativeFile
     """ # noqa: E501
-    coord: Coord
-    is_aml: Optional[StrictBool] = Field(default=None, description="Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ", alias="isAml")
-    __properties: ClassVar[List[str]] = ["coord", "isAml"]
+    external_id: Optional[List[ExternalId]] = Field(default=None, alias="externalId")
+    __properties: ClassVar[List[str]] = ["externalId"]
 
     model_config = {
         "populate_by_name": True,
@@ -47,7 +46,7 @@ class Point(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Point from a JSON string"""
+        """Create an instance of AdministrativeFile from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -66,14 +65,18 @@ class Point(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of coord
-        if self.coord:
-            _dict['coord'] = self.coord.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of each item in external_id (list)
+        _items = []
+        if self.external_id:
+            for _item in self.external_id:
+                if _item:
+                    _items.append(_item.to_dict())
+            _dict['externalId'] = _items
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Point from a dict"""
+        """Create an instance of AdministrativeFile from a dict"""
         if obj is None:
             return None
 
@@ -81,8 +84,7 @@ class Point(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "coord": Coord.from_dict(obj.get("coord")) if obj.get("coord") is not None else None,
-            "isAml": obj.get("isAml")
+            "externalId": [ExternalId.from_dict(_item) for _item in obj.get("externalId")] if obj.get("externalId") is not None else None
         })
         return _obj
 

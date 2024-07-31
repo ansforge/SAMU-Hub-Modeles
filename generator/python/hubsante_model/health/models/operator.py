@@ -14,22 +14,28 @@ import json
 
 
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel
+from pydantic import BaseModel, StrictStr, field_validator
 from pydantic import Field
-from hubsanteModel.health.models.detailed_name import DetailedName
-from hubsanteModel.health.models.ins_strict_features import InsStrictFeatures
+from hubsante_model.health.models.detailed_name import DetailedName
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Identity(BaseModel):
+class Operator(BaseModel):
     """
-    Identity
+    Operator
     """ # noqa: E501
-    strict_features: Optional[InsStrictFeatures] = Field(default=None, alias="strictFeatures")
-    non_strict_features: Optional[DetailedName] = Field(default=None, alias="nonStrictFeatures")
-    __properties: ClassVar[List[str]] = ["strictFeatures", "nonStrictFeatures"]
+    detailed_name: Optional[DetailedName] = Field(default=None, alias="detailedName")
+    role: StrictStr = Field(description="A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ")
+    __properties: ClassVar[List[str]] = ["detailedName", "role"]
+
+    @field_validator('role')
+    def role_validate_enum(cls, value):
+        """Validates the enum"""
+        if value not in ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'INCONNU', 'AUTRE'):
+            raise ValueError("must be one of enum values ('AMBULANCIER', 'ARM', 'INFIRMIER', 'MEDECIN', 'INCONNU', 'AUTRE')")
+        return value
 
     model_config = {
         "populate_by_name": True,
@@ -48,7 +54,7 @@ class Identity(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Identity from a JSON string"""
+        """Create an instance of Operator from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -67,17 +73,14 @@ class Identity(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of strict_features
-        if self.strict_features:
-            _dict['strictFeatures'] = self.strict_features.to_dict()
-        # override the default output from pydantic by calling `to_dict()` of non_strict_features
-        if self.non_strict_features:
-            _dict['nonStrictFeatures'] = self.non_strict_features.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of detailed_name
+        if self.detailed_name:
+            _dict['detailedName'] = self.detailed_name.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Identity from a dict"""
+        """Create an instance of Operator from a dict"""
         if obj is None:
             return None
 
@@ -85,8 +88,8 @@ class Identity(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "strictFeatures": InsStrictFeatures.from_dict(obj.get("strictFeatures")) if obj.get("strictFeatures") is not None else None,
-            "nonStrictFeatures": DetailedName.from_dict(obj.get("nonStrictFeatures")) if obj.get("nonStrictFeatures") is not None else None
+            "detailedName": DetailedName.from_dict(obj.get("detailedName")) if obj.get("detailedName") is not None else None,
+            "role": obj.get("role")
         })
         return _obj
 

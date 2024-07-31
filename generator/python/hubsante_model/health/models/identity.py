@@ -16,18 +16,20 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel
 from pydantic import Field
-from hubsanteModel.health.models.external_id import ExternalId
+from hubsante_model.health.models.detailed_name import DetailedName
+from hubsante_model.health.models.ins_strict_features import InsStrictFeatures
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class AdministrativeFile(BaseModel):
+class Identity(BaseModel):
     """
-    AdministrativeFile
+    Identity
     """ # noqa: E501
-    external_id: Optional[List[ExternalId]] = Field(default=None, alias="externalId")
-    __properties: ClassVar[List[str]] = ["externalId"]
+    strict_features: Optional[InsStrictFeatures] = Field(default=None, alias="strictFeatures")
+    non_strict_features: Optional[DetailedName] = Field(default=None, alias="nonStrictFeatures")
+    __properties: ClassVar[List[str]] = ["strictFeatures", "nonStrictFeatures"]
 
     model_config = {
         "populate_by_name": True,
@@ -46,7 +48,7 @@ class AdministrativeFile(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of AdministrativeFile from a JSON string"""
+        """Create an instance of Identity from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -65,18 +67,17 @@ class AdministrativeFile(BaseModel):
             },
             exclude_none=True,
         )
-        # override the default output from pydantic by calling `to_dict()` of each item in external_id (list)
-        _items = []
-        if self.external_id:
-            for _item in self.external_id:
-                if _item:
-                    _items.append(_item.to_dict())
-            _dict['externalId'] = _items
+        # override the default output from pydantic by calling `to_dict()` of strict_features
+        if self.strict_features:
+            _dict['strictFeatures'] = self.strict_features.to_dict()
+        # override the default output from pydantic by calling `to_dict()` of non_strict_features
+        if self.non_strict_features:
+            _dict['nonStrictFeatures'] = self.non_strict_features.to_dict()
         return _dict
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of AdministrativeFile from a dict"""
+        """Create an instance of Identity from a dict"""
         if obj is None:
             return None
 
@@ -84,7 +85,8 @@ class AdministrativeFile(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "externalId": [ExternalId.from_dict(_item) for _item in obj.get("externalId")] if obj.get("externalId") is not None else None
+            "strictFeatures": InsStrictFeatures.from_dict(obj.get("strictFeatures")) if obj.get("strictFeatures") is not None else None,
+            "nonStrictFeatures": DetailedName.from_dict(obj.get("nonStrictFeatures")) if obj.get("nonStrictFeatures") is not None else None
         })
         return _obj
 

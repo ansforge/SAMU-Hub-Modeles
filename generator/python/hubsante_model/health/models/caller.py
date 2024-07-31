@@ -16,8 +16,8 @@ import json
 from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictStr, field_validator
 from pydantic import Field
-from hubsanteModel.health.models.contact import Contact
-from hubsanteModel.health.models.detailed_name import DetailedName
+from hubsante_model.health.models.contact import Contact
+from hubsante_model.health.models.detailed_name import DetailedName
 try:
     from typing import Self
 except ImportError:

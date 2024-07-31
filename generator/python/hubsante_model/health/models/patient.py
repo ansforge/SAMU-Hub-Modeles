@@ -17,11 +17,11 @@ from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, field_validator
 from pydantic import Field
 from typing_extensions import Annotated
-from hubsanteModel.health.models.administrative_file import AdministrativeFile
-from hubsanteModel.health.models.health_motive import HealthMotive
-from hubsanteModel.health.models.hypothesis import Hypothesis
-from hubsanteModel.health.models.identity import Identity
-from hubsanteModel.health.models.patient_detail import PatientDetail
+from hubsante_model.health.models.administrative_file import AdministrativeFile
+from hubsante_model.health.models.health_motive import HealthMotive
+from hubsante_model.health.models.hypothesis import Hypothesis
+from hubsante_model.health.models.identity import Identity
+from hubsante_model.health.models.patient_detail import PatientDetail
 try:
     from typing import Self
 except ImportError:
