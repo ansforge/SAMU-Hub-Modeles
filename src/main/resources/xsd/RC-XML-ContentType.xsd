@@ -15,7 +15,7 @@
         xmlns:rpis="urn:emergency:cisu:2.0:rpis"
         xmlns:error="urn:emergency:cisu:2.0:error"
         xmlns:technical="urn:emergency:cisu:2.0:technical"
-        xmlns:technicalshort="urn:emergency:cisu:2.0:technicalshort"
+        xmlns:technicalshort="urn:emergency:cisu:2.0:technicalShort"
         elementFormDefault="qualified"
         targetNamespace="urn:emergency:cisu:2.0" xmlns="http://www.w3.org/2001/XMLSchema">
 
@@ -80,6 +80,7 @@
                 <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
                 <xs:element ref="technical:technical"/>
+                <xs:element ref="technicalshort:technicalShort"/>
             </xs:choice>
         </xs:sequence>
     </xs:complexType>
