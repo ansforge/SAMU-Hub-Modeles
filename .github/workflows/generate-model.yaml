@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR TECHNICAL"
+  SCHEMAS: "RC-EDA RS-EDA EMSI GEO-POS GEO-REQ GEO-RES RC-REF RS-ERROR RS-RI RS-DR RS-RR RPIS RS-EDA-MAJ RS-SR TECHNICAL TECHNICAL_SHORT"
 
 jobs:
   generate:
@@ -123,6 +123,7 @@ jobs:
           rm -r ./src/main/java/com/hubsante/model/geolocation || true
           rm -r ./src/main/java/com/hubsante/model/resources || true
           rm -r ./src/main/java/com/hubsante/model/rpis || true
+          rm -r ./src/main/java/com/hubsante/model/technical || true
           rm -r ./generator/classes/src/main/java/com/hubsante/model/report/ErrorCode.java || true
           cp -r ./generator/classes/src/main/java/com/hubsante/model/* ./src/main/java/com/hubsante/model/
 
