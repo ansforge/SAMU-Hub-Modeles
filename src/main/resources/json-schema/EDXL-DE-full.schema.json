@@ -432,12 +432,12 @@
           "properties": {
             "message": {
               "properties": {
-                "technicalShort": {
-                  "$ref": "TECHNICAL_SHORT.schema.json"
+                "technicalNoreq": {
+                  "$ref": "TECHNICAL_NOREQ.schema.json"
                 }
               },
               "required": [
-                "technicalShort"
+                "technicalNoreq"
               ]
             }
           }
