@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "customContent.schema.json#",
-    "version": "24.07.30",
+    "version": "24.07.31",
     "example": "example.json#",
     "type": "object",
     "title": "customContent",
