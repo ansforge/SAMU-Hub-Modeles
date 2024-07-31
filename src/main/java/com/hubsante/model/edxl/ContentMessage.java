@@ -52,6 +52,7 @@ import com.hubsante.model.technical.TechnicalWrapper;
         @JsonSubTypes.Type(ResourcesStatusWrapper.class),
         @JsonSubTypes.Type(RpisWrapper.class),
         @JsonSubTypes.Type(TechnicalWrapper.class),
+        @JsonSubTypes.Type(TechnicalShortWrapper.class)
 })
 public class ContentMessage {
 
