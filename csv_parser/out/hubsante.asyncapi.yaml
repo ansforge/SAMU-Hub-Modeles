@@ -7299,12 +7299,12 @@ components:
       example: example.json#/objectLevel1/object1Level2/object1Level3
       examples:
       - stringLevel4: None
-    technicalShort:
+    technicalNoreq:
       $id: classpath:/json-schema/schema#
-      x-id: TECHNICAL_SHORT.schema.json#
+      x-id: TECHNICAL_NOREQ.schema.json#
       example: example.json#
       type: object
-      title: technicalShort
+      title: technicalNoreq
       required: []
       properties:
         optionalStringField:

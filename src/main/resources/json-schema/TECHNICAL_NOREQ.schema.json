@@ -1,0 +1,280 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "classpath:/json-schema/schema#",
+    "x-id": "TECHNICAL_NOREQ.schema.json#",
+    "version": "24.07.31",
+    "example": "example.json#",
+    "type": "object",
+    "title": "technicalNoreq",
+    "required": [],
+    "properties": {
+        "optionalStringField": {
+            "type": "string",
+            "title": "Optional string",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/optionalStringField",
+            "description": "This field is optional"
+        },
+        "enumerationField": {
+            "type": "string",
+            "title": "Enumeration",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/enumerationField",
+            "description": "This is an enumeration",
+            "enum": [
+                "ENUM_VALUE_1",
+                "ENUM_VALUE_2",
+                "ENUM_VALUE_3",
+                "ENUM_VALUE_4",
+                "ENUM_VALUE_5"
+            ]
+        },
+        "integerField": {
+            "type": "integer",
+            "title": "Optional integer",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/integerField",
+            "description": "This is an integer"
+        },
+        "numberField": {
+            "type": "number",
+            "title": "Optional number",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/numberField",
+            "description": "This is a number"
+        },
+        "booleanField": {
+            "type": "boolean",
+            "title": "Optional boolean",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/booleanField",
+            "description": "This is a boolean"
+        },
+        "objectField": {
+            "$ref": "#/definitions/technicalObject"
+        },
+        "arrayField": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Array",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/arrayField/0",
+                "description": "This is an array"
+            }
+        },
+        "enumArrayField": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Array of enumerations",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/enumArrayField/0",
+                "description": "This is an array of enumerations",
+                "enum": [
+                    "ENUM_VALUE_10",
+                    "ENUM_VALUE_20",
+                    "ENUM_VALUE_30",
+                    "ENUM_VALUE_40",
+                    "ENUM_VALUE_50"
+                ]
+            }
+        },
+        "arrayWithMaxLength": {
+            "type": "array",
+            "x-health-only": false,
+            "items": {
+                "type": "string",
+                "title": "Array with maximum length",
+                "x-health-only": false,
+                "x-cols": 6,
+                "example": "example.json#/arrayWithMaxLength/0",
+                "description": "This is an array with a maximum length"
+            },
+            "maxItems": 5
+        },
+        "phoneNumberField": {
+            "type": "string",
+            "title": "Phone number with regex",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/phoneNumberField",
+            "description": "Phone number with regex",
+            "pattern": "\\+?[0-9]{2,14}"
+        },
+        "dateField": {
+            "type": "string",
+            "title": "Date with regex",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/dateField",
+            "description": "Date with regex",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}"
+        },
+        "emailField": {
+            "type": "string",
+            "title": "Email with regex",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/emailField",
+            "description": "Email with regex",
+            "pattern": "[\\w\\-\\.]+@([\\w\\-]+\\.)+[\\w\\-]{2,4}"
+        },
+        "datetimeField": {
+            "type": "string",
+            "title": "Datetime",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/datetimeField",
+            "description": "Datetime",
+            "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+            "format": "date-time"
+        },
+        "objectLevel1": {
+            "$ref": "#/definitions/levelOneData"
+        },
+        "nomenclatureField": {
+            "type": "string",
+            "title": "Nomenclature",
+            "x-health-only": false,
+            "x-cols": 6,
+            "example": "example.json#/nomenclatureField",
+            "description": "Enum from extenal nomenclature file",
+            "enum": [
+                "MASC",
+                "FEM",
+                "AUTRE",
+                "INCONNU"
+            ]
+        }
+    },
+    "definitions": {
+        "technicalObject": {
+            "type": "object",
+            "title": "Object",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "objectPropertyRequiredString"
+            ],
+            "properties": {
+                "objectPropertyString": {
+                    "type": "string",
+                    "title": "Object property A",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectField/objectPropertyString",
+                    "description": "Object property string"
+                },
+                "objectPropertyNumber": {
+                    "type": "number",
+                    "title": "Object property B",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectField/objectPropertyNumber",
+                    "description": "Object property number"
+                },
+                "objectPropertyRequiredString": {
+                    "type": "string",
+                    "title": "Required Object Property",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectField/objectPropertyRequiredString",
+                    "description": "Required object property"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/objectField"
+        },
+        "levelOneData": {
+            "type": "object",
+            "title": "Level 1 Object",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "object1Level2": {
+                    "$ref": "#/definitions/levelTwoData"
+                },
+                "stringLevel2": {
+                    "type": "string",
+                    "title": "Level 2 Field",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectLevel1/stringLevel2",
+                    "description": "String field at level 2"
+                },
+                "object2Level2": {
+                    "$ref": "#/definitions/secondLevelTwoData"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/objectLevel1"
+        },
+        "levelTwoData": {
+            "type": "object",
+            "title": "Level 2 Object 1",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "object1Level3": {
+                    "$ref": "#/definitions/levelThreeData"
+                },
+                "stringLevel3": {
+                    "type": "string",
+                    "title": "Level 3 Field",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectLevel1/object1Level2/stringLevel3",
+                    "description": "String field at level 3"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/objectLevel1/object1Level2"
+        },
+        "secondLevelTwoData": {
+            "type": "object",
+            "title": "Level 2 Object 2",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "object2Level3": {
+                    "$ref": "#/definitions/levelThreeData"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/objectLevel1/object2Level2"
+        },
+        "levelThreeData": {
+            "type": "object",
+            "title": "Level 3 Object 1",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "stringLevel4": {
+                    "type": "string",
+                    "title": "Level 4 Field",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/objectLevel1/object1Level2/object1Level3/stringLevel4",
+                    "description": "String field at level 4"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/objectLevel1/object1Level2/object1Level3"
+        }
+    },
+    "additionalProperties": false
+}
