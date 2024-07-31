@@ -1,0 +1,22 @@
+{
+  "inputSpec": "./input/TECHNICAL_SHORT.openapi.yaml",
+  "outputDir": "classes/",
+  "generatorName": "java",
+  "templateDir": "templates/useCase/",
+  "globalProperties": {
+    "models": "technicalShort",
+    "apis": false,
+    "apiTests": false,
+    "apiDocs": false,
+    "modelDocs": false,
+    "modelTests": false
+  },
+  "additionalProperties": {
+    "library": "native",
+    "modelPackage": "com.hubsante.model.technical.short",
+    "serializationLibrary": "jackson",
+    "openApiNullable": true,
+    "supportUrlQuery": false,
+    "enablePostProcessFile": true
+  }
+}
