@@ -1,161 +1,160 @@
-Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
+Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
 Identifiant affaire/dossier,,,,,,"Identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,NR,Numéro de requête émise,,,1.0,1..1,,string,,"REGEX: fr(\.[\w-]+){3,5}"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: fr(\.[\w-]+){3,5}"
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
-",DRFR15440241550012,senderCaseId,NO,Numéro de dossier de l'émetteur,,,,0..1,,string,,
+",DRFR15440241550012,senderCaseId,0..1,,string,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
 Lors de l'ajout d'une nouvelle alerte, la valeur de ce champ ne doit pas être modifiée.  
 L'indicateur de fuseau horaire Z ne doit pas être utilisé.
 
 Spécificité 15-18 :
-Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,,,,,1.0,1..1,,datetime,,Format datetime décrit dans le DSF
-Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,,,,,,0..1,,string,,NOMENCLATURE: ENUM-FILIERE
-Type d'intervention,,,,,,A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),PRIMAIRE,interventionType,,,,,,0..1,,string,,NOMENCLATURE: ENUM-TYPE_Intervention
+Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DSF
+Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,0..1,,string,NOMENCLATURE: ENUM-FILIERE
+Type d'intervention,,,,,,A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),PRIMAIRE,interventionType,0..1,,string,NOMENCLATURE: ENUM-TYPE_Intervention
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
 
 Spécificités 15-18 : 
-La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,,,,,,1..1,X,qualification,,
-,Origine de l'appel,,,,,A valoriser avec le numéro de provenance de l'appel.,"15, 112, 18",origin,,,,,,0..1,,string,,NOMENCLATURE: ENUM-ORIGINE
-,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,,,,,1.0,0..n,X,codeAndLabel,,
-,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,,,,,1.0,1..1,,string,,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
+La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,1..1,X,qualification,
+,Origine de l'appel,,,,,A valoriser avec le numéro de provenance de l'appel.,"15, 112, 18",origin,0..1,,string,NOMENCLATURE: ENUM-ORIGINE
+,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,0..n,X,codeAndLabel,
+,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,1..1,,string,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,,,,,1.0,1..1,,string,,
-,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,CE/CK,raison de l'appel,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Nature_de_fait
-,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,CI,Type de lieu d'intervention,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: CISU-Code_Type_de_lieu
-,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,,,,,1.0,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
-,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,,,,,,0..1,X,caseDetails,,
-,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.",MU,attribution,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-DEVENIRD
-,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,priority,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PRIORITE
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,1..1,,string,
+,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Nature_de_fait
+,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Type_de_lieu
+,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,0..1,X,caseDetails,
+,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.",MU,attribution,0..1,,string,NOMENCLATURE: SI-SAMU-DEVENIRD
+,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,priority,0..1,,string,NOMENCLATURE: SI-SAMU-PRIORITE
 ,,Niveau de soins du dossier,,,,"Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave.
-cf.nomenclature associée.",R1,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
-Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,,,,,,1..1,X,location,,
-,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,LE/L4,Nom de l'établissement répertorié/point d'intérêt,,,,0..1,,string,,
-,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,,,,,,0..n,X,externalLocationId,,
-,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-SOURCE_Id_Lieu
-,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,,,,,,1..1,,string,,REGEX: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
-,Détails de l'adresse,,,,,,,detailedAddress,,,,,,0..1,X,detailedAddress,,
-,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,highway,,,,,,0..1,X,highway,,
-,,,Nom,,,"A valoriser avec le nom de l'autoroute, de la voie ferrée ou voie navigable.",A4,name,,,,,,0..1,,string,,
-,,,Point kilométrique,,,"A valoriser avec le point kilométrique de l'autoroute, de la voie ferrée ou voie navigable. ",PK10,pk,,,,,,0..1,,string,,
-,,,Sens,,,A valoriser avec le sens de l'autoroute.,Paris,direction,,,,,,0..1,,string,,
+cf.nomenclature associée.",R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAVITE
+Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,1..1,X,location,
+,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,0..1,,string,
+,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,0..n,X,externalLocationId,
+,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,1..1,,string,NOMENCLATURE: ENUM-SOURCE_Id_Lieu
+,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,1..1,,string,REGEX: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
+,Détails de l'adresse,,,,,,,detailedAddress,0..1,X,detailedAddress,
+,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,highway,0..1,X,highway,
+,,,Nom,,,"A valoriser avec le nom de l'autoroute, de la voie ferrée ou voie navigable.",A4,name,0..1,,string,
+,,,Point kilométrique,,,"A valoriser avec le point kilométrique de l'autoroute, de la voie ferrée ou voie navigable. ",PK10,pk,0..1,,string,
+,,,Sens,,,A valoriser avec le sens de l'autoroute.,Paris,direction,0..1,,string,
 ,,"Numéro, type et nom de voie",,,,"A valoriser avec le numéro, le type et le nom de la voie.
 En réception, il est possible que seul cette information soit remplie. 
 
 Spécificités 15-15 : si les informations pour les autoroutes (voie férée ou voie navigable) ne sont pas structurées, il est possible de passer le nom, PK et sens ici, de manière concaténée.
 
 Spécificités 15-18 : Obligatoire et seule valeur des détails de l'adresse fournie par NexSIS.
-Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…",9 Bd du Montparnasse,complete,,,,,,1..1,,string,,TEMPLATE: {number} {wayName}
+Utilisé pour tout type de voie :  autoroute (PK, nom et sens), voie ferrée, voie navigable…",9 Bd du Montparnasse,complete,1..1,,string,TEMPLATE: {number} {wayName}
 ,,Numéro dans la voie,,,,"A valoriser avec le numéro dans l'adresse. La valeur de l'attribut inclut l'indice de répétition associé au numéro (par exemple bis, a…).
 
-Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferrée ou voie navigable.","9, 4bis, PK10, …",number,LO,N° dans la voie,,,,0..1,,string,,
-,,Type et nom de voie,,,,Objet qui permet de décrire de manière structurée le type de voie et le nom de voie.,,wayName,LY/LB/LV,"Type, particule, nom de voie",,,,0..1,X,wayName,,
+Spécificités 15-18 :  inclut le point kilométrique sur l'autoroute, voie ferrée ou voie navigable.","9, 4bis, PK10, …",number,0..1,,string,
+,,Type et nom de voie,,,,Objet qui permet de décrire de manière structurée le type de voie et le nom de voie.,,wayName,0..1,X,wayName,
 ,,,Type et nom,,,"A valoriser avec le type et le nom de la voie.
-Si les attributs ""type"" et ""name"" de ""wayName"" sont également renseignés, alors ""complete"" doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,complete,,,,,,1..1,,string,,TEMPLATE: {type} {name}
-,,,Type,,,A valoriser avec le type de la voie,Boulevard,type,,,,,,0..1,,string,,
-,,,Nom,,,A valoriser avec le nom de la voie,du Montparnasse,name,,,,,,0..1,,string,,
-,Détails de la commune,,,,,Objet qui permet de transmettre les détails de la commune,,city,,,,,,0..1,X,city,,
-,,Nom de la commune,,,,A valoriser avec le nom officiel de la commune,Lille,name,LC,Nom de la commune,,,,0..1,,string,,
+Si les attributs ""type"" et ""name"" de ""wayName"" sont également renseignés, alors ""complete"" doit être valorisé ainsi : ""{type} {nom}"".",Boulevard du Montparnasse,complete,1..1,,string,TEMPLATE: {type} {name}
+,,,Type,,,A valoriser avec le type de la voie,Boulevard,type,0..1,,string,
+,,,Nom,,,A valoriser avec le nom de la voie,du Montparnasse,name,0..1,,string,
+,Détails de la commune,,,,,Objet qui permet de transmettre les détails de la commune,,city,0..1,X,city,
+,,Nom de la commune,,,,A valoriser avec le nom officiel de la commune,Lille,name,0..1,,string,
 ,,Code INSEE de la commune,,,,"A valoriser avec le code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. 
-La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).",59350,inseeCode,LZ,Code INSEE de la commune,,,,0..1,,string,,REGEX: [0-9]{5}
+La valeur du code INSEE est obligatoire dès que le nom de la commune est renseigné (city.name).",59350,inseeCode,0..1,,string,REGEX: [0-9]{5}
 ,Détails d'accès,,,,,"Objet qui permet de décrire l'ensemble des détails d'accès au lieu d'intervention. 
 Si un, plusieurs ou la totalité des détails ne sont pas gérés individuellement, il est indiqué de reporter ces indications dans le freetext lié à la localisation de l'affaire (location.freetext).
 
-Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,access,,,,,,0..1,X,access,,
-,,Etage,,,,A valoriser avec le numéro ou nom de l'étage ,RDC,floor,LG,Etage,,,,0..1,,string,,
-,,Numéro de porte,,,,"A valoriser avec le numéro d'appartement, de chambre, de bureau",A16,roomNumber,LP,Porte,,,,0..1,,string,,
-,,Interphone,,,,"A valoriser avec les informations nécessaires à l'identification de l'interphone (numéro, nom)",Dupont,interphone,,,,,,0..1,,string,,
-,,Digicode,,,,"A valoriser avec le ou les digicodes, dans l'ordre de progression dans le bâtiment.",1234A,accessCode,LD,Digicode,,,,0..n,,string,,
-,,Ascenseur/escalier,,,,A valoriser avec le nom ou le numéro de l'ascenseur ou de la cage d'escalier ,C3,elevator,,,,,,0..1,,string,,
-,,Bâtiment,,,,A valoriser avec le nom du bâtiment,Batiment B,buildingName,,,,,,0..1,,string,,
-,,Entrée,,,,A valoriser avec le nom de l'entrée,Zone Sud,entrance,,,,,,0..1,,string,,
-,,Service,,,,"A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.",Infirmerie,entity,,,,,,0..1,,string,,
+Spécificités 15-18 : Non gérés par NexSIS; ne seront pas transmis au SAMU et seront affichés côté NexSIS en clés / valeurs dans le champ libre",,access,0..1,X,access,
+,,Etage,,,,A valoriser avec le numéro ou nom de l'étage ,RDC,floor,0..1,,string,
+,,Numéro de porte,,,,"A valoriser avec le numéro d'appartement, de chambre, de bureau",A16,roomNumber,0..1,,string,
+,,Interphone,,,,"A valoriser avec les informations nécessaires à l'identification de l'interphone (numéro, nom)",Dupont,interphone,0..1,,string,
+,,Digicode,,,,"A valoriser avec le ou les digicodes, dans l'ordre de progression dans le bâtiment.",1234A,accessCode,0..n,,string,
+,,Ascenseur/escalier,,,,A valoriser avec le nom ou le numéro de l'ascenseur ou de la cage d'escalier ,C3,elevator,0..1,,string,
+,,Bâtiment,,,,A valoriser avec le nom du bâtiment,Batiment B,buildingName,0..1,,string,
+,,Entrée,,,,A valoriser avec le nom de l'entrée,Zone Sud,entrance,0..1,,string,
+,,Service,,,,"A valoriser avec le nom du service concerné au sein de l'établissement : infirmerie, service finance, service comptabilité.",Infirmerie,entity,0..1,,string,
 ,,N° de téléphone du lieu,,,,"A valoriser avec le numéro de téléphone du lieu de l'intervention, par exemple : téléphone du secrétariat, téléphone du service administratif ou se trouve le patient/ la victime.
-Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,,,,,,0..1,,string,,"REGEX: \+\d{5,18}"
-,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,,,,,,0..1,X,geometry,,
+Le format attendu est le suivant : +{indicatif pays}{numéro de téléphone}",+33123452323,phoneNumber,0..1,,string,"REGEX: \+\d{5,18}"
+,Géometrie associée,,,,,Objet qui permettre de transmettre la géométrie du lien d'intervention,,geometry,0..1,X,geometry,
 ,,Heure du dernier relevé,,,,"A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. 
-Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,,,,,,1..1,,datetime,,
+Permet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",2022-09-27T08:23:34+02:00,obsDatime,1..1,,datetime,
 ,,Point ,,,,"Objet qui permet de décrire un point géographique.
 Il est à fournir au maximum même s'il est imprécis (adapter le champs ""Précision"" dans ce cas). 
 Par exemple, même sans adresse postale, il est possible de fournir le point GPS de la commune; puis d'adapter et  de préciser l'adresse en cours d'intervention.
 
-Spécificités 15-18 : sera toujours fourni par NexSIS.",,point,,,,,,0..1,X,point,,
+Spécificités 15-18 : sera toujours fourni par NexSIS.",,point,0..1,X,point,
 ,,,Coordonnées,,,"Objet qui permet de fournir les coordonées associées au point géographique.
 
 Spécificité 15-18 : Le SGO ne fonctionne toujours sur des coordonnées X/Y ainsi qu'une adresse indicative associée. 
 NexSIS dispose donc toujours d'un point GPS utilisé pour le temps de trajet, la détermination de l'intervenant le plus proche, etc.
-L'adresse est utilisée par l’intervenant pour aller sur le lieu.",,coord,,,,,,1..1,X,coord,,
-,,,,Latitude,,A valoriser avec la latitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,48.866667,lat,,,,,,1..1,,number,,
-,,,,Longitude,,A valoriser avec la longitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,2.333333,lon,,,,,,1..1,,number,,
+L'adresse est utilisée par l’intervenant pour aller sur le lieu.",,coord,1..1,X,coord,
+,,,,Latitude,,A valoriser avec la latitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,48.866667,lat,1..1,,number,
+,,,,Longitude,,A valoriser avec la longitude du point clé de la localisation - dans le système de coordonnées EPSG-4326 (indiquant l'utilisation de WGS-84) ,2.333333,lon,1..1,,number,
 ,,,,Altitude ,,"A valoriser avec l'altitude du point clé de la localisation, en mètres.
 
-Spécificité 15-18 :  ignoré côté NexSIS. ",120,height,,,,,,0..1,,number,,
+Spécificité 15-18 :  ignoré côté NexSIS. ",120,height,0..1,,number,
 ,,,,Précision,,"Indique via une nomenclature le niveau de précision des coordonnées fournies par le système emetteur.
 VILLE : Précision à l'échelle de la ville, 
 RUE : Précision à l'échelle de la rue, 
 ADRESSE : Adresse précise, 
 EXACTE : Point coordonnée GPS exact, 
-INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,precision,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-PRECISION
-,,,Dispositif AML,,,Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ,TRUE,isAml,,,,,,0..1,,boolean,,
+INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,precision,1..1,,string,NOMENCLATURE: ENUM-PRECISION
+,,,Dispositif AML,,,Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ,TRUE,isAml,0..1,,boolean,
 ,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
-L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,externalInfo,,,,,,0..n,X,externalInfo,,
-,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-SOURCE_Loc
+L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,externalInfo,0..n,X,externalInfo,
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,1..1,,string,NOMENCLATURE: ENUM-SOURCE_Loc
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
-Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,,,,,,0..1,,string,X,NOMENCLATURE: ENUM-TYPE_Objet_Sys
-,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",uri,,,,,,1..1,,string,,
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,0..1,,string,NOMENCLATURE: ENUM-TYPE_Objet_Sys
+,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",uri,1..1,,string,
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
 
 Spécificités 15-15 :
 En envoi, il est souhaitable de mapper ici toute valeur en lien avec la localisation de l'intervention qui ne pourrait pas être transmise de manière structurée dans l'objet location. 
-En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.",Clé derrière le pot de fleur,freetext,LI,Itinéraire (texte libre),,,,0..1,,string,,
+En réception, il est très important d'intégrer et d'afficher la valeur de cet attribut, qui est suceptible de contenir des informations d'accès importantes.",Clé derrière le pot de fleur,freetext,0..1,,string,
 Alerte initiale,,,,,,"Objet qui permet de décrire une communication d'urgence, par exemple un appel téléphonique.
 
-Spécificités 15-18 : Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte, L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.",,initialAlert,,,,,,0..1,X,alert,,
-,Date et heure de réception de l'alerte,,,,,A valoriser avec le groupe date heure de réception de l'alerte/appel,2022-09-27T08:21:06+02:00,reception,HA ,		Date et heure de prise d'appel   (format DD/MM/YYYY HH24:MI:SS),,,,1..1,,datetime,,Format datetime décrit dans le DSF
+Spécificités 15-18 : Une alerte est une photo d'une situation donnée décrite par un requérant et n'est pas amenée à évoluer dans le temps. En cas de modification (adresse, qualification, ...), cela passera par une mise à jour opération ou une nouvelle alerte, L'alerte initiale est la premiere alerte concernant la situation d'urgence et conduisant à la création d'une affaire.",,initialAlert,0..1,X,alert,
+,Date et heure de réception de l'alerte,,,,,A valoriser avec le groupe date heure de réception de l'alerte/appel,2022-09-27T08:21:06+02:00,reception,1..1,,datetime,Format datetime décrit dans le DSF
 ,Informations complémentaires sur l'alerte,,,,,"Objet qui permet de fournir des informations supplémentaires concernant l'alerte.
 
 Spécificités 15-15 : 
 Mapper ici  les informations générales liées au dossier qui ne sont pas liées à un patient, et pour lesquelles il n’est pas possible d’identifier le rôle de utilisateur (cf. objet medicalNote).
-A réception, les informations de cet attribut sont à mapper et afficher dans un champ le plus approprié possible : en commentaire général du dossier, non lié à un rôle utilisateur ou à un patient.",,notes,OG,Observations générales (texte libre),,,1.0,0..n,X,notes,,
-,,Date et heure de l'information complémentaire,,,,A valoriser avec le groupe date heure de création de l'information complémentaire,,creation,,,,,,0..1,,datetime,,Format datetime décrit dans le DSF
+A réception, les informations de cet attribut sont à mapper et afficher dans un champ le plus approprié possible : en commentaire général du dossier, non lié à un rôle utilisateur ou à un patient.",,notes,0..n,X,notes,
+,,Date et heure de l'information complémentaire,,,,A valoriser avec le groupe date heure de création de l'information complémentaire,,creation,0..1,,datetime,Format datetime décrit dans le DSF
 ,,Commentaire/Observations,,,,"A valoriser avec un texte libre contenant les indications complémentaires renseignées sur l'alerte/appel.
 
-Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier","Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux",freetext,,,,,,0..1,,string,,
-,Requérant,,,,,Objet qui permet d'identifer la personne qui a alerté les secours et de la recontacter,,caller,,,,,,1..1,X,caller,,
+Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes à caractère médical, qui serait liée à un interrogatoire ARM ou médecin, ou à un patient en particulier","Accident de bricolage, accident domestique, déclenchement téléalarme, voisine sur les lieux",freetext,0..1,,string,
+,Requérant,,,,,Objet qui permet d'identifer la personne qui a alerté les secours et de la recontacter,,caller,1..1,X,caller,
 ,,Contact,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le requérant/appelant à l'origine de l'alerte.
 
-Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,AT,N° de téléphone,,,1.0,1..1,X,contact,,
-,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,,,,,,1..1,,string,,NOMENCLATURE: ENUM-CONTACT_Canal
-,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-CONTACT_Type
+Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,1..1,X,contact,
+,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Canal
+,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Type
 ,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée.
-Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,,,,,,1..1,,string,,
+Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,1..1,,string,
 ,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).
-En réception, il est crucial de récupérer la valeur de cet objet lorsqu'il est renseigné, puisqu'il s'agit du numéro sur lequel l'appelant peut être joint.",,callbackContact,LT,N° de téléphone sur les lieux,,,1.0,0..1,X,contact,,
+En réception, il est crucial de récupérer la valeur de cet objet lorsqu'il est renseigné, puisqu'il s'agit du numéro sur lequel l'appelant peut être joint.",,callbackContact,0..1,X,contact,
 ,,Langue parlée,,,,"A valoriser avec la langue parlée par le requérant. 
-cf.nomenclature associée.",FR,language,,,,,,0..1,,string,X,NOMENCLATURE: ISO 3166-ISO3166-2
+cf.nomenclature associée.",FR,language,0..1,,string,NOMENCLATURE: ISO 3166-ISO3166-2
 ,,Type de requérant,,,,"A valoriser avec la relation du requérant avec l'incident / le patient / la victime.
-cf. nomenclature associée.","FAMILLE, TIERS",type,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-TYPAPPLT
+cf. nomenclature associée.","FAMILLE, TIERS",type,0..1,,string,NOMENCLATURE: SI-SAMU-TYPAPPLT
 ,,Difficulté de communication,,,,"A valoriser avec la nature des éventuelles difficultés de communication rencontrées par le requérant. 
-cf.nomenclature associée.","Malentendant, aucune difficulté de communication",communication,,,,,,0..1,,string,,NOMENCLATURE: SI-SAMU-PBAPL
-,,Informations complémentaires sur le requérant,,,,Champ libre qui permet de compléter les informations spécifiquement liées au requérant.,témoin de l'accident,freetext,CH,Profil appelant,,,1.0,0..1,,string,,
-,,Prénom & nom usuel,,,,Objet qui permet de décrire le nom et le prénom usuel du requérant,,detailedName,,,,,,0..1,X,detailedName,,
+cf.nomenclature associée.","Malentendant, aucune difficulté de communication",communication,0..1,,string,NOMENCLATURE: SI-SAMU-PBAPL
+,,Informations complémentaires sur le requérant,,,,Champ libre qui permet de compléter les informations spécifiquement liées au requérant.,témoin de l'accident,freetext,0..1,,string,
+,,Prénom & nom usuel,,,,Objet qui permet de décrire le nom et le prénom usuel du requérant,,detailedName,0..1,X,detailedName,
 ,,,Prénom et nom,,,"A valoriser avec le prénom et le nom usuel du requérant/appelant.
 Si les champs callerLastName et callerFirstName sont également renseignés, le champ callerName doit être valorisé ainsi : ""{callerFirstName} {callerLastName}"".
 
-Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.",Jean Dupont,complete,AN/AP,"Nom
-Prénom",,,,1..1,,string,,TEMPLATE: {callerLastName} {callerFirstName}
-,,,Nom,,,A valoriser avec le nom usuel du requérant,Dupont,lastName,,,,,,0..1,,string,,
+Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées) et pas de deux champs séparés.",Jean Dupont,complete,1..1,,string,TEMPLATE: {callerLastName} {callerFirstName}
+,,,Nom,,,A valoriser avec le nom usuel du requérant,Dupont,lastName,0..1,,string,
 ,,,Prénom,,,"A valoriser avec le prénom usuel du réquérant.
-Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,,,,,,0..1,,string,,
+Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,0..1,,string,
 CRRA traitant,,,,,,"Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
-A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,,,,,,1..1,,string,,"REGEX: fr(\.[\w-]+){2,4}"
-Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,,,,,,0..n,X,patient,,
+A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,1..1,,string,"REGEX: fr(\.[\w-]+){2,4}"
+Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,0..n,X,patient,
 ,ID patient partagé,,,,,"Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
 {OrgId émetteur}.patient.{n°patient unique dans le système émetteur}
@@ -165,28 +164,28 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 
 
 ","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,1..1,,string,,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
-,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,,,,,,0..1,X,administrativeFile,,
-,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,,,,,,0..n,X,externalId,,
-,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-TYPE_Id_Patient
-,,,Identifiant,,,L'identifiant en lui-même,id1234,value,,,,,,1..1,,string,,
-,Identité,,,,,Objet qui permet de décrire l'identité du patient,,identity,,,,,,0..1,X,Identity,,
-,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,strictFeatures,,,,,,0..1,X,insStrictFeatures,,
-,,,Nom de naissance,,,A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.,Dupont,birthName,,,,,,0..1,,string,,
-,,,Date de naissance,,,A valoriser avec la date de naissance du patient,,birthDate,,,,,,0..1,,date,,
-,,,Sexe ,,,A valoriser avec le sexe du patient,F,sex,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
-,,Traits non stricts de l'identité,# Voir detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,nonStrictFeatures,,,,,,0..1,X,detailedName,,
-,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,healthMotive,,,,,,0..1,X,codeAndLabel,,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
-,Informations patient,,,,,Objet qui permet de décrire les caractéristiques du patient,,detail,,,,,,0..1,X,patientDetail,,
-,,Poids,,,,A valoriser avec le poids en kilogrammes,31,weight,,,,,,0..1,,integer,,
-,,Taille,,,,A valoriser avec la taille en centimètres du patient,109,height,,,,,,0..1,,integer,,
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
+,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,0..1,X,administrativeFile,
+,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
+,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
+,,,Identifiant,,,L'identifiant en lui-même,id1234,value,1..1,,string,
+,Identité,,,,,Objet qui permet de décrire l'identité du patient,,identity,0..1,X,Identity,
+,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,strictFeatures,0..1,X,insStrictFeatures,
+,,,Nom de naissance,,,A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.,Dupont,birthName,0..1,,string,
+,,,Date de naissance,,,A valoriser avec la date de naissance du patient,,birthDate,0..1,,date,
+,,,Sexe ,,,A valoriser avec le sexe du patient,F,sex,0..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
+,,Traits non stricts de l'identité,# Voir detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,nonStrictFeatures,0..1,X,detailedName,
+,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,Informations patient,,,,,Objet qui permet de décrire les caractéristiques du patient,,detail,0..1,X,patientDetail,
+,,Poids,,,,A valoriser avec le poids en kilogrammes,31,weight,0..1,,integer,
+,,Taille,,,,A valoriser avec la taille en centimètres du patient,109,height,0..1,,integer,
 ,,Age,,,,"A valoriser avec l'age du patient.
-Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,age,,,,,,0..1,,string,,"REGEX: P[0-9]{1,3}[YMWD]"
-,,Niveau de soin du patient,,,,A valoriser avec le niveau de soins spécifique au patient,R1,careLevel,,,,,,0..1,,string,X,NOMENCLATURE: SI-SAMU-GRAVITE
-,Hypothèses de régulation médicale,,,,,Objet qui permet de décrire les hypothèses de régulation médicale,,hypothesis,,,,,,0..1,X,hypothesis,,
-,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,mainDiagnosis,,,,,,0..1,X,codeAndLabel,X,
-,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,otherDiagnosis,,,,,,0..n,X,codeAndLabel,X,
-Observation médicale,,,,,,Observations de nature médicale. ,,medicalNote,,,,,,0..n,X,medicalNote,,
+Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,age,0..1,,string,"REGEX: P[0-9]{1,3}[YMWD]"
+,,Niveau de soin du patient,,,,A valoriser avec le niveau de soins spécifique au patient,R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAVITE
+,Hypothèses de régulation médicale,,,,,Objet qui permet de décrire les hypothèses de régulation médicale,,hypothesis,0..1,X,hypothesis,
+,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,mainDiagnosis,0..1,X,codeAndLabel,
+,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,otherDiagnosis,0..n,X,codeAndLabel,
+Observation médicale,,,,,,Observations de nature médicale. ,,medicalNote,0..n,X,medicalNote,
 ,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
 
 Valorisé comme suit lors de sa création : 
@@ -194,10 +193,10 @@ Valorisé comme suit lors de sa création :
 
 OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,,,,,,0..1,,string,,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
-,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,,,,,,1..1,X,operator,,
-,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,,,,,,0..1,X,detailedName,,
-,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,,,,,,1..1,,string,X,NOMENCLATURE: ENUM-ROLE
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
+,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,1..1,X,operator,
+,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,0..1,X,detailedName,
+,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,NOMENCLATURE: ENUM-ROLE
 ,ID Observation,,,,,"Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
 {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}
@@ -207,12 +206,12 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,,,,,,0..1,,string,,"REGEX: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}"
-,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,,,,,,0..1,,datetime,,
-,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,,,,,,1..1,,string,,
-Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,,,,,,0..1,X,additionalInformation,,
-,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,,,,,,0..3,X,customMap,,
-,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,key,,,,,,1..1,,string,,
-,,Libellé,,,,A valoriser avec le libellé correspondant,Quartier,label,,,,,,0..1,,string,,
-,,Valeur,,,,A valoriser avec la valeur associée à la clé,LYON 2e arrondissement,value,,,,,,1..1,,string,,
-,,Détails,,,,Informations complémentaires sur le contexte / utilisation de cette correspondance additionnelle,Précision sur le quartier d'intervention,freetext,,,,,,0..1,,string,,
+fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,0..1,,string,"REGEX: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}"
+,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,
+,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
+Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,0..1,X,additionalInformation,
+,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,0..3,X,customMap,
+,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,key,1..1,,string,
+,,Libellé,,,,A valoriser avec le libellé correspondant,Quartier,label,0..1,,string,
+,,Valeur,,,,A valoriser avec la valeur associée à la clé,LYON 2e arrondissement,value,1..1,,string,
+,,Détails,,,,Informations complémentaires sur le contexte / utilisation de cette correspondance additionnelle,Précision sur le quartier d'intervention,freetext,0..1,,string,
