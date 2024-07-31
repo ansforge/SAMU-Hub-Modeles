@@ -1,9 +1,7 @@
 {
   "requiredStringField": "requiredStringValue",
   "requiredArray": [
-    "requiredArrayValue1",
-    "requiredArrayValue2",
-    "requiredArrayValue3"
+    "requiredArrayValue1"
   ],
   "phoneNumberField": "0123456789",
   "dateField": "2020-01-01",

@@ -418,12 +418,26 @@
           "properties": {
             "message": {
               "properties": {
-                "customContent": {
+                "technical": {
                   "$ref": "TECHNICAL.schema.json"
                 }
               },
               "required": [
                 "technical"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "technicalShort": {
+                  "$ref": "TECHNICAL_SHORT.schema.json"
+                }
+              },
+              "required": [
+                "technicalShort"
               ]
             }
           }
