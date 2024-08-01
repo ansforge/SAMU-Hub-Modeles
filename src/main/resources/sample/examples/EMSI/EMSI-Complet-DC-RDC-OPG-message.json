@@ -61,7 +61,7 @@
       "EGEO": [
         {
           "DATIME": "2024-01-09T16:10:00+01:00",
-          "TYPE": "GEN/ROUTE",
+          "TYPE": "FSTT/TA",
           "WEATHER": [
             "WIN"
           ],
@@ -88,7 +88,7 @@
     },
     "MISSION": [
       {
-        "TYPE": "GEN/SCNMNG",
+        "TYPE": "FSTT/TA",
         "FREETEXT": "Besoin d'assisance terrain pour gérer perturbations et sécuriser le site d'intervention.",
         "ID": "ABC1YU3455",
         "ORG_ID": "fr.fire.cgo690",
@@ -230,7 +230,7 @@
         "PARENT_MISSION_ID": [],
         "ID": "ABC1YU3459",
         "NAME": "#Demande_Concours#AUTRE#Z.02.00#",
-        "TYPE": "SAV/AR",
+        "TYPE": "SAV/AR/FR_PARAMD",
         "ORG_ID": "fr.fire.cgo690",
         "STATUS": "NST",
         "START_TIME": "2024-01-09T16:15:00+01:00",
