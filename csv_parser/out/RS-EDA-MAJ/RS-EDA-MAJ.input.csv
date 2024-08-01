@@ -52,7 +52,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 
 
 ","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ([\w-]+\.){3}patient(\.[\w-]+){1,2}"
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,0..1,X,administrativeFile,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
 ,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
@@ -88,7 +88,7 @@ Valorisé comme suit lors de sa création :
 
 OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ([\w-]+\.){3}patient(\.[\w-]+){1,2}"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,1..1,X,operator,
 ,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,0..1,X,detailedName,
 ,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,NOMENCLATURE: ENUM-ROLE
@@ -101,7 +101,7 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,0..1,,string,"REGEX: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}"
+fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,0..1,,string,"REGEX: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
 Informations supplémentaires modifiées,,,,,,"Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.",adresse : 7bis rue du château - Neuilly sur Seine,freetext,0..1,,string,
