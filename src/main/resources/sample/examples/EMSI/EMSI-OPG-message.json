@@ -61,7 +61,7 @@
       "EGEO": [
         {
           "DATIME": "2024-01-09T16:10:00+01:00",
-          "TYPE": "FSTT/TA",
+          "TYPE": "GEN/ROUTE",
           "WEATHER": [
             "WIN"
           ],
