@@ -41,6 +41,12 @@ jacocoTestReport {
         xml.required = true
     }
 }
+ 
+test {
+    if (project.hasProperty('technical')) {
+        include '**/*Technical*.class'
+    } else exclude '**/*Technical*.class'
+}
 
 allprojects {
     tasks.withType(JavaCompile) {

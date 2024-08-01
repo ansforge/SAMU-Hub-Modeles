@@ -1,15 +1,9 @@
 {
-  "requiredStringField": "requiredStringValue",
   "enumerationField": "ENUM_VALUE_100",
   "enumArrayField": [
     "ENUM_VALUE_10",
     "ENUM_VALUE_200",
     "ENUM_VALUE_30"
-  ],
-  "requiredArray": [
-    "requiredArrayValue1",
-    "requiredArrayValue2",
-    "requiredArrayValue3"
   ],
   "nomenclatureField": "UNKNOWN"
 }

@@ -101,7 +101,13 @@ public abstract class AbstractValidatorTest {
     public void checkErrorMessageArrayExactContent(String[] errors, String[] expectedErrors) {
         List<String> errorList = Arrays.asList(errors);
         List<String> expectedErrorList = Arrays.asList(expectedErrors);
-        assertTrue(errorList.containsAll(expectedErrorList));
-        assertTrue(expectedErrorList.containsAll(errorList));
+        try {
+            assertTrue(errorList.containsAll(expectedErrorList));
+            assertTrue(expectedErrorList.containsAll(errorList));
+        } catch (AssertionError e) {
+            log.error("Expected errors: {}", expectedErrorList);
+            log.error("Actual errors: {}", errorList);
+            throw e;
+        }
     }
 }

@@ -2,7 +2,9 @@
   "requiredStringField": "requiredStringValue",
   "optionalStringField": "optionalStringValue",
   "enumerationField": "ENUM_VALUE_1",
+  "integerField": 1,
   "numberField": 1,
+  "booleanField": true,
   "objectField": {
     "objectPropertyString": "objectPropertyStringValue",
     "objectPropertyNumber": 1,
@@ -35,5 +37,19 @@
   "dateField": "2020-01-01",
   "emailField": "email@domain.com",
   "datetimeField": "2022-09-27T08:25:54+02:00",
+  "objectLevel1": {
+    "object1Level2": {
+      "object1Level3": {
+        "stringLevel4": "stringLevel4Value"
+      },
+      "stringLevel3": "stringLevel3Value"
+    },
+    "stringLevel2": "stringLevel2Value",
+    "object2Level2": {
+      "object2Level3": {
+        "stringLevel4": "stringLevel4Value"
+      }
+    }
+  },
   "nomenclatureField": "INCONNU"
 }

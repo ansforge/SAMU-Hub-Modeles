@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<technical xmlns="urn:emergency:cisu:2.0:technical">
+<technicalNoreq xmlns="urn:emergency:cisu:2.0:technicalNoreq">
     <arrayWithMaxLength>arrayWithMaxLengthValue1</arrayWithMaxLength>
     <arrayWithMaxLength>arrayWithMaxLengthValue2</arrayWithMaxLength>
     <arrayWithMaxLength>arrayWithMaxLengthValue3</arrayWithMaxLength>
     <arrayWithMaxLength>arrayWithMaxLengthValue4</arrayWithMaxLength>
     <arrayWithMaxLength>arrayWithMaxLengthValue5</arrayWithMaxLength>
     <arrayWithMaxLength>arrayWithMaxLengthValue6</arrayWithMaxLength>
-</technical>
+</technicalNoreq>

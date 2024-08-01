@@ -3,7 +3,9 @@
     <requiredStringField>requiredStringValue</requiredStringField>
     <optionalStringField>optionalStringValue</optionalStringField>
     <enumerationField>ENUM_VALUE_1</enumerationField>
+    <integerField>1</integerField>
     <numberField>1</numberField>
+    <booleanField>true</booleanField>
     <objectField>
         <objectPropertyString>objectPropertyStringValue</objectPropertyString>
         <objectPropertyNumber>1</objectPropertyNumber>
@@ -28,5 +30,19 @@
     <dateField>2020-01-01</dateField>
     <emailField>email@domain.com</emailField>
     <datetimeField>2022-09-27T08:25:54+02:00</datetimeField>
+    <objectLevel1>
+        <object1Level2>
+            <object1Level3>
+                <stringLevel4>stringLevel4Value</stringLevel4>
+            </object1Level3>
+            <stringLevel3>stringLevel3Value</stringLevel3>
+        </object1Level2>
+        <stringLevel2>stringLevel2Value</stringLevel2>
+        <object2Level2>
+            <object2Level3>
+                <stringLevel4>stringLevel4Value</stringLevel4>
+            </object2Level3>
+        </object2Level2>
+    </objectLevel1>
     <nomenclatureField>INCONNU</nomenclatureField>
 </technical>
