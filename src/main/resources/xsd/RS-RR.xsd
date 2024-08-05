@@ -40,15 +40,17 @@ ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE</documentation>
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="ACCEPTEE"/>
-                        <enumeration value="REFUSEE"/>
                         <enumeration value="PARTIELLE"/>
+                        <enumeration value="REFUSEE"/>
                         <enumeration value="DIFFEREE"/>
                     </restriction>
                 </simpleType>
             </element>
             <element minOccurs="0" name="deadline" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le délai de réponse auquel s'engage l'expéditeur (en minutes),</documentation>
+                    <documentation>A valoriser avec le délai de réponse maximum auquel s'engage l'expéditeur (en minutes) 
+Cas particulier : en cas de réponse "Partielle" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse (en minutes).
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">

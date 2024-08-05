@@ -306,7 +306,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,5}
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -1835,7 +1835,7 @@ components:
           - EXACTE
           - INCONNUE
           examples:
-          - ADDRESS
+          - EXACTE
       additionalProperties: false
       example: example.json#/mobilizedResource/0/coord
       examples:
@@ -1844,7 +1844,7 @@ components:
         height: 120
         heading: 96
         speed: 34
-        precision: ADDRESS
+        precision: EXACTE
     notes:
       type: object
       title: "Informations compl\xE9mentaires sur l'alerte"
@@ -2378,6 +2378,14 @@ components:
           - POSTAL
           - WEB
           - RADIO
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
           examples:
           - PHNADD
         details:
@@ -2525,7 +2533,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,5}
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -2600,7 +2608,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,4}
+          pattern: fr(\.[\w-]+){2}
           examples:
           - fr.health.samu440
         patient:
@@ -2695,7 +2703,7 @@ components:
             me \xE9metteur}\n\nOU, si un n\xB0patient unique n'existe pas dans le\
             \ syst\xE8me \xE9metteur :\n{ID \xE9metteur}.{senderCaseId}.patient.{num\xE9\
             ro d\u2019ordre chronologique au dossier}"
-          pattern: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3}patient(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu690.patient.P23AZ59
 
@@ -2717,7 +2725,7 @@ components:
             ro chronologique de l\u2019observation}\n\nCet identifiant a vocation\
             \ \xE0 devenir obligatoire pour permettre les mises \xE0 jour, il est\
             \ laiss\xE9 en facultatif temporairement.\n"
-          pattern: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu540.medicalNote.46585A
 
@@ -3112,8 +3120,8 @@ components:
           - ARM
           - INFIRMIER
           - MEDECIN
-          - INCONNU
           - AUTRE
+          - INCONNU
           examples:
           - ARM
       additionalProperties: false
@@ -3145,7 +3153,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
-          pattern: fr(\.[\w-]+){3,5}
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         senderCaseId:
@@ -3189,7 +3197,7 @@ components:
           description: "Attribut qui permet de transf\xE9rer la prise en charge d'un\
             \ dossier \xE0 un autre CRAA\nA valoriser avec l'identifiant de l'organisation\
             \ concern\xE9 (orgId = {pays}.{domaine}.{organisation})"
-          pattern: fr(\.[\w-]+){2,4}
+          pattern: fr(\.[\w-]+){2}
           examples:
           - fr.health.samu440
         patient:
@@ -3516,192 +3524,27 @@ components:
             \ EMSI pour caract\xE9riser la mission en cours."
           enum:
           - SAV/ASC
-          - FSTT/TA/FR_DIFFICULTACCSS
-          - GEN/RECVRY
-          - RSC/SAR/FR_VLN
-          - SAV/ASC/FR_PPL/LIFT
-          - SAV/RHD
-          - SAV/RTA
-          - SAV/SARCSL
-          - FFST/FR_FIRE
-          - FSTT/RRHAZ/FR_CO
-          - FSTT/TA/FR_ANI/DGR
-          - FSTT/TA/FR_ANI/INJ
-          - INT/RECCE/FR_CBRNHZ
-          - INT/RECCE/FR_DIS/LNDSLD
-          - INT/RECCE/FR_DIS/SDCLPS
-          - INT/RECCE/FR_FLD
-          - INT/RECCE/FR_SMLL
-          - FSTT/TA/FR_DRG/MIND
           - FR_MED/REGLTN
           - GEN/SUPRTN
-          - REC/PRVCNP
-          - RSC/MEDEVC
-          - SAV/AR/FR_CNT
           - SAV/AR/FR_MED
           - SAV/AR/FR_PARAMD
-          - SAV/AR/FR_PPL/GRP
-          - SAV/AR/FR_PSYPHY
-          - INT/RECCE
           - SAV
-          - FSTT/TA/FR_TRNSPN/AMB
           - GEN/TRNSPN
+          - SAV/SARCSL
+          - SAV/ASC/FR_PPL/LIFT
+          - GEN/RECVRY
+          - SAV/RHD
+          - FFST/FR_FIRE
+          - FSTT/RRHAZ/FR_CO
+          - CBRN/TSA
+          - INT/RECCE/FR_SMLL
+          - FSTT/TA
+          - SAV/AR/FR_PPL/GRP
+          - INT/RECCE
           - GEN/TRNSPN/FR_SECNDRY
           - OPR/LOG
           - SAV/AR/FR_PPL/OBS
           - FSTT/TA/FR_CLRACCSS
-          - C2
-          - CBRN
-          - FF
-          - FSTT
-          - GEN
-          - INT
-          - MAC
-          - MIL
-          - NET
-          - OPR
-          - POL
-          - REC
-          - RSC
-          - SCS
-          - SOC
-          - C2/DEBRIF
-          - C2/DNRSKA
-          - C2/INASSM
-          - C2/OIC
-          - C2/POA
-          - C2/THRTAS
-          - CBRN/CBRNCH
-          - CBRN/CBRNDC
-          - CBRN/NTRCH
-          - CBRN/NUCWS
-          - FF/IN
-          - FF/OA
-          - FF/SALVAG
-          - FF/STR
-          - FF/TRP
-          - FSTT/DI
-          - FSTT/RRHAZ
-          - FSTT/TA
-          - GEN/AIRLAU
-          - GEN/ASSMBL
-          - GEN/CRWDCT
-          - GEN/DEMO
-          - GEN/DEPLOY
-          - GEN/DSTRBT
-          - GEN/FINANC
-          - GEN/MARKNG
-          - GEN/MOVE
-          - GEN/RECVRN
-          - GEN/REDPLN
-          - GEN/REORGN
-          - GEN/REPAIR
-          - GEN/RESPLN
-          - GEN/RESTNG
-          - GEN/RETIRE
-          - GEN/RLFPLC
-          - GEN/RNDZVS
-          - GEN/SCNMNG
-          - GEN/SECRNG
-          - GEN/STNGUP
-          - INT/BIOSMP
-          - INT/CHMSMP
-          - INT/IDENT
-          - INT/ILLUMN
-          - INT/LOCTNG
-          - INT/NUCSMP
-          - INT/OBSRNG
-          - INT/PLUMOD
-          - INT/PTRLNG
-          - INT/SRVMET
-          - INT/SRVSEN
-          - INT/WITNSN
-          - MAC/AII
-          - MAC/COL
-          - MIL/BCESC
-          - MIL/BLOCKN
-          - MIL/BOMBNG
-          - MIL/CAPTUR
-          - MIL/CTRATK
-          - MIL/DEFEND
-          - MIL/DISENG
-          - MIL/DIVRSN
-          - MIL/DLBATK
-          - MIL/DSRPTN
-          - MIL/ENVLPN
-          - MIL/FIX
-          - MIL/HARASS
-          - MIL/HIDE
-          - MIL/HLDDEF
-          - MIL/HLDOFF
-          - MIL/INFLTN
-          - MIL/INTCPN
-          - MIL/INTDCT
-          - MIL/MASFOR
-          - MIL/MIL
-          - MIL/WPNFIR
-          - NET/COMDEA
-          - NET/DATTRF
-          - NET/NETJAM
-          - NET/NETSEI
-          - NET/SGNC
-          - NET/SGNLE
-          - POL/NTRCOM
-          - POL/NTREXP
-          - POL/SCNMNG
-          - POL/SCNPRS
-          - POL/SHELTR
-          - POL/SUSHOS
-          - POL/WITDRL
-          - REC/CLROBS
-          - REC/COMACT
-          - REC/COMRES
-          - REC/CONSTN
-          - REC/ENGCN
-          - REC/ENGCNN
-          - REC/PROCUR
-          - REC/PRVACC
-          - REC/PRVAGR
-          - REC/PRVBDD
-          - REC/PRVCMP
-          - REC/PRVCNS
-          - REC/PRVDCN
-          - REC/PRVEDU
-          - REC/PRVHLT
-          - REC/PRVHSN
-          - REC/PRVINF
-          - REC/PRVLND
-          - REC/PRVRPR
-          - REC/PRVSCY
-          - REC/PRVSHL
-          - REC/PRVSTG
-          - REC/PRVTRS
-          - REC/PSO
-          - REC/SPLLDB
-          - REC/SPLWAT
-          - REC/UTILTY
-          - REC/WATER
-          - RSC/COVERN
-          - RSC/FRFGTN
-          - RSC/SAR
-          - SAV/AR
-          - SAV/SARHHA
-          - SAV/SRW
-          - SAV/USAR
-          - SAV/UW
-          - SCS/EDU
-          - SOC/CNDCNF
-          - SOC/CNDMED
-          - SOC/CNDRCR
-          - SOC/CNDSCL
-          - SOC/CNDSPT
-          - SOC/ISSMDA
-          - SOC/ISSMDD
-          - SOC/ISSPRS
-          - SOC/MN
-          - SOC/PUBMDA
-          - SOC/PUBMDD
-          - SOC/PUBPRS
           examples:
           - SAV/ASC
         FREETEXT:
@@ -4003,14 +3846,12 @@ components:
           - SIS
           - AASC
           - FDO
-          - ADM
-          - DAE
           - AUTRE
           examples:
           - SMUR
         vehiculeType:
           type: string
-          title: Type de moyen
+          title: Type de vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/vehiculeType
@@ -4021,8 +3862,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
-          - CONSEIL
+          - AUTREVEC
           - TAXI
           - TRANSP
           - TRAIN
@@ -4030,22 +3870,15 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
+          - AUTRETRA
           - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
           - LIB
-          - MEDC
           - MEDV
-          - PHARMA
           - INF
-          - MEDSPE
-          - DENT
           - AUTREPRO
           - SIS
           - VSAV
@@ -6201,8 +6034,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "A valoriser avec le d\xE9lai d'intervention souhait\xE9 en\
-            \ minutes "
+          description: "A valoriser avec le d\xE9lai d'intervention maximum souhait\xE9\
+            \ (cf. nomenclature associ\xE9e)"
+          enum:
+          - DEL0
+          - ASAP
+          - DEL30M
+          - DEL45M
+          - DEL1H
+          - DEL2H
+          - DEL4H
+          - DEL8H
+          - DEL12H
+          - DEL24H
+          - RDV
           examples:
           - 10
         freetext:
@@ -6303,8 +6148,8 @@ components:
             \ associ\xE9e\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
           enum:
           - ACCEPTEE
-          - REFUSEE
           - PARTIELLE
+          - REFUSEE
           - DIFFEREE
           examples:
           - ACCEPTEE
@@ -6314,8 +6159,11 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
-            \ l'exp\xE9diteur (en minutes),"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse maximum auquel\
+            \ s'engage l'exp\xE9diteur (en minutes) \nCas particulier : en cas de\
+            \ r\xE9ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEA\
+            tre respect\xE9,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9\
+            ponse maximum auquel s'engage l'exp\xE9diteur de la r\xE9ponse (en minutes).\n"
           examples:
           - 10
         freetext:
@@ -6937,8 +6785,6 @@ components:
           - SIS
           - AASC
           - FDO
-          - ADM
-          - DAE
           - AUTRE
           examples:
           - SMUR
@@ -6956,8 +6802,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
-          - CONSEIL
+          - AUTREVEC
           - TAXI
           - TRANSP
           - TRAIN
@@ -6965,22 +6810,15 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
+          - AUTRETRA
           - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
           - LIB
-          - MEDC
           - MEDV
-          - PHARMA
           - INF
-          - MEDSPE
-          - DENT
           - AUTREPRO
           - SIS
           - VSAV

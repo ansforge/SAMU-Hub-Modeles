@@ -30,7 +30,7 @@
                 "height": 120,
                 "heading": 96,
                 "speed": 34,
-                "precision": "ADDRESS"
+                "precision": "EXACTE"
             },
             "contact": {
                 "type": "PHNADD",

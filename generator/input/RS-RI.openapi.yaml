@@ -140,14 +140,12 @@ components:
           - SIS
           - AASC
           - FDO
-          - ADM
-          - DAE
           - AUTRE
           examples:
           - SMUR
         vehiculeType:
           type: string
-          title: Type de moyen
+          title: Type de vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/vehiculeType
@@ -158,8 +156,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
-          - CONSEIL
+          - AUTREVEC
           - TAXI
           - TRANSP
           - TRAIN
@@ -167,22 +164,15 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
+          - AUTRETRA
           - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
           - LIB
-          - MEDC
           - MEDV
-          - PHARMA
           - INF
-          - MEDSPE
-          - DENT
           - AUTREPRO
           - SIS
           - VSAV
@@ -459,7 +449,7 @@ components:
           - EXACTE
           - INCONNUE
           examples:
-          - ADDRESS
+          - EXACTE
       additionalProperties: false
       example: example.json#/mobilizedResource/0/coord
       examples:
@@ -468,7 +458,7 @@ components:
         height: 120
         heading: 96
         speed: 34
-        precision: ADDRESS
+        precision: EXACTE
     contact:
       type: object
       title: Contact
@@ -491,6 +481,14 @@ components:
           - POSTAL
           - WEB
           - RADIO
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
+          - ''
           examples:
           - PHNADD
         details:

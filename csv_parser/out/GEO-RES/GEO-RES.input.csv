@@ -1,17 +1,17 @@
-Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Nantes - balise,Nantes - description,GT399,GT399 description,Priorisation,Cardinalité,Objet,Format (ou type),Nomenclature/ énumération,Détails de format
-Ressource,,,,,,Une liste d’objets Resource détaillant les ressources demandées ainsi que celles notifiées non encore décrites au demandeur,,resource,,,,,,0..n,X,resource,,
-,Identifiant de la ressource,,,,,Identifiant unique de la ressource  dans le système du partenaire propriétaire,76_45101#SMUR1,id,,,,,,1..1,,string,,
+Donnée (Niveau 1),Donnée (Niveau 2),Donnée (Niveau 3),Donnée (Niveau 4),Donnée (Niveau 5),Donnée (Niveau 6),Description,Exemples,Balise,Cardinalité,Objet,Format (ou type),Détails de format
+Ressource,,,,,,Une liste d’objets Resource détaillant les ressources demandées ainsi que celles notifiées non encore décrites au demandeur,,resource,0..n,X,resource,
+,Identifiant de la ressource,,,,,Identifiant unique de la ressource  dans le système du partenaire propriétaire,76_45101#SMUR1,id,1..1,,string,
 ,Identifiant de l'organisation propriétaire,,,,,"Identifiant unique de l'organisme :  {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*
-*données facultatives",fr.health.samu76A,orgId,,,,,,1..1,,string,,
+*données facultatives",fr.health.samu76A,orgId,1..1,,string,
 ,Nom de la ressource,,,,,"Nom donné à la ressource par l'organisme propriétaire. 
-L'immatriculation peut être utilisée dans le nom courant des véhicules.",SMUR 1 Rouen,name,,,,,,0..1,,string,,
-,Type de ressource,,,,,"Catégorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)",SMUR,type,,,,,,1..1,,string,X,"ENUM: SMUR, SDIS, TSU, SNP, MSPE, SHIP"
-,Nature de la ressource,,,,,"Nature de la ressource (effecteur, base)",BASE,nature,,,,,,0..1,,string,X,"ENUM: EFFECTEUR, BASE"
-,Mobilité de la ressource,,,,,"Mobilité de la ressource (fixe, vehicule, heliporté, navire)",VEHICULE,mobility,,,,,,0..1,,string,X,"ENUM: FIXE, VEHICULE, HELICOPTERE, SHIP "
-,Capacités de la ressource,,,,,Capacité de transport d'un patient,MEDICALE,capacity,,,,,,0..1,,string,X,"ENUM: URGENCE, MEDICALE, PARAMEDICALE, INCONNUE"
-,Contacts,,,,,Liste de contacts utiles pour contacter par exemple le véhicule ou le personnel engagé dans l'opération.,,contacts,,,,,,0..n,X,contact,,
+L'immatriculation peut être utilisée dans le nom courant des véhicules.",SMUR 1 Rouen,name,0..1,,string,
+,Type de ressource,,,,,"Catégorie de la ressource (SMUR, SDIS, TSU, SNP, MSPE, navire)",SMUR,type,1..1,,string,"ENUM: SMUR, SDIS, TSU, SNP, MSPE, SHIP"
+,Nature de la ressource,,,,,"Nature de la ressource (effecteur, base)",BASE,nature,0..1,,string,"ENUM: EFFECTEUR, BASE"
+,Mobilité de la ressource,,,,,"Mobilité de la ressource (fixe, vehicule, heliporté, navire)",VEHICULE,mobility,0..1,,string,"ENUM: FIXE, VEHICULE, HELICOPTERE, SHIP "
+,Capacités de la ressource,,,,,Capacité de transport d'un patient,MEDICALE,capacity,0..1,,string,"ENUM: URGENCE, MEDICALE, PARAMEDICALE, INCONNUE"
+,Contacts,,,,,Liste de contacts utiles pour contacter par exemple le véhicule ou le personnel engagé dans l'opération.,,contacts,0..n,X,contact,
 ,,Type de contact,,,,"Type de contact, voir énumération associée
 1. PMRADD (si RFGI disponible)
-2. PHNADD pour téléphonie",PHNADD,type,,,,,,0..1,,string,X,"ENUM: PMRADD, PHNADD"
+2. PHNADD pour téléphonie",PHNADD,type,0..1,,string,"ENUM: PMRADD, PHNADD"
 ,,Détails de contact,,,,"1. RFGI (si RFGI disponible)
-2. Numéro de téléphone",0612342536,details,,,,,,0..1,,string,,
+2. Numéro de téléphone",0612342536,details,0..1,,string,

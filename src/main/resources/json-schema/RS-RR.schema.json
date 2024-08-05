@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RR.schema.json#",
-    "version": "24.07.22",
+    "version": "24.08.01",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesResponse",
@@ -62,8 +62,8 @@
                     "description": "A valoriser avec la réponse apportée. Cf Nomenclature associée\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE",
                     "enum": [
                         "ACCEPTEE",
-                        "REFUSEE",
                         "PARTIELLE",
+                        "REFUSEE",
                         "DIFFEREE"
                     ]
                 },
@@ -73,7 +73,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/response/deadline",
-                    "description": "A valoriser avec le délai de réponse auquel s'engage l'expéditeur (en minutes),"
+                    "description": "A valoriser avec le délai de réponse maximum auquel s'engage l'expéditeur (en minutes) \nCas particulier : en cas de réponse \"Partielle\" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse (en minutes).\n"
                 },
                 "freetext": {
                     "type": "string",

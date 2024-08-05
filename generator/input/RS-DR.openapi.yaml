@@ -127,8 +127,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "A valoriser avec le d\xE9lai d'intervention souhait\xE9 en\
-            \ minutes "
+          description: "A valoriser avec le d\xE9lai d'intervention maximum souhait\xE9\
+            \ (cf. nomenclature associ\xE9e)"
+          enum:
+          - DEL0
+          - ASAP
+          - DEL30M
+          - DEL45M
+          - DEL1H
+          - DEL2H
+          - DEL4H
+          - DEL8H
+          - DEL12H
+          - DEL24H
+          - RDV
           examples:
           - 10
         freetext:

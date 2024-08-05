@@ -86,8 +86,8 @@ components:
             \ associ\xE9e\nACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE"
           enum:
           - ACCEPTEE
-          - REFUSEE
           - PARTIELLE
+          - REFUSEE
           - DIFFEREE
           examples:
           - ACCEPTEE
@@ -97,8 +97,11 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/response/deadline
-          description: "A valoriser avec le d\xE9lai de r\xE9ponse auquel s'engage\
-            \ l'exp\xE9diteur (en minutes),"
+          description: "A valoriser avec le d\xE9lai de r\xE9ponse maximum auquel\
+            \ s'engage l'exp\xE9diteur (en minutes) \nCas particulier : en cas de\
+            \ r\xE9ponse \"Partielle\" car le d\xE9lai souhait\xE9 ne peut pas \xEA\
+            tre respect\xE9,  \xE0 valoriser obligatoirement avec le d\xE9lai de r\xE9\
+            ponse maximum auquel s'engage l'exp\xE9diteur de la r\xE9ponse (en minutes).\n"
           examples:
           - 10
         freetext:

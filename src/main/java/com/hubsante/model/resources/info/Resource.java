@@ -97,10 +97,6 @@ public class Resource {
 
     FDO("FDO"),
 
-    ADM("ADM"),
-
-    DAE("DAE"),
-
     AUTRE("AUTRE");
 
     private String value;
@@ -143,9 +139,7 @@ public class Resource {
 
     AUTRESC("AUTRESC"),
 
-    AUTREVECT("AUTREVECT"),
-
-    CONSEIL("CONSEIL"),
+    AUTREVEC("AUTREVEC"),
 
     TAXI("TAXI"),
 
@@ -161,13 +155,7 @@ public class Resource {
 
     AUTRE("AUTRE"),
 
-    AUTRETRANS("AUTRETRANS"),
-
-    INCONNU("INCONNU"),
-
-    DEFIB("DEFIB"),
-
-    DAE("DAE"),
+    AUTRETRA("AUTRETRA"),
 
     FSI("FSI"),
 
@@ -181,17 +169,9 @@ public class Resource {
 
     LIB("LIB"),
 
-    MEDC("MEDC"),
-
     MEDV("MEDV"),
 
-    PHARMA("PHARMA"),
-
     INF("INF"),
-
-    MEDSPE("MEDSPE"),
-
-    DENT("DENT"),
 
     AUTREPRO("AUTREPRO"),
 
