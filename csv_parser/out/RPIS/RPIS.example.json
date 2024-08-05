@@ -23,7 +23,6 @@
         "patientId": "fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1",
         "birthDate": "17/02/1936",
         "sex": "F",
-        "nir": "278112B050002",
         "residentialAddress": {
             "cityCode": 92300,
             "city": "Levallois-Perret"
@@ -57,19 +56,5 @@
         ],
         "mainDiagnosis": "MD30.Z",
         "associatedDiagnosis": "8B22.1"
-    },
-    "orientation": {
-        "type": "TEMP",
-        "destination": {
-            "destinationCountry": "FR",
-            "destinationCategory": "None",
-            "healthcareType": "None",
-            "finess": "None"
-        },
-        "decision": {
-            "resourceCategory": "SMUR",
-            "resourceType": "AR, VLM, VSAV",
-            "teamCare": "PARAMED"
-        }
     }
 }
