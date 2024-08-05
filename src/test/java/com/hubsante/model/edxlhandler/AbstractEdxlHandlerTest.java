@@ -15,7 +15,7 @@
  */
 package com.hubsante.model.edxlhandler;
 
-import com.hubsante.model.service.EdxlHandler;
+import com.hubsante.model.service.handlers.EdxlHandler;
 import com.hubsante.model.service.Validator;
 import com.hubsante.model.edxl.EdxlMessage;
 import com.hubsante.model.exception.ValidationException;
