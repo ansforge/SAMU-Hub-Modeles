@@ -396,7 +396,8 @@ components:
       title: Lieu d'intervention
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - detailedAddress
       properties:
         type:
           type: string

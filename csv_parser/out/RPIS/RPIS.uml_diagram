@@ -51,7 +51,7 @@ strict digraph {
                 </TR>
                 <TR><TD  BORDER="0"><I>objet detailedAddress</I></TD></TR><TR><TD BORDER="0" >inseeCode <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >city <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	detailedAddress -> location [headlabel=1 taillabel="0..1"]
+	detailedAddress -> location [headlabel=1 taillabel=1]
 	location [label=<<TABLE>
                 <TR>
                 <TD ><B>location</B></TD>

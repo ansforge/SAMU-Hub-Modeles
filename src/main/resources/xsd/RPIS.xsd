@@ -783,7 +783,7 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. </d
                     <documentation>Unité fonctionnelle de l'établissement de santé</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
+            <element name="detailedAddress" type="x:detailedAddress"/>
         </sequence>
     </complexType>
     <complexType name="team">

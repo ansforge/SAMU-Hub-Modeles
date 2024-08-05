@@ -42,12 +42,11 @@ Intervention,,,,,,,,intervention,1..1,X,intervention,
 ,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,0..1,,string,NOMENCLATURE: CISU-Code_Type_de_lieu
 ,,FINESS géographique de l’établissement ,,,,Finess géographique et juridique de l’établissement de santé,,finessGeo,0..1,,string,
 ,,Unité fonctionnelle ,,,,Unité fonctionnelle de l'établissement de santé,,unit,0..1,,string,
-,,Adresse de l'intervention,,,,,,detailedAddress,0..1,X,detailedAddress,
+,,Adresse de l'intervention,,,,,,detailedAddress,1..1,X,detailedAddress,
 ,,,Code INSEE de la commune,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays d'intervention, si étranger. ",92300,inseeCode,1..1,,string,REGEX: [0-9]{5}
 ,,,Nom de la commune,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
-,Composition de l'équipage,,,,,"A valoriser par O si complet et N si incomplet. 
-Complet = équipe à 3 (avec infirmier), incomplet = équipe à 2 (sans infirmier), une équipe étant, à minima, composé d'un médecin et un ambulancier. ",,team,1..1,X,team,
+,Composition de l'équipage,,,,,,,team,1..1,X,team,
 ,,Médecin,,,,"Permet d'identifier si un médecin compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. ",OUI,doctor,1..1,,boolean,
 ,,Infirmier,,,,"Permet d'identifier si un infirmier compose l'équipe.
