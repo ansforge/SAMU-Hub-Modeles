@@ -36,6 +36,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.rpis.Event;
 import com.hubsante.model.rpis.Intervention;
+import com.hubsante.model.rpis.Orientation;
 import com.hubsante.model.rpis.Patient;
 import com.hubsante.model.rpis.Regulation;
 import java.util.Arrays;
@@ -46,8 +47,8 @@ import java.util.Objects;
  * Rpis
  */
 @JsonPropertyOrder({Rpis.JSON_PROPERTY_EVENT, Rpis.JSON_PROPERTY_REGULATION,
-                    Rpis.JSON_PROPERTY_PATIENT,
-                    Rpis.JSON_PROPERTY_INTERVENTION})
+                    Rpis.JSON_PROPERTY_PATIENT, Rpis.JSON_PROPERTY_INTERVENTION,
+                    Rpis.JSON_PROPERTY_ORIENTATION})
 @JsonTypeName("rpis")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -65,6 +66,9 @@ public class Rpis {
 
   public static final String JSON_PROPERTY_INTERVENTION = "intervention";
   private Intervention intervention;
+
+  public static final String JSON_PROPERTY_ORIENTATION = "orientation";
+  private Orientation orientation;
 
   public Rpis() {}
 
@@ -160,6 +164,29 @@ public class Rpis {
     this.intervention = intervention;
   }
 
+  public Rpis orientation(Orientation orientation) {
+
+    this.orientation = orientation;
+    return this;
+  }
+
+  /**
+   * Get orientation
+   * @return orientation
+   **/
+  @JsonProperty(JSON_PROPERTY_ORIENTATION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+
+  public Orientation getOrientation() {
+    return orientation;
+  }
+
+  @JsonProperty(JSON_PROPERTY_ORIENTATION)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setOrientation(Orientation orientation) {
+    this.orientation = orientation;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -172,12 +199,13 @@ public class Rpis {
     return Objects.equals(this.event, rpis.event) &&
         Objects.equals(this.regulation, rpis.regulation) &&
         Objects.equals(this.patient, rpis.patient) &&
-        Objects.equals(this.intervention, rpis.intervention);
+        Objects.equals(this.intervention, rpis.intervention) &&
+        Objects.equals(this.orientation, rpis.orientation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(event, regulation, patient, intervention);
+    return Objects.hash(event, regulation, patient, intervention, orientation);
   }
 
   @Override
@@ -191,6 +219,9 @@ public class Rpis {
     sb.append("    patient: ").append(toIndentedString(patient)).append("\n");
     sb.append("    intervention: ")
         .append(toIndentedString(intervention))
+        .append("\n");
+    sb.append("    orientation: ")
+        .append(toIndentedString(orientation))
         .append("\n");
     sb.append("}");
     return sb.toString();

@@ -35,7 +35,7 @@ strict digraph {
                 <TR>
                 <TD ><B>residentialAddress</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet residentialAddress</I></TD></TR><TR><TD BORDER="0" >cityCode <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >city <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet residentialAddress</I></TD></TR><TR><TD BORDER="0" >inseeCode <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >city <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	residentialAddress -> patient [headlabel=1 taillabel="0..1"]
 	patient [label=<<TABLE>
@@ -80,6 +80,27 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet intervention</I></TD></TR><TR><TD BORDER="0" >actionsSMUR <I>string</I> : [0..*] </TD></TR><TR><TD BORDER="0" >mainDiagnosis <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >associatedDiagnosis <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	intervention -> rpis [headlabel=1 taillabel=1]
+	destination [label=<<TABLE>
+                <TR>
+                <TD ><B>destination</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >destinationCountry <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >destinationCategory <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >healthcareType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >finess <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	destination -> orientation [headlabel=1 taillabel="0..1"]
+	decision [label=<<TABLE>
+                <TR>
+                <TD ><B>decision</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >resourceCategory <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	decision -> orientation [headlabel=1 taillabel="0..1"]
+	orientation [label=<<TABLE>
+                <TR>
+                <TD ><B>orientation</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet orientation</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	orientation -> rpis [headlabel=1 taillabel=1]
 	rpis [label=<<TABLE>
                 <TR>
                 <TD ><B>rpis</B></TD>

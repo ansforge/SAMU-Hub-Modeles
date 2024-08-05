@@ -24,7 +24,7 @@
         "birthDate": "17/02/1936",
         "sex": "F",
         "residentialAddress": {
-            "cityCode": 92300,
+            "inseeCode": 92300,
             "city": "Levallois-Perret"
         }
     },
@@ -56,5 +56,19 @@
         ],
         "mainDiagnosis": "MD30.Z",
         "associatedDiagnosis": "8B22.1"
+    },
+    "orientation": {
+        "type": "TEMP",
+        "destination": {
+            "destinationCountry": "FR",
+            "destinationCategory": "None",
+            "healthcareType": "None",
+            "finess": "None"
+        },
+        "decision": {
+            "resourceCategory": "SMUR",
+            "resourceType": "AR, VLM, VSAV",
+            "teamCare": "PARAMED"
+        }
     }
 }
