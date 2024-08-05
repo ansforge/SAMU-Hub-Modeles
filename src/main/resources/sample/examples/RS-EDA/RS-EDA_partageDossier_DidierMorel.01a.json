@@ -2,7 +2,7 @@
   "createCaseHealth": {
     "caseId": "fr.health.samu770.DRFR157702400400055",
     "senderCaseId": "DRFR157702400400055",
-    "creation": "2024-01-04T15:07:00+01:00",
+    "creation": "2024-01-04T08:01:00+01:00",
     "qualification": {
       "whatsHappen": {
         "code": "C02.08.05",
@@ -49,7 +49,7 @@
       }
     },
     "initialAlert": {
-      "reception": "2024-01-04T15:00:00+01:00",
+      "reception": "2024-01-04T08:00:00+01:00",
       "caller": {
         "callerContact": {
           "channel": "PERSONNE",
@@ -73,7 +73,7 @@
       "notes": [
         {
           "freetext": "Accident de bricolage, atelier particulier.",
-          "creation": "2024-01-04T08:04:00+01:00"
+          "creation": "2024-01-04T08:02:00+01:00"
         }
       ]
     },
@@ -106,7 +106,7 @@
         "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
         "idObs": "fr.health.samu770.medicalNote.45db215",
         "freetext": "Coupure grave causée par une scie circulaire au niveau de la main; saigne beaucoup.",
-        "creation": "2024-01-04T08:07:00+01:00"
+        "creation": "2024-01-04T08:03:00+01:00"
       },
       {
         "operator": {
@@ -115,7 +115,7 @@
         "idPat": "fr.health.samu770.patient.DRFR157702400400055.1",
         "idObs": "fr.health.samu770.medicalNote.15as456",
         "freetext": "La victime est inconsciente (perte de connaissance).",
-        "creation": "2024-01-04T08:09:00+01:00"
+        "creation": "2024-01-04T08:04:00+01:00"
       }
     ]
   }
