@@ -25,6 +25,7 @@
             "label": "Rodéo automobile"
         },
         "details": {
+            "status": "None",
             "attribution": "MU",
             "priority": "P1",
             "careLevel": "R1"
@@ -170,6 +171,37 @@
             "idObs": "fr.health.samu540.medicalNote.46585A\nfr.health.samu540.medicalNote.DRFR15540241600125.20",
             "creation": "2022-09-27T08:23:34+02:00",
             "freetext": "None"
+        }
+    ],
+    "decision": [
+        {
+            "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
+            "creation": "2022-09-27T08:23:34+02:00",
+            "type": "conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire",
+            "decider": {
+                "role": "ARM, Medecin régulateur…"
+            },
+            "engagementDetails": [
+                {
+                    "categoryType": "SMUR, Pompiers",
+                    "resourceType": "AR, VLM, VSAV",
+                    "concoursRequest": "None",
+                    "resourceId": "None",
+                    "teamCareInitial": "Médical, paramédical, secouriste"
+                }
+            ],
+            "transportDetails": [
+                {
+                    "orientation": "laissé sur place, décédé, ou transporté",
+                    "concoursRequest": "None",
+                    "resourceId": "None",
+                    "teamCare": "Médical, paramédical, secouriste",
+                    "destination": {
+                        "type": "None",
+                        "location": {}
+                    }
+                }
+            ]
         }
     ],
     "additionalInformation": {

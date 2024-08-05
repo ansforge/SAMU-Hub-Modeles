@@ -190,7 +190,7 @@ components:
             \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
             \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
           examples:
-          - fr.health.samu690.DRFR15DDXAAJJJ00001.P01
+          - fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1
         birthDate:
           type: string
           title: Date de naissance
@@ -243,6 +243,8 @@ components:
           $ref: '#/components/schemas/location'
         team:
           $ref: '#/components/schemas/team'
+        smurStatus:
+          $ref: '#/components/schemas/resourceStatus'
         actionsSMUR:
           type: array
           x-health-only: false
@@ -278,8 +280,6 @@ components:
             \ Diagnostic SMUR."
           examples:
           - 8B22.1
-        smurStatus:
-          $ref: '#/components/schemas/resourceStatus'
       additionalProperties: false
       example: example.json#/intervention
     orientation:
@@ -1147,15 +1147,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - cityCode
+      - inseeCode
       - city
       properties:
-        cityCode:
+        inseeCode:
           type: string
           title: Code INSEE de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/intervention/location/detailedAddress/cityCode
+          example: example.json#/intervention/location/detailedAddress/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
@@ -1175,7 +1175,7 @@ components:
       additionalProperties: false
       example: example.json#/intervention/location/detailedAddress
       examples:
-      - cityCode: 92300
+      - inseeCode: 92300
         city: Levallois-Perret
     destination:
       type: object

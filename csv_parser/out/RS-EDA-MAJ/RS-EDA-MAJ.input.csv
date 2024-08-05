@@ -17,6 +17,9 @@ La qualification est issue d'une interprétation métier synthétisant l'ensembl
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,1..1,,string,
 ,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,0..1,X,caseDetails,
+,,Etat du dossier,,,,"A valoriser avec l'état du dossier dans le système émetteur
+Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement
+Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette",,status,0..1,,string,NOMENCLATURE: ENUM-Etats_Dossier
 ,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,priority,0..1,,string,NOMENCLATURE: SI-SAMU-PRIORITE
 ,,Niveau de soins du dossier,,,,"Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave.
 cf.nomenclature associée.",R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAVITE
@@ -104,6 +107,29 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
 fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,0..1,,string,"REGEX: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
+Décisions,,,,,,Mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients,,decision,0..n,X,decision,
+,ID patient partagé,,,,,"ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié","fr.health.samu690.patient.P23AZ59
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,
+,Date Heure de création de la décision,,,,,Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,1..1,,datetime,
+,Type de décision,,,,,Type de décision prise,conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,type,1..1,,string,NOMENCLATURE: SI-SAMU-TYPEDEC
+,Opérateur décideur,,,,,,,decider,0..1,X,decider,
+,,Rôle,,,,Rôle de l'opérateur au sein de l'entité émettrice du message,"ARM, Medecin régulateur…",role,1..1,,string,NOMENCLATURE: ENUM-ROLE
+,Détails décision d'intervention,,,,,Partage de l'équipe à engager sur le lieu de l'intervention,,engagementDetails,0..n,X,engagementDetails,
+,,Type de ressource,,,,détaille le moyen à engager,"SMUR, Pompiers",categoryType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
+,,Type de vecteur,,,,détaille le type de vecteur à engager,"AR, VLM, VSAV",resourceType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
+,,ID demande de concours/de ressources,,,,Identifiant de la ou des demandes de concours ,,concoursRequest,0..1,,string,
+,,ID vecteur partagé,,,,,,resourceId,0..1,,string,
+,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",teamCareInitial,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
+,Détails décision de transport/orientation,,,,,,,transportDetails,0..n,X,transportDetails,
+,,Type de devenir du patient,,,,"Décision(s) d'orientation prise par le médecin régulateur : 
+- A transporter
+- Laisser sur place","laissé sur place, décédé, ou transporté",orientation,1..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT
+,,ID demande de concours/de ressources,,,,Identifiant de la ou des demandes de concours ,,concoursRequest,0..1,,string,
+,,ID vecteur partagé,,,,"Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. ",,resourceId,0..1,,string,
+,,Niveau de prise en charge,,,,"Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)","Médical, paramédical, secouriste",teamCare,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
+,,Destination,,,,,,destination,0..1,X,destination,
+,,,Type de destination,,,"Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",,type,0..1,,string,NOMENCLATURE: ENUM-TYPE_Destination
+,,,Localisation de la destination,# Voir type location,,,,location,0..1,X,location,
 Informations supplémentaires modifiées,,,,,,"Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.",adresse : 7bis rue du château - Neuilly sur Seine,freetext,0..1,,string,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,0..1,X,additionalInformation,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,0..3,X,customMap,

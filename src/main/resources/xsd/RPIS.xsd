@@ -122,6 +122,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
         <sequence>
             <element name="location" type="x:location"/>
             <element name="team" type="x:team"/>
+            <element minOccurs="0" name="smurStatus" type="x:resourceStatus"/>
             <element maxOccurs="unbounded" minOccurs="0" name="actionsSMUR" type="string"/>
             <element name="mainDiagnosis" type="string">
                 <annotation>
@@ -135,7 +136,6 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
 A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="smurStatus" type="x:resourceStatus"/>
         </sequence>
     </complexType>
     <complexType name="orientation">
@@ -844,7 +844,7 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
     </complexType>
     <complexType name="detailedAddress">
         <sequence>
-            <element name="cityCode">
+            <element name="inseeCode">
                 <annotation>
                     <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays d'intervention, si étranger. </documentation>

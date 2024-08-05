@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.resources.info;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,34 +34,39 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.update.Location;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * Contact
+ * Destination
  */
-@JsonPropertyOrder({Contact.JSON_PROPERTY_TYPE, Contact.JSON_PROPERTY_DETAILS})
-@JsonTypeName("contact")
+@JsonPropertyOrder(
+    {Destination.JSON_PROPERTY_TYPE, Destination.JSON_PROPERTY_LOCATION})
+@JsonTypeName("destination")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class Contact {
+public class Destination {
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée. Cf nomenclature associée.
+   * Indique le type de destination de la ressource : service d’urgences d’un
+   * Etablissement de santé, autres services d’un établissement de santé,
+   * cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long
+   * séjour, autre
    */
   public enum TypeEnum {
-    TEL("TEL"),
+    URGENCES("URGENCES"),
 
-    EMAIL("EMAIL"),
+    SANTE("SANTE"),
 
-    FAX("FAX"),
+    CABINET("CABINET"),
 
-    POSTAL("POSTAL"),
+    DOMICILE("DOMICILE"),
 
-    WEB("WEB"),
+    EPHAD("EPHAD"),
 
-    RADIO("RADIO");
+    AUTRE("AUTRE");
 
     private String value;
 
@@ -91,19 +96,21 @@ public class Contact {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_DETAILS = "details";
-  private String details;
+  public static final String JSON_PROPERTY_LOCATION = "location";
+  private Location location;
 
-  public Contact() {}
+  public Destination() {}
 
-  public Contact type(TypeEnum type) {
+  public Destination type(TypeEnum type) {
 
     this.type = type;
     return this;
   }
 
   /**
-   * A valoriser avec le type de l&#39;URI utilisée. Cf nomenclature associée.
+   * Indique le type de destination de la ressource : service d’urgences d’un
+   *Etablissement de santé, autres services d’un établissement de santé, cabinet
+   *d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -119,28 +126,27 @@ public class Contact {
     this.type = type;
   }
 
-  public Contact details(String details) {
+  public Destination location(Location location) {
 
-    this.details = details;
+    this.location = location;
     return this;
   }
 
   /**
-   * A valoriser avec la valeur de l&#39;URI utilisée Le format attendu pour un
-   *numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}
-   * @return details
+   * Get location
+   * @return location
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_LOCATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDetails() {
-    return details;
+  public Location getLocation() {
+    return location;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILS)
+  @JsonProperty(JSON_PROPERTY_LOCATION)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(String details) {
-    this.details = details;
+  public void setLocation(Location location) {
+    this.location = location;
   }
 
   @Override
@@ -151,22 +157,22 @@ public class Contact {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Contact contact = (Contact)o;
-    return Objects.equals(this.type, contact.type) &&
-        Objects.equals(this.details, contact.details);
+    Destination destination = (Destination)o;
+    return Objects.equals(this.type, destination.type) &&
+        Objects.equals(this.location, destination.location);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(type, details);
+    return Objects.hash(type, location);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Contact {\n");
+    sb.append("class Destination {\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("}");
     return sb.toString();
   }

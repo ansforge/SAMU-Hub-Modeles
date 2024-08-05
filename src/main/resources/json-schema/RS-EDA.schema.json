@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.08.01",
+    "version": "24.08.05",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -96,6 +96,12 @@
             "type": "array",
             "items": {
                 "$ref": "#/definitions/medicalNote"
+            }
+        },
+        "decision": {
+            "type": "array",
+            "items": {
+                "$ref": "#/definitions/decision"
             }
         },
         "additionalInformation": {
@@ -320,6 +326,68 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0"
+        },
+        "decision": {
+            "type": "object",
+            "title": "Décisions",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "creation",
+                "type"
+            ],
+            "properties": {
+                "idPat": {
+                    "type": "string",
+                    "title": "ID patient partagé",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/idPat",
+                    "description": "ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié"
+                },
+                "creation": {
+                    "type": "string",
+                    "title": "Date Heure de création de la décision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/creation",
+                    "description": "Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
+                },
+                "type": {
+                    "type": "string",
+                    "title": "Type de décision",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/type",
+                    "description": "Type de décision prise",
+                    "enum": [
+                        "CONSEIL",
+                        "PMT",
+                        "INTER",
+                        "ORIENT",
+                        "PASPLUS"
+                    ]
+                },
+                "decider": {
+                    "$ref": "#/definitions/decider"
+                },
+                "engagementDetails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/engagementDetails"
+                    }
+                },
+                "transportDetails": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/transportDetails"
+                    }
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0"
         },
         "additionalInformation": {
             "type": "object",
@@ -1041,6 +1109,23 @@
             "x-health-only": false,
             "required": [],
             "properties": {
+                "status": {
+                    "type": "string",
+                    "title": "Etat du dossier",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/qualification/details/status",
+                    "description": "A valoriser avec l'état du dossier dans le système émetteur\nSpécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement\nSpécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette",
+                    "enum": [
+                        "PROGRAMME",
+                        " ACTIF",
+                        "ACHEVE",
+                        "VALIDE",
+                        "CLOTURE",
+                        "CLASSE",
+                        "ARCHIVE"
+                    ]
+                },
                 "attribution": {
                     "type": "string",
                     "title": "Attribution du dossier",
@@ -1919,15 +2004,7 @@
                         "DAU",
                         "DEFIBRILLATEUR, ",
                         "ECALL",
-                        "PERSONNE",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
+                        "PERSONNE"
                     ]
                 },
                 "type": {
@@ -1943,15 +2020,7 @@
                         "FAX",
                         "POSTAL",
                         "WEB",
-                        "RADIO",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
+                        "RADIO"
                     ]
                 },
                 "detail": {
@@ -2277,6 +2346,273 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0/operator"
+        },
+        "decider": {
+            "type": "object",
+            "title": "Opérateur décideur",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "role"
+            ],
+            "properties": {
+                "role": {
+                    "type": "string",
+                    "title": "Rôle",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/decider/role",
+                    "description": "Rôle de l'opérateur au sein de l'entité émettrice du message",
+                    "enum": [
+                        "AMBULANCIER",
+                        "ARM",
+                        "INFIRMIER",
+                        "MEDECIN",
+                        "AUTRE",
+                        "INCONNU"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/decider"
+        },
+        "engagementDetails": {
+            "type": "object",
+            "title": "Détails décision d'intervention",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "categoryType",
+                "teamCareInitial"
+            ],
+            "properties": {
+                "categoryType": {
+                    "type": "string",
+                    "title": "Type de ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/0/categoryType",
+                    "description": "détaille le moyen à engager",
+                    "enum": [
+                        "SMUR",
+                        "HOSPIT",
+                        "LIB",
+                        "TSU ",
+                        "SIS",
+                        "AASC",
+                        "FDO",
+                        "AUTRE"
+                    ]
+                },
+                "resourceType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/0/resourceType",
+                    "description": "détaille le type de vecteur à engager",
+                    "enum": [
+                        "AASC",
+                        "VLSC",
+                        "VPSP",
+                        "AUTRESC",
+                        "AUTREVEC",
+                        "TAXI",
+                        "TRANSP",
+                        "TRAIN",
+                        "AVION",
+                        "PERSO",
+                        "APIED",
+                        "AUTRE",
+                        "AUTRETRA",
+                        "FSI",
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "VHFSI",
+                        "LIB",
+                        "MEDV",
+                        "INF",
+                        "AUTREPRO",
+                        "SIS",
+                        "VSAV",
+                        "GRIMP",
+                        "VPL",
+                        "SRSIS",
+                        "FEUSIS",
+                        "VPMA",
+                        "VCH",
+                        "VR",
+                        "PCSIS",
+                        "VLISP",
+                        "VLMSP",
+                        "VLCG",
+                        "VLSIS",
+                        "DRAGON",
+                        "AVSC",
+                        "MOYSSE",
+                        "AUTRESIS",
+                        "NAVISIS",
+                        "SMUR",
+                        "VLM",
+                        "VL",
+                        "PSM1",
+                        "PSM2",
+                        "PSM3",
+                        "PSMP",
+                        "VPC",
+                        "AR",
+                        "AR-BAR",
+                        "AR-PED",
+                        "HELISMUR",
+                        "HELISAN",
+                        "AVSMUR",
+                        "AVSAN",
+                        "NAVISMUR",
+                        "TSU",
+                        "VSL",
+                        "AMB-GV",
+                        "AMB-PV",
+                        "AMB-BAR",
+                        "AMB"
+                    ]
+                },
+                "concoursRequest": {
+                    "type": "string",
+                    "title": "ID demande de concours/de ressources",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/0/concoursRequest",
+                    "description": "Identifiant de la ou des demandes de concours "
+                },
+                "resourceId": {
+                    "type": "string",
+                    "title": "ID vecteur partagé",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/0/resourceId"
+                },
+                "teamCareInitial": {
+                    "type": "string",
+                    "title": "Niveau de prise en charge",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/engagementDetails/0/teamCareInitial",
+                    "description": "Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)",
+                    "enum": [
+                        "MED",
+                        "PARAMED",
+                        "SECOURS"
+                    ]
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/engagementDetails/0"
+        },
+        "transportDetails": {
+            "type": "object",
+            "title": "Détails décision de transport/orientation",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [
+                "orientation",
+                "teamCare"
+            ],
+            "properties": {
+                "orientation": {
+                    "type": "string",
+                    "title": "Type de devenir du patient",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/0/orientation",
+                    "description": "Décision(s) d'orientation prise par le médecin régulateur : \n- A transporter\n- Laisser sur place",
+                    "enum": [
+                        "OK",
+                        "TEMP",
+                        "SEUL",
+                        "AFAMILLE",
+                        "AMED",
+                        "AFDO",
+                        "ATIERS",
+                        "MOYPERSO",
+                        "Code vecteur choisi",
+                        "REFPAT",
+                        "REFFAM",
+                        "PASREAKO",
+                        "PASREAOK",
+                        "REA",
+                        "TRANSPOR",
+                        "ADM",
+                        "FUGUE",
+                        "REFAUTRE",
+                        "RAS"
+                    ]
+                },
+                "concoursRequest": {
+                    "type": "string",
+                    "title": "ID demande de concours/de ressources",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/0/concoursRequest",
+                    "description": "Identifiant de la ou des demandes de concours "
+                },
+                "resourceId": {
+                    "type": "string",
+                    "title": "ID vecteur partagé",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/0/resourceId",
+                    "description": "Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. "
+                },
+                "teamCare": {
+                    "type": "string",
+                    "title": "Niveau de prise en charge",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/0/teamCare",
+                    "description": "Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)",
+                    "enum": [
+                        "MED",
+                        "PARAMED",
+                        "SECOURS"
+                    ]
+                },
+                "destination": {
+                    "$ref": "#/definitions/destination"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/transportDetails/0"
+        },
+        "destination": {
+            "type": "object",
+            "title": "Destination",
+            "x-display": "expansion-panels",
+            "x-health-only": false,
+            "required": [],
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "Type de destination",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/transportDetails/0/destination/type",
+                    "description": "Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre",
+                    "enum": [
+                        "URGENCES",
+                        "SANTE",
+                        "CABINET",
+                        "DOMICILE",
+                        "EPHAD",
+                        "AUTRE"
+                    ]
+                },
+                "location": {
+                    "$ref": "#/definitions/location"
+                }
+            },
+            "additionalProperties": false,
+            "example": "example.json#/decision/0/transportDetails/0/destination"
         },
         "customMap": {
             "type": "object",

@@ -14,7 +14,7 @@ strict digraph {
                 <TR>
                 <TD ><B>details</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" >priority <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet caseDetails</I></TD></TR><TR><TD BORDER="0" >status <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >priority <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	details -> qualification [headlabel=1 taillabel="0..1"]
 	qualification [label=<<TABLE>
@@ -150,6 +150,55 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
+	decider [label=<<TABLE>
+                <TR>
+                <TD ><B>decider</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet decider</I></TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	decider -> decision [headlabel=1 taillabel="0..1"]
+	engagementDetails [label=<<TABLE>
+                <TR>
+                <TD ><B>engagementDetails</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet engagementDetails</I></TD></TR><TR><TD BORDER="0" >categoryType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >concoursRequest <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCareInitial <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	engagementDetails -> decision [headlabel=1 taillabel="0..*"]
+	externalInfo [label=<<TABLE>
+                <TR>
+                <TD ><B>externalInfo</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalInfo -> location [headlabel=1 taillabel="0..*"]
+	location [label=<<TABLE>
+                <TR>
+                <TD ><B>location</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet location</I></TD></TR>
+                </TABLE>>]
+	location -> destination [headlabel=1 taillabel="0..1"]
+	destination [label=<<TABLE>
+                <TR>
+                <TD ><B>destination</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	destination -> transportDetails [headlabel=1 taillabel="0..1"]
+	transportDetails [label=<<TABLE>
+                <TR>
+                <TD ><B>transportDetails</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet transportDetails</I></TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >concoursRequest <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	transportDetails -> decision [headlabel=1 taillabel="0..*"]
+	decision [label=<<TABLE>
+                <TR>
+                <TD ><B>decision</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	decision -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
 	customMap [label=<<TABLE>
                 <TR>
                 <TD ><B>customMap</B></TD>

@@ -29,7 +29,7 @@ A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
 Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,initialTeamCare,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
 Patient,,,,,,,,patient,1..1,X,patient,
 ,Identifiant Patient,,,,,"Identifiant unique du patient. 
-A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.DRFR15DDXAAJJJ00001.P01,patientId,1..1,,string,
+A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1,patientId,1..1,,string,
 ,Date de naissance,,,,,Date de naissance du patient,17/02/1936,birthDate,1..1,,string,
 ,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,1..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
 ,NIR,,,,,"Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL",278112B050002,nir,0..1,,number,
@@ -44,7 +44,7 @@ Intervention,,,,,,,,intervention,1..1,X,intervention,
 ,,Unité fonctionnelle ,,,,Unité fonctionnelle de l'établissement de santé,,unit,0..1,,string,
 ,,Adresse de l'intervention,,,,,,detailedAddress,0..1,X,detailedAddress,
 ,,,Code INSEE de la commune,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
-Le Code INSEE peut également précisé le pays d'intervention, si étranger. ",92300,cityCode,1..1,,string,REGEX: [0-9]{5}
+Le Code INSEE peut également précisé le pays d'intervention, si étranger. ",92300,inseeCode,1..1,,string,REGEX: [0-9]{5}
 ,,,Nom de la commune,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
 ,Composition de l'équipage,,,,,"A valoriser par O si complet et N si incomplet. 
 Complet = équipe à 3 (avec infirmier), incomplet = équipe à 2 (sans infirmier), une équipe étant, à minima, composé d'un médecin et un ambulancier. ",,team,1..1,X,team,
@@ -54,12 +54,6 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom du
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. ",NON,nurse,1..1,,boolean,
 ,,Ambulancier/Pilote,,,,"Permet d'identifier si un ambulancier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ",OUI,driver,1..1,,boolean,
-,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
-A valoriser avec un code de la nomenclature ACTES_SMUR.",,actionsSMUR,0..n,,string,
-,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,1..1,,string,
-,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
-A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDiagnosis,0..1,,string,
 ,Statuts des horaires du SMUR,,,,,,,smurStatus,0..1,X,resourceStatus,
 ,,Date et heure du départ de la base SMUR,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,departSmur,1..1,,datetime,
 ,,Date et heure de l’arrivée sur les lieux de l’intervention,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,arrivedSmur,0..1,,datetime,
@@ -67,6 +61,12 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDi
 ,,Date et heure d’arrivée à destination,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,arrivedDestination,0..1,,datetime,
 ,,Date et heure de disponibilité de l’équipe,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,teamAvailable,1..1,,datetime,
 ,,Date et heure de retour à la base SMUR,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,returnSmur,1..1,,datetime,
+,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
+A valoriser avec un code de la nomenclature ACTES_SMUR.",,actionsSMUR,0..n,,string,
+,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
+A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,1..1,,string,
+,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
+A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDiagnosis,0..1,,string,
 Décision d'orientation,,,,,,,,orientation,1..1,X,orientation,
 ,Type de devenir du patient,,,,,"Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
 A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.

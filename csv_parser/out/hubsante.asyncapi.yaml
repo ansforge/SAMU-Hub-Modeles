@@ -1452,15 +1452,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - cityCode
+      - inseeCode
       - city
       properties:
-        cityCode:
+        inseeCode:
           type: string
           title: Code INSEE de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/intervention/location/detailedAddress/cityCode
+          example: example.json#/intervention/location/detailedAddress/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
@@ -1480,7 +1480,7 @@ components:
       additionalProperties: false
       example: example.json#/intervention/location/detailedAddress
       examples:
-      - cityCode: 92300
+      - inseeCode: 92300
         city: Levallois-Perret
     city:
       type: object
@@ -2378,14 +2378,6 @@ components:
           - POSTAL
           - WEB
           - RADIO
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
           examples:
           - PHNADD
         details:
@@ -2619,6 +2611,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+        decision:
+          type: array
+          items:
+            $ref: '#/components/schemas/decision'
         additionalInformation:
           $ref: '#/components/schemas/additionalInformation'
       additionalProperties: false
@@ -2642,7 +2638,7 @@ components:
             \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
             \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
           examples:
-          - fr.health.samu690.DRFR15DDXAAJJJ00001.P01
+          - fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1
         birthDate:
           type: string
           title: Date de naissance
@@ -2755,6 +2751,131 @@ components:
           - None
       additionalProperties: false
       example: example.json#/medicalNote/0
+    decision:
+      type: object
+      title: Transport
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - resourceCategory
+      - resourceType
+      - teamCare
+      properties:
+        resourceCategory:
+          type: string
+          title: Moyen de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceCategory
+          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
+            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
+            \ SI SAMU-TYPE_MOYEN."
+          enum:
+          - SMUR
+          - HOSPIT
+          - LIB
+          - 'TSU '
+          - SIS
+          - AASC
+          - FDO
+          - AUTRE
+          examples:
+          - SMUR
+        resourceType:
+          type: string
+          title: Type de vecteur de transport
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/resourceType
+          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
+            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
+            \ la nomenclature CISU-TYPE_VECTEUR."
+          enum:
+          - AASC
+          - VLSC
+          - VPSP
+          - AUTRESC
+          - AUTREVEC
+          - TAXI
+          - TRANSP
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - AUTRE
+          - AUTRETRA
+          - FSI
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - LIB
+          - MEDV
+          - INF
+          - AUTREPRO
+          - SIS
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - DRAGON
+          - AVSC
+          - MOYSSE
+          - AUTRESIS
+          - NAVISIS
+          - SMUR
+          - VLM
+          - VL
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          examples:
+          - AR, VLM, VSAV
+        teamCare:
+          type: string
+          title: "Niveau de m\xE9dicalisation du transport"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/decision/teamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
+            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
+          examples:
+          - PARAMED
+      additionalProperties: false
+      example: example.json#/orientation/decision
+      examples:
+      - resourceCategory: SMUR
+        resourceType: AR, VLM, VSAV
+        teamCare: PARAMED
     caseDetails:
       type: object
       title: "D\xE9tails du dossier "
@@ -2762,6 +2883,27 @@ components:
       x-health-only: false
       required: []
       properties:
+        status:
+          type: string
+          title: Etat du dossier
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/qualification/details/status
+          description: "A valoriser avec l'\xE9tat du dossier dans le syst\xE8me \xE9\
+            metteur\nSp\xE9cificit\xE9 15-15 : peut \xEAtre ignor\xE9 en r\xE9ception,\
+            \ partag\xE9 \xE0 titre indicatif uniquement\nSp\xE9cificit\xE9 15-SMUR\
+            \ : \xE0 utiliser \xE0 minima pour transmettre le statut CLOTURE \xE0\
+            \ la tablette"
+          enum:
+          - PROGRAMME
+          - ' ACTIF'
+          - ACHEVE
+          - VALIDE
+          - CLOTURE
+          - CLASSE
+          - ARCHIVE
+          examples:
+          - None
         priority:
           type: string
           title: "Priorit\xE9 de r\xE9gulation m\xE9dicale"
@@ -2798,7 +2940,8 @@ components:
       additionalProperties: false
       example: example.json#/qualification/details
       examples:
-      - priority: P1
+      - status: None
+        priority: P1
         careLevel: R1
     highway:
       type: object
@@ -3129,6 +3272,548 @@ components:
       examples:
       - detailedName: {}
         role: ARM
+    decider:
+      type: object
+      title: "Op\xE9rateur d\xE9cideur"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - role
+      properties:
+        role:
+          type: string
+          title: "R\xF4le"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/decider/role
+          description: "R\xF4le de l'op\xE9rateur au sein de l'entit\xE9 \xE9mettrice\
+            \ du message"
+          enum:
+          - AMBULANCIER
+          - ARM
+          - INFIRMIER
+          - MEDECIN
+          - AUTRE
+          - INCONNU
+          examples:
+          - "ARM, Medecin r\xE9gulateur\u2026"
+      additionalProperties: false
+      example: example.json#/decision/0/decider
+      examples:
+      - role: "ARM, Medecin r\xE9gulateur\u2026"
+    engagementDetails:
+      type: object
+      title: "D\xE9tails d\xE9cision d'intervention"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - categoryType
+      - teamCareInitial
+      properties:
+        categoryType:
+          type: string
+          title: Type de ressource
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/engagementDetails/0/categoryType
+          description: "d\xE9taille le moyen \xE0 engager"
+          enum:
+          - SMUR
+          - HOSPIT
+          - LIB
+          - 'TSU '
+          - SIS
+          - AASC
+          - FDO
+          - AUTRE
+          examples:
+          - SMUR, Pompiers
+        resourceType:
+          type: string
+          title: Type de vecteur
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/engagementDetails/0/resourceType
+          description: "d\xE9taille le type de vecteur \xE0 engager"
+          enum:
+          - AASC
+          - VLSC
+          - VPSP
+          - AUTRESC
+          - AUTREVEC
+          - TAXI
+          - TRANSP
+          - TRAIN
+          - AVION
+          - PERSO
+          - APIED
+          - AUTRE
+          - AUTRETRA
+          - FSI
+          - HELIFSI
+          - VLFSI
+          - FFSI
+          - VHFSI
+          - LIB
+          - MEDV
+          - INF
+          - AUTREPRO
+          - SIS
+          - VSAV
+          - GRIMP
+          - VPL
+          - SRSIS
+          - FEUSIS
+          - VPMA
+          - VCH
+          - VR
+          - PCSIS
+          - VLISP
+          - VLMSP
+          - VLCG
+          - VLSIS
+          - DRAGON
+          - AVSC
+          - MOYSSE
+          - AUTRESIS
+          - NAVISIS
+          - SMUR
+          - VLM
+          - VL
+          - PSM1
+          - PSM2
+          - PSM3
+          - PSMP
+          - VPC
+          - AR
+          - AR-BAR
+          - AR-PED
+          - HELISMUR
+          - HELISAN
+          - AVSMUR
+          - AVSAN
+          - NAVISMUR
+          - TSU
+          - VSL
+          - AMB-GV
+          - AMB-PV
+          - AMB-BAR
+          - AMB
+          examples:
+          - AR, VLM, VSAV
+        concoursRequest:
+          type: string
+          title: ID demande de concours/de ressources
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/engagementDetails/0/concoursRequest
+          description: 'Identifiant de la ou des demandes de concours '
+          examples:
+          - None
+        resourceId:
+          type: string
+          title: "ID vecteur partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/engagementDetails/0/resourceId
+          examples:
+          - None
+        teamCareInitial:
+          type: string
+          title: Niveau de prise en charge
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/engagementDetails/0/teamCareInitial
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
+            dicale, standard, incomplete, ...)"
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
+          examples:
+          - "M\xE9dical, param\xE9dical, secouriste"
+      additionalProperties: false
+      example: example.json#/decision/0/engagementDetails/0
+      examples:
+      - categoryType: SMUR, Pompiers
+        resourceType: AR, VLM, VSAV
+        concoursRequest: None
+        resourceId: None
+        teamCareInitial: "M\xE9dical, param\xE9dical, secouriste"
+    transportDetails:
+      type: object
+      title: "D\xE9tails d\xE9cision de transport/orientation"
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - orientation
+      - teamCare
+      properties:
+        orientation:
+          type: string
+          title: Type de devenir du patient
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportDetails/0/orientation
+          description: "D\xE9cision(s) d'orientation prise par le m\xE9decin r\xE9\
+            gulateur : \n- A transporter\n- Laisser sur place"
+          enum:
+          - OK
+          - TEMP
+          - SEUL
+          - AFAMILLE
+          - AMED
+          - AFDO
+          - ATIERS
+          - MOYPERSO
+          - Code vecteur choisi
+          - REFPAT
+          - REFFAM
+          - PASREAKO
+          - PASREAOK
+          - REA
+          - TRANSPOR
+          - ADM
+          - FUGUE
+          - REFAUTRE
+          - RAS
+          examples:
+          - "laiss\xE9 sur place, d\xE9c\xE9d\xE9, ou transport\xE9"
+        concoursRequest:
+          type: string
+          title: ID demande de concours/de ressources
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportDetails/0/concoursRequest
+          description: 'Identifiant de la ou des demandes de concours '
+          examples:
+          - None
+        resourceId:
+          type: string
+          title: "ID vecteur partag\xE9"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportDetails/0/resourceId
+          description: "Identifiant du v\xE9hicule terrestre / a\xE9rien / maritime\
+            \ de transport principal (= celui dans lequel se trouve le patient), permettant\
+            \ d'associer la d\xE9cision \xE0 un v\xE9hicule sp\xE9cifique + au patient. "
+          examples:
+          - None
+        teamCare:
+          type: string
+          title: Niveau de prise en charge
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/decision/0/transportDetails/0/teamCare
+          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, non m\xE9\
+            dicale, standard, incomplete, ...)"
+          enum:
+          - MED
+          - PARAMED
+          - SECOURS
+          examples:
+          - "M\xE9dical, param\xE9dical, secouriste"
+        destination:
+          $ref: '#/components/schemas/destination'
+      additionalProperties: false
+      example: example.json#/decision/0/transportDetails/0
+    destination:
+      type: object
+      title: Destination
+      x-display: expansion-panels
+      x-health-only: false
+      required:
+      - destinationCountry
+      - destinationCategory
+      - healthcareType
+      - finess
+      properties:
+        destinationCountry:
+          type: string
+          title: Pays de destination
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCountry
+          description: "A valoriser par le libell\xE9 court de la nomenclature SIGLPAYS"
+          enum:
+          - AF
+          - AX
+          - AL
+          - DZ
+          - AS
+          - AD
+          - AO
+          - AI
+          - AQ
+          - AG
+          - AR
+          - AM
+          - AW
+          - AU
+          - AT
+          - AZ
+          - BS
+          - BH
+          - BD
+          - BB
+          - BY
+          - BE
+          - BZ
+          - BJ
+          - BM
+          - BT
+          - BO
+          - BA
+          - BW
+          - BV
+          - BR
+          - IO
+          - BN
+          - BG
+          - BF
+          - BI
+          - CV
+          - KH
+          - CM
+          - CA
+          - KY
+          - CF
+          - TD
+          - CL
+          - CN
+          - CX
+          - CC
+          - CO
+          - KM
+          - CG
+          - CK
+          - CR
+          - CI
+          - HR
+          - CU
+          - CW
+          - CY
+          - CZ
+          - DK
+          - DJ
+          - DM
+          - DO
+          - EC
+          - EG
+          - SV
+          - GQ
+          - ER
+          - EE
+          - SZ
+          - ET
+          - FK
+          - FO
+          - FJ
+          - FI
+          - FR
+          - GF
+          - PF
+          - TF
+          - GA
+          - GM
+          - GE
+          - DE
+          - GH
+          - GI
+          - GR
+          - GL
+          - GD
+          - GP
+          - GU
+          - GT
+          - GG
+          - GN
+          - GW
+          - GY
+          - HT
+          - HM
+          - VA
+          - HN
+          - HK
+          - HU
+          - IS
+          - IN
+          - ID
+          - IR
+          - IQ
+          - IE
+          - IM
+          - IL
+          - IT
+          - JM
+          - JP
+          - JE
+          - JO
+          - KZ
+          - KE
+          - KI
+          - KP
+          - KW
+          - KG
+          - LA
+          - LV
+          - LB
+          - LS
+          - LR
+          - LY
+          - LI
+          - LT
+          - LU
+          - MO
+          - MG
+          - MW
+          - MY
+          - MV
+          - ML
+          - MT
+          - MH
+          - MQ
+          - MR
+          - MU
+          - YT
+          - MX
+          - FM
+          - MC
+          - MN
+          - ME
+          - MS
+          - MA
+          - MZ
+          - MM
+          - NA
+          - NR
+          - NP
+          - NL
+          - NC
+          - NZ
+          - NI
+          - NE
+          - NG
+          - NU
+          - NF
+          - MK
+          - MP
+          - 'NO'
+          - OM
+          - PK
+          - PW
+          - PA
+          - PG
+          - PY
+          - PE
+          - PH
+          - PN
+          - PL
+          - PT
+          - PR
+          - QA
+          - RE
+          - RO
+          - RU
+          - RW
+          - BL
+          - KN
+          - LC
+          - MF
+          - PM
+          - VC
+          - WS
+          - SM
+          - ST
+          - SA
+          - SN
+          - RS
+          - SC
+          - SL
+          - SG
+          - SX
+          - SK
+          - SI
+          - SB
+          - SO
+          - ZA
+          - GS
+          - SS
+          - ES
+          - LK
+          - SD
+          - SR
+          - SJ
+          - SE
+          - CH
+          - SY
+          - TJ
+          - TH
+          - TL
+          - TG
+          - TK
+          - TO
+          - TT
+          - TN
+          - TR
+          - TM
+          - TC
+          - TV
+          - UG
+          - UA
+          - AE
+          - GB
+          - US
+          - UM
+          - UY
+          - UZ
+          - VU
+          - VE
+          - VN
+          - VG
+          - VI
+          - WF
+          - EH
+          - YE
+          - ZM
+          - ZW
+          examples:
+          - FR
+        destinationCategory:
+          type: string
+          title: "Cat\xE9gorie de l'\xE9tablissement de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/destinationCategory
+          description: "A valoriser par le code de la nomenclature associ\xE9e"
+          examples:
+          - None
+        healthcareType:
+          type: string
+          title: "Type d'activit\xE9 de soins de l'unit\xE9 fonctionnelle de destination"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/healthcareType
+          description: A valoriser par le code de la nomenclature ActiviteOperationnelle
+          examples:
+          - None
+        finess:
+          type: string
+          title: "FINESS g\xE9ographique"
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/orientation/destination/finess
+          description: "FINESS g\xE9ographique de l\u2019\xE9tablissement de destination\
+            \ (9 chiffres)"
+          examples:
+          - None
+      additionalProperties: false
+      example: example.json#/orientation/destination
+      examples:
+      - destinationCountry: FR
+        destinationCategory: None
+        healthcareType: None
+        finess: None
     createCaseHealthUpdate:
       $id: classpath:/json-schema/schema#
       x-id: RS-EDA-MAJ.schema.json#
@@ -3208,6 +3893,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/medicalNote'
+        decision:
+          type: array
+          items:
+            $ref: '#/components/schemas/decision'
         freetext:
           type: string
           title: "Informations suppl\xE9mentaires modifi\xE9es"
@@ -6254,6 +6943,8 @@ components:
           $ref: '#/components/schemas/location'
         team:
           $ref: '#/components/schemas/team'
+        smurStatus:
+          $ref: '#/components/schemas/resourceStatus'
         actionsSMUR:
           type: array
           x-health-only: false
@@ -6289,8 +6980,6 @@ components:
             \ Diagnostic SMUR."
           examples:
           - 8B22.1
-        smurStatus:
-          $ref: '#/components/schemas/resourceStatus'
       additionalProperties: false
       example: example.json#/intervention
     orientation:
@@ -6461,428 +7150,6 @@ components:
         arrivedDestination: '2022-09-27T08:23:34+02:00'
         teamAvailable: '2022-09-27T08:23:34+02:00'
         returnSmur: '2022-09-27T08:23:34+02:00'
-    destination:
-      type: object
-      title: Destination
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - destinationCountry
-      - destinationCategory
-      - healthcareType
-      - finess
-      properties:
-        destinationCountry:
-          type: string
-          title: Pays de destination
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/destinationCountry
-          description: "A valoriser par le libell\xE9 court de la nomenclature SIGLPAYS"
-          enum:
-          - AF
-          - AX
-          - AL
-          - DZ
-          - AS
-          - AD
-          - AO
-          - AI
-          - AQ
-          - AG
-          - AR
-          - AM
-          - AW
-          - AU
-          - AT
-          - AZ
-          - BS
-          - BH
-          - BD
-          - BB
-          - BY
-          - BE
-          - BZ
-          - BJ
-          - BM
-          - BT
-          - BO
-          - BA
-          - BW
-          - BV
-          - BR
-          - IO
-          - BN
-          - BG
-          - BF
-          - BI
-          - CV
-          - KH
-          - CM
-          - CA
-          - KY
-          - CF
-          - TD
-          - CL
-          - CN
-          - CX
-          - CC
-          - CO
-          - KM
-          - CG
-          - CK
-          - CR
-          - CI
-          - HR
-          - CU
-          - CW
-          - CY
-          - CZ
-          - DK
-          - DJ
-          - DM
-          - DO
-          - EC
-          - EG
-          - SV
-          - GQ
-          - ER
-          - EE
-          - SZ
-          - ET
-          - FK
-          - FO
-          - FJ
-          - FI
-          - FR
-          - GF
-          - PF
-          - TF
-          - GA
-          - GM
-          - GE
-          - DE
-          - GH
-          - GI
-          - GR
-          - GL
-          - GD
-          - GP
-          - GU
-          - GT
-          - GG
-          - GN
-          - GW
-          - GY
-          - HT
-          - HM
-          - VA
-          - HN
-          - HK
-          - HU
-          - IS
-          - IN
-          - ID
-          - IR
-          - IQ
-          - IE
-          - IM
-          - IL
-          - IT
-          - JM
-          - JP
-          - JE
-          - JO
-          - KZ
-          - KE
-          - KI
-          - KP
-          - KW
-          - KG
-          - LA
-          - LV
-          - LB
-          - LS
-          - LR
-          - LY
-          - LI
-          - LT
-          - LU
-          - MO
-          - MG
-          - MW
-          - MY
-          - MV
-          - ML
-          - MT
-          - MH
-          - MQ
-          - MR
-          - MU
-          - YT
-          - MX
-          - FM
-          - MC
-          - MN
-          - ME
-          - MS
-          - MA
-          - MZ
-          - MM
-          - NA
-          - NR
-          - NP
-          - NL
-          - NC
-          - NZ
-          - NI
-          - NE
-          - NG
-          - NU
-          - NF
-          - MK
-          - MP
-          - 'NO'
-          - OM
-          - PK
-          - PW
-          - PA
-          - PG
-          - PY
-          - PE
-          - PH
-          - PN
-          - PL
-          - PT
-          - PR
-          - QA
-          - RE
-          - RO
-          - RU
-          - RW
-          - BL
-          - KN
-          - LC
-          - MF
-          - PM
-          - VC
-          - WS
-          - SM
-          - ST
-          - SA
-          - SN
-          - RS
-          - SC
-          - SL
-          - SG
-          - SX
-          - SK
-          - SI
-          - SB
-          - SO
-          - ZA
-          - GS
-          - SS
-          - ES
-          - LK
-          - SD
-          - SR
-          - SJ
-          - SE
-          - CH
-          - SY
-          - TJ
-          - TH
-          - TL
-          - TG
-          - TK
-          - TO
-          - TT
-          - TN
-          - TR
-          - TM
-          - TC
-          - TV
-          - UG
-          - UA
-          - AE
-          - GB
-          - US
-          - UM
-          - UY
-          - UZ
-          - VU
-          - VE
-          - VN
-          - VG
-          - VI
-          - WF
-          - EH
-          - YE
-          - ZM
-          - ZW
-          examples:
-          - FR
-        destinationCategory:
-          type: string
-          title: "Cat\xE9gorie de l'\xE9tablissement de destination"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/destinationCategory
-          description: "A valoriser par le code de la nomenclature associ\xE9e"
-          examples:
-          - None
-        healthcareType:
-          type: string
-          title: "Type d'activit\xE9 de soins de l'unit\xE9 fonctionnelle de destination"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/healthcareType
-          description: A valoriser par le code de la nomenclature ActiviteOperationnelle
-          examples:
-          - None
-        finess:
-          type: string
-          title: "FINESS g\xE9ographique"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/destination/finess
-          description: "FINESS g\xE9ographique de l\u2019\xE9tablissement de destination\
-            \ (9 chiffres)"
-          examples:
-          - None
-      additionalProperties: false
-      example: example.json#/orientation/destination
-      examples:
-      - destinationCountry: FR
-        destinationCategory: None
-        healthcareType: None
-        finess: None
-    decision:
-      type: object
-      title: Transport
-      x-display: expansion-panels
-      x-health-only: false
-      required:
-      - resourceCategory
-      - resourceType
-      - teamCare
-      properties:
-        resourceCategory:
-          type: string
-          title: Moyen de transport
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/decision/resourceCategory
-          description: "Pr\xE9cise le type de moyen engag\xE9 dans l'intervention\
-            \ (SMUR, TSU, HOSPIT, etc.). \nA valoriser par un code de la nomenclature\
-            \ SI SAMU-TYPE_MOYEN."
-          enum:
-          - SMUR
-          - HOSPIT
-          - LIB
-          - 'TSU '
-          - SIS
-          - AASC
-          - FDO
-          - AUTRE
-          examples:
-          - SMUR
-        resourceType:
-          type: string
-          title: Type de vecteur de transport
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/decision/resourceType
-          description: "Pr\xE9cise le type de v\xE9hicule terrestre / a\xE9rien /\
-            \ maritime engag\xE9 dans l'intervention.\nA valoriser par un code de\
-            \ la nomenclature CISU-TYPE_VECTEUR."
-          enum:
-          - AASC
-          - VLSC
-          - VPSP
-          - AUTRESC
-          - AUTREVEC
-          - TAXI
-          - TRANSP
-          - TRAIN
-          - AVION
-          - PERSO
-          - APIED
-          - AUTRE
-          - AUTRETRA
-          - FSI
-          - HELIFSI
-          - VLFSI
-          - FFSI
-          - VHFSI
-          - LIB
-          - MEDV
-          - INF
-          - AUTREPRO
-          - SIS
-          - VSAV
-          - GRIMP
-          - VPL
-          - SRSIS
-          - FEUSIS
-          - VPMA
-          - VCH
-          - VR
-          - PCSIS
-          - VLISP
-          - VLMSP
-          - VLCG
-          - VLSIS
-          - DRAGON
-          - AVSC
-          - MOYSSE
-          - AUTRESIS
-          - NAVISIS
-          - SMUR
-          - VLM
-          - VL
-          - PSM1
-          - PSM2
-          - PSM3
-          - PSMP
-          - VPC
-          - AR
-          - AR-BAR
-          - AR-PED
-          - HELISMUR
-          - HELISAN
-          - AVSMUR
-          - AVSAN
-          - NAVISMUR
-          - TSU
-          - VSL
-          - AMB-GV
-          - AMB-PV
-          - AMB-BAR
-          - AMB
-          examples:
-          - AR, VLM, VSAV
-        teamCare:
-          type: string
-          title: "Niveau de m\xE9dicalisation du transport"
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/orientation/decision/teamCare
-          description: "Type d\u2019\xE9quipe (m\xE9dical, param\xE9dicale, secouriste).\n\
-            A valoriser par un code de la nomenclature SI-SAMU-NIVSOIN."
-          enum:
-          - MED
-          - PARAMED
-          - SECOURS
-          examples:
-          - PARAMED
-      additionalProperties: false
-      example: example.json#/orientation/decision
-      examples:
-      - resourceCategory: SMUR
-        resourceType: AR, VLM, VSAV
-        teamCare: PARAMED
     customContent:
       $id: classpath:/json-schema/schema#
       x-id: customContent.schema.json#

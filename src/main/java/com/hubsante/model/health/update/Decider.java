@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.rpis;
+package com.hubsante.model.health.update;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -39,68 +39,81 @@ import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * DetailedAddress
+ * Decider
  */
-@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_INSEE_CODE,
-                    DetailedAddress.JSON_PROPERTY_CITY})
-@JsonTypeName("detailedAddress")
+@JsonPropertyOrder({Decider.JSON_PROPERTY_ROLE})
+@JsonTypeName("decider")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class DetailedAddress {
-  public static final String JSON_PROPERTY_INSEE_CODE = "inseeCode";
-  private String inseeCode;
+public class Decider {
 
-  public static final String JSON_PROPERTY_CITY = "city";
-  private String city;
+  /**
+   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
+   */
+  public enum RoleEnum {
+    AMBULANCIER("AMBULANCIER"),
 
-  public DetailedAddress() {}
+    ARM("ARM"),
 
-  public DetailedAddress inseeCode(String inseeCode) {
+    INFIRMIER("INFIRMIER"),
 
-    this.inseeCode = inseeCode;
+    MEDECIN("MEDECIN"),
+
+    AUTRE("AUTRE"),
+
+    INCONNU("INCONNU");
+
+    private String value;
+
+    RoleEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static RoleEnum fromValue(String value) {
+      for (RoleEnum b : RoleEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_ROLE = "role";
+  private RoleEnum role;
+
+  public Decider() {}
+
+  public Decider role(RoleEnum role) {
+
+    this.role = role;
     return this;
   }
 
   /**
-   * Code INSEE de la commune actuelle sur la base du Code Officiel géographique
-   *en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE
-   *peut également précisé le pays d&#39;intervention, si étranger.
-   * @return inseeCode
+   * Rôle de l&#39;opérateur au sein de l&#39;entité émettrice du message
+   * @return role
    **/
-  @JsonProperty(JSON_PROPERTY_INSEE_CODE)
+  @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getInseeCode() {
-    return inseeCode;
+  public RoleEnum getRole() {
+    return role;
   }
 
-  @JsonProperty(JSON_PROPERTY_INSEE_CODE)
+  @JsonProperty(JSON_PROPERTY_ROLE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setInseeCode(String inseeCode) {
-    this.inseeCode = inseeCode;
-  }
-
-  public DetailedAddress city(String city) {
-
-    this.city = city;
-    return this;
-  }
-
-  /**
-   * Nom officiel de la commune actuelle
-   * @return city
-   **/
-  @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-
-  public String getCity() {
-    return city;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CITY)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCity(String city) {
-    this.city = city;
+  public void setRole(RoleEnum role) {
+    this.role = role;
   }
 
   @Override
@@ -111,24 +124,20 @@ public class DetailedAddress {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    DetailedAddress detailedAddress = (DetailedAddress)o;
-    return Objects.equals(this.inseeCode, detailedAddress.inseeCode) &&
-        Objects.equals(this.city, detailedAddress.city);
+    Decider decider = (Decider)o;
+    return Objects.equals(this.role, decider.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(inseeCode, city);
+    return Objects.hash(role);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class DetailedAddress {\n");
-    sb.append("    inseeCode: ")
-        .append(toIndentedString(inseeCode))
-        .append("\n");
-    sb.append("    city: ").append(toIndentedString(city)).append("\n");
+    sb.append("class Decider {\n");
+    sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();
   }

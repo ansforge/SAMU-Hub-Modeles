@@ -1744,14 +1744,6 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                         <enumeration value="DEFIBRILLATEUR, "/>
                         <enumeration value="ECALL"/>
                         <enumeration value="PERSONNE"/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1767,14 +1759,6 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                         <enumeration value="POSTAL"/>
                         <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>

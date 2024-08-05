@@ -63,23 +63,7 @@ public class Contact {
 
     ECALL("ECALL"),
 
-    PERSONNE("PERSONNE"),
-
-    EMPTY(""),
-
-    EMPTY2(""),
-
-    EMPTY3(""),
-
-    EMPTY4(""),
-
-    EMPTY5(""),
-
-    EMPTY6(""),
-
-    EMPTY7(""),
-
-    EMPTY8("");
+    PERSONNE("PERSONNE");
 
     private String value;
 
@@ -123,23 +107,7 @@ public class Contact {
 
     WEB("WEB"),
 
-    RADIO("RADIO"),
-
-    EMPTY(""),
-
-    EMPTY2(""),
-
-    EMPTY3(""),
-
-    EMPTY4(""),
-
-    EMPTY5(""),
-
-    EMPTY6(""),
-
-    EMPTY7(""),
-
-    EMPTY8("");
+    RADIO("RADIO");
 
     private String value;
 
