@@ -12,6 +12,9 @@
   },
   "additionalProperties": {
     "moduleName": "Health",
-    "gemName": "hubsanteModel"
+    "gemName": "hubsanteModel",
+    "allowUnicodeIdentifiers": true,
+    "useAutoload": true,
+    "sortParamsByRequiredFlag": true
   }
 }
