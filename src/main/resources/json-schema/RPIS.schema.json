@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.08.05",
+    "version": "24.08.06",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -270,7 +270,7 @@
                         "AFDO",
                         "ATIERS",
                         "MOYPERSO",
-                        "Code vecteur choisi",
+                        "VECTEUR",
                         "REFPAT",
                         "REFFAM",
                         "PASREAKO",
@@ -1545,7 +1545,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/finessGeo",
-                    "description": "Finess géographique et juridique de l’établissement de santé"
+                    "description": "Finess géographique et juridique de l’établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
                 "unit": {
                     "type": "string",
@@ -1553,7 +1553,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/location/unit",
-                    "description": "Unité fonctionnelle de l'établissement de santé"
+                    "description": "Unité fonctionnelle de l'établissement de santé. \nA renseigner uniquement si l'intervention a lieu dans un établissement de santé. "
                 },
                 "detailedAddress": {
                     "$ref": "#/definitions/detailedAddress"
@@ -1618,7 +1618,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departSmur",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR quitte sa base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1628,7 +1628,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedSmur",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1638,7 +1638,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/departLocation",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR quitte les lieux de l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1648,7 +1648,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/arrivedDestination",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR qui transporte arrive à destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1658,7 +1658,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/teamAvailable",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
@@ -1668,7 +1668,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/intervention/smurStatus/returnSmur",
-                    "description": "s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
+                    "description": "Date et heure à laquelle le SMUR est de retour à la base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 }

@@ -50,10 +50,7 @@ import java.util.Objects;
 public class Destination {
 
   /**
-   * Indique le type de destination de la ressource : service d’urgences d’un
-   * Etablissement de santé, autres services d’un établissement de santé,
-   * cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long
-   * séjour, autre
+   * Indique le type de destination (cf. nomenclature associée)
    */
   public enum TypeEnum {
     URGENCES("URGENCES"),
@@ -108,9 +105,7 @@ public class Destination {
   }
 
   /**
-   * Indique le type de destination de la ressource : service d’urgences d’un
-   *Etablissement de santé, autres services d’un établissement de santé, cabinet
-   *d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre
+   * Indique le type de destination (cf. nomenclature associée)
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)

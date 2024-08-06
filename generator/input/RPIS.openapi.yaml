@@ -300,7 +300,7 @@ components:
           - AFDO
           - ATIERS
           - MOYPERSO
-          - Code vecteur choisi
+          - VECTEUR
           - REFPAT
           - REFFAM
           - PASREAKO
@@ -1582,7 +1582,8 @@ components:
           x-cols: 6
           example: example.json#/intervention/location/finessGeo
           description: "Finess g\xE9ographique et juridique de l\u2019\xE9tablissement\
-            \ de sant\xE9"
+            \ de sant\xE9. \nA renseigner uniquement si l'intervention a lieu dans\
+            \ un \xE9tablissement de sant\xE9. "
           examples:
           - None
         unit:
@@ -1591,7 +1592,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/location/unit
-          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9"
+          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9.\
+            \ \nA renseigner uniquement si l'intervention a lieu dans un \xE9tablissement\
+            \ de sant\xE9. "
           examples:
           - None
         detailedAddress:
@@ -1663,7 +1666,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/departSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR quitte sa base. \ns'exprime\
+            \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1674,7 +1678,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/arrivedSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR arrive sur les lieux de\
+            \ l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1685,7 +1690,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/departLocation
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR quitte les lieux de l'intervention.\
+            \ \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1696,7 +1702,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/arrivedDestination
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR qui transporte arrive\
+            \ \xE0 destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1707,7 +1714,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/teamAvailable
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR est disponible (dispose\
+            \ de tout les \xE9quipements pour faire une autre intervention). \ns'exprime\
+            \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1718,7 +1727,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/returnSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR est de retour \xE0 la\
+            \ base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:

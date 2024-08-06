@@ -129,18 +129,11 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet patient</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	patient -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
-	detailedName [label=<<TABLE>
-                <TR>
-                <TD ><B>detailedName</B></TD>
-                </TR>
-                <TR><TD  BORDER="0"><I>objet detailedName</I></TD></TR><TR><TD BORDER="0" >complete <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >lastName <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >firstName <I>string</I> : [0..1] </TD></TR>
-                </TABLE>>]
-	detailedName -> operator [headlabel=1 taillabel="0..1"]
 	operator [label=<<TABLE>
                 <TR>
                 <TD ><B>operator</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	operator -> medicalNote [headlabel=1 taillabel=1]
 	medicalNote [label=<<TABLE>
@@ -150,18 +143,39 @@ strict digraph {
                 <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
-	decider [label=<<TABLE>
+	operator [label=<<TABLE>
                 <TR>
-                <TD ><B>decider</B></TD>
+                <TD ><B>operator</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decider</I></TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet operator</I></TD></TR><TR><TD BORDER="0" >label <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >role <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
-	decider -> decision [headlabel=1 taillabel="0..1"]
+	operator -> decision [headlabel=1 taillabel=1]
+	externalInfo [label=<<TABLE>
+                <TR>
+                <TD ><B>externalInfo</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet externalInfo</I></TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >uri <I>string</I> : [1..1] </TD></TR>
+                </TABLE>>]
+	externalInfo -> location [headlabel=1 taillabel="0..*"]
+	location [label=<<TABLE>
+                <TR>
+                <TD ><B>location</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet location</I></TD></TR>
+                </TABLE>>]
+	location -> destination [headlabel=1 taillabel="0..1"]
+	destination [label=<<TABLE>
+                <TR>
+                <TD ><B>destination</B></TD>
+                </TR>
+                <TR><TD  BORDER="0"><I>objet destination</I></TD></TR><TR><TD BORDER="0" >type <I>string</I> : [0..1] </TD></TR>
+                </TABLE>>]
+	destination -> engagementDetails [headlabel=1 taillabel="0..1"]
 	engagementDetails [label=<<TABLE>
                 <TR>
                 <TD ><B>engagementDetails</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet engagementDetails</I></TD></TR><TR><TD BORDER="0" >categoryType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >concoursRequest <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCareInitial <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decisionDetails</I></TD></TR><TR><TD BORDER="0" >categoryType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCareInitial <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	engagementDetails -> decision [headlabel=1 taillabel="0..*"]
 	externalInfo [label=<<TABLE>
@@ -189,14 +203,14 @@ strict digraph {
                 <TR>
                 <TD ><B>transportDetails</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet transportDetails</I></TD></TR><TR><TD BORDER="0" >orientation <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >concoursRequest <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >resourceId <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCare <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decisionDetails</I></TD></TR><TR><TD BORDER="0" >categoryType <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >resourceType <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >teamCareInitial <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	transportDetails -> decision [headlabel=1 taillabel="0..*"]
 	decision [label=<<TABLE>
                 <TR>
                 <TD ><B>decision</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet decision</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >patientStatus <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [1..1] </TD></TR><TR><TD BORDER="0" >type <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	decision -> createCaseHealthUpdate [headlabel=1 taillabel="0..*"]
 	customMap [label=<<TABLE>

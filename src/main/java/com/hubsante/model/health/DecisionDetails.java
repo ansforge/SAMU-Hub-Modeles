@@ -34,25 +34,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import com.hubsante.model.health.Destination;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
 
 /**
- * EngagementDetails
+ * DecisionDetails
  */
-@JsonPropertyOrder({EngagementDetails.JSON_PROPERTY_CATEGORY_TYPE,
-                    EngagementDetails.JSON_PROPERTY_RESOURCE_TYPE,
-                    EngagementDetails.JSON_PROPERTY_CONCOURS_REQUEST,
-                    EngagementDetails.JSON_PROPERTY_RESOURCE_ID,
-                    EngagementDetails.JSON_PROPERTY_TEAM_CARE_INITIAL})
-@JsonTypeName("engagementDetails")
+@JsonPropertyOrder({DecisionDetails.JSON_PROPERTY_CATEGORY_TYPE,
+                    DecisionDetails.JSON_PROPERTY_RESOURCE_TYPE,
+                    DecisionDetails.JSON_PROPERTY_TEAM_CARE_INITIAL,
+                    DecisionDetails.JSON_PROPERTY_DESTINATION})
+@JsonTypeName("decisionDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
-public class EngagementDetails {
+public class DecisionDetails {
 
   /**
-   * détaille le moyen à engager
+   * A valoriser avec le type de ressource souhaité / demandé (cf.nomenclature
+   * associée)
    */
   public enum CategoryTypeEnum {
     SMUR("SMUR"),
@@ -100,7 +101,8 @@ public class EngagementDetails {
   private CategoryTypeEnum categoryType;
 
   /**
-   * détaille le type de vecteur à engager
+   * A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature
+   * associée).
    */
   public enum ResourceTypeEnum {
     AASC("AASC"),
@@ -257,15 +259,9 @@ public class EngagementDetails {
   public static final String JSON_PROPERTY_RESOURCE_TYPE = "resourceType";
   private ResourceTypeEnum resourceType;
 
-  public static final String JSON_PROPERTY_CONCOURS_REQUEST = "concoursRequest";
-  private String concoursRequest;
-
-  public static final String JSON_PROPERTY_RESOURCE_ID = "resourceId";
-  private String resourceId;
-
   /**
-   * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
-   * ...)
+   * A valoriser avec le niveau de prise en charge souhaité (cf.nomenclature
+   * associée)
    */
   public enum TeamCareInitialEnum {
     MED("MED"),
@@ -303,16 +299,20 @@ public class EngagementDetails {
       "teamCareInitial";
   private TeamCareInitialEnum teamCareInitial;
 
-  public EngagementDetails() {}
+  public static final String JSON_PROPERTY_DESTINATION = "destination";
+  private Destination destination;
 
-  public EngagementDetails categoryType(CategoryTypeEnum categoryType) {
+  public DecisionDetails() {}
+
+  public DecisionDetails categoryType(CategoryTypeEnum categoryType) {
 
     this.categoryType = categoryType;
     return this;
   }
 
   /**
-   * détaille le moyen à engager
+   * A valoriser avec le type de ressource souhaité / demandé (cf.nomenclature
+   *associée)
    * @return categoryType
    **/
   @JsonProperty(JSON_PROPERTY_CATEGORY_TYPE)
@@ -328,14 +328,15 @@ public class EngagementDetails {
     this.categoryType = categoryType;
   }
 
-  public EngagementDetails resourceType(ResourceTypeEnum resourceType) {
+  public DecisionDetails resourceType(ResourceTypeEnum resourceType) {
 
     this.resourceType = resourceType;
     return this;
   }
 
   /**
-   * détaille le type de vecteur à engager
+   * A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature
+   *associée).
    * @return resourceType
    **/
   @JsonProperty(JSON_PROPERTY_RESOURCE_TYPE)
@@ -351,62 +352,15 @@ public class EngagementDetails {
     this.resourceType = resourceType;
   }
 
-  public EngagementDetails concoursRequest(String concoursRequest) {
-
-    this.concoursRequest = concoursRequest;
-    return this;
-  }
-
-  /**
-   * Identifiant de la ou des demandes de concours
-   * @return concoursRequest
-   **/
-  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getConcoursRequest() {
-    return concoursRequest;
-  }
-
-  @JsonProperty(JSON_PROPERTY_CONCOURS_REQUEST)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setConcoursRequest(String concoursRequest) {
-    this.concoursRequest = concoursRequest;
-  }
-
-  public EngagementDetails resourceId(String resourceId) {
-
-    this.resourceId = resourceId;
-    return this;
-  }
-
-  /**
-   * Get resourceId
-   * @return resourceId
-   **/
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public String getResourceId() {
-    return resourceId;
-  }
-
-  @JsonProperty(JSON_PROPERTY_RESOURCE_ID)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setResourceId(String resourceId) {
-    this.resourceId = resourceId;
-  }
-
-  public EngagementDetails
-  teamCareInitial(TeamCareInitialEnum teamCareInitial) {
+  public DecisionDetails teamCareInitial(TeamCareInitialEnum teamCareInitial) {
 
     this.teamCareInitial = teamCareInitial;
     return this;
   }
 
   /**
-   * Type d’équipe (médical, paramédicale, non médicale, standard, incomplete,
-   *...)
+   * A valoriser avec le niveau de prise en charge souhaité (cf.nomenclature
+   *associée)
    * @return teamCareInitial
    **/
   @JsonProperty(JSON_PROPERTY_TEAM_CARE_INITIAL)
@@ -422,6 +376,29 @@ public class EngagementDetails {
     this.teamCareInitial = teamCareInitial;
   }
 
+  public DecisionDetails destination(Destination destination) {
+
+    this.destination = destination;
+    return this;
+  }
+
+  /**
+   * Get destination
+   * @return destination
+   **/
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public Destination getDestination() {
+    return destination;
+  }
+
+  @JsonProperty(JSON_PROPERTY_DESTINATION)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDestination(Destination destination) {
+    this.destination = destination;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -430,39 +407,34 @@ public class EngagementDetails {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EngagementDetails engagementDetails = (EngagementDetails)o;
-    return Objects.equals(this.categoryType, engagementDetails.categoryType) &&
-        Objects.equals(this.resourceType, engagementDetails.resourceType) &&
-        Objects.equals(this.concoursRequest,
-                       engagementDetails.concoursRequest) &&
-        Objects.equals(this.resourceId, engagementDetails.resourceId) &&
-        Objects.equals(this.teamCareInitial, engagementDetails.teamCareInitial);
+    DecisionDetails decisionDetails = (DecisionDetails)o;
+    return Objects.equals(this.categoryType, decisionDetails.categoryType) &&
+        Objects.equals(this.resourceType, decisionDetails.resourceType) &&
+        Objects.equals(this.teamCareInitial, decisionDetails.teamCareInitial) &&
+        Objects.equals(this.destination, decisionDetails.destination);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(categoryType, resourceType, concoursRequest, resourceId,
-                        teamCareInitial);
+    return Objects.hash(categoryType, resourceType, teamCareInitial,
+                        destination);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EngagementDetails {\n");
+    sb.append("class DecisionDetails {\n");
     sb.append("    categoryType: ")
         .append(toIndentedString(categoryType))
         .append("\n");
     sb.append("    resourceType: ")
         .append(toIndentedString(resourceType))
         .append("\n");
-    sb.append("    concoursRequest: ")
-        .append(toIndentedString(concoursRequest))
-        .append("\n");
-    sb.append("    resourceId: ")
-        .append(toIndentedString(resourceId))
-        .append("\n");
     sb.append("    teamCareInitial: ")
         .append(toIndentedString(teamCareInitial))
+        .append("\n");
+    sb.append("    destination: ")
+        .append(toIndentedString(destination))
         .append("\n");
     sb.append("}");
     return sb.toString();

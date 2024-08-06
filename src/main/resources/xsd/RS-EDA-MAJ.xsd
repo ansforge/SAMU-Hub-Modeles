@@ -157,17 +157,45 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
         <sequence>
             <element minOccurs="0" name="idPat" type="string">
                 <annotation>
-                    <documentation>ID partagé du patient concerné par la décision, lorsque le patient existe et est identifié</documentation>
+                    <documentation>A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur</documentation>
                 </annotation>
+            </element>
+            <element minOccurs="0" name="patientStatus">
+                <annotation>
+                    <documentation>A valoriser avec le type de devenir du patient (cf. nomenclature associée)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="OK"/>
+                        <enumeration value="TEMP"/>
+                        <enumeration value="SEUL"/>
+                        <enumeration value="AFAMILLE"/>
+                        <enumeration value="AMED"/>
+                        <enumeration value="AFDO"/>
+                        <enumeration value="ATIERS"/>
+                        <enumeration value="MOYPERSO"/>
+                        <enumeration value="VECTEUR"/>
+                        <enumeration value="REFPAT"/>
+                        <enumeration value="REFFAM"/>
+                        <enumeration value="PASREAKO"/>
+                        <enumeration value="PASREAOK"/>
+                        <enumeration value="REA"/>
+                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="FUGUE"/>
+                        <enumeration value="REFAUTRE"/>
+                        <enumeration value="RAS"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="creation" type="dateTime">
                 <annotation>
-                    <documentation>Groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                    <documentation>A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
                 </annotation>
             </element>
             <element name="type">
                 <annotation>
-                    <documentation>Type de décision prise</documentation>
+                    <documentation>A valoriser avec le type de décision prise (cf.nomenclature associée)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -179,9 +207,9 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="decider" type="x:decider"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="engagementDetails" type="x:engagementDetails"/>
-            <element maxOccurs="unbounded" minOccurs="0" name="transportDetails" type="x:transportDetails"/>
+            <element name="operator" type="x:operator"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="engagementDetails" type="x:decisionDetails"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportDetails" type="x:decisionDetails"/>
         </sequence>
     </complexType>
     <complexType name="additionalInformation">
@@ -584,7 +612,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="operator">
         <sequence>
-            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA : cela peut être le nom et prénom de l'opérateur, ou un identifiant.</documentation>
+                </annotation>
+            </element>
             <element name="role">
                 <annotation>
                     <documentation>A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : </documentation>
@@ -602,30 +634,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
         </sequence>
     </complexType>
-    <complexType name="decider">
-        <sequence>
-            <element name="role">
-                <annotation>
-                    <documentation>Rôle de l'opérateur au sein de l'entité émettrice du message</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="AMBULANCIER"/>
-                        <enumeration value="ARM"/>
-                        <enumeration value="INFIRMIER"/>
-                        <enumeration value="MEDECIN"/>
-                        <enumeration value="AUTRE"/>
-                        <enumeration value="INCONNU"/>
-                    </restriction>
-                </simpleType>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="engagementDetails">
+    <complexType name="decisionDetails">
         <sequence>
             <element name="categoryType">
                 <annotation>
-                    <documentation>détaille le moyen à engager</documentation>
+                    <documentation>A valoriser avec le type de ressource souhaité / demandé (cf.nomenclature associée)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -642,7 +655,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
             </element>
             <element minOccurs="0" name="resourceType">
                 <annotation>
-                    <documentation>détaille le type de vecteur à engager</documentation>
+                    <documentation>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée).</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -712,71 +725,9 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="resourceId" type="string"/>
             <element name="teamCareInitial">
                 <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="MED"/>
-                        <enumeration value="PARAMED"/>
-                        <enumeration value="SECOURS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-        </sequence>
-    </complexType>
-    <complexType name="transportDetails">
-        <sequence>
-            <element name="orientation">
-                <annotation>
-                    <documentation>Décision(s) d'orientation prise par le médecin régulateur : 
-- A transporter
-- Laisser sur place</documentation>
-                </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="OK"/>
-                        <enumeration value="TEMP"/>
-                        <enumeration value="SEUL"/>
-                        <enumeration value="AFAMILLE"/>
-                        <enumeration value="AMED"/>
-                        <enumeration value="AFDO"/>
-                        <enumeration value="ATIERS"/>
-                        <enumeration value="MOYPERSO"/>
-                        <enumeration value="Code vecteur choisi"/>
-                        <enumeration value="REFPAT"/>
-                        <enumeration value="REFFAM"/>
-                        <enumeration value="PASREAKO"/>
-                        <enumeration value="PASREAOK"/>
-                        <enumeration value="REA"/>
-                        <enumeration value="TRANSPOR"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="FUGUE"/>
-                        <enumeration value="REFAUTRE"/>
-                        <enumeration value="RAS"/>
-                    </restriction>
-                </simpleType>
-            </element>
-            <element minOccurs="0" name="concoursRequest" type="string">
-                <annotation>
-                    <documentation>Identifiant de la ou des demandes de concours </documentation>
-                </annotation>
-            </element>
-            <element minOccurs="0" name="resourceId" type="string">
-                <annotation>
-                    <documentation>Identifiant du véhicule terrestre / aérien / maritime de transport principal (= celui dans lequel se trouve le patient), permettant d'associer la décision à un véhicule spécifique + au patient. </documentation>
-                </annotation>
-            </element>
-            <element name="teamCare">
-                <annotation>
-                    <documentation>Type d’équipe (médical, paramédicale, non médicale, standard, incomplete, ...)</documentation>
+                    <documentation>A valoriser avec le niveau de prise en charge souhaité (cf.nomenclature associée)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
@@ -793,7 +744,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="type">
                 <annotation>
-                    <documentation>Indique le type de destination de la ressource : service d’urgences d’un Etablissement de santé, autres services d’un établissement de santé, cabinet d’un professionnel de santé, domicile personnel, EPHAD ou long séjour, autre</documentation>
+                    <documentation>Indique le type de destination (cf. nomenclature associée)</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">

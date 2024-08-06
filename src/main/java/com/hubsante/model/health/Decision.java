@@ -34,9 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.Decider;
-import com.hubsante.model.health.EngagementDetails;
-import com.hubsante.model.health.TransportDetails;
+import com.hubsante.model.health.DecisionDetails;
+import com.hubsante.model.health.Operator;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,11 +46,11 @@ import java.util.Objects;
 /**
  * Decision
  */
-@JsonPropertyOrder({Decision.JSON_PROPERTY_ID_PAT,
-                    Decision.JSON_PROPERTY_CREATION,
-                    Decision.JSON_PROPERTY_TYPE, Decision.JSON_PROPERTY_DECIDER,
-                    Decision.JSON_PROPERTY_ENGAGEMENT_DETAILS,
-                    Decision.JSON_PROPERTY_TRANSPORT_DETAILS})
+@JsonPropertyOrder(
+    {Decision.JSON_PROPERTY_ID_PAT, Decision.JSON_PROPERTY_PATIENT_STATUS,
+     Decision.JSON_PROPERTY_CREATION, Decision.JSON_PROPERTY_TYPE,
+     Decision.JSON_PROPERTY_OPERATOR, Decision.JSON_PROPERTY_ENGAGEMENT_DETAILS,
+     Decision.JSON_PROPERTY_TRANSPORT_DETAILS})
 @JsonTypeName("decision")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -59,11 +58,81 @@ public class Decision {
   public static final String JSON_PROPERTY_ID_PAT = "idPat";
   private String idPat;
 
+  /**
+   * A valoriser avec le type de devenir du patient (cf. nomenclature associée)
+   */
+  public enum PatientStatusEnum {
+    OK("OK"),
+
+    TEMP("TEMP"),
+
+    SEUL("SEUL"),
+
+    AFAMILLE("AFAMILLE"),
+
+    AMED("AMED"),
+
+    AFDO("AFDO"),
+
+    ATIERS("ATIERS"),
+
+    MOYPERSO("MOYPERSO"),
+
+    VECTEUR("VECTEUR"),
+
+    REFPAT("REFPAT"),
+
+    REFFAM("REFFAM"),
+
+    PASREAKO("PASREAKO"),
+
+    PASREAOK("PASREAOK"),
+
+    REA("REA"),
+
+    TRANSPOR("TRANSPOR"),
+
+    ADM("ADM"),
+
+    FUGUE("FUGUE"),
+
+    REFAUTRE("REFAUTRE"),
+
+    RAS("RAS");
+
+    private String value;
+
+    PatientStatusEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static PatientStatusEnum fromValue(String value) {
+      for (PatientStatusEnum b : PatientStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_PATIENT_STATUS = "patientStatus";
+  private PatientStatusEnum patientStatus;
+
   public static final String JSON_PROPERTY_CREATION = "creation";
   private OffsetDateTime creation;
 
   /**
-   * Type de décision prise
+   * A valoriser avec le type de décision prise (cf.nomenclature associée)
    */
   public enum TypeEnum {
     CONSEIL("CONSEIL"),
@@ -104,16 +173,16 @@ public class Decision {
   public static final String JSON_PROPERTY_TYPE = "type";
   private TypeEnum type;
 
-  public static final String JSON_PROPERTY_DECIDER = "decider";
-  private Decider decider;
+  public static final String JSON_PROPERTY_OPERATOR = "operator";
+  private Operator operator;
 
   public static final String JSON_PROPERTY_ENGAGEMENT_DETAILS =
       "engagementDetails";
-  private List<EngagementDetails> engagementDetails;
+  private List<DecisionDetails> engagementDetails;
 
   public static final String JSON_PROPERTY_TRANSPORT_DETAILS =
       "transportDetails";
-  private List<TransportDetails> transportDetails;
+  private List<DecisionDetails> transportDetails;
 
   public Decision() {}
 
@@ -124,8 +193,8 @@ public class Decision {
   }
 
   /**
-   * ID partagé du patient concerné par la décision, lorsque le patient existe
-   *et est identifié
+   * A valoriser avec l&#39;ID partagé du patient concerné par la décision, à
+   *chaque fois que la décision est liée à un patient dans le système émetteur
    * @return idPat
    **/
   @JsonProperty(JSON_PROPERTY_ID_PAT)
@@ -141,6 +210,29 @@ public class Decision {
     this.idPat = idPat;
   }
 
+  public Decision patientStatus(PatientStatusEnum patientStatus) {
+
+    this.patientStatus = patientStatus;
+    return this;
+  }
+
+  /**
+   * A valoriser avec le type de devenir du patient (cf. nomenclature associée)
+   * @return patientStatus
+   **/
+  @JsonProperty(JSON_PROPERTY_PATIENT_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public PatientStatusEnum getPatientStatus() {
+    return patientStatus;
+  }
+
+  @JsonProperty(JSON_PROPERTY_PATIENT_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPatientStatus(PatientStatusEnum patientStatus) {
+    this.patientStatus = patientStatus;
+  }
+
   public Decision creation(OffsetDateTime creation) {
 
     this.creation = creation;
@@ -148,8 +240,8 @@ public class Decision {
   }
 
   /**
-   * Groupe date heure de création de la décision.  L&#39;indicateur de fuseau
-   *horaire Z ne doit pas être utilisé.
+   * A valoriser avec le groupe date heure de création de la décision.
+   *L&#39;indicateur de fuseau horaire Z ne doit pas être utilisé.
    * @return creation
    **/
   @JsonProperty(JSON_PROPERTY_CREATION)
@@ -172,7 +264,7 @@ public class Decision {
   }
 
   /**
-   * Type de décision prise
+   * A valoriser avec le type de décision prise (cf.nomenclature associée)
    * @return type
    **/
   @JsonProperty(JSON_PROPERTY_TYPE)
@@ -188,37 +280,37 @@ public class Decision {
     this.type = type;
   }
 
-  public Decision decider(Decider decider) {
+  public Decision operator(Operator operator) {
 
-    this.decider = decider;
+    this.operator = operator;
     return this;
   }
 
   /**
-   * Get decider
-   * @return decider
+   * Get operator
+   * @return operator
    **/
-  @JsonProperty(JSON_PROPERTY_DECIDER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonProperty(JSON_PROPERTY_OPERATOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public Decider getDecider() {
-    return decider;
+  public Operator getOperator() {
+    return operator;
   }
 
-  @JsonProperty(JSON_PROPERTY_DECIDER)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDecider(Decider decider) {
-    this.decider = decider;
+  @JsonProperty(JSON_PROPERTY_OPERATOR)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setOperator(Operator operator) {
+    this.operator = operator;
   }
 
-  public Decision engagementDetails(List<EngagementDetails> engagementDetails) {
+  public Decision engagementDetails(List<DecisionDetails> engagementDetails) {
 
     this.engagementDetails = engagementDetails;
     return this;
   }
 
   public Decision
-  addEngagementDetailsItem(EngagementDetails engagementDetailsItem) {
+  addEngagementDetailsItem(DecisionDetails engagementDetailsItem) {
     if (this.engagementDetails == null) {
       this.engagementDetails = new ArrayList<>();
     }
@@ -233,7 +325,7 @@ public class Decision {
   @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<EngagementDetails> getEngagementDetails() {
+  public List<DecisionDetails> getEngagementDetails() {
     return engagementDetails;
   }
 
@@ -241,7 +333,7 @@ public class Decision {
 
   @JsonProperty(JSON_PROPERTY_ENGAGEMENT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setEngagementDetails(List<EngagementDetails> engagementDetails) {
+  public void setEngagementDetails(List<DecisionDetails> engagementDetails) {
     if (engagementDetails == null) {
       return;
     }
@@ -251,14 +343,14 @@ public class Decision {
     this.engagementDetails.addAll(engagementDetails);
   }
 
-  public Decision transportDetails(List<TransportDetails> transportDetails) {
+  public Decision transportDetails(List<DecisionDetails> transportDetails) {
 
     this.transportDetails = transportDetails;
     return this;
   }
 
   public Decision
-  addTransportDetailsItem(TransportDetails transportDetailsItem) {
+  addTransportDetailsItem(DecisionDetails transportDetailsItem) {
     if (this.transportDetails == null) {
       this.transportDetails = new ArrayList<>();
     }
@@ -273,7 +365,7 @@ public class Decision {
   @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public List<TransportDetails> getTransportDetails() {
+  public List<DecisionDetails> getTransportDetails() {
     return transportDetails;
   }
 
@@ -281,7 +373,7 @@ public class Decision {
 
   @JsonProperty(JSON_PROPERTY_TRANSPORT_DETAILS)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTransportDetails(List<TransportDetails> transportDetails) {
+  public void setTransportDetails(List<DecisionDetails> transportDetails) {
     if (transportDetails == null) {
       return;
     }
@@ -301,17 +393,18 @@ public class Decision {
     }
     Decision decision = (Decision)o;
     return Objects.equals(this.idPat, decision.idPat) &&
+        Objects.equals(this.patientStatus, decision.patientStatus) &&
         Objects.equals(this.creation, decision.creation) &&
         Objects.equals(this.type, decision.type) &&
-        Objects.equals(this.decider, decision.decider) &&
+        Objects.equals(this.operator, decision.operator) &&
         Objects.equals(this.engagementDetails, decision.engagementDetails) &&
         Objects.equals(this.transportDetails, decision.transportDetails);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(idPat, creation, type, decider, engagementDetails,
-                        transportDetails);
+    return Objects.hash(idPat, patientStatus, creation, type, operator,
+                        engagementDetails, transportDetails);
   }
 
   @Override
@@ -319,9 +412,12 @@ public class Decision {
     StringBuilder sb = new StringBuilder();
     sb.append("class Decision {\n");
     sb.append("    idPat: ").append(toIndentedString(idPat)).append("\n");
+    sb.append("    patientStatus: ")
+        .append(toIndentedString(patientStatus))
+        .append("\n");
     sb.append("    creation: ").append(toIndentedString(creation)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");
-    sb.append("    decider: ").append(toIndentedString(decider)).append("\n");
+    sb.append("    operator: ").append(toIndentedString(operator)).append("\n");
     sb.append("    engagementDetails: ")
         .append(toIndentedString(engagementDetails))
         .append("\n");

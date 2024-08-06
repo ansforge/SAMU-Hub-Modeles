@@ -151,7 +151,7 @@ Si le type d'orientation est sans transport associé, les objets Destination et 
                         <enumeration value="AFDO"/>
                         <enumeration value="ATIERS"/>
                         <enumeration value="MOYPERSO"/>
-                        <enumeration value="Code vecteur choisi"/>
+                        <enumeration value="VECTEUR"/>
                         <enumeration value="REFPAT"/>
                         <enumeration value="REFFAM"/>
                         <enumeration value="PASREAKO"/>
@@ -1376,12 +1376,14 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. </d
             </element>
             <element minOccurs="0" name="finessGeo" type="string">
                 <annotation>
-                    <documentation>Finess géographique et juridique de l’établissement de santé</documentation>
+                    <documentation>Finess géographique et juridique de l’établissement de santé. 
+A renseigner uniquement si l'intervention a lieu dans un établissement de santé. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="unit" type="string">
                 <annotation>
-                    <documentation>Unité fonctionnelle de l'établissement de santé</documentation>
+                    <documentation>Unité fonctionnelle de l'établissement de santé. 
+A renseigner uniquement si l'intervention a lieu dans un établissement de santé. </documentation>
                 </annotation>
             </element>
             <element name="detailedAddress" type="x:detailedAddress"/>
@@ -1413,32 +1415,38 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
         <sequence>
             <element name="departSmur" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR quitte sa base. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="arrivedSmur" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="departLocation" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR quitte les lieux de l'intervention. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="arrivedDestination" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR qui transporte arrive à destination. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element name="teamAvailable" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element name="returnSmur" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR est de retour à la base. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
         </sequence>

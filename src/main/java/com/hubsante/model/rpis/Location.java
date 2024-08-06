@@ -481,7 +481,8 @@ public class Location {
   }
 
   /**
-   * Finess géographique et juridique de l’établissement de santé
+   * Finess géographique et juridique de l’établissement de santé.  A renseigner
+   *uniquement si l&#39;intervention a lieu dans un établissement de santé.
    * @return finessGeo
    **/
   @JsonProperty(JSON_PROPERTY_FINESS_GEO)
@@ -504,7 +505,8 @@ public class Location {
   }
 
   /**
-   * Unité fonctionnelle de l&#39;établissement de santé
+   * Unité fonctionnelle de l&#39;établissement de santé.  A renseigner
+   *uniquement si l&#39;intervention a lieu dans un établissement de santé.
    * @return unit
    **/
   @JsonProperty(JSON_PROPERTY_UNIT)
