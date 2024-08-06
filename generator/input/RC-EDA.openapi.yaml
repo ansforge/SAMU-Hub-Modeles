@@ -2348,14 +2348,6 @@ components:
           - 'DEFIBRILLATEUR, '
           - ECALL
           - PERSONNE
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
           examples:
           - PERSONNE
         type:
@@ -2373,14 +2365,6 @@ components:
           - POSTAL
           - WEB
           - RADIO
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
           examples:
           - TEL
         detail:

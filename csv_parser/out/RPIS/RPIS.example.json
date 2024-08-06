@@ -20,12 +20,11 @@
         "initialTeamCare": "PARAMED"
     },
     "patient": {
-        "patientId": "fr.health.samu690.DRFR15DDXAAJJJ00001.P01",
+        "patientId": "fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1",
         "birthDate": "17/02/1936",
         "sex": "F",
-        "nir": "278112B050002",
         "residentialAddress": {
-            "cityCode": 92300,
+            "inseeCode": 92300,
             "city": "Levallois-Perret"
         }
     },
@@ -35,7 +34,7 @@
             "finessGeo": "None",
             "unit": "None",
             "detailedAddress": {
-                "cityCode": 92300,
+                "inseeCode": 92300,
                 "city": "Levallois-Perret"
             }
         },
@@ -44,11 +43,6 @@
             "nurse": "NON",
             "driver": "OUI"
         },
-        "actionsSMUR": [
-            "None"
-        ],
-        "mainDiagnosis": "MD30.Z",
-        "associatedDiagnosis": "8B22.1",
         "smurStatus": {
             "departSmur": "2022-09-27T08:23:34+02:00",
             "arrivedSmur": "2022-09-27T08:23:34+02:00",
@@ -56,7 +50,12 @@
             "arrivedDestination": "2022-09-27T08:23:34+02:00",
             "teamAvailable": "2022-09-27T08:23:34+02:00",
             "returnSmur": "2022-09-27T08:23:34+02:00"
-        }
+        },
+        "actionsSMUR": [
+            "None"
+        ],
+        "mainDiagnosis": "MD30.Z",
+        "associatedDiagnosis": "8B22.1"
     },
     "orientation": {
         "type": "TEMP",

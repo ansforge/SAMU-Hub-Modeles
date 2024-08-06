@@ -52,6 +52,7 @@ A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{doma
             </element>
             <element maxOccurs="unbounded" minOccurs="0" name="patient" type="x:patient"/>
             <element maxOccurs="unbounded" minOccurs="0" name="medicalNote" type="x:medicalNote"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="decision" type="x:decision"/>
             <element minOccurs="0" name="freetext" type="string">
                 <annotation>
                     <documentation>Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.</documentation>
@@ -152,6 +153,65 @@ Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jo
             </element>
         </sequence>
     </complexType>
+    <complexType name="decision">
+        <sequence>
+            <element minOccurs="0" name="idPat" type="string">
+                <annotation>
+                    <documentation>A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur</documentation>
+                </annotation>
+            </element>
+            <element minOccurs="0" name="patientStatus">
+                <annotation>
+                    <documentation>A valoriser avec le type de devenir du patient (cf. nomenclature associée)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="OK"/>
+                        <enumeration value="TEMP"/>
+                        <enumeration value="SEUL"/>
+                        <enumeration value="AFAMILLE"/>
+                        <enumeration value="AMED"/>
+                        <enumeration value="AFDO"/>
+                        <enumeration value="ATIERS"/>
+                        <enumeration value="MOYPERSO"/>
+                        <enumeration value="VECTEUR"/>
+                        <enumeration value="REFPAT"/>
+                        <enumeration value="REFFAM"/>
+                        <enumeration value="PASREAKO"/>
+                        <enumeration value="PASREAOK"/>
+                        <enumeration value="REA"/>
+                        <enumeration value="TRANSPOR"/>
+                        <enumeration value="ADM"/>
+                        <enumeration value="FUGUE"/>
+                        <enumeration value="REFAUTRE"/>
+                        <enumeration value="RAS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="creation" type="dateTime">
+                <annotation>
+                    <documentation>A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.</documentation>
+                </annotation>
+            </element>
+            <element name="type">
+                <annotation>
+                    <documentation>A valoriser avec le type de décision prise (cf.nomenclature associée)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="CONSEIL"/>
+                        <enumeration value="PMT"/>
+                        <enumeration value="INTER"/>
+                        <enumeration value="ORIENT"/>
+                        <enumeration value="PASPLUS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="operator" type="x:operator"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="engagementDetails" type="x:decisionDetails"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="transportDetails" type="x:decisionDetails"/>
+        </sequence>
+    </complexType>
     <complexType name="additionalInformation">
         <sequence>
             <element maxOccurs="3" minOccurs="0" name="customMap" type="x:customMap"/>
@@ -215,6 +275,24 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="caseDetails">
         <sequence>
+            <element minOccurs="0" name="status">
+                <annotation>
+                    <documentation>A valoriser avec l'état du dossier dans le système émetteur
+Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement
+Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="PROGRAMME"/>
+                        <enumeration value=" ACTIF"/>
+                        <enumeration value="ACHEVE"/>
+                        <enumeration value="VALIDE"/>
+                        <enumeration value="CLOTURE"/>
+                        <enumeration value="CLASSE"/>
+                        <enumeration value="ARCHIVE"/>
+                    </restriction>
+                </simpleType>
+            </element>
             <element minOccurs="0" name="priority">
                 <annotation>
                     <documentation>Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3</documentation>
@@ -534,7 +612,11 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="operator">
         <sequence>
-            <element minOccurs="0" name="detailedName" type="x:detailedName"/>
+            <element minOccurs="0" name="label" type="string">
+                <annotation>
+                    <documentation>A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA : cela peut être le nom et prénom de l'opérateur, ou un identifiant.</documentation>
+                </annotation>
+            </element>
             <element name="role">
                 <annotation>
                     <documentation>A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : </documentation>
@@ -550,6 +632,132 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
                     </restriction>
                 </simpleType>
             </element>
+        </sequence>
+    </complexType>
+    <complexType name="decisionDetails">
+        <sequence>
+            <element name="categoryType">
+                <annotation>
+                    <documentation>A valoriser avec le type de ressource souhaité / demandé (cf.nomenclature associée)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="SMUR"/>
+                        <enumeration value="HOSPIT"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="TSU "/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="AASC"/>
+                        <enumeration value="FDO"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="resourceType">
+                <annotation>
+                    <documentation>A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée).</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="AASC"/>
+                        <enumeration value="VLSC"/>
+                        <enumeration value="VPSP"/>
+                        <enumeration value="AUTRESC"/>
+                        <enumeration value="AUTREVEC"/>
+                        <enumeration value="TAXI"/>
+                        <enumeration value="TRANSP"/>
+                        <enumeration value="TRAIN"/>
+                        <enumeration value="AVION"/>
+                        <enumeration value="PERSO"/>
+                        <enumeration value="APIED"/>
+                        <enumeration value="AUTRE"/>
+                        <enumeration value="AUTRETRA"/>
+                        <enumeration value="FSI"/>
+                        <enumeration value="HELIFSI"/>
+                        <enumeration value="VLFSI"/>
+                        <enumeration value="FFSI"/>
+                        <enumeration value="VHFSI"/>
+                        <enumeration value="LIB"/>
+                        <enumeration value="MEDV"/>
+                        <enumeration value="INF"/>
+                        <enumeration value="AUTREPRO"/>
+                        <enumeration value="SIS"/>
+                        <enumeration value="VSAV"/>
+                        <enumeration value="GRIMP"/>
+                        <enumeration value="VPL"/>
+                        <enumeration value="SRSIS"/>
+                        <enumeration value="FEUSIS"/>
+                        <enumeration value="VPMA"/>
+                        <enumeration value="VCH"/>
+                        <enumeration value="VR"/>
+                        <enumeration value="PCSIS"/>
+                        <enumeration value="VLISP"/>
+                        <enumeration value="VLMSP"/>
+                        <enumeration value="VLCG"/>
+                        <enumeration value="VLSIS"/>
+                        <enumeration value="DRAGON"/>
+                        <enumeration value="AVSC"/>
+                        <enumeration value="MOYSSE"/>
+                        <enumeration value="AUTRESIS"/>
+                        <enumeration value="NAVISIS"/>
+                        <enumeration value="SMUR"/>
+                        <enumeration value="VLM"/>
+                        <enumeration value="VL"/>
+                        <enumeration value="PSM1"/>
+                        <enumeration value="PSM2"/>
+                        <enumeration value="PSM3"/>
+                        <enumeration value="PSMP"/>
+                        <enumeration value="VPC"/>
+                        <enumeration value="AR"/>
+                        <enumeration value="AR-BAR"/>
+                        <enumeration value="AR-PED"/>
+                        <enumeration value="HELISMUR"/>
+                        <enumeration value="HELISAN"/>
+                        <enumeration value="AVSMUR"/>
+                        <enumeration value="AVSAN"/>
+                        <enumeration value="NAVISMUR"/>
+                        <enumeration value="TSU"/>
+                        <enumeration value="VSL"/>
+                        <enumeration value="AMB-GV"/>
+                        <enumeration value="AMB-PV"/>
+                        <enumeration value="AMB-BAR"/>
+                        <enumeration value="AMB"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element name="teamCareInitial">
+                <annotation>
+                    <documentation>A valoriser avec le niveau de prise en charge souhaité (cf.nomenclature associée)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="MED"/>
+                        <enumeration value="PARAMED"/>
+                        <enumeration value="SECOURS"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="destination" type="x:destination"/>
+        </sequence>
+    </complexType>
+    <complexType name="destination">
+        <sequence>
+            <element minOccurs="0" name="type">
+                <annotation>
+                    <documentation>Indique le type de destination (cf. nomenclature associée)</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="URGENCES"/>
+                        <enumeration value="SANTE"/>
+                        <enumeration value="CABINET"/>
+                        <enumeration value="DOMICILE"/>
+                        <enumeration value="EPHAD"/>
+                        <enumeration value="AUTRE"/>
+                    </restriction>
+                </simpleType>
+            </element>
+            <element minOccurs="0" name="location" type="x:location"/>
         </sequence>
     </complexType>
     <complexType name="customMap">

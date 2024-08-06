@@ -34,7 +34,6 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.update.DetailedName;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -42,14 +41,13 @@ import java.util.Objects;
 /**
  * Operator
  */
-@JsonPropertyOrder(
-    {Operator.JSON_PROPERTY_DETAILED_NAME, Operator.JSON_PROPERTY_ROLE})
+@JsonPropertyOrder({Operator.JSON_PROPERTY_LABEL, Operator.JSON_PROPERTY_ROLE})
 @JsonTypeName("operator")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Operator {
-  public static final String JSON_PROPERTY_DETAILED_NAME = "detailedName";
-  private DetailedName detailedName;
+  public static final String JSON_PROPERTY_LABEL = "label";
+  private String label;
 
   /**
    * A valoriser avec le rôle de l&#39;opérateur au sein de l&#39;entité
@@ -98,27 +96,28 @@ public class Operator {
 
   public Operator() {}
 
-  public Operator detailedName(DetailedName detailedName) {
+  public Operator label(String label) {
 
-    this.detailedName = detailedName;
+    this.label = label;
     return this;
   }
 
   /**
-   * Get detailedName
-   * @return detailedName
+   * A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA
+   *: cela peut être le nom et prénom de l&#39;opérateur, ou un identifiant.
+   * @return label
    **/
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
+  @JsonProperty(JSON_PROPERTY_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public DetailedName getDetailedName() {
-    return detailedName;
+  public String getLabel() {
+    return label;
   }
 
-  @JsonProperty(JSON_PROPERTY_DETAILED_NAME)
+  @JsonProperty(JSON_PROPERTY_LABEL)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetailedName(DetailedName detailedName) {
-    this.detailedName = detailedName;
+  public void setLabel(String label) {
+    this.label = label;
   }
 
   public Operator role(RoleEnum role) {
@@ -154,22 +153,20 @@ public class Operator {
       return false;
     }
     Operator operator = (Operator)o;
-    return Objects.equals(this.detailedName, operator.detailedName) &&
+    return Objects.equals(this.label, operator.label) &&
         Objects.equals(this.role, operator.role);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(detailedName, role);
+    return Objects.hash(label, role);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Operator {\n");
-    sb.append("    detailedName: ")
-        .append(toIndentedString(detailedName))
-        .append("\n");
+    sb.append("    label: ").append(toIndentedString(label)).append("\n");
     sb.append("    role: ").append(toIndentedString(role)).append("\n");
     sb.append("}");
     return sb.toString();
