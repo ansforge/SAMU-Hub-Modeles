@@ -141,7 +141,7 @@ jobs:
       - name: Build and run TECHNICAL tests
         run: ./gradlew test --info -Ptechnical=true
 
-      - name: Build and run business tests
+      - name: Build and run REAL MESSAGES tests
         run: ./gradlew test --info
 
       # Ref.: https://github.com/gradle/gradle-build-action/issues/619#issuecomment-1453244157
