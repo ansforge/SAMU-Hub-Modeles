@@ -23,17 +23,16 @@
               "URI": "hubex:fr.health.samuA"
             },
             "sentAt": "2022-07-25T10:04:34+01:00",
-            "status": "Actual",
-            "kind": "Ack",
+            "status": 1,
+            "kind": 2,
             "recipient": [
               {
-                "name": "samuB",
-                "URI": "hubex:fr.health.samuB"
+                "name": 1,
+                "URI": 1
               }
             ],
             "reference": {
-              "distributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
-              "unknown_prop": "unknown"
+              "distributionID": "fr.health.samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
             }
           }
         }

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<error xmlns="urn:emergency:cisu:2.0:error">
+  <errorCode>
+    <statusCode>100</statusCode>
+    <statusString>DELIVERY_MODE_INCONSISTENCY</statusString>
+  </errorCode>
+  <errorCause>cause</errorCause>
+  <sourceMessage>
+    <distributionID>fr.health.samuA_2608323d-507d-4cbf-bf74-52007f8124ea</distributionID>
+    <senderID>fr.health.samuA</senderID>
+    <dateTimeSent>2022-07-25T10:04:34+01:00</dateTimeSent>
+    <dateTimeExpires>2072-07-25T10:04:34+01:00</dateTimeExpires>
+    <distributionStatus>Actual</distributionStatus>
+    <distributionKind>Ack</distributionKind>
+    <descriptor>
+      <language>fr-FR</language>
+      <explicitAddress>
+        <explicitAddressScheme>hubex</explicitAddressScheme>
+        <explicitAddressValue>fr.health.samuB</explicitAddressValue>
+      </explicitAddress>
+    </descriptor>
+    <content>
+      <jsonContent>
+        <embeddedJsonContent>
+          <message>
+            <unknown_property>unknown_value</unknown_property>
+          </message>
+        </embeddedJsonContent>
+      </jsonContent>
+    </content>
+  </sourceMessage>
+  <referencedDistributionID>fr.health.hub_2608323d-507d-4cbf-bf74-52007f8124ea</referencedDistributionID>
+</error>

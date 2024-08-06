@@ -32,9 +32,8 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.config.Constants.*;
-import static com.hubsante.model.config.Constants.FULL_SCHEMA;
-import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -79,24 +78,14 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
     }
 
     @Test
-    @DisplayName("Valid error message is thrown: no use cases detected")
-    void noSchemasDetected() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Could not detect any schemas in the message, at least one is required "
-        };
-        jsonValidationFails("RC-EDA/invalid-RC-EDA-no-schemas.json", expectedErrors);
-    }
-
-    @Test
     @DisplayName("Additional properties below wrapper level do not pass validation")
     public void additionalPropertyFails() throws IOException {
         // unknown property below wrapper level will not pass validation
-        String refLevelInvalid = getInvalidMessage("RC-REF/reference-level-additional-property.json");
+        String refLevelInvalid = getInvalidMessage("RC-REF/RC-REF-reference-level-additional-property.json");
         assertThrows(ValidationException.class, () -> validator.validateJSON(refLevelInvalid, FULL_SCHEMA));
 
         // unknown property at the wrapper level does not throw exception but will be ignored at deserialization
-        String wrapperLevelInvalid = getInvalidMessage("RC-REF/wrapper-level-additional-property.json");
+        String wrapperLevelInvalid = getInvalidMessage("RC-REF/RC-REF-wrapper-level-additional-property.json");
         assertDoesNotThrow(() -> validator.validateJSON(wrapperLevelInvalid, FULL_SCHEMA));
     }
 
@@ -175,19 +164,22 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
         List<File> exampleFiles = new ArrayList<>();
 
         Arrays.stream(subFolders).forEach(folder -> {
-            if (!folder.getName().equals("work-in-progress")) {
-                exampleFiles.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
-            }
+            exampleFiles.addAll(Arrays.asList(Objects.requireNonNull(folder.listFiles())));
         });
 
         AtomicBoolean allPass = new AtomicBoolean(true);
 
         exampleFiles.forEach(file -> {
             try {
-                String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                String fullJson = wrapUseCaseMessage(useCaseJson);
+                if (file.getName().endsWith(".json")) {
+                    String useCaseJson = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    String fullJson = wrapUseCaseMessage(useCaseJson);
 
-                validator.validateJSON(fullJson, FULL_SCHEMA);
+                    validator.validateJSON(fullJson, FULL_SCHEMA);
+                } else {
+                    String useCaseXml = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    validator.validateXML(useCaseXml, FULL_XSD);
+                }
                 log.info("File {} is valid against schema", file.getName());
 
             } catch (IOException e) {

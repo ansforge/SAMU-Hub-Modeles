@@ -28,9 +28,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class EdxlHandler {
 
-    private XmlMapper xmlMapper;
+    public XmlMapper xmlMapper;
 
-    private ObjectMapper jsonMapper;
+    public ObjectMapper jsonMapper;
 
     public EdxlHandler() {
         xmlMapper = (XmlMapper) new XmlMapper()

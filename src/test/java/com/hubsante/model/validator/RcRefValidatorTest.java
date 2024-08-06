@@ -49,6 +49,47 @@ public class RcRefValidatorTest extends AbstractValidatorTest {
     }
 
     @Test
+    @DisplayName("RC-REF incorrect property type validation fails")
+    public void jsonRcRefIncorrectPropertyTypeValidationFails() throws IOException {
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Could not detect any schemas in the message, at least one is required ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: ",
+                " - kind: integer found, string expected",
+                " - recipient[0].name: integer found, string expected",
+                " - status: does not have a value in the enumeration [Actual, Exercise, System]",
+                " - kind: does not have a value in the enumeration [Report, Update, Cancel, Ack, Error]",
+                " - recipient[0].URI: integer found, string expected",
+                " - status: integer found, string expected"
+        };
+        jsonValidationFails("RC-REF/RC-REF-invalid-type.json", expectedErrors);
+    }
+
+    @Test
+    @DisplayName("RC-REF array where object is expected validation fails")
+    public void jsonRcRefArrayWhereObjectIsExpectedValidationFails() throws IOException {
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
+                " - reference.distributionID: array found, string expected"
+        };
+        jsonValidationFails("RC-REF/RC-REF-unexpected-array.json", expectedErrors);
+    }
+
+    @Test
+    @DisplayName("RC-RE incorrect date format validation fails")
+    public void jsonRcRefIncorrectDateFormatValidationFails() throws IOException {
+        String[] expectedErrors = {
+                "Could not validate message against schema : errors occurred. ",
+                "Could not detect any schemas in the message, at least one is required ",
+                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header: ",
+                " - sentAt: 7 juillet 1985 is an invalid date-time",
+                " - sentAt: does not match the regex pattern \\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}"
+        };
+        jsonValidationFails("RC-REF/RC-REF-incorrect-date-format.json", expectedErrors);
+    }
+
+    @Test
     @DisplayName("RC-REF xml validation fails")
     public void xmlRcRefValidationFails() throws IOException {
         xmlValidationFails("RC-REF/RC-REF-missing-required-fields.xml", XML_MISSING, new String[]{"distributionID}' "});

@@ -22,7 +22,7 @@
               "name": "samuA",
               "URI": "hubex:fr.health.samuA"
             },
-            "sentAt": "2022-07-25T10:04:34+01:00",
+            "sentAt": "7 juillet 1985",
             "status": "Actual",
             "kind": "Ack",
             "recipient": [
@@ -32,9 +32,8 @@
               }
             ],
             "reference": {
-              "distributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
-            },
-            "unknown_prop": "unknown"
+              "distributionID": "fr.health.samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
+            }
           }
         }
       }

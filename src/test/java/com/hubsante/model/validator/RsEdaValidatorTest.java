@@ -31,10 +31,5 @@ public class RsEdaValidatorTest extends AbstractValidatorTest {
     public void jsonRsEdaValidationPasses() throws IOException {
         validationPasses("RS-EDA", false);
     }
-
-    //endregion
-
-    //region Fails validation
-
     //endregion
 }

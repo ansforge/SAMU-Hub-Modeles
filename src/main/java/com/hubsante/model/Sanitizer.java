@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.model.utils;
+package com.hubsante.model;
 
 import com.hubsante.model.cisu.CreateCaseWrapper;
 import com.hubsante.model.rcde.Recipient;
@@ -30,9 +30,9 @@ public class Sanitizer {
 
     public static EdxlMessage sanitizeEdxl(EdxlMessage edxlMessage) {
         // change sender, explicitAddressValue
-        edxlMessage.setSenderID("sender");
-        edxlMessage.setDistributionID("neutral_distributionID");
-        edxlMessage.getDescriptor().getExplicitAddress().setExplicitAddressValue("recipient");
+        edxlMessage.setSenderID("fr.health.sender");
+        edxlMessage.setDistributionID("fr.health.samu_id");
+        edxlMessage.getDescriptor().getExplicitAddress().setExplicitAddressValue("fr.health.recipient");
         // access DE, change sender & recipients
         edxlMessage.setContentFrom(sanitizeContent(edxlMessage.getFirstContentMessage()));
 
