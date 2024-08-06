@@ -66,7 +66,7 @@
     <CAUSE>ACC</CAUSE>
   </EVENT>
   <MISSION>
-    <TYPE>GEN/SCNMNG</TYPE>
+    <TYPE>FSTT/TA</TYPE>
     <FREETEXT>Besoin d'assisance terrain pour gérer perturbations et sécuriser le site d'intervention.</FREETEXT>
     <ID>ABC1YU3454</ID>
     <ORG_ID>fr.health.samu690</ORG_ID>
