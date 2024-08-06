@@ -74,7 +74,7 @@ public class Orientation {
 
     MOYPERSO("MOYPERSO"),
 
-    CODE_VECTEUR_CHOISI("Code vecteur choisi"),
+    VECTEUR("VECTEUR"),
 
     REFPAT("REFPAT"),
 

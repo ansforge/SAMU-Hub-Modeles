@@ -481,14 +481,6 @@ components:
           - POSTAL
           - WEB
           - RADIO
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
-          - ''
           examples:
           - PHNADD
         details:

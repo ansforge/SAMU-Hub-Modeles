@@ -19,18 +19,18 @@ Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général
 
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,1..1,X,qualification,
-,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,0..n,X,codeAndLabel,
+,"Risque, menace et sensibilité",# Voir type codeAndLabel,,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,0..n,X,codeAndLabel,
 ,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,1..1,,string,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,1..1,,string,
-,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,1..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Nature_de_fait
-,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Type_de_lieu
-,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,Nature de fait ,# Voir type codeAndLabel,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,1..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Nature_de_fait
+,Type de lieu,# Voir type codeAndLabel,,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Type_de_lieu
+,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Patients-Victimes,,,,,,,victims,0..1,X,victims,
 ,,Nombre de patients-victimes,,,,Indique le nombre de victimes selon la nomenclature du référentiel CISU,PLUSIEURS,count,0..1,,string,NOMENCLATURE: ENUM-NOMBRE_Patient_Victime
 ,,Type du patient-victime principal,,,,Identifie le type de la principale victime (celle dont l'état de santé provoque le déclenchement de l'envoi des secours). Prend les valeurs du référentiel CISU. Entre dans la détermination des partenaires impliqués par NexSIS.,ENFANT,mainVictim,0..1,,string,NOMENCLATURE: ENUM-TYPE_Patient_Victime
 ,,Informations complémentaires sur les patients-victimes,,,,Permet de complémenter en commentaire libre la(les) victime(s),"Jeanne Dupont, 6 ans, ne répond plus",freetext,0..1,,string,
-Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,1..1,X,location,
+Localisation,,,,,,Objet qui permet de décrire la localisation du lieu d'intervention.,,location,1..1,X,location,
 ,Identifiant technique de localisation,,,,,ID technique et provisoire permettant d'identifier le lieu dans le cadre des échanges de cette affaire.,111fb03a-6fd9-41e0-8e81-990c45188887,locID,1..1,,string,
 ,Résumé de la localisation,,,,,"Donne les informations minimales d'identification du lieu d'intervention, qui permet d'identifier rapidement le lieu pour les équipes opérationnelles. Comprend au maximum 255 caractères.
 15-18 : Dans les messages NexSIS, va souvent correspondre à la concaténation suivant des règles métiers de différentes informations, dont le ""name"" (toponyme) et l'adresse.
@@ -152,7 +152,7 @@ Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l
 ,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Type
 ,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée.
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,1..1,,string,
-,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
+,,Contact de contre-appel,# Voir type contact,,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).
 En réception, il est crucial de récupérer la valeur de cet objet lorsqu'il est renseigné, puisqu'il s'agit du numéro sur lequel l'appelant peut être joint.",,callbackContact,0..1,X,contact,
@@ -171,15 +171,16 @@ Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées
 ,,,Nom,,,A valoriser avec le nom usuel du requérant,Dupont,lastName,0..1,,string,
 ,,,Prénom,,,"A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,0..1,,string,
-,Localisation de l'alerte,# Voir createCase.location (type location),,,,Cet élément peut représenter la localisation du requérant si celle-ci diffère de celle de l'événement ou pointer vers la localisation d'accès à l'affaire si elle est confondue avec celle de l'alerte.,,location,1..1,X,location,
-,Qualification,# Voir qualification,,,,Qualification de l'alerte.,,qualification,1..1,X,qualification,
+,Localisation de l'alerte,# Voir type location,,,,"Objet qui permet de décrire la localisation
+Spécificité 15-18 : Cet élément peut représenter la localisation du requérant si celle-ci diffère de celle de l'événement ou pointer vers la localisation d'accès à l'affaire si elle est confondue avec celle de l'alerte.",,location,1..1,X,location,
+,Qualification,# Voir type qualification,,,,Qualification de l'alerte.,,qualification,1..1,X,qualification,
 ,Agent,,,,,Objet permettant d'identifer et recontacter l'opérateur ayant traité l'alerte,,callTaker,1..1,X,callTaker,
 ,,Service d'urgence,,,,"Décrit la structure ou le service à laquelle est rattachée l'agent (en fonction du niveau de précision disponible).
 Se référer au DSF pour la structure normée des organisations.
 Le format est le suivant {pays}.{domaine}.{organisation}.{structure interne}*.{unité fonctionnelle}*.",fr.health.samu440,organization,1..1,,string,
 ,,Centre d'appels,,,,Décrit le centre d'appel auquel est rattaché l'agent,"CGA, CGO 21, CRRA 44, ...",controlRoom,1..1,,string,
 ,,Rôle agent,,,,Décrit le rôle de l'agent au sein du service selon la nomenclature PERSO (nomenclature SI-SAMU),ARM,role,0..1,,string,
-,,Contact de l'agent,# Voir callerContact (type contact),,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerContact,0..1,X,contact,
+,,Contact de l'agent,# Voir type contact,,,Objet contact permettant d'indiquer le contact de l'agent,,calltakerContact,0..1,X,contact,
 ,,ID de l'agent,,,,"Identifiant unique de l'opérateur ayant traité l'alerte (peut être un identifiant technique, un numéro de carte CPS etc)",id1234,calltakerId,0..1,,string,
 ,Pièces jointes,,,,,"Permet d'envoyer tout type de fichiers (photos, vidéos, sons, …) par lien.
 Les URI doivent correspondre à des espaces sécurisés auxquels les accès ont déjà été fournies ou doivent être fournies avec des tokens éphémères si besoin de sécuriser l'accès aux ressources tout en en garantissant l'accès par tous les destinataires des messages.
@@ -193,7 +194,7 @@ Nous suggérons d'employer le format suivant de regex (https?|ftp|file):\/\/([\w
 ,,URI base 64,,,,"Peut être utilisé à la place de l'élément 'URI' pour envoyer la ressource encodée en base64 pour éviter des problèmes de transcodage (sur des double quotes qui casseraient le message, …)",,derefURI,0..1,,string,
 ,,Hash,,,,"Hash de la ressource pour confirmer la réception de la bonne ressource
 La ressource est hashée avec le protocole SHA-256",,digest,0..1,,string,
-Nouvelle alerte,# Voir alerte initiale,,,,,"Objet qui permet de gérer plusieurs alerte/appels sur une même affaire / dossier
+Nouvelle alerte,# Voir type initalAlert,,,,,"Objet qui permet de gérer plusieurs alerte/appels sur une même affaire / dossier
 Lorsque plusieurs alertes correspondent à une même affaire/dossier, la première alerte reçue est appelée Alerte initial ""initialAlert"", la seconde et les suivantes sont des objets ""newAlert"".
 Les objet newAlert suivent le modèle d'un objet initialAlert.
 

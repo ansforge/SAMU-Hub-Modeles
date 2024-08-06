@@ -292,14 +292,6 @@ CITY=Précision à l'échelle de la ville, STREET=Précision à l'échelle de la
                         <enumeration value="POSTAL"/>
                         <enumeration value="WEB"/>
                         <enumeration value="RADIO"/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-RI.schema.json#",
-    "version": "24.08.05",
+    "version": "24.08.06",
     "example": "example.json#",
     "type": "object",
     "title": "resourcesInfo",
@@ -417,15 +417,7 @@
                         "FAX",
                         "POSTAL",
                         "WEB",
-                        "RADIO",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
+                        "RADIO"
                     ]
                 },
                 "details": {
