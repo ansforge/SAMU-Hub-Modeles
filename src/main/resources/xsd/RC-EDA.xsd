@@ -369,18 +369,6 @@ Les systèmes peuvent proposer des fonctionnalités faisant ressortir les dossie
                     <restriction base="string">
                         <enumeration value="STANDARD"/>
                         <enumeration value="ATTENTION"/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
-                        <enumeration value=""/>
                     </restriction>
                 </simpleType>
             </element>

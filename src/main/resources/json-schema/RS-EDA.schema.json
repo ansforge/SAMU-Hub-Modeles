@@ -2144,7 +2144,7 @@
             "required": [],
             "properties": {
                 "weight": {
-                    "type": "integer",
+                    "type": "number",
                     "title": "Poids",
                     "x-health-only": false,
                     "x-cols": 6,
@@ -2152,7 +2152,7 @@
                     "description": "A valoriser avec le poids en kilogrammes"
                 },
                 "height": {
-                    "type": "integer",
+                    "type": "number",
                     "title": "Taille",
                     "x-health-only": false,
                     "x-cols": 6,

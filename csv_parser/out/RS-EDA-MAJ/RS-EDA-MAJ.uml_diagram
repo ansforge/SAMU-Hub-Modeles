@@ -98,7 +98,7 @@ strict digraph {
                 <TR>
                 <TD ><B>detail</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	detail -> patient [headlabel=1 taillabel="0..1"]
 	mainDiagnosis [label=<<TABLE>

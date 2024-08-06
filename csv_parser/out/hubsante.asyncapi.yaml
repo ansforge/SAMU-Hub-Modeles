@@ -3613,7 +3613,7 @@ components:
       required: []
       properties:
         weight:
-          type: integer
+          type: number
           title: Poids
           x-health-only: false
           x-cols: 6
@@ -3622,7 +3622,7 @@ components:
           examples:
           - 31
         height:
-          type: integer
+          type: number
           title: Taille
           x-health-only: false
           x-cols: 6

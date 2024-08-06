@@ -474,19 +474,7 @@
                     "description": "Permet d'attirer l'attention des forces partenaires sur une affaire pour le faire sortir du lot.\nEventuellement automatisé en fonction des critères saisis et de leur paramétrage, ou renseigné par l'opérateur. \nPrend les valeurs définies dans la nomenclature CISU :\n- standard : STANDARD\n- signalé : ATTENTION\nLes systèmes peuvent proposer des fonctionnalités faisant ressortir les dossiers avec le libellé ATTENTION",
                     "enum": [
                         "STANDARD",
-                        "ATTENTION",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        "",
-                        ""
+                        "ATTENTION"
                     ]
                 },
                 "notes": {
