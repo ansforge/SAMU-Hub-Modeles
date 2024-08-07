@@ -1,5 +1,421 @@
 [
   {
+    "label": "RS-EDA",
+    "schemaName": "RS-EDA.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_DidierMorel.01a.json",
+        "icon": "mdi-circular-saw",
+        "name": "01a.Didier MOREL",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+        "environment": "Domicile, outil scie débranché et sécurisé",
+        "victims": "1 victime, nécessitant assistance SAMU",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_LolaHalimi.01a.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "01a.Lola HALIMI",
+        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+        "context": "Fracture de la cheville",
+        "environment": "Cage d'escalier d'un immeuble résidentiel",
+        "victims": "1 patient",
+        "victim": "Lola, 10 ans",
+        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible."
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_MonsieurX.01.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "01.Monsieur X",
+        "caller": "Lucas Bernardi, gérant de gite touristique",
+        "context": "Suspicion d'AVC",
+        "environment": "Lieu accueillant du public : Le gîte du Moulin",
+        "victims": "1 patient",
+        "victim": "Adulte, environ 80 ans",
+        "medicalSituation": "Confusion, étourdissements, s’exprime difficilement. Client du gite voyageant seul."
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_OuardiaBoudadi.01.json",
+        "icon": "mdi-heart-plus-outline",
+        "name": "01.Ouardia BOUDADI",
+        "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
+        "context": "Suspicion de crise cardiaque",
+        "environment": "Lieu de travail, local administratif de la SARL TOTO",
+        "victims": "1 victimes, nécessitant assistance SAMU",
+        "victim": "Ouardia, 47 ans",
+        "medicalSituation": "Douleurs thoraciques irradiantes, antécédents de maladie cardiaque"
+      },
+      {
+        "file": "RS-EDA/RS-EDA_partageDossier_EnfantsNguyen.01.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "01.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      },
+      {
+        "file": "RS-EDA/RS-EDA-SMUR-FuiteDeGaz-AliceGregoireNormand.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Fuite de gaz",
+        "name": "Alice et Grégoire Normand",
+        "caller": "Marie Dubois, mère des enfants, appelle le 15",
+        "environment": "Domicile, maison particulière",
+        "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
+        "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
+        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
+      },
+      {
+        "file": "RS-EDA/RS-EDA-SMUR-FemmeEnceinte-DelphineVigneau.json",
+        "icon": "mdi-human-pregnant",
+        "context": "Chute d'une échelle d'une femme enceinte",
+        "name": "Delphine Vigneau",
+        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
+        "environment": "Lieu de travail",
+        "victims": "1 patiente, nécessitant assistance SAMU",
+        "victim": "Femme, enceinte de 2 mois, 32 ans",
+        "medicalSituation": "Problème obstétrique non hémorragique"
+      }]
+  },
+  {
+    "label": "RS-EDA-MAJ",
+    "schemaName": "RS-EDA-MAJ.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_DidierMorel.02.json",
+        "icon": "mdi-circular-saw",
+        "name": "02.Didier MOREL",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+        "environment": "Domicile, outil scie débranché et sécurisé",
+        "victims": "1 victime, nécessitant assistance SAMU",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_LolaHalimi.02.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "02.Lola HALIMI",
+        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+        "context": "Fracture de la cheville",
+        "environment": "Cage d'escalier d'un immeuble résidentiel",
+        "victims": "1 patient",
+        "victim": "Lola, 10 ans",
+        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible."
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "02.Monsieur X",
+        "caller": "Lucas Bernardi, gérant de gite touristique",
+        "context": "Suspicion d'AVC",
+        "environment": "Lieu accueillant du public : Le gîte du Moulin",
+        "victims": "1 patient",
+        "victim": "Adulte, environ 80 ans",
+        "medicalSituation": "Confusion, étourdissements, s’exprime difficilement. Client du gite voyageant seul."
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
+        "icon": "mdi-heart-plus-outline",
+        "name": "02.Ouardia BOUDADI",
+        "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
+        "context": "Suspicion de crise cardiaque",
+        "environment": "Lieu de travail, local administratif de la SARL TOTO",
+        "victims": "1 victimes, nécessitant assistance SAMU",
+        "victim": "Ouardia, 47 ans",
+        "medicalSituation": "Douleurs thoraciques irradiantes, antécédents de maladie cardiaque"
+      }, 
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "02.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_EnfantsNguyen.03a.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "03a.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      }]
+  },
+  {
+    "label": "RS-RI",
+    "schemaName": "RS-RI.schema.json",
+    "schema": null,
+    "examples": [
+    {
+      "file": "RS-RI/RS-RI_partageDossier_DidierMorel.01b.json",
+      "icon": "mdi-circular-saw",
+      "name": "01b.Didier Morel",
+      "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+      "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+      "environment": "Domicile, outil scie débranché et sécurisé",
+      "victims": "1 victimes, nécessitant assistance SAMU",
+      "victim": "Didier, 65 ans",
+      "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+    },
+    {
+        "file": "RS-RI/RS-RI_partageRessources_DidierMorel.04c.json",
+        "icon": "mdi-circular-saw",
+        "name": "04c.Didier Morel",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+        "environment": "Domicile, outil scie débranché et sécurisé",
+        "victims": "1 victimes, nécessitant assistance SAMU",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageDossier_LolaHalimi.01b.json",
+      "icon": "mdi-image-broken-variant",
+      "name": "01b.Lola HALIMI",
+      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+      "context": "Fracture de la cheville",
+      "environment": "Cage d'escalier d'unimmeuble résidentiel",
+      "victims": "1 patient",
+      "victim": "Lola, 10 ans",
+      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageRessources_LolaHalimi.03c.json",
+      "icon": "mdi-image-broken-variant",
+      "name": "03c.Lola HALIMI",
+      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+      "context": "Fracture de la cheville",
+      "environment": "Cage d'escalier d'unimmeuble résidentiel",
+      "victims": "1 patient",
+      "victim": "Lola, 10 ans",
+      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageRessources_MonsieurX.03.json",
+      "icon": "mdi-head-heart-outline",
+      "name": "03.Monsieur X",
+      "caller": "Lucas Bernardi, gérant de gite touristique",
+      "context": "Suspicion d'AVC",
+      "environment": "Lieu accueillant du public : Le gîte du Moulin",
+      "victims": "1 patient",
+      "victim": "Adulte, environ 80 ans",
+      "medicalSituation": "Confusion, étourdissements, s’exprime difficilement. Client du gite voyageant seul."
+    },
+    {
+      "file": "RS-RI/RS-RI_partageDossier_EnfantsNguyen.03b.json",
+      "icon": "mdi-baby-face-outline",
+      "name": "03b.Enfants NGUYEN",
+      "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+      "context": "Chute d'environ 2m",
+      "environment": "Jardin, piscine vide en travaux",
+      "victims": "2 patients",
+      "victim": "Kamelia, 21 mois et Bao, 6 ans",
+      "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+    },
+    {
+      "file": "RS-RI/RS-RI_partageRessources_EnfantsNguyen.04c.json",
+      "icon": "mdi-baby-face-outline",
+      "name": "04c.Enfants NGUYEN",
+      "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+      "context": "Chute d'environ 2m",
+      "environment": "Jardin, piscine vide en travaux",
+      "victims": "2 patients",
+      "victim": "Kamelia, 21 mois et Bao, 6 ans",
+      "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+    }]
+  },
+  {
+    "label": "RS-DR",
+    "schemaName": "RS-DR.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-DR/RS-DR_partageRessources_ DidierMorel.04a.json",      
+        "icon": "mdi-circular-saw",
+        "name": "04a.Didier MOREL",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+        "environment": "Domicile, outil scie débranché et sécurisé",
+        "victims": "1 victime, nécessitant assistance SAMU",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+      },
+      {
+        "file": "RS-DR/RS-DR_partageRessources_LolaHalimi.03a.json",      
+        "icon": "mdi-image-broken-variant",      
+        "name": "03a.Lola HALIMI",      
+        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
+        "context": "Fracture de la cheville",      
+        "environment": "Cage d'escalier d'unimmeuble résidentiel",      
+        "victims": "1 patient",      
+        "victim": "Lola, 10 ans",      
+        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+      },
+      {
+        "file": "RS-DR/RS-DR_partageRessources_EnfantsNguyen.04a.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "04a.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      }]
+  },
+  {
+    "label": "RS-RR",
+    "schemaName": "RS-RR.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-RR/RS-RR_partageRessources_DidierMorel.04b.json",
+        "icon": "mdi-circular-saw",
+        "name": "04b.Didier MOREL",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+        "environment": "Domicile, outil scie débranché et sécurisé",
+        "victims": "1 victime, nécessitant assistance SAMU",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+      },
+      {
+        "file": "RS-RR/RS-RR_partageRessources_LolaHalimi.03b.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "03b.Lola HALIMI",
+        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+        "context": "Fracture de la cheville",
+        "environment": "Cage d'escalier d'unimmeuble résidentiel",
+        "victims": "1 patient",
+        "victim": "Lola, 10 ans",
+        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+      },
+      {
+        "file": "RS-RR/RS-RR_partageRessources_EnfantsNguyen.04b.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "04b.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      }]
+  },
+  {
+    "label": "RS-SR",
+    "schemaName": "RS-SR.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RS-SR/RS-SR_partageDossier_DidierMorel.03a.json",
+        "icon": "mdi-circular-saw",
+        "name": "03a.Didier MOREL",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+        "environment": "Domicile, outil scie débranché et sécurisé",
+        "victims": "1 victime, nécessitant assistance SAMU",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+      },
+      {
+        "file": "RS-SR/RS-SR _partageDossier_DidierMorel.03b.json",
+        "icon": "mdi-circular-saw",
+        "name": "03b.Didier MOREL",
+        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
+        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
+        "environment": "Domicile, outil scie débranché et sécurisé",
+        "victims": "1 victime, nécessitant assistance SAMU",
+        "victim": "Didier, 65 ans",
+        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
+      },
+      {
+        "file": "RS-SR/RS-SR_partageRessources_LolaHalimi.04.json",
+        "icon": "mdi-image-broken-variant",
+        "name": "04.Lola HALIMI",
+        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
+        "context": "Fracture de la cheville",
+        "environment": "Cage d'escalier d'unimmeuble résidentiel",
+        "victims": "1 patient",
+        "victim": "Lola, 10 ans",
+        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05a.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "05a.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05b.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "05b.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      }, 
+      {
+        "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05c.json",
+        "icon": "mdi-baby-face-outline",
+        "name": "05c.Enfants NGUYEN",
+        "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
+        "context": "Chute d'environ 2m",
+        "environment": "Jardin, piscine vide en travaux",
+        "victims": "2 patients",
+        "victim": "Kamelia, 21 mois et Bao, 6 ans",
+        "medicalSituation": "Multiples contusions et plaies. Possible fractures et trauma crânien"
+      }]
+  },
+  {
+    "label": "RPIS",
+    "schemaName": "RPIS.schema.json",
+    "schema": null,
+    "examples": [
+      {
+        "file": "RPIS/RPIS-FuiteDeGaz-GregoireNormand.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Fuite de gaz",
+        "name": "Grégoire Normand",
+        "caller": "Marie Dubois, mère des enfants, appelle le 15",
+        "environment": "Domicile, maison particulière",
+        "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
+        "victim": "Homme, enfant, 11 ans",
+        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
+      },
+      {
+        "file": "RPIS/RPIS-FemmeEnceinte-DelphineVigneau.json",
+        "icon": "mdi-human-pregnant",
+        "context": "Chute d'une échelle d'une femme enceinte",
+        "name": "Delphine Vigneau",
+        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
+        "environment": "Lieu de travail",
+        "victims": "1 patiente, nécessitant assistance SAMU",
+        "victim": "Femme, enceinte de 2 mois, 32 ans",
+        "medicalSituation": "Problème obstétrique non hémorragique"
+      }]
+  },
+  {
     "label": "RC-EDA",
     "schemaName": "RC-EDA.schema.json",
     "schema": null,
@@ -25,8 +441,7 @@
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
         "medicalSituation": "Problème obstétrique non hémorragique"
-      }
-    ]
+      }]
   },
   {
     "label": "EMSI",
@@ -76,121 +491,7 @@
         "victims": "2 victimes, 1 nécessitant assistance SAMU",
         "victim": "Homme, adulte, 43 ans",
         "medicalSituation": "Céphalées, migraines, traumatismes sérieux, plaies intermédiaires"
-      }
-    ]
-  },
-  {
-    "label": "RS-EDA",
-    "schemaName": "RS-EDA.schema.json",
-    "schema": null,
-    "examples": [
-      {
-        "file": "RS-EDA/RS-EDA_partageDossier_DidierMorel.json",
-        "icon": "mdi-circular-saw",
-        "name": "Didier MOREL",
-        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
-        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
-        "environment": "Domicile, outil scie débranché et sécurisé",
-        "victims": "1 victime, nécessitant assistance SAMU",
-        "victim": "Homme, adulte, 65 ans",
-        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
-      },
-      {
-        "file": "RS-EDA/RS-EDA_partageDossier_LolaHalimi.json",
-        "icon": "mdi-image-broken-variant",
-        "name": "Lola HALIMI",
-        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
-        "context": "Fracture de la cheville",
-        "environment": "Cage d'escalier d'un immeuble résidentiel",
-        "victims": "1 patient",
-        "victim": "Fille, enfant, 10 ans",
-        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible."
-      },
-      {
-        "file": "RS-EDA/RS-EDA_partageDossier_MonsieurX.json",
-        "icon": "mdi-head-heart-outline",
-        "name": "Monsieur X",
-        "caller": "Lucas Bernardi, gérant de gite touristique",
-        "context": "Suspicion d'AVC",
-        "environment": "Lieu accueillant du public : Le gîte du Moulin",
-        "victims": "1 patient",
-        "victim": "Adulte, environ 80 ans",
-        "medicalSituation": "Confusion, étourdissements, s’exprime difficilement. Client du gite voyageant seul."
-      },
-      {
-        "file": "RS-EDA/RS-EDA_appelLimitrophe_OuardiaBoudadi.json",
-        "icon": "mdi-heart-plus-outline",
-        "name": "Ouardia BOUDADI",
-        "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
-        "context": "Suspicion de crise cardiaque",
-        "environment": "Lieu de travail, local administratif de la SARL TOTO",
-        "victims": "1 victimes, nécessitant assistance SAMU",
-        "victim": "Femme, adulte, 47 ans",
-        "medicalSituation": "Douleurs thoraciques irradiantes, antécédents de maladie cardiaque"
-      },
-      {
-        "file": "RS-EDA/RS-EDA-SMUR-FuiteDeGaz-AliceGregoireNormand.json",
-        "icon": "mdi-molecule-co2",
-        "context": "Fuite de gaz",
-        "name": "Alice et Grégoire Normand",
-        "caller": "Marie Dubois, mère des enfants, appelle le 15",
-        "environment": "Domicile, maison particulière",
-        "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
-        "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
-        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
-      },
-      {
-        "file": "RS-EDA/RS-EDA-SMUR-FemmeEnceinte-DelphineVigneau.json",
-        "icon": "mdi-human-pregnant",
-        "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine Vigneau",
-        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
-        "environment": "Lieu de travail",
-        "victims": "1 patiente, nécessitant assistance SAMU",
-        "victim": "Femme, enceinte de 2 mois, 32 ans",
-        "medicalSituation": "Problème obstétrique non hémorragique"
-      }
-    ]
-  },
-  {
-    "label": "RS-EDA-MAJ",
-    "schemaName": "RS-EDA-MAJ.schema.json",
-    "schema": null,
-    "examples": [
-{
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_DidierMorel.Patient2.json",
-        "icon": "mdi-circular-saw",
-        "name": "Didier MOREL",
-        "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
-        "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
-        "environment": "Domicile, outil scie débranché et sécurisé",
-        "victims": "1 victime, nécessitant assistance SAMU",
-        "victim": "Homme, adulte, 65 ans",
-        "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
-      },
-      {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_LolaHalimi.Degradation.json",
-        "icon": "mdi-image-broken-variant",
-        "name": "Lola HALIMI",
-        "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
-        "context": "Fracture de la cheville",
-        "environment": "Cage d'escalier d'un immeuble résidentiel",
-        "victims": "1 patient",
-        "victim": "Fille, enfant, 10 ans",
-        "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible."
-      },
-     {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_appelLimitrophe_OuardiaBoudadi.CRRAtraitant.json",
-        "icon": "mdi-heart-plus-outline",
-        "name": "Ouardia BOUDADI",
-        "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
-        "context": "Suspicion de crise cardiaque",
-        "environment": "Lieu de travail, local administratif de la SARL TOTO",
-        "victims": "1 victimes, nécessitant assistance SAMU",
-        "victim": "Femme, adulte, 47 ans",
-        "medicalSituation": "Douleurs thoraciques irradiantes, antécédents de maladie cardiaque"
-      } 
-  ]
+      }]
   },
   {
     "label": "GEO-POS",
@@ -202,8 +503,7 @@
         "icon": "mdi-earth",
         "name": "Positions Updates",
         "context": "Partage de mises à jour des positions"
-      }
-    ]
+      }]
   },
   {
     "label": "GEO-RES",
@@ -228,123 +528,6 @@
         "icon": "mdi-earth",
         "name": "Resources Request",
         "context": "Demande de partage des détails des ressources"
-      }
-    ]
-  },
-  {
-    "label": "RS-RI",
-    "schemaName": "RS-RI.schema.json",
-    "schema": null,
-    "examples": [{
-      "file": "RS-RI/RS-RI_partageDossier_DidierMorel.json",
-      "icon": "mdi-circular-saw",
-      "name": "Didier Morel",
-      "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
-      "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
-      "environment": "Domicile, outil scie débranché et sécurisé",
-      "victims": "1 victimes, nécessitant assistance SAMU",
-      "victim": "Homme, adulte, 65 ans",
-      "medicalSituation": "Plaie traumatique profonde, perte de conscience, hémorragie importante"
-      },
-    {
-      "file": "RS-RI/RS-RI_partageDossier_LolaHalimi.VSAV95.json",
-      "icon": "mdi-image-broken-variant",
-      "name": "Lola HALIMI",
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
-      "context": "Fracture de la cheville",
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",
-      "victims": "1 patient",
-      "victim": "Fille, enfant, 10 ans",
-      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
-      },
-      {
-      "file": "RS-RI/RS-RI_partageRessources_LolaHalimi.SMUR78.json",
-      "icon": "mdi-image-broken-variant",
-      "name": "Lola HALIMI",
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
-      "context": "Fracture de la cheville",
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",
-      "victims": "1 patient",
-      "victim": "Fille, enfant, 10 ans",
-      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
-      }    
-    ]
-  },
-  {
-    "label": "RS-DR",
-    "schemaName": "RS-DR.schema.json",
-    "schema": null,
-    "examples": [{
-      "file": "RS-DR/RS-DR_partageRessources_LolaHalimi.json",      
-      "icon": "mdi-image-broken-variant",      
-      "name": "Lola HALIMI",      
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
-      "context": "Fracture de la cheville",      
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",      
-      "victims": "1 patient",      
-      "victim": "Fille, enfant, 10 ans",      
-      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
-    }]
-  },
-  {
-    "label": "RS-RR",
-    "schemaName": "RS-RR.schema.json",
-    "schema": null,
-    "examples": [
-      {
-      "file": "RS-RR/RS-RR_partageRessources_LolaHalimi.OK.json",
-      "icon": "mdi-image-broken-variant",
-      "name": "Lola HALIMI",
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
-      "context": "Fracture de la cheville",
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",
-      "victims": "1 patient",
-      "victim": "Fille, enfant, 10 ans",
-      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
-    }]
-  },
-  {
-    "label": "RS-SR",
-    "schemaName": "RS-SR.schema.json",
-    "schema": null,
-    "examples": [
-    {
-      "file": "RS-SR/RS-SR_partageRessources_LolaHalimi.SMUR78.json",
-      "icon": "mdi-image-broken-variant",
-      "name": "Lola HALIMI",
-      "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
-      "context": "Fracture de la cheville",
-      "environment": "Cage d'escalier d'unimmeuble résidentiel",
-      "victims": "1 patient",
-      "victim": "Fille, enfant, 10 ans",
-      "medicalSituation": "Entorse de la cheville, avec possible fracture. Cheville gonflée et douloureuse. Marche impossible"
-    }]
-  },
-  {
-    "label": "RPIS",
-    "schemaName": "RPIS.schema.json",
-    "schema": null,
-    "examples": [{
-      "file": "RPIS/RPIS-FuiteDeGaz-GregoireNormand.json",
-      "icon": "mdi-molecule-co2",
-      "context": "Fuite de gaz",
-      "name": "Grégoire Normand",
-      "caller": "Marie Dubois, mère des enfants, appelle le 15",
-      "environment": "Domicile, maison particulière",
-      "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
-      "victim": "Homme, enfant, 11 ans",
-      "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
-    },
-    {
-      "file": "RPIS/RPIS-FemmeEnceinte-DelphineVigneau.json",
-      "icon": "mdi-human-pregnant",
-      "context": "Chute d'une échelle d'une femme enceinte",
-      "name": "Delphine Vigneau",
-      "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
-      "environment": "Lieu de travail",
-      "victims": "1 patiente, nécessitant assistance SAMU",
-      "victim": "Femme, enceinte de 2 mois, 32 ans",
-      "medicalSituation": "Problème obstétrique non hémorragique"
-    }]
+      }]
   }
 ]
