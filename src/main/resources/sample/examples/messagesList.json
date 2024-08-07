@@ -7,7 +7,7 @@
       {
         "file": "RS-EDA/RS-EDA_partageDossier_DidierMorel.01a.json",
         "icon": "mdi-circular-saw",
-        "name": "01a.Didier MOREL",
+        "name": "Didier MOREL.01a",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
         "environment": "Domicile, outil scie débranché et sécurisé",
@@ -18,7 +18,7 @@
       {
         "file": "RS-EDA/RS-EDA_partageDossier_LolaHalimi.01a.json",
         "icon": "mdi-image-broken-variant",
-        "name": "01a.Lola HALIMI",
+        "name": "Lola HALIMI.01a",
         "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
         "context": "Fracture de la cheville",
         "environment": "Cage d'escalier d'un immeuble résidentiel",
@@ -29,7 +29,7 @@
       {
         "file": "RS-EDA/RS-EDA_partageDossier_MonsieurX.01.json",
         "icon": "mdi-head-heart-outline",
-        "name": "01.Monsieur X",
+        "name": "Monsieur X.01",
         "caller": "Lucas Bernardi, gérant de gite touristique",
         "context": "Suspicion d'AVC",
         "environment": "Lieu accueillant du public : Le gîte du Moulin",
@@ -40,7 +40,7 @@
       {
         "file": "RS-EDA/RS-EDA_partageDossier_OuardiaBoudadi.01.json",
         "icon": "mdi-heart-plus-outline",
-        "name": "01.Ouardia BOUDADI",
+        "name": "Ouardia BOUDADI.01",
         "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
         "context": "Suspicion de crise cardiaque",
         "environment": "Lieu de travail, local administratif de la SARL TOTO",
@@ -51,7 +51,7 @@
       {
         "file": "RS-EDA/RS-EDA_partageDossier_EnfantsNguyen.01.json",
         "icon": "mdi-baby-face-outline",
-        "name": "01.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.01",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -63,7 +63,7 @@
         "file": "RS-EDA/RS-EDA-SMUR-FuiteDeGaz-AliceGregoireNormand.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
-        "name": "Alice et Grégoire Normand",
+        "name": "Alice et Grégoire NORMAND",
         "caller": "Marie Dubois, mère des enfants, appelle le 15",
         "environment": "Domicile, maison particulière",
         "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
@@ -74,7 +74,7 @@
         "file": "RS-EDA/RS-EDA-SMUR-FemmeEnceinte-DelphineVigneau.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine Vigneau",
+        "name": "Delphine VIGNEAU",
         "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
         "environment": "Lieu de travail",
         "victims": "1 patiente, nécessitant assistance SAMU",
@@ -90,7 +90,7 @@
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_DidierMorel.02.json",
         "icon": "mdi-circular-saw",
-        "name": "02.Didier MOREL",
+        "name": "Didier MOREL.02",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
         "environment": "Domicile, outil scie débranché et sécurisé",
@@ -101,7 +101,7 @@
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_LolaHalimi.02.json",
         "icon": "mdi-image-broken-variant",
-        "name": "02.Lola HALIMI",
+        "name": "Lola HALIMI.02",
         "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
         "context": "Fracture de la cheville",
         "environment": "Cage d'escalier d'un immeuble résidentiel",
@@ -112,7 +112,7 @@
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02.json",
         "icon": "mdi-head-heart-outline",
-        "name": "02.Monsieur X",
+        "name": "Monsieur X.02",
         "caller": "Lucas Bernardi, gérant de gite touristique",
         "context": "Suspicion d'AVC",
         "environment": "Lieu accueillant du public : Le gîte du Moulin",
@@ -123,7 +123,7 @@
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
         "icon": "mdi-heart-plus-outline",
-        "name": "02.Ouardia BOUDADI",
+        "name": "Ouardia BOUDADI.02",
         "caller": "Magda LENA, collègue de la victime, Ouardia BOUDADI",
         "context": "Suspicion de crise cardiaque",
         "environment": "Lieu de travail, local administratif de la SARL TOTO",
@@ -134,7 +134,7 @@
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_EnfantsNguyen.02.json",
         "icon": "mdi-baby-face-outline",
-        "name": "02.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.02",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -145,7 +145,7 @@
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_EnfantsNguyen.03a.json",
         "icon": "mdi-baby-face-outline",
-        "name": "03a.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.03a",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -162,7 +162,7 @@
     {
       "file": "RS-RI/RS-RI_partageDossier_DidierMorel.01b.json",
       "icon": "mdi-circular-saw",
-      "name": "01b.Didier Morel",
+      "name": "Didier MOREL.01b",
       "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
       "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
       "environment": "Domicile, outil scie débranché et sécurisé",
@@ -173,7 +173,7 @@
     {
         "file": "RS-RI/RS-RI_partageRessources_DidierMorel.04c.json",
         "icon": "mdi-circular-saw",
-        "name": "04c.Didier Morel",
+        "name": "Didier MOREL.04c",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
         "environment": "Domicile, outil scie débranché et sécurisé",
@@ -184,7 +184,7 @@
     {
       "file": "RS-RI/RS-RI_partageDossier_LolaHalimi.01b.json",
       "icon": "mdi-image-broken-variant",
-      "name": "01b.Lola HALIMI",
+      "name": "Lola HALIMI.01b",
       "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
       "context": "Fracture de la cheville",
       "environment": "Cage d'escalier d'unimmeuble résidentiel",
@@ -195,7 +195,7 @@
     {
       "file": "RS-RI/RS-RI_partageRessources_LolaHalimi.03c.json",
       "icon": "mdi-image-broken-variant",
-      "name": "03c.Lola HALIMI",
+      "name": "Lola HALIMI.03c",
       "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
       "context": "Fracture de la cheville",
       "environment": "Cage d'escalier d'unimmeuble résidentiel",
@@ -206,7 +206,7 @@
     {
       "file": "RS-RI/RS-RI_partageRessources_MonsieurX.03.json",
       "icon": "mdi-head-heart-outline",
-      "name": "03.Monsieur X",
+      "name": "Monsieur X.03",
       "caller": "Lucas Bernardi, gérant de gite touristique",
       "context": "Suspicion d'AVC",
       "environment": "Lieu accueillant du public : Le gîte du Moulin",
@@ -217,7 +217,7 @@
     {
       "file": "RS-RI/RS-RI_partageDossier_EnfantsNguyen.03b.json",
       "icon": "mdi-baby-face-outline",
-      "name": "03b.Enfants NGUYEN",
+      "name": "Enfants NGUYEN.03b",
       "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
       "context": "Chute d'environ 2m",
       "environment": "Jardin, piscine vide en travaux",
@@ -228,7 +228,7 @@
     {
       "file": "RS-RI/RS-RI_partageRessources_EnfantsNguyen.04c.json",
       "icon": "mdi-baby-face-outline",
-      "name": "04c.Enfants NGUYEN",
+      "name": "Enfants NGUYEN.04c",
       "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
       "context": "Chute d'environ 2m",
       "environment": "Jardin, piscine vide en travaux",
@@ -245,7 +245,7 @@
       {
         "file": "RS-DR/RS-DR_partageRessources_ DidierMorel.04a.json",      
         "icon": "mdi-circular-saw",
-        "name": "04a.Didier MOREL",
+        "name": "Didier MOREL.04a",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
         "environment": "Domicile, outil scie débranché et sécurisé",
@@ -256,7 +256,7 @@
       {
         "file": "RS-DR/RS-DR_partageRessources_LolaHalimi.03a.json",      
         "icon": "mdi-image-broken-variant",      
-        "name": "03a.Lola HALIMI",      
+        "name": "Lola HALIMI.03a",      
         "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",      
         "context": "Fracture de la cheville",      
         "environment": "Cage d'escalier d'unimmeuble résidentiel",      
@@ -267,7 +267,7 @@
       {
         "file": "RS-DR/RS-DR_partageRessources_EnfantsNguyen.04a.json",
         "icon": "mdi-baby-face-outline",
-        "name": "04a.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.04a",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -284,7 +284,7 @@
       {
         "file": "RS-RR/RS-RR_partageRessources_DidierMorel.04b.json",
         "icon": "mdi-circular-saw",
-        "name": "04b.Didier MOREL",
+        "name": "Didier MOREL.04b",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
         "environment": "Domicile, outil scie débranché et sécurisé",
@@ -295,7 +295,7 @@
       {
         "file": "RS-RR/RS-RR_partageRessources_LolaHalimi.03b.json",
         "icon": "mdi-image-broken-variant",
-        "name": "03b.Lola HALIMI",
+        "name": "Lola HALIMI.03b",
         "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
         "context": "Fracture de la cheville",
         "environment": "Cage d'escalier d'unimmeuble résidentiel",
@@ -306,7 +306,7 @@
       {
         "file": "RS-RR/RS-RR_partageRessources_EnfantsNguyen.04b.json",
         "icon": "mdi-baby-face-outline",
-        "name": "04b.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.04b",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -323,7 +323,7 @@
       {
         "file": "RS-SR/RS-SR_partageDossier_DidierMorel.03a.json",
         "icon": "mdi-circular-saw",
-        "name": "03a.Didier MOREL",
+        "name": "Didier MOREL.03a",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
         "environment": "Domicile, outil scie débranché et sécurisé",
@@ -334,7 +334,7 @@
       {
         "file": "RS-SR/RS-SR _partageDossier_DidierMorel.03b.json",
         "icon": "mdi-circular-saw",
-        "name": "03b.Didier MOREL",
+        "name": "Didier MOREL.03b",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Accident domestique : blessure grave causée par une scie circulaire électrique",
         "environment": "Domicile, outil scie débranché et sécurisé",
@@ -345,7 +345,7 @@
       {
         "file": "RS-SR/RS-SR_partageRessources_LolaHalimi.04.json",
         "icon": "mdi-image-broken-variant",
-        "name": "04.Lola HALIMI",
+        "name": "Lola HALIMI.04",
         "caller": "Amina BERTRAND, baby-sitter de la patient, Lola HALIMI",
         "context": "Fracture de la cheville",
         "environment": "Cage d'escalier d'unimmeuble résidentiel",
@@ -356,7 +356,7 @@
       {
         "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05a.json",
         "icon": "mdi-baby-face-outline",
-        "name": "05a.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.05a",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -367,7 +367,7 @@
       {
         "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05b.json",
         "icon": "mdi-baby-face-outline",
-        "name": "05b.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.05b",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -378,7 +378,7 @@
       {
         "file": "RS-SR/RS-SR_partageRessources_EnfantsNguyen.05c.json",
         "icon": "mdi-baby-face-outline",
-        "name": "05c.Enfants NGUYEN",
+        "name": "Enfants NGUYEN.05c",
         "caller": "Quentin DIAWARA, beau-père de Kamelia et Bao NGUYEN",
         "context": "Chute d'environ 2m",
         "environment": "Jardin, piscine vide en travaux",
@@ -396,7 +396,7 @@
         "file": "RPIS/RPIS-FuiteDeGaz-GregoireNormand.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
-        "name": "Grégoire Normand",
+        "name": "Grégoire NORMAND",
         "caller": "Marie Dubois, mère des enfants, appelle le 15",
         "environment": "Domicile, maison particulière",
         "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
@@ -407,7 +407,7 @@
         "file": "RPIS/RPIS-FemmeEnceinte-DelphineVigneau.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine Vigneau",
+        "name": "Delphine VIGNEAU",
         "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
         "environment": "Lieu de travail",
         "victims": "1 patiente, nécessitant assistance SAMU",
@@ -424,7 +424,7 @@
         "file": "RC-EDA/RC-EDA-FuiteDeGaz-AliceGregoireNormand.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
-        "name": "Alice et Grégoire Normand",
+        "name": "Alice et Grégoire NORMAND",
         "caller": "Marie Dubois, mère des enfants, appelle le 15",
         "environment": "Domicile, maison particulière",
         "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
@@ -435,7 +435,7 @@
         "file": "RC-EDA/RC-EDA-FemmeEnceinte-DelphineVigneau.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine Vigneau",
+        "name": "Delphine VIGNEAU",
         "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
         "environment": "Lieu de travail",
         "victims": "1 patiente, nécessitant assistance SAMU",
