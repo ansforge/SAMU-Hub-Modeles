@@ -1,0 +1,11 @@
+{
+  "resourcesResponse": {
+    "response": {
+      "datetime": "2024-01-04T08:32:00+01:00",
+      "answer": "ACCEPTEE",
+      "freetext": "Ok pour HéliSMUR. Départ immédiat."
+    },
+    "caseId": "fr.health.samu770.DRFR157702400400055",
+    "requestId": "fr.health.samu770.request. as41pb"
+  }
+}

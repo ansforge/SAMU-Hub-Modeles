@@ -20,13 +20,13 @@
         },
         "identity": {
           "nonStrictFeatures": {
-            "complete": "Germaine Morel",
-            "lastName": "Morel",
+            "complete": "Germaine MOREL",
+            "lastName": "MOREL",
             "firstName": "Germaine"
           },
           "strictFeatures": {
             "sex": "FEM",
-            "birthName": "Arnaud",
+            "birthName": "ARNAUD",
             "birthDate": "1963-12-12"
           }
         },

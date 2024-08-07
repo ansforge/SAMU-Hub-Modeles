@@ -99,7 +99,8 @@
             "lastName": "Boudadi"
           },
           "strictFeatures": {
-            "sex": "FEM"
+            "sex": "FEM",
+            "birthDate": "1982-02-26"
           }
         },
         "idPat": "fr.health.samu950.patient.DRFR159502401000233.1"
