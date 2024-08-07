@@ -123,7 +123,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </simpleType>
             </element>
             <element name="operator" type="x:operator"/>
-            <element minOccurs="0" name="idObs">
+            <element name="idObs">
                 <annotation>
                     <documentation>Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 

@@ -209,7 +209,7 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,0..1,,string,"REGEX: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"
+fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,1..1,,string,"REGEX: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
 Décisions,,,,,,"Objet qui peremt de passer l'ensemble des mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients.

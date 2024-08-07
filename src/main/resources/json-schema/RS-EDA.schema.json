@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.08.06",
+    "version": "24.08.07",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -281,6 +281,7 @@
             "x-health-only": false,
             "required": [
                 "operator",
+                "idObs",
                 "freetext"
             ],
             "properties": {

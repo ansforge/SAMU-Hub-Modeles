@@ -3278,6 +3278,7 @@ components:
       x-health-only: false
       required:
       - operator
+      - idObs
       - freetext
       properties:
         idPat:
