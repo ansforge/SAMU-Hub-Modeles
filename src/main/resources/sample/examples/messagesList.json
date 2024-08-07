@@ -10,7 +10,7 @@
         "name": "Didier MOREL.01a",
         "caller": "Sébastien Morel, témoin accident impliquant son père, Didier Morel",
         "context": "Pas de test suivant: RS-RI - 01b",
-        "environment": ": Appel reçu par le SAMU 77 et dossier partagé au SAMU 94 pour information (anticipation d’un besoin en chirurgie de la main)",
+        "environment": "Appel reçu par le SAMU 77 et dossier partagé au SAMU 94 pour information (anticipation d’un besoin en chirurgie de la main)",
         "victims": "1 patient",
         "victim": "Didier, 65 ans",
         "medicalSituation": " Accident domestique : Plaie traumatique profonde, perte de conscience, hémorragie importante"
@@ -171,7 +171,7 @@
       "file": "RS-RI/RS-RI_partageDossier_EnfantsNguyen.03b.json",
       "icon": "mdi-baby-face-outline",
       "name": "Enfants NGUYEN.03b",
-      "context": "Pas de test suivant: ",
+      "context": "Pas de test suivant: RS-DR - 04a",
       "environment": "Engagement VSAV + envoi VLM SMUR par le 76A"
     },
     {
@@ -199,7 +199,7 @@
         "icon": "mdi-image-broken-variant",      
         "name": "Lola HALIMI.03a",      
         "context": "Pas de test suivant: RS-RR - 03b",      
-        "environment": ": Demande de ressources au 78 (pas de SMUR disponible au 95)"    
+        "environment": "Demande de ressources au 78 (pas de SMUR disponible au 95)"    
       },
       {
         "file": "RS-DR/RS-DR_partageRessources_EnfantsNguyen.04a.json",
