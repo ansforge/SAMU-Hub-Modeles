@@ -13,11 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.hubsante.modelsinterface.handlers;
+package com.hubsante.modelsinterface.interfaces;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.hubsante.modelsinterface.interfaces.EdxlEnvelopeInterface;
 import com.hubsante.modelsinterface.interfaces.EdxlMessageInterface;
+import com.hubsante.modelsinterface.report.ErrorWrapper;
 
 public interface EdxlHandlerInterface {
 
@@ -32,4 +33,8 @@ public interface EdxlHandlerInterface {
     EdxlEnvelopeInterface deserializeJsonEDXLEnvelope(String receivedEdxl) throws JsonProcessingException;
 
     EdxlEnvelopeInterface deserializeXmlEDXLEnvelope(String receivedEdxl) throws JsonProcessingException;
+    
+    ErrorWrapper getFirstContentMessageErrorWrapper(String msgString);
+    
+    
 }

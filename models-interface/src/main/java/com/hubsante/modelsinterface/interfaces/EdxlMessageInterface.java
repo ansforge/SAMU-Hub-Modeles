@@ -15,6 +15,8 @@
  */
 package com.hubsante.modelsinterface.interfaces;
 
+import com.hubsante.modelsinterface.edxl.DistributionKind;
+
 import java.time.OffsetDateTime;
 
 public interface EdxlMessageInterface {
@@ -28,4 +30,6 @@ public interface EdxlMessageInterface {
     void setDateTimeSent(OffsetDateTime now);
 
     void setDateTimeExpires(OffsetDateTime offsetDateTime);
+    
+    DistributionKind getDistributionKind();
 }
