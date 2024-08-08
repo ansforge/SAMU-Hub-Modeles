@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-MAJ.schema.json#",
-    "version": "24.08.06",
+    "version": "24.08.07",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthUpdate",
@@ -188,6 +188,7 @@
             "x-health-only": false,
             "required": [
                 "operator",
+                "idObs",
                 "freetext"
             ],
             "properties": {
@@ -675,7 +676,7 @@
             "required": [],
             "properties": {
                 "weight": {
-                    "type": "integer",
+                    "type": "number",
                     "title": "Poids",
                     "x-health-only": false,
                     "x-cols": 6,
@@ -683,7 +684,7 @@
                     "description": "A valoriser avec le poids en kilogrammes"
                 },
                 "height": {
-                    "type": "integer",
+                    "type": "number",
                     "title": "Taille",
                     "x-health-only": false,
                     "x-cols": 6,

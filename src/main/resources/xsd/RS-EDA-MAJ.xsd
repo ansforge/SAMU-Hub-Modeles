@@ -123,7 +123,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
                 </simpleType>
             </element>
             <element name="operator" type="x:operator"/>
-            <element minOccurs="0" name="idObs">
+            <element name="idObs">
                 <annotation>
                     <documentation>Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
@@ -460,12 +460,12 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="patientDetail">
         <sequence>
-            <element minOccurs="0" name="weight" type="int">
+            <element minOccurs="0" name="weight" type="decimal">
                 <annotation>
                     <documentation>A valoriser avec le poids en kilogrammes</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="height" type="int">
+            <element minOccurs="0" name="height" type="decimal">
                 <annotation>
                     <documentation>A valoriser avec la taille en centimètres du patient</documentation>
                 </annotation>

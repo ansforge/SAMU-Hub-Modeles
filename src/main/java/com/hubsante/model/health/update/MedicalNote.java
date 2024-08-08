@@ -137,14 +137,14 @@ public class MedicalNote {
    * @return idObs
    **/
   @JsonProperty(JSON_PROPERTY_ID_OBS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
   public String getIdObs() {
     return idObs;
   }
 
   @JsonProperty(JSON_PROPERTY_ID_OBS)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setIdObs(String idObs) {
     this.idObs = idObs;
   }

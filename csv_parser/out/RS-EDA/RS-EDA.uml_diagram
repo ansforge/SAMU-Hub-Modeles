@@ -210,7 +210,7 @@ strict digraph {
                 <TR>
                 <TD ><B>detail</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>integer</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet patientDetail</I></TD></TR><TR><TD BORDER="0" >weight <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >height <I>number</I> : [0..1] </TD></TR><TR><TD BORDER="0" >age <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >careLevel <I>string</I> : [0..1] </TD></TR>
                 </TABLE>>]
 	detail -> patient [headlabel=1 taillabel="0..1"]
 	mainDiagnosis [label=<<TABLE>
@@ -252,7 +252,7 @@ strict digraph {
                 <TR>
                 <TD ><B>medicalNote</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet medicalNote</I></TD></TR><TR><TD BORDER="0" >idPat <I>string</I> : [0..1] </TD></TR><TR><TD BORDER="0" >idObs <I>string</I> : [1..1] </TD></TR><TR><TD BORDER="0" >creation <I>date-time</I> : [0..1] </TD></TR><TR><TD BORDER="0" >freetext <I>string</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	medicalNote -> createCaseHealth [headlabel=1 taillabel="0..*"]
 	operator [label=<<TABLE>
