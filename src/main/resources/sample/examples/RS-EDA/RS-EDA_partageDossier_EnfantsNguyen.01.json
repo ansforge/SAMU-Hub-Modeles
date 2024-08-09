@@ -1,0 +1,141 @@
+{
+  "createCaseHealth": {
+    "initialAlert": {
+      "caller": {
+        "detailedName": {
+          "complete": "Quentin DIAWARA",
+          "lastName": "DIAWARA",
+          "firstName": "Quentin"
+        },
+        "callbackContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+33654464295"
+        },
+        "callerContact": {
+          "channel": "PERSONNE",
+          "type": "TEL",
+          "detail": "+14165550123"
+        },
+        "language": "FR",
+        "type": "FAMILLE",
+        "freetext": "beau-père des enfants"
+      },
+      "notes": [
+        {
+          "creation": "2024-08-01T04:29:00+02:00",
+          "freetext": "Enfants ayant chuté d’environ 2 m dans la piscine en travaux (sans eau)."
+        }
+      ],
+      "reception": "2024-08-01T16:27:00+02:00"
+    },
+    "location": {
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 49.59237386471319,
+            "lon": 1.6958576837577788,
+            "precision": "RUE"
+          },
+          "isAml": false
+        },
+        "obsDatime": "2024-07-29T13:00:00+02:00"
+      },
+      "city": {
+        "name": "Haussez",
+        "inseeCode": "76345"
+      },
+      "detailedAddress": {
+        "wayName": {
+          "complete": "Rue Pierre Laisne ",
+          "type": "Rue",
+          "name": "Pierre Laisne "
+        },
+        "complete": "10 Rue Pierre Laisne ",
+        "number": "10"
+      },
+      "freetext": "piscine au fond du jardin"
+    },
+    "qualification": {
+      "details": {
+        "priority": "P1",
+        "attribution": "PEDIA"
+      },
+      "healthMotive": {
+        "code": "M02.07",
+        "label": "Traumatisme sérieux, plaie intermédiaire "
+      },
+      "locationKind": {
+        "code": "L01.01.02",
+        "label": "Domicile; Maison particulière, pavillon ; A l'extérieur"
+      },
+      "whatsHappen": {
+        "code": "C02.08.02",
+        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
+      },
+      "origin": "15"
+    },
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu800.patient.DRFR158002421400215.1",
+        "idObs": "fr.health.samu800.medicalNote.kn569ab",
+        "creation": "2024-08-01T16:31:00+02:00",
+        "freetext": "Chute dans la piscine à vide : pleure et crie. Multiples contusions. Plaie importante à l’arcade sourcilière."
+      },
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu800.patient.DRFR158002421400215.2",
+        "idObs": "fr.health.samu800.medicalNote.bn338bc",
+        "creation": "2024-08-01T16:32:00+02:00",
+        "freetext": "Conscient, légèrement choqué. Jambe ouverte et tordue, douleur ++."
+      }
+    ],
+    "patient": [
+      {
+        "detail": {
+          "age": "P21M",
+          "weight": 11
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Kamélia Nguyen",
+            "lastName": "Nguyen",
+            "firstName": "Kamélia "
+          },
+          "strictFeatures": {
+            "birthDate": "2021-10-15",
+            "sex": "FEM"
+          }
+        },
+        "idPat": "fr.health.samu800.patient.DRFR158002421400215.1"
+      },
+      {
+        "detail": {
+          "age": "P21M"
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Bao Nguyen",
+            "lastName": "Nguyen",
+            "firstName": "Bao"
+          },
+          "strictFeatures": {
+            "birthDate": "2017-11-06",
+            "sex": "MASC"
+          }
+        },
+        "idPat": "fr.health.samu800.patient.DRFR158002421400215.2"
+      }
+    ],
+    "caseId": "fr.health.samu800.DRFR158002421400215",
+    "senderCaseId": "DRFR158002421400215",
+    "creation": "2024-08-01T16:28:00+02:00",
+    "owner": "fr.health.samu800",
+    "interventionType": "PRIMAIRE"
+  }
+}

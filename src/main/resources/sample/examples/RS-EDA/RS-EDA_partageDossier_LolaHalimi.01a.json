@@ -1,0 +1,137 @@
+{
+  "createCaseHealth": {
+    "caseId": "fr.health.samu950.DRFR159502401800159",
+    "creation": "2024-01-18T18:00:00+01:00",
+    "qualification": {
+      "whatsHappen": {
+        "code": "C02.08.02",
+        "label": "Atteinte aux personnes ; Traumatisme / Accident ; Accident domestique"
+      },
+      "locationKind": {
+        "code": "L01.02.10",
+        "label": "Domicile ; Lieu d'habitation collectif ou foyer d'hébergement ;  escaliers"
+      },
+      "healthMotive": {
+        "code": "M02.07",
+        "label": "Traumatisme sérieux, plaie intermédiaire"
+      },
+      "details": {
+        "priority": "P2",
+        "attribution": "MU"
+      },
+      "origin": "15"
+    },
+    "location": {
+      "detailedAddress": {
+        "complete": "4 rue Danielle Mitterrand",
+        "number": "4",
+        "wayName": {
+          "complete": "rue Danielle Mitterrand",
+          "type": "rue",
+          "name": "Danielle Mitterrand"
+        }
+      },
+      "city": {
+        "name": "Bezons",
+        "inseeCode": "95063"
+      },
+      "freetext": "dans la cage d’escalier B",
+      "geometry": {
+        "point": {
+          "coord": {
+            "lat": 48.92399978637695,
+            "lon": 2.2162439823150635,
+            "precision": "ADRESSE"
+          }
+        },
+        "obsDatime": "2024-01-04T00:05:00+01:00"
+      },
+      "access": {
+        "accessCode": [
+          "5678"
+        ],
+        "floor": "3",
+        "interphone": "Halimi",
+        "elevator": "ESC B",
+        "buildingName": "A"
+      }
+    },
+    "initialAlert": {
+      "reception": "2024-01-18T18:00:00+01:00",
+      "caller": {
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+33702880946",
+          "channel": "PERSONNE"
+        },
+        "callbackContact": {
+          "type": "TEL",
+          "detail": "+33702880946",
+          "channel": "PERSONNE"
+        },
+        "language": "FR",
+        "detailedName": {
+          "complete": "Amina BERTRAND  ",
+          "lastName": "BERTRAND  ",
+          "firstName": "Amina"
+        },
+        "type": "TIERS"
+      },
+      "notes": [
+        {
+          "freetext": "Chute enfant dans les escaliers",
+          "creation": "2024-01-18T18:01:00+01:00"
+        }
+      ]
+    },
+    "owner": "fr.health.samu950",
+    "patient": [
+      {
+        "detail": {
+          "age": "P10Y"
+        },
+        "identity": {
+          "nonStrictFeatures": {
+            "complete": "Lola Halimi",
+            "firstName": "Lola ",
+            "lastName": "Halimi"
+          },
+          "strictFeatures": {
+            "birthDate": "2014-03-03",
+            "sex": "FEM"
+          }
+        },
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1"
+      }
+    ],
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "idObs": "fr.health.samu950.medicalNote.54fg795",
+        "creation": "2024-01-18T18:02:00+01:00",
+        "freetext": "Marche impossible."
+      },
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "idObs": "fr.health.samu950.medicalNote.98qs778",
+        "creation": "2024-01-18T18:04:00+01:00",
+        "freetext": "Cheville gonflée et douloureuse"
+      },
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "idPat": "fr.health.samu950.patient.DRFR159502400400159.1",
+        "idObs": "fr.health.samu950.medicalNote.13co294",
+        "creation": "2024-01-18T18:05:00+01:00",
+        "freetext": "Entorse de la cheville, avec possible fracture."
+      }
+    ]
+  }
+}

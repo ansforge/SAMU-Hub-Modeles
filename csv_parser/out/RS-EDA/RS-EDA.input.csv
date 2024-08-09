@@ -4,7 +4,7 @@ Il est valorisé comme suit lors de sa création :
 {pays}.{domaine}.{organisation}.{senderCaseId}
 
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
- Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,"REGEX: fr(\.[\w-]+){3,5}"
+ Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.",fr.health.samu440.DRFR15440241550012,caseId,1..1,,string,REGEX: fr(\.[\w-]+){3}
 Identifiant local de l'affaire/dossier,,,,,,"A valoriser avec le numéro du dossier dans le SI de l'émetteur du message.
 ",DRFR15440241550012,senderCaseId,0..1,,string,
 Date Heure de création de l'affaire/dossier,,,,,,"A valoriser avec le groupe date heure de début de partage lié à la création de l'affaire (et donc de génération du caseId). 
@@ -13,29 +13,32 @@ L'indicateur de fuseau horaire Z ne doit pas être utilisé.
 
 Spécificité 15-18 :
 Il doit être renseigné à la fin du processus de la  création de la première alerte.",2022-09-27T08:23:34+02:00,creation,1..1,,datetime,Format datetime décrit dans le DSF
-Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,0..1,,string,"ENUM: AMU, NEONAT, PSY, SNP"
-Type d'intervention,,,,,,A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),PRIMAIRE,interventionType,0..1,,string,"ENUM: PRIMAIRE, SECONDAIRE, RETOUR A DOMICILE"
+Filière,,,,,,"Sert à indiquer à quelle filière du CRRA destinataire le dossier doit être adressé/affiché, lorsque celle-ci est spécifique ou dédiée.",AMU,perimeter,0..1,,string,NOMENCLATURE: ENUM-FILIERE
+Type d'intervention,,,,,,A valoriser en indiquant s'il s'agit d'un dossier dit primaire (première intervention urgente) ou secondaire (par exemple TIH),PRIMAIRE,interventionType,0..1,,string,NOMENCLATURE: ENUM-TYPE_Intervention
 Qualification,,,,,,"Objet qui permet de qualifier l'affaire/dossier en général. 
 
 Spécificités 15-18 : 
 La qualification est issue d'une interprétation métier synthétisant l'ensemble des alertes reçues.",,qualification,1..1,X,qualification,
-,Origine de l'appel,,,,,A valoriser avec le numéro de provenance de l'appel.,"15, 112, 18",origin,0..1,,string,"ENUM: 15, 18, 17, 112, 116117"
-,"Risque, menace et sensibilité",# Voir whatsHappen (type codeAndLabel),,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,0..n,X,codeAndLabel,
+,Origine de l'appel,,,,,A valoriser avec le numéro de provenance de l'appel.,"15, 112, 18",origin,0..1,,string,NOMENCLATURE: ENUM-ORIGINE
+,"Risque, menace et sensibilité",# Voir type codeAndLabel,,,,"Décrit les risques, menaces et sensibilités : cf.nomenclature associée.",,riskThreat,0..n,X,codeAndLabel,
 ,,Code,,,,A valoriser avec le code de la nomenclature associée,C07.13.02,code,1..1,,string,NOMENCLATURE: CISU-Code_Risque-Menace-Sensibilité
 ,,Libellé,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Rodéo automobile,label,1..1,,string,
-,Nature de fait ,,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Nature_de_fait
-,Type de lieu,# Voir whatsHappen (type codeAndLabel),,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Type_de_lieu
-,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,Nature de fait ,# Voir type codeAndLabel,,,,Décrit la nature de fait de l'alerte : cf.nomenclature associée.,,whatsHappen,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Nature_de_fait
+,Type de lieu,# Voir type codeAndLabel,,,,Décrit le type de lieu : cf.nomenclature associée.,,locationKind,0..1,X,codeAndLabel,NOMENCLATURE: CISU-Code_Type_de_lieu
+,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Détails du dossier ,,,,,Objet qui permet de décrire les détails du dossier,,details,0..1,X,caseDetails,
+,,Etat du dossier,,,,"A valoriser avec l'état du dossier dans le système émetteur
+Spécificité 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement
+Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE à la tablette",,status,0..1,,string,NOMENCLATURE: ENUM-Etats_Dossier
 ,,Attribution du dossier,,,,"Décrit le type de professionnel médical à qui le dossier est attribué : médecin généraliste, médecin urgentiste etc.",MU,attribution,0..1,,string,NOMENCLATURE: SI-SAMU-DEVENIRD
 ,,Priorité de régulation médicale,,,,"Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3",P1,priority,0..1,,string,NOMENCLATURE: SI-SAMU-PRIORITE
 ,,Niveau de soins du dossier,,,,"Décrit le niveau de soins global du dossier identifié au cours de l'acte de régulation médicale : s'il y a plusieurs niveaux de soins différents pour chaque patient, on indique ici le niveau le plus grave.
 cf.nomenclature associée.",R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAVITE
-Localisation,,,,,,Objet qui permet de décrire le lieu d'intervention.,,location,1..1,X,location,
+Localisation,,,,,,Objet qui permet de décrire la localisation du lieu d'intervention.,,location,1..1,X,location,
 ,Nom du lieu,,,,,"A valoriser avec le nom de lieu : nom commercial, nom d'établissement, forêt de Fontainebleau, lac du Der, etc.",Lycée Pierre de Coubertin,name,0..1,,string,
 ,Identifiant(s) du lieu,,,,,Objet qui permet de transmettre le lien avec l'identifiant du lieu dans une base de données externes possiblement connue des autres acteurs,,externalLocationId,0..n,X,externalLocationId,
-,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,1..1,,string,"ENUM: FINESS_ADMINISTRATIF, FINESS_GEOGRAPHIQUE, SIREN, SIRET, APE_NAF"
+,,Source  /  type d'identifiant,,,,A valoriser avec le type de l'identifiant fourni. Cf nomenclature associée.,"FINESS géographique, FINESS administratif, SIREN, SIRET, APE, NAF",source,1..1,,string,NOMENCLATURE: ENUM-SOURCE_Id_Lieu
 ,,Identifiant,,,,A valoriser avec l'identifiant en lui-même,920000650 ,value,1..1,,string,REGEX: ([0-9A-Z]{2}0\d{5}\d|\d{9}|\d{14}|\d{4}[A-Za-z])
 ,Détails de l'adresse,,,,,,,detailedAddress,0..1,X,detailedAddress,
 ,,Autoroute,,,,Objet qui permet de transmettre les informations liés à une autoroute. S'utilise aussi pour les voies férées et navigables. ,,highway,0..1,X,highway,
@@ -98,14 +101,14 @@ VILLE : Précision à l'échelle de la ville,
 RUE : Précision à l'échelle de la rue, 
 ADRESSE : Adresse précise, 
 EXACTE : Point coordonnée GPS exact, 
-INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,precision,1..1,,string,"ENUM: VILLE, RUE, ADRESSE, EXACTE, INCONNUE"
+INCONNUE : Précision de la localisation non évaluable par l'émetteur",ADRESSE,precision,1..1,,string,NOMENCLATURE: ENUM-PRECISION
 ,,,Dispositif AML,,,Attribut qui permet de préciser si les coordonnées fournies proviennent du dispositif AML (Advanced Mobile Location) - TRUE - ou non - FALSE. ,TRUE,isAml,0..1,,boolean,
 ,Liens aux systèmes externes,,,,,"Lien avec l'identifiant de l'adresse dans une base de données externes possiblement connue des autres acteurs.
 L'identifiant BAN de l'adresse (clé d'interopérabilité) doit être partagé au maximum.",,externalInfo,0..n,X,externalInfo,
-,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,1..1,,string,"ENUM: BAN, IGN, NEXSIS"
+,,Nom de la source,,,,A valoriser avec le système fournissant le localisant,"BAN, IGN, NEXSIS, …",freetext,1..1,,string,NOMENCLATURE: ENUM-SOURCE_Loc
 ,,Type ,,,,"A valoriser avec la définition du type d'objet dans le système
 
-Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,0..1,,string,"ENUM: MANUEL, CARTE, AUTRE, PHOTO, SITE_INTERNET"
+Exemple : SIG NexSIS / OSM ont plusieurs types de données (EGA, POI, tronçon de route, …)","MANUEL, CARTE, AUTRE, PHOTO, SITE INTERNET",type,0..1,,string,NOMENCLATURE: ENUM-TYPE_Objet_Sys
 ,,Identifiant,,,,Identifiant dans le système concerné,"80021_6590_00008, id987",uri,1..1,,string,
 ,Informations complémentaires sur la localisation,,,,,"Champ libre qui permet de compléter les informations liées à la localisation.
 
@@ -129,11 +132,11 @@ Spécificités 15-15 : cet attribut ne doit pas être valorisé avec des notes �
 ,,Contact,,,,"Objet qui permet de décrire le type et la valeur de l'URI utilisée par un contact, ici spécifiquement le requérant/appelant à l'origine de l'alerte.
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de l'appelant, c'est à dire le numéro utilisé pour joindre les secours.",,callerContact,1..1,X,contact,
-,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,1..1,,string,"ENUM: PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL"
-,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,"ENUM: TEL, EMAIL, FAX, POSTAL, WEB, RADIO"
+,,,Canal,,,"A valoriser avec  l'origine du canal établi : PERSONNE, APPLICATION, DAU, BAU, DEFIBRILLATEUR, ECALL",PERSONNE,channel,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Canal
+,,,Type de contact,,,A valoriser avec le type de l'URI utilisée.  Cf nomenclature associée.,TEL,type,1..1,,string,NOMENCLATURE: ENUM-CONTACT_Type
 ,,,URI du contact,,,"A valoriser avec la valeur de l'URI utilisée.
 Le format attendu pour un numéro de téléphone est le suivant : +{indicatif pays}{numéro de téléphone}",+33671830530,detail,1..1,,string,
-,,Contact de contre-appel,# Voir callerContact (type contact),,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
+,,Contact de contre-appel,# Voir type contact,,,"Objet qui permet de décrire le type et la valeur de l'URI à utiliser pour recontacter un requérant/appelant. 
 
 Spécificités 15-15 : en envoi, cet objet est à valoriser avec le numéro de contre-appel uniquement lorsque celui-ci est différent du numéro de l'appelant (objet obligatoire callerContact).
 En réception, il est crucial de récupérer la valeur de cet objet lorsqu'il est renseigné, puisqu'il s'agit du numéro sur lequel l'appelant peut être joint.",,callbackContact,0..1,X,contact,
@@ -153,7 +156,7 @@ Spécificités 15-18  : NexSIS ne dispose que de ces informations (concaténées
 ,,,Prénom,,,"A valoriser avec le prénom usuel du réquérant.
 Par convention les prénoms composés doivent préférablement être séparés par le caractère ""-""",Jean,firstName,0..1,,string,
 CRRA traitant,,,,,,"Attribut qui permet de transférer la prise en charge d'un dossier à un autre CRAA
-A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,1..1,,string,"REGEX: fr(\.[\w-]+){2,4}"
+A valoriser avec l'identifiant de l'organisation concerné (orgId = {pays}.{domaine}.{organisation})",fr.health.samu440,owner,1..1,,string,REGEX: fr(\.[\w-]+){2}
 Patient,,,,,,Objet qui permet l'identification des patients / victimes,,patient,0..n,X,patient,
 ,ID patient partagé,,,,,"Identifiant partagé du patient, généré une seule fois par le système du partenaire qui créé le patient.
 Il est valorisé comme suit lors de sa création : 
@@ -164,27 +167,27 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 
 
 ","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,1..1,,string,"REGEX: ([\w-]+\.){3}patient(\.[\w-]+){1,2}"
 ,Dossier administratif,,,,,Objet qui permet de décrire les données administratives liées au patient,,administrativeFile,0..1,X,administrativeFile,
 ,,Identifiant(s) patient(s),,,,"Objet qui permet de décrire l'ensemble des identifiants qui permettent d'identifier le patient (autre que le matricule INS, qui ne doit jamais être partagé via cet objet)",,externalId,0..n,X,externalId,
-,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,"ENUM: NIR, SINUS, SI-VIC, DOSSARD, PLACE"
+,,,Source  /  type d'identifiant,,,Type de l'identifiant fourni,"NIR, SINUS, SI-VIC, …",source,1..1,,string,NOMENCLATURE: ENUM-TYPE_Id_Patient
 ,,,Identifiant,,,L'identifiant en lui-même,id1234,value,1..1,,string,
 ,Identité,,,,,Objet qui permet de décrire l'identité du patient,,identity,0..1,X,Identity,
 ,,Traits stricts de l'identité,,,,Objet qui permet de décrire les traits stricts de l'identité du patient,,strictFeatures,0..1,X,insStrictFeatures,
 ,,,Nom de naissance,,,A valoriser avec le nom de naissance du patient. Egalement appelé nom de famille.,Dupont,birthName,0..1,,string,
 ,,,Date de naissance,,,A valoriser avec la date de naissance du patient,,birthDate,0..1,,date,
 ,,,Sexe ,,,A valoriser avec le sexe du patient,F,sex,0..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
-,,Traits non stricts de l'identité,# Voir detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,nonStrictFeatures,0..1,X,detailedName,
-,Motif de recours médico-secouriste,# Voir whatsHappen (type codeAndLabel),,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,,Traits non stricts de l'identité,# Voir type detailedName,,,"Objet qui permet de décrire les traits stricts de l'identité du patient, c’est-à-dire le nom et le prénom usuels du patient.",,nonStrictFeatures,0..1,X,detailedName,
+,Motif de recours médico-secouriste,# Voir type codeAndLabel,,,,Décrit le motif de recours médico-secouriste associé spécifiquement à un patient : cf.nomenclature associée.,,healthMotive,0..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Informations patient,,,,,Objet qui permet de décrire les caractéristiques du patient,,detail,0..1,X,patientDetail,
-,,Poids,,,,A valoriser avec le poids en kilogrammes,31,weight,0..1,,integer,
-,,Taille,,,,A valoriser avec la taille en centimètres du patient,109,height,0..1,,integer,
+,,Poids,,,,A valoriser avec le poids en kilogrammes,31,weight,0..1,,number,
+,,Taille,,,,A valoriser avec la taille en centimètres du patient,109,height,0..1,,number,
 ,,Age,,,,"A valoriser avec l'age du patient.
 Au format ""Durée"" de la norme ISO 8601 (https://fr.wikipedia.org/wiki/ISO_8601#Dur%C3%A9e) et en n'utilisant qu'une seule unité de durée (années, mois, semaines ou jours)",P6Y,age,0..1,,string,"REGEX: P[0-9]{1,3}[YMWD]"
 ,,Niveau de soin du patient,,,,A valoriser avec le niveau de soins spécifique au patient,R1,careLevel,0..1,,string,NOMENCLATURE: SI-SAMU-GRAVITE
 ,Hypothèses de régulation médicale,,,,,Objet qui permet de décrire les hypothèses de régulation médicale,,hypothesis,0..1,X,hypothesis,
-,,Hypothèse de régulation médicale principale,# Voir whatsHappen (type codeAndLabel),,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,mainDiagnosis,0..1,X,codeAndLabel,
-,,Hypothèses de régulation médicale secondaires,# Voir whatsHappen (type codeAndLabel),,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,otherDiagnosis,0..n,X,codeAndLabel,
+,,Hypothèse de régulation médicale principale,# Voir type codeAndLabel,,,Hypothèse diagnostique principale émise par le médecin régulateur du CRAA. Norme CIM11.,,mainDiagnosis,0..1,X,codeAndLabel,
+,,Hypothèses de régulation médicale secondaires,# Voir type codeAndLabel,,,Hypothèses diagnostiques secondaires émises par le médecin régulateur du CRAA. Norme CIM11.,,otherDiagnosis,0..n,X,codeAndLabel,
 Observation médicale,,,,,,Observations de nature médicale. ,,medicalNote,0..n,X,medicalNote,
 ,ID patient partagé,,,,,"Identifiant partagé du patient concerné par l'observation, a remplir obligatoirement si ce patient existe et est identifié dans le système emetteur, 
 
@@ -193,10 +196,10 @@ Valorisé comme suit lors de sa création :
 
 OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
-fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ([\w-]+\.?){3}patient(\.[\w-]+){1,2}"
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ([\w-]+\.){3}patient(\.[\w-]+){1,2}"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,1..1,X,operator,
-,,Prénom et nom,,,,A valoriser avec le prénom et le nom de l'opérateur,,detailedName,0..1,X,detailedName,
-,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,"ENUM: AMBULANCIER, ARM, INFIRMIER, MEDECIN, INCONNU, AUTRE"
+,,Label,,,,"A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA : cela peut être le nom et prénom de l'opérateur, ou un identifiant.",,label,0..1,,string,
+,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,NOMENCLATURE: ENUM-ROLE
 ,ID Observation,,,,,"Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
 {OrgId émetteur}.medicalNote.{ID unique de l’observation dans le système émetteur}
@@ -206,9 +209,24 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
-fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,0..1,,string,"REGEX: ([\w-]+\.?){3}medicalNote(\.[\w-]+){1,2}"
+fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,1..1,,string,"REGEX: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"
 ,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
+Décisions,,,,,,"Objet qui peremt de passer l'ensemble des mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients.
+Si un freetext accompagne la décision, il doit être passé comme une observation médicale (medicalNote)",,decision,0..n,X,decision,
+,ID patient partagé,,,,,"A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur","fr.health.samu690.patient.P23AZ59
+fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,
+,Date Heure de création de la décision,,,,,A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,1..1,,datetime,
+,Opérateur décideur,# Voir type operator,,,,Objet qui permet de décrire le professionnel de santé qui prend la décision,,operator,1..1,X,operator,
+,Type de décision,,,,,A valoriser avec le type de décision prise (cf.nomenclature associée),conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,decisionType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPEDEC
+,Type de ressource,,,,,"A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.","SMUR, Pompiers",resourceType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
+,Type de vecteur,,,,,"A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.","AR, VLM, VSAV",vehiculeType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
+,Transport médicalisé,,,,,"A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé.
+True = transport médicalisé
+False = transport non médicalisé",True,medicalTransport,0..1,,boolean,
+,Type d'orientation,,,,,Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée),EPHAD,orientationType,0..1,,string,NOMENCLATURE: ENUM-TYPE_Destination
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,0..1,X,additionalInformation,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,0..3,X,customMap,
 ,,Clé,,,,A valoriser avec le nom de la balise,neighborhood,key,1..1,,string,

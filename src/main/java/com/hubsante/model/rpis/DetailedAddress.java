@@ -41,23 +41,23 @@ import java.util.Objects;
 /**
  * DetailedAddress
  */
-@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_CITY_CODE,
+@JsonPropertyOrder({DetailedAddress.JSON_PROPERTY_INSEE_CODE,
                     DetailedAddress.JSON_PROPERTY_CITY})
 @JsonTypeName("detailedAddress")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class DetailedAddress {
-  public static final String JSON_PROPERTY_CITY_CODE = "cityCode";
-  private String cityCode;
+  public static final String JSON_PROPERTY_INSEE_CODE = "inseeCode";
+  private String inseeCode;
 
   public static final String JSON_PROPERTY_CITY = "city";
   private String city;
 
   public DetailedAddress() {}
 
-  public DetailedAddress cityCode(String cityCode) {
+  public DetailedAddress inseeCode(String inseeCode) {
 
-    this.cityCode = cityCode;
+    this.inseeCode = inseeCode;
     return this;
   }
 
@@ -65,19 +65,19 @@ public class DetailedAddress {
    * Code INSEE de la commune actuelle sur la base du Code Officiel géographique
    *en vigueur. Obligatoire si le nom de la commune est renseigné. Le Code INSEE
    *peut également précisé le pays d&#39;intervention, si étranger.
-   * @return cityCode
+   * @return inseeCode
    **/
-  @JsonProperty(JSON_PROPERTY_CITY_CODE)
+  @JsonProperty(JSON_PROPERTY_INSEE_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
 
-  public String getCityCode() {
-    return cityCode;
+  public String getInseeCode() {
+    return inseeCode;
   }
 
-  @JsonProperty(JSON_PROPERTY_CITY_CODE)
+  @JsonProperty(JSON_PROPERTY_INSEE_CODE)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setCityCode(String cityCode) {
-    this.cityCode = cityCode;
+  public void setInseeCode(String inseeCode) {
+    this.inseeCode = inseeCode;
   }
 
   public DetailedAddress city(String city) {
@@ -112,20 +112,22 @@ public class DetailedAddress {
       return false;
     }
     DetailedAddress detailedAddress = (DetailedAddress)o;
-    return Objects.equals(this.cityCode, detailedAddress.cityCode) &&
+    return Objects.equals(this.inseeCode, detailedAddress.inseeCode) &&
         Objects.equals(this.city, detailedAddress.city);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(cityCode, city);
+    return Objects.hash(inseeCode, city);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class DetailedAddress {\n");
-    sb.append("    cityCode: ").append(toIndentedString(cityCode)).append("\n");
+    sb.append("    inseeCode: ")
+        .append(toIndentedString(inseeCode))
+        .append("\n");
     sb.append("    city: ").append(toIndentedString(city)).append("\n");
     sb.append("}");
     return sb.toString();

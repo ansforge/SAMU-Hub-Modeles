@@ -2,7 +2,7 @@
     <element name="resourcesStatus" type="x:resourcesStatus"/>
     <complexType name="resourcesStatus">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
@@ -11,8 +11,13 @@ Il est valorisé comme suit lors de sa création :
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3}"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element name="resourceId" type="string">
+            <element name="resourceId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant partagé unique de la ressource engagée , normé comme suit :
 {orgID}.R.{ID unique de la ressource partagée}
@@ -21,6 +26,11 @@ Ou, uniquement dans le cas où un ID unique de ressource ne peut pas être garan
 
 N.B. Il s'agit de l'orgId de l'organisation à qui appartient la ressource</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3}resource(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>

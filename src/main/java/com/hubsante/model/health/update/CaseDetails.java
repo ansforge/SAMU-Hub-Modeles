@@ -41,12 +41,62 @@ import java.util.Objects;
 /**
  * CaseDetails
  */
-@JsonPropertyOrder(
-    {CaseDetails.JSON_PROPERTY_PRIORITY, CaseDetails.JSON_PROPERTY_CARE_LEVEL})
+@JsonPropertyOrder({CaseDetails.JSON_PROPERTY_STATUS,
+                    CaseDetails.JSON_PROPERTY_PRIORITY,
+                    CaseDetails.JSON_PROPERTY_CARE_LEVEL})
 @JsonTypeName("caseDetails")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class CaseDetails {
+
+  /**
+   * A valoriser avec l&#39;état du dossier dans le système émetteur Spécificité
+   * 15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement
+   * Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut
+   * CLOTURE à la tablette
+   */
+  public enum StatusEnum {
+    PROGRAMME("PROGRAMME"),
+
+    _ACTIF(" ACTIF"),
+
+    ACHEVE("ACHEVE"),
+
+    VALIDE("VALIDE"),
+
+    CLOTURE("CLOTURE"),
+
+    CLASSE("CLASSE"),
+
+    ARCHIVE("ARCHIVE");
+
+    private String value;
+
+    StatusEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private StatusEnum status;
 
   /**
    * Décrit la priorité de régulation médicale du dossier : P0, P1, P2, P3
@@ -135,6 +185,32 @@ public class CaseDetails {
 
   public CaseDetails() {}
 
+  public CaseDetails status(StatusEnum status) {
+
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * A valoriser avec l&#39;état du dossier dans le système émetteur Spécificité
+   *15-15 : peut être ignoré en réception, partagé à titre indicatif uniquement
+   *Spécificité 15-SMUR : à utiliser à minima pour transmettre le statut CLOTURE
+   *à la tablette
+   * @return status
+   **/
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
   public CaseDetails priority(PriorityEnum priority) {
 
     this.priority = priority;
@@ -193,19 +269,21 @@ public class CaseDetails {
       return false;
     }
     CaseDetails caseDetails = (CaseDetails)o;
-    return Objects.equals(this.priority, caseDetails.priority) &&
+    return Objects.equals(this.status, caseDetails.status) &&
+        Objects.equals(this.priority, caseDetails.priority) &&
         Objects.equals(this.careLevel, caseDetails.careLevel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(priority, careLevel);
+    return Objects.hash(status, priority, careLevel);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CaseDetails {\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    priority: ").append(toIndentedString(priority)).append("\n");
     sb.append("    careLevel: ")
         .append(toIndentedString(careLevel))

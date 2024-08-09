@@ -1,0 +1,44 @@
+{
+  "createCaseHealthUpdate": {
+    "qualification": {
+      "details": {
+        "careLevel": "R2"
+      }
+    },
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "MEDECIN"
+        },
+        "idPat": "fr.health.samu009.patient.DRFR150092406301259.1",
+        "idObs": "fr.health.samu009.medicalNote.s5trx.",
+        "creation": "2024-03-03T15:10:00+01:00",
+        "freetext": "Personne désorientée et incohérente. Difficultés d'élocution +++. Lèvre/moitié inférieure gauche du visage tombante. Antécédents inconnus."
+      },
+      {
+        "operator": {
+          "role": "MEDECIN"
+        },
+        "idPat": "fr.health.samu009.patient.DRFR150092406301259.1",
+        "idObs": "fr.health.samu009.medicalNote.s5trx.",
+        "creation": "2024-03-03T15:11:00+01:00",
+        "freetext": "Suspicion d’AVC (ou d’atteinte neurologique). Engagement ambulance, pour évaluation. \u000bPrise en charge CHU à prévoir."
+      }
+    ],
+    "patient": [
+      {
+        "hypothesis": {
+          "mainDiagnosis": {
+            "label": "AVC sans précision",
+            "code": "I64"
+          }
+        },
+        "detail": {
+          "careLevel": "R2"
+        },
+        "idPat": "fr.health.samu009.patient.DRFR150092406301259.1"
+      }
+    ],
+    "caseId": "fr.health.samu009.DRFR150092406301259"
+  }
+}

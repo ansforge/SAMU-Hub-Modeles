@@ -1,0 +1,30 @@
+{
+  "resourcesInfo": {
+    "mobilizedResource": [
+      {
+        "contact": {
+          "details": "+33611342658",
+          "type": "TEL"
+        },
+        "team": {
+          "teamCare": "PARAMED"
+        },
+        "state": [
+          {
+            "status": "DECLENCHE",
+            "datetime": "2024-08-03T03:17:00+02:00",
+            "availability": false
+          }
+        ],
+        "datetime": "2024-03-03T15:17:00+01:00",
+        "resourceId": "fr.health.samu780.resource. DRFR150092406301259.1",
+        "missionId": "DRFR150092406301259.M5698",
+        "orgId": "fr.health.BeauRivage",
+        "resourceType": "TSU ",
+        "vehiculeType": "AMB",
+        "name": "Amb. BeauRivage - 56"
+      }
+    ],
+    "caseId": "fr.health.samu009.DRFR150092406301259"
+  }
+}

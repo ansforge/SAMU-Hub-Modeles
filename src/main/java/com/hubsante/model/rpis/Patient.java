@@ -35,7 +35,6 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
 import com.hubsante.model.rpis.ResidentialAddress;
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -45,7 +44,6 @@ import java.util.Objects;
  */
 @JsonPropertyOrder({Patient.JSON_PROPERTY_PATIENT_ID,
                     Patient.JSON_PROPERTY_BIRTH_DATE, Patient.JSON_PROPERTY_SEX,
-                    Patient.JSON_PROPERTY_NIR,
                     Patient.JSON_PROPERTY_RESIDENTIAL_ADDRESS})
 @JsonTypeName("patient")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
@@ -97,9 +95,6 @@ public class Patient {
 
   public static final String JSON_PROPERTY_SEX = "sex";
   private SexEnum sex;
-
-  public static final String JSON_PROPERTY_NIR = "nir";
-  private BigDecimal nir;
 
   public static final String JSON_PROPERTY_RESIDENTIAL_ADDRESS =
       "residentialAddress";
@@ -179,30 +174,6 @@ public class Patient {
     this.sex = sex;
   }
 
-  public Patient nir(BigDecimal nir) {
-
-    this.nir = nir;
-    return this;
-  }
-
-  /**
-   * Numéro d&#39;inscription au Répertoire ou numéro de sécurité sociale,
-   *unique, transmis par la CNIL
-   * @return nir
-   **/
-  @JsonProperty(JSON_PROPERTY_NIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-
-  public BigDecimal getNir() {
-    return nir;
-  }
-
-  @JsonProperty(JSON_PROPERTY_NIR)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setNir(BigDecimal nir) {
-    this.nir = nir;
-  }
-
   public Patient residentialAddress(ResidentialAddress residentialAddress) {
 
     this.residentialAddress = residentialAddress;
@@ -238,13 +209,12 @@ public class Patient {
     return Objects.equals(this.patientId, patient.patientId) &&
         Objects.equals(this.birthDate, patient.birthDate) &&
         Objects.equals(this.sex, patient.sex) &&
-        Objects.equals(this.nir, patient.nir) &&
         Objects.equals(this.residentialAddress, patient.residentialAddress);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(patientId, birthDate, sex, nir, residentialAddress);
+    return Objects.hash(patientId, birthDate, sex, residentialAddress);
   }
 
   @Override
@@ -258,7 +228,6 @@ public class Patient {
         .append(toIndentedString(birthDate))
         .append("\n");
     sb.append("    sex: ").append(toIndentedString(sex)).append("\n");
-    sb.append("    nir: ").append(toIndentedString(nir)).append("\n");
     sb.append("    residentialAddress: ")
         .append(toIndentedString(residentialAddress))
         .append("\n");

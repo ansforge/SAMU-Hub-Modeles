@@ -1,0 +1,91 @@
+{
+  "createCaseHealth": {
+    "initialAlert": {
+      "caller": {
+        "detailedName": {
+          "complete": "Lucas Bernardi ",
+          "lastName": "Bernardi ",
+          "firstName": "Lucas"
+        },
+        "callbackContact": {
+          "detail": "+33561964589",
+          "type": "TEL",
+          "channel": "PERSONNE"
+        },
+        "callerContact": {
+          "type": "TEL",
+          "detail": "+34612345678",
+          "channel": "PERSONNE"
+        },
+        "language": "FR",
+        "type": "TIERS"
+      },
+      "reception": "2024-03-03T15:00:00+01:00",
+      "notes": [
+        {
+          "freetext": "Client du gite voyageant seul.",
+          "creation": "2024-03-03T15:05:00+01:00"
+        }
+      ]
+    },
+    "location": {
+      "city": {
+        "name": "Aulus-les-Bains",
+        "inseeCode": "09029"
+      },
+      "detailedAddress": {
+        "wayName": {
+          "complete": "Rue principale",
+          "type": "Rue",
+          "name": "principale"
+        },
+        "complete": "Rue principale"
+      },
+      "name": "Le gite du Moulin ",
+      "freetext": "Maison avec la porte verte, 100 m après le lavoir",
+      "access": {
+        "phoneNumber": "+33561964589"
+      }
+    },
+    "qualification": {
+      "details": {
+        "attribution": "MU",
+        "priority": "P1"
+      },
+      "healthMotive": {
+        "code": "M03.08",
+        "label": "Signes d’AVC"
+      },
+      "locationKind": {
+        "code": "L04.12.00",
+        "label": "Lieu accueillant du public ; Hébergement touristique"
+      },
+      "whatsHappen": {
+        "code": "C02.05.00",
+        "label": "Atteinte aux personnes ; Pathologie / maladie"
+      }
+    },
+    "patient": [
+      {
+        "detail": {
+          "age": "P80Y"
+        },
+        "idPat": "fr.health.samu009.patient.DRFR150092406301259.1"
+      }
+    ],
+    "caseId": "fr.health.samu009.DRFR150092406301259",
+    "creation": "2024-03-03T15:00:00+01:00",
+    "owner": "fr.health.samu009",
+    "medicalNote": [
+      {
+        "operator": {
+          "role": "ARM"
+        },
+        "freetext": "Confusion, étourdissements, s’exprime difficilement. ",
+        "creation": "2024-03-03T15:08:00+01:00",
+        "idPat": "fr.health.samu009.patient.DRFR150092406301259.1",
+        "idObs": "fr.health.samu009.medicalNote.46zf89"
+      }
+    ]
+  }
+}

@@ -33,10 +33,24 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         request:
           $ref: '#/components/schemas/request'
+        status:
+          type: string
+          title: Etat annulation
+          x-health-only: false
+          x-cols: 6
+          example: example.json#/status
+          description: "A valoriser avec la valeur ANNULEE uniquement pour signifier\
+            \ l'annulation d'une demande de ressources. Les autres champs de la demande\
+            \ sont remplis \xE0 l'identique de la demande initiale envoy\xE9e."
+          enum:
+          - ANNULEE
+          examples:
+          - ANNULEE
       additionalProperties: false
     request:
       type: object
@@ -61,6 +75,7 @@ components:
             \ \xE9metteur}\n\nOU - uniquement si un ID unique de la demande n'est\
             \ pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
+          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -127,8 +142,20 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/request/deadline
-          description: "A valoriser avec le d\xE9lai d'intervention souhait\xE9 en\
-            \ minutes "
+          description: "A valoriser avec le d\xE9lai d'intervention maximum souhait\xE9\
+            \ (cf. nomenclature associ\xE9e)"
+          enum:
+          - DEL0
+          - ASAP
+          - DEL30M
+          - DEL45M
+          - DEL1H
+          - DEL2H
+          - DEL4H
+          - DEL8H
+          - DEL12H
+          - DEL24H
+          - RDV
           examples:
           - 10
         freetext:

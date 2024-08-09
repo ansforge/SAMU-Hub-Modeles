@@ -1,0 +1,57 @@
+{
+  "resourcesInfo": {
+    "mobilizedResource": [
+      {
+        "contact": {
+          "details": "+33744947325",
+          "type": "TEL"
+        },
+        "coord": {
+          "lat": 49.609757856404826,
+          "lon": 1.3320630023425208,
+          "precision": "EXACTE"
+        },
+        "team": {
+          "teamCare": "MED",
+          "name": "Equipe SMUR 5"
+        },
+        "state": [
+          {
+            "datetime": "2024-08-01T16:42:00+02:00",
+            "status": "DECLENCHE"
+          }
+        ],
+        "datetime": "2024-08-01T16:42:00+02:00",
+        "resourceId": "fr.health.samu76A.resource.VLM12",
+        "orgId": "fr.health.samu76A",
+        "resourceType": "SMUR",
+        "vehiculeType": "VLM",
+        "name": "VLM 76 - A45"
+      },
+      {
+        "contact": {
+          "details": "+33645987297",
+          "type": "TEL"
+        },
+        "team": {
+          "name": "Equipe Rouge",
+          "teamCare": "SECOURS"
+        },
+        "state": [
+          {
+            "datetime": "2024-08-01T16:40:00+02:00",
+            "status": "DECLENCHE",
+            "availability": false
+          }
+        ],
+        "datetime": "2024-08-01T16:40:00+02:00",
+        "resourceId": "fr.fire. sis076.cgo-076.resource.VSAV3A",
+        "orgId": "fr.fire.sdis76.cgo-076",
+        "resourceType": "SIS",
+        "name": "VSAV 76 - 22D8",
+        "vehiculeType": "VSAV"
+      }
+    ],
+    "caseId": "fr.health.samu800.DRFR158002421400215"
+  }
+}

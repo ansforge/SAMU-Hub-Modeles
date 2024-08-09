@@ -34,6 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -49,10 +50,10 @@ import java.util.Objects;
 
 public class PatientDetail {
   public static final String JSON_PROPERTY_WEIGHT = "weight";
-  private Integer weight;
+  private BigDecimal weight;
 
   public static final String JSON_PROPERTY_HEIGHT = "height";
-  private Integer height;
+  private BigDecimal height;
 
   public static final String JSON_PROPERTY_AGE = "age";
   private String age;
@@ -99,7 +100,7 @@ public class PatientDetail {
 
   public PatientDetail() {}
 
-  public PatientDetail weight(Integer weight) {
+  public PatientDetail weight(BigDecimal weight) {
 
     this.weight = weight;
     return this;
@@ -112,17 +113,17 @@ public class PatientDetail {
   @JsonProperty(JSON_PROPERTY_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getWeight() {
+  public BigDecimal getWeight() {
     return weight;
   }
 
   @JsonProperty(JSON_PROPERTY_WEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setWeight(Integer weight) {
+  public void setWeight(BigDecimal weight) {
     this.weight = weight;
   }
 
-  public PatientDetail height(Integer height) {
+  public PatientDetail height(BigDecimal height) {
 
     this.height = height;
     return this;
@@ -135,13 +136,13 @@ public class PatientDetail {
   @JsonProperty(JSON_PROPERTY_HEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public Integer getHeight() {
+  public BigDecimal getHeight() {
     return height;
   }
 
   @JsonProperty(JSON_PROPERTY_HEIGHT)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setHeight(Integer height) {
+  public void setHeight(BigDecimal height) {
     this.height = height;
   }
 

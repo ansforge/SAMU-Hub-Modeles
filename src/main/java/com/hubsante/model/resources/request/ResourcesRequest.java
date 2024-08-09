@@ -43,7 +43,8 @@ import java.util.Objects;
  * ResourcesRequest
  */
 @JsonPropertyOrder({ResourcesRequest.JSON_PROPERTY_CASE_ID,
-                    ResourcesRequest.JSON_PROPERTY_REQUEST})
+                    ResourcesRequest.JSON_PROPERTY_REQUEST,
+                    ResourcesRequest.JSON_PROPERTY_STATUS})
 @JsonTypeName("resourcesRequest")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
@@ -55,6 +56,42 @@ public class ResourcesRequest {
 
   public static final String JSON_PROPERTY_REQUEST = "request";
   private Request request;
+
+  /**
+   * A valoriser avec la valeur ANNULEE uniquement pour signifier
+   * l&#39;annulation d&#39;une demande de ressources. Les autres champs de la
+   * demande sont remplis à l&#39;identique de la demande initiale envoyée.
+   */
+  public enum StatusEnum {
+    ANNULEE("ANNULEE");
+
+    private String value;
+
+    StatusEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static StatusEnum fromValue(String value) {
+      for (StatusEnum b : StatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_STATUS = "status";
+  private StatusEnum status;
 
   public ResourcesRequest() {}
 
@@ -111,6 +148,31 @@ public class ResourcesRequest {
     this.request = request;
   }
 
+  public ResourcesRequest status(StatusEnum status) {
+
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * A valoriser avec la valeur ANNULEE uniquement pour signifier
+   *l&#39;annulation d&#39;une demande de ressources. Les autres champs de la
+   *demande sont remplis à l&#39;identique de la demande initiale envoyée.
+   * @return status
+   **/
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public StatusEnum getStatus() {
+    return status;
+  }
+
+  @JsonProperty(JSON_PROPERTY_STATUS)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(StatusEnum status) {
+    this.status = status;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) {
@@ -121,12 +183,13 @@ public class ResourcesRequest {
     }
     ResourcesRequest resourcesRequest = (ResourcesRequest)o;
     return Objects.equals(this.caseId, resourcesRequest.caseId) &&
-        Objects.equals(this.request, resourcesRequest.request);
+        Objects.equals(this.request, resourcesRequest.request) &&
+        Objects.equals(this.status, resourcesRequest.status);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(caseId, request);
+    return Objects.hash(caseId, request, status);
   }
 
   @Override
@@ -135,6 +198,7 @@ public class ResourcesRequest {
     sb.append("class ResourcesRequest {\n");
     sb.append("    caseId: ").append(toIndentedString(caseId)).append("\n");
     sb.append("    request: ").append(toIndentedString(request)).append("\n");
+    sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("}");
     return sb.toString();
   }

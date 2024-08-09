@@ -87,7 +87,7 @@
     },
     "MISSION": [
       {
-        "TYPE": "GEN/SCNMNG",
+        "TYPE": "FSTT/TA",
         "FREETEXT": "Besoin d'assisance terrain pour gérer perturbations et sécuriser le site d'intervention.",
         "ID": "ABC1YU3454",
         "ORG_ID": "fr.health.samu690",

@@ -68,10 +68,6 @@ public class Decision {
 
     FDO("FDO"),
 
-    ADM("ADM"),
-
-    DAE("DAE"),
-
     AUTRE("AUTRE");
 
     private String value;
@@ -117,9 +113,7 @@ public class Decision {
 
     AUTRESC("AUTRESC"),
 
-    AUTREVECT("AUTREVECT"),
-
-    CONSEIL("CONSEIL"),
+    AUTREVEC("AUTREVEC"),
 
     TAXI("TAXI"),
 
@@ -135,13 +129,7 @@ public class Decision {
 
     AUTRE("AUTRE"),
 
-    AUTRETRANS("AUTRETRANS"),
-
-    INCONNU("INCONNU"),
-
-    DEFIB("DEFIB"),
-
-    DAE("DAE"),
+    AUTRETRA("AUTRETRA"),
 
     FSI("FSI"),
 
@@ -155,17 +143,9 @@ public class Decision {
 
     LIB("LIB"),
 
-    MEDC("MEDC"),
-
     MEDV("MEDV"),
 
-    PHARMA("PHARMA"),
-
     INF("INF"),
-
-    MEDSPE("MEDSPE"),
-
-    DENT("DENT"),
 
     AUTREPRO("AUTREPRO"),
 

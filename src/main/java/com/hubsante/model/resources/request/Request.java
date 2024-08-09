@@ -166,8 +166,60 @@ public class Request {
   public static final String JSON_PROPERTY_PURPOSE = "purpose";
   private PurposeEnum purpose;
 
+  /**
+   * A valoriser avec le délai d&#39;intervention maximum souhaité (cf.
+   * nomenclature associée)
+   */
+  public enum DeadlineEnum {
+    DEL0("DEL0"),
+
+    ASAP("ASAP"),
+
+    DEL30M("DEL30M"),
+
+    DEL45M("DEL45M"),
+
+    DEL1H("DEL1H"),
+
+    DEL2H("DEL2H"),
+
+    DEL4H("DEL4H"),
+
+    DEL8H("DEL8H"),
+
+    DEL12H("DEL12H"),
+
+    DEL24H("DEL24H"),
+
+    RDV("RDV");
+
+    private String value;
+
+    DeadlineEnum(String value) { this.value = value; }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static DeadlineEnum fromValue(String value) {
+      for (DeadlineEnum b : DeadlineEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
   public static final String JSON_PROPERTY_DEADLINE = "deadline";
-  private String deadline;
+  private DeadlineEnum deadline;
 
   public static final String JSON_PROPERTY_FREETEXT = "freetext";
   private String freetext;
@@ -273,26 +325,27 @@ public class Request {
     this.purpose = purpose;
   }
 
-  public Request deadline(String deadline) {
+  public Request deadline(DeadlineEnum deadline) {
 
     this.deadline = deadline;
     return this;
   }
 
   /**
-   * A valoriser avec le délai d&#39;intervention souhaité en minutes
+   * A valoriser avec le délai d&#39;intervention maximum souhaité (cf.
+   *nomenclature associée)
    * @return deadline
    **/
   @JsonProperty(JSON_PROPERTY_DEADLINE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public String getDeadline() {
+  public DeadlineEnum getDeadline() {
     return deadline;
   }
 
   @JsonProperty(JSON_PROPERTY_DEADLINE)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDeadline(String deadline) {
+  public void setDeadline(DeadlineEnum deadline) {
     this.deadline = deadline;
   }
 
