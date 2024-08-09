@@ -1,6 +1,0 @@
-Could not validate message against schema : errors occurred. 
-Issues found on the envelope: 
- - $.integerField: object found, integer expected
- - $.booleanField: array found, boolean expected
- - $.optionalStringField: array found, string expected
- - $.numberField: object found, number expected

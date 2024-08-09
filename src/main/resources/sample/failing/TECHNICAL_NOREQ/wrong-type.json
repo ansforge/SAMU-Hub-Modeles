@@ -1,8 +1,0 @@
-{
-  "optionalStringField": 1,
-  "integerField": 1.5,
-  "numberField": "one",
-  "booleanField": "vrai",
-  "dateField": 20200101,
-  "datetimeField": 20200101
-}

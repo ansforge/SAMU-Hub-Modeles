@@ -1,4 +1,0 @@
-Could not validate message against schema : errors occurred. 
-Issues found on the envelope: 
- - $.objectField: array found, object expected
- - $.objectLevel1: string found, object expected

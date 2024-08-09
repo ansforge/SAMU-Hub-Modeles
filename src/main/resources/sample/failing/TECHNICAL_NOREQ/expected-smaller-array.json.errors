@@ -1,3 +1,0 @@
-Could not validate message against schema : errors occurred. 
-Issues found on the envelope: 
- - $.arrayWithMaxLength: there must be a maximum of 5 items in the array

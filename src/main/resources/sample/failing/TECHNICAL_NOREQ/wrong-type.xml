@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<technicalNoreq xmlns="urn:emergency:cisu:2.0:technicalNoreq">
-    <optionalStringField>1</optionalStringField>
-    <integerField>1.5</integerField>
-    <numberField>one</numberField>
-    <booleanField>vrai</booleanField>
-    <dateField>20200101</dateField>
-    <datetimeField>20200101</datetimeField>
-</technicalNoreq>
