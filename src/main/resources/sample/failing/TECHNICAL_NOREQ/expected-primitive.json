@@ -1,0 +1,16 @@
+{
+  "optionalStringField": [
+    "value1",
+    "value2"
+  ],
+  "integerField": {
+    "value": 1
+  },
+  "booleanField": [
+    true,
+    false
+  ],
+  "numberField": {
+    "value": 1.1
+  }
+}

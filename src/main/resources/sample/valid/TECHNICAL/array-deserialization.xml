@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<technical xmlns="urn:emergency:cisu:2.0:technical">
+    <requiredStringField>requiredStringValue</requiredStringField>
+    <enumArrayField>ENUM_VALUE_10</enumArrayField>
+    <enumArrayField>ENUM_VALUE_20</enumArrayField>
+    <enumArrayField>ENUM_VALUE_30</enumArrayField>
+    <requiredArray>requiredArrayValue1</requiredArray>
+    <arrayWithMaxLength>arrayWithMaxLengthValue1</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue2</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue3</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue4</arrayWithMaxLength>
+    <arrayWithMaxLength>arrayWithMaxLengthValue5</arrayWithMaxLength>
+</technical>

@@ -413,6 +413,34 @@
               }
             }
           ]
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "technical": {
+                  "$ref": "TECHNICAL.schema.json"
+                }
+              },
+              "required": [
+                "technical"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "message": {
+              "properties": {
+                "technicalNoreq": {
+                  "$ref": "TECHNICAL_NOREQ.schema.json"
+                }
+              },
+              "required": [
+                "technicalNoreq"
+              ]
+            }
+          }
         }
       ]
     },

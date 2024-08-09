@@ -1,0 +1,3 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the envelope: 
+ - $.unknownField: is not defined in the schema and the schema does not allow additional properties
