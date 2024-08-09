@@ -118,6 +118,19 @@
         }
       ]
     },
-    "interventionType": "PRIMAIRE"
+    "interventionType": "PRIMAIRE",
+    "decision": [
+      {
+        "operator": {
+          "role": "MEDECIN",
+          "label": "Rémi Martin"
+        },
+        "idPat": "fr.health.samu440.patient.DRFR154402414300123.1",
+        "creation": "2024-05-26T13:20:00+02:00",
+        "decisionType": "INTER",
+        "resourceType": "SMUR",
+        "vehiculeType": "VLM"
+      }
+    ]
   }
 }

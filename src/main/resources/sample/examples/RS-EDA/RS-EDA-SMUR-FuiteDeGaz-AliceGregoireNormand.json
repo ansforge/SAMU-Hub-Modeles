@@ -135,17 +135,34 @@
         "creation": "2024-05-18T18:15:00+02:00",
         "freetext": "Asthmatique",
         "operator": {
-          "detailedName": {
-            "complete": "Angèle Mouscou",
-            "lastName": "Mouscou",
-            "firstName": "Angèle"
-          },
           "role": "ARM"
         },
-        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2"
+        "idPat": "fr.health.samu440.patient.DRFR154402413800236.2",
+        "idObs": "fr.health.samu440.medicalNote.0001"
       }
     ],
     "owner": "fr.health.samu440",
-    "interventionType": "PRIMAIRE"
+    "interventionType": "PRIMAIRE",
+    "decision": [
+      {
+        "operator": {
+          "role": "MEDECIN"
+        },
+        "resourceType": "SMUR",
+        "vehiculeType": "VLM",
+        "decisionType": "INTER",
+        "creation": "2024-05-18T18:19:00+02:00",
+        "medicalTransport": true
+      },
+      {
+        "operator": {
+          "role": "MEDECIN"
+        },
+        "resourceType": "SIS",
+        "vehiculeType": "VSAV",
+        "decisionType": "INTER",
+        "creation": "2024-05-18T18:20:00+02:00"
+      }
+    ]
   }
 }
