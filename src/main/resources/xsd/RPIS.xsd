@@ -135,35 +135,12 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
     </complexType>
     <complexType name="orientation">
         <sequence>
-            <element name="type">
+            <element name="type" type="string">
                 <annotation>
                     <documentation>Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
 A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
 Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. </documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="OK"/>
-                        <enumeration value="TEMP"/>
-                        <enumeration value="SEUL"/>
-                        <enumeration value="AFAMILLE"/>
-                        <enumeration value="AMED"/>
-                        <enumeration value="AFDO"/>
-                        <enumeration value="ATIERS"/>
-                        <enumeration value="MOYPERSO"/>
-                        <enumeration value="VECTEUR"/>
-                        <enumeration value="REFPAT"/>
-                        <enumeration value="REFFAM"/>
-                        <enumeration value="PASREAKO"/>
-                        <enumeration value="PASREAOK"/>
-                        <enumeration value="REA"/>
-                        <enumeration value="TRANSPOR"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="FUGUE"/>
-                        <enumeration value="REFAUTRE"/>
-                        <enumeration value="RAS"/>
-                    </restriction>
-                </simpleType>
             </element>
             <element minOccurs="0" name="destination" type="x:destination"/>
             <element minOccurs="0" name="decision" type="x:decision"/>

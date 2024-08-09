@@ -95,25 +95,13 @@
     "decision": [
         {
             "idPat": "fr.health.samu690.patient.P23AZ59\nfr.health.samu690.patient.DRFR15690242370035.1",
-            "patientStatus": "laissé sur place, décédé, ou transporté",
             "creation": "2022-09-27T08:23:34+02:00",
-            "type": "conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire",
             "operator": {},
-            "engagementDetails": [
-                {
-                    "categoryType": "SMUR, Pompiers",
-                    "resourceType": "AR, VLM, VSAV",
-                    "teamCareInitial": "Médical, paramédical, secouriste"
-                }
-            ],
-            "transportDetails": [
-                {
-                    "destination": {
-                        "type": "None",
-                        "location": {}
-                    }
-                }
-            ]
+            "decisionType": "conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire",
+            "resourceType": "SMUR, Pompiers",
+            "vehiculeType": "AR, VLM, VSAV",
+            "medicalTransport": "True",
+            "orientationType": "EPHAD"
         }
     ],
     "freetext": "adresse : 7bis rue du château - Neuilly sur Seine",

@@ -2,7 +2,7 @@
     <element name="resourcesRequest" type="x:resourcesRequest"/>
     <complexType name="resourcesRequest">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
@@ -11,13 +11,28 @@ Il est valorisé comme suit lors de sa création :
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="request" type="x:request"/>
+            <element minOccurs="0" name="status">
+                <annotation>
+                    <documentation>A valoriser avec la valeur ANNULEE uniquement pour signifier l'annulation d'une demande de ressources. Les autres champs de la demande sont remplis à l'identique de la demande initiale envoyée.</documentation>
+                </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <enumeration value="ANNULEE"/>
+                    </restriction>
+                </simpleType>
+            </element>
         </sequence>
     </complexType>
     <complexType name="request">
         <sequence>
-            <element name="requestId" type="string">
+            <element name="requestId">
                 <annotation>
                     <documentation>Identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
 Il est valorisé comme suit lors de sa création : 
@@ -26,6 +41,11 @@ Il est valorisé comme suit lors de sa création :
 OU - uniquement si un ID unique de la demande n'est pas disponible : 
 {OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3}request(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="datetime" type="dateTime">
                 <annotation>

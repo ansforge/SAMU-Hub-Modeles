@@ -291,26 +291,6 @@ components:
             \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
             \ est sans transport associ\xE9, les objets Destination et Transport sont\
             \ facultatifs. "
-          enum:
-          - OK
-          - TEMP
-          - SEUL
-          - AFAMILLE
-          - AMED
-          - AFDO
-          - ATIERS
-          - MOYPERSO
-          - VECTEUR
-          - REFPAT
-          - REFFAM
-          - PASREAKO
-          - PASREAOK
-          - REA
-          - TRANSPOR
-          - ADM
-          - FUGUE
-          - REFAUTRE
-          - RAS
           examples:
           - TEMP
         destination:

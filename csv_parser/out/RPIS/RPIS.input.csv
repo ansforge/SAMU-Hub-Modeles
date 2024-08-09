@@ -76,7 +76,7 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDi
 Décision d'orientation,,,,,,,,orientation,1..1,X,orientation,
 ,Type de devenir du patient,,,,,"Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
 A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
-Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",TEMP,type,1..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT
+Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",TEMP,type,1..1,,string,
 ,Destination,,,,,,,destination,0..1,X,destination,
 ,,Pays de destination,,,,A valoriser par le libellé court de la nomenclature SIGLPAYS,FR,destinationCountry,1..1,,string,NOMENCLATURE: ISO 3166-ISO3166-2
 ,,Catégorie de l'établissement de destination,,,,A valoriser par le code de la nomenclature associée,,destinationCategory,1..1,,string,

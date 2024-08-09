@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RPIS.schema.json#",
-    "version": "24.08.07",
+    "version": "24.08.09",
     "example": "example.json#",
     "type": "object",
     "title": "rpis",
@@ -260,28 +260,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/orientation/type",
-                    "description": "Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). \nA valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",
-                    "enum": [
-                        "OK",
-                        "TEMP",
-                        "SEUL",
-                        "AFAMILLE",
-                        "AMED",
-                        "AFDO",
-                        "ATIERS",
-                        "MOYPERSO",
-                        "VECTEUR",
-                        "REFPAT",
-                        "REFFAM",
-                        "PASREAKO",
-                        "PASREAOK",
-                        "REA",
-                        "TRANSPOR",
-                        "ADM",
-                        "FUGUE",
-                        "REFAUTRE",
-                        "RAS"
-                    ]
+                    "description": "Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). \nA valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. "
                 },
                 "destination": {
                     "$ref": "#/definitions/destination"
