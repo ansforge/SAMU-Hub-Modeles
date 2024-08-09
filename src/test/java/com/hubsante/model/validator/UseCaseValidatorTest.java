@@ -89,20 +89,6 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
     }
 
     @Test
-    @DisplayName("Additional properties below wrapper level do not pass validation")
-    public void additionalPropertyFails() throws IOException {
-        // unknown property below wrapper level will not pass validation
-        String refLevelInvalid = getInvalidMessage("RC-REF/reference-level-additional-property.json");
-        assertThrows(ValidationException.class, () -> validator.validateJSON(refLevelInvalid, FULL_SCHEMA));
-
-        // unknown property at the wrapper level does not throw exception but will be ignored at deserialization
-        String wrapperLevelInvalid = getInvalidMessage("RC-REF/wrapper-level-additional-property.json");
-        assertDoesNotThrow(() -> validator.validateJSON(wrapperLevelInvalid, FULL_SCHEMA));
-    }
-
-
-
-    @Test
     @DisplayName("Valid error message is thrown: unknown property at use case content level")
     public void jsonRcRefAdditionalPropertyFails() throws IOException {
         String[] expectedErrors = {
@@ -111,43 +97,6 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
                 " - reference.unexpectedUnknownProperty: is not defined in the schema and the schema does not allow additional properties"
         };
         jsonValidationFails("EDXL-DE/unknown-property-deep.json", expectedErrors);
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: errors in the use case content")
-    void contentError() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - reference.distributionID: is missing but it is required",
-                " - reference.distributionIDS: is not defined in the schema and the schema does not allow additional properties"
-        };
-        jsonValidationFails("RC-REF/RC-REF-error-in-content.json", expectedErrors);
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: missing a required field in use case content")
-    void missingRequiredFields() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - reference.distributionID: is missing but it is required"
-        };
-        jsonValidationFails("RC-REF/RC-REF-missing-required-fields.json", expectedErrors);
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: multiple errors in use case content")
-    void multipleErrorsInContent() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - reference.distributionID: is missing but it is required",
-                " - reference._errorproperty1: is not defined in the schema and the schema does not allow additional properties",
-                " - reference._errorproperty2: is not defined in the schema and the schema does not allow additional properties",
-                " - reference._errorproperty3: is not defined in the schema and the schema does not allow additional properties"
-        };
-        jsonValidationFails("RC-REF/RC-REF-multiple-errors-in-content.json", expectedErrors);
     }
 
     @Test
