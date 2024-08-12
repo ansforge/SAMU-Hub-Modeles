@@ -312,7 +312,7 @@
   },
 
   {
-    "label": "RPIS",
+    "label": "RS-RPIS",
     "schemaName": "RPIS.schema.json",
     "schema": null,
     "examples": [
