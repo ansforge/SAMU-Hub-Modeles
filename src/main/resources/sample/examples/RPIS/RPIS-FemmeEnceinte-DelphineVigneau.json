@@ -30,8 +30,8 @@
       },
       "location": {
         "detailedAddress": {
-          "cityCode": "44162",
-          "city": "Saint-Herblain"
+          "city": "Saint-Herblain",
+          "inseeCode": "44162"
         },
         "type": "L04.02.00"
       },
@@ -42,8 +42,8 @@
     },
     "patient": {
       "residentialAddress": {
-        "cityCode": "44109",
-        "city": "Nantes"
+        "city": "Nantes",
+        "inseeCode": "44109"
       },
       "patientId": "fr.health.samu440.patient.DRFR154402414300123.1",
       "birthDate": "1992-03-03",
