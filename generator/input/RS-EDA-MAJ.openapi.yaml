@@ -1104,8 +1104,8 @@ components:
           x-cols: 6
           example: example.json#/medicalNote/0/operator/label
           description: "A valoriser si besoin avec la valeur souhait\xE9e, en fonction\
-            \ de chaque CRRA : cela peut \xEAtre le nom et pr\xE9nom de l'op\xE9rateur,\
-            \ ou un identifiant."
+            \ des pr\xE9f\xE9rences de chaque partenaire : cela peut \xEAtre le nom\
+            \ et pr\xE9nom de l'op\xE9rateur, ou un identifiant."
           examples:
           - None
         role:

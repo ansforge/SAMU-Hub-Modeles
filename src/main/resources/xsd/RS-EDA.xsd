@@ -1893,7 +1893,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
         <sequence>
             <element minOccurs="0" name="label" type="string">
                 <annotation>
-                    <documentation>A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA : cela peut être le nom et prénom de l'opérateur, ou un identifiant.</documentation>
+                    <documentation>A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant.</documentation>
                 </annotation>
             </element>
             <element name="role">
