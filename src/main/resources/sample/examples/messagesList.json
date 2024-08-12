@@ -335,11 +335,7 @@
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
         "name": "Delphine VIGNEAU.03",
-        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
-        "environment": "Lieu de travail",
-        "victims": "1 patiente, nécessitant assistance SAMU",
-        "victim": "Femme, enceinte de 2 mois, 32 ans",
-        "medicalSituation": "Problème obstétrique non hémorragique"
+        "medicalSituation": "Données RPIS du patient"
       }]
   },
   {
