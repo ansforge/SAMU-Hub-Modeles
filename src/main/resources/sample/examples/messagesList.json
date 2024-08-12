@@ -317,21 +317,21 @@
     "schema": null,
     "examples": [
       {
-        "file": "RS-RPIS/RS-RPIS-FuiteDeGaz-GregoireNormand.03a.json",
+        "file": "RPIS/RS-RPIS-FuiteDeGaz-GregoireNormand.03a.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
         "name": "Grégoire NORMAND.03a",
         "medicalSituation": "Données RPIS du patient"
       },
       {
-        "file": "RS-RPIS/RS-RPIS-FuiteDeGaz-AliceNormand.03b.json",
+        "file": "RPIS/RS-RPIS-FuiteDeGaz-AliceNormand.03b.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
         "name": "Alice NORMAND.03b",
         "medicalSituation": "Données RPIS du patient"
       },
       {
-        "file": "RS-RPIS/RS-RPIS-FemmeEnceinte-DelphineVigneau.03.json",
+        "file": "RPIS/RS-RPIS-FemmeEnceinte-DelphineVigneau.03.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
         "name": "Delphine VIGNEAU.03",
