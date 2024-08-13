@@ -235,7 +235,7 @@ components:
             fr.health.samu540.medicalNote.DRFR15540241600125.20'
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de l'observation"
+          title: Date Heure de l'observation
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/creation
@@ -260,7 +260,7 @@ components:
       example: example.json#/medicalNote/0
     decision:
       type: object
-      title: "D\xE9cisions"
+      title: "D\xE9cision"
       x-display: expansion-panels
       x-health-only: false
       required:
@@ -283,7 +283,7 @@ components:
             fr.health.samu690.patient.DRFR15690242370035.1'
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de la d\xE9cision"
+          title: "Date Heure de la d\xE9cision"
           x-health-only: false
           x-cols: 6
           example: example.json#/decision/0/creation
@@ -1104,8 +1104,8 @@ components:
           x-cols: 6
           example: example.json#/medicalNote/0/operator/label
           description: "A valoriser si besoin avec la valeur souhait\xE9e, en fonction\
-            \ de chaque CRRA : cela peut \xEAtre le nom et pr\xE9nom de l'op\xE9rateur,\
-            \ ou un identifiant."
+            \ des pr\xE9f\xE9rences de chaque partenaire : cela peut \xEAtre le nom\
+            \ et pr\xE9nom de l'op\xE9rateur, ou un identifiant."
           examples:
           - None
         role:

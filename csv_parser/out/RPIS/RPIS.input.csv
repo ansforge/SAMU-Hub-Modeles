@@ -22,7 +22,7 @@ Régulation médicale,,,,,,,,regulation,1..1,X,regulation,
 ,Circonstances ayant données lieu à l’appel,,,,,,,whatsHappen,1..1,X,codeAndLabel,
 ,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,1..1,,string,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature associée.
-Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,1..1,,string,NOMENCLATURE: CISU-Code_Nature_de_fait
+Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,1..1,,string,
 ,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Niveau de médicalisation initial,,,,,"Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
