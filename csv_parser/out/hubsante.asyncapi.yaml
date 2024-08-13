@@ -2723,7 +2723,7 @@ components:
             fr.health.samu540.medicalNote.DRFR15540241600125.20'
         creation:
           type: string
-          title: "Date Heure de cr\xE9ation de l'observation"
+          title: Date Heure de l'observation
           x-health-only: false
           x-cols: 6
           example: example.json#/medicalNote/0/creation
@@ -3949,7 +3949,7 @@ components:
             \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
             \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
-          pattern: ([\w-]+\.){3} request (\.[\w-]+){1,2}
+          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 

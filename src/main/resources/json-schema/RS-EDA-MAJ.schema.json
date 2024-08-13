@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA-MAJ.schema.json#",
-    "version": "24.08.12",
+    "version": "24.08.13",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealthUpdate",
@@ -215,7 +215,7 @@
                 },
                 "creation": {
                     "type": "string",
-                    "title": "Date Heure de création de l'observation",
+                    "title": "Date Heure de l'observation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/creation",
@@ -237,7 +237,7 @@
         },
         "decision": {
             "type": "object",
-            "title": "Décisions",
+            "title": "Décision",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
@@ -256,7 +256,7 @@
                 },
                 "creation": {
                     "type": "string",
-                    "title": "Date Heure de création de la décision",
+                    "title": "Date Heure de la décision",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/creation",
