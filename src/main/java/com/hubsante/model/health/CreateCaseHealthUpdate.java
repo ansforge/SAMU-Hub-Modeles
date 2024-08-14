@@ -25,7 +25,7 @@
  * the class manually.
  */
 
-package com.hubsante.model.health.update;
+package com.hubsante.model.health;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -34,12 +34,12 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.update.AdditionalInformation;
-import com.hubsante.model.health.update.Alert;
-import com.hubsante.model.health.update.Location;
-import com.hubsante.model.health.update.MedicalNote;
-import com.hubsante.model.health.update.Patient;
-import com.hubsante.model.health.update.Qualification;
+import com.hubsante.model.health.AdditionalInformation;
+import com.hubsante.model.health.Alert;
+import com.hubsante.model.health.Location;
+import com.hubsante.model.health.MedicalNote;
+import com.hubsante.model.health.Patient;
+import com.hubsante.model.health.Qualification;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Arrays;
