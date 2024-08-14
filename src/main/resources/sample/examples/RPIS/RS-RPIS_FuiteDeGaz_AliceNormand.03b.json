@@ -30,8 +30,8 @@
       },
       "location": {
         "detailedAddress": {
-          "cityCode": "44018",
-          "city": "Bouaye"
+          "city": "Bouaye",
+          "inseeCode": "44018"
         },
         "type": "L01.01.01"
       },
@@ -39,13 +39,12 @@
     },
     "patient": {
       "residentialAddress": {
-        "cityCode": "44018",
-        "city": "Bouaye"
+        "city": "Bouaye",
+        "inseeCode": "44018"
       },
-      "patientId": "fr.health.samu440.patient.DRFR154402413800236.2",
-      "birthDate": "2013-11-03",
-      "sex": "MASC",
-      "nir": 113117507500113
+      "patientId": "fr.health.samu440.patient.DRFR154402413800236.1",
+      "birthDate": "2011-05-11",
+      "sex": "FEM"
     },
     "regulation": {
       "healthMotive": {
