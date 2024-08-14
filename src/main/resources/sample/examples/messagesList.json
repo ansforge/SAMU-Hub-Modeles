@@ -102,11 +102,18 @@
         "environment": "Dégradation du patient : notes médicales ajoutées au dossier et priorité de régulation revue à la hausse"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02.json",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02a.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "Monsieur X.02",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+        "environment": "Régulation médicale du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02b.json",
         "icon": "mdi-head-heart-outline",
         "name": "Monsieur X.02",
         "context": "Pas de test suivant: RS-RI - 03",
-        "environment": "Régulation médicale du médecin urgentiste"
+        "environment": "Décision du médecin urgentiste"
       },
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
