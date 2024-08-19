@@ -23,54 +23,60 @@ Régulation médicale,,,,,,,,regulation,1..1,X,regulation,
 ,,Code,,,,A valoriser avec le code de la nomenclature associée.,AVPAR,code,1..1,,string,NOMENCLATURE: CISU-Code_Nature_de_fait
 ,,Libellé court,,,,"A valoriser avec le libellé de la nomenclature associée.
 Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut choisir d'afficher le libellé qui est obligatoirement fourni avec le code.",Accident routier,label,1..1,,string,
-,Motif de recours ,,,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
+,Motif de recours ,# Voir whatsHappen (type codeAndLabel),,,,,,healthMotive,1..1,X,codeAndLabel,NOMENCLATURE: SI-SAMU-Code_Motif_patient-victime
 ,Niveau de médicalisation initial,,,,,"Type d’équipe (médical, paramédicale, secouriste).
 A valoriser par un code de la nomenclature  SI-SAMU-NIVSOIN.
 Permet de déduire avec la donnée ""niveau de médicalisation du transport"", si un UMHP est devenu un SMUR. ",PARAMED,initialTeamCare,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
 Patient,,,,,,,,patient,1..1,X,patient,
 ,Identifiant Patient,,,,,"Identifiant unique du patient. 
-A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.DRFR15DDXAAJJJ00001.P01,patientId,1..1,,string,
+A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre chronologique} : fr.health.samu690.DRFR15DDXAAJJJ00001.P01",fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1,patientId,1..1,,string,
 ,Date de naissance,,,,,Date de naissance du patient,17/02/1936,birthDate,1..1,,string,
 ,Sexe,,,,,"Sexe du patient, suivant le libellé court de la nomenclature SI-SAMU-NOMENC_SEXE",F,sex,1..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_SEXE
-,NIR,,,,,"Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL",278112B050002,nir,0..1,,number,
 ,Adresse de résidence,,,,,,,residentialAddress,0..1,X,residentialAddress,
 ,,Code INSEE de la commune de résidence,,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
-Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,cityCode,1..1,,string,REGEX: [0-9]{5}
+Le Code INSEE peut également précisé le pays de résidence, si étranger. ",92300,inseeCode,1..1,,string,REGEX: [0-9]{5}
 ,,Nom de la commune,,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
 Intervention,,,,,,,,intervention,1..1,X,intervention,
 ,Lieu d'intervention,,,,,,,location,1..1,X,location,
 ,,Type de lieu d’intervention,,,,A valoriser avec un code de la nomenclature CISU-Code_Type_de_lieu.,DOMPAV,type,0..1,,string,NOMENCLATURE: CISU-Code_Type_de_lieu
-,,FINESS géographique de l’établissement ,,,,Finess géographique et juridique de l’établissement de santé,,finessGeo,0..1,,string,
-,,Unité fonctionnelle ,,,,Unité fonctionnelle de l'établissement de santé,,unit,0..1,,string,
-,,Adresse de l'intervention,,,,,,detailedAddress,0..1,X,detailedAddress,
+,,FINESS géographique de l’établissement ,,,,"Finess géographique et juridique de l’établissement de santé. 
+A renseigner uniquement si l'intervention a lieu dans un établissement de santé. ",,finessGeo,0..1,,string,
+,,Unité fonctionnelle ,,,,"Unité fonctionnelle de l'établissement de santé. 
+A renseigner uniquement si l'intervention a lieu dans un établissement de santé. ",,unit,0..1,,string,
+,,Adresse de l'intervention,,,,,,detailedAddress,1..1,X,detailedAddress,
 ,,,Code INSEE de la commune,,,"Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
-Le Code INSEE peut également précisé le pays d'intervention, si étranger. ",92300,cityCode,1..1,,string,REGEX: [0-9]{5}
+Le Code INSEE peut également précisé le pays d'intervention, si étranger. ",92300,inseeCode,1..1,,string,REGEX: [0-9]{5}
 ,,,Nom de la commune,,,Nom officiel de la commune actuelle,Levallois-Perret,city,1..1,,string,
-,Composition de l'équipage,,,,,"A valoriser par O si complet et N si incomplet. 
-Complet = équipe à 3 (avec infirmier), incomplet = équipe à 2 (sans infirmier), une équipe étant, à minima, composé d'un médecin et un ambulancier. ",,team,1..1,X,team,
+,Composition de l'équipage,,,,,,,team,1..1,X,team,
 ,,Médecin,,,,"Permet d'identifier si un médecin compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom du médecin est saisi sur la tablette. ",OUI,doctor,1..1,,boolean,
 ,,Infirmier,,,,"Permet d'identifier si un infirmier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'infirmier est saisi sur la tablette. ",NON,nurse,1..1,,boolean,
 ,,Ambulancier/Pilote,,,,"Permet d'identifier si un ambulancier compose l'équipe.
 Cette donnée peut être automatiquement déduite, dès que le nom et prénom de l'ambulancier est saisi sur la tablette. ",OUI,driver,1..1,,boolean,
+,Statuts des horaires du SMUR,,,,,,,smurStatus,0..1,X,resourceStatus,
+,,Date et heure du départ de la base SMUR,,,,"Date et heure à laquelle le SMUR quitte sa base. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,departSmur,1..1,,datetime,
+,,Date et heure de l’arrivée sur les lieux de l’intervention,,,,"Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,arrivedSmur,0..1,,datetime,
+,,Date et heure du départ des lieux de l’intervention,,,,"Date et heure à laquelle le SMUR quitte les lieux de l'intervention. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,departLocation,0..1,,datetime,
+,,Date et heure d’arrivée à destination,,,,"Date et heure à laquelle le SMUR qui transporte arrive à destination. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,arrivedDestination,0..1,,datetime,
+,,Date et heure de disponibilité de l’équipe,,,,"Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,teamAvailable,1..1,,datetime,
+,,Date et heure de retour à la base SMUR,,,,"Date et heure à laquelle le SMUR est de retour à la base. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss",2022-09-27T08:23:34+02:00,returnSmur,1..1,,datetime,
 ,Actes réalisés par le SMUR,,,,,"Précise aussi bien les actes réalisés par le SMUR sur le lieu de l'intervention à son arrivée que ceux réalisés avant son intervention. 
 A valoriser avec un code de la nomenclature ACTES_SMUR.",,actionsSMUR,0..n,,string,
 ,Diagnostic principal SMUR,,,,,"Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR.",MD30.Z,mainDiagnosis,1..1,,string,
 ,Diagnostic associé  SMUR,,,,,"Thésaurus SFMU-FEDORU.
 A valoriser par un code de la nomenclature Diagnostic SMUR.",8B22.1,associatedDiagnosis,0..1,,string,
-,Statuts des horaires du SMUR,,,,,,,smurStatus,0..1,X,resourceStatus,
-,,Date et heure du départ de la base SMUR,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,departSmur,1..1,,datetime,
-,,Date et heure de l’arrivée sur les lieux de l’intervention,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,arrivedSmur,0..1,,datetime,
-,,Date et heure du départ des lieux de l’intervention,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,departLocation,0..1,,datetime,
-,,Date et heure d’arrivée à destination,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,arrivedDestination,0..1,,datetime,
-,,Date et heure de disponibilité de l’équipe,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,teamAvailable,1..1,,datetime,
-,,Date et heure de retour à la base SMUR,,,,s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss,2022-09-27T08:23:34+02:00,returnSmur,1..1,,datetime,
 Décision d'orientation,,,,,,,,orientation,1..1,X,orientation,
 ,Type de devenir du patient,,,,,"Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
 A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
-Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",TEMP,type,1..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT
+Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. ",TEMP,type,1..1,,string,
 ,Destination,,,,,,,destination,0..1,X,destination,
 ,,Pays de destination,,,,A valoriser par le libellé court de la nomenclature SIGLPAYS,FR,destinationCountry,1..1,,string,NOMENCLATURE: ISO 3166-ISO3166-2
 ,,Catégorie de l'établissement de destination,,,,A valoriser par le code de la nomenclature associée,,destinationCategory,1..1,,string,

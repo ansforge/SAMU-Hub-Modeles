@@ -190,7 +190,7 @@ components:
             \ qui engage le SMUR}.{ID du DRM}.P{num\xE9ro d\u2019ordre chronologique}\
             \ : fr.health.samu690.DRFR15DDXAAJJJ00001.P01"
           examples:
-          - fr.health.samu690.DRFR15DDXAAJJJ00001.P01
+          - fr.health.samu690.patient.DRFR15DDXAAJJJ00001.1
         birthDate:
           type: string
           title: Date de naissance
@@ -215,16 +215,6 @@ components:
           - INCONNU
           examples:
           - F
-        nir:
-          type: number
-          title: NIR
-          x-health-only: false
-          x-cols: 6
-          example: example.json#/patient/nir
-          description: "Num\xE9ro d'inscription au R\xE9pertoire ou num\xE9ro de s\xE9\
-            curit\xE9 sociale, unique, transmis par la CNIL"
-          examples:
-          - 278112B050002
         residentialAddress:
           $ref: '#/components/schemas/residentialAddress'
       additionalProperties: false
@@ -243,6 +233,8 @@ components:
           $ref: '#/components/schemas/location'
         team:
           $ref: '#/components/schemas/team'
+        smurStatus:
+          $ref: '#/components/schemas/resourceStatus'
         actionsSMUR:
           type: array
           x-health-only: false
@@ -278,8 +270,6 @@ components:
             \ Diagnostic SMUR."
           examples:
           - 8B22.1
-        smurStatus:
-          $ref: '#/components/schemas/resourceStatus'
       additionalProperties: false
       example: example.json#/intervention
     orientation:
@@ -301,26 +291,6 @@ components:
             \ la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.\nSi le type d'orientation\
             \ est sans transport associ\xE9, les objets Destination et Transport sont\
             \ facultatifs. "
-          enum:
-          - OK
-          - TEMP
-          - SEUL
-          - AFAMILLE
-          - AMED
-          - AFDO
-          - ATIERS
-          - MOYPERSO
-          - Code vecteur choisi
-          - REFPAT
-          - REFFAM
-          - PASREAKO
-          - PASREAOK
-          - REA
-          - TRANSPOR
-          - ADM
-          - FUGUE
-          - REFAUTRE
-          - RAS
           examples:
           - TEMP
         destination:
@@ -758,15 +728,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - cityCode
+      - inseeCode
       - city
       properties:
-        cityCode:
+        inseeCode:
           type: string
           title: "Code INSEE de la commune de r\xE9sidence"
           x-health-only: false
           x-cols: 6
-          example: example.json#/patient/residentialAddress/cityCode
+          example: example.json#/patient/residentialAddress/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
@@ -786,14 +756,15 @@ components:
       additionalProperties: false
       example: example.json#/patient/residentialAddress
       examples:
-      - cityCode: 92300
+      - inseeCode: 92300
         city: Levallois-Perret
     location:
       type: object
       title: Lieu d'intervention
       x-display: expansion-panels
       x-health-only: false
-      required: []
+      required:
+      - detailedAddress
       properties:
         type:
           type: string
@@ -991,7 +962,8 @@ components:
           x-cols: 6
           example: example.json#/intervention/location/finessGeo
           description: "Finess g\xE9ographique et juridique de l\u2019\xE9tablissement\
-            \ de sant\xE9"
+            \ de sant\xE9. \nA renseigner uniquement si l'intervention a lieu dans\
+            \ un \xE9tablissement de sant\xE9. "
           examples:
           - None
         unit:
@@ -1000,7 +972,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/location/unit
-          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9"
+          description: "Unit\xE9 fonctionnelle de l'\xE9tablissement de sant\xE9.\
+            \ \nA renseigner uniquement si l'intervention a lieu dans un \xE9tablissement\
+            \ de sant\xE9. "
           examples:
           - None
         detailedAddress:
@@ -1072,7 +1046,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/departSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR quitte sa base. \ns'exprime\
+            \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1083,7 +1058,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/arrivedSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR arrive sur les lieux de\
+            \ l'intervention. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1094,7 +1070,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/departLocation
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR quitte les lieux de l'intervention.\
+            \ \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1105,7 +1082,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/arrivedDestination
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR qui transporte arrive\
+            \ \xE0 destination. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1116,7 +1094,9 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/teamAvailable
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR est disponible (dispose\
+            \ de tout les \xE9quipements pour faire une autre intervention). \ns'exprime\
+            \ au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1127,7 +1107,8 @@ components:
           x-health-only: false
           x-cols: 6
           example: example.json#/intervention/smurStatus/returnSmur
-          description: s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss
+          description: "Date et heure \xE0 laquelle le SMUR est de retour \xE0 la\
+            \ base. \ns'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss"
           pattern: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}[\-+]\d{2}:\d{2}
           format: date-time
           examples:
@@ -1147,15 +1128,15 @@ components:
       x-display: expansion-panels
       x-health-only: false
       required:
-      - cityCode
+      - inseeCode
       - city
       properties:
-        cityCode:
+        inseeCode:
           type: string
           title: Code INSEE de la commune
           x-health-only: false
           x-cols: 6
-          example: example.json#/intervention/location/detailedAddress/cityCode
+          example: example.json#/intervention/location/detailedAddress/inseeCode
           description: "Code INSEE de la commune actuelle sur la base du Code Officiel\
             \ g\xE9ographique en vigueur. Obligatoire si le nom de la commune est\
             \ renseign\xE9.\nLe Code INSEE peut \xE9galement pr\xE9cis\xE9 le pays\
@@ -1175,7 +1156,7 @@ components:
       additionalProperties: false
       example: example.json#/intervention/location/detailedAddress
       examples:
-      - cityCode: 92300
+      - inseeCode: 92300
         city: Levallois-Perret
     destination:
       type: object
@@ -1501,8 +1482,6 @@ components:
           - SIS
           - AASC
           - FDO
-          - ADM
-          - DAE
           - AUTRE
           examples:
           - SMUR
@@ -1520,8 +1499,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
-          - CONSEIL
+          - AUTREVEC
           - TAXI
           - TRANSP
           - TRAIN
@@ -1529,22 +1507,15 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
+          - AUTRETRA
           - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
           - LIB
-          - MEDC
           - MEDV
-          - PHARMA
           - INF
-          - MEDSPE
-          - DENT
           - AUTREPRO
           - SIS
           - VSAV

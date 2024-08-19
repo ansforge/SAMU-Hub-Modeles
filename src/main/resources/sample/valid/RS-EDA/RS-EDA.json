@@ -212,7 +212,8 @@
                     "role": "MEDECIN"
                   },
                   "creation": "2024-04-03T01:15:00+02:00",
-                  "freetext": "Observations et commentaires médicaux sur le patient Ouardia Boudadi. "
+                  "freetext": "Observations et commentaires médicaux sur le patient Ouardia Boudadi. ",
+                  "idObs": "fr.health.samu950.medicalNote.54fg795"
                 }
               ],
               "perimeter": "AMU",

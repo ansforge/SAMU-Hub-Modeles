@@ -13,7 +13,7 @@ Il doit pouvoir être généré de façon décentralisée et ne présenter aucun
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <pattern value="fr(\.[\w-]+){3,5}"/>
+                        <pattern value="fr(\.[\w-]+){3}"/>
                     </restriction>
                 </simpleType>
             </element>
@@ -1726,12 +1726,12 @@ La ressource est hashée avec le protocole SHA-256</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">
-                        <enumeration value="PERSONNE"/>
                         <enumeration value="APPLICATION"/>
-                        <enumeration value="DAU"/>
                         <enumeration value="BAU"/>
-                        <enumeration value="DEFIBRILLATEUR"/>
+                        <enumeration value="DAU"/>
+                        <enumeration value="DEFIBRILLATEUR, "/>
                         <enumeration value="ECALL"/>
+                        <enumeration value="PERSONNE"/>
                     </restriction>
                 </simpleType>
             </element>

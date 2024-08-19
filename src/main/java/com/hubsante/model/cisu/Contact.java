@@ -53,17 +53,17 @@ public class Contact {
    * DAU, BAU, DEFIBRILLATEUR, ECALL
    */
   public enum ChannelEnum {
-    PERSONNE("PERSONNE"),
-
     APPLICATION("APPLICATION"),
-
-    DAU("DAU"),
 
     BAU("BAU"),
 
-    DEFIBRILLATEUR("DEFIBRILLATEUR"),
+    DAU("DAU"),
 
-    ECALL("ECALL");
+    DEFIBRILLATEUR_("DEFIBRILLATEUR, "),
+
+    ECALL("ECALL"),
+
+    PERSONNE("PERSONNE");
 
     private String value;
 

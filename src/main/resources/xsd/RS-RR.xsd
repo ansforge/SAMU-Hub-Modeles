@@ -2,7 +2,7 @@
     <element name="resourcesResponse" type="x:resourcesResponse"/>
     <complexType name="resourcesResponse">
         <sequence>
-            <element name="caseId" type="string">
+            <element name="caseId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant partagé de l'affaire/dossier, généré une seule fois par le système du partenaire qui recoit la primo-demande de secours (créateur du dossier). 
 Il est valorisé comme suit lors de sa création : 
@@ -11,8 +11,13 @@ Il est valorisé comme suit lors de sa création :
 Il doit pouvoir être généré de façon décentralisée et ne présenter aucune ambiguïté.
  Il doit être unique dans l'ensemble des systèmes : le numéro de dossier fourni par celui qui génère l'identifiant partagé doit donc être un numéro unique dans son système.</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="fr(\.[\w-]+){3}"/>
+                    </restriction>
+                </simpleType>
             </element>
-            <element name="requestId" type="string">
+            <element name="requestId">
                 <annotation>
                     <documentation>A valoriser avec l'identifiant unique partagé de la demande de ressource,  généré une seule fois par le système du partenaire qui émet la demande 
 Il est valorisé comme suit lors de sa création : 
@@ -21,6 +26,11 @@ Il est valorisé comme suit lors de sa création :
 OU - uniquement si un ID unique de la demande n'est pas disponible : 
 OrgId émetteur}.request.{senderCaseId}.{numéro d’ordre chronologique}</documentation>
                 </annotation>
+                <simpleType>
+                    <restriction base="string">
+                        <pattern value="([\w-]+\.){3}request(\.[\w-]+){1,2}"/>
+                    </restriction>
+                </simpleType>
             </element>
             <element name="response" type="x:response"/>
         </sequence>
@@ -40,15 +50,17 @@ ACCEPTEE, REFUSEE, PARTIELLE, DIFFEREE</documentation>
                 <simpleType>
                     <restriction base="string">
                         <enumeration value="ACCEPTEE"/>
-                        <enumeration value="REFUSEE"/>
                         <enumeration value="PARTIELLE"/>
+                        <enumeration value="REFUSEE"/>
                         <enumeration value="DIFFEREE"/>
                     </restriction>
                 </simpleType>
             </element>
             <element minOccurs="0" name="deadline" type="string">
                 <annotation>
-                    <documentation>A valoriser avec le délai de réponse auquel s'engage l'expéditeur (en minutes),</documentation>
+                    <documentation>A valoriser avec le délai de réponse maximum auquel s'engage l'expéditeur (en minutes) 
+Cas particulier : en cas de réponse "Partielle" car le délai souhaité ne peut pas être respecté,  à valoriser obligatoirement avec le délai de réponse maximum auquel s'engage l'expéditeur de la réponse (en minutes).
+</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="freetext" type="string">

@@ -33,6 +33,7 @@ components:
             \ dans l'ensemble des syst\xE8mes : le num\xE9ro de dossier fourni par\
             \ celui qui g\xE9n\xE8re l'identifiant partag\xE9 doit donc \xEAtre un\
             \ num\xE9ro unique dans son syst\xE8me."
+          pattern: fr(\.[\w-]+){3}
           examples:
           - fr.health.samu440.DRFR15440241550012
         mobilizedResource:
@@ -75,6 +76,7 @@ components:
             \ de ressource ne peut pas \xEAtre garanti par l'organisation propri\xE9\
             taire :\n{orgID}.resource.{sendercaseId}.{n\xB0 d\u2019ordre chronologique\
             \ de la ressource}"
+          pattern: ([\w-]+\.){3}resource(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.resource.VLM250
 
@@ -91,6 +93,7 @@ components:
             \ de la demande dans le syst\xE8me \xE9metteur}\nOU - si un ID unique\
             \ de la demande n'\xE9tait pas disponible : \n{OrgId \xE9metteur}.request.{senderCaseId}.{num\xE9\
             ro d\u2019ordre chronologique}"
+          pattern: ([\w-]+\.){3}request(\.[\w-]+){1,2}
           examples:
           - 'fr.health.samu770.request.1249875
 
@@ -140,14 +143,12 @@ components:
           - SIS
           - AASC
           - FDO
-          - ADM
-          - DAE
           - AUTRE
           examples:
           - SMUR
         vehiculeType:
           type: string
-          title: Type de moyen
+          title: Type de vecteur
           x-health-only: false
           x-cols: 6
           example: example.json#/mobilizedResource/0/vehiculeType
@@ -158,8 +159,7 @@ components:
           - VLSC
           - VPSP
           - AUTRESC
-          - AUTREVECT
-          - CONSEIL
+          - AUTREVEC
           - TAXI
           - TRANSP
           - TRAIN
@@ -167,22 +167,15 @@ components:
           - PERSO
           - APIED
           - AUTRE
-          - AUTRETRANS
-          - INCONNU
-          - DEFIB
-          - DAE
+          - AUTRETRA
           - FSI
           - HELIFSI
           - VLFSI
           - FFSI
           - VHFSI
           - LIB
-          - MEDC
           - MEDV
-          - PHARMA
           - INF
-          - MEDSPE
-          - DENT
           - AUTREPRO
           - SIS
           - VSAV

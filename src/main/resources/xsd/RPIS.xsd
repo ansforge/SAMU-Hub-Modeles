@@ -110,11 +110,6 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
                     </restriction>
                 </simpleType>
             </element>
-            <element minOccurs="0" name="nir" type="decimal">
-                <annotation>
-                    <documentation>Numéro d'inscription au Répertoire ou numéro de sécurité sociale, unique, transmis par la CNIL</documentation>
-                </annotation>
-            </element>
             <element minOccurs="0" name="residentialAddress" type="x:residentialAddress"/>
         </sequence>
     </complexType>
@@ -122,6 +117,7 @@ A valoriser par {ID du SAMU qui engage le SMUR}.{ID du DRM}.P{numéro d’ordre 
         <sequence>
             <element name="location" type="x:location"/>
             <element name="team" type="x:team"/>
+            <element minOccurs="0" name="smurStatus" type="x:resourceStatus"/>
             <element maxOccurs="unbounded" minOccurs="0" name="actionsSMUR" type="string"/>
             <element name="mainDiagnosis" type="string">
                 <annotation>
@@ -135,40 +131,16 @@ A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
 A valoriser par un code de la nomenclature Diagnostic SMUR.</documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="smurStatus" type="x:resourceStatus"/>
         </sequence>
     </complexType>
     <complexType name="orientation">
         <sequence>
-            <element name="type">
+            <element name="type" type="string">
                 <annotation>
                     <documentation>Indique si le patient est transporté ou non (Sans transport associé / avec transport associé). 
 A valoriser par un code de la nomenclature SI SAMU-NOMENC_DEVENIR_PAT.
 Si le type d'orientation est sans transport associé, les objets Destination et Transport sont facultatifs. </documentation>
                 </annotation>
-                <simpleType>
-                    <restriction base="string">
-                        <enumeration value="OK"/>
-                        <enumeration value="TEMP"/>
-                        <enumeration value="SEUL"/>
-                        <enumeration value="AFAMILLE"/>
-                        <enumeration value="AMED"/>
-                        <enumeration value="AFDO"/>
-                        <enumeration value="ATIERS"/>
-                        <enumeration value="MOYPERSO"/>
-                        <enumeration value="Code vecteur choisi"/>
-                        <enumeration value="REFPAT"/>
-                        <enumeration value="REFFAM"/>
-                        <enumeration value="PASREAKO"/>
-                        <enumeration value="PASREAOK"/>
-                        <enumeration value="REA"/>
-                        <enumeration value="TRANSPOR"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="FUGUE"/>
-                        <enumeration value="REFAUTRE"/>
-                        <enumeration value="RAS"/>
-                    </restriction>
-                </simpleType>
             </element>
             <element minOccurs="0" name="destination" type="x:destination"/>
             <element minOccurs="0" name="decision" type="x:decision"/>
@@ -565,7 +537,7 @@ Dans le cas où un système n'est pas en mesure de reconnaître un code, il peut
     </complexType>
     <complexType name="residentialAddress">
         <sequence>
-            <element name="cityCode">
+            <element name="inseeCode">
                 <annotation>
                     <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays de résidence, si étranger. </documentation>
@@ -775,15 +747,17 @@ Le Code INSEE peut également précisé le pays de résidence, si étranger. </d
             </element>
             <element minOccurs="0" name="finessGeo" type="string">
                 <annotation>
-                    <documentation>Finess géographique et juridique de l’établissement de santé</documentation>
+                    <documentation>Finess géographique et juridique de l’établissement de santé. 
+A renseigner uniquement si l'intervention a lieu dans un établissement de santé. </documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="unit" type="string">
                 <annotation>
-                    <documentation>Unité fonctionnelle de l'établissement de santé</documentation>
+                    <documentation>Unité fonctionnelle de l'établissement de santé. 
+A renseigner uniquement si l'intervention a lieu dans un établissement de santé. </documentation>
                 </annotation>
             </element>
-            <element minOccurs="0" name="detailedAddress" type="x:detailedAddress"/>
+            <element name="detailedAddress" type="x:detailedAddress"/>
         </sequence>
     </complexType>
     <complexType name="team">
@@ -812,39 +786,45 @@ Cette donnée peut être automatiquement déduite, dès que le nom et prénom de
         <sequence>
             <element name="departSmur" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR quitte sa base. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="arrivedSmur" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR arrive sur les lieux de l'intervention. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="departLocation" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR quitte les lieux de l'intervention. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element minOccurs="0" name="arrivedDestination" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR qui transporte arrive à destination. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element name="teamAvailable" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR est disponible (dispose de tout les équipements pour faire une autre intervention). 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
             <element name="returnSmur" type="dateTime">
                 <annotation>
-                    <documentation>s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
+                    <documentation>Date et heure à laquelle le SMUR est de retour à la base. 
+s'exprime au format ISO 8601 YYY-MM-DDThh:mm:ss</documentation>
                 </annotation>
             </element>
         </sequence>
     </complexType>
     <complexType name="detailedAddress">
         <sequence>
-            <element name="cityCode">
+            <element name="inseeCode">
                 <annotation>
                     <documentation>Code INSEE de la commune actuelle sur la base du Code Officiel géographique en vigueur. Obligatoire si le nom de la commune est renseigné.
 Le Code INSEE peut également précisé le pays d'intervention, si étranger. </documentation>
@@ -1147,8 +1127,6 @@ A valoriser par un code de la nomenclature SI SAMU-TYPE_MOYEN.</documentation>
                         <enumeration value="SIS"/>
                         <enumeration value="AASC"/>
                         <enumeration value="FDO"/>
-                        <enumeration value="ADM"/>
-                        <enumeration value="DAE"/>
                         <enumeration value="AUTRE"/>
                     </restriction>
                 </simpleType>
@@ -1164,8 +1142,7 @@ A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
                         <enumeration value="VLSC"/>
                         <enumeration value="VPSP"/>
                         <enumeration value="AUTRESC"/>
-                        <enumeration value="AUTREVECT"/>
-                        <enumeration value="CONSEIL"/>
+                        <enumeration value="AUTREVEC"/>
                         <enumeration value="TAXI"/>
                         <enumeration value="TRANSP"/>
                         <enumeration value="TRAIN"/>
@@ -1173,22 +1150,15 @@ A valoriser par un code de la nomenclature CISU-TYPE_VECTEUR.</documentation>
                         <enumeration value="PERSO"/>
                         <enumeration value="APIED"/>
                         <enumeration value="AUTRE"/>
-                        <enumeration value="AUTRETRANS"/>
-                        <enumeration value="INCONNU"/>
-                        <enumeration value="DEFIB"/>
-                        <enumeration value="DAE"/>
+                        <enumeration value="AUTRETRA"/>
                         <enumeration value="FSI"/>
                         <enumeration value="HELIFSI"/>
                         <enumeration value="VLFSI"/>
                         <enumeration value="FFSI"/>
                         <enumeration value="VHFSI"/>
                         <enumeration value="LIB"/>
-                        <enumeration value="MEDC"/>
                         <enumeration value="MEDV"/>
-                        <enumeration value="PHARMA"/>
                         <enumeration value="INF"/>
-                        <enumeration value="MEDSPE"/>
-                        <enumeration value="DENT"/>
                         <enumeration value="AUTREPRO"/>
                         <enumeration value="SIS"/>
                         <enumeration value="VSAV"/>
