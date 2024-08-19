@@ -103,8 +103,9 @@ public class Operator {
   }
 
   /**
-   * A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA
-   *: cela peut être le nom et prénom de l&#39;opérateur, ou un identifiant.
+   * A valoriser si besoin avec la valeur souhaitée, en fonction des préférences
+   *de chaque partenaire : cela peut être le nom et prénom de l&#39;opérateur,
+   *ou un identifiant.
    * @return label
    **/
   @JsonProperty(JSON_PROPERTY_LABEL)

@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "RS-EDA.schema.json#",
-    "version": "24.08.07",
+    "version": "24.08.14",
     "example": "example.json#",
     "type": "object",
     "title": "createCaseHealth",
@@ -308,7 +308,7 @@
                 },
                 "creation": {
                     "type": "string",
-                    "title": "Date Heure de création de l'observation",
+                    "title": "Date Heure de l'observation",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/creation",
@@ -330,13 +330,13 @@
         },
         "decision": {
             "type": "object",
-            "title": "Décisions",
+            "title": "Décision",
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
                 "creation",
-                "type",
-                "operator"
+                "operator",
+                "decisionType"
             ],
             "properties": {
                 "idPat": {
@@ -347,38 +347,9 @@
                     "example": "example.json#/decision/0/idPat",
                     "description": "A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur"
                 },
-                "patientStatus": {
-                    "type": "string",
-                    "title": "Type de devenir du patient",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/patientStatus",
-                    "description": "A valoriser avec le type de devenir du patient (cf. nomenclature associée)",
-                    "enum": [
-                        "OK",
-                        "TEMP",
-                        "SEUL",
-                        "AFAMILLE",
-                        "AMED",
-                        "AFDO",
-                        "ATIERS",
-                        "MOYPERSO",
-                        "VECTEUR",
-                        "REFPAT",
-                        "REFFAM",
-                        "PASREAKO",
-                        "PASREAOK",
-                        "REA",
-                        "TRANSPOR",
-                        "ADM",
-                        "FUGUE",
-                        "REFAUTRE",
-                        "RAS"
-                    ]
-                },
                 "creation": {
                     "type": "string",
-                    "title": "Date Heure de création de la décision",
+                    "title": "Date Heure de la décision",
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/decision/0/creation",
@@ -386,12 +357,15 @@
                     "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
                     "format": "date-time"
                 },
-                "type": {
+                "operator": {
+                    "$ref": "#/definitions/operator"
+                },
+                "decisionType": {
                     "type": "string",
                     "title": "Type de décision",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/decision/0/type",
+                    "example": "example.json#/decision/0/decisionType",
                     "description": "A valoriser avec le type de décision prise (cf.nomenclature associée)",
                     "enum": [
                         "CONSEIL",
@@ -401,20 +375,120 @@
                         "PASPLUS"
                     ]
                 },
-                "operator": {
-                    "$ref": "#/definitions/operator"
+                "resourceType": {
+                    "type": "string",
+                    "title": "Type de ressource",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/resourceType",
+                    "description": "A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
+                    "enum": [
+                        "SMUR",
+                        "HOSPIT",
+                        "LIB",
+                        "TSU ",
+                        "SIS",
+                        "AASC",
+                        "FDO",
+                        "AUTRE"
+                    ]
                 },
-                "engagementDetails": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/decisionDetails"
-                    }
+                "vehiculeType": {
+                    "type": "string",
+                    "title": "Type de vecteur",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/vehiculeType",
+                    "description": "A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.\nA fournir obligatoirement pour une décision d'intervention ou de transport/orientation.",
+                    "enum": [
+                        "AASC",
+                        "VLSC",
+                        "VPSP",
+                        "AUTRESC",
+                        "AUTREVEC",
+                        "TAXI",
+                        "TRANSP",
+                        "TRAIN",
+                        "AVION",
+                        "PERSO",
+                        "APIED",
+                        "AUTRE",
+                        "AUTRETRA",
+                        "FSI",
+                        "HELIFSI",
+                        "VLFSI",
+                        "FFSI",
+                        "VHFSI",
+                        "LIB",
+                        "MEDV",
+                        "INF",
+                        "AUTREPRO",
+                        "SIS",
+                        "VSAV",
+                        "GRIMP",
+                        "VPL",
+                        "SRSIS",
+                        "FEUSIS",
+                        "VPMA",
+                        "VCH",
+                        "VR",
+                        "PCSIS",
+                        "VLISP",
+                        "VLMSP",
+                        "VLCG",
+                        "VLSIS",
+                        "DRAGON",
+                        "AVSC",
+                        "MOYSSE",
+                        "AUTRESIS",
+                        "NAVISIS",
+                        "SMUR",
+                        "VLM",
+                        "VL",
+                        "PSM1",
+                        "PSM2",
+                        "PSM3",
+                        "PSMP",
+                        "VPC",
+                        "AR",
+                        "AR-BAR",
+                        "AR-PED",
+                        "HELISMUR",
+                        "HELISAN",
+                        "AVSMUR",
+                        "AVSAN",
+                        "NAVISMUR",
+                        "TSU",
+                        "VSL",
+                        "AMB-GV",
+                        "AMB-PV",
+                        "AMB-BAR",
+                        "AMB"
+                    ]
                 },
-                "transportDetails": {
-                    "type": "array",
-                    "items": {
-                        "$ref": "#/definitions/decisionDetails"
-                    }
+                "medicalTransport": {
+                    "type": "boolean",
+                    "title": "Transport médicalisé",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/medicalTransport",
+                    "description": "A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé.\nTrue = transport médicalisé\nFalse = transport non médicalisé"
+                },
+                "orientationType": {
+                    "type": "string",
+                    "title": "Type d'orientation",
+                    "x-health-only": false,
+                    "x-cols": 6,
+                    "example": "example.json#/decision/0/orientationType",
+                    "description": "Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée)",
+                    "enum": [
+                        "URGENCES",
+                        "SANTE",
+                        "CABINET",
+                        "DOMICILE",
+                        "EPHAD",
+                        "AUTRE"
+                    ]
                 }
             },
             "additionalProperties": false,
@@ -2361,7 +2435,7 @@
                     "x-health-only": false,
                     "x-cols": 6,
                     "example": "example.json#/medicalNote/0/operator/label",
-                    "description": "A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA : cela peut être le nom et prénom de l'opérateur, ou un identifiant."
+                    "description": "A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant."
                 },
                 "role": {
                     "type": "string",
@@ -2382,157 +2456,6 @@
             },
             "additionalProperties": false,
             "example": "example.json#/medicalNote/0/operator"
-        },
-        "decisionDetails": {
-            "type": "object",
-            "title": "Détails décision d'intervention",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [
-                "categoryType",
-                "teamCareInitial"
-            ],
-            "properties": {
-                "categoryType": {
-                    "type": "string",
-                    "title": "Type de ressource",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/engagementDetails/0/categoryType",
-                    "description": "A valoriser avec le type de ressource souhaité / demandé (cf.nomenclature associée)",
-                    "enum": [
-                        "SMUR",
-                        "HOSPIT",
-                        "LIB",
-                        "TSU ",
-                        "SIS",
-                        "AASC",
-                        "FDO",
-                        "AUTRE"
-                    ]
-                },
-                "resourceType": {
-                    "type": "string",
-                    "title": "Type de vecteur",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/engagementDetails/0/resourceType",
-                    "description": "A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée).",
-                    "enum": [
-                        "AASC",
-                        "VLSC",
-                        "VPSP",
-                        "AUTRESC",
-                        "AUTREVEC",
-                        "TAXI",
-                        "TRANSP",
-                        "TRAIN",
-                        "AVION",
-                        "PERSO",
-                        "APIED",
-                        "AUTRE",
-                        "AUTRETRA",
-                        "FSI",
-                        "HELIFSI",
-                        "VLFSI",
-                        "FFSI",
-                        "VHFSI",
-                        "LIB",
-                        "MEDV",
-                        "INF",
-                        "AUTREPRO",
-                        "SIS",
-                        "VSAV",
-                        "GRIMP",
-                        "VPL",
-                        "SRSIS",
-                        "FEUSIS",
-                        "VPMA",
-                        "VCH",
-                        "VR",
-                        "PCSIS",
-                        "VLISP",
-                        "VLMSP",
-                        "VLCG",
-                        "VLSIS",
-                        "DRAGON",
-                        "AVSC",
-                        "MOYSSE",
-                        "AUTRESIS",
-                        "NAVISIS",
-                        "SMUR",
-                        "VLM",
-                        "VL",
-                        "PSM1",
-                        "PSM2",
-                        "PSM3",
-                        "PSMP",
-                        "VPC",
-                        "AR",
-                        "AR-BAR",
-                        "AR-PED",
-                        "HELISMUR",
-                        "HELISAN",
-                        "AVSMUR",
-                        "AVSAN",
-                        "NAVISMUR",
-                        "TSU",
-                        "VSL",
-                        "AMB-GV",
-                        "AMB-PV",
-                        "AMB-BAR",
-                        "AMB"
-                    ]
-                },
-                "teamCareInitial": {
-                    "type": "string",
-                    "title": "Niveau de prise en charge",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/engagementDetails/0/teamCareInitial",
-                    "description": "A valoriser avec le niveau de prise en charge souhaité (cf.nomenclature associée)",
-                    "enum": [
-                        "MED",
-                        "PARAMED",
-                        "SECOURS"
-                    ]
-                },
-                "destination": {
-                    "$ref": "#/definitions/destination"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0/engagementDetails/0"
-        },
-        "destination": {
-            "type": "object",
-            "title": "Destination",
-            "x-display": "expansion-panels",
-            "x-health-only": false,
-            "required": [],
-            "properties": {
-                "type": {
-                    "type": "string",
-                    "title": "Type de destination",
-                    "x-health-only": false,
-                    "x-cols": 6,
-                    "example": "example.json#/decision/0/engagementDetails/0/destination/type",
-                    "description": "Indique le type de destination (cf. nomenclature associée)",
-                    "enum": [
-                        "URGENCES",
-                        "SANTE",
-                        "CABINET",
-                        "DOMICILE",
-                        "EPHAD",
-                        "AUTRE"
-                    ]
-                },
-                "location": {
-                    "$ref": "#/definitions/location"
-                }
-            },
-            "additionalProperties": false,
-            "example": "example.json#/decision/0/engagementDetails/0/destination"
         },
         "customMap": {
             "type": "object",

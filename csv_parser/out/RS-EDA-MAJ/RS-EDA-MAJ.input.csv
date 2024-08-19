@@ -93,7 +93,7 @@ OU, si un n°patient unique n'existe pas dans le système émetteur :
 {ID émetteur}.{senderCaseId}.patient.{numéro d’ordre chronologique au dossier}","fr.health.samu690.patient.P23AZ59
 fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,"REGEX: ([\w-]+\.){3}patient(\.[\w-]+){1,2}"
 ,Professionnel de santé qui réalise l'observation,,,,,Objet qui permet de décrire le professionnel de santé qui réalise l'interrogatoire médical. ,,operator,1..1,X,operator,
-,,Label,,,,"A valoriser si besoin avec la valeur souhaitée, en fonction de chaque CRRA : cela peut être le nom et prénom de l'opérateur, ou un identifiant.",,label,0..1,,string,
+,,Label,,,,"A valoriser si besoin avec la valeur souhaitée, en fonction des préférences de chaque partenaire : cela peut être le nom et prénom de l'opérateur, ou un identifiant.",,label,0..1,,string,
 ,,Rôle,,,,A valoriser avec le rôle de l'opérateur au sein de l'entité émettrice du message : ,ARM,role,1..1,,string,NOMENCLATURE: ENUM-ROLE
 ,ID Observation,,,,,"Identifiant partagé de l'observation, généré une seule fois par le système du partenaire qui créé l'observation
 Il est valorisé comme suit lors de sa création : 
@@ -105,24 +105,23 @@ OU - uniquement dans le cas où un ID unique de la note n'est pas disponible dan
 Cet identifiant a vocation à devenir obligatoire pour permettre les mises à jour, il est laissé en facultatif temporairement.
 ","fr.health.samu540.medicalNote.46585A
 fr.health.samu540.medicalNote.DRFR15540241600125.20",idObs,1..1,,string,"REGEX: ([\w-]+\.){3}medicalNote(\.[\w-]+){1,2}"
-,Date Heure de création de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,
+,Date Heure de l'observation,,,,,A valoriser avec le groupe date heure de création de l'observation.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,0..1,,datetime,
 ,Observations et commentaires,,,,,"Champ libre qui permet de compléter les informations de nature médicales, faites par un ARM, un médecin ou un autre professionnel de santé.",,freetext,1..1,,string,
-Décisions,,,,,,"Objet qui peremt de passer l'ensemble des mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients.
+Décision,,,,,,"Objet qui permet de passer l'ensemble des mesures prises par le Samu-Centre 15 en réponse à la demande exprimée en fonction de l’événement et de la situation du ou des patients.
 Si un freetext accompagne la décision, il doit être passé comme une observation médicale (medicalNote)",,decision,0..n,X,decision,
 ,ID patient partagé,,,,,"A valoriser avec l'ID partagé du patient concerné par la décision, à chaque fois que la décision est liée à un patient dans le système émetteur","fr.health.samu690.patient.P23AZ59
 fr.health.samu690.patient.DRFR15690242370035.1",idPat,0..1,,string,
-,Type de devenir du patient,,,,,A valoriser avec le type de devenir du patient (cf. nomenclature associée),"laissé sur place, décédé, ou transporté",patientStatus,0..1,,string,NOMENCLATURE: SI-SAMU-NOMENC_DEVENIR_PAT
-,Date Heure de création de la décision,,,,,A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,1..1,,datetime,
-,Type de décision,,,,,A valoriser avec le type de décision prise (cf.nomenclature associée),conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,type,1..1,,string,NOMENCLATURE: SI-SAMU-TYPEDEC
+,Date Heure de la décision,,,,,A valoriser avec le groupe date heure de création de la décision.  L'indicateur de fuseau horaire Z ne doit pas être utilisé.,2022-09-27T08:23:34+02:00,creation,1..1,,datetime,
 ,Opérateur décideur,# Voir type operator,,,,Objet qui permet de décrire le professionnel de santé qui prend la décision,,operator,1..1,X,operator,
-,Détails décision d'intervention,,,,,Objet qui permet de détailler la décision prise,,engagementDetails,0..n,X,decisionDetails,
-,,Type de ressource,,,,A valoriser avec le type de ressource souhaité / demandé (cf.nomenclature associée),"SMUR, Pompiers",categoryType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
-,,Type de vecteur,,,,A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée).,"AR, VLM, VSAV",resourceType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
-,,Niveau de prise en charge,,,,A valoriser avec le niveau de prise en charge souhaité (cf.nomenclature associée),"Médical, paramédical, secouriste",teamCareInitial,1..1,,string,NOMENCLATURE: SI-SAMU-NIVSOIN
-,Détails décisions de transport et/ou d'orientation,,# Voir type decisionDetails,,,Objet qui permet de détailler la décision prise,,transportDetails,0..n,X,decisionDetails,
-,,Destination,,,,Objet qui permet de détailler la destination du vecteur de transport,,destination,0..1,X,destination,
-,,,Type de destination,,,Indique le type de destination (cf. nomenclature associée),,type,0..1,,string,NOMENCLATURE: ENUM-TYPE_Destination
-,,,Localisation de la destination,# Voir type location,,Objet qui permet de décrire la localisation de la destination,,location,0..1,X,location,
+,Type de décision,,,,,A valoriser avec le type de décision prise (cf.nomenclature associée),conseil médical  / décision d’intervention / décision d’orientation et de transport / Pas de décision supplémentaire,decisionType,1..1,,string,NOMENCLATURE: SI-SAMU-TYPEDEC
+,Type de ressource,,,,,"A valoriser avec le type de ressource souhaitée ou engagée (cf.nomenclature associée) - en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.","SMUR, Pompiers",resourceType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_MOYEN
+,Type de vecteur,,,,,"A valoriser avec le type de vecteur souhaité / demandé (cf.nomenclature associée) en fonction du type de décision.
+A fournir obligatoirement pour une décision d'intervention ou de transport/orientation.","AR, VLM, VSAV",vehiculeType,0..1,,string,NOMENCLATURE: SI-SAMU-TYPE_VECTEUR
+,Transport médicalisé,,,,,"A valoriser obligatoirement en cas de décision de transport, pour indiquer si ce dernier est médicalisé.
+True = transport médicalisé
+False = transport non médicalisé",True,medicalTransport,0..1,,boolean,
+,Type d'orientation,,,,,Indique le type de destination en cas de décision d'orientation (cf. nomenclature associée),EPHAD,orientationType,0..1,,string,NOMENCLATURE: ENUM-TYPE_Destination
 Informations supplémentaires modifiées,,,,,,"Champ libre qui permet de concaténer en une seule note toutes les autres valeurs modifiées dans le dossier, ne figurant pas de manière structurée dans le RS-EDA-MAJ.",adresse : 7bis rue du château - Neuilly sur Seine,freetext,0..1,,string,
 Informations complémentaires,,,,,,"Objet qui permet d'ajouter jusqu'à 3 données supplémentaires, dans l'éventualité où ces dernières ne sont pas déjà prévues dans le modèle",,additionalInformation,0..1,X,additionalInformation,
 ,Clé valeur adaptable,,,,,Objet qui permet de rajouter des clés-valeurs de façon libre afin d'adapter le modèle à des besoins locaux ou urgents,,customMap,0..3,X,customMap,

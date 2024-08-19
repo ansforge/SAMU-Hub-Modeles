@@ -60,26 +60,26 @@
         "medicalSituation": "Chute d'environ 2m. Multiples contusions et plaies. Possible fractures et trauma crânien"
       },
       {
-        "file": "RS-EDA/RS-EDA-SMUR-FuiteDeGaz-AliceGregoireNormand.json",
+        "file": "RS-EDA/RS-EDA-SMUR_FuiteDeGaz_AliceGregoireNormand.01.json",
         "icon": "mdi-molecule-co2",
-        "context": "Fuite de gaz",
-        "name": "Alice et Grégoire NORMAND",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+        "name": "Alice et Grégoire NORMAND.01",
         "caller": "Marie Dubois, mère des enfants, appelle le 15",
         "environment": "Domicile, maison particulière",
         "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
         "victim": "Femme, enfant, 13 ans, et Homme, enfant, 11 ans",
-        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
+        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone suite à une fuite de gaz"
       },
       {
-        "file": "RS-EDA/RS-EDA-SMUR-FemmeEnceinte-DelphineVigneau.json",
+        "file": "RS-EDA/RS-EDA-SMUR_FemmeEnceinte_DelphineVigneau.01.json",
         "icon": "mdi-human-pregnant",
-        "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine VIGNEAU",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.02a",
+        "name": "Delphine VIGNEAU.01",
         "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
         "environment": "Lieu de travail",
         "victims": "1 patiente, nécessitant assistance SAMU",
         "victim": "Femme, enceinte de 2 mois, 32 ans",
-        "medicalSituation": "Problème obstétrique non hémorragique"
+        "medicalSituation": "Problème obstétrique non hémorragique suite à la chute d'une échelle d'une femme enceinte"
       }]
   },
   {
@@ -102,11 +102,18 @@
         "environment": "Dégradation du patient : notes médicales ajoutées au dossier et priorité de régulation revue à la hausse"
       },
       {
-        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02.json",
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02a.json",
+        "icon": "mdi-head-heart-outline",
+        "name": "Monsieur X.02",
+        "context": "Pas de test suivant: RS-EDA-MAJ - 02a",
+        "environment": "Régulation médicale du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_partageDossier_MonsieurX.02b.json",
         "icon": "mdi-head-heart-outline",
         "name": "Monsieur X.02",
         "context": "Pas de test suivant: RS-RI - 03",
-        "environment": "Régulation médicale du médecin urgentiste"
+        "environment": "Décision du médecin urgentiste"
       },
       {
         "file": "RS-EDA-MAJ/RS-EDA-MAJ_priseEnCharge_OuardiaBoudadi.02.json",
@@ -127,6 +134,34 @@
         "name": "Enfants NGUYEN.03a",
         "context": "Pas de test suivant: RS-RI - 03b",
         "environment": "Régulation médicale du médecin urgentiste du 76A : mise à jour du dossier"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.02a.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.02a",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Delphine VIGNEAU.02b",
+        "environment": "Régulation médicale du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FemmeEnceinte_DelphineVigneau.02b.json",
+        "icon": "mdi-human-pregnant",
+        "name": "Delphine VIGNEAU.02b",
+        "context": "Pas de test suivant: RS-RPIS - Delphine VIGNEAU.03",
+        "environment": "Clôture du dossier"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.02a.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.02a",
+        "context": "Pas de test suivant: RS-EDA-MAJ - Alice et Grégoire NORMAND.02b",
+        "environment": "Régulation médicale du médecin urgentiste"
+      },
+      {
+        "file": "RS-EDA-MAJ/RS-EDA-MAJ_FuiteDeGaz_AliceGregoireNormand.02b.json",
+        "icon": "mdi-molecule-co2",
+        "name": "Alice et Grégoire NORMAND.02b",
+        "context": "Pas de test suivant: RS-RPIS - Grégoire NORMAND.03a",
+        "environment": "Clôture du dossier"
       }]
   },
   {
@@ -284,31 +319,30 @@
   },
 
   {
-    "label": "RPIS",
+    "label": "RS-RPIS",
     "schemaName": "RPIS.schema.json",
     "schema": null,
     "examples": [
       {
-        "file": "RPIS/RPIS-FuiteDeGaz-GregoireNormand.json",
+        "file": "RPIS/RS-RPIS_FuiteDeGaz_GregoireNormand.03a.json",
         "icon": "mdi-molecule-co2",
         "context": "Fuite de gaz",
-        "name": "Grégoire NORMAND",
-        "caller": "Marie Dubois, mère des enfants, appelle le 15",
-        "environment": "Domicile, maison particulière",
-        "victims": "2 patients, nécessitant assistance SAMU et l'intervention du SIS pour la fuite de gaz qui a reçu une demande de concours",
-        "victim": "Homme, enfant, 11 ans",
-        "medicalSituation": "Malaise, effets secondaires liés au monoxyde de carbone"
+        "name": "Grégoire NORMAND.03a",
+        "medicalSituation": "Données RPIS du patient"
       },
       {
-        "file": "RPIS/RPIS-FemmeEnceinte-DelphineVigneau.json",
+        "file": "RPIS/RS-RPIS_FuiteDeGaz_AliceNormand.03b.json",
+        "icon": "mdi-molecule-co2",
+        "context": "Fuite de gaz",
+        "name": "Alice NORMAND.03b",
+        "medicalSituation": "Données RPIS du patient"
+      },
+      {
+        "file": "RPIS/RS-RPIS_FemmeEnceinte_DelphineVigneau.03.json",
         "icon": "mdi-human-pregnant",
         "context": "Chute d'une échelle d'une femme enceinte",
-        "name": "Delphine VIGNEAU",
-        "caller": "Agnès Duberti, appelle le 18 qui nous transfère l'appel et le dossier",
-        "environment": "Lieu de travail",
-        "victims": "1 patiente, nécessitant assistance SAMU",
-        "victim": "Femme, enceinte de 2 mois, 32 ans",
-        "medicalSituation": "Problème obstétrique non hémorragique"
+        "name": "Delphine VIGNEAU.03",
+        "medicalSituation": "Données RPIS du patient"
       }]
   },
   {
