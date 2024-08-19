@@ -71,7 +71,7 @@
             </element>
             <element minOccurs="0" name="dateField">
                 <annotation>
-                    <documentation>Date with regex</documentation>
+                    <documentation>Date</documentation>
                 </annotation>
                 <simpleType>
                     <restriction base="string">

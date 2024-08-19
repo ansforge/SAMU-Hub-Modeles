@@ -7174,11 +7174,11 @@ components:
           - None
         dateField:
           type: string
-          title: Date with regex
+          title: Date
           x-health-only: false
           x-cols: 6
           example: example.json#/dateField
-          description: Date with regex
+          description: Date
           pattern: \d{4}-\d{2}-\d{2}
           examples:
           - None
@@ -7450,11 +7450,11 @@ components:
           - None
         dateField:
           type: string
-          title: Date with regex
+          title: Date
           x-health-only: false
           x-cols: 6
           example: example.json#/dateField
-          description: Date with regex
+          description: Date
           pattern: \d{4}-\d{2}-\d{2}
           examples:
           - None

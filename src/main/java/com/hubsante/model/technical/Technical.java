@@ -591,7 +591,7 @@ public class Technical {
   }
 
   /**
-   * Date with regex
+   * Date
    * @return dateField
    **/
   @JsonProperty(JSON_PROPERTY_DATE_FIELD)

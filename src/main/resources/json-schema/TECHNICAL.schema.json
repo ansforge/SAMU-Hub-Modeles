@@ -2,7 +2,7 @@
     "$schema": "http://json-schema.org/draft-07/schema#",
     "$id": "classpath:/json-schema/schema#",
     "x-id": "TECHNICAL.schema.json#",
-    "version": "24.08.06",
+    "version": "24.08.19",
     "example": "example.json#",
     "type": "object",
     "title": "technical",
@@ -137,11 +137,11 @@
         },
         "dateField": {
             "type": "string",
-            "title": "Date with regex",
+            "title": "Date",
             "x-health-only": false,
             "x-cols": 6,
             "example": "example.json#/dateField",
-            "description": "Date with regex",
+            "description": "Date",
             "pattern": "\\d{4}-\\d{2}-\\d{2}"
         },
         "emailField": {
