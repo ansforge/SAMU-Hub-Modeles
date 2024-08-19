@@ -31,8 +31,10 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "reference": {
-              "_errordistributionID": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
+            "technical": {
+              "requiredArray": [
+                "value"
+              ]
             }
           }
         }

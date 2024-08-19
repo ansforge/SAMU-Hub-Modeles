@@ -31,10 +31,8 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "reference": {
-              "_errorproperty1": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
-              "_errorproperty2": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd",
-              "_errorproperty3": "samuB_2607723d-507d-4cbf-bf74-12345f7064cd"
+            "technical": {
+              "_errorproperty1": "value"
             }
           }
         }

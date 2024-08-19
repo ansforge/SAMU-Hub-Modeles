@@ -32,9 +32,9 @@
               }
             ],
             "technical": {
-              "requiredStringField": "requiredStringValue",
+              "requiredStringField": "value",
               "requiredArray": [
-                "requiredArrayValue1"
+                "value"
               ]
             }
           }

@@ -3,6 +3,4 @@ Issues found on the $.content[0].jsonContent.embeddedJsonContent.message header:
  - recipient: is missing but it is required
  - status: is missing but it is required
 Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: 
- - reference.dateTimeSentERROR: is not defined in the schema and the schema does not allow additional properties
- - reference.distributionID: is missing but it is required
- - reference.distributionIDERROR: is not defined in the schema and the schema does not allow additional properties
+ - technical.requiredStringField: is missing but it is required
