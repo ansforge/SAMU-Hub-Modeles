@@ -31,8 +31,11 @@
                 "URI": "hubex:fr.health.samuB"
               }
             ],
-            "reference": {
-              "distributionID": "not missing"
+            "technical": {
+              "requiredStringField": "requiredStringValue",
+              "requiredArray": [
+                "requiredArrayValue1"
+              ]
             }
           }
         }

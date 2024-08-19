@@ -31,89 +31,12 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
-import static com.hubsante.model.config.Constants.*;
 import static com.hubsante.model.config.Constants.FULL_SCHEMA;
 import static com.hubsante.model.utils.EdxlWrapperUtils.wrapUseCaseMessage;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 @Slf4j
 public class UseCaseValidatorTest extends AbstractValidatorTest {
-
-    @Test
-    @DisplayName("Valid error message is thrown: valid envelope and errors in use case")
-    public void invalidContentValidEnvelopeTest() throws IOException {
-        String json = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.json");
-
-        // envelope validation does not throw because envelope is ok
-        assertDoesNotThrow(() -> validator.validateJSON(json, ENVELOPE_SCHEMA));
-        assertThrows(ValidationException.class, () -> validator.validateJSON(json, FULL_SCHEMA));
-
-        try {
-            validator.validateJSON(json, FULL_SCHEMA);
-        } catch (ValidationException e) {
-            String[] expectedErrors = {
-                    "Could not validate message against schema : errors occurred. ",
-                    "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                    " - createCase.creation: is missing but it is required",
-                    " - createCase.additionalInformation.customMap: object found, array expected"
-            };
-            String[] errors = e.getMessage().split("\n");
-            checkErrorMessageArrayExactContent(errors, expectedErrors);
-        }
-
-        String xml = getInvalidMessage("RC-EDA/invalid-RC-EDA-valid-EDXL.xml");
-        // envelope validation does not throw because envelope is ok
-        assertDoesNotThrow(() -> validator.validateXML(xml, ENVELOPE_XSD));
-        assertThrows(ValidationException.class, () -> validator.validateXML(xml, FULL_XSD));
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: too many valid use cases")
-    void tooManyValidSchemas() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "embeddedJsonContent: should be valid to one and only one schema, but 2 are valid"
-        };
-        jsonValidationFails("too-many-valid-schemas.json", expectedErrors);
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: no use cases detected")
-    void noSchemasDetected() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Could not detect any schemas in the message, at least one is required "
-        };
-        jsonValidationFails("RC-EDA/invalid-RC-EDA-no-schemas.json", expectedErrors);
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: unknown property at use case content level")
-    public void jsonRcRefAdditionalPropertyFails() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                " - reference.unexpectedUnknownProperty: is not defined in the schema and the schema does not allow additional properties"
-        };
-        jsonValidationFails("EDXL-DE/unknown-property-deep.json", expectedErrors);
-    }
-
-    @Test
-    @DisplayName("Valid error message is thrown: too many schemas detected and multiple errors in use case content")
-    void tooManySchemasAndErrorsInContent() throws IOException {
-        String[] expectedErrors = {
-                "Could not validate message against schema : errors occurred. ",
-                "Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: ",
-                "embeddedJsonContent: should be valid to one and only one schema, but 2 are valid",
-                " - reference.distributionID: is missing but it is required",
-                " - reference._errordistributionID: is not defined in the schema and the schema does not allow additional properties",
-                " - emsi.CONTEXT: is missing but it is required",
-                " - emsi.EVENT: is missing but it is required",
-                " - emsi._errorproperty: is not defined in the schema and the schema does not allow additional properties"
-        };
-        jsonValidationFails("RC-REF/RC-REF-too-many-schemas-and-errors-in-content.json", expectedErrors);
-    }
 
     @Test
     @DisplayName("all examples files passing")

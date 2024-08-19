@@ -415,18 +415,29 @@
           ]
         },
         {
-          "properties": {
-            "message": {
+          "allOf": [
+            {
               "properties": {
-                "technical": {
-                  "$ref": "TECHNICAL.schema.json"
+                "message": {
+                  "$ref": "RC-DE.schema.json"
                 }
-              },
-              "required": [
-                "technical"
-              ]
+              }
+            },
+            {
+              "properties": {
+                "message": {
+                  "properties": {
+                    "technical": {
+                      "$ref": "TECHNICAL.schema.json"
+                    }
+                  },
+                  "required": [
+                    "technical"
+                  ]
+                }
+              }
             }
-          }
+          ]
         },
         {
           "properties": {

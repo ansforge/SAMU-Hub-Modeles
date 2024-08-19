@@ -67,6 +67,8 @@
                         <xs:element ref="resourcesinfo:resourcesInfo"/>
                         <xs:element ref="resourcesrequest:resourcesRequest"/>
                         <xs:element ref="resourcesresponse:resourcesResponse"/>
+                        <!-- technical -->
+                        <xs:element ref="technical:technical"/>
                     </xs:choice>
                 </xs:sequence>
             </xs:extension>
@@ -79,7 +81,6 @@
                 <xs:element ref="error:error"/>
                 <xs:element ref="info:info"/>
                 <xs:element ref="x:customContent"/>
-                <xs:element ref="technical:technical"/>
                 <xs:element ref="technicalnoreq:technicalNoreq"/>
             </xs:choice>
         </xs:sequence>

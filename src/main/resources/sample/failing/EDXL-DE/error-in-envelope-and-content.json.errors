@@ -1,0 +1,7 @@
+Could not validate message against schema : errors occurred. 
+Issues found on the $.content[0].jsonContent.embeddedJsonContent.message content: 
+ - reference.distributionID: is missing but it is required
+ - reference._errordistributionID: is not defined in the schema and the schema does not allow additional properties
+Issues found on the envelope: 
+ - $._errorsenderID: is not defined in the schema and the schema does not allow additional properties
+ - $.senderID: is missing but it is required

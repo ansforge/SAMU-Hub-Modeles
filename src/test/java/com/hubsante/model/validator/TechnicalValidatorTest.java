@@ -38,21 +38,28 @@ public class TechnicalValidatorTest extends AbstractValidatorTest {
     private static final Logger log = LoggerFactory.getLogger(TechnicalValidatorTest.class);
 
     @Test
-    @DisplayName("Valid technical messages should pass validation")
+    @DisplayName("All valid technical messages should pass validation")
     public void jsonTechnicalValidationPasses() throws Exception {
-        validator.validateJSON(getMessageByFileName("TECHNICAL/complete.json"), TECHNICAL_SCHEMA);
-        validator.validateJSON(getMessageByFileName("TECHNICAL/array-deserialization.json"), TECHNICAL_SCHEMA);
-        validator.validateJSON(getMessageByFileName("TECHNICAL/nomenclature-test.json"), TECHNICAL_SCHEMA);
-        validator.validateJSON(getMessageByFileName("TECHNICAL/regex-validation.json"), TECHNICAL_SCHEMA);
+        String[] folders = {"TECHNICAL"};
 
-        validator.validateXML(getMessageByFileName("TECHNICAL/complete.xml"), TECHNICAL_XSD);
-        validator.validateXML(getMessageByFileName("TECHNICAL/array-deserialization.xml"), TECHNICAL_XSD);
-        validator.validateXML(getMessageByFileName("TECHNICAL/nomenclature-test.xml"), TECHNICAL_XSD);
-        validator.validateXML(getMessageByFileName("TECHNICAL/regex-validation.xml"), TECHNICAL_XSD);
+        for (String folder : folders) {
+            log.info("Running passing validation tests for schema: {}", folder);
+            String folderPath = Objects.requireNonNull(TestMessagesHelper.class.getClassLoader().getResource("sample/valid/" + folder)).getFile();
+            List<File> files = new ArrayList<>(Arrays.asList(Objects.requireNonNull(new File(folderPath).listFiles())));
+            log.info("Files discovered: {}", files);
+
+            for (File file : files) {
+                if (file.getName().endsWith(".json")) {
+                    validator.validateJSON(getMessageByFileName(folder + "/" + file.getName()), folder.equals("TECHNICAL") ? TECHNICAL_SCHEMA : TECHNICAL_NOREQ_SCHEMA);
+                } else if (file.getName().endsWith(".xml")) {
+                    validator.validateXML(getMessageByFileName(folder + "/" + file.getName()), folder.equals("TECHNICAL") ? TECHNICAL_XSD : TECHNICAL_NOREQ_XSD);
+                }
+            }
+        }
     }
 
     @Test
-    @DisplayName("All failing tests must throw corresponding error messages")
+    @DisplayName("All failing technical tests must throw corresponding error messages")
     public void batchFailingValidation() throws IOException {
         boolean areAllTestsPassing = true;
         //Get list of all files in /sample/examples/failing/TECHNICAL and /sample/examples/failing/TECHNICAL_NOREQ
