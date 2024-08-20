@@ -105,7 +105,7 @@ strict digraph {
                 <TR>
                 <TD ><B>geometry</B></TD>
                 </TR>
-                <TR><TD  BORDER="0"><I>objet geometry</I></TD></TR><TR><TD BORDER="0" >datetime <I>obsDatime</I> : [1..1] </TD></TR>
+                <TR><TD  BORDER="0"><I>objet geometry</I></TD></TR><TR><TD BORDER="0" >obsDatime <I>date-time</I> : [1..1] </TD></TR>
                 </TABLE>>]
 	geometry -> location [headlabel=1 taillabel="0..1"]
 	externalInfo [label=<<TABLE>

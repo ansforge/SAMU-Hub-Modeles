@@ -1468,16 +1468,18 @@
             "x-display": "expansion-panels",
             "x-health-only": false,
             "required": [
-                "datetime"
+                "obsDatime"
             ],
             "properties": {
-                "datetime": {
-                    "type": "obsDatime",
+                "obsDatime": {
+                    "type": "string",
                     "title": "Heure du dernier relevé",
                     "x-health-only": false,
                     "x-cols": 6,
-                    "example": "example.json#/location/geometry/datetime",
-                    "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir."
+                    "example": "example.json#/location/geometry/obsDatime",
+                    "description": "A valoriser avec le groupe date heure de renseignement des coordonnées du point clé de la localisation. \nPermet de connaître la fraîcheur et donc la pertinence des informations pour intervenir.",
+                    "pattern": "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}[\\-+]\\d{2}:\\d{2}",
+                    "format": "date-time"
                 },
                 "point": {
                     "$ref": "#/definitions/point"

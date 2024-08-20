@@ -34,8 +34,8 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.fasterxml.jackson.dataformat.xml.annotation.*;
-import com.hubsante.model.health.ObsDatime;
 import com.hubsante.model.health.Point;
+import java.time.OffsetDateTime;
 import java.util.Arrays;
 import java.util.Arrays;
 import java.util.Objects;
@@ -44,22 +44,22 @@ import java.util.Objects;
  * Geometry
  */
 @JsonPropertyOrder(
-    {Geometry.JSON_PROPERTY_DATETIME, Geometry.JSON_PROPERTY_POINT})
+    {Geometry.JSON_PROPERTY_OBS_DATIME, Geometry.JSON_PROPERTY_POINT})
 @JsonTypeName("geometry")
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 
 public class Geometry {
-  public static final String JSON_PROPERTY_DATETIME = "datetime";
-  private ObsDatime datetime = null;
+  public static final String JSON_PROPERTY_OBS_DATIME = "obsDatime";
+  private OffsetDateTime obsDatime;
 
   public static final String JSON_PROPERTY_POINT = "point";
   private Point point;
 
   public Geometry() {}
 
-  public Geometry datetime(ObsDatime datetime) {
+  public Geometry obsDatime(OffsetDateTime obsDatime) {
 
-    this.datetime = datetime;
+    this.obsDatime = obsDatime;
     return this;
   }
 
@@ -67,19 +67,19 @@ public class Geometry {
    * A valoriser avec le groupe date heure de renseignement des coordonnées du
    *point clé de la localisation.  Permet de connaître la fraîcheur et donc la
    *pertinence des informations pour intervenir.
-   * @return datetime
+   * @return obsDatime
    **/
-  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonProperty(JSON_PROPERTY_OBS_DATIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
 
-  public ObsDatime getDatetime() {
-    return datetime;
+  public OffsetDateTime getObsDatime() {
+    return obsDatime;
   }
 
-  @JsonProperty(JSON_PROPERTY_DATETIME)
+  @JsonProperty(JSON_PROPERTY_OBS_DATIME)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDatetime(ObsDatime datetime) {
-    this.datetime = datetime;
+  public void setObsDatime(OffsetDateTime obsDatime) {
+    this.obsDatime = obsDatime;
   }
 
   public Geometry point(Point point) {
@@ -114,20 +114,22 @@ public class Geometry {
       return false;
     }
     Geometry geometry = (Geometry)o;
-    return Objects.equals(this.datetime, geometry.datetime) &&
+    return Objects.equals(this.obsDatime, geometry.obsDatime) &&
         Objects.equals(this.point, geometry.point);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(datetime, point);
+    return Objects.hash(obsDatime, point);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Geometry {\n");
-    sb.append("    datetime: ").append(toIndentedString(datetime)).append("\n");
+    sb.append("    obsDatime: ")
+        .append(toIndentedString(obsDatime))
+        .append("\n");
     sb.append("    point: ").append(toIndentedString(point)).append("\n");
     sb.append("}");
     return sb.toString();
