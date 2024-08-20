@@ -31,8 +31,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.TestMessagesHelper.getInvalidMessage;
+import static com.hubsante.model.EdxlWrapperUtils.wrapUseCaseMessage;
 import static com.hubsante.model.config.Constants.*;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -155,7 +155,6 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
         jsonValidationFails("RC-REF/RC-REF-too-many-schemas-and-errors-in-content.json", expectedErrors);
     }
 
-    //TODO: !!! REACTIVATE URGENTLY ONCE THE REGEX INCONSISTENCY BETWEEN .JSON AND .XML FILES IS FIXED !!!
     @Test
     @DisplayName("all examples files passing")
     public void examplesBundlePassingTest() {
@@ -178,13 +177,8 @@ public class UseCaseValidatorTest extends AbstractValidatorTest {
 
                     validator.validateJSON(fullJson, FULL_SCHEMA);
                 } else {
-                    //TODO: REMOVE THE TRY CATCH URGENTLY ONCE THE REGEX INCONSISTENCY BETWEEN .JSON AND .XML FILES IS FIXED
-                    try {
-                        String useCaseXml = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
-                        validator.validateXML(useCaseXml, FULL_XSD);
-                    } catch (ValidationException e) {
-                        log.warn("Error ignored temporarily: File {} is not valid against schema: {}", file.getName(), e.getMessage());
-                    }
+                    String useCaseXml = new String(Files.readAllBytes(file.toPath()), StandardCharsets.UTF_8);
+                    validator.validateXML(useCaseXml, FULL_XSD);
                 }
                 log.info("File {} is valid against schema", file.getName());
 
