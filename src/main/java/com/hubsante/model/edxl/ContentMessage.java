@@ -24,7 +24,7 @@ import com.hubsante.model.geolocation.GeoPositionsUpdateWrapper;
 import com.hubsante.model.geolocation.GeoResourcesDetailsWrapper;
 import com.hubsante.model.geolocation.GeoResourcesRequestWrapper;
 import com.hubsante.model.health.CreateCaseHealthWrapper;
-import com.hubsante.model.health.update.CreateCaseHealthUpdateWrapper;
+import com.hubsante.model.health.CreateCaseHealthUpdateWrapper;
 import com.hubsante.model.reference.ReferenceWrapper;
 import com.hubsante.model.report.ErrorWrapper;
 import com.hubsante.model.resources.info.ResourcesInfoWrapper;
